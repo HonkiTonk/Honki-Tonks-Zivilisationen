@@ -39,6 +39,7 @@ package GlobaleVariablen is
 
    Schwierigkeitsgrad : GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum;   
    Gewonnen : Boolean := False;
+   WeiterSpielen : Boolean := False;
    
    -- Später über Nutzereingaben neu belegbar machen.
    type GrenzenArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.GrenzenRecord;

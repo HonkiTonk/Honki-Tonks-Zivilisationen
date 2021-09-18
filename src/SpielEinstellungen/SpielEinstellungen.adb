@@ -9,7 +9,7 @@ with ImSpiel, KartenGenerator, Ladezeiten, SpielEinstellungenKarten, SpielEinste
 
 package body SpielEinstellungen is
 
-   function SpielEinstellungen
+   function SpielEinstellungenAuswahl
      return Integer
    is begin
 
@@ -57,6 +57,16 @@ package body SpielEinstellungen is
 
       end loop AuswahlSchleife;
 
+      return AutomatischeEinstellungen;
+              
+   end SpielEinstellungenAuswahl;
+   
+   
+   
+   function AutomatischeEinstellungen
+     return Integer
+   is begin
+      
       KartenGenerator.KartenGenerator;
       
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, GlobaleDatentypen.Anfangswert) := Clock;
@@ -86,7 +96,7 @@ package body SpielEinstellungen is
             null;
             
          when False =>
-            Put_Line ("SpielEinstellungen.SpielEinstellungen es wurden keine Rassen platziert!");
+            Put_Line ("SpielEinstellungen.SpielEinstellungenAuswahl es wurden keine Rassen platziert!");
             return GlobaleKonstanten.SpielBeendenKonstante;
       end case;               
          
@@ -96,7 +106,7 @@ package body SpielEinstellungen is
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Gesamtzeit);
          
       return ImSpiel.ImSpiel;
-              
-   end SpielEinstellungen;
+      
+   end AutomatischeEinstellungen;
 
 end SpielEinstellungen;

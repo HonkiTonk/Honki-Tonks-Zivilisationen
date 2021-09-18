@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank, LeseEinheitenGebaut;
 
-with StadtBauen, Verbesserungen, EinheitenErzeugenEntfernen;
+with StadtBauen, Aufgaben, EinheitenErzeugenEntfernen;
 
 with KIVorhandeneAufgaben, KIAufgabeFestlegen, KIAufgabeUmsetzen;
 
@@ -168,8 +168,8 @@ package body KIAufgabenPlanung is
             AufgabeDurchführen := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Stadt_Bewachen =>
-            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       BefehlExtern             => GlobaleDatentypen.Verschanzen);
+            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 BefehlExtern             => GlobaleDatentypen.Verschanzen);
             
          when KIDatentypen.Verbesserung_Anlegen =>
             AufgabeDurchführen := KIAufgabeUmsetzen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -181,12 +181,12 @@ package body KIAufgabenPlanung is
             null;
             
          when KIDatentypen.Einheit_Heilen =>
-            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       BefehlExtern             => GlobaleDatentypen.Heilen);
+            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 BefehlExtern             => GlobaleDatentypen.Heilen);
             
          when KIDatentypen.Einheit_Festsetzen =>
-            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       BefehlExtern             => GlobaleDatentypen.Verschanzen);
+            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 BefehlExtern             => GlobaleDatentypen.Verschanzen);
             
          when KIDatentypen.Einheit_Verbessern =>
             AufgabeDurchführen := KIAufgabeUmsetzen.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

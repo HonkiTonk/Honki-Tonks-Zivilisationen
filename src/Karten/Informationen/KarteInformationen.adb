@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with LeseKarten;
 
-with Anzeige, Cheat, EinheitSuchen, StadtSuchen, StadtInformationen, VerbesserungenAllgemein, KartenAllgemein, GesamtwerteFeld, InformationenWichtiges, InformationenEinheiten;
+with Anzeige, Cheat, EinheitSuchen, StadtSuchen, StadtInformationen, AufgabenAllgemein, KartenAllgemein, GesamtwerteFeld, InformationenWichtiges, InformationenEinheiten;
      
 package body KarteInformationen is
 
@@ -16,7 +16,7 @@ package body KarteInformationen is
    is begin
       
       InformationenWichtiges.Wichtiges (RasseExtern => RasseExtern);
-      InformationenSichtbar (RasseExtern => RasseExtern);      
+      InformationenSichtbar (RasseExtern => RasseExtern);
       Kartenposition (RasseExtern => RasseExtern);
       Gecheatet (RasseExtern => RasseExtern);
       
@@ -116,8 +116,8 @@ package body KarteInformationen is
       
       Hügel (RasseExtern => RasseExtern);
       KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
-      VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
-      VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+      AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+      AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
       KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
       New_Line;
             

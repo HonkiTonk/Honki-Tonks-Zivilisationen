@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with LeseKarten, LeseEinheitenGebaut;
 
-with Verbesserungen;
+with Aufgaben;
 
 package body KIAufgabeUmsetzen is
    
@@ -32,8 +32,8 @@ package body KIAufgabeUmsetzen is
         LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when GlobaleDatentypen.Leer =>
-            return Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BefehlExtern             => GlobaleDatentypen.Straße_Bauen);
+            return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 BefehlExtern             => GlobaleDatentypen.Straße_Bauen);
             
          when others =>
             null;
@@ -65,8 +65,8 @@ package body KIAufgabeUmsetzen is
          or
            LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and
-          Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                             BefehlExtern             => GlobaleDatentypen.Mine_Bauen)
+          Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                       BefehlExtern             => GlobaleDatentypen.Mine_Bauen)
         = True
       then
          Befehl := GlobaleDatentypen.Mine_Bauen;
@@ -74,15 +74,15 @@ package body KIAufgabeUmsetzen is
       elsif
         Grund = GlobaleDatentypen.Eis
         and
-          Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                             BefehlExtern             => GlobaleDatentypen.Festung_Bauen)
+          Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                       BefehlExtern             => GlobaleDatentypen.Festung_Bauen)
         = True
       then
          Befehl := GlobaleDatentypen.Festung_Bauen;
          
       elsif
-        Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                           BefehlExtern             => GlobaleDatentypen.Farm_Bauen)
+        Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                     BefehlExtern             => GlobaleDatentypen.Farm_Bauen)
         = True
       then
          Befehl := GlobaleDatentypen.Farm_Bauen;
@@ -91,8 +91,8 @@ package body KIAufgabeUmsetzen is
          return False;
       end if;
       
-      return Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BefehlExtern             => Befehl);
+      return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                           BefehlExtern             => Befehl);
       
    end VerbesserungGebiet;
       
@@ -103,8 +103,8 @@ package body KIAufgabeUmsetzen is
       return Boolean
    is begin
       
-      NullWert := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                      BefehlExtern             => GlobaleDatentypen.Einheit_Verbessern);
+      NullWert := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                BefehlExtern             => GlobaleDatentypen.Einheit_Verbessern);
       
       return False;
       

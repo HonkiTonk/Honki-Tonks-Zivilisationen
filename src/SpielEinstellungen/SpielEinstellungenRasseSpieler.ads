@@ -53,8 +53,6 @@ private
    
    FreieFelder : GlobaleDatentypen.SichtweiteMitNullwert;
    
-   SicherheitsTestWert : GlobaleDatentypen.KartenfeldPositivMitNullwert;
-   
    Spieler : Natural;
    
    RasseEntfernen : constant Positive := 20;
@@ -69,5 +67,9 @@ private
    
    type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenKartenfeldPositivRecord;
    StartKoordinaten : KoordinatenArray;
+   
+   procedure FelderBestimmen
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
 
 end SpielEinstellungenRasseSpieler;

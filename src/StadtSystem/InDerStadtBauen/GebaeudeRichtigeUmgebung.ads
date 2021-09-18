@@ -18,5 +18,10 @@ package GebaeudeRichtigeUmgebung is
 private
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   function UmgebungPrüfen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
+      return Boolean;
 
 end GebaeudeRichtigeUmgebung;

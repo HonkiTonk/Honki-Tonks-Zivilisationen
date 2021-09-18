@@ -1,10 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded, Ada.Streams.Stream_IO;
-use Ada.Strings.Wide_Wide_Unbounded, Ada.Streams.Stream_IO;
-
-with GlobaleDatentypen;
-use GlobaleDatentypen;
+with Ada.Streams.Stream_IO;
+use Ada.Streams.Stream_IO;
 
 package Speichern is
 
@@ -15,18 +12,27 @@ package Speichern is
 
 private
 
-   Trennzeichen : constant Wide_Wide_Character := ' ';
-
    AutospeichernWert : Positive := 1;
-
-   KartenPlusWert : GlobaleDatentypen.Kartenfeld;
-
-   SpielstandName : Unbounded_Wide_Wide_String;
 
    DateiSpeichernNeu : File_Type;
 
+   procedure SonstigesSpeichern;
+   procedure KarteSpeichern;
+   procedure RassenGrenzenSpeichern;
+   procedure EinheitenSpeichern;
+   procedure StädteSpeichern;
+   procedure WichtigesSpeichern;
+   procedure DiplomatieSpeichern;
+   procedure CursorSpeichern;
+   procedure NameAutoSpeichern;
+
+
+
    function SpielstandNameFestlegen
      (AutospeichernExtern : in Boolean)
+      return Boolean;
+
+   function NameNutzer
      return Boolean;
 
 end Speichern;

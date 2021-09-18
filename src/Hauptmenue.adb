@@ -21,7 +21,7 @@ package body Hauptmenue is
          is
             -- Start
             when GlobaleKonstanten.StartNormalKonstante =>
-               RückgabeKampagne := SpielEinstellungen.SpielEinstellungen;
+               RückgabeKampagne := SpielEinstellungen.SpielEinstellungenAuswahl;
 
                if
                  RückgabeKampagne = GlobaleKonstanten.HauptmenüKonstante

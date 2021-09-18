@@ -96,7 +96,7 @@ package body Karte is
    
    
    procedure NeueZeileKartenform
-     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
+     (XAchseExtern : in GlobaleDatentypen.Kartenfeld)
    is begin
       
       if

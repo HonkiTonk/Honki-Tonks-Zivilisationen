@@ -37,7 +37,7 @@ package body KIEinheitHandlungen is
    is begin
       
       AktivitätSchleife:
-      for Schleifenwert in GlobaleDatentypen.NotAus'Range loop
+      for Schleifenwert in GlobaleDatentypen.NotAusKlein'Range loop
          
          exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
          
@@ -105,7 +105,7 @@ package body KIEinheitHandlungen is
       end if;
       
       AktivitätSchleife:
-      for Schleifenwert in GlobaleDatentypen.NotAus'Range loop
+      for Schleifenwert in GlobaleDatentypen.NotAusKlein'Range loop
          
          exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
          

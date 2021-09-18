@@ -9,7 +9,7 @@ use GlobaleDatentypen;
 with SchreibeWichtiges;
 with LeseWichtiges;
 
-with Wachstum, Verbesserungen, ForschungAllgemein, StadtProduktion, SiegBedingungen, DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung, EinheitenModifizieren,
+with Wachstum, Aufgaben, ForschungAllgemein, StadtProduktion, SiegBedingungen, DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung, EinheitenModifizieren,
      Ladezeiten, Speichern, Auswahl;
 
 package body ZwischenDenRunden is
@@ -21,7 +21,7 @@ package body ZwischenDenRunden is
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Anfangswert) := Clock;
       
       if
-        WeiterSpielen = False
+        GlobaleVariablen.WeiterSpielen = False
       then
          case
            SiegBedingungen.SiegBedingungen
@@ -33,7 +33,7 @@ package body ZwischenDenRunden is
                if
                  Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = GlobaleKonstanten.JaKonstante
                then
-                  WeiterSpielen := True;
+                  GlobaleVariablen.WeiterSpielen := True;
                                  
                else
                   return True;
@@ -49,7 +49,7 @@ package body ZwischenDenRunden is
       EinheitInUmgebung.EinheitInUmgebung;
       
       EinheitenModifizieren.HeilungBewegungspunkteNeueRundeErmitteln;
-      Verbesserungen.VerbesserungFertiggestellt;
+      Aufgaben.VerbesserungFertiggestellt;
       Wachstum.StadtWachstum;
       StadtProduktion.StadtProduktion ((GlobaleDatentypen.Leer, 0));
       GeldForschungMengeSetzen;

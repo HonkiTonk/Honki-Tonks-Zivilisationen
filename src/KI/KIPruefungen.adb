@@ -6,7 +6,7 @@ with KIKonstanten, KIDatentypen;
 
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
-with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, Verbesserungen;
+with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, Aufgaben;
 
 package body KIPruefungen is
    
@@ -151,8 +151,8 @@ package body KIPruefungen is
       AufgabenSchleife:
       for AufgabeSchleifenwert in GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
          
-         VerbesserungTesten := Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                  BefehlExtern             => AufgabeSchleifenwert);
+         VerbesserungTesten := Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                            BefehlExtern             => AufgabeSchleifenwert);
          
          case
            VerbesserungTesten

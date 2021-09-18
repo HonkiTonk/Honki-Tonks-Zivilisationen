@@ -5,7 +5,7 @@ with GlobaleKonstanten, GlobaleTexte;
 with LeseEinheitenGebaut;
 
 with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, DiplomatischerZustand, BewegungLadenEntladen, KampfsystemEinheiten, StadtSuchen, EinheitenModifizieren,
-     StadtBauen, Verbesserungen, Anzeige, KampfsystemStadt, EinheitenTransporter;
+     StadtBauen, Aufgaben, Anzeige, KampfsystemStadt, EinheitenTransporter;
 
 package body BewegungEinheiten is
 
@@ -58,8 +58,8 @@ package body BewegungEinheiten is
                Änderung := KeineÄnderung;
                
             when GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | GlobaleDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
-               AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                          BefehlExtern             => Befehl);
+               AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                    BefehlExtern             => Befehl);
                
                case
                  AufgabeDurchführen
@@ -167,8 +167,8 @@ package body BewegungEinheiten is
       then
          if
            (FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           FremdeEinheitExtern      => EinheitAufFeld)
-           = True)
+                            FremdeEinheitExtern      => EinheitAufFeld)
+            = True)
            and
              FeldPassierbar
          then

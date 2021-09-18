@@ -125,17 +125,20 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        (LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) = GlobaleDatentypen.Leer
-         or
-           KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
-                                          PassierbarkeitExtern => UmgebungExtern)
-         = False)
-        and
-          (LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) = GlobaleDatentypen.Leer
-           or
-             KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
-                                                     PassierbarkeitExtern => UmgebungExtern)
-           = False)
+        LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
+        and then
+          KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
+                                         PassierbarkeitExtern => UmgebungExtern)
+        = False
+      then
+         null;
+         
+      elsif
+        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
+        and then
+          KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
+                                                  PassierbarkeitExtern => UmgebungExtern)
+        = False
       then
          null;
          

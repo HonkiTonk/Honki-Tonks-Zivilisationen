@@ -2,16 +2,22 @@ pragma SPARK_Mode (On);
 
 package SpielEinstellungen is
 
-   function SpielEinstellungen
+   function SpielEinstellungenAuswahl
      return Integer
      with
        Post =>
-         (SpielEinstellungen'Result in -1 .. 0);
+         (SpielEinstellungenAuswahl'Result in -1 .. 0);
 
 private
 
    RassenVorhanden : Boolean;
 
    HauptAuswahl : Integer;
+
+   function AutomatischeEinstellungen
+     return Integer
+     with
+       Post =>
+         (AutomatischeEinstellungen'Result in -1 .. 0);
 
 end SpielEinstellungen;

@@ -22,10 +22,20 @@ package body GebaeudeRichtigeUmgebung is
             return True;
                
          when others =>
-            null;
+            return UmgebungPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                    GebäudeIDExtern       => GebäudeIDExtern);
       end case;
+            
+   end RichtigeUmgebungVorhanden;
+   
+   
+   
+   function UmgebungPrüfen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
+     return Boolean
+   is begin
       
-      -- Bei Gebäuden über den gesammten UmgebungGröße-Bereich loopen.
       YAchseGebäudeSchleife:
       for YAchseGebäudeSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
          XAchseGebäudeSchleife:
@@ -68,6 +78,6 @@ package body GebaeudeRichtigeUmgebung is
       
       return False;
       
-   end RichtigeUmgebungVorhanden;
+   end UmgebungPrüfen;
 
 end GebaeudeRichtigeUmgebung;

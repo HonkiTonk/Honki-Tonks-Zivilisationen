@@ -121,7 +121,7 @@ package body SpielEinstellungenRasseSpieler is
       return GlobaleKonstanten.AuswahlSchwierigkeitsgrad;
 
    end SpielerbelegungWählen;
-
+   
 
    
    function RasseWählen
@@ -207,23 +207,19 @@ package body SpielEinstellungenRasseSpieler is
                null;
                
             when others =>
-               SicherheitsTestWert := 0;
-         
                StartwerteFestlegenSchleife:
-               loop
+               for NotAusSchleifenwert in GlobaleDatentypen.NotAus'Range loop
                   
                   StartKoordinaten := ((0, 0, 0), (0, 0, 0));
                   GezogeneWerte := ZufallGeneratorenKarten.StartPosition (RasseSchleifenwert);
 
                   exit StartwerteFestlegenSchleife when UmgebungPrüfen (PositionExtern => GezogeneWerte,
                                                                          RasseExtern    => RasseSchleifenwert);
-                  
-                  SicherheitsTestWert := SicherheitsTestWert + 1;
 
                   case
-                    SicherheitsTestWert
+                    NotAusSchleifenwert
                   is
-                     when GlobaleDatentypen.KartenfeldPositivMitNullwert'Last =>
+                     when GlobaleDatentypen.NotAus'Last =>
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 16);
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
@@ -231,14 +227,12 @@ package body SpielEinstellungenRasseSpieler is
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 17);
                         GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Leer;
-                        exit StartwerteFestlegenSchleife;
                         
                      when others =>
                         null;
                   end case;
          
                end loop StartwerteFestlegenSchleife;
-               
          end case;
          
       end loop SpieleranzahlWerteFestlegen;
@@ -261,57 +255,8 @@ package body SpielEinstellungenRasseSpieler is
          when GlobaleKonstanten.LeerEinheitStadtNummer =>
             StartKoordinaten (1) := PositionExtern;
             StartpositionGefunden := False;
-            
-            YAchseSchleife:
-            for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-               XAchseSchleife:
-               for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-
-                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
-                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-            
-                  if
-                    KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
-                  then
-                     null;
-                     
-                  elsif
-                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                           IDExtern           => 2,
-                                                                           NeuePositionExtern => KartenWert)
-                    = False
-                  then
-                     null;
-                     
-                  elsif
-                    YÄnderungSchleifenwert = 0
-                    and
-                      XÄnderungSchleifenwert = 0
-                  then
-                     null;
-                     
-                  elsif
-                    StartpositionGefunden = False
-                  then
-                     case
-                       EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
-                     is
-                        when GlobaleKonstanten.LeerEinheitStadtNummer =>
-                           StartKoordinaten (2) := KartenWert;
-                           StartpunktFestlegen (RasseExtern => RasseExtern);
-                           StartpositionGefunden := True;
-                           FreieFelder := FreieFelder + 1;
-                                 
-                        when others =>
-                           null;
-                     end case;
-                     
-                  else                           
-                     FreieFelder := FreieFelder + 1;
-                  end if;
-
-               end loop XAchseSchleife;
-            end loop YAchseSchleife;
+            FelderBestimmen (PositionExtern => PositionExtern,
+                             RasseExtern    => RasseExtern);
                            
          when others =>
             null;
@@ -327,6 +272,66 @@ package body SpielEinstellungenRasseSpieler is
       end if;
       
    end UmgebungPrüfen;
+   
+   
+   
+   procedure FelderBestimmen
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      YAchseSchleife:
+      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseSchleife:
+         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                  
+            if
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+            then
+               null;
+                     
+            elsif
+              YÄnderungSchleifenwert = 0
+              and
+                XÄnderungSchleifenwert = 0
+            then
+               null;
+                     
+            elsif
+              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
+                                                                     IDExtern           => 2,
+                                                                     NeuePositionExtern => KartenWert)
+              = False
+            then
+               null;
+                     
+            elsif
+              StartpositionGefunden = False
+            then
+               case
+                 EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
+               is
+                  when GlobaleKonstanten.LeerEinheitStadtNummer =>
+                     StartKoordinaten (2) := KartenWert;
+                     StartpunktFestlegen (RasseExtern => RasseExtern);
+                     StartpositionGefunden := True;
+                     FreieFelder := FreieFelder + 1;
+                                 
+                  when others =>
+                     null;
+               end case;
+                     
+            else                           
+               FreieFelder := FreieFelder + 1;
+            end if;
+
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end FelderBestimmen;
 
 
 

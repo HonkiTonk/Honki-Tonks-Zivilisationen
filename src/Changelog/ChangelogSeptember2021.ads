@@ -84,10 +84,11 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8790 => 0.00.88 (18.09.2021):
+   -- Version 0.00.8790 => 0.00.8810 (18.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Funktionen/Prozeduren aufgeteilt, in ihrer Länge reduziert und Übersichtlichkeit des Codes verbessert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt/hinzugefügt.
    
    
    

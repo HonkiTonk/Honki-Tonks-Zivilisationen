@@ -5,7 +5,7 @@ with GlobaleTexte;
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseWichtiges;
 
-with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen, ForschungAllgemein,
+with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Aufgaben, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen, ForschungAllgemein,
      StadtEntfernen, EinheitenTransporter, TransporterSuchen, EinheitenBeschreibungen, EinheitenModifizieren;
 
 package body BefehleImSpiel is
@@ -22,8 +22,8 @@ package body BefehleImSpiel is
       is
          when GlobaleDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
-                                                          RichtungExtern => Befehl,
-                                                          RasseExtern    => RasseExtern);
+                                                   RichtungExtern => Befehl,
+                                                   RasseExtern    => RasseExtern);
             
          when GlobaleDatentypen.Auswählen =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
@@ -316,8 +316,8 @@ package body BefehleImSpiel is
          AufgabeDurchführen := False;
                      
       else
-         AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                                                    BefehlExtern             => BefehlExtern);
+         AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                                              BefehlExtern             => BefehlExtern);
       end if;
       
       case

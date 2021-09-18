@@ -39,7 +39,12 @@ private
    KartenformAuswahl : Integer;
    KartentemperaturAuswahl : Integer;
    KartenressourcenAuswahl : Integer;
-   
    BenutzerdefinierteGröße : Integer;
+   
+   function GrößeSelbstBestimmen
+     return Integer
+     with
+       Post =>
+         (GrößeSelbstBestimmen'Result >= -2);
 
 end SpielEinstellungenKarten;

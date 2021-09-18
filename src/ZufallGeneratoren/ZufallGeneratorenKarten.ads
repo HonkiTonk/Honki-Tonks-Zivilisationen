@@ -93,5 +93,13 @@ private
    package RessourceWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Enum);
    RessourceGewählt : RessourceWählenChaoskarte.Generator;
    -- Generator für Chaoskarte
+   
+   procedure StartPunkteYXFestlegen;
+   
+   
+   
+   function StartPositionEAchse
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.EbeneVorhanden;
 
 end ZufallGeneratorenKarten;

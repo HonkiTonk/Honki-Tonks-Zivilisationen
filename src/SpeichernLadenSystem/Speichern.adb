@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Ada.Calendar;
-use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Ada.Calendar;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleRecords, GlobaleKonstanten;
+with GlobaleVariablen, GlobaleRecords, GlobaleKonstanten, GlobaleDatentypen;
 
-with Karten, Eingabe, Auswahl, Ladezeiten, Informationen;
+with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein;
 
 package body Speichern is
 
@@ -27,56 +27,68 @@ package body Speichern is
       
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
-              Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpielstandName))));
-
-      -- Versionsnummer speichern
+              Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName))));
+      
+      SonstigesSpeichern;
+      KarteSpeichern;
+      RassenGrenzenSpeichern;
+      EinheitenSpeichern;
+      StädteSpeichern;
+      WichtigesSpeichern;
+      DiplomatieSpeichern;
+      CursorSpeichern;
+      
+      Close (File => DateiSpeichernNeu);
+         
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, GlobaleDatentypen.Endwert) := Clock;
+      
+      case
+        AutospeichernExtern
+      is
+         when True =>
+            Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => Ladezeiten.Speicherzeit);
+            
+         when False =>
+            Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Speicherzeit);
+      end case;
+   
+   end SpeichernNeu;
+   
+   
+   
+   procedure SonstigesSpeichern
+   is begin
+      
       Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
                               Informationen.Versionsnummer);
-      -- Versionsnummer speichern
       
-      
-      
-      -- Ironmanmodus speichern
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
                                         GlobaleVariablen.IronmanName);
-      -- Ironmanmodus speichern
       
-      
-      
-      -- Rundenanzahl und Grenze speichern
       Positive'Write (Stream (File => DateiSpeichernNeu),
                       GlobaleVariablen.RundenAnzahl);
       
       Natural'Write (Stream (File => DateiSpeichernNeu),
                      GlobaleVariablen.Rundengrenze);
-      -- Rundenanzahl und Grenze speichern
       
-      
-
-      -- Spieler am Zug speichern
       GlobaleDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
                                            GlobaleVariablen.RasseAmZugNachLaden);
-      -- Spieler am Zug speichern
       
-      
-      
-      -- Schwierigkeitsgrad speichern
       GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                                  GlobaleVariablen.Schwierigkeitsgrad);
-      -- Schwierigkeitsgrad speichern
       
-      
-      
-      -- Gewonnen laden
       Boolean'Write (Stream (File => DateiSpeichernNeu),
                      GlobaleVariablen.Gewonnen);
-      -- Gewonnen laden
       
+      Boolean'Write (Stream (File => DateiSpeichernNeu),
+                     GlobaleVariablen.WeiterSpielen);
       
-
-      -- Schleife zum Speichern der Karte
-      GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                                               Karten.Kartentemperatur);
+   end SonstigesSpeichern;
+   
+   
+   
+   procedure KarteSpeichern
+   is begin
       
       GlobaleDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                          Karten.Kartenform);
@@ -108,16 +120,16 @@ package body Speichern is
             end loop XAchseBisBodenSchleife;
          end loop YAchseBisBodenSchleife;
       end loop EAchseBisBodenSchleife;
-      -- Schleife zum Speichern der Karte
-
-
-
-      -- Rassen und Rassengrenzen speichern
+      
+   end KarteSpeichern;
+   
+   
+   
+   procedure RassenGrenzenSpeichern
+   is begin
+      
       GlobaleDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
                                                   GlobaleVariablen.RassenImSpiel);
-      
-      GlobaleVariablen.GrenzenArray'Write (Stream (File => DateiSpeichernNeu),
-                                           GlobaleVariablen.Grenzen);
       
       GrenzenRassenSchleife:
       for GrenzenRassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -126,11 +138,14 @@ package body Speichern is
                                              GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
          
       end loop GrenzenRassenSchleife;
-      -- Rassen und Rassengrenzen speichern
-
-
-
-      -- Schleife zum Speichern der Einheiten
+      
+   end RassenGrenzenSpeichern;
+   
+   
+   
+   procedure EinheitenSpeichern
+   is begin
+      
       EinheitenRassenSchleife:
       for RasseEinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
 
@@ -151,11 +166,14 @@ package body Speichern is
          end case;
          
       end loop EinheitenRassenSchleife;
-      -- Schleife zum Speichern der Einheiten
-
-
-
-      -- Schleife zum Speichern der Städte
+      
+   end EinheitenSpeichern;
+   
+   
+   
+   procedure StädteSpeichern
+   is begin
+      
       StadtRassenSchleife:
       for RasseStadtSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
          
@@ -176,11 +194,14 @@ package body Speichern is
          end case;
          
       end loop StadtRassenSchleife;
-      -- Schleife zum Speichern der Städte
-
-
-
-      -- Schleife zum Speichern von Wichtiges
+      
+   end StädteSpeichern;
+   
+   
+   
+   procedure WichtigesSpeichern
+   is begin
+      
       WichtigesSchleife:
       for RasseWichtigesSchleifenwert in GlobaleVariablen.WichtigesArray'Range loop
          
@@ -196,11 +217,14 @@ package body Speichern is
          end case;
          
       end loop WichtigesSchleife;
-      -- Schleife zum Speichern von Wichtiges
-
-
-
-      -- Schleife zum Speichern von Diplomatie
+      
+   end WichtigesSpeichern;
+   
+   
+   
+   procedure DiplomatieSpeichern
+   is begin
+      
       DiplomatieSchleifeAußen:
       for RasseDiplomatieEinsSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (1) loop
          
@@ -229,11 +253,14 @@ package body Speichern is
          end case;
                
       end loop DiplomatieSchleifeAußen;
-      -- Schleife zum Speichern von Diplomatie
-
-
-
-      -- Schleife zum Speichern der Cursorpositionen
+      
+   end DiplomatieSpeichern;
+   
+   
+   
+   procedure CursorSpeichern
+   is begin
+      
       CursorSchleife:
       for RasseCursorSchleifenwert in GlobaleVariablen.CursorImSpielArray'Range loop
          
@@ -249,28 +276,13 @@ package body Speichern is
          end case;
          
       end loop CursorSchleife;
-      -- Schleife zum Speichern der Cursorpositionen
       
-      Close (File => DateiSpeichernNeu);
-         
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, GlobaleDatentypen.Endwert) := Clock;
-      
-      case
-        AutospeichernExtern
-      is
-         when True =>
-            Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => Ladezeiten.Speicherzeit);
-            
-         when False =>
-            Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Speicherzeit);
-      end case;
-   
-   end SpeichernNeu;
+   end CursorSpeichern;
    
    
    
-   function SpielstandNameFestlegen
-     (AutospeichernExtern : in Boolean)
+     function SpielstandNameFestlegen
+       (AutospeichernExtern : in Boolean)
       return Boolean
    is begin
       
@@ -278,60 +290,78 @@ package body Speichern is
         AutospeichernExtern
       is
          when False =>
-            if
-              To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
-            then
-               SpielstandName := GlobaleVariablen.IronmanName;
-               
-            else
-               SpielstandName := Eingabe.SpielstandName;
-
-               -- Anzeige der vorhandenen Spielstände einbauen
-               if
-                 Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) = True
-               then
-                  case
-                    Auswahl.AuswahlJaNein (FrageZeileExtern => 18)
-                  is
-                     when GlobaleKonstanten.JaKonstante =>
-                        null;
-                     
-                     when others =>
-                        return False;
-                  end case;
-
-               else
-                  null;
-               end if;
-            end if;
+            return NameNutzer;
 
          when True =>
-            if
-              To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
-            then
-               SpielstandName := GlobaleVariablen.IronmanName;
+            NameAutoSpeichern;
+            return True;
+      end case;
+      
+   end SpielstandNameFestlegen;
+   
+   
+   
+   function NameNutzer
+     return Boolean
+   is begin
+      
+      if
+        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
+      then
+         SpeichernLadenAllgemein.SpielstandName := GlobaleVariablen.IronmanName;
                
-            else
-               SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+      else
+         -- Anzeige der vorhandenen Spielstände einbauen
+         case
+           SpeichernLadenAllgemein.SpielstandNameErmitteln
+         is
+            when True =>
                if
-                 GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = GlobaleKonstanten.JaKonstante
                then
                   null;
-
-               elsif
-                 AutospeichernWert <= GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave - 1
-               then
-                  AutospeichernWert := AutospeichernWert + 1;
-                  
-               else               
-                  AutospeichernWert := 1;
+                     
+               else
+                  return False;
                end if;
-            end if;
-      end case;
+
+            when False =>
+               null;
+         end case;
+      end if;
       
       return True;
       
-   end SpielstandNameFestlegen;
+   end NameNutzer;
+   
+   
+   
+   procedure NameAutoSpeichern
+   is begin
+      
+      if
+        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
+      then
+         SpeichernLadenAllgemein.SpielstandName := GlobaleVariablen.IronmanName;
+               
+      else
+         SpeichernLadenAllgemein.SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+         if
+           GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
+         then
+            null;
+
+         elsif
+           AutospeichernWert <= GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave - 1
+         then
+            AutospeichernWert := AutospeichernWert + 1;
+                  
+         else               
+            AutospeichernWert := 1;
+         end if;
+      end if;
+      
+   end NameAutoSpeichern;
    
    
 

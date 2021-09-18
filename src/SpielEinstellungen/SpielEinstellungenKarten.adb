@@ -30,35 +30,7 @@ package body SpielEinstellungenKarten is
                return GlobaleKonstanten.AuswahlKartenart;
 
             when 10 =>
-               Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
-               BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
-                                                               ZeileExtern         => 19,
-                                                               ZahlenMinimumExtern => 20,
-                                                               ZahlenMaximumExtern => 1_000);
-               if
-                 BenutzerdefinierteGröße = GlobaleKonstanten.GanzeZahlAbbruchKonstante
-               then
-                  return GlobaleKonstanten.AuswahlKartengröße;
-                     
-               else
-                  null;
-               end if;
-               
-               Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-               BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
-                                                               ZeileExtern         => 25,
-                                                               ZahlenMinimumExtern => 20,
-                                                               ZahlenMaximumExtern => 1_000);
-                     
-               if
-                 BenutzerdefinierteGröße = GlobaleKonstanten.GanzeZahlAbbruchKonstante
-               then
-                  return GlobaleKonstanten.AuswahlKartengröße;
-                           
-               else
-                  Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-                  return GlobaleKonstanten.AuswahlKartenart;
-               end if;
+               return GrößeSelbstBestimmen;
                
             when 11 =>               
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
@@ -76,6 +48,44 @@ package body SpielEinstellungenKarten is
       end loop KartengrößeSchleife;
       
    end KartengrößeWählen;
+   
+   
+   
+   function GrößeSelbstBestimmen
+     return Integer
+   is begin
+      
+      Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
+      BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
+                                                      ZeileExtern         => 19,
+                                                      ZahlenMinimumExtern => 20,
+                                                      ZahlenMaximumExtern => 1_000);
+      if
+        BenutzerdefinierteGröße = GlobaleKonstanten.GanzeZahlAbbruchKonstante
+      then
+         return GlobaleKonstanten.AuswahlKartengröße;
+                     
+      else
+         null;
+      end if;
+               
+      Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+      BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
+                                                      ZeileExtern         => 25,
+                                                      ZahlenMinimumExtern => 20,
+                                                      ZahlenMaximumExtern => 1_000);
+                     
+      if
+        BenutzerdefinierteGröße = GlobaleKonstanten.GanzeZahlAbbruchKonstante
+      then
+         return GlobaleKonstanten.AuswahlKartengröße;
+                           
+      else
+         Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+         return GlobaleKonstanten.AuswahlKartenart;
+      end if;
+      
+   end GrößeSelbstBestimmen;
 
 
 
@@ -91,7 +101,7 @@ package body SpielEinstellungenKarten is
                                               TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                               FrageZeileExtern  => 15,
                                               ErsteZeileExtern  => 16,
-                                              LetzteZeileExtern=> 24);
+                                              LetzteZeileExtern => 24);
          
          case
            KartenartAuswahl
@@ -221,7 +231,7 @@ package body SpielEinstellungenKarten is
                                                      FrageZeileExtern  => 85,
                                                      ErsteZeileExtern  => 86,
                                                      LetzteZeileExtern => 93);
-                  
+         
          case
            KartenressourcenAuswahl
          is

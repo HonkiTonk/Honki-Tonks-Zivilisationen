@@ -5,7 +5,7 @@ use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen, GlobaleKonstanten, GlobaleDatentypen;
 
-with Karten, Cheat, ZwischenDenRunden;
+with Karten, Cheat;
 
 package body AllesAufAnfangSetzen is
 
@@ -24,7 +24,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.IronmanName := To_Unbounded_Wide_Wide_String (Source => "");
       Cheat.GewonnenDurchCheat := False;
       Cheat.FeindlicheInformationenSehen := False;
-      ZwischenDenRunden.WeiterSpielen := False;
+      GlobaleVariablen.WeiterSpielen := False;
 
       Karten.Weltkarte := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));
       Karten.KartenartGemischt := False;

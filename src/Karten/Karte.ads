@@ -41,7 +41,7 @@ private
             BewegungsfeldFestlegenExtern <= Bewegungsfeld'Last);
 
    procedure NeueZeileKartenform
-     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert);
+     (XAchseExtern : in GlobaleDatentypen.Kartenfeld);
 
    procedure AlteEAchseFestlegen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);

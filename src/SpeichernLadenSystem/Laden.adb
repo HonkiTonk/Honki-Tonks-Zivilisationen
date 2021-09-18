@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Directories;
-use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, GlobaleKonstanten;
 use GlobaleDatentypen;
 
-with Karten, Ladezeiten, Informationen, Auswahl, Eingabe;
+with Karten, Ladezeiten, Informationen, Auswahl, SpeichernLadenAllgemein;
 
 package body Laden is
 
@@ -15,7 +15,7 @@ package body Laden is
    is begin
       
       case
-        SpielstandNameErmitteln
+        SpeichernLadenAllgemein.SpielstandNameErmitteln
       is
          when True =>
             null;
@@ -28,7 +28,7 @@ package body Laden is
 
       Open (File => DateiLadenNeu,
             Mode => In_File,
-            Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
+            Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName)));
 
       -- Versionsnummer laden
       Wide_Wide_String'Read (Stream (File => DateiLadenNeu),
@@ -54,51 +54,60 @@ package body Laden is
          end case;
       end if;
       
-      -- Ironmanmodus speichern
+      SonstigesLaden;
+      KarteLaden;
+      RassenGrenzenLaden;
+      EinheitenLaden;
+      StädteLaden;
+      WichtigesLaden;
+      DiplomatieLaden;
+      CursorLaden;
+
+      Close (File => DateiLadenNeu);
+
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Ladezeit);
+
+      return True;
+      
+   end LadenNeu;
+   
+   
+   
+   procedure SonstigesLaden
+   is begin
+      
       Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenNeu), 
                                        GlobaleVariablen.IronmanName);
-      -- Ironmanmodus speichern
-      
-      
 
-      -- Rundenanzahl und Grenze laden
       Positive'Read (Stream (File => DateiLadenNeu),
                      GlobaleVariablen.RundenAnzahl);
       
       Natural'Read (Stream (File => DateiLadenNeu),
                     GlobaleVariablen.Rundengrenze);
-      -- Rundenanzahl und Grenze laden
       
-      
-
-      -- Spieler am Zug laden
       GlobaleDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
                                           GlobaleVariablen.RasseAmZugNachLaden);
-      -- Spieler am Zug laden
       
-      
-      
-      -- Schwierigkeitsgrad laden
       GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
                                                                 GlobaleVariablen.Schwierigkeitsgrad);
-      -- Schwierigkeitsgrad laden
       
-      
-      
-      -- Gewonnen laden
       Boolean'Read (Stream (File => DateiLadenNeu),
                     GlobaleVariablen.Gewonnen);
-      -- Gewonnen laden
       
+      Boolean'Read (Stream (File => DateiLadenNeu),
+                     GlobaleVariablen.WeiterSpielen);
       
-
-      -- Schleife zum Laden der Karte      
-      GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
-                                                              Karten.Kartentemperatur);
+   end SonstigesLaden;
+   
+   
+   
+   procedure KarteLaden
+   is begin
       
       GlobaleDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
-                                                        Karten.Kartenform);
-      
+                                                         Karten.Kartenform);
+            
       GlobaleDatentypen.Kartengröße_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
                                                            Karten.Kartengröße);
       
@@ -126,11 +135,14 @@ package body Laden is
             end loop XAchseBisBodenSchleife;
          end loop YAchseBisBodenSchleife;
       end loop EAchseBisBodenSchleife;
-      -- Schleife zum Laden der Karte
-
-
-
-      -- Rassen und Rassengrenzen laden
+      
+   end KarteLaden;
+   
+   
+   
+   procedure RassenGrenzenLaden
+   is begin
+      
       GlobaleDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
                                                  GlobaleVariablen.RassenImSpiel);
       
@@ -141,11 +153,14 @@ package body Laden is
                                             GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
          
       end loop GrenzenRassenSchleife;
-      -- Rassen und Rassengrenzen laden
-
-
-
-      -- Schleife zum Laden der Einheiten
+      
+   end RassenGrenzenLaden;
+   
+   
+   
+   procedure EinheitenLaden
+   is begin
+      
       EinheitenRassenSchleife:
       for RasseEinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
 
@@ -166,11 +181,14 @@ package body Laden is
          end case;
          
       end loop EinheitenRassenSchleife;
-      -- Schleife zum Laden der Einheiten
-
-
-
-      -- Schleife zum Laden der Städte
+      
+   end EinheitenLaden;
+   
+   
+   
+   procedure StädteLaden
+   is begin
+      
       StadtRassenSchleife:
       for RasseStadtSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
 
@@ -191,11 +209,14 @@ package body Laden is
          end case;
          
       end loop StadtRassenSchleife;
-      -- Schleife zum Laden der Städte
-
-
-
-      -- Schleife zum Laden von Wichtiges
+      
+   end StädteLaden;
+   
+   
+   
+   procedure WichtigesLaden
+   is begin
+      
       WichtigesSchleife:
       for RasseWichtigesSchleifenwert in GlobaleVariablen.WichtigesArray'Range loop
          
@@ -211,11 +232,14 @@ package body Laden is
          end case;
          
       end loop WichtigesSchleife;
-      -- Schleife zum Laden von Wichtiges
-
-
-
-      -- Schleife zum Laden von Diplomatie
+      
+   end WichtigesLaden;
+   
+   
+   
+   procedure DiplomatieLaden
+   is begin
+      
       DiplomatieSchleifeAußen:
       for RasseDiplomatieEinsSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (1) loop
          
@@ -244,11 +268,14 @@ package body Laden is
          end case;
                
       end loop DiplomatieSchleifeAußen;
-      -- Schleife zum Laden von Diplomatie
-
-
-
-      -- Schleife zum Laden der Cursorpositionen
+      
+   end DiplomatieLaden;
+   
+   
+   
+   procedure CursorLaden
+   is begin
+      
       CursorSchleife:
       for RasseCursorSchleifenwert in GlobaleVariablen.CursorImSpielArray'Range loop
          
@@ -264,27 +291,7 @@ package body Laden is
          end case;
          
       end loop CursorSchleife;
-      -- Schleife zum Laden der Cursorpositionen
-
-      Close (File => DateiLadenNeu);
-
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Ladezeit);
-
-      return True;
       
-   end LadenNeu;
-   
-   
-   
-   function SpielstandNameErmitteln
-     return Boolean
-   is begin
-      
-      SpielstandName := Eingabe.SpielstandName;
-
-      return Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
-      
-   end SpielstandNameErmitteln;
+   end CursorLaden;
 
 end Laden;
