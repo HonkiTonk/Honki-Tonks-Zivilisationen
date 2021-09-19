@@ -5,7 +5,7 @@ with GlobaleTexte;
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseWichtiges;
 
-with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Aufgaben, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen, ForschungAllgemein,
+with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Aufgaben, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, ForschungAllgemein,
      StadtEntfernen, EinheitenTransporter, TransporterSuchen, EinheitenBeschreibungen, EinheitenModifizieren;
 
 package body BefehleImSpiel is
@@ -64,7 +64,8 @@ package body BefehleImSpiel is
                             BefehlExtern => Befehl);
             
          when GlobaleDatentypen.Infos =>
-            FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
+            -- Hier endlich mal was reinbauen.
+            null;
 
          when GlobaleDatentypen.Diplomatie =>
             Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);

@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
-
 with GlobaleVariablen, GlobaleKonstanten, GlobaleDatentypen;
 
 with Karten, Cheat;
@@ -21,10 +18,11 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.RasseAmZugNachLaden := GlobaleDatentypen.Leer;
       GlobaleVariablen.CursorImSpiel := (others => GlobaleKonstanten.LeerCursor);
       GlobaleVariablen.Gewonnen := False;
-      GlobaleVariablen.IronmanName := To_Unbounded_Wide_Wide_String (Source => "");
+      GlobaleVariablen.IronmanName := GlobaleKonstanten.LeerUnboundedString;
+      GlobaleVariablen.WeiterSpielen := False;
+      
       Cheat.GewonnenDurchCheat := False;
       Cheat.FeindlicheInformationenSehen := False;
-      GlobaleVariablen.WeiterSpielen := False;
 
       Karten.Weltkarte := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));
       Karten.KartenartGemischt := False;

@@ -56,31 +56,32 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (22.09.2021):
+   -- Version 0.00.88 => 0.00.8 (22.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.88 => 0.00.8 (21.09.2021):
+   -- Version 0.00.88 => 0.00.88 (21.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.88 => 0.00.88 (20.09.2021):
+   -- Version 0.00.8820 => 0.00.88 (20.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.88 => 0.00.88 (19.09.2021):
+   -- Version 0.00.8810 => 0.00.8820 (19.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Funktionen/Prozeduren aufgeteilt, in ihrer Länge reduziert und Übersichtlichkeit des Codes verbessert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt/hinzugefügt.
    
    
    

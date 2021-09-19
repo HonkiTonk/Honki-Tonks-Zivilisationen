@@ -398,6 +398,8 @@ package GlobaleKonstanten is
 
 
    -- Für die Leerwerte
+   LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "");
+
    LeerCursor : constant GlobaleRecords.CursorRecord := (
                                                          CursorGrafik  => '©',
                                                          Position      => (0, 0, 0),
@@ -440,7 +442,7 @@ package GlobaleKonstanten is
                                                              Bauzeit                 => 0,
                                                              Korruption              => 0,
                                                              GebäudeVorhanden        => (others => False),
-                                                             Name                    => To_Unbounded_Wide_Wide_String (Source => ""),
+                                                             Name                    => LeerUnboundedString,
                                                              UmgebungBewirtschaftung => (others => (others => False)),
                                                              UmgebungGröße           => 0,
                                                              Meldungen               => (others => GlobaleDatentypen.Leer),

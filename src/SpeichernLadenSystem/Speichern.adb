@@ -369,6 +369,16 @@ package body Speichern is
    is begin
       
       case
+        GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave
+      is
+         when Natural'First =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
+      case
         GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave
       is
          when 0 =>

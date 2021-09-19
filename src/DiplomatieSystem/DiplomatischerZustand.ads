@@ -13,7 +13,8 @@ package DiplomatischerZustand is
                                                         );
 
    procedure DiplomatischenStatusÄndern
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in GlobaleDatentypen.Status_Untereinander_Enum)
      with
        Pre =>
@@ -24,7 +25,8 @@ package DiplomatischerZustand is
             GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= GlobaleDatentypen.Leer);
 
    procedure SympathieÄndern
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld)
      with
        Pre =>
@@ -34,10 +36,22 @@ package DiplomatischerZustand is
           and
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
+   procedure VergangeneZeitÄndern
+     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (RasseEinsExtern /= RasseZweiExtern
+          and
+            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= GlobaleDatentypen.Leer
+          and
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= GlobaleDatentypen.Leer);
+
 
 
    function GegnerAngreifen
-     (EigeneRasseExtern, GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
@@ -59,7 +73,8 @@ package DiplomatischerZustand is
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
    function DiplomatischerStatusLetzteÄnderung
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Natural
      with
        Pre =>
@@ -70,7 +85,8 @@ package DiplomatischerZustand is
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
    function AktuelleSympathie
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
      with
        Pre =>

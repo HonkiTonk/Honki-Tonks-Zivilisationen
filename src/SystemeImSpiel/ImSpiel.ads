@@ -22,7 +22,22 @@ private
    RückgabeOptionen : Integer;
    RückgabeRassen : Integer;
 
-   function EinzelneRassenDurchgehen
+   procedure KISpieler
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
+
+   procedure SichtbarkeitPrüfung
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+
+
+
+   function RasseImSpiel
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Integer;
+
+   function RasseDurchgehen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer;
 
@@ -34,6 +49,10 @@ private
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch),
          Post =>
            (MenschlicherSpieler'Result in GlobaleKonstanten.RundeBeendenKonstante .. 5);
+
+   function MenschAmZug
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Integer;
 
    function NochSpielerVorhanden
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)

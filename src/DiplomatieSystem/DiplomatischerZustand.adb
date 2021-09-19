@@ -7,7 +7,8 @@ with Auswahl;
 package body DiplomatischerZustand is
 
    procedure DiplomatischenStatusÄndern
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in GlobaleDatentypen.Status_Untereinander_Enum)
    is begin
       
@@ -48,7 +49,8 @@ package body DiplomatischerZustand is
    
    
    function DiplomatischerStatusLetzteÄnderung
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Natural
    is begin
       
@@ -59,7 +61,8 @@ package body DiplomatischerZustand is
    
    
    function AktuelleSympathie
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
@@ -70,7 +73,8 @@ package body DiplomatischerZustand is
    
    
    procedure SympathieÄndern
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld)
    is begin
       
@@ -95,7 +99,8 @@ package body DiplomatischerZustand is
 
 
    function GegnerAngreifen
-     (EigeneRasseExtern, GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -129,5 +134,25 @@ package body DiplomatischerZustand is
       end case;
       
    end GegnerAngreifen;
+   
+   
+   
+   procedure VergangeneZeitÄndern
+     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      case
+        GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung
+      is
+         when Natural'Last =>
+            null;
+                     
+         when others =>
+            GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung
+              := GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung + 1;
+      end case;
+      
+   end VergangeneZeitÄndern;
 
 end DiplomatischerZustand;

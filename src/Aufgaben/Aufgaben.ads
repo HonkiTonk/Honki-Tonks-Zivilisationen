@@ -4,10 +4,6 @@ with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package Aufgaben is
-
-   procedure VerbesserungFertiggestellt;
-   
-   
    
    function VerbesserungTesten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -31,19 +27,9 @@ package Aufgaben is
    
 private
    
-   Test : Boolean;
-   
    IDEinheit : GlobaleDatentypen.EinheitenID;
    
    Grund : GlobaleDatentypen.Karten_Grund_Enum;
-   
-   type Verbesserungen_Verbessern_Enum is (Schiene_Bauen, Tunnel_Bauen);
-   type VerbesserungenVerbessernAnforderungenArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, Verbesserungen_Verbessern_Enum'Range) of GlobaleDatentypen.ForschungIDNichtMöglich;
-   -- Später nutzen um ohne zusätzliche Tastenbelegung vorhandene Verbesserung zu verbessern.
-   VerbesserungenVerbessernAnforderungen : constant VerbesserungenVerbessernAnforderungenArray := (others => (others => 0));
-
-   procedure VerbesserungFertiggestelltPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
    
    procedure EinheitVerschanzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -69,14 +55,6 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   procedure VerbesserungAngelegt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
    procedure EinheitVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
@@ -85,7 +63,7 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   procedure VerbesserungWaldAufforsten
+   procedure Plünderung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
    
    
