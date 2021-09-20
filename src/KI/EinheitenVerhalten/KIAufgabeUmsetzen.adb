@@ -14,7 +14,7 @@ package body KIAufgabeUmsetzen is
       case
         LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when GlobaleDatentypen.Leer =>         
+         when GlobaleDatentypen.Leer =>
             if
               VerbesserungGebiet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
             then
@@ -53,7 +53,7 @@ package body KIAufgabeUmsetzen is
       Grund := LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
          
       if
-        (Grund = GlobaleDatentypen.Hügel 
+        (Grund = GlobaleDatentypen.Hügel
          or
            Grund = GlobaleDatentypen.Gebirge
          or

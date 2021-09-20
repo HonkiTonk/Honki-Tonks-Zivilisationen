@@ -110,7 +110,7 @@ package body LeseEinheitenGebaut is
 
       else
          null;
-      end if;        
+      end if;
         
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte;
       

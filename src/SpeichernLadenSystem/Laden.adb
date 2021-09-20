@@ -77,7 +77,7 @@ package body Laden is
    procedure SonstigesLaden
    is begin
       
-      Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenNeu), 
+      Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenNeu),
                                        GlobaleVariablen.IronmanName);
 
       Positive'Read (Stream (File => DateiLadenNeu),
@@ -249,7 +249,7 @@ package body Laden is
             when GlobaleDatentypen.Leer =>
                null;
 
-            when others =>               
+            when others =>
                DiplomatieSchleifeInnen:
                for RasseDiplomatieZweiSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (2) loop
 

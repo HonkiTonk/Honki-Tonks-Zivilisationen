@@ -38,8 +38,6 @@ private
    GrößeAlt : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    GrößeNeu : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    
-   Bewertung : GlobaleDatentypen.GesamtproduktionStadt;
-   
    NahrungGesamt : GlobaleDatentypen.ProduktionFeld;
    RessourcenGesamt : GlobaleDatentypen.ProduktionFeld;
    GeldGesamt : GlobaleDatentypen.ProduktionFeld;
@@ -78,9 +76,45 @@ private
    procedure GebäudeEntfernen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
    
+   procedure ArbeiterBelegenEntfernen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      BelegenEntfernenExtern : in Boolean;
+      ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld);
+   
+   procedure UmgebungFestlegen
+     (ZuwachsOderSchwundExtern : in Boolean;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure NeueUmgebungsgrößePrüfen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
    
    
    function FeldBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      BelegenOderEntfernen : in Boolean)
+      return GlobaleDatentypen.GesamtproduktionStadt;
+   
+   function WissenBewertung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      BelegenOderEntfernen : in Boolean)
+      return GlobaleDatentypen.GesamtproduktionStadt;
+   
+   function GeldBewertung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      BelegenOderEntfernen : in Boolean)
+      return GlobaleDatentypen.GesamtproduktionStadt;
+   
+   function ProduktionBewertung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      BelegenOderEntfernen : in Boolean)
+      return GlobaleDatentypen.GesamtproduktionStadt;
+   
+   function NahrungBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)

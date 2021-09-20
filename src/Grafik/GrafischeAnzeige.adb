@@ -29,7 +29,7 @@ package body GrafischeAnzeige is
          when False =>
             if
               KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
-            then         
+            then
                Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
                                   VerbesserungExtern       => GlobaleDatentypen.Leer,
                                   RessourceExtern          => GlobaleDatentypen.Leer,
@@ -206,7 +206,7 @@ package body GrafischeAnzeige is
       
       if
         LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
-      then            
+      then
          Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
                             VerbesserungExtern       => LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern),
                             RessourceExtern          => GlobaleDatentypen.Leer,

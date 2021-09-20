@@ -130,7 +130,7 @@ package body Anzeige is
 
                elsif
                  TextlängeEins = LängsterText
-               then                  
+               then
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
@@ -217,7 +217,7 @@ package body Anzeige is
 
                elsif
                  RahmenEinsSchleifenwert = LängsterText
-               then                  
+               then
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
@@ -257,7 +257,7 @@ package body Anzeige is
             if
               To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text) = "|"
             then
-               exit AnzeigeSchleife; 
+               exit AnzeigeSchleife;
             
             else
                Put_Line (Item => To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text));
@@ -307,7 +307,7 @@ package body Anzeige is
 
                elsif
                  TextlängeEins = LängsterText
-               then                  
+               then
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");

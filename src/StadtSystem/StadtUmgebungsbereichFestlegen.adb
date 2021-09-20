@@ -16,7 +16,7 @@ package body StadtUmgebungsbereichFestlegen is
       is
          when GlobaleDatentypen.Leer =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
-            null;
+            raise Program_Error;
             
          when others =>
             StadtUmgebungErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -39,9 +39,7 @@ package body StadtUmgebungsbereichFestlegen is
                                              EinwohnerArbeiterExtern => True)
         >= GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
       then
-         SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              UmgebungGrößeExtern    => 3,
-                                              ÄndernSetzenExtern     => False);
+         Umgebung := 3;
          
       elsif
         LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
@@ -52,15 +50,15 @@ package body StadtUmgebungsbereichFestlegen is
                                              EinwohnerArbeiterExtern => True)
         >= GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
       then
-         SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              UmgebungGrößeExtern    => 2,
-                                              ÄndernSetzenExtern     => False);       
+         Umgebung := 2;      
                   
       else
-         SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              UmgebungGrößeExtern    => 1,
-                                              ÄndernSetzenExtern     => False);
+         Umgebung := 1;
       end if;
+      
+      SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                           UmgebungGrößeExtern    => Umgebung,
+                                           ÄndernSetzenExtern     => False);
       
    end StadtUmgebungErmitteln;
 

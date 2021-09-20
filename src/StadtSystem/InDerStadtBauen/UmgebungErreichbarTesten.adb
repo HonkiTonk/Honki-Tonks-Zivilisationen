@@ -18,8 +18,7 @@ package body UmgebungErreichbarTesten is
       
       GefundeneFelder := 1;
       Umgebung := 1;
-      YAchseBereitsGetestet := Umgebung - 1;
-      XAchseBereitsGetestet := Umgebung - 1;
+      BereitsGetestet := Umgebung - 1;
       
       BereichSchleife:
       loop
@@ -33,14 +32,17 @@ package body UmgebungErreichbarTesten is
                
                if
                  KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
-                 or
+               then
+                  null;
+                  
+               elsif
                    (YÄnderungSchleifenwert = 0
                     and
                       XÄnderungSchleifenwert = 0)
                  or
-                   (YAchseBereitsGetestet >= abs (YÄnderungSchleifenwert)
+                   (BereitsGetestet >= abs (YÄnderungSchleifenwert)
                     and
-                      XAchseBereitsGetestet >= abs (XÄnderungSchleifenwert))
+                      BereitsGetestet >= abs (XÄnderungSchleifenwert))
                then
                   null;
                   
@@ -94,8 +96,7 @@ package body UmgebungErreichbarTesten is
          exit BereichSchleife when Umgebung = GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Last;
          
          Umgebung := Umgebung + 1;
-         YAchseBereitsGetestet := Umgebung - 1;
-         XAchseBereitsGetestet := Umgebung - 1;
+         BereitsGetestet := Umgebung - 1;
                      
       end loop BereichSchleife;
       

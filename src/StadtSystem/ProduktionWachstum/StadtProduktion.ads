@@ -19,7 +19,7 @@ private
    
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
 
-   NahrungsverbrauchEinwohnerMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;   
+   NahrungsverbrauchEinwohnerMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;
    RessourcenverbrauchKorruptionMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;
    GeldverbrauchKorruptionMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;
    ForschungsverbrauchKorruptionMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;
@@ -44,7 +44,7 @@ private
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
-   procedure WeitereNahrungsproduktionÄnderungen 
+   procedure WeitereNahrungsproduktionÄnderungen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>

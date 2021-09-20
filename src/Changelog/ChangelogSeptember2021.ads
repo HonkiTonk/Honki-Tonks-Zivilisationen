@@ -63,17 +63,22 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.88 => 0.00.88 (21.09.2021):
+   -- Version 0.00.8840 => 0.00.88 (21.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8820 => 0.00.88 (20.09.2021):
+   -- Version 0.00.8820 => 0.00.8840 (20.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Von Debian GNAT 10.3 auf Debian GNAT 11.2 gewechselt.
+   -- Neue Warn- und Fehlermeldungen, welche durch GNAT 11.2 erzeugt wurden, behoben.
+   -- Zahlreiche Leerzeichen am Ende von Befehlszeilen gelöscht.
+   -- Unnötigen Code gelöscht.
+   -- Funktionen/Prozeduren aufgeteilt, in ihrer Länge reduziert und Übersichtlichkeit des Codes verbessert.
+   -- Einige Programmstopper eingebaut für den Fall dass Werte angenommen werden die möglich sind aber niemals eintreten sollten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt/hinzugefügt.
    
    
    

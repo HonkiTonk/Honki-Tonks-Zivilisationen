@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
+with GlobaleTexte, GlobaleKonstanten;
 
 with SchreibeEinheitenGebaut;
 
@@ -34,12 +34,12 @@ package body AufgabenAllgemein is
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               BeschäftigungExtern     => GlobaleDatentypen.Leer);
       SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   ZeitExtern               => 0,
+                                                   ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                    RechnenSetzenExtern      => 0);
       SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                         BeschäftigungExtern     => GlobaleDatentypen.Leer);
       SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             ZeitExtern               => 0,
+                                                             ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
                                                              RechnenSetzenExtern      => 0);
       
    end Nullsetzung;

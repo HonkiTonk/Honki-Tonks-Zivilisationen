@@ -23,7 +23,7 @@ package body OptionenSonstiges is
            AuswahlWert
          is
             when 1 =>
-               AnzahlAutomatischerSpielstände;         
+               AnzahlAutomatischerSpielstände;
                
             when 2 =>
                RundenBisAutospeichern;
@@ -96,7 +96,7 @@ package body OptionenSonstiges is
       is
          when True =>
             GlobaleVariablen.NutzerEinstellungen.Sprache := Auswahl.AuswahlSprache;
-            -- Kann hier noch Müll einlesen und Absturz erzeugen
+            -- Kann hier noch Müll einlesen und Absturz erzeugen.
             Erfolgreich := EinlesenText.EinlesenTextNeu;
             
          when False =>

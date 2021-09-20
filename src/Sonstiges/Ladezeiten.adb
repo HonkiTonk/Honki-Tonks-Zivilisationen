@@ -29,7 +29,7 @@ package body Ladezeiten is
       is
          when Gesamtzeit =>
             ZeitAuswahlSchleife:
-            for VerschiedeneZeitenSchleifenwert in Gesamtzeit_Enum'Range loop                  
+            for VerschiedeneZeitenSchleifenwert in Gesamtzeit_Enum'Range loop
                
                GesamtzeitSpielweltErstellen
                  := GesamtzeitSpielweltErstellen
@@ -108,7 +108,7 @@ package body Ladezeiten is
             GesamtzeitKI := 0.00;
             
             ZeitAuswahlSchleife:
-            for VerschiedeneZeitenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop                  
+            for VerschiedeneZeitenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
                
                GesamtzeitKI := GesamtzeitKI + Float (KIZeiten (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Endwert) - KIZeiten (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Anfangswert));
                   

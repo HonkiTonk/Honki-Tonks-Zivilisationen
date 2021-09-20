@@ -41,7 +41,7 @@ package body SpielEinstellungenRasseSpieler is
                   null;
                end if;
 
-            when 2 =>               
+            when 2 =>
                SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.ZufälligeSpieleranzahl;
                return GlobaleKonstanten.AuswahlBelegung;
                
@@ -77,7 +77,7 @@ package body SpielEinstellungenRasseSpieler is
          
          case
            SpielerartAuswahl
-         is                  
+         is
             when GlobaleKonstanten.ZurückKonstante =>
                return GlobaleKonstanten.AuswahlSpieleranzahl;
 
@@ -162,7 +162,7 @@ package body SpielEinstellungenRasseSpieler is
                         null;
                   end case;
                   
-               else               
+               else
                   case
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 32)
                   is
@@ -184,7 +184,7 @@ package body SpielEinstellungenRasseSpieler is
                
             when others =>
                null;
-         end case;               
+         end case;
 
          Put (Item => CSI & "2J" & CSI & "H");
          
@@ -324,7 +324,7 @@ package body SpielEinstellungenRasseSpieler is
                      null;
                end case;
                      
-            else                           
+            else
                FreieFelder := FreieFelder + 1;
             end if;
 

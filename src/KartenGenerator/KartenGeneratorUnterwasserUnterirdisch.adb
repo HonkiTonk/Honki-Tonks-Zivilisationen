@@ -112,7 +112,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
                
          else
             null;
-         end if;    
+         end if;
          
       end loop GrundSchleife;
       

@@ -7,7 +7,7 @@ with GlobaleKonstanten;
 
 with Anzeige;
 
-package body Eingabe is 
+package body Eingabe is
 
    function GanzeZahl
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
@@ -31,7 +31,7 @@ package body Eingabe is
       end if;
 
       ZahlenAußenSchleife:
-      loop         
+      loop
                   
          case
            ZahlSchleife (TextDateiExtern     => TextDateiExtern,
@@ -59,7 +59,7 @@ package body Eingabe is
                   
          when False =>
             return -Integer'Wide_Wide_Value (ZahlenString);
-      end case; 
+      end case;
       
       
    end GanzeZahl;
@@ -292,7 +292,7 @@ package body Eingabe is
       case
         ZeichenExtern
       is
-         when '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' =>            
+         when '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' =>
             return 1;
             
          when 'q' | 'Q' | ESC =>
@@ -327,7 +327,7 @@ package body Eingabe is
       MaximumMinimum := To_Unbounded_Wide_Wide_String (Source => ZahlenMinimumMaximumExtern'Wide_Wide_Image);
       MaximumMinimumAktuelleStelle := To_Wide_Wide_String (Source => MaximumMinimum)'Length;
       
-      MaximumSchleife:      
+      MaximumSchleife:
       for MaximumSchleifenwert in reverse ZahlenString'Range loop
          
          if
@@ -361,7 +361,7 @@ package body Eingabe is
 
    function SpielstandName
      return Unbounded_Wide_Wide_String
-   is begin            
+   is begin
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
                                             TextZeileExtern => 22);

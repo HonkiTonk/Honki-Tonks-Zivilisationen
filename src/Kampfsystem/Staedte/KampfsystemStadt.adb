@@ -173,7 +173,7 @@ package body KampfsystemStadt is
          
          if
            Kampfglück >= SchadenAngerichtet (WelcherFall, AngerichteterSchadenSchleifenwert)
-         then            
+         then
             AngerichteterSchaden := AngerichteterSchaden + AngerichteterSchadenSchleifenwert;
             exit AngerichteterSchadenSchleife;
             

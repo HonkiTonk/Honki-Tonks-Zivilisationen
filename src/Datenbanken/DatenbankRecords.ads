@@ -60,7 +60,7 @@ package DatenbankRecords is
       
       GebäudeGrafik : Wide_Wide_Character;
       
-      PreisGeld : GlobaleDatentypen.KostenLager;      
+      PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       PermanenteKosten : GlobaleRecords.PermanenteKostenArray;
       
@@ -88,7 +88,7 @@ package DatenbankRecords is
 
       KartenGrafik : Wide_Wide_Character;
       
-      Passierbarkeit : PassierbarkeitArray;      
+      Passierbarkeit : PassierbarkeitArray;
       FeldWerte : GewinnBewertungArray;
       
    end record;
@@ -101,7 +101,7 @@ package DatenbankRecords is
 
       VerbesserungGrafik : Wide_Wide_Character;
       
-      Passierbarkeit : PassierbarkeitArray;      
+      Passierbarkeit : PassierbarkeitArray;
       VerbesserungWerte : GewinnBewertungArray;
       
    end record;

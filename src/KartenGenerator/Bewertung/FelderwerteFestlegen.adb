@@ -61,7 +61,7 @@ package body FelderwerteFestlegen is
                when GlobaleKonstanten.LeerYXKartenWert =>
                   null;
                   
-               when others =>  
+               when others =>
                   if
                     BewertungYÄnderungSchleifenwert = 0
                     and
@@ -114,7 +114,7 @@ package body FelderwerteFestlegen is
          then
             SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
                                       RasseExtern     => RasseSchleifenwert,
-                                      BewertungExtern => 
+                                      BewertungExtern =>
                                         LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                               RasseExtern    => RasseSchleifenwert)
                                       + KartenAllgemein.GrundBewertung (PositionExtern => KoordinatenUmgebungExtern,
@@ -131,7 +131,7 @@ package body FelderwerteFestlegen is
                when others =>
                   SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
                                             RasseExtern     => RasseSchleifenwert,
-                                            BewertungExtern => 
+                                            BewertungExtern =>
                                                LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.FlussBewertung (PositionExtern => KoordinatenUmgebungExtern,
@@ -149,7 +149,7 @@ package body FelderwerteFestlegen is
                when others =>
                   SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
                                             RasseExtern     => RasseSchleifenwert,
-                                            BewertungExtern => 
+                                            BewertungExtern =>
                                                LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.WegBewertung (PositionExtern => KoordinatenUmgebungExtern,
@@ -167,7 +167,7 @@ package body FelderwerteFestlegen is
                when others =>
                   SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
                                             RasseExtern     => RasseSchleifenwert,
-                                            BewertungExtern => 
+                                            BewertungExtern =>
                                                LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.VerbesserungBewertung (PositionExtern => KoordinatenUmgebungExtern,
@@ -185,7 +185,7 @@ package body FelderwerteFestlegen is
                when others =>
                   SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
                                             RasseExtern     => RasseSchleifenwert,
-                                            BewertungExtern => 
+                                            BewertungExtern =>
                                                LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.RessourceBewertung (PositionExtern => KoordinatenUmgebungExtern,

@@ -17,6 +17,13 @@ private
     
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;   
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   procedure PlatzErmitteln
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure EinheitPlatzieren
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord);
 
 end StadtEinheitenBauen;

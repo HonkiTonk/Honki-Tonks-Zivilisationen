@@ -27,7 +27,6 @@ private
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    StadtOderEinheit : Integer;
-   AbreißenAuswahl : Integer;
    
    StadtSuchenNachNamen : GlobaleRecords.RassePlatznummerRecord;
    
@@ -55,5 +54,14 @@ private
    
    procedure StadtAbreißen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure AuswahlEinheitTransporter
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure StadtBetreten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure EinheitSteuern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
    
 end BefehleImSpiel;

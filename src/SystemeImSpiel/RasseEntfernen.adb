@@ -28,7 +28,7 @@ package body RasseEntfernen is
       end loop StadtSchleife;
             
       DiplomatieSchleife:
-      for DiplomatieSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop         
+      for DiplomatieSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          GlobaleVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := GlobaleKonstanten.LeerDiplomatie;
          GlobaleVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := GlobaleKonstanten.LeerDiplomatie;

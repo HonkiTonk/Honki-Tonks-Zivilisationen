@@ -33,7 +33,7 @@ package body EinlesenText is
                
          else
             Set_Line (File => DateiNeuWelcheTexteEinlesen,
-                      To   => Ada.Wide_Wide_Text_IO.Count (WelcheDateienSchleifenwert));         
+                      To   => Ada.Wide_Wide_Text_IO.Count (WelcheDateienSchleifenwert));
             WelcheTexteEinlesenNeu (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuWelcheTexteEinlesen));
          end if;
 
@@ -67,13 +67,13 @@ package body EinlesenText is
                
             else
                Set_Line (File => DateiNeuText,
-                         To   => Ada.Wide_Wide_Text_IO.Count (ZeileSchleifenwert));         
+                         To   => Ada.Wide_Wide_Text_IO.Count (ZeileSchleifenwert));
                GlobaleTexte.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert - LeereZeilenAbzieher) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuText));
 
                if
                  To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert - LeereZeilenAbzieher)) (1) /= '|'
                then
-                  null;                 
+                  null;
                   
                else
                   LeereZeilenAbzieher := LeereZeilenAbzieher + 1;

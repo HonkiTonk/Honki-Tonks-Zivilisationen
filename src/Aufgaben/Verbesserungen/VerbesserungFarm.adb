@@ -25,7 +25,7 @@ package body VerbesserungFarm is
          return False;
 
       elsif
-        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) 
+        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
         GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and

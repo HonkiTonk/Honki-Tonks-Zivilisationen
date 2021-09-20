@@ -452,7 +452,7 @@ package body Sichtbarkeit is
                      
             end loop XÄnderungSchleife333;
          end loop YÄnderungSchleife333;
-      end if;            
+      end if;
                   
    end QuadrantZwei;
    
@@ -578,7 +578,7 @@ package body Sichtbarkeit is
                      
             end loop XÄnderungSchleife333;
          end loop YÄnderungSchleife333;
-      end if;            
+      end if;
                   
    end QuadrantDrei;
    
@@ -704,7 +704,7 @@ package body Sichtbarkeit is
                      
             end loop XÄnderungSchleife333;
          end loop YÄnderungSchleife333;
-      end if;            
+      end if;
                   
    end QuadrantVier;
    
@@ -759,7 +759,7 @@ package body Sichtbarkeit is
    is begin
          
       YÄnderungEinheitenSchleife:
-      for YÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop            
+      for YÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
          XÄnderungEinheitenSchleife:
          for XÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
             
@@ -772,7 +772,7 @@ package body Sichtbarkeit is
                when GlobaleKonstanten.LeerYXKartenWert =>
                   null;
                   
-               when others =>            
+               when others =>
                   SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                       KoordinatenExtern => KartenWert);
             end case;
@@ -790,8 +790,8 @@ package body Sichtbarkeit is
       
       SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) + 1;
             
-      YÄnderungStadtSchleife:         
-      for YÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop            
+      YÄnderungStadtSchleife:
+      for YÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
          XÄnderungStadtSchleife:
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
             
@@ -804,7 +804,7 @@ package body Sichtbarkeit is
                when GlobaleKonstanten.LeerYXKartenWert =>
                   null;
                   
-               when others =>            
+               when others =>
                   SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                       KoordinatenExtern => KartenWert);
             end case;
@@ -819,7 +819,7 @@ package body Sichtbarkeit is
    procedure SichtbarkeitSetzen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-   is begin      
+   is begin
       
       -- Die Kontaktsichtbarkeitsprüfung aus BewegungBerechnen kann hier nicht reingebaut werden, da dann jedes neu sichtbare Feld geprüft wird ob die anderen Rassen das sehen
       -- und nicht nur für das Feld auf dem die Einheit dann steht.

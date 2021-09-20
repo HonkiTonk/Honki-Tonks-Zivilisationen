@@ -54,6 +54,7 @@ private
                                                            GlobaleDatentypen.Pangäa     => (1, 1),
                                                            others                       => (1, 1)
                                                           );
+   
    procedure Größe;
    procedure Abstand;
 

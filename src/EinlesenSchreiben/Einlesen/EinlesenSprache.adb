@@ -38,11 +38,11 @@ package body EinlesenSprache is
                then
                   null;
             
-               else        
+               else
                   GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert)
                     := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
                   exit VerzeichnisInnenSchleife;
-               end if;            
+               end if;
          
             end loop VerzeichnisInnenSchleife;
          end if;
@@ -82,7 +82,7 @@ package body EinlesenSprache is
                if
                  PositionSchleifenwert - SchleifenAbzug > GlobaleTexte.SprachenEinlesenArray'First
                  and then
-                   GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) < GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)                   
+                   GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) < GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)
                then
                   SchleifenAbzug := SchleifenAbzug + 1;
                   

@@ -27,7 +27,7 @@ package body LeseVerbesserungenDatenbank is
    
       
    
-   function VerbesserungWerte 
+   function VerbesserungWerte
      (VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in GlobaleDatentypen.Bewertung_Werte_Enum)

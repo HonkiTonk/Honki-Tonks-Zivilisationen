@@ -13,7 +13,7 @@ package body SchreibenTastatur is
       case
         Exists (Name => "Einstellungen/Tastenbelegung")
       is
-         when True =>   
+         when True =>
             Open (File => TastenbelegungSpeichern,
                   Mode => Out_File,
                   Name => "Einstellungen/Tastenbelegung");

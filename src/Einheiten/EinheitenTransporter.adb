@@ -71,7 +71,7 @@ package body EinheitenTransporter is
          case
            Eingabe.Tastenwert
          is               
-            when GlobaleDatentypen.Hoch => 
+            when GlobaleDatentypen.Hoch =>
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then

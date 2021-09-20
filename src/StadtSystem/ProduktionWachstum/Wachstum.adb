@@ -34,7 +34,7 @@ package body Wachstum is
                      when others =>
                         WachstumEinwohner (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert));
                         WachstumProduktion (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert));
-                  end case;               
+                  end case;
             
                end loop StadtSchleife;
          end case;
@@ -59,15 +59,7 @@ package body Wachstum is
                                                                                  EinwohnerArbeiterExtern => True)
                                          * 5)
       then
-         SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                             NahrungsmittelExtern   => GlobaleKonstanten.LeerStadt.Nahrungsmittel,
-                                             ÄndernSetzenExtern     => False);
-         SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                EinwohnerArbeiterExtern => True,
-                                                ÄnderungExtern          => 1);
-         StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
-                                                            StadtRasseNummerExtern   => StadtRasseNummerExtern);
-         WachstumSchrumpfung := True;
+         NeuerEinwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       elsif
         LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Nahrungsmittel
@@ -94,6 +86,34 @@ package body Wachstum is
          return;
       end if;
 
+      EinwohnerÄnderung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+   end WachstumEinwohner;
+   
+   
+   
+   procedure NeuerEinwohner
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                          NahrungsmittelExtern   => GlobaleKonstanten.LeerStadt.Nahrungsmittel,
+                                          ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                             EinwohnerArbeiterExtern => True,
+                                             ÄnderungExtern          => 1);
+      StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
+                                                         StadtRasseNummerExtern   => StadtRasseNummerExtern);
+      WachstumSchrumpfung := True;
+      
+   end NeuerEinwohner;
+   
+   
+   
+   procedure EinwohnerÄnderung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       case
         WachstumSchrumpfung
       is
@@ -135,7 +155,7 @@ package body Wachstum is
             end if;
       end case;
       
-   end WachstumEinwohner;
+   end EinwohnerÄnderung;
    
    
    
@@ -168,7 +188,7 @@ package body Wachstum is
               >= LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                          IDExtern    => GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag))
             then
-               StadtEinheitenBauen.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);            
+               StadtEinheitenBauen.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             else
                null;

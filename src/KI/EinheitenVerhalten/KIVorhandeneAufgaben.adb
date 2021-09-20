@@ -144,7 +144,7 @@ package body KIVorhandeneAufgaben is
             
          when others =>
             return 5;
-      end case;  
+      end case;
             
    end StadtUmgebungVerbessern;
    

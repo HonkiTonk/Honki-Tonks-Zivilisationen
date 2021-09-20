@@ -22,7 +22,7 @@ package body InDerStadtBauen is
          when GlobaleKonstanten.LeerBauprojekt =>
             null;
             
-         when others =>            
+         when others =>
             if
               Auswahl.AuswahlJaNein (FrageZeileExtern => 14) = GlobaleKonstanten.JaKonstante
             then
@@ -36,7 +36,6 @@ package body InDerStadtBauen is
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
                                       ÄndernSetzenExtern    => False);
-      
       SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       BauprojektExtern       => BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
@@ -52,6 +51,38 @@ package body InDerStadtBauen is
       Ende := 1;
       Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
 
+      MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      MöglicheEinheitenErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
+
+      if
+        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
+        and
+          Ende > 1
+      then
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
+
+      elsif
+        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
+        and
+          Ende = 1
+      then
+         return 0;
+         
+      else
+         Ende := Ende + 1;
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
+      end if;
+
+      return AuswahlBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+   end BauobjektAuswählen;
+   
+   
+   
+   procedure MöglicheGebäudeErmitteln
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       GebäudeSchleife:
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
          
@@ -81,7 +112,15 @@ package body InDerStadtBauen is
          end if;
          
       end loop GebäudeSchleife;
-
+      
+   end MöglicheGebäudeErmitteln;
+   
+   
+   
+   procedure MöglicheEinheitenErmitteln
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       EinheitenSchleife:
       for EinheitSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
          
@@ -98,7 +137,7 @@ package body InDerStadtBauen is
          
          if
            EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                            IDExtern               => EinheitSchleifenwert)
+                                                               IDExtern               => EinheitSchleifenwert)
            = True
          then
             Anzeige.AllgemeineAnzeigeText (Ende).Text
@@ -112,26 +151,16 @@ package body InDerStadtBauen is
          end if;
          
       end loop EinheitenSchleife;
-
-      if
-        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
-        and
-          Ende > 1
-      then
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
-
-      elsif
-        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
-        and
-          Ende = 1
-      then
-         return 0;
-         
-      else
-         Ende := Ende + 1;
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
-      end if;
-
+      
+   end MöglicheEinheitenErmitteln;
+   
+   
+   
+   function AuswahlBauprojekt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+   is begin
+      
       AktuelleAuswahl := 1;
 
       AuswahlSchleife:
@@ -160,8 +189,8 @@ package body InDerStadtBauen is
          
          case
            Eingabe.Tastenwert
-         is               
-            when GlobaleDatentypen.Hoch => 
+         is
+            when GlobaleDatentypen.Hoch =>
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -193,7 +222,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-   end BauobjektAuswählen;
+   end AuswahlBauprojekt;
    
    
    
@@ -266,13 +295,23 @@ package body InDerStadtBauen is
                                Width => 1);
 
       New_Line;
+      PermanenteKostenEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse);
+      
+   end AnzeigeEinheiten;
+   
+   
+   
+   procedure PermanenteKostenEinheiten
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
       PermanenteGebäudeWerte := False;
       
       PermanenteKostenSchleife:
       for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
          
          if
-           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
                                                     IDExtern           => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                       - GlobaleKonstanten.EinheitAufschlag),
                                                     WelcheKostenExtern => PermanenteKostenSchleifenwert)
@@ -285,7 +324,7 @@ package body InDerStadtBauen is
                                           ErsteZeileExtern       => 53 + GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+            Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
                                                                                                  IDExtern           => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                                                                    - GlobaleKonstanten.EinheitAufschlag),
                                                                                                  WelcheKostenExtern => PermanenteKostenSchleifenwert)),
@@ -307,7 +346,7 @@ package body InDerStadtBauen is
          
       end loop PermanenteKostenSchleife;
       
-   end AnzeigeEinheiten;
+   end PermanenteKostenEinheiten;
    
    
    
@@ -378,13 +417,23 @@ package body InDerStadtBauen is
       end loop PermanenteBonisSchleife;
 
       New_Line;
+      PermanenteKostenGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
+      
+   end AnzeigeGebäude;
+   
+   
+   
+   procedure PermanenteKostenGebäude
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
       PermanenteGebäudeWerte := False;
       
       PermanenteKostenSchleife:
       for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
          
          if
-           LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+           LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
                                                    IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                      - GlobaleKonstanten.GebäudeAufschlag),
                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert)
@@ -397,7 +446,7 @@ package body InDerStadtBauen is
                                           ErsteZeileExtern       => 53 + GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+            Ada.Integer_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
                                                                                                 IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                                                                   - GlobaleKonstanten.GebäudeAufschlag),
                                                                                                 WelcheKostenExtern => PermanenteKostenSchleifenwert)),
@@ -419,6 +468,6 @@ package body InDerStadtBauen is
          
       end loop PermanenteKostenSchleife;
       
-   end AnzeigeGebäude;
+   end PermanenteKostenGebäude;
 
 end InDerStadtBauen;

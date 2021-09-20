@@ -42,19 +42,26 @@ package body StadtEinheitenBauen is
                                                TextZeileExtern => 19);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position := LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position;
-         Karte.AnzeigeKarte (RasseExtern => StadtRasseNummerExtern.Rasse);         
+         Karte.AnzeigeKarte (RasseExtern => StadtRasseNummerExtern.Rasse);
          Eingabe.WartenEingabe;
-         return;
          
       elsif
         EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
-         return;
+         null;
          
       else
-         null;
+         PlatzErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end if;
-            
+      
+   end EinheitFertiggestellt;
+   
+   
+   
+   procedure PlatzErmitteln
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       if
         EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern)).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
@@ -76,28 +83,42 @@ package body StadtEinheitenBauen is
                                                              EreignisExtern         => GlobaleDatentypen.Einheit_Unplatzierbar);
             
          when others =>
-            EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KartenWert,
-                                                EinheitNummerExtern    => EinheitNummer,
-                                                IDExtern               => GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag),
-                                                StadtRasseNummerExtern => StadtRasseNummerExtern);
-            SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                            RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
-                                            ÄndernSetzenExtern     => False);
-            SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                            BauprojektExtern       => GlobaleKonstanten.LeerStadt.Bauprojekt);
-            
-            if
-              GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
-            then
-               StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                EreignisExtern         => GlobaleDatentypen.Produktion_Abgeschlossen);
-         
-            else
-               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                     BeschäftigungExtern    => KIDatentypen.Keine_Aufgabe);
-            end if;
+            EinheitPlatzieren (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                               KoordinatenExtern      => KartenWert);
       end case;
       
-   end EinheitFertiggestellt;
+   end PlatzErmitteln;
+   
+   
+   
+   procedure EinheitPlatzieren
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
+                                                  EinheitNummerExtern    => EinheitNummer,
+                                                  IDExtern               => 
+                                                    GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag),
+                                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                      RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
+                                      ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                      BauprojektExtern       => GlobaleKonstanten.LeerStadt.Bauprojekt);
+            
+      case
+        GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
+      is
+         when GlobaleDatentypen.Spieler_Mensch =>
+            StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             EreignisExtern         => GlobaleDatentypen.Produktion_Abgeschlossen);
+         
+         when others =>
+            SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                  BeschäftigungExtern    => KIDatentypen.Keine_Aufgabe);
+      end case;
+      
+   end EinheitPlatzieren;
 
 end StadtEinheitenBauen;

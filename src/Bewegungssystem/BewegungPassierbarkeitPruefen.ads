@@ -70,7 +70,7 @@ private
 
    BenötigteFelder : Positive;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;   
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    TransportplatzEntladen : GlobaleRecords.TransporterArray;
    

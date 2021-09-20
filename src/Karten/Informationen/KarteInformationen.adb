@@ -95,7 +95,7 @@ package body KarteInformationen is
       StadtInformationen.Stadt (RasseExtern            => RasseExtern,
                                 StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-      -- Debuginformationen, nur sichtbar wenn Cheat aktiviert ist
+      -- Debuginformationen, nur sichtbar wenn Cheat aktiviert ist.
       case
         Cheat.FeindlicheInformationenSehen
       is

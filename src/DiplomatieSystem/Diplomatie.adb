@@ -59,7 +59,7 @@ package body Diplomatie is
    is begin
       
       DiplomatieSchleife:
-      loop         
+      loop
          WelcheRasseSchleife:
          loop
          
@@ -106,7 +106,7 @@ package body Diplomatie is
             case
               DiplomatischeAktion
             is
-               when 1 =>                  
+               when 1 =>
                   DiplomatischeAktion := DiplomatischenStatusÄndern (RasseExtern             => RasseExtern,
                                                                       KontaktierteRasseExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   

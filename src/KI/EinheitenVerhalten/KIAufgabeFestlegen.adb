@@ -65,7 +65,7 @@ package body KIAufgabeFestlegen is
    
    end StadtBauenPrüfung;
    
-   
+      
    
    procedure StadtUmgebungVerbesserung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -120,7 +120,7 @@ package body KIAufgabeFestlegen is
    
    
    
-   procedure StadtUmgebungZerstören     
+   procedure StadtUmgebungZerstören
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -130,7 +130,7 @@ package body KIAufgabeFestlegen is
    
    
    
-   procedure Angreifen     
+   procedure Angreifen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -223,7 +223,7 @@ package body KIAufgabeFestlegen is
    
    procedure Erkunden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin      
+   is begin
             
       KarteReichweite := 1;
       KarteGeprüft := KarteReichweite - 1;

@@ -92,9 +92,9 @@ package body BewegungEinheiten is
          
             case
               KartenWert.XAchse
-            is               
+            is
                when GlobaleKonstanten.LeerYXKartenWert =>
-                  AktuellerStatus := Bewegbar;               
+                  AktuellerStatus := Bewegbar;
                
                when others =>
                   AktuellerStatus := BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -227,7 +227,7 @@ package body BewegungEinheiten is
       then
          return Zurück;
             
-      else      
+      else
          return Bewegbar;
       end if;
       

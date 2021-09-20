@@ -32,7 +32,7 @@ package body ZufallGeneratorenKarten is
             null;
          end if;
          
-      end loop PositionBestimmenSchleife;      
+      end loop PositionBestimmenSchleife;
       
    end StartPosition;
    

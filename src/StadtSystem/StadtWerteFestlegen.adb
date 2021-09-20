@@ -34,7 +34,7 @@ package body StadtWerteFestlegen is
 
    procedure StadtUmgebungGrößeFestlegen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin    
+   is begin
             
       GrößeAlt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -107,6 +107,16 @@ package body StadtWerteFestlegen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
+      NeueUmgebungsgrößePrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+   end StadtUmgebungGrößeFestlegen;
+   
+   
+   
+   procedure NeueUmgebungsgrößePrüfen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       if
         GrößeNeu > GrößeAlt
       then
@@ -129,7 +139,7 @@ package body StadtWerteFestlegen is
          null;
       end if;
       
-   end StadtUmgebungGrößeFestlegen;
+   end NeueUmgebungsgrößePrüfen;
    
 
 
@@ -161,6 +171,29 @@ package body StadtWerteFestlegen is
          when True =>
             null;
       end case;
+      
+      UmgebungFestlegen (ZuwachsOderSchwundExtern => ZuwachsOderSchwundExtern,
+                         StadtRasseNummerExtern   => StadtRasseNummerExtern);
+      WelchesFeld := (0, 0, 0);
+      
+      case
+        ZuwachsOderSchwundExtern
+      is
+         when True =>
+            ArbeiterBelegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+                  
+         when False =>
+            ArbeiterEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      end case;
+      
+   end BewirtschaftbareFelderBelegen;
+   
+   
+   
+   procedure UmgebungFestlegen
+     (ZuwachsOderSchwundExtern : in Boolean;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Umgebung := (others => (others => (False, GlobaleDatentypen.GesamtproduktionStadt'First)));
@@ -205,25 +238,12 @@ package body StadtWerteFestlegen is
                  := (not ZuwachsOderSchwundExtern, FeldBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                  PositionExtern         => KartenWert,
                                                                  BelegenOderEntfernen   => ZuwachsOderSchwundExtern));
-               
             end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      WelchesFeld := (0, 0, 0);
-      
-      case
-        ZuwachsOderSchwundExtern
-      is
-         when True =>
-            ArbeiterBelegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-                  
-         when False =>
-            ArbeiterEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      end case;
-      
-   end BewirtschaftbareFelderBelegen;
+   end UmgebungFestlegen;
    
    
    
@@ -234,15 +254,32 @@ package body StadtWerteFestlegen is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      Bewertung := 0;
+      return NahrungBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                               PositionExtern         => PositionExtern,
+                               BelegenOderEntfernen   => BelegenOderEntfernen)
+        + ProduktionBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                               PositionExtern         => PositionExtern,
+                               BelegenOderEntfernen   => BelegenOderEntfernen)
+        + GeldBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                         PositionExtern         => PositionExtern,
+                         BelegenOderEntfernen   => BelegenOderEntfernen)
+        + WissenBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                           PositionExtern         => PositionExtern,
+                           BelegenOderEntfernen   => BelegenOderEntfernen);
+      
+   end FeldBewerten;
+   
+   
+   
+   function NahrungBewertung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      BelegenOderEntfernen : in Boolean)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
       NahrungGesamt := GesamtwerteFeld.FeldNahrung (KoordinatenExtern => PositionExtern,
                                                     RasseExtern       => StadtRasseNummerExtern.Rasse);
-      RessourcenGesamt := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => PositionExtern,
-                                                          RasseExtern       => StadtRasseNummerExtern.Rasse);
-      GeldGesamt := GesamtwerteFeld.FeldGeld (KoordinatenExtern => PositionExtern,
-                                              RasseExtern       => StadtRasseNummerExtern.Rasse);
-      WissenGesamt := GesamtwerteFeld.FeldWissen (KoordinatenExtern => PositionExtern,
-                                                  RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
         LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 1
@@ -253,10 +290,10 @@ package body StadtWerteFestlegen is
            BelegenOderEntfernen
          is
             when True =>
-               Bewertung := Bewertung + 100 + (NahrungGesamt * 20);
+               return 100 + (NahrungGesamt * 20);
                
             when False =>
-               Bewertung := Bewertung - 100 - (NahrungGesamt * 20);
+               return -100 - (NahrungGesamt * 20);
          end case;
          
       else
@@ -264,12 +301,26 @@ package body StadtWerteFestlegen is
            BelegenOderEntfernen
          is
             when True =>
-               Bewertung := Bewertung + NahrungGesamt;
+               return NahrungGesamt;
                
             when False =>
-               Bewertung := Bewertung - NahrungGesamt;
+               return -NahrungGesamt;
          end case;
       end if;
+      
+   end NahrungBewertung;
+   
+   
+   
+   function ProduktionBewertung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      BelegenOderEntfernen : in Boolean)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      RessourcenGesamt := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => PositionExtern,
+                                                          RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
@@ -280,10 +331,10 @@ package body StadtWerteFestlegen is
            BelegenOderEntfernen
          is
             when True =>
-               Bewertung := Bewertung + 25 + RessourcenGesamt;
+               return 25 + RessourcenGesamt;
                
             when False =>
-               Bewertung := Bewertung - 25 - RessourcenGesamt;
+               return -25 - RessourcenGesamt;
          end case;
          
       else
@@ -291,13 +342,27 @@ package body StadtWerteFestlegen is
            BelegenOderEntfernen
          is
             when True =>
-               Bewertung := Bewertung + RessourcenGesamt;
+               return RessourcenGesamt;
                
             when False =>
-               Bewertung := Bewertung - RessourcenGesamt;
+               return -RessourcenGesamt;
          end case;
       end if;
       
+   end ProduktionBewertung;
+
+
+
+   function GeldBewertung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      BelegenOderEntfernen : in Boolean)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      GeldGesamt := GesamtwerteFeld.FeldGeld (KoordinatenExtern => PositionExtern,
+                                              RasseExtern       => StadtRasseNummerExtern.Rasse);
+
       if
         LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
         and
@@ -307,10 +372,10 @@ package body StadtWerteFestlegen is
            BelegenOderEntfernen
          is
             when True =>
-               Bewertung := Bewertung + 25 + GeldGesamt;
+               return 25 + GeldGesamt;
                
             when False =>
-               Bewertung := Bewertung - 25 - GeldGesamt;
+               return -25 - GeldGesamt;
          end case;
          
       else
@@ -318,12 +383,26 @@ package body StadtWerteFestlegen is
            BelegenOderEntfernen
          is
             when True =>
-               Bewertung := Bewertung + GeldGesamt;
+               return GeldGesamt;
                
             when False =>
-               Bewertung := Bewertung - GeldGesamt;
+               return -GeldGesamt;
          end case;
       end if;
+
+   end GeldBewertung;
+   
+   
+   
+   function WissenBewertung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      BelegenOderEntfernen : in Boolean)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+
+      WissenGesamt := GesamtwerteFeld.FeldWissen (KoordinatenExtern => PositionExtern,
+                                                  RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
         LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
@@ -334,27 +413,25 @@ package body StadtWerteFestlegen is
            BelegenOderEntfernen
          is
             when True =>
-               Bewertung := Bewertung + 25 + WissenGesamt;
+               return 25 + WissenGesamt;
                
             when False =>
-               Bewertung := Bewertung - 25 - WissenGesamt;
+               return -25 - WissenGesamt;
          end case;
-         
+      
       else
          case
            BelegenOderEntfernen
          is
             when True =>
-               Bewertung := Bewertung + WissenGesamt;
+               return WissenGesamt;
                
             when False =>
-               Bewertung := Bewertung - WissenGesamt;
+               return -WissenGesamt;
          end case;
       end if;
       
-      return Bewertung;
-      
-   end FeldBewerten;
+   end WissenBewertung;
    
    
    
@@ -369,8 +446,6 @@ package body StadtWerteFestlegen is
             
             if
               Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Belegt = True
-              or
-                Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung = GlobaleDatentypen.GesamtproduktionStadt'First
             then
                null;
                
@@ -385,22 +460,10 @@ package body StadtWerteFestlegen is
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
-                  
-      case
-        WelchesFeld.HöchsterWert
-      is
-         when 0 =>
-            null;
-            
-         when others =>
-            SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                         YPositionExtern        => WelchesFeld.YKoordinate,
-                                                         XPositionExtern        => WelchesFeld.XKoordinate,
-                                                         BelegenEntfernenExtern => True);
-            SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                   EinwohnerArbeiterExtern => False,
-                                                   ÄnderungExtern         => 1);
-      end case;
+      
+      ArbeiterBelegenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                BelegenEntfernenExtern => True,
+                                ÄnderungExtern         => 1);
       
    end ArbeiterBelegen;
    
@@ -417,13 +480,11 @@ package body StadtWerteFestlegen is
             
             if
               Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Belegt = False
-              or
-                Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung = GlobaleDatentypen.GesamtproduktionStadt'First
             then
                null;
                
             elsif
-              Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung > WelchesFeld.HöchsterWert
+              Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung < WelchesFeld.HöchsterWert
             then
                WelchesFeld := (Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung, YPositionSchleifenwert, XPositionSchleifenwert);
                
@@ -434,6 +495,20 @@ package body StadtWerteFestlegen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
                   
+      ArbeiterBelegenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                BelegenEntfernenExtern => False,
+                                ÄnderungExtern         => -1);
+      
+   end ArbeiterEntfernen;
+   
+   
+   
+   procedure ArbeiterBelegenEntfernen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      BelegenEntfernenExtern : in Boolean;
+      ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld)
+   is begin
+      
       case
         WelchesFeld.HöchsterWert
       is
@@ -444,13 +519,13 @@ package body StadtWerteFestlegen is
             SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                          YPositionExtern        => WelchesFeld.YKoordinate,
                                                          XPositionExtern        => WelchesFeld.XKoordinate,
-                                                         BelegenEntfernenExtern => False);
+                                                         BelegenEntfernenExtern => BelegenEntfernenExtern);
             SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                    EinwohnerArbeiterExtern => False,
-                                                   ÄnderungExtern         => -1);
+                                                   ÄnderungExtern          => ÄnderungExtern);
       end case;
       
-   end ArbeiterEntfernen;
+   end ArbeiterBelegenEntfernen;
    
    
    

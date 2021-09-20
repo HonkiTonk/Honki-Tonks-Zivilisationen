@@ -7,7 +7,6 @@ with Karten;
 
 package UmgebungErreichbarTesten is
    
-
    function UmgebungErreichbarTesten
      (AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
@@ -26,8 +25,7 @@ package UmgebungErreichbarTesten is
    
 private
    
-   YAchseBereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-   XAchseBereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    
    GefundeneFelder : Positive;

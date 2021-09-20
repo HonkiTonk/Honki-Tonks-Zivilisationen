@@ -7,7 +7,7 @@ package SchreibenTastatur is
 
    procedure TastenbelegungSchreiben;
    
-private   
+private
    
    TastenbelegungSpeichern : File_Type;
 

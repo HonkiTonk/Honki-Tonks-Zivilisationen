@@ -57,7 +57,7 @@ private
    
    EAchse : ÄnderungArray;
    YAchse : ÄnderungArray;
-   XAchse : ÄnderungArray;   
+   XAchse : ÄnderungArray;
    
    -- Kartenformen
    function KartenPositionXZylinder

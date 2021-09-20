@@ -51,7 +51,7 @@ package BewegungLadenEntladen is
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
-private   
+private
    
    TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
    

@@ -16,25 +16,25 @@ package body StadtInformationen is
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet
+      -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet.
       StadtArtBesitzer (RasseExtern            => RasseExtern,
                         StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      Einwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);      
+      Einwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-      -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
+      -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist.
       if
         StadtRasseNummerExtern.Rasse = RasseExtern
         or
           Cheat.FeindlicheInformationenSehen
       then
          AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);         
+         AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
          New_Line;
                         
          AktuelleProduktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern);
          AktuelleGeldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         AktuelleForschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern);         
+         AktuelleForschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern);
          New_Line;
          
          AktuelleVerteidigung (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -49,10 +49,12 @@ package body StadtInformationen is
 
       else
          null;
-      end if;   
+      end if;
       New_Line;
       
    end Stadt;
+   
+   
 
    procedure StadtArtBesitzer
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;

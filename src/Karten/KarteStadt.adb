@@ -82,11 +82,11 @@ package body KarteStadt is
           or
             GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse = 2)
          and
-           GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse < 13)
+           GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse <= 12)
         or
           (GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse = 3
            and
-             GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse < 3)
+             GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse <= 2)
       then
          return GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse;
          
@@ -332,7 +332,7 @@ package body KarteStadt is
    is begin
       
       -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 1 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
-      UmgebungSchleife:      
+      UmgebungSchleife:
       for UmgebungSchleifenwert in GlobaleDatentypen.Stadtfeld (1) .. 7 loop
                      
          if

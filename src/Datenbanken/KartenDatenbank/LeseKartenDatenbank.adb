@@ -23,7 +23,7 @@ package body LeseKartenDatenbank is
       
       return KartenDatenbank.KartenListe (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
       
-   end Passierbarkeit;   
+   end Passierbarkeit;
    
    
    

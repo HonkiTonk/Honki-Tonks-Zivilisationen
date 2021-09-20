@@ -209,7 +209,7 @@ package body KIBewegungBerechnen is
       case
         FeldBereitsBetreten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                              KoordinatenExtern        => KartenWert)
-      is            
+      is
          when False =>
             null;
             
@@ -221,7 +221,7 @@ package body KIBewegungBerechnen is
         BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                    NeuePositionExtern       => KartenWert)
       is
-         when True =>                  
+         when True =>
             null;
                         
          when False =>
@@ -232,7 +232,7 @@ package body KIBewegungBerechnen is
             then
                null;
                
-            else             
+            else
                return 0;
             end if;
       end case;
@@ -304,7 +304,7 @@ package body KIBewegungBerechnen is
            and
              PositionNeu.XAchse < PositionAlt.XAchse)
       then
-         return 3;  
+         return 3;
         
       elsif
         (PositionNeu.YAchse = PositionAlt.YAchse
@@ -386,7 +386,7 @@ package body KIBewegungBerechnen is
                VorhandenenPlanVereinfachenPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    ErsterZugExtern         => ErsterZugSchleifenwert,
                                                    ÜberNächsterZugExtern   => ÜberNächsterZugSchleifenwert);
-            end if;                
+            end if;
             
          end loop ÜberNächsterZugSchleife;
       end loop ErsterZugSchleife;

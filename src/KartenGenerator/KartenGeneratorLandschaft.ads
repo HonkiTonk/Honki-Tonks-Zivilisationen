@@ -13,7 +13,7 @@ package KartenGeneratorLandschaft is
 private
    
    KartenWertAbstand : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivRecord;   
+   KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivRecord;
       
    AnzahlGleicherGrund : KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder;
    

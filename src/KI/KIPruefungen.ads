@@ -20,7 +20,7 @@ package KIPruefungen is
             and
               StadtUmgebungPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
-   function UmgebungStadtBauenPrüfen     
+   function UmgebungStadtBauenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
@@ -32,7 +32,7 @@ package KIPruefungen is
          Post =>
            (UmgebungStadtBauenPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
-              UmgebungStadtBauenPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);           
+              UmgebungStadtBauenPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
 private
    
@@ -54,7 +54,7 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KartenWertZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
-   function KartenfeldUmgebungPrüfen     
+   function KartenfeldUmgebungPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)

@@ -7,7 +7,7 @@ package EinheitenTransporter is
 
    function EinheitTransporterAuswählen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert     
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

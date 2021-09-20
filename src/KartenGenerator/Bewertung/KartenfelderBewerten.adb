@@ -64,6 +64,6 @@ package body KartenfelderBewerten is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
    
-   end KartenfelderBewerten;   
+   end KartenfelderBewerten;
 
 end KartenfelderBewerten;

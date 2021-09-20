@@ -7,7 +7,7 @@ package EinlesenEinstellungen is
 
    procedure EinlesenEinstellungen;
    
-private   
+private
       
    DateiEinstellungenEinlesen : File_Type;
 

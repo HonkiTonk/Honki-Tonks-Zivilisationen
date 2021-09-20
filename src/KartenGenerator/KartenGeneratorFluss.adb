@@ -10,7 +10,7 @@ with KartePositionPruefen, ZufallGeneratorenKarten;
 package body KartenGeneratorFluss is
 
    procedure GenerierungFlüsse
-   is 
+   is
    
       task Lavaflüsse;
       task UnterirdischeFlüsse;
@@ -45,7 +45,7 @@ package body KartenGeneratorFluss is
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand (Karten.Kartengröße)
         .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseEinsSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
             BeliebigerFlusswert (EbeneExtern) := ZufallGeneratorenKarten.ZufälligerWert;
             

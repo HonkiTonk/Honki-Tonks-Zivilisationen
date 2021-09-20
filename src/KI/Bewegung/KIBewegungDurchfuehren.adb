@@ -34,7 +34,7 @@ package body KIBewegungDurchfuehren is
            LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                PlanschrittExtern        => 1)
            = KIKonstanten.LeerKoordinate
-         then            
+         then
             case
               KIBewegungBerechnen.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
             is
@@ -66,7 +66,7 @@ package body KIBewegungDurchfuehren is
         KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => NeuePosition,
                                           EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when 0 =>      
+         when 0 =>
             BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 1 =>

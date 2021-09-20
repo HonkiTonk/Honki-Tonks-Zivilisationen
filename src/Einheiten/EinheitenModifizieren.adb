@@ -32,7 +32,7 @@ package body EinheitenModifizieren is
                   
                   else
                      HeilungBewegungspunkteNeueRundeSetzen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
-                  end if;            
+                  end if;
             
                end loop EinheitenSchleife;
          end case;

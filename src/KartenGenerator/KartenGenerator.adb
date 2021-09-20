@@ -59,12 +59,12 @@ package body KartenGenerator is
       case
         Karten.Kartenart
       is
-         when GlobaleDatentypen.Chaos | GlobaleDatentypen.Nur_Land =>            
+         when GlobaleDatentypen.Chaos | GlobaleDatentypen.Nur_Land =>
             Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Anfangswert);
             
-         when others =>  
+         when others =>
             KartenGeneratorKueste.GenerierungKüstenSeeGewässer;
-            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Endwert) := Clock;   
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Endwert) := Clock;
             Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Küstengewässer);
       end case;
       
@@ -128,7 +128,7 @@ package body KartenGenerator is
             Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Endwert)
               := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Anfangswert);
             
-         when others =>            
+         when others =>
             KartenGeneratorFluss.GenerierungFlüsse;
             Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Endwert) := Clock;
             Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Flüsse);

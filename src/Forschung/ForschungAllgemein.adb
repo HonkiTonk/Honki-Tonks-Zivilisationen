@@ -167,8 +167,8 @@ package body ForschungAllgemein is
          
          case
            Eingabe.Tastenwert
-         is               
-            when GlobaleDatentypen.Hoch => 
+         is
+            when GlobaleDatentypen.Hoch =>
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -193,7 +193,7 @@ package body ForschungAllgemein is
                return 0;
                      
             when others =>
-               null;                    
+               null;
          end case;
          
       end loop AuswahlSchleife;
@@ -215,7 +215,7 @@ package body ForschungAllgemein is
                                     AbstandEndeExtern      => GlobaleTexte.Leer);
       
       TechnologienSchleife:
-      for TechnologieSchleifenwert in GlobaleDatentypen.ForschungID'Range loop         
+      for TechnologieSchleifenwert in GlobaleDatentypen.ForschungID'Range loop
          ErmöglichtSchleife:
          for NeueForschungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
          
@@ -243,7 +243,7 @@ package body ForschungAllgemein is
                                               AbstandEndeExtern      => GlobaleTexte.Leer);
                exit ErmöglichtSchleife;
                
-            else              
+            else
                null;
             end if;
          
@@ -348,14 +348,14 @@ package body ForschungAllgemein is
       
          Benötigt (RasseExtern           => RasseExtern,
                     ForschungNummerExtern => AktuelleAuswahl);
-         New_Line;      
+         New_Line;
          Ermöglicht (RasseExtern           => RasseExtern,
                       ForschungNummerExtern => AktuelleAuswahl);
          
          case
            Eingabe.Tastenwert
          is
-            when GlobaleDatentypen.Rechts => 
+            when GlobaleDatentypen.Rechts =>
                if
                  AktuelleAuswahl = GlobaleDatentypen.ForschungID'Last
                then
@@ -373,14 +373,14 @@ package body ForschungAllgemein is
                   
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;               
+               end if;
                               
-            when GlobaleDatentypen.Menü_Zurück =>    
+            when GlobaleDatentypen.Menü_Zurück =>
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return;
                      
             when others =>
-               null;                    
+               null;
          end case;
          
       end loop ForschungsbaumSchleife;
@@ -526,7 +526,7 @@ package body ForschungAllgemein is
                                                                                                              IDExtern                => ForschungIDExtern,
                                                                                                              WelcheAnforderungExtern => AnforderungSchleifenwert))
            = True
-         then                  
+         then
             null;
                   
          else

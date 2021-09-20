@@ -17,7 +17,7 @@ package GebaeudeAllgemein is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   procedure GebäudeEntfernen     
+   procedure GebäudeEntfernen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
      with

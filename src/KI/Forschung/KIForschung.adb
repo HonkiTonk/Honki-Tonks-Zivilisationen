@@ -16,7 +16,7 @@ package body KIForschung is
       case
         LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
-         when GlobaleDatentypen.ForschungIDMitNullWert'First =>      
+         when GlobaleDatentypen.ForschungIDMitNullWert'First =>
             NeuesForschungsprojekt (RasseExtern => RasseExtern);
             
          when others =>

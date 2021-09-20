@@ -41,7 +41,7 @@ package body DiplomatischerZustandAenderbar is
             ÄnderungMöglich := NichtangriffspaktMöglich;
                         
          when GlobaleDatentypen.Krieg =>
-            ÄnderungMöglich := KriegMöglich;            
+            ÄnderungMöglich := KriegMöglich;
       end case;
       
       case

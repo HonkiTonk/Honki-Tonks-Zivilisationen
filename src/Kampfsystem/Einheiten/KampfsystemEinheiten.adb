@@ -124,7 +124,7 @@ package body KampfsystemEinheiten is
          
          if
            Kampfglück >= SchadenAngerichtet (WelcherFall, AngerichteterSchadenSchleifenwert)
-         then            
+         then
             AngerichteterSchaden := AngerichteterSchaden + AngerichteterSchadenSchleifenwert;
             exit AngerichteterSchadenSchleife;
             

@@ -90,6 +90,8 @@ package StadtUmgebungsbereichFestlegen is
    
 private
    
+   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   
    procedure StadtUmgebungErmitteln
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
 

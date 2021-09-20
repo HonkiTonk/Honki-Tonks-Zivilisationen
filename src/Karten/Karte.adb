@@ -42,12 +42,12 @@ package body Karte is
                
             else
                SichtweiteFestlegen := 3;
-               BewegungsfeldFestlegen := 3; 
+               BewegungsfeldFestlegen := 3;
             end if;
             
          when others =>
             SichtweiteFestlegen := 3;
-            BewegungsfeldFestlegen := 3;            
+            BewegungsfeldFestlegen := 3;
       end case;
       
    end SichtweiteBewegungsfeldFestlegen;
@@ -130,7 +130,7 @@ package body Karte is
                
          else
             null;
-         end if;              
+         end if;
                  
       else
          null;
@@ -186,7 +186,7 @@ package body Karte is
              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse
            > GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse - Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
          then
-            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse;         
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse;
             
          else
             null;
@@ -201,7 +201,7 @@ package body Karte is
              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse
            < GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse + Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
          then
-            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse;         
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse;
             
          else
             null;
@@ -238,7 +238,7 @@ package body Karte is
              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse
            > GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).XAchse - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
          then
-            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse;         
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse;
             
          else
             null;
@@ -253,7 +253,7 @@ package body Karte is
              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse
            < GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegenExtern).XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
          then
-            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse;         
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse;
             
          else
             null;

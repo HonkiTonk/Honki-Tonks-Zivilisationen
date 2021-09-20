@@ -11,7 +11,7 @@ package body Speichern is
 
    procedure SpeichernNeu
      (AutospeichernExtern : in Boolean)
-   is begin      
+   is begin
 
       case
         SpielstandNameFestlegen (AutospeichernExtern => AutospeichernExtern)
@@ -59,10 +59,10 @@ package body Speichern is
    procedure SonstigesSpeichern
    is begin
       
-      Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
+      Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
                               Informationen.Versionsnummer);
       
-      Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
+      Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
                                         GlobaleVariablen.IronmanName);
       
       Positive'Write (Stream (File => DateiSpeichernNeu),
@@ -234,7 +234,7 @@ package body Speichern is
             when GlobaleDatentypen.Leer =>
                null;
 
-            when others =>               
+            when others =>
                DiplomatieSchleifeInnen:
                for RasseDiplomatieZweiSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (2) loop
 
@@ -356,7 +356,7 @@ package body Speichern is
          then
             AutospeichernWert := AutospeichernWert + 1;
                   
-         else               
+         else
             AutospeichernWert := 1;
          end if;
       end if;

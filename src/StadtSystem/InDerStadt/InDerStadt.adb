@@ -18,7 +18,7 @@ package body InDerStadt is
     
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         New_Line;  
+         New_Line;
 
          Befehl := Eingabe.Tastenwert;
          
@@ -32,7 +32,7 @@ package body InDerStadt is
 
                -- Einwohner von Feld entfernen/zuweisen
             when GlobaleDatentypen.Auswählen =>
-               EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);                  
+               EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
             when GlobaleDatentypen.Bauen =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);

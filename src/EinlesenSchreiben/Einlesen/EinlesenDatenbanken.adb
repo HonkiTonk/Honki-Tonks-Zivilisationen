@@ -5,7 +5,7 @@ use Ada.Directories;
 
 with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, RassenDatenbank;
 
-package body EinlesenDatenbanken is 
+package body EinlesenDatenbanken is
    
    procedure EinlesenAlleDatenbanken
    is begin

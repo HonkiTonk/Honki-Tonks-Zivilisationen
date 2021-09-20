@@ -15,7 +15,7 @@ package FelderwerteFestlegen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
-   procedure KartenfelderBewertenKleineSchleife 
+   procedure KartenfelderBewertenKleineSchleife
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Enum)
      with

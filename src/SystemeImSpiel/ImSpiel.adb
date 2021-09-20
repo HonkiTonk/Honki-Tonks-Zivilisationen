@@ -101,7 +101,7 @@ package body ImSpiel is
             
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
-         is                     
+         is
             when GlobaleDatentypen.Spieler_Mensch =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
                
@@ -152,7 +152,7 @@ package body ImSpiel is
            RückgabeWert = GlobaleKonstanten.HauptmenüKonstante)
         and
           NochSpielerVorhanden (RasseExtern => RasseExtern) = True
-      then                        
+      then
          RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                         
       elsif
@@ -207,14 +207,13 @@ package body ImSpiel is
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
             when GlobaleDatentypen.Spieler_Mensch =>
-               null;
+               Karte.AnzeigeKarte (RasseExtern => RasseExtern);
+               AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
                
             when others =>
+               -- Sollte niemals auftreten? Könnte auftreten wenn der Spieler eliminiert wird oder auf KI gesetzt wird? Mal ein besseres System bauen.
                return GlobaleKonstanten.HauptmenüKonstante;
          end case;
-         
-         Karte.AnzeigeKarte (RasseExtern => RasseExtern);
-         AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
          
          case
            AktuellerBefehlSpieler
@@ -222,12 +221,10 @@ package body ImSpiel is
             when GlobaleKonstanten.StartNormalKonstante =>
                null;
 
-               -- Speichern
             when GlobaleKonstanten.SpeichernKonstante =>
                GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
-               -- Laden
             when GlobaleKonstanten.LadenKonstante =>
                if
                  Laden.LadenNeu = True
@@ -238,7 +235,6 @@ package body ImSpiel is
                   null;
                end if;
                
-               -- Optionen
             when GlobaleKonstanten.OptionenKonstante =>
                RückgabeOptionen := Optionen.Optionen;
                if
@@ -252,13 +248,11 @@ package body ImSpiel is
                   null;
                end if;
                
-               -- Spiel beenden oder Hauptmenü
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return AktuellerBefehlSpieler;
 
-               -- Runde beenden
             when GlobaleKonstanten.RundeBeendenKonstante =>
-               return GlobaleKonstanten.StartNormalKonstante;      
+               return GlobaleKonstanten.StartNormalKonstante;
                   
             when others =>
                null;

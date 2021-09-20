@@ -79,9 +79,9 @@ package body BewegungBerechnen is
          when GlobaleDatentypen.Spieler_KI =>
             null;
             
-         when others =>            
+         when others =>
             GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position := NeuePositionExtern;
-      end case;      
+      end case;
       
       SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         PositionExtern           => NeuePositionExtern);
@@ -214,7 +214,7 @@ package body BewegungBerechnen is
 
       else
          null;
-      end if;      
+      end if;
       
       return Leer;
       

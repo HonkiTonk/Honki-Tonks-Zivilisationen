@@ -59,7 +59,7 @@ package body EinwohnerZuweisenEntfernen is
          when True =>
             EinwohnerEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                         
-         when False =>         
+         when False =>
             EinwohnerZuweisen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end case;
       

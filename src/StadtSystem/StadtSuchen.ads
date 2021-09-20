@@ -29,9 +29,7 @@ package StadtSuchen is
        Pre  =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           ((if KoordinatenStadtOhneRasseSuchen'Result.Rasse /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
@@ -43,20 +41,15 @@ package StadtSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
-         Post =>
-           ((if KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function StadtNachNamenSuchen
      return GlobaleRecords.RassePlatznummerRecord;
 
 private
    
-   AnzahlStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    StadtName : Unbounded_Wide_Wide_String;
-   
-   type AktuelleStadtArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.MaximaleStädteMitNullWert;
-   AktuelleStadt : AktuelleStadtArray := (others => 0);
 
 end StadtSuchen;

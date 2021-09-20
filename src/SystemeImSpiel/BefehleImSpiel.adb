@@ -2,18 +2,18 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte;
 
-with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
+with SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseWichtiges;
 
 with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Aufgaben, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, ForschungAllgemein,
-     StadtEntfernen, EinheitenTransporter, TransporterSuchen, EinheitenBeschreibungen, EinheitenModifizieren;
+     StadtEntfernen, EinheitenTransporter, TransporterSuchen, EinheitenBeschreibungen, EinheitenModifizieren, AufgabenAllgemein;
 
 package body BefehleImSpiel is
 
    function Befehle
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer
-   is begin 
+   is begin
       
       Befehl := Eingabe.Tastenwert;
 
@@ -59,12 +59,12 @@ package body BefehleImSpiel is
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
-         when GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Range =>                     
+         when GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Range =>
             EinheitBefehle (RasseExtern  => RasseExtern,
                             BefehlExtern => Befehl);
             
          when GlobaleDatentypen.Infos =>
-            -- Hier endlich mal was reinbauen.
+            -- Hier mal was reinbauen.
             null;
 
          when GlobaleDatentypen.Diplomatie =>
@@ -117,19 +117,17 @@ package body BefehleImSpiel is
                                                                  KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
 
       if
-        EinheitNummer /= 0
+        EinheitNummer /= GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
         and
-          StadtNummer /= 0
+          StadtNummer /= GlobaleDatentypen.MaximaleStädteMitNullWert'First
       then
-         StadtOderEinheit := Auswahl.AuswahlJaNein (FrageZeileExtern => 15);
-
          EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => StadtOderEinheit,
+                           AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => 15),
                            StadtNummerExtern   => StadtNummer,
-                           EinheitNummerExtern => EinheitNummer);               
+                           EinheitNummerExtern => EinheitNummer);
          
       elsif
-        StadtNummer /= 0
+        StadtNummer /= GlobaleDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
                            AuswahlExtern       => GlobaleKonstanten.JaKonstante,
@@ -137,52 +135,55 @@ package body BefehleImSpiel is
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
-        EinheitNummer /= 0
+        EinheitNummer /= GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
       then
-         Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRassePlatznummerExtern => (RasseExtern, EinheitNummer));
-         if
-           LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
-           and
-             Transportiert = False
-         then
-            EinheitOderStadt (RasseExtern         => RasseExtern,
-                              AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
-                              StadtNummerExtern   => StadtNummer,
-                              EinheitNummerExtern => EinheitNummer);
-            return;
-
-         else
-            null;
-         end if;
-         
-         if
-           LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
-         then
-            EinheitTransportNummer
-              := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))));
-
-         else
-            EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
-         end if;
-                  
-         case
-           EinheitTransportNummer
-         is
-            when GlobaleKonstanten.LeerEinheitStadtNummer =>
-               null;
-                        
-            when others =>
-               EinheitOderStadt (RasseExtern         => RasseExtern,
-                                 AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
-                                 StadtNummerExtern   => StadtNummer,
-                                 EinheitNummerExtern => EinheitTransportNummer);
-         end case;
+         AuswahlEinheitTransporter (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                
       else
          null;
       end if;
       
    end AuswahlEinheitStadt;
+   
+   
+   
+   procedure AuswahlEinheitTransporter
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      if
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+        and
+          Transportiert = False
+      then
+         EinheitTransportNummer := EinheitRasseNummerExtern.Platznummer;
+
+      elsif
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+      then
+         EinheitTransportNummer:= EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern =>
+                                                                                       (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+
+      else
+         EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end if;
+      
+      case
+        EinheitTransportNummer
+      is
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+            null;
+                        
+         when others =>
+            EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                              AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
+                              StadtNummerExtern   => GlobaleDatentypen.MaximaleStädteMitNullWert'First,
+                              EinheitNummerExtern => EinheitTransportNummer);
+      end case;
+      
+   end AuswahlEinheitTransporter;
 
 
 
@@ -197,41 +198,49 @@ package body BefehleImSpiel is
         AuswahlExtern
       is
          when GlobaleKonstanten.JaKonstante =>
-            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse := 1;
-            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse := 1;
-            InDerStadt.InDerStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
-            return;
+            StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
          when others =>
-            null;
+            EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
       end case;
       
+   end EinheitOderStadt;
+   
+   
+   
+   procedure StadtBetreten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse := 1;
+      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse := 1;
+      InDerStadt.InDerStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+   end StadtBetreten;
+   
+   
+   
+   procedure EinheitSteuern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern)) /= GlobaleDatentypen.Leer
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= GlobaleDatentypen.Leer
         and then
           EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
-         SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
-                                                 BeschäftigungExtern     => GlobaleDatentypen.Leer);
-         SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
-                                                      ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
-                                                      RechnenSetzenExtern      => 0);
-         SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
-                                                           BeschäftigungExtern     => GlobaleDatentypen.Leer);
-         SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
-                                                                ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
-                                                                RechnenSetzenExtern      => 0);
+         AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   
       elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern)) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          null;
                      
       else
-         BewegungEinheiten.BewegungEinheitenRichtung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
+         BewegungEinheiten.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
-   end EinheitOderStadt;
+   end EinheitSteuern;
    
    
    
@@ -271,7 +280,7 @@ package body BefehleImSpiel is
       case
         LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
-         when 0 =>
+         when GlobaleDatentypen.ForschungIDMitNullWert'First =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
             return;
             
@@ -342,6 +351,7 @@ package body BefehleImSpiel is
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                  KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+      
       if
         StadtNummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
@@ -372,9 +382,8 @@ package body BefehleImSpiel is
             null;
       end case;
          
-      AbreißenAuswahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 30);
       case
-        AbreißenAuswahl
+        Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
       is
          when GlobaleKonstanten.JaKonstante =>
             StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));

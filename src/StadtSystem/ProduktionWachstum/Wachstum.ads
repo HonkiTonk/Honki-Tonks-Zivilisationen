@@ -35,5 +35,11 @@ private
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
+   procedure EinwohnerÄnderung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure NeuerEinwohner
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
 
 end Wachstum;

@@ -15,7 +15,7 @@ package body KIPruefungen is
       return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      VerbesserungAnlegen := KIKonstanten.LeerKoordinate;      
+      VerbesserungAnlegen := KIKonstanten.LeerKoordinate;
       
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
@@ -297,10 +297,10 @@ package body KIPruefungen is
             if
               FeldGutUndFrei
               and
-                KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen,
+                (KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen,
                                                        RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                        ZielKoordinatenExtern => StadtBauenUmgebungKoordinaten)
-              = False
+              = False)
             then
                return StadtBauenUmgebungKoordinaten;
                   

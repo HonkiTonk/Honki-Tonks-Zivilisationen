@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleRecords;
 
 with LeseEinheitenGebaut, LeseStadtGebaut;
 
-package body NaechstesObjekt is  
+package body NaechstesObjekt is
 
    procedure NächsteEinheit
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
@@ -44,7 +44,7 @@ package body NaechstesObjekt is
          
          if
            SchleifenBegrenzung < GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
-         then            
+         then
             SchleifenBegrenzung := SchleifenBegrenzung + 1;
             
          else
@@ -205,7 +205,7 @@ package body NaechstesObjekt is
          
          if
            SchleifenBegrenzung < GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
-         then            
+         then
             SchleifenBegrenzung := SchleifenBegrenzung + 1;
             
          else

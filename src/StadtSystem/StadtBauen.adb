@@ -12,7 +12,7 @@ package body StadtBauen is
    function StadtBauen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
-   is begin     
+   is begin
         
       case
         StadtBaubar (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -37,7 +37,7 @@ package body StadtBauen is
       end case;
             
       StadtEintragen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                      PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));            
+                      PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       case

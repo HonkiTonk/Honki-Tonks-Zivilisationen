@@ -69,7 +69,7 @@ package body EinheitVerschieben is
             then
                null;
                   
-            else               
+            else
                EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => KontaktierteRasseExtern,
                                                                                 KoordinatenExtern => KartenWert);
             end if;

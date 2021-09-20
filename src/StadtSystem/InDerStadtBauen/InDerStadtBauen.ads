@@ -31,6 +31,20 @@ private
    procedure AnzeigeGebäude
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
 
+   procedure MöglicheGebäudeErmitteln
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+
+   procedure MöglicheEinheitenErmitteln
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+
+   procedure PermanenteKostenGebäude
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+
+   procedure PermanenteKostenEinheiten
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+
+
+
    function BauobjektAuswählen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural
@@ -41,5 +55,9 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch),
          Post =>
            (BauobjektAuswählen'Result <= 99_999);
+
+   function AuswahlBauprojekt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural;
 
 end InDerStadtBauen;

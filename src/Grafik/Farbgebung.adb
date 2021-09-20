@@ -182,7 +182,7 @@ package body Farbgebung is
         VerbesserungExtern in GlobaleDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
         and
           RasseExtern = EigeneRasseExtern
-      then            
+      then
          Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
             
       elsif

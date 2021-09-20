@@ -9,7 +9,7 @@ package body ZufallGeneratorenSpieleinstellungen is
    is begin
       
       ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
-      return ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt); 
+      return ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
         
    end ZufälligeKartengröße;
    
@@ -104,6 +104,6 @@ package body ZufallGeneratorenSpieleinstellungen is
       ZufälligenSchwierigkeitsgradWählen.Reset (ZufälligerSchwierigkeitsgradGewählt);
       return ZufälligenSchwierigkeitsgradWählen.Random (ZufälligerSchwierigkeitsgradGewählt);
       
-   end ZufälligerSchwiewrigkeitsgrad;            
+   end ZufälligerSchwiewrigkeitsgrad;
 
 end ZufallGeneratorenSpieleinstellungen;

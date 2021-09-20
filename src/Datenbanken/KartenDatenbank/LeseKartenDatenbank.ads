@@ -14,7 +14,7 @@ package LeseKartenDatenbank is
    function Passierbarkeit
      (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       WelcheUmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum)
-      return Boolean;      
+      return Boolean;
    
    function FeldWerte
      (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;

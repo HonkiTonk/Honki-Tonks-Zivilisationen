@@ -30,7 +30,7 @@ package body SpielEinstellungen is
             when GlobaleKonstanten.AuswahlKartenform =>
                HauptAuswahl := SpielEinstellungenKarten.KartenformWählen;
 
-            when GlobaleKonstanten.AuswahlKartentemperatur =>            
+            when GlobaleKonstanten.AuswahlKartentemperatur =>
                HauptAuswahl := SpielEinstellungenKarten.KartentemperaturWählen;
                
             when GlobaleKonstanten.AuswahlKartenressourcen =>
@@ -98,7 +98,7 @@ package body SpielEinstellungen is
          when False =>
             Put_Line ("SpielEinstellungen.SpielEinstellungenAuswahl es wurden keine Rassen platziert!");
             return GlobaleKonstanten.SpielBeendenKonstante;
-      end case;               
+      end case;
          
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, GlobaleDatentypen.Endwert) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Spieler_Platzieren);

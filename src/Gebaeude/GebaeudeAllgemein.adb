@@ -26,7 +26,7 @@ package body GebaeudeAllgemein is
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       IDExtern : in GebäudeID)
-   is begin     
+   is begin
       
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
@@ -45,7 +45,7 @@ package body GebaeudeAllgemein is
    
    
    
-   procedure GebäudeEntfernen     
+   procedure GebäudeEntfernen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
    is begin

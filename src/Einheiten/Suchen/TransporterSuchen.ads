@@ -30,12 +30,12 @@ package TransporterSuchen is
             TransporterExtern.Platznummer > 0);
 
    function HatTransporterLadung
-     (EinheitRassePlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRassePlatznummerExtern.Rasse) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            EinheitRassePlatznummerExtern.Platznummer > 0);
+            EinheitRasseNummerExtern.Platznummer > 0);
 
 end TransporterSuchen;

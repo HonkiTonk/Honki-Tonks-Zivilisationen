@@ -32,7 +32,7 @@ package body SpielEinstellungenKarten is
             when 10 =>
                return GrößeSelbstBestimmen;
                
-            when 11 =>               
+            when 11 =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
                return GlobaleKonstanten.AuswahlKartenart;
 
@@ -110,7 +110,7 @@ package body SpielEinstellungenKarten is
                Karten.Kartenart := GlobaleDatentypen.Kartenart_Verwendet_Enum'Val (KartenartAuswahl);
                return GlobaleKonstanten.AuswahlKartenform;
                
-            when 6 =>               
+            when 6 =>
                Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
                return GlobaleKonstanten.AuswahlKartenform;
                
@@ -167,7 +167,7 @@ package body SpielEinstellungenKarten is
                null;
          end case;
 
-         Put (Item => CSI & "2J" & CSI & "H");                  
+         Put (Item => CSI & "2J" & CSI & "H");
 
       end loop KartenformSchleife;
       
@@ -196,7 +196,7 @@ package body SpielEinstellungenKarten is
                Karten.Kartentemperatur := GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Val (KartentemperaturAuswahl);
                return GlobaleKonstanten.AuswahlKartenressourcen;
                
-            when 6 =>               
+            when 6 =>
                Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
                return GlobaleKonstanten.AuswahlKartenressourcen;
                
@@ -239,7 +239,7 @@ package body SpielEinstellungenKarten is
                Karten.Kartenressourcen := GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum'Val (KartenressourcenAuswahl);
                return GlobaleKonstanten.AuswahlSpieleranzahl;
                
-            when 6 =>               
+            when 6 =>
                Karten.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
                return GlobaleKonstanten.AuswahlSpieleranzahl;
                
