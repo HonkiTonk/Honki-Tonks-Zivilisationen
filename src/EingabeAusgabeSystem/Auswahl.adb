@@ -19,7 +19,7 @@ package body Auswahl is
       for LetztesEndeSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (LetztesEndeSchleifenwert)) = "|"
+           To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (LetztesEndeSchleifenwert)) = GlobaleKonstanten.LeerText
          then
             exit EndeBestimmenSchleife;
             

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with Ada.Characters.Conversions;
 
-with GlobaleTexte;
+with GlobaleTexte, GlobaleKonstanten;
 
 package body EinlesenSprache is
 
@@ -10,7 +10,7 @@ package body EinlesenSprache is
      return Boolean
    is begin
 
-      GlobaleTexte.SprachenEinlesen := (others => (To_Unbounded_Wide_Wide_String (Source => "|")));
+      GlobaleTexte.SprachenEinlesen := (others => (To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText)));
       
       Start_Search (Search    => Suche,
                     Directory => "Sprachen",
@@ -34,7 +34,7 @@ package body EinlesenSprache is
             for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
             
                if
-                 GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= "|"
+                 GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= GlobaleKonstanten.LeerText
                then
                   null;
             
@@ -50,7 +50,7 @@ package body EinlesenSprache is
       end loop VerzeichnisAußenSchleife;
       
       if
-        GlobaleTexte.SprachenEinlesen (1) = "|"
+        GlobaleTexte.SprachenEinlesen (1) = GlobaleKonstanten.LeerText
       then
          return False;
          
@@ -70,7 +70,7 @@ package body EinlesenSprache is
       for PositionSchleifenwert in GlobaleTexte.SprachenEinlesenArray'First + 1 .. GlobaleTexte.SprachenEinlesenArray'Last loop
          
          if
-           GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = "|"
+           GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = GlobaleKonstanten.LeerText
          then
             return;
             

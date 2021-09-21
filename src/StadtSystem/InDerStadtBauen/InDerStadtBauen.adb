@@ -8,7 +8,7 @@ with GlobaleKonstanten, GlobaleTexte;
 with SchreibeStadtGebaut;
 with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
      
-with Anzeige, Eingabe, Auswahl, GebaeudeAllgemein, EinheitenModifizieren;
+with Anzeige, Eingabe, Auswahl, GebaeudeAllgemein, EinheitenModifizieren, EinheitenBeschreibungen;
 
 package body InDerStadtBauen is
 
@@ -49,7 +49,7 @@ package body InDerStadtBauen is
    is begin
 
       Ende := 1;
-      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText), 0));
 
       MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
       MöglicheEinheitenErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -89,7 +89,7 @@ package body InDerStadtBauen is
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz),
                                 Positive (GebäudeSchleifenwert)))
-           = "|"
+           = GlobaleKonstanten.LeerText
          then
             exit GebäudeSchleife;
             
@@ -127,7 +127,7 @@ package body InDerStadtBauen is
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                 Positive (EinheitSchleifenwert)))
-           = "|"
+           = GlobaleKonstanten.LeerText
          then
             exit EinheitenSchleife;
             
@@ -230,74 +230,116 @@ package body InDerStadtBauen is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Lang,
-                                    ÜberschriftZeileExtern => 0,
-                                    ErsteZeileExtern       => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
-                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleTexte.Leer);
-            
+      EinheitenBeschreibungen.BeschreibungLang (IDExtern => GlobaleDatentypen.EinheitenIDMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag));
+      
       New_Line;
+      Preis (RasseExtern => StadtRasseNummerExtern.Rasse);
+      New_Line;
+      
+      Angriff (RasseExtern => StadtRasseNummerExtern.Rasse);
+      Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse);
+      MaximaleLebenspunkte (RasseExtern => StadtRasseNummerExtern.Rasse);
+      MaximaleBewegungspunkte (RasseExtern => StadtRasseNummerExtern.Rasse);
+      New_Line;
+      
+      PermanenteKostenEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse);
+      
+   end AnzeigeEinheiten;
+   
+   
+   
+   procedure Preis
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                     TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 48,
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+      Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => RasseExtern,
                                                                                           IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                                                             - GlobaleKonstanten.EinheitAufschlag))),
                                Width => 1);
-      New_Line;
-                               
+      
+   end Preis;
+   
+   
+   
+   procedure Angriff
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                     TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 24,
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.Angriff (RasseExtern => StadtRasseNummerExtern.Rasse,
+      Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.Angriff (RasseExtern => RasseExtern,
                                                                                  IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                                                    - GlobaleKonstanten.EinheitAufschlag))),
                                Width => 1);
-            
+      
+   end Angriff;
+   
+   
+   
+   procedure Verteidigung
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                     TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 25,
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
+      Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.Verteidigung (RasseExtern => RasseExtern,
                                                                                       IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                                                         - GlobaleKonstanten.EinheitAufschlag))),
                                Width => 1);
-            
+      
+   end Verteidigung;
+   
+   
+   
+   procedure MaximaleLebenspunkte
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                     TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 14,
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => StadtRasseNummerExtern.Rasse,
+      Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => RasseExtern,
                                                                                                IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                                                                  - GlobaleKonstanten.EinheitAufschlag))),
                                Width => 1);
-            
+      
+   end MaximaleLebenspunkte;
+   
+   
+   
+   procedure MaximaleBewegungspunkte
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                     TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 15,
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => StadtRasseNummerExtern.Rasse,
+      Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => RasseExtern,
                                                                                                   IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                                                                     - GlobaleKonstanten.EinheitAufschlag))),
                                Width => 1);
-
-      New_Line;
-      PermanenteKostenEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse);
       
-   end AnzeigeEinheiten;
+   end MaximaleBewegungspunkte;
    
    
    
@@ -354,25 +396,9 @@ package body InDerStadtBauen is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Lang,
-                                    ÜberschriftZeileExtern => 0,
-                                    ErsteZeileExtern       => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
-                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleTexte.Leer);
-            
+      GebaeudeAllgemein.BeschreibungLang (IDExtern => GlobaleDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag));
       New_Line;
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                    TextDateiExtern        => GlobaleTexte.Zeug,
-                                    ÜberschriftZeileExtern => 0,
-                                    ErsteZeileExtern       => 48,
-                                    AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                         IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                                                                                           - GlobaleKonstanten.GebäudeAufschlag))),
-                               Width => 1);
-      
+      PreisGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
       New_Line;
       PermanenteGebäudeWerte := False;
       
@@ -420,6 +446,25 @@ package body InDerStadtBauen is
       PermanenteKostenGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
       
    end AnzeigeGebäude;
+   
+   
+   
+   procedure PreisGebäude
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Zeug,
+                                    ÜberschriftZeileExtern => 0,
+                                    ErsteZeileExtern       => 48,
+                                    AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => RasseExtern,
+                                                                                         IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                                                                           - GlobaleKonstanten.GebäudeAufschlag))),
+                               Width => 1);
+      
+   end PreisGebäude;
    
    
    

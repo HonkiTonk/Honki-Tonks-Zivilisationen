@@ -4,11 +4,14 @@ with GlobaleDatentypen;
 
 package EinheitenBeschreibungen is
 
-   procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.EinheitenID);
+   procedure BeschreibungKurz
+     (IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert);
    
    procedure Beschäftigung
      (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum);
+   
+   procedure BeschreibungLang
+     (IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert);
    
    
    

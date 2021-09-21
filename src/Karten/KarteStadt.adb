@@ -59,7 +59,7 @@ package body KarteStadt is
                                                  WelchesGebäudeExtern  => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12))
               = True
             then
-               GebaeudeAllgemein.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12));
+               GebaeudeAllgemein.BeschreibungKurz (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12));
             
             else
                null;

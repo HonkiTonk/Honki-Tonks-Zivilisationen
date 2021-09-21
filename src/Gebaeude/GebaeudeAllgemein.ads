@@ -5,12 +5,15 @@ use GlobaleDatentypen;
 
 package GebaeudeAllgemein is
 
-   procedure Beschreibung
-     (IDExtern : in GebäudeID);
+   procedure BeschreibungKurz
+     (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert);
+   
+   procedure BeschreibungLang
+     (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert);
    
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GebäudeID)
+      IDExtern : in GlobaleDatentypen.GebäudeID)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

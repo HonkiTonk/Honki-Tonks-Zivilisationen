@@ -397,8 +397,16 @@ package GlobaleKonstanten is
 
 
 
+   -- Für die grafische Anzeige
+   NichtSichtbar : constant Wide_Wide_Character := ' ';
+   -- Für die grafische Anzeige
+
+
+
    -- Für die Leerwerte
-   LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "");
+   LeerString : constant Wide_Wide_String := "";
+   LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
+   LeerText : constant Wide_Wide_String := "|";
 
    LeerCursor : constant GlobaleRecords.CursorRecord := (
                                                          CursorGrafik  => '©',
@@ -464,7 +472,7 @@ package GlobaleKonstanten is
                                                                   );
 
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
-                                                                     KartenGrafik        => ' ',
+                                                                     KartenGrafik        => NichtSichtbar,
                                                                      Passierbarkeit      => (others => False),
                                                                      FeldWerte           => (others => (others => 0))
                                                                     );
@@ -482,13 +490,13 @@ package GlobaleKonstanten is
                                                            );
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
-                                                                                 VerbesserungGrafik => ' ',
+                                                                                 VerbesserungGrafik => NichtSichtbar,
                                                                                  Passierbarkeit     => (others => False),
                                                                                  VerbesserungWerte  => (others => (others => 0))
                                                                                 );
 
    LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
-                                                                         EinheitenGrafik            => '@',
+                                                                         EinheitenGrafik            => NichtSichtbar,
                                                                          EinheitArt                 => GlobaleDatentypen.Leer,
                                                                          PreisGeld                  => 0,
                                                                          PreisRessourcen            => 0,
@@ -514,7 +522,7 @@ package GlobaleKonstanten is
                                                                           );
 
    LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (
-                                                                         GebäudeGrafik               => ' ',
+                                                                         GebäudeGrafik               => NichtSichtbar,
                                                                          PreisGeld                   => 0,
                                                                          PreisRessourcen             => 0,
                                                                          PermanenteKosten            => (others => 0),
@@ -554,9 +562,5 @@ package GlobaleKonstanten is
                                                                  ZeitSeitLetzterÄnderung    => 0
                                                                 );
    -- Für die Leerwerte
-
-   -- Für die grafische Anzeige
-   NichtSichtbar : constant Wide_Wide_Character := ' ';
-   -- Für die grafische Anzeige
 
 end GlobaleKonstanten;

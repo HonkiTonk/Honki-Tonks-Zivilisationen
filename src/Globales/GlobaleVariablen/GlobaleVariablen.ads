@@ -12,7 +12,7 @@ package GlobaleVariablen is
    type NutzerEinstellungenArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
    NutzerEinstellungen : GlobaleRecords.NutzerEinstellungenRecord := (
                                                                       -- Sprache
-                                                                      To_Unbounded_Wide_Wide_String (Source => "|"),
+                                                                      To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText),
                                                                       -- Anzahl Autosaves
                                                                       10,
                                                                       -- Rundenanzahl bis Autosave
@@ -45,7 +45,7 @@ package GlobaleVariablen is
    type GrenzenArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.GrenzenRecord;
    Grenzen : GrenzenArray := (others => GlobaleKonstanten.LeerGrenzen);
    
-   IronmanName : Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "");
+   IronmanName : Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerString);
    -- Zeug
    
 

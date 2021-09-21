@@ -61,7 +61,7 @@ package body InformationenEinheiten is
          when others =>
             EinheitNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
-      EinheitenBeschreibungen.Beschreibung (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
+      EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
       New_Line;
       
       return (EinheitRasseNummerExtern.Rasse, EinheitNummer);

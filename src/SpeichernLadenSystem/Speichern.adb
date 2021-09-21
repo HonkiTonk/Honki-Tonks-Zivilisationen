@@ -306,7 +306,7 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
+        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= GlobaleKonstanten.LeerString
       then
          SpeichernLadenAllgemein.SpielstandName := GlobaleVariablen.IronmanName;
                
@@ -340,7 +340,7 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
+        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= GlobaleKonstanten.LeerString
       then
          SpeichernLadenAllgemein.SpielstandName := GlobaleVariablen.IronmanName;
                

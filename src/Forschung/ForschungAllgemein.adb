@@ -73,7 +73,7 @@ package body ForschungAllgemein is
       return GlobaleDatentypen.ForschungIDMitNullWert
    is begin
       
-      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText), 0));
       Ende := 1;
 
       ForschungSchleife:
@@ -82,7 +82,7 @@ package body ForschungAllgemein is
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
                                 Positive (ForschungenSchleifenwert)))
-           = "|"
+           = GlobaleKonstanten.LeerText
          then
             exit ForschungSchleife;
             

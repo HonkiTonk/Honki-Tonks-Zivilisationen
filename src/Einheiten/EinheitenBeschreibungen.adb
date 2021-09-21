@@ -6,9 +6,19 @@ with Anzeige, Auswahl;
 
 package body EinheitenBeschreibungen is
 
-   procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.EinheitenID)
+   procedure BeschreibungKurz
+     (IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
    is begin
+      
+      case
+        IDExtern
+      is
+         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+            return;
+            
+         when others =>
+            null;
+      end case;
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
@@ -19,7 +29,32 @@ package body EinheitenBeschreibungen is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Leer);
       
-   end Beschreibung;
+   end BeschreibungKurz;
+   
+   
+   
+   procedure BeschreibungLang
+     (IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
+   is begin
+      
+      case
+        IDExtern
+      is
+         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Lang,
+                                    ÜberschriftZeileExtern => 0,
+                                    ErsteZeileExtern       => Positive (IDExtern),
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Leer);
+      
+   end BeschreibungLang;
    
    
    

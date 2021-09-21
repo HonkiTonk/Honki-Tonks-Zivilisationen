@@ -9,23 +9,51 @@ with Anzeige, GebaeudeRichtigeUmgebung, StadtProduktion;
 
 package body GebaeudeAllgemein is
 
-   procedure Beschreibung
-     (IDExtern : in GebäudeID)
+   procedure BeschreibungKurz
+     (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert)
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
-                                            TextZeileExtern => Positive (IDExtern));
-
-      -- Hier wichtige Werte einfügen
-      -- Hier dann eine lange Textanzeige für eine Beschreibung des Gebäudes? Das auch für die Einheiten/Verbesserungen machen?
+      case
+        IDExtern
+      is
+         when GlobaleDatentypen.GebäudeIDMitNullwert'First =>
+            return;
+            
+         when others =>
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
+                                                  TextZeileExtern => Positive (IDExtern));
+      end case;
       
-   end Beschreibung;
+   end BeschreibungKurz;
+   
+   
+   
+   procedure BeschreibungLang
+     (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert)
+   is begin
+      
+      case
+        IDExtern
+      is
+         when GlobaleDatentypen.GebäudeIDMitNullwert'First =>
+            null;
+            
+         when others =>
+            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                          TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Lang,
+                                          ÜberschriftZeileExtern => 0,
+                                          ErsteZeileExtern       => Positive (IDExtern),
+                                          AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                          AbstandEndeExtern      => GlobaleTexte.Leer);
+      end case;
+      
+   end BeschreibungLang;
    
    
 
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GebäudeID)
+      IDExtern : in GlobaleDatentypen.GebäudeID)
    is begin
       
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,

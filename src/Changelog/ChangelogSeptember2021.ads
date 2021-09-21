@@ -49,24 +49,26 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (23.09.2021):
+   -- Version 0.00.88 => 0.00.8 (23.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.88 => 0.00.8 (22.09.2021):
+   -- Version 0.00.8850 => 0.00.88 (22.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8840 => 0.00.88 (21.09.2021):
+   -- Version 0.00.8840 => 0.00.8850 (21.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Funktionen/Prozeduren aufgeteilt, in ihrer Länge reduziert und Übersichtlichkeit des Codes verbessert.
+   -- GlobaleKonstanten erweitert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
