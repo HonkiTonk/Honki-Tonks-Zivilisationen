@@ -1,14 +1,17 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Strings.Wide_Wide_Unbounded;
+
+with Sf.Window.Keyboard, Sf.Window.Event;
+use Sf.Window.Keyboard, Sf.Window.Event;
 
 with GlobaleDatentypen, GlobaleTexte;
 use GlobaleDatentypen;
 
 package Eingabe is
 
-   type TastenbelegungArray is array (1 .. 2, GlobaleDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Wide_Wide_Character;
+   type TastenbelegungArray is array (1 .. 2, GlobaleDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
    Tastenbelegung : TastenbelegungArray;
 
    procedure WartenEingabe;
@@ -34,7 +37,7 @@ package Eingabe is
      return Unbounded_Wide_Wide_String;
 
    function TastenEingabe
-     return Wide_Wide_Character;
+     return Sf.Window.Keyboard.sfKeyCode;
 
    function Tastenwert
      return GlobaleDatentypen.Tastenbelegung_Enum;
@@ -46,6 +49,11 @@ private
 
    Zahlen : Wide_Wide_Character;
    Taste : Wide_Wide_Character;
+
+   TasteGedrückt : Sf.Window.Keyboard.sfKeyCode;
+   TasteNeu : Sf.Window.Keyboard.sfKeyCode;
+
+   Test : Sf.Window.Event.sfKeyEvent;
 
    IstZahl : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
@@ -66,107 +74,107 @@ private
    TastenbelegungStandard : constant TastenbelegungArray := (
                                                              1 =>
                                                                (
-                                                                Hoch                           => 'w',
-                                                                Links                          => 'a',
-                                                                Runter                         => 's',
-                                                                Rechts                         => 'd',
-                                                                Links_Oben                     => NUL,
-                                                                Rechts_Oben                    => NUL,
-                                                                Links_Unten                    => NUL,
-                                                                Rechts_Unten                   => NUL,
-                                                                Ebene_Hoch                     => '+',
-                                                                Ebene_Runter                   => '-',
+                                                                Hoch                           => Sf.Window.Keyboard.sfKeyW,
+                                                                Links                          => Sf.Window.Keyboard.sfKeyA,
+                                                                Runter                         => Sf.Window.Keyboard.sfKeyS,
+                                                                Rechts                         => Sf.Window.Keyboard.sfKeyD,
+                                                                Links_Oben                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Rechts_Oben                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Links_Unten                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Rechts_Unten                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Ebene_Hoch                     => Sf.Window.Keyboard.sfKeyAdd,
+                                                                Ebene_Runter                   => Sf.Window.Keyboard.sfKeySubtract,
 
-                                                                Auswählen                      => 'e',
-                                                                Menü_Zurück                    => 'q',
-                                                                Bauen                          => 'b',
-                                                                Forschung                      => 't',
-                                                                Tech_Baum                      => 'x',
+                                                                Auswählen                      => Sf.Window.Keyboard.sfKeyE,
+                                                                Menü_Zurück                    => Sf.Window.Keyboard.sfKeyQ,
+                                                                Bauen                          => Sf.Window.Keyboard.sfKeyB,
+                                                                Forschung                      => Sf.Window.Keyboard.sfKeyT,
+                                                                Tech_Baum                      => Sf.Window.Keyboard.sfKeyX,
 
-                                                                Nächste_Stadt                  => '/',
-                                                                Einheit_Mit_Bewegungspunkte    => '.',
-                                                                Alle_Einheiten                 => '*',
-                                                                Einheiten_Ohne_Bewegungspunkte => ',',
-                                                                Nächste_Stadt_Mit_Meldung      => '0',
-                                                                Nächste_Einheit_Mit_Meldung    => 'o',
+                                                                Nächste_Stadt                  => Sf.Window.Keyboard.sfKeySlash,
+                                                                Einheit_Mit_Bewegungspunkte    => Sf.Window.Keyboard.sfKeyPeriod,
+                                                                Alle_Einheiten                 => Sf.Window.Keyboard.sfKeyMultiply,
+                                                                Einheiten_Ohne_Bewegungspunkte => Sf.Window.Keyboard.sfKeyComma,
+                                                                Nächste_Stadt_Mit_Meldung      => Sf.Window.Keyboard.sfKeyNum0,
+                                                                Nächste_Einheit_Mit_Meldung    => Sf.Window.Keyboard.sfKeyO,
 
-                                                                Straße_Bauen                   => 'l',
-                                                                Mine_Bauen                     => 'm',
-                                                                Farm_Bauen                     => 'f',
-                                                                Festung_Bauen                  => 'u',
-                                                                Wald_Aufforsten                => 'z',
-                                                                Roden_Trockenlegen             => 'p',
-                                                                Heilen                         => 'h',
-                                                                Verschanzen                    => 'v',
-                                                                Runde_Aussetzen                => Space,
-                                                                Einheit_Auflösen               => DEL,
-                                                                Plündern                       => 'j',
-                                                                Heimatstadt_Ändern             => '<',
-                                                                Einheit_Verbessern             => HT,
-                                                                Infos                          => 'i',
+                                                                Straße_Bauen                   => Sf.Window.Keyboard.sfKeyL,
+                                                                Mine_Bauen                     => Sf.Window.Keyboard.sfKeyM,
+                                                                Farm_Bauen                     => Sf.Window.Keyboard.sfKeyF,
+                                                                Festung_Bauen                  => Sf.Window.Keyboard.sfKeyU,
+                                                                Wald_Aufforsten                => Sf.Window.Keyboard.sfKeyZ,
+                                                                Roden_Trockenlegen             => Sf.Window.Keyboard.sfKeyP,
+                                                                Heilen                         => Sf.Window.Keyboard.sfKeyH,
+                                                                Verschanzen                    => Sf.Window.Keyboard.sfKeyV,
+                                                                Runde_Aussetzen                => Sf.Window.Keyboard.sfKeySpace,
+                                                                Einheit_Auflösen               => Sf.Window.Keyboard.sfKeyDelete,
+                                                                Plündern                       => Sf.Window.Keyboard.sfKeyJ,
+                                                                Heimatstadt_Ändern             => Sf.Window.Keyboard.sfKeyNum5,
+                                                                Einheit_Verbessern             => Sf.Window.Keyboard.sfKeyTab,
+                                                                Infos                          => Sf.Window.Keyboard.sfKeyI,
 
-                                                                Diplomatie                     => '#',
+                                                                Diplomatie                     => Sf.Window.Keyboard.sfKeyTilde,
 
-                                                                GeheZu                         => 'g',
+                                                                GeheZu                         => Sf.Window.Keyboard.sfKeyG,
 
-                                                                Stadt_Umbenennen               => 'n',
-                                                                Stadt_Abreißen                 => 'k',
-                                                                Stadt_Suchen                   => 'y',
+                                                                Stadt_Umbenennen               => Sf.Window.Keyboard.sfKeyN,
+                                                                Stadt_Abreißen                 => Sf.Window.Keyboard.sfKeyK,
+                                                                Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyY,
 
-                                                                Runde_Beenden                  => 'r',
-                                                                Cheatmenü                      => 'c'),
+                                                                Runde_Beenden                  => Sf.Window.Keyboard.sfKeyR,
+                                                                Cheatmenü                      => Sf.Window.Keyboard.sfKeyC),
 
                                                              2 =>
                                                                (
-                                                                Hoch                           => '8',
-                                                                Links                          => '4',
-                                                                Runter                         => '2',
-                                                                Rechts                         => '6',
-                                                                Links_Oben                     => '7',
-                                                                Rechts_Oben                    => '9',
-                                                                Links_Unten                    => '1',
-                                                                Rechts_Unten                   => '3',
-                                                                Ebene_Hoch                     => NUL,
-                                                                Ebene_Runter                   => NUL,
+                                                                Hoch                           => Sf.Window.Keyboard.sfKeyNum8,
+                                                                Links                          => Sf.Window.Keyboard.sfKeyNum4,
+                                                                Runter                         => Sf.Window.Keyboard.sfKeyNum2,
+                                                                Rechts                         => Sf.Window.Keyboard.sfKeyNum6,
+                                                                Links_Oben                     => Sf.Window.Keyboard.sfKeyNum7,
+                                                                Rechts_Oben                    => Sf.Window.Keyboard.sfKeyNum9,
+                                                                Links_Unten                    => Sf.Window.Keyboard.sfKeyNum1,
+                                                                Rechts_Unten                   => Sf.Window.Keyboard.sfKeyNum3,
+                                                                Ebene_Hoch                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Ebene_Runter                   => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Auswählen                      => LF,
-                                                                Menü_Zurück                    => NUL,
-                                                                Bauen                          => NUL,
-                                                                Forschung                      => NUL,
-                                                                Tech_Baum                      => NUL,
+                                                                Auswählen                      => Sf.Window.Keyboard.sfKeyEnter,
+                                                                Menü_Zurück                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Bauen                          => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Forschung                      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Tech_Baum                      => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Nächste_Stadt                  => NUL,
-                                                                Einheit_Mit_Bewegungspunkte    => NUL,
-                                                                Alle_Einheiten                 => NUL,
-                                                                Einheiten_Ohne_Bewegungspunkte => NUL,
-                                                                Nächste_Stadt_Mit_Meldung      => NUL,
-                                                                Nächste_Einheit_Mit_Meldung    => NUL,
+                                                                Nächste_Stadt                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Einheit_Mit_Bewegungspunkte    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Alle_Einheiten                 => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Einheiten_Ohne_Bewegungspunkte => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Nächste_Stadt_Mit_Meldung      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Nächste_Einheit_Mit_Meldung    => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Straße_Bauen                   => NUL,
-                                                                Mine_Bauen                     => NUL,
-                                                                Farm_Bauen                     => NUL,
-                                                                Festung_Bauen                  => NUL,
-                                                                Wald_Aufforsten                => NUL,
-                                                                Roden_Trockenlegen             => NUL,
-                                                                Heilen                         => NUL,
-                                                                Verschanzen                    => NUL,
-                                                                Runde_Aussetzen                => NUL,
-                                                                Einheit_Auflösen               => NUL,
-                                                                Plündern                       => NUL,
-                                                                Heimatstadt_Ändern             => NUL,
-                                                                Einheit_Verbessern             => NUL,
-                                                                Infos                          => NUL,
+                                                                Straße_Bauen                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Mine_Bauen                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Farm_Bauen                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Festung_Bauen                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Wald_Aufforsten                => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Roden_Trockenlegen             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Heilen                         => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Verschanzen                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Runde_Aussetzen                => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Einheit_Auflösen               => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Plündern                       => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Heimatstadt_Ändern             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Einheit_Verbessern             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Infos                          => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Diplomatie                     => NUL,
+                                                                Diplomatie                     => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                GeheZu                         => NUL,
+                                                                GeheZu                         => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Stadt_Umbenennen               => NUL,
-                                                                Stadt_Abreißen                 => NUL,
-                                                                Stadt_Suchen                   => NUL,
+                                                                Stadt_Umbenennen               => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Stadt_Abreißen                 => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Runde_Beenden                  => NUL,
-                                                                Cheatmenü                      => NUL)
+                                                                Runde_Beenden                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                Cheatmenü                      => Sf.Window.Keyboard.sfKeyUnknown)
                                                             );
 
    procedure ZahlenAnzeige

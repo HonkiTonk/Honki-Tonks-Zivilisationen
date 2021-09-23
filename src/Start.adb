@@ -1,25 +1,36 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
+with Sf.Window, Sf.Window.VideoMode, Sf.Window.Cursor, Sf.Window.Window;
+use Sf.Window;
 
-with Einlesen, Anzeige, Hauptmenue, Intro, SchreibenVerzeichnisse;
+with Spielstart;
 
 procedure Start
-is begin
+is
 
-   SchreibenVerzeichnisse.SchreibenVerzeichnisse;
-   Einlesen.Einlesen;
+   Fenster : Sf.Window.sfWindow_Ptr;
+   Modus : constant Sf.Window.VideoMode.sfVideoMode := (640, 480, 32);
+   Zeiger : constant Sf.Window.sfCursor_Ptr := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorHand);
 
-   Intro.Intro;
-   Hauptmenue.Hauptmenü;
+begin
 
-   Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                  TextDateiExtern        => GlobaleTexte.Start,
-                                  ÜberschriftZeileExtern => 0,
-                                  ErsteZeileExtern       => 8,
-                                  LetzteZeileExtern      => 8,
-                                  AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
-                                  AbstandMitteExtern     => GlobaleTexte.Leer,
-                                  AbstandEndeExtern      => GlobaleTexte.Leer);
+   Fenster := Sf.Window.Window.create (mode  => Modus,
+                                       title => "Test");
+
+   if
+     Fenster = null
+   then
+      return;
+
+   else
+      Sf.Window.Window.setMouseCursor (window => Fenster,
+                                       cursor => Zeiger);
+      Sf.Window.Window.setFramerateLimit (window => Fenster,
+                                          limit  => 30);
+   end if;
+
+   Spielstart.Spielstart;
+
+   Sf.Window.Window.destroy (window => Fenster);
 
 end Start;

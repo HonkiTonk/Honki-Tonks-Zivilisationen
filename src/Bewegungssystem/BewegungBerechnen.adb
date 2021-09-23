@@ -85,7 +85,8 @@ package body BewegungBerechnen is
       
       SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         PositionExtern           => NeuePositionExtern);
-      
+      NachBewegung (NeuePositionExtern       => NeuePositionExtern,
+                    EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end BewegungEinheitenBerechnung;
    

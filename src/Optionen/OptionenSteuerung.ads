@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Sf.Window.Keyboard;
+use Sf.Window.Keyboard;
+
 with GlobaleDatentypen;
 use GlobaleDatentypen;
 
@@ -12,7 +15,7 @@ private
 
    NeueAuswahl : GlobaleDatentypen.Tastenbelegung_Enum;
 
-   NeueTaste : Wide_Wide_Character;
+   NeueTaste : Sf.Window.Keyboard.sfKeyCode;
 
    AuswahlWert : Integer;
 

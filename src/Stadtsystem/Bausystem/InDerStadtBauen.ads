@@ -15,9 +15,6 @@ package InDerStadtBauen is
 
 private
 
-   PermanenteGebäudeWerte : Boolean;
-
-   AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.KartenverbesserungEinheitenID;
 
    WasGebautWerdenSoll : Natural;
@@ -25,41 +22,11 @@ private
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   procedure AnzeigeEinheiten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-
-   procedure AnzeigeGebäude
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-
    procedure MöglicheGebäudeErmitteln
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
 
    procedure MöglicheEinheitenErmitteln
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-
-   procedure PermanenteKostenGebäude
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
-
-   procedure PermanenteKostenEinheiten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
-
-   procedure PreisGebäude
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
-
-   procedure MaximaleBewegungspunkte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
-
-   procedure MaximaleLebenspunkte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
-
-   procedure Verteidigung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
-
-   procedure Angriff
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
-
-   procedure Preis
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
 
 
 

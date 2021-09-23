@@ -7,12 +7,6 @@ with Karten;
 
 package Sichtbarkeit is
 
-   procedure SichtbarkeitsprüfungFürRasse
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-
    procedure SichtbarkeitsprüfungFürEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
@@ -40,22 +34,12 @@ package Sichtbarkeit is
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
-
-
-   function SichtweiteErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.Sichtweite
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
 private
 
-   SichtweiteObjekt : GlobaleDatentypen.Sichtweite;
    BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+
+   SichtweiteObjekt : GlobaleDatentypen.Sichtweite;
 
    AktuellerGrund : GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
 
@@ -105,6 +89,15 @@ private
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
 
 
+
+   function SichtweiteErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.Sichtweite
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;

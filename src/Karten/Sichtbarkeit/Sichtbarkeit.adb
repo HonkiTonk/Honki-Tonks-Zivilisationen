@@ -8,44 +8,6 @@ with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
 with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen;
 
 package body Sichtbarkeit is
-
-   procedure SichtbarkeitsprüfungFürRasse
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      EinheitenSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
-
-         case
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert))
-         is
-            when GlobaleKonstanten.LeerEinheitenID =>
-               null;
-            
-            when others =>
-               SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert));
-         end case;
-         
-      end loop EinheitenSchleife;
-
-      StädteSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
-
-         case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert))
-         is
-            when GlobaleKonstanten.LeerStadtID =>
-               null;
-               
-            when others =>
-               SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert));
-         end case;
-         
-      end loop StädteSchleife;
-      
-   end SichtbarkeitsprüfungFürRasse;
-   
-   
    
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -213,7 +175,7 @@ package body Sichtbarkeit is
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
               
-      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
+      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                           ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
       if
@@ -339,7 +301,7 @@ package body Sichtbarkeit is
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
                     
-      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
+      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                           ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
       if
@@ -465,7 +427,7 @@ package body Sichtbarkeit is
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
                     
-      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
+      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                           ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
             
       if
@@ -591,7 +553,7 @@ package body Sichtbarkeit is
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
                     
-      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
+      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                           ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
             
       if

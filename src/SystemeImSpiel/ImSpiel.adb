@@ -3,15 +3,15 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with Karte, BefehleImSpiel, Optionen, Sichtbarkeit, KI, Ladezeiten, Speichern, Laden, RasseEntfernen, ZwischenDenRunden;
+with Karte, BefehleImSpiel, Optionen, KI, Ladezeiten, Speichern, Laden, RasseEntfernen, ZwischenDenRunden;
 
 package body ImSpiel is
 
    function ImSpiel
      return Integer
    is begin
-      
-      SichtbarkeitsprüfungNotwendig := True;
+            
+      Karte.SichtweiteBewegungsfeldFestlegen;
       
       SpielSchleife:
       loop
@@ -52,7 +52,7 @@ package body ImSpiel is
             return GlobaleKonstanten.HauptmenüKonstante;
             
          else
-            SichtbarkeitsprüfungNotwendig := False;
+            null;
          end if;
             
       end loop SpielSchleife;
@@ -126,9 +126,7 @@ package body ImSpiel is
    procedure KISpieler
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
-      
-      SichtbarkeitPrüfung (RasseExtern => RasseExtern);
-      
+            
       Ladezeiten.KIZeiten (RasseExtern, GlobaleDatentypen.Anfangswert) := Clock;
       KI.KI (RasseExtern => RasseExtern);
       Ladezeiten.KIZeiten (RasseExtern, GlobaleDatentypen.Endwert) := Clock;
@@ -141,9 +139,7 @@ package body ImSpiel is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
-      
-      SichtbarkeitPrüfung (RasseExtern => RasseExtern);
-                     
+                           
       RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
       
       if
@@ -174,24 +170,6 @@ package body ImSpiel is
       return GlobaleKonstanten.StartNormalKonstante;
       
    end MenschlicherSpieler;
-   
-   
-   
-   procedure SichtbarkeitPrüfung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      if
-        SichtbarkeitsprüfungNotwendig
-      then
-         Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseExtern);
-         Karte.SichtweiteBewegungsfeldFestlegen;
-                  
-      else
-         null;
-      end if;
-      
-   end SichtbarkeitPrüfung;
 
 
 

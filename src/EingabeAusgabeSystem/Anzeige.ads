@@ -18,6 +18,7 @@ package Anzeige is
    -- Im Array immer die größte Auswahlfläche reinschreiben, damit es bei allen funktioniert.
    type AlgemeineAnzeigeTextArray is array (GlobaleDatentypen.KartenverbesserungEinheitenID'First + 2 .. GlobaleDatentypen.KartenverbesserungEinheitenID'Last) of AllgemeineAnzeigeTextRecord;
    AllgemeineAnzeigeText : AlgemeineAnzeigeTextArray;
+   AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
 
    procedure AnzeigeOhneAuswahlNeu
      (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+-- with Ada.Wide_Wide_Text_IO;
+-- use Ada.Wide_Wide_Text_IO;
 
 with GlobaleKonstanten, GlobaleTexte;
 
@@ -61,7 +61,7 @@ package body OptionenSteuerung is
                
       NeueAuswahl := GlobaleDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
                
-      Put_Line (Eingabe.Tastenbelegung (1, NeueAuswahl) & "    " & Eingabe.Tastenbelegung (2, NeueAuswahl));
+      -- Put_Line (Eingabe.Tastenbelegung (1, NeueAuswahl) & "    " & Eingabe.Tastenbelegung (2, NeueAuswahl));
                
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Fragen,
@@ -84,7 +84,7 @@ package body OptionenSteuerung is
               and
                 BelegungPositionSchleifenwert /= NeueAuswahl
             then
-               Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := NUL;
+               Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
                exit BelegungFeldSchleife;
                
             else
@@ -111,12 +111,12 @@ package body OptionenSteuerung is
          null;
             
       elsif
-        Eingabe.Tastenbelegung (1, NeueAuswahl) = NUL
+        Eingabe.Tastenbelegung (1, NeueAuswahl) = Sf.Window.Keyboard.sfKeyUnknown
       then
          Eingabe.Tastenbelegung (1, NeueAuswahl) := NeueTaste;
             
       elsif
-        Eingabe.Tastenbelegung (2, NeueAuswahl) = NUL
+        Eingabe.Tastenbelegung (2, NeueAuswahl) = Sf.Window.Keyboard.sfKeyUnknown
       then
          Eingabe.Tastenbelegung (2, NeueAuswahl) := NeueTaste;
             

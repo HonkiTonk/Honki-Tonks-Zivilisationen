@@ -5,6 +5,9 @@ use GlobaleDatentypen;
 
 package Karte is
 
+   SichtweiteFestlegen : Positive;
+   BewegungsfeldFestlegen : Positive;
+
    procedure SichtweiteBewegungsfeldFestlegen;
 
    procedure AnzeigeKarte
@@ -15,13 +18,9 @@ package Karte is
 
 private
 
-   SichtweiteFestlegen : Positive;
-   BewegungsfeldFestlegen : Positive;
-
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    type SichtweitenArray is array (1 .. 3) of GlobaleRecords.AchsenKartenfeldPositivRecord;
-
    Sichtweiten : constant SichtweitenArray := (1 => (0, 6, 8),
                                                2 => (0, 6, 16),
                                                3 => (0, 6, 24));

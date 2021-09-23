@@ -254,7 +254,6 @@ package body SpielEinstellungenRasseSpieler is
       is
          when GlobaleKonstanten.LeerEinheitStadtNummer =>
             StartKoordinaten (1) := PositionExtern;
-            StartpositionGefunden := False;
             FelderBestimmen (PositionExtern => PositionExtern,
                              RasseExtern    => RasseExtern);
                            
@@ -265,6 +264,7 @@ package body SpielEinstellungenRasseSpieler is
       if
         FreieFelder >= 3
       then
+         StartpunktFestlegen (RasseExtern => RasseExtern);
          return True;
                
       else
@@ -279,6 +279,8 @@ package body SpielEinstellungenRasseSpieler is
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
+            
+      StartpositionGefunden := False;
       
       YAchseSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -316,7 +318,6 @@ package body SpielEinstellungenRasseSpieler is
                is
                   when GlobaleKonstanten.LeerEinheitStadtNummer =>
                      StartKoordinaten (2) := KartenWert;
-                     StartpunktFestlegen (RasseExtern => RasseExtern);
                      StartpositionGefunden := True;
                      FreieFelder := FreieFelder + 1;
                                  

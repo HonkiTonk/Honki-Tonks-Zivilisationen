@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
+with Sf.Window.Keyboard;
+
 with GlobaleTexte;
 
 with SchreibeWichtiges;
@@ -32,20 +34,20 @@ package body Cheat is
            Eingabe.TastenEingabe
          is
             -- Volle Informationen (unabhängig von der Rasse)
-            when 'i' =>
+            when Sf.Window.Keyboard.sfKeyI =>
                Informationen;
 
                -- Sichtbarkeit der ganzen Karte
-            when 's' =>
+            when Sf.Window.Keyboard.sfKeyS =>
                Sichtbarkeit (RasseExtern => RasseExtern);
                
-            when 'k' =>
+            when Sf.Window.Keyboard.sfKeyK =>
                Krieg;
                
-            when 'g' =>
+            when Sf.Window.Keyboard.sfKeyG =>
                GewonnenDurchCheat := not GewonnenDurchCheat;
                
-            when 'm' =>
+            when Sf.Window.Keyboard.sfKeyM =>
                SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
                                             GeldZugewinnExtern  => Integer'Last,
                                             RechnenSetzenExtern => False);

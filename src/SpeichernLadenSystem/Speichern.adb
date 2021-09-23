@@ -5,7 +5,7 @@ use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_W
 
 with GlobaleVariablen, GlobaleRecords, GlobaleKonstanten, GlobaleDatentypen;
 
-with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein;
+with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein, Karte;
 
 package body Speichern is
 
@@ -92,9 +92,13 @@ package body Speichern is
       
       GlobaleDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                          Karten.Kartenform);
-      
       GlobaleDatentypen.Kartengröße_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                             Karten.Kartengröße);
+      
+      Positive'Write (Stream (File => DateiSpeichernNeu),
+                      Karte.SichtweiteFestlegen);
+      Positive'Write (Stream (File => DateiSpeichernNeu),
+                      Karte.BewegungsfeldFestlegen);
       
       case
         Karten.Kartengröße

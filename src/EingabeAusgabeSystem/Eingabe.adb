@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
@@ -384,56 +384,21 @@ package body Eingabe is
 
 
    function TastenEingabe
-     return Wide_Wide_Character
+     return Sf.Window.Keyboard.sfKeyCode
    is begin
-
-      Get_Immediate (Item => Taste);
-
-      if
-        Taste = ESC
-      then
-         Get_Immediate (Item => Taste);
-         if
-           Taste = '['
-         then
-            Get_Immediate (Item => Taste);
-            if
-              -- Pfeiltaste hoch
-              Taste = 'A'
-            then
-               return 'w';
-               
-            elsif
-              -- Pfeiltaste runter
-              Taste = 'B'
-            then
-               return 's';
-
-            elsif
-              -- Pfeiltaste rechts
-              Taste = 'C'
-            then
-               return 'd';
-                 
-            elsif
-              -- Pfeiltaste links
-              Taste = 'D'
-            then
-               return 'a';
-                 
-            else
-               return '0';
-            end if;
-         
-         else
-            return ESC;
-         end if;
-
-      else
-         null;
-      end if;
       
-      return To_Lower (Item => Taste);
+      loop
+         
+         if
+           Test.eventType = Sf.Window.Event.sfEvtKeyPressed
+         then
+            return Test.code;
+            
+         else
+            null;
+         end if;
+         
+      end loop;
       
    end TastenEingabe;
 
@@ -455,7 +420,7 @@ package body Eingabe is
      return GlobaleDatentypen.Tastenbelegung_Enum
    is begin
       
-      Taste := TastenEingabe;
+      TasteNeu := TastenEingabe;
       
       BelegungFeldSchleife:
       for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
@@ -463,7 +428,7 @@ package body Eingabe is
          for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
             
             if
-              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
+              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = TasteNeu
             then
                return BelegungPositionSchleifenwert;
                

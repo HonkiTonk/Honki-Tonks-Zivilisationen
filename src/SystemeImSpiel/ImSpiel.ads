@@ -13,8 +13,6 @@ package ImSpiel is
 
 private
 
-   SichtbarkeitsprüfungNotwendig : Boolean;
-
    RassenSchleifeVerlassenKonstante : constant Integer := -300;
 
    AktuellerBefehlSpieler : Integer;
@@ -27,9 +25,6 @@ private
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
-
-   procedure SichtbarkeitPrüfung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
 
 
 

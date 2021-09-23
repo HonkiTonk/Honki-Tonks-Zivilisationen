@@ -64,7 +64,7 @@ package body KIAufgabenPlanung is
             
          when GlobaleDatentypen.Leer =>
             -- Sollte niemals eintreten.
-            return;
+            raise Program_Error;
       end case;
       
    end EinheitSpezifischeAufgabenErmitteln;

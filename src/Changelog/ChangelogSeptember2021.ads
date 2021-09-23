@@ -42,24 +42,29 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (24.09.2021):
+   -- Version 0.00.8870 => 0.00.8 (24.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.88 => 0.00.8 (23.09.2021):
+   -- Version 0.00.8850 => 0.00.8870 (23.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anzeige für die Baudauer von Einheiten und Gebäude eingebaut.
+   -- Die grafische Darstellungsgröße und das Bewegungsfeld werden beim Speichern/Laden jetzt mit gespeichert/geladen.
+   -- Fehler im Bewegungssystem behoben, welcher dazu führte dass jetzt sichtbare Felder nicht aufgedeckt wurden.
+   -- Fehler behoben der dazu führte das bei der Spielerplatzierung Felder aufgedeckt wurden bei der keine Einheit war.
+   -- Unnötigen Code gelöscht.
+   -- Funktionen/Prozeduren aufgeteilt, in ihrer Länge reduziert und Übersichtlichkeit des Codes verbessert.
+   -- Angefangen die SFML, unter Verwendung von ASFML, einzubauen und dabei alle kaputt gemacht.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
-   -- Version 0.00.8850 => 0.00.88 (22.09.2021):
+   -- Version 0.00.8850 => 0.00.8850 (22.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- X
    
    
    

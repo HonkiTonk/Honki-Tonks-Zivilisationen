@@ -6,7 +6,7 @@ use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_W
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, GlobaleKonstanten;
 use GlobaleDatentypen;
 
-with Karten, Ladezeiten, Informationen, Auswahl, SpeichernLadenAllgemein;
+with Karten, Ladezeiten, Informationen, Auswahl, SpeichernLadenAllgemein, Karte;
 
 package body Laden is
 
@@ -106,10 +106,14 @@ package body Laden is
    is begin
       
       GlobaleDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
-                                                         Karten.Kartenform);
-            
+                                                        Karten.Kartenform);
       GlobaleDatentypen.Kartengröße_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
                                                            Karten.Kartengröße);
+      
+      Positive'Read (Stream (File => DateiLadenNeu),
+                     Karte.SichtweiteFestlegen);
+      Positive'Read (Stream (File => DateiLadenNeu),
+                     Karte.BewegungsfeldFestlegen);
       
       case
         Karten.Kartengröße
