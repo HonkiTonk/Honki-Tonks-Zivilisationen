@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, KartenRecords;
 use GlobaleDatentypen;
 
 with KIDatentypen;
@@ -376,9 +376,9 @@ package GlobaleKonstanten is
 
 
    -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
-   LeerKartenPosition : constant GlobaleRecords.AchsenKartenfeldPositivRecord := (EAchse => GlobaleDatentypen.EbeneVorhanden'First,
-                                                                                  YAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First,
-                                                                                  XAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
+   LeerKartenPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (EAchse => GlobaleDatentypen.EbeneVorhanden'First,
+                                                                                 YAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First,
+                                                                                 XAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
 
    LeerYXKartenWert : constant GlobaleDatentypen.KartenfeldPositivMitNullwert := GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
    -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
@@ -477,17 +477,17 @@ package GlobaleKonstanten is
                                                                      FeldWerte           => (others => (others => 0))
                                                                     );
 
-   LeerWeltkarte : constant GlobaleRecords.KartenRecord := (
-                                                            Grund                   => GlobaleDatentypen.Leer,
-                                                            Hügel                   => False,
-                                                            Sichtbar                => (others => False),
-                                                            Fluss                   => GlobaleDatentypen.Leer,
-                                                            VerbesserungWeg         => GlobaleDatentypen.Leer,
-                                                            VerbesserungGebiet      => GlobaleDatentypen.Leer,
-                                                            Ressource               => GlobaleDatentypen.Leer,
-                                                            DurchStadtBelegterGrund => 0,
-                                                            Felderwertung           => (others => 0)
-                                                           );
+   LeerWeltkarte : constant KartenRecords.KartenRecord := (
+                                                           Grund                   => GlobaleDatentypen.Leer,
+                                                           Hügel                   => False,
+                                                           Sichtbar                => (others => False),
+                                                           Fluss                   => GlobaleDatentypen.Leer,
+                                                           VerbesserungWeg         => GlobaleDatentypen.Leer,
+                                                           VerbesserungGebiet      => GlobaleDatentypen.Leer,
+                                                           Ressource               => GlobaleDatentypen.Leer,
+                                                           DurchStadtBelegterGrund => 0,
+                                                           Felderwertung           => (others => 0)
+                                                          );
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
                                                                                  VerbesserungGrafik => NichtSichtbar,

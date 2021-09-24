@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -27,7 +27,7 @@ package BewegungLadenEntladen is
    
    procedure TransporterladungVerschieben
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -40,7 +40,7 @@ package BewegungLadenEntladen is
    
    procedure TransporterStadtEntladen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -58,7 +58,7 @@ private
    EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    FreierPlatzNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FreienPlatzErmitteln
      (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)

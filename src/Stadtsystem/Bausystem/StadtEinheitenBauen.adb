@@ -93,7 +93,7 @@ package body StadtEinheitenBauen is
    
    procedure EinheitPlatzieren
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-     KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,

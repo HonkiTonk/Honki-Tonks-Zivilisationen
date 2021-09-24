@@ -69,7 +69,7 @@ package body KartenGeneratorRessourcen is
    
    
    procedure RessourcenWasser
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       WasserRessourcenSchleife:
@@ -94,7 +94,7 @@ package body KartenGeneratorRessourcen is
    
    
    procedure RessourcenLand
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       LandRessourcenSchleife:
@@ -119,7 +119,7 @@ package body KartenGeneratorRessourcen is
    
    
    procedure RessourcenUmgebungBelegen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       YAchseSchleife:

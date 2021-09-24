@@ -5,7 +5,7 @@ with LeseKarten;
 package body SchreibeKarten is
 
    procedure Grund
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
@@ -28,7 +28,7 @@ package body SchreibeKarten is
    
    
    procedure Hügel
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       HügelExtern : in Boolean)
    is begin
       
@@ -39,7 +39,7 @@ package body SchreibeKarten is
    
    
    procedure Sichtbar
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
    is begin
@@ -51,7 +51,7 @@ package body SchreibeKarten is
    
    
    procedure Fluss
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       FlussExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
@@ -62,7 +62,7 @@ package body SchreibeKarten is
    
    
    procedure VerbesserungWeg
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       WegExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
    is begin
       
@@ -73,7 +73,7 @@ package body SchreibeKarten is
    
    
    procedure VerbesserungGebiet
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
    is begin
       
@@ -84,7 +84,7 @@ package body SchreibeKarten is
    
    
    procedure Ressource
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RessourceExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
@@ -95,7 +95,7 @@ package body SchreibeKarten is
    
    
    procedure BelegterGrund
-     (PositionExtern : GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : KartenRecords.AchsenKartenfeldPositivRecord;
       BelegterGrundExtern : in GlobaleDatentypen.BelegterGrund)
    is begin
       
@@ -106,7 +106,7 @@ package body SchreibeKarten is
    
    
    procedure Bewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       BewertungExtern : in GlobaleDatentypen.GesamtproduktionStadt)
    is begin

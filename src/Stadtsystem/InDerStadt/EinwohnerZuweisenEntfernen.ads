@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 package EinwohnerZuweisenEntfernen is
@@ -19,7 +19,7 @@ private
    RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure EinwohnerBelegungÄndern
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);

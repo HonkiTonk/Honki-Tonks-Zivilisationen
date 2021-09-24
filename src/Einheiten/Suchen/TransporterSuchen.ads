@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
+use GlobaleDatentypen, KartenRecords;
 
 with Karten;
 
@@ -9,7 +9,7 @@ package TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package EinheitenErzeugenEntfernen is
 
    procedure EinheitErzeugen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten;
       IDExtern : in GlobaleDatentypen.EinheitenID;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

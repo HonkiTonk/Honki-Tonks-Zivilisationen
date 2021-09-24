@@ -19,7 +19,7 @@ package body LeseEinheitenGebaut is
    
    function Position
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       if
@@ -209,7 +209,7 @@ package body LeseEinheitenGebaut is
       
    function KIZielKoordinaten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       if
@@ -243,7 +243,7 @@ package body LeseEinheitenGebaut is
    function KIBewegungPlan
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       PlanschrittExtern : in GlobaleDatentypen.Stadtfeld)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       if

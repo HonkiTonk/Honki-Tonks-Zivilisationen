@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen, GlobaleRecords, KartenRecords;
 
 package KIBewegungDurchfuehren is
    
@@ -18,7 +18,7 @@ private
    FremdeEinheit : GlobaleRecords.RassePlatznummerRecord;
    FremdeStadt : GlobaleRecords.RassePlatznummerRecord;
    
-   NeuePosition : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   NeuePosition : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure BewegungDurchführen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

@@ -249,7 +249,7 @@ package body StadtWerteFestlegen is
    
    function FeldBewerten
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -273,7 +273,7 @@ package body StadtWerteFestlegen is
    
    function NahrungBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -314,7 +314,7 @@ package body StadtWerteFestlegen is
    
    function ProduktionBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -355,7 +355,7 @@ package body StadtWerteFestlegen is
 
    function GeldBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -396,7 +396,7 @@ package body StadtWerteFestlegen is
    
    function WissenBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin

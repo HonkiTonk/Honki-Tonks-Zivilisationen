@@ -11,9 +11,9 @@ with KartePositionPruefen, BewegungPassierbarkeitPruefen;
 package body KISonstigesSuchen is
 
    function EigenesFeldSuchen
-     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       Bereich := 1;
@@ -40,9 +40,9 @@ package body KISonstigesSuchen is
    
    
    function ZielSuchen
-     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       YAchseSchleife:

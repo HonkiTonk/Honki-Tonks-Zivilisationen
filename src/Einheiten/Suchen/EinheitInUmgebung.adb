@@ -100,7 +100,7 @@ package body EinheitInUmgebung is
    
    
    function EinheitFinden
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       UmgebungExtern : in GlobaleDatentypen.Sichtweite;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean

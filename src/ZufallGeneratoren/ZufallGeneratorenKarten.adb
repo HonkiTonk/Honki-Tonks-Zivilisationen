@@ -8,7 +8,7 @@ package body ZufallGeneratorenKarten is
 
    function StartPosition
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse := StartPositionEAchse (RasseExtern => RasseExtern);

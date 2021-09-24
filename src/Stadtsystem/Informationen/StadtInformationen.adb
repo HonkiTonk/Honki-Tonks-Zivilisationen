@@ -389,7 +389,7 @@ package body StadtInformationen is
    
    
    procedure EinzelnesFeldNahrungsgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -412,7 +412,7 @@ package body StadtInformationen is
    
    
    procedure EinzelnesFeldRessourcengewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
                      
@@ -434,7 +434,7 @@ package body StadtInformationen is
    
    
    procedure EinzelnesFeldGeldgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
        
@@ -455,7 +455,7 @@ package body StadtInformationen is
    
    
    procedure EinzelnesFeldWissensgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
                

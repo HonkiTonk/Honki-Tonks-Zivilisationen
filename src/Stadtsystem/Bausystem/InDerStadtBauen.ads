@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
 use GlobaleDatentypen;
 
 package InDerStadtBauen is
@@ -20,7 +20,7 @@ private
    WasGebautWerdenSoll : Natural;
    Befehl : Natural;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure MöglicheGebäudeErmitteln
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);

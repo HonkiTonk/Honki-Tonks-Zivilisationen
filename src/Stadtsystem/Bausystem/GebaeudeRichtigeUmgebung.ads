@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 package GebaeudeRichtigeUmgebung is
@@ -17,7 +17,7 @@ package GebaeudeRichtigeUmgebung is
    
 private
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function UmgebungPrüfen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

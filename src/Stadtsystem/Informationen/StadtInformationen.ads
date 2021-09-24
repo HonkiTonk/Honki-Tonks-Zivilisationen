@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -126,7 +126,7 @@ package StadtInformationen is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure EinzelnesFeldNahrungsgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -137,7 +137,7 @@ package StadtInformationen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure EinzelnesFeldRessourcengewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -148,7 +148,7 @@ package StadtInformationen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure EinzelnesFeldGeldgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -159,7 +159,7 @@ package StadtInformationen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure EinzelnesFeldWissensgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>

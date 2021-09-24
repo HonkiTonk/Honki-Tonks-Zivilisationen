@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package GesamtwerteFeld is
 
    function FeldNahrung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
      with
@@ -20,7 +20,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function FeldProduktion
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
      with
@@ -32,7 +32,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
      
    function FeldGeld
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
      with
@@ -44,7 +44,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
      
    function FeldWissen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
      with
@@ -56,7 +56,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function FeldVerteidigung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
      with
@@ -68,7 +68,7 @@ package GesamtwerteFeld is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function FeldAngriff
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
      with

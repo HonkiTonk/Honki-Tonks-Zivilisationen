@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen;
+with GlobaleDatentypen, KartenRecords;
 
 with KIRecords;
 
 package KIKonstanten is
 
    -- Nullwert für Koordinaten
-   LeerKoordinate : constant GlobaleRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
+   LeerKoordinate : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    -- Nullwert für Koordinaten
 
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);

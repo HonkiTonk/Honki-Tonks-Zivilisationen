@@ -1,18 +1,18 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, KartenRecords;
+use GlobaleDatentypen;
 
 with Karten;
 
 package UmgebungErreichbarTesten is
    
    function UmgebungErreichbarTesten
-     (AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
       NotwendigeFelderExtern : in Positive)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -30,11 +30,11 @@ private
    
    GefundeneFelder : Positive;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWertZwei : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function NochErreichbar
-     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
       return Boolean;

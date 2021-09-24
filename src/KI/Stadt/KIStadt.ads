@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
 use GlobaleDatentypen;
 
 with KIRecords;
@@ -21,7 +21,7 @@ private
 
    FremdeEinheit : GlobaleRecords.RassePlatznummerRecord;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure NeuesBauprojekt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

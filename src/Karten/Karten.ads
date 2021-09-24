@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleKonstanten;
+with GlobaleDatentypen, GlobaleKonstanten, KartenRecords;
 use GlobaleDatentypen;
 
 package Karten is
 
-   type WeltkarteArray is array (GlobaleDatentypen.EbeneVorhanden'Range, GlobaleDatentypen.KartenfeldPositiv'Range, GlobaleDatentypen.KartenfeldPositiv'Range) of GlobaleRecords.KartenRecord;
+   type WeltkarteArray is array (GlobaleDatentypen.EbeneVorhanden'Range, GlobaleDatentypen.KartenfeldPositiv'Range, GlobaleDatentypen.KartenfeldPositiv'Range) of KartenRecords.KartenRecord;
    Weltkarte : WeltkarteArray := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));
 
    type StadtkarteArray is array (GlobaleDatentypen.Stadtfeld'Range, GlobaleDatentypen.Stadtfeld'Range) of Integer;

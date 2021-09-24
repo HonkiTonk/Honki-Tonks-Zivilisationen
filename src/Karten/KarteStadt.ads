@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen, KartenRecords;
 
 package KarteStadt is
 
@@ -26,7 +26,7 @@ private
    CursorYAchseabstraktion : GlobaleDatentypen.Kartenfeld;
    CursorXAchseabstraktion : GlobaleDatentypen.Kartenfeld;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
       
    procedure WeitereInformationen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

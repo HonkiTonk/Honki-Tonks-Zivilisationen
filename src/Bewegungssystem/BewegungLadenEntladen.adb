@@ -110,7 +110,7 @@ package body BewegungLadenEntladen is
    
    procedure TransporterladungVerschieben
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       TransporterUmladenSchleife:
@@ -139,7 +139,7 @@ package body BewegungLadenEntladen is
    
    procedure TransporterStadtEntladen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
             
       BelegterPlatzSchleife:

@@ -1,57 +1,57 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, KartenRecords;
 
 package KartePositionKartenformen is
 
    function KartenPositionXZylinder
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionYZylinder
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionTorus
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionKugel
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionViereck
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionKugelGedreht
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionTugel
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionTugelGedreht
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
      
    function KartenPositionTugelExtrem
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord;
    
 private
    
-   type PositionArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type PositionArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    ZwischenPositionAchse : PositionArray;
    ZwischenPositionTugelAchse : PositionArray;
    

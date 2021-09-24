@@ -7,9 +7,9 @@ with KartePositionBerechnungen;
 package body KartePositionKartenformen is
 
    function KartenPositionXZylinder
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
@@ -50,9 +50,9 @@ package body KartePositionKartenformen is
    
    
    function KartenPositionYZylinder
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
@@ -92,9 +92,9 @@ package body KartePositionKartenformen is
    
    
    function KartenPositionTorus
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
@@ -125,9 +125,9 @@ package body KartePositionKartenformen is
    
    
    function KartenPositionKugel
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
@@ -159,9 +159,9 @@ package body KartePositionKartenformen is
    
    
    function KartenPositionViereck
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
@@ -210,9 +210,9 @@ package body KartePositionKartenformen is
    
    
    function KartenPositionKugelGedreht
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
@@ -245,9 +245,9 @@ package body KartePositionKartenformen is
    
    -- Die Tugel brauchen wahrscheinlich neue Berechnungen
    function KartenPositionTugel
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
@@ -284,9 +284,9 @@ package body KartePositionKartenformen is
    
    
    function KartenPositionTugelGedreht
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
@@ -323,9 +323,9 @@ package body KartePositionKartenformen is
    
      
    function KartenPositionTugelExtrem
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,

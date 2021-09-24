@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
+use GlobaleDatentypen, KartenRecords;
 
 with Karten;
 
@@ -29,19 +29,19 @@ private
    XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
    NurWasser : GlobaleDatentypen.KartenfeldPositivMitNullwert;
    
-   ZielKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   ZielKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertVereinfachung : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertTransporter : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWertVereinfachung : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWertTransporter : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   PositionAlt : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   PositionNeu : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   PositionAlt : KartenRecords.AchsenKartenfeldPositivRecord;
+   PositionNeu : KartenRecords.AchsenKartenfeldPositivRecord;
    
    type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of GlobaleDatentypen.ProduktionSonstiges;
    FeldBewertung : FeldBewertungArray;
    
-   type BewertungRecord is new GlobaleRecords.AchsenKartenfeldPositivRecord with record
+   type BewertungRecord is new KartenRecords.AchsenKartenfeldPositivRecord with record
       
       Bewertung : GlobaleDatentypen.ProduktionSonstiges;
       
@@ -72,7 +72,7 @@ private
    
    procedure FelderBewerten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord);
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
    
    procedure BewertungSortieren;
    
@@ -80,7 +80,7 @@ private
    
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
       return Boolean
      with
@@ -95,7 +95,7 @@ private
    
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins;
       XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
       return GlobaleDatentypen.ProduktionSonstiges
@@ -111,8 +111,8 @@ private
    
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      NeueKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -130,7 +130,7 @@ private
    
    function FeldBereitsBetreten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -144,7 +144,7 @@ private
    
    function TransporterNutzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean;
    
    function PlanschrittFestlegen

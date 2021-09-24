@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -36,7 +36,7 @@ package SpielEinstellungenRasseSpieler is
          (RasseWählen'Result >= -2);
 
    function UmgebungPrüfen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
@@ -62,14 +62,14 @@ private
    SpielerartAuswahl : Integer;
    RassenAuswahl : Integer;
    
-   GezogeneWerte : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   GezogeneWerte : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type KoordinatenArray is array (1 .. 2) of KartenRecords.AchsenKartenfeldPositivRecord;
    StartKoordinaten : KoordinatenArray;
    
    procedure FelderBestimmen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
 
 end SpielEinstellungenRasseSpieler;

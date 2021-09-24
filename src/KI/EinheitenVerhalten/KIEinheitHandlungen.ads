@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
-use GlobaleDatentypen, GlobaleRecords;
+use GlobaleDatentypen;
 
 package KIEinheitHandlungen is
 

@@ -15,7 +15,6 @@ package Eingabe is
    Tastenbelegung : TastenbelegungArray;
 
    procedure WartenEingabe;
-
    procedure StandardTastenbelegungLaden;
 
 
@@ -53,17 +52,18 @@ private
    TasteGedrückt : Sf.Window.Keyboard.sfKeyCode;
    TasteNeu : Sf.Window.Keyboard.sfKeyCode;
 
-   Test : Sf.Window.Event.sfKeyEvent;
+   Test : Sf.Window.Event.sfEvent;
 
    IstZahl : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
-   MaximumMinimumAktuelleStelle : Positive;
-   ZahlenMinimumPlusmacher : Positive;
    ZahlenMaximum : constant Positive := 999_999_999;
    ZahlenMinimum : constant Integer := -999_999_999;
+
+   MaximumMinimumAktuelleStelle : Positive;
+   ZahlenMinimumPlusmacher : Positive;
+
    MaximalerWert : Integer;
    MinimalerWert : Integer;
-
    Wert : Integer;
 
    ZahlenString : Wide_Wide_String (1 .. 9);

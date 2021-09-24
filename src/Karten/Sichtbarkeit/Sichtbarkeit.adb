@@ -673,7 +673,7 @@ package body Sichtbarkeit is
    
    
    function SichtbarkeitBlockadeTesten
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
       XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
       SichtweiteExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
@@ -780,7 +780,7 @@ package body Sichtbarkeit is
    
    procedure SichtbarkeitSetzen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       -- Die Kontaktsichtbarkeitsprüfung aus BewegungBerechnen kann hier nicht reingebaut werden, da dann jedes neu sichtbare Feld geprüft wird ob die anderen Rassen das sehen

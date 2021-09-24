@@ -8,7 +8,7 @@ with Sichtbarkeit, RasseEntfernen, EinheitenModifizieren;
 package body EinheitenErzeugenEntfernen is
 
    procedure EinheitErzeugen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten;
       IDExtern : in GlobaleDatentypen.EinheitenID;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

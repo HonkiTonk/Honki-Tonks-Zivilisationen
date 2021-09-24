@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with KIDatentypen;
@@ -21,7 +21,7 @@ package LeseStadtGebaut is
    
    function Position
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

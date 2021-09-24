@@ -136,7 +136,7 @@ package body StadtBauen is
    
    procedure StadtEintragen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);

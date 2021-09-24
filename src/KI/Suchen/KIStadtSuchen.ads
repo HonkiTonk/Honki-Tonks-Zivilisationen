@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -9,8 +9,8 @@ package KIStadtSuchen is
 
    function NähesteFeindlicheStadtSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
@@ -21,7 +21,7 @@ package KIStadtSuchen is
 
    function UnbewachteStadtSuchen
      (FeindlicheRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) = GlobaleDatentypen.Spieler_KI);
@@ -35,7 +35,7 @@ private
 
    function StadtSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert;
 
 end KIStadtSuchen;

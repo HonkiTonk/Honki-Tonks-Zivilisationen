@@ -3,40 +3,13 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen;
+with Sf, Sf.Window;
+
+with GlobaleDatentypen, KartenRecords;
   
 with KIDatentypen;
 
 package GlobaleRecords is
-   
-   type AchsenStadtfeldRecord is record
-      
-      YAchse : GlobaleDatentypen.Stadtfeld;
-      XAchse : GlobaleDatentypen.Stadtfeld;
-      
-   end record;
-   
-   
-   
-   type AchsenKartenfeldPositivRecord is tagged record
-      
-      EAchse : GlobaleDatentypen.EbeneVorhanden;
-      YAchse : GlobaleDatentypen.KartenfeldPositivMitNullwert;
-      XAchse : GlobaleDatentypen.KartenfeldPositivMitNullwert;
-      
-   end record;
-   
-   
-
-   type AchsenKartenfeldRecord is record
-      
-      EAchse : GlobaleDatentypen.Ebene;
-      YAchse : GlobaleDatentypen.Kartenfeld;
-      XAchse : GlobaleDatentypen.Kartenfeld;
-      
-   end record;
-   
-   
 
    type RassePlatznummerRecord is tagged record
       
@@ -50,9 +23,9 @@ package GlobaleRecords is
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
-      Position : AchsenKartenfeldPositivRecord;
-      PositionAlt : AchsenKartenfeldPositivRecord;
-      PositionStadt : AchsenStadtfeldRecord;
+      Position : KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionAlt : KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionStadt : KartenRecords.AchsenStadtfeldRecord;
       
    end record;
    
@@ -72,14 +45,14 @@ package GlobaleRecords is
 
 
 
-   type KIBewegungPlanArray is array (GlobaleDatentypen.Stadtfeld'Range) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type KIBewegungPlanArray is array (GlobaleDatentypen.Stadtfeld'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    type TransporterArray is array (GlobaleDatentypen.MaximaleStädte'First .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (GlobaleDatentypen.Einheit_Meldung_Art_Enum'Range) of GlobaleDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record
       
       ID : GlobaleDatentypen.EinheitenIDMitNullWert;
-      Position : AchsenKartenfeldPositivRecord;
+      Position : KartenRecords.AchsenKartenfeldPositivRecord;
       Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
       Lebenspunkte : GlobaleDatentypen.MaximaleStädteMitNullWert;
@@ -93,7 +66,7 @@ package GlobaleRecords is
       Beschäftigungszeit : GlobaleDatentypen.MaximaleStädteMitNullWert;
       BeschäftigungszeitNachfolger : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
-      KIZielKoordinaten : AchsenKartenfeldPositivRecord;
+      KIZielKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
       KIBewegungPlan : KIBewegungPlanArray;
       
@@ -124,7 +97,7 @@ package GlobaleRecords is
    type StadtGebautRecord is record
       
       ID : GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-      Position : AchsenKartenfeldPositivRecord;
+      Position : KartenRecords.AchsenKartenfeldPositivRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
       Nahrungsmittel : GlobaleDatentypen.GesamtproduktionStadt;
@@ -188,31 +161,23 @@ package GlobaleRecords is
    
    
    
-   type FelderwertungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtproduktionStadt;
-   
-   type KartenRecord is record
-
-      Grund : GlobaleDatentypen.Karten_Grund_Enum;
-      Hügel : Boolean;
-      Sichtbar : GlobaleDatentypen.SichtbarkeitArray;
-      
-      Fluss : GlobaleDatentypen.Karten_Grund_Enum;
-      VerbesserungWeg : GlobaleDatentypen.Karten_Verbesserung_Enum;
-      VerbesserungGebiet : GlobaleDatentypen.Karten_Verbesserung_Enum;
-      Ressource : GlobaleDatentypen.Karten_Grund_Enum;
-      
-      DurchStadtBelegterGrund : GlobaleDatentypen.BelegterGrund;
-      Felderwertung : FelderwertungArray;
-
-   end record;
-   
-   
-   
    type NutzerEinstellungenRecord is record
       
       Sprache : Unbounded_Wide_Wide_String;
       AnzahlAutosave : Natural;
       RundenBisAutosave : Positive;
+      
+   end record;
+   
+   
+   
+   type FensterRecord is record
+      
+      Breite : Sf.sfUint32;
+      Höhe : Sf.sfUint32;
+      Farbtiefe : Sf.sfUint32;
+      Bildrate : Sf.sfUint32;
+      Zeiger : Sf.Window.sfCursor_Ptr;
       
    end record;
 

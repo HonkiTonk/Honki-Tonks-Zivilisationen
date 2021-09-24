@@ -3,8 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen, KartenRecords;
 
 with Karten;
 
@@ -12,7 +12,7 @@ package StadtSuchen is
    
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
@@ -23,7 +23,7 @@ package StadtSuchen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function KoordinatenStadtOhneRasseSuchen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
      with
        Pre  =>
@@ -33,7 +33,7 @@ package StadtSuchen is
 
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
      with
        Pre  =>

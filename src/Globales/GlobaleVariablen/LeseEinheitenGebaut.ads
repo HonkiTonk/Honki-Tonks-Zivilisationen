@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with KIDatentypen;
@@ -18,7 +18,7 @@ package LeseEinheitenGebaut is
    
    function Position
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -108,7 +108,7 @@ package LeseEinheitenGebaut is
       
    function KIZielKoordinaten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -127,7 +127,7 @@ package LeseEinheitenGebaut is
    function KIBewegungPlan
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       PlanschrittExtern : in GlobaleDatentypen.Stadtfeld)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

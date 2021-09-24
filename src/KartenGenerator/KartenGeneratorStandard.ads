@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -13,7 +13,7 @@ private
 
    BeliebigerLandwert : Float;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    type Land_Erzeugung_Enum is (Leer, Feld_Eisschild, Masse_Eisschild, Feld_Normal, Masse_Normal, Feld_Sonstiges, Feld_Fläche_Frei, Feld_Fläche_Belegt);
    for Land_Erzeugung_Enum use (Leer => 0, Feld_Eisschild => 1, Masse_Eisschild => 2, Feld_Normal => 3, Masse_Normal => 4, Feld_Sonstiges => 5, Feld_Fläche_Frei => 6, Feld_Fläche_Belegt => 7);

@@ -20,7 +20,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Position
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := PositionExtern;
@@ -297,7 +297,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure KIZielKoordinaten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KoordinatenExtern;
@@ -319,7 +319,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
    is begin
       

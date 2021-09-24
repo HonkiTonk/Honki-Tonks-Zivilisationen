@@ -10,7 +10,7 @@ package body StadtSuchen is
 
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -35,7 +35,7 @@ package body StadtSuchen is
 
 
    function KoordinatenStadtOhneRasseSuchen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
    is begin
 
@@ -72,7 +72,7 @@ package body StadtSuchen is
    
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
    is begin
 

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
 use GlobaleDatentypen;
 
 package KIGefahrErmitteln is
@@ -18,7 +18,7 @@ private
 
    EinheitUnzugeordnet : GlobaleRecords.RassePlatznummerRecord;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    function ReaktionErfoderlich
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

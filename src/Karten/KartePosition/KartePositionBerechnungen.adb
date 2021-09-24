@@ -148,9 +148,9 @@ package body KartePositionBerechnungen is
    
    
    function PositionBestimmen_Y_X_Wechsel
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       if
@@ -215,9 +215,9 @@ package body KartePositionBerechnungen is
    
    
    function PositionBestimmen_X_Y_Wechsel
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       if

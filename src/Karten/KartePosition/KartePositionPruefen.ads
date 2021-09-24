@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleDatentypen, GlobaleKonstanten, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -9,9 +9,9 @@ use Karten;
 package KartePositionPruefen is
    
    function KartenPositionBestimmen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, KartenRecords;
 
 package KartenGeneratorRessourcen is
 
@@ -66,18 +66,18 @@ private
                                                                                   )
                                                                                );
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure RessourcenGenerierung
      (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
    
    procedure RessourcenWasser
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord);
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
    
    procedure RessourcenLand
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord);
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
    
    procedure RessourcenUmgebungBelegen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord);
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
 
 end KartenGeneratorRessourcen;

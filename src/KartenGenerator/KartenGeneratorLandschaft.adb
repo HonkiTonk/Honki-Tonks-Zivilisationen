@@ -81,7 +81,7 @@ package body KartenGeneratorLandschaft is
    
    
    procedure LandschaftBestimmen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       GrundSchleife:
@@ -125,7 +125,7 @@ package body KartenGeneratorLandschaft is
    
    
    function GrundFestlegen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Generator_Enum)
       return Boolean
    is begin
@@ -174,7 +174,7 @@ package body KartenGeneratorLandschaft is
    
    procedure AbstandTundraWüste
      (GrundExtern : in GlobaleDatentypen.Karten_Grund_Generator_Enum;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       YAchseSchleife:
@@ -207,7 +207,7 @@ package body KartenGeneratorLandschaft is
    
    
    procedure WeitereHügel
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (PositionExtern => PositionExtern,

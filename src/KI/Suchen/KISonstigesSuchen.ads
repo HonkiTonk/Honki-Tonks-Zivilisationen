@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,9 +8,9 @@ with Karten;
 package KISonstigesSuchen is
 
    function EigenesFeldSuchen
-     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
@@ -26,12 +26,12 @@ private
    Bereich : GlobaleDatentypen.Sichtweite;
    BereichGeprüft : GlobaleDatentypen.SichtweiteMitNullwert;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   Ziel : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   Ziel : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function ZielSuchen
-     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+      return KartenRecords.AchsenKartenfeldPositivRecord;
 
 end KISonstigesSuchen;

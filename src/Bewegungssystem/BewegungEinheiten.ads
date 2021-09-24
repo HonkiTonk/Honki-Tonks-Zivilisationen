@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen, KartenRecords;
 
 with Karten;
 
@@ -28,10 +28,10 @@ private
    EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
    StadtAufFeld : GlobaleRecords.RassePlatznummerRecord;
    
-   Änderung : GlobaleRecords.AchsenKartenfeldRecord;
-   KeineÄnderung : constant GlobaleRecords.AchsenKartenfeldRecord := (0, 0, 0);
+   Änderung : KartenRecords.AchsenKartenfeldRecord;
+   KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    type Bewegung_Noch_Möglich_Enum is (Zurück, Bewegbar);
    AktuellerStatus : Bewegung_Noch_Möglich_Enum;
@@ -43,7 +43,7 @@ private
    
    function BewegungPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Bewegung_Noch_Möglich_Enum
      with
        Pre =>

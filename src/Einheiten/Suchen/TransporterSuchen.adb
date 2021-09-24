@@ -8,7 +8,7 @@ package body TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       

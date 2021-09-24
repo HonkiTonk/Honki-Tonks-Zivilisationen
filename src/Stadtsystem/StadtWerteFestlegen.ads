@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with LeseStadtGebaut;
@@ -44,7 +44,7 @@ private
    WissenGesamt : GlobaleDatentypen.ProduktionFeld;
    
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    type UmgebungRecord is record
       
@@ -92,31 +92,31 @@ private
    
    function FeldBewerten
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt;
    
    function WissenBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt;
    
    function GeldBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt;
    
    function ProduktionBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt;
    
    function NahrungBewertung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt;
 

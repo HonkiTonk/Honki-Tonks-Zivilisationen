@@ -5,9 +5,9 @@ with KartePositionKartenformen;
 package body KartePositionPruefen is
    
    function KartenPositionBestimmen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       case

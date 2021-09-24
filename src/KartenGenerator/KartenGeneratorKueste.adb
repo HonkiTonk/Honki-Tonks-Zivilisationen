@@ -36,7 +36,7 @@ package body KartenGeneratorKueste is
    
    
    procedure GewässerFestlegen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       YAchseSchleife:

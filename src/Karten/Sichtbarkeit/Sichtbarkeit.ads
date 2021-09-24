@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen;
 
 with Karten;
 
@@ -25,7 +25,7 @@ package Sichtbarkeit is
 
    procedure SichtbarkeitSetzen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -47,10 +47,10 @@ private
 
    FremdeEinheitStadt : GlobaleRecords.RassePlatznummerRecord;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenQuadrantWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenBlockadeWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KoordinatenEinheit : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenQuadrantWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenBlockadeWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KoordinatenEinheit : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -100,7 +100,7 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    function SichtbarkeitBlockadeTesten
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
       XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
       SichtweiteExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)

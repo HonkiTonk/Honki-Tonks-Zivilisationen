@@ -10,8 +10,8 @@ package body KIStadtSuchen is
    
    function NähesteFeindlicheStadtSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
    
       GefundeneStadt := StadtSuchen (RasseExtern             => RasseExtern,
@@ -33,7 +33,7 @@ package body KIStadtSuchen is
    
    function StadtSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -79,7 +79,7 @@ package body KIStadtSuchen is
    
    function UnbewachteStadtSuchen
      (FeindlicheRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       StadtSchleife:

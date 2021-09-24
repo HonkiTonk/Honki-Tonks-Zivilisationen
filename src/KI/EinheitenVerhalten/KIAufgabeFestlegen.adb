@@ -381,7 +381,7 @@ package body KIAufgabeFestlegen is
    function EinheitVerbessernPlatz
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       Umgebung := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);

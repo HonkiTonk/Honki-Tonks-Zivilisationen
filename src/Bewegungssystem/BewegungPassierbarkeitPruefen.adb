@@ -10,7 +10,7 @@ package body BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -36,7 +36,7 @@ package body BewegungPassierbarkeitPruefen is
    function PassierbarkeitPrüfenID
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
             
@@ -80,7 +80,7 @@ package body BewegungPassierbarkeitPruefen is
    function IstNichtPassierbar
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -110,7 +110,7 @@ package body BewegungPassierbarkeitPruefen is
    
    function IstPassierbar
      (UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -163,7 +163,7 @@ package body BewegungPassierbarkeitPruefen is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -234,7 +234,7 @@ package body BewegungPassierbarkeitPruefen is
 
    function InStadtEntladbar
      (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       

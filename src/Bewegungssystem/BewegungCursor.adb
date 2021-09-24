@@ -116,7 +116,7 @@ package body BewegungCursor is
    
 
    procedure BewegungCursorBerechnen
-     (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+     (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -164,7 +164,7 @@ package body BewegungCursor is
 
 
    procedure BewegungCursorBerechnenStadt
-     (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+     (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 

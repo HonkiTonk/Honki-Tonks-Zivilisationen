@@ -3,7 +3,7 @@ pragma SPARK_Mode (Off);
 with Ada.Numerics.Discrete_Random;
 with Ada.Numerics.Float_Random;
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -12,7 +12,7 @@ package ZufallGeneratorenKarten is
      
    function StartPosition
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
@@ -46,7 +46,7 @@ private
    XAchse : GlobaleDatentypen.KartenfeldPositiv;
 
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
-   ZufallsPunktKarte : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   ZufallsPunktKarte : KartenRecords.AchsenKartenfeldPositivRecord;
 
    subtype Kartenwert20 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 20;
    subtype Kartenwert40 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 40;

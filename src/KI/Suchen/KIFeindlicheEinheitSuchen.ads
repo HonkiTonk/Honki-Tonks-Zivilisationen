@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
 use GlobaleDatentypen;
 
 package KIFeindlicheEinheitSuchen is
@@ -8,7 +8,7 @@ package KIFeindlicheEinheitSuchen is
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       FeindExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (FeindExtern) /= GlobaleDatentypen.Leer
@@ -21,6 +21,6 @@ private
    
    FeindlicheEinheit : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
 end KIFeindlicheEinheitSuchen;

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen, KartenRecords;
 
 with KIDatentypen;
 use KIDatentypen;
@@ -23,7 +23,7 @@ package KIAufgabenVerteilt is
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ZielKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -35,7 +35,7 @@ package KIAufgabenVerteilt is
    
    function EinheitZiel
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ZielKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>

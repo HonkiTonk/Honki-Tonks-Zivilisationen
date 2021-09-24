@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 package StadtEntfernen is
@@ -15,7 +15,7 @@ package StadtEntfernen is
    
 private
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure BelegteStadtfelderFreigeben
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);

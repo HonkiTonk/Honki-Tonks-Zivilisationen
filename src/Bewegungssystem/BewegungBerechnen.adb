@@ -11,7 +11,7 @@ package body BewegungBerechnen is
 
    procedure BewegungEinheitenBerechnung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
 
       -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
@@ -93,7 +93,7 @@ package body BewegungBerechnen is
    
    
    procedure NachBewegung
-     (NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -129,7 +129,7 @@ package body BewegungBerechnen is
       
    
    function AbzugDurchBewegung
-     (NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
          return GlobaleDatentypen.BewegungFloat
    is begin
@@ -172,7 +172,7 @@ package body BewegungBerechnen is
 
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
          return Bewegungsbonuse_Enum
    is begin
 

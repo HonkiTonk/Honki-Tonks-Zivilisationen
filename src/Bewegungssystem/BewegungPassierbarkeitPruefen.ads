@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -9,7 +9,7 @@ package BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -24,7 +24,7 @@ package BewegungPassierbarkeitPruefen is
    function PassierbarkeitPrüfenID
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -36,7 +36,7 @@ package BewegungPassierbarkeitPruefen is
 
    function InStadtEntladbar
      (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -70,7 +70,7 @@ private
 
    BenötigteFelder : Positive;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    TransportplatzEntladen : GlobaleRecords.TransporterArray;
    
@@ -78,7 +78,7 @@ private
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -91,7 +91,7 @@ private
    function IstNichtPassierbar
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -103,7 +103,7 @@ private
      
    function IstPassierbar
      (UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>

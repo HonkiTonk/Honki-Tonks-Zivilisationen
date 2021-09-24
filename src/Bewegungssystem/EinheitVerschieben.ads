@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, KartenRecords;
 use GlobaleDatentypen;
 
 package EinheitVerschieben is
@@ -20,8 +20,8 @@ private
    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertVerschieben : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWertVerschieben : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure EinheitenErmitteln
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

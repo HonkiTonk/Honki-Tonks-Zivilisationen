@@ -13,7 +13,7 @@ package body GrafischeAnzeige is
 
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
              
@@ -49,7 +49,7 @@ package body GrafischeAnzeige is
    
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -103,7 +103,7 @@ package body GrafischeAnzeige is
    
    function AnzeigeCursor
      (InDerStadtExtern : in Boolean;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
@@ -131,7 +131,7 @@ package body GrafischeAnzeige is
    
    
    function AnzeigeEinheit
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
@@ -172,7 +172,7 @@ package body GrafischeAnzeige is
    
    
    function AnzeigeStadt
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
@@ -200,7 +200,7 @@ package body GrafischeAnzeige is
    
    
    procedure AnzeigeLandschaft
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       

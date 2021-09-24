@@ -11,7 +11,7 @@ package body KIFeindlicheEinheitSuchen is
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       FeindExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       YAchseSchleife:

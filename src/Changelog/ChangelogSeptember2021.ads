@@ -35,17 +35,18 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (25.09.2021):
+   -- Version 0.00.8880 => 0.00.8 (25.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8870 => 0.00.8 (24.09.2021):
+   -- Version 0.00.8870 => 0.00.8880 (24.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Eingabe größtenteils auf die SFML umgestellt, funktioniert aktuell nur sehr bedingt.
+   -- Angefangen GlobaleRecords aufzuteilen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
@@ -57,7 +58,7 @@ package ChangelogSeptember2021 is
    -- Fehler behoben der dazu führte das bei der Spielerplatzierung Felder aufgedeckt wurden bei der keine Einheit war.
    -- Unnötigen Code gelöscht.
    -- Funktionen/Prozeduren aufgeteilt, in ihrer Länge reduziert und Übersichtlichkeit des Codes verbessert.
-   -- Angefangen die SFML, unter Verwendung von ASFML, einzubauen und dabei alle kaputt gemacht.
+   -- Angefangen die SFML, unter Verwendung von ASFML, einzubauen und dabei alles kaputt gemacht.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    

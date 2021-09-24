@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, KartenRecords;
 
 with KartenGeneratorBerechnungenAllgemein;
 
@@ -12,7 +12,7 @@ private
 
    AnzahlGleicherGrund : KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    type KartengrundWahrscheinlichkeitenArray is array (GlobaleDatentypen.Karten_Unterwasser_Generator_Enum'Range, KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray :=

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with KIDatentypen;
@@ -20,7 +20,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Position
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -118,7 +118,7 @@ package SchreibeEinheitenGebaut is
    
    procedure KIZielKoordinaten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -140,7 +140,7 @@ package SchreibeEinheitenGebaut is
    
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
      with
        Pre =>

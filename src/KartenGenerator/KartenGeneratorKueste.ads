@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen;
+with GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -11,10 +11,10 @@ package KartenGeneratorKueste is
 
 private
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure GewässerFestlegen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

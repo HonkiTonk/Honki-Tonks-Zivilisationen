@@ -10,7 +10,7 @@ with KartePositionPruefen, KartenAllgemein;
 package body FelderwerteFestlegen is
    
    procedure EinzelnesKartenfeldBewerten
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
             
       YAchseÄnderungSchleife:
@@ -43,7 +43,7 @@ package body FelderwerteFestlegen is
 
 
    procedure KartenfelderBewertenKleineSchleife
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Enum)
    is begin
       
@@ -96,8 +96,8 @@ package body FelderwerteFestlegen is
    
    
    procedure BewertungSelbst
-     (KoordinatenFeldExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      KoordinatenUmgebungExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Enum;
       TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
    is begin

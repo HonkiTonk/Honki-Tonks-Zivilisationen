@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 package BewegungCursor is
@@ -21,16 +21,16 @@ package BewegungCursor is
 
 private
 
-   Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   Position : KartenRecords.AchsenKartenfeldPositivRecord;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   Änderung : GlobaleRecords.AchsenKartenfeldRecord;
+   Änderung : KartenRecords.AchsenKartenfeldRecord;
 
    KoordinatenPunkt : Integer;
    
    procedure BewegungCursorBerechnen
-     (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+     (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -43,7 +43,7 @@ private
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure BewegungCursorBerechnenStadt
-     (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+     (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>

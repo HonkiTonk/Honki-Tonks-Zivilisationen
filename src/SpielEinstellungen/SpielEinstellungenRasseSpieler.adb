@@ -242,7 +242,7 @@ package body SpielEinstellungenRasseSpieler is
 
 
    function UmgebungPrüfen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
@@ -276,7 +276,7 @@ package body SpielEinstellungenRasseSpieler is
    
    
    procedure FelderBestimmen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
             

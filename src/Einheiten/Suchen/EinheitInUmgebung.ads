@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen;
+with GlobaleRecords, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 package EinheitInUmgebung is
@@ -9,7 +9,7 @@ package EinheitInUmgebung is
    
 private
       
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    AndereEinheit : GlobaleRecords.RassePlatznummerRecord;
    
@@ -22,7 +22,7 @@ private
    
    
    function EinheitFinden
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       UmgebungExtern : in GlobaleDatentypen.Sichtweite;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean;

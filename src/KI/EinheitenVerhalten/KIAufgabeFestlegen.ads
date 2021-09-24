@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen, KartenRecords;
 
 package KIAufgabeFestlegen is
 
@@ -107,15 +107,15 @@ private
    KarteReichweite : GlobaleDatentypen.KartenfeldPositivMitNullwert;
    KarteGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
 
-   KoordinatenFeind : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   PlatzGefunden : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   NeueStadtPosition : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KoordinatenFeind : KartenRecords.AchsenKartenfeldPositivRecord;
+   PlatzGefunden : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   NeueStadtPosition : KartenRecords.AchsenKartenfeldPositivRecord;
 
    function EinheitVerbessernPlatz
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (EinheitNummerExtern <= GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, GlobaleRecords;
+with GlobaleVariablen, GlobaleDatentypen, GlobaleRecords, KartenRecords;
 use GlobaleDatentypen;
 
 package KIMindestBewertungKartenfeldErmitteln is
@@ -18,6 +18,6 @@ private
    
    MindestBewertungKartenfeld : GlobaleDatentypen.GesamtproduktionStadt;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
 end KIMindestBewertungKartenfeldErmitteln;

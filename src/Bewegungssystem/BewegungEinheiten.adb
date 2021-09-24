@@ -122,7 +122,7 @@ package body BewegungEinheiten is
    
    function BewegungPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Bewegung_Noch_Möglich_Enum
    is begin
       

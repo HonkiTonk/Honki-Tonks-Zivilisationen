@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package KIBewegungAllgemein is
    
    function FeldBetreten
-     (FeldPositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (FeldPositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.LoopRangeMinusEinsZuEins
      with

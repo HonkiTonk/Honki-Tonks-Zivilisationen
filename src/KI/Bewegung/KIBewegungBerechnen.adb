@@ -45,7 +45,7 @@ package body KIBewegungBerechnen is
    
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
       return Boolean
    is begin
@@ -83,7 +83,7 @@ package body KIBewegungBerechnen is
    
    procedure FelderBewerten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       BewertungPosition := 1;
@@ -178,7 +178,7 @@ package body KIBewegungBerechnen is
    
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins;
       XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
       return GlobaleDatentypen.ProduktionSonstiges
@@ -256,8 +256,8 @@ package body KIBewegungBerechnen is
    
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      NeueKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
@@ -327,7 +327,7 @@ package body KIBewegungBerechnen is
    
    function FeldBereitsBetreten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -448,7 +448,7 @@ package body KIBewegungBerechnen is
    
    function TransporterNutzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       

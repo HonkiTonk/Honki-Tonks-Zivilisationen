@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleRecords, GlobaleKonstanten, GlobaleDatentypen;
+with GlobaleVariablen, GlobaleRecords, GlobaleKonstanten, GlobaleDatentypen, KartenRecords;
 
 with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein, Karte;
 
@@ -118,8 +118,8 @@ package body Speichern is
             XAchseBisBodenSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
-               GlobaleRecords.KartenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                  Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               KartenRecords.KartenRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
             end loop XAchseBisBodenSchleife;
          end loop YAchseBisBodenSchleife;

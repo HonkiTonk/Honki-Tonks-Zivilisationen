@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen, KartenRecords;
 
 with Karten;
 
@@ -9,7 +9,7 @@ package EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
@@ -20,7 +20,7 @@ package EinheitSuchen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    function KoordinatenEinheitOhneRasseSuchen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
      with
        Pre =>
@@ -30,7 +30,7 @@ package EinheitSuchen is
 
    function KoordinatenEinheitOhneSpezielleRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
      with
        Pre =>

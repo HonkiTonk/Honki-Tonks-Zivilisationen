@@ -19,7 +19,7 @@ package body SchreibeStadtGebaut is
    
    procedure Position
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position := PositionExtern;

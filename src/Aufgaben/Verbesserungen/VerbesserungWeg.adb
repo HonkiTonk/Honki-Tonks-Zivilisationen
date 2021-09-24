@@ -67,7 +67,7 @@ package body VerbesserungWeg is
    
 
    procedure WegBerechnen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
 
       Wegewert := 10_000;
@@ -327,7 +327,7 @@ package body VerbesserungWeg is
    
    
    procedure WegPlatzieren
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       case

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten, KartenGeneratorBerechnungenAllgemein;
@@ -12,8 +12,8 @@ package KartenGeneratorLandschaft is
 
 private
    
-   KartenWertAbstand : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertAbstand : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWertHügel : KartenRecords.AchsenKartenfeldPositivRecord;
       
    AnzahlGleicherGrund : KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder;
    
@@ -83,7 +83,7 @@ private
      );
    
    procedure LandschaftBestimmen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -92,7 +92,7 @@ private
    
    procedure AbstandTundraWüste
      (GrundExtern : in GlobaleDatentypen.Karten_Grund_Generator_Enum;
-      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -100,7 +100,7 @@ private
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure WeitereHügel
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -115,7 +115,7 @@ private
    
       
    function GrundFestlegen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Generator_Enum)
       return Boolean;
 

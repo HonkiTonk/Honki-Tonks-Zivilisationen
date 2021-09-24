@@ -7,7 +7,7 @@ with RassenAllgemein;
 package body LeseKarten is
    
    function Grund
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Grund_Enum
    is begin
       
@@ -18,7 +18,7 @@ package body LeseKarten is
    
    
    function Hügel
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -29,7 +29,7 @@ package body LeseKarten is
    
    
    function Sichtbar
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
@@ -41,7 +41,7 @@ package body LeseKarten is
    
    
    function Fluss
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Grund_Enum
    is begin
       
@@ -62,7 +62,7 @@ package body LeseKarten is
    
    
    function VerbesserungWeg
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Verbesserung_Enum
    is begin
       
@@ -83,7 +83,7 @@ package body LeseKarten is
    
    
    function VerbesserungGebiet
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Verbesserung_Enum
    is begin
       
@@ -104,7 +104,7 @@ package body LeseKarten is
    
    
    function Ressource
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Grund_Enum
    is begin
       
@@ -125,7 +125,7 @@ package body LeseKarten is
    
    
    function Bewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -138,7 +138,7 @@ package body LeseKarten is
    
    function BelegterGrund
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -158,7 +158,7 @@ package body LeseKarten is
    
    
    function BelegterGrundLeer
-     (KoordinatenExtern : GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -178,7 +178,7 @@ package body LeseKarten is
    
    function BestimmteStadtBelegtGrund
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern : GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
      

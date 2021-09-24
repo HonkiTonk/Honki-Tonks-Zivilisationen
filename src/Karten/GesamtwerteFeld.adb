@@ -5,7 +5,7 @@ with KartenAllgemein;
 package body GesamtwerteFeld is
 
    function FeldNahrung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -58,7 +58,7 @@ package body GesamtwerteFeld is
      
    
    function FeldProduktion
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -106,13 +106,12 @@ package body GesamtwerteFeld is
                                               RasseExtern    => RasseExtern);
       end if;
       
-      
    end FeldProduktion;
      
      
      
    function FeldGeld
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -160,13 +159,12 @@ package body GesamtwerteFeld is
                                         RasseExtern    => RasseExtern);
       end if;
       
-      
    end FeldGeld;
      
      
      
    function FeldWissen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -214,13 +212,12 @@ package body GesamtwerteFeld is
                                           RasseExtern    => RasseExtern);
       end if;
       
-      
    end FeldWissen;
      
      
      
    function FeldVerteidigung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -268,13 +265,12 @@ package body GesamtwerteFeld is
                                                 RasseExtern    => RasseExtern);
       end if;
       
-      
    end FeldVerteidigung;
      
      
      
    function FeldAngriff
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -321,7 +317,6 @@ package body GesamtwerteFeld is
            + KartenAllgemein.FlussAngriff (PositionExtern => KoordinatenExtern,
                                            RasseExtern    => RasseExtern);
       end if;
-      
       
    end FeldAngriff;
 

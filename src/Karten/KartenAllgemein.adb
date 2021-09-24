@@ -34,7 +34,7 @@ package body KartenAllgemein is
    
    
    function GrundNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -62,7 +62,7 @@ package body KartenAllgemein is
    
    
    function GrundProduktion
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -89,7 +89,7 @@ package body KartenAllgemein is
    
    
    function GrundGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -116,7 +116,7 @@ package body KartenAllgemein is
    
    
    function GrundWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -143,7 +143,7 @@ package body KartenAllgemein is
    
    
    function GrundVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -170,7 +170,7 @@ package body KartenAllgemein is
    
 
    function GrundAngriff
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -197,7 +197,7 @@ package body KartenAllgemein is
    
    
    function GrundBewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -211,7 +211,7 @@ package body KartenAllgemein is
    
    
    function FlussNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -225,7 +225,7 @@ package body KartenAllgemein is
    
    
    function FlussProduktion
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -239,7 +239,7 @@ package body KartenAllgemein is
    
    
    function FlussGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -253,7 +253,7 @@ package body KartenAllgemein is
    
    
    function FlussWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -267,7 +267,7 @@ package body KartenAllgemein is
    
    
    function FlussVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -281,7 +281,7 @@ package body KartenAllgemein is
    
 
    function FlussAngriff
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -295,7 +295,7 @@ package body KartenAllgemein is
    
    
    function FlussBewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -309,7 +309,7 @@ package body KartenAllgemein is
    
    
    function WegNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -323,7 +323,7 @@ package body KartenAllgemein is
    
    
    function WegProduktion
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -337,7 +337,7 @@ package body KartenAllgemein is
    
    
    function WegGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -351,7 +351,7 @@ package body KartenAllgemein is
    
    
    function WegWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -365,7 +365,7 @@ package body KartenAllgemein is
    
    
    function WegVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -379,7 +379,7 @@ package body KartenAllgemein is
    
    
    function WegAngriff
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -393,7 +393,7 @@ package body KartenAllgemein is
    
    
    function WegBewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -407,7 +407,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -421,7 +421,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungProduktion
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -435,7 +435,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -449,7 +449,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -463,7 +463,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -477,7 +477,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungAngriff
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -491,7 +491,7 @@ package body KartenAllgemein is
    
    
    function VerbesserungBewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -505,7 +505,7 @@ package body KartenAllgemein is
    
    
    function RessourceNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -519,7 +519,7 @@ package body KartenAllgemein is
    
    
    function RessourceProduktion
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -533,7 +533,7 @@ package body KartenAllgemein is
    
    
    function RessourceGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -547,7 +547,7 @@ package body KartenAllgemein is
    
    
    function RessourceWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -561,7 +561,7 @@ package body KartenAllgemein is
    
    
    function RessourceVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -575,7 +575,7 @@ package body KartenAllgemein is
    
    
    function RessourceAngriff
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -589,7 +589,7 @@ package body KartenAllgemein is
    
    
    function RessourceBewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement
    is begin
@@ -603,7 +603,7 @@ package body KartenAllgemein is
    
    
    function PassierbarGrund
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
@@ -616,7 +616,7 @@ package body KartenAllgemein is
    
    
    function PassierbarVerbesserung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
@@ -629,7 +629,7 @@ package body KartenAllgemein is
    
    
    function PassierbarWeg
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin

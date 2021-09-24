@@ -19,7 +19,7 @@ package body LeseStadtGebaut is
    
    function Position
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       if

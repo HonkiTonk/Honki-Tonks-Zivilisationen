@@ -9,11 +9,11 @@ with KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitSuchen;
 package body UmgebungErreichbarTesten is
    
    function UmgebungErreichbarTesten
-     (AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
       NotwendigeFelderExtern : in Positive)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
+      return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       GefundeneFelder := 1;
@@ -107,7 +107,7 @@ package body UmgebungErreichbarTesten is
    
    
    function NochErreichbar
-     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
       return Boolean

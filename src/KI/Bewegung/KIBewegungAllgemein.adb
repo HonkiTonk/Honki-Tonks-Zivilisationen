@@ -10,7 +10,7 @@ package body KIBewegungAllgemein is
 
    -- -1 = Belegt und Angriff, 0 = Unbelegt, 1 = Belegt und kein Angriff
    function FeldBetreten
-     (FeldPositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (FeldPositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.LoopRangeMinusEinsZuEins
    is begin

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package VerbesserungWeg is
 
    procedure WegBerechnen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -32,10 +32,10 @@ private
    
    Wegewert : GlobaleDatentypen.BelegterGrund;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure WegPlatzieren
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord);
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
    
    procedure BerechnungUnten;
    procedure BerechnungOben;

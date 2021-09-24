@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -41,7 +41,7 @@ private
    type BeliebigerFlusswertArray is array (StandardFlussArray'Range) of Float;
    BeliebigerFlusswert : BeliebigerFlusswertArray;
 
-   type KartenWertArray is array (StandardFlussArray'Range) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type KartenWertArray is array (StandardFlussArray'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWert : KartenWertArray;
    KartenWertTesten : KartenWertArray;
    

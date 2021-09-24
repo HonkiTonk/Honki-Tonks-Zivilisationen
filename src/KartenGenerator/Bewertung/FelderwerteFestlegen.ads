@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package FelderwerteFestlegen is
    
    procedure EinzelnesKartenfeldBewerten
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -16,7 +16,7 @@ package FelderwerteFestlegen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure KartenfelderBewertenKleineSchleife
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Enum)
      with
        Pre =>
@@ -26,13 +26,13 @@ package FelderwerteFestlegen is
    
 private
       
-   type KartenwertArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type KartenwertArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWertEins : KartenwertArray;
    KartenWertZwei : KartenwertArray;
    
    procedure BewertungSelbst
-     (KoordinatenFeldExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      KoordinatenUmgebungExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Enum;
       TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
      with
