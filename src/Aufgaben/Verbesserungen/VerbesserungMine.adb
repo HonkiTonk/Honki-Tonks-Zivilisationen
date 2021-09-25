@@ -8,7 +8,7 @@ with EinheitenBeschreibungen, VerbesserungRoden, AufgabenAllgemein;
 package body VerbesserungMine is
 
    function VerbesserungMine
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean

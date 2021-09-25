@@ -44,7 +44,7 @@ package body EinheitenModifizieren is
 
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -80,7 +80,7 @@ package body EinheitenModifizieren is
    
    
    procedure PermanenteKostenÄndern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
@@ -97,7 +97,7 @@ package body EinheitenModifizieren is
       end case;
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in EinheitStadtRecords.PermanenteKostenArray'Range loop
          
          if
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
@@ -126,7 +126,7 @@ package body EinheitenModifizieren is
    
    
    procedure HeimatstadtÄndern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -173,7 +173,7 @@ package body EinheitenModifizieren is
    
    
    function EinheitAnforderungenErfüllt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
       return Boolean
    is begin

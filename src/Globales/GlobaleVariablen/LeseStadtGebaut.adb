@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with Karten;
 
 package body LeseStadtGebaut is
 
    function ID
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
@@ -18,7 +18,7 @@ package body LeseStadtGebaut is
    
    
    function Position
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -27,7 +27,7 @@ package body LeseStadtGebaut is
         or
           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position := GlobaleKonstanten.LeerKartenPosition;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position := KartenKonstanten.LeerKartenPosition;
 
       else
          null;
@@ -40,7 +40,7 @@ package body LeseStadtGebaut is
    
    
    function EinwohnerArbeiter
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
       return GlobaleDatentypen.ProduktionFeld
    is begin
@@ -78,7 +78,7 @@ package body LeseStadtGebaut is
    
       
    function Nahrungsmittel
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -98,7 +98,7 @@ package body LeseStadtGebaut is
    
    
    function Nahrungsproduktion
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -109,7 +109,7 @@ package body LeseStadtGebaut is
    
    
    function Ressourcen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KostenLager
    is begin
       
@@ -120,7 +120,7 @@ package body LeseStadtGebaut is
    
    
    function Produktionrate
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -131,7 +131,7 @@ package body LeseStadtGebaut is
    
    
    function Geldgewinnung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -142,7 +142,7 @@ package body LeseStadtGebaut is
    
    
    function PermanenteKostenPosten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelcherPostenExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
       return GlobaleDatentypen.GesamtePermanenteKosten
    is begin
@@ -154,7 +154,7 @@ package body LeseStadtGebaut is
    
       
    function Forschungsrate
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -174,7 +174,7 @@ package body LeseStadtGebaut is
    
    
    function Bauprojekt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Natural
    is begin
       
@@ -196,7 +196,7 @@ package body LeseStadtGebaut is
    
    
    function Bauzeit
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KostenLager
    is begin
       
@@ -207,7 +207,7 @@ package body LeseStadtGebaut is
    
    
    function Korruption
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -218,7 +218,7 @@ package body LeseStadtGebaut is
    
    
    function GebäudeVorhanden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
       return Boolean
    is begin
@@ -230,7 +230,7 @@ package body LeseStadtGebaut is
    
    
    function Name
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Unbounded_Wide_Wide_String
    is begin
       
@@ -241,7 +241,7 @@ package body LeseStadtGebaut is
    
    
    function UmgebungBewirtschaftung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
    is begin
@@ -253,7 +253,7 @@ package body LeseStadtGebaut is
    
    
    function UmgebungGröße
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
    is begin
       
@@ -273,7 +273,7 @@ package body LeseStadtGebaut is
    
       
    function Meldungen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelcheMeldungExtern : in GlobaleDatentypen.Stadt_Meldung_Art_Enum)
       return GlobaleDatentypen.Stadt_Meldung_Enum
    is begin
@@ -285,7 +285,7 @@ package body LeseStadtGebaut is
       
       
    function KIBeschäftigung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIDatentypen.Stadt_Aufgabe_Enum
    is begin
       
@@ -296,8 +296,8 @@ package body LeseStadtGebaut is
    
    
    function GanzerEintrag
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.StadtGebautRecord
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return EinheitStadtRecords.StadtGebautRecord
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer);

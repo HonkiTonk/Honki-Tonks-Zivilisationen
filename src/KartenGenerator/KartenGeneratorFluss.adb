@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -42,8 +42,8 @@ package body KartenGeneratorFluss is
    is begin
       
       YAchseEinsSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseEinsSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
@@ -108,7 +108,7 @@ package body KartenGeneratorFluss is
                                                                                             ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
             if
-              KartenWertTesten (EbeneExtern).XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWertTesten (EbeneExtern).XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -149,7 +149,7 @@ package body KartenGeneratorFluss is
                                                                                       ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
             if
-              KartenWert (EbeneExtern).XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert (EbeneExtern).XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                

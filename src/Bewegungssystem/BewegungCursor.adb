@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte;
+with SystemKonstanten, GlobaleTexte, KartenKonstanten;
 
 with Karten, Eingabe, KartePositionPruefen;
 
@@ -74,7 +74,7 @@ package body BewegungCursor is
       case
         KoordinatenPunkt
       is
-         when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
+         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
          when others =>
@@ -88,7 +88,7 @@ package body BewegungCursor is
       case
         KoordinatenPunkt
       is
-         when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
+         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
          when others =>
@@ -102,7 +102,7 @@ package body BewegungCursor is
       case
         KoordinatenPunkt
       is
-         when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
+         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
          when others =>
@@ -152,7 +152,7 @@ package body BewegungCursor is
       case
         KartenWert.XAchse
       is
-         when GlobaleKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerYXKartenWert =>
             return;
 
          when others =>

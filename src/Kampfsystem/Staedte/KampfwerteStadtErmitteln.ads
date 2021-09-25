@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package KampfwerteStadtErmitteln is
 
    function AktuelleVerteidigungStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>
@@ -15,7 +15,7 @@ package KampfwerteStadtErmitteln is
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
    
    function AktuellerAngriffStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with SystemKonstanten, GlobaleKonstanten;
 
 with Auswahl;
 
@@ -115,7 +115,7 @@ package body DiplomatischerZustand is
                return False;
               
             elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = GlobaleKonstanten.JaKonstante
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = SystemKonstanten.JaKonstante
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                             RasseZweiExtern   => GegnerischeRasseExtern,

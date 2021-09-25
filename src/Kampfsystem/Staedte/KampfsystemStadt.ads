@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package KampfsystemStadt is
 
    function KampfsystemStadt
-     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -28,8 +28,8 @@ private
    
    Kampfglück : Float;
    
-   KampfwerteVerteidiger : GlobaleRecords.KampfwerteRecord;
-   KampfwerteAngreifer : GlobaleRecords.KampfwerteRecord;
+   KampfwerteVerteidiger : EinheitStadtRecords.KampfwerteRecord;
+   KampfwerteAngreifer : EinheitStadtRecords.KampfwerteRecord;
    
    type Kampf_Unterschiede_Enum is (Gleich, Stärker, Extrem_Stärker, Schwächer, Extrem_Schwächer);
 
@@ -66,12 +66,12 @@ private
    
    
    function Kampfverlauf
-     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
    
    function Kampf
-     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
 
 end KampfsystemStadt;

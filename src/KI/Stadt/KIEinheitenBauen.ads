@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 with KIRecords;
@@ -8,7 +8,7 @@ with KIRecords;
 package KIEinheitenBauen is
 
    function EinheitenBauen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIRecords.EinheitIDBewertungRecord
      with
        Pre =>
@@ -30,7 +30,7 @@ private
    EinheitBewertet : KIRecords.EinheitIDBewertungRecord;
    
    procedure EinheitBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
      with
        Pre =>
@@ -41,7 +41,7 @@ private
      
    
    function ArbeiterBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -51,7 +51,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function NahkämpferBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -61,7 +61,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function FernkämpferBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -71,7 +71,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function KostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -81,7 +81,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
      
    function GeldKostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -91,7 +91,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function NahrungKostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -101,7 +101,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
      
    function RessourcenKostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -111,11 +111,11 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function EinheitenDurchgehen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIRecords.EinheitIDBewertungRecord;
    
    function SpezielleEinheitBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt;
 

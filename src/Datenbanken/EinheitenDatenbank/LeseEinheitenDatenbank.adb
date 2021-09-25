@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleRecords;
+with GlobaleKonstanten, EinheitStadtRecords;
 
 with EinheitenDatenbank;
 
@@ -255,12 +255,12 @@ package body LeseEinheitenDatenbank is
          return 1;
          
       elsif
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität <= GlobaleRecords.TransporterArray'Last
+        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität <= EinheitStadtRecords.TransporterArray'Last
       then
          return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität;
          
       else
-         return GlobaleRecords.TransporterArray'Last;
+         return EinheitStadtRecords.TransporterArray'Last;
       end if;
       
    end Transportkapazität;

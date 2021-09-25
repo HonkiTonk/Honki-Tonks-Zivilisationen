@@ -10,7 +10,7 @@ with KIVorhandeneAufgaben, KIAufgabeFestlegen, KIAufgabeUmsetzen;
 package body KIAufgabenPlanung is
    
    procedure AufgabeErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       -- Muss für die Schleife weiter unten auf den ersten Wert gesetzt werden.
@@ -36,7 +36,7 @@ package body KIAufgabenPlanung is
    
    
    procedure EinheitSpezifischeAufgabenErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -107,7 +107,7 @@ package body KIAufgabenPlanung is
    
    procedure AufgabeFestlegen
      (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -156,7 +156,7 @@ package body KIAufgabenPlanung is
    
    
    procedure AufgabeUmsetzen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       AufgabeDurchführen := True;

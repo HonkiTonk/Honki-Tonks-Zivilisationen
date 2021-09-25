@@ -10,7 +10,7 @@ with InDerStadtBauen, KarteStadt, BewegungCursor, Eingabe, EinwohnerZuweisenEntf
 package body InDerStadt is
 
    procedure InDerStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       StadtSchleife:

@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, GlobaleRecords, KartenRecords;
+with GlobaleVariablen, GlobaleDatentypen, EinheitStadtRecords, KartenRecords;
 use GlobaleDatentypen;
 
 package KIMindestBewertungKartenfeldErmitteln is
 
    function MindestBewertungKartenfeldStadtBauen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>

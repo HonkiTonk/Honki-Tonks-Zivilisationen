@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package VerbesserungFarm is
    
    function VerbesserungFarm
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean

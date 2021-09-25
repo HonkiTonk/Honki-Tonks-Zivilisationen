@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with SchreibeEinheitenGebaut, SchreibeKarten;
 with LeseKarten, LeseEinheitenGebaut;
@@ -11,7 +11,7 @@ package body VerbesserungWeg is
    
    -- Hier prüfen welcher Weg
    function VerbesserungWeg
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -81,7 +81,7 @@ package body VerbesserungWeg is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                

@@ -7,7 +7,7 @@ with LeseGebaeudeDatenbank, LeseEinheitenDatenbank;
 package body SchreibeStadtGebaut is
 
    procedure ID
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
    is begin
       
@@ -18,7 +18,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Position
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -29,7 +29,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure EinwohnerArbeiter
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinwohnerArbeiterExtern : in Boolean;
       ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld)
    is begin
@@ -75,7 +75,7 @@ package body SchreibeStadtGebaut is
       
       
    procedure Nahrungsmittel
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NahrungsmittelExtern : in GlobaleDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -108,7 +108,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Nahrungsproduktion
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NahrungsproduktionExtern : in GlobaleDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -141,7 +141,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Ressourcen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       RessourcenExtern : in GlobaleDatentypen.KostenLager;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -176,7 +176,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Produktionrate
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ProduktionrateExtern : in GlobaleDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -211,7 +211,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Geldgewinnung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GeldgewinnungExtern : in GlobaleDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -244,7 +244,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure PermanenteKostenPosten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelcherPostenExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum;
       KostenExtern : in GlobaleDatentypen.GesamtePermanenteKosten;
       ÄndernSetzenExtern : in Boolean)
@@ -278,7 +278,7 @@ package body SchreibeStadtGebaut is
    
       
    procedure Forschungsrate
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ForschungsrateExtern : in GlobaleDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -311,7 +311,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Bauprojekt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BauprojektExtern : in Natural)
    is begin
       
@@ -332,7 +332,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Bauzeit
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -370,7 +370,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Korruption
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KorruptionExtern : in GlobaleDatentypen.GesamtproduktionStadt;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -403,7 +403,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure GebäudeVorhanden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID;
       HinzufügenEntfernenExtern : in Boolean)
    is begin
@@ -415,7 +415,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Name
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NameExtern : in Unbounded_Wide_Wide_String)
    is begin
       
@@ -426,7 +426,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure UmgebungBewirtschaftung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
       BelegenEntfernenExtern : in Boolean)
    is begin
@@ -438,7 +438,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure UmgebungGröße
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       UmgebungGrößeExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
       ÄndernSetzenExtern : in Boolean)
    is begin
@@ -471,7 +471,7 @@ package body SchreibeStadtGebaut is
    
       
    procedure Meldungen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelcheMeldungExtern : in GlobaleDatentypen.Stadt_Meldung_Art_Enum;
       MeldungExtern : in GlobaleDatentypen.Stadt_Meldung_Enum)
    is begin
@@ -483,7 +483,7 @@ package body SchreibeStadtGebaut is
       
       
    procedure KIBeschäftigung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BeschäftigungExtern : in KIDatentypen.Stadt_Aufgabe_Enum)
    is begin
       
@@ -494,7 +494,7 @@ package body SchreibeStadtGebaut is
    
    
    procedure Nullsetzung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerStadt;
@@ -504,8 +504,8 @@ package body SchreibeStadtGebaut is
    
    
    procedure GanzerEintrag
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      EintragExtern : in GlobaleRecords.StadtGebautRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      EintragExtern : in EinheitStadtRecords.StadtGebautRecord)
    is begin
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := EintragExtern;

@@ -12,7 +12,7 @@ with KIKriegErmitteln, KIStadtLaufendeBauprojekte;
 package body KIEinheitenBauen is
 
    function EinheitenBauen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
@@ -35,7 +35,7 @@ package body KIEinheitenBauen is
    
    
    function EinheitenDurchgehen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
@@ -74,7 +74,7 @@ package body KIEinheitenBauen is
    
    
    procedure EinheitBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
    is begin
       
@@ -110,7 +110,7 @@ package body KIEinheitenBauen is
    
    
    function SpezielleEinheitBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -148,7 +148,7 @@ package body KIEinheitenBauen is
    
    
    function ArbeiterBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -180,7 +180,7 @@ package body KIEinheitenBauen is
    
    
    function NahkämpferBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -246,7 +246,7 @@ package body KIEinheitenBauen is
    
    
    function FernkämpferBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -302,7 +302,7 @@ package body KIEinheitenBauen is
    
    
    function KostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -317,7 +317,7 @@ package body KIEinheitenBauen is
      
      
    function GeldKostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -348,7 +348,7 @@ package body KIEinheitenBauen is
    
    
    function NahrungKostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -379,7 +379,7 @@ package body KIEinheitenBauen is
      
      
    function RessourcenKostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin

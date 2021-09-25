@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -18,7 +18,7 @@ package VerbesserungWeg is
    
 
    function VerbesserungWeg
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean

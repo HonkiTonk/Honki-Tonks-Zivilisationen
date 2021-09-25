@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, GlobaleKonstanten;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, SystemKonstanten;
 use GlobaleDatentypen;
 
 package BefehleImSpiel is
@@ -12,7 +12,7 @@ package BefehleImSpiel is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch),
          Post =>
-           (Befehle'Result in GlobaleKonstanten.RundeBeendenKonstante .. 5);
+           (Befehle'Result in SystemKonstanten.RundeBeendenKonstante .. 5);
 
 private
 
@@ -28,7 +28,7 @@ private
    
    StadtOderEinheit : Integer;
    
-   StadtSuchenNachNamen : GlobaleRecords.RassePlatznummerRecord;
+   StadtSuchenNachNamen : EinheitStadtRecords.RassePlatznummerRecord;
    
    procedure AuswahlEinheitStadt
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
@@ -56,12 +56,12 @@ private
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
    
    procedure AuswahlEinheitTransporter
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure StadtBetreten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure EinheitSteuern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
 end BefehleImSpiel;

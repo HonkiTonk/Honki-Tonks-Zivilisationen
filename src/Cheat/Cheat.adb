@@ -115,7 +115,7 @@ package body Cheat is
    
    
    procedure KarteInfosEinheiten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Put_Line (Item => "Aktuelle Rasse: " & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image);
@@ -126,7 +126,7 @@ package body Cheat is
       is
          when GlobaleDatentypen.Spieler_KI =>
             BewegungPlanSchleife:
-            for BewegungGeplantSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
+            for BewegungGeplantSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
                       
                case
                  ErsteAnzeige
@@ -223,7 +223,7 @@ package body Cheat is
    
    
    procedure KarteStadtInfos
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);

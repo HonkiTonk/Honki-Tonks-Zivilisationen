@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, KartenRecords;
 use GlobaleDatentypen;
 
 with KIRecords;
@@ -8,7 +8,7 @@ with KIRecords;
 package KIStadt is
 
    procedure KIStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
@@ -19,12 +19,12 @@ private
 
    NotfallEinheit : GlobaleDatentypen.EinheitenIDMitNullWert;
 
-   FremdeEinheit : GlobaleRecords.RassePlatznummerRecord;
+   FremdeEinheit : EinheitStadtRecords.RassePlatznummerRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure NeuesBauprojekt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
@@ -35,7 +35,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
    procedure NotfallEinheitBauen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitIDExtern : in GlobaleDatentypen.EinheitenID)
      with
        Pre =>
@@ -44,12 +44,12 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
    procedure WelcheEinheitArt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
 
 
    function GefahrStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -58,7 +58,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
    function FeindNahe
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
 
 end KIStadt;

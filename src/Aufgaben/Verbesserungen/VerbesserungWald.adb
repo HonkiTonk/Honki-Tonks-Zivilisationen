@@ -8,7 +8,7 @@ with VerbesserungRoden, EinheitenBeschreibungen, AufgabenAllgemein;
 package body VerbesserungWald is
 
    function VerbesserungWald
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean

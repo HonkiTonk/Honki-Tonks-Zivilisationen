@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleVariablen;
+with GlobaleVariablen, KartenKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -24,7 +24,7 @@ package body FelderwerteFestlegen is
             case
               KartenWertEins (KoordinatenExtern.EAchse).XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   null;
                      
                when others =>                  
@@ -58,7 +58,7 @@ package body FelderwerteFestlegen is
             case
               KartenWertZwei (KoordinatenExtern.EAchse).XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>

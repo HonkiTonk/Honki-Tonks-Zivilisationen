@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, GlobaleKonstanten;
+with GlobaleTexte, SystemKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges, LeseKarten;
@@ -88,7 +88,7 @@ package body Handeln is
                GeldVerlangen (RasseExtern             => RasseExtern,
                               KontaktierteRasseExtern => KontaktierteRasseExtern);
                
-            when GlobaleKonstanten.ZurückKonstante =>
+            when SystemKonstanten.ZurückKonstante =>
                return 1;
                
             when others =>

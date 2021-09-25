@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords;
 use GlobaleDatentypen;
 
 package Wachstum is
@@ -15,7 +15,7 @@ private
    WachstumSchrumpfung : Boolean;
    
    procedure WachstumEinwohner
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -23,7 +23,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure WachstumProduktion
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -37,9 +37,9 @@ private
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    procedure EinwohnerÄnderung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure NeuerEinwohner
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
 end Wachstum;

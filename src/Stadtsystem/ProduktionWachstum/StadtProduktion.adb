@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -10,7 +10,7 @@ with KartePositionPruefen, GesamtwerteFeld, Wachstum;
 package body StadtProduktion is
    
    procedure StadtProduktion
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -66,7 +66,7 @@ package body StadtProduktion is
 
 
    procedure StadtProduktionBerechnung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       StadtProduktionNullSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -83,7 +83,7 @@ package body StadtProduktion is
    
    
    procedure FelderProduktionBerechnen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
             
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -97,7 +97,7 @@ package body StadtProduktion is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -136,7 +136,7 @@ package body StadtProduktion is
    
    
    procedure StadtProduktionNullSetzen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
@@ -160,7 +160,7 @@ package body StadtProduktion is
    
    
    procedure WeitereNahrungsproduktionÄnderungen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
@@ -195,7 +195,7 @@ package body StadtProduktion is
 
 
    procedure WeitereProduktionrateÄnderungen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -234,7 +234,7 @@ package body StadtProduktion is
 
 
    procedure WeitereGeldgewinnungÄnderungen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -285,7 +285,7 @@ package body StadtProduktion is
 
 
    procedure WeitereForschungsrateÄnderungen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
 
       case

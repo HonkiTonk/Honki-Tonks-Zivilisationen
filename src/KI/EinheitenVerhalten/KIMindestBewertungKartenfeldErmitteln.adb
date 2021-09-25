@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with KIKonstanten;
 
@@ -12,7 +12,7 @@ package body KIMindestBewertungKartenfeldErmitteln is
 
    -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
    function MindestBewertungKartenfeldStadtBauen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -29,7 +29,7 @@ package body KIMindestBewertungKartenfeldErmitteln is
                                                                            ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                      
                if
-                 KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+                 KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
                then
                   null;
                      

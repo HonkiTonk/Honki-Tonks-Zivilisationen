@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, GlobaleKonstanten;
+with GlobaleTexte, GlobaleKonstanten, SystemKonstanten;
 
 with Anzeige, Auswahl;
 
@@ -99,7 +99,7 @@ package body EinheitenBeschreibungen is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => WelcheAuswahlExtern)
       is
-         when GlobaleKonstanten.JaKonstante =>
+         when SystemKonstanten.JaKonstante =>
             return True;
             
          when others =>

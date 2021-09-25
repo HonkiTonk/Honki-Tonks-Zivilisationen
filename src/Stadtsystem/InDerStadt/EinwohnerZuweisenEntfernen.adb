@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with LeseKarten, LeseStadtGebaut, SchreibeStadtGebaut;
 
@@ -9,7 +9,7 @@ with Karten, KartePositionPruefen;
 package body EinwohnerZuweisenEntfernen is
 
    procedure EinwohnerZuweisenEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -48,7 +48,7 @@ package body EinwohnerZuweisenEntfernen is
 
 
    procedure EinwohnerBelegungÄndern
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -68,7 +68,7 @@ package body EinwohnerZuweisenEntfernen is
    
    
    procedure EinwohnerEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -84,14 +84,14 @@ package body EinwohnerZuweisenEntfernen is
    
    
    procedure EinwohnerZuweisen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                   ÄnderungExtern    => (0, RelativeCursorPositionY, RelativeCursorPositionX));
          
       if
-        KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+        KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
       then
          null;
                

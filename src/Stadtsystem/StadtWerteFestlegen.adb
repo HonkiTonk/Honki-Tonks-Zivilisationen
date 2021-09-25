@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with SchreibeKarten, SchreibeStadtGebaut;
 with LeseKarten;
@@ -33,7 +33,7 @@ package body StadtWerteFestlegen is
    
 
    procedure StadtUmgebungGrößeFestlegen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
             
       GrößeAlt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -50,7 +50,7 @@ package body StadtWerteFestlegen is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -114,7 +114,7 @@ package body StadtWerteFestlegen is
    
    
    procedure NeueUmgebungsgrößePrüfen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -145,7 +145,7 @@ package body StadtWerteFestlegen is
 
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsOderSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -192,7 +192,7 @@ package body StadtWerteFestlegen is
    
    procedure UmgebungFestlegen
      (ZuwachsOderSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -207,7 +207,7 @@ package body StadtWerteFestlegen is
                                                                         ÄnderungExtern    => (0, YPositionSchleifenwert, XPositionSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -248,7 +248,7 @@ package body StadtWerteFestlegen is
    
    
    function FeldBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
@@ -272,7 +272,7 @@ package body StadtWerteFestlegen is
    
    
    function NahrungBewertung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
@@ -313,7 +313,7 @@ package body StadtWerteFestlegen is
    
    
    function ProduktionBewertung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
@@ -354,7 +354,7 @@ package body StadtWerteFestlegen is
 
 
    function GeldBewertung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
@@ -395,7 +395,7 @@ package body StadtWerteFestlegen is
    
    
    function WissenBewertung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
@@ -436,7 +436,7 @@ package body StadtWerteFestlegen is
    
    
    procedure ArbeiterBelegen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       YAchseSchleife:
@@ -470,7 +470,7 @@ package body StadtWerteFestlegen is
    
    
    procedure ArbeiterEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       YAchseSchleife:
@@ -504,7 +504,7 @@ package body StadtWerteFestlegen is
    
    
    procedure ArbeiterBelegenEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BelegenEntfernenExtern : in Boolean;
       ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld)
    is begin
@@ -530,7 +530,7 @@ package body StadtWerteFestlegen is
    
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       GebäudeSchleife:

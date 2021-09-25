@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with LeseStadtGebaut;
 
@@ -21,7 +21,7 @@ package body KIStadtSuchen is
         GefundeneStadt
       is
          when 0 =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
             
          when others =>
             return LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, GefundeneStadt));
@@ -103,7 +103,7 @@ package body KIStadtSuchen is
          
       end loop StadtSchleife;
       
-      return GlobaleKonstanten.LeerKartenPosition;
+      return KartenKonstanten.LeerKartenPosition;
       
    end UnbewachteStadtSuchen;
 

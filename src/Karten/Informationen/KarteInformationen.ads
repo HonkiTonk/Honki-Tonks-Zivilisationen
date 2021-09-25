@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords;
+use GlobaleDatentypen;
 
 package KarteInformationen is
 
@@ -15,12 +15,12 @@ private
    
    Sichtbar : Boolean;
    
-   EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
-   StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
+   EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
+   StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    
    procedure InformationenStadt
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

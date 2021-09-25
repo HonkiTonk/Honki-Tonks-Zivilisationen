@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleRecords;
+with GlobaleKonstanten, EinheitStadtRecords;
 
 with LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -129,7 +129,7 @@ package body NaechstesObjekt is
          
          else
             MeldungSchleife:
-            for MeldungSchleifenwert in GlobaleRecords.StadtMeldungenArray'Range loop
+            for MeldungSchleifenwert in EinheitStadtRecords.StadtMeldungenArray'Range loop
                
                case
                  LeseStadtGebaut.Meldungen (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)),
@@ -187,7 +187,7 @@ package body NaechstesObjekt is
          
          else
             MeldungSchleife:
-            for MeldungSchleifenwert in GlobaleRecords.EinheitMeldungenArray'Range loop
+            for MeldungSchleifenwert in EinheitStadtRecords.EinheitMeldungenArray'Range loop
                
                case
                  LeseEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)),

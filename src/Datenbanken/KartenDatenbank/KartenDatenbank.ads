@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleDatentypen, KartenKonstanten;
 use GlobaleDatentypen;
 
 with DatenbankRecords;
@@ -20,7 +20,7 @@ private
    KartenListeStandard : constant KartenListeArray :=
      (
       -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-      GlobaleDatentypen.Leer => GlobaleKonstanten.LeerKartenListe,
+      GlobaleDatentypen.Leer => KartenKonstanten.LeerKartenListe,
                                       
       -- Feld
       -- Normal

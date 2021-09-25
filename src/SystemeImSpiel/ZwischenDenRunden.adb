@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleKonstanten;
+with GlobaleDatentypen, GlobaleVariablen, SystemKonstanten;
 use GlobaleDatentypen;
 
 with SchreibeWichtiges;
@@ -70,7 +70,7 @@ package body ZwischenDenRunden is
                null;
             
             elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = GlobaleKonstanten.JaKonstante
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = SystemKonstanten.JaKonstante
             then
                GlobaleVariablen.WeiterSpielen := True;
                                  

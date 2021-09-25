@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 -- with Ada.Wide_Wide_Text_IO;
 -- use Ada.Wide_Wide_Text_IO;
 
-with GlobaleKonstanten, GlobaleTexte;
+with SystemKonstanten, GlobaleTexte;
 
 with Eingabe, Auswahl, Anzeige, SchreibenTastatur;
 
@@ -25,13 +25,13 @@ package body OptionenSteuerung is
          case
            AuswahlWert
          is
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante | GlobaleKonstanten.ZurückKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante | SystemKonstanten.ZurückKonstante =>
                return AuswahlWert;
                
-            when GlobaleKonstanten.SpeichernKonstante =>
+            when SystemKonstanten.SpeichernKonstante =>
                SchreibenTastatur.TastenbelegungSchreiben;
                
-            when GlobaleKonstanten.WiederherstellenKonstante =>
+            when SystemKonstanten.WiederherstellenKonstante =>
                Eingabe.StandardTastenbelegungLaden;
                SchreibenTastatur.TastenbelegungSchreiben;
                      

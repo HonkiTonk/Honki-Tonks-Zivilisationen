@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords;
 use GlobaleDatentypen, KartenRecords;
 
 with Karten;
@@ -20,7 +20,7 @@ package TransporterSuchen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function EinheitAufTransporterSuchen
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
@@ -30,7 +30,7 @@ package TransporterSuchen is
             TransporterExtern.Platznummer > 0);
 
    function HatTransporterLadung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>

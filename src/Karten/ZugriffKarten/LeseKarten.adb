@@ -177,7 +177,7 @@ package body LeseKarten is
    
    
    function BestimmteStadtBelegtGrund
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin

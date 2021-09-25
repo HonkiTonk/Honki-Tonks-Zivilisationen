@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with Karten;
 
@@ -166,7 +166,7 @@ package body KartePositionBerechnungen is
          end if;
 
          if
-           KoordinatenExtern.YAchse + ÄnderungExtern.YAchse = GlobaleKonstanten.LeerYXKartenWert
+           KoordinatenExtern.YAchse + ÄnderungExtern.YAchse = KartenKonstanten.LeerYXKartenWert
          then
             return (0, 1, PolXAchse (KoordinatenExtern.EAchse));
 
@@ -202,7 +202,7 @@ package body KartePositionBerechnungen is
       end if;
 
       if
-        KoordinatenExtern.YAchse + ÄnderungExtern.YAchse = GlobaleKonstanten.LeerYXKartenWert
+        KoordinatenExtern.YAchse + ÄnderungExtern.YAchse = KartenKonstanten.LeerYXKartenWert
       then
          return (0, 1, KoordinatenExtern.XAchse);
 
@@ -233,7 +233,7 @@ package body KartePositionBerechnungen is
          end if;
 
          if
-           KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = GlobaleKonstanten.LeerYXKartenWert
+           KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = KartenKonstanten.LeerYXKartenWert
          then
             return (0, PolYAchse (KoordinatenExtern.EAchse), 1);
 
@@ -269,7 +269,7 @@ package body KartePositionBerechnungen is
       end if;
 
       if
-        KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = GlobaleKonstanten.LeerYXKartenWert
+        KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = KartenKonstanten.LeerYXKartenWert
       then
          return (0, KoordinatenExtern.YAchse, 1);
 

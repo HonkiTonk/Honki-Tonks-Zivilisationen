@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -9,7 +9,7 @@ package KIBewegungAllgemein is
    
    function FeldBetreten
      (FeldPositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.LoopRangeMinusEinsZuEins
      with
        Pre =>
@@ -25,7 +25,7 @@ private
    BlockierendeStadt : GlobaleDatentypen.Rassen_Enum;
    
    function FeldAngreifen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      return GlobaleDatentypen.LoopRangeMinusEinsZuEins;
 
 end KIBewegungAllgemein;

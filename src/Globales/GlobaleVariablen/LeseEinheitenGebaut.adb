@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with LeseEinheitenDatenbank, Karten;
 
 package body LeseEinheitenGebaut is
 
    function ID
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.EinheitenIDMitNullWert
    is begin
       
@@ -18,7 +18,7 @@ package body LeseEinheitenGebaut is
   
    
    function Position
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -27,7 +27,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := GlobaleKonstanten.LeerKartenPosition;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := KartenKonstanten.LeerKartenPosition;
 
       else
          null;
@@ -40,7 +40,7 @@ package body LeseEinheitenGebaut is
    
    
    function Heimatstadt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -51,7 +51,7 @@ package body LeseEinheitenGebaut is
    
       
    function Lebenspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -75,7 +75,7 @@ package body LeseEinheitenGebaut is
    
    
    function Bewegungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.BewegungFloat
    is begin
       
@@ -95,7 +95,7 @@ package body LeseEinheitenGebaut is
    
    
    function Erfahrungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -119,7 +119,7 @@ package body LeseEinheitenGebaut is
    
    
    function Rang
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -142,7 +142,7 @@ package body LeseEinheitenGebaut is
    
    
    function Beschäftigung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.Tastenbelegung_Enum
    is begin
       
@@ -164,7 +164,7 @@ package body LeseEinheitenGebaut is
    
    
    function BeschäftigungNachfolger
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.Tastenbelegung_Enum
    is begin
       
@@ -186,7 +186,7 @@ package body LeseEinheitenGebaut is
    
       
    function Beschäftigungszeit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -197,7 +197,7 @@ package body LeseEinheitenGebaut is
    
    
    function BeschäftigungszeitNachfolger
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -208,7 +208,7 @@ package body LeseEinheitenGebaut is
    
       
    function KIZielKoordinaten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -217,7 +217,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := GlobaleKonstanten.LeerKartenPosition;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := KartenKonstanten.LeerKartenPosition;
 
       else
          null;
@@ -230,7 +230,7 @@ package body LeseEinheitenGebaut is
    
    
    function KIBeschäftigt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIDatentypen.Einheit_Aufgabe_Enum
    is begin
       
@@ -241,7 +241,7 @@ package body LeseEinheitenGebaut is
    
    
    function KIBewegungPlan
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PlanschrittExtern : in GlobaleDatentypen.Stadtfeld)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -251,7 +251,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern) := GlobaleKonstanten.LeerKartenPosition;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern) := KartenKonstanten.LeerKartenPosition;
 
       else
          null;
@@ -264,7 +264,7 @@ package body LeseEinheitenGebaut is
    
       
    function Transportiert
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PlatzExtern : in GlobaleDatentypen.MaximaleEinheiten)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
@@ -276,7 +276,7 @@ package body LeseEinheitenGebaut is
    
    
    function WirdTransportiert
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -287,7 +287,7 @@ package body LeseEinheitenGebaut is
    
    
    function Meldungen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelcheMeldungExtern : in GlobaleDatentypen.Einheit_Meldung_Art_Enum)
       return GlobaleDatentypen.Einheit_Meldung_Enum
    is begin
@@ -299,8 +299,8 @@ package body LeseEinheitenGebaut is
    
    
    function GanzerEintrag
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.EinheitenGebautRecord
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return EinheitStadtRecords.EinheitenGebautRecord
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer);

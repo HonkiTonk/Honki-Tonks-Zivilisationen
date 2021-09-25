@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleKonstanten;
+with GlobaleVariablen, GlobaleKonstanten, KartenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseStadtGebaut, LeseKarten;
@@ -45,7 +45,7 @@ package body EinheitVerschieben is
    
    
    procedure EinheitenErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -58,7 +58,7 @@ package body EinheitVerschieben is
                                                                         ÄnderungExtern   => (LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern).EAchse, YAchseSchleifenwert, XAchseSchleifenwert));
                      
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -94,7 +94,7 @@ package body EinheitVerschieben is
 
    procedure EinheitVerschieben
      (RasseLandExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       UmgebungPrüfen := GlobaleDatentypen.Sichtweite'First;
@@ -111,7 +111,7 @@ package body EinheitVerschieben is
                                                                                       ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
                if
-                 KartenWertVerschieben.XAchse = GlobaleKonstanten.LeerYXKartenWert
+                 KartenWertVerschieben.XAchse = KartenKonstanten.LeerYXKartenWert
                then
                   null;
                

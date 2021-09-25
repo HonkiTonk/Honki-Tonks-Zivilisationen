@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, GlobaleKonstanten;
+with GlobaleTexte, SystemKonstanten, GlobaleKonstanten, KartenKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -35,7 +35,7 @@ package body SpielEinstellungenRasseSpieler is
                if
                  SpielerAnzahl in 1 .. 18
                then
-                  return GlobaleKonstanten.AuswahlBelegung;
+                  return SystemKonstanten.AuswahlBelegung;
                   
                else
                   null;
@@ -43,12 +43,12 @@ package body SpielEinstellungenRasseSpieler is
 
             when 2 =>
                SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.ZufälligeSpieleranzahl;
-               return GlobaleKonstanten.AuswahlBelegung;
+               return SystemKonstanten.AuswahlBelegung;
                
-            when GlobaleKonstanten.ZurückKonstante =>
-               return GlobaleKonstanten.AuswahlKartenressourcen;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartenressourcen;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return SpieleranzahlAuswahl;
                
             when others =>
@@ -78,10 +78,10 @@ package body SpielEinstellungenRasseSpieler is
          case
            SpielerartAuswahl
          is
-            when GlobaleKonstanten.ZurückKonstante =>
-               return GlobaleKonstanten.AuswahlSpieleranzahl;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlSpieleranzahl;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return SpielerartAuswahl;
                
             when others =>
@@ -99,7 +99,7 @@ package body SpielEinstellungenRasseSpieler is
             is
                when GlobaleDatentypen.Leer =>
                   if
-                    Auswahl.AuswahlJaNein (FrageZeileExtern => 21) = GlobaleKonstanten.JaKonstante
+                    Auswahl.AuswahlJaNein (FrageZeileExtern => 21) = SystemKonstanten.JaKonstante
                   then
                      GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl)) := GlobaleDatentypen.Spieler_Mensch;
                      Spieler := Spieler + 1;
@@ -118,7 +118,7 @@ package body SpielEinstellungenRasseSpieler is
          
       end loop SpielerSchleife;
 
-      return GlobaleKonstanten.AuswahlSchwierigkeitsgrad;
+      return SystemKonstanten.AuswahlSchwierigkeitsgrad;
 
    end SpielerbelegungWählen;
    
@@ -155,7 +155,7 @@ package body SpielEinstellungenRasseSpieler is
                   case
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 6)
                   is
-                     when GlobaleKonstanten.JaKonstante =>
+                     when SystemKonstanten.JaKonstante =>
                         return RassenAuswahl;
                      
                      when others =>
@@ -166,7 +166,7 @@ package body SpielEinstellungenRasseSpieler is
                   case
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 32)
                   is
-                     when GlobaleKonstanten.JaKonstante =>
+                     when SystemKonstanten.JaKonstante =>
                         GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (RassenAuswahl)) := GlobaleDatentypen.Leer;
                         Spieler := Spieler - 1;
                         return RasseEntfernen;
@@ -179,7 +179,7 @@ package body SpielEinstellungenRasseSpieler is
             when 19 =>
                return GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (ZufallGeneratorenSpieleinstellungen.ZufälligeRasse);
 
-            when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return RassenAuswahl;
                
             when others =>
@@ -291,7 +291,7 @@ package body SpielEinstellungenRasseSpieler is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                   
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                      

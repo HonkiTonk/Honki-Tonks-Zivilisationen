@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 package GebaeudeRichtigeUmgebung is
 
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
       return Boolean
      with
@@ -20,7 +20,7 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function UmgebungPrüfen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
       return Boolean;
 

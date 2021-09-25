@@ -40,14 +40,17 @@ package body TransporterSuchen is
    
    
    function EinheitAufTransporterSuchen
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+      for 
+        TransporterPlatzSchleifenwert
+      in
+        EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
@@ -69,14 +72,14 @@ package body TransporterSuchen is
 
 
    function HatTransporterLadung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                IDExtern    =>
-                                                                                                                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+      for TransporterPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                     IDExtern    =>
+                                                                                                                                       LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

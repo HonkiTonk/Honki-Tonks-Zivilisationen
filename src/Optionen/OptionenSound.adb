@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with SystemKonstanten;
 
 package body OptionenSound is
 
@@ -8,7 +8,7 @@ package body OptionenSound is
      return Integer
    is begin
       
-      return GlobaleKonstanten.ZurückKonstante;
+      return SystemKonstanten.ZurückKonstante;
       
    end OptionenSound;
 

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with KIKonstanten;
 
@@ -12,7 +12,7 @@ package body KISonstigesSuchen is
 
    function EigenesFeldSuchen
      (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -25,7 +25,7 @@ package body KISonstigesSuchen is
          Ziel := ZielSuchen (AktuellePositionExtern   => AktuellePositionExtern,
                              EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         exit FeldSuchenSchleife when Ziel.XAchse /= GlobaleKonstanten.LeerYXKartenWert;
+         exit FeldSuchenSchleife when Ziel.XAchse /= KartenKonstanten.LeerYXKartenWert;
          exit FeldSuchenSchleife when Bereich = GlobaleDatentypen.Sichtweite'Last;
          
          Bereich := Bereich + 1;
@@ -41,7 +41,7 @@ package body KISonstigesSuchen is
    
    function ZielSuchen
      (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -54,7 +54,7 @@ package body KISonstigesSuchen is
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                

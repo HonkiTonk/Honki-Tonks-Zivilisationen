@@ -7,7 +7,7 @@ with GesamtwerteFeld;
 package body KampfwerteStadtErmitteln is
 
    function AktuelleVerteidigungStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -42,7 +42,7 @@ package body KampfwerteStadtErmitteln is
    
    
    function AktuellerAngriffStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       

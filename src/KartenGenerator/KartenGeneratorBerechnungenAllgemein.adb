@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with LeseKarten;
 
@@ -26,7 +26,7 @@ package body KartenGeneratorBerechnungenAllgemein is
                                                                         ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert));
                
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                -- Prüfung für die Änderung (0, 0) nicht benötigt, da das Feld immer mit Flachland belegt sein sollte.
                null;

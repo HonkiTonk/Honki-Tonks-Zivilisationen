@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte, SystemKonstanten;
 
 with Auswahl, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Wuerdigung;
 
@@ -20,16 +20,16 @@ package body Hauptmenue is
                             LetzteZeileExtern => 7)
          is
             -- Start
-            when GlobaleKonstanten.StartNormalKonstante =>
+            when SystemKonstanten.StartNormalKonstante =>
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungenAuswahl;
 
                if
-                 RückgabeKampagne = GlobaleKonstanten.HauptmenüKonstante
+                 RückgabeKampagne = SystemKonstanten.HauptmenüKonstante
                then
                   AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
                elsif
-                 RückgabeKampagne = GlobaleKonstanten.SpielBeendenKonstante
+                 RückgabeKampagne = SystemKonstanten.SpielBeendenKonstante
                then
                   exit HauptmenüSchleife;
 
@@ -38,7 +38,7 @@ package body Hauptmenue is
                end if;
 
                -- Laden
-            when GlobaleKonstanten.LadenKonstante =>
+            when SystemKonstanten.LadenKonstante =>
                if
                  Laden.LadenNeu = True
                then
@@ -46,10 +46,10 @@ package body Hauptmenue is
                   case
                     RückgabeKampagne
                   is
-                     when GlobaleKonstanten.HauptmenüKonstante =>
+                     when SystemKonstanten.HauptmenüKonstante =>
                         AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when GlobaleKonstanten.SpielBeendenKonstante =>
+                     when SystemKonstanten.SpielBeendenKonstante =>
                         exit HauptmenüSchleife;
 
                      when others =>
@@ -61,10 +61,10 @@ package body Hauptmenue is
                end if;
 
                -- Optionen
-            when GlobaleKonstanten.OptionenKonstante =>
+            when SystemKonstanten.OptionenKonstante =>
                RückgabeOptionen := Optionen.Optionen;
                if
-                 RückgabeOptionen = GlobaleKonstanten.SpielBeendenKonstante
+                 RückgabeOptionen = SystemKonstanten.SpielBeendenKonstante
                then
                   exit HauptmenüSchleife;
 
@@ -73,15 +73,15 @@ package body Hauptmenue is
                end if;
 
                -- Informationen
-            when GlobaleKonstanten.InformationenKonstante =>
+            when SystemKonstanten.InformationenKonstante =>
                Informationen.Informationen;
 
                -- Wuerdigung
-            when GlobaleKonstanten.WürdigungenKonstante =>
+            when SystemKonstanten.WürdigungenKonstante =>
                Wuerdigung.Wuerdigung;
 
                -- Beenden
-            when GlobaleKonstanten.SpielBeendenKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante =>
                exit HauptmenüSchleife;
 
             when others =>

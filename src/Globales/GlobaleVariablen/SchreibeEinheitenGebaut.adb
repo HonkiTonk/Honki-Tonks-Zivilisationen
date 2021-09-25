@@ -8,7 +8,7 @@ with LeseEinheitenDatenbank;
 package body SchreibeEinheitenGebaut is
 
    procedure ID
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
    is begin
       
@@ -19,7 +19,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Position
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -30,7 +30,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Heimatstadt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       HeimatstadtExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert)
    is begin
       
@@ -41,7 +41,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Lebenspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LebenspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
@@ -98,7 +98,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Bewegungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BewegungspunkteExtern : in GlobaleDatentypen.BewegungFloat;
       RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
@@ -141,7 +141,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Erfahrungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ErfahrungspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       AddierenSetzenExtern : in Boolean)
    is begin
@@ -175,7 +175,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Rang
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -195,7 +195,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Beschäftigung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BeschäftigungExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
    is begin
       
@@ -206,7 +206,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure BeschäftigungNachfolger
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BeschäftigungExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
    is begin
       
@@ -217,7 +217,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Beschäftigungszeit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
@@ -256,7 +256,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure BeschäftigungszeitNachfolger
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
@@ -296,7 +296,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure KIZielKoordinaten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -307,7 +307,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure KIBeschäftigt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
    is begin
       
@@ -318,7 +318,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure KIBewegungPlan
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
    is begin
@@ -330,7 +330,7 @@ package body SchreibeEinheitenGebaut is
    
       
    procedure Transportiert
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       LadungspositionExtern : in GlobaleDatentypen.MaximaleStädte)
    is begin
@@ -342,7 +342,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure WirdTransportiert
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       TransporterExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
@@ -353,7 +353,7 @@ package body SchreibeEinheitenGebaut is
    
       
    procedure Meldungen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       MeldungExtern : in GlobaleDatentypen.Einheit_Meldung_Enum;
       WelcheMeldungExtern : in GlobaleDatentypen.Einheit_Meldung_Art_Enum)
    is begin
@@ -365,7 +365,7 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure Nullsetzung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -402,8 +402,8 @@ package body SchreibeEinheitenGebaut is
    
    
    procedure GanzerEintrag
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      EintragExtern : in GlobaleRecords.EinheitenGebautRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      EintragExtern : in EinheitStadtRecords.EinheitenGebautRecord)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := EintragExtern;

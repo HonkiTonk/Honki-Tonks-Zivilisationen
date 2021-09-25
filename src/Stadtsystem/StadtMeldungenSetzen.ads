@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords;
 use GlobaleDatentypen;
 
 package StadtMeldungenSetzen is
@@ -8,7 +8,7 @@ package StadtMeldungenSetzen is
    procedure StadtMeldungenSetzenRundenEnde;
    
    procedure StadtMeldungSetzenEreignis
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EreignisExtern : in GlobaleDatentypen.Stadt_Meldungen_Verwendet_Enum)
      with
        Pre =>

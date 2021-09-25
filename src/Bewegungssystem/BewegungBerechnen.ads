@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
+with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package BewegungBerechnen is
 
    procedure BewegungEinheitenBerechnung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -41,7 +41,7 @@ private
    
    procedure NachBewegung
      (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -56,7 +56,7 @@ private
    
    function AbzugDurchBewegung
      (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.BewegungFloat
      with
        Pre =>
@@ -69,7 +69,7 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    function StraßeUndFlussPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Bewegungsbonuse_Enum
      with

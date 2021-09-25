@@ -12,7 +12,7 @@ with EinheitenBeschreibungen, Anzeige;
 package body EinheitBauen is
 
    procedure AnzeigeEinheiten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       EinheitenBeschreibungen.BeschreibungLang (IDExtern => GlobaleDatentypen.EinheitenIDMitNullWert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag));
@@ -54,7 +54,7 @@ package body EinheitBauen is
    
    
    procedure BauzeitEinheit
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -165,7 +165,7 @@ package body EinheitBauen is
       PermanenteEinheitenWerte := False;
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in EinheitStadtRecords.PermanenteKostenArray'Range loop
          
          if
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,

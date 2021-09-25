@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords;
-
 with Sf.Window.VideoMode, Sf.Window.Cursor;
+
+with NutzerRecords;
 
 package GrafikEinstellungen is
    
@@ -14,12 +14,12 @@ package GrafikEinstellungen is
    
 private
    
-   FensterStandardEinstellungen : constant GlobaleRecords.FensterRecord := (
-                                                                            Breite    => 640,
-                                                                            Höhe      => 480,
-                                                                            Farbtiefe => 32,
-                                                                            Bildrate  => 30,
-                                                                            Zeiger    => Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorHand)
-                                                                           );
+   FensterStandardEinstellungen : constant NutzerRecords.FensterRecord := (
+                                                                           Breite    => 640,
+                                                                           Höhe      => 480,
+                                                                           Farbtiefe => 32,
+                                                                           Bildrate  => 30,
+                                                                           Zeiger    => Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorHand)
+                                                                          );
 
 end GrafikEinstellungen;

@@ -7,44 +7,46 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (29.09.2021):
+   -- Version 0.00.89 => 0.00.8 (29.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (28.09.2021):
+   -- Version 0.00.89 => 0.00.89 (28.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (27.09.2021):
+   -- Version 0.00.89 => 0.00.89 (27.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (26.09.2021):
+   -- Version 0.00.8890 => 0.00.89 (26.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8880 => 0.00.8 (25.09.2021):
+   -- Version 0.00.8880 => 0.00.8890 (25.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben der dazu führte dass die Einheiten auch als Städte gespeichert/geladen wurden.
+   -- GlobaleRecords vollständig aufgeteilt.
+   -- Angefangen GlobaleKonstanten aufzuteilen.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
    -- Version 0.00.8870 => 0.00.8880 (24.09.2021):
    
-   -- Eingabe größtenteils auf die SFML umgestellt, funktioniert aktuell nur sehr bedingt.
+   -- Eingabe größtenteils auf die SFML umgestellt, funktioniert aktuell nur bedingt.
    -- Angefangen GlobaleRecords aufzuteilen.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    

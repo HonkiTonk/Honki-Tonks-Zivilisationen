@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleRecords, GlobaleKonstanten, GlobaleDatentypen, KartenRecords;
+with GlobaleVariablen, GlobaleKonstanten, GlobaleDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten;
 
 with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein, Karte;
 
@@ -138,8 +138,8 @@ package body Speichern is
       GrenzenRassenSchleife:
       for GrenzenRassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         GlobaleRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                             GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
+         WichtigeRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernNeu),
+                                              GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
          
       end loop GrenzenRassenSchleife;
       
@@ -163,8 +163,8 @@ package body Speichern is
                EinheitenSchleife:
                for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
                   
-                  GlobaleRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                              GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
+                  EinheitStadtRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                                   GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
             
                end loop EinheitenSchleife;
          end case;
@@ -191,8 +191,8 @@ package body Speichern is
                StadtSchleife:
                for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
-                  GlobaleRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                              GlobaleVariablen.EinheitenGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
+                  EinheitStadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                               GlobaleVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
             
                end loop StadtSchleife;
          end case;
@@ -216,8 +216,8 @@ package body Speichern is
                null;
                
             when others =>
-               GlobaleRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                     GlobaleVariablen.Wichtiges (RasseWichtigesSchleifenwert));
+               WichtigeRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                      GlobaleVariablen.Wichtiges (RasseWichtigesSchleifenwert));
          end case;
          
       end loop WichtigesSchleife;
@@ -249,8 +249,8 @@ package body Speichern is
                         null;
                      
                      when others =>
-                        GlobaleRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                               GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                        WichtigeRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                                GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;
@@ -275,8 +275,8 @@ package body Speichern is
                null;
                
             when others =>
-               GlobaleRecords.CursorRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                  GlobaleVariablen.CursorImSpiel (RasseCursorSchleifenwert));
+               KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                 GlobaleVariablen.CursorImSpiel (RasseCursorSchleifenwert));
          end case;
          
       end loop CursorSchleife;
@@ -285,9 +285,9 @@ package body Speichern is
    
    
    
-     function SpielstandNameFestlegen
-       (AutospeichernExtern : in Boolean)
-      return Boolean
+   function SpielstandNameFestlegen
+     (AutospeichernExtern : in Boolean)
+        return Boolean
    is begin
       
       case
@@ -321,7 +321,7 @@ package body Speichern is
          is
             when True =>
                if
-                 Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = GlobaleKonstanten.JaKonstante
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = SystemKonstanten.JaKonstante
                then
                   null;
                      

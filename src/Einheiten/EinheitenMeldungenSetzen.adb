@@ -31,7 +31,7 @@ package body EinheitenMeldungenSetzen is
    
    
    procedure EinheitMeldungSetzenEreignis
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EreignisExtern : in GlobaleDatentypen.Einheit_Meldung_Verwendet_Enum)
    is begin
       

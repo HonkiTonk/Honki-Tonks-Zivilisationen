@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with KIDatentypen;
 use KIDatentypen;
@@ -14,7 +14,7 @@ with KIEinheitenBauen, KIGebaeudeBauen;
 package body KIStadt is
 
    procedure KIStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -47,7 +47,7 @@ package body KIStadt is
    
    
    procedure NeuesBauprojekt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
@@ -114,7 +114,7 @@ package body KIStadt is
    
    
    function GefahrStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -148,7 +148,7 @@ package body KIStadt is
    
    
    function FeindNahe
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      return Boolean
    is begin
       
@@ -163,7 +163,7 @@ package body KIStadt is
             case
               KartenWert.XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>
@@ -205,7 +205,7 @@ package body KIStadt is
    
    
    procedure WelcheEinheitArt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       EinheitenSchleife:
@@ -242,7 +242,7 @@ package body KIStadt is
    
    procedure NotfallEinheitBauen
    -- Stadt mit übergeben und später die Baukosten noch mit in die Bewertung einfließen lassen.
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitIDExtern : in GlobaleDatentypen.EinheitenID)
    is begin
       

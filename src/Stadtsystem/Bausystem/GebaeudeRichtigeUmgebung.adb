@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
@@ -9,7 +9,7 @@ with KartePositionPruefen;
 package body GebaeudeRichtigeUmgebung is
 
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
       return Boolean
    is begin
@@ -31,7 +31,7 @@ package body GebaeudeRichtigeUmgebung is
    
    
    function UmgebungPrüfen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
      return Boolean
    is begin
@@ -45,7 +45,7 @@ package body GebaeudeRichtigeUmgebung is
                                                                         ÄnderungExtern    => (0, YAchseGebäudeSchleifenwert, XAchseGebäudeSchleifenwert));
                
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                         

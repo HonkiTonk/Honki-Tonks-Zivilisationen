@@ -52,7 +52,7 @@ package body GebaeudeAllgemein is
    
 
    procedure GebäudeProduktionBeenden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
    is begin
       
@@ -74,7 +74,7 @@ package body GebaeudeAllgemein is
    
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
    is begin
       
@@ -95,14 +95,14 @@ package body GebaeudeAllgemein is
    
 
    procedure PermanenteKostenDurchGebäudeÄndern
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID;
       -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
       VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in EinheitStadtRecords.PermanenteKostenArray'Range loop
          
          SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                      WelcherPostenExtern    => PermanenteKostenSchleifenwert,
@@ -122,7 +122,7 @@ package body GebaeudeAllgemein is
    
    -- Hier vielleicht noch Prüfungen einbauen um zu testen ob das Gebäude für diese Rasse überhaupt existiert?
    function GebäudeAnforderungenErfüllt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return Boolean
    is begin

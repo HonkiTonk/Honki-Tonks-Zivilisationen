@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -107,7 +107,7 @@ package LeseKarten is
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function BestimmteStadtBelegtGrund
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with

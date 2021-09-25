@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleKonstanten, GlobaleRecords;
+with GlobaleDatentypen, GlobaleKonstanten, EinheitStadtRecords;
 
 with DatenbankRecords;
 
@@ -1041,7 +1041,7 @@ package EinheitenEkropa is
          Verteidigung            => 100,
          KannTransportieren      => 10,
          KannTransportiertWerden => 0,
-         Transportkapazität      => GlobaleRecords.TransporterArray'Last),
+         Transportkapazität      => EinheitStadtRecords.TransporterArray'Last),
                                                                
       others => GlobaleKonstanten.LeerEinheitListe
      );

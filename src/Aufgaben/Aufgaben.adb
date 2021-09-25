@@ -10,7 +10,7 @@ with EinheitenBeschreibungen, EinheitenErzeugenEntfernen, EinheitenModifizieren,
 package body Aufgaben is
    
    function VerbesserungTesten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -33,7 +33,7 @@ package body Aufgaben is
    
    
    function VerbesserungAnlegen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -77,7 +77,7 @@ package body Aufgaben is
    
    
    function AllgemeinerAnfangstest
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -132,7 +132,7 @@ package body Aufgaben is
 
 
    function VerbesserungFestgelegt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -212,7 +212,7 @@ package body Aufgaben is
    
    
    function EinheitHeilen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -250,7 +250,7 @@ package body Aufgaben is
    
    
    procedure EinheitVerschanzen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -261,7 +261,7 @@ package body Aufgaben is
    
    
    procedure RundeAussetzen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -273,7 +273,7 @@ package body Aufgaben is
    
    
    procedure EinheitAuflösen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -295,7 +295,7 @@ package body Aufgaben is
    
    
    function VerbesserungPlündern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -339,7 +339,7 @@ package body Aufgaben is
    
    
    procedure Plünderung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -375,7 +375,7 @@ package body Aufgaben is
    
    
    function VerbesserungEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -423,7 +423,7 @@ package body Aufgaben is
    
    
    procedure EinheitVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

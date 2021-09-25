@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte, SystemKonstanten;
 
 with OptionenSteuerung, Auswahl, OptionenSound, OptionenGrafik, OptionenSonstiges;
 
@@ -18,13 +18,13 @@ package body Optionen is
          AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
                                          TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                                          FrageZeileExtern  => 0,
-                                         ErsteZeileExtern  => GlobaleKonstanten.OptionenErsteZeileKonstante,
-                                         LetzteZeileExtern => GlobaleKonstanten.OptionenLetzteZeileKonstante);
+                                         ErsteZeileExtern  => SystemKonstanten.OptionenErsteZeileKonstante,
+                                         LetzteZeileExtern => SystemKonstanten.OptionenLetzteZeileKonstante);
 
          case
            AuswahlWert
          is
-            when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return AuswahlWert;
                
                -- Grafik
@@ -50,7 +50,7 @@ package body Optionen is
          case
            RückgabeWert
          is
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return RückgabeWert;
                      
             when others =>

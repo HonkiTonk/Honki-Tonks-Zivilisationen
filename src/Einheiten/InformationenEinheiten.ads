@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package InformationenEinheiten is
 
    procedure Einheiten
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -24,49 +24,49 @@ private
    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheiten;
    
-   EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
+   EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    
    function Allgemeines
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return EinheitStadtRecords.RassePlatznummerRecord;
    
    procedure Lebenspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Bewegungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Erfahrungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Beschäftigung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Beschäftigungszeit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Angriff
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Verteidigung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Rang
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Heimatstadt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure AktuelleVerteidigung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure AktuellerAngriff
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Ladung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure Gecheatet
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
 end InformationenEinheiten;

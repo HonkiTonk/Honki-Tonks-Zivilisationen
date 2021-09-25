@@ -89,7 +89,7 @@ package body KarteInformationen is
    
    procedure InformationenStadt
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       StadtInformationen.Stadt (RasseExtern            => RasseExtern,

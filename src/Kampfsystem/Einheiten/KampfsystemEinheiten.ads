@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package KampfsystemEinheiten is
 
    function KampfsystemNahkampf
-     (AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord;
-      VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreiferExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -22,7 +22,7 @@ package KampfsystemEinheiten is
             AngreiferExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (AngreiferExtern.Rasse).Einheitengrenze);
 
    procedure KampfBerechnung
-     (VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
       VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
      with
@@ -35,8 +35,8 @@ private
 
    AngerichteterSchaden : GlobaleDatentypen.MaximaleStädteMitNullWert;
 
-   KampfwerteVerteidiger : GlobaleRecords.KampfwerteRecord;
-   KampfwerteAngreifer : GlobaleRecords.KampfwerteRecord;
+   KampfwerteVerteidiger : EinheitStadtRecords.KampfwerteRecord;
+   KampfwerteAngreifer : EinheitStadtRecords.KampfwerteRecord;
 
    Kampfglück : Float;
 
@@ -70,8 +70,8 @@ private
                                                             );
 
    function Kampf
-     (VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      AngreiferExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>

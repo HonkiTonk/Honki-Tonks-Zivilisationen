@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, GlobaleKonstanten, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten;
 use GlobaleDatentypen;
 
 with Karten, Ladezeiten, Informationen, Auswahl, SpeichernLadenAllgemein, Karte;
@@ -44,7 +44,7 @@ package body Laden is
          case
            Auswahl.AuswahlJaNein (FrageZeileExtern => 24)
          is
-            when GlobaleKonstanten.JaKonstante =>
+            when SystemKonstanten.JaKonstante =>
                null;
                      
             when others =>
@@ -96,7 +96,7 @@ package body Laden is
                     GlobaleVariablen.Gewonnen);
       
       Boolean'Read (Stream (File => DateiLadenNeu),
-                     GlobaleVariablen.WeiterSpielen);
+                    GlobaleVariablen.WeiterSpielen);
       
    end SonstigesLaden;
    
@@ -134,7 +134,7 @@ package body Laden is
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
                KartenRecords.KartenRecord'Read (Stream (File => DateiLadenNeu),
-                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
             end loop XAchseBisBodenSchleife;
          end loop YAchseBisBodenSchleife;
@@ -153,8 +153,8 @@ package body Laden is
       GrenzenRassenSchleife:
       for GrenzenRassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         GlobaleRecords.GrenzenRecord'Read (Stream (File => DateiLadenNeu),
-                                            GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
+         WichtigeRecords.GrenzenRecord'Read (Stream (File => DateiLadenNeu),
+                                             GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
          
       end loop GrenzenRassenSchleife;
       
@@ -178,8 +178,8 @@ package body Laden is
                EinheitenSchleife:
                for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
             
-                  GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                             GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
+                  EinheitStadtRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
+                                                                  GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
             
                end loop EinheitenSchleife;
          end case;
@@ -206,8 +206,8 @@ package body Laden is
                StadtSchleife:
                for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
-                  GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                             GlobaleVariablen.EinheitenGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
+                  EinheitStadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenNeu),
+                                                              GlobaleVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
             
                end loop StadtSchleife;
          end case;
@@ -231,8 +231,8 @@ package body Laden is
                null;
                
             when others =>
-               GlobaleRecords.WichtigesRecord'Read (Stream (File => DateiLadenNeu),
-                                                    GlobaleVariablen.Wichtiges (RasseWichtigesSchleifenwert));
+               WichtigeRecords.WichtigesRecord'Read (Stream (File => DateiLadenNeu),
+                                                     GlobaleVariablen.Wichtiges (RasseWichtigesSchleifenwert));
          end case;
          
       end loop WichtigesSchleife;
@@ -264,8 +264,8 @@ package body Laden is
                         null;
                      
                      when others =>
-                        GlobaleRecords.DiplomatieRecord'Read (Stream (File => DateiLadenNeu),
-                                                              GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                        WichtigeRecords.DiplomatieRecord'Read (Stream (File => DateiLadenNeu),
+                                                               GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;
@@ -290,8 +290,8 @@ package body Laden is
                null;
                
             when others =>
-               GlobaleRecords.CursorRecord'Read (Stream (File => DateiLadenNeu),
-                                                 GlobaleVariablen.CursorImSpiel (RasseCursorSchleifenwert));
+               KartenRecords.CursorRecord'Read (Stream (File => DateiLadenNeu),
+                                                GlobaleVariablen.CursorImSpiel (RasseCursorSchleifenwert));
          end case;
          
       end loop CursorSchleife;

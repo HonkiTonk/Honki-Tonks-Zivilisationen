@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -69,8 +69,8 @@ package body KartenGeneratorStandard is
       Karten.GeneratorKarte := (others => (others => (GlobaleDatentypen.Leer)));
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
@@ -104,9 +104,9 @@ package body KartenGeneratorStandard is
       is
          when GlobaleDatentypen.Leer =>
             if
-              YAchseExtern <= Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisschild (Karten.Kartengröße)
+              YAchseExtern <= Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisschild (Karten.Kartengröße)
               or
-                YAchseExtern >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisschild (Karten.Kartengröße)
+                YAchseExtern >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisschild (Karten.Kartengröße)
             then
                LandFeldMasseEisschild (YAchseExtern => YAchseExtern,
                                        XAchseExtern => XAchseExtern);
@@ -219,9 +219,9 @@ package body KartenGeneratorStandard is
                                                                         ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert));
 
             if
-              KartenWert.YAchse <= Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisschild (Karten.Kartengröße)
+              KartenWert.YAchse <= Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisschild (Karten.Kartengröße)
               or
-                KartenWert.YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisschild (Karten.Kartengröße)
+                KartenWert.YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisschild (Karten.Kartengröße)
             then
                null;
                
@@ -251,7 +251,7 @@ package body KartenGeneratorStandard is
                                                                         ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -307,8 +307,8 @@ package body KartenGeneratorStandard is
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
@@ -326,7 +326,7 @@ package body KartenGeneratorStandard is
    is begin
       
       YAchseEisSchleife:
-      for YAchseEisSchleifenwert in Karten.WeltkarteArray'First (2) .. GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseEisSchleifenwert in Karten.WeltkarteArray'First (2) .. KartenKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseEisSchleife:
          for XAchseEisSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
          

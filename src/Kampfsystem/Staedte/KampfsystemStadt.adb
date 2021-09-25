@@ -10,8 +10,8 @@ with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, Kampf
 package body KampfsystemStadt is
 
    function KampfsystemStadt
-     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -35,8 +35,8 @@ package body KampfsystemStadt is
    
    
    function Kampf
-     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -89,7 +89,7 @@ package body KampfsystemStadt is
    
    
    function Kampfverlauf
-     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       

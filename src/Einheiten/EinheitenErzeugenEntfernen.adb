@@ -11,7 +11,7 @@ package body EinheitenErzeugenEntfernen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten;
       IDExtern : in GlobaleDatentypen.EinheitenID;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
@@ -65,7 +65,7 @@ package body EinheitenErzeugenEntfernen is
 
 
    procedure EinheitEntfernen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

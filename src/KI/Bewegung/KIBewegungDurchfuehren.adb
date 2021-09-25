@@ -12,7 +12,7 @@ with KIBewegungBerechnen, KIBewegungAllgemein;
 package body KIBewegungDurchfuehren is
    
    procedure KIBewegungNeu
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       BewegungSchleife:
@@ -56,7 +56,7 @@ package body KIBewegungDurchfuehren is
 
 
    procedure BewegungDurchführen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       NeuePosition := LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -82,14 +82,14 @@ package body KIBewegungDurchfuehren is
    
    
    procedure BewegtSich
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      NeuePositionExtern       => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                      PlanschrittExtern        => 1));
       BewegungPlanVerschiebenSchleife:
-      for PositionSchleifenwert in GlobaleRecords.KIBewegungPlanArray'First + 1 .. GlobaleRecords.KIBewegungPlanArray'Last loop
+      for PositionSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'First + 1 .. EinheitStadtRecords.KIBewegungPlanArray'Last loop
                
          SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  PositionExtern           => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -100,14 +100,14 @@ package body KIBewegungDurchfuehren is
             
       SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               PositionExtern           => KIKonstanten.LeerKoordinate,
-                                              PlanpositionExtern       => GlobaleRecords.KIBewegungPlanArray'Last);
+                                              PlanpositionExtern       => EinheitStadtRecords.KIBewegungPlanArray'Last);
       
    end BewegtSich;
    
    
    
    procedure Blockiert
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition);

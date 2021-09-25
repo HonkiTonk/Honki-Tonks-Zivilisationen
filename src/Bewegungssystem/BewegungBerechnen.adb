@@ -10,7 +10,7 @@ with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPas
 package body BewegungBerechnen is
 
    procedure BewegungEinheitenBerechnung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
 
@@ -94,7 +94,7 @@ package body BewegungBerechnen is
    
    procedure NachBewegung
      (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -130,7 +130,7 @@ package body BewegungBerechnen is
    
    function AbzugDurchBewegung
      (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
          return GlobaleDatentypen.BewegungFloat
    is begin
       
@@ -171,7 +171,7 @@ package body BewegungBerechnen is
    
 
    function StraßeUndFlussPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
          return Bewegungsbonuse_Enum
    is begin

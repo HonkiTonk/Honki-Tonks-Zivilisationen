@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package AufgabenAllgemein is
@@ -9,7 +9,7 @@ package AufgabenAllgemein is
      (KartenVerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum);
 
    procedure Nullsetzung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

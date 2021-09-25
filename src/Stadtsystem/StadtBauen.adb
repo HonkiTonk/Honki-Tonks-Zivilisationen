@@ -10,7 +10,7 @@ with Anzeige, StadtWerteFestlegen, Eingabe, StadtProduktion, Sichtbarkeit, Einhe
 package body StadtBauen is
 
    function StadtBauen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
         
@@ -58,7 +58,7 @@ package body StadtBauen is
    
    
    function StadtBaubar
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -135,7 +135,7 @@ package body StadtBauen is
    
    
    procedure StadtEintragen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -193,7 +193,7 @@ package body StadtBauen is
    
    
    procedure StandardStadtNamen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,

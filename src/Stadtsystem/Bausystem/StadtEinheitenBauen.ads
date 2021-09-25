@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
+with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 package StadtEinheitenBauen is
 
    procedure EinheitFertiggestellt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -20,10 +20,10 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure PlatzErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure EinheitPlatzieren
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
 
 end StadtEinheitenBauen;

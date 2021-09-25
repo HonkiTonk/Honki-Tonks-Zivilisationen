@@ -7,7 +7,7 @@ with LeseStadtGebaut, LeseEinheitenDatenbank;
 package body KIStadtLaufendeBauprojekte is
 
    function StadtLaufendeBauprojekte
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BauprojektExtern : in Natural)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
@@ -42,7 +42,7 @@ package body KIStadtLaufendeBauprojekte is
    
    
    function GleicheEinheitArtBauprojekte
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitArtExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin

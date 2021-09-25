@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen, KartenRecords;
 
 with Karten;
@@ -21,7 +21,7 @@ package GrafischeAnzeige is
 
 private
 
-   EinheitStadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
+   EinheitStadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
 
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;

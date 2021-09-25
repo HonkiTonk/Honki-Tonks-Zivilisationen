@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleRecords, KartenRecords;
+with GlobaleDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords;
 use GlobaleDatentypen;
 
 with KIDatentypen;
@@ -11,59 +11,6 @@ with KIDatentypen;
 with DatenbankRecords;
 
 package GlobaleKonstanten is
-
-   -- Für die Auswahl
-   StartNormalKonstante : constant Positive := 1;
-   HauptmenüKonstante : constant Natural := 0;
-   SpielBeendenKonstante : constant Integer := -1;
-   ZurückKonstante : constant Integer := -2;
-   JaKonstante : constant Integer := -3;
-   NeinKonstante : constant Integer := -4;
-   SpeichernKonstante : constant Positive := 2;
-   LadenKonstante : constant Positive := 3;
-   OptionenKonstante : constant Positive := 4;
-   InformationenKonstante : constant Positive := 5;
-   WiederherstellenKonstante : constant Positive := 6;
-   WürdigungenKonstante : constant Positive := 7;
-   RundeBeendenKonstante : constant Integer := -1_000;
-   SiegKonstante : constant Positive := 1_000;
-   VernichtungKonstante : constant Positive := 2_000;
-   -- Für die Auswahl
-
-
-
-   -- Für die Spieleinstellungen
-   AuswahlKartengröße : constant Positive := 1;
-   AuswahlKartenart : constant Positive := 2;
-   AuswahlKartenform : constant Positive := 3;
-   AuswahlKartentemperatur : constant Positive := 4;
-   AuswahlSpieleranzahl : constant Positive := 5;
-   AuswahlBelegung : constant Positive := 6;
-   AuswahlSchwierigkeitsgrad : constant Positive := 7;
-   AuswahlFertig : constant Positive := 8;
-   AuswahlKartenressourcen : constant Positive := 9;
-   -- Für die Spieleinstellungen
-
-
-
-   -- Für die Eingabe
-   GanzeZahlAbbruchKonstante : constant Integer := -1_000_000_000;
-   -- Für die Eingabe
-
-
-
-   -- Für die Optionen/Menüs
-   JaAnzeigeKonstante : constant Positive := 7;
-   NeinAnzeigeKonstante : constant Positive := 8;
-
-   OptionenErsteZeileKonstante : constant Positive := 9;
-   OptionenLetzteZeileKonstante : constant Positive := 15;
-
-   OptionenSonstigesErsteZeile : constant Positive := 16;
-   OptionenSonstigesLetzteZeile : constant Positive := 20;
-   -- Für die Optionen/Menüs
-
-
 
    -- Für Einheiten/Städte
    -- Wird für die Textanzeige benötigt
@@ -90,7 +37,7 @@ package GlobaleKonstanten is
 
    RassenMulitplikationWert : constant GlobaleDatentypen.BelegterGrund := 1_000;
 
-   LeerRassePlatznummer : constant GlobaleRecords.RassePlatznummerRecord := (GlobaleDatentypen.Leer, GlobaleDatentypen.MaximaleEinheitenMitNullWert'First);
+   LeerRassePlatznummer : constant EinheitStadtRecords.RassePlatznummerRecord := (GlobaleDatentypen.Leer, GlobaleDatentypen.MaximaleEinheitenMitNullWert'First);
 
    type StadtUmgebungWachstumArray is array (GlobaleDatentypen.Anfang_Ende_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
@@ -341,50 +288,6 @@ package GlobaleKonstanten is
                                                                       );
    -- Für Einheiten/Städte
 
-
-
-   -- Für die Kartengenerierung
-   -- An Kartengröße und/oder Temperatur anpassen?
-   type EisgebietArray is array (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenfeldPositiv;
-   Eisrand : constant EisgebietArray := (
-                                       Karte_20_20     => 1,
-                                       Karte_40_40     => 1,
-                                       Karte_80_80     => 2,
-                                       Karte_120_80    => 3,
-                                       Karte_120_160   => 3,
-                                       Karte_160_160   => 4,
-                                       Karte_240_240   => 6,
-                                       Karte_320_320   => 8,
-                                       Karte_1000_1000 => 24,
-                                       Karte_Nutzer    => 1
-                                      );
-
-   Eisschild : constant EisgebietArray := (
-                                           Karte_20_20     => 3,
-                                           Karte_40_40     => 3,
-                                           Karte_80_80     => 6,
-                                           Karte_120_80    => 9,
-                                           Karte_120_160   => 9,
-                                           Karte_160_160   => 12,
-                                           Karte_240_240   => 18,
-                                           Karte_320_320   => 24,
-                                           Karte_1000_1000 => 72,
-                                           Karte_Nutzer    => 1
-                                          );
-   -- Für die Kartengenerierung
-
-
-
-   -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
-   LeerKartenPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (EAchse => GlobaleDatentypen.EbeneVorhanden'First,
-                                                                                 YAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First,
-                                                                                 XAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
-
-   LeerYXKartenWert : constant GlobaleDatentypen.KartenfeldPositivMitNullwert := GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
-   -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
-
-
-
    -- Für Diplomatie
    DiplomatischerStatusÄnderungszeit : constant Positive := 10;
    -- Für Diplomatie
@@ -408,92 +311,68 @@ package GlobaleKonstanten is
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
    LeerText : constant Wide_Wide_String := "|";
 
-   LeerCursor : constant GlobaleRecords.CursorRecord := (
-                                                         CursorGrafik  => '©',
-                                                         Position      => (0, 0, 0),
-                                                         PositionAlt   => (0, 0, 0),
-                                                         PositionStadt => (1, 1)
-                                                        );
+   LeerCursor : constant KartenRecords.CursorRecord := (
+                                                        CursorGrafik  => '©',
+                                                        Position      => (0, 0, 0),
+                                                        PositionAlt   => (0, 0, 0),
+                                                        PositionStadt => (1, 1)
+                                                       );
 
-   LeerEinheit : constant GlobaleRecords.EinheitenGebautRecord := (
-                                                                   ID                           => 0,
-                                                                   Position                     => (0, 0, 0),
-                                                                   Heimatstadt                  => 0,
-                                                                   Lebenspunkte                 => 0,
-                                                                   Bewegungspunkte              => 0.00,
-                                                                   Erfahrungspunkte             => 0,
-                                                                   Rang                         => 0,
-                                                                   Beschäftigung                => GlobaleDatentypen.Leer,
-                                                                   BeschäftigungNachfolger      => GlobaleDatentypen.Leer,
-                                                                   Beschäftigungszeit           => 0,
-                                                                   BeschäftigungszeitNachfolger => 0,
-                                                                   KIZielKoordinaten            => (0, 0, 0),
-                                                                   KIBeschäftigt                => KIDatentypen.Tut_Nichts,
-                                                                   KIBewegungPlan               => (others => (0, 0, 0)),
-                                                                   Transportiert                => (others => 0),
-                                                                   WirdTransportiert            => 0,
-                                                                   Meldungen                    => (others => GlobaleDatentypen.Leer)
-                                                                  );
+   LeerEinheit : constant EinheitStadtRecords.EinheitenGebautRecord := (
+                                                                        ID                           => 0,
+                                                                        Position                     => (0, 0, 0),
+                                                                        Heimatstadt                  => 0,
+                                                                        Lebenspunkte                 => 0,
+                                                                        Bewegungspunkte              => 0.00,
+                                                                        Erfahrungspunkte             => 0,
+                                                                        Rang                         => 0,
+                                                                        Beschäftigung                => GlobaleDatentypen.Leer,
+                                                                        BeschäftigungNachfolger      => GlobaleDatentypen.Leer,
+                                                                        Beschäftigungszeit           => 0,
+                                                                        BeschäftigungszeitNachfolger => 0,
+                                                                        KIZielKoordinaten            => (0, 0, 0),
+                                                                        KIBeschäftigt                => KIDatentypen.Tut_Nichts,
+                                                                        KIBewegungPlan               => (others => (0, 0, 0)),
+                                                                        Transportiert                => (others => 0),
+                                                                        WirdTransportiert            => 0,
+                                                                        Meldungen                    => (others => GlobaleDatentypen.Leer)
+                                                                       );
 
-   LeerStadt : constant GlobaleRecords.StadtGebautRecord := (
-                                                             ID                      => GlobaleDatentypen.Leer,
-                                                             Position                => (0, 0, 0),
-                                                             EinwohnerArbeiter       => (0, 0),
-                                                             Nahrungsmittel          => 0,
-                                                             Nahrungsproduktion      => 0,
-                                                             Ressourcen              => 0,
-                                                             Produktionrate          => 0,
-                                                             Geldgewinnung           => 0,
-                                                             PermanenteKostenPosten  => (others => 0),
-                                                             Forschungsrate          => 0,
-                                                             Bauprojekt              => 0,
-                                                             Bauzeit                 => 0,
-                                                             Korruption              => 0,
-                                                             GebäudeVorhanden        => (others => False),
-                                                             Name                    => LeerUnboundedString,
-                                                             UmgebungBewirtschaftung => (others => (others => False)),
-                                                             UmgebungGröße           => 0,
-                                                             Meldungen               => (others => GlobaleDatentypen.Leer),
-                                                             KIBeschäftigung         => KIDatentypen.Keine_Aufgabe
-                                                            );
+   LeerStadt : constant EinheitStadtRecords.StadtGebautRecord := (
+                                                                  ID                      => GlobaleDatentypen.Leer,
+                                                                  Position                => (0, 0, 0),
+                                                                  EinwohnerArbeiter       => (0, 0),
+                                                                  Nahrungsmittel          => 0,
+                                                                  Nahrungsproduktion      => 0,
+                                                                  Ressourcen              => 0,
+                                                                  Produktionrate          => 0,
+                                                                  Geldgewinnung           => 0,
+                                                                  PermanenteKostenPosten  => (others => 0),
+                                                                  Forschungsrate          => 0,
+                                                                  Bauprojekt              => 0,
+                                                                  Bauzeit                 => 0,
+                                                                  Korruption              => 0,
+                                                                  GebäudeVorhanden        => (others => False),
+                                                                  Name                    => LeerUnboundedString,
+                                                                  UmgebungBewirtschaftung => (others => (others => False)),
+                                                                  UmgebungGröße           => 0,
+                                                                  Meldungen               => (others => GlobaleDatentypen.Leer),
+                                                                  KIBeschäftigung         => KIDatentypen.Keine_Aufgabe
+                                                                 );
 
-   LeerWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (
-                                                                   Geldmenge                  => 100,
-                                                                   GeldZugewinnProRunde       => 0,
-                                                                   GesamteForschungsrate      => 0,
-                                                                   Forschungsmenge            => 0,
-                                                                   VerbleibendeForschungszeit => 10_000,
-                                                                   Forschungsprojekt          => 0,
-                                                                   Erforscht                  => (others => False),
-                                                                   AnzahlStädte               => 0,
-                                                                   AnzahlArbeiter             => 0,
-                                                                   AnzahlKämpfer              => 0,
-                                                                   AnzahlSonstiges            => 0
-                                                                  );
-
-   LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
-                                                                     KartenGrafik        => NichtSichtbar,
-                                                                     Passierbarkeit      => (others => False),
-                                                                     FeldWerte           => (others => (others => 0))
-                                                                    );
-
-   LeerWeltkarte : constant KartenRecords.KartenRecord := (
-                                                           Grund                   => GlobaleDatentypen.Leer,
-                                                           Hügel                   => False,
-                                                           Sichtbar                => (others => False),
-                                                           Fluss                   => GlobaleDatentypen.Leer,
-                                                           VerbesserungWeg         => GlobaleDatentypen.Leer,
-                                                           VerbesserungGebiet      => GlobaleDatentypen.Leer,
-                                                           Ressource               => GlobaleDatentypen.Leer,
-                                                           DurchStadtBelegterGrund => 0,
-                                                           Felderwertung           => (others => 0)
-                                                          );
-
-   LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
-                                                                                 VerbesserungGrafik => NichtSichtbar,
-                                                                                 Passierbarkeit     => (others => False),
-                                                                                 VerbesserungWerte  => (others => (others => 0))
-                                                                                );
+   LeerWichtigesZeug : constant WichtigeRecords.WichtigesRecord := (
+                                                                    Geldmenge                  => 100,
+                                                                    GeldZugewinnProRunde       => 0,
+                                                                    GesamteForschungsrate      => 0,
+                                                                    Forschungsmenge            => 0,
+                                                                    VerbleibendeForschungszeit => 10_000,
+                                                                    Forschungsprojekt          => 0,
+                                                                    Erforscht                  => (others => False),
+                                                                    AnzahlStädte               => 0,
+                                                                    AnzahlArbeiter             => 0,
+                                                                    AnzahlKämpfer              => 0,
+                                                                    AnzahlSonstiges            => 0
+                                                                   );
 
    LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
                                                                          EinheitenGrafik            => NichtSichtbar,
@@ -532,35 +411,35 @@ package GlobaleKonstanten is
                                                                          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer
                                                                         );
 
-   LeerRassenList : constant DatenbankRecords.RassenListeRecord := (
-                                                                    Aggressivität       => 0,
-                                                                    Expansion           => 0,
-                                                                    Wissenschaft        => 0,
-                                                                    Produktion          => 0,
-                                                                    Wirtschaft          => 0,
-                                                                    Bewirtschaftung     => 0,
-                                                                    GültigeStaatsformen => (GlobaleDatentypen.Anarchie,
-                                                                                             GlobaleDatentypen.Anarchie,
-                                                                                             GlobaleDatentypen.Anarchie,
-                                                                                             GlobaleDatentypen.Anarchie,
-                                                                                             GlobaleDatentypen.Anarchie)
-                                                                   );
+   LeerRassenListe : constant DatenbankRecords.RassenListeRecord := (
+                                                                     Aggressivität       => 0,
+                                                                     Expansion           => 0,
+                                                                     Wissenschaft        => 0,
+                                                                     Produktion          => 0,
+                                                                     Wirtschaft          => 0,
+                                                                     Bewirtschaftung     => 0,
+                                                                     GültigeStaatsformen => (GlobaleDatentypen.Anarchie,
+                                                                                              GlobaleDatentypen.Anarchie,
+                                                                                              GlobaleDatentypen.Anarchie,
+                                                                                              GlobaleDatentypen.Anarchie,
+                                                                                              GlobaleDatentypen.Anarchie)
+                                                                    );
 
-   LeerGrenzen : constant GlobaleRecords.GrenzenRecord := (
-                                                           Städtegrenze          => GlobaleDatentypen.MaximaleStädte'Last,
-                                                           Einheitengrenze       => GlobaleDatentypen.MaximaleEinheiten'Last,
-                                                           Geldgrenze            => Integer'Last,
-                                                           Forschungsgrenze      => GlobaleDatentypen.KostenLager'Last,
-                                                           Geldgewinngrenze      => GlobaleDatentypen.KostenLager'Last,
-                                                           ForschungGewinngrenze => GlobaleDatentypen.KostenLager'Last,
-                                                           RassenRundengrenze    => 0
-                                                          );
+   LeerGrenzen : constant WichtigeRecords.GrenzenRecord := (
+                                                            Städtegrenze          => GlobaleDatentypen.MaximaleStädte'Last,
+                                                            Einheitengrenze       => GlobaleDatentypen.MaximaleEinheiten'Last,
+                                                            Geldgrenze            => Integer'Last,
+                                                            Forschungsgrenze      => GlobaleDatentypen.KostenLager'Last,
+                                                            Geldgewinngrenze      => GlobaleDatentypen.KostenLager'Last,
+                                                            ForschungGewinngrenze => GlobaleDatentypen.KostenLager'Last,
+                                                            RassenRundengrenze    => 0
+                                                           );
 
-   LeerDiplomatie : constant GlobaleRecords.DiplomatieRecord := (
-                                                                 AktuellerZustand           => GlobaleDatentypen.Unbekannt,
-                                                                 AktuelleSympathieBewertung => 0,
-                                                                 ZeitSeitLetzterÄnderung    => 0
-                                                                );
+   LeerDiplomatie : constant WichtigeRecords.DiplomatieRecord := (
+                                                                  AktuellerZustand           => GlobaleDatentypen.Unbekannt,
+                                                                  AktuelleSympathieBewertung => 0,
+                                                                  ZeitSeitLetzterÄnderung    => 0
+                                                                 );
    -- Für die Leerwerte
 
 end GlobaleKonstanten;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with KIDatentypen;
 
@@ -14,7 +14,7 @@ with KIAufgabenVerteilt, KIPruefungen;
 package body KIVorhandeneAufgaben is
 
    function SichHeilen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
@@ -57,7 +57,7 @@ package body KIVorhandeneAufgaben is
    
    
    function SichVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
@@ -90,7 +90,7 @@ package body KIVorhandeneAufgaben is
 
 
    function NeueStadtBauenGehen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
@@ -132,14 +132,14 @@ package body KIVorhandeneAufgaben is
 
 
    function StadtUmgebungVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
       case
         KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern).XAchse
       is
-         when GlobaleKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerYXKartenWert =>
             return 0;
             
          when others =>
@@ -151,7 +151,7 @@ package body KIVorhandeneAufgaben is
    
    
    function StadtBewachen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
@@ -204,7 +204,7 @@ package body KIVorhandeneAufgaben is
    
    
    function Angreifen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
@@ -248,7 +248,7 @@ package body KIVorhandeneAufgaben is
    
    
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       

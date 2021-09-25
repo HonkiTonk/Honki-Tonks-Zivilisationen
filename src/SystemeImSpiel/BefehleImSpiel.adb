@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
+with GlobaleTexte, GlobaleKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseWichtiges;
@@ -92,7 +92,7 @@ package body BefehleImSpiel is
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
          when GlobaleDatentypen.Runde_Beenden =>
-            return GlobaleKonstanten.RundeBeendenKonstante;
+            return SystemKonstanten.RundeBeendenKonstante;
             
          when GlobaleDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
@@ -101,7 +101,7 @@ package body BefehleImSpiel is
             null;
       end case;
 
-      return GlobaleKonstanten.StartNormalKonstante;
+      return SystemKonstanten.StartNormalKonstante;
       
    end Befehle;
    
@@ -130,7 +130,7 @@ package body BefehleImSpiel is
         StadtNummer /= GlobaleDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => GlobaleKonstanten.JaKonstante,
+                           AuswahlExtern       => SystemKonstanten.JaKonstante,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
@@ -148,7 +148,7 @@ package body BefehleImSpiel is
    
    
    procedure AuswahlEinheitTransporter
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -178,7 +178,7 @@ package body BefehleImSpiel is
                         
          when others =>
             EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                              AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
+                              AuswahlExtern       => SystemKonstanten.NeinKonstante,
                               StadtNummerExtern   => GlobaleDatentypen.MaximaleStädteMitNullWert'First,
                               EinheitNummerExtern => EinheitTransportNummer);
       end case;
@@ -197,7 +197,7 @@ package body BefehleImSpiel is
       case
         AuswahlExtern
       is
-         when GlobaleKonstanten.JaKonstante =>
+         when SystemKonstanten.JaKonstante =>
             StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
          when others =>
@@ -209,7 +209,7 @@ package body BefehleImSpiel is
    
    
    procedure StadtBetreten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse := 1;
@@ -221,7 +221,7 @@ package body BefehleImSpiel is
    
    
    procedure EinheitSteuern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -291,7 +291,7 @@ package body BefehleImSpiel is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
       is
-         when GlobaleKonstanten.JaKonstante =>
+         when SystemKonstanten.JaKonstante =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
                      
          when others =>
@@ -385,7 +385,7 @@ package body BefehleImSpiel is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
       is
-         when GlobaleKonstanten.JaKonstante =>
+         when SystemKonstanten.JaKonstante =>
             StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
          when others =>

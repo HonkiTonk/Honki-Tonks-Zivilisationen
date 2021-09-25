@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with SchreibeKarten;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
@@ -10,7 +10,7 @@ with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen;
 package body Sichtbarkeit is
    
    function SichtweiteErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.Sichtweite
    is begin
       
@@ -62,7 +62,7 @@ package body Sichtbarkeit is
 
 
    procedure SichtbarkeitsprüfungFürEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SichtweiteObjekt := SichtweiteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -108,7 +108,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantenDurchlaufen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       YQuadrantSchleife:
@@ -169,7 +169,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantEins
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
@@ -179,7 +179,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+        KartenQuadrantWert.XAchse = KartenKonstanten.LeerYXKartenWert
       then
          null;
                
@@ -295,7 +295,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantZwei
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
@@ -305,7 +305,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+        KartenQuadrantWert.XAchse = KartenKonstanten.LeerYXKartenWert
       then
          null;
                
@@ -421,7 +421,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantDrei
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
@@ -431,7 +431,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+        KartenQuadrantWert.XAchse = KartenKonstanten.LeerYXKartenWert
       then
          null;
                
@@ -547,7 +547,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantVier
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
@@ -557,7 +557,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+        KartenQuadrantWert.XAchse = KartenKonstanten.LeerYXKartenWert
       then
          null;
                
@@ -684,7 +684,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
       
       if
-        KartenBlockadeWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+        KartenBlockadeWert.XAchse = KartenKonstanten.LeerYXKartenWert
       then
          null;
          
@@ -716,7 +716,7 @@ package body Sichtbarkeit is
    
    
    procedure SichtbarkeitsprüfungOhneBlockade
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteExtern : in GlobaleDatentypen.Sichtweite)
    is begin
          
@@ -731,7 +731,7 @@ package body Sichtbarkeit is
             case
               KartenWert.XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>
@@ -747,7 +747,7 @@ package body Sichtbarkeit is
 
 
    procedure SichtbarkeitsprüfungFürStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) + 1;
@@ -763,7 +763,7 @@ package body Sichtbarkeit is
             case
               KartenWert.XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>

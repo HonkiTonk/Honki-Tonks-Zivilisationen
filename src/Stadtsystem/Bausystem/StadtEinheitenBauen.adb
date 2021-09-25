@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleKonstanten, GlobaleTexte, KartenKonstanten;
 
 with KIDatentypen;
 
@@ -12,7 +12,7 @@ with Anzeige, Eingabe, Karte, EinheitSuchen, UmgebungErreichbarTesten, StadtMeld
 package body StadtEinheitenBauen is
 
    procedure EinheitFertiggestellt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       EinheitNummer := 0;
@@ -59,7 +59,7 @@ package body StadtEinheitenBauen is
    
    
    procedure PlatzErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -78,7 +78,7 @@ package body StadtEinheitenBauen is
       case
         KartenWert.XAchse
       is
-         when GlobaleKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerYXKartenWert =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => GlobaleDatentypen.Einheit_Unplatzierbar);
             
@@ -92,7 +92,7 @@ package body StadtEinheitenBauen is
    
    
    procedure EinheitPlatzieren
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords;
 use GlobaleDatentypen, KartenRecords;
 
 with Karten;
@@ -21,7 +21,7 @@ package EinheitSuchen is
 
    function KoordinatenEinheitOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleRecords.RassePlatznummerRecord
+      return EinheitStadtRecords.RassePlatznummerRecord
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -31,7 +31,7 @@ package EinheitSuchen is
    function KoordinatenEinheitOhneSpezielleRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleRecords.RassePlatznummerRecord
+      return EinheitStadtRecords.RassePlatznummerRecord
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

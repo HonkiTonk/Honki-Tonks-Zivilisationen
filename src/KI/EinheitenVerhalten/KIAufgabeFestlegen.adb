@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with KIDatentypen, KIKonstanten;
 
@@ -14,7 +14,7 @@ with KIPruefungen, KIMindestBewertungKartenfeldErmitteln, KIAufgabenVerteilt, KI
 package body KIAufgabeFestlegen is
    
    procedure KeineAufgabe
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       -- Hier eventuell die Bewegungspukte auf 0 setzen?
@@ -28,7 +28,7 @@ package body KIAufgabeFestlegen is
    
 
    procedure Heilen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -39,7 +39,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure StadtBauenPrüfung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       NeueStadtPosition := KIPruefungen.UmgebungStadtBauenPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
@@ -52,7 +52,7 @@ package body KIAufgabeFestlegen is
          NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        NeueStadtPosition.XAchse /= GlobaleKonstanten.LeerYXKartenWert
+        NeueStadtPosition.XAchse /= KartenKonstanten.LeerYXKartenWert
       then
          SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     KoordinatenExtern        => NeueStadtPosition);
@@ -68,7 +68,7 @@ package body KIAufgabeFestlegen is
       
    
    procedure StadtUmgebungVerbesserung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -81,7 +81,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure StadtBewachen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       EinheitNummer := 1;
@@ -121,7 +121,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure StadtUmgebungZerstören
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       null;
@@ -131,7 +131,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure Angreifen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       WenAngreifen := ZielErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -153,7 +153,7 @@ package body KIAufgabeFestlegen is
       case
         KoordinatenFeind.XAchse
       is
-         when GlobaleKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerYXKartenWert =>
             null;
             
          when others =>
@@ -168,7 +168,7 @@ package body KIAufgabeFestlegen is
       case
         KoordinatenFeind.XAchse
       is
-         when GlobaleKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerYXKartenWert =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -222,7 +222,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure Erkunden
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
             
       KarteReichweite := 1;
@@ -247,7 +247,7 @@ package body KIAufgabeFestlegen is
                                                                               ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                   
                   if
-                    KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+                    KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
                   then
                      null;
                         
@@ -295,7 +295,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure Fliehen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -306,7 +306,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure Befestigen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -317,7 +317,7 @@ package body KIAufgabeFestlegen is
    
    
    procedure EinheitVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       PlatzGefunden := KISonstigesSuchen.EigenesFeldSuchen (AktuellePositionExtern   => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -326,7 +326,7 @@ package body KIAufgabeFestlegen is
       case
         PlatzGefunden.XAchse
       is
-         when GlobaleKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerYXKartenWert =>
             null;
             
          when others =>
@@ -350,7 +350,7 @@ package body KIAufgabeFestlegen is
                PlatzGefunden := EinheitVerbessernPlatz (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtSchleifenwert),
                                                         EinheitNummerExtern    => EinheitRasseNummerExtern.Platznummer);
                if
-                 PlatzGefunden.XAchse = GlobaleKonstanten.LeerYXKartenWert
+                 PlatzGefunden.XAchse = KartenKonstanten.LeerYXKartenWert
                then
                   null;
                   
@@ -364,7 +364,7 @@ package body KIAufgabeFestlegen is
       case
         PlatzGefunden.XAchse
       is
-         when GlobaleKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerYXKartenWert =>
             null;
             
          when others =>
@@ -379,7 +379,7 @@ package body KIAufgabeFestlegen is
    
    
    function EinheitVerbessernPlatz
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -395,7 +395,7 @@ package body KIAufgabeFestlegen is
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                

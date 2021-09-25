@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, KartenRecords;
 use GlobaleDatentypen;
 
 package InDerStadtBauen is
 
    procedure Bauen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -23,15 +23,15 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure MöglicheGebäudeErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
    procedure MöglicheEinheitenErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
 
 
    function BauobjektAuswählen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Natural
      with
        Pre =>
@@ -42,7 +42,7 @@ private
            (BauobjektAuswählen'Result <= 99_999);
 
    function AuswahlBauprojekt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Natural;
 
 end InDerStadtBauen;

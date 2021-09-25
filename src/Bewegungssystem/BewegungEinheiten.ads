@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen, KartenRecords;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package BewegungEinheiten is
 
    procedure BewegungEinheitenRichtung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -25,8 +25,8 @@ private
    
    Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
    
-   EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
-   StadtAufFeld : GlobaleRecords.RassePlatznummerRecord;
+   EinheitAufFeld : EinheitStadtRecords.RassePlatznummerRecord;
+   StadtAufFeld : EinheitStadtRecords.RassePlatznummerRecord;
    
    Änderung : KartenRecords.AchsenKartenfeldRecord;
    KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);
@@ -37,12 +37,13 @@ private
    AktuellerStatus : Bewegung_Noch_Möglich_Enum;
      
    procedure EigeneEinheitAufFeld
-     (BewegendeEinheitExtern, FeldBelegendeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (BewegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      FeldBelegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    
    
    function BewegungPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Bewegung_Noch_Möglich_Enum
      with
@@ -52,15 +53,17 @@ private
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function NochBewegungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Bewegung_Noch_Möglich_Enum;
    
    function FremderAufFeld
-     (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      FremdeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
    
    function FremdeStadtAufFeld
-     (EinheitRasseNummerExtern, FremdeStadtExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      FremdeStadtExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
 
 end BewegungEinheiten;

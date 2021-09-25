@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package KampfwerteEinheitErmitteln is
 
    function AktuelleVerteidigungEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngreiferExtern : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -16,7 +16,7 @@ package KampfwerteEinheitErmitteln is
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze);
    
    function AktuellerAngriffEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngreiferExtern : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -40,14 +40,14 @@ private
    AngriffWertFloat : Float;
    
    function VerteidigungsbonusVerteidiger
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt;
    
    function VerteidigungsbonusAngreifer
      return GlobaleDatentypen.GesamtproduktionStadt;
    
    function AngriffsbonusAngreifer
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt;
    
    function AngriffsbonusVerteidiger

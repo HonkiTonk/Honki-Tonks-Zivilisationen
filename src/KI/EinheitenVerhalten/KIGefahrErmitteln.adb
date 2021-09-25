@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with KIDatentypen;
 
@@ -11,8 +11,8 @@ with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand;
 package body KIGefahrErmitteln is
    
    function GefahrErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.RassePlatznummerRecord
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return EinheitStadtRecords.RassePlatznummerRecord
    is begin
       
       case
@@ -30,8 +30,8 @@ package body KIGefahrErmitteln is
    
    
    function GefahrSuchen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleRecords.RassePlatznummerRecord
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return EinheitStadtRecords.RassePlatznummerRecord
    is begin
       
       YAchseSchleife:
@@ -43,7 +43,7 @@ package body KIGefahrErmitteln is
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -79,8 +79,8 @@ package body KIGefahrErmitteln is
    
    
    function ReaktionErfoderlich
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AndereEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      AndereEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       

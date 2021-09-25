@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, KartenRecords;
 use GlobaleDatentypen;
 
 package KIFeindlicheEinheitSuchen is
 
    function FeindlicheEinheitInUmgebungSuchen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       FeindExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with

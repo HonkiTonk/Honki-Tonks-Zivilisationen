@@ -8,7 +8,7 @@ with EinheitenBeschreibungen, AufgabenAllgemein;
 package body VerbesserungFestung is
 
    function VerbesserungFestung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean

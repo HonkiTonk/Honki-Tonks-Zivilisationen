@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 with KIRecords;
@@ -8,7 +8,7 @@ with KIRecords;
 package KIGebaeudeBauen is
 
    function GebäudeBauen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIRecords.GebäudeIDBewertungRecord
      with
        Pre =>
@@ -23,7 +23,7 @@ private
    GebäudeBewertet : KIRecords.GebäudeIDBewertungRecord;
    
    procedure GebäudeBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
      with
        Pre =>
@@ -32,7 +32,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function NahrungsproduktionBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -42,7 +42,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function GeldproduktionBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -52,7 +52,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
      
    function WissensgewinnBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -62,7 +62,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
           
    function RessourcenproduktionBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -72,7 +72,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
      
    function VerteidigungBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -82,7 +82,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
      
    function AngriffBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with
@@ -92,7 +92,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
      
    function KostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
      with

@@ -10,7 +10,7 @@ with UmgebungErreichbarTesten;
 package body BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
    is begin
       
@@ -50,13 +50,13 @@ package body BewegungLadenEntladen is
    
    
    function FreienPlatzErmitteln
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       TransporterSchleife:
-      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+      for FreierPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
         
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
@@ -78,13 +78,16 @@ package body BewegungLadenEntladen is
       
    
    procedure EinheitAusTransporterEntfernen
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
    is begin
       
       TransporterLeerenSchleife:
-      for TransporterLeerenSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+      for
+        TransporterLeerenSchleifenwert
+      in
+        EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
 
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
@@ -109,14 +112,14 @@ package body BewegungLadenEntladen is
    
    
    procedure TransporterladungVerschieben
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       TransporterUmladenSchleife:
-      for TransporterUmladenSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                  IDExtern    =>
-                                                                                                                                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+      for TransporterUmladenSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                       IDExtern    =>
+                                                                                                                                         LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
                
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -138,14 +141,14 @@ package body BewegungLadenEntladen is
    
    
    procedure TransporterStadtEntladen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
             
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                             IDExtern    =>
-                                                                                                                               LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+      for BelegterPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                  IDExtern    =>
+                                                                                                                                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -153,7 +156,7 @@ package body BewegungLadenEntladen is
          is
             when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
                null;
-                              
+               
             when others =>
                SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                  PlatzExtern              => BelegterPlatzSchleifenwert)),

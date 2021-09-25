@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleKonstanten, GlobaleTexte, KartenKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -10,7 +10,7 @@ with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeit
 package body BewegungEinheiten is
 
    procedure BewegungEinheitenRichtung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -93,7 +93,7 @@ package body BewegungEinheiten is
             case
               KartenWert.XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   AktuellerStatus := Bewegbar;
                
                when others =>
@@ -121,7 +121,7 @@ package body BewegungEinheiten is
    
    
    function BewegungPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Bewegung_Noch_Möglich_Enum
    is begin
@@ -216,7 +216,7 @@ package body BewegungEinheiten is
    
    
    function NochBewegungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Bewegung_Noch_Möglich_Enum
    is begin
       
@@ -236,7 +236,8 @@ package body BewegungEinheiten is
    
    
    function FremderAufFeld
-     (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      FremdeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
             
@@ -277,7 +278,8 @@ package body BewegungEinheiten is
    
    
    function FremdeStadtAufFeld
-     (EinheitRasseNummerExtern, FremdeStadtExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      FremdeStadtExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -299,7 +301,8 @@ package body BewegungEinheiten is
    
    -- Hier vielleicht später mehr einbauen? Beispielsweise Plätzetauschen?
    procedure EigeneEinheitAufFeld
-     (BewegendeEinheitExtern, FeldBelegendeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (BewegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      FeldBelegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       BewegungLadenEntladen.TransporterBeladen (TransporterExtern => FeldBelegendeEinheitExtern,

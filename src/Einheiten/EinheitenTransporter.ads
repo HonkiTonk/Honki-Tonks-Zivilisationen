@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords;
 use GlobaleDatentypen;
 
 package EinheitenTransporter is
 
    function EinheitTransporterAuswählen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
@@ -15,8 +15,8 @@ package EinheitenTransporter is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    function KannTransportiertWerden
-     (LadungExtern : in GlobaleRecords.RassePlatznummerRecord;
-      TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (LadungExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -39,7 +39,7 @@ private
      return GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    function PlatzFrei
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
 
 end EinheitenTransporter;

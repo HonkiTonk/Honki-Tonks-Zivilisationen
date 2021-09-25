@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten, GlobaleKonstanten;
 
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeKarten, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
@@ -10,7 +10,7 @@ with KartePositionPruefen, RasseEntfernen, Wachstum;
 package body StadtEntfernen is
 
    procedure StadtEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       BelegteStadtfelderFreigeben (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -27,7 +27,7 @@ package body StadtEntfernen is
    
    
    procedure BelegteStadtfelderFreigeben
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       YUmgebungFreigebenSchleife:
@@ -39,7 +39,7 @@ package body StadtEntfernen is
                                                                         ÄnderungExtern    => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert));
          
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -63,7 +63,7 @@ package body StadtEntfernen is
    
    
    procedure HeimatstädteEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       EinheitenSchleife:
@@ -86,7 +86,7 @@ package body StadtEntfernen is
    
    
    procedure NeueHauptstadtSetzen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case

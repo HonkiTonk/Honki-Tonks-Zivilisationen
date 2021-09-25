@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with KIDatentypen;
@@ -10,7 +10,7 @@ with Karten;
 package SchreibeEinheitenGebaut is
 
    procedure ID
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
      with
        Pre =>
@@ -19,7 +19,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Position
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -32,7 +32,7 @@ package SchreibeEinheitenGebaut is
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure Heimatstadt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       HeimatstadtExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert)
      with
        Pre =>
@@ -41,7 +41,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Lebenspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LebenspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
      with
@@ -51,7 +51,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Bewegungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BewegungspunkteExtern : in GlobaleDatentypen.BewegungFloat;
       RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
      with
@@ -61,7 +61,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Erfahrungspunkte
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ErfahrungspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       AddierenSetzenExtern : in Boolean)
      with
@@ -71,7 +71,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Rang
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -79,7 +79,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Beschäftigung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BeschäftigungExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
      with
        Pre =>
@@ -88,7 +88,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure BeschäftigungNachfolger
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BeschäftigungExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
      with
        Pre =>
@@ -97,7 +97,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Beschäftigungszeit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
      with
@@ -107,7 +107,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure BeschäftigungszeitNachfolger
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
      with
@@ -117,7 +117,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure KIZielKoordinaten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -130,7 +130,7 @@ package SchreibeEinheitenGebaut is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure KIBeschäftigt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
      with
        Pre =>
@@ -139,7 +139,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure KIBewegungPlan
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
      with
@@ -153,7 +153,7 @@ package SchreibeEinheitenGebaut is
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
       
    procedure Transportiert
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       LadungspositionExtern : in GlobaleDatentypen.MaximaleStädte)
      with
@@ -163,7 +163,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure WirdTransportiert
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       TransporterExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
      with
        Pre =>
@@ -172,7 +172,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
       
    procedure Meldungen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       MeldungExtern : in GlobaleDatentypen.Einheit_Meldung_Enum;
       WelcheMeldungExtern : in GlobaleDatentypen.Einheit_Meldung_Art_Enum)
      with
@@ -182,7 +182,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Nullsetzung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -190,8 +190,8 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure GanzerEintrag
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      EintragExtern : in GlobaleRecords.EinheitenGebautRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      EintragExtern : in EinheitStadtRecords.EinheitenGebautRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

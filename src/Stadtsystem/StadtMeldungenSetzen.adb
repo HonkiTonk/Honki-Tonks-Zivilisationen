@@ -32,7 +32,7 @@ package body StadtMeldungenSetzen is
    
    
    procedure StadtMeldungSetzenEreignis
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EreignisExtern : in GlobaleDatentypen.Stadt_Meldungen_Verwendet_Enum)
    is begin
       

@@ -1,14 +1,14 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
-use GlobaleDatentypen, GlobaleRecords;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+use GlobaleDatentypen, EinheitStadtRecords;
 
 with Karten;
 
 package KIPruefungen is
    
    function StadtUmgebungPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -21,7 +21,7 @@ package KIPruefungen is
               StadtUmgebungPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function UmgebungStadtBauenPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -47,7 +47,7 @@ private
    
    VerbesserungAnlegen : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
+   EinheitAufFeld : EinheitStadtRecords.RassePlatznummerRecord;
    
    StadtVerbesserungUmgebungKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
    StadtBauenUmgebungKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
@@ -55,7 +55,7 @@ private
    KartenWertZwei : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function KartenfeldUmgebungPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
       return Boolean
@@ -70,7 +70,7 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function StadtUmgebungUnverbessert
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -81,7 +81,7 @@ private
    
    function VerbesserungDortAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -94,7 +94,7 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function VerbesserungAnlegbar
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
    
    function FeldBelegt
@@ -102,14 +102,14 @@ private
       return Boolean;
    
    function NeuesStadtFeldSuchen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt;
       YUmgebungExtern : in GlobaleDatentypen.KartenfeldPositiv;
       XUmgebungExtern : in GlobaleDatentypen.KartenfeldPositiv)
       return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FelderDurchgehen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
       return KartenRecords.AchsenKartenfeldPositivRecord;
    

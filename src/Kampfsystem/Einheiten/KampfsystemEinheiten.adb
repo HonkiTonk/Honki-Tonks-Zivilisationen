@@ -10,8 +10,8 @@ with ZufallGeneratorenKampf, KampfwerteEinheitErmitteln, EinheitenErzeugenEntfer
 package body KampfsystemEinheiten is
 
    function KampfsystemNahkampf
-     (AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord;
-      VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreiferExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
 
@@ -33,8 +33,8 @@ package body KampfsystemEinheiten is
 
 
    function Kampf
-     (VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      AngreiferExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
             
@@ -84,7 +84,7 @@ package body KampfsystemEinheiten is
 
 
    procedure KampfBerechnung
-     (VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
       VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
    is begin

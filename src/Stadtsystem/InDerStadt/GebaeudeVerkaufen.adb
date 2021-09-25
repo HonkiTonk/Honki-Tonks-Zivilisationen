@@ -7,7 +7,7 @@ with StadtProduktion, GebaeudeAllgemein;
 package body GebaeudeVerkaufen is
 
    procedure GebäudeVerkaufen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if

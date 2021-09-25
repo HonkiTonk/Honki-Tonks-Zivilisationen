@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, KartenRecords;
+with EinheitStadtRecords, GlobaleDatentypen, KartenRecords;
 use GlobaleDatentypen;
 
 package EinheitInUmgebung is
@@ -11,7 +11,7 @@ private
       
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   AndereEinheit : GlobaleRecords.RassePlatznummerRecord;
+   AndereEinheit : EinheitStadtRecords.RassePlatznummerRecord;
    
    procedure UmgebungStadt
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);

@@ -11,14 +11,14 @@ with GebaeudeAllgemein;
 package body KIGebaeudeBauen is
 
    function GebäudeBauen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIRecords.GebäudeIDBewertungRecord
    is begin
       
       GebäudeBewertet := KIKonstanten.LeerGebäudeIDBewertung;
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in GlobaleRecords.GebäudeVorhandenArray'Range loop
+      for GebäudeSchleifenwert in EinheitStadtRecords.GebäudeVorhandenArray'Range loop
          
          case
            GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -41,7 +41,7 @@ package body KIGebaeudeBauen is
    
    
    procedure GebäudeBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
    is begin
       
@@ -78,7 +78,7 @@ package body KIGebaeudeBauen is
    
    
    function NahrungsproduktionBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -137,7 +137,7 @@ package body KIGebaeudeBauen is
    
    
    function GeldproduktionBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -196,7 +196,7 @@ package body KIGebaeudeBauen is
    
      
    function WissensgewinnBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -222,7 +222,7 @@ package body KIGebaeudeBauen is
      
           
    function RessourcenproduktionBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -281,7 +281,7 @@ package body KIGebaeudeBauen is
    
      
    function VerteidigungBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -295,7 +295,7 @@ package body KIGebaeudeBauen is
    
      
    function AngriffBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -309,7 +309,7 @@ package body KIGebaeudeBauen is
    
      
    function KostenBewerten
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin

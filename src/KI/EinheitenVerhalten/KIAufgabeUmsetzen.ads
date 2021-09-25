@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package KIAufgabeUmsetzen is
 
    function WelcheVerbesserungAnlegen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -15,7 +15,7 @@ package KIAufgabeUmsetzen is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
    function EinheitVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -33,7 +33,7 @@ private
    Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
 
    function VerbesserungGebiet
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
 
 end KIAufgabeUmsetzen;

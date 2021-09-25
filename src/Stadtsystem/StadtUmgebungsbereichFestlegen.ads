@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package StadtUmgebungsbereichFestlegen is
@@ -81,7 +81,7 @@ package StadtUmgebungsbereichFestlegen is
                                                                               );
 
    procedure StadtUmgebungsbereichFestlegen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -93,6 +93,6 @@ private
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    
    procedure StadtUmgebungErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
 end StadtUmgebungsbereichFestlegen;

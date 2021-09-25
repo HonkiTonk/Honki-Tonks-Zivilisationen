@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package KIVorhandeneAufgaben is
 
    function SichHeilen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -15,7 +15,7 @@ package KIVorhandeneAufgaben is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function SichVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -24,7 +24,7 @@ package KIVorhandeneAufgaben is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -36,7 +36,7 @@ package KIVorhandeneAufgaben is
      return GlobaleDatentypen.ProduktionSonstiges;
 
    function NeueStadtBauenGehen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -45,7 +45,7 @@ package KIVorhandeneAufgaben is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
    function StadtUmgebungVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -54,7 +54,7 @@ package KIVorhandeneAufgaben is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
    function StadtBewachen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -66,7 +66,7 @@ package KIVorhandeneAufgaben is
      return GlobaleDatentypen.ProduktionSonstiges;
 
    function Angreifen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.ProduktionSonstiges;
 
    function Erkunden

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleKonstanten;
+with GlobaleVariablen, GlobaleKonstanten, KartenKonstanten;
 
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -115,7 +115,7 @@ package body EinheitInUmgebung is
                                                                         ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                

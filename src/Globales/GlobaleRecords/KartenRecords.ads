@@ -52,5 +52,16 @@ package KartenRecords is
       Felderwertung : FelderwertungArray;
 
    end record;
+   
+   
+   
+   type CursorRecord is record
+      
+      CursorGrafik : Wide_Wide_Character;
+      Position : AchsenKartenfeldPositivRecord;
+      PositionAlt : AchsenKartenfeldPositivRecord;
+      PositionStadt : AchsenStadtfeldRecord;
+      
+   end record;
 
 end KartenRecords;

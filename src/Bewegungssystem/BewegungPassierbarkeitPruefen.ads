@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
+with GlobaleVariablen, GlobaleDatentypen, KartenRecords, EinheitStadtRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -35,7 +35,7 @@ package BewegungPassierbarkeitPruefen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    function InStadtEntladbar
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -49,7 +49,7 @@ package BewegungPassierbarkeitPruefen is
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
       
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return Boolean
      with
@@ -72,7 +72,7 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   TransportplatzEntladen : GlobaleRecords.TransporterArray;
+   TransportplatzEntladen : EinheitStadtRecords.TransporterArray;
    
    function PassierbarTesten
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;

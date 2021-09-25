@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
      with
        Pre =>
@@ -17,7 +17,7 @@ package BewegungLadenEntladen is
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure EinheitAusTransporterEntfernen
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
      with
        Pre =>
@@ -26,7 +26,7 @@ package BewegungLadenEntladen is
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure TransporterladungVerschieben
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -39,7 +39,7 @@ package BewegungLadenEntladen is
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure TransporterStadtEntladen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -61,7 +61,7 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FreienPlatzErmitteln
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>

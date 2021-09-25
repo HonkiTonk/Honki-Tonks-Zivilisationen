@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten, GlobaleTexte;
+with SystemKonstanten, GlobaleTexte, GlobaleKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -13,7 +13,7 @@ with Anzeige, Eingabe, Auswahl, GebaeudeAllgemein, EinheitenModifizieren, Einhei
 package body InDerStadtBauen is
 
    procedure Bauen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -24,7 +24,7 @@ package body InDerStadtBauen is
             
          when others =>
             if
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 14) = GlobaleKonstanten.JaKonstante
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 14) = SystemKonstanten.JaKonstante
             then
                null;
                
@@ -44,7 +44,7 @@ package body InDerStadtBauen is
 
 
    function BauobjektAuswählen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Natural
    is begin
 
@@ -80,7 +80,7 @@ package body InDerStadtBauen is
    
    
    procedure MöglicheGebäudeErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       GebäudeSchleife:
@@ -118,7 +118,7 @@ package body InDerStadtBauen is
    
    
    procedure MöglicheEinheitenErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       EinheitenSchleife:
@@ -157,7 +157,7 @@ package body InDerStadtBauen is
    
    
    function AuswahlBauprojekt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Natural
    is begin
       

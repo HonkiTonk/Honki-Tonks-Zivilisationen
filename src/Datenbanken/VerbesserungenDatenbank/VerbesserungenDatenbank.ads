@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleDatentypen, KartenKonstanten;
 use GlobaleDatentypen;
 
 with DatenbankRecords;
@@ -17,7 +17,7 @@ private
    VerbesserungListeStandard : constant VerbesserungListeArray :=
      (
       -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-      GlobaleDatentypen.Leer => GlobaleKonstanten.LeerVerbesserungListe,
+      GlobaleDatentypen.Leer => KartenKonstanten.LeerVerbesserungListe,
       
       
                                                   
@@ -222,7 +222,7 @@ private
       -- Tunnel
       -- Wege
       
-      others                => GlobaleKonstanten.LeerVerbesserungListe
+      others                => KartenKonstanten.LeerVerbesserungListe
      );
          
 end VerbesserungenDatenbank;

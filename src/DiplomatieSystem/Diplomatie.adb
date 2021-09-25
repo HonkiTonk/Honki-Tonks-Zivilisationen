@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, GlobaleKonstanten;
+with GlobaleTexte, SystemKonstanten;
 
 with Anzeige, Auswahl, Handeln, EinheitVerschieben, DiplomatischerZustandAenderbar;
 
@@ -72,7 +72,7 @@ package body Diplomatie is
             case
               WelcheRasse
             is
-               when GlobaleKonstanten.ZurückKonstante =>
+               when SystemKonstanten.ZurückKonstante =>
                   return;
                   
                when others =>
@@ -118,7 +118,7 @@ package body Diplomatie is
                   EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
                                                            KontaktierteRasseExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
-               when GlobaleKonstanten.ZurückKonstante =>
+               when SystemKonstanten.ZurückKonstante =>
                   exit DiplomatischeAktionSchleife;
                   
                when others =>
@@ -128,7 +128,7 @@ package body Diplomatie is
             case
               DiplomatischeAktion
             is
-               when GlobaleKonstanten.ZurückKonstante =>
+               when SystemKonstanten.ZurückKonstante =>
                   return;
                   
                when others =>
@@ -172,7 +172,7 @@ package body Diplomatie is
             if
               KriegJetzt
             then
-               return GlobaleKonstanten.ZurückKonstante;
+               return SystemKonstanten.ZurückKonstante;
                
             else
                return 1;

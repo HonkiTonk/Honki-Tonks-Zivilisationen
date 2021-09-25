@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Calendar;
 use Ada.Wide_Wide_Text_IO, Ada.Calendar;
 
-with GlobaleKonstanten, GlobaleVariablen, GlobaleDatentypen;
+with GlobaleVariablen, GlobaleDatentypen, SystemKonstanten;
 
 with ImSpiel, KartenGenerator, Ladezeiten, SpielEinstellungenKarten, SpielEinstellungenRasseSpieler, SpielEinstellungenSonstiges;
 
@@ -13,7 +13,7 @@ package body SpielEinstellungen is
      return Integer
    is begin
 
-      HauptAuswahl := GlobaleKonstanten.AuswahlKartengröße;
+      HauptAuswahl := SystemKonstanten.AuswahlKartengröße;
 
       AuswahlSchleife:
       loop
@@ -21,34 +21,34 @@ package body SpielEinstellungen is
          case
            HauptAuswahl
          is
-            when GlobaleKonstanten.AuswahlKartengröße =>
+            when SystemKonstanten.AuswahlKartengröße =>
                HauptAuswahl := SpielEinstellungenKarten.KartengrößeWählen;
 
-            when GlobaleKonstanten.AuswahlKartenart =>
+            when SystemKonstanten.AuswahlKartenart =>
                HauptAuswahl := SpielEinstellungenKarten.KartenartWählen;
                
-            when GlobaleKonstanten.AuswahlKartenform =>
+            when SystemKonstanten.AuswahlKartenform =>
                HauptAuswahl := SpielEinstellungenKarten.KartenformWählen;
 
-            when GlobaleKonstanten.AuswahlKartentemperatur =>
+            when SystemKonstanten.AuswahlKartentemperatur =>
                HauptAuswahl := SpielEinstellungenKarten.KartentemperaturWählen;
                
-            when GlobaleKonstanten.AuswahlKartenressourcen =>
+            when SystemKonstanten.AuswahlKartenressourcen =>
                HauptAuswahl := SpielEinstellungenKarten.KartenressourcenWählen;
                
-            when GlobaleKonstanten.AuswahlSpieleranzahl =>
+            when SystemKonstanten.AuswahlSpieleranzahl =>
                HauptAuswahl := SpielEinstellungenRasseSpieler.SpieleranzahlWählen;
 
-            when GlobaleKonstanten.AuswahlBelegung =>
+            when SystemKonstanten.AuswahlBelegung =>
                HauptAuswahl := SpielEinstellungenRasseSpieler.SpielerbelegungWählen;
 
-            when GlobaleKonstanten.AuswahlSchwierigkeitsgrad =>
+            when SystemKonstanten.AuswahlSchwierigkeitsgrad =>
                HauptAuswahl := SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
-            when GlobaleKonstanten.AuswahlFertig =>
+            when SystemKonstanten.AuswahlFertig =>
                exit AuswahlSchleife;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return HauptAuswahl;
 
             when others =>
@@ -97,7 +97,7 @@ package body SpielEinstellungen is
             
          when False =>
             Put_Line ("SpielEinstellungen.SpielEinstellungenAuswahl es wurden keine Rassen platziert!");
-            return GlobaleKonstanten.SpielBeendenKonstante;
+            raise Program_Error;
       end case;
          
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, GlobaleDatentypen.Endwert) := Clock;

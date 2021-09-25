@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleKonstanten, GlobaleDatentypen;
+with GlobaleVariablen, GlobaleKonstanten, GlobaleDatentypen, KartenKonstanten;
 
 with Karten, Cheat;
 
@@ -24,7 +24,7 @@ package body AllesAufAnfangSetzen is
       Cheat.GewonnenDurchCheat := False;
       Cheat.FeindlicheInformationenSehen := False;
 
-      Karten.Weltkarte := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));
+      Karten.Weltkarte := (others => (others => (others => KartenKonstanten.LeerWeltkarte)));
       Karten.KartenartGemischt := False;
             
    end AllesAufAnfangSetzen;

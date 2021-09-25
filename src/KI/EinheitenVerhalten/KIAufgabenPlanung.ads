@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
 with KIDatentypen;
@@ -8,7 +8,7 @@ with KIDatentypen;
 package KIAufgabenPlanung is
    
    procedure AufgabeErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -16,7 +16,7 @@ package KIAufgabenPlanung is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    procedure AufgabeUmsetzen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -34,7 +34,7 @@ private
    
    procedure AufgabeFestlegen
      (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -42,7 +42,7 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    procedure EinheitSpezifischeAufgabenErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure AufgabenSortieren;
    

@@ -10,7 +10,7 @@ package body KampfwerteEinheitErmitteln is
 
    -- Mit_Hügel noch berücksichtigen
    function AktuelleVerteidigungEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngreiferExtern : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -42,7 +42,7 @@ package body KampfwerteEinheitErmitteln is
    
    
    function VerteidigungsbonusVerteidiger
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
@@ -94,7 +94,7 @@ package body KampfwerteEinheitErmitteln is
    
    
    function AktuellerAngriffEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngreiferExtern : in Boolean)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -126,7 +126,7 @@ package body KampfwerteEinheitErmitteln is
    
    
    function AngriffsbonusAngreifer
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       

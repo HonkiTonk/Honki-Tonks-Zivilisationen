@@ -23,7 +23,7 @@ package body ImSpiel is
             case
               RückgabeRassen
             is
-               when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+               when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                   return RückgabeRassen;
                   
                when RassenSchleifeVerlassenKonstante =>
@@ -40,7 +40,7 @@ package body ImSpiel is
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
-            return GlobaleKonstanten.HauptmenüKonstante;
+            return SystemKonstanten.HauptmenüKonstante;
             
          else
             null;
@@ -49,7 +49,7 @@ package body ImSpiel is
          if
            GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
          then
-            return GlobaleKonstanten.HauptmenüKonstante;
+            return SystemKonstanten.HauptmenüKonstante;
             
          else
             null;
@@ -69,7 +69,7 @@ package body ImSpiel is
       if
         GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Leer
       then
-         return GlobaleKonstanten.StartNormalKonstante;
+         return SystemKonstanten.StartNormalKonstante;
       
       elsif
         GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
@@ -77,7 +77,7 @@ package body ImSpiel is
           GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
          RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
-         return GlobaleKonstanten.StartNormalKonstante;
+         return SystemKonstanten.StartNormalKonstante;
          
       else
          return RasseDurchgehen (RasseExtern => RasseExtern);
@@ -117,7 +117,7 @@ package body ImSpiel is
          null;
       end if;
       
-      return GlobaleKonstanten.StartNormalKonstante;
+      return SystemKonstanten.StartNormalKonstante;
       
    end RasseDurchgehen;
    
@@ -143,18 +143,18 @@ package body ImSpiel is
       RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
       
       if
-        (RückgabeWert = GlobaleKonstanten.SpielBeendenKonstante
+        (RückgabeWert = SystemKonstanten.SpielBeendenKonstante
          or
-           RückgabeWert = GlobaleKonstanten.HauptmenüKonstante)
+           RückgabeWert = SystemKonstanten.HauptmenüKonstante)
         and
           NochSpielerVorhanden (RasseExtern => RasseExtern) = True
       then
          RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                         
       elsif
-        RückgabeWert = GlobaleKonstanten.SpielBeendenKonstante
+        RückgabeWert = SystemKonstanten.SpielBeendenKonstante
         or
-          RückgabeWert = GlobaleKonstanten.HauptmenüKonstante
+          RückgabeWert = SystemKonstanten.HauptmenüKonstante
       then
          return RückgabeWert;
 
@@ -167,7 +167,7 @@ package body ImSpiel is
          null;
       end if;
       
-      return GlobaleKonstanten.StartNormalKonstante;
+      return SystemKonstanten.StartNormalKonstante;
       
    end MenschlicherSpieler;
 
@@ -190,20 +190,20 @@ package body ImSpiel is
                
             when others =>
                -- Sollte niemals auftreten? Könnte auftreten wenn der Spieler eliminiert wird oder auf KI gesetzt wird? Mal ein besseres System bauen.
-               return GlobaleKonstanten.HauptmenüKonstante;
+               return SystemKonstanten.HauptmenüKonstante;
          end case;
          
          case
            AktuellerBefehlSpieler
          is
-            when GlobaleKonstanten.StartNormalKonstante =>
+            when SystemKonstanten.StartNormalKonstante =>
                null;
 
-            when GlobaleKonstanten.SpeichernKonstante =>
+            when SystemKonstanten.SpeichernKonstante =>
                GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
-            when GlobaleKonstanten.LadenKonstante =>
+            when SystemKonstanten.LadenKonstante =>
                if
                  Laden.LadenNeu = True
                then
@@ -213,12 +213,12 @@ package body ImSpiel is
                   null;
                end if;
                
-            when GlobaleKonstanten.OptionenKonstante =>
+            when SystemKonstanten.OptionenKonstante =>
                RückgabeOptionen := Optionen.Optionen;
                if
-                 RückgabeOptionen = GlobaleKonstanten.SpielBeendenKonstante
+                 RückgabeOptionen = SystemKonstanten.SpielBeendenKonstante
                  or
-                   RückgabeOptionen = GlobaleKonstanten.HauptmenüKonstante
+                   RückgabeOptionen = SystemKonstanten.HauptmenüKonstante
                then
                   return RückgabeOptionen;
                                     
@@ -226,11 +226,11 @@ package body ImSpiel is
                   null;
                end if;
                
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return AktuellerBefehlSpieler;
 
-            when GlobaleKonstanten.RundeBeendenKonstante =>
-               return GlobaleKonstanten.StartNormalKonstante;
+            when SystemKonstanten.RundeBeendenKonstante =>
+               return SystemKonstanten.StartNormalKonstante;
                   
             when others =>
                null;

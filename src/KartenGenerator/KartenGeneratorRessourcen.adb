@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleDatentypen;
+with KartenKonstanten, GlobaleDatentypen;
 use GlobaleDatentypen;
 
 with SchreibeKarten;
@@ -36,8 +36,8 @@ package body KartenGeneratorRessourcen is
    is begin
 
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
@@ -133,7 +133,7 @@ package body KartenGeneratorRessourcen is
             case
               KartenWert.XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with KartePositionBerechnungen;
 
@@ -19,7 +19,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -32,7 +32,7 @@ package body KartePositionKartenformen is
         YAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -62,7 +62,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -75,7 +75,7 @@ package body KartePositionKartenformen is
         XAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -104,7 +104,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -137,7 +137,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -171,7 +171,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -184,7 +184,7 @@ package body KartePositionKartenformen is
         YAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -197,7 +197,7 @@ package body KartePositionKartenformen is
         XAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -222,7 +222,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -257,7 +257,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -296,7 +296,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -335,7 +335,7 @@ package body KartePositionKartenformen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenPosition;
 
          when others =>
             null;

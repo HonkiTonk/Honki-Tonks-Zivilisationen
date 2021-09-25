@@ -7,7 +7,7 @@ with Aufgaben;
 package body KIAufgabeUmsetzen is
    
    function WelcheVerbesserungAnlegen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -46,7 +46,7 @@ package body KIAufgabeUmsetzen is
    
    
    function VerbesserungGebiet
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -99,7 +99,7 @@ package body KIAufgabeUmsetzen is
       
 
    function EinheitVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       

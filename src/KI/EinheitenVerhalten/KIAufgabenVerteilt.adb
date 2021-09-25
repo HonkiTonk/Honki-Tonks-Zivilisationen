@@ -7,7 +7,7 @@ with LeseEinheitenGebaut;
 package body KIAufgabenVerteilt is
 
    function AufgabenVerteilt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
       return Natural
    is begin

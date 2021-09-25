@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package VerbesserungFertiggestellt is
@@ -10,7 +10,7 @@ package VerbesserungFertiggestellt is
 private
    
    procedure VerbesserungFertiggestelltPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -18,12 +18,12 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure VerbesserungAngelegt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure VerbesserungWaldAufforsten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    procedure AufgabeNachfolgerVerschieben
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
 end VerbesserungFertiggestellt;

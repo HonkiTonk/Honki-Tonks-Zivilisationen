@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with LeseKarten;
 
@@ -31,7 +31,7 @@ package body UmgebungErreichbarTesten is
                                                                            ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
                if
-                 KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+                 KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
                then
                   null;
                   
@@ -100,7 +100,7 @@ package body UmgebungErreichbarTesten is
                      
       end loop BereichSchleife;
       
-      return GlobaleKonstanten.LeerKartenPosition;
+      return KartenKonstanten.LeerKartenPosition;
       
    end UmgebungErreichbarTesten;
    
@@ -122,7 +122,7 @@ package body UmgebungErreichbarTesten is
                                                                             ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWertZwei.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWertZwei.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                

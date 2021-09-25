@@ -8,7 +8,7 @@ with LeseStadtGebaut, LeseWichtiges;
 package body StadtUmgebungsbereichFestlegen is
 
    procedure StadtUmgebungsbereichFestlegen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -27,7 +27,7 @@ package body StadtUmgebungsbereichFestlegen is
    
    
    procedure StadtUmgebungErmitteln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if

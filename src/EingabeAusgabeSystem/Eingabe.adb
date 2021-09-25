@@ -6,7 +6,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 with Sf, Sf.Graphics.RenderWindow;
 use Sf;
 
-with GlobaleKonstanten;
+with SystemKonstanten;
 
 with Anzeige, GrafikStart;
 
@@ -26,7 +26,7 @@ package body Eingabe is
       if
         ZahlenMinimumExtern >= ZahlenMaximumExtern
       then
-         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+         return SystemKonstanten.GanzeZahlAbbruchKonstante;
          
       else
          ZahlenString := ("000000000");
@@ -46,7 +46,7 @@ package body Eingabe is
                exit ZahlenAußenSchleife;
                
             when -1 =>
-               return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+               return SystemKonstanten.GanzeZahlAbbruchKonstante;
                         
             when others =>
                null;
@@ -82,7 +82,7 @@ package body Eingabe is
       elsif
         ZahlenMaximumExtern < ZahlenMinimum
       then
-         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+         return SystemKonstanten.GanzeZahlAbbruchKonstante;
          
       else
          return ZahlenMaximumExtern;
@@ -105,7 +105,7 @@ package body Eingabe is
       elsif
         ZahlenMinimumExtern > ZahlenMaximum
       then
-         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+         return SystemKonstanten.GanzeZahlAbbruchKonstante;
            
       else
          return ZahlenMinimumExtern;

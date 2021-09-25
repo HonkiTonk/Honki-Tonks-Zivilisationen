@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten, GlobaleDatentypen;
+with GlobaleKonstanten, GlobaleDatentypen, SystemKonstanten;
 
 with Anzeige, Eingabe;
 
@@ -127,67 +127,67 @@ package body Auswahl is
                if
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 1)
                then
-                  return GlobaleKonstanten.HauptmenüKonstante;
+                  return SystemKonstanten.HauptmenüKonstante;
                   
                   -- Spiel beenden
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 2)
                then
-                  return GlobaleKonstanten.SpielBeendenKonstante;
+                  return SystemKonstanten.SpielBeendenKonstante;
                   
                   -- Zurück
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 3)
                then
-                  return GlobaleKonstanten.ZurückKonstante;
+                  return SystemKonstanten.ZurückKonstante;
                   
                   -- Ja
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 4)
                then
-                  return GlobaleKonstanten.JaKonstante;
+                  return SystemKonstanten.JaKonstante;
                   
                   -- Nein
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 5)
                then
-                  return GlobaleKonstanten.NeinKonstante;
+                  return SystemKonstanten.NeinKonstante;
 
                   -- Speichern
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 6)
                then
-                  return GlobaleKonstanten.SpeichernKonstante;
+                  return SystemKonstanten.SpeichernKonstante;
 
                   -- Laden
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 7)
                then
-                  return GlobaleKonstanten.LadenKonstante;
+                  return SystemKonstanten.LadenKonstante;
 
                   -- Optionen
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 8)
                then
-                  return GlobaleKonstanten.OptionenKonstante;
+                  return SystemKonstanten.OptionenKonstante;
 
                   -- Informationen
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 9)
                then
-                  return GlobaleKonstanten.InformationenKonstante;
+                  return SystemKonstanten.InformationenKonstante;
 
                   -- Wiederherstellen
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 10)
                then
-                  return GlobaleKonstanten.WiederherstellenKonstante;
+                  return SystemKonstanten.WiederherstellenKonstante;
 
                   -- Würdigungen
                elsif
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 11)
                then
-                  return GlobaleKonstanten.WürdigungenKonstante;
+                  return SystemKonstanten.WürdigungenKonstante;
                      
                else
                   Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -212,8 +212,8 @@ package body Auswahl is
       return Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
                       TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                       FrageZeileExtern  => FrageZeileExtern,
-                      ErsteZeileExtern  => GlobaleKonstanten.JaAnzeigeKonstante,
-                      LetzteZeileExtern => GlobaleKonstanten.NeinAnzeigeKonstante);
+                      ErsteZeileExtern  => SystemKonstanten.JaAnzeigeKonstante,
+                      LetzteZeileExtern => SystemKonstanten.NeinAnzeigeKonstante);
       
    end AuswahlJaNein;
 

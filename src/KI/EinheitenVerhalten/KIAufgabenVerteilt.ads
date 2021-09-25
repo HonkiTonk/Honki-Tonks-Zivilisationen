@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen, KartenRecords;
 
 with KIDatentypen;
@@ -11,7 +11,7 @@ with Karten;
 package KIAufgabenVerteilt is
 
    function AufgabenVerteilt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
       return Natural
      with

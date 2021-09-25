@@ -12,7 +12,7 @@ with Anzeige, GebaeudeAllgemein;
 package body GebaeudeBauen is
 
    procedure AnzeigeGebäude
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       GebaeudeAllgemein.BeschreibungLang (IDExtern => GlobaleDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag));
@@ -89,7 +89,7 @@ package body GebaeudeBauen is
    
    
    procedure BauzeitGebäude
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -124,7 +124,7 @@ package body GebaeudeBauen is
       PermanenteGebäudeWerte := False;
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in EinheitStadtRecords.PermanenteKostenArray'Range loop
          
          if
            LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,

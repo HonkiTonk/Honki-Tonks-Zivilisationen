@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten, GlobaleDatentypen, GlobaleTexte;
+with SystemKonstanten, GlobaleDatentypen, GlobaleTexte;
 
 with Auswahl, Karten, Eingabe, ZufallGeneratorenSpieleinstellungen;
 
@@ -27,16 +27,16 @@ package body SpielEinstellungenKarten is
          is
             when 1 .. 9 =>
                Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
-               return GlobaleKonstanten.AuswahlKartenart;
+               return SystemKonstanten.AuswahlKartenart;
 
             when 10 =>
                return GrößeSelbstBestimmen;
                
             when 11 =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
-               return GlobaleKonstanten.AuswahlKartenart;
+               return SystemKonstanten.AuswahlKartenart;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return KartengrößeAuswahl;
                
             when others =>
@@ -61,9 +61,9 @@ package body SpielEinstellungenKarten is
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
       if
-        BenutzerdefinierteGröße = GlobaleKonstanten.GanzeZahlAbbruchKonstante
+        BenutzerdefinierteGröße = SystemKonstanten.GanzeZahlAbbruchKonstante
       then
-         return GlobaleKonstanten.AuswahlKartengröße;
+         return SystemKonstanten.AuswahlKartengröße;
                      
       else
          null;
@@ -76,13 +76,13 @@ package body SpielEinstellungenKarten is
                                                       ZahlenMaximumExtern => 1_000);
                      
       if
-        BenutzerdefinierteGröße = GlobaleKonstanten.GanzeZahlAbbruchKonstante
+        BenutzerdefinierteGröße = SystemKonstanten.GanzeZahlAbbruchKonstante
       then
-         return GlobaleKonstanten.AuswahlKartengröße;
+         return SystemKonstanten.AuswahlKartengröße;
                            
       else
          Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-         return GlobaleKonstanten.AuswahlKartenart;
+         return SystemKonstanten.AuswahlKartenart;
       end if;
       
    end GrößeSelbstBestimmen;
@@ -108,16 +108,16 @@ package body SpielEinstellungenKarten is
          is
             when 1 .. 5 =>
                Karten.Kartenart := GlobaleDatentypen.Kartenart_Verwendet_Enum'Val (KartenartAuswahl);
-               return GlobaleKonstanten.AuswahlKartenform;
+               return SystemKonstanten.AuswahlKartenform;
                
             when 6 =>
                Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
-               return GlobaleKonstanten.AuswahlKartenform;
+               return SystemKonstanten.AuswahlKartenform;
                
-            when GlobaleKonstanten.ZurückKonstante =>
-               return GlobaleKonstanten.AuswahlKartengröße;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartengröße;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return KartenartAuswahl;
                
             when others =>
@@ -151,16 +151,16 @@ package body SpielEinstellungenKarten is
          is
             when 1 .. 9 =>
                Karten.Kartenform := GlobaleDatentypen.Kartenform_Verwendet_Enum'Val (KartenformAuswahl);
-               return GlobaleKonstanten.AuswahlKartentemperatur;
+               return SystemKonstanten.AuswahlKartentemperatur;
                
             when 10 =>
                Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
-               return GlobaleKonstanten.AuswahlKartentemperatur;
+               return SystemKonstanten.AuswahlKartentemperatur;
                
-            when GlobaleKonstanten.ZurückKonstante =>
-               return GlobaleKonstanten.AuswahlKartenart;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartenart;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return KartenformAuswahl;
                
             when others =>
@@ -194,16 +194,16 @@ package body SpielEinstellungenKarten is
          is
             when 1 .. 5 =>
                Karten.Kartentemperatur := GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Val (KartentemperaturAuswahl);
-               return GlobaleKonstanten.AuswahlKartenressourcen;
+               return SystemKonstanten.AuswahlKartenressourcen;
                
             when 6 =>
                Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
-               return GlobaleKonstanten.AuswahlKartenressourcen;
+               return SystemKonstanten.AuswahlKartenressourcen;
                
-            when GlobaleKonstanten.ZurückKonstante =>
-               return GlobaleKonstanten.AuswahlKartenform;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartenform;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return KartentemperaturAuswahl;
                
             when others =>
@@ -237,16 +237,16 @@ package body SpielEinstellungenKarten is
          is
             when 1 .. 5 =>
                Karten.Kartenressourcen := GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum'Val (KartenressourcenAuswahl);
-               return GlobaleKonstanten.AuswahlSpieleranzahl;
+               return SystemKonstanten.AuswahlSpieleranzahl;
                
             when 6 =>
                Karten.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
-               return GlobaleKonstanten.AuswahlSpieleranzahl;
+               return SystemKonstanten.AuswahlSpieleranzahl;
                
-            when GlobaleKonstanten.ZurückKonstante =>
-               return GlobaleKonstanten.AuswahlKartentemperatur;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartentemperatur;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return KartenressourcenAuswahl;
                
             when others =>

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten;
+with KartenKonstanten;
 
 with Karten, KartePositionPruefen, KarteInformationen, GrafischeAnzeige;
 
@@ -74,7 +74,7 @@ package body Karte is
             case
               KartenWert.XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>
@@ -117,7 +117,7 @@ package body Karte is
             or
               Karten.Kartenform = GlobaleDatentypen.Tugel_Extrem)
            and
-             KartenWert.XAchse > GlobaleKonstanten.LeerYXKartenWert
+             KartenWert.XAchse > KartenKonstanten.LeerYXKartenWert
          then
             New_Line;
                   

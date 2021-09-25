@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, GlobaleRecords;
+with GlobaleVariablen, GlobaleDatentypen, EinheitStadtRecords;
 use GlobaleDatentypen;
 
 package GebaeudeAllgemein is
@@ -12,7 +12,7 @@ package GebaeudeAllgemein is
      (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert);
    
    procedure GebäudeProduktionBeenden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
      with
        Pre =>
@@ -21,7 +21,7 @@ package GebaeudeAllgemein is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
      with
        Pre =>
@@ -30,7 +30,7 @@ package GebaeudeAllgemein is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    function GebäudeAnforderungenErfüllt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return Boolean
      with
@@ -42,7 +42,7 @@ package GebaeudeAllgemein is
 private
    
    procedure PermanenteKostenDurchGebäudeÄndern
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID;
       VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
      with

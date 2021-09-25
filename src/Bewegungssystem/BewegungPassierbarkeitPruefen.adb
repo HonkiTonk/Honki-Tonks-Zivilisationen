@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with KartenKonstanten, GlobaleKonstanten;
 
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, LeseStadtGebaut;
 
@@ -9,7 +9,7 @@ with StadtSuchen, UmgebungErreichbarTesten, KartePositionPruefen, KartenAllgemei
 package body BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -233,7 +233,7 @@ package body BewegungPassierbarkeitPruefen is
 
 
    function InStadtEntladbar
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -241,8 +241,8 @@ package body BewegungPassierbarkeitPruefen is
       BenötigteFelder := 1;
          
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+      for BelegterPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                                  IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
@@ -260,7 +260,7 @@ package body BewegungPassierbarkeitPruefen is
                                                                                                   (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                                                                                                                                PlatzExtern              => BelegterPlatzSchleifenwert))),
                                                                     NotwendigeFelderExtern    => BenötigteFelder).XAchse
-                 = GlobaleKonstanten.LeerYXKartenWert
+                 = KartenKonstanten.LeerYXKartenWert
                then
                   return False;
                      
@@ -278,7 +278,7 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
       return Boolean
    is begin
@@ -294,7 +294,7 @@ package body BewegungPassierbarkeitPruefen is
                                                                         ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert));
                
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                   

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
@@ -11,7 +11,7 @@ with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufga
 package body KIPruefungen is
    
    function StadtUmgebungPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -34,7 +34,7 @@ package body KIPruefungen is
          case
            VerbesserungAnlegen.XAchse
          is
-            when GlobaleKonstanten.LeerYXKartenWert =>
+            when KartenKonstanten.LeerYXKartenWert =>
                null;
                
             when others =>
@@ -50,7 +50,7 @@ package body KIPruefungen is
    
    
    function StadtUmgebungUnverbessert
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -65,7 +65,7 @@ package body KIPruefungen is
                                                                ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              StadtVerbesserungUmgebungKoordinaten.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              StadtVerbesserungUmgebungKoordinaten.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -99,7 +99,7 @@ package body KIPruefungen is
 
    function VerbesserungDortAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -144,7 +144,7 @@ package body KIPruefungen is
    
    
    function VerbesserungAnlegbar
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -173,7 +173,7 @@ package body KIPruefungen is
    
    
    function UmgebungStadtBauenPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -200,7 +200,7 @@ package body KIPruefungen is
    
    
    function FelderDurchgehen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -216,7 +216,7 @@ package body KIPruefungen is
          case
            KartenWertZwei.XAchse
          is
-            when GlobaleKonstanten.LeerYXKartenWert =>
+            when KartenKonstanten.LeerYXKartenWert =>
                null;
                
             when others =>
@@ -264,7 +264,7 @@ package body KIPruefungen is
    
    
    function NeuesStadtFeldSuchen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt;
       YUmgebungExtern : in GlobaleDatentypen.KartenfeldPositiv;
       XUmgebungExtern : in GlobaleDatentypen.KartenfeldPositiv)
@@ -284,7 +284,7 @@ package body KIPruefungen is
                and
                  XAchseKoordinatenSchonGeprüft >= abs XAchseSchleifenwert)
               or
-                StadtBauenUmgebungKoordinaten.XAchse = GlobaleKonstanten.LeerYXKartenWert
+                StadtBauenUmgebungKoordinaten.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                FeldGutUndFrei := False;
                
@@ -318,7 +318,7 @@ package body KIPruefungen is
    
    
    function KartenfeldUmgebungPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
       return Boolean
@@ -379,7 +379,7 @@ package body KIPruefungen is
                                                                         ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
             
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                

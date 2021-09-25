@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleKonstanten, GlobaleTexte;
+with GlobaleVariablen, SystemKonstanten, GlobaleTexte;
 
 with Auswahl, Eingabe, SchreibenEinstellungen, EinlesenSprache, EinlesenText;
 
@@ -16,8 +16,8 @@ package body OptionenSonstiges is
          AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
                                          TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                                          FrageZeileExtern  => 0,
-                                         ErsteZeileExtern  => GlobaleKonstanten.OptionenSonstigesErsteZeile,
-                                         LetzteZeileExtern => GlobaleKonstanten.OptionenSonstigesLetzteZeile);
+                                         ErsteZeileExtern  => SystemKonstanten.OptionenSonstigesErsteZeile,
+                                         LetzteZeileExtern => SystemKonstanten.OptionenSonstigesLetzteZeile);
 
          case
            AuswahlWert
@@ -31,7 +31,7 @@ package body OptionenSonstiges is
             when 3 =>
                SpracheWechseln;
                
-            when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                SchreibenEinstellungen.SchreibenEinstellungen;
                return AuswahlWert;
                
@@ -49,7 +49,7 @@ package body OptionenSonstiges is
    is begin
       
       AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
-                                        ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile,
+                                        ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile,
                                         ZahlenMinimumExtern => 0,
                                         ZahlenMaximumExtern => 999_999_999);
       case
@@ -70,7 +70,7 @@ package body OptionenSonstiges is
    is begin
       
       AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
-                                        ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile + 1,
+                                        ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile + 1,
                                         ZahlenMinimumExtern => 1,
                                         ZahlenMaximumExtern => 999_999_999);
 

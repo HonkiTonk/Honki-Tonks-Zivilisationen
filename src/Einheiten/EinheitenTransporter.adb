@@ -12,7 +12,7 @@ with Anzeige, Eingabe;
 package body EinheitenTransporter is
 
    function EinheitTransporterAuswählen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
@@ -23,9 +23,9 @@ package body EinheitenTransporter is
       Ende := 1;
 
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                IDExtern    =>
-                                                                                                                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+      for TransporterPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                     IDExtern    =>
+                                                                                                                                       LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          
          Transportiert := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              PlatzExtern              => TransporterPlatzSchleifenwert);
@@ -106,8 +106,8 @@ package body EinheitenTransporter is
    
    
    function KannTransportiertWerden
-     (LadungExtern : in GlobaleRecords.RassePlatznummerRecord;
-      TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (LadungExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -145,13 +145,13 @@ package body EinheitenTransporter is
    
    
    function PlatzFrei
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
       PlatzFreiSchleife:
-      for PlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+      for PlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                          IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer),

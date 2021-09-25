@@ -13,7 +13,7 @@ with KIBewegungDurchfuehren, KIAufgabenPlanung, KIGefahrErmitteln;
 package body KIEinheitHandlungen is
 
    procedure EinheitHandlungen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       FeindlicheEinheit := KIGefahrErmitteln.GefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -34,7 +34,7 @@ package body KIEinheitHandlungen is
    
    
    procedure NormaleHandlungen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       AktivitätSchleife:
@@ -69,7 +69,7 @@ package body KIEinheitHandlungen is
    
    
    procedure BewegungAufgabenplanung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -93,7 +93,8 @@ package body KIEinheitHandlungen is
    
    
    procedure GefahrenHandlungen
-     (EinheitRasseNummerExtern, FeindlicheEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      FeindlicheEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -137,7 +138,7 @@ package body KIEinheitHandlungen is
    
    
    function HandlungBeendet
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       

@@ -47,7 +47,7 @@ package body VerbesserungFertiggestellt is
 
 
    procedure VerbesserungFertiggestelltPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -81,7 +81,7 @@ package body VerbesserungFertiggestellt is
    
    
    procedure AufgabeNachfolgerVerschieben
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -110,7 +110,7 @@ package body VerbesserungFertiggestellt is
 
 
    procedure VerbesserungAngelegt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
@@ -157,7 +157,7 @@ package body VerbesserungFertiggestellt is
    
    
    procedure VerbesserungWaldAufforsten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if

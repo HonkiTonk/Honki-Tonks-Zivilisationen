@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KartenRecords;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, KartenRecords;
 use GlobaleDatentypen;
 
 with Karten;
@@ -8,7 +8,7 @@ with Karten;
 package Sichtbarkeit is
 
    procedure SichtbarkeitsprüfungFürEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -16,7 +16,7 @@ package Sichtbarkeit is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure SichtbarkeitsprüfungFürStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -45,7 +45,7 @@ private
 
    Wert : Integer;
 
-   FremdeEinheitStadt : GlobaleRecords.RassePlatznummerRecord;
+   FremdeEinheitStadt : EinheitStadtRecords.RassePlatznummerRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenQuadrantWert : KartenRecords.AchsenKartenfeldPositivRecord;
@@ -53,7 +53,7 @@ private
    KoordinatenEinheit : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure SichtbarkeitsprüfungOhneBlockade
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteExtern : in GlobaleDatentypen.Sichtweite)
      with
        Pre =>
@@ -62,28 +62,28 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure QuadrantenDurchlaufen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
    procedure QuadrantEins
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
 
    procedure QuadrantZwei
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
 
    procedure QuadrantDrei
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
 
    procedure QuadrantVier
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
@@ -91,7 +91,7 @@ private
 
 
    function SichtweiteErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.Sichtweite
      with
        Pre =>

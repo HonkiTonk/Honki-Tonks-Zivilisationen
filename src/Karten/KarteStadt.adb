@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleKonstanten, GlobaleTexte, KartenKonstanten;
 
 with LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
@@ -12,7 +12,7 @@ with KartePositionPruefen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemei
 package body KarteStadt is
 
    procedure AnzeigeStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -41,7 +41,7 @@ package body KarteStadt is
    
    
    procedure GebäudeText
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       Aufschlag := AufschlagGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -100,7 +100,7 @@ package body KarteStadt is
    
    
    procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       YAchsenabstraktion := -Stadtumgebungsgröße;
@@ -142,7 +142,7 @@ package body KarteStadt is
    function Darstellung
      (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
       XAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -218,7 +218,7 @@ package body KarteStadt is
    
    
    procedure GebäudeDarstellung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID)
    is begin
       
@@ -285,7 +285,7 @@ package body KarteStadt is
    procedure AnsichtUmgebung
      (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
       XAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       if
@@ -359,7 +359,7 @@ package body KarteStadt is
 
 
    procedure AnzeigeStadtUmgebung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       YAchseExtern : in GlobaleDatentypen.Stadtfeld;
       XAchseExtern : in GlobaleDatentypen.Stadtfeld)
    is begin
@@ -388,7 +388,7 @@ package body KarteStadt is
             case
               KartenWert.XAchse
             is
-               when GlobaleKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerYXKartenWert =>
                   Put (Item => GlobaleKonstanten.NichtSichtbar);
 
                when others =>
@@ -435,7 +435,7 @@ package body KarteStadt is
          case
            KartenWert.XAchse
          is
-            when GlobaleKonstanten.LeerYXKartenWert =>
+            when KartenKonstanten.LeerYXKartenWert =>
                Farbgebung.Farben (EinheitIDExtern    => 0,
                                   VerbesserungExtern => GlobaleDatentypen.Leer,
                                   RessourceExtern    => GlobaleDatentypen.Leer,
@@ -460,7 +460,7 @@ package body KarteStadt is
    
    
    procedure WeitereInformationen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
 
       CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse - 4;
@@ -472,7 +472,7 @@ package body KarteStadt is
       case
         KartenWert.XAchse
       is
-         when GlobaleKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerYXKartenWert =>
             return;
 
          when others =>

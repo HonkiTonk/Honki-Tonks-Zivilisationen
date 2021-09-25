@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, KartenKonstanten;
 
 with LeseKarten, LeseEinheitenGebaut;
 
@@ -9,7 +9,7 @@ with KartePositionPruefen, EinheitSuchen;
 package body KIFeindlicheEinheitSuchen is
 
    function FeindlicheEinheitInUmgebungSuchen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       FeindExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -23,7 +23,7 @@ package body KIFeindlicheEinheitSuchen is
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
             if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -51,7 +51,7 @@ package body KIFeindlicheEinheitSuchen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return GlobaleKonstanten.LeerKartenPosition;
+      return KartenKonstanten.LeerKartenPosition;
       
    end FeindlicheEinheitInUmgebungSuchen;
 
