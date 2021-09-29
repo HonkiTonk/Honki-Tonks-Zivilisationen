@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, EinheitStadtRecords;
+with EinheitStadtRecords, EinheitenKonstanten, StadtKonstanten;
 
 with EinheitenDatenbank;
 
@@ -62,9 +62,9 @@ package body LeseEinheitenDatenbank is
    is begin
       
       if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < GlobaleKonstanten.NullPermanenteKosten
+        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < StadtKonstanten.LeerPermanenteKosten
       then
-         return GlobaleKonstanten.LeerEinheitListe.PermanenteKosten (WelcheKostenExtern);
+         return EinheitenKonstanten.LeerEinheitListe.PermanenteKosten (WelcheKostenExtern);
       
       else
          return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte, KartenKonstanten;
+with GlobaleTexte, KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with KIDatentypen;
 
@@ -23,7 +23,7 @@ package body StadtEinheitenBauen is
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert))
          is
-            when GlobaleKonstanten.LeerEinheitenID =>
+            when EinheitenKonstanten.LeerID =>
                EinheitNummer := EinheitNummerSchleifenwert;
                exit EinheitenSchleife;
             
@@ -34,7 +34,7 @@ package body StadtEinheitenBauen is
       end loop EinheitenSchleife;
       
       if
-        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        EinheitNummer = EinheitenKonstanten.LeerNummer
         and
           GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
@@ -46,7 +46,7 @@ package body StadtEinheitenBauen is
          Eingabe.WartenEingabe;
          
       elsif
-        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        EinheitNummer = EinheitenKonstanten.LeerNummer
       then
          null;
          
@@ -63,7 +63,7 @@ package body StadtEinheitenBauen is
    is begin
       
       if
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern)).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern)).Platznummer = EinheitenKonstanten.LeerNummer
       then
          KartenWert := LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern);
          
@@ -71,14 +71,14 @@ package body StadtEinheitenBauen is
          KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                           RasseExtern               => StadtRasseNummerExtern.Rasse,
                                                                           IDExtern                  => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut
-                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
+                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - EinheitenKonstanten.EinheitAufschlag),
                                                                           NotwendigeFelderExtern    => 1);
       end if;
         
       case
         KartenWert.XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => GlobaleDatentypen.Einheit_Unplatzierbar);
             
@@ -99,13 +99,13 @@ package body StadtEinheitenBauen is
       EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
                                                   EinheitNummerExtern    => EinheitNummer,
                                                   IDExtern               => 
-                                                    GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag),
+                                                    GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag),
                                                   StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
+                                      RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
                                       ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      BauprojektExtern       => GlobaleKonstanten.LeerStadt.Bauprojekt);
+                                      BauprojektExtern       => StadtKonstanten.LeerStadt.Bauprojekt);
             
       case
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)

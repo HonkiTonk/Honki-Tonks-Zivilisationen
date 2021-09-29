@@ -46,13 +46,10 @@ private
    VorherNurNullstellen : Boolean;
    WelchesVorzeichen : Boolean;
 
-   Zahlen : Wide_Wide_Character;
-   Taste : Wide_Wide_Character;
+   Zahlen : Sf.Window.Keyboard.sfKeyCode;
+   Taste : Sf.Window.Keyboard.sfKeyCode;
 
-   TasteGedrückt : Sf.Window.Keyboard.sfKeyCode;
-   TasteNeu : Sf.Window.Keyboard.sfKeyCode;
-
-   Test : Sf.Window.Event.sfEvent;
+   ZeichenEingeben : Sf.Window.Event.sfEvent;
 
    IstZahl : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
@@ -70,6 +67,20 @@ private
 
    Name : Unbounded_Wide_Wide_String;
    MaximumMinimum : Unbounded_Wide_Wide_String;
+
+   type EingabeZahlenUmwandelnArray is array (Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9) of Wide_Wide_Character;
+   EingabeZahlenUmwandeln : constant EingabeZahlenUmwandelnArray := (
+                                                                     Sf.Window.Keyboard.sfKeyNum0 => '0',
+                                                                     Sf.Window.Keyboard.sfKeyNum1 => '1',
+                                                                     Sf.Window.Keyboard.sfKeyNum2 => '2',
+                                                                     Sf.Window.Keyboard.sfKeyNum3 => '3',
+                                                                     Sf.Window.Keyboard.sfKeyNum4 => '4',
+                                                                     Sf.Window.Keyboard.sfKeyNum5 => '5',
+                                                                     Sf.Window.Keyboard.sfKeyNum6 => '6',
+                                                                     Sf.Window.Keyboard.sfKeyNum7 => '7',
+                                                                     Sf.Window.Keyboard.sfKeyNum8 => '8',
+                                                                     Sf.Window.Keyboard.sfKeyNum9 => '9'
+                                                                    );
 
    TastenbelegungStandard : constant TastenbelegungArray := (
                                                              1 =>
@@ -122,7 +133,8 @@ private
                                                                 Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyY,
 
                                                                 Runde_Beenden                  => Sf.Window.Keyboard.sfKeyR,
-                                                                Cheatmenü                      => Sf.Window.Keyboard.sfKeyC),
+                                                                Cheatmenü                      => Sf.Window.Keyboard.sfKeyC
+                                                               ),
 
                                                              2 =>
                                                                (
@@ -174,7 +186,8 @@ private
                                                                 Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyUnknown,
 
                                                                 Runde_Beenden                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Cheatmenü                      => Sf.Window.Keyboard.sfKeyUnknown)
+                                                                Cheatmenü                      => Sf.Window.Keyboard.sfKeyUnknown
+                                                               )
                                                             );
 
    procedure ZahlenAnzeige
@@ -190,14 +203,14 @@ private
 
    procedure ZahlHinzufügen
      (ZahlenMaximumExtern : in Integer;
-      EingegebeneZahlExtern : in Wide_Wide_Character);
+      EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode);
 
    procedure ZahlEntfernen;
 
 
 
    function GanzeZahlPrüfung
-     (ZeichenExtern : in Wide_Wide_Character)
+     (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
    function ZahlSchleife
@@ -221,5 +234,8 @@ private
    function MinimumErmitteln
      (ZahlenMinimumExtern : in Integer)
       return Integer;
+
+   function NameEingeben
+     return Unbounded_Wide_Wide_String;
 
 end Eingabe;

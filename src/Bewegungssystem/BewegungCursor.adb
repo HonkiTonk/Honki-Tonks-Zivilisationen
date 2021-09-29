@@ -152,7 +152,7 @@ package body BewegungCursor is
       case
         KartenWert.XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             return;
 
          when others =>

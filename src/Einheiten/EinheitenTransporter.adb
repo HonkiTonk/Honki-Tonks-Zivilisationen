@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte, SystemKonstanten, EinheitenKonstanten;
 
 with LeseEinheitenDatenbank, LeseEinheitenGebaut;
 
@@ -16,7 +16,7 @@ package body EinheitenTransporter is
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
-      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText), 0));
       Anzeige.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                             Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));
       AktuellePosition := 2;
@@ -31,7 +31,7 @@ package body EinheitenTransporter is
                                                              PlatzExtern              => TransporterPlatzSchleifenwert);
          
          if
-           Transportiert = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           Transportiert = EinheitenKonstanten.LeerTransportiert
          then
             null;
             
@@ -114,7 +114,7 @@ package body EinheitenTransporter is
       case
         LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer))
       is
-         when GlobaleKonstanten.LeerEinheitenID =>
+         when EinheitenKonstanten.LeerID =>
             return False;
             
          when others =>
@@ -124,7 +124,7 @@ package body EinheitenTransporter is
       if
         LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
                                                         IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer)))
-        = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+        = EinheitenKonstanten.LeerKannTransportiertWerden
         or
           LeseEinheitenDatenbank.KannTransportieren (RasseExtern => TransporterExtern.Rasse,
                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer)))
@@ -156,7 +156,7 @@ package body EinheitenTransporter is
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer),
                                               PlatzExtern              => PlatzSchleifenwert)
-           = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           = EinheitenKonstanten.LeerTransportiert
          then
             return True;
             

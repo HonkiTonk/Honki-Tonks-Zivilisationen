@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten, StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
@@ -53,7 +53,7 @@ package body KampfsystemStadt is
       if
         LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                            EinwohnerArbeiterExtern => True) - 1
-        <= GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1)
+        <= StadtKonstanten.LeerStadt.EinwohnerArbeiter (1)
       then
          StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
          return True;
@@ -66,11 +66,11 @@ package body KampfsystemStadt is
          if
            LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                               EinwohnerArbeiterExtern => True)
-           = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
+           = StadtKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
            or
              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                                 EinwohnerArbeiterExtern => True)
-           = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
+           = StadtKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
          then
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
             
@@ -118,7 +118,7 @@ package body KampfsystemStadt is
                                                VerteidigungExtern => KampfwerteAngreifer.Verteidigung);
          
          if
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Lebenspunkte
          then
             EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
             return False;

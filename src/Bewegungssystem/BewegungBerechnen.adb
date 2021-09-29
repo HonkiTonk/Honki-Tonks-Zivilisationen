@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank;
@@ -18,14 +18,14 @@ package body BewegungBerechnen is
       if
         LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                    IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-          = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+          = EinheitenKonstanten.LeerKannTransportieren
       then
          null;
          
       elsif
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                     KoordinatenExtern => NeuePositionExtern)
-        = GlobaleKonstanten.LeerEinheitStadtNummer
+        = EinheitenKonstanten.LeerNummer
       then
          BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              NeuePositionExtern       => NeuePositionExtern);
@@ -51,7 +51,7 @@ package body BewegungBerechnen is
         BewegungspunkteAbzug = EinheitUnbewegbar
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
                                                   RechnenSetzenExtern      => 0);
          return;
          
@@ -65,7 +65,7 @@ package body BewegungBerechnen is
       case
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+         when EinheitenKonstanten.LeerWirdTransportiert =>
             null;
             
          when others =>

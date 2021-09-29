@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, StadtKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -97,7 +97,7 @@ package body StadtProduktion is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
@@ -140,19 +140,19 @@ package body StadtProduktion is
    is begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
-                                              NahrungsproduktionExtern => GlobaleKonstanten.LeerStadt.Nahrungsproduktion,
+                                              NahrungsproduktionExtern => StadtKonstanten.LeerStadt.Nahrungsproduktion,
                                               ÄndernSetzenExtern       => False);
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ProduktionrateExtern   => GlobaleKonstanten.LeerStadt.Produktionrate,
+                                          ProduktionrateExtern   => StadtKonstanten.LeerStadt.Produktionrate,
                                           ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         GeldgewinnungExtern    => GlobaleKonstanten.LeerStadt.Geldgewinnung,
+                                         GeldgewinnungExtern    => StadtKonstanten.LeerStadt.Geldgewinnung,
                                          ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ForschungsrateExtern   => GlobaleKonstanten.LeerStadt.Forschungsrate,
+                                          ForschungsrateExtern   => StadtKonstanten.LeerStadt.Forschungsrate,
                                           ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      KorruptionExtern       => GlobaleKonstanten.LeerStadt.Korruption,
+                                      KorruptionExtern       => StadtKonstanten.LeerStadt.Korruption,
                                       ÄndernSetzenExtern     => False);
       
    end StadtProduktionNullSetzen;
@@ -245,7 +245,7 @@ package body StadtProduktion is
       case
         LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when GlobaleKonstanten.LeerBauprojekt =>
+         when StadtKonstanten.LeerBauprojekt =>
             SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                GeldgewinnungExtern    => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) / 5,
                                                ÄndernSetzenExtern     => True);

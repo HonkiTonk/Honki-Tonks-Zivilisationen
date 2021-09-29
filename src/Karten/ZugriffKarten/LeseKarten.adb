@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with SonstigesKonstanten, KartenKonstanten;
 
 with RassenAllgemein;
 
@@ -165,7 +165,7 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
       is
-         when GlobaleKonstanten.LeerDurchStadtBelegterGrund =>
+         when KartenKonstanten.LeerDurchStadtBelegterGrund =>
             return True;
          
          when others =>
@@ -184,7 +184,7 @@ package body LeseKarten is
      
       if
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
-        = GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse) * GlobaleKonstanten.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
+        = GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse) * SonstigesKonstanten.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
       then
          return True;
          

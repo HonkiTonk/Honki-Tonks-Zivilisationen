@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte, EinheitenKonstanten;
 
 with LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
@@ -55,7 +55,7 @@ package body InformationenEinheiten is
       case
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+         when EinheitenKonstanten.LeerWirdTransportiert =>
             EinheitNummer := EinheitRasseNummerExtern.Platznummer;
                         
          when others =>
@@ -262,7 +262,7 @@ package body InformationenEinheiten is
       case
         LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+         when EinheitenKonstanten.LeerNummer =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                            TextDateiExtern        => GlobaleTexte.Zeug,
                                            ÜberschriftZeileExtern => 0,
@@ -331,7 +331,7 @@ package body InformationenEinheiten is
         LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                    IDExtern    => IDEinheit)
       is
-         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+         when EinheitenKonstanten.LeerKannTransportieren =>
             null;
                
          when others =>
@@ -344,7 +344,7 @@ package body InformationenEinheiten is
                if
                  LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PlatzExtern              => LadungSchleifenwert)
-                 /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                 /= EinheitenKonstanten.LeerTransportiert
                  and
                    ErsteAnzeige
                then
@@ -368,7 +368,7 @@ package body InformationenEinheiten is
                elsif
                  LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PlatzExtern              => LadungSchleifenwert)
-                 /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                 /= EinheitenKonstanten.LeerTransportiert
                then
                   Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                                  TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,

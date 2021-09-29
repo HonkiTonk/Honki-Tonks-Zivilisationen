@@ -26,7 +26,7 @@ package body KartenGeneratorBerechnungenAllgemein is
                                                                         ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert));
                
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                -- Prüfung für die Änderung (0, 0) nicht benötigt, da das Feld immer mit Flachland belegt sein sollte.
                null;

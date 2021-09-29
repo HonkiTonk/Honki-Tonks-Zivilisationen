@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -22,7 +22,7 @@ package body EinheitSuchen is
             null;
                
          elsif
-           LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerWirdTransportiert
          then
             return EinheitNummerSchleifenwert;
                   
@@ -32,7 +32,7 @@ package body EinheitSuchen is
          
       end loop EinheitSchleife;
       
-      return GlobaleKonstanten.LeerEinheitStadtNummer;
+      return EinheitenKonstanten.LeerNummer;
       
    end KoordinatenEinheitMitRasseSuchen;
    
@@ -57,7 +57,7 @@ package body EinheitSuchen is
                EinheitNummer := KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseSchleifenwert,
                                                                   KoordinatenExtern => KoordinatenExtern);
                if
-                 EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                 EinheitNummer = EinheitenKonstanten.LeerNummer
                then
                   null;
                   
@@ -68,7 +68,7 @@ package body EinheitSuchen is
          
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
+      return EinheitenKonstanten.LeerRasseNummer;
       
    end KoordinatenEinheitOhneRasseSuchen;
 
@@ -98,7 +98,7 @@ package body EinheitSuchen is
             case
               EinheitNummer
             is
-               when GlobaleKonstanten.LeerEinheitStadtNummer =>
+               when EinheitenKonstanten.LeerNummer =>
                   null;
                   
                when others =>
@@ -108,7 +108,7 @@ package body EinheitSuchen is
          
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
+      return EinheitenKonstanten.LeerRasseNummer;
       
    end KoordinatenEinheitOhneSpezielleRasseSuchen;
 

@@ -1,10 +1,12 @@
 pragma SPARK_Mode (On);
 
-with Sf.Window.VideoMode, Sf.Window.Cursor;
+with Sf.Window.VideoMode, Sf.Window.Cursor, Sf.Graphics;
 
 with NutzerRecords;
 
 package GrafikEinstellungen is
+   
+   Fenster : Sf.Graphics.sfRenderWindow_Ptr;
    
    Modus : Sf.Window.VideoMode.sfVideoMode := (640, 480, 32);
    MaximaleBilderrate : Sf.sfUint32 := 30;

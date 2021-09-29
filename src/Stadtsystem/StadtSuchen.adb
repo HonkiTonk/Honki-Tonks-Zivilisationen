@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with StadtKonstanten;
 
 with LeseStadtGebaut;
   
@@ -28,7 +28,7 @@ package body StadtSuchen is
          
       end loop StadtSchleife;
       
-      return GlobaleKonstanten.LeerEinheitStadtNummer;
+      return StadtKonstanten.LeerNummer;
       
    end KoordinatenStadtMitRasseSuchen;
 
@@ -53,7 +53,7 @@ package body StadtSuchen is
                                                               KoordinatenExtern => KoordinatenExtern);
                
                if
-                 StadtNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                 StadtNummer = StadtKonstanten.LeerNummer
                then
                   null;
                   
@@ -64,7 +64,7 @@ package body StadtSuchen is
          
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
+      return StadtKonstanten.LeerRasseNummer;
       
    end KoordinatenStadtOhneRasseSuchen;
    
@@ -93,7 +93,7 @@ package body StadtSuchen is
             case
               StadtNummer
             is
-               when GlobaleKonstanten.LeerEinheitStadtNummer =>
+               when StadtKonstanten.LeerNummer =>
                   null;
                   
                when others =>
@@ -103,7 +103,7 @@ package body StadtSuchen is
          
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
+      return StadtKonstanten.LeerRasseNummer;
       
    end KoordinatenStadtOhneSpezielleRasseSuchen;
    
@@ -142,7 +142,7 @@ package body StadtSuchen is
          
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
+      return StadtKonstanten.LeerRasseNummer;
       
    end StadtNachNamenSuchen;
 

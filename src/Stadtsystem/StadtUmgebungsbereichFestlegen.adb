@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with StadtKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut, LeseWichtiges;
@@ -37,7 +37,7 @@ package body StadtUmgebungsbereichFestlegen is
         and
           LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True)
-        >= GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
+        >= StadtKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 3;
          
@@ -48,7 +48,7 @@ package body StadtUmgebungsbereichFestlegen is
         and
           LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True)
-        >= GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
+        >= StadtKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 2;      
                   

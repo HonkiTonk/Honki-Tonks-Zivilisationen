@@ -5,9 +5,6 @@ with GrafikStart, SchreibenVerzeichnisse, Einlesen, Intro, Hauptmenue;
 procedure Start
 is begin
 
-   SchreibenVerzeichnisse.SchreibenVerzeichnisse;
-   Einlesen.Einlesen;
-
    case
      GrafikStart.FensterErzeugen
    is
@@ -15,9 +12,15 @@ is begin
          return;
 
       when True =>
-         Intro.Intro;
-         Hauptmenue.Hauptmenü;
-         GrafikStart.FensterEntfernen;
+         null;
    end case;
+
+   SchreibenVerzeichnisse.SchreibenVerzeichnisse;
+   Einlesen.Einlesen;
+
+   Intro.Intro;
+   Hauptmenue.Hauptmenü;
+
+   GrafikStart.FensterEntfernen;
 
 end Start;

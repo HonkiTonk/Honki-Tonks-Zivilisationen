@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, GlobaleKonstanten;
+with GlobaleTexte, StadtKonstanten, ForschungKonstanten;
 
 with SchreibeWichtiges, SchreibeStadtGebaut;
 with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseWichtiges;
@@ -57,10 +57,10 @@ package body GebaeudeAllgemein is
    is begin
       
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
+                                      RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
                                       ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      BauprojektExtern       => GlobaleKonstanten.LeerBauprojekt);
+                                      BauprojektExtern       => StadtKonstanten.LeerBauprojekt);
       SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
                                              WelchesGebäudeExtern       => IDExtern,
                                              HinzufügenEntfernenExtern  => True);
@@ -152,7 +152,7 @@ package body GebaeudeAllgemein is
       if
         LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                              IDExtern    => IDExtern)
-        = GlobaleKonstanten.LeerForschungAnforderung
+        = ForschungKonstanten.LeerForschungAnforderung
       then
          null;
          

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, StadtKonstanten;
 
 with Karten;
 
@@ -50,9 +50,9 @@ package body LeseStadtGebaut is
       is
          when True =>
             if
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) < GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1)
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) < StadtKonstanten.LeerStadt.EinwohnerArbeiter (1)
             then
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) := GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1);
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) := StadtKonstanten.LeerStadt.EinwohnerArbeiter (1);
                
             else
                null;
@@ -62,9 +62,9 @@ package body LeseStadtGebaut is
             
          when False =>
             if
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) < GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (2)
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) < StadtKonstanten.LeerStadt.EinwohnerArbeiter (2)
             then
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) := GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (2);
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) := StadtKonstanten.LeerStadt.EinwohnerArbeiter (2);
                
             else
                null;
@@ -83,9 +83,9 @@ package body LeseStadtGebaut is
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel < GlobaleKonstanten.LeerStadt.Nahrungsmittel
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel < StadtKonstanten.LeerStadt.Nahrungsmittel
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel := GlobaleKonstanten.LeerStadt.Nahrungsmittel;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel := StadtKonstanten.LeerStadt.Nahrungsmittel;
          
       else
          null;
@@ -159,9 +159,9 @@ package body LeseStadtGebaut is
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate < GlobaleKonstanten.LeerStadt.Forschungsrate
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate < StadtKonstanten.LeerStadt.Forschungsrate
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := GlobaleKonstanten.LeerStadt.Forschungsrate;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := StadtKonstanten.LeerStadt.Forschungsrate;
          
       else
          null;
@@ -181,12 +181,12 @@ package body LeseStadtGebaut is
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
       is
-         when GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde | GlobaleKonstanten.BauprojekteEinheitenAnfang .. GlobaleKonstanten.BauprojekteEinheitenEnde
-            | GlobaleKonstanten.LeerBauprojekt =>
+         when StadtKonstanten.BauprojekteGebäudeAnfang .. StadtKonstanten.BauprojekteGebäudeEnde | StadtKonstanten.BauprojekteEinheitenAnfang .. StadtKonstanten.BauprojekteEinheitenEnde
+            | StadtKonstanten.LeerBauprojekt =>
             null;
             
          when others =>
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := GlobaleKonstanten.LeerBauprojekt;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := StadtKonstanten.LeerBauprojekt;
       end case;
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt;
@@ -258,9 +258,9 @@ package body LeseStadtGebaut is
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße < GlobaleKonstanten.LeerStadt.UmgebungGröße
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße < StadtKonstanten.LeerStadt.UmgebungGröße
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := GlobaleKonstanten.LeerStadt.UmgebungGröße;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := StadtKonstanten.LeerStadt.UmgebungGröße;
          
       else
          null;

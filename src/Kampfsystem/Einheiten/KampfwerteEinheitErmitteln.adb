@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with StadtKonstanten;
 
 with LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
@@ -63,7 +63,7 @@ package body KampfwerteEinheitErmitteln is
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                     KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+         when StadtKonstanten.LeerNummer =>
             null;
                   
          when others =>

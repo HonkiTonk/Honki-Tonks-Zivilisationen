@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten, GlobaleDatentypen, SystemKonstanten;
+with GlobaleDatentypen, SystemKonstanten;
 
 with Anzeige, Eingabe;
 
@@ -19,7 +19,7 @@ package body Auswahl is
       for LetztesEndeSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (LetztesEndeSchleifenwert)) = GlobaleKonstanten.LeerText
+           To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (LetztesEndeSchleifenwert)) = SystemKonstanten.LeerText
          then
             exit EndeBestimmenSchleife;
             

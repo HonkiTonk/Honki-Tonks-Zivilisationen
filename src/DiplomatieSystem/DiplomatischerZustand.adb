@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SystemKonstanten, GlobaleKonstanten;
+with SystemKonstanten, SonstigesKonstanten;
 
 with Auswahl;
 
@@ -110,7 +110,7 @@ package body DiplomatischerZustand is
       is
          when GlobaleDatentypen.Neutral =>
             if
-              GlobaleVariablen.Diplomatie (EigeneRasseExtern, GegnerischeRasseExtern).ZeitSeitLetzterÄnderung < GlobaleKonstanten.DiplomatischerStatusÄnderungszeit
+              GlobaleVariablen.Diplomatie (EigeneRasseExtern, GegnerischeRasseExtern).ZeitSeitLetzterÄnderung < SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
             then
                return False;
               

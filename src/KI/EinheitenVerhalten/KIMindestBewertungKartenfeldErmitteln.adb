@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten;
 
 with KIKonstanten;
 
@@ -29,14 +29,14 @@ package body KIMindestBewertungKartenfeldErmitteln is
                                                                            ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                      
                if
-                 KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
                then
                   null;
                      
                elsif
                  StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                        KoordinatenExtern => KartenWert).Platznummer
-                 = GlobaleKonstanten.LeerEinheitStadtNummer
+                 = EinheitenKonstanten.LeerNummer
                then
                   null;
                         

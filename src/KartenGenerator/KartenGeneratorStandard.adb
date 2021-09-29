@@ -251,7 +251,7 @@ package body KartenGeneratorStandard is
                                                                         ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                

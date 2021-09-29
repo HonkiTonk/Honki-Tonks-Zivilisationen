@@ -81,7 +81,7 @@ package body VerbesserungWeg is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                

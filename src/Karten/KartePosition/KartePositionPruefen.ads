@@ -19,17 +19,17 @@ package KartePositionPruefen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
            ((if
-                      KartenPositionBestimmen'Result.YAchse = KartenKonstanten.LeerYXKartenWert
+                      KartenPositionBestimmen'Result.YAchse = KartenKonstanten.LeerYAchse
                         then
-              (KartenPositionBestimmen'Result.XAchse = KartenKonstanten.LeerYXKartenWert
+              (KartenPositionBestimmen'Result.XAchse = KartenKonstanten.LeerXAchse
                and
                  KartenPositionBestimmen'Result.EAchse = GlobaleDatentypen.EbeneVorhanden'First)
            )
             and
               (if
-                         KartenPositionBestimmen'Result.XAchse = KartenKonstanten.LeerYXKartenWert
+                         KartenPositionBestimmen'Result.XAchse = KartenKonstanten.LeerXAchse
                            then
-                 (KartenPositionBestimmen'Result.YAchse = KartenKonstanten.LeerYXKartenWert
+                 (KartenPositionBestimmen'Result.YAchse = KartenKonstanten.LeerYAchse
                   and
                     KartenPositionBestimmen'Result.EAchse = GlobaleDatentypen.EbeneVorhanden'First))
             and

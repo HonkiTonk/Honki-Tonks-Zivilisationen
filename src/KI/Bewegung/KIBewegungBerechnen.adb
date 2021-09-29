@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten;
 
 with KIKonstanten, KIDatentypen;
 use KIDatentypen;
@@ -199,7 +199,7 @@ package body KIBewegungBerechnen is
       case
         KartenWert.XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             return 0;
 
          when others =>
@@ -413,7 +413,7 @@ package body KIBewegungBerechnen is
                                                                                         ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
                if
-                 KartenWertVereinfachung.XAchse = KartenKonstanten.LeerYXKartenWert
+                 KartenWertVereinfachung.XAchse = KartenKonstanten.LeerXAchse
                then
                   null;
               
@@ -458,7 +458,7 @@ package body KIBewegungBerechnen is
          if
            EinheitRasseNummerExtern.Platznummer = EinheitSchleifenwert
            or
-             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheitenID
+             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
          then
             null;
             

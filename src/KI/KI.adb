@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -31,7 +31,7 @@ package body KI is
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert))
          is
-            when GlobaleKonstanten.LeerEinheitenID =>
+            when EinheitenKonstanten.LeerID =>
                null;
             
             when others =>

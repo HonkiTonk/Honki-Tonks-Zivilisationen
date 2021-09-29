@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with KIKonstanten;
 
@@ -63,7 +63,7 @@ package body KIGebaeudeBauen is
                                                        IDExtern               => IDExtern);
       
       if
-        GebäudeBewertet.ID = GlobaleKonstanten.LeerEinheitenID
+        GebäudeBewertet.ID = EinheitenKonstanten.LeerID
         or
           GebäudeBewertet.Bewertung < Gesamtwertung
       then
@@ -84,33 +84,33 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Nahrungsproduktion
         and
           LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
         + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcherBonusExtern => GlobaleDatentypen.Nahrung)
-        >= GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        >= StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 20;
                   
       elsif
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Nahrungsproduktion
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcherBonusExtern => GlobaleDatentypen.Nahrung)
-        > GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        > StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 10;
          
       elsif
-        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Nahrungsproduktion
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcherBonusExtern => GlobaleDatentypen.Nahrung)
-        = GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        = StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 5;
       
@@ -119,7 +119,7 @@ package body KIGebaeudeBauen is
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcheKostenExtern => GlobaleDatentypen.Nahrung)
-        < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        < StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return -20;
          
@@ -143,33 +143,33 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
           LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcherBonusExtern => GlobaleDatentypen.Geld)
-        >= GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        >= SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return 20;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcherBonusExtern => GlobaleDatentypen.Geld)
-        > GlobaleKonstanten.LeerStadt.Geldgewinnung
+        > StadtKonstanten.LeerStadt.Geldgewinnung
       then
          return 10;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcherBonusExtern => GlobaleDatentypen.Geld)
-        = GlobaleKonstanten.LeerStadt.Geldgewinnung
+        = StadtKonstanten.LeerStadt.Geldgewinnung
       then
          return 5;
          
@@ -178,7 +178,7 @@ package body KIGebaeudeBauen is
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcheKostenExtern => GlobaleDatentypen.Geld)
-        < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return -20;
          
@@ -202,12 +202,12 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) = GlobaleKonstanten.LeerStadt.Forschungsrate
+        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) = StadtKonstanten.LeerStadt.Forschungsrate
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcherBonusExtern => GlobaleDatentypen.Wissen)
-        > GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+        > SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
       then
          return 5;
          
@@ -228,33 +228,33 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Produktionrate
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Produktionrate
         and
           LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
         + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcherBonusExtern => GlobaleDatentypen.Produktion)
-        >= GlobaleKonstanten.LeerStadt.Produktionrate
+        >= StadtKonstanten.LeerStadt.Produktionrate
       then
          return 20;
          
       elsif
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Produktionrate
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Produktionrate
         and
           + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                     IDExtern           => IDExtern,
                                                     WelcherBonusExtern => GlobaleDatentypen.Produktion)
-        > GlobaleKonstanten.LeerStadt.Produktionrate
+        > StadtKonstanten.LeerStadt.Produktionrate
       then
          return 10;
          
       elsif
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Produktionrate
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < StadtKonstanten.LeerStadt.Produktionrate
         and
           + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                     IDExtern           => IDExtern,
                                                     WelcherBonusExtern => GlobaleDatentypen.Produktion)
-        = GlobaleKonstanten.LeerStadt.Produktionrate
+        = StadtKonstanten.LeerStadt.Produktionrate
       then
          return 5;
          
@@ -263,7 +263,7 @@ package body KIGebaeudeBauen is
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcheKostenExtern => GlobaleDatentypen.Ressourcen)
-        < GlobaleKonstanten.LeerStadt.Produktionrate
+        < StadtKonstanten.LeerStadt.Produktionrate
       then
          return -20;
          

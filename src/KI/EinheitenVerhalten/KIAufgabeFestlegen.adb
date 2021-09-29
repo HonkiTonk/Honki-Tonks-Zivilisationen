@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with KIDatentypen, KIKonstanten;
 
@@ -52,7 +52,7 @@ package body KIAufgabeFestlegen is
          NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        NeueStadtPosition.XAchse /= KartenKonstanten.LeerYXKartenWert
+        NeueStadtPosition.XAchse /= KartenKonstanten.LeerXAchse
       then
          SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     KoordinatenExtern        => NeueStadtPosition);
@@ -103,7 +103,7 @@ package body KIAufgabeFestlegen is
          case
            EinheitNummer
          is
-            when GlobaleKonstanten.LeerEinheitStadtNummer =>
+            when EinheitenKonstanten.LeerNummer =>
                SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                           KoordinatenExtern        => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
                SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -153,7 +153,7 @@ package body KIAufgabeFestlegen is
       case
         KoordinatenFeind.XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             null;
             
          when others =>
@@ -168,7 +168,7 @@ package body KIAufgabeFestlegen is
       case
         KoordinatenFeind.XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -247,7 +247,7 @@ package body KIAufgabeFestlegen is
                                                                               ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                   
                   if
-                    KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+                    KartenWert.XAchse = KartenKonstanten.LeerXAchse
                   then
                      null;
                         
@@ -326,7 +326,7 @@ package body KIAufgabeFestlegen is
       case
         PlatzGefunden.XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             null;
             
          when others =>
@@ -343,14 +343,14 @@ package body KIAufgabeFestlegen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtSchleifenwert))
          is
-            when GlobaleKonstanten.LeerStadtID =>
+            when StadtKonstanten.LeerID =>
                null;
                
             when others =>
                PlatzGefunden := EinheitVerbessernPlatz (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtSchleifenwert),
                                                         EinheitNummerExtern    => EinheitRasseNummerExtern.Platznummer);
                if
-                 PlatzGefunden.XAchse = KartenKonstanten.LeerYXKartenWert
+                 PlatzGefunden.XAchse = KartenKonstanten.LeerXAchse
                then
                   null;
                   
@@ -364,7 +364,7 @@ package body KIAufgabeFestlegen is
       case
         PlatzGefunden.XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             null;
             
          when others =>
@@ -395,7 +395,7 @@ package body KIAufgabeFestlegen is
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                

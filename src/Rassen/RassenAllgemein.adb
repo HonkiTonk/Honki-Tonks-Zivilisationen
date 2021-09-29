@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with SonstigesKonstanten;
 
 package body RassenAllgemein is
    
@@ -10,7 +10,7 @@ package body RassenAllgemein is
       return GlobaleDatentypen.BelegterGrund
    is begin
    
-      return GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (RasseExtern)) * GlobaleKonstanten.RassenMulitplikationWert;
+      return GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (RasseExtern)) * SonstigesKonstanten.RassenMulitplikationWert;
    
    end RassenBelegungAnfang;
    
@@ -21,7 +21,7 @@ package body RassenAllgemein is
       return GlobaleDatentypen.BelegterGrund
    is begin
    
-      return GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (RasseExtern)) * GlobaleKonstanten.RassenMulitplikationWert
+      return GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (RasseExtern)) * SonstigesKonstanten.RassenMulitplikationWert
         + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last);
    
    end RassenBelegungEnde;

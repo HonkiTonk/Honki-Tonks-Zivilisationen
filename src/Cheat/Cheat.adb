@@ -55,6 +55,7 @@ package body Cheat is
             when others =>
                return;
          end case;
+         
          Karte.AnzeigeKarte (RasseExtern => RasseExtern);
 
       end loop MenüSchleife;

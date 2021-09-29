@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank;
@@ -19,12 +19,12 @@ package body BewegungLadenEntladen is
       case
         FreierPlatzNummer
       is
-         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+         when EinheitenKonstanten.LeerTransportiert =>
             null;
             
          when others =>
             if
-              LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern)) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+              LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern)) /= EinheitenKonstanten.LeerWirdTransportiert
             then
                EinheitAusTransporterEntfernen (TransporterExtern => (TransporterExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern))),
                                                LadungExtern      => LadungExtern);
@@ -36,7 +36,7 @@ package body BewegungLadenEntladen is
                                                    LadungExtern             => LadungExtern,
                                                    LadungspositionExtern    => FreierPlatzNummer);
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                                     BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                                     BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
                                                      RechnenSetzenExtern      => 0);
             SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                               PositionExtern           => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => TransporterExtern));
@@ -62,7 +62,7 @@ package body BewegungLadenEntladen is
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                               PlatzExtern              => FreierPlatzSchleifenwert)
          is
-            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+            when EinheitenKonstanten.LeerTransportiert =>
                return FreierPlatzSchleifenwert;
                
             when others =>
@@ -71,7 +71,7 @@ package body BewegungLadenEntladen is
          
       end loop TransporterSchleife;
       
-      return GlobaleKonstanten.LeerTransportiertWirdTransportiert;
+      return EinheitenKonstanten.LeerWirdTransportiert;
       
    end FreienPlatzErmitteln;
      
@@ -95,10 +95,10 @@ package body BewegungLadenEntladen is
            = LadungExtern
          then
             SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                                   LadungExtern             => GlobaleKonstanten.LeerTransportiertWirdTransportiert,
+                                                   LadungExtern             => EinheitenKonstanten.LeerTransportiert,
                                                    LadungspositionExtern    => TransporterLeerenSchleifenwert);
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                                       TransporterExtern        => GlobaleKonstanten.LeerTransportiertWirdTransportiert);
+                                                       TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);
             exit TransporterLeerenSchleife;
                      
          else
@@ -125,7 +125,7 @@ package body BewegungLadenEntladen is
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               PlatzExtern              => TransporterUmladenSchleifenwert)
          is
-            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+            when EinheitenKonstanten.LeerTransportiert =>
                null;
                      
             when others =>
@@ -154,7 +154,7 @@ package body BewegungLadenEntladen is
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               PlatzExtern              => BelegterPlatzSchleifenwert)
          is
-            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+            when EinheitenKonstanten.LeerTransportiert =>
                null;
                
             when others =>
@@ -172,12 +172,12 @@ package body BewegungLadenEntladen is
                                                                                                        NotwendigeFelderExtern    => 1));
                SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                           PlatzExtern              => BelegterPlatzSchleifenwert)),
-                                                          TransporterExtern        => GlobaleKonstanten.LeerTransportiertWirdTransportiert);
+                                                          TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);
          end case;
          
       end loop BelegterPlatzSchleife;
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => GlobaleKonstanten.LeerTransportiertWirdTransportiert);
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => EinheitenKonstanten.LeerTransportiert);
       
    end TransporterStadtEntladen;
 

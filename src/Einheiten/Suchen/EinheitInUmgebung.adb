@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleKonstanten, KartenKonstanten;
+with GlobaleVariablen, KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -41,7 +41,7 @@ package body EinheitInUmgebung is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
-            when GlobaleKonstanten.LeerStadtID =>
+            when StadtKonstanten.LeerID =>
                null;
                         
             when others =>
@@ -75,7 +75,7 @@ package body EinheitInUmgebung is
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))
          is
-            when GlobaleKonstanten.LeerEinheitenID =>
+            when EinheitenKonstanten.LeerID =>
                null;
                         
             when others =>
@@ -115,7 +115,7 @@ package body EinheitInUmgebung is
                                                                         ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
@@ -131,7 +131,7 @@ package body EinheitInUmgebung is
                                                                                           KoordinatenExtern => KartenWert);
                
                if
-                 AndereEinheit.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                 AndereEinheit.Platznummer = EinheitenKonstanten.LeerNummer
                then
                   null;
                     

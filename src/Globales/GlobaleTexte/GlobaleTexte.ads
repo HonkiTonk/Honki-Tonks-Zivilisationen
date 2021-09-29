@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleDatentypen, SystemKonstanten;
 
 package GlobaleTexte is
 
@@ -18,6 +18,6 @@ package GlobaleTexte is
    SprachenEinlesen : SprachenEinlesenArray;
 
    type TexteEinlesenNeuArray is array (1 .. GlobaleDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
-   TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText))));
+   TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText))));
 
 end GlobaleTexte;

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, GlobaleKonstanten;
+with GlobaleTexte, SystemKonstanten, ForschungKonstanten;
 
 with SchreibeWichtiges;
 with LeseForschungsDatenbank, LeseWichtiges;
@@ -73,7 +73,7 @@ package body ForschungAllgemein is
       return GlobaleDatentypen.ForschungIDMitNullWert
    is begin
       
-      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText), 0));
       Ende := 1;
 
       ForschungSchleife:
@@ -82,7 +82,7 @@ package body ForschungAllgemein is
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
                                 Positive (ForschungenSchleifenwert)))
-           = GlobaleKonstanten.LeerText
+           = SystemKonstanten.LeerText
          then
             exit ForschungSchleife;
             
@@ -223,7 +223,7 @@ package body ForschungAllgemein is
               LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                             IDExtern                => TechnologieSchleifenwert,
                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)
-              = GlobaleKonstanten.LeerForschungAnforderung
+              = ForschungKonstanten.LeerForschungAnforderung
             then
                exit ErmöglichtSchleife;
             
@@ -270,7 +270,7 @@ package body ForschungAllgemein is
            LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                          IDExtern                => ForschungNummerExtern,
                                                          WelcheAnforderungExtern => NeueForschungSchleifenwert)
-           = GlobaleKonstanten.LeerForschungAnforderung
+           = ForschungKonstanten.LeerForschungAnforderung
          then
             null;
                
@@ -516,7 +516,7 @@ package body ForschungAllgemein is
            LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                          IDExtern                => ForschungIDExtern,
                                                          WelcheAnforderungExtern => AnforderungSchleifenwert)
-           = GlobaleKonstanten.LeerForschungAnforderung
+           = ForschungKonstanten.LeerForschungAnforderung
          then
             null;
                   

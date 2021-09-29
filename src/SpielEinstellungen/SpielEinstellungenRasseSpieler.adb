@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, SystemKonstanten, GlobaleKonstanten, KartenKonstanten;
+with GlobaleTexte, SystemKonstanten, KartenKonstanten, EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -252,7 +252,7 @@ package body SpielEinstellungenRasseSpieler is
       case
         EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => PositionExtern).Platznummer
       is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+         when EinheitenKonstanten.LeerNummer =>
             StartKoordinaten (1) := PositionExtern;
             FelderBestimmen (PositionExtern => PositionExtern,
                              RasseExtern    => RasseExtern);
@@ -291,7 +291,7 @@ package body SpielEinstellungenRasseSpieler is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                   
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                      
@@ -316,7 +316,7 @@ package body SpielEinstellungenRasseSpieler is
                case
                  EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
                is
-                  when GlobaleKonstanten.LeerEinheitStadtNummer =>
+                  when EinheitenKonstanten.LeerNummer =>
                      StartKoordinaten (2) := KartenWert;
                      StartpositionGefunden := True;
                      FreieFelder := FreieFelder + 1;

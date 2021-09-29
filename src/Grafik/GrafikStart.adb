@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics.RenderWindow;
+with Sf.Graphics.RenderWindow, Sf.Graphics;
+use Sf.Graphics;
 
 with GrafikEinstellungen;
 
@@ -10,18 +11,18 @@ package body GrafikStart is
      return Boolean
    is begin
       
-      Fenster := Sf.Graphics.RenderWindow.create (mode  => GrafikEinstellungen.Modus,
-                                                  title => "Name des Spiels");
+      GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => GrafikEinstellungen.Modus,
+                                                                             title => "Name des Spiels");
 
       if
-        Fenster = null
+        GrafikEinstellungen.Fenster = null
       then
          return False;
 
       else
-         Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => Fenster,
+         Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungen.Fenster,
                                                   cursor       => GrafikEinstellungen.Zeiger);
-         Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => Fenster,
+         Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => GrafikEinstellungen.Fenster,
                                                      limit        => GrafikEinstellungen.MaximaleBilderrate);
          return True;
       end if;
@@ -33,7 +34,7 @@ package body GrafikStart is
    procedure FensterEntfernen
    is begin
       
-      Sf.Graphics.RenderWindow.destroy (renderWindow => Fenster);
+      Sf.Graphics.RenderWindow.destroy (renderWindow => GrafikEinstellungen.Fenster);
       
    end FensterEntfernen;
 

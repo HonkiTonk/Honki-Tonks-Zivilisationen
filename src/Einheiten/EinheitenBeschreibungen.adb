@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, GlobaleKonstanten, SystemKonstanten;
+with GlobaleTexte, SystemKonstanten, EinheitenKonstanten;
 
 with Anzeige, Auswahl;
 
@@ -80,8 +80,8 @@ package body EinheitenBeschreibungen is
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
                                            -- Der Abzug wird für die Textanzeige benötigt
-                                           ErsteZeileExtern       => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - GlobaleKonstanten.EinheitBefehlAbzug,
-                                           LetzteZeileExtern      => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - GlobaleKonstanten.EinheitBefehlAbzug,
+                                           ErsteZeileExtern       => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug,
+                                           LetzteZeileExtern      => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
                                            AbstandMitteExtern     => GlobaleTexte.Leer,
                                            AbstandEndeExtern      => GlobaleTexte.Leer);

@@ -179,7 +179,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = KartenKonstanten.LeerYXKartenWert
+        KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
       then
          null;
                
@@ -305,7 +305,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = KartenKonstanten.LeerYXKartenWert
+        KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
       then
          null;
                
@@ -431,7 +431,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = KartenKonstanten.LeerYXKartenWert
+        KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
       then
          null;
                
@@ -557,7 +557,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = KartenKonstanten.LeerYXKartenWert
+        KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
       then
          null;
                
@@ -684,7 +684,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
       
       if
-        KartenBlockadeWert.XAchse = KartenKonstanten.LeerYXKartenWert
+        KartenBlockadeWert.XAchse = KartenKonstanten.LeerXAchse
       then
          null;
          
@@ -731,7 +731,7 @@ package body Sichtbarkeit is
             case
               KartenWert.XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerXAchse =>
                   null;
                   
                when others =>
@@ -763,7 +763,7 @@ package body Sichtbarkeit is
             case
               KartenWert.XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerXAchse =>
                   null;
                   
                when others =>

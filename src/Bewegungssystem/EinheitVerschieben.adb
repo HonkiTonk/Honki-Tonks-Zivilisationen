@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleKonstanten, KartenKonstanten;
+with GlobaleVariablen, KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseStadtGebaut, LeseKarten;
@@ -30,7 +30,7 @@ package body EinheitVerschieben is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
-            when GlobaleKonstanten.LeerStadtID =>
+            when StadtKonstanten.LeerID =>
                null;
                
             when others =>
@@ -58,7 +58,7 @@ package body EinheitVerschieben is
                                                                         ÄnderungExtern   => (LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern).EAchse, YAchseSchleifenwert, XAchseSchleifenwert));
                      
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
@@ -77,7 +77,7 @@ package body EinheitVerschieben is
             case
               EinheitNummer
             is
-               when GlobaleKonstanten.LeerEinheitStadtNummer =>
+               when EinheitenKonstanten.LeerNummer =>
                   null;
                      
                when others =>
@@ -111,7 +111,7 @@ package body EinheitVerschieben is
                                                                                       ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
                if
-                 KartenWertVerschieben.XAchse = KartenKonstanten.LeerYXKartenWert
+                 KartenWertVerschieben.XAchse = KartenKonstanten.LeerXAchse
                then
                   null;
                
@@ -131,7 +131,7 @@ package body EinheitVerschieben is
                                                                               NeuePositionExtern       => KartenWertVerschieben)
                  = True
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWertVerschieben).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWertVerschieben).Platznummer = EinheitenKonstanten.LeerNummer
                then
                   SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PositionExtern           => KartenWertVerschieben);

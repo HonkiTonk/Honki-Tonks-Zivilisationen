@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
 
 with LeseEinheitenDatenbank, LeseStadtGebaut;
 
@@ -15,7 +15,7 @@ package body EinheitBauen is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      EinheitenBeschreibungen.BeschreibungLang (IDExtern => GlobaleDatentypen.EinheitenIDMitNullWert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag));
+      EinheitenBeschreibungen.BeschreibungLang (IDExtern => GlobaleDatentypen.EinheitenIDMitNullWert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - EinheitenKonstanten.EinheitAufschlag));
       
       New_Line;
       Preis (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -46,7 +46,7 @@ package body EinheitBauen is
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => RasseExtern,
                                                                                           IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
-                                                                                            - GlobaleKonstanten.EinheitAufschlag))),
+                                                                                            - EinheitenKonstanten.EinheitAufschlag))),
                                Width => 1);
       
    end Preis;
@@ -73,7 +73,7 @@ package body EinheitBauen is
       else
          Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                             IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
-                                                                                              - GlobaleKonstanten.EinheitAufschlag))
+                                                                                              - EinheitenKonstanten.EinheitAufschlag))
                                   / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)),
                                   Width => 1);
       end if;
@@ -94,7 +94,7 @@ package body EinheitBauen is
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.Angriff (RasseExtern => RasseExtern,
                                                                                  IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
-                                                                                   - GlobaleKonstanten.EinheitAufschlag))),
+                                                                                   - EinheitenKonstanten.EinheitAufschlag))),
                                Width => 1);
       
    end Angriff;
@@ -113,7 +113,7 @@ package body EinheitBauen is
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.Verteidigung (RasseExtern => RasseExtern,
                                                                                       IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
-                                                                                        - GlobaleKonstanten.EinheitAufschlag))),
+                                                                                        - EinheitenKonstanten.EinheitAufschlag))),
                                Width => 1);
       
    end Verteidigung;
@@ -132,7 +132,7 @@ package body EinheitBauen is
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => RasseExtern,
                                                                                                IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
-                                                                                                 - GlobaleKonstanten.EinheitAufschlag))),
+                                                                                                 - EinheitenKonstanten.EinheitAufschlag))),
                                Width => 1);
       
    end MaximaleLebenspunkte;
@@ -151,7 +151,7 @@ package body EinheitBauen is
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => RasseExtern,
                                                                                                   IDExtern    => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
-                                                                                                    - GlobaleKonstanten.EinheitAufschlag))),
+                                                                                                    - EinheitenKonstanten.EinheitAufschlag))),
                                Width => 1);
       
    end MaximaleBewegungspunkte;
@@ -170,9 +170,9 @@ package body EinheitBauen is
          if
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
                                                     IDExtern           => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
-                                                      - GlobaleKonstanten.EinheitAufschlag),
+                                                      - EinheitenKonstanten.EinheitAufschlag),
                                                     WelcheKostenExtern => PermanenteKostenSchleifenwert)
-           > GlobaleKonstanten.NullPermanenteKosten
+           > StadtKonstanten.LeerPermanenteKosten
          then
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                           TextDateiExtern        => GlobaleTexte.Zeug,
@@ -183,7 +183,7 @@ package body EinheitBauen is
                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
             Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
                                                                                                  IDExtern           => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
-                                                                                                   - GlobaleKonstanten.EinheitAufschlag),
+                                                                                                   - EinheitenKonstanten.EinheitAufschlag),
                                                                                                  WelcheKostenExtern => PermanenteKostenSchleifenwert)),
                                      Width => 1);
             

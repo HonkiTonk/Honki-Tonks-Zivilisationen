@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten, ForschungKonstanten;
 
 with SchreibeKarten, SchreibeEinheitenGebaut, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
@@ -83,18 +83,18 @@ package body Aufgaben is
    is begin
       
       if
-        GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern) = -1
+        ForschungKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern) = -1
       then
          return False;
 
       elsif
-        GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern) = 0
+        ForschungKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern) = 0
       then
          null;
 
       elsif
         LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern))
+                                 WelcheTechnologieExtern => ForschungKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern))
           = True
       then
          null;
@@ -239,7 +239,7 @@ package body Aufgaben is
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
+                                                         ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
       end case;
       
@@ -265,7 +265,7 @@ package body Aufgaben is
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
                                                RechnenSetzenExtern      => 0);
       
    end RundeAussetzen;
@@ -427,7 +427,7 @@ package body Aufgaben is
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                               BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
                                                RechnenSetzenExtern      => 0);
       
       EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

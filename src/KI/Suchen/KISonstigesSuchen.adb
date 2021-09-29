@@ -25,7 +25,7 @@ package body KISonstigesSuchen is
          Ziel := ZielSuchen (AktuellePositionExtern   => AktuellePositionExtern,
                              EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         exit FeldSuchenSchleife when Ziel.XAchse /= KartenKonstanten.LeerYXKartenWert;
+         exit FeldSuchenSchleife when Ziel.XAchse /= KartenKonstanten.LeerXAchse;
          exit FeldSuchenSchleife when Bereich = GlobaleDatentypen.Sichtweite'Last;
          
          Bereich := Bereich + 1;
@@ -54,7 +54,7 @@ package body KISonstigesSuchen is
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                

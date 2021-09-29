@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, GlobaleKonstanten;
+with KartenKonstanten, EinheitenKonstanten;
 
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, LeseStadtGebaut;
 
@@ -87,7 +87,7 @@ package body BewegungPassierbarkeitPruefen is
       if
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                     KoordinatenExtern => NeuePositionExtern)
-        = GlobaleKonstanten.LeerEinheitStadtNummer
+        = EinheitenKonstanten.LeerNummer
       then
          null;
                   
@@ -248,7 +248,7 @@ package body BewegungPassierbarkeitPruefen is
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                               PlatzExtern              => BelegterPlatzSchleifenwert)
          is
-            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+            when EinheitenKonstanten.LeerTransportiert =>
                null;
                               
             when others =>
@@ -260,7 +260,7 @@ package body BewegungPassierbarkeitPruefen is
                                                                                                   (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                                                                                                                                PlatzExtern              => BelegterPlatzSchleifenwert))),
                                                                     NotwendigeFelderExtern    => BenötigteFelder).XAchse
-                 = KartenKonstanten.LeerYXKartenWert
+                 = KartenKonstanten.LeerXAchse
                then
                   return False;
                      
@@ -294,7 +294,7 @@ package body BewegungPassierbarkeitPruefen is
                                                                         ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert));
                
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                   

@@ -1,9 +1,11 @@
 # Civ-Klon
 Mein Rundenstrategiespiel (Civilization-Klon), geschrieben in Ada.
+Benötigt ASFML und die SFML.
 
 My turn based strategy game (Civilization clone), written in Ada.
+Requires ASFML and the SFML.
 
-Version: 0.00.8890
+Version: 0.00.8910
 
 Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren. Außerdem werden diverse Control Sequence Introducer Befehle verwendet, welche nicht in jeder Konsole korrekt funktionieren. Ausgelegt auf eine Konsolengröße von 110x35, bei anderen Abmessungen kann es zu zusätzlichen merkwürdigen Textformatierungen kommen.
 

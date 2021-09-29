@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleKonstanten, GlobaleDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten;
+with GlobaleVariablen, GlobaleDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten;
 
 with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein, Karte;
 
@@ -310,7 +310,7 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= GlobaleKonstanten.LeerString
+        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= SystemKonstanten.LeerString
       then
          SpeichernLadenAllgemein.SpielstandName := GlobaleVariablen.IronmanName;
                
@@ -344,7 +344,7 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= GlobaleKonstanten.LeerString
+        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= SystemKonstanten.LeerString
       then
          SpeichernLadenAllgemein.SpielstandName := GlobaleVariablen.IronmanName;
                

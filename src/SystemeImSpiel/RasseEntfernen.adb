@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with SchreibeStadtGebaut, SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseStadtGebaut;
@@ -30,13 +30,13 @@ package body RasseEntfernen is
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         GlobaleVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := GlobaleKonstanten.LeerDiplomatie;
-         GlobaleVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := GlobaleKonstanten.LeerDiplomatie;
+         GlobaleVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := SonstigesKonstanten.LeerDiplomatie;
+         GlobaleVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := SonstigesKonstanten.LeerDiplomatie;
          
       end loop DiplomatieSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern) := GlobaleKonstanten.LeerCursor;
-      GlobaleVariablen.Wichtiges (RasseExtern) := GlobaleKonstanten.LeerWichtigesZeug;
+      GlobaleVariablen.CursorImSpiel (RasseExtern) := SonstigesKonstanten.LeerCursor;
+      GlobaleVariablen.Wichtiges (RasseExtern) := SonstigesKonstanten.LeerWichtigesZeug;
       
       GlobaleVariablen.RassenImSpiel (RasseExtern) := GlobaleDatentypen.Leer;
       
@@ -54,7 +54,7 @@ package body RasseEntfernen is
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))
          is
-            when GlobaleKonstanten.LeerEinheitenID =>
+            when EinheitenKonstanten.LeerID =>
                null;
                
             when others =>
@@ -69,7 +69,7 @@ package body RasseEntfernen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
-            when GlobaleKonstanten.LeerStadtID =>
+            when StadtKonstanten.LeerID =>
                null;
                
             when others =>

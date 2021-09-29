@@ -8,7 +8,7 @@ use Sf;
 
 with SystemKonstanten;
 
-with Anzeige, GrafikStart;
+with Anzeige, GrafikEinstellungen;
 
 package body Eingabe is
 
@@ -130,7 +130,7 @@ package body Eingabe is
                         ZeileExtern         => ZeileExtern,
                         ZahlenMinimumExtern => ZahlenMinimumExtern);
          
-         Get_Immediate (Item => Zahlen);
+         Zahlen := TastenEingabe;
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
          -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
@@ -185,7 +185,7 @@ package body Eingabe is
    
    procedure ZahlHinzufügen
      (ZahlenMaximumExtern : in Integer;
-      EingegebeneZahlExtern : in Wide_Wide_Character)
+      EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode)
    is begin
       
       ZahlenNachLinksVerschiebenSchleife:
@@ -194,7 +194,7 @@ package body Eingabe is
          ZahlenString (ZahlEinsSchleifenwert - 1) := ZahlenString (ZahlEinsSchleifenwert);
 
       end loop ZahlenNachLinksVerschiebenSchleife;
-      ZahlenString (ZahlenString'Last) := EingegebeneZahlExtern;
+      ZahlenString (ZahlenString'Last) := EingabeZahlenUmwandeln (EingegebeneZahlExtern);
 
       if
         Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern
@@ -288,30 +288,31 @@ package body Eingabe is
 
    -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
    function GanzeZahlPrüfung
-     (ZeichenExtern : in Wide_Wide_Character)
+     (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
    is begin
       
       case
         ZeichenExtern
       is
-         when '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' =>
+         when Sf.Window.Keyboard.sfKeyNum0 | Sf.Window.Keyboard.sfKeyNum1 | Sf.Window.Keyboard.sfKeyNum2 | Sf.Window.Keyboard.sfKeyNum3 | Sf.Window.Keyboard.sfKeyNum4 | Sf.Window.Keyboard.sfKeyNum5
+              | Sf.Window.Keyboard.sfKeyNum6 | Sf.Window.Keyboard.sfKeyNum7 | Sf.Window.Keyboard.sfKeyNum8 | Sf.Window.Keyboard.sfKeyNum9 =>
             return 1;
             
-         when 'q' | 'Q' | ESC =>
+         when Sf.Window.Keyboard.sfKeyQ | Sf.Window.Keyboard.sfKeyEscape =>
             return -1;
 
-         when DEL =>
+         when Sf.Window.Keyboard.sfKeyDelete | Sf.Window.Keyboard.sfKeyBack =>
             return -2;
 
-         when 'e' | 'E' | LF =>
+         when Sf.Window.Keyboard.sfKeyE | Sf.Window.Keyboard.sfKeyEnter =>
             return 2;
 
-         when '-' =>
+         when Sf.Window.Keyboard.sfKeySubtract =>
             WelchesVorzeichen := False;
             return 3;
             
-         when '+' =>
+         when Sf.Window.Keyboard.sfKeyAdd =>
             WelchesVorzeichen := True;
             return 3;
             
@@ -346,6 +347,16 @@ package body Eingabe is
       end loop MaximumSchleife;
       
    end MinimumMaximumSetzen;
+   
+   
+   
+   function NameEingeben
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      return To_Unbounded_Wide_Wide_String (Source => Get_Line);
+      
+   end NameEingeben;
 
    
 
@@ -356,7 +367,7 @@ package body Eingabe is
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                             TextZeileExtern => 32);
       
-      return To_Unbounded_Wide_Wide_String (Source => Get_Line);
+      return NameEingeben;
       
    end StadtName;
 
@@ -369,13 +380,13 @@ package body Eingabe is
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
                                             TextZeileExtern => 22);
 
-      Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
+      Name := NameEingeben;
 
       case
         To_Wide_Wide_String (Source => Name)'Length
       is
          when 0 =>
-            -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist.
+            -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist?
             return To_Unbounded_Wide_Wide_String (Source => "Kein Name");
               
          when others =>
@@ -390,22 +401,25 @@ package body Eingabe is
      return Sf.Window.Keyboard.sfKeyCode
    is begin
       
-      while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikStart.Fenster,
-                                                event        => Test) = Sf.sfTrue loop
-         
-         case
-           Test.eventType
-         is
-            when Sf.Window.Event.sfEvtKeyPressed =>
-               return Test.key.code;
+      EingabeSchleife:
+      loop
+         TasteSchleife:
+         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
+                                                   event        => ZeichenEingeben)
+           = Sf.sfTrue loop
+            
+            case
+              ZeichenEingeben.eventType
+            is
+               when Sf.Window.Event.sfEvtKeyPressed =>
+                  return ZeichenEingeben.key.code;
                
-            when others =>
-               null;
-         end case;
+               when others =>
+                  null;
+            end case;
          
-      end loop;
-      
-      return Sf.Window.Keyboard.sfKeyUnknown;
+         end loop TasteSchleife;
+      end loop EingabeSchleife;
       
    end TastenEingabe;
 
@@ -417,7 +431,7 @@ package body Eingabe is
       New_Line;
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                             TextZeileExtern => 47);
-      Get_Immediate (Taste);
+      Taste := TastenEingabe;
       
    end WartenEingabe;
    
@@ -427,7 +441,7 @@ package body Eingabe is
      return GlobaleDatentypen.Tastenbelegung_Enum
    is begin
       
-      TasteNeu := TastenEingabe;
+      Taste := TastenEingabe;
       
       BelegungFeldSchleife:
       for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
@@ -435,7 +449,7 @@ package body Eingabe is
          for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
             
             if
-              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = TasteNeu
+              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
             then
                return BelegungPositionSchleifenwert;
                

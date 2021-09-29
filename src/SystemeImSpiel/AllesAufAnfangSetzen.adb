@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleKonstanten, GlobaleDatentypen, KartenKonstanten;
+with GlobaleVariablen, GlobaleDatentypen, KartenKonstanten, SonstigesKonstanten, SystemKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with Karten, Cheat;
 
@@ -10,15 +10,15 @@ package body AllesAufAnfangSetzen is
    is begin
       
       GlobaleVariablen.RassenImSpiel := (others => GlobaleDatentypen.Leer);
-      GlobaleVariablen.EinheitenGebaut := (others => (others => GlobaleKonstanten.LeerEinheit));
-      GlobaleVariablen.StadtGebaut := (others => (others => GlobaleKonstanten.LeerStadt));
-      GlobaleVariablen.Wichtiges := (others => GlobaleKonstanten.LeerWichtigesZeug);
-      GlobaleVariablen.Diplomatie := (others => (others => GlobaleKonstanten.LeerDiplomatie));
+      GlobaleVariablen.EinheitenGebaut := (others => (others => EinheitenKonstanten.LeerEinheit));
+      GlobaleVariablen.StadtGebaut := (others => (others => StadtKonstanten.LeerStadt));
+      GlobaleVariablen.Wichtiges := (others => SonstigesKonstanten.LeerWichtigesZeug);
+      GlobaleVariablen.Diplomatie := (others => (others => SonstigesKonstanten.LeerDiplomatie));
       GlobaleVariablen.RundenAnzahl := Positive'First;
       GlobaleVariablen.RasseAmZugNachLaden := GlobaleDatentypen.Leer;
-      GlobaleVariablen.CursorImSpiel := (others => GlobaleKonstanten.LeerCursor);
+      GlobaleVariablen.CursorImSpiel := (others => SonstigesKonstanten.LeerCursor);
       GlobaleVariablen.Gewonnen := False;
-      GlobaleVariablen.IronmanName := GlobaleKonstanten.LeerUnboundedString;
+      GlobaleVariablen.IronmanName := SystemKonstanten.LeerUnboundedString;
       GlobaleVariablen.WeiterSpielen := False;
       
       Cheat.GewonnenDurchCheat := False;

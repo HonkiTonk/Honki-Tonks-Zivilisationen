@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleKonstanten, EinheitStadtRecords;
+with GlobaleDatentypen, EinheitStadtRecords, EinheitenKonstanten;
 
 with DatenbankRecords;
 
@@ -1043,7 +1043,7 @@ package EinheitenAspari2 is
          KannTransportiertWerden => 0,
          Transportkapazität      => EinheitStadtRecords.TransporterArray'Last),
                                                                
-      others => GlobaleKonstanten.LeerEinheitListe
+      others => EinheitenKonstanten.LeerEinheitListe
      );
 
 end EinheitenAspari2;

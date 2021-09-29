@@ -91,7 +91,7 @@ package body EinwohnerZuweisenEntfernen is
                                                                   ÄnderungExtern    => (0, RelativeCursorPositionY, RelativeCursorPositionX));
          
       if
-        KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+        KartenWert.XAchse = KartenKonstanten.LeerXAchse
       then
          null;
                

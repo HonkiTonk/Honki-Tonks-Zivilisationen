@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
@@ -66,7 +66,7 @@ package body SchreibeEinheitenGebaut is
                      Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                      BeschäftigungExtern     => GlobaleDatentypen.Leer);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
+                                          ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                           RechnenSetzenExtern      => 0);
                   
                   when others =>
@@ -123,9 +123,9 @@ package body SchreibeEinheitenGebaut is
             
          when -1 =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - BewegungspunkteExtern < GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - BewegungspunkteExtern < EinheitenKonstanten.LeerEinheit.Bewegungspunkte
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := EinheitenKonstanten.LeerEinheit.Bewegungspunkte;
                  
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
@@ -238,9 +238,9 @@ package body SchreibeEinheitenGebaut is
             
          when -1 =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit - ZeitExtern < GlobaleKonstanten.LeerEinheit.Beschäftigungszeit
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit - ZeitExtern < EinheitenKonstanten.LeerEinheit.Beschäftigungszeit
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := GlobaleKonstanten.LeerEinheit.Beschäftigungszeit;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := EinheitenKonstanten.LeerEinheit.Beschäftigungszeit;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit :=
@@ -278,9 +278,9 @@ package body SchreibeEinheitenGebaut is
          when -1 =>
             if
               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger - ZeitExtern
-              < GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger
+              < EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger :=
@@ -369,7 +369,7 @@ package body SchreibeEinheitenGebaut is
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID = GlobaleKonstanten.LeerEinheitenID
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID = EinheitenKonstanten.LeerID
       then
          null;
          
@@ -395,7 +395,7 @@ package body SchreibeEinheitenGebaut is
          end case;
       end if;
                                            
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerEinheit;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := EinheitenKonstanten.LeerEinheit;
       
    end Nullsetzung;
    

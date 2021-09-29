@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleVariablen, GlobaleDatentypen, SystemKonstanten;
 
 with Ladezeiten, Auswahl, EinlesenSprache, EinlesenText, EinlesenTastatur, EinlesenDatenbanken, EinlesenEinstellungen, SchreibenEinstellungen;
 
@@ -18,7 +18,7 @@ package body Einlesen is
       EinlesenTastatur.EinlesenTastaturbelegung;
       
       if
-        GlobaleVariablen.NutzerEinstellungen.Sprache = GlobaleKonstanten.LeerText
+        GlobaleVariablen.NutzerEinstellungen.Sprache = SystemKonstanten.LeerText
       then
          case
            EinlesenSprache.EinlesenSprache

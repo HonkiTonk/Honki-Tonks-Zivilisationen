@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
 
 with LeseKarten;
 
@@ -38,7 +38,7 @@ package body KarteInformationen is
             EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
             
             if
-              EinheitRasseNummer.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+              EinheitRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
             then
                null;
                 
@@ -58,7 +58,7 @@ package body KarteInformationen is
             StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
 
             if
-              StadtRasseNummer.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+              StadtRasseNummer.Platznummer = StadtKonstanten.LeerNummer
             then
                null;
                      

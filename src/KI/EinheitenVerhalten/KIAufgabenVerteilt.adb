@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -20,7 +20,7 @@ package body KIAufgabenVerteilt is
          if
            EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Platznummer
            or
-             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.ID
+             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.ID
          then
             null;
                

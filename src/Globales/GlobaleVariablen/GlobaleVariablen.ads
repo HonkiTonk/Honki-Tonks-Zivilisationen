@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleKonstanten, EinheitStadtRecords, NutzerRecords, KartenRecords, WichtigeRecords;
+with GlobaleDatentypen, EinheitStadtRecords, NutzerRecords, KartenRecords, WichtigeRecords, SystemKonstanten, SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 package GlobaleVariablen is
 
@@ -12,7 +12,7 @@ package GlobaleVariablen is
    type NutzerEinstellungenArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
    NutzerEinstellungen : NutzerRecords.NutzerEinstellungenRecord := (
                                                                      -- Sprache
-                                                                     To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText),
+                                                                     To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText),
                                                                      -- Anzahl Autosaves
                                                                      10,
                                                                      -- Rundenanzahl bis Autosave
@@ -24,7 +24,7 @@ package GlobaleVariablen is
 
    -- Cursor
    type CursorImSpielArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
-   CursorImSpiel : CursorImSpielArray := (others => GlobaleKonstanten.LeerCursor);
+   CursorImSpiel : CursorImSpielArray := (others => SonstigesKonstanten.LeerCursor);
    -- Cursor
    
    
@@ -43,33 +43,33 @@ package GlobaleVariablen is
    
    -- Später über Nutzereingaben neu belegbar machen.
    type GrenzenArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.GrenzenRecord;
-   Grenzen : GrenzenArray := (others => GlobaleKonstanten.LeerGrenzen);
+   Grenzen : GrenzenArray := (others => SonstigesKonstanten.LeerGrenzen);
    
-   IronmanName : Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerString);
+   IronmanName : Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerString);
    -- Zeug
    
 
    
    -- Einheiten
    type EinheitenGebautArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.MaximaleEinheiten'Range) of EinheitStadtRecords.EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (others => (others => GlobaleKonstanten.LeerEinheit));
+   EinheitenGebaut : EinheitenGebautArray := (others => (others => EinheitenKonstanten.LeerEinheit));
    -- Einheiten
    
    
 
    -- Städte
    type StadtGebautArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.MaximaleStädte'Range) of EinheitStadtRecords.StadtGebautRecord;
-   StadtGebaut : StadtGebautArray := (others => (others => GlobaleKonstanten.LeerStadt));
+   StadtGebaut : StadtGebautArray := (others => (others => StadtKonstanten.LeerStadt));
    -- Städte
    
    
 
    -- Wichtiges Zeug
    type WichtigesArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.WichtigesRecord;
-   Wichtiges : WichtigesArray := (others => GlobaleKonstanten.LeerWichtigesZeug);
+   Wichtiges : WichtigesArray := (others => SonstigesKonstanten.LeerWichtigesZeug);
    
    type DiplomatieArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.DiplomatieRecord;
-   Diplomatie : DiplomatieArray := (others => (others => GlobaleKonstanten.LeerDiplomatie));
+   Diplomatie : DiplomatieArray := (others => (others => SonstigesKonstanten.LeerDiplomatie));
    -- Wichtiges Zeug
                                                
 end GlobaleVariablen;

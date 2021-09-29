@@ -1,19 +1,62 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords;
+pragma SPARK_Mode (On);
+
+with GlobaleDatentypen, KartenRecords, SystemKonstanten;
 
 with DatenbankRecords;
 
 package KartenKonstanten is
-   
-   -- Für die grafische Anzeige
-   NichtSichtbar : constant Wide_Wide_Character := ' ';
-   -- Für die grafische Anzeige
-   
-   
 
-   -- Für die Kartengenerierung
-   -- An Kartengröße und/oder Temperatur anpassen?
+   LeerEAchse : constant GlobaleDatentypen.EbeneVorhanden := GlobaleDatentypen.EbeneVorhanden'First;
+   LeerYAchse : constant GlobaleDatentypen.KartenfeldPositivMitNullwert := GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
+   LeerXAchse : constant GlobaleDatentypen.KartenfeldPositivMitNullwert := GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
+
+   LeerKartenPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (EAchse => LeerEAchse,
+                                                                                 YAchse => LeerYAchse,
+                                                                                 XAchse => LeerXAchse);
+   
+   LeerKartenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
+   LeerPassierbarkeit : constant Boolean := False;
+   LeerFeldWerte : constant GlobaleDatentypen.ProduktionElement := 0;
+   
+   LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
+                                                                     KartenGrafik        => LeerKartenGrafik,
+                                                                     Passierbarkeit      => (others => LeerPassierbarkeit),
+                                                                     FeldWerte           => (others => (others => LeerFeldWerte))
+                                                                    );
+   
+   LeerGrund : constant GlobaleDatentypen.Karten_Grund_Enum := GlobaleDatentypen.Leer;
+   LeerHügel : constant Boolean := False;
+   LeerSichtbar : constant Boolean := False;
+   LeerFluss : constant GlobaleDatentypen.Karten_Grund_Enum := GlobaleDatentypen.Leer;
+   LeerVerbesserungWeg : constant GlobaleDatentypen.Karten_Verbesserung_Enum := GlobaleDatentypen.Leer;
+   LeerVerbesserungGebiet : constant GlobaleDatentypen.Karten_Verbesserung_Enum := GlobaleDatentypen.Leer;
+   LeerRessource : constant GlobaleDatentypen.Karten_Grund_Enum := GlobaleDatentypen.Leer;
+   LeerDurchStadtBelegterGrund : constant GlobaleDatentypen.BelegterGrund := GlobaleDatentypen.BelegterGrund'First;
+   LeerFelderwertung : constant GlobaleDatentypen.GesamtproduktionStadt := 0;
+
+   LeerWeltkarte : constant KartenRecords.KartenRecord := (
+                                                           Grund                   => LeerGrund,
+                                                           Hügel                   => LeerHügel,
+                                                           Sichtbar                => (others => LeerSichtbar),
+                                                           Fluss                   => LeerFluss,
+                                                           VerbesserungWeg         => LeerVerbesserungWeg,
+                                                           VerbesserungGebiet      => LeerVerbesserungGebiet,
+                                                           Ressource               => LeerRessource,
+                                                           DurchStadtBelegterGrund => LeerDurchStadtBelegterGrund,
+                                                           Felderwertung           => (others => LeerFelderwertung)
+                                                          );
+   
+   LeerVerbesserungGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
+   LeerVerbesserungWerte : constant GlobaleDatentypen.ProduktionElement := 0;
+
+   LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
+                                                                                 VerbesserungGrafik => LeerVerbesserungGrafik,
+                                                                                 Passierbarkeit     => (others => LeerPassierbarkeit),
+                                                                                 VerbesserungWerte  => (others => (others => LeerVerbesserungWerte))
+                                                                                );
+   
    type EisgebietArray is array (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Range) of GlobaleDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
                                          GlobaleDatentypen.Karte_20_20     => 1,
@@ -40,40 +83,5 @@ package KartenKonstanten is
                                            GlobaleDatentypen.Karte_1000_1000 => 72,
                                            GlobaleDatentypen.Karte_Nutzer    => 1
                                           );
-   -- Für die Kartengenerierung
-
-
-
-   -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
-   LeerKartenPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (EAchse => GlobaleDatentypen.EbeneVorhanden'First,
-                                                                                 YAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First,
-                                                                                 XAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
-
-   LeerYXKartenWert : constant GlobaleDatentypen.KartenfeldPositivMitNullwert := GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
-   -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
-   
-   LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
-                                                                     KartenGrafik        => NichtSichtbar,
-                                                                     Passierbarkeit      => (others => False),
-                                                                     FeldWerte           => (others => (others => 0))
-                                                                    );
-
-   LeerWeltkarte : constant KartenRecords.KartenRecord := (
-                                                           Grund                   => GlobaleDatentypen.Leer,
-                                                           Hügel                   => False,
-                                                           Sichtbar                => (others => False),
-                                                           Fluss                   => GlobaleDatentypen.Leer,
-                                                           VerbesserungWeg         => GlobaleDatentypen.Leer,
-                                                           VerbesserungGebiet      => GlobaleDatentypen.Leer,
-                                                           Ressource               => GlobaleDatentypen.Leer,
-                                                           DurchStadtBelegterGrund => 0,
-                                                           Felderwertung           => (others => 0)
-                                                          );
-
-   LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
-                                                                                 VerbesserungGrafik => NichtSichtbar,
-                                                                                 Passierbarkeit     => (others => False),
-                                                                                 VerbesserungWerte  => (others => (others => 0))
-                                                                                );
 
 end KartenKonstanten;

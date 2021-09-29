@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with KIDatentypen;
 
@@ -30,7 +30,7 @@ package body VerbesserungFertiggestellt is
                   case
                     LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))
                   is
-                     when GlobaleKonstanten.LeerEinheitenID =>
+                     when EinheitenKonstanten.LeerID =>
                         null;
 
                      when others =>
@@ -65,7 +65,7 @@ package body VerbesserungFertiggestellt is
                                                    RechnenSetzenExtern      => -1);
       
       if
-        LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Beschäftigungszeit
+        LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Beschäftigungszeit
       then
          EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 EreignisExtern           => GlobaleDatentypen.Aufgabe_Abgeschlossen);
@@ -101,7 +101,7 @@ package body VerbesserungFertiggestellt is
             SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                               BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                   ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
+                                                                   ZeitExtern               => EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
                                                                    RechnenSetzenExtern      => 0);
       end case;
       

@@ -203,14 +203,14 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00. => 0.00. (02.10.2021):
+   -- Version 0.00.89 => 0.00. (02.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00. => 0.00. (01.10.2021):
+   -- Version 0.00.89 => 0.00.89 (01.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.

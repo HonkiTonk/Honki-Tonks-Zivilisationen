@@ -1,37 +1,36 @@
 package ChangelogSeptember2021 is
       
-   -- Version 0.00.8 => 0.00.8 (30.09.2021):
+   -- Version 0.00.8910 => 0.00.89 (30.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.89 => 0.00.8 (29.09.2021):
+   -- Version 0.00.8890 => 0.00.8910 (29.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-   
-   -- Version 0.00.89 => 0.00.89 (28.09.2021):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GlobaleKonstanten vollständig aufgeteilt.
+   -- Mehr Konstanten eingebaut.
+   -- Eingabesystem weiter auf die SFML umgestellt und verbessert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
-   -- Version 0.00.89 => 0.00.89 (27.09.2021):
+   -- Version 0.00.8890 => 0.00.8890 (28.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
+   -- null.
    
    
-   -- Version 0.00.8890 => 0.00.89 (26.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Version 0.00.8890 => 0.00.8890 (27.09.2021):
+   
+   -- null.
+   
+   
+   
+   -- Version 0.00.8890 => 0.00.8890 (26.09.2021):
+   
+   -- null.
    
    
    
@@ -67,7 +66,7 @@ package ChangelogSeptember2021 is
    
    -- Version 0.00.8850 => 0.00.8850 (22.09.2021):
    
-   -- X
+   -- null.
    
    
    

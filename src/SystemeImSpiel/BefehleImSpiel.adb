@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, GlobaleKonstanten;
+with GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseWichtiges;
@@ -154,14 +154,14 @@ package body BefehleImSpiel is
       Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerWirdTransportiert
         and
           Transportiert = False
       then
          EinheitTransportNummer := EinheitRasseNummerExtern.Platznummer;
 
       elsif
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
       then
          EinheitTransportNummer:= EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern =>
                                                                                        (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
@@ -173,7 +173,7 @@ package body BefehleImSpiel is
       case
         EinheitTransportNummer
       is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+         when EinheitenKonstanten.LeerNummer =>
             null;
                         
          when others =>
@@ -232,7 +232,7 @@ package body BefehleImSpiel is
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   
       elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
       then
          null;
                      
@@ -253,7 +253,7 @@ package body BefehleImSpiel is
       case
         EinheitNummer
       is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+         when EinheitenKonstanten.LeerNummer =>
             return;
             
          when others =>
@@ -261,7 +261,7 @@ package body BefehleImSpiel is
       end case;
       
       if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) > EinheitenKonstanten.LeerEinheit.Bewegungspunkte
       then
          NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
@@ -310,7 +310,7 @@ package body BefehleImSpiel is
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                        KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       if
-        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        EinheitNummer = EinheitenKonstanten.LeerNummer
       then
          return;
                   
@@ -319,7 +319,7 @@ package body BefehleImSpiel is
       end if;
             
       if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 8);
@@ -353,7 +353,7 @@ package body BefehleImSpiel is
                                                                  KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       
       if
-        StadtNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        StadtNummer = StadtKonstanten.LeerNummer
       then
          null;
                   
@@ -375,7 +375,7 @@ package body BefehleImSpiel is
       case
         StadtNummer
       is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+         when StadtKonstanten.LeerNummer =>
             return;
             
          when others =>

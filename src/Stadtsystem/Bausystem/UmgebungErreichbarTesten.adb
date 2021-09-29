@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten;
 
 with LeseKarten;
 
@@ -31,7 +31,7 @@ package body UmgebungErreichbarTesten is
                                                                            ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
                if
-                 KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
                then
                   null;
                   
@@ -51,7 +51,7 @@ package body UmgebungErreichbarTesten is
                                            KoordinatenExtern => KartenWert)
                  = True
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = EinheitenKonstanten.LeerNummer
                  and
                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
                                                                           IDExtern           => IDExtern,
@@ -72,7 +72,7 @@ package body UmgebungErreichbarTesten is
                                            KoordinatenExtern => KartenWert)
                  = True
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = EinheitenKonstanten.LeerNummer
                  and
                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
                                                                           IDExtern           => IDExtern,
@@ -122,7 +122,7 @@ package body UmgebungErreichbarTesten is
                                                                             ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWertZwei.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWertZwei.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                

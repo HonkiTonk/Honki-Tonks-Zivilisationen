@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleTexte, GlobaleKonstanten;
+with GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
 
 with LeseStadtGebaut;
 
@@ -338,7 +338,7 @@ package body StadtInformationen is
       case
         LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when GlobaleKonstanten.LeerBauprojekt =>
+         when StadtKonstanten.LeerBauprojekt =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                            TextDateiExtern        => GlobaleTexte.Zeug,
                                            ÜberschriftZeileExtern => 0,
@@ -348,22 +348,22 @@ package body StadtInformationen is
                                            AbstandMitteExtern     => GlobaleTexte.Leer,
                                            AbstandEndeExtern      => GlobaleTexte.Leer);
             
-         when GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde =>
+         when StadtKonstanten.BauprojekteGebäudeAnfang .. StadtKonstanten.BauprojekteGebäudeEnde =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.GebäudeAufschlag,
-                                           LetzteZeileExtern      => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.GebäudeAufschlag,
+                                           ErsteZeileExtern       => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag,
+                                           LetzteZeileExtern      => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
                                            AbstandMitteExtern     => GlobaleTexte.Leer,
                                            AbstandEndeExtern      => GlobaleTexte.Leer);
 
-         when GlobaleKonstanten.BauprojekteEinheitenAnfang .. GlobaleKonstanten.BauprojekteEinheitenEnde =>
+         when StadtKonstanten.BauprojekteEinheitenAnfang .. StadtKonstanten.BauprojekteEinheitenEnde =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag,
-                                           LetzteZeileExtern      => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag,
+                                           ErsteZeileExtern       => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag,
+                                           LetzteZeileExtern      => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
                                            AbstandMitteExtern     => GlobaleTexte.Leer,
                                            AbstandEndeExtern      => GlobaleTexte.Leer);

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleKonstanten;
+with EinheitenKonstanten, SystemKonstanten;
 
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -30,7 +30,7 @@ package body GrafischeAnzeige is
             if
               KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
             then
-               Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
+               Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                                   VerbesserungExtern       => GlobaleDatentypen.Leer,
                                   RessourceExtern          => GlobaleDatentypen.Leer,
                                   GrundExtern              => GlobaleDatentypen.Leer,
@@ -39,7 +39,7 @@ package body GrafischeAnzeige is
                                   RasseExtern              => GlobaleDatentypen.Leer);
                
             else
-               Put (Item => GlobaleKonstanten.NichtSichtbar);
+               Put (Item => SystemKonstanten.LeerZeichen);
             end if;
       end case;
       
@@ -139,12 +139,12 @@ package body GrafischeAnzeige is
       EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
-        EinheitStadtRasseNummer.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
       then
          return False;
             
       elsif
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
       then
          Farbgebung.Farben (EinheitIDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitStadtRasseNummer.Rasse,
                                                                                                        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer))),
@@ -180,12 +180,12 @@ package body GrafischeAnzeige is
       EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
-        EinheitStadtRasseNummer.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
       then
          return False;
             
       else
-         Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
+         Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                             VerbesserungExtern       => LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer),
                             RessourceExtern          => GlobaleDatentypen.Leer,
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -207,7 +207,7 @@ package body GrafischeAnzeige is
       if
         LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
       then
-         Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
+         Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                             VerbesserungExtern       => LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern),
                             RessourceExtern          => GlobaleDatentypen.Leer,
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -218,7 +218,7 @@ package body GrafischeAnzeige is
       elsif
         LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
       then
-         Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
+         Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                             VerbesserungExtern       => LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern),
                             RessourceExtern          => GlobaleDatentypen.Leer,
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -229,7 +229,7 @@ package body GrafischeAnzeige is
       elsif
         LeseKarten.Ressource (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
       then
-         Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
+         Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                             VerbesserungExtern       => GlobaleDatentypen.Leer,
                             RessourceExtern          => LeseKarten.Ressource (PositionExtern => KoordinatenExtern),
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -240,7 +240,7 @@ package body GrafischeAnzeige is
       elsif
         LeseKarten.Fluss (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
       then
-         Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
+         Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                             VerbesserungExtern       => GlobaleDatentypen.Leer,
                             RessourceExtern          => LeseKarten.Fluss (PositionExtern => KoordinatenExtern),
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -249,7 +249,7 @@ package body GrafischeAnzeige is
                             RasseExtern              => GlobaleDatentypen.Leer);
             
       else
-         Farbgebung.Farben (EinheitIDExtern          => GlobaleKonstanten.LeerEinheitenID,
+         Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                             VerbesserungExtern       => GlobaleDatentypen.Leer,
                             RessourceExtern          => GlobaleDatentypen.Leer,
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),

@@ -186,7 +186,7 @@ package body KartenGeneratorLandschaft is
                                                                                ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             if
-              KartenWertAbstand.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWertAbstand.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                

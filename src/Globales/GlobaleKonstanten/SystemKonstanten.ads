@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Strings.Wide_Wide_Unbounded;
+
 package SystemKonstanten is
 
    -- Für die Auswahl
@@ -52,5 +55,12 @@ package SystemKonstanten is
    OptionenSonstigesErsteZeile : constant Positive := 16;
    OptionenSonstigesLetzteZeile : constant Positive := 20;
    -- Für die Optionen/Menüs
+
+
+
+   LeerString : constant Wide_Wide_String := "";
+   LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
+   LeerText : constant Wide_Wide_String := "|";
+   LeerZeichen : constant Wide_Wide_Character := ' ';
 
 end SystemKonstanten;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with LeseEinheitenDatenbank, LeseEinheitenGebaut;
 
@@ -23,7 +23,7 @@ package body TransporterSuchen is
          elsif
            LeseEinheitenDatenbank.KannTransportieren (RasseExtern => RasseExtern,
                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)))
-           = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           = EinheitenKonstanten.LeerKannTransportieren
          then
             null;
             
@@ -33,7 +33,7 @@ package body TransporterSuchen is
          
       end loop EinheitSchleife;
       
-      return GlobaleKonstanten.LeerEinheitStadtNummer;
+      return EinheitenKonstanten.LeerNummer;
       
    end KoordinatenTransporterMitRasseSuchen;
    
@@ -65,7 +65,7 @@ package body TransporterSuchen is
          
       end loop TransporterSchleife;
       
-      return GlobaleKonstanten.LeerEinheitStadtNummer;
+      return EinheitenKonstanten.LeerNummer;
       
    end EinheitAufTransporterSuchen;
 
@@ -84,7 +84,7 @@ package body TransporterSuchen is
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               PlatzExtern              => TransporterPlatzSchleifenwert)
-           /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           /= EinheitenKonstanten.LeerTransportiert
          then
             return True;
             

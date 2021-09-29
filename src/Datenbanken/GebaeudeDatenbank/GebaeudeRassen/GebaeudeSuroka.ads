@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleDatentypen, StadtKonstanten;
 
 with DatenbankRecords;
 
@@ -297,7 +297,7 @@ package GebaeudeSuroka is
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                                               
-      others => GlobaleKonstanten.LeerGebäudeListe
+      others => StadtKonstanten.LeerGebäudeListe
      );
 
 end GebaeudeSuroka;

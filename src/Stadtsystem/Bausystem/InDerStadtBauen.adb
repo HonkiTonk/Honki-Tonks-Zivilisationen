@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with SystemKonstanten, GlobaleTexte, GlobaleKonstanten;
+with SystemKonstanten, GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -19,7 +19,7 @@ package body InDerStadtBauen is
       case
         LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when GlobaleKonstanten.LeerBauprojekt =>
+         when StadtKonstanten.LeerBauprojekt =>
             null;
             
          when others =>
@@ -34,7 +34,7 @@ package body InDerStadtBauen is
       end case;
       
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
+                                      RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
                                       ÄndernSetzenExtern    => False);
       SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       BauprojektExtern       => BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern));
@@ -49,7 +49,7 @@ package body InDerStadtBauen is
    is begin
 
       Ende := 1;
-      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => GlobaleKonstanten.LeerText), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText), 0));
 
       MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
       MöglicheEinheitenErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -89,7 +89,7 @@ package body InDerStadtBauen is
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz),
                                 Positive (GebäudeSchleifenwert)))
-           = GlobaleKonstanten.LeerText
+           = SystemKonstanten.LeerText
          then
             exit GebäudeSchleife;
             
@@ -104,7 +104,7 @@ package body InDerStadtBauen is
          then
             Anzeige.AllgemeineAnzeigeText (Ende).Text
               := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
-            Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
+            Anzeige.AllgemeineAnzeigeText (Ende).Nummer := StadtKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
             
          else
@@ -127,7 +127,7 @@ package body InDerStadtBauen is
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                 Positive (EinheitSchleifenwert)))
-           = GlobaleKonstanten.LeerText
+           = SystemKonstanten.LeerText
          then
             exit EinheitenSchleife;
             
@@ -143,7 +143,7 @@ package body InDerStadtBauen is
             Anzeige.AllgemeineAnzeigeText (Ende).Text
               := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                                 Positive (EinheitSchleifenwert));
-            Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
+            Anzeige.AllgemeineAnzeigeText (Ende).Nummer := EinheitenKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
             
          else
@@ -179,7 +179,7 @@ package body InDerStadtBauen is
             null;
                   
          elsif
-           Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer > GlobaleKonstanten.EinheitAufschlag
+           Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer > EinheitenKonstanten.EinheitAufschlag
          then
             EinheitBauen.AnzeigeEinheiten (StadtRasseNummerExtern => StadtRasseNummerExtern);
             

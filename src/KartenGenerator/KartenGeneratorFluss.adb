@@ -108,7 +108,7 @@ package body KartenGeneratorFluss is
                                                                                             ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
             if
-              KartenWertTesten (EbeneExtern).XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWertTesten (EbeneExtern).XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
@@ -149,7 +149,7 @@ package body KartenGeneratorFluss is
                                                                                       ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
             if
-              KartenWert (EbeneExtern).XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert (EbeneExtern).XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                

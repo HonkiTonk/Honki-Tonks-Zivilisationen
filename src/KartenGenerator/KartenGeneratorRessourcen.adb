@@ -133,7 +133,7 @@ package body KartenGeneratorRessourcen is
             case
               KartenWert.XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerXAchse =>
                   null;
                   
                when others =>

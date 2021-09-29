@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte, KartenKonstanten;
+with GlobaleTexte, KartenKonstanten, EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -93,7 +93,7 @@ package body BewegungEinheiten is
             case
               KartenWert.XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerXAchse =>
                   AktuellerStatus := Bewegbar;
                
                when others =>
@@ -137,7 +137,7 @@ package body BewegungEinheiten is
       if
         FeldPassierbar = False
         and
-          EinheitAufFeld.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+          EinheitAufFeld.Platznummer = EinheitenKonstanten.LeerNummer
       then
          return Bewegbar;
          
@@ -179,7 +179,7 @@ package body BewegungEinheiten is
          end if;
          
       elsif
-        StadtAufFeld.Platznummer /= GlobaleKonstanten.LeerEinheitStadtNummer
+        StadtAufFeld.Platznummer /= EinheitenKonstanten.LeerNummer
         and
           FeldPassierbar
       then
@@ -221,9 +221,9 @@ package body BewegungEinheiten is
    is begin
       
       if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
         or
-          LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
+          LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Lebenspunkte
       then
          return Zurück;
             
@@ -260,7 +260,7 @@ package body BewegungEinheiten is
          case
            StadtAufFeld.Platznummer
          is
-            when GlobaleKonstanten.LeerEinheitStadtNummer =>
+            when EinheitenKonstanten.LeerNummer =>
                return True;
                      
             when others =>

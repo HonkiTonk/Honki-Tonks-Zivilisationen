@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with KIDatentypen;
 use KIDatentypen;
@@ -54,19 +54,19 @@ package body KIStadt is
    is begin
       
       if
-        EinheitBauenExtern.ID = GlobaleKonstanten.LeerEinheitenID
+        EinheitBauenExtern.ID = EinheitenKonstanten.LeerID
         and
           GebäudeBauenExtern.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
       then
          null;
          
       elsif
-        EinheitBauenExtern.ID = GlobaleKonstanten.LeerEinheitenID
+        EinheitBauenExtern.ID = EinheitenKonstanten.LeerID
       then
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + GlobaleKonstanten.GebäudeAufschlag);
+                                         BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + StadtKonstanten.GebäudeAufschlag);
          
       elsif
         GebäudeBauenExtern.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
@@ -83,7 +83,7 @@ package body KIStadt is
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
          end case;
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (EinheitBauenExtern.ID) + GlobaleKonstanten.EinheitAufschlag);
+                                         BauprojektExtern       => Positive (EinheitBauenExtern.ID) + EinheitenKonstanten.EinheitAufschlag);
       
       elsif
         EinheitBauenExtern.Bewertung >= GebäudeBauenExtern.Bewertung
@@ -100,13 +100,13 @@ package body KIStadt is
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
          end case;
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (EinheitBauenExtern.ID) + GlobaleKonstanten.EinheitAufschlag);
+                                         BauprojektExtern       => Positive (EinheitBauenExtern.ID) + EinheitenKonstanten.EinheitAufschlag);
 
       else
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + GlobaleKonstanten.GebäudeAufschlag);
+                                         BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + StadtKonstanten.GebäudeAufschlag);
       end if;
       
    end NeuesBauprojekt;
@@ -163,14 +163,14 @@ package body KIStadt is
             case
               KartenWert.XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerXAchse =>
                   null;
                   
                when others =>
                   FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                                                                              KoordinatenExtern => KartenWert);
                   if
-                    FremdeEinheit.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                    FremdeEinheit.Platznummer = EinheitenKonstanten.LeerNummer
                   then
                      null;
                      

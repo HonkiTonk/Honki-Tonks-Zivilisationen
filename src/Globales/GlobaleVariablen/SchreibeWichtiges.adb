@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with SonstigesKonstanten;
 
 with LeseForschungsDatenbank;
 
@@ -86,9 +86,9 @@ package body SchreibeWichtiges is
                GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleVariablen.Grenzen (RasseExtern).ForschungGewinngrenze;
                
             elsif
-              GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern < GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+              GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern < SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
+               GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern;
@@ -96,9 +96,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              ForschungsrateZugewinnExtern < GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+              ForschungsrateZugewinnExtern < SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
+               GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := ForschungsrateZugewinnExtern;
@@ -127,9 +127,9 @@ package body SchreibeWichtiges is
                GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleVariablen.Grenzen (RasseExtern).Forschungsgrenze;
                
             elsif
-              GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern < GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge
+              GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern < SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge;
+               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
             
             else
                GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern;
@@ -137,9 +137,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              ForschungZugewinnExtern < GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge
+              ForschungZugewinnExtern < SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge;
+               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := ForschungZugewinnExtern;
@@ -182,7 +182,7 @@ package body SchreibeWichtiges is
       
       GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := ForschungIDExtern;
       Forschungsmenge (RasseExtern             => RasseExtern,
-                       ForschungZugewinnExtern => GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge,
+                       ForschungZugewinnExtern => SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge,
                        RechnenSetzenExtern     => False);
       
    end Forschungsprojekt;

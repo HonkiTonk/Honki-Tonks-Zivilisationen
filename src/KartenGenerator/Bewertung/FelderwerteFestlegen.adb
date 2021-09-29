@@ -24,7 +24,7 @@ package body FelderwerteFestlegen is
             case
               KartenWertEins (KoordinatenExtern.EAchse).XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerXAchse =>
                   null;
                      
                when others =>                  
@@ -58,7 +58,7 @@ package body FelderwerteFestlegen is
             case
               KartenWertZwei (KoordinatenExtern.EAchse).XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerXAchse =>
                   null;
                   
                when others =>

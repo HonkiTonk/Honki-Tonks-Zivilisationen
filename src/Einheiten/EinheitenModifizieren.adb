@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten, ForschungKonstanten;
 
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
@@ -26,7 +26,7 @@ package body EinheitenModifizieren is
                for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
                               
                   if
-                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = GlobaleKonstanten.LeerEinheit.ID
+                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = EinheitenKonstanten.LeerEinheit.ID
                   then
                      null;
                   
@@ -59,7 +59,7 @@ package body EinheitenModifizieren is
 
       else
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                                  BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
                                                   RechnenSetzenExtern      => 0);
       end if;
 
@@ -132,7 +132,7 @@ package body EinheitenModifizieren is
       case
         EinheitRasseNummerExtern.Platznummer
       is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+         when EinheitenKonstanten.LeerNummer =>
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                              KoordinatenExtern => GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position);
             
@@ -144,9 +144,9 @@ package body EinheitenModifizieren is
                                                                     KoordinatenExtern => GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position);
       
       if
-        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        EinheitNummer = EinheitenKonstanten.LeerNummer
         or
-          StadtNummerNeu = GlobaleKonstanten.LeerEinheitStadtNummer
+          StadtNummerNeu = EinheitenKonstanten.LeerNummer
       then
          return;
          
@@ -192,7 +192,7 @@ package body EinheitenModifizieren is
       if
         LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                               IDExtern    => IDExtern)
-        = GlobaleKonstanten.LeerForschungAnforderung
+        = ForschungKonstanten.LeerForschungAnforderung
       then
          null;
          

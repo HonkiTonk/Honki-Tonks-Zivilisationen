@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten;
 
 with KIDatentypen;
 
@@ -19,7 +19,7 @@ package body KIGefahrErmitteln is
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIDatentypen.Angreifen | KIDatentypen.Verteidigen | KIDatentypen.Verbesserung_Zerstören | KIDatentypen.Flucht =>
-            return GlobaleKonstanten.LeerRassePlatznummer;
+            return EinheitenKonstanten.LeerRasseNummer;
             
          when others =>
             return GefahrSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -43,7 +43,7 @@ package body KIGefahrErmitteln is
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
@@ -72,7 +72,7 @@ package body KIGefahrErmitteln is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return GlobaleKonstanten.LeerRassePlatznummer;
+      return EinheitenKonstanten.LeerRasseNummer;
       
    end GefahrSuchen;
    
@@ -85,7 +85,7 @@ package body KIGefahrErmitteln is
    is begin
       
       if
-        AndereEinheitExtern.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        AndereEinheitExtern.Platznummer = EinheitenKonstanten.LeerNummer
         or
           AndereEinheitExtern.Rasse = EinheitRasseNummerExtern.Rasse
       then

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with SonstigesKonstanten, StadtKonstanten;
 
 with KIKonstanten;
 
@@ -326,7 +326,7 @@ package body KIEinheitenBauen is
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
                                                  WelcheKostenExtern => GlobaleDatentypen.Geld)
-        = GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        = SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return 5;
          
@@ -335,7 +335,7 @@ package body KIEinheitenBauen is
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
                                                    WelcheKostenExtern => GlobaleDatentypen.Geld)
-        < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return -10;
       
@@ -357,7 +357,7 @@ package body KIEinheitenBauen is
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
                                                  WelcheKostenExtern => GlobaleDatentypen.Nahrung)
-        = GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        = StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 5;
          
@@ -366,7 +366,7 @@ package body KIEinheitenBauen is
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
                                                    WelcheKostenExtern => GlobaleDatentypen.Nahrung)
-        < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        < StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return -20;
       
@@ -388,7 +388,7 @@ package body KIEinheitenBauen is
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
                                                  WelcheKostenExtern => GlobaleDatentypen.Ressourcen)
-        = GlobaleKonstanten.LeerStadt.Produktionrate
+        = StadtKonstanten.LeerStadt.Produktionrate
       then
          return 5;
          
@@ -397,7 +397,7 @@ package body KIEinheitenBauen is
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
                                                    WelcheKostenExtern => GlobaleDatentypen.Ressourcen)
-        < GlobaleKonstanten.LeerStadt.Produktionrate
+        < StadtKonstanten.LeerStadt.Produktionrate
       then
          return -20;
       

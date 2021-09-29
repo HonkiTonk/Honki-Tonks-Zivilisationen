@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten;
 
 with LeseKarten, LeseEinheitenGebaut;
 
@@ -23,7 +23,7 @@ package body KIFeindlicheEinheitSuchen is
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
@@ -40,7 +40,7 @@ package body KIFeindlicheEinheitSuchen is
                case
                  FeindlicheEinheit
                is
-                  when GlobaleKonstanten.LeerEinheitStadtNummer =>
+                  when EinheitenKonstanten.LeerNummer =>
                      null;
                      
                   when others =>

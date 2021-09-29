@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleKonstanten;
+with SystemKonstanten;
 
 with Eingabe;
 
@@ -188,7 +188,7 @@ package body Anzeige is
       TextlängePrüfenSchleife:
       for ZeichenSchleifenwert in AlgemeineAnzeigeTextArray'Range loop
          if
-           To_Wide_Wide_String (Source => AllgemeineAnzeigeText (ZeichenSchleifenwert).Text) = GlobaleKonstanten.LeerText
+           To_Wide_Wide_String (Source => AllgemeineAnzeigeText (ZeichenSchleifenwert).Text) = SystemKonstanten.LeerText
          then
             exit TextlängePrüfenSchleife;
             
@@ -257,7 +257,7 @@ package body Anzeige is
          
          else
             if
-              To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text) = GlobaleKonstanten.LeerText
+              To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text) = SystemKonstanten.LeerText
             then
                exit AnzeigeSchleife;
             

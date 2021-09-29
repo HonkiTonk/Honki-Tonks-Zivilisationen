@@ -74,7 +74,7 @@ package body Karte is
             case
               KartenWert.XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
+               when KartenKonstanten.LeerXAchse =>
                   null;
                   
                when others =>
@@ -117,7 +117,7 @@ package body Karte is
             or
               Karten.Kartenform = GlobaleDatentypen.Tugel_Extrem)
            and
-             KartenWert.XAchse > KartenKonstanten.LeerYXKartenWert
+             KartenWert.XAchse > KartenKonstanten.LeerXAchse
          then
             New_Line;
                   

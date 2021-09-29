@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenRecords;
+with KartenRecords, EinheitenKonstanten;
 use KartenRecords;
 
 with KIDatentypen, KIKonstanten;
@@ -143,9 +143,9 @@ package body KIEinheitHandlungen is
    is begin
       
       if
-        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.ID
+        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.ID
         or
-          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+          LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) <= EinheitenKonstanten.LeerEinheit.Bewegungspunkte
       then
          return True;
          

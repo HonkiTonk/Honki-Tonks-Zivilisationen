@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, GlobaleKonstanten;
+with KartenKonstanten, EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeKarten, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
@@ -39,7 +39,7 @@ package body StadtEntfernen is
                                                                         ÄnderungExtern    => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert));
          
             if
-              KartenWert.XAchse = KartenKonstanten.LeerYXKartenWert
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
@@ -49,7 +49,7 @@ package body StadtEntfernen is
               = True
             then
                SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
-                                             BelegterGrundExtern => GlobaleKonstanten.LeerDurchStadtBelegterGrund);
+                                             BelegterGrundExtern => KartenKonstanten.LeerDurchStadtBelegterGrund);
             
             else
                null;
@@ -73,7 +73,7 @@ package body StadtEntfernen is
            LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert)) = StadtRasseNummerExtern.Platznummer
          then
             SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert),
-                                                 HeimatstadtExtern        => GlobaleKonstanten.LeerEinheit.Heimatstadt);
+                                                 HeimatstadtExtern        => EinheitenKonstanten.LeerEinheit.Heimatstadt);
             
          else
             null;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, EinheitStadtRecords;
+with EinheitStadtRecords, EinheitenKonstanten, StadtKonstanten;
 
 with LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -26,13 +26,13 @@ package body NaechstesObjekt is
          end if;
                
          if
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = GlobaleKonstanten.LeerEinheitenID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = EinheitenKonstanten.LeerID
            or
-             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) <= EinheitenKonstanten.LeerEinheit.Bewegungspunkte
               and
                 BewegungspunkteExtern = Hat_Bewegungspunkte)
            or
-             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) > EinheitenKonstanten.LeerEinheit.Bewegungspunkte
               and
                 BewegungspunkteExtern = Keine_Bewegungspunkte)
          then
@@ -80,7 +80,7 @@ package body NaechstesObjekt is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)))
          is
-            when GlobaleKonstanten.LeerStadtID =>
+            when StadtKonstanten.LeerID =>
                null;
                
             when others =>
@@ -123,7 +123,7 @@ package body NaechstesObjekt is
          end if;
                
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern))) = GlobaleKonstanten.LeerStadtID
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern))) = StadtKonstanten.LeerID
          then
             null;
          
@@ -181,7 +181,7 @@ package body NaechstesObjekt is
          end if;
                
          if
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern))) = GlobaleKonstanten.LeerEinheitenID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern))) = EinheitenKonstanten.LeerID
          then
             null;
          

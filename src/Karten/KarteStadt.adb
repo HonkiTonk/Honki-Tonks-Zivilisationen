@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten, GlobaleTexte, KartenKonstanten;
+with GlobaleTexte, KartenKonstanten, SystemKonstanten;
 
 with LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
@@ -168,14 +168,14 @@ package body KarteStadt is
         and
           XAchseExtern = Karten.Stadtkarte'Last (2) - 7
       then
-         Put (Item => GlobaleKonstanten.NichtSichtbar);
+         Put (Item => SystemKonstanten.LeerZeichen);
 
       elsif
         YAchseExtern = Karten.Stadtkarte'First (1) + 7
         and
           XAchseExtern >= Karten.Stadtkarte'Last (2) - 7
       then
-         Put (Item => GlobaleKonstanten.NichtSichtbar);
+         Put (Item => SystemKonstanten.LeerZeichen);
 
       elsif
         YAchseExtern = 1
@@ -347,7 +347,7 @@ package body KarteStadt is
                                RasseExtern        => GlobaleDatentypen.Leer);
 
          else
-            Put (Item => GlobaleKonstanten.NichtSichtbar);
+            Put (Item => SystemKonstanten.LeerZeichen);
          end if;
                      
       end loop UmgebungSchleife;
@@ -379,7 +379,7 @@ package body KarteStadt is
            or
              UmgebungSchleifenwert > Stadtumgebungsgröße
          then
-            Put (Item => GlobaleKonstanten.NichtSichtbar);
+            Put (Item => SystemKonstanten.LeerZeichen);
 
          else            
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
@@ -388,8 +388,8 @@ package body KarteStadt is
             case
               KartenWert.XAchse
             is
-               when KartenKonstanten.LeerYXKartenWert =>
-                  Put (Item => GlobaleKonstanten.NichtSichtbar);
+               when KartenKonstanten.LeerXAchse =>
+                  Put (Item => SystemKonstanten.LeerZeichen);
 
                when others =>
                   GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => True,
@@ -435,7 +435,7 @@ package body KarteStadt is
          case
            KartenWert.XAchse
          is
-            when KartenKonstanten.LeerYXKartenWert =>
+            when KartenKonstanten.LeerXAchse =>
                Farbgebung.Farben (EinheitIDExtern    => 0,
                                   VerbesserungExtern => GlobaleDatentypen.Leer,
                                   RessourceExtern    => GlobaleDatentypen.Leer,
@@ -472,7 +472,7 @@ package body KarteStadt is
       case
         KartenWert.XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             return;
 
          when others =>

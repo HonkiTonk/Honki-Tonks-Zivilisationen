@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten;
 
 with LeseStadtGebaut;
 
@@ -93,7 +93,7 @@ package body KIStadtSuchen is
          elsif
            EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
                                                            KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)))
-           = GlobaleKonstanten.LeerEinheitStadtNummer
+           = EinheitenKonstanten.LeerNummer
          then
             return LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
                   

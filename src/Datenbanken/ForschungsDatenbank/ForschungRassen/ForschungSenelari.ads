@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with ForschungKonstanten;
 
 with DatenbankRecords;
 
@@ -486,7 +486,7 @@ package ForschungSenelari is
                                   3 => 69,
                                   others => 0)),
 
-      others => GlobaleKonstanten.LeerForschungListe
+      others => ForschungKonstanten.LeerForschungListe
      );
 
 end ForschungSenelari;

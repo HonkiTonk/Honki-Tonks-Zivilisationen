@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank;
@@ -46,7 +46,7 @@ package body KampfsystemEinheiten is
                           VerteidigungExtern => KampfwerteVerteidiger.Verteidigung);
 
          if
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) = EinheitenKonstanten.LeerEinheit.Lebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreiferExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
@@ -64,7 +64,7 @@ package body KampfsystemEinheiten is
                           VerteidigungExtern => KampfwerteAngreifer.Verteidigung);
          
          if
-           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) = EinheitenKonstanten.LeerEinheit.Lebenspunkte
          then
             SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,

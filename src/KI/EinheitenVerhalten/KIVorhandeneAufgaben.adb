@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, KartenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
 
 with KIDatentypen;
 
@@ -97,7 +97,7 @@ package body KIVorhandeneAufgaben is
       VorhandeneStädte := LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       if
-        VorhandeneStädte = GlobaleKonstanten.LeerEinheitStadtNummer
+        VorhandeneStädte = EinheitenKonstanten.LeerNummer
       then
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  AufgabeExtern            => KIDatentypen.Stadt_Bauen);
@@ -139,7 +139,7 @@ package body KIVorhandeneAufgaben is
       case
         KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern).XAchse
       is
-         when KartenKonstanten.LeerYXKartenWert =>
+         when KartenKonstanten.LeerXAchse =>
             return 0;
             
          when others =>
@@ -172,7 +172,7 @@ package body KIVorhandeneAufgaben is
          end case;
          
          if
-           EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+           EinheitNummer = EinheitenKonstanten.LeerNummer
            and
              KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen,
                                                     RasseExtern           => EinheitRasseNummerExtern.Rasse,
@@ -279,7 +279,7 @@ package body KIVorhandeneAufgaben is
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                                                     IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                     WelcheKostenExtern => KostenSchleifenwert)
-           = GlobaleKonstanten.NullPermanenteKosten
+           = StadtKonstanten.LeerPermanenteKosten
          then
             null;
             
