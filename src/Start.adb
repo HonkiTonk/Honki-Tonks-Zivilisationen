@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GrafikStart, SchreibenVerzeichnisse, Einlesen, Intro, Hauptmenue;
+with GrafikStart, SchreibenVerzeichnisse, Einlesen, Intro, Hauptmenue, GrafikFenster;
 
 procedure Start
 is begin
@@ -12,7 +12,7 @@ is begin
          return;
 
       when True =>
-         null;
+         GrafikFenster.FensterFarbe;
    end case;
 
    SchreibenVerzeichnisse.SchreibenVerzeichnisse;

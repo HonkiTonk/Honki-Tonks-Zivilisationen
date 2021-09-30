@@ -1,9 +1,11 @@
 package ChangelogSeptember2021 is
       
-   -- Version 0.00.8910 => 0.00.89 (30.09.2021):
+   -- Version 0.00.8910 => 0.00.8920 (30.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter mit der ASFML/SFML herumexperimentiert.
+   -- Einfache Basisfunktionen/prozeduren für die Anzeige von Bilder und Text durch die SFML geschrieben.
+   -- Kompilierte Dateien umgelagert für schnelleren Ordnerzugriff.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

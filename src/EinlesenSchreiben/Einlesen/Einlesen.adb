@@ -13,9 +13,30 @@ package body Einlesen is
    is begin
       
       Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Anfangswert) := Clock;
+      
+      EinlesenOhneAnzeige;
+      EinlesenMitAnzeige;
+      
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
+      
+   end Einlesen;
+   
+   
+   
+   procedure EinlesenOhneAnzeige
+   is begin
+      
       EinlesenEinstellungen.EinlesenEinstellungen;
       EinlesenDatenbanken.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;
+      
+   end EinlesenOhneAnzeige;
+   
+   
+   
+   procedure EinlesenMitAnzeige
+   is begin
       
       if
         GlobaleVariablen.NutzerEinstellungen.Sprache = SystemKonstanten.LeerText
@@ -45,10 +66,6 @@ package body Einlesen is
             return;
       end case;
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
-      return;
-      
-   end Einlesen;
+   end EinlesenMitAnzeige;
 
 end Einlesen;

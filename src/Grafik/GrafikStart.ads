@@ -6,5 +6,9 @@ package GrafikStart is
      return Boolean;
    
    procedure FensterEntfernen;
+   
+private
+   
+   Name : constant Wide_Wide_String := "Name des Spiels";
 
 end GrafikStart;

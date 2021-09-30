@@ -12,7 +12,7 @@ package body GrafikStart is
    is begin
       
       GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => GrafikEinstellungen.Modus,
-                                                                             title => "Name des Spiels");
+                                                                             title => Name);
 
       if
         GrafikEinstellungen.Fenster = null
