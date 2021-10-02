@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics.RenderWindow, Sf.Graphics;
-use Sf.Graphics;
+with Sf.Graphics.RenderWindow, Sf.Graphics, Sf;
+use Sf.Graphics, Sf;
 
 with GrafikEinstellungen;
 

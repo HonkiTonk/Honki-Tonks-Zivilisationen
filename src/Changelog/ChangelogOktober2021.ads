@@ -182,37 +182,36 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00. => 0.00. (05.10.2021):
+   -- Version 0.00.89 => 0.00. (05.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (04.10.2021):
+   -- Version 0.00.89 => 0.00.89 (04.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.89 => 0.00. (03.10.2021):
+   -- Version 0.00.8930 => 0.00.89 (03.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.89 => 0.00.89 (02.10.2021):
+   -- Version 0.00.8920 => 0.00.8930 (02.10.2021):
    
-   -- 
+   -- Mit der SFML herumexperimentiert.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.8920 => 0.00.89 (01.10.2021):
+   -- Version 0.00.8920 => 0.00.8920 (01.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
 
 end ChangelogOktober2021;

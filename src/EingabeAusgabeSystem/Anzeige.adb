@@ -3,9 +3,13 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
+with Sf.Graphics.RenderWindow, Sf.Graphics.Text;
+
+with GrafikAllgemein;
+
 with SystemKonstanten;
 
-with Eingabe;
+with Eingabe, GrafikEinstellungen;
 
 package body Anzeige is
 
@@ -117,6 +121,8 @@ package body Anzeige is
             Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)));
       end case;
       
+      GrafikAllgemein.FensterLeeren;
+      
       AnzeigeSchleife:
       for ZeileSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
 
@@ -127,6 +133,10 @@ package body Anzeige is
                if
                  TextlängeEins = 1
                then
+                  Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                                     str  => "ä");
+                  Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                                     text         => GrafikEinstellungen.Text);
                   Put (Item => "╔");
                   Put (Item => "═");
 
@@ -174,6 +184,8 @@ package body Anzeige is
          end if;
          
       end loop AnzeigeSchleife;
+      
+      GrafikAllgemein.FensterAnzeigen;
       
    end AnzeigeMitAuswahlNeu;
    

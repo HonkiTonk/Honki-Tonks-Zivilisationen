@@ -11,7 +11,7 @@ package body GrafikAllgemein is
    is begin
       
       Sf.Graphics.RenderWindow.clear (renderWindow => GrafikEinstellungen.Fenster,
-                                      color        => Sf.Graphics.Color.sfRed);
+                                      color        => Sf.Graphics.Color.sfBlack);
       
    end FensterLeeren;
    -- Immer erster Grafikaufruf.
@@ -26,6 +26,15 @@ package body GrafikAllgemein is
       
    end FensterAnzeigen;
    -- Immer letzter Grafikaufruf.
+   
+   
+   
+   procedure AllgemeinesFestlegen
+   is begin
+      
+      null;
+      
+   end AllgemeinesFestlegen;
    
    
    
@@ -46,7 +55,7 @@ package body GrafikAllgemein is
       Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.Text,
                                          size => 24);
       Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.Text,
-                                 color => (100, 100, 100, 255));
+                                 color => (255, 0, 0, 255));
       Sf.Graphics.Text.setStyle (text  => GrafikEinstellungen.Text,
                                  style => 0);
       

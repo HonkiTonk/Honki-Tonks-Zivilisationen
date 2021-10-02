@@ -5,10 +5,12 @@ package GrafikAllgemein is
    -- Immer erster Grafikaufruf.
    procedure FensterLeeren;
    -- Immer erster Grafikaufruf.
+
    -- Immer letzter Grafikaufruf.
    procedure FensterAnzeigen;
    -- Immer letzter Grafikaufruf.
 
+   procedure AllgemeinesFestlegen;
    procedure SchriftartFestlegen;
    procedure TextAllgemeinFestlegen;
 

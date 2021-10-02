@@ -252,7 +252,7 @@ package ChangelogSeptember2021 is
    
    -- Version 0.00.8570 => 0.00.8580 (03.09.2021):
    
-   -- KI Prüfung eingebaut um zu ermitteln ob weine Einheit verbesserbar ist.
+   -- KI Prüfung eingebaut um zu ermitteln ob eine Einheit verbesserbar ist.
    -- Suche eingebaut damit die KI ein von ihr belegtes Kartenfeld findet um die Einheit dorthin zu bewegen und verbessern zu können.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    

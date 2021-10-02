@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Sf.Window.VideoMode, Sf.Window.Cursor, Sf.Graphics, Sf.Graphics.Text;
+with Sf.Window.VideoMode, Sf.Window.Cursor, Sf.Graphics, Sf.Graphics.Text, Sf, Sf.Graphics.Color;
 
 with NutzerRecords;
 
@@ -13,6 +13,9 @@ package GrafikEinstellungen is
    Zeiger : Sf.Window.sfCursor_Ptr := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorHand);
    
    Schriftart : Sf.Graphics.sfFont_Ptr;
+   Schriftgröße : Sf.sfUint32;
+   Textfarbe : Sf.Graphics.Color.sfColor;
+   Textstyle : Sf.sfUint32;
    Text : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    procedure StandardGrafikEinstellungenLaden;
