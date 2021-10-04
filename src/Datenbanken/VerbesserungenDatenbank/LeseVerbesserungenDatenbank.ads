@@ -8,25 +8,25 @@ with DatenbankRecords;
 package LeseVerbesserungenDatenbank is
 
    function VerbesserungGrafik
-     (VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
+     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
       return Wide_Wide_Character;
    
    function Passierbarkeit
-     (VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
-      WelcheUmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum)
+     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+      WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean;
    
    function VerbesserungWerte
-     (VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in GlobaleDatentypen.Bewertung_Werte_Enum)
-      return GlobaleDatentypen.ProduktionElement
+     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      WelcherWertExtern : in KartenDatentypen.Bewertung_Werte_Enum)
+      return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function GanzerEintrag
-     (VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
+     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
       return DatenbankRecords.VerbesserungListeRecord;
 
 end LeseVerbesserungenDatenbank;

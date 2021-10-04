@@ -6,8 +6,8 @@ use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Window.Keyboard, Sf.Window.Event;
 use Sf.Window.Keyboard, Sf.Window.Event;
 
-with GlobaleDatentypen, GlobaleTexte;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleTexte, KartenDatentypen;
+use GlobaleDatentypen, KartenDatentypen;
 
 package Eingabe is
 
@@ -51,7 +51,7 @@ private
 
    ZeichenEingeben : Sf.Window.Event.sfEvent;
 
-   IstZahl : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   IstZahl : KartenDatentypen.LoopRangeMinusDreiZuDrei;
 
    ZahlenMaximum : constant Positive := 999_999_999;
    ZahlenMinimum : constant Integer := -999_999_999;
@@ -211,14 +211,14 @@ private
 
    function GanzeZahlPrüfung
      (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
-      return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+      return KartenDatentypen.LoopRangeMinusDreiZuDrei;
 
    function ZahlSchleife
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
       ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
-      return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
+      return KartenDatentypen.LoopRangeMinusZweiZuZwei
      with
        Pre =>
          (ZahlenMaximumExtern <= 999_999_999

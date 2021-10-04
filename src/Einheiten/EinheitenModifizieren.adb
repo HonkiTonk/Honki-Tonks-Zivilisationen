@@ -13,7 +13,7 @@ package body EinheitenModifizieren is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -81,7 +81,7 @@ package body EinheitenModifizieren is
    
    procedure PermanenteKostenÄndern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      VorzeichenWechselExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -89,7 +89,7 @@ package body EinheitenModifizieren is
       case
         Heimatstadt
       is
-         when GlobaleDatentypen.MaximaleStädteMitNullWert'First =>
+         when EinheitStadtDatentypen.MaximaleStädteMitNullWert'First =>
             return;
             
          when others =>
@@ -174,7 +174,7 @@ package body EinheitenModifizieren is
    
    function EinheitAnforderungenErfüllt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Boolean
    is begin
       

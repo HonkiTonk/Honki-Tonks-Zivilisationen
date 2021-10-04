@@ -7,9 +7,9 @@ with Karten;
 package body KartePositionBerechnungen is
 
    function PositionBestimmenEAchseFest
-     (EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
-      ÄnderungEAchseExtern : in GlobaleDatentypen.EbeneVorhanden)
-      return GlobaleDatentypen.Ebene
+     (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
+      ÄnderungEAchseExtern : in KartenDatentypen.EbeneVorhanden)
+      return KartenDatentypen.Ebene
    is begin
       
       if
@@ -17,7 +17,7 @@ package body KartePositionBerechnungen is
         or
           EAchseExtern + ÄnderungEAchseExtern > Karten.WeltkarteArray'Last (1)
       then
-         return GlobaleDatentypen.Ebene'First;
+         return KartenDatentypen.Ebene'First;
          
       else
          return EAchseExtern + ÄnderungEAchseExtern;
@@ -28,9 +28,9 @@ package body KartePositionBerechnungen is
    
    
    function PositionBestimmenYAchseFest
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in GlobaleDatentypen.Kartenfeld)
-      return GlobaleDatentypen.KartenfeldPositivMitNullwert
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositivMitNullwert
    is begin
       
       if
@@ -38,7 +38,7 @@ package body KartePositionBerechnungen is
         or
           YAchseExtern + ÄnderungYAchseExtern > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
       then
-         return GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
+         return KartenDatentypen.KartenfeldPositivMitNullwert'First;
          
       else
          return YAchseExtern + ÄnderungYAchseExtern;
@@ -49,9 +49,9 @@ package body KartePositionBerechnungen is
    
    
    function PositionBestimmenXAchseFest
-     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in GlobaleDatentypen.Kartenfeld)
-      return GlobaleDatentypen.KartenfeldPositivMitNullwert
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositivMitNullwert
    is begin
       
       if
@@ -59,7 +59,7 @@ package body KartePositionBerechnungen is
         or
           XAchseExtern + ÄnderungXAchseExtern > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         return GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
+         return KartenDatentypen.KartenfeldPositivMitNullwert'First;
          
       else
          return XAchseExtern + ÄnderungXAchseExtern;
@@ -70,10 +70,10 @@ package body KartePositionBerechnungen is
 
 
    function PositionBestimmenXWechsel
-     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in GlobaleDatentypen.Kartenfeld;
-      ArrayPositionExtern : in GlobaleDatentypen.EbeneVorhanden)
-      return GlobaleDatentypen.KartenfeldPositiv
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden)
+      return KartenDatentypen.KartenfeldPositiv
    is begin
 
       if
@@ -86,7 +86,7 @@ package body KartePositionBerechnungen is
             ÜberhangXAchse (ArrayPositionExtern) := ÜberhangXAchse (ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
          end loop XAchseKleinerSchleife;
-         return GlobaleDatentypen.Kartenfeld (ÜberhangXAchse (ArrayPositionExtern));
+         return KartenDatentypen.Kartenfeld (ÜberhangXAchse (ArrayPositionExtern));
                
       elsif
         XAchseExtern + ÄnderungXAchseExtern > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
@@ -98,7 +98,7 @@ package body KartePositionBerechnungen is
             ÜberhangXAchse (ArrayPositionExtern) := ÜberhangXAchse (ArrayPositionExtern) - Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
             
          end loop XAchseGrößerSchleife;
-         return GlobaleDatentypen.Kartenfeld (ÜberhangXAchse (ArrayPositionExtern));
+         return KartenDatentypen.Kartenfeld (ÜberhangXAchse (ArrayPositionExtern));
                
       else
          return XAchseExtern + ÄnderungXAchseExtern;
@@ -109,10 +109,10 @@ package body KartePositionBerechnungen is
 
 
    function PositionBestimmenYWechsel
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in GlobaleDatentypen.Kartenfeld;
-      ArrayPositionExtern : in GlobaleDatentypen.EbeneVorhanden)
-      return GlobaleDatentypen.KartenfeldPositiv
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden)
+      return KartenDatentypen.KartenfeldPositiv
    is begin
 
       if
@@ -125,7 +125,7 @@ package body KartePositionBerechnungen is
             ÜberhangYAchse (ArrayPositionExtern) := ÜberhangYAchse (ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße);
 
          end loop YAchseKleinerSchleife;
-         return GlobaleDatentypen.Kartenfeld (ÜberhangYAchse (ArrayPositionExtern));
+         return KartenDatentypen.Kartenfeld (ÜberhangYAchse (ArrayPositionExtern));
                
       elsif
         YAchseExtern + ÄnderungYAchseExtern > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -137,7 +137,7 @@ package body KartePositionBerechnungen is
             ÜberhangYAchse (ArrayPositionExtern) := ÜberhangYAchse (ArrayPositionExtern) - Positive (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße);
             
          end loop YAchseGrößerSchleife;
-         return GlobaleDatentypen.Kartenfeld (ÜberhangYAchse (ArrayPositionExtern));
+         return KartenDatentypen.Kartenfeld (ÜberhangYAchse (ArrayPositionExtern));
                
       else
          return YAchseExtern + ÄnderungYAchseExtern;

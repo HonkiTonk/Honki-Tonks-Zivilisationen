@@ -8,7 +8,7 @@ package body LeseEinheitenGebaut is
 
    function ID
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.EinheitenIDMitNullWert
+      return EinheitStadtDatentypen.EinheitenIDMitNullWert
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;
@@ -41,7 +41,7 @@ package body LeseEinheitenGebaut is
    
    function Heimatstadt
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Heimatstadt;
@@ -52,7 +52,7 @@ package body LeseEinheitenGebaut is
       
    function Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
      -- if
@@ -76,7 +76,7 @@ package body LeseEinheitenGebaut is
    
    function Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.BewegungFloat
+      return EinheitStadtDatentypen.BewegungFloat
    is begin
       
       if
@@ -96,7 +96,7 @@ package body LeseEinheitenGebaut is
    
    function Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       if
@@ -120,7 +120,7 @@ package body LeseEinheitenGebaut is
    
    function Rang
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       if
@@ -187,7 +187,7 @@ package body LeseEinheitenGebaut is
       
    function Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit;
@@ -198,7 +198,7 @@ package body LeseEinheitenGebaut is
    
    function BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger;
@@ -242,7 +242,7 @@ package body LeseEinheitenGebaut is
    
    function KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PlanschrittExtern : in GlobaleDatentypen.Stadtfeld)
+      PlanschrittExtern : in KartenDatentypen.Stadtfeld)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -265,8 +265,8 @@ package body LeseEinheitenGebaut is
       
    function Transportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PlatzExtern : in GlobaleDatentypen.MaximaleEinheiten)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      PlatzExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (PlatzExtern);
@@ -277,7 +277,7 @@ package body LeseEinheitenGebaut is
    
    function WirdTransportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
@@ -288,8 +288,8 @@ package body LeseEinheitenGebaut is
    
    function Meldungen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      WelcheMeldungExtern : in GlobaleDatentypen.Einheit_Meldung_Art_Enum)
-      return GlobaleDatentypen.Einheit_Meldung_Enum
+      WelcheMeldungExtern : in EinheitStadtDatentypen.Einheit_Meldung_Art_Enum)
+      return EinheitStadtDatentypen.Einheit_Meldung_Enum
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Meldungen (WelcheMeldungExtern);

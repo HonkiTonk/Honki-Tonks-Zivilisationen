@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with KartenDatentypen;
 
 package KartenGeneratorChaos is
 
@@ -8,6 +8,6 @@ package KartenGeneratorChaos is
 
 private
 
-   GrundZufall : GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
+   GrundZufall : KartenDatentypen.Karten_Grund_Alle_Felder_Enum;
 
 end KartenGeneratorChaos;

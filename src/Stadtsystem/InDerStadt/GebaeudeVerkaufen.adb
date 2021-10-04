@@ -40,14 +40,14 @@ package body GebaeudeVerkaufen is
             Aufschlag := Aufschlag - 1;
             if
               LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 WelchesGebäudeExtern  => GlobaleDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12))
+                                                 WelchesGebäudeExtern  => EinheitStadtDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12))
                 = False
             then
                null;
                         
             else
                GebaeudeAllgemein.GebäudeEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    WelchesGebäudeExtern   => GlobaleDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12));
+                                                    WelchesGebäudeExtern   => EinheitStadtDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12));
                StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
             end if;
       end case;

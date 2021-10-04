@@ -12,93 +12,93 @@ package KIGebaeudeBauen is
       return KIRecords.GebäudeIDBewertungRecord
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
 private
    
-   Gesamtwertung : GlobaleDatentypen.GesamtproduktionStadt;
+   Gesamtwertung : EinheitStadtDatentypen.GesamtproduktionStadt;
    
    GebäudeBewertet : KIRecords.GebäudeIDBewertungRecord;
    
    procedure GebäudeBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function NahrungsproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function GeldproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
      
    function WissensgewinnBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
           
    function RessourcenproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
      
    function VerteidigungBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
      
    function AngriffBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
      
    function KostenBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
 end KIGebaeudeBauen;

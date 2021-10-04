@@ -9,9 +9,9 @@ with Eingabe;
 package body StadtSuchen is
 
    function KoordinatenStadtMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       StadtSchleife:
@@ -40,7 +40,7 @@ package body StadtSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -71,13 +71,13 @@ package body StadtSuchen is
    
    
    function KoordinatenStadtOhneSpezielleRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtRecords.RassePlatznummerRecord
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseExtern = RasseSchleifenwert
@@ -116,7 +116,7 @@ package body StadtSuchen is
       StadtName := Eingabe.StadtName;
       
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)

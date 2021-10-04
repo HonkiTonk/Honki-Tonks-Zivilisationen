@@ -12,7 +12,7 @@ with Anzeige, EinheitenBeschreibungen, StadtInformationen, KampfwerteEinheitErmi
 package body InformationenEinheiten is
 
    procedure Einheiten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       

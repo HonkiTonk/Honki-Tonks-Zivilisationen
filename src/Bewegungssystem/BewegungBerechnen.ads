@@ -22,19 +22,19 @@ package BewegungBerechnen is
    
 private
       
-   KleinerAbzug : constant GlobaleDatentypen.BewegungFloat := 1.00;
-   MittlererAbzug : constant GlobaleDatentypen.BewegungFloat := 2.00;
-   GroßerAbzug : constant GlobaleDatentypen.BewegungFloat := 3.00;
-   KeinAbzug : constant GlobaleDatentypen.BewegungFloat := 0.00;
-   EinheitUnbewegbar : constant GlobaleDatentypen.BewegungFloat := -1.00;
+   KleinerAbzug : constant EinheitStadtDatentypen.BewegungFloat := 1.00;
+   MittlererAbzug : constant EinheitStadtDatentypen.BewegungFloat := 2.00;
+   GroßerAbzug : constant EinheitStadtDatentypen.BewegungFloat := 3.00;
+   KeinAbzug : constant EinheitStadtDatentypen.BewegungFloat := 0.00;
+   EinheitUnbewegbar : constant EinheitStadtDatentypen.BewegungFloat := -1.00;
    
-   BewegungspunkteAbzug : GlobaleDatentypen.BewegungFloat;
+   BewegungspunkteAbzug : EinheitStadtDatentypen.BewegungFloat;
       
    type Bewegungsbonuse_Enum is (Leer, Straße_Fluss, Schiene);
    
    Welchen_Bonus : Bewegungsbonuse_Enum;
    
-   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of GlobaleDatentypen.BewegungFloat;
+   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of EinheitStadtDatentypen.BewegungFloat;
    Bewegungsmodifikator : constant BewegungsmodifikatorArray := (Leer         => 0.00,
                                                                  Straße_Fluss => 0.50,
                                                                  Schiene      => 1.00);
@@ -57,7 +57,7 @@ private
    function AbzugDurchBewegung
      (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.BewegungFloat
+      return EinheitStadtDatentypen.BewegungFloat
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

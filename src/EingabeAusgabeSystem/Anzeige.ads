@@ -3,8 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleTexte;
-use GlobaleDatentypen, GlobaleTexte;
+with GlobaleTexte, EinheitStadtDatentypen;
+use GlobaleTexte, EinheitStadtDatentypen;
 
 package Anzeige is
    
@@ -16,9 +16,9 @@ package Anzeige is
    end record;
    
    -- Im Array immer die größte Auswahlfläche reinschreiben, damit es bei allen funktioniert.
-   type AlgemeineAnzeigeTextArray is array (GlobaleDatentypen.KartenverbesserungEinheitenID'First + 2 .. GlobaleDatentypen.KartenverbesserungEinheitenID'Last) of AllgemeineAnzeigeTextRecord;
+   type AlgemeineAnzeigeTextArray is array (EinheitStadtDatentypen.MinimimMaximumID'First + 2 .. EinheitStadtDatentypen.MinimimMaximumID'Last) of AllgemeineAnzeigeTextRecord;
    AllgemeineAnzeigeText : AlgemeineAnzeigeTextArray;
-   AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
+   AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
 
    procedure AnzeigeOhneAuswahlNeu
      (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
@@ -72,7 +72,7 @@ package Anzeige is
             TextDateiExtern /= GlobaleTexte.Leer);
    
    procedure AllgemeineAnzeige
-     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID);
+     (AktuelleAuswahlExtern : in EinheitStadtDatentypen.MinimimMaximumID);
    
    procedure AbstandEinbauen
      (AbstandExtern : in GlobaleTexte.Welcher_Abstand_Enum);

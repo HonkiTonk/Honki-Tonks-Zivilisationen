@@ -18,7 +18,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -31,7 +31,7 @@ package body KartePositionKartenformen is
       case
         YAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
+         when KartenDatentypen.KartenfeldPositivMitNullwert'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -61,7 +61,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -74,7 +74,7 @@ package body KartePositionKartenformen is
       case
         XAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
+         when KartenDatentypen.KartenfeldPositivMitNullwert'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -103,7 +103,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -136,7 +136,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -170,7 +170,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -183,7 +183,7 @@ package body KartePositionKartenformen is
       case
         YAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
+         when KartenDatentypen.KartenfeldPositivMitNullwert'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -196,7 +196,7 @@ package body KartePositionKartenformen is
       case
         XAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
+         when KartenDatentypen.KartenfeldPositivMitNullwert'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -221,7 +221,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -256,7 +256,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -295,7 +295,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>
@@ -334,7 +334,7 @@ package body KartePositionKartenformen is
       case
         EAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.Ebene'First =>
+         when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
 
          when others =>

@@ -11,7 +11,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure Heilen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -19,7 +19,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure StadtBauenPrüfung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -27,7 +27,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure StadtUmgebungVerbesserung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -35,7 +35,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure StadtBewachen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -43,7 +43,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure StadtUmgebungZerstören
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -51,7 +51,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure Angreifen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -59,7 +59,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure Erkunden
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -67,7 +67,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure Fliehen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -75,7 +75,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure Befestigen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -83,7 +83,7 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure EinheitVerbessern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -91,21 +91,21 @@ package KIAufgabeFestlegen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
 private
 
    NullWert : Boolean;
 
-   WenAngreifen : GlobaleDatentypen.Rassen_Enum;
-   Ziel : GlobaleDatentypen.Rassen_Enum;
+   WenAngreifen : SonstigeDatentypen.Rassen_Enum;
+   Ziel : SonstigeDatentypen.Rassen_Enum;
 
-   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
 
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
 
-   KarteReichweite : GlobaleDatentypen.KartenfeldPositivMitNullwert;
-   KarteGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   KarteReichweite : KartenDatentypen.KartenfeldPositivMitNullwert;
+   KarteGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
 
    KoordinatenFeind : KartenRecords.AchsenKartenfeldPositivRecord;
    PlatzGefunden : KartenRecords.AchsenKartenfeldPositivRecord;
@@ -114,7 +114,7 @@ private
 
    function EinheitVerbessernPlatz
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -122,10 +122,10 @@ private
           and
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    function ZielErmitteln
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Rassen_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return SonstigeDatentypen.Rassen_Enum;
 
 end KIAufgabeFestlegen;

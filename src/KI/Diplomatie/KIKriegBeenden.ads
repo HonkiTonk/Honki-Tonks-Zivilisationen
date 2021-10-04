@@ -3,12 +3,12 @@ pragma SPARK_Mode (On);
 package KIKriegBeenden is
 
    function KriegBeenden
-     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FeindlicheRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FeindlicheRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_KI
+         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_KI
           and
             GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) /= GlobaleDatentypen.Leer
           and

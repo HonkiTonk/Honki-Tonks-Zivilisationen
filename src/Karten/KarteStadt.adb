@@ -49,17 +49,17 @@ package body KarteStadt is
       case
         Aufschlag
       is
-         when GlobaleDatentypen.SichtweiteMitNullwert'First =>
+         when KartenDatentypen.SichtweiteMitNullwert'First =>
             null;
             
          when others =>
             Aufschlag := Aufschlag - 1;
             if
               LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 WelchesGebäudeExtern  => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12))
+                                                 WelchesGebäudeExtern  => EinheitStadtDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12))
               = True
             then
-               GebaeudeAllgemein.BeschreibungKurz (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12));
+               GebaeudeAllgemein.BeschreibungKurz (IDExtern => EinheitStadtDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12));
             
             else
                null;
@@ -73,8 +73,8 @@ package body KarteStadt is
    
    
    function AufschlagGebäude
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.SichtweiteMitNullwert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.SichtweiteMitNullwert
    is begin
       
       if
@@ -91,7 +91,7 @@ package body KarteStadt is
          return GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse;
          
       else
-         return GlobaleDatentypen.SichtweiteMitNullwert'First;
+         return KartenDatentypen.SichtweiteMitNullwert'First;
       end if;
       
    end AufschlagGebäude;
@@ -140,8 +140,8 @@ package body KarteStadt is
    
    
    function Darstellung
-     (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      XAchseExtern : in GlobaleDatentypen.Stadtfeld;
+     (YAchseExtern : in KartenDatentypen.Stadtfeld;
+      XAchseExtern : in KartenDatentypen.Stadtfeld;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
@@ -183,7 +183,7 @@ package body KarteStadt is
           XAchseExtern < 13
       then
          GebäudeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                              IDExtern               => GlobaleDatentypen.GebäudeID (XAchseExtern));
+                              IDExtern               => EinheitStadtDatentypen.GebäudeID (XAchseExtern));
                
       elsif
         YAchseExtern = 2
@@ -191,7 +191,7 @@ package body KarteStadt is
           XAchseExtern < 13
       then
          GebäudeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                              IDExtern               => GlobaleDatentypen.GebäudeID (XAchseExtern) + 12);
+                              IDExtern               => EinheitStadtDatentypen.GebäudeID (XAchseExtern) + 12);
                
       elsif
         YAchseExtern = 3
@@ -199,7 +199,7 @@ package body KarteStadt is
           XAchseExtern < 3
       then
          GebäudeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                              IDExtern               => GlobaleDatentypen.GebäudeID (XAchseExtern) + 24);
+                              IDExtern               => EinheitStadtDatentypen.GebäudeID (XAchseExtern) + 24);
 
       else
          Farbgebung.Farben (EinheitIDExtern    => 0,
@@ -219,7 +219,7 @@ package body KarteStadt is
    
    procedure GebäudeDarstellung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
    is begin
       
       if
@@ -245,9 +245,9 @@ package body KarteStadt is
    
    
    procedure CursorDarstellung
-     (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      XAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (YAchseExtern : in KartenDatentypen.Stadtfeld;
+      XAchseExtern : in KartenDatentypen.Stadtfeld;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -283,8 +283,8 @@ package body KarteStadt is
    
    
    procedure AnsichtUmgebung
-     (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      XAchseExtern : in GlobaleDatentypen.Stadtfeld;
+     (YAchseExtern : in KartenDatentypen.Stadtfeld;
+      XAchseExtern : in KartenDatentypen.Stadtfeld;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
@@ -326,14 +326,14 @@ package body KarteStadt is
 
 
    procedure SchleifeAnsichtUmgebung
-     (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      XAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (YAchseExtern : in KartenDatentypen.Stadtfeld;
+      XAchseExtern : in KartenDatentypen.Stadtfeld;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 1 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
       UmgebungSchleife:
-      for UmgebungSchleifenwert in GlobaleDatentypen.Stadtfeld (1) .. 7 loop
+      for UmgebungSchleifenwert in KartenDatentypen.Stadtfeld (1) .. 7 loop
                      
          if
            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt = (YAchseExtern, XAchseExtern + UmgebungSchleifenwert - 1)
@@ -360,12 +360,12 @@ package body KarteStadt is
 
    procedure AnzeigeStadtUmgebung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      XAchseExtern : in GlobaleDatentypen.Stadtfeld)
+      YAchseExtern : in KartenDatentypen.Stadtfeld;
+      XAchseExtern : in KartenDatentypen.Stadtfeld)
    is begin
       
       UmgebungsSchleife:
-      for UmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for UmgebungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
 
          Cursor := CursorKonstant + UmgebungSchleifenwert;
          if
@@ -408,8 +408,8 @@ package body KarteStadt is
    
    
    procedure AnzeigeUmgebungCursor
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
    is begin
       
       if

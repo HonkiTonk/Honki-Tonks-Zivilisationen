@@ -45,8 +45,8 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    
    
    procedure GrundErzeugen
-     (YPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YPositionExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       if
@@ -68,9 +68,9 @@ package body KartenGeneratorUnterwasserUnterirdisch is
                                GrundExtern    => GlobaleDatentypen.Unterwasser_Küstengewässer);
                      
       elsif
-        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = GlobaleDatentypen.Gebirge
+        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = KartenDatentypen.Gebirge
         or
-          LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = GlobaleDatentypen.Hügel
+          LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = KartenDatentypen.Hügel
           or
             LeseKarten.Hügel (PositionExtern => (0, YPositionExtern, XPositionExtern)) = True
       then
@@ -78,7 +78,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
                                GrundExtern    => GlobaleDatentypen.Erdgestein);
                   
       elsif
-        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = GlobaleDatentypen.Wüste
+        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = KartenDatentypen.Wüste
       then
          SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
                                GrundExtern    => GlobaleDatentypen.Sand);
@@ -93,12 +93,12 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    
    
    procedure WasserweltErzeugen
-     (YPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YPositionExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       GrundSchleife:
-      for GrundSchleifenwert in GlobaleDatentypen.Karten_Unterwasser_Generator_Enum'Range loop
+      for GrundSchleifenwert in KartenDatentypen.Karten_Unterwasser_Generator_Enum'Range loop
          
          AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (PositionExtern => (-1, YPositionExtern, XPositionExtern),
                                                                                                    GrundExtern    => GrundSchleifenwert,
@@ -132,8 +132,8 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    
    
    procedure ErdweltErzeugen
-     (YPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YPositionExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       null;

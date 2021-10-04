@@ -9,7 +9,7 @@ package body BewegungCursor is
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
       RichtungExtern : in GlobaleDatentypen.Tastenbelegung_Bewegung_Enum;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -39,10 +39,10 @@ package body BewegungCursor is
          when GlobaleDatentypen.Rechts_Unten =>
             Änderung := (0, 1, 1);
             
-         when GlobaleDatentypen.Ebene_Hoch =>
+         when KartenDatentypen.Ebene_Hoch =>
             Änderung := (1, 0, 0);
             
-         when GlobaleDatentypen.Ebene_Runter =>
+         when KartenDatentypen.Ebene_Runter =>
             Änderung := (-1, 0, 0);
       end case;
       
@@ -63,7 +63,7 @@ package body BewegungCursor is
 
 
    procedure GeheZuCursor
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
@@ -78,7 +78,7 @@ package body BewegungCursor is
             return;
          
          when others =>
-            Position.EAchse := GlobaleDatentypen.EbeneVorhanden (KoordinatenPunkt);
+            Position.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt);
             KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                                    ZeileExtern         => 30,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
@@ -92,7 +92,7 @@ package body BewegungCursor is
             return;
          
          when others =>
-            Position.YAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
+            Position.YAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt);
             KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                                    ZeileExtern         => 31,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
@@ -106,7 +106,7 @@ package body BewegungCursor is
             return;
          
          when others =>
-            Position.XAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
+            Position.XAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt);
             GlobaleVariablen.CursorImSpiel (RasseExtern).Position := Position;
             GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := Position;
       end case;
@@ -117,7 +117,7 @@ package body BewegungCursor is
 
    procedure BewegungCursorBerechnen
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -165,7 +165,7 @@ package body BewegungCursor is
 
    procedure BewegungCursorBerechnenStadt
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       if

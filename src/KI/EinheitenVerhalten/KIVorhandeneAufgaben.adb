@@ -67,7 +67,7 @@ package body KIVorhandeneAufgaben is
       case
         NotwendigeTechnologie
       is
-         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
             return 0;
             
          when others =>
@@ -209,7 +209,7 @@ package body KIVorhandeneAufgaben is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
@@ -221,7 +221,7 @@ package body KIVorhandeneAufgaben is
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = GlobaleDatentypen.Krieg
+           = SonstigeDatentypen.Krieg
          then
             return 5;
             
@@ -273,7 +273,7 @@ package body KIVorhandeneAufgaben is
       end case;
 
       KostenSchleife:
-      for KostenSchleifenwert in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range loop
+      for KostenSchleifenwert in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum'Range loop
          
          if
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,

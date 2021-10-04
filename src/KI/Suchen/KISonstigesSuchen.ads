@@ -13,7 +13,7 @@ package KISonstigesSuchen is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI
           and
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
@@ -23,8 +23,8 @@ package KISonstigesSuchen is
    
 private
    
-   Bereich : GlobaleDatentypen.Sichtweite;
-   BereichGeprüft : GlobaleDatentypen.SichtweiteMitNullwert;
+   Bereich : KartenDatentypen.Sichtweite;
+   BereichGeprüft : KartenDatentypen.SichtweiteMitNullwert;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    Ziel : KartenRecords.AchsenKartenfeldPositivRecord;

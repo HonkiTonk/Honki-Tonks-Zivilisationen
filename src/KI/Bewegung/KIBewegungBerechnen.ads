@@ -14,7 +14,7 @@ package KIBewegungBerechnen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
 private
    
@@ -23,11 +23,11 @@ private
    
    BewertungPosition : Positive;
    
-   YAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
-   XAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
-   YAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
-   XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
-   NurWasser : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   YAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
+   XAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
+   YAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
+   XAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
+   NurWasser : KartenDatentypen.KartenfeldPositivMitNullwert;
    
    ZielKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
    
@@ -38,7 +38,7 @@ private
    PositionAlt : KartenRecords.AchsenKartenfeldPositivRecord;
    PositionNeu : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of GlobaleDatentypen.ProduktionSonstiges;
+   type FeldBewertungArray is array (KartenDatentypen.LoopRangeMinusEinsZuEins'Range, KartenDatentypen.LoopRangeMinusEinsZuEins'Range) of GlobaleDatentypen.ProduktionSonstiges;
    FeldBewertung : FeldBewertungArray;
    
    type BewertungRecord is new KartenRecords.AchsenKartenfeldPositivRecord with record
@@ -58,17 +58,17 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    procedure VorhandenenPlanVereinfachenPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      ErsterZugExtern : in GlobaleDatentypen.Stadtfeld;
-      ÜberNächsterZugExtern : in GlobaleDatentypen.Stadtfeld)
+      ErsterZugExtern : in KartenDatentypen.Stadtfeld;
+      ÜberNächsterZugExtern : in KartenDatentypen.Stadtfeld)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    procedure FelderBewerten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -81,7 +81,7 @@ private
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
+      AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
      with
        Pre =>
@@ -91,13 +91,13 @@ private
           and
             AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins;
-      XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      YÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
+      XÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -107,7 +107,7 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -126,7 +126,7 @@ private
           and
             NeueKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function FeldBereitsBetreten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -140,7 +140,7 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function TransporterNutzen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -150,7 +150,7 @@ private
    function PlanschrittFestlegen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       DurchlaufExtern : in Positive;
-      AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
+      AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean;
 
 end KIBewegungBerechnen;

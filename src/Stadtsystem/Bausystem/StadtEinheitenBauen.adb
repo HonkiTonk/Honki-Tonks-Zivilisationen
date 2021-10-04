@@ -36,7 +36,7 @@ package body StadtEinheitenBauen is
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         and
-          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
+          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 19);
@@ -70,7 +70,7 @@ package body StadtEinheitenBauen is
       else
          KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                           RasseExtern               => StadtRasseNummerExtern.Rasse,
-                                                                          IDExtern                  => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut
+                                                                          IDExtern                  => EinheitStadtDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut
                                                                             (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - EinheitenKonstanten.EinheitAufschlag),
                                                                           NotwendigeFelderExtern    => 1);
       end if;
@@ -99,7 +99,7 @@ package body StadtEinheitenBauen is
       EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
                                                   EinheitNummerExtern    => EinheitNummer,
                                                   IDExtern               => 
-                                                    GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag),
+                                                    EinheitStadtDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag),
                                                   StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
@@ -110,7 +110,7 @@ package body StadtEinheitenBauen is
       case
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
-         when GlobaleDatentypen.Spieler_Mensch =>
+         when SonstigeDatentypen.Spieler_Mensch =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => GlobaleDatentypen.Produktion_Abgeschlossen);
          

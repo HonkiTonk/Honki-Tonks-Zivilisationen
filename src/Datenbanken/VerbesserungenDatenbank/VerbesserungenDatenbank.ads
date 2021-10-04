@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenKonstanten;
+with GlobaleDatentypen, KartenKonstanten, KartenDatentypen;
 use GlobaleDatentypen;
 
 with DatenbankRecords;
 
 package VerbesserungenDatenbank is
    
-   type VerbesserungListeArray is array (GlobaleDatentypen.Karten_Verbesserung_Enum'Range) of DatenbankRecords.VerbesserungListeRecord;
+   type VerbesserungListeArray is array (KartenDatentypen.Karten_Verbesserung_Enum'Range) of DatenbankRecords.VerbesserungListeRecord;
    VerbesserungListe : VerbesserungListeArray;
    
    procedure StandardVerbesserungenDatenbankLaden;
@@ -17,7 +17,7 @@ private
    VerbesserungListeStandard : constant VerbesserungListeArray :=
      (
       -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-      GlobaleDatentypen.Leer => KartenKonstanten.LeerVerbesserungListe,
+      KartenDatentypen.Leer => KartenKonstanten.LeerVerbesserungListe,
       
       
                                                   

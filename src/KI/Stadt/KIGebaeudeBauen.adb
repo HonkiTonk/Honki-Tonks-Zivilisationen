@@ -42,10 +42,10 @@ package body KIGebaeudeBauen is
    
    procedure GebäudeBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
    is begin
       
-      Gesamtwertung := GlobaleDatentypen.KostenLager (GlobaleDatentypen.GebäudeID'Last - IDExtern);
+      Gesamtwertung := EinheitStadtDatentypen.KostenLager (EinheitStadtDatentypen.GebäudeID'Last - IDExtern);
       
       Gesamtwertung := Gesamtwertung + NahrungsproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                    IDExtern               => IDExtern);
@@ -79,8 +79,8 @@ package body KIGebaeudeBauen is
    
    function NahrungsproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -138,8 +138,8 @@ package body KIGebaeudeBauen is
    
    function GeldproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -197,8 +197,8 @@ package body KIGebaeudeBauen is
      
    function WissensgewinnBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -223,8 +223,8 @@ package body KIGebaeudeBauen is
           
    function RessourcenproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -282,8 +282,8 @@ package body KIGebaeudeBauen is
      
    function VerteidigungBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
@@ -296,8 +296,8 @@ package body KIGebaeudeBauen is
      
    function AngriffBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
@@ -310,8 +310,8 @@ package body KIGebaeudeBauen is
      
    function KostenBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return -(LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,

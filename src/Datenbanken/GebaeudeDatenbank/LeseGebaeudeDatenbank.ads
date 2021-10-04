@@ -8,74 +8,74 @@ with DatenbankRecords;
 package LeseGebaeudeDatenbank is
 
    function GebäudeGrafik
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Wide_Wide_Character
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
       
    function PreisGeld
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function PreisRessourcen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function PermanenteKosten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID;
-      WelcheKostenExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtePermanenteKosten
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      WelcheKostenExtern : in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return EinheitStadtDatentypen.GesamtePermanenteKosten
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
       
    function Anforderungen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ForschungIDMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
       
    function PermanenterBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID;
-      WelcherBonusExtern : in GlobaleDatentypen.Bonus_Werte_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      WelcherBonusExtern : in KartenDatentypen.Bonus_Werte_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
       
    function UmgebungBenötigt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.Karten_Grund_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return KartenDatentypen.Karten_Grund_Enum
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function GebäudeSpezielleEigenschaft
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function GanzerEintrag
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return DatenbankRecords.GebäudeListeRecord
      with
        Pre =>

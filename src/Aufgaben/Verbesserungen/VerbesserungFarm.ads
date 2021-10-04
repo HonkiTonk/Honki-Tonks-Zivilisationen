@@ -7,7 +7,7 @@ package VerbesserungFarm is
    
    function VerbesserungFarm
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with

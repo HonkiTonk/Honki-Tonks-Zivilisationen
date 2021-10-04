@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten;
+with EinheitenKonstanten, KartenDatentypen;
 
 with LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -9,7 +9,7 @@ with KIStadt, KIForschung, KIDiplomatie, KIEinheitHandlungen;
 package body KI is
 
    procedure KI
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenDurchgehen (RasseExtern => RasseExtern);
@@ -22,7 +22,7 @@ package body KI is
    
    
    procedure EinheitenDurchgehen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenSchleife:
@@ -45,7 +45,7 @@ package body KI is
    
    
    procedure StädteDurchgehen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtSchleife:
@@ -54,7 +54,7 @@ package body KI is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert))
          is
-            when GlobaleDatentypen.Leer =>
+            when KartenDatentypen.Leer =>
                null;
                
             when others =>

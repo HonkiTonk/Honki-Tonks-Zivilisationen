@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords;
+with KartenRecords, KartenDatentypen;
 
 package KartePositionKartenformen is
 
@@ -51,11 +51,11 @@ package KartePositionKartenformen is
    
 private
    
-   type PositionArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
+   type PositionArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    ZwischenPositionAchse : PositionArray;
    ZwischenPositionTugelAchse : PositionArray;
    
-   type ÄnderungArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleDatentypen.Kartenfeld;
+   type ÄnderungArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.Kartenfeld;
    EAchse : ÄnderungArray;
    YAchse : ÄnderungArray;
    XAchse : ÄnderungArray;

@@ -15,7 +15,7 @@ package StadtEinheitenBauen is
    
 private
     
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
       
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    

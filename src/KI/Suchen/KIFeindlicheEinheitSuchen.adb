@@ -10,14 +10,14 @@ package body KIFeindlicheEinheitSuchen is
 
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FeindExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      FeindExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));

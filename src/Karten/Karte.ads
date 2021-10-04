@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
-use GlobaleDatentypen;
+with GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+use KartenDatentypen, SonstigeDatentypen;
 
 package Karte is
 
@@ -11,10 +11,10 @@ package Karte is
    procedure SichtweiteBewegungsfeldFestlegen;
 
    procedure AnzeigeKarte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
 
 private
 
@@ -31,26 +31,26 @@ private
                                                  3 => (0, Sichtweiten (1).YAchse - 1, Sichtweiten (1).XAchse - 1));
 
    procedure CursorPositionAltFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch
           and
             BewegungsfeldFestlegenExtern <= Bewegungsfeld'Last);
 
    procedure NeueZeileKartenform
-     (XAchseExtern : in GlobaleDatentypen.Kartenfeld);
+     (XAchseExtern : in KartenDatentypen.Kartenfeld);
 
    procedure AlteEAchseFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
 
    procedure AlteYAchseFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive);
 
    procedure AlteXAchseFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive);
 
 end Karte;

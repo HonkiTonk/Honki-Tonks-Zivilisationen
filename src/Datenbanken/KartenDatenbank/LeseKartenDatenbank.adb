@@ -5,7 +5,7 @@ with KartenDatenbank;
 package body LeseKartenDatenbank is
 
    function KartenGrafik
-     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
       return Wide_Wide_Character
    is begin
       
@@ -16,8 +16,8 @@ package body LeseKartenDatenbank is
    
       
    function Passierbarkeit
-     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
-      WelcheUmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum)
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
       
@@ -28,10 +28,10 @@ package body LeseKartenDatenbank is
    
    
    function FeldWerte
-     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in GlobaleDatentypen.Bewertung_Werte_Enum)
-      return GlobaleDatentypen.ProduktionElement
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      WelcherWertExtern : in KartenDatentypen.Bewertung_Werte_Enum)
+      return EinheitStadtDatentypen.ProduktionElement
    is begin
       
       return KartenDatenbank.KartenListe (GrundExtern).FeldWerte (RasseExtern, WelcherWertExtern);
@@ -41,7 +41,7 @@ package body LeseKartenDatenbank is
    
    
    function GanzerEintrag
-     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
       return DatenbankRecords.KartenListeRecord
    is begin
       

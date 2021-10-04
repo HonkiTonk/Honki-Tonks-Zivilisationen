@@ -5,7 +5,8 @@ use Ada.Wide_Wide_Text_IO;
 
 with Sf.Window.Keyboard;
 
-with GlobaleTexte;
+with GlobaleTexte, KartenDatentypen;
+use KartenDatentypen;
 
 with SchreibeWichtiges;
 with LeseKarten, SchreibeKarten, LeseEinheitenGebaut, LeseStadtGebaut, LeseWichtiges;
@@ -15,7 +16,7 @@ with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein;
 package body Cheat is
 
    procedure Menü
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       MenüSchleife:
@@ -74,7 +75,7 @@ package body Cheat is
 
 
    procedure Sichtbarkeit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EbeneSchleife:
@@ -102,11 +103,11 @@ package body Cheat is
    is begin
       
       RassenErsteSchleife:
-      for RasseEinsSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseEinsSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          RassenZweiteSchleife:
-         for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         for RasseZweiSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := GlobaleDatentypen.Neutral;
+            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SonstigeDatentypen.Neutral;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;
@@ -125,7 +126,7 @@ package body Cheat is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when GlobaleDatentypen.Spieler_KI =>
+         when SonstigeDatentypen.Spieler_KI =>
             BewegungPlanSchleife:
             for BewegungGeplantSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
                       
@@ -180,7 +181,7 @@ package body Cheat is
    
    
    procedure KarteInfosFeld
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Put (Item => "Aktuelle GrundID: " & LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)'Wide_Wide_Image);
@@ -192,7 +193,7 @@ package body Cheat is
       ErsteAnzeige := True;
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            ErsteAnzeige
@@ -209,7 +210,7 @@ package body Cheat is
                                                                                                 RasseExtern    => RasseSchleifenwert)'Wide_Wide_Image);
          
          if
-           GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert) mod 6 = 0
+           SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert) mod 6 = 0
          then
             New_Line;
             

@@ -12,7 +12,7 @@ package KIAufgabeUmsetzen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    function EinheitVerbessern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -21,14 +21,14 @@ package KIAufgabeUmsetzen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
 private
 
    AufgabeDurchführen : Boolean;
    NullWert : Boolean;
 
-   Grund : GlobaleDatentypen.Karten_Grund_Enum;
+   Grund : KartenDatentypen.Karten_Grund_Enum;
 
    Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
 

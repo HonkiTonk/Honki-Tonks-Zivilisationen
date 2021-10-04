@@ -13,17 +13,17 @@ package body KIMindestBewertungKartenfeldErmitteln is
    -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
    function MindestBewertungKartenfeldStadtBauen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       MindestBewertungKartenfeld := KIKonstanten.KartenfeldBewertungStadtBauenMinimum (EinheitRasseNummerExtern.Rasse);
       
       EAchseSchleife:
-      for EAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for EAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
          YAchseSchleife:
-         for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             XAchseSchleife:
-            for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+            for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                               
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                            ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));

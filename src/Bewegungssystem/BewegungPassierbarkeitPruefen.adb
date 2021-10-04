@@ -19,7 +19,7 @@ package body BewegungPassierbarkeitPruefen is
       case
         IDEinheit
       is
-         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
             return False;
             
          when others =>
@@ -34,14 +34,14 @@ package body BewegungPassierbarkeitPruefen is
    
    -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft werden muss.
    function PassierbarkeitPrüfenID
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
             
       PassierbarkeitSchleife:
-      for PassierbarkeitSchleifenwert in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
+      for PassierbarkeitSchleifenwert in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
          
          case
            PassierbarTesten (RasseExtern        => RasseExtern,
@@ -78,8 +78,8 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function IstNichtPassierbar
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -109,7 +109,7 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function IstPassierbar
-     (UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+     (UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -160,9 +160,9 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function PassierbarTesten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -279,16 +279,16 @@ package body BewegungPassierbarkeitPruefen is
    
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Boolean
    is begin
       
       -- Bei Einheiten nur um das direkte StadtumfeldUmfeld loopen. Das ist doch Blödsinn, die Einheiten werden ja auf einem beliebigen Feld innerhalb des Stadtbereiches platziert.
       -- Oder reicht das weil es ja hauptsächlich dazu da ist um z.B. Panzer im Himmel zu verhindern?
       YAchseEinheitenSchleife:
-      for YAchseEinheitenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YAchseEinheitenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseEinheitenSchleife:
-         for XAchseEinheitenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XAchseEinheitenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert));

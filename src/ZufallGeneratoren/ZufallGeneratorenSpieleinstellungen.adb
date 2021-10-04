@@ -5,7 +5,7 @@ with GlobaleVariablen;
 package body ZufallGeneratorenSpieleinstellungen is
    
    function ZufälligeKartengröße
-     return GlobaleDatentypen.Kartengröße_Verwendet_Enum
+     return KartenDatentypen.Kartengröße_Verwendet_Enum
    is begin
       
       ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
@@ -16,7 +16,7 @@ package body ZufallGeneratorenSpieleinstellungen is
    
    
    function ZufälligeKartenart
-     return GlobaleDatentypen.Kartenart_Verwendet_Enum
+     return KartenDatentypen.Kartenart_Verwendet_Enum
    is begin
       
       ZufälligeKartenartWählen.Reset (ZufälligeKartenartGewählt);
@@ -27,7 +27,7 @@ package body ZufallGeneratorenSpieleinstellungen is
    
    
    function ZufälligeKartenform
-     return GlobaleDatentypen.Kartenform_Verwendet_Enum
+     return KartenDatentypen.Kartenform_Verwendet_Enum
    is begin
       
       ZufälligeKartenformWählen.Reset (ZufälligeKartenformGewählt);
@@ -38,7 +38,7 @@ package body ZufallGeneratorenSpieleinstellungen is
    
    
    function ZufälligeKartentemperatur
-     return GlobaleDatentypen.Kartentemperatur_Verwendet_Enum
+     return KartenDatentypen.Kartentemperatur_Verwendet_Enum
    is begin
       
       ZufälligeKartentemperaturWählen.Reset (ZufälligeKartentemperaturGewählt);
@@ -49,7 +49,7 @@ package body ZufallGeneratorenSpieleinstellungen is
    
    
    function ZufälligeKartenressourcen
-     return GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum
+     return KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum
    is begin
       
       ZufälligeKartenressourcenWählen.Reset (ZufälligeKartenressourcenGewählt);
@@ -64,14 +64,14 @@ package body ZufallGeneratorenSpieleinstellungen is
    is begin
       
       ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
-      return GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt));
+      return SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt));
       
    end ZufälligeSpieleranzahl;
    
    
    
    function ZufälligeRasse
-     return GlobaleDatentypen.Rassen_Verwendet_Enum
+     return SonstigeDatentypen.Rassen_Verwendet_Enum
    is begin
       
       ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
@@ -84,7 +84,7 @@ package body ZufallGeneratorenSpieleinstellungen is
          case
            GlobaleVariablen.RassenImSpiel (RasseGewählt)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                return RasseGewählt;
             
             when others =>

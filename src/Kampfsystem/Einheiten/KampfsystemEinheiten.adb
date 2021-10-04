@@ -85,8 +85,8 @@ package body KampfsystemEinheiten is
 
    procedure KampfBerechnung
      (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
-      VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
+      AngriffExtern : in EinheitStadtDatentypen.ProduktionFeld;
+      VerteidigungExtern : in EinheitStadtDatentypen.ProduktionFeld)
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?

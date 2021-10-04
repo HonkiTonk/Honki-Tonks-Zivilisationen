@@ -1,19 +1,19 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with SonstigeDatentypen, GlobaleVariablen;
+use SonstigeDatentypen;
 
 package KIForschung is
 
    procedure Forschung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_KI);
    
 private
       
    procedure NeuesForschungsprojekt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
 
 end KIForschung;

@@ -17,7 +17,7 @@ package StadtWerteFestlegen is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure StadtUmgebungGrößeFestlegenTechnologie
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
@@ -35,33 +35,33 @@ package StadtWerteFestlegen is
 
 private
    
-   GrößeAlt : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
-   GrößeNeu : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   GrößeAlt : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+   GrößeNeu : KartenDatentypen.LoopRangeMinusDreiZuDrei;
    
-   NahrungGesamt : GlobaleDatentypen.ProduktionFeld;
-   RessourcenGesamt : GlobaleDatentypen.ProduktionFeld;
-   GeldGesamt : GlobaleDatentypen.ProduktionFeld;
-   WissenGesamt : GlobaleDatentypen.ProduktionFeld;
+   NahrungGesamt : EinheitStadtDatentypen.ProduktionFeld;
+   RessourcenGesamt : EinheitStadtDatentypen.ProduktionFeld;
+   GeldGesamt : EinheitStadtDatentypen.ProduktionFeld;
+   WissenGesamt : EinheitStadtDatentypen.ProduktionFeld;
    
-   NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
+   NutzbarerBereich : KartenDatentypen.Kartenfeld;
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    type UmgebungRecord is record
       
       Belegt : Boolean;
       
-      Gesamtbewertung : GlobaleDatentypen.GesamtproduktionStadt;
+      Gesamtbewertung : EinheitStadtDatentypen.GesamtproduktionStadt;
       
    end record;
    
-   type UmgebungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of UmgebungRecord;
+   type UmgebungArray is array (KartenDatentypen.LoopRangeMinusDreiZuDrei'Range, KartenDatentypen.LoopRangeMinusDreiZuDrei'Range) of UmgebungRecord;
    Umgebung : UmgebungArray;
    
    type WelchesFeldRecord is record
       
-      HöchsterWert : GlobaleDatentypen.GesamtproduktionStadt;
-      YKoordinate : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
-      XKoordinate : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+      HöchsterWert : EinheitStadtDatentypen.GesamtproduktionStadt;
+      YKoordinate : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      XKoordinate : KartenDatentypen.LoopRangeMinusDreiZuDrei;
       
    end record;
    
@@ -79,7 +79,7 @@ private
    procedure ArbeiterBelegenEntfernen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BelegenEntfernenExtern : in Boolean;
-      ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld);
+      ÄnderungExtern : in EinheitStadtDatentypen.ProduktionFeld);
    
    procedure UmgebungFestlegen
      (ZuwachsOderSchwundExtern : in Boolean;
@@ -94,30 +94,30 @@ private
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return GlobaleDatentypen.GesamtproduktionStadt;
+      return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function WissenBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return GlobaleDatentypen.GesamtproduktionStadt;
+      return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function GeldBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return GlobaleDatentypen.GesamtproduktionStadt;
+      return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function ProduktionBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return GlobaleDatentypen.GesamtproduktionStadt;
+      return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function NahrungBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return GlobaleDatentypen.GesamtproduktionStadt;
+      return EinheitStadtDatentypen.GesamtproduktionStadt;
 
 end StadtWerteFestlegen;

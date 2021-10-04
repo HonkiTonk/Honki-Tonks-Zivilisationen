@@ -8,154 +8,154 @@ with DatenbankRecords;
 package LeseEinheitenDatenbank is
 
    function EinheitenGrafik
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Wide_Wide_Character
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
       
    function EinheitArt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.Einheit_Art_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.Einheit_Art_Enum
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function PreisGeld
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function PreisRessourcen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function PermanenteKosten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
-      WelcheKostenExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtePermanenteKosten
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID;
+      WelcheKostenExtern : in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return EinheitStadtDatentypen.GesamtePermanenteKosten
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function Anforderungen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.ForschungIDMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    function Passierbarkeit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
-      WelcheUmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID;
+      WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
       
    function MaximaleLebenspunkte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleEinheiten
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.MaximaleEinheiten
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function MaximaleBewegungspunkte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.BewegungFloat
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.BewegungFloat
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function WirdVerbessertZu
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.EinheitenIDMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.EinheitenIDMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    function Beförderungsgrenze
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleStädte
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.MaximaleStädte
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function MaximalerRang
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function Reichweite
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.ProduktionFeld
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function Angriff
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.ProduktionFeld
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function Verteidigung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.ProduktionFeld
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    function KannTransportieren
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function KannTransportiertWerden
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function Transportkapazität
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function GanzerEintrag
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return DatenbankRecords.EinheitenListeRecord
      with
        Pre =>

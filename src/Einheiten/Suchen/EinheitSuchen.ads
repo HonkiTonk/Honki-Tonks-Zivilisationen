@@ -1,23 +1,23 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords;
-use GlobaleDatentypen, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+use SonstigeDatentypen, KartenRecords, KartenDatentypen;
 
 with Karten;
 
 package EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
    function KoordinatenEinheitOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
@@ -29,7 +29,7 @@ package EinheitSuchen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function KoordinatenEinheitOhneSpezielleRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtRecords.RassePlatznummerRecord
      with
@@ -38,10 +38,10 @@ package EinheitSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
 private
    
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    
 end EinheitSuchen;

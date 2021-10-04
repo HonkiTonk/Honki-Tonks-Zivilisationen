@@ -23,8 +23,8 @@ package KampfsystemStadt is
    
 private
    
-   GesundheitStadt : GlobaleDatentypen.ProduktionFeld;
-   AngerichteterSchaden : GlobaleDatentypen.ProduktionFeld;
+   GesundheitStadt : EinheitStadtDatentypen.ProduktionFeld;
+   AngerichteterSchaden : EinheitStadtDatentypen.ProduktionFeld;
    
    Kampfglück : Float;
    
@@ -35,7 +35,7 @@ private
 
    WelcherFall : Kampf_Unterschiede_Enum;
 
-   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, GlobaleDatentypen.ProduktionFeld (1) .. 3) of Float;
+   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, EinheitStadtDatentypen.ProduktionFeld (1) .. 3) of Float;
    SchadenAngerichtet : constant SchadenAngerichtetArray := (
                                                              Gleich           =>
                                                                (1 => 0.40,
@@ -60,8 +60,8 @@ private
                                                             );
    
    procedure SchadenStadtBerechnen
-     (AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
-      VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld);
+     (AngriffExtern : in EinheitStadtDatentypen.ProduktionFeld;
+      VerteidigungExtern : in EinheitStadtDatentypen.ProduktionFeld);
    
    
    

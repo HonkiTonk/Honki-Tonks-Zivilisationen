@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords;
-use GlobaleDatentypen;
+with GlobaleDatentypen, KartenRecords, KartenDatentypen;
+use GlobaleDatentypen, KartenDatentypen;
 
 with Karten;
 
@@ -27,9 +27,9 @@ private
    end record;
    
    -- Dafür noch feste Standardwerte einbauen? Wäre dann später bei weiterführenden Einstellungen wie viel Wasser sinnvoll.
-   type WahrscheinlichkeitenLandArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of WahrscheinlichkeitenRecord;
+   type WahrscheinlichkeitenLandArray is array (KartenDatentypen.Kartenart_Verwendet_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of WahrscheinlichkeitenRecord;
    WahrscheinlichkeitenLand : constant WahrscheinlichkeitenLandArray := (
-                                                                         GlobaleDatentypen.Inseln =>
+                                                                         KartenDatentypen.Inseln =>
                                                                            (
                                                                             Masse_Eisschild    => (0.00, 0.05),
                                                                             Feld_Eisschild     => (0.05, 0.15),
@@ -40,7 +40,7 @@ private
                                                                             Feld_Fläche_Belegt => (0.00, 0.55)
                                                                            ),
                                                                                  
-                                                                         GlobaleDatentypen.Kontinente =>
+                                                                         KartenDatentypen.Kontinente =>
                                                                            (
                                                                             Masse_Eisschild    => (0.00, 0.05),
                                                                             Feld_Eisschild     => (0.05, 0.15),
@@ -51,7 +51,7 @@ private
                                                                             Feld_Fläche_Belegt => (0.00, 0.80)
                                                                            ),
                                                                                  
-                                                                         GlobaleDatentypen.Pangäa =>
+                                                                         KartenDatentypen.Pangäa =>
                                                                            (
                                                                             Masse_Eisschild    => (0.00, 0.05),
                                                                             Feld_Eisschild     => (0.05, 0.15),
@@ -71,8 +71,8 @@ private
    
    
    procedure GenerierungKartenart
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -80,8 +80,8 @@ private
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasse
-     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
          (YPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -89,8 +89,8 @@ private
             XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasseFläche
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -102,19 +102,19 @@ private
    procedure StandardKarteGenerieren;
    
    procedure LandFeldMasseEisschild
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv);
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv);
    
    procedure LandFeldMasseNormal
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv);
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv);
    
    procedure LandmasseGenerieren
-     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv);
+     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv);
    
    procedure AbstandGenerieren
-     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv);
+     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv);
 
 end KartenGeneratorStandard;

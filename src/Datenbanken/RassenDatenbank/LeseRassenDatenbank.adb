@@ -5,8 +5,8 @@ with RassenDatenbank;
 package body LeseRassenDatenbank is
 
    function RassenAggressivität
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Aggressivität;
@@ -16,8 +16,8 @@ package body LeseRassenDatenbank is
    
    
    function RassenExpansion
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Expansion;
@@ -27,8 +27,8 @@ package body LeseRassenDatenbank is
    
    
    function RassenWissenschaft
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Wissenschaft;
@@ -38,8 +38,8 @@ package body LeseRassenDatenbank is
    
    
    function RassenProduktion
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Produktion;
@@ -49,8 +49,8 @@ package body LeseRassenDatenbank is
    
    
    function RassenWirtschaft
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Wirtschaft;
@@ -60,8 +60,8 @@ package body LeseRassenDatenbank is
    
    
    function RassenBewirtschaftung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return RassenDatenbank.RassenListe (RasseExtern).Bewirtschaftung;
@@ -71,13 +71,13 @@ package body LeseRassenDatenbank is
    
    
    function RassenGültigeStaatsform
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       StaatsformExtern : GlobaleDatentypen.Staatsform_Enum)
       return Boolean
    is begin
             
       StaatsformenSchleife:
-      for StaatsformSchleifenwert in GlobaleDatentypen.StaatsformenArray'Range loop
+      for StaatsformSchleifenwert in SonstigeDatentypen.StaatsformenArray'Range loop
          
          if
            RassenDatenbank.RassenListe (RasseExtern).GültigeStaatsformen (StaatsformSchleifenwert) = StaatsformExtern

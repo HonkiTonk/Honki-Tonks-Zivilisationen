@@ -8,9 +8,9 @@ package KartenGeneratorPlanetenInneres is
 
 private
 
-   YKernanfang : GlobaleDatentypen.KartenfeldPositiv;
-   XKernanfang : GlobaleDatentypen.KartenfeldPositiv;
-   YKernende : GlobaleDatentypen.KartenfeldPositiv;
-   XKernende : GlobaleDatentypen.KartenfeldPositiv;
+   YKernanfang : KartenDatentypen.KartenfeldPositiv;
+   XKernanfang : KartenDatentypen.KartenfeldPositiv;
+   YKernende : KartenDatentypen.KartenfeldPositiv;
+   XKernende : KartenDatentypen.KartenfeldPositiv;
 
 end KartenGeneratorPlanetenInneres;

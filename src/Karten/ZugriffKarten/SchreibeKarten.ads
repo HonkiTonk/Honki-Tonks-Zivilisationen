@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, KartenDatentypen, SonstigeDatentypen;
+use GlobaleDatentypen, KartenDatentypen;
 
 with Karten;
 
@@ -9,14 +9,14 @@ package SchreibeKarten is
 
    procedure Grund
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GrundExtern /= GlobaleDatentypen.Leer);
+            GrundExtern /= KartenDatentypen.Leer);
    
    procedure Hügel
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -29,7 +29,7 @@ package SchreibeKarten is
    
    procedure Sichtbar
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
      with
        Pre =>
@@ -41,55 +41,55 @@ package SchreibeKarten is
 
    procedure Fluss
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+      FlussExtern : in KartenDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (FlussExtern = GlobaleDatentypen.Leer
+            (FlussExtern = KartenDatentypen.Leer
              or
-               FlussExtern in GlobaleDatentypen.Karten_Fluss_Enum));
+               FlussExtern in KartenDatentypen.Karten_Fluss_Enum));
 
    procedure VerbesserungWeg
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      WegExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
+      WegExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (WegExtern = GlobaleDatentypen.Leer
+            (WegExtern = KartenDatentypen.Leer
              or
-               WegExtern in GlobaleDatentypen.Karten_Weg_Enum));
+               WegExtern in KartenDatentypen.Karten_Weg_Enum));
 
    procedure VerbesserungGebiet
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            VerbesserungExtern not in GlobaleDatentypen.Karten_Weg_Enum);
+            VerbesserungExtern not in KartenDatentypen.Karten_Weg_Enum);
 
    procedure Ressource
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RessourceExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+      RessourceExtern : in KartenDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            RessourceExtern in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum);
+            RessourceExtern in KartenDatentypen.Karten_Grund_Ressourcen_Enum);
 
    procedure BelegterGrund
      (PositionExtern : KartenRecords.AchsenKartenfeldPositivRecord;
-      BelegterGrundExtern : in GlobaleDatentypen.BelegterGrund)
+      BelegterGrundExtern : in KartenDatentypen.BelegterGrund)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -98,11 +98,11 @@ package SchreibeKarten is
 
    procedure Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      BewertungExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      BewertungExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and

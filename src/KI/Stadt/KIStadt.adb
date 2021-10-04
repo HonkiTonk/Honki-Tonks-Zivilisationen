@@ -56,7 +56,7 @@ package body KIStadt is
       if
         EinheitBauenExtern.ID = EinheitenKonstanten.LeerID
         and
-          GebäudeBauenExtern.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
+          GebäudeBauenExtern.ID = EinheitStadtDatentypen.GebäudeIDMitNullwert'First
       then
          null;
          
@@ -69,7 +69,7 @@ package body KIStadt is
                                          BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + StadtKonstanten.GebäudeAufschlag);
          
       elsif
-        GebäudeBauenExtern.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
+        GebäudeBauenExtern.ID = EinheitStadtDatentypen.GebäudeIDMitNullwert'First
       then
          case
            NotfallExtern
@@ -122,7 +122,7 @@ package body KIStadt is
         FeindNahe (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when True =>
-            NotfallEinheit := GlobaleDatentypen.EinheitenIDMitNullWert'First;
+            NotfallEinheit := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
             WelcheEinheitArt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when False =>
@@ -132,13 +132,13 @@ package body KIStadt is
       case
         NotfallEinheit
       is
-         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
             return False;
             
          when others =>
             NeuesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                              EinheitBauenExtern     => (NotfallEinheit, 1),
-                             GebäudeBauenExtern     => (GlobaleDatentypen.GebäudeIDMitNullwert'First, 0),
+                             GebäudeBauenExtern     => (EinheitStadtDatentypen.GebäudeIDMitNullwert'First, 0),
                              NotfallExtern          => True);
             return True;
       end case;
@@ -177,7 +177,7 @@ package body KIStadt is
                   elsif
                     DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
                                                                        FremdeRasseExtern => FremdeEinheit.Rasse)
-                    /= GlobaleDatentypen.Krieg
+                    /= SonstigeDatentypen.Krieg
                   then
                      null;
                      
@@ -209,7 +209,7 @@ package body KIStadt is
    is begin
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
          
          if
            LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
@@ -243,11 +243,11 @@ package body KIStadt is
    procedure NotfallEinheitBauen
    -- Stadt mit übergeben und später die Baukosten noch mit in die Bewertung einfließen lassen.
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitIDExtern : in GlobaleDatentypen.EinheitenID)
+      EinheitIDExtern : in EinheitStadtDatentypen.EinheitenID)
    is begin
       
       if
-        NotfallEinheit = GlobaleDatentypen.EinheitenIDMitNullWert'First
+        NotfallEinheit = EinheitStadtDatentypen.EinheitenIDMitNullWert'First
       then
          NotfallEinheit := EinheitIDExtern;
          

@@ -6,11 +6,11 @@ package body SchreibeKarten is
 
    procedure Grund
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
    is begin
       
       if
-        GrundExtern = GlobaleDatentypen.Hügel
+        GrundExtern = KartenDatentypen.Hügel
         and
           LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
@@ -40,7 +40,7 @@ package body SchreibeKarten is
    
    procedure Sichtbar
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
    is begin
       
@@ -52,7 +52,7 @@ package body SchreibeKarten is
    
    procedure Fluss
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+      FlussExtern : in KartenDatentypen.Karten_Grund_Enum)
    is begin
       
       Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss := FlussExtern;
@@ -63,7 +63,7 @@ package body SchreibeKarten is
    
    procedure VerbesserungWeg
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      WegExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
+      WegExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
    is begin
       
       Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg := WegExtern;
@@ -74,7 +74,7 @@ package body SchreibeKarten is
    
    procedure VerbesserungGebiet
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
    is begin
       
       Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet := VerbesserungExtern;
@@ -85,7 +85,7 @@ package body SchreibeKarten is
    
    procedure Ressource
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RessourceExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+      RessourceExtern : in KartenDatentypen.Karten_Grund_Enum)
    is begin
       
       Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := RessourceExtern;
@@ -96,7 +96,7 @@ package body SchreibeKarten is
    
    procedure BelegterGrund
      (PositionExtern : KartenRecords.AchsenKartenfeldPositivRecord;
-      BelegterGrundExtern : in GlobaleDatentypen.BelegterGrund)
+      BelegterGrundExtern : in KartenDatentypen.BelegterGrund)
    is begin
       
       Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).DurchStadtBelegterGrund := BelegterGrundExtern;
@@ -107,8 +107,8 @@ package body SchreibeKarten is
    
    procedure Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      BewertungExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      BewertungExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
    is begin
       
       Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Felderwertung (RasseExtern) := BewertungExtern;

@@ -8,7 +8,7 @@ package body LeseKarten is
    
    function Grund
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
+      return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund;
@@ -30,7 +30,7 @@ package body LeseKarten is
    
    function Sichtbar
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -42,13 +42,13 @@ package body LeseKarten is
    
    function Fluss
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
+      return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       case
         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss
       is
-         when GlobaleDatentypen.Leer | GlobaleDatentypen.Karten_Fluss_Enum'Range =>
+         when GlobaleDatentypen.Leer | KartenDatentypen.Karten_Fluss_Enum'Range =>
             null;
          
          when others =>
@@ -63,13 +63,13 @@ package body LeseKarten is
    
    function VerbesserungWeg
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Enum
+      return KartenDatentypen.Karten_Verbesserung_Enum
    is begin
       
       case
         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg
       is
-         when GlobaleDatentypen.Leer | GlobaleDatentypen.Karten_Weg_Enum'Range =>
+         when GlobaleDatentypen.Leer | KartenDatentypen.Karten_Weg_Enum'Range =>
             null;
          
          when others =>
@@ -84,7 +84,7 @@ package body LeseKarten is
    
    function VerbesserungGebiet
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Enum
+      return KartenDatentypen.Karten_Verbesserung_Enum
    is begin
       
       case
@@ -105,13 +105,13 @@ package body LeseKarten is
    
    function Ressource
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
+      return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       case
         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource
       is
-         when GlobaleDatentypen.Leer | GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
+         when GlobaleDatentypen.Leer | KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
             null;
          
          when others =>
@@ -126,8 +126,8 @@ package body LeseKarten is
    
    function Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Felderwertung (RasseExtern);
@@ -137,7 +137,7 @@ package body LeseKarten is
    
    
    function BelegterGrund
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -184,7 +184,7 @@ package body LeseKarten is
      
       if
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
-        = GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse) * SonstigesKonstanten.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
+        = SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse) * SonstigesKonstanten.RassenMulitplikationWert + KartenDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
       then
          return True;
          

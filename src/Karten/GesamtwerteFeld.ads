@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen, EinheitStadtDatentypen;
 use GlobaleDatentypen;
 
 with Karten;
@@ -9,11 +9,11 @@ package GesamtwerteFeld is
 
    function FeldNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -21,11 +21,11 @@ package GesamtwerteFeld is
    
    function FeldProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -33,11 +33,11 @@ package GesamtwerteFeld is
      
    function FeldGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -45,11 +45,11 @@ package GesamtwerteFeld is
      
    function FeldWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -57,11 +57,11 @@ package GesamtwerteFeld is
    
    function FeldVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -69,11 +69,11 @@ package GesamtwerteFeld is
    
    function FeldAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with KartenDatentypen;
 
 package SiegBedingungen is
 
@@ -9,7 +9,7 @@ package SiegBedingungen is
 
 private
 
-   VorhandeneRassen : GlobaleDatentypen.SichtweiteMitNullwert;
+   VorhandeneRassen : KartenDatentypen.SichtweiteMitNullwert;
 
    function SiegBedingungEins
      return Boolean;

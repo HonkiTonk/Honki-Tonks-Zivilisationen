@@ -1,28 +1,28 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
 use GlobaleDatentypen;
 
 package InformationenEinheiten is
 
    procedure Einheiten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
 private
    
    ErsteAnzeige : Boolean;
    
-   IDEinheit : GlobaleDatentypen.EinheitenID;
+   IDEinheit : EinheitStadtDatentypen.EinheitenID;
    
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheiten;
+   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheiten;
    
    EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    

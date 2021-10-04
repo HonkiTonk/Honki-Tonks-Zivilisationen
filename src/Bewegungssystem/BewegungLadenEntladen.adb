@@ -11,7 +11,7 @@ package body BewegungLadenEntladen is
 
    procedure TransporterBeladen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
    is begin
       
       FreierPlatzNummer := FreienPlatzErmitteln (TransporterExtern => TransporterExtern);
@@ -51,7 +51,7 @@ package body BewegungLadenEntladen is
    
    function FreienPlatzErmitteln
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       TransporterSchleife:
@@ -79,7 +79,7 @@ package body BewegungLadenEntladen is
    
    procedure EinheitAusTransporterEntfernen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
    is begin
       
       TransporterLeerenSchleife:

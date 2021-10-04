@@ -192,7 +192,7 @@ package body Anzeige is
    
    
    procedure AllgemeineAnzeige
-     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+     (AktuelleAuswahlExtern : in EinheitStadtDatentypen.MinimimMaximumID)
    is begin
       
       LängsterText := 1;

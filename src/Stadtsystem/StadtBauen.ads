@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+use GlobaleDatentypen, SonstigeDatentypen;
 
 package StadtBauen is
 
@@ -12,11 +12,11 @@ package StadtBauen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
 private
 
-   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    WelcherName : Positive := 1;
 
    procedure StandardStadtNamen
@@ -25,7 +25,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
    procedure StadtEintragen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -34,7 +34,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
 
 
@@ -45,21 +45,21 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
    function StadtnummerErmitteln
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
    function HauptstadtPrüfen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer),
          Post =>
            (HauptstadtPrüfen'Result /= GlobaleDatentypen.Leer);
 

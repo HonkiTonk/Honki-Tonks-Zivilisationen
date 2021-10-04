@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
-use GlobaleDatentypen;
+with GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+use KartenDatentypen, SonstigeDatentypen;
 
 with Karten;
 
@@ -10,10 +10,10 @@ package SpielEinstellungenRasseSpieler is
    procedure StartwerteErmitteln;
 
    procedure StartpunktFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
    
    
@@ -37,7 +37,7 @@ package SpielEinstellungenRasseSpieler is
 
    function UmgebungPrüfen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
@@ -45,13 +45,13 @@ package SpielEinstellungenRasseSpieler is
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
 private
    
    StartpositionGefunden : Boolean;
    
-   FreieFelder : GlobaleDatentypen.SichtweiteMitNullwert;
+   FreieFelder : KartenDatentypen.SichtweiteMitNullwert;
    
    Spieler : Natural;
    
@@ -70,6 +70,6 @@ private
    
    procedure FelderBestimmen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
 
 end SpielEinstellungenRasseSpieler;

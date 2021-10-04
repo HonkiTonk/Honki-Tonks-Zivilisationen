@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
+with GlobaleTexte, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen;
 
 with LeseKarten;
 
@@ -12,7 +12,7 @@ with Anzeige, Cheat, EinheitSuchen, StadtSuchen, StadtInformationen, AufgabenAll
 package body KarteInformationen is
 
    procedure KarteInformation
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       InformationenWichtiges.Wichtiges (RasseExtern => RasseExtern);
@@ -25,7 +25,7 @@ package body KarteInformationen is
    
    
    procedure InformationenSichtbar
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Sichtbar := LeseKarten.Sichtbar (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
@@ -88,7 +88,7 @@ package body KarteInformationen is
          
    
    procedure InformationenStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
@@ -111,7 +111,7 @@ package body KarteInformationen is
    
    
    procedure InformationenAllgemein
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Hügel (RasseExtern => RasseExtern);
@@ -133,7 +133,7 @@ package body KarteInformationen is
    
    
    procedure Hügel
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -142,8 +142,8 @@ package body KarteInformationen is
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
                                         ÜberschriftZeileExtern => 0,
-                                        ErsteZeileExtern       => GlobaleDatentypen.Karten_Grund_Enum'Pos (GlobaleDatentypen.Hügel_Mit),
-                                        LetzteZeileExtern      => GlobaleDatentypen.Karten_Grund_Enum'Pos (GlobaleDatentypen.Hügel_Mit),
+                                        ErsteZeileExtern       => KartenDatentypen.Karten_Grund_Enum'Pos (KartenDatentypen.Hügel_Mit),
+                                        LetzteZeileExtern      => KartenDatentypen.Karten_Grund_Enum'Pos (KartenDatentypen.Hügel_Mit),
                                         AbstandAnfangExtern    => GlobaleTexte.Leer,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Leer);
@@ -159,7 +159,7 @@ package body KarteInformationen is
    
    
    procedure FeldVerteidigung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -179,7 +179,7 @@ package body KarteInformationen is
    
    
    procedure FeldAngriff
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -199,7 +199,7 @@ package body KarteInformationen is
    
    
    procedure FeldNahrung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -220,7 +220,7 @@ package body KarteInformationen is
    
    
    procedure FeldProduktion
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -240,7 +240,7 @@ package body KarteInformationen is
    
    
    procedure FeldGeld
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -260,7 +260,7 @@ package body KarteInformationen is
    
    
    procedure FeldWissen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -281,7 +281,7 @@ package body KarteInformationen is
    
    
    procedure Kartenposition
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -302,7 +302,7 @@ package body KarteInformationen is
    
    
    procedure Gecheatet
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case

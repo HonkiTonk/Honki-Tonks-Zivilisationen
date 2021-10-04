@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, KartenRecords;
+with GlobaleDatentypen, KartenRecords, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
 
 with KIDatentypen;
 
@@ -11,40 +11,40 @@ package EinheitStadtRecords is
 
    type RassePlatznummerRecord is tagged record
       
-      Rasse : GlobaleDatentypen.Rassen_Enum;
-      Platznummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      Rasse : SonstigeDatentypen.Rassen_Enum;
+      Platznummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
    
    
    
-   type KIBewegungPlanArray is array (GlobaleDatentypen.Stadtfeld'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
-   type TransporterArray is array (GlobaleDatentypen.MaximaleStädte'First .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   type EinheitMeldungenArray is array (GlobaleDatentypen.Einheit_Meldung_Art_Enum'Range) of GlobaleDatentypen.Einheit_Meldung_Enum;
+   type KIBewegungPlanArray is array (KartenDatentypen.Stadtfeld'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
+   type TransporterArray is array (EinheitStadtDatentypen.MaximaleStädte'First .. 5) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   type EinheitMeldungenArray is array (EinheitStadtDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitStadtDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record
       
-      ID : GlobaleDatentypen.EinheitenIDMitNullWert;
+      ID : EinheitStadtDatentypen.EinheitenIDMitNullWert;
       Position : KartenRecords.AchsenKartenfeldPositivRecord;
-      Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
-      Lebenspunkte : GlobaleDatentypen.MaximaleStädteMitNullWert;
-      Bewegungspunkte : GlobaleDatentypen.BewegungFloat;
-      Erfahrungspunkte : GlobaleDatentypen.MaximaleStädteMitNullWert;
-      Rang : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Lebenspunkte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      Bewegungspunkte : EinheitStadtDatentypen.BewegungFloat;
+      Erfahrungspunkte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      Rang : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
       Beschäftigung : GlobaleDatentypen.Tastenbelegung_Enum;
       BeschäftigungNachfolger : GlobaleDatentypen.Tastenbelegung_Enum;
       
-      Beschäftigungszeit : GlobaleDatentypen.MaximaleStädteMitNullWert;
-      BeschäftigungszeitNachfolger : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Beschäftigungszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      BeschäftigungszeitNachfolger : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
       KIZielKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
       KIBewegungPlan : KIBewegungPlanArray;
       
       Transportiert : TransporterArray;
-      WirdTransportiert : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      WirdTransportiert : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
       
       Meldungen : EinheitMeldungenArray;
       
@@ -54,42 +54,42 @@ package EinheitStadtRecords is
    
    type KampfwerteRecord is record
       
-      Angriff : GlobaleDatentypen.ProduktionFeld;
-      Verteidigung : GlobaleDatentypen.ProduktionFeld;
+      Angriff : EinheitStadtDatentypen.ProduktionFeld;
+      Verteidigung : EinheitStadtDatentypen.ProduktionFeld;
       
    end record;
 
 
 
-   type EinwohnerArbeiterArray is array (1 .. 2) of GlobaleDatentypen.ProduktionFeld;
-   type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
-   type StadtMeldungenArray is array (GlobaleDatentypen.Stadt_Meldung_Art_Enum'Range) of GlobaleDatentypen.Stadt_Meldung_Enum;
-   type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
-   type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtePermanenteKosten;
+   type EinwohnerArbeiterArray is array (1 .. 2) of EinheitStadtDatentypen.ProduktionFeld;
+   type GebäudeVorhandenArray is array (EinheitStadtDatentypen.GebäudeID'Range) of Boolean;
+   type StadtMeldungenArray is array (EinheitStadtDatentypen.Stadt_Meldung_Art_Enum'Range) of EinheitStadtDatentypen.Stadt_Meldung_Enum;
+   type UmgebungBewirtschaftungArray is array (KartenDatentypen.LoopRangeMinusDreiZuDrei'Range, KartenDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
+   type PermanenteKostenArray is array (EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of EinheitStadtDatentypen.GesamtePermanenteKosten;
 
    type StadtGebautRecord is record
       
-      ID : GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      ID : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
       Position : KartenRecords.AchsenKartenfeldPositivRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
-      Nahrungsmittel : GlobaleDatentypen.GesamtproduktionStadt;
-      Nahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
-      Ressourcen : GlobaleDatentypen.KostenLager;
-      Produktionrate : GlobaleDatentypen.GesamtproduktionStadt;
-      Geldgewinnung : GlobaleDatentypen.GesamtproduktionStadt;
+      Nahrungsmittel : EinheitStadtDatentypen.GesamtproduktionStadt;
+      Nahrungsproduktion : EinheitStadtDatentypen.GesamtproduktionStadt;
+      Ressourcen : EinheitStadtDatentypen.KostenLager;
+      Produktionrate : EinheitStadtDatentypen.GesamtproduktionStadt;
+      Geldgewinnung : EinheitStadtDatentypen.GesamtproduktionStadt;
       PermanenteKostenPosten : PermanenteKostenArray;
       
-      Forschungsrate : GlobaleDatentypen.GesamtproduktionStadt;
+      Forschungsrate : EinheitStadtDatentypen.GesamtproduktionStadt;
       Bauprojekt : Natural;
-      Bauzeit : GlobaleDatentypen.KostenLager;
+      Bauzeit : EinheitStadtDatentypen.KostenLager;
 
-      Korruption : GlobaleDatentypen.GesamtproduktionStadt;
+      Korruption : EinheitStadtDatentypen.GesamtproduktionStadt;
       GebäudeVorhanden : GebäudeVorhandenArray;
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;
-      UmgebungGröße : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+      UmgebungGröße : KartenDatentypen.LoopRangeMinusDreiZuDrei;
       
       Meldungen : StadtMeldungenArray;
       

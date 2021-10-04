@@ -1,99 +1,99 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package DiplomatischerZustand is
 
-   type SympathieGrenzenArray is array (GlobaleDatentypen.Status_Untereinander_Bekannt_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
+   type SympathieGrenzenArray is array (SonstigeDatentypen.Status_Untereinander_Bekannt_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
    SympathieGrenzen : constant SympathieGrenzenArray := (
-                                                         GlobaleDatentypen.Neutral           => 50,
-                                                         GlobaleDatentypen.Nichtangriffspakt => GlobaleDatentypen.ProduktionFeld'Last,
-                                                         GlobaleDatentypen.Krieg             => 0
+                                                         SonstigeDatentypen.Neutral           => 50,
+                                                         SonstigeDatentypen.Nichtangriffspakt => EinheitStadtDatentypen.ProduktionFeld'Last,
+                                                         SonstigeDatentypen.Krieg             => 0
                                                         );
 
    procedure DiplomatischenStatusÄndern
-     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      NeuerStatusExtern : in GlobaleDatentypen.Status_Untereinander_Enum)
+     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      NeuerStatusExtern : in SonstigeDatentypen.Status_Untereinander_Enum)
      with
        Pre =>
          (RasseEinsExtern /= RasseZweiExtern
           and
-            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SonstigeDatentypen.Leer);
 
    procedure SympathieÄndern
-     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ÄnderungExtern : in EinheitStadtDatentypen.ProduktionFeld)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SonstigeDatentypen.Leer);
 
    procedure VergangeneZeitÄndern
-     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (RasseEinsExtern /= RasseZweiExtern
           and
-            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SonstigeDatentypen.Leer);
 
 
 
    function GegnerAngreifen
-     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      GegnerischeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
          (EigeneRasseExtern /= GegnerischeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (GegnerischeRasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (GegnerischeRasseExtern) /= SonstigeDatentypen.Leer);
 
    function DiplomatischenStatusPrüfen
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Status_Untereinander_Enum
+     (EigeneRasseExtern, FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return SonstigeDatentypen.Status_Untereinander_Enum
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SonstigeDatentypen.Leer);
 
    function DiplomatischerStatusLetzteÄnderung
-     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Natural
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SonstigeDatentypen.Leer);
 
    function AktuelleSympathie
-     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SonstigeDatentypen.Leer);
 
 end DiplomatischerZustand;

@@ -11,7 +11,7 @@ package body Sichtbarkeit is
    
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.Sichtweite
+      return KartenDatentypen.Sichtweite
    is begin
       
       KoordinatenEinheit := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -36,20 +36,20 @@ package body Sichtbarkeit is
       end if;
       
       if
-        AktuellerGrund = GlobaleDatentypen.Gebirge
+        AktuellerGrund = KartenDatentypen.Gebirge
         or
-          AktuellerGrund = GlobaleDatentypen.Hügel
+          AktuellerGrund = KartenDatentypen.Hügel
           or
             LeseKarten.Hügel (PositionExtern => KoordinatenEinheit) = True
       then
          return 3;
 
       elsif
-        AktuellerGrund = GlobaleDatentypen.Dschungel
+        AktuellerGrund = KartenDatentypen.Dschungel
         or
-          AktuellerGrund = GlobaleDatentypen.Sumpf
+          AktuellerGrund = KartenDatentypen.Sumpf
           or
-            AktuellerGrund = GlobaleDatentypen.Wald
+            AktuellerGrund = KartenDatentypen.Wald
       then
          return 1;
                
@@ -70,7 +70,7 @@ package body Sichtbarkeit is
       case
         SichtweiteObjekt
       is
-         when GlobaleDatentypen.Sichtweite'First =>
+         when KartenDatentypen.Sichtweite'First =>
             SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                SichtweiteExtern         => SichtweiteObjekt);
             return;
@@ -170,9 +170,9 @@ package body Sichtbarkeit is
    
    procedure QuadrantEins
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
               
       KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -296,9 +296,9 @@ package body Sichtbarkeit is
    
    procedure QuadrantZwei
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
       KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -422,9 +422,9 @@ package body Sichtbarkeit is
    
    procedure QuadrantDrei
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
       KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -548,9 +548,9 @@ package body Sichtbarkeit is
    
    procedure QuadrantVier
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
       KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -674,9 +674,9 @@ package body Sichtbarkeit is
    
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-      XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-      SichtweiteExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      YÄnderungExtern : in KartenDatentypen.LoopRangeMinusZweiZuZwei;
+      XÄnderungExtern : in KartenDatentypen.LoopRangeMinusZweiZuZwei;
+      SichtweiteExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
    is begin
       
@@ -689,19 +689,19 @@ package body Sichtbarkeit is
          null;
          
       elsif
-        LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Gebirge
+        LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = KartenDatentypen.Gebirge
         or
-          LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Hügel
+          LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = KartenDatentypen.Hügel
         or
           LeseKarten.Hügel (PositionExtern => KartenBlockadeWert) = True
         or
           (SichtweiteExtern /= 3
            and
-             (LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Dschungel
+             (LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = KartenDatentypen.Dschungel
               or
-                LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Sumpf
+                LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = KartenDatentypen.Sumpf
               or
-                LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Wald))
+                LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = KartenDatentypen.Wald))
       then
          return False;
          
@@ -717,7 +717,7 @@ package body Sichtbarkeit is
    
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteExtern : in GlobaleDatentypen.Sichtweite)
+      SichtweiteExtern : in KartenDatentypen.Sichtweite)
    is begin
          
       YÄnderungEinheitenSchleife:
@@ -779,7 +779,7 @@ package body Sichtbarkeit is
    
    
    procedure SichtbarkeitSetzen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       

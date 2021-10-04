@@ -120,7 +120,7 @@ package body Eingabe is
       ZeileExtern : in Positive;
       ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
-      return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
+      return KartenDatentypen.LoopRangeMinusZweiZuZwei
    is begin
       
       ZahlenSchleife:
@@ -289,7 +289,7 @@ package body Eingabe is
    -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
    function GanzeZahlPrüfung
      (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
-      return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
+      return KartenDatentypen.LoopRangeMinusDreiZuDrei
    is begin
       
       case

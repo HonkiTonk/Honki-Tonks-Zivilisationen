@@ -8,7 +8,7 @@ package body KampfwerteStadtErmitteln is
 
    function AktuelleVerteidigungStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       VerteidigungWert := LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
@@ -18,7 +18,7 @@ package body KampfwerteStadtErmitteln is
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -43,7 +43,7 @@ package body KampfwerteStadtErmitteln is
    
    function AktuellerAngriffStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       AngriffWert := LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
@@ -53,7 +53,7 @@ package body KampfwerteStadtErmitteln is
                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,

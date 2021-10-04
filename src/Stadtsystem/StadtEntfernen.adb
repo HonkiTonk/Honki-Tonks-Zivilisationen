@@ -31,9 +31,9 @@ package body StadtEntfernen is
    is begin
       
       YUmgebungFreigebenSchleife:
-      for YUmgebungFreigebenSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for YUmgebungFreigebenSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          XUmgebungFreigebenSchleife:
-         for XUmgebungFreigebenSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for XUmgebungFreigebenSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert));

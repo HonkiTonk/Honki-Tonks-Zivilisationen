@@ -9,7 +9,7 @@ with Anzeige;
 package body AufgabenAllgemein is
 
    procedure Beschreibung
-     (KartenVerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
+     (KartenVerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
    is begin
       
       case
@@ -20,7 +20,7 @@ package body AufgabenAllgemein is
             
          when others =>
             Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Beschreibungen_Verbesserungen_Kurz,
-                                                  TextZeileExtern => GlobaleDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern));
+                                                  TextZeileExtern => KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern));
       end case;
       
    end Beschreibung;

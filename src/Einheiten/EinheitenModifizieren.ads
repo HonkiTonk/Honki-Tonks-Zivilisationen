@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, KartenDatentypen, GlobaleDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen, KartenDatentypen;
 
 package EinheitenModifizieren is
 
@@ -11,16 +11,16 @@ package EinheitenModifizieren is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
    procedure PermanenteKostenÄndern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      VorzeichenWechselExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             VorzeichenWechselExtern /= 0);
    
@@ -28,27 +28,27 @@ package EinheitenModifizieren is
    
    function EinheitAnforderungenErfüllt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Boolean
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
 private
    
-   AktuelleID : GlobaleDatentypen.EinheitenID;
+   AktuelleID : EinheitStadtDatentypen.EinheitenID;
    
    AktuelleBeschäftigung : GlobaleDatentypen.Tastenbelegung_Enum;
    
-   Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
-   StadtNummerNeu : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   StadtNummerNeu : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    
-   Heilungsrate : constant GlobaleDatentypen.MaximaleStädte := 10;
-   ErhalteneErfahrungspunkte : GlobaleDatentypen.MaximaleStädte;
+   Heilungsrate : constant EinheitStadtDatentypen.MaximaleStädte := 10;
+   ErhalteneErfahrungspunkte : EinheitStadtDatentypen.MaximaleStädte;
       
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -56,6 +56,6 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
 end EinheitenModifizieren;

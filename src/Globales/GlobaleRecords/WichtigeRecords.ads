@@ -1,29 +1,29 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with EinheitStadtDatentypen, SonstigeDatentypen;
 
 package WichtigeRecords is
 
    type WichtigesRecord is record
       
       Geldmenge : Integer;
-      GeldZugewinnProRunde : GlobaleDatentypen.KostenLager;
+      GeldZugewinnProRunde : EinheitStadtDatentypen.KostenLager;
 
-      GesamteForschungsrate : GlobaleDatentypen.KostenLager;
-      Forschungsmenge : GlobaleDatentypen.KostenLager;
-      VerbleibendeForschungszeit : GlobaleDatentypen.KostenLager;
-      Forschungsprojekt : GlobaleDatentypen.ForschungIDMitNullWert;
+      GesamteForschungsrate : EinheitStadtDatentypen.KostenLager;
+      Forschungsmenge : EinheitStadtDatentypen.KostenLager;
+      VerbleibendeForschungszeit : EinheitStadtDatentypen.KostenLager;
+      Forschungsprojekt : EinheitStadtDatentypen.ForschungIDMitNullWert;
 
-      Erforscht : GlobaleDatentypen.ErforschtArray;
+      Erforscht : EinheitStadtDatentypen.ErforschtArray;
       
-      AnzahlStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
-      AnzahlArbeiter : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-      AnzahlKämpfer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-      AnzahlSonstiges : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlStädte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      AnzahlArbeiter : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlKämpfer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlSonstiges : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
       
       -- Einbau sinnvoll?
-      -- GesamterAngriff : GlobaleDatentypen.KostenLager;
-      -- GesamteVerteidigung : GlobaleDatentypen.KostenLager;
+      -- GesamterAngriff : EinheitStadtDatentypen.KostenLager;
+      -- GesamteVerteidigung : EinheitStadtDatentypen.KostenLager;
       
    end record;
    
@@ -31,8 +31,8 @@ package WichtigeRecords is
    
    type DiplomatieRecord is record
       
-      AktuellerZustand : GlobaleDatentypen.Status_Untereinander_Enum;
-      AktuelleSympathieBewertung : GlobaleDatentypen.ProduktionFeld;
+      AktuellerZustand : SonstigeDatentypen.Status_Untereinander_Enum;
+      AktuelleSympathieBewertung : EinheitStadtDatentypen.ProduktionFeld;
       ZeitSeitLetzterÄnderung : Natural;
       
    end record;
@@ -41,12 +41,12 @@ package WichtigeRecords is
    
    type GrenzenRecord is record
       
-      Städtegrenze : GlobaleDatentypen.MaximaleStädte;
-      Einheitengrenze : GlobaleDatentypen.MaximaleEinheiten;
+      Städtegrenze : EinheitStadtDatentypen.MaximaleStädte;
+      Einheitengrenze : EinheitStadtDatentypen.MaximaleEinheiten;
       Geldgrenze : Integer;
-      Forschungsgrenze : GlobaleDatentypen.KostenLager;
-      Geldgewinngrenze : GlobaleDatentypen.KostenLager;
-      ForschungGewinngrenze : GlobaleDatentypen.KostenLager;
+      Forschungsgrenze : EinheitStadtDatentypen.KostenLager;
+      Geldgewinngrenze : EinheitStadtDatentypen.KostenLager;
+      ForschungGewinngrenze : EinheitStadtDatentypen.KostenLager;
       RassenRundengrenze : Natural;
       
    end record;

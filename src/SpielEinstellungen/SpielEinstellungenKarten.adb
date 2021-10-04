@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with SystemKonstanten, GlobaleDatentypen, GlobaleTexte;
+with SystemKonstanten, KartenDatentypen, GlobaleTexte;
 
 with Auswahl, Karten, Eingabe, ZufallGeneratorenSpieleinstellungen;
 
@@ -26,7 +26,7 @@ package body SpielEinstellungenKarten is
            KartengrößeAuswahl
          is
             when 1 .. 9 =>
-               Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
+               Karten.Kartengröße := KartenDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
                return SystemKonstanten.AuswahlKartenart;
 
             when 10 =>
@@ -55,7 +55,7 @@ package body SpielEinstellungenKarten is
      return Integer
    is begin
       
-      Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
+      Karten.Kartengröße := KartenDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                       ZeileExtern         => 19,
                                                       ZahlenMinimumExtern => 20,
@@ -69,7 +69,7 @@ package body SpielEinstellungenKarten is
          null;
       end if;
                
-      Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+      Karten.Kartengrößen (KartenDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                       ZeileExtern         => 25,
                                                       ZahlenMinimumExtern => 20,
@@ -81,7 +81,7 @@ package body SpielEinstellungenKarten is
          return SystemKonstanten.AuswahlKartengröße;
                            
       else
-         Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+         Karten.Kartengrößen (KartenDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
          return SystemKonstanten.AuswahlKartenart;
       end if;
       
@@ -107,7 +107,7 @@ package body SpielEinstellungenKarten is
            KartenartAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenart := GlobaleDatentypen.Kartenart_Verwendet_Enum'Val (KartenartAuswahl);
+               Karten.Kartenart := KartenDatentypen.Kartenart_Verwendet_Enum'Val (KartenartAuswahl);
                return SystemKonstanten.AuswahlKartenform;
                
             when 6 =>
@@ -150,7 +150,7 @@ package body SpielEinstellungenKarten is
            KartenformAuswahl
          is
             when 1 .. 9 =>
-               Karten.Kartenform := GlobaleDatentypen.Kartenform_Verwendet_Enum'Val (KartenformAuswahl);
+               Karten.Kartenform := KartenDatentypen.Kartenform_Verwendet_Enum'Val (KartenformAuswahl);
                return SystemKonstanten.AuswahlKartentemperatur;
                
             when 10 =>
@@ -193,7 +193,7 @@ package body SpielEinstellungenKarten is
            KartentemperaturAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartentemperatur := GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Val (KartentemperaturAuswahl);
+               Karten.Kartentemperatur := KartenDatentypen.Kartentemperatur_Verwendet_Enum'Val (KartentemperaturAuswahl);
                return SystemKonstanten.AuswahlKartenressourcen;
                
             when 6 =>
@@ -236,7 +236,7 @@ package body SpielEinstellungenKarten is
            KartenressourcenAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenressourcen := GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum'Val (KartenressourcenAuswahl);
+               Karten.Kartenressourcen := KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum'Val (KartenressourcenAuswahl);
                return SystemKonstanten.AuswahlSpieleranzahl;
                
             when 6 =>

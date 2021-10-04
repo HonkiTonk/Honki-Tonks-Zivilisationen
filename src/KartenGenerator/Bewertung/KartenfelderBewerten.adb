@@ -8,7 +8,7 @@ package body KartenfelderBewerten is
 
    procedure KartenfelderBewerten
      -- Leerwert heineingeben um für alle Rassen die Werte zu berechnen, anderer Wert um für eine bestimmte Rasse die Werte zu berechnen.
-     (RasseExtern : in GlobaleDatentypen.Rassen_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Enum)
    is
 
       task UnterwasserUnterirdischBewerten;

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, KartenRecords;
-use GlobaleDatentypen, KartenRecords;
+with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+use GlobaleDatentypen, KartenRecords, SonstigeDatentypen;
 
 with Karten;
 
@@ -13,7 +13,7 @@ package BewegungEinheiten is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch);
    
 private
    

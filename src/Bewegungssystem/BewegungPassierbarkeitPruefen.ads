@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, KartenRecords, EinheitStadtRecords;
-use GlobaleDatentypen;
+with GlobaleVariablen, GlobaleDatentypen, KartenRecords, EinheitStadtRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+use GlobaleDatentypen, KartenDatentypen, SonstigeDatentypen;
 
 with Karten;
 
@@ -19,11 +19,11 @@ package BewegungPassierbarkeitPruefen is
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
    function PassierbarkeitPrüfenID
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -32,7 +32,7 @@ package BewegungPassierbarkeitPruefen is
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
    function InStadtEntladbar
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -46,27 +46,27 @@ package BewegungPassierbarkeitPruefen is
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SonstigeDatentypen.Leer);
       
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Boolean
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
 private
    
    Passierbar : Boolean;
    
-   IDEinheit : GlobaleDatentypen.EinheitenIDMitNullWert;
+   IDEinheit : EinheitStadtDatentypen.EinheitenIDMitNullWert;
    
-   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
-   TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   Transportplatz : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   TransporterNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   Transportplatz : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
 
    BenötigteFelder : Positive;
    
@@ -75,9 +75,9 @@ private
    TransportplatzEntladen : EinheitStadtRecords.TransporterArray;
    
    function PassierbarTesten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -86,11 +86,11 @@ private
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    function IstNichtPassierbar
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -99,10 +99,10 @@ private
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
      
    function IstPassierbar
-     (UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+     (UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with

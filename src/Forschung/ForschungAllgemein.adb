@@ -15,7 +15,7 @@ with KIForschung;
 package body ForschungAllgemein is
 
    procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert)
+     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert)
    is begin
       
       case
@@ -48,7 +48,7 @@ package body ForschungAllgemein is
 
    -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
    procedure Forschung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
          
       WasErforschtWerdenSoll := AuswahlForschungNeu (RasseExtern => RasseExtern);
@@ -56,7 +56,7 @@ package body ForschungAllgemein is
       case
         WasErforschtWerdenSoll
       is
-         when GlobaleDatentypen.ForschungIDMitNullWert'First =>
+         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
             null;
                
          when others =>
@@ -69,15 +69,15 @@ package body ForschungAllgemein is
 
 
    function AuswahlForschungNeu
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ForschungIDMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
       Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText), 0));
       Ende := 1;
 
       ForschungSchleife:
-      for ForschungenSchleifenwert in GlobaleDatentypen.ForschungID loop
+      for ForschungenSchleifenwert in EinheitStadtDatentypen.ForschungID loop
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
@@ -134,8 +134,8 @@ package body ForschungAllgemein is
    
    
    function ForschungAuswahl
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     return GlobaleDatentypen.ForschungIDMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
       AuswahlSchleife:
@@ -162,7 +162,7 @@ package body ForschungAllgemein is
                                           AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
             Ermöglicht (RasseExtern           => RasseExtern,
-                         ForschungNummerExtern => GlobaleDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
+                         ForschungNummerExtern => EinheitStadtDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
          end if;
          
          case
@@ -187,7 +187,7 @@ package body ForschungAllgemein is
                end if;
                
             when GlobaleDatentypen.Auswählen =>
-               return GlobaleDatentypen.ForschungIDMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
+               return EinheitStadtDatentypen.ForschungIDMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
             when GlobaleDatentypen.Menü_Zurück =>
                return 0;
@@ -203,8 +203,8 @@ package body ForschungAllgemein is
    
    
    procedure Ermöglicht
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
    is begin
       
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
@@ -215,9 +215,9 @@ package body ForschungAllgemein is
                                     AbstandEndeExtern      => GlobaleTexte.Leer);
       
       TechnologienSchleife:
-      for TechnologieSchleifenwert in GlobaleDatentypen.ForschungID'Range loop
+      for TechnologieSchleifenwert in EinheitStadtDatentypen.ForschungID'Range loop
          ErmöglichtSchleife:
-         for NeueForschungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
+         for NeueForschungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
          
             if
               LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
@@ -257,14 +257,14 @@ package body ForschungAllgemein is
    
    
    procedure Benötigt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
    is begin
       
       ErsterDurchlauf := True;
           
       BenötigtSchleife:
-      for NeueForschungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
+      for NeueForschungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
          
          if
            LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
@@ -318,7 +318,7 @@ package body ForschungAllgemein is
    
    
    procedure ForschungsBaum
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuelleAuswahl := 1;
@@ -357,9 +357,9 @@ package body ForschungAllgemein is
          is
             when GlobaleDatentypen.Rechts =>
                if
-                 AktuelleAuswahl = GlobaleDatentypen.ForschungID'Last
+                 AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'Last
                then
-                  AktuelleAuswahl := GlobaleDatentypen.ForschungID'First;
+                  AktuelleAuswahl := EinheitStadtDatentypen.ForschungID'First;
                   
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
@@ -367,9 +367,9 @@ package body ForschungAllgemein is
 
             when GlobaleDatentypen.Links =>
                if
-                 AktuelleAuswahl = GlobaleDatentypen.ForschungID'First
+                 AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'First
                then
-                  AktuelleAuswahl := GlobaleDatentypen.ForschungID'Last;
+                  AktuelleAuswahl := EinheitStadtDatentypen.ForschungID'Last;
                   
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
@@ -393,7 +393,7 @@ package body ForschungAllgemein is
    is begin
       
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -401,10 +401,10 @@ package body ForschungAllgemein is
             when GlobaleDatentypen.Leer =>
                null;
                
-            when GlobaleDatentypen.Spieler_Mensch =>
+            when SonstigeDatentypen.Spieler_Mensch =>
                FortschrittMensch (RasseExtern => RasseSchleifenwert);
                
-            when GlobaleDatentypen.Spieler_KI =>
+            when SonstigeDatentypen.Spieler_KI =>
                FortschrittKI (RasseExtern => RasseSchleifenwert);
          end case;
                
@@ -415,13 +415,13 @@ package body ForschungAllgemein is
    
    
    procedure FortschrittMensch
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       
       if
-        AktuellesForschungsprojekt = GlobaleDatentypen.ForschungIDMitNullWert'First
+        AktuellesForschungsprojekt = EinheitStadtDatentypen.ForschungIDMitNullWert'First
       then
          null;
          
@@ -453,13 +453,13 @@ package body ForschungAllgemein is
    
    
    procedure FortschrittKI
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       
       if
-        AktuellesForschungsprojekt = GlobaleDatentypen.ForschungIDMitNullWert'First
+        AktuellesForschungsprojekt = EinheitStadtDatentypen.ForschungIDMitNullWert'First
       then
          KIForschung.Forschung (RasseExtern => RasseExtern);
          
@@ -493,8 +493,8 @@ package body ForschungAllgemein is
    
    
    function ForschungAnforderungErfüllt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in GlobaleDatentypen.ForschungID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungIDExtern : in EinheitStadtDatentypen.ForschungID)
       return Boolean
    is begin
    
@@ -510,7 +510,7 @@ package body ForschungAllgemein is
       end case;
       
       AnforderungSchleife:
-      for AnforderungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
+      for AnforderungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
             
          if
            LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,

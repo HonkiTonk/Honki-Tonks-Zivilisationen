@@ -1,22 +1,22 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, EinheitStadtDatentypen, SonstigeDatentypen;
 
 with DatenbankRecords;
 
 package ForschungKonstanten is
    
-   LeerPreisForschung : constant GlobaleDatentypen.KostenLager := 0;
-   LeerForschungAnforderung : constant GlobaleDatentypen.ForschungIDMitNullWert := GlobaleDatentypen.ForschungIDMitNullWert'First;
+   LeerPreisForschung : constant EinheitStadtDatentypen.KostenLager := 0;
+   LeerForschungAnforderung : constant EinheitStadtDatentypen.ForschungIDMitNullWert := EinheitStadtDatentypen.ForschungIDMitNullWert'First;
    
    LeerForschungListe : constant DatenbankRecords.ForschungListeRecord := (
                                                                            PreisForschung       => LeerPreisForschung,
                                                                            AnforderungForschung => (others => LeerForschungAnforderung)
                                                                           );
    
-   type TechnologieVerbesserungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Range) of GlobaleDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
-                                                                       GlobaleDatentypen.Menschen =>
+                                                                       SonstigeDatentypen.Menschen =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -27,7 +27,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Kasrodiah =>
+                                                                       SonstigeDatentypen.Kasrodiah =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -38,7 +38,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Lasupin =>
+                                                                       SonstigeDatentypen.Lasupin =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -49,7 +49,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Lamustra =>
+                                                                       SonstigeDatentypen.Lamustra =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -60,7 +60,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Manuky =>
+                                                                       SonstigeDatentypen.Manuky =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -71,7 +71,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Suroka =>
+                                                                       SonstigeDatentypen.Suroka =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -82,7 +82,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Pryolon =>
+                                                                       SonstigeDatentypen.Pryolon =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -93,7 +93,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Talbidahr =>
+                                                                       SonstigeDatentypen.Talbidahr =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -104,7 +104,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Moru_Phisihl =>
+                                                                       SonstigeDatentypen.Moru_Phisihl =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -115,7 +115,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Larinos_Lotaris =>
+                                                                       SonstigeDatentypen.Larinos_Lotaris =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -126,7 +126,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Carupex =>
+                                                                       SonstigeDatentypen.Carupex =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -137,7 +137,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Alary =>
+                                                                       SonstigeDatentypen.Alary =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -148,7 +148,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Tesorahn =>
+                                                                       SonstigeDatentypen.Tesorahn =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -159,7 +159,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Natries_Zermanis =>
+                                                                       SonstigeDatentypen.Natries_Zermanis =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -170,7 +170,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Tridatus =>
+                                                                       SonstigeDatentypen.Tridatus =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -181,7 +181,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Senelari =>
+                                                                       SonstigeDatentypen.Senelari =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -192,7 +192,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Aspari_2 =>
+                                                                       SonstigeDatentypen.Aspari_2 =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,
@@ -203,7 +203,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       GlobaleDatentypen.Ekropa =>
+                                                                       SonstigeDatentypen.Ekropa =>
                                                                          (
                                                                           GlobaleDatentypen.Straße_Bauen       => 0,
                                                                           GlobaleDatentypen.Wald_Aufforsten    => 0,

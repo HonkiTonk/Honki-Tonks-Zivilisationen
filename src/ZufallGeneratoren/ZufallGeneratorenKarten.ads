@@ -3,19 +3,19 @@ pragma SPARK_Mode (Off);
 with Ada.Numerics.Discrete_Random;
 with Ada.Numerics.Float_Random;
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+use GlobaleDatentypen, SonstigeDatentypen, KartenDatentypen;
 
 with Karten;
 
 package ZufallGeneratorenKarten is
      
    function StartPosition
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer),
          Post =>
            (StartPosition'Result.EAchse in -1 .. 0
             and
@@ -27,34 +27,34 @@ package ZufallGeneratorenKarten is
      return Float;
      
    function ChaoskarteGrund
-     return GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
+     return KartenDatentypen.Karten_Grund_Alle_Felder_Enum;
    
    function ChaoskarteFluss
-     return GlobaleDatentypen.Karten_Grund_Enum;
+     return KartenDatentypen.Karten_Grund_Enum;
    
    function ChaoskarteRessource
      (WasserLandExtern : in Boolean)
-      return GlobaleDatentypen.Karten_Grund_Enum;
+      return KartenDatentypen.Karten_Grund_Enum;
 
 private
    
-   FlussWert : GlobaleDatentypen.Karten_Grund_Enum;
-   RessourceWert : GlobaleDatentypen.Karten_Grund_Enum;
+   FlussWert : KartenDatentypen.Karten_Grund_Enum;
+   RessourceWert : KartenDatentypen.Karten_Grund_Enum;
    
-   EAchse : GlobaleDatentypen.EbeneVorhanden;
-   YAchse : GlobaleDatentypen.KartenfeldPositiv;
-   XAchse : GlobaleDatentypen.KartenfeldPositiv;
+   EAchse : KartenDatentypen.EbeneVorhanden;
+   YAchse : KartenDatentypen.KartenfeldPositiv;
+   XAchse : KartenDatentypen.KartenfeldPositiv;
 
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
    ZufallsPunktKarte : KartenRecords.AchsenKartenfeldPositivRecord;
 
-   subtype Kartenwert20 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 20;
-   subtype Kartenwert40 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 40;
-   subtype Kartenwert80 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 80;
-   subtype Kartenwert120 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 120;
-   subtype Kartenwert160 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 160;
-   subtype Kartenwert240 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 240;
-   subtype Kartenwert320 is GlobaleDatentypen.KartenfeldPositiv range GlobaleDatentypen.KartenfeldPositiv'First .. 320;
+   subtype Kartenwert20 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 20;
+   subtype Kartenwert40 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 40;
+   subtype Kartenwert80 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 80;
+   subtype Kartenwert120 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 120;
+   subtype Kartenwert160 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 160;
+   subtype Kartenwert240 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 240;
+   subtype Kartenwert320 is KartenDatentypen.KartenfeldPositiv range KartenDatentypen.KartenfeldPositiv'First .. 320;
 
    package WerteWählen20 is new Ada.Numerics.Discrete_Random (Kartenwert20);
    package WerteWählen40 is new Ada.Numerics.Discrete_Random (Kartenwert40);
@@ -63,7 +63,7 @@ private
    package WerteWählen160 is new Ada.Numerics.Discrete_Random (Kartenwert160);
    package WerteWählen240 is new Ada.Numerics.Discrete_Random (Kartenwert240);
    package WerteWählen320 is new Ada.Numerics.Discrete_Random (Kartenwert320);
-   package WerteWählen1000 is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.KartenfeldPositiv);
+   package WerteWählen1000 is new Ada.Numerics.Discrete_Random (KartenDatentypen.KartenfeldPositiv);
    
    PositionGewählt20 : WerteWählen20.Generator;
    PositionGewählt40 : WerteWählen40.Generator;
@@ -84,13 +84,13 @@ private
 
 
    -- Generator für Chaoskarte
-   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum);
+   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (KartenDatentypen.Karten_Grund_Alle_Felder_Enum);
    GrundGewählt : WerteWählenChaoskarte.Generator;
    
-   package FlussWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Enum);
+   package FlussWählenChaoskarte is new Ada.Numerics.Discrete_Random (KartenDatentypen.Karten_Grund_Enum);
    FlussGewählt : FlussWählenChaoskarte.Generator;
    
-   package RessourceWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Enum);
+   package RessourceWählenChaoskarte is new Ada.Numerics.Discrete_Random (KartenDatentypen.Karten_Grund_Enum);
    RessourceGewählt : RessourceWählenChaoskarte.Generator;
    -- Generator für Chaoskarte
    
@@ -99,7 +99,7 @@ private
    
    
    function StartPositionEAchse
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.EbeneVorhanden;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.EbeneVorhanden;
 
 end ZufallGeneratorenKarten;

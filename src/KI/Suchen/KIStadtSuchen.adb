@@ -9,7 +9,7 @@ with EinheitSuchen;
 package body KIStadtSuchen is
    
    function NähesteFeindlicheStadtSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -32,12 +32,12 @@ package body KIStadtSuchen is
    
    
    function StadtSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      AktuelleStadt := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
+      AktuelleStadt := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
       
       StadtSchleife:
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
@@ -48,7 +48,7 @@ package body KIStadtSuchen is
             null;
             
          elsif
-           AktuelleStadt = GlobaleDatentypen.MaximaleStädteMitNullWert'First
+           AktuelleStadt = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
          then
             AktuelleStadt := StadtSchleifenwert;
             Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Position.EAchse)
@@ -78,7 +78,7 @@ package body KIStadtSuchen is
    
    
    function UnbewachteStadtSuchen
-     (FeindlicheRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (FeindlicheRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       

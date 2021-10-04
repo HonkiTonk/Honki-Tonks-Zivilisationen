@@ -9,7 +9,7 @@ package body VerbesserungFarm is
 
    function VerbesserungFarm
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -29,7 +29,7 @@ package body VerbesserungFarm is
       in
         GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch
       then
          case
            EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)
@@ -48,7 +48,7 @@ package body VerbesserungFarm is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Flachland | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Hügel
+         when GlobaleDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel
             | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => GlobaleDatentypen.Farm_Bauen);
@@ -56,14 +56,14 @@ package body VerbesserungFarm is
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
-         when GlobaleDatentypen.Gebirge =>
+         when KartenDatentypen.Gebirge =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => GlobaleDatentypen.Farm_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 5,
                                                          RechnenSetzenExtern      => 0);
 
-         when GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
+         when KartenDatentypen.Wald | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
             if
               VerbesserungRoden.VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    GrundExtern              => GrundExtern,

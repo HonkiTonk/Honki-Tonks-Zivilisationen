@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, SystemKonstanten, KartenRecords, ForschungKonstanten;
+with GlobaleDatentypen, EinheitStadtRecords, SystemKonstanten, KartenRecords, ForschungKonstanten, EinheitStadtDatentypen, SonstigeDatentypen;
 
 with DatenbankRecords;
 
@@ -8,23 +8,23 @@ with KIDatentypen;
 
 package EinheitenKonstanten is
    
-   LeerRasse : constant GlobaleDatentypen.Rassen_Enum := GlobaleDatentypen.Leer;
-   LeerNummer : constant GlobaleDatentypen.MaximaleStädteMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerRasse : constant SonstigeDatentypen.Rassen_Enum := SonstigeDatentypen.Leer;
+   LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
 
-   LeerID : constant GlobaleDatentypen.EinheitenIDMitNullWert := GlobaleDatentypen.EinheitenIDMitNullWert'First;
+   LeerID : constant EinheitStadtDatentypen.EinheitenIDMitNullWert := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
    LeerPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
-   LeerHeimatstadt : constant GlobaleDatentypen.MaximaleStädteMitNullWert := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
-   LeerLebenspunkte : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerBewegungspunkte : constant GlobaleDatentypen.BewegungFloat := 0.00;
-   LeerErfahrungspunkte : constant GlobaleDatentypen.MaximaleStädteMitNullWert := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
-   LeerRang : constant GlobaleDatentypen.MaximaleStädteMitNullWert := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
+   LeerHeimatstadt : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerLebenspunkte : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerBewegungspunkte : constant EinheitStadtDatentypen.BewegungFloat := 0.00;
+   LeerErfahrungspunkte : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
+   LeerRang : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerBeschäftigung : constant GlobaleDatentypen.Tastenbelegung_Enum := GlobaleDatentypen.Leer;
-   LeerBeschäftigungszeit : constant GlobaleDatentypen.MaximaleStädteMitNullWert := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
+   LeerBeschäftigungszeit : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Tut_Nichts;
-   LeerTransportiert : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerWirdTransportiert : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerMeldung : constant GlobaleDatentypen.Einheit_Meldung_Enum := GlobaleDatentypen.Leer;
+   LeerTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerWirdTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerMeldung : constant EinheitStadtDatentypen.Einheit_Meldung_Enum := EinheitStadtDatentypen.Leer;
    
    LeerEinheit : constant EinheitStadtRecords.EinheitenGebautRecord := (
                                                                         ID                           => LeerID,
@@ -52,23 +52,23 @@ package EinheitenKonstanten is
    EinheitBefehlAbzug : constant Positive := 21;
       
    LeerEinheitenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
-   LeerEinheitArt : constant GlobaleDatentypen.Einheit_Art_Enum := GlobaleDatentypen.Leer;
-   LeerPreisGeld : constant GlobaleDatentypen.KostenLager := 0;
-   LeerPreisRessourcen : constant GlobaleDatentypen.KostenLager := 0;
-   LeerPermanenteKosten : constant GlobaleDatentypen.GesamtePermanenteKosten := 0;
-   LeerAnforderungen : constant GlobaleDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
+   LeerEinheitArt : constant EinheitStadtDatentypen.Einheit_Art_Enum := EinheitStadtDatentypen.Leer;
+   LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
+   LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
+   LeerPermanenteKosten : constant EinheitStadtDatentypen.GesamtePermanenteKosten := 0;
+   LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
    LeerPassierbarkeit : constant Boolean := False;
-   LeerMaximaleLebenspunkte : constant GlobaleDatentypen.MaximaleEinheiten := GlobaleDatentypen.MaximaleEinheiten'First;
-   LeerMaximaleBewegungspunkte : constant GlobaleDatentypen.BewegungFloat := 1.00;
-   LeerWirdVerbessertZu : constant GlobaleDatentypen.EinheitenIDMitNullWert := GlobaleDatentypen.EinheitenIDMitNullWert'First;
-   LeerBeförderungsgrenze : constant GlobaleDatentypen.MaximaleStädte := GlobaleDatentypen.MaximaleStädte'First;
-   LeerMaximalerRang : constant GlobaleDatentypen.MaximaleStädte := GlobaleDatentypen.MaximaleStädte'First;
-   LeerReichweite : constant GlobaleDatentypen.ProduktionFeld := 0;
-   LeerAngriff : constant GlobaleDatentypen.ProduktionFeld := 0;
-   LeerVerteidigung : constant GlobaleDatentypen.ProduktionFeld := 1;
-   LeerKannTransportieren : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerKannTransportiertWerden : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerTransportkapazität : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerMaximaleLebenspunkte : constant EinheitStadtDatentypen.MaximaleEinheiten := EinheitStadtDatentypen.MaximaleEinheiten'First;
+   LeerMaximaleBewegungspunkte : constant EinheitStadtDatentypen.BewegungFloat := 1.00;
+   LeerWirdVerbessertZu : constant EinheitStadtDatentypen.EinheitenIDMitNullWert := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
+   LeerBeförderungsgrenze : constant EinheitStadtDatentypen.MaximaleStädte := EinheitStadtDatentypen.MaximaleStädte'First;
+   LeerMaximalerRang : constant EinheitStadtDatentypen.MaximaleStädte := EinheitStadtDatentypen.MaximaleStädte'First;
+   LeerReichweite : constant EinheitStadtDatentypen.ProduktionFeld := 0;
+   LeerAngriff : constant EinheitStadtDatentypen.ProduktionFeld := 0;
+   LeerVerteidigung : constant EinheitStadtDatentypen.ProduktionFeld := 1;
+   LeerKannTransportieren : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerKannTransportiertWerden : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerTransportkapazität : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
    
    LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
                                                                          EinheitenGrafik            => LeerEinheitenGrafik,

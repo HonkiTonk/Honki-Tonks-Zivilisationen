@@ -13,7 +13,7 @@ package body Wachstum is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -55,7 +55,7 @@ package body Wachstum is
 
       if
         LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)
-        > GlobaleDatentypen.KostenLager (10 + LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+        > EinheitStadtDatentypen.KostenLager (10 + LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                  EinwohnerArbeiterExtern => True)
                                          * 5)
       then
@@ -174,7 +174,7 @@ package body Wachstum is
             if
               LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern)
               >= LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                        IDExtern    => GlobaleDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag))
+                                                        IDExtern    => EinheitStadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag))
             then
                StadtGebaeudeBauen.GebäudeFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
@@ -186,7 +186,7 @@ package body Wachstum is
             if
               LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern)
               >= LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                         IDExtern    => GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag))
+                                                         IDExtern    => EinheitStadtDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag))
             then
                StadtEinheitenBauen.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
@@ -205,7 +205,7 @@ package body Wachstum is
    
    
    procedure WachstumWichtiges
-     (RasseExtern : in GlobaleDatentypen.Rassen_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Enum)
    is begin
       
       case
@@ -213,7 +213,7 @@ package body Wachstum is
       is
          when GlobaleDatentypen.Leer =>
             RassenSchleife:
-            for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+            for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
                
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -236,7 +236,7 @@ package body Wachstum is
    
    
    procedure WachstumsratenBerechnen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,

@@ -1,73 +1,72 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords, KartenKonstanten;
-use GlobaleDatentypen;
+with KartenRecords, KartenKonstanten, KartenDatentypen;
 
 package Karten is
 
-   type WeltkarteArray is array (GlobaleDatentypen.EbeneVorhanden'Range, GlobaleDatentypen.KartenfeldPositiv'Range, GlobaleDatentypen.KartenfeldPositiv'Range) of KartenRecords.KartenRecord;
+   type WeltkarteArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.KartenfeldPositiv'Range, KartenDatentypen.KartenfeldPositiv'Range) of KartenRecords.KartenRecord;
    Weltkarte : WeltkarteArray := (others => (others => (others => KartenKonstanten.LeerWeltkarte)));
 
-   type StadtkarteArray is array (GlobaleDatentypen.Stadtfeld'Range, GlobaleDatentypen.Stadtfeld'Range) of Integer;
+   type StadtkarteArray is array (KartenDatentypen.Stadtfeld'Range, KartenDatentypen.Stadtfeld'Range) of Integer;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));
 
    type KartengrößenRecord is record
 
-      YAchsenGröße : GlobaleDatentypen.KartenfeldPositiv;
-      XAchsenGröße : GlobaleDatentypen.KartenfeldPositiv;
+      YAchsenGröße : KartenDatentypen.KartenfeldPositiv;
+      XAchsenGröße : KartenDatentypen.KartenfeldPositiv;
 
    end record;
 
-   type KartengrößenArray is array (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
+   type KartengrößenArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
    Kartengrößen : KartengrößenArray := (
-                                            GlobaleDatentypen.Karte_20_20     => (20, 20),
-                                            GlobaleDatentypen.Karte_40_40     => (40, 40),
-                                            GlobaleDatentypen.Karte_80_80     => (80, 80),
-                                            GlobaleDatentypen.Karte_120_80    => (120, 80),
-                                            GlobaleDatentypen.Karte_120_160   => (120, 160),
-                                            GlobaleDatentypen.Karte_160_160   => (160, 160),
-                                            GlobaleDatentypen.Karte_240_240   => (240, 240),
-                                            GlobaleDatentypen.Karte_320_320   => (320, 320),
-                                            GlobaleDatentypen.Karte_1000_1000 => (GlobaleDatentypen.KartenfeldPositiv'Last, GlobaleDatentypen.KartenfeldPositiv'Last),
-                                            GlobaleDatentypen.Karte_Nutzer    => (GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First)
+                                            KartenDatentypen.Karte_20_20     => (20, 20),
+                                            KartenDatentypen.Karte_40_40     => (40, 40),
+                                            KartenDatentypen.Karte_80_80     => (80, 80),
+                                            KartenDatentypen.Karte_120_80    => (120, 80),
+                                            KartenDatentypen.Karte_120_160   => (120, 160),
+                                            KartenDatentypen.Karte_160_160   => (160, 160),
+                                            KartenDatentypen.Karte_240_240   => (240, 240),
+                                            KartenDatentypen.Karte_320_320   => (320, 320),
+                                            KartenDatentypen.Karte_1000_1000 => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                            KartenDatentypen.Karte_Nutzer    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
                                            );
 
-   Kartengröße : GlobaleDatentypen.Kartengröße_Verwendet_Enum;
+   Kartengröße : KartenDatentypen.Kartengröße_Verwendet_Enum;
 
    type LandartenRecord is record
 
-      YAchse : GlobaleDatentypen.KartenfeldPositiv;
-      XAchse : GlobaleDatentypen.KartenfeldPositiv;
+      YAchse : KartenDatentypen.KartenfeldPositiv;
+      XAchse : KartenDatentypen.KartenfeldPositiv;
 
    end record;
 
    -- Inseln, Kontinente, Pangäa
    -- Alle Größen- und Abstandsangaben sind Radien.
-   type GrößeLandartArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range) of LandartenRecord;
+   type GrößeLandartArray is array (KartenDatentypen.Kartenart_Verwendet_Enum'Range) of LandartenRecord;
    GrößeLandart : GrößeLandartArray := (
-                                            GlobaleDatentypen.Inseln     => (3, 3),
-                                            GlobaleDatentypen.Kontinente => (7, 7),
-                                            GlobaleDatentypen.Pangäa     => (1, 1),
+                                            KartenDatentypen.Inseln     => (3, 3),
+                                            KartenDatentypen.Kontinente => (7, 7),
+                                            KartenDatentypen.Pangäa     => (1, 1),
                                             others                       => (1, 1)
                                            );
    FelderVonLandartZuLandart : GrößeLandartArray := (
-                                                       GlobaleDatentypen.Inseln     => (15, 15),
-                                                       GlobaleDatentypen.Kontinente => (22, 22),
-                                                       GlobaleDatentypen.Pangäa     => (1, 1),
+                                                       KartenDatentypen.Inseln     => (15, 15),
+                                                       KartenDatentypen.Kontinente => (22, 22),
+                                                       KartenDatentypen.Pangäa     => (1, 1),
                                                        others                       => (1, 1)
                                                       );
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
-   Kartenart : GlobaleDatentypen.Kartenart_Verwendet_Enum := GlobaleDatentypen.Inseln;
+   Kartenart : KartenDatentypen.Kartenart_Verwendet_Enum := KartenDatentypen.Inseln;
    KartenartGemischt : Boolean := False;
    -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-   Kartentemperatur : GlobaleDatentypen.Kartentemperatur_Verwendet_Enum := GlobaleDatentypen.Kalt;
+   Kartentemperatur : KartenDatentypen.Kartentemperatur_Verwendet_Enum := KartenDatentypen.Kalt;
    -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht
-   Kartenform : GlobaleDatentypen.Kartenform_Verwendet_Enum := GlobaleDatentypen.X_Zylinder;
+   Kartenform : KartenDatentypen.Kartenform_Verwendet_Enum := KartenDatentypen.X_Zylinder;
    -- Arm, Wenig, Mittel, Viel, Überfluss
-   Kartenressourcen : GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum := GlobaleDatentypen.Mittel;
+   Kartenressourcen : KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum := KartenDatentypen.Mittel;
 
-   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Karten_Grund_Enum;
+   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenDatentypen.Karten_Grund_Enum;
    GeneratorKarte : GeneratorKarteArray;
 
    type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;

@@ -12,7 +12,7 @@ package body KIBewegungAllgemein is
    function FeldBetreten
      (FeldPositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.LoopRangeMinusEinsZuEins
+      return KartenDatentypen.LoopRangeMinusEinsZuEins
    is begin
       
       BlockierendeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldPositionExtern).Rasse;
@@ -56,7 +56,7 @@ package body KIBewegungAllgemein is
    
    function FeldAngreifen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.LoopRangeMinusEinsZuEins
+      return KartenDatentypen.LoopRangeMinusEinsZuEins
    is begin
       
       if
@@ -64,7 +64,7 @@ package body KIBewegungAllgemein is
         and then
           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                              FremdeRasseExtern => BlockierendeStadt)
-        /= GlobaleDatentypen.Krieg
+        /= SonstigeDatentypen.Krieg
       then
          return 1;
          
@@ -73,7 +73,7 @@ package body KIBewegungAllgemein is
         and then
           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                              FremdeRasseExtern => BlockierendeEinheit)
-        /= GlobaleDatentypen.Krieg
+        /= SonstigeDatentypen.Krieg
       then
          return 1;
          

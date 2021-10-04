@@ -13,26 +13,26 @@ package KIKonstanten is
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
 
-   type KartenfeldBewertungStadtBauenMinimumArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtproduktionStadt;
+   type KartenfeldBewertungStadtBauenMinimumArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.GesamtproduktionStadt;
    KartenfeldBewertungStadtBauenMinimum : constant KartenfeldBewertungStadtBauenMinimumArray := (
-                                                                                                 GlobaleDatentypen.Menschen         => 10,
-                                                                                                 GlobaleDatentypen.Kasrodiah        => 10,
-                                                                                                 GlobaleDatentypen.Lasupin          => 10,
-                                                                                                 GlobaleDatentypen.Lamustra         => 10,
-                                                                                                 GlobaleDatentypen.Manuky           => 10,
-                                                                                                 GlobaleDatentypen.Suroka           => 10,
-                                                                                                 GlobaleDatentypen.Pryolon          => 10,
-                                                                                                 GlobaleDatentypen.Talbidahr        => 10,
-                                                                                                 GlobaleDatentypen.Moru_Phisihl     => 10,
-                                                                                                 GlobaleDatentypen.Larinos_Lotaris  => 10,
-                                                                                                 GlobaleDatentypen.Carupex          => 10,
-                                                                                                 GlobaleDatentypen.Alary            => 10,
-                                                                                                 GlobaleDatentypen.Tesorahn         => 10,
-                                                                                                 GlobaleDatentypen.Natries_Zermanis => 10,
-                                                                                                 GlobaleDatentypen.Tridatus         => 10,
-                                                                                                 GlobaleDatentypen.Senelari         => 10,
-                                                                                                 GlobaleDatentypen.Aspari_2         => 10,
-                                                                                                 GlobaleDatentypen.Ekropa           => 10
+                                                                                                 SonstigeDatentypen.Menschen         => 10,
+                                                                                                 SonstigeDatentypen.Kasrodiah        => 10,
+                                                                                                 SonstigeDatentypen.Lasupin          => 10,
+                                                                                                 SonstigeDatentypen.Lamustra         => 10,
+                                                                                                 SonstigeDatentypen.Manuky           => 10,
+                                                                                                 SonstigeDatentypen.Suroka           => 10,
+                                                                                                 SonstigeDatentypen.Pryolon          => 10,
+                                                                                                 SonstigeDatentypen.Talbidahr        => 10,
+                                                                                                 SonstigeDatentypen.Moru_Phisihl     => 10,
+                                                                                                 SonstigeDatentypen.Larinos_Lotaris  => 10,
+                                                                                                 SonstigeDatentypen.Carupex          => 10,
+                                                                                                 SonstigeDatentypen.Alary            => 10,
+                                                                                                 SonstigeDatentypen.Tesorahn         => 10,
+                                                                                                 SonstigeDatentypen.Natries_Zermanis => 10,
+                                                                                                 SonstigeDatentypen.Tridatus         => 10,
+                                                                                                 SonstigeDatentypen.Senelari         => 10,
+                                                                                                 SonstigeDatentypen.Aspari_2         => 10,
+                                                                                                 SonstigeDatentypen.Ekropa           => 10
                                                                                                 );
 
 end KIKonstanten;

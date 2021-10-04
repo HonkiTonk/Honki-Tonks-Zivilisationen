@@ -15,27 +15,27 @@ package body Karte is
       case
         Karten.Kartengröße
       is
-         when GlobaleDatentypen.Karte_20_20 =>
+         when KartenDatentypen.Karte_20_20 =>
             SichtweiteFestlegen := 1;
             BewegungsfeldFestlegen := 1;
             
-         when GlobaleDatentypen.Karte_40_40 =>
+         when KartenDatentypen.Karte_40_40 =>
             SichtweiteFestlegen := 2;
             BewegungsfeldFestlegen := 2;
 
-         when GlobaleDatentypen.Karte_Nutzer =>
+         when KartenDatentypen.Karte_Nutzer =>
             if
-              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (GlobaleDatentypen.Karte_20_20).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Karte_20_20).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (GlobaleDatentypen.Karte_20_20).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Karte_20_20).XAchsenGröße
             then
                SichtweiteFestlegen := 1;
                BewegungsfeldFestlegen := 1;
                
             elsif
-              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (GlobaleDatentypen.Karte_40_40).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Karte_40_40).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (GlobaleDatentypen.Karte_40_40).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Karte_40_40).XAchsenGröße
             then
                SichtweiteFestlegen := 2;
                BewegungsfeldFestlegen := 2;
@@ -55,7 +55,7 @@ package body Karte is
    
 
    procedure AnzeigeKarte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       CursorPositionAltFestlegen (RasseExtern                  => RasseExtern,
@@ -96,35 +96,35 @@ package body Karte is
    
    
    procedure NeueZeileKartenform
-     (XAchseExtern : in GlobaleDatentypen.Kartenfeld)
+     (XAchseExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
       if
         XAchseExtern = Sichtweiten (SichtweiteFestlegen).XAchse
       then
          if
-           (Karten.Kartenform = GlobaleDatentypen.X_Zylinder
+           (Karten.Kartenform = KartenDatentypen.X_Zylinder
             or
-              Karten.Kartenform = GlobaleDatentypen.Torus
+              Karten.Kartenform = KartenDatentypen.Torus
             or
-              Karten.Kartenform = GlobaleDatentypen.Kugel
+              Karten.Kartenform = KartenDatentypen.Kugel
             or
-              Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht
+              Karten.Kartenform = KartenDatentypen.Kugel_Gedreht
             or
-              Karten.Kartenform = GlobaleDatentypen.Tugel
+              Karten.Kartenform = KartenDatentypen.Tugel
             or
-              Karten.Kartenform = GlobaleDatentypen.Tugel_Gedreht
+              Karten.Kartenform = KartenDatentypen.Tugel_Gedreht
             or
-              Karten.Kartenform = GlobaleDatentypen.Tugel_Extrem)
+              Karten.Kartenform = KartenDatentypen.Tugel_Extrem)
            and
              KartenWert.XAchse > KartenKonstanten.LeerXAchse
          then
             New_Line;
                   
          elsif
-           Karten.Kartenform = GlobaleDatentypen.Y_Zylinder
+           Karten.Kartenform = KartenDatentypen.Y_Zylinder
            or
-             Karten.Kartenform = GlobaleDatentypen.Viereck
+             Karten.Kartenform = KartenDatentypen.Viereck
          then
             New_Line;
                
@@ -141,7 +141,7 @@ package body Karte is
    
    
    procedure CursorPositionAltFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
       
@@ -156,7 +156,7 @@ package body Karte is
    
    
    procedure AlteEAchseFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -173,7 +173,7 @@ package body Karte is
    
    
    procedure AlteYAchseFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
       
@@ -225,7 +225,7 @@ package body Karte is
    
    
    procedure AlteXAchseFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
       

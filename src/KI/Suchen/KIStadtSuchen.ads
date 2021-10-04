@@ -8,7 +8,7 @@ with Karten;
 package KIStadtSuchen is
 
    function NähesteFeindlicheStadtSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -20,22 +20,22 @@ package KIStadtSuchen is
             AnfangKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function UnbewachteStadtSuchen
-     (FeindlicheRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (FeindlicheRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) = GlobaleDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) = SonstigeDatentypen.Spieler_KI);
 
 private
 
-   AktuelleStadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
-   GefundeneStadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   AktuelleStadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   GefundeneStadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    Entfernung : Positive;
    EntfernungNeu : Positive;
 
    function StadtSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert;
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert;
 
 end KIStadtSuchen;

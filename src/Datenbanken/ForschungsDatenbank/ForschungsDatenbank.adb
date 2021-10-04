@@ -16,58 +16,58 @@ package body ForschungsDatenbank is
             case
               RasseSchleifenwert
             is
-               when GlobaleDatentypen.Menschen =>
+               when SonstigeDatentypen.Menschen =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungMenschen.ForschungMenschenListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Kasrodiah =>
+               when SonstigeDatentypen.Kasrodiah =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungKasrodiah.ForschungKasrodiahListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Lasupin =>
+               when SonstigeDatentypen.Lasupin =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungLasupin.ForschungLasupinListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Lamustra =>
+               when SonstigeDatentypen.Lamustra =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungLamustra.ForschungLamustraListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Manuky =>
+               when SonstigeDatentypen.Manuky =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungManuky.ForschungManukyListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Suroka =>
+               when SonstigeDatentypen.Suroka =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungSuroka.ForschungSurokaListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Pryolon =>
+               when SonstigeDatentypen.Pryolon =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungPryolon.ForschungPryolonListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Talbidahr =>
+               when SonstigeDatentypen.Talbidahr =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungTalbidahr.ForschungTalbidahrListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Moru_Phisihl =>
+               when SonstigeDatentypen.Moru_Phisihl =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungMoruPhisihl.ForschungMoruPhisihlListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Larinos_Lotaris =>
+               when SonstigeDatentypen.Larinos_Lotaris =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungLarinosLotaris.ForschungLarinosLotarisListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Carupex =>
+               when SonstigeDatentypen.Carupex =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungCarupex.ForschungCarupexListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Alary =>
+               when SonstigeDatentypen.Alary =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungAlary.ForschungAlaryListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Tesorahn =>
+               when SonstigeDatentypen.Tesorahn =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungTesorahn.ForschungTesorahnListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Natries_Zermanis =>
+               when SonstigeDatentypen.Natries_Zermanis =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungNatriesZermanis.ForschungNatriesZermanisListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Tridatus =>
+               when SonstigeDatentypen.Tridatus =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungTridatus.ForschungTridatusListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Senelari =>
+               when SonstigeDatentypen.Senelari =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungSenelari.ForschungSenelariListe (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Aspari_2 =>
+               when SonstigeDatentypen.Aspari_2 =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungAspari2.ForschungAspari2Liste (ForschungSchleifenwert);
                   
-               when GlobaleDatentypen.Ekropa =>
+               when SonstigeDatentypen.Ekropa =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungEkropa.ForschungEkropaListe (ForschungSchleifenwert);
             end case;
             

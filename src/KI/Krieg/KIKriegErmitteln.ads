@@ -6,54 +6,54 @@ use GlobaleDatentypen;
 package KIKriegErmitteln is
 
    function IstImKrieg
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_KI);
 
    function KriegAnfangen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Rassen_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return SonstigeDatentypen.Rassen_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_KI);
 
 private
 
-   RasseGewählt : GlobaleDatentypen.Rassen_Enum;
-   Bewertung : GlobaleDatentypen.ProduktionFeld;
+   RasseGewählt : SonstigeDatentypen.Rassen_Enum;
+   Bewertung : EinheitStadtDatentypen.ProduktionFeld;
 
-   type BewertungenArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
+   type BewertungenArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
    Bewertungen : BewertungenArray;
 
    NotwendigeBewertung : constant BewertungenArray := (
-                                                       GlobaleDatentypen.Menschen         => 10,
-                                                       GlobaleDatentypen.Kasrodiah        => 10,
-                                                       GlobaleDatentypen.Lasupin          => 10,
-                                                       GlobaleDatentypen.Lamustra         => 10,
-                                                       GlobaleDatentypen.Manuky           => 10,
-                                                       GlobaleDatentypen.Suroka           => 10,
-                                                       GlobaleDatentypen.Pryolon          => 10,
-                                                       GlobaleDatentypen.Talbidahr        => 10,
-                                                       GlobaleDatentypen.Moru_Phisihl     => 10,
-                                                       GlobaleDatentypen.Larinos_Lotaris  => 10,
-                                                       GlobaleDatentypen.Carupex          => 10,
-                                                       GlobaleDatentypen.Alary            => 10,
-                                                       GlobaleDatentypen.Tesorahn         => 10,
-                                                       GlobaleDatentypen.Natries_Zermanis => 10,
-                                                       GlobaleDatentypen.Tridatus         => 10,
-                                                       GlobaleDatentypen.Senelari         => 10,
-                                                       GlobaleDatentypen.Aspari_2         => 10,
-                                                       GlobaleDatentypen.Ekropa           => 0
+                                                       SonstigeDatentypen.Menschen         => 10,
+                                                       SonstigeDatentypen.Kasrodiah        => 10,
+                                                       SonstigeDatentypen.Lasupin          => 10,
+                                                       SonstigeDatentypen.Lamustra         => 10,
+                                                       SonstigeDatentypen.Manuky           => 10,
+                                                       SonstigeDatentypen.Suroka           => 10,
+                                                       SonstigeDatentypen.Pryolon          => 10,
+                                                       SonstigeDatentypen.Talbidahr        => 10,
+                                                       SonstigeDatentypen.Moru_Phisihl     => 10,
+                                                       SonstigeDatentypen.Larinos_Lotaris  => 10,
+                                                       SonstigeDatentypen.Carupex          => 10,
+                                                       SonstigeDatentypen.Alary            => 10,
+                                                       SonstigeDatentypen.Tesorahn         => 10,
+                                                       SonstigeDatentypen.Natries_Zermanis => 10,
+                                                       SonstigeDatentypen.Tridatus         => 10,
+                                                       SonstigeDatentypen.Senelari         => 10,
+                                                       SonstigeDatentypen.Aspari_2         => 10,
+                                                       SonstigeDatentypen.Ekropa           => 0
                                                       );
 
    function StärkeVerhältnisErmitteln
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Rassen_Enum
+     (EigeneRasseExtern, FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return SonstigeDatentypen.Rassen_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_KI
+         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_KI
           and
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer
           and

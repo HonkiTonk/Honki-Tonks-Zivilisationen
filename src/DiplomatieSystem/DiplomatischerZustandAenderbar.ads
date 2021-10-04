@@ -6,8 +6,8 @@ use GlobaleDatentypen;
 package DiplomatischerZustandAenderbar is
 
    function StatusÄnderbarkeitPrüfen
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      NeuerStatusExtern : in GlobaleDatentypen.Status_Untereinander_Bekannt_Enum)
+     (RasseEinsExtern, RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      NeuerStatusExtern : in SonstigeDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
      with
        Pre =>
@@ -21,10 +21,10 @@ private
    
    ÄnderungMöglich : Boolean;
    
-   AktuellerStatus : GlobaleDatentypen.Status_Untereinander_Bekannt_Enum;
+   AktuellerStatus : SonstigeDatentypen.Status_Untereinander_Bekannt_Enum;
    
-   SympathieZweiZuEins : GlobaleDatentypen.ProduktionFeld;
-   SympathieÄnderung : GlobaleDatentypen.ProduktionFeld;
+   SympathieZweiZuEins : EinheitStadtDatentypen.ProduktionFeld;
+   SympathieÄnderung : EinheitStadtDatentypen.ProduktionFeld;
    
    ZeitSeitÄnderung : Natural;
    

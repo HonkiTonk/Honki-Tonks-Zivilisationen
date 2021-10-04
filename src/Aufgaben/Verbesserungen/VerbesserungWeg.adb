@@ -12,7 +12,7 @@ package body VerbesserungWeg is
    -- Hier prüfen welcher Weg
    function VerbesserungWeg
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -31,7 +31,7 @@ package body VerbesserungWeg is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Hügel | GlobaleDatentypen.Wald
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel | KartenDatentypen.Wald
             | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => GlobaleDatentypen.Straße_Bauen);
@@ -39,7 +39,7 @@ package body VerbesserungWeg is
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
-         when GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
+         when KartenDatentypen.Gebirge | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => GlobaleDatentypen.Straße_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -73,9 +73,9 @@ package body VerbesserungWeg is
       Wegewert := 10_000;
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));

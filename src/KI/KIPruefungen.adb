@@ -51,7 +51,7 @@ package body KIPruefungen is
    
    function StadtUmgebungUnverbessert
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -174,7 +174,7 @@ package body KIPruefungen is
    
    function UmgebungStadtBauenPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
             
@@ -201,7 +201,7 @@ package body KIPruefungen is
    
    function FelderDurchgehen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -265,9 +265,9 @@ package body KIPruefungen is
    
    function NeuesStadtFeldSuchen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt;
-      YUmgebungExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XUmgebungExtern : in GlobaleDatentypen.KartenfeldPositiv)
+      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
+      YUmgebungExtern : in KartenDatentypen.KartenfeldPositiv;
+      XUmgebungExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -320,7 +320,7 @@ package body KIPruefungen is
    function KartenfeldUmgebungPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
       return Boolean
    is begin
       
@@ -371,9 +371,9 @@ package body KIPruefungen is
    is begin
       
       YAchseUmgebungSchleife:
-      for YAchseUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for YAchseUmgebungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          XAchseUmgebungSchleife:
-         for XAchseUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for XAchseUmgebungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                         ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));

@@ -10,22 +10,22 @@ package KIBewegungAllgemein is
    function FeldBetreten
      (FeldPositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.LoopRangeMinusEinsZuEins
+      return KartenDatentypen.LoopRangeMinusEinsZuEins
      with
        Pre =>
          (FeldPositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             FeldPositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
 private
 
-   BlockierendeEinheit : GlobaleDatentypen.Rassen_Enum;
-   BlockierendeStadt : GlobaleDatentypen.Rassen_Enum;
+   BlockierendeEinheit : SonstigeDatentypen.Rassen_Enum;
+   BlockierendeStadt : SonstigeDatentypen.Rassen_Enum;
    
    function FeldAngreifen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-     return GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+     return KartenDatentypen.LoopRangeMinusEinsZuEins;
 
 end KIBewegungAllgemein;

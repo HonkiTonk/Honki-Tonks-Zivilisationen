@@ -5,9 +5,9 @@ with ForschungsDatenbank;
 package body LeseForschungsDatenbank is
 
    function PreisForschung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.ForschungID)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.ForschungID)
+      return EinheitStadtDatentypen.KostenLager
    is begin
 
       return ForschungsDatenbank.ForschungListe (RasseExtern, IDExtern).PreisForschung;
@@ -17,10 +17,10 @@ package body LeseForschungsDatenbank is
 
 
    function AnforderungForschung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.ForschungID;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.ForschungID;
       WelcheAnforderungExtern : in Positive)
-      return GlobaleDatentypen.ForschungIDMitNullWert
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
 
       return ForschungsDatenbank.ForschungListe (RasseExtern, IDExtern).AnforderungForschung (WelcheAnforderungExtern);
@@ -30,8 +30,8 @@ package body LeseForschungsDatenbank is
 
 
    function GanzerEintrag
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.ForschungID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.ForschungID)
       return DatenbankRecords.ForschungListeRecord
    is begin
 

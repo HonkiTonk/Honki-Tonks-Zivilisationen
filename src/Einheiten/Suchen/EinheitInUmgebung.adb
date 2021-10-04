@@ -12,12 +12,12 @@ package body EinheitInUmgebung is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when GlobaleDatentypen.Spieler_Mensch =>
+            when SonstigeDatentypen.Spieler_Mensch =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);
                UmgebungEinheit (RasseExtern => RasseSchleifenwert);
                
@@ -32,7 +32,7 @@ package body EinheitInUmgebung is
    
    
    procedure UmgebungStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtSchleife:
@@ -66,7 +66,7 @@ package body EinheitInUmgebung is
    
    
    procedure UmgebungEinheit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenSchleife:
@@ -101,8 +101,8 @@ package body EinheitInUmgebung is
    
    function EinheitFinden
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      UmgebungExtern : in GlobaleDatentypen.Sichtweite;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      UmgebungExtern : in KartenDatentypen.Sichtweite;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -138,7 +138,7 @@ package body EinheitInUmgebung is
                elsif
                  DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                                     FremdeRasseExtern => AndereEinheit.Rasse)
-                 = GlobaleDatentypen.Nichtangriffspakt
+                 = SonstigeDatentypen.Nichtangriffspakt
                then
                   null;
                   

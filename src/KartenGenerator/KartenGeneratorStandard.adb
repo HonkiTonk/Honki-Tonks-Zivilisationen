@@ -48,7 +48,7 @@ package body KartenGeneratorStandard is
       case
         Karten.Kartenart
       is
-         when GlobaleDatentypen.Nur_Land =>
+         when KartenDatentypen.Nur_Land =>
             GenerierungNurLand;
             return;
             
@@ -95,8 +95,8 @@ package body KartenGeneratorStandard is
 
 
    procedure GenerierungKartenart
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
 
       case
@@ -133,8 +133,8 @@ package body KartenGeneratorStandard is
    
    
    procedure LandFeldMasseEisschild
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
@@ -162,8 +162,8 @@ package body KartenGeneratorStandard is
    
    
    procedure LandFeldMasseNormal
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
@@ -192,8 +192,8 @@ package body KartenGeneratorStandard is
    
    -- Alle Größen- und Abstandsangaben sind Radien.
    procedure GenerierungLandmasse
-     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       LandmasseGenerieren (YPositionLandmasseExtern => YPositionLandmasseExtern,
@@ -206,8 +206,8 @@ package body KartenGeneratorStandard is
    
    
    procedure LandmasseGenerieren
-     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       YAchseLandflächeErzeugenSchleife:
@@ -238,8 +238,8 @@ package body KartenGeneratorStandard is
    
    
    procedure AbstandGenerieren
-     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       YAchseAbstandFlächenSchleife:
@@ -272,8 +272,8 @@ package body KartenGeneratorStandard is
    
    
    procedure GenerierungLandmasseFläche
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
    
       BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;

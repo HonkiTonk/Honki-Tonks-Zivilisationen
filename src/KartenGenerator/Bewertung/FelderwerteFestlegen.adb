@@ -44,13 +44,13 @@ package body FelderwerteFestlegen is
 
    procedure KartenfelderBewertenKleineSchleife
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
    is begin
       
       BewertungYÄnderungSchleife:
-      for BewertungYÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for BewertungYÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          BewertungXÄnderungSchleife:
-         for BewertungXÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for BewertungXÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
             KartenWertZwei (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                                                        ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert));
@@ -98,15 +98,15 @@ package body FelderwerteFestlegen is
    procedure BewertungSelbst
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Enum;
-      TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      RasseExtern : in SonstigeDatentypen.Rassen_Enum;
+      TeilerExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Spieler_KI
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Spieler_KI
            and
              (RasseExtern = GlobaleDatentypen.Leer
               or

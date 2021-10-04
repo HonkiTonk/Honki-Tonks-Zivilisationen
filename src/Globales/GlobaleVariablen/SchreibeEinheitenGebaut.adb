@@ -9,7 +9,7 @@ package body SchreibeEinheitenGebaut is
 
    procedure ID
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
+      IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID := IDExtern;
@@ -31,7 +31,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Heimatstadt
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      HeimatstadtExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert)
+      HeimatstadtExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Heimatstadt := HeimatstadtExtern;
@@ -42,8 +42,8 @@ package body SchreibeEinheitenGebaut is
    
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LebenspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      LebenspunkteExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       case
@@ -80,9 +80,9 @@ package body SchreibeEinheitenGebaut is
                
          when -1 =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte - LebenspunkteExtern < GlobaleDatentypen.MaximaleStädteMitNullWert'First
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte - LebenspunkteExtern < EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
@@ -99,8 +99,8 @@ package body SchreibeEinheitenGebaut is
    
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BewegungspunkteExtern : in GlobaleDatentypen.BewegungFloat;
-      RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      BewegungspunkteExtern : in EinheitStadtDatentypen.BewegungFloat;
+      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       case
@@ -142,7 +142,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      ErfahrungspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
+      ErfahrungspunkteExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       AddierenSetzenExtern : in Boolean)
    is begin
       
@@ -218,8 +218,8 @@ package body SchreibeEinheitenGebaut is
    
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      ZeitExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       case
@@ -227,9 +227,9 @@ package body SchreibeEinheitenGebaut is
       is
          when 1 =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit + ZeitExtern > GlobaleDatentypen.MaximaleStädteMitNullWert'Last
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit + ZeitExtern > EinheitStadtDatentypen.MaximaleStädteMitNullWert'Last
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := EinheitStadtDatentypen.MaximaleStädteMitNullWert'Last;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit :=
@@ -257,8 +257,8 @@ package body SchreibeEinheitenGebaut is
    
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      RechnenSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      ZeitExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       case
@@ -266,9 +266,9 @@ package body SchreibeEinheitenGebaut is
       is
          when 1 =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger + ZeitExtern > GlobaleDatentypen.MaximaleStädteMitNullWert'Last
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger + ZeitExtern > EinheitStadtDatentypen.MaximaleStädteMitNullWert'Last
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := EinheitStadtDatentypen.MaximaleStädteMitNullWert'Last;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger :=
@@ -320,7 +320,7 @@ package body SchreibeEinheitenGebaut is
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
+      PlanpositionExtern : in KartenDatentypen.Stadtfeld)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanpositionExtern) := PositionExtern;
@@ -331,8 +331,8 @@ package body SchreibeEinheitenGebaut is
       
    procedure Transportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LadungExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-      LadungspositionExtern : in GlobaleDatentypen.MaximaleStädte)
+      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+      LadungspositionExtern : in EinheitStadtDatentypen.MaximaleStädte)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungspositionExtern) := LadungExtern;
@@ -343,7 +343,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure WirdTransportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      TransporterExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
+      TransporterExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert := TransporterExtern;
@@ -354,8 +354,8 @@ package body SchreibeEinheitenGebaut is
       
    procedure Meldungen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MeldungExtern : in GlobaleDatentypen.Einheit_Meldung_Enum;
-      WelcheMeldungExtern : in GlobaleDatentypen.Einheit_Meldung_Art_Enum)
+      MeldungExtern : in EinheitStadtDatentypen.Einheit_Meldung_Enum;
+      WelcheMeldungExtern : in EinheitStadtDatentypen.Einheit_Meldung_Art_Enum)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Meldungen (WelcheMeldungExtern) := MeldungExtern;

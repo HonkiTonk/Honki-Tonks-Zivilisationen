@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords, KartenKonstanten;
-use GlobaleDatentypen;
+with KartenRecords, KartenKonstanten, KartenDatentypen;
+use KartenDatentypen;
 
 with Karten;
 use Karten;
@@ -23,7 +23,7 @@ package KartePositionPruefen is
                         then
               (KartenPositionBestimmen'Result.XAchse = KartenKonstanten.LeerXAchse
                and
-                 KartenPositionBestimmen'Result.EAchse = GlobaleDatentypen.EbeneVorhanden'First)
+                 KartenPositionBestimmen'Result.EAchse = KartenDatentypen.EbeneVorhanden'First)
            )
             and
               (if
@@ -31,7 +31,7 @@ package KartePositionPruefen is
                            then
                  (KartenPositionBestimmen'Result.YAchse = KartenKonstanten.LeerYAchse
                   and
-                    KartenPositionBestimmen'Result.EAchse = GlobaleDatentypen.EbeneVorhanden'First))
+                    KartenPositionBestimmen'Result.EAchse = KartenDatentypen.EbeneVorhanden'First))
             and
               KartenPositionBestimmen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and

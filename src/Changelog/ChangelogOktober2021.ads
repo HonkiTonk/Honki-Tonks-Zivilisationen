@@ -175,31 +175,31 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00. => 0.00. (06.10.2021):
+   -- Version 0.00.89 => 0.00. (06.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.89 => 0.00. (05.10.2021):
+   -- Version 0.00.8940 => 0.00.89 (05.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.89 => 0.00.89 (04.10.2021):
+   -- Version 0.00.8930 => 0.00.8940 (04.10.2021):
    
-   -- 
+   -- Bei diversen Enums pragma Ordered hinzugefügt, notwendig um einige Fehlermeldungen im Zusammenhang mit den Zufallsgeneratoren zu beheben.
+   -- Angefangen GlobaleDatentypen aufzuteilen.
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8930 => 0.00.89 (03.10.2021):
+   -- Version 0.00.8930 => 0.00.8930 (03.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    

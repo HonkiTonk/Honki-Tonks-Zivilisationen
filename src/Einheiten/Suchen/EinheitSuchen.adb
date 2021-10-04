@@ -8,9 +8,9 @@ package body EinheitSuchen is
 
    -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       EinheitSchleife:
@@ -45,7 +45,7 @@ package body EinheitSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -77,13 +77,13 @@ package body EinheitSuchen is
    -- Sucht ohne die Rasse die hineingegeben wird.
    -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitOhneSpezielleRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtRecords.RassePlatznummerRecord
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseExtern = RasseSchleifenwert

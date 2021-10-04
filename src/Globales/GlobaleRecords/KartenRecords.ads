@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
 
 package KartenRecords is
 
    type AchsenStadtfeldRecord is record
       
-      YAchse : GlobaleDatentypen.Stadtfeld;
-      XAchse : GlobaleDatentypen.Stadtfeld;
+      YAchse : KartenDatentypen.Stadtfeld;
+      XAchse : KartenDatentypen.Stadtfeld;
       
    end record;
    
@@ -15,9 +15,9 @@ package KartenRecords is
    
    type AchsenKartenfeldPositivRecord is tagged record
       
-      EAchse : GlobaleDatentypen.EbeneVorhanden;
-      YAchse : GlobaleDatentypen.KartenfeldPositivMitNullwert;
-      XAchse : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+      EAchse : KartenDatentypen.EbeneVorhanden;
+      YAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
+      XAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
       
    end record;
    
@@ -25,9 +25,9 @@ package KartenRecords is
 
    type AchsenKartenfeldRecord is record
       
-      EAchse : GlobaleDatentypen.Ebene;
-      YAchse : GlobaleDatentypen.Kartenfeld;
-      XAchse : GlobaleDatentypen.Kartenfeld;
+      EAchse : KartenDatentypen.Ebene;
+      YAchse : KartenDatentypen.Kartenfeld;
+      XAchse : KartenDatentypen.Kartenfeld;
       
    end record;
    
@@ -35,20 +35,20 @@ package KartenRecords is
    
    -- Die Bewertung rauswerfen und entsprechend die Einheiten beim Bauen einer Stadt alles Bewerten lassen?
    -- Felderbelegung stattdessen einbauen?
-   type FelderwertungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtproduktionStadt;
+   type FelderwertungArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.GesamtproduktionStadt;
    
    type KartenRecord is record
 
-      Grund : GlobaleDatentypen.Karten_Grund_Enum;
+      Grund : KartenDatentypen.Karten_Grund_Enum;
       Hügel : Boolean;
-      Sichtbar : GlobaleDatentypen.SichtbarkeitArray;
+      Sichtbar : KartenDatentypen.SichtbarkeitArray;
       
-      Fluss : GlobaleDatentypen.Karten_Grund_Enum;
-      VerbesserungWeg : GlobaleDatentypen.Karten_Verbesserung_Enum;
-      VerbesserungGebiet : GlobaleDatentypen.Karten_Verbesserung_Enum;
-      Ressource : GlobaleDatentypen.Karten_Grund_Enum;
+      Fluss : KartenDatentypen.Karten_Grund_Enum;
+      VerbesserungWeg : KartenDatentypen.Karten_Verbesserung_Enum;
+      VerbesserungGebiet : KartenDatentypen.Karten_Verbesserung_Enum;
+      Ressource : KartenDatentypen.Karten_Grund_Enum;
       
-      DurchStadtBelegterGrund : GlobaleDatentypen.BelegterGrund;
+      DurchStadtBelegterGrund : KartenDatentypen.BelegterGrund;
       Felderwertung : FelderwertungArray;
 
    end record;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords;
+with GlobaleDatentypen, KartenRecords, KartenDatentypen;
 
 package KartenGeneratorRessourcen is
 
@@ -8,68 +8,68 @@ package KartenGeneratorRessourcen is
 
 private
    
-   type WahrscheinlichkeitRessourceArray is array (GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum'Range, GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range) of Float;
+   type WahrscheinlichkeitRessourceArray is array (KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum'Range, KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range) of Float;
    WahrscheinlichkeitRessourcen : constant WahrscheinlichkeitRessourceArray := (
-                                                                                GlobaleDatentypen.Arm =>
+                                                                                KartenDatentypen.Arm =>
                                                                                   (
-                                                                                   GlobaleDatentypen.Fisch              => 0.02,
-                                                                                   GlobaleDatentypen.Wal                => 0.00,
-                                                                                   GlobaleDatentypen.Kohle              => 0.02,
-                                                                                   GlobaleDatentypen.Eisen              => 0.02,
-                                                                                   GlobaleDatentypen.Öl                 => 0.02,
-                                                                                   GlobaleDatentypen.Hochwertiger_Boden => 0.02,
-                                                                                   GlobaleDatentypen.Gold               => 0.00
+                                                                                   KartenDatentypen.Fisch              => 0.02,
+                                                                                   KartenDatentypen.Wal                => 0.00,
+                                                                                   KartenDatentypen.Kohle              => 0.02,
+                                                                                   KartenDatentypen.Eisen              => 0.02,
+                                                                                   KartenDatentypen.Öl                 => 0.02,
+                                                                                   KartenDatentypen.Hochwertiger_Boden => 0.02,
+                                                                                   KartenDatentypen.Gold               => 0.00
                                                                                   ),
                                                                                 
-                                                                                GlobaleDatentypen.Wenig =>
+                                                                                KartenDatentypen.Wenig =>
                                                                                   (
-                                                                                   GlobaleDatentypen.Fisch              => 0.04,
-                                                                                   GlobaleDatentypen.Wal                => 0.01,
-                                                                                   GlobaleDatentypen.Kohle              => 0.04,
-                                                                                   GlobaleDatentypen.Eisen              => 0.04,
-                                                                                   GlobaleDatentypen.Öl                 => 0.04,
-                                                                                   GlobaleDatentypen.Hochwertiger_Boden => 0.04,
-                                                                                   GlobaleDatentypen.Gold               => 0.01
+                                                                                   KartenDatentypen.Fisch              => 0.04,
+                                                                                   KartenDatentypen.Wal                => 0.01,
+                                                                                   KartenDatentypen.Kohle              => 0.04,
+                                                                                   KartenDatentypen.Eisen              => 0.04,
+                                                                                   KartenDatentypen.Öl                 => 0.04,
+                                                                                   KartenDatentypen.Hochwertiger_Boden => 0.04,
+                                                                                   KartenDatentypen.Gold               => 0.01
                                                                                   ),
                                                                                 
-                                                                                GlobaleDatentypen.Mittel =>
+                                                                                KartenDatentypen.Mittel =>
                                                                                   (
-                                                                                   GlobaleDatentypen.Fisch              => 0.08,
-                                                                                   GlobaleDatentypen.Wal                => 0.02,
-                                                                                   GlobaleDatentypen.Kohle              => 0.08,
-                                                                                   GlobaleDatentypen.Eisen              => 0.08,
-                                                                                   GlobaleDatentypen.Öl                 => 0.08,
-                                                                                   GlobaleDatentypen.Hochwertiger_Boden => 0.08,
-                                                                                   GlobaleDatentypen.Gold               => 0.02
+                                                                                   KartenDatentypen.Fisch              => 0.08,
+                                                                                   KartenDatentypen.Wal                => 0.02,
+                                                                                   KartenDatentypen.Kohle              => 0.08,
+                                                                                   KartenDatentypen.Eisen              => 0.08,
+                                                                                   KartenDatentypen.Öl                 => 0.08,
+                                                                                   KartenDatentypen.Hochwertiger_Boden => 0.08,
+                                                                                   KartenDatentypen.Gold               => 0.02
                                                                                   ),
                                                                                 
-                                                                                GlobaleDatentypen.Viel =>
+                                                                                KartenDatentypen.Viel =>
                                                                                   (
-                                                                                   GlobaleDatentypen.Fisch              => 0.16,
-                                                                                   GlobaleDatentypen.Wal                => 0.04,
-                                                                                   GlobaleDatentypen.Kohle              => 0.16,
-                                                                                   GlobaleDatentypen.Eisen              => 0.16,
-                                                                                   GlobaleDatentypen.Öl                 => 0.16,
-                                                                                   GlobaleDatentypen.Hochwertiger_Boden => 0.16,
-                                                                                   GlobaleDatentypen.Gold               => 0.04
+                                                                                   KartenDatentypen.Fisch              => 0.16,
+                                                                                   KartenDatentypen.Wal                => 0.04,
+                                                                                   KartenDatentypen.Kohle              => 0.16,
+                                                                                   KartenDatentypen.Eisen              => 0.16,
+                                                                                   KartenDatentypen.Öl                 => 0.16,
+                                                                                   KartenDatentypen.Hochwertiger_Boden => 0.16,
+                                                                                   KartenDatentypen.Gold               => 0.04
                                                                                   ),
                                                                                 
-                                                                                GlobaleDatentypen.Überfluss =>
+                                                                                KartenDatentypen.Überfluss =>
                                                                                   (
-                                                                                   GlobaleDatentypen.Fisch              => 0.32,
-                                                                                   GlobaleDatentypen.Wal                => 0.08,
-                                                                                   GlobaleDatentypen.Kohle              => 0.32,
-                                                                                   GlobaleDatentypen.Eisen              => 0.32,
-                                                                                   GlobaleDatentypen.Öl                 => 0.32,
-                                                                                   GlobaleDatentypen.Hochwertiger_Boden => 0.32,
-                                                                                   GlobaleDatentypen.Gold               => 0.08
+                                                                                   KartenDatentypen.Fisch              => 0.32,
+                                                                                   KartenDatentypen.Wal                => 0.08,
+                                                                                   KartenDatentypen.Kohle              => 0.32,
+                                                                                   KartenDatentypen.Eisen              => 0.32,
+                                                                                   KartenDatentypen.Öl                 => 0.32,
+                                                                                   KartenDatentypen.Hochwertiger_Boden => 0.32,
+                                                                                   KartenDatentypen.Gold               => 0.08
                                                                                   )
                                                                                );
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure RessourcenGenerierung
-     (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
+     (EbeneExtern : in KartenDatentypen.EbeneVorhanden);
    
    procedure RessourcenWasser
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord);

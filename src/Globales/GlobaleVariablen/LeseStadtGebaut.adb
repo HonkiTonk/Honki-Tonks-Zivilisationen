@@ -8,7 +8,7 @@ package body LeseStadtGebaut is
 
    function ID
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID;
@@ -42,7 +42,7 @@ package body LeseStadtGebaut is
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinwohnerArbeiterExtern : in Boolean)
-      return GlobaleDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
       case
@@ -79,7 +79,7 @@ package body LeseStadtGebaut is
       
    function Nahrungsmittel
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -99,7 +99,7 @@ package body LeseStadtGebaut is
    
    function Nahrungsproduktion
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion;
@@ -110,7 +110,7 @@ package body LeseStadtGebaut is
    
    function Ressourcen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.KostenLager
+      return EinheitStadtDatentypen.KostenLager
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen;
@@ -121,7 +121,7 @@ package body LeseStadtGebaut is
    
    function Produktionrate
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate;
@@ -132,7 +132,7 @@ package body LeseStadtGebaut is
    
    function Geldgewinnung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung;
@@ -143,8 +143,8 @@ package body LeseStadtGebaut is
    
    function PermanenteKostenPosten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      WelcherPostenExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtePermanenteKosten
+      WelcherPostenExtern : in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return EinheitStadtDatentypen.GesamtePermanenteKosten
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern);
@@ -155,7 +155,7 @@ package body LeseStadtGebaut is
       
    function Forschungsrate
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -197,7 +197,7 @@ package body LeseStadtGebaut is
    
    function Bauzeit
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.KostenLager
+      return EinheitStadtDatentypen.KostenLager
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit;
@@ -208,7 +208,7 @@ package body LeseStadtGebaut is
    
    function Korruption
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption;
@@ -219,7 +219,7 @@ package body LeseStadtGebaut is
    
    function GebäudeVorhanden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
+      WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
    is begin
       
@@ -242,7 +242,7 @@ package body LeseStadtGebaut is
    
    function UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      YPositionExtern, XPositionExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
    is begin
       
@@ -254,7 +254,7 @@ package body LeseStadtGebaut is
    
    function UmgebungGröße
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
+      return KartenDatentypen.LoopRangeMinusDreiZuDrei
    is begin
       
       if
@@ -274,8 +274,8 @@ package body LeseStadtGebaut is
       
    function Meldungen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      WelcheMeldungExtern : in GlobaleDatentypen.Stadt_Meldung_Art_Enum)
-      return GlobaleDatentypen.Stadt_Meldung_Enum
+      WelcheMeldungExtern : in EinheitStadtDatentypen.Stadt_Meldung_Art_Enum)
+      return EinheitStadtDatentypen.Stadt_Meldung_Enum
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Meldungen (WelcheMeldungExtern);

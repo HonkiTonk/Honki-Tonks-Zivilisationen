@@ -24,7 +24,7 @@ package Sichtbarkeit is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure SichtbarkeitSetzen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
@@ -36,12 +36,12 @@ package Sichtbarkeit is
 
 private
 
-   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   BereitsGetestet : KartenDatentypen.LoopRangeMinusZweiZuZwei;
+   Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
 
-   SichtweiteObjekt : GlobaleDatentypen.Sichtweite;
+   SichtweiteObjekt : KartenDatentypen.Sichtweite;
 
-   AktuellerGrund : GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
+   AktuellerGrund : KartenDatentypen.Karten_Grund_Alle_Felder_Enum;
 
    Wert : Integer;
 
@@ -54,7 +54,7 @@ private
 
    procedure SichtbarkeitsprüfungOhneBlockade
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteExtern : in GlobaleDatentypen.Sichtweite)
+      SichtweiteExtern : in KartenDatentypen.Sichtweite)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -66,33 +66,33 @@ private
 
    procedure QuadrantEins
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite);
 
    procedure QuadrantZwei
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite);
 
    procedure QuadrantDrei
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite);
 
    procedure QuadrantVier
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
-      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
+      SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite);
 
 
 
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.Sichtweite
+      return KartenDatentypen.Sichtweite
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -101,9 +101,9 @@ private
 
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-      XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-      SichtweiteExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      YÄnderungExtern : in KartenDatentypen.LoopRangeMinusZweiZuZwei;
+      XÄnderungExtern : in KartenDatentypen.LoopRangeMinusZweiZuZwei;
+      SichtweiteExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
      with
        Pre =>

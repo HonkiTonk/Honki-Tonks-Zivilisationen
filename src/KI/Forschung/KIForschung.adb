@@ -10,13 +10,13 @@ with ForschungAllgemein;
 package body KIForschung is
 
    procedure Forschung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
         LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
-         when GlobaleDatentypen.ForschungIDMitNullWert'First =>
+         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
             NeuesForschungsprojekt (RasseExtern => RasseExtern);
             
          when others =>
@@ -28,7 +28,7 @@ package body KIForschung is
    
    
    procedure NeuesForschungsprojekt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       ForschungSchleife:

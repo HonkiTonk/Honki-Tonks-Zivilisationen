@@ -76,7 +76,7 @@ package body BewegungBerechnen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when GlobaleDatentypen.Spieler_KI =>
+         when SonstigeDatentypen.Spieler_KI =>
             null;
             
          when others =>
@@ -101,7 +101,7 @@ package body BewegungBerechnen is
       
       -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedeckt wurde und stellt entsprechend Kontakt her.
       KontaktSchleife:
-      for FremdeSichtbarkeitSchleifenwert in GlobaleDatentypen.RassenImSpielArray'Range loop
+      for FremdeSichtbarkeitSchleifenwert in SonstigeDatentypen.RassenImSpielArray'Range loop
          
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
@@ -131,7 +131,7 @@ package body BewegungBerechnen is
    function AbzugDurchBewegung
      (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-         return GlobaleDatentypen.BewegungFloat
+         return EinheitStadtDatentypen.BewegungFloat
    is begin
       
       Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -140,7 +140,7 @@ package body BewegungBerechnen is
       case
         LeseKarten.Grund (PositionExtern => NeuePositionExtern)
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
+         when GlobaleDatentypen.Eis | KartenDatentypen.Gebirge | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
             if
               LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug
             then

@@ -13,7 +13,7 @@ package body EinheitenTransporter is
 
    function EinheitTransporterAuswählen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
       Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText), 0));
@@ -54,7 +54,7 @@ package body EinheitenTransporter is
    
    
    function EinheitAuswählen
-     return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+     return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       AktuelleAuswahl := 1;
@@ -66,7 +66,7 @@ package body EinheitenTransporter is
 
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
                                                TextZeileExtern => 27);
-         Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => GlobaleDatentypen.KartenverbesserungEinheitenID (AktuelleAuswahl));
+         Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => EinheitStadtDatentypen.MinimimMaximumID (AktuelleAuswahl));
                   
          case
            Eingabe.Tastenwert
@@ -90,7 +90,7 @@ package body EinheitenTransporter is
                end if;
                               
             when GlobaleDatentypen.Auswählen =>
-               return GlobaleDatentypen.MaximaleEinheitenMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
+               return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
             when GlobaleDatentypen.Menü_Zurück =>
                return 0;

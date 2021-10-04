@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package VerbesserungFertiggestellt is
 
@@ -15,7 +15,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
    procedure VerbesserungAngelegt
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

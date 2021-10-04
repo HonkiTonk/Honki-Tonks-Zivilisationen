@@ -12,7 +12,7 @@ package KIVorhandeneAufgaben is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function SichVerbessern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -21,7 +21,7 @@ package KIVorhandeneAufgaben is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -30,7 +30,7 @@ package KIVorhandeneAufgaben is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function Fliehen
      return GlobaleDatentypen.ProduktionSonstiges;
@@ -42,7 +42,7 @@ package KIVorhandeneAufgaben is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -51,7 +51,7 @@ package KIVorhandeneAufgaben is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -60,7 +60,7 @@ package KIVorhandeneAufgaben is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    function StadtUmgebungZerstören
      return GlobaleDatentypen.ProduktionSonstiges;
@@ -80,13 +80,13 @@ package KIVorhandeneAufgaben is
    
 private
    
-   NotwendigeTechnologie : GlobaleDatentypen.ForschungIDMitNullWert;
+   NotwendigeTechnologie : EinheitStadtDatentypen.ForschungIDMitNullWert;
    
-   EinheitID : GlobaleDatentypen.EinheitenID;
+   EinheitID : EinheitStadtDatentypen.EinheitenID;
    
-   VorhandeneStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   VorhandeneStädte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    
    GewählteAufgabe : GlobaleDatentypen.ProduktionSonstiges;
 

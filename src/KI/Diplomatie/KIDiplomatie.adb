@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 package body KIDiplomatie is
    
    procedure Diplomatie
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -13,7 +13,7 @@ package body KIDiplomatie is
    
 
    procedure DiplomatieKIMensch
-     (RasseMenschExtern, RasseKIExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseMenschExtern, RasseKIExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -23,7 +23,7 @@ package body KIDiplomatie is
    
    
    procedure DiplomatieKIKI
-     (EigeneRasseExtern, FremdeRasseKIExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern, FremdeRasseKIExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;

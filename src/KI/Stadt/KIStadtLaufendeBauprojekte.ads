@@ -8,27 +8,27 @@ package KIStadtLaufendeBauprojekte is
    function StadtLaufendeBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BauprojektExtern : in Natural)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI
           and
             BauprojektExtern <= 99_999);
    
    function GleicheEinheitArtBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitArtExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+         (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
 private
    
-   GleichesBauprojekt : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   GleichesBauprojekt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
 
 end KIStadtLaufendeBauprojekte;

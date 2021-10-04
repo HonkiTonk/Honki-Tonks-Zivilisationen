@@ -59,7 +59,7 @@ package body SiegBedingungen is
       VorhandeneRassen := 0;
       
       RassenSchleife:
-      for RassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
@@ -116,7 +116,7 @@ package body SiegBedingungen is
    is begin
       
       RassenGeldSchleife:
-      for RassenGeldSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenGeldSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = GlobaleDatentypen.Leer

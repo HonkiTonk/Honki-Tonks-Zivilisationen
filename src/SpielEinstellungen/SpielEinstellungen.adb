@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Calendar;
 use Ada.Wide_Wide_Text_IO, Ada.Calendar;
 
-with GlobaleVariablen, GlobaleDatentypen, SystemKonstanten;
+with GlobaleVariablen, GlobaleDatentypen, SystemKonstanten, SonstigeDatentypen;
 
 with ImSpiel, KartenGenerator, Ladezeiten, SpielEinstellungenKarten, SpielEinstellungenRasseSpieler, SpielEinstellungenSonstiges;
 
@@ -74,15 +74,15 @@ package body SpielEinstellungen is
       RassenVorhanden := False;
       
       SicherheitsSchleife:
-      for RassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
-            when GlobaleDatentypen.Spieler_Mensch | GlobaleDatentypen.Spieler_KI =>
+            when SonstigeDatentypen.Spieler_Mensch | SonstigeDatentypen.Spieler_KI =>
                RassenVorhanden := True;
                exit SicherheitsSchleife;
          end case;

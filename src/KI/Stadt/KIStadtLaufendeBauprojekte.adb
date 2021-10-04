@@ -9,7 +9,7 @@ package body KIStadtLaufendeBauprojekte is
    function StadtLaufendeBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BauprojektExtern : in Natural)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       GleichesBauprojekt := 0;
@@ -44,7 +44,7 @@ package body KIStadtLaufendeBauprojekte is
    function GleicheEinheitArtBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       EinheitArtExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       GleichesBauprojekt := 0;

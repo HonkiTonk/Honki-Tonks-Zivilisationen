@@ -9,7 +9,7 @@ package body VerbesserungFestung is
 
    function VerbesserungFestung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -24,7 +24,7 @@ package body VerbesserungFestung is
       in
         GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch
       then
          case
            EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)
@@ -43,7 +43,7 @@ package body VerbesserungFestung is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Hügel | GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel | KartenDatentypen.Wald | KartenDatentypen.Dschungel
             | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => GlobaleDatentypen.Festung_Bauen);
@@ -51,7 +51,7 @@ package body VerbesserungFestung is
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
-         when GlobaleDatentypen.Gebirge =>
+         when KartenDatentypen.Gebirge =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => GlobaleDatentypen.Festung_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

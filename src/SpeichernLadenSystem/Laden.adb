@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten, SonstigeDatentypen, KartenDatentypen;
 use GlobaleDatentypen;
 
 with Karten, Ladezeiten, Informationen, Auswahl, SpeichernLadenAllgemein, Karte;
@@ -86,8 +86,8 @@ package body Laden is
       Natural'Read (Stream (File => DateiLadenNeu),
                     GlobaleVariablen.Rundengrenze);
       
-      GlobaleDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
-                                          GlobaleVariablen.RasseAmZugNachLaden);
+      SonstigeDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
+                                           GlobaleVariablen.RasseAmZugNachLaden);
       
       GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
                                                                 GlobaleVariablen.Schwierigkeitsgrad);
@@ -105,10 +105,10 @@ package body Laden is
    procedure KarteLaden
    is begin
       
-      GlobaleDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
-                                                        Karten.Kartenform);
-      GlobaleDatentypen.Kartengröße_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
-                                                           Karten.Kartengröße);
+      KartenDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
+                                                       Karten.Kartenform);
+      KartenDatentypen.Kartengröße_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
+                                                          Karten.Kartengröße);
       
       Positive'Read (Stream (File => DateiLadenNeu),
                      Karte.SichtweiteFestlegen);
@@ -118,9 +118,9 @@ package body Laden is
       case
         Karten.Kartengröße
       is
-         when GlobaleDatentypen.Karte_Nutzer =>
+         when KartenDatentypen.Karte_Nutzer =>
             Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
-                                              Karten.Kartengrößen (GlobaleDatentypen.Karte_Nutzer));
+                                              Karten.Kartengrößen (KartenDatentypen.Karte_Nutzer));
             
          when others =>
             null;
@@ -147,11 +147,11 @@ package body Laden is
    procedure RassenGrenzenLaden
    is begin
       
-      GlobaleDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
-                                                 GlobaleVariablen.RassenImSpiel);
+      SonstigeDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
+                                                  GlobaleVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
-      for GrenzenRassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for GrenzenRassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          WichtigeRecords.GrenzenRecord'Read (Stream (File => DateiLadenNeu),
                                              GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
@@ -171,7 +171,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>
@@ -199,7 +199,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>
@@ -227,7 +227,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>
@@ -250,7 +250,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
 
             when others =>
@@ -260,7 +260,7 @@ package body Laden is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when GlobaleDatentypen.Leer =>
+                     when SonstigeDatentypen.Leer =>
                         null;
                      
                      when others =>
@@ -286,7 +286,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>

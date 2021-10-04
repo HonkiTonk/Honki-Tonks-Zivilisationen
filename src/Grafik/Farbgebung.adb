@@ -8,13 +8,13 @@ with LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, LeseKartenDatenbank;
 package body Farbgebung is
 
    procedure Farben
-     (EinheitIDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert;
-      VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
-      RessourceExtern : in GlobaleDatentypen.Karten_Grund_Enum;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+     (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
+      VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+      RessourceExtern : in KartenDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in GlobaleDatentypen.Rassen_Enum;
-      RasseExtern : in GlobaleDatentypen.Rassen_Enum)
+      EigeneRasseExtern : in SonstigeDatentypen.Rassen_Enum;
+      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
    is begin
             
       FarbenFeld (GrundExtern => GrundExtern);
@@ -35,7 +35,7 @@ package body Farbgebung is
    
    
    procedure FarbenFeld
-     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
    is begin
       
       case
@@ -50,28 +50,28 @@ package body Farbgebung is
          when GlobaleDatentypen.Flachland =>
             Put (Item => CSI & "48;2;100;160;60m");
             
-         when GlobaleDatentypen.Tundra =>
+         when KartenDatentypen.Tundra =>
             Put (Item => CSI & "48;2;205;200;177m");
             
-         when GlobaleDatentypen.Wüste | GlobaleDatentypen.Sand =>
+         when KartenDatentypen.Wüste | GlobaleDatentypen.Sand =>
             Put (Item => CSI & "48;2;238;238;0m");
             
-         when GlobaleDatentypen.Hügel =>
+         when KartenDatentypen.Hügel =>
             Put (Item => CSI & "48;2;205;133;63m");
             
-         when GlobaleDatentypen.Gebirge =>
+         when KartenDatentypen.Gebirge =>
             Put (Item => CSI & "48;2;120;120;120m");
             
-         when GlobaleDatentypen.Wald =>
+         when KartenDatentypen.Wald =>
             Put (Item => CSI & "48;2;30;130;30m");
             
-         when GlobaleDatentypen.Dschungel =>
+         when KartenDatentypen.Dschungel =>
             Put (Item => CSI & "48;2;0;70;0m");
             
          when GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Unterwasser_Küstengewässer =>
             Put (Item => CSI & "48;2;135;206;250m");
             
-         when GlobaleDatentypen.Sumpf =>
+         when KartenDatentypen.Sumpf =>
             Put (Item => CSI & "48;2;0;40;0m");
 
          when GlobaleDatentypen.Erde =>
@@ -95,10 +95,10 @@ package body Farbgebung is
          when GlobaleDatentypen.Planetenkern =>
             Put (Item => CSI & "48;2;205;0;0m");
             
-         when GlobaleDatentypen.Unterwasser_Wald =>
+         when KartenDatentypen.Unterwasser_Wald =>
             Put (Item => CSI & "48;2;127;255;212m");
             
-         when GlobaleDatentypen.Korallen =>
+         when KartenDatentypen.Korallen =>
             Put (Item => CSI & "48;2;255;114;86m");
             
          when others =>
@@ -110,14 +110,14 @@ package body Farbgebung is
    
    
    procedure FarbenRessourcenFluss
-     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
-      RessourceExtern : in GlobaleDatentypen.Karten_Grund_Enum)
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      RessourceExtern : in KartenDatentypen.Karten_Grund_Enum)
    is begin
       
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Sand | GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Wolken | GlobaleDatentypen.Unterwasser_Eis
+         when GlobaleDatentypen.Eis | KartenDatentypen.Tundra | KartenDatentypen.Wüste | GlobaleDatentypen.Sand | GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Wolken | GlobaleDatentypen.Unterwasser_Eis
             | GlobaleDatentypen.Unterwasser_Küstengewässer =>
             if
               RessourceExtern in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
@@ -158,13 +158,13 @@ package body Farbgebung is
    
    
    procedure FarbenCursorEinheitVerbesserung
-     (EinheitIDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert;
-      VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
-      RessourceExtern : in GlobaleDatentypen.Karten_Grund_Enum;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+     (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
+      VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+      RessourceExtern : in KartenDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in GlobaleDatentypen.Rassen_Enum;
-      RasseExtern : in GlobaleDatentypen.Rassen_Enum)
+      EigeneRasseExtern : in SonstigeDatentypen.Rassen_Enum;
+      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
    is begin
       
       if
@@ -173,7 +173,7 @@ package body Farbgebung is
          Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (EigeneRasseExtern).CursorGrafik & CSI & "0m");
          
       elsif
-        EinheitIDExtern > GlobaleDatentypen.EinheitenIDMitNullWert'First
+        EinheitIDExtern > EinheitStadtDatentypen.EinheitenIDMitNullWert'First
       then
          Put (Item => LeseEinheitenDatenbank.EinheitenGrafik (RasseExtern => EigeneRasseExtern,
                                                               IDExtern    => EinheitIDExtern) & CSI & "0m");

@@ -32,7 +32,7 @@ package body StadtProduktion is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
                
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)

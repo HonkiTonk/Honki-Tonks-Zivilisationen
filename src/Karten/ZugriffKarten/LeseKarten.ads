@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords, KartenDatentypen, SonstigeDatentypen;
+use GlobaleDatentypen, SonstigeDatentypen;
 
 with Karten;
 
@@ -9,14 +9,14 @@ package LeseKarten is
 
    function Grund
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
+      return KartenDatentypen.Karten_Grund_Enum
      with
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
-           (Grund'Result not in GlobaleDatentypen.Karten_Fluss_Enum'Range);
+           (Grund'Result not in KartenDatentypen.Karten_Fluss_Enum'Range);
    
    function Hügel
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
@@ -29,11 +29,11 @@ package LeseKarten is
    
    function Sichtbar
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -41,7 +41,7 @@ package LeseKarten is
 
    function Fluss
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
+      return KartenDatentypen.Karten_Grund_Enum
      with
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -50,7 +50,7 @@ package LeseKarten is
 
    function VerbesserungWeg
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Enum
+      return KartenDatentypen.Karten_Verbesserung_Enum
      with
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -59,7 +59,7 @@ package LeseKarten is
 
    function VerbesserungGebiet
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Enum
+      return KartenDatentypen.Karten_Verbesserung_Enum
      with
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -68,7 +68,7 @@ package LeseKarten is
 
    function Ressource
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
+      return KartenDatentypen.Karten_Grund_Enum
      with
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -77,8 +77,8 @@ package LeseKarten is
 
    function Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -86,12 +86,12 @@ package LeseKarten is
             PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function BelegterGrund
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -114,7 +114,7 @@ package LeseKarten is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and

@@ -1,31 +1,31 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords;
-use GlobaleDatentypen, KartenRecords;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+use GlobaleDatentypen, KartenRecords, SonstigeDatentypen;
 
 with Karten;
 
 package TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             TransporterExtern.Platznummer > 0);
 
@@ -34,7 +34,7 @@ package TransporterSuchen is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             EinheitRasseNummerExtern.Platznummer > 0);
 

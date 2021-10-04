@@ -7,7 +7,7 @@ with LeseEinheitenGebaut, LeseStadtGebaut;
 package body NaechstesObjekt is
 
    procedure NächsteEinheit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BewegungspunkteExtern : in Bewegungspunkte)
    is begin
       
@@ -60,7 +60,7 @@ package body NaechstesObjekt is
    
    
    procedure NächsteStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       SchleifenBegrenzung := 0;
@@ -105,7 +105,7 @@ package body NaechstesObjekt is
    
    
    procedure NächsteStadtMeldung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       SchleifenBegrenzung := 0;
@@ -163,7 +163,7 @@ package body NaechstesObjekt is
    
    
    procedure NächsteEinheitMeldung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       SchleifenBegrenzung := 0;

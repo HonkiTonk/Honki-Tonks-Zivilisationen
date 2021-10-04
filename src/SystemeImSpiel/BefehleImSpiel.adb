@@ -11,7 +11,7 @@ with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Au
 package body BefehleImSpiel is
 
    function Befehle
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
@@ -108,7 +108,7 @@ package body BefehleImSpiel is
    
    
    procedure AuswahlEinheitStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -117,9 +117,9 @@ package body BefehleImSpiel is
                                                                  KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
 
       if
-        EinheitNummer /= GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
+        EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
         and
-          StadtNummer /= GlobaleDatentypen.MaximaleStädteMitNullWert'First
+          StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
                            AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => 15),
@@ -127,7 +127,7 @@ package body BefehleImSpiel is
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
-        StadtNummer /= GlobaleDatentypen.MaximaleStädteMitNullWert'First
+        StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
                            AuswahlExtern       => SystemKonstanten.JaKonstante,
@@ -135,7 +135,7 @@ package body BefehleImSpiel is
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
-        EinheitNummer /= GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
+        EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
       then
          AuswahlEinheitTransporter (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                
@@ -179,7 +179,7 @@ package body BefehleImSpiel is
          when others =>
             EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                               AuswahlExtern       => SystemKonstanten.NeinKonstante,
-                              StadtNummerExtern   => GlobaleDatentypen.MaximaleStädteMitNullWert'First,
+                              StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
                               EinheitNummerExtern => EinheitTransportNummer);
       end case;
       
@@ -188,10 +188,10 @@ package body BefehleImSpiel is
 
 
    procedure EinheitOderStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       AuswahlExtern : in Integer;
-      StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
+      StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
       case
@@ -245,7 +245,7 @@ package body BefehleImSpiel is
    
    
    procedure BaueStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -274,13 +274,13 @@ package body BefehleImSpiel is
    
    
    procedure Technologie
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
         LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
-         when GlobaleDatentypen.ForschungIDMitNullWert'First =>
+         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
             return;
             
@@ -303,7 +303,7 @@ package body BefehleImSpiel is
    
    
    procedure EinheitBefehle
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
    is begin
                      
@@ -346,7 +346,7 @@ package body BefehleImSpiel is
    
    
    procedure StadtUmbenennen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -367,7 +367,7 @@ package body BefehleImSpiel is
    
    
    procedure StadtAbreißen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,

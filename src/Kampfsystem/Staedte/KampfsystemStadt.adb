@@ -134,8 +134,8 @@ package body KampfsystemStadt is
    
    
    procedure SchadenStadtBerechnen
-     (AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
-      VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
+     (AngriffExtern : in EinheitStadtDatentypen.ProduktionFeld;
+      VerteidigungExtern : in EinheitStadtDatentypen.ProduktionFeld)
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?
@@ -184,7 +184,7 @@ package body KampfsystemStadt is
       end loop AngerichteterSchadenSchleife;
       
       if
-        GesundheitStadt - AngerichteterSchaden < GlobaleDatentypen.ProduktionFeld'First
+        GesundheitStadt - AngerichteterSchaden < EinheitStadtDatentypen.ProduktionFeld'First
       then
          GesundheitStadt := 0;
          

@@ -1,17 +1,17 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with EinheitStadtDatentypen, GlobaleDatentypen;
 
 package EinheitenBeschreibungen is
 
    procedure BeschreibungKurz
-     (IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert);
+     (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert);
    
    procedure Beschäftigung
      (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum);
    
    procedure BeschreibungLang
-     (IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert);
+     (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert);
    
    
    

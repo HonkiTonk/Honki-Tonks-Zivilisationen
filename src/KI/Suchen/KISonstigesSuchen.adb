@@ -26,7 +26,7 @@ package body KISonstigesSuchen is
                              EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          exit FeldSuchenSchleife when Ziel.XAchse /= KartenKonstanten.LeerXAchse;
-         exit FeldSuchenSchleife when Bereich = GlobaleDatentypen.Sichtweite'Last;
+         exit FeldSuchenSchleife when Bereich = KartenDatentypen.Sichtweite'Last;
          
          Bereich := Bereich + 1;
          BereichGeprüft := Bereich - 1;

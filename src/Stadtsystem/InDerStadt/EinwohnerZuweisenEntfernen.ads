@@ -11,13 +11,13 @@ package EinwohnerZuweisenEntfernen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch);
    
 private
    
-   NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
-   RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
-   RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;
+   NutzbarerBereich : KartenDatentypen.Kartenfeld;
+   RelativeCursorPositionY : KartenDatentypen.Kartenfeld;
+   RelativeCursorPositionX : KartenDatentypen.Kartenfeld;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    

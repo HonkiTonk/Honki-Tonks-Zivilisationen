@@ -8,7 +8,7 @@ package KampfwerteEinheitErmitteln is
    function AktuelleVerteidigungEinheit
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngreiferExtern : in Boolean)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
@@ -18,7 +18,7 @@ package KampfwerteEinheitErmitteln is
    function AktuellerAngriffEinheit
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngreiferExtern : in Boolean)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
@@ -32,25 +32,25 @@ private
    -- Drin lassen? Anders gestalten?
    AngriffBonus : constant Float := 1.25;
    
-   VerteidigungWert : GlobaleDatentypen.GesamtproduktionStadt;
-   AngriffWert : GlobaleDatentypen.GesamtproduktionStadt;
-   Bonus : GlobaleDatentypen.GesamtproduktionStadt;
+   VerteidigungWert : EinheitStadtDatentypen.GesamtproduktionStadt;
+   AngriffWert : EinheitStadtDatentypen.GesamtproduktionStadt;
+   Bonus : EinheitStadtDatentypen.GesamtproduktionStadt;
    
    VerteidigungWertFloat : Float;
    AngriffWertFloat : Float;
    
    function VerteidigungsbonusVerteidiger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt;
+      return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function VerteidigungsbonusAngreifer
-     return GlobaleDatentypen.GesamtproduktionStadt;
+     return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function AngriffsbonusAngreifer
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt;
+      return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function AngriffsbonusVerteidiger
-     return GlobaleDatentypen.GesamtproduktionStadt;
+     return EinheitStadtDatentypen.GesamtproduktionStadt;
 
 end KampfwerteEinheitErmitteln;

@@ -84,7 +84,7 @@ package body InDerStadtBauen is
    is begin
       
       GebäudeSchleife:
-      for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz),
@@ -122,7 +122,7 @@ package body InDerStadtBauen is
    is begin
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
+      for EinheitSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),

@@ -32,7 +32,7 @@ package body KartenGeneratorRessourcen is
    
    
    procedure RessourcenGenerierung
-     (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden)
+     (EbeneExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
 
       YAchseSchleife:
@@ -44,7 +44,7 @@ package body KartenGeneratorRessourcen is
             if
               (LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range
                or
-                 LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Unterwasser_Generator_Enum'Range)
+                 LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenDatentypen.Karten_Unterwasser_Generator_Enum'Range)
               and
                 Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
             then
@@ -123,9 +123,9 @@ package body KartenGeneratorRessourcen is
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));

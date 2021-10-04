@@ -6,8 +6,8 @@ use GlobaleDatentypen;
 package KennenLernen is
 
    procedure Erstkontakt
-     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
@@ -19,25 +19,25 @@ package KennenLernen is
 private
 
    procedure ErstkontaktMenschMensch
-     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SonstigeDatentypen.Spieler_Mensch);
 
    procedure ErstkontaktMenschKI
-     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
+            (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch
              or
-               GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch));
+               GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SonstigeDatentypen.Spieler_Mensch));
 
 end KennenLernen;

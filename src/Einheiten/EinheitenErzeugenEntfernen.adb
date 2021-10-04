@@ -9,8 +9,8 @@ package body EinheitenErzeugenEntfernen is
 
    procedure EinheitErzeugen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
+      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten;
+      IDExtern : in EinheitStadtDatentypen.EinheitenID;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       

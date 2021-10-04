@@ -3,8 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleDatentypen, GlobaleVariablen, SystemKonstanten;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, SystemKonstanten, SonstigeDatentypen;
+use GlobaleDatentypen, SonstigeDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -37,7 +37,7 @@ package body ZwischenDenRunden is
       EinheitenModifizieren.HeilungBewegungspunkteNeueRundeErmitteln;
       VerbesserungFertiggestellt.VerbesserungFertiggestellt;
       Wachstum.StadtWachstum;
-      StadtProduktion.StadtProduktion ((GlobaleDatentypen.Leer, 0));
+      StadtProduktion.StadtProduktion ((SonstigeDatentypen.Leer, 0));
       GeldForschungMengeSetzen;
       ForschungAllgemein.ForschungFortschritt;
       
@@ -111,10 +111,10 @@ package body ZwischenDenRunden is
       KIVorhanden := False;
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Spieler_KI
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Spieler_KI
          then
             KIVorhanden := True;
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
@@ -134,18 +134,18 @@ package body ZwischenDenRunden is
    is begin
       
       RassenEinsSchleife:
-      for RasseEinsSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseEinsSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          RassenZweiSchleife:
-         for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         for RasseZweiSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
             
             if
-              GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = GlobaleDatentypen.Unbekannt
+              GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
               or
                 RasseEinsSchleifenwert = RasseZweiSchleifenwert
                 or
-                  GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = GlobaleDatentypen.Leer
+                  GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = SonstigeDatentypen.Leer
               or
-                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = GlobaleDatentypen.Leer
+                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = SonstigeDatentypen.Leer
             then
                null;
                   
@@ -169,12 +169,12 @@ package body ZwischenDenRunden is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
             
             when others =>
@@ -200,7 +200,7 @@ package body ZwischenDenRunden is
         KIVorhanden
       is
          when True =>
-            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Leer);
+            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => SonstigeDatentypen.Leer);
             
          when False =>
             null;

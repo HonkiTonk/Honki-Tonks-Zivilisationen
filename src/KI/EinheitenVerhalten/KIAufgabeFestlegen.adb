@@ -184,14 +184,14 @@ package body KIAufgabeFestlegen is
    
    
    function ZielErmitteln
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Rassen_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return SonstigeDatentypen.Rassen_Enum
    is begin
       
       Ziel := GlobaleDatentypen.Leer;
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
@@ -203,7 +203,7 @@ package body KIAufgabeFestlegen is
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = GlobaleDatentypen.Krieg
+           = SonstigeDatentypen.Krieg
          then
             -- Hier noch mehr Überprüfungen einbauen?
             Ziel := RasseSchleifenwert;
@@ -380,7 +380,7 @@ package body KIAufgabeFestlegen is
    
    function EinheitVerbessernPlatz
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       

@@ -7,9 +7,9 @@ with LeseEinheitenDatenbank, LeseEinheitenGebaut;
 package body TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       EinheitSchleife:
@@ -41,8 +41,8 @@ package body TransporterSuchen is
    
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
       TransporterSchleife:

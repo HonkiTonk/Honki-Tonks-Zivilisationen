@@ -1,14 +1,14 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package Wachstum is
    
    procedure StadtWachstum;
    
    procedure WachstumWichtiges
-     (RasseExtern : in GlobaleDatentypen.Rassen_Enum);
+     (RasseExtern : in SonstigeDatentypen.Rassen_Enum);
    
 private
    
@@ -20,7 +20,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
    procedure WachstumProduktion
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -28,13 +28,13 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
    procedure WachstumsratenBerechnen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    procedure EinwohnerÄnderung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

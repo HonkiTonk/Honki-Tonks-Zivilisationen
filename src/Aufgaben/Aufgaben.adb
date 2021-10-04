@@ -52,7 +52,7 @@ package body Aufgaben is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleDatentypen.Leer
         or
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI
       then
          return VerbesserungFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         BefehlExtern             => BefehlExtern,
@@ -149,7 +149,7 @@ package body Aufgaben is
                                                     GrundExtern              => Grund,
                                                     AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when GlobaleDatentypen.Mine_Bauen =>
+         when KartenDatentypen.Mine_Bauen =>
             return VerbesserungMine.VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                       GrundExtern              => Grund,
                                                       AnlegenTestenExtern      => AnlegenTestenExtern);
@@ -277,7 +277,7 @@ package body Aufgaben is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Spieler_Mensch
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Spieler_Mensch
       then
          EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -317,7 +317,7 @@ package body Aufgaben is
       end if;
       
       if
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Spieler_Mensch
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Spieler_Mensch
       then
          null;
          
@@ -385,7 +385,7 @@ package body Aufgaben is
       if
         LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                  IDExtern    => IDEinheit)
-        = GlobaleDatentypen.EinheitenIDMitNullWert'First
+        = EinheitStadtDatentypen.EinheitenIDMitNullWert'First
         or
           LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                     KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))

@@ -53,23 +53,23 @@ package body KIAufgabeUmsetzen is
       Grund := LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
          
       if
-        (Grund = GlobaleDatentypen.Hügel
+        (Grund = KartenDatentypen.Hügel
          or
-           Grund = GlobaleDatentypen.Gebirge
+           Grund = KartenDatentypen.Gebirge
          or
-           Grund = GlobaleDatentypen.Kohle
+           Grund = KartenDatentypen.Kohle
          or
-           Grund = GlobaleDatentypen.Eisen
+           Grund = KartenDatentypen.Eisen
          or
-           Grund = GlobaleDatentypen.Gold
+           Grund = KartenDatentypen.Gold
          or
            LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => GlobaleDatentypen.Mine_Bauen)
+                                       BefehlExtern             => KartenDatentypen.Mine_Bauen)
         = True
       then
-         Befehl := GlobaleDatentypen.Mine_Bauen;
+         Befehl := KartenDatentypen.Mine_Bauen;
          
       elsif
         Grund = GlobaleDatentypen.Eis

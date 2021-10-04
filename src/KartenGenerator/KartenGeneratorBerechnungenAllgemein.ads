@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords;
+with GlobaleDatentypen, KartenRecords, KartenDatentypen;
 use GlobaleDatentypen;
 
 package KartenGeneratorBerechnungenAllgemein is
@@ -10,8 +10,8 @@ package KartenGeneratorBerechnungenAllgemein is
 
    function GleicherGrundAnzahlBestimmen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
-      EbeneExtern : in GlobaleDatentypen.EbeneVorhanden)
+      GrundExtern : in KartenDatentypen.Karten_Grund_Alle_Felder_Enum;
+      EbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return AnzahlGleicherFelder;
    
 private

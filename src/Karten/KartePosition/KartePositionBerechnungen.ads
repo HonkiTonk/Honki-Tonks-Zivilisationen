@@ -6,31 +6,31 @@ use GlobaleDatentypen;
 package KartePositionBerechnungen is
 
    function PositionBestimmenEAchseFest
-     (EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
-      ÄnderungEAchseExtern : in GlobaleDatentypen.EbeneVorhanden)
-      return GlobaleDatentypen.Ebene;
+     (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
+      ÄnderungEAchseExtern : in KartenDatentypen.EbeneVorhanden)
+      return KartenDatentypen.Ebene;
    
    function PositionBestimmenYAchseFest
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in GlobaleDatentypen.Kartenfeld)
-      return GlobaleDatentypen.KartenfeldPositivMitNullwert;
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositivMitNullwert;
    
    function PositionBestimmenXAchseFest
-     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in GlobaleDatentypen.Kartenfeld)
-      return GlobaleDatentypen.KartenfeldPositivMitNullwert;
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositivMitNullwert;
 
    function PositionBestimmenXWechsel
-     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      ÄnderungXAchseExtern : in GlobaleDatentypen.Kartenfeld;
-      ArrayPositionExtern : in GlobaleDatentypen.EbeneVorhanden)
-      return GlobaleDatentypen.KartenfeldPositiv;
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden)
+      return KartenDatentypen.KartenfeldPositiv;
 
    function PositionBestimmenYWechsel
-     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      ÄnderungYAchseExtern : in GlobaleDatentypen.Kartenfeld;
-      ArrayPositionExtern : in GlobaleDatentypen.EbeneVorhanden)
-      return GlobaleDatentypen.KartenfeldPositiv;
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden)
+      return KartenDatentypen.KartenfeldPositiv;
    
    function PositionBestimmen_Y_X_Wechsel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -44,11 +44,11 @@ package KartePositionBerechnungen is
    
 private
    
-   type PositionFeldArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   type PositionFeldArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositivMitNullwert;
    PolYAchse : PositionFeldArray;
    PolXAchse : PositionFeldArray;
    
-   type ÜberhangArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of Integer;
+   type ÜberhangArray is array (KartenDatentypen.EbeneVorhanden'Range) of Integer;
    ÜberhangYAchse : ÜberhangArray;
    ÜberhangXAchse : ÜberhangArray;
 

@@ -10,14 +10,14 @@ with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
 package body EinheitVerschieben is
    
    procedure VonEigenemLandWerfen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
         GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
-         when GlobaleDatentypen.Nichtangriffspakt | GlobaleDatentypen.Neutral =>
+         when SonstigeDatentypen.Nichtangriffspakt | SonstigeDatentypen.Neutral =>
             EinheitNummer := 0;
             
          when others =>
@@ -46,7 +46,7 @@ package body EinheitVerschieben is
    
    procedure EinheitenErmitteln
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       YAchseSchleife:
@@ -93,11 +93,11 @@ package body EinheitVerschieben is
    
 
    procedure EinheitVerschieben
-     (RasseLandExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseLandExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      UmgebungPrüfen := GlobaleDatentypen.Sichtweite'First;
+      UmgebungPrüfen := KartenDatentypen.Sichtweite'First;
       BereitsGeprüft := UmgebungPrüfen - 1;
       
       BereichSchleife:
@@ -147,7 +147,7 @@ package body EinheitVerschieben is
          case
            UmgebungPrüfen
          is
-            when GlobaleDatentypen.Sichtweite'Last =>
+            when KartenDatentypen.Sichtweite'Last =>
                return;
                
             when others =>

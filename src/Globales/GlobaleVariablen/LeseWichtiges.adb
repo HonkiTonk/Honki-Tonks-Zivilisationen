@@ -5,7 +5,7 @@ with SonstigesKonstanten;
 package body LeseWichtiges is
 
    function Geldmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
 
@@ -16,8 +16,8 @@ package body LeseWichtiges is
 
 
    function GeldZugewinnProRunde
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.KostenLager
    is begin
 
       return GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde;
@@ -27,8 +27,8 @@ package body LeseWichtiges is
    
 
    function GesamteForschungsrate
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.KostenLager
    is begin
 
       if
@@ -47,8 +47,8 @@ package body LeseWichtiges is
    
    
    function Forschungsmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.KostenLager
    is begin
 
       if
@@ -67,8 +67,8 @@ package body LeseWichtiges is
    
    
    function VerbleibendeForschungszeit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.KostenLager
    is begin
 
       if
@@ -87,8 +87,8 @@ package body LeseWichtiges is
    
    
    function Forschungsprojekt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ForschungIDMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
 
       return GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt;
@@ -98,8 +98,8 @@ package body LeseWichtiges is
    
 
    function Erforscht
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      WelcheTechnologieExtern : in GlobaleDatentypen.ForschungID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      WelcheTechnologieExtern : in EinheitStadtDatentypen.ForschungID)
       return Boolean
    is begin
 
@@ -110,8 +110,8 @@ package body LeseWichtiges is
    
    
    function AnzahlStädte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte;
@@ -121,8 +121,8 @@ package body LeseWichtiges is
    
    
    function AnzahlEinheiten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
@@ -132,8 +132,8 @@ package body LeseWichtiges is
    
      
    function AnzahlArbeiter
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter;
@@ -143,8 +143,8 @@ package body LeseWichtiges is
    
      
    function AnzahlKämpfer
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer;
@@ -154,8 +154,8 @@ package body LeseWichtiges is
    
      
    function AnzahlSonstiges
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;

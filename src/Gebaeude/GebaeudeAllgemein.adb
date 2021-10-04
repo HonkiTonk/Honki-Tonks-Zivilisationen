@@ -10,13 +10,13 @@ with Anzeige, GebaeudeRichtigeUmgebung, StadtProduktion;
 package body GebaeudeAllgemein is
 
    procedure BeschreibungKurz
-     (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert)
+     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
    is begin
       
       case
         IDExtern
       is
-         when GlobaleDatentypen.GebäudeIDMitNullwert'First =>
+         when EinheitStadtDatentypen.GebäudeIDMitNullwert'First =>
             return;
             
          when others =>
@@ -29,13 +29,13 @@ package body GebaeudeAllgemein is
    
    
    procedure BeschreibungLang
-     (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert)
+     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
    is begin
       
       case
         IDExtern
       is
-         when GlobaleDatentypen.GebäudeIDMitNullwert'First =>
+         when EinheitStadtDatentypen.GebäudeIDMitNullwert'First =>
             null;
             
          when others =>
@@ -53,7 +53,7 @@ package body GebaeudeAllgemein is
 
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
    is begin
       
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -75,7 +75,7 @@ package body GebaeudeAllgemein is
    
    procedure GebäudeEntfernen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
+      WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID)
    is begin
       
       SchreibeWichtiges.Geldmenge (RasseExtern         => StadtRasseNummerExtern.Rasse,
@@ -96,9 +96,9 @@ package body GebaeudeAllgemein is
 
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID;
       -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
-      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      VorzeichenWechselExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       PermanenteKostenSchleife:
@@ -123,7 +123,7 @@ package body GebaeudeAllgemein is
    -- Hier vielleicht noch Prüfungen einbauen um zu testen ob das Gebäude für diese Rasse überhaupt existiert?
    function GebäudeAnforderungenErfüllt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
    is begin
       

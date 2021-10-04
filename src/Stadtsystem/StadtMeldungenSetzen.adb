@@ -8,7 +8,7 @@ package body StadtMeldungenSetzen is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -33,7 +33,7 @@ package body StadtMeldungenSetzen is
    
    procedure StadtMeldungSetzenEreignis
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EreignisExtern : in GlobaleDatentypen.Stadt_Meldungen_Verwendet_Enum)
+      EreignisExtern : in EinheitStadtDatentypen.Stadt_Meldungen_Verwendet_Enum)
    is begin
       
       case

@@ -5,12 +5,12 @@ with DiplomatischerZustand;
 package body KIKriegErmitteln is
 
    function IstImKrieg
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseSchleifenwert = RasseExtern
@@ -22,7 +22,7 @@ package body KIKriegErmitteln is
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = GlobaleDatentypen.Krieg
+           = SonstigeDatentypen.Krieg
          then
             return True;
                   
@@ -39,14 +39,14 @@ package body KIKriegErmitteln is
    
    
    function KriegAnfangen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Rassen_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return SonstigeDatentypen.Rassen_Enum
    is begin
       
       case
         RasseExtern
       is
-         when GlobaleDatentypen.Ekropa =>
+         when SonstigeDatentypen.Ekropa =>
             return GlobaleDatentypen.Leer;
             
          when others =>
@@ -57,7 +57,7 @@ package body KIKriegErmitteln is
       Bewertungen := (others => 0);
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseSchleifenwert = RasseExtern
@@ -80,8 +80,8 @@ package body KIKriegErmitteln is
    
    
    function StärkeVerhältnisErmitteln
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Rassen_Enum
+     (EigeneRasseExtern, FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return SonstigeDatentypen.Rassen_Enum
    is begin
       
       Bewertung := 0;

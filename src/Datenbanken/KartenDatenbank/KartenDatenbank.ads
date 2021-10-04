@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenKonstanten;
+with GlobaleDatentypen, KartenKonstanten, KartenDatentypen;
 use GlobaleDatentypen;
 
 with DatenbankRecords;
 
 package KartenDatenbank is
    
-   type KartenListeArray is array (GlobaleDatentypen.Karten_Grund_Enum'Range) of DatenbankRecords.KartenListeRecord;
+   type KartenListeArray is array (KartenDatentypen.Karten_Grund_Enum'Range) of DatenbankRecords.KartenListeRecord;
    KartenListe : KartenListeArray;
    
    procedure StandardKartenDatenbankLaden;
@@ -20,7 +20,7 @@ private
    KartenListeStandard : constant KartenListeArray :=
      (
       -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-      GlobaleDatentypen.Leer => KartenKonstanten.LeerKartenListe,
+      KartenDatentypen.Leer => KartenKonstanten.LeerKartenListe,
                                       
       -- Feld
       -- Normal
@@ -48,7 +48,7 @@ private
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Tundra =>
+      KartenDatentypen.Tundra =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -56,7 +56,7 @@ private
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Wüste =>
+      KartenDatentypen.Wüste =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -65,7 +65,7 @@ private
          FeldWerte           => (others => (others => 1))),
                                       
       -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
-      GlobaleDatentypen.Hügel =>
+      KartenDatentypen.Hügel =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -73,7 +73,7 @@ private
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Gebirge =>
+      KartenDatentypen.Gebirge =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -81,7 +81,7 @@ private
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Wald =>
+      KartenDatentypen.Wald =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -89,7 +89,7 @@ private
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Dschungel =>
+      KartenDatentypen.Dschungel =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -106,7 +106,7 @@ private
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Sumpf =>
+      KartenDatentypen.Sumpf =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -115,7 +115,7 @@ private
          FeldWerte           => (others => (others => 1))),
                                       
       -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
-      GlobaleDatentypen.Hügel_Mit =>
+      KartenDatentypen.Hügel_Mit =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -163,13 +163,13 @@ private
                                  others                        => False),
          FeldWerte           => (others => (others => 1))),
       
-      GlobaleDatentypen.Korallen =>
+      KartenDatentypen.Korallen =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
                                  others                        => False),
          FeldWerte           => (others => (others => 1))),
       
-      GlobaleDatentypen.Unterwasser_Wald =>
+      KartenDatentypen.Unterwasser_Wald =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
                                  others                        => False),
@@ -220,37 +220,37 @@ private
                                       
       -- Ressourcen
       -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft wird!
-      GlobaleDatentypen.Kohle =>
+      KartenDatentypen.Kohle =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Eisen =>
+      KartenDatentypen.Eisen =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Öl =>
+      KartenDatentypen.Öl =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Fisch =>
+      KartenDatentypen.Fisch =>
         (KartenGrafik        => '≈',
          Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
       
-      GlobaleDatentypen.Wal =>
+      KartenDatentypen.Wal =>
         (KartenGrafik        => '≈',
          Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Hochwertiger_Boden =>
+      KartenDatentypen.Hochwertiger_Boden =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Gold =>
+      KartenDatentypen.Gold =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
@@ -381,7 +381,7 @@ private
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Fluss_Einzeln =>
+      KartenDatentypen.Fluss_Einzeln =>
         (KartenGrafik        => '▪',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
                                  GlobaleDatentypen.Luft     => True,
@@ -483,7 +483,7 @@ private
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdischer_Fluss_Einzeln =>
+      KartenDatentypen.Unterirdischer_Fluss_Einzeln =>
         (KartenGrafik        => '▪',
          Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
                                  others                         => False),
@@ -583,7 +583,7 @@ private
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavafluss_Einzeln =>
+      KartenDatentypen.Lavafluss_Einzeln =>
         (KartenGrafik        => '▪',
          Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
                                  others                            => False),

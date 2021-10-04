@@ -46,7 +46,7 @@ package body KIBewegungBerechnen is
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
+      AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
    is begin
       
@@ -89,9 +89,9 @@ package body KIBewegungBerechnen is
       BewertungPosition := 1;
          
       YAchseÄnderungSchleife:
-      for YAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseÄnderungSchleife:
-         for XAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert) := BewertungFeldposition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                  KoordinatenExtern        => AktuelleKoordinatenExtern,
@@ -137,7 +137,7 @@ package body KIBewegungBerechnen is
    function PlanschrittFestlegen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       DurchlaufExtern : in Positive;
-      AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
+      AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
    is begin
       
@@ -179,8 +179,8 @@ package body KIBewegungBerechnen is
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins;
-      XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      YÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
+      XÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
             
@@ -397,16 +397,16 @@ package body KIBewegungBerechnen is
    
    procedure VorhandenenPlanVereinfachenPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      ErsterZugExtern : in GlobaleDatentypen.Stadtfeld;
-      ÜberNächsterZugExtern : in GlobaleDatentypen.Stadtfeld)
+      ErsterZugExtern : in KartenDatentypen.Stadtfeld;
+      ÜberNächsterZugExtern : in KartenDatentypen.Stadtfeld)
    is begin
       
       EAchseSchleife:
-      for EÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for EÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
          YAchseSchleife:
-         for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             XAchseSchleife:
-            for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
                KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                  PlanschrittExtern        => ErsterZugExtern),

@@ -15,7 +15,7 @@ package body VerbesserungFertiggestellt is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -119,7 +119,7 @@ package body VerbesserungFertiggestellt is
          when GlobaleDatentypen.Straße_Bauen =>
             VerbesserungWeg.WegBerechnen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
               
-         when GlobaleDatentypen.Mine_Bauen =>
+         when KartenDatentypen.Mine_Bauen =>
             SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                VerbesserungExtern => GlobaleDatentypen.Mine);
             
@@ -139,7 +139,7 @@ package body VerbesserungFertiggestellt is
               LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
             then
                SchreibeKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                     GrundExtern    => GlobaleDatentypen.Hügel);
+                                     GrundExtern    => KartenDatentypen.Hügel);
                   
             else
                SchreibeKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -161,7 +161,7 @@ package body VerbesserungFertiggestellt is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Hügel
+        LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Hügel
       then
          SchreibeKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                 HügelExtern   => True);
@@ -171,7 +171,7 @@ package body VerbesserungFertiggestellt is
       end if;
             
       SchreibeKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                            GrundExtern    => GlobaleDatentypen.Wald);
+                            GrundExtern    => KartenDatentypen.Wald);
       
       if
         LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))

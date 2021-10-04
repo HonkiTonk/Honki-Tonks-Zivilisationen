@@ -47,10 +47,10 @@ package body BewegungEinheiten is
             when GlobaleDatentypen.Rechts_Unten =>
                Änderung := (0, 1, 1);
             
-            when GlobaleDatentypen.Ebene_Hoch =>
+            when KartenDatentypen.Ebene_Hoch =>
                Änderung := (1, 0, 0);
             
-            when GlobaleDatentypen.Ebene_Runter =>
+            when KartenDatentypen.Ebene_Runter =>
                Änderung := (-1, 0, 0);
                
             when GlobaleDatentypen.Heimatstadt_Ändern =>

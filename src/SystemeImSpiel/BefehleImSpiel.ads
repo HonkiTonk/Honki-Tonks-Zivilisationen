@@ -1,16 +1,16 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, SystemKonstanten;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, SystemKonstanten, SonstigeDatentypen, EinheitStadtDatentypen;
+use GlobaleDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
 
 package BefehleImSpiel is
 
    function Befehle
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch),
          Post =>
            (Befehle'Result in SystemKonstanten.RundeBeendenKonstante .. 5);
 
@@ -22,38 +22,38 @@ private
    
    Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
 
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   EinheitTransportNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitTransportNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    
    StadtOderEinheit : Integer;
    
    StadtSuchenNachNamen : EinheitStadtRecords.RassePlatznummerRecord;
    
    procedure AuswahlEinheitStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
 
    procedure EinheitOderStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       AuswahlExtern : in Integer;
-      StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert);
+      StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
    
    procedure BaueStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
    
    procedure Technologie
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
    
    procedure EinheitBefehle
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum);
    
    procedure StadtUmbenennen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
    
    procedure StadtAbreißen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
    
    procedure AuswahlEinheitTransporter
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

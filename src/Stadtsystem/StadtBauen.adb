@@ -29,7 +29,7 @@ package body StadtBauen is
       case
         StadtNummer
       is
-         when GlobaleDatentypen.MaximaleStädteMitNullWert'First =>
+         when EinheitStadtDatentypen.MaximaleStädteMitNullWert'First =>
             return False;
             
          when others =>
@@ -43,7 +43,7 @@ package body StadtBauen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when GlobaleDatentypen.Spieler_KI =>
+         when SonstigeDatentypen.Spieler_KI =>
             StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
          when others =>
@@ -79,7 +79,7 @@ package body StadtBauen is
          return True;
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI
       then
          return False;
          
@@ -94,8 +94,8 @@ package body StadtBauen is
    
    
    function StadtnummerErmitteln
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       StadtSchleife:
@@ -109,7 +109,7 @@ package body StadtBauen is
             case
               GlobaleVariablen.RassenImSpiel (RasseExtern)
             is
-               when GlobaleDatentypen.Spieler_Mensch =>
+               when SonstigeDatentypen.Spieler_Mensch =>
                   Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                         TextZeileExtern => 7);
                
@@ -128,7 +128,7 @@ package body StadtBauen is
          
       end loop StadtSchleife;
       
-      return GlobaleDatentypen.MaximaleStädteMitNullWert'First;
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
       
    end StadtnummerErmitteln;
    
@@ -167,8 +167,8 @@ package body StadtBauen is
 
 
    function HauptstadtPrüfen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
       HauptsstadtSchleife:

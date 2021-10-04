@@ -17,7 +17,7 @@ package FelderwerteFestlegen is
    
    procedure KartenfelderBewertenKleineSchleife
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -26,15 +26,15 @@ package FelderwerteFestlegen is
    
 private
       
-   type KartenwertArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
+   type KartenwertArray is array (KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWertEins : KartenwertArray;
    KartenWertZwei : KartenwertArray;
    
    procedure BewertungSelbst
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Enum;
-      TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      RasseExtern : in SonstigeDatentypen.Rassen_Enum;
+      TeilerExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
      with
        Pre =>
          (KoordinatenFeldExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

@@ -1,87 +1,87 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package SchreibeWichtiges is
 
    procedure Geldmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       GeldZugewinnExtern : in Integer;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    procedure GeldZugewinnProRunde
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      GeldZugewinnExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      GeldZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    procedure GesamteForschungsrate
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungsrateZugewinnExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungsrateZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    procedure Forschungsmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungZugewinnExtern : in GlobaleDatentypen.KostenLager;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungZugewinnExtern : in EinheitStadtDatentypen.KostenLager;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    procedure VerbleibendeForschungszeit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    procedure Forschungsprojekt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in GlobaleDatentypen.ForschungIDMitNullWert)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungIDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
    procedure Erforscht
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    procedure AnzahlStädte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
      
    procedure AnzahlArbeiter
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
      
    procedure AnzahlKämpfer
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
      
    procedure AnzahlSonstiges
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
 end SchreibeWichtiges;

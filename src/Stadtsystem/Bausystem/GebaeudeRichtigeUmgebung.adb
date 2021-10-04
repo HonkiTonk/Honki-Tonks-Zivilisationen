@@ -10,7 +10,7 @@ package body GebaeudeRichtigeUmgebung is
 
    function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
+      GebäudeIDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
    is begin
       
@@ -32,7 +32,7 @@ package body GebaeudeRichtigeUmgebung is
    
    function UmgebungPrüfen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
+      GebäudeIDExtern : in EinheitStadtDatentypen.GebäudeID)
      return Boolean
    is begin
       

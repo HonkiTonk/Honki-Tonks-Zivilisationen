@@ -7,7 +7,7 @@ with LeseForschungsDatenbank;
 package body SchreibeWichtiges is
 
    procedure Geldmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       GeldZugewinnExtern : in Integer;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -39,8 +39,8 @@ package body SchreibeWichtiges is
    
    
    procedure GeldZugewinnProRunde
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      GeldZugewinnExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      GeldZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
    is begin
       
@@ -54,9 +54,9 @@ package body SchreibeWichtiges is
                GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := GlobaleVariablen.Grenzen (RasseExtern).Geldgewinngrenze;
                
             elsif
-              GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern < GlobaleDatentypen.KostenLager'First
+              GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern < EinheitStadtDatentypen.KostenLager'First
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := GlobaleDatentypen.KostenLager'First;
+               GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := EinheitStadtDatentypen.KostenLager'First;
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern;
@@ -71,8 +71,8 @@ package body SchreibeWichtiges is
    
    
    procedure GesamteForschungsrate
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungsrateZugewinnExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungsrateZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
    is begin
       
@@ -112,8 +112,8 @@ package body SchreibeWichtiges is
    
    
    procedure Forschungsmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungZugewinnExtern : in GlobaleDatentypen.KostenLager;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungZugewinnExtern : in EinheitStadtDatentypen.KostenLager;
       RechnenSetzenExtern : in Boolean)
    is begin
       
@@ -153,15 +153,15 @@ package body SchreibeWichtiges is
    
    
    procedure VerbleibendeForschungszeit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt = GlobaleDatentypen.ForschungIDMitNullWert'First
+        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt = EinheitStadtDatentypen.ForschungIDMitNullWert'First
         or
           GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := GlobaleDatentypen.KostenLager'Last;
+         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := EinheitStadtDatentypen.KostenLager'Last;
          
       else
          GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
@@ -176,8 +176,8 @@ package body SchreibeWichtiges is
    
    
    procedure Forschungsprojekt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in GlobaleDatentypen.ForschungIDMitNullWert)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      ForschungIDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert)
    is begin
       
       GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := ForschungIDExtern;
@@ -190,7 +190,7 @@ package body SchreibeWichtiges is
    
 
    procedure Erforscht
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -208,7 +208,7 @@ package body SchreibeWichtiges is
    
    
    procedure AnzahlStädte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is begin
       
@@ -228,7 +228,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte = GlobaleDatentypen.MaximaleStädteMitNullWert'First
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
             then
                raise Program_Error;
                
@@ -242,7 +242,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlArbeiter
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is begin
       
@@ -262,7 +262,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter = GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
             then
                raise Program_Error;
                
@@ -276,7 +276,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlKämpfer
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is begin
       
@@ -296,7 +296,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer = GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
             then
                raise Program_Error;
                
@@ -310,7 +310,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlSonstiges
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is begin
       
@@ -330,7 +330,7 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges = GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
             then
                raise Program_Error;
                

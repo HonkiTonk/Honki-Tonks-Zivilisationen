@@ -10,15 +10,15 @@ with Auswahl, Sichtbarkeit, KennenLernen, Eingabe, DiplomatischerZustand, Karten
 package body Handeln is
 
    function Handelsmenü
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
       case
         GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
-         when GlobaleDatentypen.Krieg =>
+         when SonstigeDatentypen.Krieg =>
             return 1;
             
          when others =>
@@ -31,8 +31,8 @@ package body Handeln is
    
    
    function Handeln
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
@@ -102,8 +102,8 @@ package body Handeln is
    
    
    procedure GeldVerschenken
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -123,16 +123,16 @@ package body Handeln is
                                       RechnenSetzenExtern => True);
                   
          if
-           Geldmenge / 25 > Integer (GlobaleDatentypen.ProduktionFeld'Last)
+           Geldmenge / 25 > Integer (EinheitStadtDatentypen.ProduktionFeld'Last)
          then
             DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
                                                     FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => GlobaleDatentypen.ProduktionFeld'Last);
+                                                    ÄnderungExtern    => EinheitStadtDatentypen.ProduktionFeld'Last);
                      
          else
             DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
                                                     FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => GlobaleDatentypen.ProduktionFeld (Geldmenge / 25));
+                                                    ÄnderungExtern    => EinheitStadtDatentypen.ProduktionFeld (Geldmenge / 25));
          end if;
                   
       else
@@ -144,8 +144,8 @@ package body Handeln is
    
    
    procedure GeldVerlangen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -165,16 +165,16 @@ package body Handeln is
                                       RechnenSetzenExtern => True);
                   
          if
-           Geldmenge / 25 > Integer (GlobaleDatentypen.ProduktionFeld'Last)
+           Geldmenge / 25 > Integer (EinheitStadtDatentypen.ProduktionFeld'Last)
          then
             DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
                                                     FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => -GlobaleDatentypen.ProduktionFeld'Last);
+                                                    ÄnderungExtern    => -EinheitStadtDatentypen.ProduktionFeld'Last);
                      
          else
             DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
                                                     FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => -GlobaleDatentypen.ProduktionFeld (Geldmenge / 25));
+                                                    ÄnderungExtern    => -EinheitStadtDatentypen.ProduktionFeld (Geldmenge / 25));
          end if;
                   
       else
@@ -186,21 +186,21 @@ package body Handeln is
    
    
    procedure KontakteVerkaufen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       RassenZweiSchleife:
-      for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseZweiSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
            RasseZweiSchleifenwert = RasseExtern
            or
              RasseZweiSchleifenwert = KontaktierteRasseExtern
              or
-               GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = GlobaleDatentypen.Unbekannt
+               GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
            or
-             GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= GlobaleDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= SonstigeDatentypen.Unbekannt
          then
             null;
                   
@@ -216,21 +216,21 @@ package body Handeln is
    
    
    procedure KontakteKaufen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       RassenEinsSchleife:
-      for RasseEinsSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseEinsSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
            RasseEinsSchleifenwert = RasseExtern
            or
              RasseEinsSchleifenwert = KontaktierteRasseExtern
              or
-               GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = GlobaleDatentypen.Unbekannt
+               GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
            or
-             GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= GlobaleDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= SonstigeDatentypen.Unbekannt
          then
             null;
                   
@@ -246,8 +246,8 @@ package body Handeln is
    
    
    procedure KontakteTauschen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       KontakteKaufen (RasseExtern             => RasseExtern,
@@ -260,8 +260,8 @@ package body Handeln is
    
    
    procedure SichtbarkeitKaufen
-     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
      
       EAchseEinsSchleife:
@@ -296,8 +296,8 @@ package body Handeln is
 
 
    procedure SichtbarkeitVerkaufen
-     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
   
       EAchseZweiSchleife:
@@ -332,8 +332,8 @@ package body Handeln is
    
    
    procedure SichtbarkeitTauschen
-     (RasseEinsExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       SichtbarkeitKaufen (RasseEinsExtern => RasseEinsExtern,

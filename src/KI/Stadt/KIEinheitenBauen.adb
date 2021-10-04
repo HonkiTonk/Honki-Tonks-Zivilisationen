@@ -40,7 +40,7 @@ package body KIEinheitenBauen is
    is begin
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
+      for EinheitenSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
          
          case
            EinheitenSchleifenwert
@@ -75,7 +75,7 @@ package body KIEinheitenBauen is
    
    procedure EinheitBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
    is begin
       
       Gesamtwertung := 0;
@@ -111,8 +111,8 @@ package body KIEinheitenBauen is
    
    function SpezielleEinheitBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
-     return GlobaleDatentypen.GesamtproduktionStadt
+      IDExtern : in EinheitStadtDatentypen.EinheitenID)
+     return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       case
@@ -149,8 +149,8 @@ package body KIEinheitenBauen is
    
    function ArbeiterBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       MengeVorhanden := LeseWichtiges.AnzahlArbeiter (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -172,7 +172,7 @@ package body KIEinheitenBauen is
          return -5;
          
       else
-         return 20 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
+         return 20 + EinheitStadtDatentypen.KostenLager (EinheitenIDExtern);
       end if;
       
    end ArbeiterBewerten;
@@ -181,8 +181,8 @@ package body KIEinheitenBauen is
    
    function NahkämpferBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -196,7 +196,7 @@ package body KIEinheitenBauen is
             if
               MengeVorhanden + MengeImBau < AnzahlStädte
             then
-               return 20 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
+               return 20 + EinheitStadtDatentypen.KostenLager (EinheitenIDExtern);
                
             elsif
               MengeVorhanden = 2 * AnzahlStädte
@@ -213,14 +213,14 @@ package body KIEinheitenBauen is
                return -5;
          
             else
-               return 10 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
+               return 10 + EinheitStadtDatentypen.KostenLager (EinheitenIDExtern);
             end if;
             
          when True =>
             if
               MengeVorhanden + MengeImBau < AnzahlStädte
             then
-               return 20 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
+               return 20 + EinheitStadtDatentypen.KostenLager (EinheitenIDExtern);
                
             elsif
               MengeVorhanden = 5 * AnzahlStädte
@@ -237,7 +237,7 @@ package body KIEinheitenBauen is
                return -5;
          
             else
-               return 10 * (5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern));
+               return 10 * (5 + EinheitStadtDatentypen.KostenLager (EinheitenIDExtern));
             end if;
       end case;
       
@@ -247,8 +247,8 @@ package body KIEinheitenBauen is
    
    function FernkämpferBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -274,7 +274,7 @@ package body KIEinheitenBauen is
                return -5;
          
             else
-               return 5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
+               return 5 + EinheitStadtDatentypen.KostenLager (EinheitenIDExtern);
             end if;
             
          when True =>
@@ -293,7 +293,7 @@ package body KIEinheitenBauen is
                return -5;
          
             else
-               return 5 * (5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern));
+               return 5 * (5 + EinheitStadtDatentypen.KostenLager (EinheitenIDExtern));
             end if;
       end case;
       
@@ -303,8 +303,8 @@ package body KIEinheitenBauen is
    
    function KostenBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return -(LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
@@ -318,8 +318,8 @@ package body KIEinheitenBauen is
      
    function GeldKostenBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -349,8 +349,8 @@ package body KIEinheitenBauen is
    
    function NahrungKostenBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -380,8 +380,8 @@ package body KIEinheitenBauen is
      
    function RessourcenKostenBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.GesamtproduktionStadt
+      EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
+      return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       if

@@ -7,7 +7,7 @@ with Anzeige, Auswahl, Handeln, EinheitVerschieben, DiplomatischerZustandAenderb
 package body Diplomatie is
    
    procedure DiplomatieMöglich
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -26,19 +26,19 @@ package body Diplomatie is
    
    
    function AndereRassenVorhanden
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
       RassenSchleife:
-      for RassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RassenSchleifenwert = RasseExtern
            or
              GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Leer
            or
-             GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = GlobaleDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
          then
             null;
             
@@ -55,7 +55,7 @@ package body Diplomatie is
    
 
    procedure DiplomatieMenü
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       DiplomatieSchleife:
@@ -80,11 +80,11 @@ package body Diplomatie is
             end case;
             
             if
-              GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
+              SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
               or
-                GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = GlobaleDatentypen.Leer
+                GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = GlobaleDatentypen.Leer
                 or
-                  GlobaleVariablen.Diplomatie (RasseExtern, GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = GlobaleDatentypen.Unbekannt
+                  GlobaleVariablen.Diplomatie (RasseExtern, SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SonstigeDatentypen.Unbekannt
             then
                Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                      TextZeileExtern => 21);
@@ -108,15 +108,15 @@ package body Diplomatie is
             is
                when 1 =>
                   DiplomatischeAktion := DiplomatischenStatusÄndern (RasseExtern             => RasseExtern,
-                                                                      KontaktierteRasseExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                                                                      KontaktierteRasseExtern => SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
                when 2 =>
                   DiplomatischeAktion := Handeln.Handelsmenü (RasseExtern             => RasseExtern,
-                                                               KontaktierteRasseExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                                                               KontaktierteRasseExtern => SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
                when 3 =>
                   EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
-                                                           KontaktierteRasseExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                                                           KontaktierteRasseExtern => SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
                when SystemKonstanten.ZurückKonstante =>
                   exit DiplomatischeAktionSchleife;
@@ -144,8 +144,8 @@ package body Diplomatie is
    
    -- Später abfragen für Menschen und KI für die jeweiligen Möglichkeiten einbauen.
    function DiplomatischenStatusÄndern
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
@@ -161,14 +161,14 @@ package body Diplomatie is
          when 1 .. 2 =>
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
-                                                                                     NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
+                                                                                     NeuerStatusExtern => SonstigeDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
             return 1;
             
             -- Ist dazu da um im Kriegsfall sofort das Diplomatiemenü zu schließen.
          when 3 =>
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
-                                                                                     NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
+                                                                                     NeuerStatusExtern => SonstigeDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
             if
               KriegJetzt
             then

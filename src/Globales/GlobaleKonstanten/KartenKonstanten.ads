@@ -2,15 +2,15 @@ pragma SPARK_Mode (On);
 
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords, SystemKonstanten;
+with KartenRecords, SystemKonstanten, KartenDatentypen, EinheitStadtDatentypen;
 
 with DatenbankRecords;
 
 package KartenKonstanten is
 
-   LeerEAchse : constant GlobaleDatentypen.EbeneVorhanden := GlobaleDatentypen.EbeneVorhanden'First;
-   LeerYAchse : constant GlobaleDatentypen.KartenfeldPositivMitNullwert := GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
-   LeerXAchse : constant GlobaleDatentypen.KartenfeldPositivMitNullwert := GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
+   LeerEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
+   LeerYAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
+   LeerXAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
 
    LeerKartenPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (EAchse => LeerEAchse,
                                                                                  YAchse => LeerYAchse,
@@ -18,7 +18,7 @@ package KartenKonstanten is
    
    LeerKartenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
    LeerPassierbarkeit : constant Boolean := False;
-   LeerFeldWerte : constant GlobaleDatentypen.ProduktionElement := 0;
+   LeerFeldWerte : constant EinheitStadtDatentypen.ProduktionElement := 0;
    
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
                                                                      KartenGrafik        => LeerKartenGrafik,
@@ -26,15 +26,15 @@ package KartenKonstanten is
                                                                      FeldWerte           => (others => (others => LeerFeldWerte))
                                                                     );
    
-   LeerGrund : constant GlobaleDatentypen.Karten_Grund_Enum := GlobaleDatentypen.Leer;
+   LeerGrund : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
    LeerHügel : constant Boolean := False;
    LeerSichtbar : constant Boolean := False;
-   LeerFluss : constant GlobaleDatentypen.Karten_Grund_Enum := GlobaleDatentypen.Leer;
-   LeerVerbesserungWeg : constant GlobaleDatentypen.Karten_Verbesserung_Enum := GlobaleDatentypen.Leer;
-   LeerVerbesserungGebiet : constant GlobaleDatentypen.Karten_Verbesserung_Enum := GlobaleDatentypen.Leer;
-   LeerRessource : constant GlobaleDatentypen.Karten_Grund_Enum := GlobaleDatentypen.Leer;
-   LeerDurchStadtBelegterGrund : constant GlobaleDatentypen.BelegterGrund := GlobaleDatentypen.BelegterGrund'First;
-   LeerFelderwertung : constant GlobaleDatentypen.GesamtproduktionStadt := 0;
+   LeerFluss : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
+   LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
+   LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
+   LeerRessource : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
+   LeerDurchStadtBelegterGrund : constant KartenDatentypen.BelegterGrund := KartenDatentypen.BelegterGrund'First;
+   LeerFelderwertung : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
                                                            Grund                   => LeerGrund,
@@ -49,7 +49,7 @@ package KartenKonstanten is
                                                           );
    
    LeerVerbesserungGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
-   LeerVerbesserungWerte : constant GlobaleDatentypen.ProduktionElement := 0;
+   LeerVerbesserungWerte : constant EinheitStadtDatentypen.ProduktionElement := 0;
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
                                                                                  VerbesserungGrafik => LeerVerbesserungGrafik,
@@ -57,31 +57,31 @@ package KartenKonstanten is
                                                                                  VerbesserungWerte  => (others => (others => LeerVerbesserungWerte))
                                                                                 );
    
-   type EisgebietArray is array (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Range) of GlobaleDatentypen.KartenfeldPositiv;
+   type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
-                                         GlobaleDatentypen.Karte_20_20     => 1,
-                                         GlobaleDatentypen.Karte_40_40     => 1,
-                                         GlobaleDatentypen.Karte_80_80     => 2,
-                                         GlobaleDatentypen.Karte_120_80    => 3,
-                                         GlobaleDatentypen.Karte_120_160   => 3,
-                                         GlobaleDatentypen.Karte_160_160   => 4,
-                                         GlobaleDatentypen.Karte_240_240   => 6,
-                                         GlobaleDatentypen.Karte_320_320   => 8,
-                                         GlobaleDatentypen.Karte_1000_1000 => 24,
-                                         GlobaleDatentypen.Karte_Nutzer    => 1
+                                         KartenDatentypen.Karte_20_20     => 1,
+                                         KartenDatentypen.Karte_40_40     => 1,
+                                         KartenDatentypen.Karte_80_80     => 2,
+                                         KartenDatentypen.Karte_120_80    => 3,
+                                         KartenDatentypen.Karte_120_160   => 3,
+                                         KartenDatentypen.Karte_160_160   => 4,
+                                         KartenDatentypen.Karte_240_240   => 6,
+                                         KartenDatentypen.Karte_320_320   => 8,
+                                         KartenDatentypen.Karte_1000_1000 => 24,
+                                         KartenDatentypen.Karte_Nutzer    => 1
                                         );
 
    Eisschild : constant EisgebietArray := (
-                                           GlobaleDatentypen.Karte_20_20     => 3,
-                                           GlobaleDatentypen.Karte_40_40     => 3,
-                                           GlobaleDatentypen.Karte_80_80     => 6,
-                                           GlobaleDatentypen.Karte_120_80    => 9,
-                                           GlobaleDatentypen.Karte_120_160   => 9,
-                                           GlobaleDatentypen.Karte_160_160   => 12,
-                                           GlobaleDatentypen.Karte_240_240   => 18,
-                                           GlobaleDatentypen.Karte_320_320   => 24,
-                                           GlobaleDatentypen.Karte_1000_1000 => 72,
-                                           GlobaleDatentypen.Karte_Nutzer    => 1
+                                           KartenDatentypen.Karte_20_20     => 3,
+                                           KartenDatentypen.Karte_40_40     => 3,
+                                           KartenDatentypen.Karte_80_80     => 6,
+                                           KartenDatentypen.Karte_120_80    => 9,
+                                           KartenDatentypen.Karte_120_160   => 9,
+                                           KartenDatentypen.Karte_160_160   => 12,
+                                           KartenDatentypen.Karte_240_240   => 18,
+                                           KartenDatentypen.Karte_320_320   => 24,
+                                           KartenDatentypen.Karte_1000_1000 => 72,
+                                           KartenDatentypen.Karte_Nutzer    => 1
                                           );
 
 end KartenKonstanten;

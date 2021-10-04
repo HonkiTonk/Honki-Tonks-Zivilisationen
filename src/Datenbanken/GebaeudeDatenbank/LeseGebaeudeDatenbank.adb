@@ -5,8 +5,8 @@ with GebaeudeDatenbank;
 package body LeseGebaeudeDatenbank is
 
    function GebäudeGrafik
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Wide_Wide_Character
    is begin
       
@@ -17,9 +17,9 @@ package body LeseGebaeudeDatenbank is
 
       
    function PreisGeld
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.KostenLager
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PreisGeld;
@@ -29,9 +29,9 @@ package body LeseGebaeudeDatenbank is
 
    
    function PreisRessourcen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.KostenLager
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PreisRessourcen;
@@ -41,10 +41,10 @@ package body LeseGebaeudeDatenbank is
 
    
    function PermanenteKosten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID;
-      WelcheKostenExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtePermanenteKosten
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      WelcheKostenExtern : in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return EinheitStadtDatentypen.GesamtePermanenteKosten
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
@@ -54,9 +54,9 @@ package body LeseGebaeudeDatenbank is
 
       
    function Anforderungen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ForschungIDMitNullWert
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).Anforderungen;
@@ -66,10 +66,10 @@ package body LeseGebaeudeDatenbank is
 
       
    function PermanenterBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID;
-      WelcherBonusExtern : in GlobaleDatentypen.Bonus_Werte_Enum)
-      return GlobaleDatentypen.ProduktionFeld
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      WelcherBonusExtern : in KartenDatentypen.Bonus_Werte_Enum)
+      return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PermanenterBonus (WelcherBonusExtern);
@@ -79,9 +79,9 @@ package body LeseGebaeudeDatenbank is
 
       
    function UmgebungBenötigt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.Karten_Grund_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).UmgebungBenötigt;
@@ -91,9 +91,9 @@ package body LeseGebaeudeDatenbank is
 
    
    function GebäudeSpezielleEigenschaft
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).GebäudeSpezielleEigenschaft;
@@ -103,8 +103,8 @@ package body LeseGebaeudeDatenbank is
 
 
    function GanzerEintrag
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return DatenbankRecords.GebäudeListeRecord
    is begin
 

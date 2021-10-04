@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten;
+with GlobaleVariablen, GlobaleDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten, SonstigeDatentypen, KartenDatentypen;
 
 with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein, Karte;
 
@@ -71,7 +71,7 @@ package body Speichern is
       Natural'Write (Stream (File => DateiSpeichernNeu),
                      GlobaleVariablen.Rundengrenze);
       
-      GlobaleDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
+      SonstigeDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
                                            GlobaleVariablen.RasseAmZugNachLaden);
       
       GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
@@ -90,9 +90,9 @@ package body Speichern is
    procedure KarteSpeichern
    is begin
       
-      GlobaleDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+      KartenDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                          Karten.Kartenform);
-      GlobaleDatentypen.Kartengröße_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+      KartenDatentypen.Kartengröße_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                             Karten.Kartengröße);
       
       Positive'Write (Stream (File => DateiSpeichernNeu),
@@ -103,9 +103,9 @@ package body Speichern is
       case
         Karten.Kartengröße
       is
-         when GlobaleDatentypen.Karte_Nutzer =>
+         when KartenDatentypen.Karte_Nutzer =>
             Karten.KartengrößenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                               Karten.Kartengrößen (GlobaleDatentypen.Karte_Nutzer));
+                                               Karten.Kartengrößen (KartenDatentypen.Karte_Nutzer));
             
          when others =>
             null;
@@ -132,11 +132,11 @@ package body Speichern is
    procedure RassenGrenzenSpeichern
    is begin
       
-      GlobaleDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
+      SonstigeDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
                                                   GlobaleVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
-      for GrenzenRassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for GrenzenRassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          WichtigeRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernNeu),
                                               GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
@@ -156,7 +156,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>
@@ -184,7 +184,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
 
             when others =>
@@ -212,7 +212,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>
@@ -235,7 +235,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
 
             when others =>
@@ -245,7 +245,7 @@ package body Speichern is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when GlobaleDatentypen.Leer =>
+                     when SonstigeDatentypen.Leer =>
                         null;
                      
                      when others =>
@@ -271,7 +271,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>

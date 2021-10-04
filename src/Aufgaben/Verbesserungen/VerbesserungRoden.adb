@@ -6,7 +6,7 @@ package body VerbesserungRoden is
 
    function VerbesserungRoden
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -14,7 +14,7 @@ package body VerbesserungRoden is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
+         when KartenDatentypen.Wald | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => GlobaleDatentypen.Roden_Trockenlegen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

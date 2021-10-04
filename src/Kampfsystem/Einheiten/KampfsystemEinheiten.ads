@@ -23,8 +23,8 @@ package KampfsystemEinheiten is
 
    procedure KampfBerechnung
      (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
-      VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
+      AngriffExtern : in EinheitStadtDatentypen.ProduktionFeld;
+      VerteidigungExtern : in EinheitStadtDatentypen.ProduktionFeld)
      with
        Pre =>
          (VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
@@ -33,7 +33,7 @@ package KampfsystemEinheiten is
 
 private
 
-   AngerichteterSchaden : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   AngerichteterSchaden : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
 
    KampfwerteVerteidiger : EinheitStadtRecords.KampfwerteRecord;
    KampfwerteAngreifer : EinheitStadtRecords.KampfwerteRecord;
@@ -45,7 +45,7 @@ private
 
    WelcherFall : Kampf_Unterschiede_Enum;
 
-   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, GlobaleDatentypen.MaximaleStädte'First .. 3) of Float;
+   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, EinheitStadtDatentypen.MaximaleStädte'First .. 3) of Float;
    SchadenAngerichtet : constant SchadenAngerichtetArray := (
                                                              Gleich           =>
                                                                (1 => 0.40,

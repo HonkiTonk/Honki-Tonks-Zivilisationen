@@ -12,7 +12,7 @@ with Anzeige, GesamtwerteFeld, KampfwerteStadtErmitteln, Cheat;
 package body StadtInformationen is
    
    procedure Stadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
@@ -57,7 +57,7 @@ package body StadtInformationen is
    
 
    procedure StadtArtBesitzer
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
@@ -390,7 +390,7 @@ package body StadtInformationen is
    
    procedure EinzelnesFeldNahrungsgewinnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       New_Line;
@@ -413,7 +413,7 @@ package body StadtInformationen is
    
    procedure EinzelnesFeldRessourcengewinnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
                      
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -435,7 +435,7 @@ package body StadtInformationen is
    
    procedure EinzelnesFeldGeldgewinnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
        
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -456,7 +456,7 @@ package body StadtInformationen is
    
    procedure EinzelnesFeldWissensgewinnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
                
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -478,8 +478,8 @@ package body StadtInformationen is
    
    procedure StadtfeldBewirtschaftet
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      CursorYAchseabstraktionExtern : in GlobaleDatentypen.Kartenfeld;
-      CursorXAchseabstraktionExtern : in GlobaleDatentypen.Kartenfeld)
+      CursorYAchseabstraktionExtern : in KartenDatentypen.Kartenfeld;
+      CursorXAchseabstraktionExtern : in KartenDatentypen.Kartenfeld)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,

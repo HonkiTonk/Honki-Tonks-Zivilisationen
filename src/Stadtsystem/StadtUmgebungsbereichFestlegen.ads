@@ -5,77 +5,77 @@ use GlobaleDatentypen;
 
 package StadtUmgebungsbereichFestlegen is
    
-   type TechnologieUmgebungsgrößeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Anfang_Ende_Enum'Range) of GlobaleDatentypen.ForschungID;
+   type TechnologieUmgebungsgrößeArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Anfang_Ende_Enum'Range) of EinheitStadtDatentypen.ForschungID;
    TechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
-                                                                               GlobaleDatentypen.Menschen =>
+                                                                               SonstigeDatentypen.Menschen =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
                                                                                              
-                                                                               GlobaleDatentypen.Kasrodiah =>
+                                                                               SonstigeDatentypen.Kasrodiah =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Lasupin =>
+                                                                               SonstigeDatentypen.Lasupin =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Lamustra =>
+                                                                               SonstigeDatentypen.Lamustra =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Manuky =>
+                                                                               SonstigeDatentypen.Manuky =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Suroka =>
+                                                                               SonstigeDatentypen.Suroka =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Pryolon =>
+                                                                               SonstigeDatentypen.Pryolon =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Talbidahr =>
+                                                                               SonstigeDatentypen.Talbidahr =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Moru_Phisihl =>
+                                                                               SonstigeDatentypen.Moru_Phisihl =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Larinos_Lotaris =>
+                                                                               SonstigeDatentypen.Larinos_Lotaris =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Carupex =>
+                                                                               SonstigeDatentypen.Carupex =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Alary =>
+                                                                               SonstigeDatentypen.Alary =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Tesorahn =>
+                                                                               SonstigeDatentypen.Tesorahn =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Natries_Zermanis =>
+                                                                               SonstigeDatentypen.Natries_Zermanis =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Tridatus =>
+                                                                               SonstigeDatentypen.Tridatus =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Senelari =>
+                                                                               SonstigeDatentypen.Senelari =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Aspari_2 =>
+                                                                               SonstigeDatentypen.Aspari_2 =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43),
             
-                                                                               GlobaleDatentypen.Ekropa =>
+                                                                               SonstigeDatentypen.Ekropa =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
                                                                                   GlobaleDatentypen.Endwert     => 43)
                                                                               );
@@ -90,7 +90,7 @@ package StadtUmgebungsbereichFestlegen is
    
 private
    
-   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
    
    procedure StadtUmgebungErmitteln
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

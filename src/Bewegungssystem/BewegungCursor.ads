@@ -1,23 +1,23 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+use GlobaleDatentypen, SonstigeDatentypen;
 
 package BewegungCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
       RichtungExtern : in GlobaleDatentypen.Tastenbelegung_Bewegung_Enum;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
      
    procedure GeheZuCursor
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
 
 private
 
@@ -31,7 +31,7 @@ private
    
    procedure BewegungCursorBerechnen
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          ((ÄnderungExtern.EAchse /= 0
@@ -40,11 +40,11 @@ private
           or
             ÄnderungExtern.XAchse /= 0)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
    procedure BewegungCursorBerechnenStadt
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          ((ÄnderungExtern.EAchse /= 0
@@ -53,6 +53,6 @@ private
           or
             ÄnderungExtern.XAchse /= 0)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
 end BewegungCursor;

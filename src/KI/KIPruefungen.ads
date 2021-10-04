@@ -14,7 +14,7 @@ package KIPruefungen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI),
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI),
          Post =>
            (StadtUmgebungPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
@@ -22,13 +22,13 @@ package KIPruefungen is
    
    function UmgebungStadtBauenPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI),
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI),
          Post =>
            (UmgebungStadtBauenPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
@@ -39,11 +39,11 @@ private
    FeldGutUndFrei : Boolean;
    VerbesserungTesten : Boolean;
 
-   AbstandKleiner : GlobaleDatentypen.KartenfeldPositiv;
-   YAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
-   XAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
-   YAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
-   XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   AbstandKleiner : KartenDatentypen.KartenfeldPositiv;
+   YAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
+   XAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
+   YAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
+   XAchseKoordinatenSchonGeprüft : KartenDatentypen.KartenfeldPositivMitNullwert;
    
    VerbesserungAnlegen : KartenRecords.AchsenKartenfeldPositivRecord;
    
@@ -57,7 +57,7 @@ private
    function KartenfeldUmgebungPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
       return Boolean
      with
        Pre =>
@@ -67,15 +67,15 @@ private
           and
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function StadtUmgebungUnverbessert
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI
           and
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
    
@@ -91,7 +91,7 @@ private
           and
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function VerbesserungAnlegbar
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -103,14 +103,14 @@ private
    
    function NeuesStadtFeldSuchen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt;
-      YUmgebungExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      XUmgebungExtern : in GlobaleDatentypen.KartenfeldPositiv)
+      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
+      YUmgebungExtern : in KartenDatentypen.KartenfeldPositiv;
+      XUmgebungExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FelderDurchgehen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
       return KartenRecords.AchsenKartenfeldPositivRecord;
    
 end KIPruefungen;

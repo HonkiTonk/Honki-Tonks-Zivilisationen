@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, SonstigeDatentypen;
+use GlobaleDatentypen, SonstigeDatentypen;
 
 package KIEinheitHandlungen is
 
@@ -11,7 +11,7 @@ package KIEinheitHandlungen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
 private
 
@@ -23,7 +23,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    procedure GefahrenHandlungen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -32,11 +32,11 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI
           and
             FeindlicheEinheitExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (FeindlicheEinheitExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (FeindlicheEinheitExtern.Rasse) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (FeindlicheEinheitExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             EinheitRasseNummerExtern.Rasse /= FeindlicheEinheitExtern.Rasse);
 
@@ -52,6 +52,6 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
 end KIEinheitHandlungen;

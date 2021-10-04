@@ -14,11 +14,11 @@ package RasseTridatus is
       Produktion          => 0,
       Wirtschaft          => 0,
       Bewirtschaftung     => 0,
-      GültigeStaatsformen => (GlobaleDatentypen.Anarchie,
+      GültigeStaatsformen => (SonstigeDatentypen.Anarchie,
                                GlobaleDatentypen.Demokratie,
-                               GlobaleDatentypen.Anarchie,
-                               GlobaleDatentypen.Anarchie,
-                               GlobaleDatentypen.Anarchie)
+                               SonstigeDatentypen.Anarchie,
+                               SonstigeDatentypen.Anarchie,
+                               SonstigeDatentypen.Anarchie)
      );
 
 end RasseTridatus;

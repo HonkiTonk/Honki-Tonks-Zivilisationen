@@ -8,25 +8,25 @@ with DatenbankRecords;
 package LeseForschungsDatenbank is
 
    function PreisForschung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.ForschungID)
-      return GlobaleDatentypen.KostenLager
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.ForschungID)
+      return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    function AnforderungForschung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.ForschungID;
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.ForschungID;
       WelcheAnforderungExtern : in Positive)
-      return GlobaleDatentypen.ForschungIDMitNullWert
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function GanzerEintrag
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.ForschungID)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.ForschungID)
       return DatenbankRecords.ForschungListeRecord
      with
        Pre =>

@@ -15,7 +15,7 @@ package body GebaeudeBauen is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      GebaeudeAllgemein.BeschreibungLang (IDExtern => GlobaleDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag));
+      GebaeudeAllgemein.BeschreibungLang (IDExtern => EinheitStadtDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag));
       New_Line;
       PreisGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
       BauzeitGebäude (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -23,11 +23,11 @@ package body GebaeudeBauen is
       PermanenteGebäudeWerte := False;
       
       PermanenteBonisSchleife:
-      for PermanenterBonusSchleifenwert in GlobaleDatentypen.Bonus_Werte_Enum'Range loop
+      for PermanenterBonusSchleifenwert in KartenDatentypen.Bonus_Werte_Enum'Range loop
 
          if
            LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                   IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                   IDExtern           => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                      - StadtKonstanten.GebäudeAufschlag),
                                                    WelcherBonusExtern => PermanenterBonusSchleifenwert)
            > 0
@@ -36,11 +36,11 @@ package body GebaeudeBauen is
                                           TextDateiExtern        => GlobaleTexte.Zeug,
                                           ÜberschriftZeileExtern => 0,
                                           -- Muss eins kleiner sein als der echte Startwert, da der kleinste Pluswert Eins ist.
-                                          ErsteZeileExtern       => 62 + GlobaleDatentypen.Bonus_Werte_Enum'Pos (PermanenterBonusSchleifenwert),
+                                          ErsteZeileExtern       => 62 + KartenDatentypen.Bonus_Werte_Enum'Pos (PermanenterBonusSchleifenwert),
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
             Ada.Integer_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                               IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                                               IDExtern           => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                                                  - StadtKonstanten.GebäudeAufschlag),
                                                                                                WelcherBonusExtern => PermanenterBonusSchleifenwert)),
                                      Width => 1);
@@ -70,7 +70,7 @@ package body GebaeudeBauen is
    
    
    procedure PreisGebäude
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -80,7 +80,7 @@ package body GebaeudeBauen is
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => RasseExtern,
-                                                                                         IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                                         IDExtern    => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                                            - StadtKonstanten.GebäudeAufschlag))),
                                Width => 1);
       
@@ -102,12 +102,12 @@ package body GebaeudeBauen is
       if
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
       then
-         Ada.Integer_Text_IO.Put (Item  => Positive (GlobaleDatentypen.KostenLager'Last),
+         Ada.Integer_Text_IO.Put (Item  => Positive (EinheitStadtDatentypen.KostenLager'Last),
                                   Width => 1);
          
       else
          Ada.Integer_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                           IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                                           IDExtern    => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                                              - StadtKonstanten.GebäudeAufschlag))
                                   / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)),
                                   Width => 1);
@@ -118,7 +118,7 @@ package body GebaeudeBauen is
    
    
    procedure PermanenteKostenGebäude
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       PermanenteGebäudeWerte := False;
@@ -128,7 +128,7 @@ package body GebaeudeBauen is
          
          if
            LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
-                                                   IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                   IDExtern           => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                      - StadtKonstanten.GebäudeAufschlag),
                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert)
            > 0
@@ -137,11 +137,11 @@ package body GebaeudeBauen is
                                           TextDateiExtern        => GlobaleTexte.Zeug,
                                           ÜberschriftZeileExtern => 0,
                                           -- Muss eins kleiner sein als der echte Startwert, da der kleinste Pluswert Eins ist.
-                                          ErsteZeileExtern       => 53 + GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
+                                          ErsteZeileExtern       => 53 + EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
             Ada.Integer_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
-                                                                                                IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                                                IDExtern           => EinheitStadtDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
                                                                                                   - StadtKonstanten.GebäudeAufschlag),
                                                                                                 WelcheKostenExtern => PermanenteKostenSchleifenwert)),
                                      Width => 1);

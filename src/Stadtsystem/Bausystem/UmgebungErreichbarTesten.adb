@@ -10,8 +10,8 @@ package body UmgebungErreichbarTesten is
    
    function UmgebungErreichbarTesten
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.MinimimMaximumID;
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -93,7 +93,7 @@ package body UmgebungErreichbarTesten is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
             
-         exit BereichSchleife when Umgebung = GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Last;
+         exit BereichSchleife when Umgebung = KartenDatentypen.LoopRangeMinusDreiZuDrei'Last;
          
          Umgebung := Umgebung + 1;
          BereitsGetestet := Umgebung - 1;
@@ -108,15 +108,15 @@ package body UmgebungErreichbarTesten is
    
    function NochErreichbar
      (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.MinimimMaximumID)
       return Boolean
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             KartenWertZwei := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuellePositionExtern,
                                                                             ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));

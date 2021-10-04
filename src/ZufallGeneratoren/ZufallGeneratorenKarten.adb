@@ -7,7 +7,7 @@ with BewegungPassierbarkeitPruefen;
 package body ZufallGeneratorenKarten is
 
    function StartPosition
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -39,14 +39,14 @@ package body ZufallGeneratorenKarten is
    
    
    function StartPositionEAchse
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.EbeneVorhanden
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.EbeneVorhanden
    is begin
       
       case
         RasseExtern
       is
-         when GlobaleDatentypen.Talbidahr | GlobaleDatentypen.Tesorahn =>
+         when SonstigeDatentypen.Talbidahr | SonstigeDatentypen.Tesorahn =>
             -- Vorübergehend geändert, da alle Rassen gerade den menschlichen Einheitenbaum haben
             return 0; -- -1;
             
@@ -64,49 +64,49 @@ package body ZufallGeneratorenKarten is
       case
         Karten.Kartengröße
       is
-         when GlobaleDatentypen.Karte_20_20 =>
+         when KartenDatentypen.Karte_20_20 =>
             WerteWählen20.Reset (PositionGewählt20);
             YAchse := WerteWählen20.Random (PositionGewählt20);
             XAchse := WerteWählen20.Random (PositionGewählt20);
 
-         when GlobaleDatentypen.Karte_40_40 =>
+         when KartenDatentypen.Karte_40_40 =>
             WerteWählen40.Reset (PositionGewählt40);
             YAchse := WerteWählen40.Random (PositionGewählt40);
             XAchse := WerteWählen40.Random (PositionGewählt40);
             
-         when GlobaleDatentypen.Karte_80_80 =>
+         when KartenDatentypen.Karte_80_80 =>
             WerteWählen80.Reset (PositionGewählt80);
             YAchse := WerteWählen80.Random (PositionGewählt80);
             XAchse := WerteWählen80.Random (PositionGewählt80);
             
-         when GlobaleDatentypen.Karte_120_80 =>
+         when KartenDatentypen.Karte_120_80 =>
             WerteWählen80.Reset (PositionGewählt80);
             WerteWählen120.Reset (PositionGewählt120);
             YAchse := WerteWählen120.Random (PositionGewählt120);
             XAchse := WerteWählen80.Random (PositionGewählt80);
             
-         when GlobaleDatentypen.Karte_120_160 =>
+         when KartenDatentypen.Karte_120_160 =>
             WerteWählen120.Reset (PositionGewählt120);
             WerteWählen160.Reset (PositionGewählt160);
             YAchse := WerteWählen120.Random (PositionGewählt120);
             XAchse := WerteWählen160.Random (PositionGewählt160);
             
-         when GlobaleDatentypen.Karte_160_160 =>
+         when KartenDatentypen.Karte_160_160 =>
             WerteWählen160.Reset (PositionGewählt160);
             YAchse := WerteWählen160.Random (PositionGewählt160);
             XAchse := WerteWählen160.Random (PositionGewählt160);
             
-         when GlobaleDatentypen.Karte_240_240 =>
+         when KartenDatentypen.Karte_240_240 =>
             WerteWählen240.Reset (PositionGewählt240);
             YAchse := WerteWählen240.Random (PositionGewählt240);
             XAchse := WerteWählen240.Random (PositionGewählt240);
             
-         when GlobaleDatentypen.Karte_320_320 =>
+         when KartenDatentypen.Karte_320_320 =>
             WerteWählen320.Reset (PositionGewählt320);
             YAchse := WerteWählen320.Random (PositionGewählt320);
             XAchse := WerteWählen320.Random (PositionGewählt320);
             
-         when GlobaleDatentypen.Karte_1000_1000 =>
+         when KartenDatentypen.Karte_1000_1000 =>
             WerteWählen1000.Reset (PositionGewählt1000);
             YAchse := WerteWählen1000.Random (PositionGewählt1000);
             XAchse := WerteWählen1000.Random (PositionGewählt1000);
@@ -149,7 +149,7 @@ package body ZufallGeneratorenKarten is
 
 
    function ChaoskarteGrund
-     return GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum
+     return KartenDatentypen.Karten_Grund_Alle_Felder_Enum
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
@@ -160,7 +160,7 @@ package body ZufallGeneratorenKarten is
    
    
    function ChaoskarteFluss
-     return GlobaleDatentypen.Karten_Grund_Enum
+     return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       FlussWählenChaoskarte.Reset (FlussGewählt);
@@ -171,7 +171,7 @@ package body ZufallGeneratorenKarten is
          FlussWert := FlussWählenChaoskarte.Random (FlussGewählt);
          
          if
-           FlussWert in GlobaleDatentypen.Karten_Fluss_Enum'Range
+           FlussWert in KartenDatentypen.Karten_Fluss_Enum'Range
          then
             return FlussWert;
                   
@@ -187,7 +187,7 @@ package body ZufallGeneratorenKarten is
    
    function ChaoskarteRessource
      (WasserLandExtern : in Boolean)
-      return GlobaleDatentypen.Karten_Grund_Enum
+      return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       RessourceWählenChaoskarte.Reset (RessourceGewählt);

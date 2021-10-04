@@ -9,7 +9,7 @@ package BewegungLadenEntladen is
 
    procedure TransporterBeladen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
      with
        Pre =>
          (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
@@ -18,7 +18,7 @@ package BewegungLadenEntladen is
    
    procedure EinheitAusTransporterEntfernen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
      with
        Pre =>
          (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
@@ -53,16 +53,16 @@ package BewegungLadenEntladen is
    
 private
    
-   TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
+   TransporterNummer : EinheitStadtDatentypen.MaximaleEinheiten;
    
-   EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   FreierPlatzNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitAusladen : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   FreierPlatzNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FreienPlatzErmitteln
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze

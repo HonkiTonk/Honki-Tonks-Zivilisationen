@@ -6,14 +6,14 @@ use GlobaleDatentypen;
 package GebaeudeAllgemein is
 
    procedure BeschreibungKurz
-     (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert);
+     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert);
    
    procedure BeschreibungLang
-     (IDExtern : in GlobaleDatentypen.GebäudeIDMitNullwert);
+     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert);
    
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -22,7 +22,7 @@ package GebaeudeAllgemein is
    
    procedure GebäudeEntfernen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
+      WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -31,7 +31,7 @@ package GebaeudeAllgemein is
    
    function GebäudeAnforderungenErfüllt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
      with
        Pre =>
@@ -43,8 +43,8 @@ private
    
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.GebäudeID;
-      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      VorzeichenWechselExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
      with
        Pre =>
          (VorzeichenWechselExtern /= 0);

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with EinheitenKonstanten, SystemKonstanten;
+with EinheitenKonstanten, SystemKonstanten, EinheitStadtDatentypen;
 
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -14,7 +14,7 @@ package body GrafischeAnzeige is
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
              
       case
@@ -50,7 +50,7 @@ package body GrafischeAnzeige is
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen.
@@ -104,7 +104,7 @@ package body GrafischeAnzeige is
    function AnzeigeCursor
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -132,7 +132,7 @@ package body GrafischeAnzeige is
    
    function AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -173,7 +173,7 @@ package body GrafischeAnzeige is
    
    function AnzeigeStadt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -201,7 +201,7 @@ package body GrafischeAnzeige is
    
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if

@@ -7,13 +7,13 @@ with Anzeige, Auswahl;
 package body EinheitenBeschreibungen is
 
    procedure BeschreibungKurz
-     (IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
+     (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert)
    is begin
       
       case
         IDExtern
       is
-         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
             return;
             
          when others =>
@@ -34,13 +34,13 @@ package body EinheitenBeschreibungen is
    
    
    procedure BeschreibungLang
-     (IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
+     (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert)
    is begin
       
       case
         IDExtern
       is
-         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
             return;
             
          when others =>

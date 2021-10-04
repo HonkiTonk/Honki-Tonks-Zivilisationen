@@ -8,7 +8,7 @@ package body EinheitenMeldungenSetzen is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -32,7 +32,7 @@ package body EinheitenMeldungenSetzen is
    
    procedure EinheitMeldungSetzenEreignis
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EreignisExtern : in GlobaleDatentypen.Einheit_Meldung_Verwendet_Enum)
+      EreignisExtern : in EinheitStadtDatentypen.Einheit_Meldung_Verwendet_Enum)
    is begin
       
       case

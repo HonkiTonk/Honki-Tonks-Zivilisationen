@@ -35,9 +35,9 @@ package body KIGefahrErmitteln is
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -99,7 +99,7 @@ package body KIGefahrErmitteln is
         DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                            FremdeRasseExtern => AndereEinheitExtern.Rasse)
       is
-         when GlobaleDatentypen.Krieg =>
+         when SonstigeDatentypen.Krieg =>
             null;
             
          when others =>

@@ -9,8 +9,8 @@ package UmgebungErreichbarTesten is
    
    function UmgebungErreichbarTesten
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.MinimimMaximumID;
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -25,8 +25,8 @@ package UmgebungErreichbarTesten is
    
 private
    
-   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   BereitsGetestet : KartenDatentypen.LoopRangeMinusZweiZuZwei;
+   Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
    
    GefundeneFelder : Positive;
    
@@ -35,8 +35,8 @@ private
    
    function NochErreichbar
      (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.MinimimMaximumID)
       return Boolean;
 
 end UmgebungErreichbarTesten;
