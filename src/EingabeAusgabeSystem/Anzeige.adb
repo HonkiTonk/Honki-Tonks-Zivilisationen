@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with Sf.Graphics.RenderWindow, Sf.Graphics.Text;
+with Sf.Graphics.RenderWindow;
 
 with GrafikAllgemein;
 
@@ -133,10 +133,10 @@ package body Anzeige is
                if
                  TextlängeEins = 1
                then
-                  Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
-                                                     str  => "ä");
-                  Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                                     text         => GrafikEinstellungen.Text);
+                  Sf.Graphics.RectangleShape.setSize (shape => Rechteck,
+                                                      size  => (100.00, 100.00));
+                  Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                               object       => Rechteck);
                   Put (Item => "╔");
                   Put (Item => "═");
 

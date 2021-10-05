@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
-use SonstigeDatentypen;
+with EinheitStadtRecords, SystemDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+use SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
 
 with KIDatentypen;
 
@@ -72,7 +72,7 @@ package LeseEinheitenGebaut is
       
    function Beschäftigung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.Tastenbelegung_Enum
+      return SystemDatentypen.Tastenbelegung_Enum
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -81,7 +81,7 @@ package LeseEinheitenGebaut is
    
    function BeschäftigungNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.Tastenbelegung_Enum
+      return SystemDatentypen.Tastenbelegung_Enum
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

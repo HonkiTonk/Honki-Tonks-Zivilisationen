@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, StadtKonstanten;
+with StadtKonstanten, KartenDatentypen, EinheitStadtDatentypen;
 
 with DatenbankRecords;
 
@@ -15,12 +15,12 @@ package GebaeudeLasupin is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 0,
-         PermanenterBonus            => (GlobaleDatentypen.Nahrung => 10,
-                                         GlobaleDatentypen.Verteidigung => 10,
-                                         GlobaleDatentypen.Angriff => 10,
+         PermanenterBonus            => (KartenDatentypen.Nahrung => 10,
+                                         KartenDatentypen.Verteidigung => 10,
+                                         KartenDatentypen.Angriff => 10,
                                          others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Nahrungslager
       2 =>
@@ -30,8 +30,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 2,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Holzpalisade
       3 =>
@@ -41,8 +41,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 1,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Schmiede
       4 =>
@@ -52,8 +52,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 10,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
       
       -- Bibliothek
       5 =>
@@ -63,8 +63,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 9,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Steinmauer
       6 =>
@@ -74,8 +74,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 11,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Bücherei
       7 =>
@@ -85,8 +85,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 21,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Bewässerungssystem
       8 =>
@@ -96,8 +96,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 16,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Kaserne
       9 =>
@@ -107,8 +107,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 13,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Wassermühle
       10 =>
@@ -118,8 +118,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 15,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Windmühle
       11 =>
@@ -129,8 +129,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 15,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Seehafen
       12 =>
@@ -140,8 +140,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 14,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Hochofen
       13 =>
@@ -151,8 +151,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 33,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Universität
       14 =>
@@ -162,8 +162,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 27,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Burg
       15 =>
@@ -173,8 +173,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 22,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Schwere Burg
       16 =>
@@ -184,8 +184,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 25,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Festungen
       17 =>
@@ -195,8 +195,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 34,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Kohlekraftwerk
       18 =>
@@ -206,8 +206,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 37,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Fabrik
       19 =>
@@ -217,8 +217,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 30,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Krankenhaus
       20 =>
@@ -228,8 +228,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 43,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Flughafen
       21 =>
@@ -239,8 +239,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 41,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Atomkraftwerk
       22 =>
@@ -250,8 +250,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 45,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
       23 =>
@@ -261,8 +261,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 53,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Genklinik
       24 =>
@@ -272,8 +272,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 56,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Fusionskraftwerk
       25 =>
@@ -283,8 +283,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 60,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- NAMR Kraftwerk
       26 =>
@@ -294,8 +294,8 @@ package GebaeudeLasupin is
          PermanenteKosten            => (others => 0),
          Anforderungen               => 63,
          PermanenterBonus            => (others => 0),
-         UmgebungBenötigt            => GlobaleDatentypen.Leer,
-         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
+         UmgebungBenötigt            => KartenDatentypen.Leer,
+         GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                                               
       others => StadtKonstanten.LeerGebäudeListe
      );

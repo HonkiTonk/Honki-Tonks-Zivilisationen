@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseVerbesserungenDatenbank;
+with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseVerbesserungenDatenbank, KartenDatentypen, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with GesamtwerteFeld;
 
@@ -13,7 +14,7 @@ package body KampfwerteStadtErmitteln is
       
       VerteidigungWert := LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                          RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                         WelcherWertExtern  => GlobaleDatentypen.Verteidigung)
+                                                                         WelcherWertExtern  => KartenDatentypen.Verteidigung)
         + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -30,7 +31,7 @@ package body KampfwerteStadtErmitteln is
          else
             VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                            IDExtern           => GebäudeSchleifenwert,
-                                                                                           WelcherBonusExtern => GlobaleDatentypen.Verteidigung);
+                                                                                           WelcherBonusExtern => KartenDatentypen.Verteidigung);
          end if;
          
       end loop GebäudeSchleife;
@@ -48,7 +49,7 @@ package body KampfwerteStadtErmitteln is
       
       AngriffWert := LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                     RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                    WelcherWertExtern  => GlobaleDatentypen.Angriff)
+                                                                    WelcherWertExtern  => KartenDatentypen.Angriff)
         + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -65,7 +66,7 @@ package body KampfwerteStadtErmitteln is
          else
             AngriffWert := AngriffWert + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                  IDExtern           => GebäudeSchleifenwert,
-                                                                                 WelcherBonusExtern => GlobaleDatentypen.Angriff);
+                                                                                 WelcherBonusExtern => KartenDatentypen.Angriff);
          end if;
          
       end loop GebäudeSchleife;

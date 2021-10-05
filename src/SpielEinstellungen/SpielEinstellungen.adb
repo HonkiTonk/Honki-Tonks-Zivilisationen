@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Calendar;
 use Ada.Wide_Wide_Text_IO, Ada.Calendar;
 
-with GlobaleVariablen, GlobaleDatentypen, SystemKonstanten, SonstigeDatentypen;
+with GlobaleVariablen, SystemDatentypen, SystemKonstanten, SonstigeDatentypen;
 
 with ImSpiel, KartenGenerator, Ladezeiten, SpielEinstellungenKarten, SpielEinstellungenRasseSpieler, SpielEinstellungenSonstiges;
 
@@ -69,7 +69,7 @@ package body SpielEinstellungen is
       
       KartenGenerator.KartenGenerator;
       
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, SystemDatentypen.Anfangswert) := Clock;
       SpielEinstellungenRasseSpieler.StartwerteErmitteln;
       RassenVorhanden := False;
       
@@ -100,7 +100,7 @@ package body SpielEinstellungen is
             raise Program_Error;
       end case;
          
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, SystemDatentypen.Endwert) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Spieler_Platzieren);
 
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Gesamtzeit);

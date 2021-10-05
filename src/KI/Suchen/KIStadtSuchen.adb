@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with LeseStadtGebaut;
 
@@ -43,7 +44,7 @@ package body KIStadtSuchen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = GlobaleDatentypen.Leer
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenDatentypen.Leer
          then
             null;
             
@@ -86,7 +87,7 @@ package body KIStadtSuchen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)) = GlobaleDatentypen.Leer
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)) = KartenDatentypen.Leer
          then
             null;
                

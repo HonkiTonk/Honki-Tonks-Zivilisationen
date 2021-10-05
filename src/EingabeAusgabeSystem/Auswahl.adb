@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleDatentypen, SystemKonstanten;
+with SystemDatentypen, SystemKonstanten;
 
 with Anzeige, Eingabe;
 
@@ -41,7 +41,7 @@ package body Auswahl is
          case
            Eingabe.Tastenwert
          is
-            when GlobaleDatentypen.Hoch =>
+            when SystemDatentypen.Hoch =>
                if
                  AktuelleAuswahl = GlobaleTexte.SprachenEinlesenArray'First
                then
@@ -51,7 +51,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when GlobaleDatentypen.Runter =>
+            when SystemDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -61,7 +61,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when GlobaleDatentypen.Auswählen =>
+            when SystemDatentypen.Auswählen =>
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return GlobaleTexte.SprachenEinlesen (AktuelleAuswahl);
                      
@@ -102,7 +102,7 @@ package body Auswahl is
          case
            Eingabe.Tastenwert
          is
-            when GlobaleDatentypen.Hoch =>
+            when SystemDatentypen.Hoch =>
                if
                  AktuelleAuswahl = Anfang
                then
@@ -112,7 +112,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when GlobaleDatentypen.Runter =>
+            when SystemDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -122,7 +122,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when GlobaleDatentypen.Auswählen =>
+            when SystemDatentypen.Auswählen =>
                -- Hauptmenü
                if
                  GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 1)

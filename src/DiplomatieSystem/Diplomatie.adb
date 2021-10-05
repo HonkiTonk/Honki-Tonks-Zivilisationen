@@ -36,7 +36,7 @@ package body Diplomatie is
          if
            RassenSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Leer
            or
              GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
          then
@@ -82,7 +82,7 @@ package body Diplomatie is
             if
               SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
               or
-                GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = GlobaleDatentypen.Leer
+                GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SonstigeDatentypen.Leer
                 or
                   GlobaleVariablen.Diplomatie (RasseExtern, SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SonstigeDatentypen.Unbekannt
             then

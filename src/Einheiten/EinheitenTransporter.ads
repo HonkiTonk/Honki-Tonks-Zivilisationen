@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, SonstigeDatentypen, EinheitStadtDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with GlobaleVariablen, EinheitStadtRecords, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package EinheitenTransporter is
 

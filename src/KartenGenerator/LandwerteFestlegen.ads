@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenDatentypen;
-use GlobaleDatentypen;
+with KartenDatentypen;
+use KartenDatentypen;
 
 with Karten;
 

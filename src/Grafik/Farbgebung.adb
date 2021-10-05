@@ -3,6 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
+with EinheitStadtDatentypen, KartenDatentypen;
+use EinheitStadtDatentypen, KartenDatentypen;
+
 with LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, LeseKartenDatenbank;
 
 package body Farbgebung is
@@ -41,19 +44,19 @@ package body Farbgebung is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Unterwasser_Eis =>
+         when KartenDatentypen.Eis | KartenDatentypen.Unterwasser_Eis =>
             Put (Item => CSI & "48;2;255;245;238m");
             
-         when GlobaleDatentypen.Wasser | GlobaleDatentypen.Unterwasser_Wasser =>
+         when KartenDatentypen.Wasser | KartenDatentypen.Unterwasser_Wasser =>
             Put (Item => CSI & "48;2;0;0;205m");
             
-         when GlobaleDatentypen.Flachland =>
+         when KartenDatentypen.Flachland =>
             Put (Item => CSI & "48;2;100;160;60m");
             
          when KartenDatentypen.Tundra =>
             Put (Item => CSI & "48;2;205;200;177m");
             
-         when KartenDatentypen.Wüste | GlobaleDatentypen.Sand =>
+         when KartenDatentypen.Wüste | KartenDatentypen.Sand =>
             Put (Item => CSI & "48;2;238;238;0m");
             
          when KartenDatentypen.Hügel =>
@@ -68,31 +71,31 @@ package body Farbgebung is
          when KartenDatentypen.Dschungel =>
             Put (Item => CSI & "48;2;0;70;0m");
             
-         when GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Unterwasser_Küstengewässer =>
+         when KartenDatentypen.Küstengewässer | KartenDatentypen.Unterwasser_Küstengewässer =>
             Put (Item => CSI & "48;2;135;206;250m");
             
          when KartenDatentypen.Sumpf =>
             Put (Item => CSI & "48;2;0;40;0m");
 
-         when GlobaleDatentypen.Erde =>
+         when KartenDatentypen.Erde =>
             Put (Item => CSI & "48;2;139;69;19m");
             
-         when GlobaleDatentypen.Erdgestein =>
+         when KartenDatentypen.Erdgestein =>
             Put (Item => CSI & "48;2;120;120;120m");
             
-         when GlobaleDatentypen.Lava =>
+         when KartenDatentypen.Lava =>
             Put (Item => CSI & "48;2;250;39;39m");
             
-         when GlobaleDatentypen.Wolken =>
+         when KartenDatentypen.Wolken =>
             Put (Item => CSI & "48;2;236;236;236m");
             
-         when GlobaleDatentypen.Weltraum =>
+         when KartenDatentypen.Weltraum =>
             Put (Item => CSI & "48;2;127;127;127m");
             
-         when GlobaleDatentypen.Gestein =>
+         when KartenDatentypen.Gestein =>
             Put (Item => CSI & "48;2;87;87;87m");   
             
-         when GlobaleDatentypen.Planetenkern =>
+         when KartenDatentypen.Planetenkern =>
             Put (Item => CSI & "48;2;205;0;0m");
             
          when KartenDatentypen.Unterwasser_Wald =>
@@ -117,17 +120,17 @@ package body Farbgebung is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis | KartenDatentypen.Tundra | KartenDatentypen.Wüste | GlobaleDatentypen.Sand | GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Wolken | GlobaleDatentypen.Unterwasser_Eis
-            | GlobaleDatentypen.Unterwasser_Küstengewässer =>
+         when KartenDatentypen.Eis | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Sand | KartenDatentypen.Küstengewässer | KartenDatentypen.Wolken | KartenDatentypen.Unterwasser_Eis
+            | KartenDatentypen.Unterwasser_Küstengewässer =>
             if
-              RessourceExtern in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
+              RessourceExtern in KartenDatentypen.Karten_Grund_Fluss_Enum'Range
               or
-                RessourceExtern in GlobaleDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range
+                RessourceExtern in KartenDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range
             then
                Put (Item => CSI & "38;2;0;0;205m");
                
             elsif
-              RessourceExtern in GlobaleDatentypen.Karten_Grund_Lavafluss_Enum'Range
+              RessourceExtern in KartenDatentypen.Karten_Grund_Lavafluss_Enum'Range
             then
                Put (Item => CSI & "38;2;230;50;50m");
                
@@ -137,14 +140,14 @@ package body Farbgebung is
                   
          when others =>
             if
-              RessourceExtern in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
+              RessourceExtern in KartenDatentypen.Karten_Grund_Fluss_Enum'Range
               or
-                RessourceExtern in GlobaleDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range
+                RessourceExtern in KartenDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range
             then
                Put (Item => CSI & "38;2;135;206;250m");
                
             elsif
-              RessourceExtern in GlobaleDatentypen.Karten_Grund_Lavafluss_Enum'Range
+              RessourceExtern in KartenDatentypen.Karten_Grund_Lavafluss_Enum'Range
             then
                Put (Item => CSI & "38;2;230;50;50m");
                
@@ -179,35 +182,35 @@ package body Farbgebung is
                                                               IDExtern    => EinheitIDExtern) & CSI & "0m");
         
       elsif
-        VerbesserungExtern in GlobaleDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
+        VerbesserungExtern in KartenDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
         and
           RasseExtern = EigeneRasseExtern
       then
          Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
             
       elsif
-        VerbesserungExtern in GlobaleDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
+        VerbesserungExtern in KartenDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
       then
          case
            VerbesserungExtern
          is
-            when GlobaleDatentypen.Eigene_Hauptstadt =>
-               Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => GlobaleDatentypen.Fremde_Hauptstadt) & CSI & "0m");
+            when KartenDatentypen.Eigene_Hauptstadt =>
+               Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => KartenDatentypen.Fremde_Hauptstadt) & CSI & "0m");
                
-            when GlobaleDatentypen.Eigene_Stadt =>
-               Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => GlobaleDatentypen.Fremde_Stadt) & CSI & "0m");
+            when KartenDatentypen.Eigene_Stadt =>
+               Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => KartenDatentypen.Fremde_Stadt) & CSI & "0m");
                
             when others =>
                null;
          end case;
             
       elsif
-        VerbesserungExtern /= GlobaleDatentypen.Leer
+        VerbesserungExtern /= KartenDatentypen.Leer
       then
          Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
 
       elsif
-        RessourceExtern /= GlobaleDatentypen.Leer
+        RessourceExtern /= KartenDatentypen.Leer
       then
          Put (Item => LeseKartenDatenbank.KartenGrafik (GrundExtern => RessourceExtern) & CSI & "0m");
             

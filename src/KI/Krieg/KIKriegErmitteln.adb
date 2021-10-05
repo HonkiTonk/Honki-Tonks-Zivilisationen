@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
+
 with DiplomatischerZustand;
 
 package body KIKriegErmitteln is
@@ -15,7 +18,7 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
          then
             null;
             
@@ -47,13 +50,13 @@ package body KIKriegErmitteln is
         RasseExtern
       is
          when SonstigeDatentypen.Ekropa =>
-            return GlobaleDatentypen.Leer;
+            return SonstigeDatentypen.Leer;
             
          when others =>
             null;
       end case;
       
-      RasseGewählt := GlobaleDatentypen.Leer;
+      RasseGewählt := SonstigeDatentypen.Leer;
       Bewertungen := (others => 0);
       
       RassenSchleife:
@@ -62,7 +65,7 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
          then
             null;
             
@@ -101,11 +104,11 @@ package body KIKriegErmitteln is
          null;
          
       else
-         return GlobaleDatentypen.Leer;
+         return SonstigeDatentypen.Leer;
       end if;
       
       if
-        RasseGewählt = GlobaleDatentypen.Leer
+        RasseGewählt = SonstigeDatentypen.Leer
       then
          Bewertungen (FremdeRasseExtern) := Bewertung;
          

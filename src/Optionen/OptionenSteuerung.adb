@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 -- with Ada.Wide_Wide_Text_IO;
 -- use Ada.Wide_Wide_Text_IO;
 
-with SystemKonstanten, GlobaleTexte;
+with SystemKonstanten, GlobaleTexte, SystemDatentypen;
+use SystemDatentypen;
 
 with Eingabe, Auswahl, Anzeige, SchreibenTastatur;
 
@@ -59,7 +60,7 @@ package body OptionenSteuerung is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
-      NeueAuswahl := GlobaleDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
+      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
                
       -- Put_Line (Eingabe.Tastenbelegung (1, NeueAuswahl) & "    " & Eingabe.Tastenbelegung (2, NeueAuswahl));
                
@@ -101,7 +102,7 @@ package body OptionenSteuerung is
    procedure NeueTasteFestlegen
    is begin
       
-      NeueAuswahl := GlobaleDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
+      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
          
       if
         Eingabe.Tastenbelegung (1, NeueAuswahl) = NeueTaste

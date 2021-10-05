@@ -13,14 +13,14 @@ package body StadtMeldungenSetzen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>
                StadtSchleife:
                for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
-                  GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => GlobaleDatentypen.Leer);
+                  GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer);
                   
                end loop StadtSchleife;
          end case;
@@ -39,14 +39,14 @@ package body StadtMeldungenSetzen is
       case
         EreignisExtern
       is
-         when GlobaleDatentypen.Produktion_Abgeschlossen | GlobaleDatentypen.Einheit_Unplatzierbar =>
-            ArtDerMeldung := GlobaleDatentypen.Produktion_Fertig;
+         when EinheitStadtDatentypen.Produktion_Abgeschlossen | EinheitStadtDatentypen.Einheit_Unplatzierbar =>
+            ArtDerMeldung := EinheitStadtDatentypen.Produktion_Fertig;
             
-         when GlobaleDatentypen.Einwohner_Wachstum | GlobaleDatentypen.Einwohner_Reduktion =>
-            ArtDerMeldung := GlobaleDatentypen.Hungersnot;
+         when EinheitStadtDatentypen.Einwohner_Wachstum | EinheitStadtDatentypen.Einwohner_Reduktion =>
+            ArtDerMeldung := EinheitStadtDatentypen.Hungersnot;
             
-         when GlobaleDatentypen.Fremde_Einheit_Nahe_Stadt =>
-            ArtDerMeldung := GlobaleDatentypen.Einheit_In_Der_Nähe;
+         when EinheitStadtDatentypen.Fremde_Einheit_Nahe_Stadt =>
+            ArtDerMeldung := EinheitStadtDatentypen.Einheit_In_Der_Nähe;
       end case;
       
       SchreibeStadtGebaut.Meldungen (StadtRasseNummerExtern => StadtRasseNummerExtern,

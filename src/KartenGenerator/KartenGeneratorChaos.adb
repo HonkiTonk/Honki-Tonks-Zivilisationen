@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
-use GlobaleDatentypen;
-
 with SchreibeKarten;
 
 with Karten, ZufallGeneratorenKarten;
@@ -26,7 +23,7 @@ package body KartenGeneratorChaos is
                case
                  GrundZufall
                is
-                  when GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | GlobaleDatentypen.Lava | GlobaleDatentypen.Planetenkern =>
+                  when KartenDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | KartenDatentypen.Lava | KartenDatentypen.Planetenkern =>
                      null;
                      
                   when others =>
@@ -37,11 +34,11 @@ package body KartenGeneratorChaos is
                case
                  GrundZufall
                is
-                  when GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range =>
+                  when KartenDatentypen.Karten_Grund_Wasser_Enum'Range =>
                      SchreibeKarten.Ressource (PositionExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                                RessourceExtern => ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => True));
                      
-                  when GlobaleDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
+                  when KartenDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
                      SchreibeKarten.Ressource (PositionExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                                RessourceExtern => ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => False));
                      

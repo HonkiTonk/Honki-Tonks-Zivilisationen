@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords, KartenDatentypen, SonstigeDatentypen;
-use GlobaleDatentypen, KartenDatentypen;
+with GlobaleVariablen, KartenRecords, KartenDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
+use KartenDatentypen, SonstigeDatentypen;
 
 with Karten;
 
@@ -33,7 +33,7 @@ package SchreibeKarten is
       SichtbarExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
           and
             PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and

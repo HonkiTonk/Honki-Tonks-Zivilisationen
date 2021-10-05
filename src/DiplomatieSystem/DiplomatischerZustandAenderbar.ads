@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with SonstigeDatentypen, GlobaleVariablen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package DiplomatischerZustandAenderbar is
 
@@ -13,9 +13,9 @@ package DiplomatischerZustandAenderbar is
        Pre =>
          (RasseEinsExtern /= RasseZweiExtern
           and
-            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SonstigeDatentypen.Leer);
    
 private
    

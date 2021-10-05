@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, SonstigeDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with GlobaleVariablen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package Diplomatie is
 

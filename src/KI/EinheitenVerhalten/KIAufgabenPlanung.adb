@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with EinheitStadtDatentypen, SystemDatentypen;
+use EinheitStadtDatentypen;
+
 with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank, LeseEinheitenGebaut;
 
@@ -15,7 +18,7 @@ package body KIAufgabenPlanung is
       
       -- Muss für die Schleife weiter unten auf den ersten Wert gesetzt werden.
       GewählteAufgabe := KIDatentypen.Einheit_Aufgabe_Enum'First;
-      Wichtigkeit := (others => GlobaleDatentypen.ProduktionSonstiges'First);
+      Wichtigkeit := (others => EinheitStadtDatentypen.ProduktionSonstiges'First);
             
       Wichtigkeit (KIDatentypen.Tut_Nichts) := KIVorhandeneAufgaben.NichtsTun;
       Wichtigkeit (KIDatentypen.Einheit_Auflösen) := KIVorhandeneAufgaben.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -43,26 +46,26 @@ package body KIAufgabenPlanung is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when GlobaleDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Arbeiter =>
             Wichtigkeit (KIDatentypen.Stadt_Bauen) := KIVorhandeneAufgaben.NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Verbesserung_Anlegen) := KIVorhandeneAufgaben.StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when GlobaleDatentypen.Nahkämpfer =>
+         when EinheitStadtDatentypen.Nahkämpfer =>
             Wichtigkeit (KIDatentypen.Stadt_Bewachen) := KIVorhandeneAufgaben.StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Verbesserung_Zerstören) := KIVorhandeneAufgaben.StadtUmgebungZerstören;
             Wichtigkeit (KIDatentypen.Angreifen) := KIVorhandeneAufgaben.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Wichtigkeit (KIDatentypen.Erkunden) := KIVorhandeneAufgaben.Erkunden;
             
-         when GlobaleDatentypen.Fernkämpfer =>
+         when EinheitStadtDatentypen.Fernkämpfer =>
             null;
             
-         when GlobaleDatentypen.Beides =>
+         when EinheitStadtDatentypen.Beides =>
             null;
             
-         when GlobaleDatentypen.Sonstiges =>
+         when EinheitStadtDatentypen.Sonstiges =>
             null;
             
-         when GlobaleDatentypen.Leer =>
+         when EinheitStadtDatentypen.Leer =>
             -- Sollte niemals eintreten.
             raise Program_Error;
       end case;
@@ -169,7 +172,7 @@ package body KIAufgabenPlanung is
             
          when KIDatentypen.Stadt_Bewachen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => GlobaleDatentypen.Verschanzen);
+                                                                 BefehlExtern             => SystemDatentypen.Verschanzen);
             
          when KIDatentypen.Verbesserung_Anlegen =>
             AufgabeDurchführen := KIAufgabeUmsetzen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -182,11 +185,11 @@ package body KIAufgabenPlanung is
             
          when KIDatentypen.Einheit_Heilen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => GlobaleDatentypen.Heilen);
+                                                                 BefehlExtern             => SystemDatentypen.Heilen);
             
          when KIDatentypen.Einheit_Festsetzen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => GlobaleDatentypen.Verschanzen);
+                                                                 BefehlExtern             => SystemDatentypen.Verschanzen);
             
          when KIDatentypen.Einheit_Verbessern =>
             AufgabeDurchführen := KIAufgabeUmsetzen.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -214,7 +217,7 @@ package body KIAufgabenPlanung is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
+                                                    BeschäftigungExtern     => SystemDatentypen.Leer);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
       end case;

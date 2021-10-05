@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleDatentypen, SonstigeDatentypen;
+with SonstigeDatentypen, SystemDatentypen;
 
 package Ladezeiten is
 
@@ -13,14 +13,14 @@ package Ladezeiten is
    subtype Spielwelt_Erstellen_Zeit_Verwendet_Enum is Spielwelt_Erstellen_Zeit_Enum range Gesamtzeit .. Spielwelt_Erstellen_Zeit_Enum'Last;
    subtype Gesamtzeit_Enum is Spielwelt_Erstellen_Zeit_Verwendet_Enum range Generiere_Normal_Himmel_Weltraum_Planeteninneres .. Spielwelt_Erstellen_Zeit_Verwendet_Enum'Last;
    
-   type SpielweltErstellenZeitArray is array (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Range, GlobaleDatentypen.Anfang_Ende_Enum'Range) of Time;
+   type SpielweltErstellenZeitArray is array (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    SpielweltErstellenZeit : SpielweltErstellenZeitArray;
    
    type Einzelne_Zeiten_Enum is (Startzeit, Zwischen_Runden, Speicherzeit, Ladezeit);
-   type EinzelneZeitenArray is array (Einzelne_Zeiten_Enum'Range, GlobaleDatentypen.Anfang_Ende_Enum'Range) of Time;
+   type EinzelneZeitenArray is array (Einzelne_Zeiten_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    EinzelneZeiten : EinzelneZeitenArray;
    
-   type KIZeitenArray is array (SonstigeDatentypen.Rassen_Enum, GlobaleDatentypen.Anfang_Ende_Enum'Range) of Time;
+   type KIZeitenArray is array (SonstigeDatentypen.Rassen_Enum, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    KIZeiten : KIZeitenArray;
 
    procedure LadezeitenSpielweltErstellen

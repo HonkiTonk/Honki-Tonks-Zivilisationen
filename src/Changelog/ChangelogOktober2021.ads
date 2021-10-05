@@ -168,24 +168,25 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00. => 0.00. (07.10.2021):
+   -- Version 0.00.89 => 0.00. (07.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.89 => 0.00. (06.10.2021):
+   -- Version 0.00.8950 => 0.00.89 (06.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8940 => 0.00.89 (05.10.2021):
+   -- Version 0.00.8940 => 0.00.8950 (05.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GlobaleDatentypen vollständig aufgeteilt.
+   -- Mit der ASFML/SFML herumexperimentiert.
+   -- Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
@@ -193,7 +194,7 @@ package ChangelogOktober2021 is
    
    -- Bei diversen Enums pragma Ordered hinzugefügt, notwendig um einige Fehlermeldungen im Zusammenhang mit den Zufallsgeneratoren zu beheben.
    -- Angefangen GlobaleDatentypen aufzuteilen.
-   -- Kleinigkeiten korrigiert.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
@@ -205,7 +206,7 @@ package ChangelogOktober2021 is
    
    -- Version 0.00.8920 => 0.00.8930 (02.10.2021):
    
-   -- Mit der SFML herumexperimentiert.
+   -- Mit der ASFML/SFML herumexperimentiert.
    -- Kleinigkeiten korrigiert.
    
    

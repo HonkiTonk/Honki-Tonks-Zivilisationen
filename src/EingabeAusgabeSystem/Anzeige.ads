@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
+with Sf.Graphics.RectangleShape;
+
 with GlobaleTexte, EinheitStadtDatentypen;
 use GlobaleTexte, EinheitStadtDatentypen;
 
@@ -85,5 +87,7 @@ private
    LängsterText : Natural;
    
    TextNeu : Unbounded_Wide_Wide_String;
+   
+   Rechteck : Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    
 end Anzeige;

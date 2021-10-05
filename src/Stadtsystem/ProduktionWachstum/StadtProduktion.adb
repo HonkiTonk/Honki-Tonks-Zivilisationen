@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, StadtKonstanten;
+with KartenKonstanten, StadtKonstanten, KartenDatentypen;
+use KartenDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -16,7 +17,7 @@ package body StadtProduktion is
       case
         StadtRasseNummerExtern.Rasse
       is
-         when GlobaleDatentypen.Leer =>
+         when SonstigeDatentypen.Leer =>
             StadtProduktionAlle;
             
          when others =>
@@ -37,7 +38,7 @@ package body StadtProduktion is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                      
             when others =>
@@ -47,7 +48,7 @@ package body StadtProduktion is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
                   is
-                     when GlobaleDatentypen.Leer =>
+                     when KartenDatentypen.Leer =>
                         null;
                   
                      when others =>
@@ -165,7 +166,7 @@ package body StadtProduktion is
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
                                               NahrungsproduktionExtern => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                                   WelcherPostenExtern    => GlobaleDatentypen.Nahrung),
+                                                                                                                   WelcherPostenExtern    => EinheitStadtDatentypen.Nahrung),
                                               ÄndernSetzenExtern       => True);
       VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                 EinwohnerArbeiterExtern => True);
@@ -200,7 +201,7 @@ package body StadtProduktion is
       
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           ProduktionrateExtern   => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                             WelcherPostenExtern    => GlobaleDatentypen.Ressourcen),
+                                                                                                             WelcherPostenExtern    => EinheitStadtDatentypen.Ressourcen),
                                           ÄndernSetzenExtern    => True);
             
       case
@@ -239,7 +240,7 @@ package body StadtProduktion is
       
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          GeldgewinnungExtern    => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                            WelcherPostenExtern    => GlobaleDatentypen.Geld),
+                                                                                                            WelcherPostenExtern    => EinheitStadtDatentypen.Geld),
                                          ÄndernSetzenExtern     => True);
       
       case

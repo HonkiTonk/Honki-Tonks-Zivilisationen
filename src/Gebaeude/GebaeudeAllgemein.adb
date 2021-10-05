@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, StadtKonstanten, ForschungKonstanten;
+with GlobaleTexte, StadtKonstanten, ForschungKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with SchreibeWichtiges, SchreibeStadtGebaut;
 with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseWichtiges;
@@ -106,7 +107,7 @@ package body GebaeudeAllgemein is
          
          SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                      WelcherPostenExtern    => PermanenteKostenSchleifenwert,
-                                                     KostenExtern           => GesamtePermanenteKosten (VorzeichenWechselExtern)
+                                                     KostenExtern           => EinheitStadtDatentypen.GesamtePermanenteKosten (VorzeichenWechselExtern)
                                                      * LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                IDExtern           => IDExtern,
                                                                                                WelcheKostenExtern => PermanenteKostenSchleifenwert),

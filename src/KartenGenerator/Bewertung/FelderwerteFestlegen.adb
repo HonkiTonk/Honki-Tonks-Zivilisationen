@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, KartenKonstanten;
+with GlobaleVariablen, KartenKonstanten, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen, EinheitStadtDatentypen;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -32,7 +33,7 @@ package body FelderwerteFestlegen is
                                     KartenWertEins (KoordinatenExtern.EAchse).YAchse,
                                     KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := (others => 0);
                   KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse),
-                                                      RasseExtern       => GlobaleDatentypen.Leer);
+                                                      RasseExtern       => SonstigeDatentypen.Leer);
             end case;
             
          end loop XAchseÄnderungSchleife;
@@ -108,7 +109,7 @@ package body FelderwerteFestlegen is
          if
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Spieler_KI
            and
-             (RasseExtern = GlobaleDatentypen.Leer
+             (RasseExtern = SonstigeDatentypen.Leer
               or
                 RasseExtern = RasseSchleifenwert)
          then
@@ -119,13 +120,13 @@ package body FelderwerteFestlegen is
                                                               RasseExtern    => RasseSchleifenwert)
                                       + KartenAllgemein.GrundBewertung (PositionExtern => KoordinatenUmgebungExtern,
                                                                         RasseExtern    => RasseSchleifenwert)
-                                      / GesamtproduktionStadt (TeilerExtern)
+                                      / EinheitStadtDatentypen.GesamtproduktionStadt (TeilerExtern)
                                      );
 
             case
               LeseKarten.Fluss (PositionExtern => KoordinatenUmgebungExtern)
             is
-               when GlobaleDatentypen.Leer =>
+               when KartenDatentypen.Leer =>
                   null;
             
                when others =>
@@ -136,14 +137,14 @@ package body FelderwerteFestlegen is
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.FlussBewertung (PositionExtern => KoordinatenUmgebungExtern,
                                                                               RasseExtern    => RasseSchleifenwert)
-                                            / GesamtproduktionStadt (TeilerExtern)
+                                            / EinheitStadtDatentypen.GesamtproduktionStadt (TeilerExtern)
                                            );
             end case;
 
             case
               LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenUmgebungExtern)
             is
-               when GlobaleDatentypen.Leer =>
+               when KartenDatentypen.Leer =>
                   null;
             
                when others =>
@@ -154,14 +155,14 @@ package body FelderwerteFestlegen is
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.WegBewertung (PositionExtern => KoordinatenUmgebungExtern,
                                                                             RasseExtern    => RasseSchleifenwert)
-                                            / GesamtproduktionStadt (TeilerExtern)
+                                            / EinheitStadtDatentypen.GesamtproduktionStadt (TeilerExtern)
                                            );
             end case;
 
             case
               LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenUmgebungExtern)
             is
-               when GlobaleDatentypen.Leer =>
+               when KartenDatentypen.Leer =>
                   null;
             
                when others =>
@@ -172,14 +173,14 @@ package body FelderwerteFestlegen is
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.VerbesserungBewertung (PositionExtern => KoordinatenUmgebungExtern,
                                                                                      RasseExtern    => RasseSchleifenwert)
-                                            / GesamtproduktionStadt (TeilerExtern)
+                                            / EinheitStadtDatentypen.GesamtproduktionStadt (TeilerExtern)
                                            );
             end case;
       
             case
               LeseKarten.Ressource (PositionExtern => KoordinatenUmgebungExtern)
             is
-               when GlobaleDatentypen.Leer =>
+               when KartenDatentypen.Leer =>
                   null;
             
                when others =>
@@ -190,7 +191,7 @@ package body FelderwerteFestlegen is
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.RessourceBewertung (PositionExtern => KoordinatenUmgebungExtern,
                                                                                   RasseExtern    => RasseSchleifenwert)
-                                            / GesamtproduktionStadt (TeilerExtern)
+                                            / EinheitStadtDatentypen.GesamtproduktionStadt (TeilerExtern)
                                            );
             end case;
                

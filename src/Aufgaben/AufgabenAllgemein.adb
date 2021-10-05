@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, EinheitenKonstanten;
+with GlobaleTexte, EinheitenKonstanten, SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
 
@@ -15,7 +15,7 @@ package body AufgabenAllgemein is
       case
         KartenVerbesserungExtern
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             null;
             
          when others =>
@@ -32,12 +32,12 @@ package body AufgabenAllgemein is
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern     => GlobaleDatentypen.Leer);
+                                              BeschäftigungExtern     => SystemDatentypen.Leer);
       SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                                    RechnenSetzenExtern      => 0);
       SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                        BeschäftigungExtern     => GlobaleDatentypen.Leer);
+                                                        BeschäftigungExtern     => SystemDatentypen.Leer);
       SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              ZeitExtern               => EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
                                                              RechnenSetzenExtern      => 0);

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
-use GlobaleDatentypen, KartenRecords, SonstigeDatentypen;
+with SystemDatentypen, EinheitStadtRecords, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+use KartenRecords, SonstigeDatentypen, KartenDatentypen;
 
 with Karten;
 
@@ -23,7 +23,7 @@ private
    AufgabeDurchführen : Boolean;
    NullWert : Boolean;
    
-   Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
+   Befehl : SystemDatentypen.Tastenbelegung_Enum;
    
    EinheitAufFeld : EinheitStadtRecords.RassePlatznummerRecord;
    StadtAufFeld : EinheitStadtRecords.RassePlatznummerRecord;

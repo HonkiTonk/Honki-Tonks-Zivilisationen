@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, KartenDatentypen, EinheitStadtDatentypen;
+use KartenDatentypen, EinheitStadtDatentypen;
 
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeKarten, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
@@ -92,7 +93,7 @@ package body StadtEntfernen is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when GlobaleDatentypen.Eigene_Hauptstadt =>
+         when KartenDatentypen.Eigene_Hauptstadt =>
             null;
             
          when others =>
@@ -103,7 +104,7 @@ package body StadtEntfernen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = GlobaleDatentypen.Leer
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenDatentypen.Leer
            or
              StadtSchleifenwert = StadtRasseNummerExtern.Platznummer
          then
@@ -111,7 +112,7 @@ package body StadtEntfernen is
             
          else
             SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert),
-                                    IDExtern               => GlobaleDatentypen.Eigene_Hauptstadt);
+                                    IDExtern               => KartenDatentypen.Eigene_Hauptstadt);
             return;
          end if;
          

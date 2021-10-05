@@ -33,7 +33,7 @@ package body Ladezeiten is
                
                GesamtzeitSpielweltErstellen
                  := GesamtzeitSpielweltErstellen
-                   + Float (SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Endwert) - SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Anfangswert));
+                   + Float (SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Endwert) - SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert));
                
             end loop ZeitAuswahlSchleife;
             Ada.Float_Text_IO.Put (Item => GesamtzeitSpielweltErstellen,
@@ -43,7 +43,7 @@ package body Ladezeiten is
             Eingabe.WartenEingabe;
             
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (SpielweltErstellenZeit (WelcheZeitExtern, GlobaleDatentypen.Endwert) - SpielweltErstellenZeit (WelcheZeitExtern, GlobaleDatentypen.Anfangswert)),
+            Ada.Float_Text_IO.Put (Item => Float (SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Endwert) - SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
@@ -78,7 +78,7 @@ package body Ladezeiten is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
-      Ada.Float_Text_IO.Put (Item => Float (EinzelneZeiten (WelcheZeitExtern, GlobaleDatentypen.Endwert) - EinzelneZeiten (WelcheZeitExtern, GlobaleDatentypen.Anfangswert)),
+      Ada.Float_Text_IO.Put (Item => Float (EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Endwert) - EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
@@ -110,7 +110,7 @@ package body Ladezeiten is
             ZeitAuswahlSchleife:
             for VerschiedeneZeitenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
                
-               GesamtzeitKI := GesamtzeitKI + Float (KIZeiten (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Endwert) - KIZeiten (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Anfangswert));
+               GesamtzeitKI := GesamtzeitKI + Float (KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Endwert) - KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert));
                   
             end loop ZeitAuswahlSchleife;
             
@@ -121,7 +121,7 @@ package body Ladezeiten is
             New_Line;
             
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (KIZeiten (WelcheZeitExtern, GlobaleDatentypen.Endwert) - KIZeiten (WelcheZeitExtern, GlobaleDatentypen.Anfangswert)),
+            Ada.Float_Text_IO.Put (Item => Float (KIZeiten (WelcheZeitExtern, SystemDatentypen.Endwert) - KIZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);

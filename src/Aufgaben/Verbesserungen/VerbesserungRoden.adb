@@ -1,6 +1,10 @@
 pragma SPARK_Mode (On);
 
-with SchreibeEinheitenGebaut, AufgabenAllgemein;
+with SystemDatentypen;
+
+with SchreibeEinheitenGebaut;
+  
+with AufgabenAllgemein;
 
 package body VerbesserungRoden is
 
@@ -16,7 +20,7 @@ package body VerbesserungRoden is
       is
          when KartenDatentypen.Wald | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Roden_Trockenlegen);
+                                                    BeschäftigungExtern     => SystemDatentypen.Roden_Trockenlegen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);

@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen, SystemDatentypen;
+use EinheitStadtDatentypen;
 
 with KIKonstanten, KIDatentypen;
 
@@ -23,7 +24,7 @@ package body KIPruefungen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when GlobaleDatentypen.Leer =>
+            when KartenDatentypen.Leer =>
                null;
                
             when others =>
@@ -113,9 +114,9 @@ package body KIPruefungen is
          return False;
          
       elsif
-        LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
         and
-          LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
+          LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
       then
          return False;
          
@@ -149,7 +150,7 @@ package body KIPruefungen is
    is begin
       
       AufgabenSchleife:
-      for AufgabeSchleifenwert in GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
+      for AufgabeSchleifenwert in SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
          
          VerbesserungTesten := Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             BefehlExtern             => AufgabeSchleifenwert);
@@ -353,7 +354,7 @@ package body KIPruefungen is
          return False;
          
       elsif
-        LeseKarten.Grund (PositionExtern => KoordinatenExtern) = GlobaleDatentypen.Eis
+        LeseKarten.Grund (PositionExtern => KoordinatenExtern) = KartenDatentypen.Eis
       then
          return False;
          

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleDatentypen;
+with SystemDatentypen;
 
 with Karte, BefehleImSpiel, Optionen, KI, Ladezeiten, Speichern, Laden, RasseEntfernen, ZwischenDenRunden;
 
@@ -129,9 +129,9 @@ package body ImSpiel is
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
             
-      Ladezeiten.KIZeiten (RasseExtern, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert) := Clock;
       KI.KI (RasseExtern => RasseExtern);
-      Ladezeiten.KIZeiten (RasseExtern, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Endwert) := Clock;
       
    end KISpieler;
    

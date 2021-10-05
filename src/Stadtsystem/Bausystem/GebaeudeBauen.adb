@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleTexte, StadtKonstanten;
+with GlobaleTexte, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
+use EinheitStadtDatentypen;
 
 with LeseGebaeudeDatenbank, LeseStadtGebaut;
 

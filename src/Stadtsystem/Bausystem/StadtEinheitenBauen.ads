@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, KartenRecords, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package StadtEinheitenBauen is
 
@@ -11,7 +11,7 @@ package StadtEinheitenBauen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
 private
     

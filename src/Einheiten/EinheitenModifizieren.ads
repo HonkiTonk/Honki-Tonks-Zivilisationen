@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, KartenDatentypen, GlobaleDatentypen, EinheitStadtDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, KartenDatentypen, SystemDatentypen, EinheitStadtDatentypen;
 use SonstigeDatentypen, KartenDatentypen;
 
 package EinheitenModifizieren is
@@ -40,7 +40,7 @@ private
    
    AktuelleID : EinheitStadtDatentypen.EinheitenID;
    
-   AktuelleBeschäftigung : GlobaleDatentypen.Tastenbelegung_Enum;
+   AktuelleBeschäftigung : SystemDatentypen.Tastenbelegung_Enum;
    
    Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    StadtNummerNeu : EinheitStadtDatentypen.MaximaleStädteMitNullWert;

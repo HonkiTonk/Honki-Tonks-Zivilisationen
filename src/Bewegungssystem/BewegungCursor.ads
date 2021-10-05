@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with SystemDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+use SonstigeDatentypen, KartenDatentypen;
 
 package BewegungCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
-      RichtungExtern : in GlobaleDatentypen.Tastenbelegung_Bewegung_Enum;
+      RichtungExtern : in SystemDatentypen.Tastenbelegung_Bewegung_Enum;
       RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>

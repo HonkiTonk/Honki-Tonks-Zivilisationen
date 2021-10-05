@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with KartenDatentypen;
 
 package KartenGeneratorPlanetenInneres is
 

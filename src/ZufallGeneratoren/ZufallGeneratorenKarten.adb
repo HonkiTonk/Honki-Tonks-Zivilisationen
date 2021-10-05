@@ -24,7 +24,7 @@ package body ZufallGeneratorenKarten is
                                                                   NeuePositionExtern => (EAchse, YAchse, XAchse))
              = True
            and
-             LeseKarten.Grund (PositionExtern => (EAchse, YAchse, XAchse)) /= GlobaleDatentypen.Eis 
+             LeseKarten.Grund (PositionExtern => (EAchse, YAchse, XAchse)) /= KartenDatentypen.Eis 
          then
             return (EAchse, YAchse, XAchse);
                
@@ -176,7 +176,7 @@ package body ZufallGeneratorenKarten is
             return FlussWert;
                   
          else
-            return GlobaleDatentypen.Leer;
+            return KartenDatentypen.Leer;
          end if;
          
       end loop WählenSchleife;
@@ -202,22 +202,22 @@ package body ZufallGeneratorenKarten is
          is
             when True =>
                if
-                 RessourceWert in GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range
+                 RessourceWert in KartenDatentypen.Karten_Grund_Ressourcen_Wasser'Range
                then
                   return RessourceWert;
                   
                else
-                  return GlobaleDatentypen.Leer;
+                  return KartenDatentypen.Leer;
                end if;
 
             when False =>
                if
-                 RessourceWert in GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range
+                 RessourceWert in KartenDatentypen.Karten_Grund_Ressourcen_Land'Range
                then
                   return RessourceWert;
                   
                else
-                  return GlobaleDatentypen.Leer;
+                  return KartenDatentypen.Leer;
                end if;
          end case;
          

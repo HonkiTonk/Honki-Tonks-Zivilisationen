@@ -72,7 +72,7 @@ package body LeseRassenDatenbank is
    
    function RassenGültigeStaatsform
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      StaatsformExtern : GlobaleDatentypen.Staatsform_Enum)
+      StaatsformExtern : SonstigeDatentypen.Staatsform_Enum)
       return Boolean
    is begin
             

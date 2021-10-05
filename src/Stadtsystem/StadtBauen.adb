@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
+with GlobaleTexte, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with SchreibeStadtGebaut, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
@@ -66,7 +67,7 @@ package body StadtBauen is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when GlobaleDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Arbeiter =>
             null;
          
          when others =>
@@ -104,7 +105,7 @@ package body StadtBauen is
          if
            StadtNummerSchleifenwert = GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
            and
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenDatentypen.Leer
          then
             case
               GlobaleVariablen.RassenImSpiel (RasseExtern)
@@ -118,7 +119,7 @@ package body StadtBauen is
             end case;
 
          elsif
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenDatentypen.Leer
          then
             null;
             
@@ -177,8 +178,8 @@ package body StadtBauen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, HauptstadtSchleifenwert))
          is
-            when GlobaleDatentypen.Eigene_Hauptstadt =>
-               return GlobaleDatentypen.Eigene_Stadt;
+            when KartenDatentypen.Eigene_Hauptstadt =>
+               return KartenDatentypen.Eigene_Stadt;
                
             when others =>
                null;
@@ -186,7 +187,7 @@ package body StadtBauen is
          
       end loop HauptsstadtSchleife;
       
-      return GlobaleDatentypen.Eigene_Hauptstadt;
+      return KartenDatentypen.Eigene_Hauptstadt;
       
    end HauptstadtPrüfen;
    

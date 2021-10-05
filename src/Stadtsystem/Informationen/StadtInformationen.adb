@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
+with GlobaleTexte, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with LeseStadtGebaut;
 
@@ -64,10 +65,10 @@ package body StadtInformationen is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             return;
             
-         when GlobaleDatentypen.Eigene_Hauptstadt =>
+         when KartenDatentypen.Eigene_Hauptstadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
@@ -91,7 +92,7 @@ package body StadtInformationen is
                                               AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
             end if;
                   
-         when GlobaleDatentypen.Eigene_Stadt =>
+         when KartenDatentypen.Eigene_Stadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then

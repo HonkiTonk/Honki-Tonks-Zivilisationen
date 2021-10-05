@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
+
 with KartenAllgemein;
 
 package body GesamtwerteFeld is

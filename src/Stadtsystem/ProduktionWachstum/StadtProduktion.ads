@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, EinheitStadtDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, KartenRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
 use SonstigeDatentypen, EinheitStadtDatentypen;
 
 package StadtProduktion is

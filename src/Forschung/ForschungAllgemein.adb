@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, SystemKonstanten, ForschungKonstanten;
+with GlobaleTexte, SystemKonstanten, ForschungKonstanten, EinheitStadtDatentypen, SystemDatentypen;
+use EinheitStadtDatentypen;
 
 with SchreibeWichtiges;
 with LeseForschungsDatenbank, LeseWichtiges;
@@ -168,7 +169,7 @@ package body ForschungAllgemein is
          case
            Eingabe.Tastenwert
          is
-            when GlobaleDatentypen.Hoch =>
+            when SystemDatentypen.Hoch =>
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -177,7 +178,7 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when GlobaleDatentypen.Runter =>
+            when SystemDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -186,10 +187,10 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                
-            when GlobaleDatentypen.Auswählen =>
+            when SystemDatentypen.Auswählen =>
                return EinheitStadtDatentypen.ForschungIDMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
-            when GlobaleDatentypen.Menü_Zurück =>
+            when SystemDatentypen.Menü_Zurück =>
                return 0;
                      
             when others =>
@@ -355,7 +356,7 @@ package body ForschungAllgemein is
          case
            Eingabe.Tastenwert
          is
-            when GlobaleDatentypen.Rechts =>
+            when SystemDatentypen.Rechts =>
                if
                  AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'Last
                then
@@ -365,7 +366,7 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
 
-            when GlobaleDatentypen.Links =>
+            when SystemDatentypen.Links =>
                if
                  AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'First
                then
@@ -375,7 +376,7 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
                               
-            when GlobaleDatentypen.Menü_Zurück =>
+            when SystemDatentypen.Menü_Zurück =>
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return;
                      
@@ -398,7 +399,7 @@ package body ForschungAllgemein is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when SonstigeDatentypen.Spieler_Mensch =>
@@ -432,9 +433,9 @@ package body ForschungAllgemein is
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
          if
-           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, GlobaleDatentypen.Anfangswert)
+           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Anfangswert)
            or
-             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, GlobaleDatentypen.Endwert)
+             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Endwert)
          then
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
 
@@ -470,9 +471,9 @@ package body ForschungAllgemein is
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
          if
-           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, GlobaleDatentypen.Anfangswert)
+           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Anfangswert)
            or
-             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, GlobaleDatentypen.Endwert)
+             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Endwert)
          then
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
 

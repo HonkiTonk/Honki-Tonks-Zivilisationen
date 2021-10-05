@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleTexte, SystemKonstanten, EinheitenKonstanten;
+with GlobaleTexte, SystemKonstanten, EinheitenKonstanten, EinheitStadtDatentypen, SystemDatentypen;
+use EinheitStadtDatentypen;
 
 with LeseEinheitenDatenbank, LeseEinheitenGebaut;
 
@@ -71,7 +72,7 @@ package body EinheitenTransporter is
          case
            Eingabe.Tastenwert
          is               
-            when GlobaleDatentypen.Hoch =>
+            when SystemDatentypen.Hoch =>
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -80,7 +81,7 @@ package body EinheitenTransporter is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when GlobaleDatentypen.Runter =>
+            when SystemDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -89,10 +90,10 @@ package body EinheitenTransporter is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when GlobaleDatentypen.Auswählen =>
+            when SystemDatentypen.Auswählen =>
                return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
-            when GlobaleDatentypen.Menü_Zurück =>
+            when SystemDatentypen.Menü_Zurück =>
                return 0;
                      
             when others =>

@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, LeseStadtGebaut;
 
@@ -116,7 +117,7 @@ package body BewegungPassierbarkeitPruefen is
       
       -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
       if
-        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer
         and
           KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
@@ -125,7 +126,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer
         and then
           KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
                                          PassierbarkeitExtern => UmgebungExtern)
@@ -134,7 +135,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
          
       elsif
-        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer
         and then
           KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
@@ -170,18 +171,18 @@ package body BewegungPassierbarkeitPruefen is
       if
         NeuePositionExtern.EAchse = -2
         and
-          UmgebungExtern /= GlobaleDatentypen.Planeteninneres
+          UmgebungExtern /= EinheitStadtDatentypen.Planeteninneres
           and
-            UmgebungExtern /= GlobaleDatentypen.Lava
+            UmgebungExtern /= EinheitStadtDatentypen.Planeteninneres
       then
          null;
                   
       elsif
         NeuePositionExtern.EAchse = -1
         and
-          UmgebungExtern /= GlobaleDatentypen.Unterwasser
+          UmgebungExtern /= EinheitStadtDatentypen.Unterwasser
           and
-            UmgebungExtern /= GlobaleDatentypen.Unterküstenwasser
+            UmgebungExtern /= EinheitStadtDatentypen.Unterküstenwasser
             and
               UmgebungExtern /= Unterirdisch
       then
@@ -190,11 +191,11 @@ package body BewegungPassierbarkeitPruefen is
       elsif
         NeuePositionExtern.EAchse = 0
         and
-          UmgebungExtern /= GlobaleDatentypen.Wasser
+          UmgebungExtern /= EinheitStadtDatentypen.Wasser
           and
-            UmgebungExtern /= GlobaleDatentypen.Küstenwasser
+            UmgebungExtern /= EinheitStadtDatentypen.Küstenwasser
             and
-              UmgebungExtern /= GlobaleDatentypen.Boden
+              UmgebungExtern /= EinheitStadtDatentypen.Boden
               and
                 UmgebungExtern not in Passierbarkeit_Fliegen_Enum'Range
       then
@@ -210,7 +211,7 @@ package body BewegungPassierbarkeitPruefen is
       elsif
         NeuePositionExtern.EAchse = 2
         and
-          UmgebungExtern /= GlobaleDatentypen.Weltraum
+          UmgebungExtern /= EinheitStadtDatentypen.Weltraum
       then
          null;
             

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten;
+with KartenKonstanten, EinheitStadtDatentypen;
 
 with SchreibeKarten;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
@@ -19,12 +19,12 @@ package body Sichtbarkeit is
       if
         (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                 IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                WelcheUmgebungExtern => GlobaleDatentypen.Luft)
+                                                WelcheUmgebungExtern => EinheitStadtDatentypen.Luft)
          = True
          or
            LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                   IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                  WelcheUmgebungExtern => GlobaleDatentypen.Weltraum)
+                                                  WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum)
          = True)
         and
           KoordinatenEinheit.EAchse >= 0
@@ -79,12 +79,12 @@ package body Sichtbarkeit is
             if
               (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                       IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                      WelcheUmgebungExtern => GlobaleDatentypen.Luft)
+                                                      WelcheUmgebungExtern => EinheitStadtDatentypen.Luft)
                = True
                or
                  LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                         IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                        WelcheUmgebungExtern => GlobaleDatentypen.Weltraum)
+                                                        WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum)
                = True)
               and
                 LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
@@ -805,7 +805,7 @@ package body Sichtbarkeit is
       case
         FremdeEinheitStadt.Rasse
       is
-         when GlobaleDatentypen.Leer =>
+         when SonstigeDatentypen.Leer =>
             null;
             
          when others =>
@@ -820,7 +820,7 @@ package body Sichtbarkeit is
       case
         FremdeEinheitStadt.Rasse
       is
-         when GlobaleDatentypen.Leer =>
+         when SonstigeDatentypen.Leer =>
             null;
             
          when others =>

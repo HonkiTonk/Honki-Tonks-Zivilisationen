@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, KartenDatentypen;
+use SonstigeDatentypen;
 
 package GebaeudeVerkaufen is
 

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with KartenDatentypen, GlobaleVariablen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package RassenAllgemein is
    
@@ -10,13 +10,13 @@ package RassenAllgemein is
       return KartenDatentypen.BelegterGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    function RassenBelegungEnde
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BelegterGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
 end RassenAllgemein;

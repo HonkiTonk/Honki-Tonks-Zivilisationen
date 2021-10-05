@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenRecords, EinheitenKonstanten;
-use KartenRecords;
+with KartenRecords, EinheitenKonstanten, SystemDatentypen, EinheitStadtDatentypen;
+use KartenRecords, SystemDatentypen, EinheitStadtDatentypen;
 
 with KIDatentypen, KIKonstanten;
 use KIDatentypen;
@@ -21,7 +21,7 @@ package body KIEinheitHandlungen is
       case
         FeindlicheEinheit.Rasse
       is
-         when GlobaleDatentypen.Leer =>
+         when SonstigeDatentypen.Leer =>
             NormaleHandlungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others =>
@@ -38,7 +38,7 @@ package body KIEinheitHandlungen is
    is begin
       
       AktivitätSchleife:
-      for Schleifenwert in GlobaleDatentypen.NotAusKlein'Range loop
+      for Schleifenwert in SystemDatentypen.NotAusKlein'Range loop
          
          exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
          
@@ -54,7 +54,7 @@ package body KIEinheitHandlungen is
          elsif
            LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts
            and
-             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleDatentypen.Leer
+             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = SystemDatentypen.Leer
          then
             KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -78,7 +78,7 @@ package body KIEinheitHandlungen is
          KIBewegungDurchfuehren.KIBewegungNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleDatentypen.Leer
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = SystemDatentypen.Leer
         and
           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Tut_Nichts
       then
@@ -98,7 +98,7 @@ package body KIEinheitHandlungen is
    is begin
       
       if
-        FeindlicheEinheitExtern.Rasse = GlobaleDatentypen.Leer
+        FeindlicheEinheitExtern.Rasse = SonstigeDatentypen.Leer
       then
          null;
          
@@ -107,7 +107,7 @@ package body KIEinheitHandlungen is
       end if;
       
       AktivitätSchleife:
-      for Schleifenwert in GlobaleDatentypen.NotAusKlein'Range loop
+      for Schleifenwert in SystemDatentypen.NotAusKlein'Range loop
          
          exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
          
@@ -123,7 +123,7 @@ package body KIEinheitHandlungen is
          elsif
            LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts
            and
-             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleDatentypen.Leer
+             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = SystemDatentypen.Leer
          then
             KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          

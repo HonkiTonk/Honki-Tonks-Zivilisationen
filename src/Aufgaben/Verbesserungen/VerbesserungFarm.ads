@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen;
-use GlobaleDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
+with KartenDatentypen;
 
 package VerbesserungFarm is
    
@@ -14,6 +16,6 @@ package VerbesserungFarm is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
 end VerbesserungFarm;

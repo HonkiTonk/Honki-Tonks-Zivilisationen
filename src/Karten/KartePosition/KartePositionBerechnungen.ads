@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords;
-use GlobaleDatentypen;
+with KartenRecords, KartenDatentypen;
+use KartenDatentypen;
 
 package KartePositionBerechnungen is
 

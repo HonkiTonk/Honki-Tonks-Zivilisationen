@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package InformationenEinheiten is
 

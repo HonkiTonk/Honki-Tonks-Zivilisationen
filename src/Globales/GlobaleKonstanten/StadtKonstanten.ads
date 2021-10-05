@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, EinheitStadtRecords, SystemKonstanten, KartenRecords, ForschungKonstanten, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
+with SystemDatentypen, EinheitStadtRecords, SystemKonstanten, KartenRecords, ForschungKonstanten, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
 
 with DatenbankRecords;
 
@@ -87,9 +87,9 @@ package StadtKonstanten is
                                                                          GebäudeSpezielleEigenschaft => LeerSpezielleEigenschaft
                                                                         );
    
-   type StadtUmgebungWachstumArray is array (GlobaleDatentypen.Anfang_Ende_Enum'Range, SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
+   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
-                                                                   GlobaleDatentypen.Anfangswert =>
+                                                                   SystemDatentypen.Anfangswert =>
                                                                      (
                                                                       SonstigeDatentypen.Menschen         => 10,
                                                                       SonstigeDatentypen.Kasrodiah        => 10,
@@ -111,7 +111,7 @@ package StadtKonstanten is
                                                                       SonstigeDatentypen.Ekropa           => 10
                                                                      ),
 
-                                                                   GlobaleDatentypen.Endwert =>
+                                                                   SystemDatentypen.Endwert =>
                                                                      (
                                                                       SonstigeDatentypen.Menschen         => 20,
                                                                       SonstigeDatentypen.Kasrodiah        => 20,

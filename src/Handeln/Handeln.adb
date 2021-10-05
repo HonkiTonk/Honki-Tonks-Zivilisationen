@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, SystemKonstanten;
+with GlobaleTexte, SystemKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges, LeseKarten;

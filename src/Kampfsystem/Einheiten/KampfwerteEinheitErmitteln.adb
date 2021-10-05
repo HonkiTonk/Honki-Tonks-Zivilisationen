@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with StadtKonstanten;
+with StadtKonstanten, SystemDatentypen, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
@@ -52,7 +53,7 @@ package body KampfwerteEinheitErmitteln is
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleDatentypen.Verschanzen =>
+         when SystemDatentypen.Verschanzen =>
             VerteidigungWertFloat := VerteidigungWertFloat * VerschanzungBonus;
                   
          when others =>

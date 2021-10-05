@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 with KIDatentypen;
 
@@ -29,7 +29,7 @@ private
       
    GewählteAufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
    
-   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Enum'Range) of GlobaleDatentypen.ProduktionSonstiges;
+   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Enum'Range) of EinheitStadtDatentypen.ProduktionSonstiges;
    Wichtigkeit : WichtigkeitArray;
    
    procedure AufgabeFestlegen

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package KampfsystemStadt is
 
@@ -11,9 +11,9 @@ package KampfsystemStadt is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
           and

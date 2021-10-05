@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, SonstigeDatentypen;
-use GlobaleDatentypen;
+with GlobaleVariablen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package InformationenWichtiges is
 

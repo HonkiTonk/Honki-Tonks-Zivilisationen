@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, ForschungKonstanten;
+with EinheitenKonstanten, ForschungKonstanten, SystemDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+use SystemDatentypen, EinheitStadtDatentypen, KartenDatentypen;
 
 with SchreibeKarten, SchreibeEinheitenGebaut, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
@@ -11,7 +12,7 @@ package body Aufgaben is
    
    function VerbesserungTesten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
       
@@ -34,7 +35,7 @@ package body Aufgaben is
    
    function VerbesserungAnlegen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
       
@@ -50,7 +51,7 @@ package body Aufgaben is
       end case;
      
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleDatentypen.Leer
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = SystemDatentypen.Leer
         or
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI
       then
@@ -78,7 +79,7 @@ package body Aufgaben is
    
    function AllgemeinerAnfangstest
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
       
@@ -104,20 +105,20 @@ package body Aufgaben is
       end if;
       
       if
-        BefehlExtern in GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
+        BefehlExtern in SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
         and
           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-            /= GlobaleDatentypen.Arbeiter
+            /= EinheitStadtDatentypen.Arbeiter
       then
          return False;
          
       elsif
-        BefehlExtern = GlobaleDatentypen.Plündern
+        BefehlExtern = SystemDatentypen.Plündern
         and
           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-            = GlobaleDatentypen.Arbeiter
+            = EinheitStadtDatentypen.Arbeiter
       then
          return False;
          
@@ -133,7 +134,7 @@ package body Aufgaben is
 
    function VerbesserungFestgelegt
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum;
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -144,54 +145,54 @@ package body Aufgaben is
       case
         BefehlExtern
       is
-         when GlobaleDatentypen.Straße_Bauen =>
+         when SystemDatentypen.Straße_Bauen =>
             return VerbesserungWeg.VerbesserungWeg (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     GrundExtern              => Grund,
                                                     AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when KartenDatentypen.Mine_Bauen =>
+         when SystemDatentypen.Mine_Bauen =>
             return VerbesserungMine.VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                       GrundExtern              => Grund,
                                                       AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when GlobaleDatentypen.Farm_Bauen =>
+         when SystemDatentypen.Farm_Bauen =>
             return VerbesserungFarm.VerbesserungFarm (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                       GrundExtern              => Grund,
                                                       AnlegenTestenExtern      => AnlegenTestenExtern);
             
-         when GlobaleDatentypen.Festung_Bauen =>
+         when SystemDatentypen.Festung_Bauen =>
             return VerbesserungFestung.VerbesserungFestung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             GrundExtern              => Grund,
                                                             AnlegenTestenExtern      => AnlegenTestenExtern);
             
-         when GlobaleDatentypen.Wald_Aufforsten =>
+         when SystemDatentypen.Wald_Aufforsten =>
             return VerbesserungWald.VerbesserungWald (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                       GrundExtern              => Grund,
                                                       AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when GlobaleDatentypen.Roden_Trockenlegen =>
+         when SystemDatentypen.Roden_Trockenlegen =>
             return VerbesserungRoden.VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                         GrundExtern              => Grund,
                                                         AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when GlobaleDatentypen.Heilen =>
+         when SystemDatentypen.Heilen =>
             return EinheitHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                   AnlegenTestenExtern      => AnlegenTestenExtern);
             
-         when GlobaleDatentypen.Verschanzen =>
+         when SystemDatentypen.Verschanzen =>
             EinheitVerschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when GlobaleDatentypen.Runde_Aussetzen =>
+         when SystemDatentypen.Runde_Aussetzen =>
             RundeAussetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when GlobaleDatentypen.Einheit_Auflösen =>
+         when SystemDatentypen.Einheit_Auflösen =>
             EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when GlobaleDatentypen.Plündern =>
+         when SystemDatentypen.Plündern =>
             if
-              LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= GlobaleDatentypen.Leer
+              LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= KartenDatentypen.Leer
               or
-                LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= GlobaleDatentypen.Leer
+                LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= KartenDatentypen.Leer
             then
                return VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                              AnlegenTestenExtern      => AnlegenTestenExtern);
@@ -200,7 +201,7 @@ package body Aufgaben is
                return False;
             end if;
          
-         when GlobaleDatentypen.Einheit_Verbessern =>
+         when SystemDatentypen.Einheit_Verbessern =>
             return VerbesserungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         AnlegenTestenExtern      => AnlegenTestenExtern);
       end case;
@@ -226,7 +227,7 @@ package body Aufgaben is
          
       else
          SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BeschäftigungExtern     => GlobaleDatentypen.Heilen);
+                                                 BeschäftigungExtern     => SystemDatentypen.Heilen);
       end if;
       
       case
@@ -237,7 +238,7 @@ package body Aufgaben is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
+                                                    BeschäftigungExtern     => SystemDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -254,7 +255,7 @@ package body Aufgaben is
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern     => GlobaleDatentypen.Verschanzen);
+                                              BeschäftigungExtern     => SystemDatentypen.Verschanzen);
       
    end EinheitVerschanzen;
    
@@ -301,9 +302,9 @@ package body Aufgaben is
    is begin
             
       if
-        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Leer
         and
-          LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Leer
+          LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Leer
       then
          return False;
          
@@ -345,12 +346,12 @@ package body Aufgaben is
       case
         LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             null;
             
          when others =>
             SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern => GlobaleDatentypen.Leer);
+                                               VerbesserungExtern => KartenDatentypen.Leer);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 10,
                                          RechnenSetzenExtern => True);
@@ -359,12 +360,12 @@ package body Aufgaben is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             null;
             
          when others =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                            WegExtern      => GlobaleDatentypen.Leer);
+                                            WegExtern      => KartenDatentypen.Leer);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 5,
                                          RechnenSetzenExtern => True);

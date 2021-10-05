@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, SonstigeDatentypen, GlobaleVariablen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package KIStadtLaufendeBauprojekte is
 
@@ -19,7 +19,7 @@ package KIStadtLaufendeBauprojekte is
    
    function GleicheEinheitArtBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitArtExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum)
+      EinheitArtExtern : in EinheitStadtDatentypen.Einheit_Art_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>

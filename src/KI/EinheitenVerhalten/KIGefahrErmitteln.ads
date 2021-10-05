@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, KartenRecords;
-use GlobaleDatentypen;
+with GlobaleVariablen, EinheitStadtRecords, KartenRecords, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package KIGefahrErmitteln is
 

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords, KartenDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, KartenRecords, KartenDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
 use SonstigeDatentypen;
 
 with KIDatentypen;

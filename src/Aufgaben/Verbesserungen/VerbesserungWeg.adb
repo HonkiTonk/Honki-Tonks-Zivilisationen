@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
+
 with KartenKonstanten;
 
 with SchreibeEinheitenGebaut, SchreibeKarten;
@@ -20,7 +22,7 @@ package body VerbesserungWeg is
       if
         LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
-        GlobaleDatentypen.Karten_Verbesserung_Weg_Enum'Range
+        KartenDatentypen.Karten_Verbesserung_Weg_Enum'Range
       then
          return False;
 
@@ -31,17 +33,17 @@ package body VerbesserungWeg is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel | KartenDatentypen.Wald
-            | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
+         when KartenDatentypen.Eis | KartenDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel | KartenDatentypen.Wald
+            | KartenDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Straße_Bauen);
+                                                    BeschäftigungExtern     => SystemDatentypen.Straße_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
          when KartenDatentypen.Gebirge | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Straße_Bauen);
+                                                    BeschäftigungExtern     => SystemDatentypen.Straße_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 6,
                                                          RechnenSetzenExtern      => 0);
@@ -132,40 +134,40 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             Wegewert := Wegewert - 1_000;
 
-         when GlobaleDatentypen.Straße_Senkrecht =>
+         when KartenDatentypen.Straße_Senkrecht =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Rechts);
                      
-         when GlobaleDatentypen.Straßenkurve_Unten_Links =>
+         when KartenDatentypen.Straßenkurve_Unten_Links =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Unten);
 
-         when GlobaleDatentypen.Straßenkurve_Oben_Links =>
+         when KartenDatentypen.Straßenkurve_Oben_Links =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Oben);
 
-         when GlobaleDatentypen.Straßenkreuzung_Drei_Links =>
+         when KartenDatentypen.Straßenkreuzung_Drei_Links =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Vier);
 
-         when GlobaleDatentypen.Straßenendstück_Rechts =>
+         when KartenDatentypen.Straßenendstück_Rechts =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straße_Waagrecht);
+                                            WegExtern      => KartenDatentypen.Straße_Waagrecht);
 
-         when GlobaleDatentypen.Straßenendstück_Unten =>
+         when KartenDatentypen.Straßenendstück_Unten =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Oben_Rechts);
 
-         when GlobaleDatentypen.Straßenendstück_Oben =>
+         when KartenDatentypen.Straßenendstück_Oben =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Unten_Rechts);
                      
-         when GlobaleDatentypen.Straße_Einzeln =>
+         when KartenDatentypen.Straße_Einzeln =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Links);
+                                            WegExtern      => KartenDatentypen.Straßenendstück_Links);
                      
          when others =>
             null;
@@ -182,40 +184,40 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             Wegewert := Wegewert - 100;
 
-         when GlobaleDatentypen.Straße_Senkrecht =>
+         when KartenDatentypen.Straße_Senkrecht =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Links);
                      
-         when GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
+         when KartenDatentypen.Straßenkurve_Unten_Rechts =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Unten);
 
-         when GlobaleDatentypen.Straßenkurve_Oben_Rechts =>
+         when KartenDatentypen.Straßenkurve_Oben_Rechts =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Oben);
 
-         when GlobaleDatentypen.Straßenkreuzung_Drei_Rechts =>
+         when KartenDatentypen.Straßenkreuzung_Drei_Rechts =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Vier);
 
-         when GlobaleDatentypen.Straßenendstück_Links =>
+         when KartenDatentypen.Straßenendstück_Links =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straße_Waagrecht);
+                                            WegExtern      => KartenDatentypen.Straße_Waagrecht);
 
-         when GlobaleDatentypen.Straßenendstück_Unten =>
+         when KartenDatentypen.Straßenendstück_Unten =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Oben_Links);
 
-         when GlobaleDatentypen.Straßenendstück_Oben =>
+         when KartenDatentypen.Straßenendstück_Oben =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Unten_Links);
                      
-         when GlobaleDatentypen.Straße_Einzeln =>
+         when KartenDatentypen.Straße_Einzeln =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenendstück_Rechts);
                      
          when others =>
             null;
@@ -232,40 +234,40 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             Wegewert := Wegewert - 10;
                      
-         when GlobaleDatentypen.Straße_Waagrecht =>
+         when KartenDatentypen.Straße_Waagrecht =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Unten);
                      
-         when GlobaleDatentypen.Straßenkurve_Oben_Rechts =>
+         when KartenDatentypen.Straßenkurve_Oben_Rechts =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Rechts);
 
-         when GlobaleDatentypen.Straßenkurve_Oben_Links =>
+         when KartenDatentypen.Straßenkurve_Oben_Links =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Links);
 
-         when GlobaleDatentypen.Straßenkreuzung_Drei_Oben =>
+         when KartenDatentypen.Straßenkreuzung_Drei_Oben =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Vier);
 
-         when GlobaleDatentypen.Straßenendstück_Links =>
+         when KartenDatentypen.Straßenendstück_Links =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Unten_Rechts);
 
-         when GlobaleDatentypen.Straßenendstück_Rechts =>
+         when KartenDatentypen.Straßenendstück_Rechts =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Unten_Links);
 
-         when GlobaleDatentypen.Straßenendstück_Unten =>
+         when KartenDatentypen.Straßenendstück_Unten =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straße_Senkrecht);
+                                            WegExtern      => KartenDatentypen.Straße_Senkrecht);
                      
-         when GlobaleDatentypen.Straße_Einzeln =>
+         when KartenDatentypen.Straße_Einzeln =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Oben);
+                                            WegExtern      => KartenDatentypen.Straßenendstück_Oben);
                      
          when others =>
             null;
@@ -282,40 +284,40 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             Wegewert := Wegewert - 1;
                      
-         when GlobaleDatentypen.Straße_Waagrecht =>
+         when KartenDatentypen.Straße_Waagrecht =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Oben);
                      
-         when GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
+         when KartenDatentypen.Straßenkurve_Unten_Rechts =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Rechts);
 
-         when GlobaleDatentypen.Straßenkurve_Unten_Links =>
+         when KartenDatentypen.Straßenkurve_Unten_Links =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Links);
 
-         when GlobaleDatentypen.Straßenkreuzung_Drei_Unten =>
+         when KartenDatentypen.Straßenkreuzung_Drei_Unten =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Vier);
 
-         when GlobaleDatentypen.Straßenendstück_Links =>
+         when KartenDatentypen.Straßenendstück_Links =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Oben_Rechts);
 
-         when GlobaleDatentypen.Straßenendstück_Rechts =>
+         when KartenDatentypen.Straßenendstück_Rechts =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Oben_Links);
 
-         when GlobaleDatentypen.Straßenendstück_Oben =>
+         when KartenDatentypen.Straßenendstück_Oben =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straße_Senkrecht);
+                                            WegExtern      => KartenDatentypen.Straße_Senkrecht);
                      
-         when GlobaleDatentypen.Straße_Einzeln =>
+         when KartenDatentypen.Straße_Einzeln =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
-                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Unten);
+                                            WegExtern      => KartenDatentypen.Straßenendstück_Unten);
                      
          when others =>
             null;
@@ -335,67 +337,67 @@ package body VerbesserungWeg is
       is
          when 11_111 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Vier);
 
          when 11_110 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Oben);
 
          when 11_101 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Unten);
             
          when 11_100 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straße_Waagrecht);
+                                            WegExtern      => KartenDatentypen.Straße_Waagrecht);
             
          when 11_011 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Links);
 
          when 11_010 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Oben_Links);
 
          when 11_001 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Links);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Unten_Links);
             
          when 11_000 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenendstück_Rechts);
 
          when 10_111 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkreuzung_Drei_Rechts);
 
          when 10_110 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Oben_Rechts);
 
          when 10_101 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Rechts);
+                                            WegExtern      => KartenDatentypen.Straßenkurve_Unten_Rechts);
 
          when 10_100 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Links);
+                                            WegExtern      => KartenDatentypen.Straßenendstück_Links);
 
          when 10_011 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straße_Senkrecht);
+                                            WegExtern      => KartenDatentypen.Straße_Senkrecht);
 
          when 10_010 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Unten);
+                                            WegExtern      => KartenDatentypen.Straßenendstück_Unten);
 
          when 10_001 =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Oben);
+                                            WegExtern      => KartenDatentypen.Straßenendstück_Oben);
          
          when others =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
-                                            WegExtern      => GlobaleDatentypen.Straße_Einzeln);
+                                            WegExtern      => KartenDatentypen.Straße_Einzeln);
       end case;
       
    end WegPlatzieren;

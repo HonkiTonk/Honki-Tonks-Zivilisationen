@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, EinheitStadtRecords, KartenRecords;
-use GlobaleDatentypen;
+with GlobaleVariablen, SonstigeDatentypen, EinheitStadtRecords, KartenRecords, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package KIMindestBewertungKartenfeldErmitteln is
 

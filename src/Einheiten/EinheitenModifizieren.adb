@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, ForschungKonstanten;
+with EinheitenKonstanten, ForschungKonstanten, EinheitStadtDatentypen, SystemDatentypen;
+use EinheitStadtDatentypen, SystemDatentypen;
 
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
@@ -18,7 +19,7 @@ package body EinheitenModifizieren is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
            
             when others =>
@@ -50,7 +51,7 @@ package body EinheitenModifizieren is
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
-        AktuelleBeschäftigung = GlobaleDatentypen.Leer
+        AktuelleBeschäftigung = SystemDatentypen.Leer
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -66,7 +67,7 @@ package body EinheitenModifizieren is
       case
         AktuelleBeschäftigung
       is
-         when GlobaleDatentypen.Heilen | GlobaleDatentypen.Verschanzen =>
+         when SystemDatentypen.Heilen | SystemDatentypen.Verschanzen =>
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   LebenspunkteExtern       => Heilungsrate,
                                                   RechnenSetzenExtern      => 1);

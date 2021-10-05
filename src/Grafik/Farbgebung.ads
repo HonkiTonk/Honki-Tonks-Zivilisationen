@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
-use GlobaleDatentypen;
+with GlobaleVariablen, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package Farbgebung is
 

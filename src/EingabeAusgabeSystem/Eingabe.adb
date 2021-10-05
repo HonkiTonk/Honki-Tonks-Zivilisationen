@@ -438,7 +438,7 @@ package body Eingabe is
    
    
    function Tastenwert
-     return GlobaleDatentypen.Tastenbelegung_Enum
+     return SystemDatentypen.Tastenbelegung_Enum
    is begin
       
       Taste := TastenEingabe;
@@ -460,7 +460,7 @@ package body Eingabe is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return GlobaleDatentypen.Leer;
+      return SystemDatentypen.Leer;
       
    end Tastenwert;
    

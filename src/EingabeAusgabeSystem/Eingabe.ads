@@ -6,12 +6,12 @@ use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Window.Keyboard, Sf.Window.Event;
 use Sf.Window.Keyboard, Sf.Window.Event;
 
-with GlobaleDatentypen, GlobaleTexte, KartenDatentypen;
-use GlobaleDatentypen, KartenDatentypen;
+with SystemDatentypen, GlobaleTexte, KartenDatentypen;
+use SystemDatentypen, KartenDatentypen;
 
 package Eingabe is
 
-   type TastenbelegungArray is array (1 .. 2, GlobaleDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
+   type TastenbelegungArray is array (1 .. 2, SystemDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
    Tastenbelegung : TastenbelegungArray;
 
    procedure WartenEingabe;
@@ -39,7 +39,7 @@ package Eingabe is
      return Sf.Window.Keyboard.sfKeyCode;
 
    function Tastenwert
-     return GlobaleDatentypen.Tastenbelegung_Enum;
+     return SystemDatentypen.Tastenbelegung_Enum;
 
 private
 

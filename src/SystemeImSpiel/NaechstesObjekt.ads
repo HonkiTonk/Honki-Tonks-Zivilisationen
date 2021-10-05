@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package NaechstesObjekt is
 

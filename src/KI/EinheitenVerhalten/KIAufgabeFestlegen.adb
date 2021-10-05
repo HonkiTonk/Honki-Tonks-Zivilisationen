@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
+with KartenKonstanten, EinheitenKonstanten, StadtKonstanten, KartenDatentypen, SystemDatentypen;
+use KartenDatentypen;
 
 with KIDatentypen, KIKonstanten;
 
@@ -21,7 +22,7 @@ package body KIAufgabeFestlegen is
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Tut_Nichts);
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern      => GlobaleDatentypen.Leer);
+                                              BeschäftigungExtern      => SystemDatentypen.Leer);
       
    end KeineAufgabe;
    
@@ -92,7 +93,7 @@ package body KIAufgabeFestlegen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when GlobaleDatentypen.Leer =>
+            when KartenDatentypen.Leer =>
                null;
                
             when others =>
@@ -139,7 +140,7 @@ package body KIAufgabeFestlegen is
       case
         WenAngreifen
       is
-         when GlobaleDatentypen.Leer =>
+         when SonstigeDatentypen.Leer =>
             return;
             
          when others =>
@@ -188,13 +189,13 @@ package body KIAufgabeFestlegen is
       return SonstigeDatentypen.Rassen_Enum
    is begin
       
-      Ziel := GlobaleDatentypen.Leer;
+      Ziel := SonstigeDatentypen.Leer;
       
       RassenSchleife:
       for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
            or
              RasseSchleifenwert = RasseExtern
          then

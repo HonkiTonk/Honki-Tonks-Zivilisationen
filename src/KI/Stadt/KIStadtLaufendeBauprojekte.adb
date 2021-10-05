@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, StadtKonstanten;
+with EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
+use EinheitStadtDatentypen, KartenDatentypen;
 
 with LeseStadtGebaut, LeseEinheitenDatenbank;
 
@@ -20,7 +21,7 @@ package body KIStadtLaufendeBauprojekte is
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
            or
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = GlobaleDatentypen.Leer
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenDatentypen.Leer
          then
             null;
                
@@ -43,7 +44,7 @@ package body KIStadtLaufendeBauprojekte is
    
    function GleicheEinheitArtBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      EinheitArtExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum)
+      EinheitArtExtern : in EinheitStadtDatentypen.Einheit_Art_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -55,7 +56,7 @@ package body KIStadtLaufendeBauprojekte is
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
            or
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = GlobaleDatentypen.Leer
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenDatentypen.Leer
          then
             null;
                

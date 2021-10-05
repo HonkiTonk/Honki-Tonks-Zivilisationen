@@ -3,8 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleDatentypen, GlobaleVariablen, SystemKonstanten, SonstigeDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with SystemDatentypen, GlobaleVariablen, SystemKonstanten, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -18,7 +18,7 @@ package body ZwischenDenRunden is
      return Boolean
    is begin
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, SystemDatentypen.Anfangswert) := Clock;
       
       case
         NachSiegWeiterspielen
@@ -120,8 +120,8 @@ package body ZwischenDenRunden is
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
             
          else
-            Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Anfangswert) := Clock;
-            Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Endwert) := Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert) := Clock;
+            Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Endwert) := Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert);
          end if;
          
       end loop RassenSchleife;
@@ -206,7 +206,7 @@ package body ZwischenDenRunden is
             null;
       end case;
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, SystemDatentypen.Endwert) := Clock;
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Zwischen_Runden);
       
    end GesamteZeitenAnzeigen;

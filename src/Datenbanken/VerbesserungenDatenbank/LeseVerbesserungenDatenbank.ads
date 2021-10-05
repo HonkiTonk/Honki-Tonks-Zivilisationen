@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with GlobaleVariablen, KartenDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 with DatenbankRecords;
 
@@ -23,7 +23,7 @@ package LeseVerbesserungenDatenbank is
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    function GanzerEintrag
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)

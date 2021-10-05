@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, SystemKonstanten, SonstigeDatentypen, EinheitStadtDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
+with SystemDatentypen, GlobaleVariablen, EinheitStadtRecords, SystemKonstanten, SonstigeDatentypen, EinheitStadtDatentypen;
+use SystemDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
 
 package BefehleImSpiel is
 
@@ -20,7 +20,7 @@ private
    AufgabeDurchführen : Boolean;
    NullWert : Boolean;
    
-   Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
+   Befehl : SystemDatentypen.Tastenbelegung_Enum;
 
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    EinheitTransportNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
@@ -47,7 +47,7 @@ private
    
    procedure EinheitBefehle
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum);
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum);
    
    procedure StadtUmbenennen
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);

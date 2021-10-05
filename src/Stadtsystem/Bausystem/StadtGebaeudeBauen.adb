@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, StadtKonstanten;
+with GlobaleTexte, StadtKonstanten, EinheitStadtDatentypen;
 
 with KIDatentypen;
 

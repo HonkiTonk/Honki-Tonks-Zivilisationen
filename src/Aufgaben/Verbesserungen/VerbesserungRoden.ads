@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, SonstigeDatentypen, GlobaleVariablen, KartenDatentypen;
+use SonstigeDatentypen;
 
 package VerbesserungRoden is
 
@@ -14,6 +14,6 @@ package VerbesserungRoden is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
 end VerbesserungRoden;

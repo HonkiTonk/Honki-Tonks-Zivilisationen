@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords;
-use GlobaleDatentypen, KartenRecords;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, KartenRecords, KartenDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen, KartenRecords, KartenDatentypen;
 
 with Karten;
 
@@ -38,12 +38,12 @@ private
    PositionAlt : KartenRecords.AchsenKartenfeldPositivRecord;
    PositionNeu : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   type FeldBewertungArray is array (KartenDatentypen.LoopRangeMinusEinsZuEins'Range, KartenDatentypen.LoopRangeMinusEinsZuEins'Range) of GlobaleDatentypen.ProduktionSonstiges;
+   type FeldBewertungArray is array (KartenDatentypen.LoopRangeMinusEinsZuEins'Range, KartenDatentypen.LoopRangeMinusEinsZuEins'Range) of EinheitStadtDatentypen.ProduktionSonstiges;
    FeldBewertung : FeldBewertungArray;
    
    type BewertungRecord is new KartenRecords.AchsenKartenfeldPositivRecord with record
       
-      Bewertung : GlobaleDatentypen.ProduktionSonstiges;
+      Bewertung : EinheitStadtDatentypen.ProduktionSonstiges;
       
    end record;
    
@@ -98,7 +98,7 @@ private
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       YÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
       XÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -113,7 +113,7 @@ private
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

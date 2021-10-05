@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with SonstigeDatentypen;
 
 with DatenbankRecords;
 
@@ -15,7 +15,7 @@ package RasseLasupin is
       Wirtschaft          => 0,
       Bewirtschaftung     => 0,
       GültigeStaatsformen => (SonstigeDatentypen.Anarchie,
-                               GlobaleDatentypen.Demokratie,
+                               SonstigeDatentypen.Demokratie,
                                SonstigeDatentypen.Anarchie,
                                SonstigeDatentypen.Anarchie,
                                SonstigeDatentypen.Anarchie)

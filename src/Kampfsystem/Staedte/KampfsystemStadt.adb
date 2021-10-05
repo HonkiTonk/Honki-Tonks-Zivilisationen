@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, StadtKonstanten;
+with EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, SystemDatentypen, KartenDatentypen;
+use EinheitStadtDatentypen, KartenDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
@@ -62,15 +63,15 @@ package body KampfsystemStadt is
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
                                                             StadtRasseNummerExtern   => VerteidigendeStadtRasseNummerExtern);
          StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
-                                                          EreignisExtern         => GlobaleDatentypen.Einwohner_Reduktion);
+                                                          EreignisExtern         => EinheitStadtDatentypen.Einwohner_Reduktion);
          if
            LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                               EinwohnerArbeiterExtern => True)
-           = StadtKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
+           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
            or
              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                                 EinwohnerArbeiterExtern => True)
-           = StadtKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
+           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
          then
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
             

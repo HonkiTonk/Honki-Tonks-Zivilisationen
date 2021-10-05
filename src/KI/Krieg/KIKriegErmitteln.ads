@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with SonstigeDatentypen, GlobaleVariablen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package KIKriegErmitteln is
 
@@ -55,7 +55,7 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_KI
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SonstigeDatentypen.Leer
           and
             EigeneRasseExtern /= FremdeRasseExtern);
 

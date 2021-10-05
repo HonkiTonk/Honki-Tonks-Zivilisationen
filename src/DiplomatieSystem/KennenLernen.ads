@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen;
-use GlobaleDatentypen;
+with GlobaleVariablen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package KennenLernen is
 
@@ -12,9 +12,9 @@ package KennenLernen is
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SonstigeDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SonstigeDatentypen.Leer);
 
 private
 

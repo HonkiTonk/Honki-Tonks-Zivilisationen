@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with KartenDatentypen;
 
 with SchreibeKarten;
 
@@ -17,7 +17,7 @@ package body KartenGeneratorHimmel is
          for XAchseHimmelSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
             SchreibeKarten.Grund (PositionExtern => (1, YAchseHimmelSchleifenwert, XAchseHimmelSchleifenwert),
-                                  GrundExtern    => GlobaleDatentypen.Wolken);
+                                  GrundExtern    => KartenDatentypen.Wolken);
                
          end loop XAchseHimmelSchleife;
       end loop YAchseHimmelSchleife;

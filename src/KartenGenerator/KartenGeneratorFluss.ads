@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords, KartenDatentypen;
-use GlobaleDatentypen, KartenDatentypen;
+with KartenRecords, KartenDatentypen;
+use KartenDatentypen;
 
 with Karten;
 
@@ -24,7 +24,7 @@ private
    StandardFluss : constant StandardFlussArray := (
                                                    -2 => KartenDatentypen.Lavafluss_Einzeln,
                                                    -1 => KartenDatentypen.Unterirdischer_Fluss_Einzeln,
-                                                   0 => KartenDatentypen.Fluss_Einzeln
+                                                   0  => KartenDatentypen.Fluss_Einzeln
                                                   );
    
    type WelcherFlusstypArray is array (StandardFlussArray'Range) of Natural;

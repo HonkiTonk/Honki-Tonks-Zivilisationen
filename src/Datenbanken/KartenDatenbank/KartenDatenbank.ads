@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenKonstanten, KartenDatentypen;
-use GlobaleDatentypen;
+with KartenKonstanten, KartenDatentypen, EinheitStadtDatentypen;
 
 with DatenbankRecords;
 
@@ -24,102 +23,102 @@ private
                                       
       -- Feld
       -- Normal
-      GlobaleDatentypen.Eis =>
+      KartenDatentypen.Eis =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Wasser =>
+      KartenDatentypen.Wasser =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Wasser      => True,
-                                 GlobaleDatentypen.Luft        => True,
-                                 GlobaleDatentypen.Weltraum    => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Wasser      => True,
+                                 EinheitStadtDatentypen.Luft        => True,
+                                 EinheitStadtDatentypen.Weltraum    => True,
                                  others                        => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flachland =>
+      KartenDatentypen.Flachland =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Tundra =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Wüste =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
       -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
       KartenDatentypen.Hügel =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Gebirge =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Wald =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Dschungel =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Küstengewässer =>
+      KartenDatentypen.Küstengewässer =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Wasser       => True,
-                                 GlobaleDatentypen.Luft         => True,
-                                 GlobaleDatentypen.Weltraum     => True,
-                                 GlobaleDatentypen.Küstenwasser => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Wasser       => True,
+                                 EinheitStadtDatentypen.Luft         => True,
+                                 EinheitStadtDatentypen.Weltraum     => True,
+                                 EinheitStadtDatentypen.Küstenwasser => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Sumpf =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
       -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
       KartenDatentypen.Hügel_Mit =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
       -- Normal
@@ -127,51 +126,51 @@ private
       
       
       -- Unterwasser/Unterirdisch
-      GlobaleDatentypen.Unterwasser_Eis =>
+      KartenDatentypen.Unterwasser_Eis =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Erde =>
+      KartenDatentypen.Erde =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
       
-      GlobaleDatentypen.Erdgestein =>
+      KartenDatentypen.Erdgestein =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
       
-      GlobaleDatentypen.Sand =>
+      KartenDatentypen.Sand =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
       
-      GlobaleDatentypen.Unterwasser_Wasser =>
+      KartenDatentypen.Unterwasser_Wasser =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterwasser => True,
                                  others                        => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterwasser_Küstengewässer =>
+      KartenDatentypen.Unterwasser_Küstengewässer =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterwasser => True,
                                  others                        => False),
          FeldWerte           => (others => (others => 1))),
       
       KartenDatentypen.Korallen =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterwasser => True,
                                  others                        => False),
          FeldWerte           => (others => (others => 1))),
       
       KartenDatentypen.Unterwasser_Wald =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterwasser => True,
                                  others                        => False),
          FeldWerte           => (others => (others => 1))),
       -- Unterwasser/Unterirdisch
@@ -179,21 +178,21 @@ private
       
                    
       -- Planeteninneres
-      GlobaleDatentypen.Lava =>
+      KartenDatentypen.Lava =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Lava => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                 => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Gestein =>
+      KartenDatentypen.Gestein =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
       
-      GlobaleDatentypen.Planetenkern =>
+      KartenDatentypen.Planetenkern =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Lava => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                 => False),
          FeldWerte           => (others => (others => 1))),
       -- Planeteninneres
@@ -201,16 +200,16 @@ private
       
       
       -- Luft/Weltraum
-      GlobaleDatentypen.Wolken =>
+      KartenDatentypen.Wolken =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Weltraum =>
+      KartenDatentypen.Weltraum =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
       -- Luft/Weltraum
@@ -261,131 +260,131 @@ private
       
       -- Flüsss
       -- Normal
-        GlobaleDatentypen.Flusskreuzung_Vier =>
+        KartenDatentypen.Flusskreuzung_Vier =>
           (KartenGrafik        => '╋',
-           Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                   GlobaleDatentypen.Luft     => True,
-                                   GlobaleDatentypen.Weltraum => True,
+           Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                   EinheitStadtDatentypen.Luft     => True,
+                                   EinheitStadtDatentypen.Weltraum => True,
                                    others                     => False),
            FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Fluss_Waagrecht =>
+      KartenDatentypen.Fluss_Waagrecht =>
         (KartenGrafik        => '━',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Fluss_Senkrecht =>
+      KartenDatentypen.Fluss_Senkrecht =>
         (KartenGrafik        => '┃',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flusskurve_Unten_Rechts =>
+      KartenDatentypen.Flusskurve_Unten_Rechts =>
         (KartenGrafik        => '┏',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flusskurve_Unten_Links =>
+      KartenDatentypen.Flusskurve_Unten_Links =>
         (KartenGrafik        => '┓',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flusskurve_Oben_Rechts =>
+      KartenDatentypen.Flusskurve_Oben_Rechts =>
         (KartenGrafik        => '┗',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flusskurve_Oben_Links =>
+      KartenDatentypen.Flusskurve_Oben_Links =>
         (KartenGrafik        => '┛',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flusskreuzung_Drei_Oben =>
+      KartenDatentypen.Flusskreuzung_Drei_Oben =>
         (KartenGrafik        => '┻',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flusskreuzung_Drei_Unten =>
+      KartenDatentypen.Flusskreuzung_Drei_Unten =>
         (KartenGrafik        => '┳',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flusskreuzung_Drei_Rechts =>
+      KartenDatentypen.Flusskreuzung_Drei_Rechts =>
         (KartenGrafik        => '┣',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others =>                  False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flusskreuzung_Drei_Links =>
+      KartenDatentypen.Flusskreuzung_Drei_Links =>
         (KartenGrafik        => '┫',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flussendstück_Links =>
+      KartenDatentypen.Flussendstück_Links =>
         (KartenGrafik        => '╺',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flussendstück_Rechts =>
+      KartenDatentypen.Flussendstück_Rechts =>
         (KartenGrafik        => '╸',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flussendstück_Unten =>
+      KartenDatentypen.Flussendstück_Unten =>
         (KartenGrafik        => '╹',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Flussendstück_Oben =>
+      KartenDatentypen.Flussendstück_Oben =>
         (KartenGrafik        => '╻',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Fluss_Einzeln =>
         (KartenGrafik        => '▪',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1))),
       -- Normal
@@ -393,99 +392,99 @@ private
       
       
       -- Unterirdisch
-      GlobaleDatentypen.Unterirdische_Flusskreuzung_Vier =>
+      KartenDatentypen.Unterirdische_Flusskreuzung_Vier =>
         (KartenGrafik        => '╋',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdischer_Fluss_Waagrecht =>
+      KartenDatentypen.Unterirdischer_Fluss_Waagrecht =>
         (KartenGrafik        => '━',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdischer_Fluss_Senkrecht =>
+      KartenDatentypen.Unterirdischer_Fluss_Senkrecht =>
         (KartenGrafik        => '┃',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdische_Flusskurve_Unten_Rechts =>
+      KartenDatentypen.Unterirdische_Flusskurve_Unten_Rechts =>
         (KartenGrafik        => '┏',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdische_Flusskurve_Unten_Links =>
+      KartenDatentypen.Unterirdische_Flusskurve_Unten_Links =>
         (KartenGrafik        => '┓',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdische_Flusskurve_Oben_Rechts =>
+      KartenDatentypen.Unterirdische_Flusskurve_Oben_Rechts =>
         (KartenGrafik        => '┗',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdische_Flusskurve_Oben_Links =>
+      KartenDatentypen.Unterirdische_Flusskurve_Oben_Links =>
         (KartenGrafik        => '┛',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdische_Flusskreuzung_Drei_Oben =>
+      KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Oben =>
         (KartenGrafik        => '┻',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdische_Flusskreuzung_Drei_Unten =>
+      KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Unten =>
         (KartenGrafik        => '┳',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts =>
+      KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts =>
         (KartenGrafik        => '┣',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdische_Flusskreuzung_Drei_Links =>
+      KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Links =>
         (KartenGrafik        => '┫',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdisches_Flussendstück_Links =>
+      KartenDatentypen.Unterirdisches_Flussendstück_Links =>
         (KartenGrafik        => '╺',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdisches_Flussendstück_Rechts =>
+      KartenDatentypen.Unterirdisches_Flussendstück_Rechts =>
         (KartenGrafik        => '╸',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdisches_Flussendstück_Unten =>
+      KartenDatentypen.Unterirdisches_Flussendstück_Unten =>
         (KartenGrafik        => '╹',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Unterirdisches_Flussendstück_Oben =>
+      KartenDatentypen.Unterirdisches_Flussendstück_Oben =>
         (KartenGrafik        => '╻',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdischer_Fluss_Einzeln =>
         (KartenGrafik        => '▪',
-         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
       -- Unterirdisch
@@ -493,99 +492,99 @@ private
       
       
       -- Lava
-      GlobaleDatentypen.Lavaflusskreuzung_Vier =>
+      KartenDatentypen.Lavaflusskreuzung_Vier =>
         (KartenGrafik        => '╋',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavafluss_Waagrecht =>
+      KartenDatentypen.Lavafluss_Waagrecht =>
         (KartenGrafik        => '━',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavafluss_Senkrecht =>
+      KartenDatentypen.Lavafluss_Senkrecht =>
         (KartenGrafik        => '┃',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflusskurve_Unten_Rechts =>
+      KartenDatentypen.Lavaflusskurve_Unten_Rechts =>
         (KartenGrafik        => '┏',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflusskurve_Unten_Links =>
+      KartenDatentypen.Lavaflusskurve_Unten_Links =>
         (KartenGrafik        => '┓',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflusskurve_Oben_Rechts =>
+      KartenDatentypen.Lavaflusskurve_Oben_Rechts =>
         (KartenGrafik        => '┗',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflusskurve_Oben_Links =>
+      KartenDatentypen.Lavaflusskurve_Oben_Links =>
         (KartenGrafik        => '┛',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflusskreuzung_Drei_Oben =>
+      KartenDatentypen.Lavaflusskreuzung_Drei_Oben =>
         (KartenGrafik        => '┻',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflusskreuzung_Drei_Unten =>
+      KartenDatentypen.Lavaflusskreuzung_Drei_Unten =>
         (KartenGrafik        => '┳',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflusskreuzung_Drei_Rechts =>
+      KartenDatentypen.Lavaflusskreuzung_Drei_Rechts =>
         (KartenGrafik        => '┣',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflusskreuzung_Drei_Links =>
+      KartenDatentypen.Lavaflusskreuzung_Drei_Links =>
         (KartenGrafik        => '┫',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflussendstück_Links =>
+      KartenDatentypen.Lavaflussendstück_Links =>
         (KartenGrafik        => '╺',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflussendstück_Rechts =>
+      KartenDatentypen.Lavaflussendstück_Rechts =>
         (KartenGrafik        => '╸',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflussendstück_Unten =>
+      KartenDatentypen.Lavaflussendstück_Unten =>
         (KartenGrafik        => '╹',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
-      GlobaleDatentypen.Lavaflussendstück_Oben =>
+      KartenDatentypen.Lavaflussendstück_Oben =>
         (KartenGrafik        => '╻',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1))),
                                       
       KartenDatentypen.Lavafluss_Einzeln =>
         (KartenGrafik        => '▪',
-         Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
+         Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
          FeldWerte           => (others => (others => 1)))
       -- Lava

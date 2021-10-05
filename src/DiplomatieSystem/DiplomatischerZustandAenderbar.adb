@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, SonstigesKonstanten;
+with GlobaleTexte, SonstigesKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with Anzeige, DiplomatischerZustand;
 

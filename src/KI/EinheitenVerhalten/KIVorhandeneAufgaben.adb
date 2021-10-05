@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
+with KartenKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
+use EinheitStadtDatentypen;
 
 with KIDatentypen;
 
@@ -15,7 +16,7 @@ package body KIVorhandeneAufgaben is
 
    function SichHeilen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -58,7 +59,7 @@ package body KIVorhandeneAufgaben is
    
    function SichVerbessern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       NotwendigeTechnologie := LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -91,7 +92,7 @@ package body KIVorhandeneAufgaben is
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       VorhandeneStädte := LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -133,7 +134,7 @@ package body KIVorhandeneAufgaben is
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       case
@@ -152,7 +153,7 @@ package body KIVorhandeneAufgaben is
    
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       EinheitNummer := 1;
@@ -163,7 +164,7 @@ package body KIVorhandeneAufgaben is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when GlobaleDatentypen.Leer =>
+            when KartenDatentypen.Leer =>
                null;
                
             when others =>
@@ -194,7 +195,7 @@ package body KIVorhandeneAufgaben is
    
    
    function StadtUmgebungZerstören
-     return GlobaleDatentypen.ProduktionSonstiges
+     return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       return 0;
@@ -205,14 +206,14 @@ package body KIVorhandeneAufgaben is
    
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       RassenSchleife:
       for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
            or
              RasseSchleifenwert = EinheitRasseNummerExtern.Rasse
          then
@@ -238,7 +239,7 @@ package body KIVorhandeneAufgaben is
    
    
    function Erkunden
-     return GlobaleDatentypen.ProduktionSonstiges
+     return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       return 2;
@@ -249,7 +250,7 @@ package body KIVorhandeneAufgaben is
    
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       if
@@ -296,7 +297,7 @@ package body KIVorhandeneAufgaben is
                                     
    
    function Fliehen
-     return GlobaleDatentypen.ProduktionSonstiges
+     return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       return 0;
@@ -306,7 +307,7 @@ package body KIVorhandeneAufgaben is
    
    
    function SichBefestigen
-     return GlobaleDatentypen.ProduktionSonstiges
+     return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       return 0;
@@ -316,7 +317,7 @@ package body KIVorhandeneAufgaben is
    
 
    function NichtsTun
-     return GlobaleDatentypen.ProduktionSonstiges
+     return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       return 1;

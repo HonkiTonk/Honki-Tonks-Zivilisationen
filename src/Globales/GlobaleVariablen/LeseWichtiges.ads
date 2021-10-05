@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
+with GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
 use SonstigeDatentypen;
 
 package LeseWichtiges is

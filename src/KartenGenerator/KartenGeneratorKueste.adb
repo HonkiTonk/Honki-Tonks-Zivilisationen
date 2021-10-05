@@ -21,7 +21,7 @@ package body KartenGeneratorKueste is
             case
               LeseKarten.Grund (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when GlobaleDatentypen.Wasser =>
+               when KartenDatentypen.Wasser =>
                   GewässerFestlegen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
@@ -53,13 +53,13 @@ package body KartenGeneratorKueste is
                null;
                
             elsif
-              LeseKarten.Grund (PositionExtern => KartenWert) /= GlobaleDatentypen.Flachland
+              LeseKarten.Grund (PositionExtern => KartenWert) /= KartenDatentypen.Flachland
             then
                null;
                
             else
                SchreibeKarten.Grund (PositionExtern => KoordinatenExtern,
-                                     GrundExtern    => GlobaleDatentypen.Küstengewässer);
+                                     GrundExtern    => KartenDatentypen.Küstengewässer);
                return;
             end if;
                         

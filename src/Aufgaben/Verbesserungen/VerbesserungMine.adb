@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with KartenDatentypen, SystemDatentypen;
+use KartenDatentypen;
+
 with SchreibeEinheitenGebaut;
 with LeseKarten, LeseEinheitenGebaut;
 
@@ -15,14 +18,14 @@ package body VerbesserungMine is
    is begin
       
       if
-        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Mine
+        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Mine
       then
          return False;
 
       elsif
         LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
-        GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
+        KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch
       then
@@ -43,17 +46,17 @@ package body VerbesserungMine is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel
-            | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
+         when KartenDatentypen.Eis | KartenDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel
+            | KartenDatentypen.Karten_Grund_Fluss_Enum'Range | KartenDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => KartenDatentypen.Mine_Bauen);
+                                                    BeschäftigungExtern     => SystemDatentypen.Mine_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
          when KartenDatentypen.Gebirge =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => KartenDatentypen.Mine_Bauen);
+                                                    BeschäftigungExtern     => SystemDatentypen.Mine_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 5,
                                                          RechnenSetzenExtern      => 0);
@@ -65,7 +68,7 @@ package body VerbesserungMine is
                                                    AnlegenTestenExtern      => AnlegenTestenExtern) = True
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BeschäftigungExtern     => KartenDatentypen.Mine_Bauen);
+                                                                 BeschäftigungExtern     => SystemDatentypen.Mine_Bauen);
                SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       ZeitExtern               => 3,
                                                                       RechnenSetzenExtern      => 0);

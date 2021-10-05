@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, EinheitenKonstanten, StadtKonstanten;
+with EinheitStadtRecords, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
+use EinheitStadtDatentypen, KartenDatentypen;
 
 with LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -135,7 +136,7 @@ package body NaechstesObjekt is
                  LeseStadtGebaut.Meldungen (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)),
                                             WelcheMeldungExtern    => MeldungSchleifenwert)
                is
-                  when GlobaleDatentypen.Leer =>
+                  when EinheitStadtDatentypen.Leer =>
                      null;
                      
                   when others =>
@@ -193,7 +194,7 @@ package body NaechstesObjekt is
                  LeseEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)),
                                                 WelcheMeldungExtern      => MeldungSchleifenwert)
                is
-                  when GlobaleDatentypen.Leer =>
+                  when EinheitStadtDatentypen.Leer =>
                      null;
                      
                   when others =>

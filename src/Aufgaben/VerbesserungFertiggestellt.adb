@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten;
+with EinheitenKonstanten, SystemDatentypen, KartenDatentypen, EinheitStadtDatentypen;
+use KartenDatentypen, EinheitStadtDatentypen;
 
 with KIDatentypen;
 
@@ -20,7 +21,7 @@ package body VerbesserungFertiggestellt is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when GlobaleDatentypen.Leer =>
+            when SonstigeDatentypen.Leer =>
                null;
                
             when others =>
@@ -53,7 +54,7 @@ package body VerbesserungFertiggestellt is
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleDatentypen.Leer | GlobaleDatentypen.Heilen | GlobaleDatentypen.Verschanzen =>
+         when SystemDatentypen.Leer | SystemDatentypen.Heilen | SystemDatentypen.Verschanzen =>
             return;
                
          when others =>
@@ -68,7 +69,7 @@ package body VerbesserungFertiggestellt is
         LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Beschäftigungszeit
       then
          EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                EreignisExtern           => GlobaleDatentypen.Aufgabe_Abgeschlossen);
+                                                                EreignisExtern           => EinheitStadtDatentypen.Aufgabe_Abgeschlossen);
          VerbesserungAngelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          AufgabeNachfolgerVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -87,7 +88,7 @@ package body VerbesserungFertiggestellt is
       case
         LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleDatentypen.Leer =>
+         when SystemDatentypen.Leer =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
             AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -99,7 +100,7 @@ package body VerbesserungFertiggestellt is
                                                          ZeitExtern               => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                          RechnenSetzenExtern      => 0);
             SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                              BeschäftigungExtern     => GlobaleDatentypen.Leer);
+                                                              BeschäftigungExtern     => SystemDatentypen.Leer);
             SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                    ZeitExtern               => EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
                                                                    RechnenSetzenExtern      => 0);
@@ -116,25 +117,25 @@ package body VerbesserungFertiggestellt is
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleDatentypen.Straße_Bauen =>
+         when SystemDatentypen.Straße_Bauen =>
             VerbesserungWeg.WegBerechnen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
               
-         when KartenDatentypen.Mine_Bauen =>
+         when SystemDatentypen.Mine_Bauen =>
             SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern => GlobaleDatentypen.Mine);
+                                               VerbesserungExtern => KartenDatentypen.Mine);
             
-         when GlobaleDatentypen.Farm_Bauen =>
+         when SystemDatentypen.Farm_Bauen =>
             SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern => GlobaleDatentypen.Farm);
+                                               VerbesserungExtern => KartenDatentypen.Farm);
             
-         when GlobaleDatentypen.Festung_Bauen =>
+         when SystemDatentypen.Festung_Bauen =>
             SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern => GlobaleDatentypen.Festung);
+                                               VerbesserungExtern => KartenDatentypen.Festung);
               
-         when GlobaleDatentypen.Wald_Aufforsten =>
+         when SystemDatentypen.Wald_Aufforsten =>
             VerbesserungWaldAufforsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
               
-         when GlobaleDatentypen.Roden_Trockenlegen =>
+         when SystemDatentypen.Roden_Trockenlegen =>
             if
               LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
             then
@@ -143,7 +144,7 @@ package body VerbesserungFertiggestellt is
                   
             else
                SchreibeKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                     GrundExtern    => GlobaleDatentypen.Flachland);
+                                     GrundExtern    => KartenDatentypen.Flachland);
             end if;
             
          when others =>
@@ -176,10 +177,10 @@ package body VerbesserungFertiggestellt is
       if
         LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
-        GlobaleDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
+        KartenDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
       then
          SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                            VerbesserungExtern => GlobaleDatentypen.Leer);
+                                            VerbesserungExtern => KartenDatentypen.Leer);
                   
       else
          null;

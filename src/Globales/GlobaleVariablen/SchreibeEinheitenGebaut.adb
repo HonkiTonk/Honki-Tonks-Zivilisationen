@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten;
+with EinheitenKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
@@ -62,9 +63,9 @@ package body SchreibeEinheitenGebaut is
                case
                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung
                is
-                  when GlobaleDatentypen.Heilen =>
+                  when SystemDatentypen.Heilen =>
                      Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BeschäftigungExtern     => GlobaleDatentypen.Leer);
+                                     BeschäftigungExtern     => SystemDatentypen.Leer);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                           ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                           RechnenSetzenExtern      => 0);
@@ -196,7 +197,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Beschäftigung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in SystemDatentypen.Tastenbelegung_Enum)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := BeschäftigungExtern;
@@ -207,7 +208,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure BeschäftigungNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in SystemDatentypen.Tastenbelegung_Enum)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := BeschäftigungExtern;
@@ -378,15 +379,15 @@ package body SchreibeEinheitenGebaut is
            LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                               IDExtern    => (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID))
          is
-            when GlobaleDatentypen.Arbeiter =>
+            when EinheitStadtDatentypen.Arbeiter =>
                SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                  PlusMinusExtern => False);
             
-            when GlobaleDatentypen.Nahkämpfer | GlobaleDatentypen.Fernkämpfer | GlobaleDatentypen.Beides =>
+            when EinheitStadtDatentypen.Nahkämpfer | EinheitStadtDatentypen.Fernkämpfer | EinheitStadtDatentypen.Beides =>
                SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                  PlusMinusExtern => False);
             
-            when GlobaleDatentypen.Sonstiges =>
+            when EinheitStadtDatentypen.Sonstiges =>
                SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                   PlusMinusExtern => False);
             

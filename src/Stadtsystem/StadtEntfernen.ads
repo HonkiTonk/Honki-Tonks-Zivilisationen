@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords, SonstigeDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, KartenRecords, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package StadtEntfernen is
 

@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with SonstigesKonstanten, KartenKonstanten;
+with SonstigesKonstanten, KartenKonstanten, KartenDatentypen;
+use KartenDatentypen;
 
 with RassenAllgemein;
 
@@ -48,11 +49,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss
       is
-         when GlobaleDatentypen.Leer | KartenDatentypen.Karten_Fluss_Enum'Range =>
+         when KartenDatentypen.Leer | KartenDatentypen.Karten_Fluss_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss := GlobaleDatentypen.Leer;
+            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss := KartenDatentypen.Leer;
       end case;
       
       return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss;
@@ -69,11 +70,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg
       is
-         when GlobaleDatentypen.Leer | KartenDatentypen.Karten_Weg_Enum'Range =>
+         when KartenDatentypen.Leer | KartenDatentypen.Karten_Weg_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Leer;
+            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg := KartenDatentypen.Leer;
       end case;
       
       return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg;
@@ -90,11 +91,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet
       is
-         when GlobaleDatentypen.Leer | GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
+         when KartenDatentypen.Leer | KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet := GlobaleDatentypen.Leer;
+            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet := KartenDatentypen.Leer;
       end case;
       
       return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet;
@@ -111,11 +112,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource
       is
-         when GlobaleDatentypen.Leer | KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
+         when KartenDatentypen.Leer | KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := GlobaleDatentypen.Leer;
+            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := KartenDatentypen.Leer;
       end case;
       
       return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource;

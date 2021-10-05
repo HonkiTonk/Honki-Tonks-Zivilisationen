@@ -1,9 +1,15 @@
 pragma SPARK_Mode (On);
 
-with SchreibeEinheitenGebaut;
-with LeseKarten, LeseEinheitenGebaut;
+with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 
-with EinheitenBeschreibungen, VerbesserungRoden, AufgabenAllgemein;
+with SchreibeEinheitenGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
+
+with EinheitenBeschreibungen;
+with VerbesserungRoden;
+with AufgabenAllgemein;
 
 package body VerbesserungFarm is
 
@@ -15,19 +21,19 @@ package body VerbesserungFarm is
    is begin
 
       if
-        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Farm
+        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Farm
       then
          return False;
 
       elsif
-        LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Eis
+        LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Eis
       then
          return False;
 
       elsif
         LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
-        GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
+        KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch
       then
@@ -48,17 +54,17 @@ package body VerbesserungFarm is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel
-            | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
+         when KartenDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel
+            | KartenDatentypen.Karten_Grund_Fluss_Enum'Range | KartenDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Farm_Bauen);
+                                                    BeschäftigungExtern     => SystemDatentypen.Farm_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
          when KartenDatentypen.Gebirge =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Farm_Bauen);
+                                                    BeschäftigungExtern     => SystemDatentypen.Farm_Bauen);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 5,
                                                          RechnenSetzenExtern      => 0);
@@ -70,7 +76,7 @@ package body VerbesserungFarm is
                                                    AnlegenTestenExtern      => AnlegenTestenExtern) = True
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BeschäftigungExtern     => GlobaleDatentypen.Farm_Bauen);
+                                                                 BeschäftigungExtern     => SystemDatentypen.Farm_Bauen);
                SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       ZeitExtern               => 3,
                                                                       RechnenSetzenExtern      => 0);

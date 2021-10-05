@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with SystemKonstanten, SonstigesKonstanten;
+with SystemKonstanten, SonstigesKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with Auswahl;
 

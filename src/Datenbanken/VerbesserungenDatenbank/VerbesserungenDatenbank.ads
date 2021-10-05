@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenKonstanten, KartenDatentypen;
-use GlobaleDatentypen;
+with KartenKonstanten, KartenDatentypen, EinheitStadtDatentypen;
 
 with DatenbankRecords;
 
@@ -22,22 +21,22 @@ private
       
                                                   
       -- Städte
-      GlobaleDatentypen.Eigene_Hauptstadt =>
+      KartenDatentypen.Eigene_Hauptstadt =>
         (VerbesserungGrafik => '♣',
          Passierbarkeit     => (others => True),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Eigene_Stadt =>
+      KartenDatentypen.Eigene_Stadt =>
         (VerbesserungGrafik => '♠',
          Passierbarkeit     => (others => True),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Fremde_Hauptstadt =>
+      KartenDatentypen.Fremde_Hauptstadt =>
         (VerbesserungGrafik => '⌂',
          Passierbarkeit     => (others => True),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Fremde_Stadt =>
+      KartenDatentypen.Fremde_Stadt =>
         (VerbesserungGrafik => '¤',
          Passierbarkeit     => (others => True),
          VerbesserungWerte  => (others => (others => 1))),
@@ -46,34 +45,34 @@ private
       
                                                   
       -- Gebilde
-      GlobaleDatentypen.Farm =>
+      KartenDatentypen.Farm =>
         (VerbesserungGrafik => 'F',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True, 
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True, 
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Mine =>
+      KartenDatentypen.Mine =>
         (VerbesserungGrafik => 'M',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Festung =>
+      KartenDatentypen.Festung =>
         (VerbesserungGrafik => 'B',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Sperre =>
+      KartenDatentypen.Sperre =>
         (VerbesserungGrafik => 'S',
-         Passierbarkeit     => (GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
       -- Gebilde
@@ -82,131 +81,131 @@ private
                                                   
       -- Wege
       -- Straßen
-      GlobaleDatentypen.Straßenkreuzung_Vier =>
+      KartenDatentypen.Straßenkreuzung_Vier =>
         (VerbesserungGrafik => '╬',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straße_Waagrecht =>
+      KartenDatentypen.Straße_Waagrecht =>
         (VerbesserungGrafik => '═',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True, 
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True, 
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straße_Senkrecht =>
+      KartenDatentypen.Straße_Senkrecht =>
         (VerbesserungGrafik => '║',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
+      KartenDatentypen.Straßenkurve_Unten_Rechts =>
         (VerbesserungGrafik => '╔',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True, 
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True, 
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenkurve_Unten_Links =>
+      KartenDatentypen.Straßenkurve_Unten_Links =>
         (VerbesserungGrafik => '╗',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenkurve_Oben_Rechts =>
+      KartenDatentypen.Straßenkurve_Oben_Rechts =>
         (VerbesserungGrafik => '╚',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenkurve_Oben_Links =>
+      KartenDatentypen.Straßenkurve_Oben_Links =>
         (VerbesserungGrafik => '╝',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenkreuzung_Drei_Oben =>
+      KartenDatentypen.Straßenkreuzung_Drei_Oben =>
         (VerbesserungGrafik => '╩',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenkreuzung_Drei_Unten =>
+      KartenDatentypen.Straßenkreuzung_Drei_Unten =>
         (VerbesserungGrafik => '╦',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenkreuzung_Drei_Rechts =>
+      KartenDatentypen.Straßenkreuzung_Drei_Rechts =>
         (VerbesserungGrafik => '╠',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenkreuzung_Drei_Links =>
+      KartenDatentypen.Straßenkreuzung_Drei_Links =>
         (VerbesserungGrafik => '╣',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenendstück_Links =>
+      KartenDatentypen.Straßenendstück_Links =>
         (VerbesserungGrafik => '╞',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenendstück_Rechts =>
+      KartenDatentypen.Straßenendstück_Rechts =>
         (VerbesserungGrafik => '╡',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenendstück_Unten =>
+      KartenDatentypen.Straßenendstück_Unten =>
         (VerbesserungGrafik => '╨',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straßenendstück_Oben =>
+      KartenDatentypen.Straßenendstück_Oben =>
         (VerbesserungGrafik => '╥',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
                                                   
-      GlobaleDatentypen.Straße_Einzeln =>
+      KartenDatentypen.Straße_Einzeln =>
         (VerbesserungGrafik => '▫',
-         Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
-                                GlobaleDatentypen.Luft     => True,
-                                GlobaleDatentypen.Weltraum => True,
+         Passierbarkeit     => (EinheitStadtDatentypen.Boden    => True,
+                                EinheitStadtDatentypen.Luft     => True,
+                                EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
          VerbesserungWerte  => (others => (others => 1))),
       -- Straßen

@@ -3,8 +3,8 @@ pragma SPARK_Mode (Off);
 with Ada.Numerics.Discrete_Random;
 with Ada.Numerics.Float_Random;
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen, KartenDatentypen;
+with GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+use SonstigeDatentypen, KartenDatentypen;
 
 with Karten;
 

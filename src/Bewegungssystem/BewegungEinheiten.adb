@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, KartenKonstanten, EinheitenKonstanten;
+with GlobaleTexte, KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -23,41 +24,41 @@ package body BewegungEinheiten is
          case
            Befehl
          is
-            when GlobaleDatentypen.Hoch =>
+            when SystemDatentypen.Hoch =>
                Änderung := (0, -1, 0);
             
-            when GlobaleDatentypen.Links =>
+            when SystemDatentypen.Links =>
                Änderung := (0, 0, -1);
             
-            when GlobaleDatentypen.Runter =>
+            when SystemDatentypen.Runter =>
                Änderung := (0, 1, 0);
             
-            when GlobaleDatentypen.Rechts  =>
+            when SystemDatentypen.Rechts  =>
                Änderung := (0, 0, 1);
             
-            when GlobaleDatentypen.Links_Oben =>
+            when SystemDatentypen.Links_Oben =>
                Änderung := (0, -1, -1);
             
-            when GlobaleDatentypen.Rechts_Oben =>
+            when SystemDatentypen.Rechts_Oben =>
                Änderung := (0, -1, 1);
             
-            when GlobaleDatentypen.Links_Unten =>
+            when SystemDatentypen.Links_Unten =>
                Änderung := (0, 1, -1);
 
-            when GlobaleDatentypen.Rechts_Unten =>
+            when SystemDatentypen.Rechts_Unten =>
                Änderung := (0, 1, 1);
             
-            when KartenDatentypen.Ebene_Hoch =>
+            when SystemDatentypen.Ebene_Hoch =>
                Änderung := (1, 0, 0);
             
-            when KartenDatentypen.Ebene_Runter =>
+            when SystemDatentypen.Ebene_Runter =>
                Änderung := (-1, 0, 0);
                
-            when GlobaleDatentypen.Heimatstadt_Ändern =>
+            when SystemDatentypen.Heimatstadt_Ändern =>
                EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
                
-            when GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | GlobaleDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
+            when SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | SystemDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
                AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                     BefehlExtern             => Befehl);
                
@@ -73,7 +74,7 @@ package body BewegungEinheiten is
                                                            TextZeileExtern => 2);
                end case;
                
-            when GlobaleDatentypen.Bauen =>
+            when SystemDatentypen.Bauen =>
                NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
             
@@ -163,7 +164,7 @@ package body BewegungEinheiten is
       elsif
         EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
         and
-          EinheitAufFeld.Rasse /= GlobaleDatentypen.Leer
+          EinheitAufFeld.Rasse /= SonstigeDatentypen.Leer
       then
          if
            (FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

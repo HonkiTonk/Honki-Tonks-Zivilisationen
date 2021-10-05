@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, KartenDatentypen;
+use KartenDatentypen;
 
 with LeseKarten, LeseEinheitenGebaut;
 

@@ -8,41 +8,41 @@ package body BewegungCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
-      RichtungExtern : in GlobaleDatentypen.Tastenbelegung_Bewegung_Enum;
+      RichtungExtern : in SystemDatentypen.Tastenbelegung_Bewegung_Enum;
       RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
         RichtungExtern
       is
-         when GlobaleDatentypen.Hoch =>
+         when SystemDatentypen.Hoch =>
             Änderung := (0, -1, 0);
             
-         when GlobaleDatentypen.Links =>
+         when SystemDatentypen.Links =>
             Änderung := (0, 0, -1);
             
-         when GlobaleDatentypen.Runter =>
+         when SystemDatentypen.Runter =>
             Änderung := (0, 1, 0);
             
-         when GlobaleDatentypen.Rechts  =>
+         when SystemDatentypen.Rechts  =>
             Änderung := (0, 0, 1);
             
-         when GlobaleDatentypen.Links_Oben =>
+         when SystemDatentypen.Links_Oben =>
             Änderung := (0, -1, -1);
             
-         when GlobaleDatentypen.Rechts_Oben =>
+         when SystemDatentypen.Rechts_Oben =>
             Änderung := (0, -1, 1);
             
-         when GlobaleDatentypen.Links_Unten =>
+         when SystemDatentypen.Links_Unten =>
             Änderung := (0, 1, -1);
 
-         when GlobaleDatentypen.Rechts_Unten =>
+         when SystemDatentypen.Rechts_Unten =>
             Änderung := (0, 1, 1);
             
-         when KartenDatentypen.Ebene_Hoch =>
+         when SystemDatentypen.Ebene_Hoch =>
             Änderung := (1, 0, 0);
             
-         when KartenDatentypen.Ebene_Runter =>
+         when SystemDatentypen.Ebene_Runter =>
             Änderung := (-1, 0, 0);
       end case;
       

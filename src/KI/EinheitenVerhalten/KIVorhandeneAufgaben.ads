@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, SonstigeDatentypen, GlobaleVariablen, EinheitStadtDatentypen;
+use SonstigeDatentypen;
 
 package KIVorhandeneAufgaben is
 
    function SichHeilen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -16,7 +16,7 @@ package KIVorhandeneAufgaben is
    
    function SichVerbessern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -25,7 +25,7 @@ package KIVorhandeneAufgaben is
    
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -33,11 +33,11 @@ package KIVorhandeneAufgaben is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
    
    function Fliehen
-     return GlobaleDatentypen.ProduktionSonstiges;
+     return EinheitStadtDatentypen.ProduktionSonstiges;
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -46,7 +46,7 @@ package KIVorhandeneAufgaben is
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -55,7 +55,7 @@ package KIVorhandeneAufgaben is
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -63,20 +63,20 @@ package KIVorhandeneAufgaben is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    function StadtUmgebungZerstören
-     return GlobaleDatentypen.ProduktionSonstiges;
+     return EinheitStadtDatentypen.ProduktionSonstiges;
 
    function Angreifen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.ProduktionSonstiges;
+      return EinheitStadtDatentypen.ProduktionSonstiges;
 
    function Erkunden
-     return GlobaleDatentypen.ProduktionSonstiges;
+     return EinheitStadtDatentypen.ProduktionSonstiges;
    
    function SichBefestigen
-     return GlobaleDatentypen.ProduktionSonstiges;
+     return EinheitStadtDatentypen.ProduktionSonstiges;
    
    function NichtsTun
-     return GlobaleDatentypen.ProduktionSonstiges;
+     return EinheitStadtDatentypen.ProduktionSonstiges;
    
 private
    
@@ -88,6 +88,6 @@ private
    
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    
-   GewählteAufgabe : GlobaleDatentypen.ProduktionSonstiges;
+   GewählteAufgabe : EinheitStadtDatentypen.ProduktionSonstiges;
 
 end KIVorhandeneAufgaben;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, SystemKonstanten, KartenRecords, ForschungKonstanten, EinheitStadtDatentypen, SonstigeDatentypen;
+with EinheitStadtRecords, SystemKonstanten, KartenRecords, ForschungKonstanten, EinheitStadtDatentypen, SonstigeDatentypen, SystemDatentypen;
 
 with DatenbankRecords;
 
@@ -19,7 +19,7 @@ package EinheitenKonstanten is
    LeerBewegungspunkte : constant EinheitStadtDatentypen.BewegungFloat := 0.00;
    LeerErfahrungspunkte : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRang : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerBeschäftigung : constant GlobaleDatentypen.Tastenbelegung_Enum := GlobaleDatentypen.Leer;
+   LeerBeschäftigung : constant SystemDatentypen.Tastenbelegung_Enum := SystemDatentypen.Leer;
    LeerBeschäftigungszeit : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Tut_Nichts;
    LeerTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;

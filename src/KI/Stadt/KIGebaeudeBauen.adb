@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten;
+with SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
+use EinheitStadtDatentypen;
 
 with KIKonstanten;
 
@@ -89,7 +90,7 @@ package body KIGebaeudeBauen is
           LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
         + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcherBonusExtern => GlobaleDatentypen.Nahrung)
+                                                  WelcherBonusExtern => KartenDatentypen.Nahrung)
         >= StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 20;
@@ -99,7 +100,7 @@ package body KIGebaeudeBauen is
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcherBonusExtern => GlobaleDatentypen.Nahrung)
+                                                  WelcherBonusExtern => KartenDatentypen.Nahrung)
         > StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 10;
@@ -109,7 +110,7 @@ package body KIGebaeudeBauen is
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcherBonusExtern => GlobaleDatentypen.Nahrung)
+                                                  WelcherBonusExtern => KartenDatentypen.Nahrung)
         = StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 5;
@@ -118,7 +119,7 @@ package body KIGebaeudeBauen is
         LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcheKostenExtern => GlobaleDatentypen.Nahrung)
+                                                  WelcheKostenExtern => EinheitStadtDatentypen.Nahrung)
         < StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return -20;
@@ -126,10 +127,10 @@ package body KIGebaeudeBauen is
       else
          return LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                         IDExtern           => IDExtern,
-                                                        WelcherBonusExtern => GlobaleDatentypen.Nahrung)
+                                                        WelcherBonusExtern => KartenDatentypen.Nahrung)
            - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                      IDExtern           => IDExtern,
-                                                     WelcheKostenExtern => GlobaleDatentypen.Nahrung);
+                                                     WelcheKostenExtern => EinheitStadtDatentypen.Nahrung);
       end if;
       
    end NahrungsproduktionBewerten;
@@ -148,7 +149,7 @@ package body KIGebaeudeBauen is
           LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcherBonusExtern => GlobaleDatentypen.Geld)
+                                                  WelcherBonusExtern => KartenDatentypen.Geld)
         >= SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return 20;
@@ -158,7 +159,7 @@ package body KIGebaeudeBauen is
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcherBonusExtern => GlobaleDatentypen.Geld)
+                                                  WelcherBonusExtern => KartenDatentypen.Geld)
         > StadtKonstanten.LeerStadt.Geldgewinnung
       then
          return 10;
@@ -168,7 +169,7 @@ package body KIGebaeudeBauen is
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcherBonusExtern => GlobaleDatentypen.Geld)
+                                                  WelcherBonusExtern => KartenDatentypen.Geld)
         = StadtKonstanten.LeerStadt.Geldgewinnung
       then
          return 5;
@@ -177,7 +178,7 @@ package body KIGebaeudeBauen is
         LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcheKostenExtern => GlobaleDatentypen.Geld)
+                                                  WelcheKostenExtern => EinheitStadtDatentypen.Geld)
         < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return -20;
@@ -185,10 +186,10 @@ package body KIGebaeudeBauen is
       else
          return LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                         IDExtern           => IDExtern,
-                                                        WelcherBonusExtern => GlobaleDatentypen.Geld)
+                                                        WelcherBonusExtern => KartenDatentypen.Geld)
            - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                      IDExtern           => IDExtern,
-                                                     WelcheKostenExtern => GlobaleDatentypen.Geld);
+                                                     WelcheKostenExtern => EinheitStadtDatentypen.Geld);
       end if;
       
    end GeldproduktionBewerten;
@@ -206,7 +207,7 @@ package body KIGebaeudeBauen is
         and
           LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcherBonusExtern => GlobaleDatentypen.Wissen)
+                                                  WelcherBonusExtern => KartenDatentypen.Wissen)
         > SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
       then
          return 5;
@@ -214,7 +215,7 @@ package body KIGebaeudeBauen is
       else
          return LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                         IDExtern           => IDExtern,
-                                                        WelcherBonusExtern => GlobaleDatentypen.Wissen);
+                                                        WelcherBonusExtern => KartenDatentypen.Wissen);
       end if;
       
    end WissensgewinnBewerten;
@@ -233,7 +234,7 @@ package body KIGebaeudeBauen is
           LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
         + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcherBonusExtern => GlobaleDatentypen.Produktion)
+                                                  WelcherBonusExtern => KartenDatentypen.Produktion)
         >= StadtKonstanten.LeerStadt.Produktionrate
       then
          return 20;
@@ -243,7 +244,7 @@ package body KIGebaeudeBauen is
         and
           + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                     IDExtern           => IDExtern,
-                                                    WelcherBonusExtern => GlobaleDatentypen.Produktion)
+                                                    WelcherBonusExtern => KartenDatentypen.Produktion)
         > StadtKonstanten.LeerStadt.Produktionrate
       then
          return 10;
@@ -253,7 +254,7 @@ package body KIGebaeudeBauen is
         and
           + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                     IDExtern           => IDExtern,
-                                                    WelcherBonusExtern => GlobaleDatentypen.Produktion)
+                                                    WelcherBonusExtern => KartenDatentypen.Produktion)
         = StadtKonstanten.LeerStadt.Produktionrate
       then
          return 5;
@@ -262,7 +263,7 @@ package body KIGebaeudeBauen is
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcheKostenExtern => GlobaleDatentypen.Ressourcen)
+                                                  WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen)
         < StadtKonstanten.LeerStadt.Produktionrate
       then
          return -20;
@@ -270,10 +271,10 @@ package body KIGebaeudeBauen is
       else
          return LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                         IDExtern           => IDExtern,
-                                                        WelcherBonusExtern => GlobaleDatentypen.Produktion)
+                                                        WelcherBonusExtern => KartenDatentypen.Produktion)
            - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                      IDExtern           => IDExtern,
-                                                     WelcheKostenExtern => GlobaleDatentypen.Ressourcen);
+                                                     WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen);
       end if;
       
    end RessourcenproduktionBewerten;
@@ -288,7 +289,7 @@ package body KIGebaeudeBauen is
       
       return LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                      IDExtern           => IDExtern,
-                                                     WelcherBonusExtern => GlobaleDatentypen.Verteidigung);
+                                                     WelcherBonusExtern => KartenDatentypen.Verteidigung);
       
    end VerteidigungBewerten;
      
@@ -302,7 +303,7 @@ package body KIGebaeudeBauen is
       
       return LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                      IDExtern           => IDExtern,
-                                                     WelcherBonusExtern => GlobaleDatentypen.Angriff);
+                                                     WelcherBonusExtern => KartenDatentypen.Angriff);
       
    end AngriffBewerten;
      

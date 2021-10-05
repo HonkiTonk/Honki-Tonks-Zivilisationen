@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, EinheitStadtRecords;
-use GlobaleDatentypen;
+with GlobaleVariablen, EinheitStadtDatentypen, EinheitStadtRecords, SonstigeDatentypen, KartenDatentypen;
+use SonstigeDatentypen, KartenDatentypen;
 
 package GebaeudeAllgemein is
 
@@ -18,7 +18,7 @@ package GebaeudeAllgemein is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
    procedure GebäudeEntfernen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -27,7 +27,7 @@ package GebaeudeAllgemein is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
    function GebäudeAnforderungenErfüllt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -37,7 +37,7 @@ package GebaeudeAllgemein is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
 private
    

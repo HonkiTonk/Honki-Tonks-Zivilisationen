@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
+with KartenKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
+use EinheitStadtDatentypen, KartenDatentypen;
 
 with KIDatentypen;
 use KIDatentypen;
@@ -186,7 +187,7 @@ package body KIStadt is
                        LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
                      is
-                        when GlobaleDatentypen.Leer | GlobaleDatentypen.Arbeiter =>
+                        when EinheitStadtDatentypen.Leer | EinheitStadtDatentypen.Arbeiter =>
                            null;
             
                         when others =>
@@ -214,11 +215,11 @@ package body KIStadt is
          if
            LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                               IDExtern    => EinheitenSchleifenwert)
-           = GlobaleDatentypen.Arbeiter
+           = EinheitStadtDatentypen.Arbeiter
            or
              LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                 IDExtern    => EinheitenSchleifenwert)
-           = GlobaleDatentypen.Leer
+           = EinheitStadtDatentypen.Leer
          then
             null;
             

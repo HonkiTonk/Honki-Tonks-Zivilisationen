@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with SystemDatentypen, EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+use SonstigeDatentypen;
 
 package Aufgaben is
    
    function VerbesserungTesten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with
        Pre =>
@@ -17,7 +17,7 @@ package Aufgaben is
    
    function VerbesserungAnlegen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with
        Pre =>
@@ -70,7 +70,7 @@ private
    
    function VerbesserungFestgelegt
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in Tastenbelegung_Befehle_Enum;
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with
@@ -111,7 +111,7 @@ private
    
    function AllgemeinerAnfangstest
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with
        Pre =>

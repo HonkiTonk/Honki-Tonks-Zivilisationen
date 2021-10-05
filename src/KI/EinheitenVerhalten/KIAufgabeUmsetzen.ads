@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, KartenDatentypen, SystemDatentypen;
+use SonstigeDatentypen;
 
 package KIAufgabeUmsetzen is
 
@@ -30,7 +30,7 @@ private
 
    Grund : KartenDatentypen.Karten_Grund_Enum;
 
-   Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
+   Befehl : SystemDatentypen.Tastenbelegung_Enum;
 
    function VerbesserungGebiet
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

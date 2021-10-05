@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, EinheitenKonstanten, StadtKonstanten;
+with EinheitStadtRecords, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with EinheitenDatenbank;
 

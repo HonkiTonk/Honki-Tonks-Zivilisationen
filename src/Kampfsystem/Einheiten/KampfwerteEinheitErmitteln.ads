@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, EinheitStadtRecords, GlobaleVariablen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, EinheitStadtDatentypen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package KampfwerteEinheitErmitteln is
 
@@ -11,7 +11,7 @@ package KampfwerteEinheitErmitteln is
       return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze);
    
@@ -21,7 +21,7 @@ package KampfwerteEinheitErmitteln is
       return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze);
    

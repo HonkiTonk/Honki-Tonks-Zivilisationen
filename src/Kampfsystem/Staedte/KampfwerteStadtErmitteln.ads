@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, EinheitStadtDatentypen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package KampfwerteStadtErmitteln is
 
@@ -10,7 +10,7 @@ package KampfwerteStadtErmitteln is
       return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
    
@@ -19,7 +19,7 @@ package KampfwerteStadtErmitteln is
       return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
           and
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
    

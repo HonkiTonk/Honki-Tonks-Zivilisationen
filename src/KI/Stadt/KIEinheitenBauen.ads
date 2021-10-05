@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen;
-use GlobaleDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, EinheitStadtDatentypen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 with KIRecords;
 

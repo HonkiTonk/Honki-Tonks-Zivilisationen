@@ -2,7 +2,7 @@ pragma SPARK_Mode (Off);
 
 with Ada.Numerics.Discrete_Random;
 
-with GlobaleDatentypen, KartenDatentypen, SonstigeDatentypen;
+with SystemDatentypen, KartenDatentypen, SonstigeDatentypen;
 
 package ZufallGeneratorenSpieleinstellungen is
 
@@ -28,7 +28,7 @@ package ZufallGeneratorenSpieleinstellungen is
      return SonstigeDatentypen.Rassen_Verwendet_Enum;
    
    function ZufälligerSchwiewrigkeitsgrad
-     return GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
+     return SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
 
 private
    
@@ -41,7 +41,7 @@ private
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartentemperatur_Verwendet_Enum);
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum);
    package ZufälligeSpieleranzahlRasseWählen is new Ada.Numerics.Discrete_Random (SonstigeDatentypen.Rassen_Verwendet_Enum);
-   package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum);
+   package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum);
 
    ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;
    ZufälligeKartenartGewählt : ZufälligeKartenartWählen.Generator;

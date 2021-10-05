@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with KartenDatentypen, SystemDatentypen;
+use KartenDatentypen;
+
 with SchreibeEinheitenGebaut;
 with LeseKarten, LeseEinheitenGebaut;
 
@@ -15,9 +18,9 @@ package body VerbesserungWald is
    is begin
       
       if
-        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Farm
+        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Farm
         or
-          LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Mine
+          LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Mine
       then
          if
            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch
@@ -44,9 +47,9 @@ package body VerbesserungWald is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Flachland | KartenDatentypen.Hügel | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
+         when KartenDatentypen.Flachland | KartenDatentypen.Hügel | KartenDatentypen.Karten_Grund_Fluss_Enum'Range | KartenDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Wald_Aufforsten);
+                                                    BeschäftigungExtern     => SystemDatentypen.Wald_Aufforsten);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
@@ -58,7 +61,7 @@ package body VerbesserungWald is
                                                    AnlegenTestenExtern      => AnlegenTestenExtern) = True
             then
                SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => GlobaleDatentypen.Wald_Aufforsten);
+                                                       BeschäftigungExtern     => SystemDatentypen.Wald_Aufforsten);
                SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             ZeitExtern               => 3,
                                                             RechnenSetzenExtern      => 0);

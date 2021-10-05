@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen, SystemDatentypen;
+use EinheitStadtDatentypen;
 
 with KIKonstanten, KIDatentypen;
 use KIDatentypen;
@@ -34,7 +35,7 @@ package body KIBewegungBerechnen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern      => GlobaleDatentypen.Leer);
+                                                    BeschäftigungExtern      => SystemDatentypen.Leer);
       end case;
       
       return PlanungErfolgreich;
@@ -181,7 +182,7 @@ package body KIBewegungBerechnen is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       YÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
       XÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
             
       if
@@ -258,7 +259,7 @@ package body KIBewegungBerechnen is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.ProduktionSonstiges
+      return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
       -- KoordinatenExtern ist der aktuelle Punkt, NeueKoordinatenExtern ist der mögliche neue Punkt.

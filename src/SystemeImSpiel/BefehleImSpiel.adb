@@ -20,84 +20,84 @@ package body BefehleImSpiel is
       case
         Befehl
       is
-         when GlobaleDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
+         when SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                    RichtungExtern => Befehl,
                                                    RasseExtern    => RasseExtern);
             
-         when GlobaleDatentypen.Auswählen =>
+         when SystemDatentypen.Auswählen =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
-         when GlobaleDatentypen.Menü_Zurück =>
+         when SystemDatentypen.Menü_Zurück =>
             return Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
                                     TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                                     FrageZeileExtern  => 0,
                                     ErsteZeileExtern  => 1,
                                     LetzteZeileExtern => 6);
 
-         when GlobaleDatentypen.Bauen =>
+         when SystemDatentypen.Bauen =>
             BaueStadt (RasseExtern => RasseExtern);
            
-         when GlobaleDatentypen.Forschung =>
+         when SystemDatentypen.Forschung =>
             Technologie (RasseExtern => RasseExtern);
             
-         when GlobaleDatentypen.Tech_Baum =>
+         when SystemDatentypen.Tech_Baum =>
             ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
             
-         when GlobaleDatentypen.Nächste_Stadt =>
+         when SystemDatentypen.Nächste_Stadt =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
-         when GlobaleDatentypen.Einheit_Mit_Bewegungspunkte =>
+         when SystemDatentypen.Einheit_Mit_Bewegungspunkte =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
             
-         when GlobaleDatentypen.Alle_Einheiten =>
+         when SystemDatentypen.Alle_Einheiten =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
             
-         when GlobaleDatentypen.Einheiten_Ohne_Bewegungspunkte =>
+         when SystemDatentypen.Einheiten_Ohne_Bewegungspunkte =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
-         when GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Range =>
+         when SystemDatentypen.Tastenbelegung_Befehle_Enum'Range =>
             EinheitBefehle (RasseExtern  => RasseExtern,
                             BefehlExtern => Befehl);
             
-         when GlobaleDatentypen.Infos =>
+         when SystemDatentypen.Infos =>
             -- Hier mal was reinbauen.
             null;
 
-         when GlobaleDatentypen.Diplomatie =>
+         when SystemDatentypen.Diplomatie =>
             Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
 
-         when GlobaleDatentypen.GeheZu =>
+         when SystemDatentypen.GeheZu =>
             BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
 
-         when GlobaleDatentypen.Stadt_Umbenennen =>
+         when SystemDatentypen.Stadt_Umbenennen =>
             StadtUmbenennen (RasseExtern => RasseExtern);
             
-         when GlobaleDatentypen.Stadt_Abreißen =>
+         when SystemDatentypen.Stadt_Abreißen =>
             StadtAbreißen (RasseExtern => RasseExtern);
             
-         when GlobaleDatentypen.Stadt_Suchen =>
+         when SystemDatentypen.Stadt_Suchen =>
             StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
-         when GlobaleDatentypen.Nächste_Stadt_Mit_Meldung =>
+         when SystemDatentypen.Nächste_Stadt_Mit_Meldung =>
             NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);
             
-         when GlobaleDatentypen.Nächste_Einheit_Mit_Meldung =>
+         when SystemDatentypen.Nächste_Einheit_Mit_Meldung =>
             NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
             
-         when GlobaleDatentypen.Heimatstadt_Ändern =>
+         when SystemDatentypen.Heimatstadt_Ändern =>
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
-         when GlobaleDatentypen.Runde_Beenden =>
+         when SystemDatentypen.Runde_Beenden =>
             return SystemKonstanten.RundeBeendenKonstante;
             
-         when GlobaleDatentypen.Cheatmenü =>
+         when SystemDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
          
-         when GlobaleDatentypen.Leer =>
+         when SystemDatentypen.Leer =>
             null;
       end case;
 
@@ -225,7 +225,7 @@ package body BefehleImSpiel is
    is begin
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= GlobaleDatentypen.Leer
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= SystemDatentypen.Leer
         and then
           EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
@@ -304,7 +304,7 @@ package body BefehleImSpiel is
    
    procedure EinheitBefehle
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
    is begin
                      
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtDatentypen, SonstigeDatentypen, KartenDatentypen;
+with EinheitStadtRecords, SystemDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtDatentypen, SonstigeDatentypen, KartenDatentypen;
 use SonstigeDatentypen, KartenDatentypen;
 
 with KIDatentypen;
@@ -80,7 +80,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Beschäftigung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in SystemDatentypen.Tastenbelegung_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -89,7 +89,7 @@ package SchreibeEinheitenGebaut is
    
    procedure BeschäftigungNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in SystemDatentypen.Tastenbelegung_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

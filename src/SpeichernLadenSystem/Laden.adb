@@ -3,8 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten, SonstigeDatentypen, KartenDatentypen;
-use GlobaleDatentypen;
+with SystemDatentypen, GlobaleVariablen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten, SonstigeDatentypen, KartenDatentypen;
 
 with Karten, Ladezeiten, Informationen, Auswahl, SpeichernLadenAllgemein, Karte;
 
@@ -24,7 +23,7 @@ package body Laden is
             return False;
       end case;
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, SystemDatentypen.Anfangswert) := Clock;
 
       Open (File => DateiLadenNeu,
             Mode => In_File,
@@ -65,7 +64,7 @@ package body Laden is
 
       Close (File => DateiLadenNeu);
 
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, SystemDatentypen.Endwert) := Clock;
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Ladezeit);
 
       return True;
@@ -89,7 +88,7 @@ package body Laden is
       SonstigeDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
                                            GlobaleVariablen.RasseAmZugNachLaden);
       
-      GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
+      SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
                                                                 GlobaleVariablen.Schwierigkeitsgrad);
       
       Boolean'Read (Stream (File => DateiLadenNeu),

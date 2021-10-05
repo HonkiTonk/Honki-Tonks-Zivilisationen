@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, GlobaleDatentypen, KartenRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with EinheitStadtRecords, GlobaleVariablen, KartenRecords, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+use SonstigeDatentypen, KartenDatentypen;
 
 package StadtBauen is
 
@@ -61,6 +61,6 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer),
          Post =>
-           (HauptstadtPrüfen'Result /= GlobaleDatentypen.Leer);
+           (HauptstadtPrüfen'Result /= KartenDatentypen.Leer);
 
 end StadtBauen;

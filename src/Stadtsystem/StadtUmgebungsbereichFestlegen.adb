@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with StadtKonstanten;
+with StadtKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut, LeseWichtiges;
@@ -14,7 +15,7 @@ package body StadtUmgebungsbereichFestlegen is
       case
         StadtRasseNummerExtern.Rasse
       is
-         when GlobaleDatentypen.Leer =>
+         when SonstigeDatentypen.Leer =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
             raise Program_Error;
             
@@ -32,23 +33,23 @@ package body StadtUmgebungsbereichFestlegen is
       
       if
         LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert))
+                                 WelcheTechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Endwert))
           = True
         and
           LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True)
-        >= StadtKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
+        >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 3;
          
       elsif
         LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
-                                 WelcheTechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert))
+                                 WelcheTechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, SystemDatentypen.Anfangswert))
           = True
         and
           LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True)
-        >= StadtKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
+        >= StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
       then
          Umgebung := 2;      
                   

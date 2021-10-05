@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleVariablen, SystemKonstanten, GlobaleDatentypen, GlobaleTexte;
+with GlobaleVariablen, SystemKonstanten, SystemDatentypen, GlobaleTexte;
 
 with Auswahl, ZufallGeneratorenSpieleinstellungen;
 
@@ -26,7 +26,7 @@ package body SpielEinstellungenSonstiges is
            SchwierigkeitAuswahl
          is
             when 1 .. 3 =>
-               GlobaleVariablen.Schwierigkeitsgrad := GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Val (SchwierigkeitAuswahl);
+               GlobaleVariablen.Schwierigkeitsgrad := SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Val (SchwierigkeitAuswahl);
                return SystemKonstanten.AuswahlFertig;
 
             when 4 =>

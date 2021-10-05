@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with SystemKonstanten, GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
+with SystemKonstanten, GlobaleTexte, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, SystemDatentypen;
+use EinheitStadtDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -190,7 +191,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is
-            when GlobaleDatentypen.Hoch =>
+            when SystemDatentypen.Hoch =>
                if
                  Anzeige.AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -200,7 +201,7 @@ package body InDerStadtBauen is
                   Anzeige.AktuelleAuswahl := Anzeige.AktuelleAuswahl - 1;
                end if;
 
-            when GlobaleDatentypen.Runter =>
+            when SystemDatentypen.Runter =>
                if
                  Anzeige.AktuelleAuswahl = Ende
                then
@@ -210,10 +211,10 @@ package body InDerStadtBauen is
                   Anzeige.AktuelleAuswahl := Anzeige.AktuelleAuswahl + 1;
                end if;
                               
-            when GlobaleDatentypen.Auswählen =>
+            when SystemDatentypen.Auswählen =>
                return Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer;
 
-            when GlobaleDatentypen.Menü_Zurück =>
+            when SystemDatentypen.Menü_Zurück =>
                return 0;
                      
             when others =>

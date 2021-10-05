@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, EinheitStadtRecords, NutzerRecords, KartenRecords, WichtigeRecords, SystemKonstanten, SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, SonstigeDatentypen;
+with SystemDatentypen, EinheitStadtRecords, NutzerRecords, KartenRecords, WichtigeRecords, SystemKonstanten, SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, SonstigeDatentypen;
 
 package GlobaleVariablen is
 
@@ -37,7 +37,7 @@ package GlobaleVariablen is
    RassenImSpiel : SonstigeDatentypen.RassenImSpielArray := (others => SonstigeDatentypen.Leer);
    RasseAmZugNachLaden : SonstigeDatentypen.Rassen_Enum := SonstigeDatentypen.Leer;
 
-   Schwierigkeitsgrad : GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
+   Schwierigkeitsgrad : SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
    Gewonnen : Boolean := False;
    WeiterSpielen : Boolean := False;
    

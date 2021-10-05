@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
+with GlobaleVariablen, KartenKonstanten, EinheitenKonstanten, StadtKonstanten, KartenDatentypen, EinheitStadtDatentypen, SonstigeDatentypen;
+use KartenDatentypen, EinheitStadtDatentypen, SonstigeDatentypen;
 
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
@@ -52,7 +53,7 @@ package body EinheitInUmgebung is
                  = True
                then
                   StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
-                                                                   EreignisExtern         => GlobaleDatentypen.Fremde_Einheit_Nahe_Stadt);
+                                                                   EreignisExtern         => EinheitStadtDatentypen.Fremde_Einheit_Nahe_Stadt);
                            
                else
                   null;
@@ -86,7 +87,7 @@ package body EinheitInUmgebung is
                  = True
                then
                   EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
-                                                                         EreignisExtern           => GlobaleDatentypen.Fremde_Einheit_Nahe);
+                                                                         EreignisExtern           => EinheitStadtDatentypen.Fremde_Einheit_Nahe);
                            
                else
                   null;

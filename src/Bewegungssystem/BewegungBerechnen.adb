@@ -106,7 +106,7 @@ package body BewegungBerechnen is
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = GlobaleDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = SonstigeDatentypen.Leer
          then
             null;
             
@@ -140,7 +140,7 @@ package body BewegungBerechnen is
       case
         LeseKarten.Grund (PositionExtern => NeuePositionExtern)
       is
-         when GlobaleDatentypen.Eis | KartenDatentypen.Gebirge | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
+         when KartenDatentypen.Eis | KartenDatentypen.Gebirge | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
             if
               LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug
             then
@@ -179,24 +179,24 @@ package body BewegungBerechnen is
       if
         LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               WelcheUmgebungExtern => GlobaleDatentypen.Luft)
+                                               WelcheUmgebungExtern => EinheitStadtDatentypen.Luft)
         = False
         and
           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                  IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                 WelcheUmgebungExtern => GlobaleDatentypen.Weltraum)
+                                                 WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum)
         = False
       then
          case
            LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern)
          is
-            when GlobaleDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
+            when KartenDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
                return Straße_Fluss;
                
-            when GlobaleDatentypen.Karten_Verbesserung_Schiene_Enum'Range =>
+            when KartenDatentypen.Karten_Verbesserung_Schiene_Enum'Range =>
                return Schiene;
                
-            when GlobaleDatentypen.Karten_Verbesserung_Tunnel_Enum =>
+            when KartenDatentypen.Karten_Verbesserung_Tunnel_Enum =>
                return Straße_Fluss;
                   
             when others =>
@@ -206,7 +206,7 @@ package body BewegungBerechnen is
          case
            LeseKarten.Fluss (PositionExtern => NeuePositionExtern)
          is
-            when GlobaleDatentypen.Leer =>
+            when KartenDatentypen.Leer =>
                null;
 
             when others =>

@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with SonstigesKonstanten;
+with SonstigesKonstanten, EinheitStadtDatentypen, KartenDatentypen;
+use KartenDatentypen;
 
 package body RassenAllgemein is
    

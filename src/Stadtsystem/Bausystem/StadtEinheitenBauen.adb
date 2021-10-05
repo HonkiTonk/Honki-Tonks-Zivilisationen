@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, KartenKonstanten, EinheitenKonstanten, StadtKonstanten;
+with GlobaleTexte, KartenKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 with KIDatentypen;
 
@@ -80,7 +81,7 @@ package body StadtEinheitenBauen is
       is
          when KartenKonstanten.LeerXAchse =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => GlobaleDatentypen.Einheit_Unplatzierbar);
+                                                             EreignisExtern         => EinheitStadtDatentypen.Einheit_Unplatzierbar);
             
          when others =>
             EinheitPlatzieren (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -112,7 +113,7 @@ package body StadtEinheitenBauen is
       is
          when SonstigeDatentypen.Spieler_Mensch =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => GlobaleDatentypen.Produktion_Abgeschlossen);
+                                                             EreignisExtern         => EinheitStadtDatentypen.Produktion_Abgeschlossen);
          
          when others =>
             SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,

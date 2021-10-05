@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords, KartenDatentypen;
-use GlobaleDatentypen;
+with KartenRecords, KartenDatentypen;
 
 package KartenGeneratorBerechnungenAllgemein is
    

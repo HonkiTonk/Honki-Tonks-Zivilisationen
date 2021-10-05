@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, KartenRecords, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
+with SystemDatentypen, KartenRecords, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
 
 with KIDatentypen;
 
@@ -33,8 +33,8 @@ package EinheitStadtRecords is
       Erfahrungspunkte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       Rang : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
-      Beschäftigung : GlobaleDatentypen.Tastenbelegung_Enum;
-      BeschäftigungNachfolger : GlobaleDatentypen.Tastenbelegung_Enum;
+      Beschäftigung : SystemDatentypen.Tastenbelegung_Enum;
+      BeschäftigungNachfolger : SystemDatentypen.Tastenbelegung_Enum;
       
       Beschäftigungszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       BeschäftigungszeitNachfolger : EinheitStadtDatentypen.MaximaleStädteMitNullWert;

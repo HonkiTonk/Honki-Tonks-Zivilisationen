@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, KartenRecords, KartenDatentypen, EinheitStadtDatentypen, SonstigeDatentypen;
-use GlobaleDatentypen;
+with KartenRecords, KartenDatentypen, EinheitStadtDatentypen, SonstigeDatentypen;
 
 package KartenAllgemein is
 
@@ -187,17 +186,17 @@ package KartenAllgemein is
 
    function PassierbarGrund
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
+      PassierbarkeitExtern : in EinheitStadtDatentypen.Passierbarkeit_Enum)
       return Boolean;
 
    function PassierbarVerbesserung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
+      PassierbarkeitExtern : in EinheitStadtDatentypen.Passierbarkeit_Enum)
       return Boolean;
 
    function PassierbarWeg
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
+      PassierbarkeitExtern : in EinheitStadtDatentypen.Passierbarkeit_Enum)
       return Boolean;
 
 end KartenAllgemein;

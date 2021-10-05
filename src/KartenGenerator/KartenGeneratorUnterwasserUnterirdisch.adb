@@ -3,8 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleDatentypen, KartenKonstanten;
-use GlobaleDatentypen;
+with KartenKonstanten, SystemDatentypen;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -16,7 +15,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    procedure UnterwasserUnterirdisch
    is begin
       
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Unterwasser_Unterirdisch, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Anfangswert) := Clock;
          
       YAchseUnterwasserSchleife:
       for YAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
@@ -27,7 +26,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
             case
               LeseKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert))
             is
-               when GlobaleDatentypen.Leer =>               
+               when KartenDatentypen.Leer =>               
                   GrundErzeugen (YPositionExtern => YAchseUnterwasserSchleifenwert,
                                  XPositionExtern => XAchseUnterwasserSchleifenwert);
                   
@@ -38,7 +37,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
          end loop XAchseUnterwasserSchleife;
       end loop YAchseUnterwasserSchleife;
          
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Unterwasser_Unterirdisch, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Endwert) := Clock;
       
    end UnterwasserUnterirdisch;
    
@@ -50,22 +49,22 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = GlobaleDatentypen.Eis
+        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = KartenDatentypen.Eis
       then
          SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
-                               GrundExtern    => GlobaleDatentypen.Unterwasser_Eis);
+                               GrundExtern    => KartenDatentypen.Unterwasser_Eis);
                      
       elsif
-        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = GlobaleDatentypen.Wasser
+        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = KartenDatentypen.Wasser
       then
          WasserweltErzeugen (YPositionExtern => YPositionExtern,
                              XPositionExtern => XPositionExtern);
                      
       elsif
-        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = GlobaleDatentypen.Küstengewässer
+        LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = KartenDatentypen.Küstengewässer
       then
          SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
-                               GrundExtern    => GlobaleDatentypen.Unterwasser_Küstengewässer);
+                               GrundExtern    => KartenDatentypen.Unterwasser_Küstengewässer);
                      
       elsif
         LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = KartenDatentypen.Gebirge
@@ -75,17 +74,17 @@ package body KartenGeneratorUnterwasserUnterirdisch is
             LeseKarten.Hügel (PositionExtern => (0, YPositionExtern, XPositionExtern)) = True
       then
          SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
-                               GrundExtern    => GlobaleDatentypen.Erdgestein);
+                               GrundExtern    => KartenDatentypen.Erdgestein);
                   
       elsif
         LeseKarten.Grund (PositionExtern => (0, YPositionExtern, XPositionExtern)) = KartenDatentypen.Wüste
       then
          SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
-                               GrundExtern    => GlobaleDatentypen.Sand);
+                               GrundExtern    => KartenDatentypen.Sand);
                      
       else
          SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
-                               GrundExtern    => GlobaleDatentypen.Erde);
+                               GrundExtern    => KartenDatentypen.Erde);
       end if;
       
    end GrundErzeugen;
@@ -119,9 +118,9 @@ package body KartenGeneratorUnterwasserUnterirdisch is
       case
         LeseKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern))
       is
-         when GlobaleDatentypen.Leer =>
+         when KartenDatentypen.Leer =>
             SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
-                                  GrundExtern    => GlobaleDatentypen.Unterwasser_Wasser);
+                                  GrundExtern    => KartenDatentypen.Unterwasser_Wasser);
             
          when others =>
             null;

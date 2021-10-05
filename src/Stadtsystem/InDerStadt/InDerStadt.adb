@@ -25,28 +25,28 @@ package body InDerStadt is
          case
            Befehl
          is
-            when GlobaleDatentypen.Tastenbelegung_Bewegung_Stadt_Enum'Range =>
+            when SystemDatentypen.Tastenbelegung_Bewegung_Stadt_Enum'Range =>
                BewegungCursor.BewegungCursorRichtung (KarteExtern    => False,
                                                       RichtungExtern => Befehl,
                                                       RasseExtern    => StadtRasseNummerExtern.Rasse);
 
                -- Einwohner von Feld entfernen/zuweisen
-            when GlobaleDatentypen.Auswählen =>
+            when SystemDatentypen.Auswählen =>
                EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
-            when GlobaleDatentypen.Bauen =>
+            when SystemDatentypen.Bauen =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
                -- Gebäude verkaufen
-            when GlobaleDatentypen.Einheit_Auflösen =>
+            when SystemDatentypen.Einheit_Auflösen =>
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-            when GlobaleDatentypen.Stadt_Umbenennen =>
+            when SystemDatentypen.Stadt_Umbenennen =>
                SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          NameExtern             => Eingabe.StadtName);
 
                -- Stadt verlassen
-            when GlobaleDatentypen.Menü_Zurück =>
+            when SystemDatentypen.Menü_Zurück =>
                return;
                
             when others =>

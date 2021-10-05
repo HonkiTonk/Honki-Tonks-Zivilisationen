@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+with EinheitStadtDatentypen;
 with KIDatentypen;
 
 with LeseEinheitenGebaut, LeseEinheitenDatenbank;
@@ -19,9 +20,9 @@ package body KIBewegungAllgemein is
       BlockierendeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => FeldPositionExtern).Rasse;
       
       if
-        BlockierendeEinheit = GlobaleDatentypen.Leer
+        BlockierendeEinheit = SonstigeDatentypen.Leer
         and
-          BlockierendeStadt = GlobaleDatentypen.Leer
+          BlockierendeStadt = SonstigeDatentypen.Leer
       then
          return 0;
          
@@ -43,7 +44,7 @@ package body KIBewegungAllgemein is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when GlobaleDatentypen.Leer | GlobaleDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Leer | EinheitStadtDatentypen.Arbeiter =>
             return 1;
             
          when others =>
@@ -60,7 +61,7 @@ package body KIBewegungAllgemein is
    is begin
       
       if
-        BlockierendeEinheit = GlobaleDatentypen.Leer
+        BlockierendeEinheit = SonstigeDatentypen.Leer
         and then
           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                              FremdeRasseExtern => BlockierendeStadt)
@@ -69,7 +70,7 @@ package body KIBewegungAllgemein is
          return 1;
          
       elsif
-        BlockierendeStadt = GlobaleDatentypen.Leer
+        BlockierendeStadt = SonstigeDatentypen.Leer
         and then
           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                              FremdeRasseExtern => BlockierendeEinheit)

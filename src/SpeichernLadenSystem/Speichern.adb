@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten, SonstigeDatentypen, KartenDatentypen;
+with GlobaleVariablen, SystemDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten, SonstigeDatentypen, KartenDatentypen;
 
 with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein, Karte;
 
@@ -23,7 +23,7 @@ package body Speichern is
             null;
       end case;
 
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, SystemDatentypen.Anfangswert) := Clock;
       
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
@@ -40,7 +40,7 @@ package body Speichern is
       
       Close (File => DateiSpeichernNeu);
          
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, SystemDatentypen.Endwert) := Clock;
       
       case
         AutospeichernExtern
@@ -74,7 +74,7 @@ package body Speichern is
       SonstigeDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
                                            GlobaleVariablen.RasseAmZugNachLaden);
       
-      GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+      SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                                  GlobaleVariablen.Schwierigkeitsgrad);
       
       Boolean'Write (Stream (File => DateiSpeichernNeu),

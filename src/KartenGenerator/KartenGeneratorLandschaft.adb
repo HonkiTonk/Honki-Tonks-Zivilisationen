@@ -12,7 +12,7 @@ package body KartenGeneratorLandschaft is
    procedure GenerierungLandschaft
    is begin
 
-      Karten.GeneratorKarte := (others => (others => GlobaleDatentypen.Leer));
+      Karten.GeneratorKarte := (others => (others => KartenDatentypen.Leer));
       Karten.GeneratorGrund := (others => (others => False));
       
       AbstandEisschicht;
@@ -24,7 +24,7 @@ package body KartenGeneratorLandschaft is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             if
-              LeseKarten.Grund (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
+              LeseKarten.Grund (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
             then
                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) := True;
                
@@ -88,7 +88,7 @@ package body KartenGeneratorLandschaft is
       for GrundSchleifenwert in KartenDatentypen.Karten_Grund_Generator_Enum'Range loop
          
          if
-           GrundSchleifenwert = GlobaleDatentypen.Flachland
+           GrundSchleifenwert = KartenDatentypen.Flachland
          then
             Karten.GeneratorGrund (PositionExtern.YAchse, PositionExtern.XAchse) := True;
             return;
@@ -191,7 +191,7 @@ package body KartenGeneratorLandschaft is
                null;
                
             elsif
-              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= GlobaleDatentypen.Leer
+              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= KartenDatentypen.Leer
             then
                null;
                

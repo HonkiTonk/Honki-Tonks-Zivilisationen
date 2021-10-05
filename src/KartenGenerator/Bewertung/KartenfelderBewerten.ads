@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, SonstigeDatentypen;
-use GlobaleDatentypen;
+with SonstigeDatentypen;
 
 package KartenfelderBewerten is
 

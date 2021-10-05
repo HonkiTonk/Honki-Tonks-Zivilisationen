@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, KartenRecords;
-use GlobaleDatentypen, KartenRecords;
+with EinheitStadtRecords, SonstigeDatentypen, GlobaleVariablen, KartenRecords, KartenDatentypen, EinheitStadtDatentypen;
+use SonstigeDatentypen, KartenRecords, EinheitStadtDatentypen;
 
 package KIAufgabeFestlegen is
 

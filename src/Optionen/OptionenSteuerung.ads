@@ -3,8 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.Window.Keyboard;
 use Sf.Window.Keyboard;
 
-with GlobaleDatentypen;
-use GlobaleDatentypen;
+with SystemDatentypen;
 
 package OptionenSteuerung is
 
@@ -13,7 +12,7 @@ package OptionenSteuerung is
 
 private
 
-   NeueAuswahl : GlobaleDatentypen.Tastenbelegung_Enum;
+   NeueAuswahl : SystemDatentypen.Tastenbelegung_Enum;
 
    NeueTaste : Sf.Window.Keyboard.sfKeyCode;
 

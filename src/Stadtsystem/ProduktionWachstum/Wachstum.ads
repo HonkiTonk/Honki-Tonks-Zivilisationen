@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, EinheitStadtRecords, SonstigeDatentypen;
+with GlobaleVariablen, EinheitStadtRecords, SonstigeDatentypen;
 use SonstigeDatentypen;
 
 package Wachstum is

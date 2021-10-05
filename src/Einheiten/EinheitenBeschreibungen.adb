@@ -59,13 +59,13 @@ package body EinheitenBeschreibungen is
    
    
    procedure Beschäftigung
-     (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
+     (ArbeitExtern : in SystemDatentypen.Tastenbelegung_Enum)
    is begin
       
       case
         ArbeitExtern
       is
-         when GlobaleDatentypen.Leer =>
+         when SystemDatentypen.Leer =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
@@ -80,8 +80,8 @@ package body EinheitenBeschreibungen is
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
                                            -- Der Abzug wird für die Textanzeige benötigt
-                                           ErsteZeileExtern       => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug,
-                                           LetzteZeileExtern      => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug,
+                                           ErsteZeileExtern       => SystemDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug,
+                                           LetzteZeileExtern      => SystemDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
                                            AbstandMitteExtern     => GlobaleTexte.Leer,
                                            AbstandEndeExtern      => GlobaleTexte.Leer);

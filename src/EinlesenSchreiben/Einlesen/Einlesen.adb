@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleDatentypen, SystemKonstanten;
+with GlobaleVariablen, SystemKonstanten, SystemDatentypen;
 
 with Ladezeiten, Auswahl, EinlesenSprache, EinlesenText, EinlesenTastatur, EinlesenDatenbanken, EinlesenEinstellungen, SchreibenEinstellungen;
 
@@ -12,12 +12,12 @@ package body Einlesen is
    procedure Einlesen
    is begin
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, SystemDatentypen.Anfangswert) := Clock;
       
       EinlesenOhneAnzeige;
       EinlesenMitAnzeige;
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, SystemDatentypen.Endwert) := Clock;
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
       
    end Einlesen;

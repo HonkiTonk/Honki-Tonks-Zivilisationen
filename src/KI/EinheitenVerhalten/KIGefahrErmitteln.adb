@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten;
+with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen, KartenDatentypen;
+use KartenDatentypen, EinheitStadtDatentypen;
 
 with KIDatentypen;
 
@@ -110,7 +111,7 @@ package body KIGefahrErmitteln is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => AndereEinheitExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AndereEinheitExtern))
       is
-         when GlobaleDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Arbeiter =>
             return False;
             
          when others =>

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, SystemKonstanten, KartenKonstanten, EinheitenKonstanten, GlobaleDatentypen;
+with GlobaleTexte, SystemKonstanten, KartenKonstanten, EinheitenKonstanten, SystemDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -208,7 +208,7 @@ package body SpielEinstellungenRasseSpieler is
                
             when others =>
                StartwerteFestlegenSchleife:
-               for NotAusSchleifenwert in GlobaleDatentypen.NotAus'Range loop
+               for NotAusSchleifenwert in SystemDatentypen.NotAus'Range loop
                   
                   StartKoordinaten := ((0, 0, 0), (0, 0, 0));
                   GezogeneWerte := ZufallGeneratorenKarten.StartPosition (RasseSchleifenwert);
@@ -219,14 +219,14 @@ package body SpielEinstellungenRasseSpieler is
                   case
                     NotAusSchleifenwert
                   is
-                     when GlobaleDatentypen.NotAus'Last =>
+                     when SystemDatentypen.NotAus'Last =>
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 16);
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
                                                               TextZeileExtern => SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 17);
-                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Leer;
+                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := SonstigeDatentypen.Leer;
                         
                      when others =>
                         null;

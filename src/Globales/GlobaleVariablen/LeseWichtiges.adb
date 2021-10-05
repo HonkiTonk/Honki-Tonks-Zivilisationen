@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with SonstigesKonstanten;
+with SonstigesKonstanten, EinheitStadtDatentypen;
+use EinheitStadtDatentypen;
 
 package body LeseWichtiges is
 

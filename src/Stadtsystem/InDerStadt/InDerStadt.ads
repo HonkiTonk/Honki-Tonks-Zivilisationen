@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleDatentypen, GlobaleVariablen, SonstigeDatentypen;
-use GlobaleDatentypen, SonstigeDatentypen;
+with EinheitStadtRecords, SystemDatentypen, GlobaleVariablen, SonstigeDatentypen;
+use SonstigeDatentypen;
 
 package InDerStadt is
 
@@ -15,6 +15,6 @@ package InDerStadt is
 
 private
 
-   Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
+   Befehl : SystemDatentypen.Tastenbelegung_Enum;
 
 end InDerStadt;

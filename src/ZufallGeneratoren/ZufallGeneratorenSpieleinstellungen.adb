@@ -98,7 +98,7 @@ package body ZufallGeneratorenSpieleinstellungen is
    
    
    function ZufälligerSchwiewrigkeitsgrad
-     return GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum
+     return SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum
    is begin
       
       ZufälligenSchwierigkeitsgradWählen.Reset (ZufälligerSchwierigkeitsgradGewählt);

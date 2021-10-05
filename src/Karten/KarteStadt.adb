@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, KartenKonstanten, SystemKonstanten;
+with GlobaleTexte, KartenKonstanten, SystemKonstanten, KartenDatentypen, EinheitStadtDatentypen;
+use KartenDatentypen, EinheitStadtDatentypen;
 
 with LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
@@ -203,12 +204,12 @@ package body KarteStadt is
 
       else
          Farbgebung.Farben (EinheitIDExtern    => 0,
-                            VerbesserungExtern => GlobaleDatentypen.Leer,
-                            RessourceExtern    => GlobaleDatentypen.Leer,
+                            VerbesserungExtern => KartenDatentypen.Leer,
+                            RessourceExtern    => KartenDatentypen.Leer,
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
                             CursorExtern       => False,
                             EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                            RasseExtern        => GlobaleDatentypen.Leer);
+                            RasseExtern        => SonstigeDatentypen.Leer);
       end if;
       
       return False;
@@ -232,12 +233,12 @@ package body KarteStadt is
 
       else
          Farbgebung.Farben (EinheitIDExtern    => 0,
-                            VerbesserungExtern => GlobaleDatentypen.Leer,
-                            RessourceExtern    => GlobaleDatentypen.Leer,
+                            VerbesserungExtern => KartenDatentypen.Leer,
+                            RessourceExtern    => KartenDatentypen.Leer,
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
                             CursorExtern       => False,
                             EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                            RasseExtern        => GlobaleDatentypen.Leer);
+                            RasseExtern        => SonstigeDatentypen.Leer);
       end if;
       
    end GebäudeDarstellung;
@@ -260,21 +261,21 @@ package body KarteStadt is
              XAchseExtern >= Karten.Stadtkarte'Last (2) - 7)
       then
          Farbgebung.Farben (EinheitIDExtern    => 0,
-                            VerbesserungExtern => GlobaleDatentypen.Leer,
-                            RessourceExtern    => GlobaleDatentypen.Leer,
-                            GrundExtern        => GlobaleDatentypen.Leer,
+                            VerbesserungExtern => KartenDatentypen.Leer,
+                            RessourceExtern    => KartenDatentypen.Leer,
+                            GrundExtern        => KartenDatentypen.Leer,
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => GlobaleDatentypen.Leer);
+                            RasseExtern        => SonstigeDatentypen.Leer);
 
       else
          Farbgebung.Farben (EinheitIDExtern    => 0,
-                            VerbesserungExtern => GlobaleDatentypen.Leer,
-                            RessourceExtern    => GlobaleDatentypen.Leer,
+                            VerbesserungExtern => KartenDatentypen.Leer,
+                            RessourceExtern    => KartenDatentypen.Leer,
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => GlobaleDatentypen.Leer);
+                            RasseExtern        => SonstigeDatentypen.Leer);
 
       end if;
       
@@ -339,12 +340,12 @@ package body KarteStadt is
            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt = (YAchseExtern, XAchseExtern + UmgebungSchleifenwert - 1)
          then
             Farbgebung.Farben (EinheitIDExtern    => 0,
-                               VerbesserungExtern => GlobaleDatentypen.Leer,
-                               RessourceExtern    => GlobaleDatentypen.Leer,
-                               GrundExtern        => GlobaleDatentypen.Leer,
+                               VerbesserungExtern => KartenDatentypen.Leer,
+                               RessourceExtern    => KartenDatentypen.Leer,
+                               GrundExtern        => KartenDatentypen.Leer,
                                CursorExtern       => True,
                                EigeneRasseExtern  => RasseExtern,
-                               RasseExtern        => GlobaleDatentypen.Leer);
+                               RasseExtern        => SonstigeDatentypen.Leer);
 
          else
             Put (Item => SystemKonstanten.LeerZeichen);
@@ -418,12 +419,12 @@ package body KarteStadt is
           UmgebungExtern > Stadtumgebungsgröße
       then
          Farbgebung.Farben (EinheitIDExtern    => 0,
-                            VerbesserungExtern => GlobaleDatentypen.Leer,
-                            RessourceExtern    => GlobaleDatentypen.Leer,
-                            GrundExtern        => GlobaleDatentypen.Leer,
+                            VerbesserungExtern => KartenDatentypen.Leer,
+                            RessourceExtern    => KartenDatentypen.Leer,
+                            GrundExtern        => KartenDatentypen.Leer,
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => GlobaleDatentypen.Leer);
+                            RasseExtern        => SonstigeDatentypen.Leer);
 
       else
          InformationenStadtAufrufen := True;
@@ -437,21 +438,21 @@ package body KarteStadt is
          is
             when KartenKonstanten.LeerXAchse =>
                Farbgebung.Farben (EinheitIDExtern    => 0,
-                                  VerbesserungExtern => GlobaleDatentypen.Leer,
-                                  RessourceExtern    => GlobaleDatentypen.Leer,
-                                  GrundExtern        => GlobaleDatentypen.Leer,
+                                  VerbesserungExtern => KartenDatentypen.Leer,
+                                  RessourceExtern    => KartenDatentypen.Leer,
+                                  GrundExtern        => KartenDatentypen.Leer,
                                   CursorExtern       => True,
                                   EigeneRasseExtern  => RasseExtern,
-                                  RasseExtern        => GlobaleDatentypen.Leer);
+                                  RasseExtern        => SonstigeDatentypen.Leer);
 
             when others =>
                Farbgebung.Farben (EinheitIDExtern    => 0,
-                                  VerbesserungExtern => GlobaleDatentypen.Leer,
-                                  RessourceExtern    => GlobaleDatentypen.Leer,
+                                  VerbesserungExtern => KartenDatentypen.Leer,
+                                  RessourceExtern    => KartenDatentypen.Leer,
                                   GrundExtern        => LeseKarten.Grund (PositionExtern => KartenWert),
                                   CursorExtern       => True,
                                   EigeneRasseExtern  => RasseExtern,
-                                  RasseExtern        => GlobaleDatentypen.Leer);
+                                  RasseExtern        => SonstigeDatentypen.Leer);
          end case;
       end if;
       
