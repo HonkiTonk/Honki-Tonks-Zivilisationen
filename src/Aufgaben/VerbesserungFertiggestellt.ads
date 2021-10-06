@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
 
 package VerbesserungFertiggestellt is
 

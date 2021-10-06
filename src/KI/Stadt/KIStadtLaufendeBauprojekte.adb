@@ -1,9 +1,12 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen, KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
-with LeseStadtGebaut, LeseEinheitenDatenbank;
+with LeseStadtGebaut;
+with LeseEinheitenDatenbank;
 
 package body KIStadtLaufendeBauprojekte is
 

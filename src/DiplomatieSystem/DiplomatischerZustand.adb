@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with SystemKonstanten, SonstigesKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemKonstanten;
+with SonstigesKonstanten;
 
 with Auswahl;
 
@@ -39,7 +40,8 @@ package body DiplomatischerZustand is
 
 
    function DiplomatischenStatusPrüfen
-     (EigeneRasseExtern, FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return SonstigeDatentypen.Status_Untereinander_Enum
    is begin
       

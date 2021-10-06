@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, KartenRecords, KartenDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
+with KartenRecords;
+with KartenDatentypen;
 
 package EinwohnerZuweisenEntfernen is
 

@@ -1,9 +1,18 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemDatentypen, EinheitStadtRecords, NutzerRecords, KartenRecords, WichtigeRecords, SystemKonstanten, SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, SonstigeDatentypen;
+with SystemDatentypen;
+with EinheitStadtRecords;
+with NutzerRecords;
+with KartenRecords;
+with WichtigeRecords;
+with SystemKonstanten;
+with SonstigesKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
+with EinheitStadtDatentypen;
+with SonstigeDatentypen;
 
 package GlobaleVariablen is
 

@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
 
-with LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with LeseKarten;
+with LeseStadtGebaut;
+with LeseGebaeudeDatenbank;
 
 with KartePositionPruefen;
 

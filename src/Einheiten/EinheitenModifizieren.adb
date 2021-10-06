@@ -1,12 +1,20 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, ForschungKonstanten, EinheitStadtDatentypen, SystemDatentypen;
-use EinheitStadtDatentypen, SystemDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
+with EinheitenKonstanten;
+with ForschungKonstanten;
 
-with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
-with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
+with SchreibeEinheitenGebaut;
+with SchreibeStadtGebaut;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
+with LeseWichtiges;
 
-with StadtSuchen, EinheitSuchen, BewegungPassierbarkeitPruefen, StadtProduktion;
+with StadtSuchen;
+with EinheitSuchen;
+with BewegungPassierbarkeitPruefen;
+with StadtProduktion;
 
 package body EinheitenModifizieren is
 

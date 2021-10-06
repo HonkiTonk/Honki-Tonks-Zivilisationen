@@ -1,11 +1,15 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen;
+
 with KIDatentypen;
 
-with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
 
-with DiplomatischerZustand, EinheitSuchen, StadtSuchen;
+with DiplomatischerZustand;
+with EinheitSuchen;
+with StadtSuchen;
 
 package body KIBewegungAllgemein is
 

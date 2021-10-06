@@ -1,8 +1,11 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, SystemKonstanten, EinheitenKonstanten;
+with GlobaleTexte;
+with SystemKonstanten;
+with EinheitenKonstanten;
 
-with Anzeige, Auswahl;
+with Anzeige;
+with Auswahl;
 
 package body EinheitenBeschreibungen is
 

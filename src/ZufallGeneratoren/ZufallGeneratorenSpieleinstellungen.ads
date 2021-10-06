@@ -2,7 +2,9 @@ pragma SPARK_Mode (Off);
 
 with Ada.Numerics.Discrete_Random;
 
-with SystemDatentypen, KartenDatentypen, SonstigeDatentypen;
+with SystemDatentypen;
+with KartenDatentypen;
+with SonstigeDatentypen;
 
 package ZufallGeneratorenSpieleinstellungen is
 

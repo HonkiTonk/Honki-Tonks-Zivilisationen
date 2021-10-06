@@ -1,10 +1,11 @@
 pragma SPARK_Mode (On);
 
-with StadtKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with StadtKonstanten;
 
 with SchreibeStadtGebaut;
-with LeseStadtGebaut, LeseWichtiges;
+with LeseStadtGebaut;
+with LeseWichtiges;
 
 package body StadtUmgebungsbereichFestlegen is
 

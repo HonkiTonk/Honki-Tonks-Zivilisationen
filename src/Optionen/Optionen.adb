@@ -1,8 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, SystemKonstanten;
+with GlobaleTexte;
+with SystemKonstanten;
 
-with OptionenSteuerung, Auswahl, OptionenSound, OptionenGrafik, OptionenSonstiges;
+with OptionenSteuerung;
+with Auswahl;
+with OptionenSound;
+with OptionenGrafik;
+with OptionenSonstiges;
 
 package body Optionen is
 

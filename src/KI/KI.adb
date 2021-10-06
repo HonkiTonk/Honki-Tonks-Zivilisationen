@@ -1,10 +1,15 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, KartenDatentypen;
+with EinheitenKonstanten;
+with KartenDatentypen;
 
-with LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
-with KIStadt, KIForschung, KIDiplomatie, KIEinheitHandlungen;
+with KIStadt;
+with KIForschung;
+with KIDiplomatie;
+with KIEinheitHandlungen;
 
 package body KI is
 

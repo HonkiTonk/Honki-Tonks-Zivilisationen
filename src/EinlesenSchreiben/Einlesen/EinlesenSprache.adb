@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 
 with Ada.Characters.Conversions;
 
-with GlobaleTexte, SystemKonstanten;
+with GlobaleTexte;
+with SystemKonstanten;
 
 package body EinlesenSprache is
 

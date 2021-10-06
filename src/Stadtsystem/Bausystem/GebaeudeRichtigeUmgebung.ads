@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, EinheitStadtDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with EinheitStadtDatentypen;
+with GlobaleVariablen;
+with KartenRecords;
 
 package GebaeudeRichtigeUmgebung is
 

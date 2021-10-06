@@ -1,23 +1,27 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with Sf.Graphics.RenderWindow;
-
-with GrafikAllgemein;
+with Sf.Graphics.Text;
 
 with SystemKonstanten;
 
-with Eingabe, GrafikEinstellungen;
+with GrafikAllgemein;
+with Eingabe;
+with GrafikEinstellungen;
 
 package body Anzeige is
 
    procedure AnzeigeOhneAuswahlNeu
-     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+     (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
-      ErsteZeileExtern, LetzteZeileExtern : in Positive;
-      AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
+      ErsteZeileExtern : in Positive;
+      LetzteZeileExtern : in Positive;
+      AbstandAnfangExtern : in GlobaleTexte.Welcher_Abstand_Enum;
+      AbstandMitteExtern : in GlobaleTexte.Welcher_Abstand_Enum;
+      AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
    is begin
         
       case
@@ -91,8 +95,12 @@ package body Anzeige is
 
 
    procedure AnzeigeMitAuswahlNeu
-     (FrageDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural)
+     (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      FrageZeileExtern : in Natural;
+      ErsteZeileExtern : in Natural;
+      LetzteZeileExtern : in Natural;
+      AktuelleAuswahlExtern : in Natural)
    is begin
         
       LängsterText := 1;
@@ -111,32 +119,95 @@ package body Anzeige is
          
       end loop TextlängePrüfenSchleife;
 
+      GrafikAllgemein.FensterLeeren;
+      
       case
         FrageDateiExtern
       is
          when GlobaleTexte.Leer =>
-            null;
+            ÜberschriftAbstand := 0.00;
 
          when others =>
+            ÜberschriftAbstand := 1.00;
+            Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)));
+            Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+                                          position => StartAnzeigePosition);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                               text         => GrafikEinstellungen.Text);
+            
             Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)));
       end case;
-      
-      GrafikAllgemein.FensterLeeren;
+            
+      RahmenGezeichnet := False;
       
       AnzeigeSchleife:
       for ZeileSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
 
+         AktuellePosition.x := StartAnzeigePosition.x;
+         
          if AktuelleAuswahlExtern = ZeileSchleifenwert then
+            RahmenGezeichnet := True;
+            Rahmenlänge := Float (LängsterText * Positive (GrafikEinstellungen.Schriftgröße));
+            Rahmenbreite := Float (GrafikEinstellungen.Schriftgröße) + 10.00;
+            case
+              RahmenGezeichnet
+            is
+               when True =>
+                  AktuellePosition.y := StartAnzeigePosition.y + (Float (GrafikEinstellungen.Schriftgröße) + Zeilenabstand) * (Float (ZeileSchleifenwert - ErsteZeileExtern) + ÜberschriftAbstand);
+                  
+               when False =>
+                  -- Sollte niemals eintreten.
+                  raise Program_Error;
+            end case;
+            
+            Sf.Graphics.RectangleShape.setSize (shape => Rechteck,
+                                                size  => (Rahmenlänge, Rahmendicke));
+            Sf.Graphics.RectangleShape.setPosition (shape    => Rechteck,
+                                                    position => AktuellePosition);
+            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                         object       => Rechteck);
+            
+            Sf.Graphics.RectangleShape.setSize (shape => Rechteck,
+                                                size  => (Rahmendicke, Rahmenbreite));
+            Sf.Graphics.RectangleShape.setPosition (shape    => Rechteck,
+                                                    position => AktuellePosition);
+            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                         object       => Rechteck);
+            
+            Sf.Graphics.RectangleShape.setSize (shape => Rechteck,
+                                                size  => (Rahmendicke, Rahmenbreite));
+            Sf.Graphics.RectangleShape.setPosition (shape    => Rechteck,
+                                                    position => (AktuellePosition.x + Rahmenlänge, AktuellePosition.y));
+            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                         object       => Rechteck);
+            
+            AktuellePosition.x := StartAnzeigePosition.x + Rahmendicke + Rahmenabstand;
+            
+            Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
+            Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+                                          position => AktuellePosition);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                               text         => GrafikEinstellungen.Text);
+                        
+            AktuellePosition.x := StartAnzeigePosition.x;
+            
+            Sf.Graphics.RectangleShape.setSize (shape => Rechteck,
+                                                -- Aus irgendeinem Grund bleibt die rechte untere Eckte frei ohne den Extrawert, warum?
+                                                size  => (Rahmenlänge + 3.00, Rahmendicke));
+            Sf.Graphics.RectangleShape.setPosition (shape    => Rechteck,
+                                                    position => (AktuellePosition.x, AktuellePosition.y + Rahmenbreite));
+            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                         object       => Rechteck);
+            
             RahmenTeilEinsSchleife:
             for TextlängeEins in 1 .. LängsterText loop
                   
                if
                  TextlängeEins = 1
                then
-                  Sf.Graphics.RectangleShape.setSize (shape => Rechteck,
-                                                      size  => (100.00, 100.00));
-                  Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
-                                                               object       => Rechteck);
+                  
                   Put (Item => "╔");
                   Put (Item => "═");
 
@@ -150,7 +221,7 @@ package body Anzeige is
 
                   LeererPlatzSchleife:
                   for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert))'Length loop
-                        
+                     
                      Put (" ");
                         
                   end loop LeererPlatzSchleife;
@@ -180,6 +251,26 @@ package body Anzeige is
             end loop RahmenTeilZweiSchleife;
          
          else
+            case
+              RahmenGezeichnet
+            is
+               when True =>
+                  AktuellePosition.y := StartAnzeigePosition.y + (Float (GrafikEinstellungen.Schriftgröße) + Zeilenabstand) * (Float (ZeileSchleifenwert - ErsteZeileExtern) + ÜberschriftAbstand);
+                  AktuellePosition.y := AktuellePosition.y + 2.00 * Rahmendicke;
+                  
+               when False =>
+                  AktuellePosition.y := StartAnzeigePosition.y + (Float (GrafikEinstellungen.Schriftgröße) + Zeilenabstand) * (Float (ZeileSchleifenwert - ErsteZeileExtern) + ÜberschriftAbstand);
+            end case;
+            
+            Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
+            Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+                                          position => AktuellePosition);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                               text         => GrafikEinstellungen.Text);
+            
+            
+            
             Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
          end if;
          
@@ -285,7 +376,9 @@ package body Anzeige is
    
 
    procedure AnzeigeSprache
-     (AktuelleAuswahlExtern, ErsteZeileExtern, LetzteZeileExtern : in Positive)
+     (AktuelleAuswahlExtern : in Positive;
+      ErsteZeileExtern : in Positive;
+      LetzteZeileExtern : in Positive)
    is begin
       
       LängsterText := 1;
@@ -369,10 +462,12 @@ package body Anzeige is
    
 
    procedure AnzeigeLangerTextNeu
-     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+     (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
       ErsteZeileExtern : in Positive;
-      AbstandAnfangExtern, AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
+      AbstandAnfangExtern : in GlobaleTexte.Welcher_Abstand_Enum;
+      AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
    is begin
       
       case

@@ -1,9 +1,12 @@
 pragma SPARK_Mode (On);
 
-with SchreibeEinheitenGebaut, SchreibeWichtiges;
+with SchreibeEinheitenGebaut;
+with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
 
-with Sichtbarkeit, RasseEntfernen, EinheitenModifizieren;
+with Sichtbarkeit;
+with RasseEntfernen;
+with EinheitenModifizieren;
 
 package body EinheitenErzeugenEntfernen is
 

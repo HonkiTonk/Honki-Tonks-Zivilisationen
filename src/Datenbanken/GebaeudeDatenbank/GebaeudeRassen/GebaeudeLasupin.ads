@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with StadtKonstanten, KartenDatentypen, EinheitStadtDatentypen;
+with StadtKonstanten;
+with KartenDatentypen;
+with EinheitStadtDatentypen;
 
 with DatenbankRecords;
 
@@ -15,10 +17,10 @@ package GebaeudeLasupin is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 0,
-         PermanenterBonus            => (KartenDatentypen.Nahrung => 10,
+         PermanenterBonus            => (KartenDatentypen.Nahrung      => 10,
                                          KartenDatentypen.Verteidigung => 10,
-                                         KartenDatentypen.Angriff => 10,
-                                         others => 0),
+                                         KartenDatentypen.Angriff      => 10,
+                                         others                        => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              

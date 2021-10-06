@@ -1,11 +1,12 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Float_Text_IO;
 
 with GlobaleTexte;
 
-with Anzeige, Eingabe;
+with Anzeige;
+with Eingabe;
 
 package body Ladezeiten is
 

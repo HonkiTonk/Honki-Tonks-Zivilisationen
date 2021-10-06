@@ -168,17 +168,19 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.89 => 0.00. (07.10.2021):
+   -- Version 0.00.8970 => 0.00. (07.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8950 => 0.00.89 (06.10.2021):
+   -- Version 0.00.8950 => 0.00.8970 (06.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Lokale SFML von 2.5.1+dfsg-1 auf 2.5.1+dfsg-2 aktualisiert.
+   -- Einen einfachen Rahmen für verschiedene Menüs konstruiert.
+   -- Die Strukturierung von with und use überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
    

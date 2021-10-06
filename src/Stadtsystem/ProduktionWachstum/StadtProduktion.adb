@@ -1,12 +1,15 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, StadtKonstanten, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
+with StadtKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
-with KartePositionPruefen, GesamtwerteFeld, Wachstum;
+with KartePositionPruefen;
+with GesamtwerteFeld;
+with Wachstum;
 
 package body StadtProduktion is
    

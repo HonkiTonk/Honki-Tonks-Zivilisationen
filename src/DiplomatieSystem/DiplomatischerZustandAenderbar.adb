@@ -1,14 +1,17 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, SonstigesKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with SonstigesKonstanten;
 
-with Anzeige, DiplomatischerZustand;
+with Anzeige;
+with DiplomatischerZustand;
 
 package body DiplomatischerZustandAenderbar is
 
    function StatusÄnderbarkeitPrüfen
-     (RasseEinsExtern, RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in SonstigeDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
    is begin

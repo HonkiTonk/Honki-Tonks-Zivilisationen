@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen, GlobaleVariablen, EinheitStadtRecords, EinheitStadtDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
+with EinheitStadtRecords;
+with EinheitStadtDatentypen;
 
 package StadtMeldungenSetzen is
 

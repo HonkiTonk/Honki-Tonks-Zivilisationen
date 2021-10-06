@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenDatentypen, GlobaleVariablen, SonstigeDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with KartenDatentypen;
+with GlobaleVariablen;
 
 package RassenAllgemein is
    

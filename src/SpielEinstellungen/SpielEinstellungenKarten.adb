@@ -1,11 +1,16 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with SystemKonstanten, KartenDatentypen, GlobaleTexte;
+with SystemKonstanten;
+with KartenDatentypen;
+with GlobaleTexte;
 
-with Auswahl, Karten, Eingabe, ZufallGeneratorenSpieleinstellungen;
+with Auswahl;
+with Karten;
+with Eingabe;
+with ZufallGeneratorenSpieleinstellungen;
 
 package body SpielEinstellungenKarten is
 

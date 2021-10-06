@@ -1,13 +1,25 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, SystemKonstanten, KartenKonstanten, EinheitenKonstanten, SystemDatentypen;
+with GlobaleTexte;
+with SystemKonstanten;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 
-with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenErzeugenEntfernen;
+with Auswahl;
+with ZufallGeneratorenSpieleinstellungen;
+with Anzeige;
+with Eingabe;
+with ZufallGeneratorenKarten;
+with EinheitSuchen;
+with KartePositionPruefen;
+with BewegungPassierbarkeitPruefen;
+with EinheitenErzeugenEntfernen;
 
 package body SpielEinstellungenRasseSpieler is
 

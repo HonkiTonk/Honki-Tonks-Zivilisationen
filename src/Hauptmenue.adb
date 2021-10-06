@@ -1,8 +1,16 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, SystemKonstanten;
+with GlobaleTexte;
+with SystemKonstanten;
 
-with Auswahl, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Wuerdigung;
+with Auswahl;
+with Optionen;
+with SpielEinstellungen;
+with AllesAufAnfangSetzen;
+with Informationen;
+with ImSpiel;
+with Laden;
+with Wuerdigung;
 
 package body Hauptmenue is
 

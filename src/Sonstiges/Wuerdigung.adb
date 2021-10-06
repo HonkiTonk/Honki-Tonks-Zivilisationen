@@ -1,9 +1,12 @@
 pragma SPARK_Mode (On);
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
+
 with GlobaleTexte;
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Eingabe, Anzeige;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Eingabe;
+with Anzeige;
 
 package body Wuerdigung is
 

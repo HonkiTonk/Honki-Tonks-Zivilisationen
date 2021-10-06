@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenRecords, EinheitStadtDatentypen, SonstigeDatentypen;
+with KartenRecords;
+with EinheitStadtDatentypen;
+with SonstigeDatentypen;
 
 with KIRecords;
 

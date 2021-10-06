@@ -1,12 +1,19 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, StadtKonstanten, ForschungKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with StadtKonstanten;
+with ForschungKonstanten;
 
-with SchreibeWichtiges, SchreibeStadtGebaut;
-with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseWichtiges;
+with SchreibeWichtiges;
+with SchreibeStadtGebaut;
+with LeseStadtGebaut;
+with LeseGebaeudeDatenbank;
+with LeseWichtiges;
 
-with Anzeige, GebaeudeRichtigeUmgebung, StadtProduktion;
+with Anzeige;
+with GebaeudeRichtigeUmgebung;
+with StadtProduktion;
 
 package body GebaeudeAllgemein is
 

@@ -1,12 +1,21 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, KartenDatentypen, EinheitStadtDatentypen;
-use KartenDatentypen, EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
-with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeKarten, SchreibeWichtiges;
-with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+with SchreibeEinheitenGebaut;
+with SchreibeStadtGebaut;
+with SchreibeKarten;
+with SchreibeWichtiges;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
-with KartePositionPruefen, RasseEntfernen, Wachstum;
+with KartePositionPruefen;
+with RasseEntfernen;
+with Wachstum;
 
 package body StadtEntfernen is
 

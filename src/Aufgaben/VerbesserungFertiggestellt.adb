@@ -1,14 +1,21 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, SystemDatentypen, KartenDatentypen, EinheitStadtDatentypen;
-use KartenDatentypen, EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenKonstanten;
+with SystemDatentypen;
 
 with KIDatentypen;
 
-with SchreibeEinheitenGebaut, SchreibeKarten;
-with LeseEinheitenGebaut, LeseKarten;
+with SchreibeEinheitenGebaut;
+with SchreibeKarten;
+with LeseEinheitenGebaut;
+with LeseKarten;
 
-with EinheitenMeldungenSetzen, FelderwerteFestlegen, VerbesserungWeg, AufgabenAllgemein;
+with EinheitenMeldungenSetzen;
+with FelderwerteFestlegen;
+with VerbesserungWeg;
+with AufgabenAllgemein;
 
 package body VerbesserungFertiggestellt is
 

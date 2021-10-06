@@ -1,12 +1,14 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with EinheitStadtDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen, KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 
-with LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, LeseKartenDatenbank;
+with LeseEinheitenDatenbank;
+with LeseVerbesserungenDatenbank;
+with LeseKartenDatenbank;
 
 package body Farbgebung is
 

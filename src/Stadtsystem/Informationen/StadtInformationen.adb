@@ -1,14 +1,20 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Integer_Text_IO;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Integer_Text_IO;
 
-with GlobaleTexte, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
 with LeseStadtGebaut;
 
-with Anzeige, GesamtwerteFeld, KampfwerteStadtErmitteln, Cheat;
+with Anzeige;
+with GesamtwerteFeld;
+with KampfwerteStadtErmitteln;
+with Cheat;
 
 package body StadtInformationen is
    

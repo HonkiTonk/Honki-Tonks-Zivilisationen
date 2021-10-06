@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 
-with KartenRecords, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenRecords;
 
-with Karten, KartenGeneratorBerechnungenAllgemein;
-use KartenGeneratorBerechnungenAllgemein;
+with KartenGeneratorBerechnungenAllgemein;
+with Karten;
 
 package KartenGeneratorLandschaft is
 

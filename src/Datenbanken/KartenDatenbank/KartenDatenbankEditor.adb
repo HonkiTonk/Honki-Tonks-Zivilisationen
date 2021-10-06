@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenDatenbank, SchreibenDatenbanken;
+with KartenDatenbank;
+
+with SchreibenDatenbanken;
 
 package body KartenDatenbankEditor is
 

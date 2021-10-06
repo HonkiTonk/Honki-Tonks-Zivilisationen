@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar;
-use Ada.Calendar;
+with Ada.Calendar; use Ada.Calendar;
 
-with SonstigeDatentypen, SystemDatentypen;
+with SonstigeDatentypen;
+with SystemDatentypen;
 
 package Ladezeiten is
 

@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, SystemDatentypen, GlobaleVariablen, SonstigeDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with SystemDatentypen;
+with GlobaleVariablen;
 
 package InDerStadt is
 

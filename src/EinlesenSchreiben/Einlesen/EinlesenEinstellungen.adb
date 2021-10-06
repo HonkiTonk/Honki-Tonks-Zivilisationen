@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Ada.Directories;
-use Ada.Directories;
+with Ada.Directories; use Ada.Directories;
 
-with GlobaleVariablen, NutzerRecords;
+with GlobaleVariablen;
+with NutzerRecords;
 
 with SchreibenEinstellungen;
 

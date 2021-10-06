@@ -1,11 +1,14 @@
 pragma SPARK_Mode (On);
 
-with StadtKonstanten, SystemDatentypen, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with StadtKonstanten;
+with SystemDatentypen;
 
-with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
 
-with StadtSuchen, GesamtwerteFeld;
+with StadtSuchen;
+with GesamtwerteFeld;
 
 package body KampfwerteEinheitErmitteln is
 

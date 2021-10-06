@@ -1,9 +1,12 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen, KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
-with LeseGebaeudeDatenbank, LeseEinheitenDatenbank;
+with LeseGebaeudeDatenbank;
+with LeseEinheitenDatenbank;
 
 package body SchreibeStadtGebaut is
 

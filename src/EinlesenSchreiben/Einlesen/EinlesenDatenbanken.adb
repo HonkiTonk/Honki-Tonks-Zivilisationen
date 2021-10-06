@@ -1,9 +1,13 @@
 pragma SPARK_Mode (On);
 
-with Ada.Directories;
-use Ada.Directories;
+with Ada.Directories; use Ada.Directories;
 
-with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, RassenDatenbank;
+with EinheitenDatenbank;
+with ForschungsDatenbank;
+with GebaeudeDatenbank;
+with KartenDatenbank;
+with VerbesserungenDatenbank;
+with RassenDatenbank;
 
 package body EinlesenDatenbanken is
    

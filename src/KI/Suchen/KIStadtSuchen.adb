@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
 with LeseStadtGebaut;
 

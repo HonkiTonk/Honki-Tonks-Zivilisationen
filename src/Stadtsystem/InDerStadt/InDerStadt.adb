@@ -1,11 +1,16 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
 with SchreibeStadtGebaut;
 
-with InDerStadtBauen, KarteStadt, BewegungCursor, Eingabe, EinwohnerZuweisenEntfernen, GebaeudeVerkaufen;
+with InDerStadtBauen;
+with KarteStadt;
+with BewegungCursor;
+with Eingabe;
+with EinwohnerZuweisenEntfernen;
+with GebaeudeVerkaufen;
 
 package body InDerStadt is
 

@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 
 with KartenAllgemein;
 

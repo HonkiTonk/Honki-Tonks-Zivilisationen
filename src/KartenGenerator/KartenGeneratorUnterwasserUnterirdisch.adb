@@ -1,14 +1,16 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar;
-use Ada.Calendar;
+with Ada.Calendar; use Ada.Calendar;
 
-with KartenKonstanten, SystemDatentypen;
+with KartenKonstanten;
+with SystemDatentypen;
 
 with SchreibeKarten;
 with LeseKarten;
 
-with Ladezeiten, Karten, ZufallGeneratorenKarten;
+with Ladezeiten;
+with Karten;
+with ZufallGeneratorenKarten;
 
 package body KartenGeneratorUnterwasserUnterirdisch is
 

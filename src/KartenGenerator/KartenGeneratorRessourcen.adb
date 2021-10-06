@@ -5,7 +5,9 @@ with KartenKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with Karten, ZufallGeneratorenKarten, KartePositionPruefen;
+with Karten;
+with ZufallGeneratorenKarten;
+with KartePositionPruefen;
 
 package body KartenGeneratorRessourcen is
 

@@ -1,16 +1,28 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar;
-use Ada.Calendar;
+with Ada.Calendar; use Ada.Calendar;
 
-with SystemDatentypen, GlobaleVariablen, SystemKonstanten, SonstigeDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
+with GlobaleVariablen;
+with SystemKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
 
-with Wachstum, ForschungAllgemein, StadtProduktion, SiegBedingungen, DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung, EinheitenModifizieren,
-     Ladezeiten, Speichern, Auswahl, VerbesserungFertiggestellt;
+with Wachstum;
+with ForschungAllgemein;
+with StadtProduktion;
+with SiegBedingungen;
+with DiplomatischerZustand;
+with StadtMeldungenSetzen;
+with EinheitenMeldungenSetzen;
+with EinheitInUmgebung;
+with EinheitenModifizieren;
+with Ladezeiten;
+with Speichern;
+with Auswahl;
+with VerbesserungFertiggestellt;
 
 package body ZwischenDenRunden is
 

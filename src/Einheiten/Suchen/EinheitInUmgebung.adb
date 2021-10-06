@@ -1,11 +1,22 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, KartenKonstanten, EinheitenKonstanten, StadtKonstanten, KartenDatentypen, EinheitStadtDatentypen, SonstigeDatentypen;
-use KartenDatentypen, EinheitStadtDatentypen, SonstigeDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
-with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
-with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen;
+with KartePositionPruefen;
+with EinheitSuchen;
+with DiplomatischerZustand;
+with EinheitenMeldungenSetzen;
+with StadtMeldungenSetzen;
 
 package body EinheitInUmgebung is
 

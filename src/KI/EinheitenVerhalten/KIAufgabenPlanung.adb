@@ -1,14 +1,19 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtDatentypen, SystemDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
-with LeseEinheitenDatenbank, LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
 
-with StadtBauen, Aufgaben, EinheitenErzeugenEntfernen;
+with StadtBauen;
+with Aufgaben;
+with EinheitenErzeugenEntfernen;
 
-with KIVorhandeneAufgaben, KIAufgabeFestlegen, KIAufgabeUmsetzen;
+with KIVorhandeneAufgaben;
+with KIAufgabeFestlegen;
+with KIAufgabeUmsetzen;
 
 package body KIAufgabenPlanung is
    

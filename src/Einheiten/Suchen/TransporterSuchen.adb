@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 
+with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
 
-with LeseEinheitenDatenbank, LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
 
 package body TransporterSuchen is
 

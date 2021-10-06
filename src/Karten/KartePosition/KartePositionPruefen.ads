@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 
-with KartenRecords, KartenKonstanten, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenRecords;
+with KartenKonstanten;
 
-with Karten;
-use Karten;
+with Karten; use Karten;
 
 package KartePositionPruefen is
    

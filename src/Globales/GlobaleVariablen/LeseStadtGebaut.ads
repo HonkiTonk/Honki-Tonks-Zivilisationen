@@ -1,10 +1,13 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with EinheitStadtRecords, GlobaleVariablen, KartenRecords, KartenDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
-use SonstigeDatentypen, EinheitStadtDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
+with KartenRecords;
+with KartenDatentypen;
 
 with KIDatentypen;
 

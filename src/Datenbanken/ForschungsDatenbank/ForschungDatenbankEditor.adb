@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with ForschungsDatenbank, SchreibenDatenbanken;
+with ForschungsDatenbank;
+
+with SchreibenDatenbanken;
 
 package body ForschungDatenbankEditor is
 

@@ -1,12 +1,29 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, ForschungKonstanten, SystemDatentypen, EinheitStadtDatentypen, KartenDatentypen;
-use SystemDatentypen, EinheitStadtDatentypen, KartenDatentypen;
+with SystemDatentypen; use SystemDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitenKonstanten;
+with ForschungKonstanten;
 
-with SchreibeKarten, SchreibeEinheitenGebaut, SchreibeWichtiges;
-with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
+with SchreibeKarten;
+with SchreibeEinheitenGebaut;
+with SchreibeWichtiges;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
+with LeseWichtiges;
 
-with EinheitenBeschreibungen, EinheitenErzeugenEntfernen, EinheitenModifizieren, VerbesserungWeg, VerbesserungMine, VerbesserungRoden, VerbesserungFarm, VerbesserungFestung, VerbesserungWald, AufgabenAllgemein;
+with EinheitenBeschreibungen;
+with EinheitenErzeugenEntfernen;
+with EinheitenModifizieren;
+with VerbesserungWeg;
+with VerbesserungMine;
+with VerbesserungRoden;
+with VerbesserungFarm;
+with VerbesserungFestung;
+with VerbesserungWald;
+with AufgabenAllgemein;
 
 package body Aufgaben is
    

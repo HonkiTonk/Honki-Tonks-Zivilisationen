@@ -1,6 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GrafikStart, SchreibenVerzeichnisse, Einlesen, Intro, Hauptmenue, GrafikFenster, GrafikAllgemein;
+with GrafikStart;
+with SchreibenVerzeichnisse;
+with Einlesen;
+with Intro;
+with Hauptmenue;
+with GrafikFenster;
+with GrafikAllgemein;
 
 procedure Start
 is begin

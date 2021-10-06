@@ -1,11 +1,18 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitStadtDatentypen;
+with KartenKonstanten;
+with EinheitStadtDatentypen;
 
 with SchreibeKarten;
-with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
+with LeseStadtGebaut;
   
-with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen;
+with KartePositionPruefen;
+with EinheitSuchen;
+with StadtSuchen;
+with KennenLernen;
 
 package body Sichtbarkeit is
    

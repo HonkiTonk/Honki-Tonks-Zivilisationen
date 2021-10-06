@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, EinheitStadtDatentypen, EinheitStadtRecords, SonstigeDatentypen, KartenDatentypen;
-use SonstigeDatentypen, KartenDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with GlobaleVariablen;
+with EinheitStadtDatentypen;
+with EinheitStadtRecords;
 
 package GebaeudeAllgemein is
 

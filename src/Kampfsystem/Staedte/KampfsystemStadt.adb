@@ -1,12 +1,24 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, SystemDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen, KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitenKonstanten;
+with StadtKonstanten;
+with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
-with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
+with LeseStadtGebaut;
 
-with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, KampfsystemEinheiten, ZufallGeneratorenKampf, StadtWerteFestlegen, StadtMeldungenSetzen, EinheitenErzeugenEntfernen;
+with StadtEntfernen;
+with KampfwerteStadtErmitteln;
+with KampfwerteEinheitErmitteln;
+with KampfsystemEinheiten;
+with ZufallGeneratorenKampf;
+with StadtWerteFestlegen;
+with StadtMeldungenSetzen;
+with EinheitenErzeugenEntfernen;
 
 package body KampfsystemStadt is
 

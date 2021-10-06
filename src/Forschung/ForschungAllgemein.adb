@@ -1,15 +1,23 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, SystemKonstanten, ForschungKonstanten, EinheitStadtDatentypen, SystemDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with SystemKonstanten;
+with ForschungKonstanten;
+with SystemDatentypen;
 
 with SchreibeWichtiges;
-with LeseForschungsDatenbank, LeseWichtiges;
+with LeseForschungsDatenbank;
+with LeseWichtiges;
 
-with Anzeige, Eingabe, StadtWerteFestlegen, StadtUmgebungsbereichFestlegen;
+with Anzeige;
+with Eingabe;
+with StadtWerteFestlegen;
+with StadtUmgebungsbereichFestlegen;
 
 with KIForschung;
 

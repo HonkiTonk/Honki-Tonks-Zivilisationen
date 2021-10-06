@@ -1,6 +1,12 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, SystemKonstanten, KartenRecords, ForschungKonstanten, EinheitStadtDatentypen, SonstigeDatentypen, SystemDatentypen;
+with EinheitStadtRecords;
+with SystemKonstanten;
+with KartenRecords;
+with ForschungKonstanten;
+with EinheitStadtDatentypen;
+with SonstigeDatentypen;
+with SystemDatentypen;
 
 with DatenbankRecords;
 

@@ -1,14 +1,18 @@
 pragma SPARK_Mode (On);
 
-with KartenRecords, EinheitenKonstanten, SystemDatentypen, EinheitStadtDatentypen;
-use KartenRecords, SystemDatentypen, EinheitStadtDatentypen;
+with KartenRecords; use KartenRecords;
+with SystemDatentypen; use SystemDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenKonstanten;
 
-with KIDatentypen, KIKonstanten;
-use KIDatentypen;
+with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with LeseEinheitenGebaut;
 
-with KIBewegungDurchfuehren, KIAufgabenPlanung, KIGefahrErmitteln;
+with KIBewegungDurchfuehren;
+with KIAufgabenPlanung;
+with KIGefahrErmitteln;
 
 package body KIEinheitHandlungen is
 

@@ -1,8 +1,15 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, SystemKonstanten, GlobaleTexte;
+with GlobaleVariablen;
+with SystemKonstanten;
+with GlobaleTexte;
 
-with Auswahl, Eingabe, SchreibenEinstellungen, EinlesenSprache, EinlesenText;
+with SchreibenEinstellungen;
+with EinlesenSprache;
+with EinlesenText;
+
+with Auswahl;
+with Eingabe;
 
 package body OptionenSonstiges is
 

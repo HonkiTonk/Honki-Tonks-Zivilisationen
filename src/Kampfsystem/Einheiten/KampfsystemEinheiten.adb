@@ -1,12 +1,16 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, EinheitStadtDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen, KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
 
-with ZufallGeneratorenKampf, KampfwerteEinheitErmitteln, EinheitenErzeugenEntfernen;
+with ZufallGeneratorenKampf;
+with KampfwerteEinheitErmitteln;
+with EinheitenErzeugenEntfernen;
 
 package body KampfsystemEinheiten is
 

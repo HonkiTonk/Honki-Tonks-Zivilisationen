@@ -1,11 +1,19 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Calendar;
-use Ada.Wide_Wide_Text_IO, Ada.Calendar;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Calendar; use Ada.Calendar;
 
-with GlobaleVariablen, SystemDatentypen, SystemKonstanten, SonstigeDatentypen;
+with GlobaleVariablen;
+with SystemDatentypen;
+with SystemKonstanten;
+with SonstigeDatentypen;
 
-with ImSpiel, KartenGenerator, Ladezeiten, SpielEinstellungenKarten, SpielEinstellungenRasseSpieler, SpielEinstellungenSonstiges;
+with ImSpiel;
+with KartenGenerator;
+with Ladezeiten;
+with SpielEinstellungenKarten;
+with SpielEinstellungenRasseSpieler;
+with SpielEinstellungenSonstiges;
 
 package body SpielEinstellungen is
 

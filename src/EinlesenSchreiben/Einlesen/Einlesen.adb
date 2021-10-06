@@ -1,11 +1,20 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Calendar; use Ada.Calendar;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, SystemKonstanten, SystemDatentypen;
+with GlobaleVariablen;
+with SystemKonstanten;
+with SystemDatentypen;
 
-with Ladezeiten, Auswahl, EinlesenSprache, EinlesenText, EinlesenTastatur, EinlesenDatenbanken, EinlesenEinstellungen, SchreibenEinstellungen;
+with Ladezeiten;
+with Auswahl;
+with EinlesenSprache;
+with EinlesenText;
+with EinlesenTastatur;
+with EinlesenDatenbanken;
+with EinlesenEinstellungen;
+with SchreibenEinstellungen;
 
 package body Einlesen is
 

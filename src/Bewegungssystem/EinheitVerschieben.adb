@@ -1,12 +1,20 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, KartenKonstanten, EinheitenKonstanten, StadtKonstanten, KartenDatentypen, EinheitStadtDatentypen;
-use KartenDatentypen, EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleVariablen;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseEinheitenGebaut, LeseStadtGebaut, LeseKarten;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
+with LeseKarten;
 
-with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
+with EinheitSuchen;
+with KartePositionPruefen;
+with BewegungPassierbarkeitPruefen;
 
 package body EinheitVerschieben is
    

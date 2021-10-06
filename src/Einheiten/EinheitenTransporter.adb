@@ -1,14 +1,20 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleTexte, SystemKonstanten, EinheitenKonstanten, EinheitStadtDatentypen, SystemDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with SystemKonstanten;
+with EinheitenKonstanten;
+with SystemDatentypen;
 
-with LeseEinheitenDatenbank, LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
 
-with Anzeige, Eingabe;
+with Anzeige;
+with Eingabe;
 
 package body EinheitenTransporter is
 

@@ -1,8 +1,12 @@
 pragma SPARK_Mode (On);
 
-with SystemKonstanten, GlobaleTexte, KartenKonstanten;
+with SystemKonstanten;
+with GlobaleTexte;
+with KartenKonstanten;
 
-with Karten, Eingabe, KartePositionPruefen;
+with Karten;
+with Eingabe;
+with KartePositionPruefen;
 
 package body BewegungCursor is
 

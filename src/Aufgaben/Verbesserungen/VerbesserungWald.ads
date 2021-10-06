@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen, EinheitStadtRecords, GlobaleVariablen, KartenDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
+with KartenDatentypen;
 
 package VerbesserungWald is
 

@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen, EinheitStadtDatentypen;
-use SonstigeDatentypen, KartenDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with GlobaleVariablen;
+with KartenRecords;
+with EinheitStadtDatentypen;
 
 with Karten;
 

@@ -1,12 +1,19 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, SystemKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with SystemKonstanten;
 
 with SchreibeWichtiges;
-with LeseWichtiges, LeseKarten;
+with LeseWichtiges;
+with LeseKarten;
 
-with Auswahl, Sichtbarkeit, KennenLernen, Eingabe, DiplomatischerZustand, Karten;
+with Auswahl;
+with Sichtbarkeit;
+with KennenLernen;
+with Eingabe;
+with DiplomatischerZustand;
+with Karten;
 
 package body Handeln is
 

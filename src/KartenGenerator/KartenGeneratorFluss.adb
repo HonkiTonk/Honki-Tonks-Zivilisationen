@@ -5,7 +5,8 @@ with KartenKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with KartePositionPruefen, ZufallGeneratorenKarten;
+with KartePositionPruefen;
+with ZufallGeneratorenKarten;
 
 package body KartenGeneratorFluss is
 

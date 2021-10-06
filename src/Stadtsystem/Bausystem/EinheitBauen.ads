@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, SonstigeDatentypen, GlobaleVariablen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
 
 package EinheitBauen is
 

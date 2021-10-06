@@ -1,6 +1,10 @@
 pragma SPARK_Mode (On);
 
-with Sf.Window.VideoMode, Sf.Window.Cursor, Sf.Graphics, Sf.Graphics.Text, Sf, Sf.Graphics.Color;
+with Sf.Window.VideoMode;
+with Sf.Window.Cursor;
+with Sf.Graphics;
+with Sf.Graphics.Text;
+with Sf.Graphics.Color;
 
 with NutzerRecords;
 

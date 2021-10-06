@@ -1,11 +1,16 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, GlobaleVariablen, KartenDatentypen, SonstigeDatentypen;
-use KartenDatentypen, SonstigeDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleTexte;
+with GlobaleVariablen;
 
 with LeseWichtiges;
 
-with Anzeige, Eingabe, Cheat, Enden;
+with Anzeige;
+with Eingabe;
+with Cheat;
+with Enden;
 
 package body SiegBedingungen is
 

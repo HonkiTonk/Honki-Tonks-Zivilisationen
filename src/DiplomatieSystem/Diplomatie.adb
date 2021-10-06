@@ -1,8 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, SystemKonstanten;
+with GlobaleTexte;
+with SystemKonstanten;
 
-with Anzeige, Auswahl, Handeln, EinheitVerschieben, DiplomatischerZustandAenderbar;
+with Anzeige;
+with Auswahl;
+with Handeln;
+with EinheitVerschieben;
+with DiplomatischerZustandAenderbar;
 
 package body Diplomatie is
    

@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with SonstigesKonstanten, KartenKonstanten, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with SonstigesKonstanten;
+with KartenKonstanten;
 
 with RassenAllgemein;
 

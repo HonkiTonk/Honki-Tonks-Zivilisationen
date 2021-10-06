@@ -1,15 +1,26 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with SystemKonstanten, GlobaleTexte, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, SystemDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemKonstanten;
+with GlobaleTexte;
+with EinheitenKonstanten;
+with StadtKonstanten;
+with SystemDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
      
-with Anzeige, Eingabe, Auswahl, GebaeudeAllgemein, EinheitenModifizieren, EinheitBauen, GebaeudeBauen;
+with Anzeige;
+with Eingabe;
+with Auswahl;
+with GebaeudeAllgemein;
+with EinheitenModifizieren;
+with EinheitBauen;
+with GebaeudeBauen;
 
 package body InDerStadtBauen is
 

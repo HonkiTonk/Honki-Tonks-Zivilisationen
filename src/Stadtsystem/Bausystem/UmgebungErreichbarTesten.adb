@@ -1,11 +1,14 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
 with LeseKarten;
 
-with KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitSuchen;
+with KartePositionPruefen;
+with BewegungPassierbarkeitPruefen;
+with EinheitSuchen;
 
 package body UmgebungErreichbarTesten is
    

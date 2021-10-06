@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics, Sf.Graphics.Sprite;
+with Sf.Graphics;
+with Sf.Graphics.Sprite;
 
 package GrafikFenster is
 

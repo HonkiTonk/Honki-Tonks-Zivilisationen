@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
 
-with LeseKarten, LeseKartenDatenbank, LeseVerbesserungenDatenbank;
+with LeseKarten;
+with LeseKartenDatenbank;
+with LeseVerbesserungenDatenbank;
 
 with Anzeige;
 

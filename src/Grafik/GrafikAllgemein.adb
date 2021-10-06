@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics.RenderWindow, Sf.Graphics.Color, Sf.Graphics.Font, Sf.Graphics.Text;
+with Sf.Graphics.RenderWindow;
+with Sf.Graphics.Color;
+with Sf.Graphics.Font;
+with Sf.Graphics.Text;
 
 with GrafikEinstellungen;
 
@@ -50,10 +53,12 @@ package body GrafikAllgemein is
    procedure TextAllgemeinFestlegen
    is begin
       
+      GrafikEinstellungen.Schriftgröße := 24;
+      
       Sf.Graphics.Text.setFont (text => GrafikEinstellungen.Text,
                                 font => GrafikEinstellungen.Schriftart);
       Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.Text,
-                                         size => 24);
+                                         size => GrafikEinstellungen.Schriftgröße);
       Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.Text,
                                  color => (255, 0, 0, 255));
       Sf.Graphics.Text.setStyle (text  => GrafikEinstellungen.Text,

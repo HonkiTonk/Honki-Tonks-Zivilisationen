@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.RectangleShape;
+with Sf.System.Vector2;
 
-with GlobaleTexte, EinheitStadtDatentypen;
-use GlobaleTexte, EinheitStadtDatentypen;
+with GlobaleTexte; use GlobaleTexte;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 
 package Anzeige is
    
@@ -23,10 +23,14 @@ package Anzeige is
    AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
 
    procedure AnzeigeOhneAuswahlNeu
-     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+     (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
-      ErsteZeileExtern, LetzteZeileExtern : in Positive;
-      AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
+      ErsteZeileExtern : in Positive;
+      LetzteZeileExtern : in Positive;
+      AbstandAnfangExtern : in GlobaleTexte.Welcher_Abstand_Enum;
+      AbstandMitteExtern : in GlobaleTexte.Welcher_Abstand_Enum;
+      AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
      with
        Pre =>
          (ErsteZeileExtern <= LetzteZeileExtern
@@ -42,8 +46,12 @@ package Anzeige is
       TextZeileExtern : in Positive);
 
    procedure AnzeigeMitAuswahlNeu
-     (FrageDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural)
+     (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      FrageZeileExtern : in Natural;
+      ErsteZeileExtern : in Natural;
+      LetzteZeileExtern : in Natural;
+      AktuelleAuswahlExtern : in Natural)
      with
        Pre =>
          (ErsteZeileExtern <= LetzteZeileExtern
@@ -55,16 +63,20 @@ package Anzeige is
             TextDateiExtern /= GlobaleTexte.Leer);
 
    procedure AnzeigeSprache
-     (AktuelleAuswahlExtern, ErsteZeileExtern, LetzteZeileExtern : in Positive)
+     (AktuelleAuswahlExtern : in Positive;
+      ErsteZeileExtern : in Positive;
+      LetzteZeileExtern : in Positive)
      with
        Pre =>
          (ErsteZeileExtern <= LetzteZeileExtern);
 
    procedure AnzeigeLangerTextNeu
-     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+     (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
       ErsteZeileExtern : in Positive;
-      AbstandAnfangExtern, AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
+      AbstandAnfangExtern : in GlobaleTexte.Welcher_Abstand_Enum;
+      AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
      with
        Pre =>
          ((if ÜberschriftDateiExtern = GlobaleTexte.Leer then ÜberschriftZeileExtern = 0)
@@ -81,10 +93,24 @@ package Anzeige is
 
 private
    
+   RahmenGezeichnet : Boolean;
+   
    Zeichengrenze : constant Positive := 100;
    ZeichengrenzenMultiplikator : Positive;
       
    LängsterText : Natural;
+   
+   Zeilenabstand : constant Float := 8.00;
+   Rahmenabstand : constant Float := 5.00;
+   Rahmendicke : constant Float := 3.00;
+   
+   ÜberschriftAbstand : Float;
+   Rahmenlänge : Float;
+   Rahmenbreite : Float;
+   
+   AktuellePosition : Sf.System.Vector2.sfVector2f;
+   StartAnzeigePosition : constant Sf.System.Vector2.sfVector2f := (x => 20.00,
+                                                                    y => 20.00);
    
    TextNeu : Unbounded_Wide_Wide_String;
    

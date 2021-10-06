@@ -3,9 +3,15 @@ pragma SPARK_Mode (On);
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
 
-with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen;
+with Sichtbarkeit;
+with KennenLernen;
+with BewegungLadenEntladen;
+with StadtSuchen;
+with BewegungPassierbarkeitPruefen;
 
 package body BewegungBerechnen is
 

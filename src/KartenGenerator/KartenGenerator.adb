@@ -1,12 +1,22 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar;
-use Ada.Calendar;
+with Ada.Calendar; use Ada.Calendar;
 
-with SonstigeDatentypen, KartenDatentypen, SystemDatentypen;
+with SonstigeDatentypen;
+with KartenDatentypen;
+with SystemDatentypen;
 
-with Ladezeiten, KartenfelderBewerten, KartenGeneratorChaos, KartenGeneratorStandard, KartenGeneratorKueste, KartenGeneratorLandschaft, KartenGeneratorFluss, KartenGeneratorRessourcen,
-     KartenGeneratorUnterwasserUnterirdisch, Karten, LandwerteFestlegen;
+with Ladezeiten;
+with KartenfelderBewerten;
+with KartenGeneratorChaos;
+with KartenGeneratorStandard;
+with KartenGeneratorKueste;
+with KartenGeneratorLandschaft;
+with KartenGeneratorFluss;
+with KartenGeneratorRessourcen;
+with KartenGeneratorUnterwasserUnterirdisch;
+with Karten;
+with LandwerteFestlegen;
 
 package body KartenGenerator is
 

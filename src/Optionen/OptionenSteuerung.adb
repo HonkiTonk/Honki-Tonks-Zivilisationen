@@ -1,12 +1,15 @@
 pragma SPARK_Mode (On);
 
--- with Ada.Wide_Wide_Text_IO;
--- use Ada.Wide_Wide_Text_IO;
+with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
-with SystemKonstanten, GlobaleTexte, SystemDatentypen;
-use SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
+with SystemKonstanten;
+with GlobaleTexte;
 
-with Eingabe, Auswahl, Anzeige, SchreibenTastatur;
+with Eingabe;
+with Auswahl;
+with Anzeige;
+with SchreibenTastatur;
 
 package body OptionenSteuerung is
 

@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, SystemKonstanten, SonstigeDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
+with SystemKonstanten;
 
 package ImSpiel is
 

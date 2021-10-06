@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenRecords, KartenDatentypen, SonstigeDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenRecords;
+with SonstigeDatentypen;
 
 with Karten;
 

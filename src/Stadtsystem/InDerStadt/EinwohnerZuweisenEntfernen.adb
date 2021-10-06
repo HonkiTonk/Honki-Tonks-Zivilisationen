@@ -1,11 +1,15 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, KartenDatentypen, EinheitStadtDatentypen;
-use KartenDatentypen, EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenKonstanten;
 
-with LeseKarten, LeseStadtGebaut, SchreibeStadtGebaut;
+with LeseKarten;
+with LeseStadtGebaut;
+with SchreibeStadtGebaut;
 
-with Karten, KartePositionPruefen;
+with Karten;
+with KartePositionPruefen;
 
 package body EinwohnerZuweisenEntfernen is
 

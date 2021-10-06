@@ -1,8 +1,11 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics.RenderWindow, Sf.Graphics.Texture, Sf.Graphics.Text;
+with Sf.Graphics.RenderWindow;
+with Sf.Graphics.Texture;
+with Sf.Graphics.Text;
 
-with GrafikEinstellungen, GrafikAllgemein;
+with GrafikEinstellungen;
+with GrafikAllgemein;
 
 package body GrafikFenster is
 

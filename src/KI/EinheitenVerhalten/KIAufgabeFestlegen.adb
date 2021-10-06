@@ -1,16 +1,33 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, StadtKonstanten, KartenDatentypen, SystemDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenRecords; use KartenRecords;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
+with SystemDatentypen;
 
-with KIDatentypen, KIKonstanten;
+with KIDatentypen;
+with KIKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseStadtGebaut, LeseEinheitenGebaut, LeseKarten;
+with LeseStadtGebaut;
+with LeseEinheitenGebaut;
+with LeseKarten;
 
-with KartePositionPruefen, BewegungPassierbarkeitPruefen, StadtBauen, EinheitSuchen, DiplomatischerZustand;
+with KartePositionPruefen;
+with BewegungPassierbarkeitPruefen;
+with StadtBauen;
+with EinheitSuchen;
+with DiplomatischerZustand;
 
-with KIPruefungen, KIMindestBewertungKartenfeldErmitteln, KIAufgabenVerteilt, KIFeindlicheEinheitSuchen, KIStadtSuchen, KIBewegungAllgemein, KISonstigesSuchen;
+with KIPruefungen;
+with KIMindestBewertungKartenfeldErmitteln;
+with KIAufgabenVerteilt;
+with KIFeindlicheEinheitSuchen;
+with KIStadtSuchen;
+with KIBewegungAllgemein;
+with KISonstigesSuchen;
 
 package body KIAufgabeFestlegen is
    

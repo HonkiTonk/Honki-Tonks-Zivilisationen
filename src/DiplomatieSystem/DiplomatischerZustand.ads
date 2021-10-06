@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
+with EinheitStadtDatentypen;
 
 package DiplomatischerZustand is
 
@@ -62,7 +63,8 @@ package DiplomatischerZustand is
             GlobaleVariablen.RassenImSpiel (GegnerischeRasseExtern) /= SonstigeDatentypen.Leer);
 
    function DiplomatischenStatusPrüfen
-     (EigeneRasseExtern, FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return SonstigeDatentypen.Status_Untereinander_Enum
      with
        Pre =>

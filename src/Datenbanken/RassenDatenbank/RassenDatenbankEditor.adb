@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with RassenDatenbank, SchreibenDatenbanken;
+with RassenDatenbank;
+
+with SchreibenDatenbanken;
 
 package body RassenDatenbankEditor is
 

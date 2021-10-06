@@ -1,13 +1,14 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Integer_Text_IO;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Integer_Text_IO;
 
 with GlobaleTexte;
 
 with LeseWichtiges;
 
-with Anzeige, ForschungAllgemein;
+with Anzeige;
+with ForschungAllgemein;
 
 package body InformationenWichtiges is
    

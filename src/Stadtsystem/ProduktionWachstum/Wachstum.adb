@@ -1,12 +1,24 @@
 pragma SPARK_Mode (On);
 
-with SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten, KartenDatentypen, EinheitStadtDatentypen, SystemDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SonstigesKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
+with KartenDatentypen;
+with SystemDatentypen;
 
-with SchreibeStadtGebaut, SchreibeWichtiges;
-with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with SchreibeStadtGebaut;
+with SchreibeWichtiges;
+with LeseEinheitenDatenbank;
+with LeseStadtGebaut;
+with LeseGebaeudeDatenbank;
 
-with StadtWerteFestlegen, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, Sichtbarkeit, StadtMeldungenSetzen;
+with StadtWerteFestlegen;
+with StadtEinheitenBauen;
+with StadtGebaeudeBauen;
+with StadtEntfernen;
+with Sichtbarkeit;
+with StadtMeldungenSetzen;
 
 package body Wachstum is
    

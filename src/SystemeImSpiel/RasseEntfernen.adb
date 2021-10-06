@@ -1,9 +1,13 @@
 pragma SPARK_Mode (On);
 
-with SonstigesKonstanten, EinheitenKonstanten, StadtKonstanten;
+with SonstigesKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
-with SchreibeStadtGebaut, SchreibeEinheitenGebaut;
-with LeseEinheitenGebaut, LeseStadtGebaut;
+with SchreibeStadtGebaut;
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
 with KartenfelderBewerten;
 

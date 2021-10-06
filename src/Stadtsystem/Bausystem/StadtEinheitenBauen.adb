@@ -1,14 +1,24 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, KartenKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
 with KIDatentypen;
 
 with SchreibeStadtGebaut;
-with LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
-with Anzeige, Eingabe, Karte, EinheitSuchen, UmgebungErreichbarTesten, StadtMeldungenSetzen, EinheitenErzeugenEntfernen;
+with Anzeige;
+with Eingabe;
+with Karte;
+with EinheitSuchen;
+with UmgebungErreichbarTesten;
+with StadtMeldungenSetzen;
+with EinheitenErzeugenEntfernen;
 
 package body StadtEinheitenBauen is
 

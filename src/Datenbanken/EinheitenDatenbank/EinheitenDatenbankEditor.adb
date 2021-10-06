@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, SchreibenDatenbanken;
+with EinheitenDatenbank;
+
+with SchreibenDatenbanken;
 
 package body EinheitenDatenbankEditor is
 

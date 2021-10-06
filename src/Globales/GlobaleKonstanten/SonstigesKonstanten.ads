@@ -1,6 +1,12 @@
 pragma SPARK_Mode (On);
 
-with DatenbankRecords, WichtigeRecords, KartenRecords, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
+with WichtigeRecords;
+with KartenRecords;
+with EinheitStadtDatentypen;
+with KartenDatentypen;
+with SonstigeDatentypen;
+
+with DatenbankRecords;
 
 package SonstigesKonstanten is
    

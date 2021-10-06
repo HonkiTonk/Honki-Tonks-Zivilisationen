@@ -1,10 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleTexte;
-use GlobaleTexte;
+with GlobaleTexte; use GlobaleTexte;
 
 package Auswahl is
 
@@ -12,8 +10,11 @@ package Auswahl is
      return Unbounded_Wide_Wide_String;
 
    function Auswahl
-     (FrageDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural)
+     (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      FrageZeileExtern : in Natural;
+      ErsteZeileExtern : in Natural;
+      LetzteZeileExtern : in Natural)
       return Integer
      with
        Pre =>

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded, Ada.Directories;
-use Ada.Strings.Wide_Wide_Unbounded, Ada.Directories;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Directories; use Ada.Directories;
 
 
 package EinlesenSprache is

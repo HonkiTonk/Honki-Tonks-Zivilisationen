@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 
-with LeseKarten, LeseEinheitenGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
 
 with Aufgaben;
 

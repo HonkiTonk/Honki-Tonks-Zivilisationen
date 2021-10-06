@@ -1,6 +1,10 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen, EinheitStadtRecords, KartenRecords, KartenDatentypen, EinheitStadtDatentypen;
+with SonstigeDatentypen;
+with EinheitStadtRecords;
+with KartenRecords;
+with KartenDatentypen;
+with EinheitStadtDatentypen;
 
 package EinheitVerschieben is
 

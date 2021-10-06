@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf.Window.Keyboard, Sf.Window.Event;
-use Sf.Window.Keyboard, Sf.Window.Event;
+with Sf.Window.Keyboard;
+with Sf.Window.Event;
 
-with SystemDatentypen, GlobaleTexte, KartenDatentypen;
-use SystemDatentypen, KartenDatentypen;
+with SystemDatentypen; use SystemDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with GlobaleTexte;
 
 package Eingabe is
 

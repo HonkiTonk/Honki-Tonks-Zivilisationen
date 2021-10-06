@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 
 with SchreibeKarten;
 
-with Karten, ZufallGeneratorenKarten;
+with Karten;
+with ZufallGeneratorenKarten;
 
 package body KartenGeneratorChaos is
 

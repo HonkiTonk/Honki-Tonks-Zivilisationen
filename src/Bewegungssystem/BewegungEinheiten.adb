@@ -1,12 +1,28 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
-with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, DiplomatischerZustand, BewegungLadenEntladen, KampfsystemEinheiten, StadtSuchen, EinheitenModifizieren,
-     StadtBauen, Aufgaben, Anzeige, KampfsystemStadt, EinheitenTransporter;
+with Karte;
+with EinheitSuchen;
+with KartePositionPruefen;
+with Eingabe;
+with BewegungPassierbarkeitPruefen;
+with BewegungBerechnen;
+with DiplomatischerZustand;
+with BewegungLadenEntladen;
+with KampfsystemEinheiten;
+with StadtSuchen;
+with EinheitenModifizieren;
+with StadtBauen;
+with Aufgaben;
+with Anzeige;
+with KampfsystemStadt;
+with EinheitenTransporter;
 
 package body BewegungEinheiten is
 

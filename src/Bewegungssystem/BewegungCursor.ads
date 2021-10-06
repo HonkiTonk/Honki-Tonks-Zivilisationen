@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen, GlobaleVariablen, KartenRecords, SonstigeDatentypen, KartenDatentypen;
-use SonstigeDatentypen, KartenDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
+with GlobaleVariablen;
+with KartenRecords;
 
 package BewegungCursor is
 

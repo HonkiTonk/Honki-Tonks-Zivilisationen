@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen, EinheitStadtRecords, GlobaleVariablen, EinheitStadtDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
+with EinheitStadtDatentypen;
 
 package KampfsystemEinheiten is
 

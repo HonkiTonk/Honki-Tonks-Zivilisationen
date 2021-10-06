@@ -1,14 +1,27 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte, KartenKonstanten, SystemKonstanten, KartenDatentypen, EinheitStadtDatentypen;
-use KartenDatentypen, EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenRecords; use KartenRecords;
+with GlobaleTexte;
+with KartenKonstanten;
+with SystemKonstanten;
 
-with LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with LeseKarten;
+with LeseStadtGebaut;
+with LeseGebaeudeDatenbank;
 
-with KartePositionPruefen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemein, KartenAllgemein, GrafischeAnzeige, Farbgebung;
+with KartePositionPruefen;
+with Karten;
+with StadtInformationen;
+with Anzeige;
+with GebaeudeAllgemein;
+with KartenAllgemein;
+with GrafischeAnzeige;
+with Farbgebung;
 
 package body KarteStadt is
 

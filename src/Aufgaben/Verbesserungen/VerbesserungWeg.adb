@@ -1,13 +1,15 @@
 pragma SPARK_Mode (On);
 
 with SystemDatentypen;
-
 with KartenKonstanten;
 
-with SchreibeEinheitenGebaut, SchreibeKarten;
-with LeseKarten, LeseEinheitenGebaut;
+with SchreibeEinheitenGebaut;
+with SchreibeKarten;
+with LeseKarten;
+with LeseEinheitenGebaut;
 
-with KartePositionPruefen, AufgabenAllgemein;
+with KartePositionPruefen;
+with AufgabenAllgemein;
 
 package body VerbesserungWeg is
    

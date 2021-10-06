@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, SonstigeDatentypen, GlobaleVariablen, EinheitStadtDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
+with EinheitStadtDatentypen;
 
 package KIStadtLaufendeBauprojekte is
 

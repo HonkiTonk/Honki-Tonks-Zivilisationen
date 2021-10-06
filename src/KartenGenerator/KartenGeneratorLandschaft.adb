@@ -5,7 +5,9 @@ with KartenKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with ZufallGeneratorenKarten, KartePositionPruefen;
+with KartenGeneratorBerechnungenAllgemein; use KartenGeneratorBerechnungenAllgemein;
+with ZufallGeneratorenKarten;
+with KartePositionPruefen;
 
 package body KartenGeneratorLandschaft is
 

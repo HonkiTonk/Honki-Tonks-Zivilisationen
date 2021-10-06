@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen, GlobaleVariablen, EinheitStadtDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
+with EinheitStadtDatentypen;
+
 
 package KIKriegErmitteln is
 
@@ -49,7 +51,8 @@ private
                                                       );
 
    function StärkeVerhältnisErmitteln
-     (EigeneRasseExtern, FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return SonstigeDatentypen.Rassen_Enum
      with
        Pre =>

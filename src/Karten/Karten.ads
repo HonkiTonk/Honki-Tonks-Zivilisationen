@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenRecords, KartenKonstanten, KartenDatentypen;
+with KartenRecords;
+with KartenKonstanten;
+with KartenDatentypen;
 
 package Karten is
 

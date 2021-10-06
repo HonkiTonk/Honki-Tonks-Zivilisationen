@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen, GlobaleVariablen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
 
 package KIDiplomatie is
 

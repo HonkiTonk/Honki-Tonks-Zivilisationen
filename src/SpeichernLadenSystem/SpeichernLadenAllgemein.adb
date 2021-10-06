@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories;
-use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Directories; use Ada.Directories;
 
 with Eingabe;
 

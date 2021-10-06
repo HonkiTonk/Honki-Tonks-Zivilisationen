@@ -1,14 +1,22 @@
 pragma SPARK_Mode (On);
 
-with EinheitenKonstanten, EinheitStadtDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen, KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitenKonstanten;
+
 with KIKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with BewegungBerechnen, EinheitSuchen, KampfsystemEinheiten, StadtSuchen, KampfsystemStadt;
-with KIBewegungBerechnen, KIBewegungAllgemein;
+with BewegungBerechnen;
+with EinheitSuchen;
+with KampfsystemEinheiten;
+with StadtSuchen;
+with KampfsystemStadt;
+
+with KIBewegungBerechnen;
+with KIBewegungAllgemein;
 
 package body KIBewegungDurchfuehren is
    

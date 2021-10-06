@@ -1,11 +1,24 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Calendar; use Ada.Calendar;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, SystemDatentypen, KartenRecords, EinheitStadtRecords, WichtigeRecords, SystemKonstanten, SonstigeDatentypen, KartenDatentypen;
+with GlobaleVariablen;
+with SystemDatentypen;
+with KartenRecords;
+with EinheitStadtRecords;
+with WichtigeRecords;
+with SystemKonstanten;
+with SonstigeDatentypen;
+with KartenDatentypen;
 
-with Karten, Auswahl, Ladezeiten, Informationen, SpeichernLadenAllgemein, Karte;
+with Karten;
+with Auswahl;
+with Ladezeiten;
+with Informationen;
+with SpeichernLadenAllgemein;
+with Karte;
 
 package body Speichern is
 

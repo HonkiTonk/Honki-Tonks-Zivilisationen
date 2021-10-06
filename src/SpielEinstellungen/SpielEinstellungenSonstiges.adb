@@ -1,11 +1,15 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleVariablen, SystemKonstanten, SystemDatentypen, GlobaleTexte;
+with GlobaleVariablen;
+with SystemKonstanten;
+with SystemDatentypen;
+with GlobaleTexte;
 
-with Auswahl, ZufallGeneratorenSpieleinstellungen;
+with Auswahl;
+with ZufallGeneratorenSpieleinstellungen;
 
 package body SpielEinstellungenSonstiges is
 

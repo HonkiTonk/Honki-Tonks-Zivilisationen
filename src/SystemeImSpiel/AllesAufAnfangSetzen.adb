@@ -1,8 +1,15 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, KartenKonstanten, SonstigesKonstanten, SystemKonstanten, EinheitenKonstanten, StadtKonstanten, SonstigeDatentypen;
+with GlobaleVariablen;
+with KartenKonstanten;
+with SonstigesKonstanten;
+with SystemKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
+with SonstigeDatentypen;
 
-with Karten, Cheat;
+with Karten;
+with Cheat;
 
 package body AllesAufAnfangSetzen is
 

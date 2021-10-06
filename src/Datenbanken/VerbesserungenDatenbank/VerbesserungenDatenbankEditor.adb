@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with VerbesserungenDatenbank, SchreibenDatenbanken;
+with VerbesserungenDatenbank;
+
+with SchreibenDatenbanken;
 
 package body VerbesserungenDatenbankEditor is
 

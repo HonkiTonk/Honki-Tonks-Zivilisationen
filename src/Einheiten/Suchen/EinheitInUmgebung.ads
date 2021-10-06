@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, KartenRecords, SonstigeDatentypen, KartenDatentypen;
+with EinheitStadtRecords;
+with KartenRecords;
+with SonstigeDatentypen;
+with KartenDatentypen;
 
 package EinheitInUmgebung is
 

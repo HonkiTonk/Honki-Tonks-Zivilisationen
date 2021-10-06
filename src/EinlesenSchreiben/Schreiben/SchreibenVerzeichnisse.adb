@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Ada.Directories;
-use Ada.Directories;
+with Ada.Directories; use Ada.Directories;
 
 package body SchreibenVerzeichnisse is
 

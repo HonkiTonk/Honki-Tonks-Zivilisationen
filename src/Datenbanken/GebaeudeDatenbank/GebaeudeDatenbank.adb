@@ -1,7 +1,23 @@
 pragma SPARK_Mode (On);
 
-with GebaeudeMenschen, GebaeudeKasrodiah, GebaeudeLasupin, GebaeudeLamustra, GebaeudeManuky, GebaeudeSuroka, GebaeudePryolon, GebaeudeTalbidahr, GebaeudeMoruPhisihl, GebaeudeLarinosLotaris,
-     GebaeudeCarupex, GebaeudeAlary, GebaeudeTesorahn, GebaeudeNatriesZermanis, GebaeudeTridatus, GebaeudeSenelari, GebaeudeAspari2, GebaeudeEkropa;
+with GebaeudeMenschen;
+with GebaeudeKasrodiah;
+with GebaeudeLasupin;
+with GebaeudeLamustra;
+with GebaeudeManuky;
+with GebaeudeSuroka;
+with GebaeudePryolon;
+with GebaeudeTalbidahr;
+with GebaeudeMoruPhisihl;
+with GebaeudeLarinosLotaris;
+with GebaeudeCarupex;
+with GebaeudeAlary;
+with GebaeudeTesorahn;
+with GebaeudeNatriesZermanis;
+with GebaeudeTridatus;
+with GebaeudeSenelari;
+with GebaeudeAspari2;
+with GebaeudeEkropa;
 
 package body GebaeudeDatenbank is
    

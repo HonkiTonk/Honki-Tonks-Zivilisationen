@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 
-with KartenRecords, KartenDatentypen, EinheitStadtDatentypen, SonstigeDatentypen;
+with KartenRecords;
+with KartenDatentypen;
+with EinheitStadtDatentypen;
+with SonstigeDatentypen;
 
 package KartenAllgemein is
 

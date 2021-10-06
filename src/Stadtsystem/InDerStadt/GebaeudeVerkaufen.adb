@@ -1,11 +1,12 @@
 pragma SPARK_Mode (On);
 
-with KartenDatentypen, EinheitStadtDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtDatentypen;
 
 with LeseStadtGebaut;
 
-with StadtProduktion, GebaeudeAllgemein;
+with StadtProduktion;
+with GebaeudeAllgemein;
 
 package body GebaeudeVerkaufen is
 

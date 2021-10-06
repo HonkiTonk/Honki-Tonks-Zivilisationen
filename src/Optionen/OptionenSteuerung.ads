@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with Sf.Window.Keyboard;
-use Sf.Window.Keyboard;
 
 with SystemDatentypen;
 

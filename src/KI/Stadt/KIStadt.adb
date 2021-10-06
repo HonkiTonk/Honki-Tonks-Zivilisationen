@@ -1,16 +1,25 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen, KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
-with KIDatentypen;
-use KIDatentypen;
+with KIDatentypen; use KIDatentypen;
 
 with SchreibeStadtGebaut;
-with LeseStadtGebaut, LeseEinheitenDatenbank, LeseEinheitenGebaut;
+with LeseStadtGebaut;
+with LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
 
-with EinheitSuchen, KartePositionPruefen, DiplomatischerZustand, EinheitenModifizieren;
-with KIEinheitenBauen, KIGebaeudeBauen;
+with EinheitSuchen;
+with KartePositionPruefen;
+with DiplomatischerZustand;
+with EinheitenModifizieren;
+
+with KIEinheitenBauen;
+with KIGebaeudeBauen;
 
 package body KIStadt is
 

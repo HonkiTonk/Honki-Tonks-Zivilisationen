@@ -1,17 +1,24 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with Sf.Window.Keyboard;
 
-with GlobaleTexte, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with GlobaleTexte;
 
 with SchreibeWichtiges;
-with LeseKarten, SchreibeKarten, LeseEinheitenGebaut, LeseStadtGebaut, LeseWichtiges;
+with SchreibeKarten;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
+with LeseWichtiges;
 
-with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein;
+with Karte;
+with Karten;
+with Anzeige;
+with Eingabe;
+with ForschungAllgemein;
 
 package body Cheat is
 

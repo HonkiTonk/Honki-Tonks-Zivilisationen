@@ -1,7 +1,23 @@
 pragma SPARK_Mode (On);
 
-with RasseMenschen, RasseKasrodiah, RasseLasupin, RasseLamustra, RasseManuky, RasseSuroka, RassePryolon, RasseTalbidahr, RasseMoruPhisihl, RasseLarinosLotaris, RasseCarupex, RasseAlary,
-     RasseTesorahn, RasseNatriesZermanis, RasseTridatus, RasseSenelari, RasseAspari2, RasseEkropa;
+with RasseMenschen;
+with RasseKasrodiah;
+with RasseLasupin;
+with RasseLamustra;
+with RasseManuky;
+with RasseSuroka;
+with RassePryolon;
+with RasseTalbidahr;
+with RasseMoruPhisihl;
+with RasseLarinosLotaris;
+with RasseCarupex;
+with RasseAlary;
+with RasseTesorahn;
+with RasseNatriesZermanis;
+with RasseTridatus;
+with RasseSenelari;
+with RasseAspari2;
+with RasseEkropa;
 
 package body RassenDatenbank is
 

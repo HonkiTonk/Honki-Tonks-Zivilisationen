@@ -1,9 +1,12 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, SystemDatentypen;
-use SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
-with LeseEinheitenDatenbank, Karten;
+with LeseEinheitenDatenbank;
+
+with Karten;
 
 package body LeseEinheitenGebaut is
 

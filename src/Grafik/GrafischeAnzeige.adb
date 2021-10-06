@@ -1,14 +1,18 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with EinheitenKonstanten, SystemKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenKonstanten;
+with SystemKonstanten;
 
-with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
-with EinheitSuchen, StadtSuchen, Farbgebung;
+with EinheitSuchen;
+with StadtSuchen;
+with Farbgebung;
 
 package body GrafischeAnzeige is
 

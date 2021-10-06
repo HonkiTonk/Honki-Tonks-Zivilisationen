@@ -1,14 +1,19 @@
 pragma SPARK_Mode (On);
 
-with SonstigesKonstanten, StadtKonstanten, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SonstigesKonstanten;
+with StadtKonstanten;
 
 with KIKonstanten;
 
-with LeseEinheitenDatenbank, LeseStadtGebaut, LeseWichtiges;
+with LeseEinheitenDatenbank;
+with LeseStadtGebaut;
+with LeseWichtiges;
 
 with EinheitenModifizieren;
-with KIKriegErmitteln, KIStadtLaufendeBauprojekte;
+
+with KIKriegErmitteln;
+with KIStadtLaufendeBauprojekte;
 
 package body KIEinheitenBauen is
 

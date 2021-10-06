@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
+with EinheitStadtDatentypen;
 
 with DatenbankRecords;
 

@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
 
-with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseVerbesserungenDatenbank, KartenDatentypen, EinheitStadtDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with LeseStadtGebaut;
+with LeseGebaeudeDatenbank;
+with LeseVerbesserungenDatenbank;
+with KartenDatentypen;
 
 with GesamtwerteFeld;
 

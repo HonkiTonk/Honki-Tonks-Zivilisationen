@@ -1,11 +1,14 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
-with LeseKarten, LeseEinheitenGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
 
-with KartePositionPruefen, EinheitSuchen;
+with KartePositionPruefen;
+with EinheitSuchen;
 
 package body KIFeindlicheEinheitSuchen is
 

@@ -1,7 +1,11 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, KartenDatentypen, SystemDatentypen, EinheitStadtDatentypen;
-use SonstigeDatentypen, KartenDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
+with SystemDatentypen;
+with EinheitStadtDatentypen;
 
 package EinheitenModifizieren is
 

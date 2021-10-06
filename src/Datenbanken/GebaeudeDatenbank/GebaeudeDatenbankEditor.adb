@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GebaeudeDatenbank, SchreibenDatenbanken;
+with GebaeudeDatenbank;
+
+with SchreibenDatenbanken;
 
 package body GebaeudeDatenbankEditor is
 

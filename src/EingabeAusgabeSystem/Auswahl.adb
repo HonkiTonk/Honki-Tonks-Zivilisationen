@@ -1,11 +1,13 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with SystemDatentypen, SystemKonstanten;
+with SystemDatentypen;
+with SystemKonstanten;
 
-with Anzeige, Eingabe;
+with Anzeige;
+with Eingabe;
 
 package body Auswahl is
 
@@ -78,8 +80,11 @@ package body Auswahl is
 
 
    function Auswahl
-     (FrageDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural)
+     (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      FrageZeileExtern : in Natural;
+      ErsteZeileExtern : in Natural;
+      LetzteZeileExtern : in Natural)
       return Integer
    is begin
 

@@ -1,11 +1,19 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar;
-use Ada.Calendar;
+with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen;
 
-with Karte, BefehleImSpiel, Optionen, KI, Ladezeiten, Speichern, Laden, RasseEntfernen, ZwischenDenRunden;
+with Karte;
+with BefehleImSpiel;
+with Optionen;
+with Ladezeiten;
+with Speichern;
+with Laden;
+with RasseEntfernen;
+with ZwischenDenRunden;
+
+with KI;
 
 package body ImSpiel is
 

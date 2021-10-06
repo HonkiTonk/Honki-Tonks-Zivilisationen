@@ -1,12 +1,18 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, SonstigesKonstanten, StadtKonstanten, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
+with SonstigesKonstanten;
+with StadtKonstanten;
 
-with SchreibeKarten, SchreibeStadtGebaut;
+with SchreibeKarten;
+with SchreibeStadtGebaut;
 with LeseKarten;
 
-with KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen, GebaeudeRichtigeUmgebung;
+with KartePositionPruefen;
+with GesamtwerteFeld;
+with StadtUmgebungsbereichFestlegen;
+with GebaeudeRichtigeUmgebung;
 
 package body StadtWerteFestlegen is
    

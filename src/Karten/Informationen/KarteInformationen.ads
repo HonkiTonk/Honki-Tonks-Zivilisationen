@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, EinheitStadtRecords, SonstigeDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
+with EinheitStadtRecords;
 
 package KarteInformationen is
 

@@ -1,7 +1,11 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen, GlobaleVariablen, EinheitStadtRecords, SystemKonstanten, SonstigeDatentypen, EinheitStadtDatentypen;
-use SystemDatentypen, SonstigeDatentypen, EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with GlobaleVariablen;
+with EinheitStadtRecords;
+with SystemKonstanten;
+with EinheitStadtDatentypen;
 
 package BefehleImSpiel is
 

@@ -6,7 +6,8 @@ with KIKonstanten;
 
 with LeseKarten;
 
-with KartePositionPruefen, BewegungPassierbarkeitPruefen;
+with KartePositionPruefen;
+with BewegungPassierbarkeitPruefen;
 
 package body KISonstigesSuchen is
 

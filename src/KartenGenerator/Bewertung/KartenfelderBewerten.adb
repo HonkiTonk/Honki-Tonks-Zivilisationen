@@ -1,9 +1,10 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, KartenDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
 
-with Karten, FelderwerteFestlegen;
+with Karten;
+with FelderwerteFestlegen;
 
 package body KartenfelderBewerten is
 

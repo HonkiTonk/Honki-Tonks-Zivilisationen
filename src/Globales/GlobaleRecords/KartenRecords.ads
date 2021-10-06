@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
+with EinheitStadtDatentypen;
+with KartenDatentypen;
+with SonstigeDatentypen;
 
 package KartenRecords is
 

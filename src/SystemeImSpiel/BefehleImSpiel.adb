@@ -1,12 +1,34 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte, EinheitenKonstanten, StadtKonstanten;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleTexte;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
 with SchreibeStadtGebaut;
-with LeseEinheitenGebaut, LeseWichtiges;
+with LeseEinheitenGebaut;
+with LeseWichtiges;
 
-with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Aufgaben, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, ForschungAllgemein,
-     StadtEntfernen, EinheitenTransporter, TransporterSuchen, EinheitenBeschreibungen, EinheitenModifizieren, AufgabenAllgemein;
+with InDerStadt;
+with BewegungEinheiten;
+with BewegungCursor;
+with Auswahl;
+with NaechstesObjekt;
+with Aufgaben;
+with Anzeige;
+with Diplomatie;
+with Cheat;
+with StadtBauen;
+with EinheitSuchen;
+with StadtSuchen;
+with Eingabe;
+with ForschungAllgemein;
+with StadtEntfernen;
+with EinheitenTransporter;
+with TransporterSuchen;
+with EinheitenBeschreibungen;
+with EinheitenModifizieren;
+with AufgabenAllgemein;
 
 package body BefehleImSpiel is
 

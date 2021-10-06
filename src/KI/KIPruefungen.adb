@@ -1,13 +1,23 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen, SystemDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with SystemDatentypen;
 
-with KIKonstanten, KIDatentypen;
+with KIKonstanten;
+with KIDatentypen;
 
-with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
-with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, Aufgaben;
+with KartePositionPruefen;
+with EinheitSuchen;
+with BewegungPassierbarkeitPruefen;
+with Aufgaben;
+
+with KIAufgabenVerteilt;
 
 package body KIPruefungen is
    

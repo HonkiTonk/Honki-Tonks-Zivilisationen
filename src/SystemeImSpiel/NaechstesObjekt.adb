@@ -1,9 +1,13 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen, KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtRecords;
+with EinheitenKonstanten;
+with StadtKonstanten;
 
-with LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
 package body NaechstesObjekt is
 

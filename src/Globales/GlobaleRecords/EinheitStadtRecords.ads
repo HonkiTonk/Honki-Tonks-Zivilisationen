@@ -1,9 +1,12 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemDatentypen, KartenRecords, EinheitStadtDatentypen, KartenDatentypen, SonstigeDatentypen;
+with SystemDatentypen;
+with KartenRecords;
+with EinheitStadtDatentypen;
+with KartenDatentypen;
+with SonstigeDatentypen;
 
 with KIDatentypen;
 

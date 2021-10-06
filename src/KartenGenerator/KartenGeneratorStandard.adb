@@ -5,7 +5,11 @@ with KartenKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with ZufallGeneratorenKarten, KartePositionPruefen, KartenGeneratorHimmel, KartenGeneratorWeltraum, KartenGeneratorPlanetenInneres;
+with ZufallGeneratorenKarten;
+with KartePositionPruefen;
+with KartenGeneratorHimmel;
+with KartenGeneratorWeltraum;
+with KartenGeneratorPlanetenInneres;
 
 package body KartenGeneratorStandard is
 

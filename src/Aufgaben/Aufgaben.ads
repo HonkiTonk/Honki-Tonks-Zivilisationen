@@ -1,7 +1,11 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen, EinheitStadtRecords, GlobaleVariablen, SonstigeDatentypen, EinheitStadtDatentypen, KartenDatentypen;
-use SonstigeDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
+with EinheitStadtDatentypen;
+with KartenDatentypen;
 
 package Aufgaben is
    

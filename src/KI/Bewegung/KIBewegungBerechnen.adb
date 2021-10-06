@@ -1,15 +1,21 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen, SystemDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenRecords; use KartenRecords;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with SystemDatentypen;
 
-with KIKonstanten, KIDatentypen;
-use KIDatentypen;
+with KIDatentypen; use KIDatentypen;
+with KIKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenTransporter;
+with KartePositionPruefen;
+with BewegungPassierbarkeitPruefen;
+with EinheitenTransporter;
+
 with KIBewegungAllgemein;
 
 package body KIBewegungBerechnen is

@@ -1,12 +1,15 @@
 pragma SPARK_Mode (On);
 
-with KartenDatentypen, SystemDatentypen;
-use KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
-with LeseKarten, LeseEinheitenGebaut;
+with LeseKarten;
+with LeseEinheitenGebaut;
 
-with EinheitenBeschreibungen, VerbesserungRoden, AufgabenAllgemein;
+with EinheitenBeschreibungen;
+with VerbesserungRoden;
+with AufgabenAllgemein;
 
 package body VerbesserungMine is
 

@@ -1,12 +1,15 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, KartenKonstanten, SonstigeDatentypen, EinheitStadtDatentypen;
-use SonstigeDatentypen, EinheitStadtDatentypen;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GlobaleVariablen;
+with KartenKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
 
-with KartePositionPruefen, KartenAllgemein;
+with KartePositionPruefen;
+with KartenAllgemein;
 
 package body FelderwerteFestlegen is
    

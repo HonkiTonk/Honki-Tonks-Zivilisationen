@@ -1,16 +1,25 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, StadtKonstanten, EinheitStadtDatentypen, KartenDatentypen;
-use EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
+with StadtKonstanten;
+with KartenDatentypen;
 
 with KIDatentypen;
 
 with SchreibeEinheitenGebaut;
-with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges, LeseRassenDatenbank, LeseStadtGebaut;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
+with LeseWichtiges;
+with LeseRassenDatenbank;
+with LeseStadtGebaut;
 
-with EinheitSuchen, DiplomatischerZustand;
+with EinheitSuchen;
+with DiplomatischerZustand;
 
-with KIAufgabenVerteilt, KIPruefungen;
+with KIAufgabenVerteilt;
+with KIPruefungen;
 
 package body KIVorhandeneAufgaben is
 

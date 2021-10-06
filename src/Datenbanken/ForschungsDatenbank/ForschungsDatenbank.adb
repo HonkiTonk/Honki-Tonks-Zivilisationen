@@ -1,7 +1,23 @@
 pragma SPARK_Mode (On);
 
-with ForschungMenschen, ForschungKasrodiah, ForschungLasupin, ForschungLamustra, ForschungManuky, ForschungSuroka, ForschungPryolon, ForschungTalbidahr, ForschungMoruPhisihl,
-     ForschungLarinosLotaris, ForschungCarupex, ForschungAlary, ForschungTesorahn, ForschungNatriesZermanis, ForschungTridatus, ForschungSenelari, ForschungAspari2, ForschungEkropa;
+with ForschungMenschen;
+with ForschungKasrodiah;
+with ForschungLasupin;
+with ForschungLamustra;
+with ForschungManuky;
+with ForschungSuroka;
+with ForschungPryolon;
+with ForschungTalbidahr;
+with ForschungMoruPhisihl;
+with ForschungLarinosLotaris;
+with ForschungCarupex;
+with ForschungAlary;
+with ForschungTesorahn;
+with ForschungNatriesZermanis;
+with ForschungTridatus;
+with ForschungSenelari;
+with ForschungAspari2;
+with ForschungEkropa;
 
 package body ForschungsDatenbank is
    

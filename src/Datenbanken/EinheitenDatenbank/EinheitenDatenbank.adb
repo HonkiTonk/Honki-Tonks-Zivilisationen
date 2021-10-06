@@ -1,7 +1,23 @@
 pragma SPARK_Mode (On);
 
-with EinheitenMenschen, EinheitenKasrodiah, EinheitenLasupin, EinheitenLamustra, EinheitenManuky, EinheitenSuroka, EinheitenPryolon, EinheitenTalbidahr, EinheitenMoruPhisihl,
-     EinheitenLarinosLotaris, EinheitenCarupex, EinheitenAlary, EinheitenTesorahn, EinheitenNatriesZermanis, EinheitenTridatus, EinheitenSenelari, EinheitenAspari2, EinheitenEkropa;
+with EinheitenMenschen;
+with EinheitenKasrodiah;
+with EinheitenLasupin;
+with EinheitenLamustra;
+with EinheitenManuky;
+with EinheitenSuroka;
+with EinheitenPryolon;
+with EinheitenTalbidahr;
+with EinheitenMoruPhisihl;
+with EinheitenLarinosLotaris;
+with EinheitenCarupex;
+with EinheitenAlary;
+with EinheitenTesorahn;
+with EinheitenNatriesZermanis;
+with EinheitenTridatus;
+with EinheitenSenelari;
+with EinheitenAspari2;
+with EinheitenEkropa;
 
 package body EinheitenDatenbank is
    

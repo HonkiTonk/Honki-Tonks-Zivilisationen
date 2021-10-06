@@ -1,13 +1,19 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, EinheitStadtDatentypen, KartenDatentypen;
-use KartenDatentypen, EinheitStadtDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
 with KIDatentypen;
 
-with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseKarten;
+with LeseEinheitenGebaut;
+with LeseEinheitenDatenbank;
 
-with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand;
+with KartePositionPruefen;
+with EinheitSuchen;
+with DiplomatischerZustand;
 
 package body KIGefahrErmitteln is
    

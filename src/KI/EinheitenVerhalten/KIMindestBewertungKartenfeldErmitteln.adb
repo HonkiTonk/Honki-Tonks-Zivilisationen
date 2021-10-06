@@ -1,13 +1,16 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten, EinheitenKonstanten, KartenDatentypen, EinheitStadtDatentypen;
-use KartenDatentypen, EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenKonstanten;
+with EinheitenKonstanten;
 
 with KIKonstanten;
 
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen, StadtSuchen;
+with KartePositionPruefen;
+with StadtSuchen;
 
 package body KIMindestBewertungKartenfeldErmitteln is
 

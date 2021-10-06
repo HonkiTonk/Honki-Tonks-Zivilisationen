@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with EinheitStadtRecords, GlobaleVariablen, KartenRecords, SonstigeDatentypen;
-use KartenRecords, SonstigeDatentypen;
+with KartenRecords; use KartenRecords;
+with SonstigeDatentypen; use SonstigeDatentypen;
+with EinheitStadtRecords;
+with GlobaleVariablen;
 
 package KIBewegungDurchfuehren is
    
