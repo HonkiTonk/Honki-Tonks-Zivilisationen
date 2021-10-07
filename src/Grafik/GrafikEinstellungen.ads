@@ -12,7 +12,8 @@ package GrafikEinstellungen is
    
    Fenster : Sf.Graphics.sfRenderWindow_Ptr;
    
-   Modus : Sf.Window.VideoMode.sfVideoMode := (640, 480, 32);
+   EinstellungenFenster : Sf.Window.VideoMode.sfVideoMode := (640, 480, 32);
+   Modus : Sf.Window.VideoMode.sfVideoMode := EinstellungenFenster;
    MaximaleBilderrate : Sf.sfUint32 := 30;
    Zeiger : Sf.Window.sfCursor_Ptr := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorHand);
    

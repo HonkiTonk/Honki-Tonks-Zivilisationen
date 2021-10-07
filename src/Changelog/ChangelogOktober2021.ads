@@ -161,16 +161,17 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00. => 0.00. (08.10.2021):
+   -- Version 0.00.8980 => 0.00. (08.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8970 => 0.00. (07.10.2021):
+   -- Version 0.00.8970 => 0.00.8980 (07.10.2021):
    
-   -- 
+   -- Einige Übersetzungsfehler korrigiert.
+   -- Mit der SFML herumgebastelt.
    -- Kleinigkeiten korrigiert.
    
    

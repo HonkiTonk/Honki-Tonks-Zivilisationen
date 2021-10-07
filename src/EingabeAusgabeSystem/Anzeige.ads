@@ -51,7 +51,7 @@ package Anzeige is
       FrageZeileExtern : in Natural;
       ErsteZeileExtern : in Natural;
       LetzteZeileExtern : in Natural;
-      AktuelleAuswahlExtern : in Natural)
+      AktuelleAuswahlExtern : in Positive)
      with
        Pre =>
          (ErsteZeileExtern <= LetzteZeileExtern
@@ -99,12 +99,12 @@ private
    ZeichengrenzenMultiplikator : Positive;
       
    LängsterText : Natural;
+   ÜberschriftAbstand : Natural;
+   AktuelleZeile : Natural;
    
    Zeilenabstand : constant Float := 8.00;
    Rahmenabstand : constant Float := 5.00;
    Rahmendicke : constant Float := 3.00;
-   
-   ÜberschriftAbstand : Float;
    Rahmenlänge : Float;
    Rahmenbreite : Float;
    
@@ -115,5 +115,20 @@ private
    TextNeu : Unbounded_Wide_Wide_String;
    
    Rechteck : Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+   
+   procedure GrafischeAnzeigeAuswahl
+     (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      FrageZeileExtern : in Natural;
+      ErsteZeileExtern : in Natural;
+      LetzteZeileExtern : in Natural;
+      AktuelleAuswahlExtern : in Positive;
+      MaximaleAnzahlZeichenExtern : in Natural);
+   
+   procedure AnzeigeSelbst
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      AktuelleAuswahlExtern : in Positive;
+      MaximaleAnzahlZeichenExtern : in Natural;
+      AktuelleZeileExtern : in Natural);
    
 end Anzeige;

@@ -32,7 +32,8 @@ package Auswahl is
    
 private
 
-   AktuelleAuswahl : Natural;
+   AktuelleAuswahl : Positive;
+   
    Anfang : Natural;
    Ende : Natural;
    
