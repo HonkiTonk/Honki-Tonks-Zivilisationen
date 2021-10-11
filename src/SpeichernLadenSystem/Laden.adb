@@ -19,6 +19,7 @@ with Informationen;
 with Auswahl;
 with SpeichernLadenAllgemein;
 with Karte;
+with Sichtweiten;
 
 package body Laden is
 
@@ -123,7 +124,7 @@ package body Laden is
                                                           Karten.Kartengröße);
       
       Positive'Read (Stream (File => DateiLadenNeu),
-                     Karte.SichtweiteFestlegen);
+                     Sichtweiten.SichtweiteFestlegen);
       Positive'Read (Stream (File => DateiLadenNeu),
                      Karte.BewegungsfeldFestlegen);
       

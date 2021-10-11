@@ -70,101 +70,101 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00. => 0.00. (21.10.2021):
+   -- Version 0.00.9 => 0.00.9 (21.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (20.10.2021):
+   -- Version 0.00.9 => 0.00.9 (20.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (19.10.2021):
+   -- Version 0.00.9 => 0.00.9 (19.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (18.10.2021):
+   -- Version 0.00.9 => 0.00.9 (18.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (17.10.2021):
+   -- Version 0.00.9 => 0.00.9 (17.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (16.10.2021):
+   -- Version 0.00.9 => 0.00.9 (16.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (15.10.2021):
+   -- Version 0.00.90 => 0.00.9 (15.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (14.10.2021):
+   -- Version 0.00.90 => 0.00.90 (14.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (13.10.2021):
+   -- Version 0.00.90 => 0.00.90 (13.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (12.10.2021):
+   -- Version 0.00.9000 => 0.00.90 (12.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (11.10.2021):
+   -- Version 0.00.8980 => 0.00.9000 (11.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-   
-   -- Version 0.00. => 0.00. (10.10.2021):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einfache Kartenfelderanzeige über die SFML eingebaut.
+   -- Alle Kartenfelder werden, wie in der Konsolenversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
+   -- Alle Ressourcen, Flüsse, Straßen, verbesserungen, Städte, Einheiten und der Cursor werden, wie in der Konsolenversion, korrekt angezeigt und an die aktuelle Auflösung und Fenstergröße angepasst.
+   -- Angefangen die Maus benutzbar zu machen.
+   -- Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
    
-   -- Version 0.00. => 0.00. (09.10.2021):
+   -- Version 0.00.8980 => 0.00.8980 (10.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
+   -- null.
    
    
-   -- Version 0.00.8980 => 0.00. (08.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Version 0.00.8980 => 0.00.8980 (09.10.2021):
+   
+   -- null
+   
+   
+   
+   -- Version 0.00.8980 => 0.00.8980 (08.10.2021):
+   
+   -- null.
    
    
    

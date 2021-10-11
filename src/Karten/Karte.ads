@@ -5,9 +5,10 @@ with KartenDatentypen; use KartenDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 
+with Sichtweiten;
+
 package Karte is
 
-   SichtweiteFestlegen : Positive;
    BewegungsfeldFestlegen : Positive;
 
    procedure SichtweiteBewegungsfeldFestlegen;
@@ -22,15 +23,10 @@ private
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
-   type SichtweitenArray is array (1 .. 3) of KartenRecords.AchsenKartenfeldPositivRecord;
-   Sichtweiten : constant SichtweitenArray := (1 => (0, 6, 8),
-                                               2 => (0, 6, 16),
-                                               3 => (0, 6, 24));
-
    -- Muss immer eins kleiner sein als Sichtweiten
-   Bewegungsfeld : constant SichtweitenArray := (1 => (0, Sichtweiten (1).YAchse - 1, Sichtweiten (1).XAchse - 1),
-                                                 2 => (0, Sichtweiten (1).YAchse - 1, Sichtweiten (1).XAchse - 1),
-                                                 3 => (0, Sichtweiten (1).YAchse - 1, Sichtweiten (1).XAchse - 1));
+   Bewegungsfeld : constant Sichtweiten.SichtweitenArray := (1 => (0, Sichtweiten.SichtweitenStandard (1).YAchse - 1, Sichtweiten.SichtweitenStandard (1).XAchse - 1),
+                                                             2 => (0, Sichtweiten.SichtweitenStandard (1).YAchse - 1, Sichtweiten.SichtweitenStandard (1).XAchse - 1),
+                                                             3 => (0, Sichtweiten.SichtweitenStandard (1).YAchse - 1, Sichtweiten.SichtweitenStandard (1).XAchse - 1));
 
    procedure CursorPositionAltFestlegen
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;

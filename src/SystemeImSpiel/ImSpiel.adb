@@ -200,7 +200,7 @@ package body ImSpiel is
                
             when others =>
                -- Sollte niemals auftreten? Könnte auftreten wenn der Spieler eliminiert wird oder auf KI gesetzt wird? Mal ein besseres System bauen.
-               return SystemKonstanten.HauptmenüKonstante;
+               raise Program_Error;
          end case;
          
          case

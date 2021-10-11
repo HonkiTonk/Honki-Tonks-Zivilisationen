@@ -9,6 +9,8 @@ with Karten;
 with KartePositionPruefen;
 with KarteInformationen;
 with GrafischeAnzeige;
+with KarteAnzeigeErmitteln;
+with GrafikAllgemein;
 
 package body Karte is
    
@@ -19,11 +21,11 @@ package body Karte is
         Karten.Kartengröße
       is
          when KartenDatentypen.Karte_20_20 =>
-            SichtweiteFestlegen := 1;
+            Sichtweiten.SichtweiteFestlegen := 1;
             BewegungsfeldFestlegen := 1;
             
          when KartenDatentypen.Karte_40_40 =>
-            SichtweiteFestlegen := 2;
+            Sichtweiten.SichtweiteFestlegen := 2;
             BewegungsfeldFestlegen := 2;
 
          when KartenDatentypen.Karte_Nutzer =>
@@ -32,7 +34,7 @@ package body Karte is
               or
                 Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Karte_20_20).XAchsenGröße
             then
-               SichtweiteFestlegen := 1;
+               Sichtweiten.SichtweiteFestlegen := 1;
                BewegungsfeldFestlegen := 1;
                
             elsif
@@ -40,16 +42,16 @@ package body Karte is
               or
                 Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Karte_40_40).XAchsenGröße
             then
-               SichtweiteFestlegen := 2;
+               Sichtweiten.SichtweiteFestlegen := 2;
                BewegungsfeldFestlegen := 2;
                
             else
-               SichtweiteFestlegen := 3;
+               Sichtweiten.SichtweiteFestlegen := 3;
                BewegungsfeldFestlegen := 3;
             end if;
             
          when others =>
-            SichtweiteFestlegen := 3;
+            Sichtweiten.SichtweiteFestlegen := 3;
             BewegungsfeldFestlegen := 3;
       end case;
       
@@ -63,13 +65,14 @@ package body Karte is
       
       CursorPositionAltFestlegen (RasseExtern                  => RasseExtern,
                                   BewegungsfeldFestlegenExtern => BewegungsfeldFestlegen);
+      GrafikAllgemein.FensterLeeren;
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       YAchseSchleife:
-      for YAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).YAchse .. Sichtweiten (SichtweiteFestlegen).YAchse loop
+      for YAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
+         for XAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -88,10 +91,15 @@ package body Karte is
             
             NeueZeileKartenform (XAchseExtern => XAchseSchleifenwert);
             
+            KarteAnzeigeErmitteln.Sichtbarkeit (InDerStadtExtern      => False,
+                                                SichtweiteEbeneExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                RasseExtern           => RasseExtern);
+            
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
       New_Line;
+      GrafikAllgemein.FensterAnzeigen;
       KarteInformationen.KarteInformation (RasseExtern => RasseExtern);
 
    end AnzeigeKarte;
@@ -103,7 +111,7 @@ package body Karte is
    is begin
       
       if
-        XAchseExtern = Sichtweiten (SichtweiteFestlegen).XAchse
+        XAchseExtern = Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse
       then
          if
            (Karten.Kartenform = KartenDatentypen.X_Zylinder

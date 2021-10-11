@@ -114,7 +114,7 @@ private
    
    TextNeu : Unbounded_Wide_Wide_String;
    
-   Rechteck : Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+   Rechteck : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    
    procedure GrafischeAnzeigeAuswahl
      (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
