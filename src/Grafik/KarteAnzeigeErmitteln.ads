@@ -11,6 +11,13 @@ with EinheitStadtRecords;
 
 package KarteAnzeigeErmitteln is
    
+   procedure KarteAnzeigen
+     (InDerStadtExtern : in Boolean;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+   
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
       SichtweiteEbeneExtern : in KartenRecords.AchsenKartenfeldRecord;

@@ -10,7 +10,6 @@ with KartePositionPruefen;
 with KarteInformationen;
 with GrafischeAnzeige;
 with KarteAnzeigeErmitteln;
-with GrafikAllgemein;
 
 package body Karte is
    
@@ -65,7 +64,6 @@ package body Karte is
       
       CursorPositionAltFestlegen (RasseExtern                  => RasseExtern,
                                   BewegungsfeldFestlegenExtern => BewegungsfeldFestlegen);
-      GrafikAllgemein.FensterLeeren;
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
@@ -91,15 +89,13 @@ package body Karte is
             
             NeueZeileKartenform (XAchseExtern => XAchseSchleifenwert);
             
-            KarteAnzeigeErmitteln.Sichtbarkeit (InDerStadtExtern      => False,
-                                                SichtweiteEbeneExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                RasseExtern           => RasseExtern);
-            
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
       New_Line;
-      GrafikAllgemein.FensterAnzeigen;
+      
+      KarteAnzeigeErmitteln.KarteAnzeigen (InDerStadtExtern      => False,
+                                           RasseExtern           => RasseExtern);
       KarteInformationen.KarteInformation (RasseExtern => RasseExtern);
 
    end AnzeigeKarte;

@@ -17,6 +17,42 @@ with EinheitSuchen;
 with StadtSuchen;
 
 package body KarteAnzeigeErmitteln is
+   
+   procedure KarteAnzeigen
+     (InDerStadtExtern : in Boolean;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      GrafikAllgemein.FensterLeeren;
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse loop
+            
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+            
+            case
+              KartenWert.XAchse
+            is
+               when KartenKonstanten.LeerXAchse =>
+                  null;
+                  
+               when others =>
+                  KarteAnzeigeErmitteln.Sichtbarkeit (InDerStadtExtern      => InDerStadtExtern,
+                                                      SichtweiteEbeneExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                      RasseExtern           => RasseExtern);
+            end case;
+                        
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+      GrafikAllgemein.FensterAnzeigen;
+      
+   end KarteAnzeigen;
+   
+   
 
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
