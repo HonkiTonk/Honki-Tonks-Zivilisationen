@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Font;
 with Sf.Graphics.Text;
@@ -67,6 +69,23 @@ package body GrafikAllgemein is
    
    
    
+   procedure TextZeichnen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      WelcheZeileExtern : in Positive)
+   is begin
+      
+      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), WelcheZeileExtern)));
+      Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+                                    position => PositionExtern);
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                         text         => GrafikEinstellungen.Text);
+      
+   end TextZeichnen;
+   
+   
+   
    procedure RechteckZeichnen
      (AbmessungExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -76,9 +95,16 @@ package body GrafikAllgemein is
       PositionPrüfen (PositionExtern => PositionExtern);
       
       if
-        AbmessungExtern.x = 0.00
+        AbmessungExtern.y = 0.00
         or
-          AbmessungExtern.y = 0.00
+          AbmessungExtern.x = 0.00
+      then
+         raise Program_Error;
+         
+      elsif
+        AbmessungExtern.y > Float (GrafikEinstellungen.FensterHöhe)
+        or
+          AbmessungExtern.x > Float (GrafikEinstellungen.FensterBreite)
       then
          raise Program_Error;
          
@@ -161,13 +187,13 @@ package body GrafikAllgemein is
    is begin
       
       if
-        PositionExtern.x < 0.00
+        PositionExtern.y < 0.00
         or
-          PositionExtern.y < 0.00
+          PositionExtern.x < 0.00
           or
-            PositionExtern.x > Float (GrafikEinstellungen.FensterBreite)
+            PositionExtern.y > Float (GrafikEinstellungen.FensterHöhe)
         or
-          PositionExtern.y > Float (GrafikEinstellungen.FensterHöhe)
+          PositionExtern.x > Float (GrafikEinstellungen.FensterBreite)
       then
          raise Program_Error;
          

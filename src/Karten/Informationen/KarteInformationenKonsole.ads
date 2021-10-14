@@ -4,9 +4,9 @@ with SonstigeDatentypen; use SonstigeDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 
-package KarteInformationen is
+package KarteInformationenKonsole is
 
-   procedure KarteInformation
+   procedure KarteInformationenKonsole
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -66,4 +66,4 @@ private
    procedure Hügel
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
 
-end KarteInformationen;
+end KarteInformationenKonsole;

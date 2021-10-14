@@ -27,6 +27,8 @@ package GlobaleVariablen is
                                                                      -- Rundenanzahl bis Autosave
                                                                      10
                                                                     );
+   
+   AnzeigeArt : SystemDatentypen.Anzeige_Art_Enum := SystemDatentypen.Beides;
    -- Schreiben/Ausgabe
    
    

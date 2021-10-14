@@ -98,31 +98,32 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (17.10.2021):
+   -- Version 0.00.90 => 0.00.9 (17.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (16.10.2021):
+   -- Version 0.00.90 => 0.00.90 (16.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.90 => 0.00.9 (15.10.2021):
+   -- Version 0.00.9020 => 0.00.90 (15.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9010 => 0.00.90 (14.10.2021):
+   -- Version 0.00.9010 => 0.00.9020 (14.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen seperate Dateien/Funktionen/Prozeduren für die Anzeige über die Konsole und die Anzeige über die ASFML/SFML zu erstellen.
+   -- Fehler behoben der in der SFML Menüanzeige zu Fehldarstellungen führte.
+   -- Kommentare, Contracts und Kleinigkeiten korrigiert/überarbeitet.
    
    
    

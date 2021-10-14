@@ -22,9 +22,9 @@ with GesamtwerteFeld;
 with InformationenWichtiges;
 with InformationenEinheiten;
      
-package body KarteInformationen is
+package body KarteInformationenKonsole is
 
-   procedure KarteInformation
+   procedure KarteInformationenKonsole
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -33,7 +33,7 @@ package body KarteInformationen is
       Kartenposition (RasseExtern => RasseExtern);
       Gecheatet (RasseExtern => RasseExtern);
       
-   end KarteInformation;
+   end KarteInformationenKonsole;
    
    
    
@@ -330,4 +330,4 @@ package body KarteInformationen is
       
    end Gecheatet;
 
-end KarteInformationen;
+end KarteInformationenKonsole;

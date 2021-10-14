@@ -11,6 +11,8 @@ package SystemDatentypen is
    pragma Ordered (Schwierigkeitsgrad_Enum);
    subtype Schwierigkeitsgrad_Verwendet_Enum is Schwierigkeitsgrad_Enum range Einfach .. Schwierigkeitsgrad_Enum'Last;
    
+   type Anzeige_Art_Enum is (Konsole, SFML, Beides);
+   
    type NotAus is range 1 .. 1_000;
    subtype NotAusKlein is NotAus range 1 .. 5;
    -- Sonstiges

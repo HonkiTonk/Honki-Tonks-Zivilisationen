@@ -16,11 +16,10 @@ with GrafikEinstellungen;
 with EinheitSuchen;
 with StadtSuchen;
 
-package body KarteAnzeigeErmitteln is
+package body KarteSFML is
    
    procedure KarteAnzeigen
-     (InDerStadtExtern : in Boolean;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       GrafikAllgemein.FensterLeeren;
@@ -30,20 +29,9 @@ package body KarteAnzeigeErmitteln is
          XAchseSchleife:
          for XAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
-            
-            case
-              KartenWert.XAchse
-            is
-               when KartenKonstanten.LeerXAchse =>
-                  null;
-                  
-               when others =>
-                  KarteAnzeigeErmitteln.Sichtbarkeit (InDerStadtExtern      => InDerStadtExtern,
-                                                      SichtweiteEbeneExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                      RasseExtern           => RasseExtern);
-            end case;
+            Sichtbarkeit (InDerStadtExtern      => False,
+                          SichtweiteEbeneExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                          RasseExtern           => RasseExtern);
                         
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -70,11 +58,9 @@ package body KarteAnzeigeErmitteln is
             return;
                   
          when others =>
-            null;
+            Abmessung.x := Float (GrafikEinstellungen.FensterBreite) / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse + 1);
+            Abmessung.y := Float (GrafikEinstellungen.FensterHöhe) / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse + 1);
       end case;
-      
-      Abmessung.x := Float (GrafikEinstellungen.FensterBreite) / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse + 1);
-      Abmessung.y := Float (GrafikEinstellungen.FensterHöhe) / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse + 1);
       
       YMultiplikator := 0.00;
       
@@ -197,14 +183,16 @@ package body KarteAnzeigeErmitteln is
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         GrafikAllgemein.KreisZeichnen (RadiusExtern   => Abmessung.x / 2.00,
-                                        PositionExtern => Position,
-                                        FarbeExtern    => Sf.Graphics.Color.sfBlack);
+         GrafikAllgemein.PolygonZeichnen (RadiusExtern      => Abmessung.x / 2.00,
+                                          PositionExtern    => Position,
+                                          AnzahlEckenExtern => 4,
+                                          FarbeExtern       => Sf.Graphics.Color.sfBlack);
             
       else
-         GrafikAllgemein.KreisZeichnen (RadiusExtern   => Abmessung.x / 2.00,
-                                        PositionExtern => Position,
-                                        FarbeExtern    => Sf.Graphics.Color.sfBlack);
+         GrafikAllgemein.PolygonZeichnen (RadiusExtern      => Abmessung.x / 2.00,
+                                          PositionExtern    => Position,
+                                          AnzahlEckenExtern => 4,
+                                          FarbeExtern       => Sf.Graphics.Color.sfBlack);
       end if;
       
    end AnzeigeEinheit;
@@ -223,9 +211,10 @@ package body KarteAnzeigeErmitteln is
          null;
             
       else
-         GrafikAllgemein.KreisZeichnen (RadiusExtern   => Abmessung.x / 2.00,
-                                        PositionExtern => Position,
-                                        FarbeExtern    => Sf.Graphics.Color.sfBlack);
+         GrafikAllgemein.PolygonZeichnen (RadiusExtern      => Abmessung.x / 2.00,
+                                          PositionExtern    => Position,
+                                          AnzahlEckenExtern => 5,
+                                          FarbeExtern       => Sf.Graphics.Color.sfBlack);
       end if;
       
    end AnzeigeStadt;
@@ -366,4 +355,4 @@ package body KarteAnzeigeErmitteln is
       
    end FarbeErmitteln;
 
-end KarteAnzeigeErmitteln;
+end KarteSFML;

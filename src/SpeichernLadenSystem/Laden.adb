@@ -18,7 +18,6 @@ with Ladezeiten;
 with Informationen;
 with Auswahl;
 with SpeichernLadenAllgemein;
-with Karte;
 with Sichtweiten;
 
 package body Laden is
@@ -126,7 +125,7 @@ package body Laden is
       Positive'Read (Stream (File => DateiLadenNeu),
                      Sichtweiten.SichtweiteFestlegen);
       Positive'Read (Stream (File => DateiLadenNeu),
-                     Karte.BewegungsfeldFestlegen);
+                     Sichtweiten.BewegungsfeldFestlegen);
       
       case
         Karten.Kartengröße

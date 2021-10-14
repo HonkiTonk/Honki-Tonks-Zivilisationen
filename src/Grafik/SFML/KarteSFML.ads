@@ -9,11 +9,10 @@ with KartenRecords;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 
-package KarteAnzeigeErmitteln is
+package KarteSFML is
    
    procedure KarteAnzeigen
-     (InDerStadtExtern : in Boolean;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
@@ -41,10 +40,7 @@ private
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
@@ -66,4 +62,4 @@ private
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
       return Sf.Graphics.Color.sfColor;
 
-end KarteAnzeigeErmitteln;
+end KarteSFML;

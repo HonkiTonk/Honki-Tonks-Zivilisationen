@@ -18,7 +18,6 @@ with Auswahl;
 with Ladezeiten;
 with Informationen;
 with SpeichernLadenAllgemein;
-with Karte;
 with Sichtweiten;
 
 package body Speichern is
@@ -112,7 +111,7 @@ package body Speichern is
       Positive'Write (Stream (File => DateiSpeichernNeu),
                       Sichtweiten.SichtweiteFestlegen);
       Positive'Write (Stream (File => DateiSpeichernNeu),
-                      Karte.BewegungsfeldFestlegen);
+                      Sichtweiten.BewegungsfeldFestlegen);
       
       case
         Karten.Kartengröße

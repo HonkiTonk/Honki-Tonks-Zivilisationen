@@ -6,6 +6,8 @@ with Sf.System.Vector2;
 with Sf.Graphics.Color;
 with Sf.Graphics.CircleShape;
 
+with GlobaleTexte;
+
 package GrafikAllgemein is
 
    -- Immer erster Grafikaufruf.
@@ -19,6 +21,11 @@ package GrafikAllgemein is
    procedure AllgemeinesFestlegen;
    procedure SchriftartFestlegen;
    procedure TextAllgemeinFestlegen;
+
+   procedure TextZeichnen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      WelcheZeileExtern : in Positive);
 
    procedure RechteckZeichnen
      (AbmessungExtern : in Sf.System.Vector2.sfVector2f;
