@@ -12,8 +12,7 @@ package TextAnzeigeSFML is
       FrageZeileExtern : in Natural;
       ErsteZeileExtern : in Natural;
       LetzteZeileExtern : in Natural;
-      AktuelleAuswahlExtern : in Positive;
-      MaximaleAnzahlZeichenExtern : in Natural);
+      AktuelleAuswahlExtern : in Positive);
    
    procedure AnzeigeOhneAuswahl
      (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
@@ -28,6 +27,8 @@ package TextAnzeigeSFML is
 private
    
    RahmenGezeichnet : Boolean;
+         
+   LängsterText : Positive;
    
    ÜberschriftAbstand : Natural;
    AktuelleZeile : Natural;
@@ -35,8 +36,10 @@ private
    Zeilenabstand : constant Float := 8.00;
    Rahmenabstand : constant Float := 5.00;
    Rahmendicke : constant Float := 3.00;
+   
+   RahmenlängeBerechnen : Float;
    Rahmenlänge : Float;
-   Rahmenbreite : Float;
+   Rahmenhöhe : Float;
    Position : Float;
    
    AktuellePosition : Sf.System.Vector2.sfVector2f;
@@ -46,7 +49,16 @@ private
    procedure AnzeigeSelbst
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       AktuelleAuswahlExtern : in Positive;
-      MaximaleAnzahlZeichenExtern : in Natural;
       AktuelleZeileExtern : in Natural);
+   
+   
+   
+   function RahmenlängeErmitteln
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum)
+      return Float;
+   
+   function RahmenhöheErmitteln
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum)
+      return Float;
 
 end TextAnzeigeSFML;

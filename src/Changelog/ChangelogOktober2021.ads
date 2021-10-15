@@ -91,31 +91,32 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (18.10.2021):
+   -- Version 0.00.90 => 0.00.9 (18.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.90 => 0.00.9 (17.10.2021):
+   -- Version 0.00.90 => 0.00.90 (17.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.90 => 0.00.90 (16.10.2021):
+   -- Version 0.00.9030 => 0.00.90 (16.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9020 => 0.00.90 (15.10.2021):
+   -- Version 0.00.9020 => 0.00.9030 (15.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Rahmenanzeige über die SFML verbessert.
+   -- Angefange die Maussteuerung einzubauen.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    

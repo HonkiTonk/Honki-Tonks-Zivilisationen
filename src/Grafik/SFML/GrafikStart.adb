@@ -22,6 +22,9 @@ package body GrafikStart is
       else
          Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungen.Fenster,
                                                   cursor       => GrafikEinstellungen.Zeiger);
+         -- Woanders hinschieben? Anders gestalten? Mit Werten auf Basis der Fensterabmessungen.
+         Sf.Graphics.RenderWindow.Mouse.setPosition (position   => (100, 100),
+                                                     relativeTo => GrafikEinstellungen.Fenster);
          Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => GrafikEinstellungen.Fenster,
                                                      limit        => GrafikEinstellungen.MaximaleBilderrate);
          return True;

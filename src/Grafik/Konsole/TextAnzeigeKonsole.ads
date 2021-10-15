@@ -10,8 +10,7 @@ package TextAnzeigeKonsole is
       FrageZeileExtern : in Natural;
       ErsteZeileExtern : in Natural;
       LetzteZeileExtern : in Natural;
-      AktuelleAuswahlExtern : in Positive;
-      MaximaleAnzahlZeichenExtern : in Natural)
+      AktuelleAuswahlExtern : in Positive)
      with
        Pre =>
          (ErsteZeileExtern <= LetzteZeileExtern
@@ -36,6 +35,8 @@ package TextAnzeigeKonsole is
      (AbstandExtern : in GlobaleTexte.Welcher_Abstand_Enum);
 
 private
+
+   LängsterText : Positive;
 
    procedure Überschrift
      (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;

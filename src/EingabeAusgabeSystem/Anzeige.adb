@@ -100,22 +100,6 @@ package body Anzeige is
       LetzteZeileExtern : in Natural;
       AktuelleAuswahlExtern : in Positive)
    is begin
-        
-      LängsterText := 1;
-      
-      TextlängePrüfenSchleife:
-      for ZeilenSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
-         
-         if
-           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length > LängsterText
-         then
-            LängsterText := To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length;
-            
-         else
-            null;
-         end if;
-         
-      end loop TextlängePrüfenSchleife;
       
       case
         GlobaleVariablen.AnzeigeArt
@@ -126,8 +110,7 @@ package body Anzeige is
                                                   FrageZeileExtern            => FrageZeileExtern,
                                                   ErsteZeileExtern            => ErsteZeileExtern,
                                                   LetzteZeileExtern           => LetzteZeileExtern,
-                                                  AktuelleAuswahlExtern       => AktuelleAuswahlExtern,
-                                                  MaximaleAnzahlZeichenExtern => LängsterText);
+                                                  AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
             
          when SystemDatentypen.SFML =>
             null;
@@ -142,8 +125,7 @@ package body Anzeige is
                                                FrageZeileExtern            => FrageZeileExtern,
                                                ErsteZeileExtern            => ErsteZeileExtern,
                                                LetzteZeileExtern           => LetzteZeileExtern,
-                                               AktuelleAuswahlExtern       => AktuelleAuswahlExtern,
-                                               MaximaleAnzahlZeichenExtern => LängsterText);
+                                               AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
             
          when SystemDatentypen.Konsole =>
             null;

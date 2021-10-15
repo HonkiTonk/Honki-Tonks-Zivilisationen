@@ -11,9 +11,24 @@ package body TextAnzeigeKonsole is
       FrageZeileExtern : in Natural;
       ErsteZeileExtern : in Natural;
       LetzteZeileExtern : in Natural;
-      AktuelleAuswahlExtern : in Positive;
-      MaximaleAnzahlZeichenExtern : in Natural)
+      AktuelleAuswahlExtern : in Positive)
    is begin
+      
+      LängsterText := 1;
+      
+      TextlängePrüfenSchleife:
+      for ZeilenSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
+         
+         if
+           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length > LängsterText
+         then
+            LängsterText := To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length;
+            
+         else
+            null;
+         end if;
+         
+      end loop TextlängePrüfenSchleife;
       
       Überschrift (FrageDateiExtern => FrageDateiExtern,
                     FrageZeileExtern => FrageZeileExtern);
@@ -26,7 +41,7 @@ package body TextAnzeigeKonsole is
          then
             
             RahmenTeilEinsSchleife:
-            for TextlängeEins in 1 .. MaximaleAnzahlZeichenExtern loop
+            for TextlängeEins in 1 .. LängsterText loop
                   
                if
                  TextlängeEins = 1
@@ -36,7 +51,7 @@ package body TextAnzeigeKonsole is
                   Put (Item => "═");
 
                elsif
-                 TextlängeEins = MaximaleAnzahlZeichenExtern
+                 TextlängeEins = LängsterText
                then
                   Put (Item => "═");
                   Put_Line (Item => "╗");
@@ -44,7 +59,7 @@ package body TextAnzeigeKonsole is
                   Put (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
 
                   LeererPlatzSchleife:
-                  for LeererPlatz in 1 .. MaximaleAnzahlZeichenExtern - To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert))'Length loop
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert))'Length loop
                      
                      Put (" ");
                         
@@ -60,10 +75,10 @@ package body TextAnzeigeKonsole is
             end loop RahmenTeilEinsSchleife;
 
             RahmenTeilZweiSchleife:
-            for TextlängeZweiSchleifenwert in 1 .. MaximaleAnzahlZeichenExtern loop
+            for TextlängeZweiSchleifenwert in 1 .. LängsterText loop
                
                if
-                 TextlängeZweiSchleifenwert = MaximaleAnzahlZeichenExtern
+                 TextlängeZweiSchleifenwert = LängsterText
                then
                   Put (Item => "═");
                   Put_Line (Item => "╝");
