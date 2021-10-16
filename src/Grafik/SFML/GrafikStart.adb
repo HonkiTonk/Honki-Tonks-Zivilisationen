@@ -3,21 +3,33 @@ pragma SPARK_Mode (On);
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 
+with GlobaleVariablen;
+with SystemDatentypen;
+
 with GrafikEinstellungen;
+with GrafikAllgemein;
+with GrafikFenster;
 
 package body GrafikStart is
 
-   function FensterErzeugen
-     return Boolean
+   procedure FensterErzeugen
    is begin
       
-      GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => GrafikEinstellungen.Modus,
-                                                                             title => Name);
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Konsole =>
+            return;
+            
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+            GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => GrafikEinstellungen.Modus,
+                                                                                   title => Name);
+      end case;
 
       if
         GrafikEinstellungen.Fenster = null
       then
-         return False;
+         raise Program_Error;
 
       else
          Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungen.Fenster,
@@ -27,7 +39,9 @@ package body GrafikStart is
                                                      relativeTo => GrafikEinstellungen.Fenster);
          Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => GrafikEinstellungen.Fenster,
                                                      limit        => GrafikEinstellungen.MaximaleBilderrate);
-         return True;
+         
+         GrafikAllgemein.AllgemeinesFestlegen;
+         GrafikFenster.FensterFarbe;
       end if;
       
    end FensterErzeugen;

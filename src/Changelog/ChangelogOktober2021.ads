@@ -98,16 +98,16 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.90 => 0.00.90 (17.10.2021):
+   -- Version 0.00.9040 => 0.00.90 (17.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9030 => 0.00.90 (16.10.2021):
+   -- Version 0.00.9030 => 0.00.9040 (16.10.2021):
    
-   -- 
+   -- Mehr Textanzeige über die SFML eingebaut.
    -- Kleinigkeiten korrigiert.
    
    

@@ -22,10 +22,14 @@ package GrafikAllgemein is
    procedure SchriftartFestlegen;
    procedure TextAllgemeinFestlegen;
 
-   procedure TextZeichnen
+   procedure TextDateiZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
       TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       WelcheZeileExtern : in Positive);
+
+   procedure TextZeichnen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TextExtern : in Wide_Wide_String);
 
    procedure RechteckZeichnen
      (AbmessungExtern : in Sf.System.Vector2.sfVector2f;

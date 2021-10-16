@@ -3,11 +3,7 @@ pragma SPARK_Mode (On);
 package GrafikStart is
    
    procedure FensterEntfernen;
-   
-   
-   
-   function FensterErzeugen
-     return Boolean;
+   procedure FensterErzeugen;
    
 private
    

@@ -4,13 +4,17 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 with Ada.Integer_Wide_Wide_Text_IO;
 
-with Sf; use Sf;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
+with Sf;
+with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
 with SystemKonstanten;
+with GlobaleVariablen;
 
 with Anzeige;
+with EingabeSFML;
+with GrafikAllgemein;
 with GrafikEinstellungen;
 
 package body Eingabe is
@@ -22,6 +26,26 @@ package body Eingabe is
       ZahlenMaximumExtern : in Integer)
       return Integer
    is begin
+      
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Konsole | SystemDatentypen.Beides =>
+            null;
+            
+         when SystemDatentypen.SFML =>
+            null;
+      end case;
+      
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+            null;
+            
+         when SystemDatentypen.Konsole =>
+            null;
+      end case;
       
       MaximalerWert := MaximumErmitteln (ZahlenMaximumExtern => ZahlenMaximumExtern);
       MinimalerWert := MinimumErmitteln (ZahlenMinimumExtern => ZahlenMinimumExtern);
@@ -133,7 +157,7 @@ package body Eingabe is
                         ZeileExtern         => ZeileExtern,
                         ZahlenMinimumExtern => ZahlenMinimumExtern);
          
-         Zahlen := TastenEingabe;
+         Zahlen := EingabeSFML.TastenEingabe;
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
          -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
@@ -238,6 +262,9 @@ package body Eingabe is
       ZahlenMinimumExtern : in Integer)
    is begin
       
+      -- Das Leeren und Befüllen des Fenster hier funktioniert so nicht richtig, weil damit z. B. keine Überschrift möglich ist.
+      GrafikAllgemein.FensterLeeren;
+      
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => TextDateiExtern,
                                      ÜberschriftZeileExtern => 0,
@@ -263,6 +290,13 @@ package body Eingabe is
          Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
                                             Width => 1,
                                             Base  => 10);
+         
+         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                            str  => ZahlenString);
+         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+                                       position => (10.00, 10.00));
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                            text         => GrafikEinstellungen.Text);
             
       else
          if
@@ -279,11 +313,26 @@ package body Eingabe is
                   
          else
             Put (Item => "-");
+            Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                               str  => "-");
+            Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+                                          position => (10.00, 10.00));
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                               text         => GrafikEinstellungen.Text);
          end if;
          Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
                                             Width => 1,
                                             Base  => 10);
+         
+         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                            str  => ZahlenString);
+         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+                                       position => (10.00, 10.00));
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                            text         => GrafikEinstellungen.Text);
       end if;
+      
+      GrafikAllgemein.FensterAnzeigen;
       
    end ZahlenAnzeige;
 
@@ -299,7 +348,7 @@ package body Eingabe is
         ZeichenExtern
       is
          when Sf.Window.Keyboard.sfKeyNum0 | Sf.Window.Keyboard.sfKeyNum1 | Sf.Window.Keyboard.sfKeyNum2 | Sf.Window.Keyboard.sfKeyNum3 | Sf.Window.Keyboard.sfKeyNum4 | Sf.Window.Keyboard.sfKeyNum5
-              | Sf.Window.Keyboard.sfKeyNum6 | Sf.Window.Keyboard.sfKeyNum7 | Sf.Window.Keyboard.sfKeyNum8 | Sf.Window.Keyboard.sfKeyNum9 =>
+            | Sf.Window.Keyboard.sfKeyNum6 | Sf.Window.Keyboard.sfKeyNum7 | Sf.Window.Keyboard.sfKeyNum8 | Sf.Window.Keyboard.sfKeyNum9 =>
             return 1;
             
          when Sf.Window.Keyboard.sfKeyQ | Sf.Window.Keyboard.sfKeyEscape =>
@@ -400,41 +449,13 @@ package body Eingabe is
 
 
 
-   function TastenEingabe
-     return Sf.Window.Keyboard.sfKeyCode
-   is begin
-      
-      EingabeSchleife:
-      loop
-         TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
-                                                   event        => ZeichenEingeben)
-           = Sf.sfTrue loop
-            
-            case
-              ZeichenEingeben.eventType
-            is
-               when Sf.Window.Event.sfEvtKeyPressed =>
-                  return ZeichenEingeben.key.code;
-               
-               when others =>
-                  null;
-            end case;
-         
-         end loop TasteSchleife;
-      end loop EingabeSchleife;
-      
-   end TastenEingabe;
-
-
-
    procedure WartenEingabe
    is begin
       
       New_Line;
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                             TextZeileExtern => 47);
-      Taste := TastenEingabe;
+      Taste := EingabeSFML.TastenEingabe;
       
    end WartenEingabe;
    
@@ -444,24 +465,42 @@ package body Eingabe is
      return SystemDatentypen.Tastenbelegung_Enum
    is begin
       
-      Taste := TastenEingabe;
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Konsole | SystemDatentypen.Beides =>
+            null;
+            
+         when SystemDatentypen.SFML =>
+            null;
+      end case;
       
-      BelegungFeldSchleife:
-      for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
-         BelegungPositionSchleife:
-         for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+            Taste := EingabeSFML.TastenEingabe;
+      
+            BelegungFeldSchleife:
+            for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
+               BelegungPositionSchleife:
+               for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
             
-            if
-              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
-            then
-               return BelegungPositionSchleifenwert;
+                  if
+                    Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
+                  then
+                     return BelegungPositionSchleifenwert;
                
-            else
-               null;
-            end if;
+                  else
+                     null;
+                  end if;
             
-         end loop BelegungPositionSchleife;
-      end loop BelegungFeldSchleife;
+               end loop BelegungPositionSchleife;
+            end loop BelegungFeldSchleife;
+            
+         when SystemDatentypen.Konsole =>
+            null;
+      end case;
       
       return SystemDatentypen.Leer;
       

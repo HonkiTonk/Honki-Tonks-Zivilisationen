@@ -69,7 +69,7 @@ package body GrafikAllgemein is
    
    
    
-   procedure TextZeichnen
+   procedure TextDateiZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
       TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       WelcheZeileExtern : in Positive)
@@ -77,6 +77,22 @@ package body GrafikAllgemein is
       
       Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), WelcheZeileExtern)));
+      Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+                                    position => PositionExtern);
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                         text         => GrafikEinstellungen.Text);
+      
+   end TextDateiZeichnen;
+   
+   
+   
+   procedure TextZeichnen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TextExtern : in Wide_Wide_String)
+   is begin
+      
+      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+                                         str  => TextExtern);
       Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
                                     position => PositionExtern);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,

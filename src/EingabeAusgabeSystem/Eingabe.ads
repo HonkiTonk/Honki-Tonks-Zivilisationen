@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Window.Keyboard;
-with Sf.Window.Event;
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -35,9 +34,6 @@ package Eingabe is
    function SpielstandName
      return Unbounded_Wide_Wide_String;
 
-   function TastenEingabe
-     return Sf.Window.Keyboard.sfKeyCode;
-
    function Tastenwert
      return SystemDatentypen.Tastenbelegung_Enum;
 
@@ -48,8 +44,6 @@ private
 
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Taste : Sf.Window.Keyboard.sfKeyCode;
-
-   ZeichenEingeben : Sf.Window.Event.sfEvent;
 
    IstZahl : KartenDatentypen.LoopRangeMinusDreiZuDrei;
 

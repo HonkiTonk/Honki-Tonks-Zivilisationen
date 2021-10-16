@@ -17,8 +17,9 @@ with LeseWichtiges;
 with Karte;
 with Karten;
 with Anzeige;
-with Eingabe;
 with ForschungAllgemein;
+with EingabeSFML;
+
 
 package body Cheat is
 
@@ -39,7 +40,7 @@ package body Cheat is
                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
          case
-           Eingabe.TastenEingabe
+           EingabeSFML.TastenEingabe
          is
             -- Volle Informationen (unabhängig von der Rasse)
             when Sf.Window.Keyboard.sfKeyI =>

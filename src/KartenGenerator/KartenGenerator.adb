@@ -17,11 +17,14 @@ with KartenGeneratorRessourcen;
 with KartenGeneratorUnterwasserUnterirdisch;
 with Karten;
 with LandwerteFestlegen;
+with GrafikAllgemein;
 
 package body KartenGenerator is
 
    procedure KartenGenerator
    is begin
+      
+      GrafikAllgemein.FensterLeeren;
 
       EisWasserLandGenerieren;
       KüstenwasserGenerieren;

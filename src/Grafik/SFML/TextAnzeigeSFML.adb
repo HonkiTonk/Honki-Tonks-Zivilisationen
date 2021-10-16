@@ -46,11 +46,11 @@ package body TextAnzeigeSFML is
 
          when others =>
             ÜberschriftAbstand := 1;
-            GrafikAllgemein.TextZeichnen (PositionExtern    => StartAnzeigePosition,
-                                          TextDateiExtern   => FrageDateiExtern,
-                                          WelcheZeileExtern => FrageZeileExtern);
+            GrafikAllgemein.TextDateiZeichnen (PositionExtern    => StartAnzeigePosition,
+                                               TextDateiExtern   => FrageDateiExtern,
+                                               WelcheZeileExtern => FrageZeileExtern);
       end case;
-            
+      
       RahmenGezeichnet := False;
       AktuellePosition.x := StartAnzeigePosition.x;
       AktuelleZeile := 0;
@@ -126,9 +126,9 @@ package body TextAnzeigeSFML is
             
          AktuellePosition.x := StartAnzeigePosition.x + Rahmendicke + Rahmenabstand;
          
-         GrafikAllgemein.TextZeichnen (PositionExtern    => AktuellePosition,
-                                       TextDateiExtern   => TextDateiExtern,
-                                       WelcheZeileExtern => AktuelleZeileExtern);
+         GrafikAllgemein.TextDateiZeichnen (PositionExtern    => AktuellePosition,
+                                            TextDateiExtern   => TextDateiExtern,
+                                            WelcheZeileExtern => AktuelleZeileExtern);
          
       else
          case
@@ -141,9 +141,9 @@ package body TextAnzeigeSFML is
                null;
          end case;
          
-         GrafikAllgemein.TextZeichnen (PositionExtern    => AktuellePosition,
-                                       TextDateiExtern   => TextDateiExtern,
-                                       WelcheZeileExtern => AktuelleZeileExtern);
+         GrafikAllgemein.TextDateiZeichnen (PositionExtern    => AktuellePosition,
+                                            TextDateiExtern   => TextDateiExtern,
+                                            WelcheZeileExtern => AktuelleZeileExtern);
       end if;
       
    end AnzeigeSelbst;

@@ -5,22 +5,11 @@ with SchreibenVerzeichnisse;
 with Einlesen;
 with Intro;
 with Hauptmenue;
-with GrafikFenster;
-with GrafikAllgemein;
 
 procedure Start
 is begin
 
-   case
-     GrafikStart.FensterErzeugen
-   is
-      when False =>
-         return;
-
-      when True =>
-         GrafikAllgemein.AllgemeinesFestlegen;
-         GrafikFenster.FensterFarbe;
-   end case;
+   GrafikStart.FensterErzeugen;
 
    SchreibenVerzeichnisse.SchreibenVerzeichnisse;
    Einlesen.Einlesen;

@@ -10,6 +10,7 @@ with Eingabe;
 with Auswahl;
 with Anzeige;
 with SchreibenTastatur;
+with EingabeSFML;
 
 package body OptionenSteuerung is
 
@@ -76,7 +77,7 @@ package body OptionenSteuerung is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
-      NeueTaste := Eingabe.TastenEingabe;
+      NeueTaste := EingabeSFML.TastenEingabe;
                
       BelegungFeldSchleife:
       for BelegungFeldSchleifenwert in Eingabe.TastenbelegungArray'Range (1) loop
