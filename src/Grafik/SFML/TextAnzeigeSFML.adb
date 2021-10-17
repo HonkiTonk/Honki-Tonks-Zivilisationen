@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.Color;
-with Sf.Graphics.Text;
+with Sf.Graphics.RenderWindow;
 
 with GrafikAllgemein;
 with GrafikEinstellungen;
@@ -19,6 +19,7 @@ package body TextAnzeigeSFML is
       AktuelleAuswahlExtern : in Positive)
    is begin
       
+      TextZugriff := GrafikEinstellungen.TextStandard;
       GrafikAllgemein.FensterLeeren;
       
       LängsterText := ErsteZeileExtern;
@@ -46,13 +47,13 @@ package body TextAnzeigeSFML is
 
          when others =>
             ÜberschriftAbstand := 1;
-            GrafikAllgemein.TextDateiZeichnen (PositionExtern    => StartAnzeigePosition,
-                                               TextDateiExtern   => FrageDateiExtern,
-                                               WelcheZeileExtern => FrageZeileExtern);
+            TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)),
+                        TextZugriffExtern => TextZugriff);
+            TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), StartAnzeigePosition.y),
+                          TextZugriffExtern => TextZugriff);
       end case;
       
       RahmenGezeichnet := False;
-      AktuellePosition.x := StartAnzeigePosition.x;
       AktuelleZeile := 0;
       
       AnzeigeSchleife:
@@ -69,9 +70,9 @@ package body TextAnzeigeSFML is
             null;
             
          else
-            AnzeigeSelbst (TextDateiExtern             => TextDateiExtern,
-                           AktuelleAuswahlExtern       => AktuelleAuswahlExtern,
-                           AktuelleZeileExtern         => ZeileSchleifenwert);
+            AnzeigeSelbst (TextDateiExtern        => TextDateiExtern,
+                           AktuelleAuswahlExtern  => AktuelleAuswahlExtern,
+                           AktuelleZeileExtern    => ZeileSchleifenwert);
             
             AktuelleZeile := AktuelleZeile + 1;
          end if;
@@ -84,13 +85,64 @@ package body TextAnzeigeSFML is
    
    
    
+   procedure TextSetzen
+     (TextExtern : in Wide_Wide_String;
+      TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+   is begin
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextZugriffExtern,
+                                         str  => TextExtern);
+      
+   end TextSetzen;
+   
+   
+   
+   procedure TextZeichnen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+   is begin
+            
+      Sf.Graphics.Text.setPosition (text     => TextZugriffExtern,
+                                    position => PositionExtern);
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                         text         => TextZugriffExtern);
+      
+   end TextZeichnen;
+   
+   
+   
+   function TextBreiteErmitteln
+     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+     return Float
+   is begin
+      
+      return Sf.Graphics.Text.getLocalBounds (text => TextZugriffExtern).width;
+      
+   end TextBreiteErmitteln;
+   
+   
+   
+   function TextMittelPositionErmitteln
+     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+      return Float
+   is begin
+      
+      return (Float (GrafikEinstellungen.FensterBreite) / 2.00 - TextBreiteErmitteln (TextZugriffExtern => TextZugriffExtern) / 2.00);
+      
+   end TextMittelPositionErmitteln;
+   
+   
+   
    procedure AnzeigeSelbst
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       AktuelleAuswahlExtern : in Positive;
       AktuelleZeileExtern : in Natural)
    is begin
       
-      AktuellePosition.y := StartAnzeigePosition.y + (Float (GrafikEinstellungen.Schriftgröße) + Zeilenabstand) * (Float (ÜberschriftAbstand + AktuelleZeile));
+      TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleZeileExtern)),
+                  TextZugriffExtern => TextZugriff);
+      AktuellePosition.y := StartAnzeigePosition.y + YPositionBestimmen;
+      AktuellePosition.x := TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff);
       
       if
         AktuelleAuswahlExtern = AktuelleZeileExtern
@@ -124,7 +176,7 @@ package body TextAnzeigeSFML is
                                            PositionExtern  => (Position, AktuellePosition.y),
                                            FarbeExtern     => (Sf.Graphics.Color.sfWhite));
             
-         AktuellePosition.x := StartAnzeigePosition.x + Rahmendicke + Rahmenabstand;
+         AktuellePosition.x := TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff);
          
          GrafikAllgemein.TextDateiZeichnen (PositionExtern    => AktuellePosition,
                                             TextDateiExtern   => TextDateiExtern,
@@ -150,15 +202,25 @@ package body TextAnzeigeSFML is
    
    
    
+   function YPositionBestimmen
+     return Float
+   is begin
+      
+      return (Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).height) * (Float (AktuelleZeile + ÜberschriftAbstand));
+      
+   end YPositionBestimmen;
+   
+   
+   
    function RahmenhöheErmitteln
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum)
       return Float
    is begin
       
-      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), LängsterText)));
       
-      return Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.Text).height + 2.00 * Rahmenabstand;
+      return Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).height + 2.00 * Rahmenabstand;
       
    end RahmenhöheErmitteln;
    
@@ -169,10 +231,10 @@ package body TextAnzeigeSFML is
       return Float
    is begin
       
-      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), LängsterText)));
       
-      RahmenlängeBerechnen := AktuellePosition.x + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.Text).width;
+      RahmenlängeBerechnen := AktuellePosition.x + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width;
       
       if
         RahmenlängeBerechnen > Float (GrafikEinstellungen.FensterBreite)

@@ -291,12 +291,12 @@ package body Eingabe is
                                             Width => 1,
                                             Base  => 10);
          
-         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                             str  => ZahlenString);
-         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                        position => (10.00, 10.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => GrafikEinstellungen.Text);
+                                            text         => GrafikEinstellungen.TextStandard);
             
       else
          if
@@ -313,23 +313,23 @@ package body Eingabe is
                   
          else
             Put (Item => "-");
-            Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+            Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                                str  => "-");
-            Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+            Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                           position => (10.00, 10.00));
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                               text         => GrafikEinstellungen.Text);
+                                               text         => GrafikEinstellungen.TextStandard);
          end if;
          Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
                                             Width => 1,
                                             Base  => 10);
          
-         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                             str  => ZahlenString);
-         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                        position => (10.00, 10.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => GrafikEinstellungen.Text);
+                                            text         => GrafikEinstellungen.TextStandard);
       end if;
       
       GrafikAllgemein.FensterAnzeigen;

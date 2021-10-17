@@ -56,13 +56,13 @@ package body GrafikAllgemein is
       
       GrafikEinstellungen.Schriftgröße := 24;
       
-      Sf.Graphics.Text.setFont (text => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setFont (text => GrafikEinstellungen.TextStandard,
                                 font => GrafikEinstellungen.Schriftart);
-      Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,
                                          size => GrafikEinstellungen.Schriftgröße);
-      Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.TextStandard,
                                  color => (255, 0, 0, 255));
-      Sf.Graphics.Text.setStyle (text  => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setStyle (text  => GrafikEinstellungen.TextStandard,
                                  style => 0);
       
    end TextAllgemeinFestlegen;
@@ -75,12 +75,12 @@ package body GrafikAllgemein is
       WelcheZeileExtern : in Positive)
    is begin
       
-      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), WelcheZeileExtern)));
-      Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                     position => PositionExtern);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => GrafikEinstellungen.Text);
+                                         text         => GrafikEinstellungen.TextStandard);
       
    end TextDateiZeichnen;
    
@@ -91,12 +91,12 @@ package body GrafikAllgemein is
       TextExtern : in Wide_Wide_String)
    is begin
       
-      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                          str  => TextExtern);
-      Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                     position => PositionExtern);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => GrafikEinstellungen.Text);
+                                         text         => GrafikEinstellungen.TextStandard);
       
    end TextZeichnen;
    

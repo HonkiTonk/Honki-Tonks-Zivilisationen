@@ -24,7 +24,7 @@ package GrafikEinstellungen is
    Schriftgröße : Sf.sfUint32;
    Textfarbe : Sf.Graphics.Color.sfColor;
    Textstyle : Sf.sfUint32;
-   Text : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   TextStandard : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    procedure StandardGrafikEinstellungenLaden;
    

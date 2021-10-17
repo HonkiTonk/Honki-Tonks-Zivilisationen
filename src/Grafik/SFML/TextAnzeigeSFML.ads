@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
 with Sf.System.Vector2;
+with Sf.Graphics;
+with Sf.Graphics.Text;
 
 with GlobaleTexte;
 
@@ -33,14 +35,16 @@ private
    ÜberschriftAbstand : Natural;
    AktuelleZeile : Natural;
    
-   Zeilenabstand : constant Float := 8.00;
-   Rahmenabstand : constant Float := 5.00;
+   Zeilenabstand : constant Float := 12.00;
+   Rahmenabstand : constant Float := 6.00;
    Rahmendicke : constant Float := 3.00;
    
    RahmenlängeBerechnen : Float;
    Rahmenlänge : Float;
    Rahmenhöhe : Float;
    Position : Float;
+      
+   TextZugriff : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    AktuellePosition : Sf.System.Vector2.sfVector2f;
    StartAnzeigePosition : constant Sf.System.Vector2.sfVector2f := (x => 20.00,
@@ -51,6 +55,14 @@ private
       AktuelleAuswahlExtern : in Positive;
       AktuelleZeileExtern : in Natural);
    
+   procedure TextZeichnen
+     (PositionExtern : in Sf.System.Vector2.sfVector2f;
+      TextZugriffExtern : in Sf.Graphics.sfText_Ptr);
+   
+   procedure TextSetzen
+     (TextExtern : in Wide_Wide_String;
+      TextZugriffExtern : in Sf.Graphics.sfText_Ptr);
+   
    
    
    function RahmenlängeErmitteln
@@ -59,6 +71,17 @@ private
    
    function RahmenhöheErmitteln
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum)
+      return Float;
+   
+   function YPositionBestimmen
+     return Float;
+   
+   function TextBreiteErmitteln
+     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+      return Float;
+   
+   function TextMittelPositionErmitteln
+     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
       return Float;
 
 end TextAnzeigeSFML;

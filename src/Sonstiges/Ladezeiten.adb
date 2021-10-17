@@ -29,11 +29,6 @@ package body Ladezeiten is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
-      GrafikAllgemein.TextDateiZeichnen (PositionExtern    => (10.00,
-                                                               10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.Text).height * Float (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern))),
-                                         TextDateiExtern   => GlobaleTexte.Ladezeiten,
-                                         WelcheZeileExtern => Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern));
-      
       case
         WelcheZeitExtern
       is
@@ -50,10 +45,10 @@ package body Ladezeiten is
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
-            GrafikAllgemein.TextZeichnen (PositionExtern => (10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.Text).width,
-                                                             10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.Text).height * Float (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern))),
+            GrafikAllgemein.TextZeichnen (PositionExtern => (10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width,
+                                                             10.00
+                                                             + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).height * Float (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern))),
                                           TextExtern     => GesamtzeitSpielweltErstellen'Wide_Wide_Image);
-            GrafikAllgemein.FensterAnzeigen;
             Eingabe.WartenEingabe;
             
          when others =>
@@ -62,8 +57,9 @@ package body Ladezeiten is
                                    Aft  => 6,
                                    Exp  => 0);
             New_Line;
-            GrafikAllgemein.TextZeichnen (PositionExtern => (10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.Text).width,
-                                                             10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.Text).height * Float (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern))),
+            GrafikAllgemein.TextZeichnen (PositionExtern => (10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width,
+                                                             10.00
+                                                             + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).height * Float (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern))),
                                           TextExtern     => Float (SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Endwert)
                                             - SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Anfangswert))'Wide_Wide_Image);
       end case;

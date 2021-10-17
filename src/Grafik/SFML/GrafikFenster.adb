@@ -40,10 +40,10 @@ package body GrafikFenster is
       
       GrafikAllgemein.TextAllgemeinFestlegen;
       
-      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.Text,
+      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                          str  => "Test!");
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => GrafikEinstellungen.Text);
+                                         text         => GrafikEinstellungen.TextStandard);
       
    end TextAnzeigen;
 

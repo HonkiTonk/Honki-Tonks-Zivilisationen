@@ -84,24 +84,24 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (19.10.2021):
+   -- Version 0.00.90 => 0.00.9 (19.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.90 => 0.00.9 (18.10.2021):
+   -- Version 0.00.9050 => 0.00.90 (18.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9040 => 0.00.90 (17.10.2021):
+   -- Version 0.00.9040 => 0.00.9050 (17.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textanzeige über die SFML angefangen zu überarbeiten.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
