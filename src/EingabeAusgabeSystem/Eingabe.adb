@@ -5,6 +5,7 @@ with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 with Ada.Integer_Wide_Wide_Text_IO;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
+with Sf.Window.Mouse; use Sf.Window.Mouse;
 with Sf;
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
@@ -156,8 +157,9 @@ package body Eingabe is
          ZahlenAnzeige (TextDateiExtern     => TextDateiExtern,
                         ZeileExtern         => ZeileExtern,
                         ZahlenMinimumExtern => ZahlenMinimumExtern);
+            
+         Zahlen := EingabeSFML.TastenEingabe.key.code;
          
-         Zahlen := EingabeSFML.TastenEingabe;
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
          -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
@@ -487,9 +489,19 @@ package body Eingabe is
                for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
             
                   if
-                    Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
+                    Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste.key.code
                   then
                      return BelegungPositionSchleifenwert;
+                     
+                  elsif
+                    Taste.mouseButton.button = Sf.Window.Mouse.sfMouseLeft
+                  then
+                     return SystemDatentypen.Auswählen;
+                     
+                  elsif
+                    Taste.mouseButton.button = Sf.Window.Mouse.sfMouseRight
+                  then
+                     return SystemDatentypen.Menü_Zurück;
                
                   else
                      null;

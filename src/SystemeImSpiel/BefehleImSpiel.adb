@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Sf; use Sf;
+with Sf.Window.Keyboard;
+
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
@@ -29,10 +32,83 @@ with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
+with EingabeSFML;
+with BewegungCursorSFML;
 
 package body BefehleImSpiel is
 
    function Befehle
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return Integer
+   is begin
+      
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Konsole =>
+            return BefehleKonsole (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+            null;
+      end case;
+      
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+            return BefehleKonsole (RasseExtern => RasseExtern);
+            -- return BefehleSFML (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Konsole =>
+            -- Sollte niemals eintreten.
+            raise Program_Error;
+      end case;
+      
+   end Befehle;
+   
+   
+   
+   function BefehleSFML
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return Integer
+   is begin
+         
+      BefehlNeu := EingabeSFML.TastenEingabeErweitert;
+         
+      case
+        BefehlNeu.key.code
+      is
+         when Sf.Window.Keyboard.sfKeyUnknown =>
+            null;
+               
+         when Sf.Window.Keyboard.sfKeyR =>
+            null;
+               
+         when others =>
+            null;
+      end case;
+         
+      if
+        BefehlNeu.mouseMove.x /= 0
+        or
+          BefehlNeu.mouseMove.y /= 0
+      then
+         BewegungCursorSFML.BewegungCursorRichtung (KarteExtern     => True,
+                                                    YÄnderungExtern => BefehlNeu.mouseMove.y,
+                                                    XÄnderungExtern => BefehlNeu.mouseMove.x,
+                                                    RasseExtern     => RasseExtern);
+            
+      else
+         null;
+      end if;
+      
+      return SystemKonstanten.StartNormalKonstante;
+      
+   end BefehleSFML;
+   
+   
+   
+   function BefehleKonsole
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
@@ -125,7 +201,7 @@ package body BefehleImSpiel is
 
       return SystemKonstanten.StartNormalKonstante;
       
-   end Befehle;
+   end BefehleKonsole;
    
    
    

@@ -151,6 +151,16 @@ package body KarteSFML is
       RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      case
+        InDerStadtExtern
+      is
+         when False =>
+            return;
+            
+         when True =>
+            null;
+      end case;
+      
       if
         KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
         and

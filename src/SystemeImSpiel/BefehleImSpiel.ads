@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Sf.Window.Event;
+
 with SystemDatentypen; use SystemDatentypen;
 with SonstigeDatentypen; use SonstigeDatentypen;
 with GlobaleVariablen;
@@ -31,6 +33,8 @@ private
    StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    
    StadtOderEinheit : Integer;
+   
+   BefehlNeu : Sf.Window.Event.sfEvent;
    
    StadtSuchenNachNamen : EinheitStadtRecords.RassePlatznummerRecord;
    
@@ -67,5 +71,15 @@ private
    
    procedure EinheitSteuern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+   
+   
+   
+   function BefehleKonsole
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return Integer;
+   
+   function BefehleSFML
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      return Integer;
    
 end BefehleImSpiel;

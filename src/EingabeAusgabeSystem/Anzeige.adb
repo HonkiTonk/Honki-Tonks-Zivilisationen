@@ -48,16 +48,11 @@ package body Anzeige is
                                                 TextDateiExtern        => TextDateiExtern,
                                                 ÜberschriftZeileExtern => ÜberschriftZeileExtern,
                                                 ErsteZeileExtern       => ErsteZeileExtern,
-                                                LetzteZeileExtern      => LetzteZeileExtern,
-                                                AbstandAnfangExtern    => AbstandAnfangExtern,
-                                                AbstandMitteExtern     => AbstandMitteExtern,
-                                                AbstandEndeExtern      => AbstandEndeExtern);
+                                                LetzteZeileExtern      => LetzteZeileExtern);
             
          when SystemDatentypen.Konsole =>
             null;
       end case;
-        
-      
       
    end AnzeigeOhneAuswahlNeu;
 

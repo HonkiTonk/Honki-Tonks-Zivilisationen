@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.System.Vector2;
 with Sf.Graphics;
 with Sf.Graphics.Text;
+with Sf.Graphics.Color;
 
 with GlobaleTexte;
 
@@ -21,39 +22,28 @@ package TextAnzeigeSFML is
       TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
       ErsteZeileExtern : in Positive;
-      LetzteZeileExtern : in Positive;
-      AbstandAnfangExtern : in GlobaleTexte.Welcher_Abstand_Enum;
-      AbstandMitteExtern : in GlobaleTexte.Welcher_Abstand_Enum;
-      AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum);
+      LetzteZeileExtern : in Positive);
    
 private
-   
-   RahmenGezeichnet : Boolean;
-         
+            
    LängsterText : Positive;
    
    ÜberschriftAbstand : Natural;
    AktuelleZeile : Natural;
+   TextAnfang : Positive;
+   TextEnde : Positive;
    
-   Zeilenabstand : constant Float := 12.00;
-   Rahmenabstand : constant Float := 6.00;
-   Rahmendicke : constant Float := 3.00;
+   StartPositionYAchse : constant Float := 20.00;
+   ZeilenAbstand : Float;
    
-   RahmenlängeBerechnen : Float;
-   Rahmenlänge : Float;
-   Rahmenhöhe : Float;
-   Position : Float;
-      
+   AktuelleTextFarbe : Sf.Graphics.Color.sfColor;
+            
    TextZugriff : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   
-   AktuellePosition : Sf.System.Vector2.sfVector2f;
-   StartAnzeigePosition : constant Sf.System.Vector2.sfVector2f := (x => 20.00,
-                                                                    y => 20.00);
-   
+      
    procedure AnzeigeSelbst
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      AktuelleAuswahlExtern : in Positive;
-      AktuelleZeileExtern : in Natural);
+      AktuelleAuswahlExtern : in Natural;
+      AktuelleZeileExtern : in Positive);
    
    procedure TextZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -64,24 +54,12 @@ private
       TextZugriffExtern : in Sf.Graphics.sfText_Ptr);
    
    
-   
-   function RahmenlängeErmitteln
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum)
-      return Float;
-   
-   function RahmenhöheErmitteln
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum)
-      return Float;
-   
-   function YPositionBestimmen
-     return Float;
-   
-   function TextBreiteErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
-      return Float;
-   
+      
    function TextMittelPositionErmitteln
      (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
       return Float;
+   
+   function ZeilenPositionErmitteln
+     return Float;
 
 end TextAnzeigeSFML;

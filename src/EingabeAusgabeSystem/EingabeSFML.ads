@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Sf.Window.Keyboard;
 with Sf.Window.Event;
 
 package EingabeSFML is
@@ -10,7 +9,10 @@ package EingabeSFML is
 
 
    function TastenEingabe
-     return Sf.Window.Keyboard.sfKeyCode;
+     return Sf.Window.Event.sfEvent;
+
+   function TastenEingabeErweitert
+     return Sf.Window.Event.sfEvent;
 
 private
 

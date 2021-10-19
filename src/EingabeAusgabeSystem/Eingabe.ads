@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Window.Keyboard;
+with Sf.Window.Event;
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -43,7 +44,8 @@ private
    WelchesVorzeichen : Boolean;
 
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
-   Taste : Sf.Window.Keyboard.sfKeyCode;
+
+   Taste : Sf.Window.Event.sfEvent;
 
    IstZahl : KartenDatentypen.LoopRangeMinusDreiZuDrei;
 
@@ -79,108 +81,108 @@ private
    TastenbelegungStandard : constant TastenbelegungArray := (
                                                              1 =>
                                                                (
-                                                                Hoch                           => Sf.Window.Keyboard.sfKeyW,
-                                                                Links                          => Sf.Window.Keyboard.sfKeyA,
-                                                                Runter                         => Sf.Window.Keyboard.sfKeyS,
-                                                                Rechts                         => Sf.Window.Keyboard.sfKeyD,
-                                                                Links_Oben                     => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Rechts_Oben                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Links_Unten                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Rechts_Unten                   => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Ebene_Hoch                     => Sf.Window.Keyboard.sfKeyAdd,
-                                                                Ebene_Runter                   => Sf.Window.Keyboard.sfKeySubtract,
+                                                                SystemDatentypen.Hoch                           => Sf.Window.Keyboard.sfKeyW,
+                                                                SystemDatentypen.Links                          => Sf.Window.Keyboard.sfKeyA,
+                                                                SystemDatentypen.Runter                         => Sf.Window.Keyboard.sfKeyS,
+                                                                SystemDatentypen.Rechts                         => Sf.Window.Keyboard.sfKeyD,
+                                                                SystemDatentypen.Links_Oben                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Rechts_Oben                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Links_Unten                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Rechts_Unten                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Ebene_Hoch                     => Sf.Window.Keyboard.sfKeyAdd,
+                                                                SystemDatentypen.Ebene_Runter                   => Sf.Window.Keyboard.sfKeySubtract,
 
-                                                                Auswählen                      => Sf.Window.Keyboard.sfKeyE,
-                                                                Menü_Zurück                    => Sf.Window.Keyboard.sfKeyQ,
-                                                                Bauen                          => Sf.Window.Keyboard.sfKeyB,
-                                                                Forschung                      => Sf.Window.Keyboard.sfKeyT,
-                                                                Tech_Baum                      => Sf.Window.Keyboard.sfKeyX,
+                                                                SystemDatentypen.Auswählen                      => Sf.Window.Keyboard.sfKeyE,
+                                                                SystemDatentypen.Menü_Zurück                    => Sf.Window.Keyboard.sfKeyQ,
+                                                                SystemDatentypen.Bauen                          => Sf.Window.Keyboard.sfKeyB,
+                                                                SystemDatentypen.Forschung                      => Sf.Window.Keyboard.sfKeyT,
+                                                                SystemDatentypen.Tech_Baum                      => Sf.Window.Keyboard.sfKeyX,
 
-                                                                Nächste_Stadt                  => Sf.Window.Keyboard.sfKeySlash,
-                                                                Einheit_Mit_Bewegungspunkte    => Sf.Window.Keyboard.sfKeyPeriod,
-                                                                Alle_Einheiten                 => Sf.Window.Keyboard.sfKeyMultiply,
-                                                                Einheiten_Ohne_Bewegungspunkte => Sf.Window.Keyboard.sfKeyComma,
-                                                                Nächste_Stadt_Mit_Meldung      => Sf.Window.Keyboard.sfKeyNum0,
-                                                                Nächste_Einheit_Mit_Meldung    => Sf.Window.Keyboard.sfKeyO,
+                                                                SystemDatentypen.Nächste_Stadt                  => Sf.Window.Keyboard.sfKeySlash,
+                                                                SystemDatentypen.Einheit_Mit_Bewegungspunkte    => Sf.Window.Keyboard.sfKeyPeriod,
+                                                                SystemDatentypen.Alle_Einheiten                 => Sf.Window.Keyboard.sfKeyMultiply,
+                                                                SystemDatentypen.Einheiten_Ohne_Bewegungspunkte => Sf.Window.Keyboard.sfKeyComma,
+                                                                SystemDatentypen.Nächste_Stadt_Mit_Meldung      => Sf.Window.Keyboard.sfKeyNum0,
+                                                                SystemDatentypen.Nächste_Einheit_Mit_Meldung    => Sf.Window.Keyboard.sfKeyO,
 
-                                                                Straße_Bauen                   => Sf.Window.Keyboard.sfKeyL,
-                                                                Mine_Bauen                     => Sf.Window.Keyboard.sfKeyM,
-                                                                Farm_Bauen                     => Sf.Window.Keyboard.sfKeyF,
-                                                                Festung_Bauen                  => Sf.Window.Keyboard.sfKeyU,
-                                                                Wald_Aufforsten                => Sf.Window.Keyboard.sfKeyZ,
-                                                                Roden_Trockenlegen             => Sf.Window.Keyboard.sfKeyP,
-                                                                Heilen                         => Sf.Window.Keyboard.sfKeyH,
-                                                                Verschanzen                    => Sf.Window.Keyboard.sfKeyV,
-                                                                Runde_Aussetzen                => Sf.Window.Keyboard.sfKeySpace,
-                                                                Einheit_Auflösen               => Sf.Window.Keyboard.sfKeyDelete,
-                                                                Plündern                       => Sf.Window.Keyboard.sfKeyJ,
-                                                                Heimatstadt_Ändern             => Sf.Window.Keyboard.sfKeyNum5,
-                                                                Einheit_Verbessern             => Sf.Window.Keyboard.sfKeyTab,
-                                                                Infos                          => Sf.Window.Keyboard.sfKeyI,
+                                                                SystemDatentypen.Straße_Bauen                   => Sf.Window.Keyboard.sfKeyL,
+                                                                SystemDatentypen.Mine_Bauen                     => Sf.Window.Keyboard.sfKeyM,
+                                                                SystemDatentypen.Farm_Bauen                     => Sf.Window.Keyboard.sfKeyF,
+                                                                SystemDatentypen.Festung_Bauen                  => Sf.Window.Keyboard.sfKeyU,
+                                                                SystemDatentypen.Wald_Aufforsten                => Sf.Window.Keyboard.sfKeyZ,
+                                                                SystemDatentypen.Roden_Trockenlegen             => Sf.Window.Keyboard.sfKeyP,
+                                                                SystemDatentypen.Heilen                         => Sf.Window.Keyboard.sfKeyH,
+                                                                SystemDatentypen.Verschanzen                    => Sf.Window.Keyboard.sfKeyV,
+                                                                SystemDatentypen.Runde_Aussetzen                => Sf.Window.Keyboard.sfKeySpace,
+                                                                SystemDatentypen.Einheit_Auflösen               => Sf.Window.Keyboard.sfKeyDelete,
+                                                                SystemDatentypen.Plündern                       => Sf.Window.Keyboard.sfKeyJ,
+                                                                SystemDatentypen.Heimatstadt_Ändern             => Sf.Window.Keyboard.sfKeyNum5,
+                                                                SystemDatentypen.Einheit_Verbessern             => Sf.Window.Keyboard.sfKeyTab,
+                                                                SystemDatentypen.Infos                          => Sf.Window.Keyboard.sfKeyI,
 
-                                                                Diplomatie                     => Sf.Window.Keyboard.sfKeyTilde,
+                                                                SystemDatentypen.Diplomatie                     => Sf.Window.Keyboard.sfKeyTilde,
 
-                                                                GeheZu                         => Sf.Window.Keyboard.sfKeyG,
+                                                                SystemDatentypen.GeheZu                         => Sf.Window.Keyboard.sfKeyG,
 
-                                                                Stadt_Umbenennen               => Sf.Window.Keyboard.sfKeyN,
-                                                                Stadt_Abreißen                 => Sf.Window.Keyboard.sfKeyK,
-                                                                Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyY,
+                                                                SystemDatentypen.Stadt_Umbenennen               => Sf.Window.Keyboard.sfKeyN,
+                                                                SystemDatentypen.Stadt_Abreißen                 => Sf.Window.Keyboard.sfKeyK,
+                                                                SystemDatentypen.Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyY,
 
-                                                                Runde_Beenden                  => Sf.Window.Keyboard.sfKeyR,
-                                                                Cheatmenü                      => Sf.Window.Keyboard.sfKeyC
+                                                                SystemDatentypen.Runde_Beenden                  => Sf.Window.Keyboard.sfKeyR,
+                                                                SystemDatentypen.Cheatmenü                      => Sf.Window.Keyboard.sfKeyC
                                                                ),
 
                                                              2 =>
                                                                (
-                                                                Hoch                           => Sf.Window.Keyboard.sfKeyNum8,
-                                                                Links                          => Sf.Window.Keyboard.sfKeyNum4,
-                                                                Runter                         => Sf.Window.Keyboard.sfKeyNum2,
-                                                                Rechts                         => Sf.Window.Keyboard.sfKeyNum6,
-                                                                Links_Oben                     => Sf.Window.Keyboard.sfKeyNum7,
-                                                                Rechts_Oben                    => Sf.Window.Keyboard.sfKeyNum9,
-                                                                Links_Unten                    => Sf.Window.Keyboard.sfKeyNum1,
-                                                                Rechts_Unten                   => Sf.Window.Keyboard.sfKeyNum3,
-                                                                Ebene_Hoch                     => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Ebene_Runter                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Hoch                           => Sf.Window.Keyboard.sfKeyNum8,
+                                                                SystemDatentypen.Links                          => Sf.Window.Keyboard.sfKeyNum4,
+                                                                SystemDatentypen.Runter                         => Sf.Window.Keyboard.sfKeyNum2,
+                                                                SystemDatentypen.Rechts                         => Sf.Window.Keyboard.sfKeyNum6,
+                                                                SystemDatentypen.Links_Oben                     => Sf.Window.Keyboard.sfKeyNum7,
+                                                                SystemDatentypen.Rechts_Oben                    => Sf.Window.Keyboard.sfKeyNum9,
+                                                                SystemDatentypen.Links_Unten                    => Sf.Window.Keyboard.sfKeyNum1,
+                                                                SystemDatentypen.Rechts_Unten                   => Sf.Window.Keyboard.sfKeyNum3,
+                                                                SystemDatentypen.Ebene_Hoch                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Ebene_Runter                   => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Auswählen                      => Sf.Window.Keyboard.sfKeyEnter,
-                                                                Menü_Zurück                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Bauen                          => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Forschung                      => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Tech_Baum                      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Auswählen                      => Sf.Window.Keyboard.sfKeyEnter,
+                                                                SystemDatentypen.Menü_Zurück                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Bauen                          => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Forschung                      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Tech_Baum                      => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Nächste_Stadt                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Einheit_Mit_Bewegungspunkte    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Alle_Einheiten                 => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Einheiten_Ohne_Bewegungspunkte => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Nächste_Stadt_Mit_Meldung      => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Nächste_Einheit_Mit_Meldung    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Nächste_Stadt                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Einheit_Mit_Bewegungspunkte    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Alle_Einheiten                 => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Einheiten_Ohne_Bewegungspunkte => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Nächste_Stadt_Mit_Meldung      => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Nächste_Einheit_Mit_Meldung    => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Straße_Bauen                   => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Mine_Bauen                     => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Farm_Bauen                     => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Festung_Bauen                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Wald_Aufforsten                => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Roden_Trockenlegen             => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Heilen                         => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Verschanzen                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Runde_Aussetzen                => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Einheit_Auflösen               => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Plündern                       => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Heimatstadt_Ändern             => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Einheit_Verbessern             => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Infos                          => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Straße_Bauen                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Mine_Bauen                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Farm_Bauen                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Festung_Bauen                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Wald_Aufforsten                => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Roden_Trockenlegen             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Heilen                         => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Verschanzen                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Runde_Aussetzen                => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Einheit_Auflösen               => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Plündern                       => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Heimatstadt_Ändern             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Einheit_Verbessern             => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Infos                          => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Diplomatie                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Diplomatie                     => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                GeheZu                         => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.GeheZu                         => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Stadt_Umbenennen               => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Stadt_Abreißen                 => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Stadt_Umbenennen               => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Stadt_Abreißen                 => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                Runde_Beenden                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                Cheatmenü                      => Sf.Window.Keyboard.sfKeyUnknown
+                                                                SystemDatentypen.Runde_Beenden                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                SystemDatentypen.Cheatmenü                      => Sf.Window.Keyboard.sfKeyUnknown
                                                                )
                                                             );
 

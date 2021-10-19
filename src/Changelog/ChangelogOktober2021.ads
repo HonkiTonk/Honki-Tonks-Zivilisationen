@@ -1,69 +1,69 @@
 package ChangelogOktober2021 is
    
-   -- Version 0.00. => 0.00. (31.10.2021):
+   -- Version 0.00.9 => 0.00.9 (31.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00. => 0.00. (30.10.2021):
+   -- Version 0.00.9 => 0.00.9 (30.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (29.10.2021):
+   -- Version 0.00.9 => 0.00.9 (29.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (28.10.2021):
+   -- Version 0.00.9 => 0.00.9 (28.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (27.10.2021):
+   -- Version 0.00.9 => 0.00.9 (27.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (26.10.2021):
+   -- Version 0.00.9 => 0.00.9 (26.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (25.10.2021):
+   -- Version 0.00.9 => 0.00.9 (25.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (24.10.2021):
+   -- Version 0.00.9 => 0.00.9 (24.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (23.10.2021):
+   -- Version 0.00.9 => 0.00.9 (23.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00. => 0.00. (22.10.2021):
+   -- Version 0.00.9 => 0.00.9 (22.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -77,24 +77,25 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (20.10.2021):
+   -- Version 0.00.9070 => 0.00.9 (20.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.90 => 0.00.9 (19.10.2021):
+   -- Version 0.00.9050 => 0.00.9070 (19.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textanzeige über die SFML bearbeitet.
+   -- Eingabe durch SFML überarbeitet.
+   -- Angefangen sie SFML weitergreifend einzubauen.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
    
-   -- Version 0.00.9050 => 0.00.90 (18.10.2021):
+   -- Version 0.00.9050 => 0.00.9050 (18.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    

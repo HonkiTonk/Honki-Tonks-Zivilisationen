@@ -24,13 +24,12 @@ package BewegungCursor is
 
 private
 
-   Position : KartenRecords.AchsenKartenfeldPositivRecord;
+   KoordinatenPunkt : Integer;
 
+   Position : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    Änderung : KartenRecords.AchsenKartenfeldRecord;
-
-   KoordinatenPunkt : Integer;
    
    procedure BewegungCursorBerechnen
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;

@@ -8,7 +8,7 @@ with GrafikEinstellungen;
 package body EingabeSFML is
    
    function TastenEingabe
-     return Sf.Window.Keyboard.sfKeyCode
+     return Sf.Window.Event.sfEvent
    is begin
       
       EingabeSchleife:
@@ -21,8 +21,8 @@ package body EingabeSFML is
             case
               ZeichenEingeben.eventType
             is
-               when Sf.Window.Event.sfEvtKeyPressed =>
-                  return ZeichenEingeben.key.code;
+               when Sf.Window.Event.sfEvtKeyPressed | Sf.Window.Event.sfEvtMouseButtonPressed =>
+                  return ZeichenEingeben;
                
                when others =>
                   null;
@@ -32,6 +32,34 @@ package body EingabeSFML is
       end loop EingabeSchleife;
       
    end TastenEingabe;
+   
+   
+   
+   function TastenEingabeErweitert
+     return Sf.Window.Event.sfEvent
+   is begin
+      
+      EingabeSchleife:
+      loop
+         TasteSchleife:
+         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
+                                                   event        => ZeichenEingeben)
+           = Sf.sfTrue loop
+            
+            case
+              ZeichenEingeben.eventType
+            is
+               when Sf.Window.Event.sfEvtKeyPressed | Sf.Window.Event.sfEvtMouseButtonPressed | Sf.Window.Event.sfEvtMouseMoved | Sf.Window.Event.sfEvtMouseWheelScrolled =>
+                  return ZeichenEingeben;
+               
+               when others =>
+                  null;
+            end case;
+         
+         end loop TasteSchleife;
+      end loop EingabeSchleife;
+      
+   end TastenEingabeErweitert;
    
    
 

@@ -38,9 +38,9 @@ package body Cheat is
                                         AbstandAnfangExtern    => GlobaleTexte.Leer,
                                         AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
-
+         
          case
-           EingabeSFML.TastenEingabe
+           EingabeSFML.TastenEingabe.key.code
          is
             -- Volle Informationen (unabhängig von der Rasse)
             when Sf.Window.Keyboard.sfKeyI =>
