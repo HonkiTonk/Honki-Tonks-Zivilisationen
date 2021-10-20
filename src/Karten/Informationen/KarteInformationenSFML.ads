@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Sf.System.Vector2;
+
 with SonstigeDatentypen; use SonstigeDatentypen;
 with GlobaleVariablen;
 
@@ -10,5 +12,9 @@ package KarteInformationenSFML is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+
+private
+
+   FensterInformationen : Sf.System.Vector2.sfVector2f;
 
 end KarteInformationenSFML;

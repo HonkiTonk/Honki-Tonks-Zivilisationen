@@ -9,7 +9,6 @@ with KarteSFML;
 with KarteKonsole;
 with CursorPositionAltFestlegen;
 with Sichtweiten;
-with KarteInformationenSFML;
 
 package body Karte is
    
@@ -82,7 +81,6 @@ package body Karte is
       is
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             KarteSFML.KarteAnzeigen (RasseExtern => RasseExtern);
-            KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Konsole =>
             null;

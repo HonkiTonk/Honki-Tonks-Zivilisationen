@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Sf; use Sf;
-with Sf.Window.Keyboard;
+with Sf;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
@@ -32,8 +31,6 @@ with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
-with EingabeSFML;
-with BewegungCursorSFML;
 
 package body BefehleImSpiel is
 
@@ -56,8 +53,7 @@ package body BefehleImSpiel is
         GlobaleVariablen.AnzeigeArt
       is
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            return BefehleKonsole (RasseExtern => RasseExtern);
-            -- return BefehleSFML (RasseExtern => RasseExtern);
+            return BefehleSFML (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Konsole =>
             -- Sollte niemals eintreten.
@@ -72,36 +68,93 @@ package body BefehleImSpiel is
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
-         
-      BefehlNeu := EingabeSFML.TastenEingabeErweitert;
-         
+      
+      Befehl := Eingabe.BefehlEingabe;
+
       case
-        BefehlNeu.key.code
+        Befehl
       is
-         when Sf.Window.Keyboard.sfKeyUnknown =>
+         when SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
+            BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
+                                                   RichtungExtern => Befehl,
+                                                   RasseExtern    => RasseExtern);
+            
+         when SystemDatentypen.Auswählen =>
+            AuswahlEinheitStadt (RasseExtern => RasseExtern);
+                 
+         when SystemDatentypen.Menü_Zurück =>
+            return Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
+                                    TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
+                                    FrageZeileExtern  => 0,
+                                    ErsteZeileExtern  => 1,
+                                    LetzteZeileExtern => 6);
+
+         when SystemDatentypen.Bauen =>
+            BaueStadt (RasseExtern => RasseExtern);
+           
+         when SystemDatentypen.Forschung =>
+            Technologie (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Tech_Baum =>
+            ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Nächste_Stadt =>
+            NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Einheit_Mit_Bewegungspunkte =>
+            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                             BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
+            
+         when SystemDatentypen.Alle_Einheiten =>
+            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                             BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
+            
+         when SystemDatentypen.Einheiten_Ohne_Bewegungspunkte =>
+            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                             BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
+            
+         when SystemDatentypen.Tastenbelegung_Befehle_Enum'Range =>
+            EinheitBefehle (RasseExtern  => RasseExtern,
+                            BefehlExtern => Befehl);
+            
+         when SystemDatentypen.Infos =>
+            -- Hier mal was reinbauen.
             null;
-               
-         when Sf.Window.Keyboard.sfKeyR =>
-            null;
-               
-         when others =>
+
+         when SystemDatentypen.Diplomatie =>
+            Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
+
+         when SystemDatentypen.GeheZu =>
+            BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
+
+         when SystemDatentypen.Stadt_Umbenennen =>
+            StadtUmbenennen (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Stadt_Abreißen =>
+            StadtAbreißen (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Stadt_Suchen =>
+            StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
+            
+         when SystemDatentypen.Nächste_Stadt_Mit_Meldung =>
+            NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Nächste_Einheit_Mit_Meldung =>
+            NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Heimatstadt_Ändern =>
+            EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
+            
+         when SystemDatentypen.Runde_Beenden =>
+            return SystemKonstanten.RundeBeendenKonstante;
+            
+         when SystemDatentypen.Cheatmenü =>
+            Cheat.Menü (RasseExtern => RasseExtern);
+         
+         when SystemDatentypen.Leer =>
             null;
       end case;
-         
-      if
-        BefehlNeu.mouseMove.x /= 0
-        or
-          BefehlNeu.mouseMove.y /= 0
-      then
-         BewegungCursorSFML.BewegungCursorRichtung (KarteExtern     => True,
-                                                    YÄnderungExtern => BefehlNeu.mouseMove.y,
-                                                    XÄnderungExtern => BefehlNeu.mouseMove.x,
-                                                    RasseExtern     => RasseExtern);
-            
-      else
-         null;
-      end if;
-      
+
       return SystemKonstanten.StartNormalKonstante;
       
    end BefehleSFML;

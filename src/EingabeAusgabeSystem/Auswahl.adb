@@ -43,7 +43,7 @@ package body Auswahl is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Hoch =>
+            when SystemDatentypen.Oben =>
                if
                  AktuelleAuswahl = GlobaleTexte.SprachenEinlesenArray'First
                then
@@ -53,7 +53,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Runter =>
+            when SystemDatentypen.Unten =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -107,7 +107,7 @@ package body Auswahl is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Hoch =>
+            when SystemDatentypen.Oben =>
                if
                  AktuelleAuswahl = Anfang
                then
@@ -117,7 +117,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Runter =>
+            when SystemDatentypen.Unten =>
                if
                  AktuelleAuswahl = Ende
                then

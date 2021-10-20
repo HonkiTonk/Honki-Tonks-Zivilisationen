@@ -202,7 +202,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Hoch =>
+            when SystemDatentypen.Oben =>
                if
                  Anzeige.AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -212,7 +212,7 @@ package body InDerStadtBauen is
                   Anzeige.AktuelleAuswahl := Anzeige.AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Runter =>
+            when SystemDatentypen.Unten =>
                if
                  Anzeige.AktuelleAuswahl = Ende
                then

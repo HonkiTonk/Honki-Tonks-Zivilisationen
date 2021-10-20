@@ -63,31 +63,35 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (22.10.2021):
+   -- Version 0.00.91 => 0.00.9 (22.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (21.10.2021):
+   -- Version 0.00.9090 => 0.00.91 (21.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9070 => 0.00.9 (20.10.2021):
+   -- Version 0.00.9070 => 0.00.9090 (20.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einfaches Scrollen wenn der Zeiger am Bildrand eingebaut.
+   -- Eingabe über die SFML überarbeitet.
+   -- Angefangen die Kartenanzeige durch die SFML zu überarbeiten.
+   -- Das Scrollen mit der Maus am Bildrand und die Eingabe der Befehle verbessert.
+   -- Fehler in der Erkennung von Tastatur- und Mauseingaben korrigiert.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
    
    -- Version 0.00.9050 => 0.00.9070 (19.10.2021):
    
    -- Textanzeige über die SFML bearbeitet.
-   -- Eingabe durch SFML überarbeitet.
+   -- Eingabe durch die SFML überarbeitet.
    -- Angefangen sie SFML weitergreifend einzubauen.
    -- Kleinigkeiten korrigiert/überarbeitet.
    

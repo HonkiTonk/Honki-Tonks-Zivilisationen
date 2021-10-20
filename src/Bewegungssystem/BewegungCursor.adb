@@ -19,13 +19,13 @@ package body BewegungCursor is
       case
         RichtungExtern
       is
-         when SystemDatentypen.Hoch =>
+         when SystemDatentypen.Oben =>
             Änderung := (0, -1, 0);
             
          when SystemDatentypen.Links =>
             Änderung := (0, 0, -1);
             
-         when SystemDatentypen.Runter =>
+         when SystemDatentypen.Unten =>
             Änderung := (0, 1, 0);
             
          when SystemDatentypen.Rechts  =>

@@ -77,7 +77,8 @@ package body OptionenSteuerung is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       
-      NeueTaste := EingabeSFML.TastenEingabe.key.code;
+      EingabeSFML.TastenEingabe;
+      NeueTaste := EingabeSFML.TastaturTaste;
                
       BelegungFeldSchleife:
       for BelegungFeldSchleifenwert in Eingabe.TastenbelegungArray'Range (1) loop

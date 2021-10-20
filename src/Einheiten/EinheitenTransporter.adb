@@ -78,7 +78,7 @@ package body EinheitenTransporter is
          case
            Eingabe.Tastenwert
          is               
-            when SystemDatentypen.Hoch =>
+            when SystemDatentypen.Oben =>
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -87,7 +87,7 @@ package body EinheitenTransporter is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Runter =>
+            when SystemDatentypen.Unten =>
                if
                  AktuelleAuswahl = Ende
                then

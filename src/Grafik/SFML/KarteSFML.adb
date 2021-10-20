@@ -15,6 +15,7 @@ with Sichtweiten;
 with GrafikEinstellungen;
 with EinheitSuchen;
 with StadtSuchen;
+with KarteInformationenSFML;
 
 package body KarteSFML is
    
@@ -22,6 +23,7 @@ package body KarteSFML is
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      FensterKarte := (Float (GrafikEinstellungen.FensterBreite), Float (GrafikEinstellungen.FensterHöhe) * 0.80);
       GrafikAllgemein.FensterLeeren;
       
       YAchseSchleife:
@@ -35,6 +37,8 @@ package body KarteSFML is
                         
          end loop XAchseSchleife;
       end loop YAchseSchleife;
+      
+      KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseExtern);
       
       GrafikAllgemein.FensterAnzeigen;
       
@@ -58,8 +62,8 @@ package body KarteSFML is
             return;
                   
          when others =>
-            Abmessung.x := Float (GrafikEinstellungen.FensterBreite) / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse + 1);
-            Abmessung.y := Float (GrafikEinstellungen.FensterHöhe) / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse + 1);
+            Abmessung.x := FensterKarte.x / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse + 1);
+            Abmessung.y := FensterKarte.y / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse + 1);
       end case;
       
       YMultiplikator := 0.00;

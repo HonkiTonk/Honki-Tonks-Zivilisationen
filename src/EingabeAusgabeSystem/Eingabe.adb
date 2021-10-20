@@ -5,7 +5,7 @@ with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 with Ada.Integer_Wide_Wide_Text_IO;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
-with Sf.Window.Mouse; use Sf.Window.Mouse;
+with Sf.Window.Mouse;
 with Sf;
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
@@ -158,7 +158,8 @@ package body Eingabe is
                         ZeileExtern         => ZeileExtern,
                         ZahlenMinimumExtern => ZahlenMinimumExtern);
             
-         Zahlen := EingabeSFML.TastenEingabe.key.code;
+         EingabeSFML.TastenEingabe;
+         Zahlen := EingabeSFML.TastaturTaste;
          
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
@@ -457,7 +458,7 @@ package body Eingabe is
       New_Line;
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                             TextZeileExtern => 47);
-      Taste := EingabeSFML.TastenEingabe;
+      EingabeSFML.TastenEingabe;
       
    end WartenEingabe;
    
@@ -481,7 +482,22 @@ package body Eingabe is
         GlobaleVariablen.AnzeigeArt
       is
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            Taste := EingabeSFML.TastenEingabe;
+            EingabeSFML.TastenEingabe;
+                      
+            case
+              EingabeSFML.MausTaste
+            is
+               when Sf.Window.Mouse.sfMouseLeft =>
+                  return SystemDatentypen.Auswählen;
+            
+               when Sf.Window.Mouse.sfMouseRight =>
+                  return SystemDatentypen.Menü_Zurück;
+            
+               when others =>
+                  null;
+            end case;
+            
+            Taste := EingabeSFML.TastaturTaste;
       
             BelegungFeldSchleife:
             for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
@@ -489,19 +505,9 @@ package body Eingabe is
                for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
             
                   if
-                    Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste.key.code
+                    Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
                   then
                      return BelegungPositionSchleifenwert;
-                     
-                  elsif
-                    Taste.mouseButton.button = Sf.Window.Mouse.sfMouseLeft
-                  then
-                     return SystemDatentypen.Auswählen;
-                     
-                  elsif
-                    Taste.mouseButton.button = Sf.Window.Mouse.sfMouseRight
-                  then
-                     return SystemDatentypen.Menü_Zurück;
                
                   else
                      null;
@@ -517,6 +523,60 @@ package body Eingabe is
       return SystemDatentypen.Leer;
       
    end Tastenwert;
+   
+   
+   
+   function BefehlEingabe
+      return SystemDatentypen.Tastenbelegung_Enum
+   is begin
+      
+      EingabeSFML.TastenEingabeErweitert;
+      
+      case
+        EingabeSFML.MausAmRand
+      is
+         when SystemDatentypen.Leer =>
+            null;
+            
+         when others =>
+            return EingabeSFML.MausAmRand;
+      end case;
+      
+      case
+        EingabeSFML.MausTaste
+      is
+         when Sf.Window.Mouse.sfMouseLeft =>
+            return SystemDatentypen.Auswählen;
+            
+         when Sf.Window.Mouse.sfMouseRight =>
+            return SystemDatentypen.Menü_Zurück;
+            
+         when others =>
+            null;
+      end case;
+      
+      Taste := EingabeSFML.TastaturTaste;
+      
+      BelegungFeldSchleife:
+      for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
+         BelegungPositionSchleife:
+         for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
+            
+            if
+              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
+            then
+               return BelegungPositionSchleifenwert;
+                     
+            else
+               null;
+            end if;
+            
+         end loop BelegungPositionSchleife;
+      end loop BelegungFeldSchleife;
+      
+      return SystemDatentypen.Leer;
+      
+   end BefehlEingabe;
    
    
    

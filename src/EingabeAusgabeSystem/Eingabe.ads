@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Window.Keyboard;
-with Sf.Window.Event;
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -38,6 +37,9 @@ package Eingabe is
    function Tastenwert
      return SystemDatentypen.Tastenbelegung_Enum;
 
+   function BefehlEingabe
+     return SystemDatentypen.Tastenbelegung_Enum;
+
 private
 
    VorherNurNullstellen : Boolean;
@@ -45,7 +47,7 @@ private
 
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
 
-   Taste : Sf.Window.Event.sfEvent;
+   Taste : Sf.Window.Keyboard.sfKeyCode;
 
    IstZahl : KartenDatentypen.LoopRangeMinusDreiZuDrei;
 
@@ -81,9 +83,9 @@ private
    TastenbelegungStandard : constant TastenbelegungArray := (
                                                              1 =>
                                                                (
-                                                                SystemDatentypen.Hoch                           => Sf.Window.Keyboard.sfKeyW,
+                                                                SystemDatentypen.Oben                           => Sf.Window.Keyboard.sfKeyW,
                                                                 SystemDatentypen.Links                          => Sf.Window.Keyboard.sfKeyA,
-                                                                SystemDatentypen.Runter                         => Sf.Window.Keyboard.sfKeyS,
+                                                                SystemDatentypen.Unten                          => Sf.Window.Keyboard.sfKeyS,
                                                                 SystemDatentypen.Rechts                         => Sf.Window.Keyboard.sfKeyD,
                                                                 SystemDatentypen.Links_Oben                     => Sf.Window.Keyboard.sfKeyUnknown,
                                                                 SystemDatentypen.Rechts_Oben                    => Sf.Window.Keyboard.sfKeyUnknown,
@@ -134,9 +136,9 @@ private
 
                                                              2 =>
                                                                (
-                                                                SystemDatentypen.Hoch                           => Sf.Window.Keyboard.sfKeyNum8,
+                                                                SystemDatentypen.Oben                           => Sf.Window.Keyboard.sfKeyNum8,
                                                                 SystemDatentypen.Links                          => Sf.Window.Keyboard.sfKeyNum4,
-                                                                SystemDatentypen.Runter                         => Sf.Window.Keyboard.sfKeyNum2,
+                                                                SystemDatentypen.Unten                          => Sf.Window.Keyboard.sfKeyNum2,
                                                                 SystemDatentypen.Rechts                         => Sf.Window.Keyboard.sfKeyNum6,
                                                                 SystemDatentypen.Links_Oben                     => Sf.Window.Keyboard.sfKeyNum7,
                                                                 SystemDatentypen.Rechts_Oben                    => Sf.Window.Keyboard.sfKeyNum9,

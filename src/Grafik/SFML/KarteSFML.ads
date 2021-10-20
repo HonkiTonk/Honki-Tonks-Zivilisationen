@@ -34,6 +34,7 @@ private
    
    Abmessung : Sf.System.Vector2.sfVector2f;
    Position : Sf.System.Vector2.sfVector2f;
+   FensterKarte : Sf.System.Vector2.sfVector2f;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
