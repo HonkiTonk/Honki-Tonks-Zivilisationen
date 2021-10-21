@@ -8,8 +8,9 @@ with SchreibenEinstellungen;
 with EinlesenSprache;
 with EinlesenText;
 
-with Auswahl;
+with AuswahlSprache;
 with Eingabe;
+with Auswahl;
 
 package body OptionenSonstiges is
 
@@ -102,7 +103,7 @@ package body OptionenSonstiges is
         EinlesenSprache.EinlesenSprache
       is
          when True =>
-            GlobaleVariablen.NutzerEinstellungen.Sprache := Auswahl.AuswahlSprache;
+            GlobaleVariablen.NutzerEinstellungen.Sprache := AuswahlSprache.AuswahlSprache;
             -- Kann hier noch Müll einlesen und Absturz erzeugen.
             Erfolgreich := EinlesenText.EinlesenTextNeu;
             

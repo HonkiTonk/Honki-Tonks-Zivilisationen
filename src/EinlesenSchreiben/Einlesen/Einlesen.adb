@@ -8,13 +8,13 @@ with SystemKonstanten;
 with SystemDatentypen;
 
 with Ladezeiten;
-with Auswahl;
 with EinlesenSprache;
 with EinlesenText;
 with EinlesenTastatur;
 with EinlesenDatenbanken;
 with EinlesenEinstellungen;
 with SchreibenEinstellungen;
+with AuswahlSprache;
 
 package body Einlesen is
 
@@ -48,13 +48,13 @@ package body Einlesen is
    is begin
       
       if
-        GlobaleVariablen.NutzerEinstellungen.Sprache = SystemKonstanten.LeerText
+        GlobaleVariablen.NutzerEinstellungen.Sprache = SystemKonstanten.LeerUnboundedString
       then
          case
            EinlesenSprache.EinlesenSprache
          is
             when True =>
-               GlobaleVariablen.NutzerEinstellungen.Sprache := Auswahl.AuswahlSprache;
+               GlobaleVariablen.NutzerEinstellungen.Sprache := AuswahlSprache.AuswahlSprache;
                SchreibenEinstellungen.SchreibenEinstellungen;
             
             when False =>

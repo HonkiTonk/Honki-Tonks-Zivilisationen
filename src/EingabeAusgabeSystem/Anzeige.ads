@@ -59,14 +59,6 @@ package Anzeige is
           and
             TextDateiExtern /= GlobaleTexte.Leer);
 
-   procedure AnzeigeSprache
-     (AktuelleAuswahlExtern : in Positive;
-      ErsteZeileExtern : in Positive;
-      LetzteZeileExtern : in Positive)
-     with
-       Pre =>
-         (ErsteZeileExtern <= LetzteZeileExtern);
-
    procedure AnzeigeLangerTextNeu
      (ÜberschriftDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;

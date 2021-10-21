@@ -10,7 +10,6 @@ package body EingabeSFML is
    procedure TastenEingabe
    is begin
       
-      -- Werden diese Leerwerte gebraucht?
       TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
       MausTaste := Sf.Window.Mouse.sfMouseXButton2;
       
@@ -46,9 +45,9 @@ package body EingabeSFML is
    procedure TastenEingabeErweitert
    is begin
       
-      -- Werden diese Leerwerte gebraucht?
       MausAmRand := SystemDatentypen.Leer;
       TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
+      MausRad := 0.00;
       
       EingabeSchleife:
       loop
@@ -77,12 +76,13 @@ package body EingabeSFML is
                   TastaturTaste := ZeichenEingeben.key.code;
                   return;
                   
+               when Sf.Window.Event.sfEvtMouseWheelScrolled =>
+                  MausRad := ZeichenEingeben.mouseWheelScroll.eventDelta;
+                  return;
+                  
                when Sf.Window.Event.sfEvtMouseButtonPressed =>
                   MausTaste := ZeichenEingeben.mouseButton.button;
                   return;
-                  
-               when Sf.Window.Event.sfEvtMouseWheelScrolled =>
-                  null;
                   
                when others =>
                   null;

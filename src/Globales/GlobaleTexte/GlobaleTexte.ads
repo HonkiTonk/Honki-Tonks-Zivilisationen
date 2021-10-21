@@ -18,6 +18,6 @@ package GlobaleTexte is
    SprachenEinlesen : SprachenEinlesenArray;
 
    type TexteEinlesenNeuArray is array (1 .. SystemDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
-   TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText))));
+   TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => SystemKonstanten.LeerUnboundedText));
 
 end GlobaleTexte;

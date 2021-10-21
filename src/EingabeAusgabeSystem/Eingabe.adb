@@ -5,8 +5,8 @@ with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 with Ada.Integer_Wide_Wide_Text_IO;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
-with Sf.Window.Mouse;
 with Sf;
+with Sf.Window.Mouse;
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
@@ -541,6 +541,21 @@ package body Eingabe is
          when others =>
             return EingabeSFML.MausAmRand;
       end case;
+      
+      -- Das Mausrad muss? immer vor der Maustaste geprüft werden.
+      if
+        EingabeSFML.MausRad > 0.00
+      then
+         return SystemDatentypen.Ebene_Hoch;
+               
+      elsif
+        EingabeSFML.MausRad < 0.00
+      then
+         return SystemDatentypen.Ebene_Runter;
+               
+      else
+         null;
+      end if;
       
       case
         EingabeSFML.MausTaste

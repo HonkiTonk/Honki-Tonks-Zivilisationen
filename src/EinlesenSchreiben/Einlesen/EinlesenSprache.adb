@@ -10,8 +10,8 @@ package body EinlesenSprache is
    function EinlesenSprache
      return Boolean
    is begin
-
-      GlobaleTexte.SprachenEinlesen := (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText)));
+      
+      GlobaleTexte.SprachenEinlesen := (others => SystemKonstanten.LeerUnboundedString);
       
       Start_Search (Search    => Suche,
                     Directory => "Sprachen",
@@ -35,13 +35,12 @@ package body EinlesenSprache is
             for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
             
                if
-                 GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= SystemKonstanten.LeerText
+                 GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= SystemKonstanten.LeerUnboundedString
                then
                   null;
             
                else
-                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert)
-                    := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
                   exit VerzeichnisInnenSchleife;
                end if;
          
@@ -51,7 +50,7 @@ package body EinlesenSprache is
       end loop VerzeichnisAußenSchleife;
       
       if
-        GlobaleTexte.SprachenEinlesen (1) = SystemKonstanten.LeerText
+        GlobaleTexte.SprachenEinlesen (1) = SystemKonstanten.LeerUnboundedString
       then
          return False;
          
@@ -66,14 +65,14 @@ package body EinlesenSprache is
    
    procedure SprachenSortieren
    is begin
-      
+            
       SortierSchleife:
       for PositionSchleifenwert in GlobaleTexte.SprachenEinlesenArray'First + 1 .. GlobaleTexte.SprachenEinlesenArray'Last loop
          
          if
-           GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = SystemKonstanten.LeerText
+           GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = SystemKonstanten.LeerUnboundedString
          then
-            return;
+            exit SortierSchleife;
             
          else
             SchleifenAbzug := 0;
@@ -106,6 +105,7 @@ package body EinlesenSprache is
                      SchleifenAbzug := SchleifenAbzug - 1;
                      
                   end loop VerschiebungSchleife;
+                  
                   exit PrüfSchleife;
                end if;
                

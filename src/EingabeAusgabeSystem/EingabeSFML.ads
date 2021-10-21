@@ -12,6 +12,7 @@ package EingabeSFML is
    MausAmRand : SystemDatentypen.Tastenbelegung_Enum;
    TastaturTaste : Sf.Window.Keyboard.sfKeyCode;
    MausTaste : Sf.Window.Mouse.sfMouseButton;
+   MausRad : Float;
 
    procedure TastenEingabe;
    procedure TastenEingabeErweitert;

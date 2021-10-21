@@ -1,13 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with GlobaleTexte; use GlobaleTexte;
 
 package Auswahl is
-
-   function AuswahlSprache
-     return Unbounded_Wide_Wide_String;
 
    function Auswahl
      (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen;
 with SystemKonstanten;
@@ -10,75 +11,7 @@ with Anzeige;
 with Eingabe;
 
 package body Auswahl is
-
-   function AuswahlSprache
-     return Unbounded_Wide_Wide_String
-   is begin
-      
-      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-      
-      EndeBestimmenSchleife:
-      for LetztesEndeSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
-         
-         if
-           To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (LetztesEndeSchleifenwert)) = SystemKonstanten.LeerText
-         then
-            exit EndeBestimmenSchleife;
-            
-         else
-            Ende := LetztesEndeSchleifenwert;
-         end if;
-         
-      end loop EndeBestimmenSchleife;
-
-      AktuelleAuswahl := 1;
-      
-      AuswahlSchleife:
-      loop
-
-         Anzeige.AnzeigeSprache (AktuelleAuswahlExtern => AktuelleAuswahl,
-                                 ErsteZeileExtern      => GlobaleTexte.SprachenEinlesenArray'First,
-                                 LetzteZeileExtern     => Ende);
-         
-         case
-           Eingabe.Tastenwert
-         is
-            when SystemDatentypen.Oben =>
-               if
-                 AktuelleAuswahl = GlobaleTexte.SprachenEinlesenArray'First
-               then
-                  AktuelleAuswahl := Ende;
-                  
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
-
-            when SystemDatentypen.Unten =>
-               if
-                 AktuelleAuswahl = Ende
-               then
-                  AktuelleAuswahl := GlobaleTexte.SprachenEinlesenArray'First;
-                  
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
-                              
-            when SystemDatentypen.Auswählen =>
-               Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-               return GlobaleTexte.SprachenEinlesen (AktuelleAuswahl);
-                     
-            when others =>
-               null;
-         end case;
-
-         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
-         
-      end loop AuswahlSchleife;
-      
-   end AuswahlSprache;
-
-
-
+   
    function Auswahl
      (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;

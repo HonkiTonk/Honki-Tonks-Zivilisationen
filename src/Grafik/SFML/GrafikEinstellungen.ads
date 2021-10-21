@@ -18,7 +18,7 @@ package GrafikEinstellungen is
    EinstellungenFenster : Sf.Window.VideoMode.sfVideoMode := (FensterBreite, FensterHöhe, PixelBit);
    Modus : Sf.Window.VideoMode.sfVideoMode := EinstellungenFenster;
    MaximaleBilderrate : Sf.sfUint32 := 30;
-   Zeiger : Sf.Window.sfCursor_Ptr := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorHand);
+   MausZeiger : Sf.Window.sfCursor_Ptr := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorHand);
    
    Schriftart : Sf.Graphics.sfFont_Ptr;
    Schriftgröße : Sf.sfUint32;

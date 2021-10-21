@@ -60,6 +60,7 @@ package SystemKonstanten is
    LeerString : constant Wide_Wide_String := "";
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
    LeerText : constant Wide_Wide_String := "|";
+   LeerUnboundedText : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerText);
    LeerZeichen : constant Wide_Wide_Character := ' ';
 
 end SystemKonstanten;

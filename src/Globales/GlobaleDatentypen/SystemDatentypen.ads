@@ -12,6 +12,7 @@ package SystemDatentypen is
    subtype Schwierigkeitsgrad_Verwendet_Enum is Schwierigkeitsgrad_Enum range Einfach .. Schwierigkeitsgrad_Enum'Last;
    
    type Anzeige_Art_Enum is (Konsole, SFML, Beides);
+   subtype Anzeige_Art_Grafik_Enum is Anzeige_Art_Enum range SFML .. Beides;
    
    type NotAus is range 1 .. 1_000;
    subtype NotAusKlein is NotAus range 1 .. 5;

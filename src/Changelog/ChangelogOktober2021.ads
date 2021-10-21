@@ -42,38 +42,41 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (25.10.2021):
+   -- Version 0.00.91 => 0.00.9 (25.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (24.10.2021):
+   -- Version 0.00.91 => 0.00.91 (24.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (23.10.2021):
+   -- Version 0.00.91 => 0.00.91 (23.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.91 => 0.00.9 (22.10.2021):
+   -- Version 0.00.9110 => 0.00.91 (22.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9090 => 0.00.91 (21.10.2021):
+   -- Version 0.00.9090 => 0.00.9110 (21.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mausrad eingebaut.
+   -- Anzeige und Auswahl der Sprache erweitert/verbessert.
+   -- Die Anzeige der Sprachauswahl wird jetzt auch durch die SFML angezeigt.
+   -- Angefangen eine Funktion einzubauen mit der man Text auswählen kann, indem man mit der Maus auf die Textzeile geht.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
    

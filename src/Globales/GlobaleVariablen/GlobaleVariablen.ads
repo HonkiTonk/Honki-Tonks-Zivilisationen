@@ -21,7 +21,7 @@ package GlobaleVariablen is
    type NutzerEinstellungenArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
    NutzerEinstellungen : NutzerRecords.NutzerEinstellungenRecord := (
                                                                      -- Sprache
-                                                                     To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText),
+                                                                     SystemKonstanten.LeerUnboundedString,
                                                                      -- Anzahl Autosaves
                                                                      10,
                                                                      -- Rundenanzahl bis Autosave

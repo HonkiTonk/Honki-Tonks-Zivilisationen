@@ -33,7 +33,7 @@ package body GrafikStart is
 
       else
          Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungen.Fenster,
-                                                  cursor       => GrafikEinstellungen.Zeiger);
+                                                  cursor       => GrafikEinstellungen.MausZeiger);
          -- Woanders hinschieben? Anders gestalten? Mit Werten auf Basis der Fensterabmessungen.
          Sf.Graphics.RenderWindow.Mouse.setPosition (position   => (100, 100),
                                                      relativeTo => GrafikEinstellungen.Fenster);
