@@ -26,6 +26,8 @@ private
    ZeilenAbstand : Float;
    Zeile : Float;
    
+   Befehl : SystemDatentypen.Tastenbelegung_Enum;
+   
    AktuelleTextFarbe : Sf.Graphics.Color.sfColor;
    
    TextZugriff : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
@@ -46,6 +48,7 @@ private
       LetzteZeileExtern : in Positive);
    
    procedure SprachenListeFestlegen;
+   procedure MausAuswahl;
    
    
    

@@ -483,7 +483,7 @@ package body Eingabe is
       is
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             EingabeSFML.TastenEingabe;
-                      
+            
             case
               EingabeSFML.MausTaste
             is
