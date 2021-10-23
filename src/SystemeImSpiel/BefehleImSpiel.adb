@@ -151,7 +151,7 @@ package body BefehleImSpiel is
          when SystemDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
          
-         when SystemDatentypen.Leer =>
+         when SystemDatentypen.Leer | SystemDatentypen.Mausbewegung =>
             null;
       end case;
 
@@ -248,7 +248,7 @@ package body BefehleImSpiel is
          when SystemDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
          
-         when SystemDatentypen.Leer =>
+         when SystemDatentypen.Leer | SystemDatentypen.Mausbewegung =>
             null;
       end case;
 

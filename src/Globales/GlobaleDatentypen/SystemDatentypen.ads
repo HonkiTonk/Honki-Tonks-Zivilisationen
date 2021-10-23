@@ -29,7 +29,7 @@ package SystemDatentypen is
 
 
    -- Für Tastenbelegung
-   type Tastenbelegung_Enum is (Leer,
+   type Tastenbelegung_Enum is (Leer, Mausbewegung,
                                 -- Bewegung
                                 Oben, Links, Unten, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
                                 Auswählen, Menü_Zurück,

@@ -9,6 +9,8 @@ with SystemDatentypen;
 
 package EingabeSFML is
 
+   MausBewegt : Boolean;
+
    MausAmRand : SystemDatentypen.Tastenbelegung_Enum;
 
    MausRad : Float;

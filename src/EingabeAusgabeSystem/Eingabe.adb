@@ -483,6 +483,17 @@ package body Eingabe is
       is
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             EingabeSFML.TastenEingabe;
+      
+            case
+              EingabeSFML.MausBewegt
+            is
+               when True =>
+                  Put_Line ("jub2222");
+                  return SystemDatentypen.Mausbewegung;
+            
+               when others =>
+                  null;
+            end case;
             
             case
               EingabeSFML.MausTaste

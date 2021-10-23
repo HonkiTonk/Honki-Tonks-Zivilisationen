@@ -3,8 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with Sf.Window.Keyboard; use Sf.Window.Keyboard;
-with Sf.Window.Mouse; use Sf.Window.Mouse;
 with Sf.Graphics.RenderWindow;
 
 with GlobaleVariablen;
@@ -14,7 +12,6 @@ with SystemKonstanten;
 with Eingabe;
 with GrafikAllgemein;
 with GrafikEinstellungen;
-with EingabeSFML;
 
 package body AuswahlSprache is
 
@@ -229,52 +226,9 @@ package body AuswahlSprache is
    function AuswahlMausTastatur
      return Unbounded_Wide_Wide_String
    is begin
-      
-      EingabeSFML.TastenEingabe;
-      Befehl := SystemDatentypen.Leer;
-      
-      BelegungFeldSchleife:
-      for BelegungFeldSchleifenwert in Eingabe.TastenbelegungArray'Range (1) loop
-         BelegungPositionSchleife:
-         for BelegungPositionSchleifenwert in Eingabe.TastenbelegungArray'Range (2) loop
             
-            if
-              Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = EingabeSFML.TastaturTaste
-            then
-               Befehl := BelegungPositionSchleifenwert;
-               exit BelegungFeldSchleife;
-                     
-            else
-               null;
-            end if;
-            
-         end loop BelegungPositionSchleife;
-      end loop BelegungFeldSchleife;
-      
       case
-        Befehl
-      is
-         when SystemDatentypen.Leer =>
-            if
-              EingabeSFML.MausTaste = Sf.Window.Mouse.sfMouseLeft
-            then
-               Befehl := SystemDatentypen.Auswählen;
-            
-            elsif
-              EingabeSFML.MausTaste = Sf.Window.Mouse.sfMouseRight
-            then
-               Befehl := SystemDatentypen.Menü_Zurück;
-            
-            else
-               null;
-            end if;
-            
-         when others =>
-            null;
-      end case;
-      
-      case
-        Befehl
+        Eingabe.Tastenwert
       is
          when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
             if
@@ -305,13 +259,14 @@ package body AuswahlSprache is
             else
                return AktuelleSprachen (AktuelleAuswahl);
             end if;
+            
+         when SystemDatentypen.Mausbewegung =>
+            MausAuswahl;
                      
          when others =>
             null;
       end case;
-      
-      MausAuswahl;
-      
+            
       return SystemKonstanten.LeerUnboundedString;
       
    end AuswahlMausTastatur;
@@ -335,6 +290,7 @@ package body AuswahlSprache is
              .. Sf.sfInt32 (StartPositionYAchse + ZeilenAbstand * Zeile + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height / 2.00)
          then
             AktuelleAuswahl := ZeileSchleifenwert;
+            return;
          
          else
             Zeile := Zeile + 1.00;

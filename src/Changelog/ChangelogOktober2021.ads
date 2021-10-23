@@ -49,14 +49,14 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.91 => 0.00.91 (24.10.2021):
+   -- Version 0.00.9125 => 0.00.91 (24.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9120 => 0.00.91 (23.10.2021):
+   -- Version 0.00.9120 => 0.00.9125 (23.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -65,7 +65,7 @@ package ChangelogOktober2021 is
    
    -- Version 0.00.9110 => 0.00.9120 (22.10.2021):
    
-   -- 
+   -- Angefangen die Mausbewegung als Eingabe/Auswahl einzubauen.
    -- Kleinigkeiten korrigiert.
    
    
