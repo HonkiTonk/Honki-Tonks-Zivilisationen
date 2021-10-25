@@ -19,7 +19,6 @@ package body AuswahlSprache is
      return Unbounded_Wide_Wide_String
    is begin
       
-      Ende := 1;
       ZehnerReihe := 0;
       ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.Schriftgröße);
       
@@ -45,17 +44,12 @@ package body AuswahlSprache is
       AktuelleAuswahl := AktuelleSprachenArray'First;
       
       if
-        ZehnerReihe = 0
+        ZehnerReihe * 10 < GlobaleTexte.SprachenEinlesenArray'Last
       then
-         ZehnerReihe := 1;
-         
-      elsif
-        ZehnerReihe * 10 > GlobaleTexte.SprachenEinlesenArray'Last
-      then
-         ZehnerReihe := 1;
+         ZehnerReihe := ZehnerReihe + 1;
          
       else
-         ZehnerReihe := ZehnerReihe + 1;
+         ZehnerReihe := 1;
       end if;
          
       if
@@ -286,8 +280,8 @@ package body AuswahlSprache is
                                             str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
          
          if
-           MausZeigerPosition.y in Sf.sfInt32 (StartPositionYAchse + ZeilenAbstand * Zeile - Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height / 2.00)
-             .. Sf.sfInt32 (StartPositionYAchse + ZeilenAbstand * Zeile + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height / 2.00)
+           MausZeigerPosition.y in Sf.sfInt32 (StartPositionYAchse + ZeilenAbstand * Zeile)
+             .. Sf.sfInt32 (StartPositionYAchse + ZeilenAbstand * Zeile + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height)
          then
             AktuelleAuswahl := ZeileSchleifenwert;
             return;

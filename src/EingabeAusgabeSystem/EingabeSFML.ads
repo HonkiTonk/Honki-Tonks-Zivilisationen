@@ -24,6 +24,8 @@ package EingabeSFML is
 
 private
 
+   Mausbewegungen : Natural;
+   
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
    ZeichenEingeben : Sf.Window.Event.sfEvent;

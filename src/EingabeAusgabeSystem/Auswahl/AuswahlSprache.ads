@@ -34,7 +34,7 @@ private
    
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
    
-   MehrSprachen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "++++++++++");
+   MehrSprachen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "+");
    
    type AktuelleSprachenArray is array (1 .. 11) of Unbounded_Wide_Wide_String;
    AktuelleSprachen : AktuelleSprachenArray;

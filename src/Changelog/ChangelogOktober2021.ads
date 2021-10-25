@@ -28,37 +28,38 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (27.10.2021):
+   -- Version 0.00.91 => 0.00.9 (27.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (26.10.2021):
+   -- Version 0.00.9140 => 0.00.91 (26.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.91 => 0.00.9 (25.10.2021):
+   -- Version 0.00.9125 => 0.00.9140 (25.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Auswahl durch Mausbewegung verbessert.
+   -- Angefangen die Texteingabe durch die SFML einzubauen.
+   -- Weiter an der Aufteilung zwischen SFML und Konsole gearbeitet.
+   -- Scheiße gebaut und den Großteil der heutigen Arbeit überschrieben.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
    
-   -- Version 0.00.9125 => 0.00.91 (24.10.2021):
+   -- Version 0.00.9125 => 0.00.9125 (24.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    
    -- Version 0.00.9120 => 0.00.9125 (23.10.2021):
    
-   -- 
    -- Kleinigkeiten korrigiert.
    
    

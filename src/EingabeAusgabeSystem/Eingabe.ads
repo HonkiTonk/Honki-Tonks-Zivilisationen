@@ -4,8 +4,8 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Window.Keyboard;
 
-with SystemDatentypen; use SystemDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
+with SystemDatentypen;
 with GlobaleTexte;
 
 package Eingabe is

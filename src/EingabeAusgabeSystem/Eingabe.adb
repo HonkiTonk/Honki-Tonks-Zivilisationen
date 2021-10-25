@@ -10,6 +10,7 @@ with Sf.Window.Mouse;
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
+with KartenDatentypen; use KartenDatentypen;
 with SystemKonstanten;
 with GlobaleVariablen;
 
@@ -17,6 +18,7 @@ with Anzeige;
 with EingabeSFML;
 with GrafikAllgemein;
 with GrafikEinstellungen;
+with EingabeKonsole;
 
 package body Eingabe is
 
@@ -31,20 +33,13 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole | SystemDatentypen.Beides =>
-            null;
-            
-         when SystemDatentypen.SFML =>
-            null;
-      end case;
-      
-      case
-        GlobaleVariablen.AnzeigeArt
-      is
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            null;
-            
          when SystemDatentypen.Konsole =>
+            return EingabeKonsole.GanzeZahl (TextDateiExtern     => TextDateiExtern,
+                                             ZeileExtern         => ZeileExtern,
+                                             ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                             ZahlenMaximumExtern => ZahlenMaximumExtern);
+            
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             null;
       end case;
       
@@ -483,17 +478,6 @@ package body Eingabe is
       is
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             EingabeSFML.TastenEingabe;
-      
-            case
-              EingabeSFML.MausBewegt
-            is
-               when True =>
-                  Put_Line ("jub2222");
-                  return SystemDatentypen.Mausbewegung;
-            
-               when others =>
-                  null;
-            end case;
             
             case
               EingabeSFML.MausTaste
@@ -503,6 +487,16 @@ package body Eingabe is
             
                when Sf.Window.Mouse.sfMouseRight =>
                   return SystemDatentypen.Menü_Zurück;
+            
+               when others =>
+                  null;
+            end case;
+      
+            case
+              EingabeSFML.MausBewegt
+            is
+               when True =>
+                  return SystemDatentypen.Mausbewegung;
             
                when others =>
                   null;

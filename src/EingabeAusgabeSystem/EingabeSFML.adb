@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with Sf; use Sf;
 with Sf.Graphics.RenderWindow;
 
@@ -15,6 +13,7 @@ package body EingabeSFML is
       TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
       MausTaste := Sf.Window.Mouse.sfMouseXButton2;
       MausBewegt := False;
+      Mausbewegungen := 0;
       
       EingabeSchleife:
       loop
@@ -35,9 +34,17 @@ package body EingabeSFML is
                   return;
                   
                when Sf.Window.Event.sfEvtMouseMoved =>
-                  MausBewegt := True;
-                  Put_Line ("jub");
-                  return;
+                  Mausbewegungen := Mausbewegungen + 1;
+                  
+                  if
+                    Mausbewegungen > 15
+                  then
+                     MausBewegt := True;
+                     return;
+                     
+                  else
+                     null;
+                  end if;
                   
                when others =>
                   null;
@@ -162,5 +169,9 @@ package body EingabeSFML is
       end if;
       
    end MausScrollen;
+   
+   
+   
+   -- AAAHHH!!!
 
 end EingabeSFML;
