@@ -26,7 +26,7 @@ package KarteSFML is
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
    
 private
-   
+      
    YMultiplikator : Float;
    XMultiplikator : Float;
    

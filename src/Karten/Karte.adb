@@ -68,22 +68,12 @@ package body Karte is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole | SystemDatentypen.Beides =>
+         when SystemDatentypen.Konsole =>
             KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);
             KarteInformationenKonsole.KarteInformationenKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.SFML =>
-            null;
-      end case;
-      
-      case
-        GlobaleVariablen.AnzeigeArt
-      is
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             KarteSFML.KarteAnzeigen (RasseExtern => RasseExtern);
-            
-         when SystemDatentypen.Konsole =>
-            null;
       end case;
 
    end AnzeigeKarte;

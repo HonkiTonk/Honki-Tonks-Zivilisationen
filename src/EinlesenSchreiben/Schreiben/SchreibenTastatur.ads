@@ -9,5 +9,8 @@ package SchreibenTastatur is
 private
    
    TastenbelegungSpeichern : File_Type;
+   
+   procedure BelegungKonsole;
+   procedure BelegungSFML;
 
 end SchreibenTastatur;

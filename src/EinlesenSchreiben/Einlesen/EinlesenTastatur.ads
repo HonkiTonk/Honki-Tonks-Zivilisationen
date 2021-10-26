@@ -9,5 +9,8 @@ package EinlesenTastatur is
 private
    
    TastenbelegungLaden : File_Type;
+   
+   procedure BelegungKonsole;
+   procedure BelegungSFML;
 
 end EinlesenTastatur;

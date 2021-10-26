@@ -2,7 +2,11 @@ pragma SPARK_Mode (On);
 
 with Ada.Directories; use Ada.Directories;
 
-with Eingabe;
+with GlobaleVariablen;
+with SystemDatentypen;
+
+with EingabeKonsole;
+with EingabeSFML;
 
 package body SchreibenTastatur is
 
@@ -10,24 +14,67 @@ package body SchreibenTastatur is
    is begin
       
       case
-        Exists (Name => "Einstellungen/Tastenbelegung")
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Konsole =>
+            BelegungKonsole;
+            
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+            BelegungSFML;
+      end case;
+      
+   end TastenbelegungSchreiben;
+   
+   
+   
+   procedure BelegungKonsole
+   is begin
+            
+      case
+        Exists (Name => "Einstellungen/TastenbelegungKonsole")
       is
          when True =>
             Open (File => TastenbelegungSpeichern,
                   Mode => Out_File,
-                  Name => "Einstellungen/Tastenbelegung");
+                  Name => "Einstellungen/TastenbelegungKonsole");
             
          when False =>
             Create (File => TastenbelegungSpeichern,
                     Mode => Out_File,
-                    Name => "Einstellungen/Tastenbelegung");
+                    Name => "Einstellungen/TastenbelegungKonsole");
       end case;
       
-      Eingabe.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
-                                         Eingabe.Tastenbelegung);
+      EingabeKonsole.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                                EingabeKonsole.Tastenbelegung);
       
       Close (File => TastenbelegungSpeichern);
       
-   end TastenbelegungSchreiben;
+   end BelegungKonsole;
+   
+   
+   
+   procedure BelegungSFML
+   is begin
+      
+      case
+        Exists (Name => "Einstellungen/TastenbelegungSFML")
+      is
+         when True =>
+            Open (File => TastenbelegungSpeichern,
+                  Mode => Out_File,
+                  Name => "Einstellungen/TastenbelegungSFML");
+            
+         when False =>
+            Create (File => TastenbelegungSpeichern,
+                    Mode => Out_File,
+                    Name => "Einstellungen/TastenbelegungSFML");
+      end case;
+      
+      EingabeSFML.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                             EingabeSFML.Tastenbelegung);
+      
+      Close (File => TastenbelegungSpeichern);
+      
+   end BelegungSFML;
 
 end SchreibenTastatur;

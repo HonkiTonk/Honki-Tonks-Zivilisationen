@@ -1,177 +1,577 @@
 pragma SPARK_Mode (On);
 
-with Sf; use Sf;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Integer_Wide_Wide_Text_IO;
+
+with Sf.Window.Keyboard; use Sf.Window.Keyboard;
+with Sf;
+with Sf.Window.Mouse;
+with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 
+with KartenDatentypen; use KartenDatentypen;
+with SystemKonstanten;
+
+with EingabeSystemeSFML;
+with GrafikAllgemein;
 with GrafikEinstellungen;
+with Anzeige;
 
 package body EingabeSFML is
    
-   procedure TastenEingabe
+   function GanzeZahl
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      ZeileExtern : in Positive;
+      ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
+      return Integer
    is begin
       
-      TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
-      MausTaste := Sf.Window.Mouse.sfMouseXButton2;
-      MausBewegt := False;
-      Mausbewegungen := 0;
+      MaximalerWert := MaximumErmitteln (ZahlenMaximumExtern => ZahlenMaximumExtern);
+      MinimalerWert := MinimumErmitteln (ZahlenMinimumExtern => ZahlenMinimumExtern);
       
-      EingabeSchleife:
+      if
+        ZahlenMinimumExtern >= ZahlenMaximumExtern
+      then
+         return SystemKonstanten.GanzeZahlAbbruchKonstante;
+         
+      else
+         ZahlenString := ("000000000");
+         WelchesVorzeichen := True;
+      end if;
+
+      ZahlenAußenSchleife:
       loop
-         TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
-                                                   event        => ZeichenEingeben)
-           = Sf.sfTrue loop
+                  
+         case
+           ZahlSchleife (TextDateiExtern     => TextDateiExtern,
+                         ZeileExtern         => ZeileExtern,
+                         ZahlenMinimumExtern => MinimalerWert,
+                         ZahlenMaximumExtern => MaximalerWert)
+         is
+            when 2 =>
+               exit ZahlenAußenSchleife;
+               
+            when -1 =>
+               return SystemKonstanten.GanzeZahlAbbruchKonstante;
+                        
+            when others =>
+               null;
+         end case;
+               
+      end loop ZahlenAußenSchleife;
+
+      case
+        WelchesVorzeichen
+      is
+         when True =>
+            return Integer'Wide_Wide_Value (ZahlenString);
+                  
+         when False =>
+            return -Integer'Wide_Wide_Value (ZahlenString);
+      end case;
+      
+   end GanzeZahl;
+   
+   
+   
+   -- Diese beiden Ermittlungsfunktionen mal auslagern um sie hier und in EingabeKonsole (und eventuell auch woanders) verwenden zu können.
+   function MaximumErmitteln
+     (ZahlenMaximumExtern : in Integer)
+      return Integer
+   is begin
+      
+      if
+        ZahlenMaximumExtern > ZahlenMaximum
+      then
+         return ZahlenMaximum;
+         
+      elsif
+        ZahlenMaximumExtern < ZahlenMinimum
+      then
+         return SystemKonstanten.GanzeZahlAbbruchKonstante;
+         
+      else
+         return ZahlenMaximumExtern;
+      end if;
+      
+   end MaximumErmitteln;
+   
+   
+   
+   function MinimumErmitteln
+     (ZahlenMinimumExtern : in Integer)
+      return Integer
+   is begin
+      
+      if
+        ZahlenMinimumExtern < ZahlenMinimum
+      then
+         return ZahlenMinimum;
+           
+      elsif
+        ZahlenMinimumExtern > ZahlenMaximum
+      then
+         return SystemKonstanten.GanzeZahlAbbruchKonstante;
+           
+      else
+         return ZahlenMinimumExtern;
+      end if;
+      
+   end MinimumErmitteln;
+   
+   
+   
+   function ZahlSchleife
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      ZeileExtern : in Positive;
+      ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
+      return KartenDatentypen.LoopRangeMinusZweiZuZwei
+   is begin
+      
+      ZahlenSchleife:
+      loop
+
+         ZahlenAnzeige (TextDateiExtern     => TextDateiExtern,
+                        ZeileExtern         => ZeileExtern,
+                        ZahlenMinimumExtern => ZahlenMinimumExtern);
             
-            case
-              ZeichenEingeben.eventType
-            is
-               when Sf.Window.Event.sfEvtKeyPressed =>
-                  TastaturTaste := ZeichenEingeben.key.code;
-                  return;
+         EingabeSystemeSFML.TastenEingabe;
+         Zahlen := EingabeSystemeSFML.TastaturTaste;
+         
+         Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+         
+         -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
+         case
+           GanzeZahlPrüfung (ZeichenExtern => Zahlen)
+         is
+            when 1 =>
+               ZahlHinzufügen (ZahlenMaximumExtern   => ZahlenMaximumExtern,
+                                EingegebeneZahlExtern => Zahlen);
+
+            when -1 =>
+               return -1;
+
+            when 2 =>
+               if
+                 -Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
+                 and
+                   WelchesVorzeichen = False
+               then
+                  return 2;
                   
-               when Sf.Window.Event.sfEvtMouseButtonPressed =>
-                  MausTaste := ZeichenEingeben.mouseButton.button;
-                  return;
-                  
-               when Sf.Window.Event.sfEvtMouseMoved =>
-                  Mausbewegungen := Mausbewegungen + 1;
-                  
+               elsif
+                 Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
+               then
+                  return 2;
+                     
+               else
                   if
-                    Mausbewegungen > 15
+                    ZahlenMinimumExtern <= -100_000_000
                   then
-                     MausBewegt := True;
-                     return;
+                     ZahlenMinimumPlusmacher := -ZahlenMinimumExtern;
+                     ZahlenString := ZahlenMinimumPlusmacher'Wide_Wide_Image;
+                     WelchesVorzeichen := False;
                      
                   else
-                     null;
+                     MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => -ZahlenMinimumExtern);
                   end if;
+               end if;
+
+            when -2 =>
+               ZahlEntfernen;
                   
-               when others =>
-                  null;
-            end case;
-         
-         end loop TasteSchleife;
-      end loop EingabeSchleife;
+            when others =>
+               null;
+         end case;
+
+      end loop ZahlenSchleife;
       
-   end TastenEingabe;
+   end ZahlSchleife;
    
    
    
-   procedure TastenEingabeErweitert
+   procedure ZahlenAnzeige
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      ZeileExtern : in Positive;
+      ZahlenMinimumExtern : in Integer)
    is begin
       
-      MausAmRand := SystemDatentypen.Leer;
-      TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
-      MausRad := 0.00;
+      -- Das Leeren und Befüllen des Fenster hier funktioniert so nicht richtig, weil damit z. B. keine Überschrift möglich ist.
+      GrafikAllgemein.FensterLeeren;
       
-      EingabeSchleife:
-      loop
-         
-         MausAmRand := MausScrollen;
-         
-         case
-           MausAmRand
-         is
-            when SystemDatentypen.Leer =>
-               null;
-               
-            when others =>
-               return;
-         end case;
-         
-         TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
-                                                   event        => ZeichenEingeben)
-           = Sf.sfTrue loop
-            
-            case
-              ZeichenEingeben.eventType
-            is
-               when Sf.Window.Event.sfEvtKeyPressed =>
-                  TastaturTaste := ZeichenEingeben.key.code;
-                  return;
-                  
-               when Sf.Window.Event.sfEvtMouseWheelScrolled =>
-                  MausRad := ZeichenEingeben.mouseWheelScroll.eventDelta;
-                  return;
-                  
-               when Sf.Window.Event.sfEvtMouseButtonPressed =>
-                  MausTaste := ZeichenEingeben.mouseButton.button;
-                  return;
-                  
-               when others =>
-                  null;
-            end case;
-         
-         end loop TasteSchleife;
-      end loop EingabeSchleife;
-      
-   end TastenEingabeErweitert;
-   
-   
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => TextDateiExtern,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => ZeileExtern,
+                                     LetzteZeileExtern      => ZeileExtern,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
+                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
-   function MausScrollen
+      if
+        ZahlenMinimumExtern > 0
+        and
+          Integer'Wide_Wide_Value (ZahlenString) = 0
+      then
+         null;
+            
+      elsif
+        ZahlenMinimumExtern >= 0
+        and
+          WelchesVorzeichen = False
+      then
+         WelchesVorzeichen := True;
+         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
+                                            Width => 1,
+                                            Base  => 10);
+         
+         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
+                                            str  => ZahlenString);
+         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
+                                       position => (10.00, 10.00));
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                            text         => GrafikEinstellungen.TextStandard);
+            
+      else
+         if
+           WelchesVorzeichen
+         then
+            null;
+
+         elsif
+           WelchesVorzeichen = False
+           and
+             Integer'Wide_Wide_Value (ZahlenString) = 0
+         then
+            null;
+                  
+         else
+            Put (Item => "-");
+            Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
+                                               str  => "-");
+            Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
+                                          position => (10.00, 10.00));
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                               text         => GrafikEinstellungen.TextStandard);
+         end if;
+         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
+                                            Width => 1,
+                                            Base  => 10);
+         
+         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
+                                            str  => ZahlenString);
+         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
+                                       position => (10.00, 10.00));
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                            text         => GrafikEinstellungen.TextStandard);
+      end if;
+      
+      GrafikAllgemein.FensterAnzeigen;
+      
+   end ZahlenAnzeige;
+   
+   
+   
+   -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
+   function GanzeZahlPrüfung
+     (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
+      return KartenDatentypen.LoopRangeMinusDreiZuDrei
+   is begin
+      
+      case
+        ZeichenExtern
+      is
+         when Sf.Window.Keyboard.sfKeyNum0 | Sf.Window.Keyboard.sfKeyNum1 | Sf.Window.Keyboard.sfKeyNum2 | Sf.Window.Keyboard.sfKeyNum3 | Sf.Window.Keyboard.sfKeyNum4 | Sf.Window.Keyboard.sfKeyNum5
+            | Sf.Window.Keyboard.sfKeyNum6 | Sf.Window.Keyboard.sfKeyNum7 | Sf.Window.Keyboard.sfKeyNum8 | Sf.Window.Keyboard.sfKeyNum9 =>
+            return 1;
+            
+         when Sf.Window.Keyboard.sfKeyQ | Sf.Window.Keyboard.sfKeyEscape =>
+            return -1;
+
+         when Sf.Window.Keyboard.sfKeyDelete | Sf.Window.Keyboard.sfKeyBack =>
+            return -2;
+
+         when Sf.Window.Keyboard.sfKeyE | Sf.Window.Keyboard.sfKeyEnter =>
+            return 2;
+
+         when Sf.Window.Keyboard.sfKeySubtract =>
+            WelchesVorzeichen := False;
+            return 3;
+            
+         when Sf.Window.Keyboard.sfKeyAdd =>
+            WelchesVorzeichen := True;
+            return 3;
+            
+         when others =>
+            return 0;
+      end case;
+      
+   end GanzeZahlPrüfung;
+   
+   
+   
+   procedure ZahlHinzufügen
+     (ZahlenMaximumExtern : in Integer;
+      EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode)
+   is begin
+      
+      ZahlenNachLinksVerschiebenSchleife:
+      for ZahlEinsSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop
+                  
+         ZahlenString (ZahlEinsSchleifenwert - 1) := ZahlenString (ZahlEinsSchleifenwert);
+
+      end loop ZahlenNachLinksVerschiebenSchleife;
+      ZahlenString (ZahlenString'Last) := EingabeZahlenUmwandeln (EingegebeneZahlExtern);
+
+      if
+        Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern
+      then
+         null;
+                  
+      elsif
+        ZahlenMaximumExtern >= 100_000_000
+      then
+         ZahlenString := ZahlenMaximumExtern'Wide_Wide_Image;
+                       
+      else
+         MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => ZahlenMaximumExtern);
+      end if;
+      
+   end ZahlHinzufügen;
+   
+   
+   
+   procedure ZahlEntfernen
+   is begin
+      
+      ZahlenNachRechtsVerschiebenSchleifeZwei:
+      for ZahlDreiSchleifenwert in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
+                  
+         ZahlenString (ZahlDreiSchleifenwert) := ZahlenString (ZahlDreiSchleifenwert - 1);
+
+      end loop ZahlenNachRechtsVerschiebenSchleifeZwei;
+      ZahlenString (1) := '0';
+      
+   end ZahlEntfernen;
+   
+   
+   
+   procedure MinimumMaximumSetzen
+     (ZahlenMinimumMaximumExtern : in Integer)
+   is begin
+      
+      MaximumMinimum := To_Unbounded_Wide_Wide_String (Source => ZahlenMinimumMaximumExtern'Wide_Wide_Image);
+      MaximumMinimumAktuelleStelle := To_Wide_Wide_String (Source => MaximumMinimum)'Length;
+      
+      MaximumSchleife:
+      for MaximumSchleifenwert in reverse ZahlenString'Range loop
+         
+         if
+           MaximumSchleifenwert > ZahlenString'Length - To_Wide_Wide_String (Source => MaximumMinimum)'Length + 1
+         then
+            ZahlenString (MaximumSchleifenwert) := To_Wide_Wide_String (Source => MaximumMinimum) (MaximumMinimumAktuelleStelle);
+            MaximumMinimumAktuelleStelle := MaximumMinimumAktuelleStelle - 1;
+            
+         else
+            ZahlenString (MaximumSchleifenwert) := '0';
+         end if;
+         
+      end loop MaximumSchleife;
+      
+   end MinimumMaximumSetzen;
+   
+   
+   
+   function StadtName
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+                                            TextZeileExtern => 32);
+      
+      return NameEingeben;
+      
+   end StadtName;
+   
+   
+   
+   function NameEingeben
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      return To_Unbounded_Wide_Wide_String (Source => Get_Line);
+      
+   end NameEingeben;
+   
+   
+   
+   function SpielstandName
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
+                                            TextZeileExtern => 22);
+
+      Name := NameEingeben;
+
+      case
+        To_Wide_Wide_String (Source => Name)'Length
+      is
+         when 0 =>
+            -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist?
+            return To_Unbounded_Wide_Wide_String (Source => "Kein Name");
+              
+         when others =>
+            return Name;
+      end case;
+      
+   end SpielstandName;
+   
+   
+   
+   procedure WartenEingabe
+   is begin
+      
+      New_Line;
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+                                            TextZeileExtern => 47);
+      EingabeSystemeSFML.TastenEingabe;
+      
+   end WartenEingabe;
+   
+   
+   
+   function Tastenwert
      return SystemDatentypen.Tastenbelegung_Enum
    is begin
       
-      MausZeigerPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
+      EingabeSystemeSFML.TastenEingabe;
+            
+      case
+        EingabeSystemeSFML.MausTaste
+      is
+         when Sf.Window.Mouse.sfMouseLeft =>
+            return SystemDatentypen.Auswählen;
+            
+         when Sf.Window.Mouse.sfMouseRight =>
+            return SystemDatentypen.Menü_Zurück;
+            
+         when others =>
+            null;
+      end case;
       
+      case
+        EingabeSystemeSFML.MausBewegt
+      is
+         when True =>
+            return SystemDatentypen.Mausbewegung;
+            
+         when others =>
+            null;
+      end case;
+            
+      Taste := EingabeSystemeSFML.TastaturTaste;
+      
+      BelegungFeldSchleife:
+      for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
+         BelegungPositionSchleife:
+         for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
+            
+            if
+              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
+            then
+               return BelegungPositionSchleifenwert;
+               
+            else
+               null;
+            end if;
+            
+         end loop BelegungPositionSchleife;
+      end loop BelegungFeldSchleife;
+      
+      return SystemDatentypen.Leer;
+      
+   end Tastenwert;
+   
+   
+   
+   function BefehlEingabe
+     return SystemDatentypen.Tastenbelegung_Enum
+   is begin
+      
+      EingabeSystemeSFML.TastenEingabeErweitert;
+      
+      case
+        EingabeSystemeSFML.MausAmRand
+      is
+         when SystemDatentypen.Leer =>
+            null;
+            
+         when others =>
+            return EingabeSystemeSFML.MausAmRand;
+      end case;
+      
+      -- Das Mausrad muss? immer vor der Maustaste geprüft werden.
       if
-        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe / 50)
-        and
-          MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterBreite / 50)
+        EingabeSystemeSFML.MausRad > 0.00
       then
-         return SystemDatentypen.Links_Oben;
-         
+         return SystemDatentypen.Ebene_Hoch;
+               
       elsif
-        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe / 50)
-        and
-          MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterBreite - GrafikEinstellungen.FensterBreite / 50)
+        EingabeSystemeSFML.MausRad < 0.00
       then
-         return SystemDatentypen.Rechts_Oben;
-         
-      elsif
-        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe - GrafikEinstellungen.FensterHöhe / 50)
-        and
-          MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterBreite / 50)
-      then
-         return SystemDatentypen.Links_Unten;
-         
-      elsif
-        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe - GrafikEinstellungen.FensterHöhe / 50)
-        and
-          MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterBreite - GrafikEinstellungen.FensterBreite / 50)
-      then
-         return SystemDatentypen.Rechts_Unten;
-         
-      elsif
-        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe / 50)
-      then
-         return SystemDatentypen.Oben;
-           
-      elsif
-        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe - GrafikEinstellungen.FensterHöhe / 50)
-      then
-         return SystemDatentypen.Unten;
-         
-      elsif
-        MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterBreite / 50)
-      then
-         return SystemDatentypen.Links;
-         
-      elsif
-        MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterBreite - GrafikEinstellungen.FensterBreite / 50)
-      then
-         return SystemDatentypen.Rechts;
-         
+         return SystemDatentypen.Ebene_Runter;
+               
       else
-         return SystemDatentypen.Leer;
+         null;
       end if;
       
-   end MausScrollen;
+      case
+        EingabeSystemeSFML.MausTaste
+      is
+         when Sf.Window.Mouse.sfMouseLeft =>
+            return SystemDatentypen.Auswählen;
+            
+         when Sf.Window.Mouse.sfMouseRight =>
+            return SystemDatentypen.Menü_Zurück;
+            
+         when others =>
+            null;
+      end case;
+      
+      Taste := EingabeSystemeSFML.TastaturTaste;
+      
+      BelegungFeldSchleife:
+      for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
+         BelegungPositionSchleife:
+         for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
+            
+            if
+              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
+            then
+               return BelegungPositionSchleifenwert;
+                     
+            else
+               null;
+            end if;
+            
+         end loop BelegungPositionSchleife;
+      end loop BelegungFeldSchleife;
+      
+      return SystemDatentypen.Leer;
+      
+   end BefehlEingabe;
    
    
    
-   -- AAAHHH!!!
-
+   procedure StandardTastenbelegungLaden
+   is begin
+      
+      Tastenbelegung := TastenbelegungStandard;
+      
+   end StandardTastenbelegungLaden;
+   
 end EingabeSFML;

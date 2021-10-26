@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Characters.Handling; use Ada.Wide_Wide_Characters.Handling;
+with Ada.Integer_Wide_Wide_Text_IO;
 
 with KartenDatentypen; use KartenDatentypen;
 with SystemKonstanten;

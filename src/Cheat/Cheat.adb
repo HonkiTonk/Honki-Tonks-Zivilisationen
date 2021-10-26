@@ -18,7 +18,7 @@ with Karte;
 with Karten;
 with Anzeige;
 with ForschungAllgemein;
-with EingabeSFML;
+with EingabeSystemeSFML;
 
 
 package body Cheat is
@@ -39,10 +39,10 @@ package body Cheat is
                                         AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
          
-         EingabeSFML.TastenEingabe;
+         EingabeSystemeSFML.TastenEingabe;
          
          case
-           EingabeSFML.TastaturTaste
+           EingabeSystemeSFML.TastaturTaste
          is
             -- Volle Informationen (unabhängig von der Rasse)
             when Sf.Window.Keyboard.sfKeyI =>

@@ -11,13 +11,19 @@ package OptionenSteuerung is
 
 private
 
+   NeueTasteKonsole : Wide_Wide_Character;
+
    NeueAuswahl : SystemDatentypen.Tastenbelegung_Enum;
 
-   NeueTaste : Sf.Window.Keyboard.sfKeyCode;
+   NeueTasteSFML : Sf.Window.Keyboard.sfKeyCode;
 
    AuswahlWert : Integer;
 
    procedure AlteTasteEntfernen;
    procedure NeueTasteFestlegen;
+   procedure AlteTasteEntfernenKonsole;
+   procedure AlteTasteEntfernenSFML;
+   procedure NeueTasteFestlegenKonsole;
+   procedure NeueTasteFestlegenSFML;
 
 end OptionenSteuerung;

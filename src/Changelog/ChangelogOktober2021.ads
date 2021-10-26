@@ -14,31 +14,32 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (29.10.2021):
+   -- Version 0.00.91 => 0.00.9 (29.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (28.10.2021):
+   -- Version 0.00.91 => 0.00.91 (28.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.91 => 0.00.9 (27.10.2021):
+   -- Version 0.00.9150 => 0.00.91 (27.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9140 => 0.00.91 (26.10.2021):
+   -- Version 0.00.9140 => 0.00.9150 (26.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Eingabe und damit verbundene Tastenbelegung vollständig zwischen Konsole und SFML aufgeteilt/angepasst.
+   -- Angefangen die Anzeige der Karte zu überarbeiten.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
