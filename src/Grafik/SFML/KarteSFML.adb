@@ -24,19 +24,11 @@ package body KarteSFML is
    is begin
       
       FensterKarte := (Float (GrafikEinstellungen.FensterBreite), Float (GrafikEinstellungen.FensterHöhe) * 0.80);
+      AbmessungBerechnen (RasseExtern => RasseExtern);
       GrafikAllgemein.FensterLeeren;
-      
-      YAchseSchleife:
-      for YAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse loop
             
-            Sichtbarkeit (InDerStadtExtern      => False,
-                          SichtweiteEbeneExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                          RasseExtern           => RasseExtern);
-                        
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+      Sichtbarkeit (InDerStadtExtern => False,
+                    RasseExtern      => RasseExtern);
       
       KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseExtern);
       
@@ -45,81 +37,127 @@ package body KarteSFML is
    end KarteAnzeigen;
    
    
-
-   procedure Sichtbarkeit
-     (InDerStadtExtern : in Boolean;
-      SichtweiteEbeneExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+   
+   procedure AbmessungBerechnen
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                  ÄnderungExtern    => SichtweiteEbeneExtern);
-      
-      case
-        KartenWert.XAchse
-      is
-         when KartenKonstanten.LeerXAchse =>
-            return;
-                  
-         when others =>
-            Abmessung.x := FensterKarte.x / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse + 1);
-            Abmessung.y := FensterKarte.y / Float (2 * Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse + 1);
-      end case;
-      
-      YMultiplikator := 0.00;
+      YSichtAnfang := -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse;
+      YSichtEnde := Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse;
+      XSichtAnfang := -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse;
+      XSichtEnde := Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse;
       
       YAchseSchleife:
       for YAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse loop
+            
+         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
+                                                                     ÄnderungExtern    => (0, YAchseSchleifenwert, 1));
+      
+         case
+           KartenWert.XAchse
+         is
+            when KartenKonstanten.LeerXAchse =>
+               if
+                 YAchseSchleifenwert <= KartenKonstanten.LeerXAchse
+               then
+                  YSichtAnfang := YSichtAnfang + 1;
+                  
+               else
+                  YSichtEnde := YSichtEnde - 1;
+               end if;
+                  
+            when others =>
+               null;
+         end case;
+         
+      end loop YAchseSchleife;
+      
+      XAchseSchleife:
+      for XAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse loop
+         
+         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
+                                                                     ÄnderungExtern    => (0, 1, XAchseSchleifenwert));
+      
+         case
+           KartenWert.XAchse
+         is
+            when KartenKonstanten.LeerXAchse =>
+               if
+                 XAchseSchleifenwert <= KartenKonstanten.LeerXAchse
+               then
+                  XSichtAnfang := XSichtAnfang + 1;
+                  
+               else
+                  XSichtEnde := XSichtEnde - 1;
+               end if;
+                  
+            when others =>
+               null;
+         end case;
+         
+      end loop XAchseSchleife;
+      
+      Abmessung.x := FensterKarte.x / Float (abs (XSichtAnfang) + XSichtEnde + 1);
+      Abmessung.y := FensterKarte.y / Float (abs (YSichtAnfang) + YSichtEnde + 1);
+      
+   end AbmessungBerechnen;
+   
+   
+
+   procedure Sichtbarkeit
+     (InDerStadtExtern : in Boolean;
+      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      YMultiplikator := 0.00;
+            
+      YAchseSchleife:
+      for YAchseSchleifenwert in YSichtAnfang .. YSichtEnde loop
          
          XMultiplikator := 0.00;
          
          XAchseSchleife:
-         for XAchseSchleifenwert in -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse .. Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse loop
+         for XAchseSchleifenwert in XSichtAnfang .. XSichtEnde loop
             
-            if
-              SichtweiteEbeneExtern.YAchse = YAchseSchleifenwert
-              and
-                SichtweiteEbeneExtern.XAchse = XAchseSchleifenwert
-            then
-               Position.x := XMultiplikator * Abmessung.x;
-               Position.y := YMultiplikator * Abmessung.y;
-               exit YAchseSchleife;
-         
-            else
-               XMultiplikator := XMultiplikator + 1.00;
-            end if;
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
+                                                                        ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
+            Position.x := XMultiplikator * Abmessung.x;
+            Position.y := YMultiplikator * Abmessung.y;
+            
+            case
+              LeseKarten.Sichtbar (PositionExtern => KartenWert,
+                                   RasseExtern    => RasseExtern)
+            is
+               when True =>
+                  IstSichtbar (InDerStadtExtern  => InDerStadtExtern,
+                               KoordinatenExtern => KartenWert,
+                               RasseExtern       => RasseExtern);
+                        
+               when False =>
+                  GrafikAllgemein.RechteckZeichnen (AbmessungExtern => Abmessung,
+                                                    PositionExtern  => Position,
+                                                    FarbeExtern     => Sf.Graphics.Color.sfBlack);
+                  if
+                    KartenWert = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
+                  then
+                     GrafikAllgemein.PolygonZeichnen (RadiusExtern      => Abmessung.x / 2.00,
+                                                      PositionExtern    => Position,
+                                                      AnzahlEckenExtern => 3,
+                                                      FarbeExtern       => Sf.Graphics.Color.sfBlack);
+               
+                  else
+                     null;
+                  end if;
+            end case;
+            
+            XMultiplikator := XMultiplikator + 1.00;
+                          
          end loop XAchseSchleife;
          
          YMultiplikator := YMultiplikator + 1.00;
          
       end loop YAchseSchleife;
-            
-      case
-        LeseKarten.Sichtbar (PositionExtern => KartenWert,
-                             RasseExtern    => RasseExtern)
-      is
-         when True =>
-            IstSichtbar (InDerStadtExtern  => InDerStadtExtern,
-                         KoordinatenExtern => KartenWert,
-                         RasseExtern       => RasseExtern);
-                        
-         when False =>
-            GrafikAllgemein.RechteckZeichnen (AbmessungExtern => Abmessung,
-                                              PositionExtern  => Position,
-                                              FarbeExtern     => Sf.Graphics.Color.sfBlack);
-            if
-              KartenWert = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
-            then
-               GrafikAllgemein.PolygonZeichnen (RadiusExtern      => Abmessung.x / 2.00,
-                                                PositionExtern    => Position,
-                                                AnzahlEckenExtern => 3,
-                                                FarbeExtern       => Sf.Graphics.Color.sfBlack);
-               
-            else
-               null;
-            end if;
-      end case;
       
    end Sichtbarkeit;
    

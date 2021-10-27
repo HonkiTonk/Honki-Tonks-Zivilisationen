@@ -21,16 +21,16 @@ package ChangelogOktober2021 is
    
    
    
-   -- Version 0.00.91 => 0.00.91 (28.10.2021):
+   -- Version 0.00.9160 => 0.00.91 (28.10.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9150 => 0.00.91 (27.10.2021):
+   -- Version 0.00.9150 => 0.00.9160 (27.10.2021):
    
-   -- 
+   -- Weiter an der Kartenanzeige durch die SFML gearbeitet.
    -- Kleinigkeiten korrigiert.
    
    

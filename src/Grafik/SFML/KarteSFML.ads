@@ -19,14 +19,18 @@ package KarteSFML is
    
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
-      SichtweiteEbeneExtern : in KartenRecords.AchsenKartenfeldRecord;
       RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
    
 private
-      
+   
+   YSichtAnfang : KartenDatentypen.Kartenfeld;
+   YSichtEnde : KartenDatentypen.Kartenfeld;
+   XSichtAnfang : KartenDatentypen.Kartenfeld;
+   XSichtEnde : KartenDatentypen.Kartenfeld;
+   
    YMultiplikator : Float;
    XMultiplikator : Float;
    
@@ -56,6 +60,9 @@ private
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure AbmessungBerechnen
+     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
    
    
    

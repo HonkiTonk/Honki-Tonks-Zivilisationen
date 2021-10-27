@@ -183,6 +183,7 @@ package body ImSpiel is
 
 
 
+   -- Hier einen zweiten Task aufmachen der das Fenster verwaltet?
    function MenschAmZug
      (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
       return Integer

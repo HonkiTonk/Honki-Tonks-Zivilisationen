@@ -19,5 +19,9 @@ package GlobaleTexte is
 
    type TexteEinlesenNeuArray is array (1 .. SystemDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
    TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => SystemKonstanten.LeerUnboundedText));
+   
+   -- Sprache in verschiedene Arrays speichern? Und dann aus der Datenbank einlesen ohne Textdateien?
+   
+   
 
 end GlobaleTexte;
