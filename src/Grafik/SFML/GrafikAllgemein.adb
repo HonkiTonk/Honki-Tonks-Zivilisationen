@@ -76,7 +76,7 @@ package body GrafikAllgemein is
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), WelcheZeileExtern)));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), WelcheZeileExtern)));
       Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                     position => PositionExtern);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,

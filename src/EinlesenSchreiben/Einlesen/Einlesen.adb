@@ -58,22 +58,14 @@ package body Einlesen is
                SchreibenEinstellungen.SchreibenEinstellungen;
             
             when False =>
-               return;
+               raise Program_Error;
          end case;
          
       else
          null;
       end if;
       
-      case
-        EinlesenText.EinlesenTextNeu
-      is
-         when True =>
-            null;
-
-         when False =>
-            return;
-      end case;
+      EinlesenText.EinlesenDateien;
       
    end EinlesenMitAnzeige;
 

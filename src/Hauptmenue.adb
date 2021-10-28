@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte;
 with SystemKonstanten;
+with SystemDatentypen;
 
 with Auswahl;
 with Optionen;
@@ -11,6 +12,7 @@ with Informationen;
 with ImSpiel;
 with Laden;
 with Wuerdigung;
+with AuswahlMenue;
 
 package body Hauptmenue is
 
@@ -19,6 +21,16 @@ package body Hauptmenue is
       
       HauptmenüSchleife:
       loop
+         
+         case
+           AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Hauptmenü)
+         is
+            when SystemDatentypen.Start_Weiter =>
+               null;
+               
+            when others =>
+               null;
+         end case;
 
          case
            Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Start,

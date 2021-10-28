@@ -1,33 +1,3 @@
-| Menueauswahl
-Weiter
-Speichern
-Laden
-Optionen
-Hauptmenü
-Spiel beenden
-|
-| JaNein
-Ja
-Nein
-|
-| Optionen
-Grafik (nicht implementiert)
-Sound (nicht implementiert)
-Steuerung
-Sonstiges
-Zurück
-Hauptmenü
-Spiel beenden
-|
-| Sonstiges (Optionen)
-Anzahl der automatischen Spielstände
-Runden bis zum Autospeichern
-Sprache ändern
-Zurück
-Hauptmenü
-Spiel beenden
-|
-| Steuerung (Optionen)
 Bewegung Nord
 Bewegung West
 Bewegung Süd

@@ -61,7 +61,7 @@ package body InDerStadtBauen is
    is begin
 
       Ende := 1;
-      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (SystemKonstanten.LeerUnboundedString, 0));
 
       MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
       MöglicheEinheitenErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -71,7 +71,7 @@ package body InDerStadtBauen is
         and
           Ende > 1
       then
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
 
       elsif
         Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
@@ -82,7 +82,7 @@ package body InDerStadtBauen is
          
       else
          Ende := Ende + 1;
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
       end if;
 
       return AuswahlBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -99,9 +99,7 @@ package body InDerStadtBauen is
       for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz),
-                                Positive (GebäudeSchleifenwert)))
-           = SystemKonstanten.LeerText
+           GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert)) = SystemKonstanten.LeerUnboundedString
          then
             exit GebäudeSchleife;
             
@@ -115,7 +113,7 @@ package body InDerStadtBauen is
            = True
          then
             Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
+              := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := StadtKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
             
@@ -137,9 +135,7 @@ package body InDerStadtBauen is
       for EinheitSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                Positive (EinheitSchleifenwert)))
-           = SystemKonstanten.LeerText
+           GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert)) = SystemKonstanten.LeerUnboundedString
          then
             exit EinheitenSchleife;
             
@@ -153,7 +149,7 @@ package body InDerStadtBauen is
            = True
          then
             Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
+              := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                                 Positive (EinheitSchleifenwert));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := EinheitenKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;

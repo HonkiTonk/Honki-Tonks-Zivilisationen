@@ -104,8 +104,7 @@ package body OptionenSonstiges is
       is
          when True =>
             GlobaleVariablen.NutzerEinstellungen.Sprache := AuswahlSprache.AuswahlSprache;
-            -- Kann hier noch Müll einlesen und Absturz erzeugen.
-            Erfolgreich := EinlesenText.EinlesenTextNeu;
+            EinlesenText.EinlesenDateien;
             
          when False =>
             null;

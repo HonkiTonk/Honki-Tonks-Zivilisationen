@@ -140,7 +140,7 @@ package body Anzeige is
       for ZeichenSchleifenwert in AlgemeineAnzeigeTextArray'Range loop
          
          if
-           To_Wide_Wide_String (Source => AllgemeineAnzeigeText (ZeichenSchleifenwert).Text) = SystemKonstanten.LeerText
+           AllgemeineAnzeigeText (ZeichenSchleifenwert).Text = SystemKonstanten.LeerUnboundedString
          then
             exit TextlängePrüfenSchleife;
             
@@ -210,7 +210,7 @@ package body Anzeige is
          
          else
             if
-              To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text) = SystemKonstanten.LeerText
+              AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text = SystemKonstanten.LeerUnboundedString
             then
                exit AnzeigeSchleife;
             
@@ -241,14 +241,14 @@ package body Anzeige is
             null;
             
          when others =>
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)));
       end case;
       
       TextAnzeigeKonsole.AbstandEinbauen (AbstandExtern => AbstandAnfangExtern);
 
       ZeichengrenzenMultiplikator := 1;
 
-      TextNeu := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ErsteZeileExtern);
+      TextNeu := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ErsteZeileExtern);
       
       AnzeigeSchleife:
       for ZeichenSchleifenwert in To_Wide_Wide_String (Source => TextNeu)'Range loop

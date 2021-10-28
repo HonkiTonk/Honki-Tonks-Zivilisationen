@@ -3,6 +3,10 @@ pragma SPARK_Mode (On);
 package SystemDatentypen is
 
    -- Sonstiges
+   type Rückgabe_Werte_Enum is (Start_Weiter, Hauptmenü, Spiel_Beenden, Zurück, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung);
+   
+   type Welches_Menü is (Hauptmenü, Spielmenü);
+   
    type Anfang_Ende_Enum is (Anfangswert, Endwert);
    for Anfang_Ende_Enum use (Anfangswert => 0, Endwert => 1);
 

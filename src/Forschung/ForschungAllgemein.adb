@@ -82,16 +82,14 @@ package body ForschungAllgemein is
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
-      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerText), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (SystemKonstanten.LeerUnboundedString, 0));
       Ende := 1;
 
       ForschungSchleife:
       for ForschungenSchleifenwert in EinheitStadtDatentypen.ForschungID loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
-                                Positive (ForschungenSchleifenwert)))
-           = SystemKonstanten.LeerText
+           GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz), Positive (ForschungenSchleifenwert)) = SystemKonstanten.LeerUnboundedString
          then
             exit ForschungSchleife;
             
@@ -104,7 +102,7 @@ package body ForschungAllgemein is
                                          ForschungIDExtern => ForschungenSchleifenwert)
          is
             when True =>
-               Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
+               Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
                                                                                            Positive (ForschungenSchleifenwert));
                Anzeige.AllgemeineAnzeigeText (Ende).Nummer := Positive (ForschungenSchleifenwert);
                Ende := Ende + 1;
@@ -120,7 +118,7 @@ package body ForschungAllgemein is
         and
           Ende > 1
       then
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
 
       elsif
         Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
@@ -131,7 +129,7 @@ package body ForschungAllgemein is
          
       else
          Ende := Ende + 1;
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
       end if;
 
       AktuelleAuswahl := 1;

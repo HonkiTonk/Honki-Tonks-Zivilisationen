@@ -31,7 +31,7 @@ package body TextAnzeigeSFML is
          when others =>
             ÜberschriftAbstand := 1;
             AktuelleTextFarbe := Sf.Graphics.Color.sfRed;
-            TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)),
+            TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)),
                         TextZugriffExtern => TextZugriff);
             TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), StartPositionYAchse),
                           TextZugriffExtern => TextZugriff);
@@ -125,7 +125,7 @@ package body TextAnzeigeSFML is
       AktuelleZeileExtern : in Positive)
    is begin
       
-      TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleZeileExtern)),
+      TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleZeileExtern)),
                   TextZugriffExtern => TextZugriff);
       
       if
@@ -175,7 +175,7 @@ package body TextAnzeigeSFML is
          when others =>
             ÜberschriftAbstand := 1;
             AktuelleTextFarbe := Sf.Graphics.Color.sfRed;
-            TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)),
+            TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)),
                         TextZugriffExtern => TextZugriff);
             TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), StartPositionYAchse),
                           TextZugriffExtern => TextZugriff);

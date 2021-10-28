@@ -63,67 +63,67 @@ package body Auswahl is
             when SystemDatentypen.Auswählen =>
                -- Hauptmenü
                if
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 1)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 1)
                then
                   return SystemKonstanten.HauptmenüKonstante;
                   
                   -- Spiel beenden
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 2)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 2)
                then
                   return SystemKonstanten.SpielBeendenKonstante;
                   
                   -- Zurück
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 3)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 3)
                then
                   return SystemKonstanten.ZurückKonstante;
                   
                   -- Ja
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 4)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 4)
                then
                   return SystemKonstanten.JaKonstante;
                   
                   -- Nein
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 5)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 5)
                then
                   return SystemKonstanten.NeinKonstante;
 
                   -- Speichern
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 6)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 6)
                then
                   return SystemKonstanten.SpeichernKonstante;
 
                   -- Laden
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 7)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 7)
                then
                   return SystemKonstanten.LadenKonstante;
 
                   -- Optionen
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 8)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 8)
                then
                   return SystemKonstanten.OptionenKonstante;
 
                   -- Informationen
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 9)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 9)
                then
                   return SystemKonstanten.InformationenKonstante;
 
                   -- Wiederherstellen
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 10)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 10)
                then
                   return SystemKonstanten.WiederherstellenKonstante;
 
                   -- Würdigungen
                elsif
-                 GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesenNeu (2, 11)
+                 GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 11)
                then
                   return SystemKonstanten.WürdigungenKonstante;
                      

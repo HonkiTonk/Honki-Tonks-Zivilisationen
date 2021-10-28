@@ -207,7 +207,7 @@ package body StadtBauen is
    is begin
       
       SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                NameExtern             => GlobaleTexte.TexteEinlesenNeu (22, WelcherName));
+                                NameExtern             => GlobaleTexte.TexteEinlesen (22, WelcherName));
       
       case
         WelcherName
