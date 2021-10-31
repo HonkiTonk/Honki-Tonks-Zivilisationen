@@ -21,9 +21,9 @@ package GrafikEinstellungen is
    MausZeiger : Sf.Window.sfCursor_Ptr := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorHand);
    
    Schriftart : Sf.Graphics.sfFont_Ptr;
-   Schriftgröße : Sf.sfUint32;
-   Textfarbe : Sf.Graphics.Color.sfColor;
-   Textstyle : Sf.sfUint32;
+   Schriftgröße : Sf.sfUint32 := 24;
+   Textfarbe : Sf.Graphics.Color.sfColor := Sf.Graphics.Color.sfWhite;
+   Textstyle : Sf.sfUint32 := 0;
    TextStandard : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    procedure StandardGrafikEinstellungenLaden;

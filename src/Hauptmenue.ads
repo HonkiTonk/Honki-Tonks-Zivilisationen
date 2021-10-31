@@ -7,6 +7,5 @@ package Hauptmenue is
 private
   
    RückgabeKampagne : Integer;
-   RückgabeOptionen : Integer;
 
 end Hauptmenue;

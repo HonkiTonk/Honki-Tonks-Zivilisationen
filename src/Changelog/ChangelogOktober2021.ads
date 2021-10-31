@@ -1,30 +1,28 @@
 package ChangelogOktober2021 is
    
-   -- Version 0.00.9 => 0.00.9 (31.10.2021):
+   -- Version 0.00.9170 => 0.00.9180 (31.10.2021):
    
-   -- 
+   -- Hauptmenüanzeige- und Auswahl überarbeitet und besseres Mausauswahlsystem gebaut.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9 => 0.00.9 (30.10.2021):
+   -- Version 0.00.9170 => 0.00.9170 (30.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
+   -- null.
    
    
-   -- Version 0.00.9170 => 0.00.9 (29.10.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Version 0.00.9170 => 0.00.9170 (29.10.2021):
+   
+   -- null.
    
    
    
    -- Version 0.00.9160 => 0.00.9170 (28.10.2021):
    
    -- Angefangen die Textanzeige komplett umzubauen und damit fürs Erste alles kaputt zu machen.
-   -- Kleinigkeiten korrigiert.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
    

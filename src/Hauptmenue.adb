@@ -1,10 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
 with SystemKonstanten;
 with SystemDatentypen;
 
-with Auswahl;
 with Optionen;
 with SpielEinstellungen;
 with AllesAufAnfangSetzen;
@@ -26,21 +24,6 @@ package body Hauptmenue is
            AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Hauptmenü)
          is
             when SystemDatentypen.Start_Weiter =>
-               null;
-               
-            when others =>
-               null;
-         end case;
-
-         case
-           Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Start,
-                            TextDateiExtern   => GlobaleTexte.Start,
-                            FrageZeileExtern  => 1,
-                            ErsteZeileExtern  => 2,
-                            LetzteZeileExtern => 7)
-         is
-            -- Start
-            when SystemKonstanten.StartNormalKonstante =>
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungenAuswahl;
 
                if
@@ -56,15 +39,13 @@ package body Hauptmenue is
                else
                   null;
                end if;
-
-               -- Laden
-            when SystemKonstanten.LadenKonstante =>
+               
+            when SystemDatentypen.Laden =>
                if
                  Laden.LadenNeu = True
                then
-                  RückgabeKampagne := ImSpiel.ImSpiel;
                   case
-                    RückgabeKampagne
+                    ImSpiel.ImSpiel
                   is
                      when SystemKonstanten.HauptmenüKonstante =>
                         AllesAufAnfangSetzen.AllesAufAnfangSetzen;
@@ -79,33 +60,31 @@ package body Hauptmenue is
                else
                   null;
                end if;
-
-               -- Optionen
-            when SystemKonstanten.OptionenKonstante =>
-               RückgabeOptionen := Optionen.Optionen;
+               
+            when SystemDatentypen.Optionen =>
                if
-                 RückgabeOptionen = SystemKonstanten.SpielBeendenKonstante
+                 Optionen.Optionen = SystemKonstanten.SpielBeendenKonstante
                then
                   exit HauptmenüSchleife;
 
                else
                   null;
                end if;
-
-               -- Informationen
-            when SystemKonstanten.InformationenKonstante =>
+               
+            when SystemDatentypen.Informationen =>
                Informationen.Informationen;
-
-               -- Wuerdigung
-            when SystemKonstanten.WürdigungenKonstante =>
+               
+            when SystemDatentypen.Würdigungen =>
                Wuerdigung.Wuerdigung;
-
-               -- Beenden
-            when SystemKonstanten.SpielBeendenKonstante =>
+               
+            when SystemDatentypen.Spiel_Beenden =>
                exit HauptmenüSchleife;
-
-            when others =>
+               
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
 
       end loop HauptmenüSchleife;
