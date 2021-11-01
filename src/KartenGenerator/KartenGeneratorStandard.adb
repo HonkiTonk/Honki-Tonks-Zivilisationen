@@ -52,7 +52,7 @@ package body KartenGeneratorStandard is
       case
         Karten.Kartenart
       is
-         when KartenDatentypen.Nur_Land =>
+         when SystemDatentypen.Art_Nur_Land =>
             GenerierungNurLand;
             return;
             

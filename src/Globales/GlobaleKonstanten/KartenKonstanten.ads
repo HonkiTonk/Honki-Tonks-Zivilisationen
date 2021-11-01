@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-pragma SPARK_Mode (On);
-
+with SystemDatentypen;
 with KartenRecords;
 with SystemKonstanten;
 with KartenDatentypen;
@@ -62,29 +61,29 @@ package KartenKonstanten is
    
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
-                                         KartenDatentypen.Karte_20_20     => 1,
-                                         KartenDatentypen.Karte_40_40     => 1,
-                                         KartenDatentypen.Karte_80_80     => 2,
-                                         KartenDatentypen.Karte_120_80    => 3,
-                                         KartenDatentypen.Karte_120_160   => 3,
-                                         KartenDatentypen.Karte_160_160   => 4,
-                                         KartenDatentypen.Karte_240_240   => 6,
-                                         KartenDatentypen.Karte_320_320   => 8,
-                                         KartenDatentypen.Karte_1000_1000 => 24,
-                                         KartenDatentypen.Karte_Nutzer    => 1
+                                         SystemDatentypen.Karte_20_20     => 1,
+                                         SystemDatentypen.Karte_40_40     => 1,
+                                         SystemDatentypen.Karte_80_80     => 2,
+                                         SystemDatentypen.Karte_120_80    => 3,
+                                         SystemDatentypen.Karte_120_160   => 3,
+                                         SystemDatentypen.Karte_160_160   => 4,
+                                         SystemDatentypen.Karte_240_240   => 6,
+                                         SystemDatentypen.Karte_320_320   => 8,
+                                         SystemDatentypen.Karte_1000_1000 => 24,
+                                         SystemDatentypen.Karte_Nutzer    => 1
                                         );
 
    Eisschild : constant EisgebietArray := (
-                                           KartenDatentypen.Karte_20_20     => 3,
-                                           KartenDatentypen.Karte_40_40     => 3,
-                                           KartenDatentypen.Karte_80_80     => 6,
-                                           KartenDatentypen.Karte_120_80    => 9,
-                                           KartenDatentypen.Karte_120_160   => 9,
-                                           KartenDatentypen.Karte_160_160   => 12,
-                                           KartenDatentypen.Karte_240_240   => 18,
-                                           KartenDatentypen.Karte_320_320   => 24,
-                                           KartenDatentypen.Karte_1000_1000 => 72,
-                                           KartenDatentypen.Karte_Nutzer    => 1
+                                           SystemDatentypen.Karte_20_20     => 3,
+                                           SystemDatentypen.Karte_40_40     => 3,
+                                           SystemDatentypen.Karte_80_80     => 6,
+                                           SystemDatentypen.Karte_120_80    => 9,
+                                           SystemDatentypen.Karte_120_160   => 9,
+                                           SystemDatentypen.Karte_160_160   => 12,
+                                           SystemDatentypen.Karte_240_240   => 18,
+                                           SystemDatentypen.Karte_320_320   => 24,
+                                           SystemDatentypen.Karte_1000_1000 => 72,
+                                           SystemDatentypen.Karte_Nutzer    => 1
                                           );
 
 end KartenKonstanten;

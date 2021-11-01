@@ -119,7 +119,7 @@ package body Laden is
       
       KartenDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
                                                        Karten.Kartenform);
-      KartenDatentypen.Kartengröße_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
+      KartenDatentypen.Kartengröße_Enum'Read (Stream (File => DateiLadenNeu),
                                                           Karten.Kartengröße);
       
       Positive'Read (Stream (File => DateiLadenNeu),
@@ -130,9 +130,9 @@ package body Laden is
       case
         Karten.Kartengröße
       is
-         when KartenDatentypen.Karte_Nutzer =>
+         when SystemDatentypen.Karte_Nutzer =>
             Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
-                                              Karten.Kartengrößen (KartenDatentypen.Karte_Nutzer));
+                                              Karten.Kartengrößen (SystemDatentypen.Karte_Nutzer));
             
          when others =>
             null;

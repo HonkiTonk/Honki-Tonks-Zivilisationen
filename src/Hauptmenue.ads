@@ -1,11 +1,13 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
+
 package Hauptmenue is
 
    procedure Hauptmenü;
    
 private
   
-   RückgabeKampagne : Integer;
+   RückgabeKampagne : SystemDatentypen.Rückgabe_Werte_Enum;
 
 end Hauptmenue;

@@ -7,7 +7,6 @@ with GlobaleTexte;
 with SystemKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -24,7 +23,7 @@ with EinheitenErzeugenEntfernen;
 package body SpielEinstellungenRasseSpieler is
 
    function SpieleranzahlWählen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       SpieleranzahlSchleife:
@@ -57,14 +56,17 @@ package body SpielEinstellungenRasseSpieler is
                SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.ZufälligeSpieleranzahl;
                return SystemKonstanten.AuswahlBelegung;
                
-            when SystemKonstanten.ZurückKonstante =>
+            when SystemDatentypen.Zurück =>
                return SystemKonstanten.AuswahlKartenressourcen;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return SpieleranzahlAuswahl;
                
-            when others =>
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
 
          Put (Item => CSI & "2J" & CSI & "H");
@@ -76,7 +78,7 @@ package body SpielEinstellungenRasseSpieler is
 
 
    function SpielerbelegungWählen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       GlobaleVariablen.RassenImSpiel := (others => SonstigeDatentypen.Leer);
@@ -90,14 +92,17 @@ package body SpielEinstellungenRasseSpieler is
          case
            SpielerartAuswahl
          is
-            when SystemKonstanten.ZurückKonstante =>
+            when SystemDatentypen.Zurück =>
                return SystemKonstanten.AuswahlSpieleranzahl;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return SpielerartAuswahl;
                
-            when others =>
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
          
          if
@@ -125,8 +130,6 @@ package body SpielEinstellungenRasseSpieler is
                   null;
             end case;
          end if;
-
-         Put (Item => CSI & "2J" & CSI & "H");
          
       end loop SpielerSchleife;
 
@@ -137,7 +140,7 @@ package body SpielEinstellungenRasseSpieler is
 
    
    function RasseWählen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
 
       RasseSchleife:
@@ -191,7 +194,7 @@ package body SpielEinstellungenRasseSpieler is
             when 19 =>
                return SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (ZufallGeneratorenSpieleinstellungen.ZufälligeRasse);
 
-            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Zurück | SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return RassenAuswahl;
                
             when others =>

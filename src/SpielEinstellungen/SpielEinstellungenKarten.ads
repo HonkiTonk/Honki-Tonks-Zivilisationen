@@ -1,50 +1,35 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
+
 package SpielEinstellungenKarten is
    
    function KartengrößeWählen
-     return Integer
-     with
-       Post =>
-         (KartengrößeWählen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function KartenartWählen
-     return Integer
-     with
-       Post =>
-         (KartenartWählen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function KartenformWählen
-     return Integer
-     with
-       Post =>
-         (KartenformWählen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function KartentemperaturWählen
-     return Integer
-     with
-       Post =>
-         (KartentemperaturWählen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
    
    function KartenressourcenWählen
-     return Integer
-     with
-       Post =>
-         (KartenressourcenWählen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
    
 private
-      
-   KartengrößeAuswahl : Integer;
-   KartenartAuswahl : Integer;
-   KartenformAuswahl : Integer;
-   KartentemperaturAuswahl : Integer;
-   KartenressourcenAuswahl : Integer;
+         
+   KartengrößeAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   KartenartAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   KartenformAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   KartentemperaturAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   KartenressourcenAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   
    BenutzerdefinierteGröße : Integer;
    
    function GrößeSelbstBestimmen
-     return Integer
-     with
-       Post =>
-         (GrößeSelbstBestimmen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
 end SpielEinstellungenKarten;

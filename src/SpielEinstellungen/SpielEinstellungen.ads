@@ -1,23 +1,19 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
+
 package SpielEinstellungen is
 
    function SpielEinstellungenAuswahl
-     return Integer
-     with
-       Post =>
-         (SpielEinstellungenAuswahl'Result in -1 .. 0);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
 private
 
    RassenVorhanden : Boolean;
 
-   HauptAuswahl : Integer;
+   Auswahl : SystemDatentypen.Rückgabe_Werte_Enum;
 
    function AutomatischeEinstellungen
-     return Integer
-     with
-       Post =>
-         (AutomatischeEinstellungen'Result in -1 .. 0);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
 end SpielEinstellungen;

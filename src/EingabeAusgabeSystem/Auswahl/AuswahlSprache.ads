@@ -25,6 +25,7 @@ private
    StartPositionYAchse : constant Float := 20.00;
    ZeilenAbstand : Float;
    Zeile : Float;
+   TextPositionMaus : Float;
    
    Befehl : SystemDatentypen.Tastenbelegung_Enum;
    

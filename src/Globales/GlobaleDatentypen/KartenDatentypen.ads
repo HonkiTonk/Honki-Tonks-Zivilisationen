@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
 with SonstigeDatentypen;
 
 package KartenDatentypen is
@@ -17,17 +18,12 @@ package KartenDatentypen is
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
 
-   type Kartengröße_Enum is (Leer, Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer);
-   for Kartengröße_Enum use (Leer => 0, Karte_20_20 => 1, Karte_40_40 => 2, Karte_80_80 => 3, Karte_120_80 => 4, Karte_120_160 => 5, Karte_160_160 => 6, Karte_240_240 => 7, Karte_320_320 => 8, Karte_1000_1000 => 9,
-                               Karte_Nutzer => 10);
-   pragma Ordered (Kartengröße_Enum);
-   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Karte_20_20 .. Kartengröße_Enum'Last;
-   subtype Kartengröße_Zufall_Enum is Kartengröße_Verwendet_Enum range Karte_20_20 .. Karte_1000_1000;
+   subtype Kartengröße_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_20_20 .. SystemDatentypen.Karte_Zufall;
+   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range SystemDatentypen.Karte_20_20 .. SystemDatentypen.Karte_Nutzer;
+   subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range SystemDatentypen.Karte_20_20 .. SystemDatentypen.Karte_1000_1000;
 
-   type Kartenart_Enum is (Leer, Inseln, Kontinente, Pangäa, Nur_Land, Chaos);
-   for Kartenart_Enum use (Leer => 0, Inseln => 1, Kontinente => 2, Pangäa => 3, Nur_Land => 4, Chaos => 5);
-   pragma Ordered (Kartenart_Enum);
-   subtype Kartenart_Verwendet_Enum is Kartenart_Enum range Inseln .. Kartenart_Enum'Last;
+   subtype Kartenart_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Art_Inseln .. SystemDatentypen.Art_Zufall;
+   subtype Kartenart_Verwendet_Enum is Kartenart_Enum range SystemDatentypen.Art_Inseln .. SystemDatentypen.Art_Chaos;
 
    type Kartentemperatur_Enum is (Leer, Kalt, Gemäßigt, Heiß, Eiszeit, Wüste);
    for Kartentemperatur_Enum use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);

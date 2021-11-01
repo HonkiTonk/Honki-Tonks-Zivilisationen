@@ -270,7 +270,7 @@ package body AuswahlSprache is
    procedure MausAuswahl
    is begin
       
-      Zeile := 0.00;
+      TextPositionMaus := StartPositionYAchse;
       MausZeigerPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
       
       MausZeigerSchleife:
@@ -280,14 +280,14 @@ package body AuswahlSprache is
                                             str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
          
          if
-           MausZeigerPosition.y in Sf.sfInt32 (StartPositionYAchse + ZeilenAbstand * Zeile)
-             .. Sf.sfInt32 (StartPositionYAchse + ZeilenAbstand * Zeile + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height)
+           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus)
+             .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height)
          then
             AktuelleAuswahl := ZeileSchleifenwert;
             return;
          
          else
-            Zeile := Zeile + 1.00;
+            TextPositionMaus := TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + ZeilenAbstand;
          end if;
          
       end loop MausZeigerSchleife;

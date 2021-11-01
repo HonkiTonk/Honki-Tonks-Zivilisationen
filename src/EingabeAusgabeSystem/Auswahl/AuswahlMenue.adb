@@ -15,19 +15,23 @@ with Eingabe;
 package body AuswahlMenue is
 
    function AuswahlMenü
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü)
+     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
+      WelchesMenü := WelchesMenüExtern;
       TextZugriff := GrafikEinstellungen.TextStandard;
+      Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
+      Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
+      AktuelleAuswahl := Anfang;
       
       case
-        WelchesMenüExtern
+        WelchesMenü
       is
-         when SystemDatentypen.Hauptmenü =>
+         when SystemDatentypen.Haupt_Menü =>
             return Hauptmenü;
             
-         when SystemDatentypen.Spielmenü =>
+         when SystemDatentypen.Spiel_Menü =>
             return SystemDatentypen.Start_Weiter;
             
          when others =>
@@ -75,21 +79,19 @@ package body AuswahlMenue is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      AktuelleAuswahl := HauptmenüAnfang;
-            
       AuswahlSchleife:
       loop
          
-         AnzeigeHauptmenüSFML;
+         AnzeigeMenüSFML;
       
          case
            Eingabe.Tastenwert
          is
             when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
                if
-                 AktuelleAuswahl = HauptmenüAnfang
+                 AktuelleAuswahl = Anfang
                then
-                  AktuelleAuswahl := HauptmenüEnde;
+                  AktuelleAuswahl := Ende;
 
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
@@ -97,9 +99,9 @@ package body AuswahlMenue is
 
             when SystemDatentypen.Unten | SystemDatentypen.Ebene_Runter =>
                if
-                 AktuelleAuswahl = HauptmenüEnde
+                 AktuelleAuswahl = Ende
                then
-                  AktuelleAuswahl := HauptmenüAnfang;
+                  AktuelleAuswahl := Anfang;
 
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
@@ -107,7 +109,7 @@ package body AuswahlMenue is
                               
             when SystemDatentypen.Auswählen =>
                if
-                 AktuelleAuswahl = HauptmenüAnfang
+                 AktuelleAuswahl = Anfang
                then
                   return SystemDatentypen.Start_Weiter;
                   
@@ -132,7 +134,7 @@ package body AuswahlMenue is
                   return SystemDatentypen.Würdigungen;
                     
                elsif
-                 AktuelleAuswahl = HauptmenüEnde
+                 AktuelleAuswahl = Ende
                then
                   return SystemDatentypen.Spiel_Beenden;
                     
@@ -166,21 +168,19 @@ package body AuswahlMenue is
                                          size => GrafikEinstellungen.Schriftgröße);
       
       MausZeigerSchleife:
-      for ZeileSchleifenwert in HauptmenüAnfang .. HauptmenüEnde loop
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Hauptmenü (ZeileSchleifenwert)));
-         TextPositionMaus := TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + 1.25 * Float (GrafikEinstellungen.Schriftgröße);
+      for ZeileSchleifenwert in Anfang .. Ende loop
+                  
+         StringSetzen (WelcheZeileExtern => ZeileSchleifenwert);
          
          if
            MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus)
-           .. Sf.sfInt32 (TextPositionMaus - Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height)
+           .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height)
          then
             AktuelleAuswahl := ZeileSchleifenwert;
             return;
          
          else
-            null; -- Zeile := Zeile + 1.00;
+            TextPositionMaus := TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + 1.25 * Float (GrafikEinstellungen.Schriftgröße);
          end if;
          
       end loop MausZeigerSchleife;
@@ -189,7 +189,7 @@ package body AuswahlMenue is
    
    
    
-   procedure AnzeigeHauptmenüSFML
+   procedure AnzeigeMenüSFML
    is begin
       
       AktuellePosition := (0.00, 0.00);
@@ -199,14 +199,13 @@ package body AuswahlMenue is
       Überschrift (ÜberschriftExtern => To_Wide_Wide_String (Source => GlobaleTexte.Hauptmenü (1)));
       
       AnzeigeSchleife:
-      for TextSchleifenwert in HauptmenüAnfang .. HauptmenüEnde loop
+      for TextSchleifenwert in Anfang .. Ende loop
          
          AktuellePosition.y := AktuellePosition.y + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + 1.25 * Float (GrafikEinstellungen.Schriftgröße);
       
          Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
                                             size => GrafikEinstellungen.Schriftgröße);
-         Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Hauptmenü (TextSchleifenwert)));
+         StringSetzen (WelcheZeileExtern => TextSchleifenwert);
          
          AktuellePosition.x := TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff);
          
@@ -231,6 +230,29 @@ package body AuswahlMenue is
         
       GrafikAllgemein.FensterAnzeigen;
       
-   end AnzeigeHauptmenüSFML;
+   end AnzeigeMenüSFML;
+   
+   
+   
+   procedure StringSetzen
+     (WelcheZeileExtern : in Positive)
+   is begin
+      
+      case
+        WelchesMenü
+      is
+         when SystemDatentypen.Haupt_Menü =>
+            Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
+                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.Hauptmenü (WelcheZeileExtern)));
+            
+         when SystemDatentypen.Spiel_Menü =>
+            Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
+                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.Spielmenü (WelcheZeileExtern)));
+            
+         when others =>
+            null;
+      end case;
+      
+   end StringSetzen;
 
 end AuswahlMenue;

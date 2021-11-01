@@ -3,53 +3,50 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with SystemKonstanten;
 with KartenDatentypen;
+with SystemKonstanten;
 with GlobaleTexte;
 
-with Auswahl;
 with Karten;
 with Eingabe;
 with ZufallGeneratorenSpieleinstellungen;
+with AuswahlMenue;
 
 package body SpielEinstellungenKarten is
 
    function KartengrößeWählen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       KartengrößeSchleife:
       loop
          
-         KartengrößeAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Spiel_Einstellungen,
-                                                  TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                                  FrageZeileExtern  => 1,
-                                                  ErsteZeileExtern  => 2,
-                                                  LetzteZeileExtern => 14);
+         KartengrößeAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartengröße_Menü);
          
          case
            KartengrößeAuswahl
          is
-            when 1 .. 9 =>
-               Karten.Kartengröße := KartenDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
-               return SystemKonstanten.AuswahlKartenart;
+            when KartenDatentypen.Kartengröße_Standard_Enum'Range =>
+               Karten.Kartengröße := KartengrößeAuswahl;
+               return SystemDatentypen.Auswahl_Kartenart;
 
-            when 10 =>
+            when SystemDatentypen.Karte_Nutzer =>
                return GrößeSelbstBestimmen;
                
-            when 11 =>
+            when SystemDatentypen.Karte_Zufall =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
-               return SystemKonstanten.AuswahlKartenart;
+               return SystemDatentypen.Auswahl_Kartenart;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return KartengrößeAuswahl;
                
-            when others =>
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
-
-         Put (Item => CSI & "2J" & CSI & "H");
-                  
+         
       end loop KartengrößeSchleife;
       
    end KartengrößeWählen;
@@ -57,10 +54,9 @@ package body SpielEinstellungenKarten is
    
    
    function GrößeSelbstBestimmen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      Karten.Kartengröße := KartenDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                       ZeileExtern         => 19,
                                                       ZahlenMinimumExtern => 20,
@@ -68,26 +64,26 @@ package body SpielEinstellungenKarten is
       if
         BenutzerdefinierteGröße = SystemKonstanten.GanzeZahlAbbruchKonstante
       then
-         return SystemKonstanten.AuswahlKartengröße;
+         return SystemDatentypen.Auswahl_Kartengröße;
                      
       else
          null;
       end if;
-               
-      Karten.Kartengrößen (KartenDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+      
+      Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                       ZeileExtern         => 25,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
-                     
+      
       if
         BenutzerdefinierteGröße = SystemKonstanten.GanzeZahlAbbruchKonstante
       then
-         return SystemKonstanten.AuswahlKartengröße;
+         return SystemDatentypen.Auswahl_Kartengröße;
                            
       else
-         Karten.Kartengrößen (KartenDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-         return SystemKonstanten.AuswahlKartenart;
+         Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+         return SystemDatentypen.Auswahl_Kartenart;
       end if;
       
    end GrößeSelbstBestimmen;
@@ -96,40 +92,37 @@ package body SpielEinstellungenKarten is
 
    -- 1 = Inseln, 2 = Kontinente, 3 = Pangäa, 4 = Nur Land, 5 = Chaos
    function KartenartWählen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
             
       KartenartSchleife:
       loop
 
-         KartenartAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Spiel_Einstellungen,
-                                              TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                              FrageZeileExtern  => 15,
-                                              ErsteZeileExtern  => 16,
-                                              LetzteZeileExtern => 24);
+         KartenartAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenart_Menü);
          
          case
            KartenartAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenart := KartenDatentypen.Kartenart_Verwendet_Enum'Val (KartenartAuswahl);
-               return SystemKonstanten.AuswahlKartenform;
+               Karten.Kartenart := KartenartAuswahl;
+               return SystemDatentypen.Auswahl_Kartenform;
                
             when 6 =>
                Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
-               return SystemKonstanten.AuswahlKartenform;
+               return SystemDatentypen.Auswahl_Kartenform;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartengröße;
+            when SystemDatentypen.Zurück =>
+               return SystemDatentypen.Auswahl_Kartengröße;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return KartenartAuswahl;
                
-            when others =>
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
-
-         Put (Item => CSI & "2J" & CSI & "H");
 
       end loop KartenartSchleife;
       
@@ -139,40 +132,37 @@ package body SpielEinstellungenKarten is
    
    -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck, 6 = Kugel gedreht, 7 = Tugel, 8 = Tugel gedreht, 9 = Tugel extrem
    function KartenformWählen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       KartenformSchleife:
       loop
 
-         KartenformAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Spiel_Einstellungen,
-                                               TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                               FrageZeileExtern  => 72,
-                                               ErsteZeileExtern  => 73,
-                                               LetzteZeileExtern => 84);
+         KartenformAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen);
          
          case
            KartenformAuswahl
          is
             when 1 .. 9 =>
-               Karten.Kartenform := KartenDatentypen.Kartenform_Verwendet_Enum'Val (KartenformAuswahl);
-               return SystemKonstanten.AuswahlKartentemperatur;
+               Karten.Kartenform := KartenformAuswahl;
+               return SystemDatentypen.Auswahl_Kartentemperatur;
                
             when 10 =>
                Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
-               return SystemKonstanten.AuswahlKartentemperatur;
+               return SystemDatentypen.Auswahl_Kartentemperatur;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartenart;
+            when SystemDatentypen.Zurück =>
+               return SystemDatentypen.Auswahl_Kartenart;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return KartenformAuswahl;
                
-            when others =>
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
-
-         Put (Item => CSI & "2J" & CSI & "H");
 
       end loop KartenformSchleife;
       
@@ -182,40 +172,37 @@ package body SpielEinstellungenKarten is
 
    -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
    function KartentemperaturWählen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
             
       KartentemperaturSchleife:
       loop
 
-         KartentemperaturAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Spiel_Einstellungen,
-                                                     TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                                     FrageZeileExtern  => 25,
-                                                     ErsteZeileExtern  => 26,
-                                                     LetzteZeileExtern => 34);
+         KartentemperaturAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen);
                   
          case
            KartentemperaturAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartentemperatur := KartenDatentypen.Kartentemperatur_Verwendet_Enum'Val (KartentemperaturAuswahl);
-               return SystemKonstanten.AuswahlKartenressourcen;
+               Karten.Kartentemperatur := KartentemperaturAuswahl;
+               return SystemDatentypen.Auswahl_Kartenressourcen;
                
             when 6 =>
                Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
-               return SystemKonstanten.AuswahlKartenressourcen;
+               return SystemDatentypen.Auswahl_Kartenressourcen;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartenform;
+            when SystemDatentypen.Zurück =>
+               return SystemDatentypen.Auswahl_Kartenform;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return KartentemperaturAuswahl;
                
-            when others =>
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
-
-         Put (Item => CSI & "2J" & CSI & "H");
                   
       end loop KartentemperaturSchleife;
       
@@ -225,40 +212,37 @@ package body SpielEinstellungenKarten is
    
    -- 1 = Arm, 2 = Wenig, 3 = Mittel, 4 = Viel, 5 = Überfluss
    function KartenressourcenWählen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       KartenressourcenSchleife:
       loop
 
-         KartenressourcenAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Spiel_Einstellungen,
-                                                     TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                                     FrageZeileExtern  => 85,
-                                                     ErsteZeileExtern  => 86,
-                                                     LetzteZeileExtern => 93);
+         KartenressourcenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen);
          
          case
            KartenressourcenAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenressourcen := KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum'Val (KartenressourcenAuswahl);
-               return SystemKonstanten.AuswahlSpieleranzahl;
+               Karten.Kartenressourcen := KartenressourcenAuswahl;
+               return SystemDatentypen.Auswahl_Spieleranzahl;
                
             when 6 =>
                Karten.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
-               return SystemKonstanten.AuswahlSpieleranzahl;
+               return SystemDatentypen.Auswahl_Spieleranzahl;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartentemperatur;
+            when SystemDatentypen.Zurück =>
+               return SystemDatentypen.Auswahl_Kartentemperatur;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return KartenressourcenAuswahl;
                
-            when others =>
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
-
-         Put (Item => CSI & "2J" & CSI & "H");
                   
       end loop KartenressourcenSchleife;
       

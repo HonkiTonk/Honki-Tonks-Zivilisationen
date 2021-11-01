@@ -1,12 +1,11 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
+
 package SpielEinstellungenSonstiges is
 
    function SchwierigkeitsgradFestlegen
-     return Integer
-     with
-       Post =>
-         (SchwierigkeitsgradFestlegen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
    
 private
    

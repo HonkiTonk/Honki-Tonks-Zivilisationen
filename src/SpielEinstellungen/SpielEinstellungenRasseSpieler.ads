@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 
@@ -20,22 +21,13 @@ package SpielEinstellungenRasseSpieler is
    
    
    function SpieleranzahlWählen
-     return Integer
-     with
-       Post =>
-         (SpieleranzahlWählen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function SpielerbelegungWählen
-     return Integer
-     with
-       Post =>
-         (SpielerbelegungWählen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function RasseWählen
-     return Integer
-     with
-       Post =>
-         (RasseWählen'Result >= -2);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function UmgebungPrüfen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;

@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 
 with Ada.Calendar; use Ada.Calendar;
 
-with SystemDatentypen;
-
 with Karte;
 with BefehleImSpiel;
 with Optionen;
@@ -18,9 +16,9 @@ with KI;
 package body ImSpiel is
 
    function ImSpiel
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
-            
+      
       Karte.SichtweiteBewegungsfeldFestlegen;
       
       SpielSchleife:
@@ -34,7 +32,8 @@ package body ImSpiel is
               RückgabeRassen
             is
                when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
-                  return RückgabeRassen;
+                  null;
+                 -- return RückgabeRassen;
                   
                when RassenSchleifeVerlassenKonstante =>
                   exit RassenSchleife;
@@ -50,7 +49,7 @@ package body ImSpiel is
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
-            return SystemKonstanten.HauptmenüKonstante;
+            return SystemDatentypen.Hauptmenü;
             
          else
             null;
@@ -59,7 +58,7 @@ package body ImSpiel is
          if
            GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
          then
-            return SystemKonstanten.HauptmenüKonstante;
+            return SystemDatentypen.Hauptmenü;
             
          else
             null;

@@ -105,7 +105,7 @@ package body Speichern is
       
       KartenDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                          Karten.Kartenform);
-      KartenDatentypen.Kartengröße_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+      KartenDatentypen.Kartengröße_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                             Karten.Kartengröße);
       
       Positive'Write (Stream (File => DateiSpeichernNeu),
@@ -116,9 +116,9 @@ package body Speichern is
       case
         Karten.Kartengröße
       is
-         when KartenDatentypen.Karte_Nutzer =>
+         when SystemDatentypen.Karte_Nutzer =>
             Karten.KartengrößenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                               Karten.Kartengrößen (KartenDatentypen.Karte_Nutzer));
+                                               Karten.Kartengrößen (SystemDatentypen.Karte_Nutzer));
             
          when others =>
             null;

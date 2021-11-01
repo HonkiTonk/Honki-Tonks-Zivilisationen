@@ -3,9 +3,26 @@ pragma SPARK_Mode (On);
 package SystemDatentypen is
 
    -- Sonstiges
-   type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Hauptmenü, Spiel_Beenden, Zurück, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung);
+   type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Hauptmenü, Spiel_Beenden, Zurück, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung,
+                                 
+                                 Auswahl_Kartengröße, Auswahl_Kartenart, Auswahl_Kartenform, Auswahl_Kartentemperatur, Auswahl_Spieleranzahl, Auswahl_Belegung, Auswahl_Schwierigkeitsgrad, Auswahl_Kartenressourcen,
+                                 
+                                 Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer, Karte_Zufall,
+                                
+                                 -- Neue Kartenarten immer vor Chaos einfügen um Anpassungen in KartenDatentypen zu vermeiden.
+                                 Art_Inseln, Art_Kontinente, Art_Pangäa, Art_Nur_Land, Art_Chaos, Art_Zufall
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                );
+   pragma Ordered (Rückgabe_Werte_Enum);
    
-   type Welches_Menü is (Hauptmenü, Spielmenü, Optionsmenü);
+   type Welches_Menü_Enum is (Haupt_Menü, Spiel_Menü, Optionen_Menü, Kartengröße_Menü, Kartenart_Menü);
    
    type Anfang_Ende_Enum is (Anfangswert, Endwert);
    for Anfang_Ende_Enum use (Anfangswert => 0, Endwert => 1);
@@ -18,7 +35,7 @@ package SystemDatentypen is
    type Anzeige_Art_Enum is (Konsole, SFML, Beides);
    subtype Anzeige_Art_Grafik_Enum is Anzeige_Art_Enum range SFML .. Beides;
    
-   type NotAus is range 1 .. 1_000;
+   type NotAus is range 1 .. 100;
    subtype NotAusKlein is NotAus range 1 .. 5;
    -- Sonstiges
 

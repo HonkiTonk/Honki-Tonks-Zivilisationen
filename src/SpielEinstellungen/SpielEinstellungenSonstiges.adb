@@ -5,7 +5,6 @@ with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleVariablen;
 with SystemKonstanten;
-with SystemDatentypen;
 with GlobaleTexte;
 
 with Auswahl;
@@ -14,7 +13,7 @@ with ZufallGeneratorenSpieleinstellungen;
 package body SpielEinstellungenSonstiges is
 
    function SchwierigkeitsgradFestlegen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       SpieleranzahlSchleife:
@@ -37,17 +36,18 @@ package body SpielEinstellungenSonstiges is
                GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
                return SystemKonstanten.AuswahlFertig;
                
-            when SystemKonstanten.ZurückKonstante =>
+            when SystemDatentypen.Zurück =>
                return SystemKonstanten.AuswahlBelegung;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return SchwierigkeitAuswahl;
                
-            when others =>
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
-
-         Put (Item => CSI & "2J" & CSI & "H");
          
       end loop SpieleranzahlSchleife;
       

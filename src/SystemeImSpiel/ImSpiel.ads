@@ -1,16 +1,14 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with SystemKonstanten;
 
 package ImSpiel is
 
    function ImSpiel
-     return Integer
-     with
-       Post =>
-         (ImSpiel'Result in -1 .. 0);
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
 private
 

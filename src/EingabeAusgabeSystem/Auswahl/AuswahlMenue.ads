@@ -9,14 +9,24 @@ with SystemDatentypen;
 package AuswahlMenue is
 
    function AuswahlMenü
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü)
+     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
       return SystemDatentypen.Rückgabe_Werte_Enum;
 
 private
 
-   HauptmenüAnfang : constant Positive := 3;
-   HauptmenüEnde : constant Positive := 8;
+   WelchesMenü : SystemDatentypen.Welches_Menü_Enum;
 
+   type AnfangEndeMenüArray is array (SystemDatentypen.Welches_Menü_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Positive;
+   AnfangEndeMenü : constant AnfangEndeMenüArray := (
+                                                       SystemDatentypen.Haupt_Menü => (3, 8),
+                                                       SystemDatentypen.Spiel_Menü => (1, 1),
+                                                       SystemDatentypen.Optionen_Menü => (1, 1),
+                                                       SystemDatentypen.Kartengröße_Menü => (1, 1),
+                                                       SystemDatentypen.Kartenart_Menü => (1, 1)
+                                                      );
+
+   Anfang : Positive;
+   Ende : Positive;
    AktuelleAuswahl : Positive;
 
    StartPositionYAchse : constant Float := 20.00;
@@ -32,7 +42,10 @@ private
    procedure Überschrift
      (ÜberschriftExtern : in Wide_Wide_String);
 
-   procedure AnzeigeHauptmenüSFML;
+   procedure StringSetzen
+     (WelcheZeileExtern : in Positive);
+
+   procedure AnzeigeMenüSFML;
    procedure MausAuswahl;
 
 

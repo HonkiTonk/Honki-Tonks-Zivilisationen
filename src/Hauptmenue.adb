@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;
-with SystemDatentypen;
 
 with Optionen;
 with SpielEinstellungen;
@@ -21,18 +21,18 @@ package body Hauptmenue is
       loop
          
          case
-           AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Hauptmenü)
+           AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Haupt_Menü)
          is
             when SystemDatentypen.Start_Weiter =>
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungenAuswahl;
 
                if
-                 RückgabeKampagne = SystemKonstanten.HauptmenüKonstante
+                 RückgabeKampagne = SystemDatentypen.Hauptmenü
                then
                   AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
                elsif
-                 RückgabeKampagne = SystemKonstanten.SpielBeendenKonstante
+                 RückgabeKampagne = SystemDatentypen.Spiel_Beenden
                then
                   exit HauptmenüSchleife;
 
@@ -47,10 +47,10 @@ package body Hauptmenue is
                   case
                     ImSpiel.ImSpiel
                   is
-                     when SystemKonstanten.HauptmenüKonstante =>
+                     when SystemDatentypen.Hauptmenü =>
                         AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when SystemKonstanten.SpielBeendenKonstante =>
+                     when SystemDatentypen.Spiel_Beenden =>
                         exit HauptmenüSchleife;
 
                      when others =>

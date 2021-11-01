@@ -4,8 +4,6 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Calendar; use Ada.Calendar;
 
 with GlobaleVariablen;
-with SystemDatentypen;
-with SystemKonstanten;
 with SonstigeDatentypen;
 
 with ImSpiel;
@@ -18,46 +16,46 @@ with SpielEinstellungenSonstiges;
 package body SpielEinstellungen is
 
    function SpielEinstellungenAuswahl
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
 
-      HauptAuswahl := SystemKonstanten.AuswahlKartengröße;
+      Auswahl := SystemDatentypen.Auswahl_Kartengröße;
 
       AuswahlSchleife:
       loop
 
          case
-           HauptAuswahl
+           Auswahl
          is
-            when SystemKonstanten.AuswahlKartengröße =>
-               HauptAuswahl := SpielEinstellungenKarten.KartengrößeWählen;
+            when SystemDatentypen.Auswahl_Kartengröße =>
+               Auswahl := SpielEinstellungenKarten.KartengrößeWählen;
 
-            when SystemKonstanten.AuswahlKartenart =>
-               HauptAuswahl := SpielEinstellungenKarten.KartenartWählen;
+            when SystemDatentypen.Auswahl_Kartenart =>
+               Auswahl := SpielEinstellungenKarten.KartenartWählen;
                
-            when SystemKonstanten.AuswahlKartenform =>
-               HauptAuswahl := SpielEinstellungenKarten.KartenformWählen;
+            when SystemDatentypen.Auswahl_Kartenform =>
+               Auswahl := SpielEinstellungenKarten.KartenformWählen;
 
-            when SystemKonstanten.AuswahlKartentemperatur =>
-               HauptAuswahl := SpielEinstellungenKarten.KartentemperaturWählen;
+            when SystemDatentypen.Auswahl_Kartentemperatur =>
+               Auswahl := SpielEinstellungenKarten.KartentemperaturWählen;
                
-            when SystemKonstanten.AuswahlKartenressourcen =>
-               HauptAuswahl := SpielEinstellungenKarten.KartenressourcenWählen;
+            when SystemDatentypen.Auswahl_Kartenressourcen =>
+               Auswahl := SpielEinstellungenKarten.KartenressourcenWählen;
                
-            when SystemKonstanten.AuswahlSpieleranzahl =>
-               HauptAuswahl := SpielEinstellungenRasseSpieler.SpieleranzahlWählen;
+            when SystemDatentypen.Auswahl_Spieleranzahl =>
+               Auswahl := SpielEinstellungenRasseSpieler.SpieleranzahlWählen;
 
-            when SystemKonstanten.AuswahlBelegung =>
-               HauptAuswahl := SpielEinstellungenRasseSpieler.SpielerbelegungWählen;
+            when SystemDatentypen.Auswahl_Belegung =>
+               Auswahl := SpielEinstellungenRasseSpieler.SpielerbelegungWählen;
 
-            when SystemKonstanten.AuswahlSchwierigkeitsgrad =>
-               HauptAuswahl := SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen;
+            when SystemDatentypen.Auswahl_Schwierigkeitsgrad =>
+               Auswahl := SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
-            when SystemKonstanten.AuswahlFertig =>
+            when SystemDatentypen.Start_Weiter =>
                exit AuswahlSchleife;
 
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
-               return HauptAuswahl;
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+               return Auswahl;
 
             when others =>
                null;
@@ -72,7 +70,7 @@ package body SpielEinstellungen is
    
    
    function AutomatischeEinstellungen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       KartenGenerator.KartenGenerator;

@@ -20,9 +20,7 @@ package GlobaleTexte is
 
    type TexteEinlesenArray is array (1 .. SystemDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
    TexteEinlesen : TexteEinlesenArray := (others => (others => SystemKonstanten.LeerUnboundedString));
-   
-   -- Sprache in verschiedene Arrays speichern? Und dann aus der Datenbank einlesen ohne Textdateien?
-   
+      
    RassenNamenBeschreibungen : constant Positive := 2 * 18;
    
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
