@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with KartenRecords;
 
 package KartenGeneratorRessourcen is
@@ -9,9 +10,9 @@ package KartenGeneratorRessourcen is
 
 private
    
-   type WahrscheinlichkeitRessourceArray is array (KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum'Range, KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range) of Float;
+   type WahrscheinlichkeitRessourceArray is array (KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range, KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range) of Float;
    WahrscheinlichkeitRessourcen : constant WahrscheinlichkeitRessourceArray := (
-                                                                                KartenDatentypen.Arm =>
+                                                                                SystemDatentypen.Karte_Ressource_Arm =>
                                                                                   (
                                                                                    KartenDatentypen.Fisch              => 0.02,
                                                                                    KartenDatentypen.Wal                => 0.00,
@@ -22,7 +23,7 @@ private
                                                                                    KartenDatentypen.Gold               => 0.00
                                                                                   ),
                                                                                 
-                                                                                KartenDatentypen.Wenig =>
+                                                                                SystemDatentypen.Karte_Ressource_Wenig =>
                                                                                   (
                                                                                    KartenDatentypen.Fisch              => 0.04,
                                                                                    KartenDatentypen.Wal                => 0.01,
@@ -33,7 +34,7 @@ private
                                                                                    KartenDatentypen.Gold               => 0.01
                                                                                   ),
                                                                                 
-                                                                                KartenDatentypen.Mittel =>
+                                                                                SystemDatentypen.Karte_Ressource_Mittel =>
                                                                                   (
                                                                                    KartenDatentypen.Fisch              => 0.08,
                                                                                    KartenDatentypen.Wal                => 0.02,
@@ -44,7 +45,7 @@ private
                                                                                    KartenDatentypen.Gold               => 0.02
                                                                                   ),
                                                                                 
-                                                                                KartenDatentypen.Viel =>
+                                                                                SystemDatentypen.Karte_Ressource_Viel =>
                                                                                   (
                                                                                    KartenDatentypen.Fisch              => 0.16,
                                                                                    KartenDatentypen.Wal                => 0.04,
@@ -55,7 +56,7 @@ private
                                                                                    KartenDatentypen.Gold               => 0.04
                                                                                   ),
                                                                                 
-                                                                                KartenDatentypen.Überfluss =>
+                                                                                SystemDatentypen.Karte_Ressource_Überfluss =>
                                                                                   (
                                                                                    KartenDatentypen.Fisch              => 0.32,
                                                                                    KartenDatentypen.Wal                => 0.08,

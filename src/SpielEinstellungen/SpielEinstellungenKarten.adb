@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
-
 with KartenDatentypen;
 with SystemKonstanten;
 with GlobaleTexte;
@@ -30,10 +27,10 @@ package body SpielEinstellungenKarten is
                Karten.Kartengröße := KartengrößeAuswahl;
                return SystemDatentypen.Auswahl_Kartenart;
 
-            when SystemDatentypen.Karte_Nutzer =>
+            when SystemDatentypen.Karte_Größe_Nutzer =>
                return GrößeSelbstBestimmen;
                
-            when SystemDatentypen.Karte_Zufall =>
+            when SystemDatentypen.Karte_Größe_Zufall =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
                return SystemDatentypen.Auswahl_Kartenart;
 
@@ -103,11 +100,11 @@ package body SpielEinstellungenKarten is
          case
            KartenartAuswahl
          is
-            when 1 .. 5 =>
+            when KartenDatentypen.Kartenart_Verwendet_Enum'Range =>
                Karten.Kartenart := KartenartAuswahl;
                return SystemDatentypen.Auswahl_Kartenform;
                
-            when 6 =>
+            when SystemDatentypen.Zufall =>
                Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
                return SystemDatentypen.Auswahl_Kartenform;
                
@@ -138,16 +135,16 @@ package body SpielEinstellungenKarten is
       KartenformSchleife:
       loop
 
-         KartenformAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen);
+         KartenformAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenform_Menü);
          
          case
            KartenformAuswahl
          is
-            when 1 .. 9 =>
+            when KartenDatentypen.Kartenform_Verwendet_Enum'Range =>
                Karten.Kartenform := KartenformAuswahl;
                return SystemDatentypen.Auswahl_Kartentemperatur;
                
-            when 10 =>
+            when SystemDatentypen.Zufall =>
                Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
                return SystemDatentypen.Auswahl_Kartentemperatur;
                
@@ -178,16 +175,16 @@ package body SpielEinstellungenKarten is
       KartentemperaturSchleife:
       loop
 
-         KartentemperaturAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen);
+         KartentemperaturAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartentemperatur_Menü);
                   
          case
            KartentemperaturAuswahl
          is
-            when 1 .. 5 =>
+            when KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range =>
                Karten.Kartentemperatur := KartentemperaturAuswahl;
                return SystemDatentypen.Auswahl_Kartenressourcen;
                
-            when 6 =>
+            when SystemDatentypen.Zufall =>
                Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
                return SystemDatentypen.Auswahl_Kartenressourcen;
                
@@ -218,16 +215,16 @@ package body SpielEinstellungenKarten is
       KartenressourcenSchleife:
       loop
 
-         KartenressourcenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen);
+         KartenressourcenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenressourcen_Menü);
          
          case
            KartenressourcenAuswahl
          is
-            when 1 .. 5 =>
+            when KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range =>
                Karten.Kartenressourcen := KartenressourcenAuswahl;
                return SystemDatentypen.Auswahl_Spieleranzahl;
                
-            when 6 =>
+            when SystemDatentypen.Zufall =>
                Karten.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
                return SystemDatentypen.Auswahl_Spieleranzahl;
                

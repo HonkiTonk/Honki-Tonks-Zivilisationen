@@ -20,7 +20,7 @@ with KarteInformationenSFML;
 package body KarteSFML is
    
    procedure KarteAnzeigen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       FensterKarte := (Float (GrafikEinstellungen.FensterBreite), Float (GrafikEinstellungen.FensterHöhe) * 0.80);
@@ -39,7 +39,7 @@ package body KarteSFML is
    
    
    procedure AbmessungBerechnen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       YSichtAnfang := -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse;
@@ -106,7 +106,7 @@ package body KarteSFML is
 
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       YMultiplikator := 0.00;
@@ -166,7 +166,7 @@ package body KarteSFML is
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen.
@@ -190,7 +190,7 @@ package body KarteSFML is
    procedure AnzeigeCursor
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case

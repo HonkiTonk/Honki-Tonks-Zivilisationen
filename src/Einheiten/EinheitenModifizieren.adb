@@ -22,7 +22,7 @@ package body EinheitenModifizieren is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)

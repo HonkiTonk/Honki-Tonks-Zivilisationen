@@ -5,7 +5,7 @@ with ForschungsDatenbank;
 package body LeseForschungsDatenbank is
 
    function PreisForschung
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.ForschungID)
       return EinheitStadtDatentypen.KostenLager
    is begin
@@ -17,7 +17,7 @@ package body LeseForschungsDatenbank is
 
 
    function AnforderungForschung
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.ForschungID;
       WelcheAnforderungExtern : in Positive)
       return EinheitStadtDatentypen.ForschungIDMitNullWert
@@ -30,7 +30,7 @@ package body LeseForschungsDatenbank is
 
 
    function GanzerEintrag
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.ForschungID)
       return DatenbankRecords.ForschungListeRecord
    is begin

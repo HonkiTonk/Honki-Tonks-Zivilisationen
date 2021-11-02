@@ -5,6 +5,7 @@ with Ada.Float_Text_IO;
 with Ada.Integer_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 
@@ -20,7 +21,7 @@ with Cheat;
 package body InformationenEinheiten is
 
    procedure Einheiten
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       

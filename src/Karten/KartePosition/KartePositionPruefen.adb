@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
+
 with KartePositionKartenformen;
 
 package body KartePositionPruefen is
@@ -13,39 +15,39 @@ package body KartePositionPruefen is
       case
         Karten.Kartenform
       is
-         when KartenDatentypen.X_Zylinder =>
+         when SystemDatentypen.Karte_Form_X_Zylinder =>
             return KartePositionKartenformen.KartenPositionXZylinder (KoordinatenExtern => KoordinatenExtern,
                                                                       ÄnderungExtern    => ÄnderungExtern);
             
-         when KartenDatentypen.Y_Zylinder =>
+         when SystemDatentypen.Karte_Form_Y_Zylinder =>
             return KartePositionKartenformen.KartenPositionYZylinder (KoordinatenExtern => KoordinatenExtern,
                                                                       ÄnderungExtern    => ÄnderungExtern);
             
-         when KartenDatentypen.Torus =>
+         when SystemDatentypen.Karte_Form_Torus =>
             return KartePositionKartenformen.KartenPositionTorus (KoordinatenExtern => KoordinatenExtern,
                                                                   ÄnderungExtern    => ÄnderungExtern);
             
-         when KartenDatentypen.Kugel =>
+         when SystemDatentypen.Karte_Form_Kugel =>
             return KartePositionKartenformen.KartenPositionKugel (KoordinatenExtern => KoordinatenExtern,
                                                                   ÄnderungExtern    => ÄnderungExtern);
             
-         when KartenDatentypen.Viereck =>
+         when SystemDatentypen.Karte_Form_Viereck =>
             return KartePositionKartenformen.KartenPositionViereck (KoordinatenExtern => KoordinatenExtern,
                                                                     ÄnderungExtern    => ÄnderungExtern);
 
-         when KartenDatentypen.Kugel_Gedreht =>
+         when SystemDatentypen.Karte_Form_Kugel_Gedreht =>
             return KartePositionKartenformen.KartenPositionKugelGedreht (KoordinatenExtern => KoordinatenExtern,
                                                                          ÄnderungExtern    => ÄnderungExtern);
             
             -- Hier soll er die Sachen aus Kugel und Torus zusammen machen
-         when KartenDatentypen.Tugel =>
+         when SystemDatentypen.Karte_Form_Tugel =>
             return KartePositionKartenformen.KartenPositionTugel (KoordinatenExtern => KoordinatenExtern,
                                                                   ÄnderungExtern    => ÄnderungExtern);
             
-         when KartenDatentypen.Tugel_Gedreht =>
+         when SystemDatentypen.Karte_Form_Tugel_Gedreht =>
             return (0, 0, 0);
             
-         when KartenDatentypen.Tugel_Extrem =>
+         when SystemDatentypen.Karte_Form_Tugel_Extrem =>
             return (0, 0, 0);
       end case;
       

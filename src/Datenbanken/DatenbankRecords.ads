@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
@@ -82,9 +83,9 @@ package DatenbankRecords is
 
 
    -- Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung, Angriff
-   type GewinnBewertungArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Bewertung_Werte_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
+   type GewinnBewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Bewertung_Werte_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
    
-   type BewertungArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
+   type BewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
    
    -- KartenDatenbank
    type KartenListeRecord is record

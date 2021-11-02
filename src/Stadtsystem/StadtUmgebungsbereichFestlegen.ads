@@ -9,77 +9,77 @@ with KartenDatentypen;
 
 package StadtUmgebungsbereichFestlegen is
    
-   type TechnologieUmgebungsgrößeArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of EinheitStadtDatentypen.ForschungID;
+   type TechnologieUmgebungsgrößeArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of EinheitStadtDatentypen.ForschungID;
    TechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
-                                                                               SonstigeDatentypen.Menschen =>
+                                                                               SystemDatentypen.Menschen =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
                                                                                              
-                                                                               SonstigeDatentypen.Kasrodiah =>
+                                                                               SystemDatentypen.Kasrodiah =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Lasupin =>
+                                                                               SystemDatentypen.Lasupin =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Lamustra =>
+                                                                               SystemDatentypen.Lamustra =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Manuky =>
+                                                                               SystemDatentypen.Manuky =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Suroka =>
+                                                                               SystemDatentypen.Suroka =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Pryolon =>
+                                                                               SystemDatentypen.Pryolon =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Talbidahr =>
+                                                                               SystemDatentypen.Talbidahr =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Moru_Phisihl =>
+                                                                               SystemDatentypen.Moru_Phisihl =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Larinos_Lotaris =>
+                                                                               SystemDatentypen.Larinos_Lotaris =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Carupex =>
+                                                                               SystemDatentypen.Carupex =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Alary =>
+                                                                               SystemDatentypen.Alary =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Tesorahn =>
+                                                                               SystemDatentypen.Tesorahn =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Natries_Zermanis =>
+                                                                               SystemDatentypen.Natries_Zermanis =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Tridatus =>
+                                                                               SystemDatentypen.Tridatus =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Senelari =>
+                                                                               SystemDatentypen.Senelari =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Aspari_2 =>
+                                                                               SystemDatentypen.Aspari_2 =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SonstigeDatentypen.Ekropa =>
+                                                                               SystemDatentypen.Ekropa =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43)
                                                                               );

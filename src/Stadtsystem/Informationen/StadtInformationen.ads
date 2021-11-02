@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenRecords;
@@ -11,7 +12,7 @@ with Karten;
 package StadtInformationen is
 
    procedure Stadt
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -22,7 +23,7 @@ package StadtInformationen is
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
 
    procedure StadtArtBesitzer
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -130,7 +131,7 @@ package StadtInformationen is
 
    procedure EinzelnesFeldNahrungsgewinnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -141,7 +142,7 @@ package StadtInformationen is
 
    procedure EinzelnesFeldRessourcengewinnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -152,7 +153,7 @@ package StadtInformationen is
 
    procedure EinzelnesFeldGeldgewinnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -163,7 +164,7 @@ package StadtInformationen is
 
    procedure EinzelnesFeldWissensgewinnung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

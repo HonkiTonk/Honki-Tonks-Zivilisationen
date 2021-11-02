@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with Ada.Calendar; use Ada.Calendar;
 
+with SystemDatentypen; use SystemDatentypen;
+
 with Karte;
 with BefehleImSpiel;
 with Optionen;
@@ -24,7 +26,7 @@ package body ImSpiel is
       SpielSchleife:
       loop
          RassenSchleife:
-         for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+         for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
             
             RückgabeRassen := RasseImSpiel (RasseExtern => RasseSchleifenwert);
             
@@ -45,7 +47,7 @@ package body ImSpiel is
          end loop RassenSchleife;
                
          if
-           GlobaleVariablen.RasseAmZugNachLaden = SonstigeDatentypen.Leer
+           GlobaleVariablen.RasseAmZugNachLaden = SystemDatentypen.Keine_Rasse
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
@@ -71,7 +73,7 @@ package body ImSpiel is
    
    
    function RasseImSpiel
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
@@ -97,16 +99,16 @@ package body ImSpiel is
    
    
    function RasseDurchgehen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
             
       if
-        GlobaleVariablen.RasseAmZugNachLaden = SonstigeDatentypen.Leer
+        GlobaleVariablen.RasseAmZugNachLaden = SystemDatentypen.Keine_Rasse
         or
           RasseExtern = GlobaleVariablen.RasseAmZugNachLaden
       then
-         GlobaleVariablen.RasseAmZugNachLaden := SonstigeDatentypen.Leer;
+         GlobaleVariablen.RasseAmZugNachLaden := SystemDatentypen.Keine_Rasse;
             
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
@@ -133,7 +135,7 @@ package body ImSpiel is
    
    
    procedure KISpieler
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
             
       Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert) := Clock;
@@ -145,7 +147,7 @@ package body ImSpiel is
    
    
    function MenschlicherSpieler
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
                            
@@ -184,7 +186,7 @@ package body ImSpiel is
 
    -- Hier einen zweiten Task aufmachen der das Fenster verwaltet?
    function MenschAmZug
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
@@ -253,12 +255,12 @@ package body ImSpiel is
    
    
    function NochSpielerVorhanden
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseSchleifenwert = RasseExtern

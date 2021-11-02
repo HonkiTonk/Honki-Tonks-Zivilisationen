@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
@@ -52,14 +53,14 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
    function StadtnummerErmitteln
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
 
    function HauptstadtPrüfen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
      with
        Pre =>

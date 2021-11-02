@@ -7,6 +7,7 @@ with SystemKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SonstigeDatentypen;
+with SystemDatentypen;
 
 with Karten;
 with Cheat;
@@ -22,7 +23,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.Wichtiges := (others => SonstigesKonstanten.LeerWichtigesZeug);
       GlobaleVariablen.Diplomatie := (others => (others => SonstigesKonstanten.LeerDiplomatie));
       GlobaleVariablen.RundenAnzahl := Positive'First;
-      GlobaleVariablen.RasseAmZugNachLaden := SonstigeDatentypen.Leer;
+      GlobaleVariablen.RasseAmZugNachLaden := SystemDatentypen.Keine_Rasse;
       GlobaleVariablen.CursorImSpiel := (others => SonstigesKonstanten.LeerCursor);
       GlobaleVariablen.Gewonnen := False;
       GlobaleVariablen.IronmanName := SystemKonstanten.LeerUnboundedString;

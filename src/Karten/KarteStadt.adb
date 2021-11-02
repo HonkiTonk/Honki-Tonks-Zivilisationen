@@ -87,7 +87,7 @@ package body KarteStadt is
    
    
    function AufschlagGebäude
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtweiteMitNullwert
    is begin
       
@@ -222,7 +222,7 @@ package body KarteStadt is
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
                             CursorExtern       => False,
                             EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                            RasseExtern        => SonstigeDatentypen.Leer);
+                            RasseExtern        => SystemDatentypen.Keine_Rasse);
       end if;
       
       return False;
@@ -251,7 +251,7 @@ package body KarteStadt is
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
                             CursorExtern       => False,
                             EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                            RasseExtern        => SonstigeDatentypen.Leer);
+                            RasseExtern        => SystemDatentypen.Keine_Rasse);
       end if;
       
    end GebäudeDarstellung;
@@ -261,7 +261,7 @@ package body KarteStadt is
    procedure CursorDarstellung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -279,7 +279,7 @@ package body KarteStadt is
                             GrundExtern        => KartenDatentypen.Leer,
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => SonstigeDatentypen.Leer);
+                            RasseExtern        => SystemDatentypen.Keine_Rasse);
 
       else
          Farbgebung.Farben (EinheitIDExtern    => 0,
@@ -288,7 +288,7 @@ package body KarteStadt is
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => SonstigeDatentypen.Leer);
+                            RasseExtern        => SystemDatentypen.Keine_Rasse);
 
       end if;
       
@@ -342,7 +342,7 @@ package body KarteStadt is
    procedure SchleifeAnsichtUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 1 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
@@ -358,7 +358,7 @@ package body KarteStadt is
                                GrundExtern        => KartenDatentypen.Leer,
                                CursorExtern       => True,
                                EigeneRasseExtern  => RasseExtern,
-                               RasseExtern        => SonstigeDatentypen.Leer);
+                               RasseExtern        => SystemDatentypen.Keine_Rasse);
 
          else
             Put (Item => SystemKonstanten.LeerZeichen);
@@ -422,7 +422,7 @@ package body KarteStadt is
    
    
    procedure AnzeigeUmgebungCursor
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
    is begin
       
@@ -437,7 +437,7 @@ package body KarteStadt is
                             GrundExtern        => KartenDatentypen.Leer,
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => SonstigeDatentypen.Leer);
+                            RasseExtern        => SystemDatentypen.Keine_Rasse);
 
       else
          InformationenStadtAufrufen := True;
@@ -456,7 +456,7 @@ package body KarteStadt is
                                   GrundExtern        => KartenDatentypen.Leer,
                                   CursorExtern       => True,
                                   EigeneRasseExtern  => RasseExtern,
-                                  RasseExtern        => SonstigeDatentypen.Leer);
+                                  RasseExtern        => SystemDatentypen.Keine_Rasse);
 
             when others =>
                Farbgebung.Farben (EinheitIDExtern    => 0,
@@ -465,7 +465,7 @@ package body KarteStadt is
                                   GrundExtern        => LeseKarten.Grund (PositionExtern => KartenWert),
                                   CursorExtern       => True,
                                   EigeneRasseExtern  => RasseExtern,
-                                  RasseExtern        => SonstigeDatentypen.Leer);
+                                  RasseExtern        => SystemDatentypen.Keine_Rasse);
          end case;
       end if;
       

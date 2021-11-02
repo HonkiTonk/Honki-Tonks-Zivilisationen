@@ -18,8 +18,8 @@ package body Farbgebung is
       RessourceExtern : in KartenDatentypen.Karten_Grund_Enum;
       GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in SonstigeDatentypen.Rassen_Enum;
-      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
+      EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Enum)
    is begin
             
       FarbenFeld (GrundExtern => GrundExtern);
@@ -168,8 +168,8 @@ package body Farbgebung is
       RessourceExtern : in KartenDatentypen.Karten_Grund_Enum;
       GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in SonstigeDatentypen.Rassen_Enum;
-      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
+      EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Enum)
    is begin
       
       if

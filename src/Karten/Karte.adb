@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 
 with Karten;
 with KarteInformationenKonsole;
@@ -18,27 +17,27 @@ package body Karte is
       case
         Karten.Kartengröße
       is
-         when SystemDatentypen.Karte_20_20 =>
+         when SystemDatentypen.Karte_Größe_20_20 =>
             Sichtweiten.SichtweiteFestlegen := 1;
             Sichtweiten.BewegungsfeldFestlegen := 1;
             
-         when SystemDatentypen.Karte_40_40 =>
+         when SystemDatentypen.Karte_Größe_40_40 =>
             Sichtweiten.SichtweiteFestlegen := 2;
             Sichtweiten.BewegungsfeldFestlegen := 2;
 
-         when SystemDatentypen.Karte_Nutzer =>
+         when SystemDatentypen.Karte_Größe_Nutzer =>
             if
-              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_20_20).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_Größe_20_20).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_20_20).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_Größe_20_20).XAchsenGröße
             then
                Sichtweiten.SichtweiteFestlegen := 1;
                Sichtweiten.BewegungsfeldFestlegen := 1;
                
             elsif
-              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_40_40).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_Größe_40_40).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_40_40).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_Größe_40_40).XAchsenGröße
             then
                Sichtweiten.SichtweiteFestlegen := 2;
                Sichtweiten.BewegungsfeldFestlegen := 2;
@@ -58,7 +57,7 @@ package body Karte is
    
 
    procedure AnzeigeKarte
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       CursorPositionAltFestlegen.CursorPositionAltFestlegen (RasseExtern                  => RasseExtern,

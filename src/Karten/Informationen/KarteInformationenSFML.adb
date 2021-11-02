@@ -5,13 +5,13 @@ with GrafikEinstellungen;
 package body KarteInformationenSFML is
 
    procedure KarteInformationenSFML
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
         RasseExtern
       is
-         when SonstigeDatentypen.Menschen =>
+         when SystemDatentypen.Menschen =>
             null;
             
          when others =>

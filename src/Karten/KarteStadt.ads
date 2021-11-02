@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
@@ -43,7 +44,7 @@ private
    procedure SchleifeAnsichtUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
@@ -72,14 +73,14 @@ private
    procedure CursorDarstellung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure GebäudeDarstellung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID);
    
    procedure AnzeigeUmgebungCursor
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei);
    
    
@@ -91,7 +92,7 @@ private
       return Boolean;
    
    function AufschlagGebäude
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtweiteMitNullwert;
 
 end KarteStadt;

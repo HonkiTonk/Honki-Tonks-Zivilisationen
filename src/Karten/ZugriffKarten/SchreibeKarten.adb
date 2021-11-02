@@ -40,7 +40,7 @@ package body SchreibeKarten is
    
    procedure Sichtbar
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
    is begin
       
@@ -96,7 +96,7 @@ package body SchreibeKarten is
    
    procedure BelegterGrund
      (PositionExtern : KartenRecords.AchsenKartenfeldPositivRecord;
-      BelegterGrundExtern : in KartenDatentypen.BelegterGrund)
+      BelegterGrundExtern : in KartenRecords.BelegterGrundRecord)
    is begin
       
       Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).DurchStadtBelegterGrund := BelegterGrundExtern;
@@ -107,7 +107,7 @@ package body SchreibeKarten is
    
    procedure Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewertungExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
    is begin
       

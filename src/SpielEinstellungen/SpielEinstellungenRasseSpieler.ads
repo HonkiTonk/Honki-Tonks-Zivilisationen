@@ -13,7 +13,7 @@ package SpielEinstellungenRasseSpieler is
    procedure StartwerteErmitteln;
 
    procedure StartpunktFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
@@ -31,7 +31,7 @@ package SpielEinstellungenRasseSpieler is
 
    function UmgebungPrüfen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
@@ -52,9 +52,10 @@ private
    RasseEntfernen : constant Positive := 20;
    
    SpielerAnzahl : Integer;
-   SpieleranzahlAuswahl : Integer;
-   SpielerartAuswahl : Integer;
-   RassenAuswahl : Integer;
+   
+   RassenAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   SpielerartAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   SpieleranzahlAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
    
    GezogeneWerte : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
@@ -64,6 +65,6 @@ private
    
    procedure FelderBestimmen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end SpielEinstellungenRasseSpieler;

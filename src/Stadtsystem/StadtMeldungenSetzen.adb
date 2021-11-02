@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
+
 with SchreibeStadtGebaut;
 
 package body StadtMeldungenSetzen is
@@ -8,7 +10,7 @@ package body StadtMeldungenSetzen is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)

@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 
 with Sichtweiten;
@@ -8,7 +9,7 @@ with Sichtweiten;
 package CursorPositionAltFestlegen is
 
    procedure CursorPositionAltFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
      with
        Pre =>
@@ -19,14 +20,14 @@ package CursorPositionAltFestlegen is
 private
 
    procedure AlteEAchseFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure AlteYAchseFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive);
 
    procedure AlteXAchseFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive);
 
 end CursorPositionAltFestlegen;

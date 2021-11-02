@@ -9,6 +9,6 @@ package SpielEinstellungenSonstiges is
    
 private
    
-   SchwierigkeitAuswahl : Integer;
+   SchwierigkeitAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
 
 end SpielEinstellungenSonstiges;

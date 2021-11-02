@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
@@ -13,13 +14,13 @@ package Farbgebung is
       RessourceExtern : in KartenDatentypen.Karten_Grund_Enum;
       GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in SonstigeDatentypen.Rassen_Enum;
-      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
+      EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Enum)
      with
        Pre =>
-         ((if EigeneRasseExtern /= SonstigeDatentypen.Leer then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch)
+         ((if EigeneRasseExtern /= SystemDatentypen.Keine_Rasse then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch)
           and
-            (if RasseExtern /= SonstigeDatentypen.Leer then GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer));
+            (if RasseExtern /= SystemDatentypen.Keine_Rasse then GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer));
    
 private
    
@@ -29,8 +30,8 @@ private
       RessourceExtern : in KartenDatentypen.Karten_Grund_Enum;
       GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in SonstigeDatentypen.Rassen_Enum;
-      RasseExtern : in SonstigeDatentypen.Rassen_Enum);
+      EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Enum);
    
    procedure FarbenRessourcenFluss
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;

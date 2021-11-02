@@ -11,7 +11,7 @@ with EinheitSuchen;
 package body KIStadtSuchen is
    
    function NähesteFeindlicheStadtSuchen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -34,7 +34,7 @@ package body KIStadtSuchen is
    
    
    function StadtSuchen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
@@ -80,7 +80,7 @@ package body KIStadtSuchen is
    
    
    function UnbewachteStadtSuchen
-     (FeindlicheRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (FeindlicheRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       

@@ -5,7 +5,6 @@ with SonstigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenDatentypen;
-with SystemDatentypen;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -26,7 +25,7 @@ package body Wachstum is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -219,15 +218,15 @@ package body Wachstum is
    
    
    procedure WachstumWichtiges
-     (RasseExtern : in SonstigeDatentypen.Rassen_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Enum)
    is begin
       
       case
         RasseExtern
       is
-         when SonstigeDatentypen.Leer =>
+         when SystemDatentypen.Keine_Rasse =>
             RassenSchleife:
-            for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+            for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
                
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -250,7 +249,7 @@ package body Wachstum is
    
    
    procedure WachstumsratenBerechnen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,

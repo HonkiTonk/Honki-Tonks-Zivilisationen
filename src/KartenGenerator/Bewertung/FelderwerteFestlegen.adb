@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenKonstanten;
 
@@ -36,7 +37,7 @@ package body FelderwerteFestlegen is
                                     KartenWertEins (KoordinatenExtern.EAchse).YAchse,
                                     KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := (others => 0);
                   KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse),
-                                                      RasseExtern       => SonstigeDatentypen.Leer);
+                                                      RasseExtern       => SystemDatentypen.Keine_Rasse);
             end case;
             
          end loop XAchseÄnderungSchleife;
@@ -48,7 +49,7 @@ package body FelderwerteFestlegen is
 
    procedure KartenfelderBewertenKleineSchleife
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Enum)
    is begin
       
       BewertungYÄnderungSchleife:
@@ -102,17 +103,17 @@ package body FelderwerteFestlegen is
    procedure BewertungSelbst
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Enum;
       TeilerExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Spieler_KI
            and
-             (RasseExtern = SonstigeDatentypen.Leer
+             (RasseExtern = SystemDatentypen.Keine_Rasse
               or
                 RasseExtern = RasseSchleifenwert)
          then

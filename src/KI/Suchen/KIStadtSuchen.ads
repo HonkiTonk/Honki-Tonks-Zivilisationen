@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtDatentypen;
@@ -11,7 +12,7 @@ with Karten;
 package KIStadtSuchen is
 
    function NähesteFeindlicheStadtSuchen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -23,7 +24,7 @@ package KIStadtSuchen is
             AnfangKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function UnbewachteStadtSuchen
-     (FeindlicheRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (FeindlicheRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -37,7 +38,7 @@ private
    EntfernungNeu : Positive;
 
    function StadtSuchen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert;
 

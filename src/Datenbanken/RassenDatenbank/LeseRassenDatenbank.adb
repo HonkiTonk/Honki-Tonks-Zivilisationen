@@ -5,7 +5,7 @@ with RassenDatenbank;
 package body LeseRassenDatenbank is
 
    function RassenAggressivität
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -16,7 +16,7 @@ package body LeseRassenDatenbank is
    
    
    function RassenExpansion
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -27,7 +27,7 @@ package body LeseRassenDatenbank is
    
    
    function RassenWissenschaft
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -38,7 +38,7 @@ package body LeseRassenDatenbank is
    
    
    function RassenProduktion
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -49,7 +49,7 @@ package body LeseRassenDatenbank is
    
    
    function RassenWirtschaft
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -60,7 +60,7 @@ package body LeseRassenDatenbank is
    
    
    function RassenBewirtschaftung
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -71,7 +71,7 @@ package body LeseRassenDatenbank is
    
    
    function RassenGültigeStaatsform
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       StaatsformExtern : SonstigeDatentypen.Staatsform_Enum)
       return Boolean
    is begin

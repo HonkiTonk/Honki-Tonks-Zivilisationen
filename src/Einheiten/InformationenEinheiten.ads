@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
@@ -8,7 +9,7 @@ with EinheitStadtDatentypen;
 package InformationenEinheiten is
 
    procedure Einheiten
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>

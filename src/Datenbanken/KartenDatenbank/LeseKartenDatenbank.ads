@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
@@ -20,7 +21,7 @@ package LeseKartenDatenbank is
    
    function FeldWerte
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Bewertung_Werte_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with

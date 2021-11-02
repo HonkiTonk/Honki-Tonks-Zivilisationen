@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -180,7 +181,7 @@ package body BewegungEinheiten is
       elsif
         EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
         and
-          EinheitAufFeld.Rasse /= SonstigeDatentypen.Leer
+          EinheitAufFeld.Rasse /= SystemDatentypen.Keine_Rasse
       then
          if
            (FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

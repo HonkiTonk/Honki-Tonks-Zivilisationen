@@ -35,7 +35,7 @@ package KartenKonstanten is
    LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
    LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
    LeerRessource : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
-   LeerDurchStadtBelegterGrund : constant KartenDatentypen.BelegterGrund := KartenDatentypen.BelegterGrund'First;
+   LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (SystemDatentypen.Keine_Rasse, EinheitStadtDatentypen.MaximaleStädteMitNullWert'First);
    LeerFelderwertung : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
@@ -61,29 +61,29 @@ package KartenKonstanten is
    
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
-                                         SystemDatentypen.Karte_20_20     => 1,
-                                         SystemDatentypen.Karte_40_40     => 1,
-                                         SystemDatentypen.Karte_80_80     => 2,
-                                         SystemDatentypen.Karte_120_80    => 3,
-                                         SystemDatentypen.Karte_120_160   => 3,
-                                         SystemDatentypen.Karte_160_160   => 4,
-                                         SystemDatentypen.Karte_240_240   => 6,
-                                         SystemDatentypen.Karte_320_320   => 8,
-                                         SystemDatentypen.Karte_1000_1000 => 24,
-                                         SystemDatentypen.Karte_Nutzer    => 1
+                                         SystemDatentypen.Karte_Größe_20_20     => 1,
+                                         SystemDatentypen.Karte_Größe_40_40     => 1,
+                                         SystemDatentypen.Karte_Größe_80_80     => 2,
+                                         SystemDatentypen.Karte_Größe_120_80    => 3,
+                                         SystemDatentypen.Karte_Größe_120_160   => 3,
+                                         SystemDatentypen.Karte_Größe_160_160   => 4,
+                                         SystemDatentypen.Karte_Größe_240_240   => 6,
+                                         SystemDatentypen.Karte_Größe_320_320   => 8,
+                                         SystemDatentypen.Karte_Größe_1000_1000 => 24,
+                                         SystemDatentypen.Karte_Größe_Nutzer    => 1
                                         );
 
    Eisschild : constant EisgebietArray := (
-                                           SystemDatentypen.Karte_20_20     => 3,
-                                           SystemDatentypen.Karte_40_40     => 3,
-                                           SystemDatentypen.Karte_80_80     => 6,
-                                           SystemDatentypen.Karte_120_80    => 9,
-                                           SystemDatentypen.Karte_120_160   => 9,
-                                           SystemDatentypen.Karte_160_160   => 12,
-                                           SystemDatentypen.Karte_240_240   => 18,
-                                           SystemDatentypen.Karte_320_320   => 24,
-                                           SystemDatentypen.Karte_1000_1000 => 72,
-                                           SystemDatentypen.Karte_Nutzer    => 1
+                                           SystemDatentypen.Karte_Größe_20_20     => 3,
+                                           SystemDatentypen.Karte_Größe_40_40     => 3,
+                                           SystemDatentypen.Karte_Größe_80_80     => 6,
+                                           SystemDatentypen.Karte_Größe_120_80    => 9,
+                                           SystemDatentypen.Karte_Größe_120_160   => 9,
+                                           SystemDatentypen.Karte_Größe_160_160   => 12,
+                                           SystemDatentypen.Karte_Größe_240_240   => 18,
+                                           SystemDatentypen.Karte_Größe_320_320   => 24,
+                                           SystemDatentypen.Karte_Größe_1000_1000 => 72,
+                                           SystemDatentypen.Karte_Größe_Nutzer    => 1
                                           );
 
 end KartenKonstanten;

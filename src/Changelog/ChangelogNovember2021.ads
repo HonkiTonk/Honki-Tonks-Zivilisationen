@@ -189,16 +189,21 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.92 => 0.00.92 (03.11.2021):
+   -- Version 0.00.9210 => 0.00.92 (03.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9190 => 0.00.92 (02.11.2021):
+   -- Version 0.00.9190 => 0.00.9210 (02.11.2021):
    
-   -- 
+   -- Fehler in der Erzeugung von zufälligen Kartengrößen entdeckt.
+   -- Angefangen SonstigeDatentypen in SystemDatentypen zu integrieren.
+   -- Unnötigen Code gelöscht.
+   -- Code an die neuen Rückgabewerte und dadurch notwendigen Datentypen angepasst.
+   -- Speicherung der Kartenfelderbelegung durch Städte neu geschrieben.
+   -- Neues Menüsystem vollständig eingebaut.
    -- Kleinigkeiten korrigiert.
    
    

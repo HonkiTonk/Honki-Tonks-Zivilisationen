@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with SonstigeDatentypen; use SonstigeDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
 with EinheitStadtRecords;
@@ -12,7 +13,7 @@ with Karten;
 package TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
      with

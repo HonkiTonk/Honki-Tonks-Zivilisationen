@@ -7,12 +7,12 @@ with DiplomatischerZustand;
 package body KIKriegErmitteln is
 
    function IstImKrieg
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseSchleifenwert = RasseExtern
@@ -41,25 +41,25 @@ package body KIKriegErmitteln is
    
    
    function KriegAnfangen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
-      return SonstigeDatentypen.Rassen_Enum
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return SystemDatentypen.Rassen_Enum
    is begin
       
       case
         RasseExtern
       is
-         when SonstigeDatentypen.Ekropa =>
-            return SonstigeDatentypen.Leer;
+         when SystemDatentypen.Ekropa =>
+            return SystemDatentypen.Keine_Rasse;
             
          when others =>
             null;
       end case;
       
-      RasseGewählt := SonstigeDatentypen.Leer;
+      RasseGewählt := SystemDatentypen.Keine_Rasse;
       Bewertungen := (others => 0);
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseSchleifenwert = RasseExtern
@@ -82,9 +82,9 @@ package body KIKriegErmitteln is
    
    
    function StärkeVerhältnisErmitteln
-     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
-      return SonstigeDatentypen.Rassen_Enum
+     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return SystemDatentypen.Rassen_Enum
    is begin
       
       Bewertung := 0;
@@ -104,11 +104,11 @@ package body KIKriegErmitteln is
          null;
          
       else
-         return SonstigeDatentypen.Leer;
+         return SystemDatentypen.Keine_Rasse;
       end if;
       
       if
-        RasseGewählt = SonstigeDatentypen.Leer
+        RasseGewählt = SystemDatentypen.Keine_Rasse
       then
          Bewertungen (FremdeRasseExtern) := Bewertung;
          

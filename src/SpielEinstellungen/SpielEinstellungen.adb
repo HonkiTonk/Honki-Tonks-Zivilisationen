@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Calendar; use Ada.Calendar;
 
 with GlobaleVariablen;
@@ -80,7 +79,7 @@ package body SpielEinstellungen is
       RassenVorhanden := False;
       
       SicherheitsSchleife:
-      for RassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
@@ -102,7 +101,6 @@ package body SpielEinstellungen is
             null;
             
          when False =>
-            Put_Line ("SpielEinstellungen.SpielEinstellungenAuswahl es wurden keine Rassen platziert!");
             raise Program_Error;
       end case;
          
@@ -110,7 +108,7 @@ package body SpielEinstellungen is
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Spieler_Platzieren);
 
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Gesamtzeit);
-         
+      
       return ImSpiel.ImSpiel;
       
    end AutomatischeEinstellungen;

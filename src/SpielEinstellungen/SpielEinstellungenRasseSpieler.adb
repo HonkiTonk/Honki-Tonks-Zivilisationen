@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 with KartenKonstanten;
@@ -19,6 +20,7 @@ with EinheitSuchen;
 with KartePositionPruefen;
 with BewegungPassierbarkeitPruefen;
 with EinheitenErzeugenEntfernen;
+with AuswahlMenue;
 
 package body SpielEinstellungenRasseSpieler is
 
@@ -29,16 +31,12 @@ package body SpielEinstellungenRasseSpieler is
       SpieleranzahlSchleife:
       loop
 
-         SpieleranzahlAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Spiel_Einstellungen,
-                                                  TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                                  FrageZeileExtern  => 35,
-                                                  ErsteZeileExtern  => 36,
-                                                  LetzteZeileExtern => 40);
+        SpieleranzahlAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Spieleranzahl_Menü);
          
          case
            SpieleranzahlAuswahl
          is
-            when 1 =>
+            when SystemDatentypen.Eingabe =>
                SpielerAnzahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                    ZeileExtern         => 1,
                                                    ZahlenMinimumExtern => 1,
@@ -46,21 +44,21 @@ package body SpielEinstellungenRasseSpieler is
                if
                  SpielerAnzahl in 1 .. 18
                then
-                  return SystemKonstanten.AuswahlBelegung;
+                  return SystemDatentypen.Auswahl_Belegung;
                   
                else
                   null;
                end if;
 
-            when 2 =>
+            when SystemDatentypen.Zufall =>
                SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.ZufälligeSpieleranzahl;
-               return SystemKonstanten.AuswahlBelegung;
+               return SystemDatentypen.Auswahl_Belegung;
                
             when SystemDatentypen.Zurück =>
-               return SystemKonstanten.AuswahlKartenressourcen;
+               return SystemDatentypen.Auswahl_Kartenressourcen;
 
             when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
-               return SpieleranzahlAuswahl;
+               return SystemDatentypen.Auswahl_Spieleranzahl;
                
             when SystemDatentypen.Leer =>
                null;
@@ -93,36 +91,33 @@ package body SpielEinstellungenRasseSpieler is
            SpielerartAuswahl
          is
             when SystemDatentypen.Zurück =>
-               return SystemKonstanten.AuswahlSpieleranzahl;
+               return SystemDatentypen.Auswahl_Spieleranzahl;
 
             when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return SpielerartAuswahl;
                
-            when SystemDatentypen.Leer =>
-               null;
-               
             when others =>
-               raise Program_Error;
+               null;
          end case;
          
          if
-           SpielerartAuswahl = RasseEntfernen
+           SpielerartAuswahl = SystemDatentypen.Rasse_Entfernen
          then
             null;
             
          else
             case
-              GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl))
+              GlobaleVariablen.RassenImSpiel (SpielerartAuswahl)
             is
                when SonstigeDatentypen.Leer =>
                   if
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 21) = SystemKonstanten.JaKonstante
                   then
-                     GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl)) := SonstigeDatentypen.Spieler_Mensch;
+                     GlobaleVariablen.RassenImSpiel (SpielerartAuswahl) := SonstigeDatentypen.Spieler_Mensch;
                      Spieler := Spieler + 1;
                      
                   else
-                     GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl)) := SonstigeDatentypen.Spieler_KI;
+                     GlobaleVariablen.RassenImSpiel (SpielerartAuswahl) := SonstigeDatentypen.Spieler_KI;
                      Spieler := Spieler + 1;
                   end if;
                
@@ -133,7 +128,7 @@ package body SpielEinstellungenRasseSpieler is
          
       end loop SpielerSchleife;
 
-      return SystemKonstanten.AuswahlSchwierigkeitsgrad;
+      return SystemDatentypen.Auswahl_Schwierigkeitsgrad;
 
    end SpielerbelegungWählen;
    
@@ -146,26 +141,18 @@ package body SpielEinstellungenRasseSpieler is
       RasseSchleife:
       loop
          
-         RassenAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Spiel_Einstellungen,
-                                           TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                           FrageZeileExtern  => 41,
-                                           ErsteZeileExtern  => 42,
-                                           LetzteZeileExtern => 63);
+         RassenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Rassen_Menü);
 
          case
            RassenAuswahl
          is
-            when 1 .. 18 =>
+            when SystemDatentypen.Rassen_Verwendet_Enum'Range =>
                if
-                 GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (RassenAuswahl)) = SonstigeDatentypen.Leer
+                 GlobaleVariablen.RassenImSpiel (RassenAuswahl) = SonstigeDatentypen.Leer
                then
-                  Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Spiel_Einstellungen,
-                                                TextDateiExtern        => GlobaleTexte.Rassen_Beschreibung_Lang,
-                                                ÜberschriftZeileExtern => RassenAuswahl + 41,
-                                                ErsteZeileExtern       => RassenAuswahl,
-                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Leer);
-                  Eingabe.WartenEingabe;
+                  -- Hier wieder die Anzeige des langen Rassentexts einbauen.
+                  
+                 -- Eingabe.WartenEingabe;
                
                   case
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 6)
@@ -182,26 +169,30 @@ package body SpielEinstellungenRasseSpieler is
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 32)
                   is
                      when SystemKonstanten.JaKonstante =>
-                        GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (RassenAuswahl)) := SonstigeDatentypen.Leer;
+                        GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SonstigeDatentypen.Leer;
                         Spieler := Spieler - 1;
-                        return RasseEntfernen;
+                        return SystemDatentypen.Rasse_Entfernen;
                      
                      when others =>
                         null;
                   end case;
                end if;
 
-            when 19 =>
-               return SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (ZufallGeneratorenSpieleinstellungen.ZufälligeRasse);
+            when SystemDatentypen.Zufall =>
+               return ZufallGeneratorenSpieleinstellungen.ZufälligeRasse;
 
-            when SystemDatentypen.Zurück | SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Zurück =>
                return RassenAuswahl;
                
-            when others =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+               return RassenAuswahl;
+               
+            when SystemDatentypen.Leer =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
-
-         Put (Item => CSI & "2J" & CSI & "H");
          
       end loop RasseSchleife;
       
@@ -213,7 +204,7 @@ package body SpielEinstellungenRasseSpieler is
    is begin
       
       SpieleranzahlWerteFestlegen:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
         
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -238,7 +229,7 @@ package body SpielEinstellungenRasseSpieler is
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 16);
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
-                                                              TextZeileExtern => SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
+                                                              TextZeileExtern => SystemDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 17);
                         GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := SonstigeDatentypen.Leer;
@@ -258,7 +249,7 @@ package body SpielEinstellungenRasseSpieler is
 
    function UmgebungPrüfen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
 
@@ -292,7 +283,7 @@ package body SpielEinstellungenRasseSpieler is
    
    procedure FelderBestimmen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
             
       StartpositionGefunden := False;
@@ -352,7 +343,7 @@ package body SpielEinstellungenRasseSpieler is
 
 
    procedure StartpunktFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (1),

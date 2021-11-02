@@ -9,7 +9,6 @@ with KartenRecords;
 with ForschungKonstanten;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with SonstigeDatentypen;
 
 with DatenbankRecords;
 
@@ -17,7 +16,7 @@ with KIDatentypen;
 
 package StadtKonstanten is
    
-   LeerRasse : constant SonstigeDatentypen.Rassen_Enum := SonstigeDatentypen.Leer;
+   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
    
@@ -93,50 +92,50 @@ package StadtKonstanten is
                                                                          GebäudeSpezielleEigenschaft => LeerSpezielleEigenschaft
                                                                         );
    
-   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
+   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SystemDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert =>
                                                                      (
-                                                                      SonstigeDatentypen.Menschen         => 10,
-                                                                      SonstigeDatentypen.Kasrodiah        => 10,
-                                                                      SonstigeDatentypen.Lasupin          => 10,
-                                                                      SonstigeDatentypen.Lamustra         => 10,
-                                                                      SonstigeDatentypen.Manuky           => 10,
-                                                                      SonstigeDatentypen.Suroka           => 10,
-                                                                      SonstigeDatentypen.Pryolon          => 10,
-                                                                      SonstigeDatentypen.Talbidahr        => 10,
-                                                                      SonstigeDatentypen.Moru_Phisihl     => 10,
-                                                                      SonstigeDatentypen.Larinos_Lotaris  => 10,
-                                                                      SonstigeDatentypen.Carupex          => 10,
-                                                                      SonstigeDatentypen.Alary            => 10,
-                                                                      SonstigeDatentypen.Tesorahn         => 10,
-                                                                      SonstigeDatentypen.Natries_Zermanis => 10,
-                                                                      SonstigeDatentypen.Tridatus         => 10,
-                                                                      SonstigeDatentypen.Senelari         => 10,
-                                                                      SonstigeDatentypen.Aspari_2         => 10,
-                                                                      SonstigeDatentypen.Ekropa           => 10
+                                                                      SystemDatentypen.Menschen         => 10,
+                                                                      SystemDatentypen.Kasrodiah        => 10,
+                                                                      SystemDatentypen.Lasupin          => 10,
+                                                                      SystemDatentypen.Lamustra         => 10,
+                                                                      SystemDatentypen.Manuky           => 10,
+                                                                      SystemDatentypen.Suroka           => 10,
+                                                                      SystemDatentypen.Pryolon          => 10,
+                                                                      SystemDatentypen.Talbidahr        => 10,
+                                                                      SystemDatentypen.Moru_Phisihl     => 10,
+                                                                      SystemDatentypen.Larinos_Lotaris  => 10,
+                                                                      SystemDatentypen.Carupex          => 10,
+                                                                      SystemDatentypen.Alary            => 10,
+                                                                      SystemDatentypen.Tesorahn         => 10,
+                                                                      SystemDatentypen.Natries_Zermanis => 10,
+                                                                      SystemDatentypen.Tridatus         => 10,
+                                                                      SystemDatentypen.Senelari         => 10,
+                                                                      SystemDatentypen.Aspari_2         => 10,
+                                                                      SystemDatentypen.Ekropa           => 10
                                                                      ),
 
                                                                    SystemDatentypen.Endwert =>
                                                                      (
-                                                                      SonstigeDatentypen.Menschen         => 20,
-                                                                      SonstigeDatentypen.Kasrodiah        => 20,
-                                                                      SonstigeDatentypen.Lasupin          => 20,
-                                                                      SonstigeDatentypen.Lamustra         => 20,
-                                                                      SonstigeDatentypen.Manuky           => 20,
-                                                                      SonstigeDatentypen.Suroka           => 20,
-                                                                      SonstigeDatentypen.Pryolon          => 20,
-                                                                      SonstigeDatentypen.Talbidahr        => 20,
-                                                                      SonstigeDatentypen.Moru_Phisihl     => 20,
-                                                                      SonstigeDatentypen.Larinos_Lotaris  => 20,
-                                                                      SonstigeDatentypen.Carupex          => 20,
-                                                                      SonstigeDatentypen.Alary            => 20,
-                                                                      SonstigeDatentypen.Tesorahn         => 20,
-                                                                      SonstigeDatentypen.Natries_Zermanis => 20,
-                                                                      SonstigeDatentypen.Tridatus         => 20,
-                                                                      SonstigeDatentypen.Senelari         => 20,
-                                                                      SonstigeDatentypen.Aspari_2         => 20,
-                                                                      SonstigeDatentypen.Ekropa           => 20
+                                                                      SystemDatentypen.Menschen         => 20,
+                                                                      SystemDatentypen.Kasrodiah        => 20,
+                                                                      SystemDatentypen.Lasupin          => 20,
+                                                                      SystemDatentypen.Lamustra         => 20,
+                                                                      SystemDatentypen.Manuky           => 20,
+                                                                      SystemDatentypen.Suroka           => 20,
+                                                                      SystemDatentypen.Pryolon          => 20,
+                                                                      SystemDatentypen.Talbidahr        => 20,
+                                                                      SystemDatentypen.Moru_Phisihl     => 20,
+                                                                      SystemDatentypen.Larinos_Lotaris  => 20,
+                                                                      SystemDatentypen.Carupex          => 20,
+                                                                      SystemDatentypen.Alary            => 20,
+                                                                      SystemDatentypen.Tesorahn         => 20,
+                                                                      SystemDatentypen.Natries_Zermanis => 20,
+                                                                      SystemDatentypen.Tridatus         => 20,
+                                                                      SystemDatentypen.Senelari         => 20,
+                                                                      SystemDatentypen.Aspari_2         => 20,
+                                                                      SystemDatentypen.Ekropa           => 20
                                                                      )
                                                                   );
 

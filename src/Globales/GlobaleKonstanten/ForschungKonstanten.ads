@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen;
-with SonstigeDatentypen;
 with SystemDatentypen;
 
 with DatenbankRecords;
@@ -16,9 +15,9 @@ package ForschungKonstanten is
                                                                            AnforderungForschung => (others => LeerForschungAnforderung)
                                                                           );
    
-   type TechnologieVerbesserungArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
-                                                                       SonstigeDatentypen.Menschen =>
+                                                                       SystemDatentypen.Menschen =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -29,7 +28,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Kasrodiah =>
+                                                                       SystemDatentypen.Kasrodiah =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -40,7 +39,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Lasupin =>
+                                                                       SystemDatentypen.Lasupin =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -51,7 +50,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Lamustra =>
+                                                                       SystemDatentypen.Lamustra =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -62,7 +61,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Manuky =>
+                                                                       SystemDatentypen.Manuky =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -73,7 +72,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Suroka =>
+                                                                       SystemDatentypen.Suroka =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -84,7 +83,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Pryolon =>
+                                                                       SystemDatentypen.Pryolon =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -95,7 +94,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Talbidahr =>
+                                                                       SystemDatentypen.Talbidahr =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -106,7 +105,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Moru_Phisihl =>
+                                                                       SystemDatentypen.Moru_Phisihl =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -117,7 +116,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Larinos_Lotaris =>
+                                                                       SystemDatentypen.Larinos_Lotaris =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -128,7 +127,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Carupex =>
+                                                                       SystemDatentypen.Carupex =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -139,7 +138,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Alary =>
+                                                                       SystemDatentypen.Alary =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -150,7 +149,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Tesorahn =>
+                                                                       SystemDatentypen.Tesorahn =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -161,7 +160,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Natries_Zermanis =>
+                                                                       SystemDatentypen.Natries_Zermanis =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -172,7 +171,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Tridatus =>
+                                                                       SystemDatentypen.Tridatus =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -183,7 +182,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Senelari =>
+                                                                       SystemDatentypen.Senelari =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -194,7 +193,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Aspari_2 =>
+                                                                       SystemDatentypen.Aspari_2 =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -205,7 +204,7 @@ package ForschungKonstanten is
                                                                           others                               => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SonstigeDatentypen.Ekropa =>
+                                                                       SystemDatentypen.Ekropa =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,

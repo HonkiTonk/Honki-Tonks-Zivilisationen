@@ -5,7 +5,6 @@ with SystemKonstanten;
 with KartenRecords;
 with ForschungKonstanten;
 with EinheitStadtDatentypen;
-with SonstigeDatentypen;
 with SystemDatentypen;
 
 with DatenbankRecords;
@@ -14,7 +13,7 @@ with KIDatentypen;
 
 package EinheitenKonstanten is
    
-   LeerRasse : constant SonstigeDatentypen.Rassen_Enum := SonstigeDatentypen.Leer;
+   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
 

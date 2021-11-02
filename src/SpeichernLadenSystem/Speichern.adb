@@ -84,7 +84,7 @@ package body Speichern is
       Natural'Write (Stream (File => DateiSpeichernNeu),
                      GlobaleVariablen.Rundengrenze);
       
-      SonstigeDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
+      SystemDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
                                            GlobaleVariablen.RasseAmZugNachLaden);
       
       SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
@@ -116,9 +116,9 @@ package body Speichern is
       case
         Karten.Kartengröße
       is
-         when SystemDatentypen.Karte_Nutzer =>
+         when SystemDatentypen.Karte_Größe_Nutzer =>
             Karten.KartengrößenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                               Karten.Kartengrößen (SystemDatentypen.Karte_Nutzer));
+                                               Karten.Kartengrößen (SystemDatentypen.Karte_Größe_Nutzer));
             
          when others =>
             null;
@@ -149,7 +149,7 @@ package body Speichern is
                                                   GlobaleVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
-      for GrenzenRassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for GrenzenRassenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          WichtigeRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernNeu),
                                               GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));

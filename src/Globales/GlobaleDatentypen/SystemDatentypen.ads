@@ -3,34 +3,45 @@ pragma SPARK_Mode (On);
 package SystemDatentypen is
 
    -- Sonstiges
-   type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Hauptmenü, Spiel_Beenden, Zurück, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung,
+   type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Hauptmenü, Spiel_Beenden, Zurück, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
+                                 Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges,
                                  
                                  Auswahl_Kartengröße, Auswahl_Kartenart, Auswahl_Kartenform, Auswahl_Kartentemperatur, Auswahl_Spieleranzahl, Auswahl_Belegung, Auswahl_Schwierigkeitsgrad, Auswahl_Kartenressourcen,
                                  
-                                 Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer, Karte_Zufall,
+                                 Karte_Größe_20_20, Karte_Größe_40_40, Karte_Größe_80_80, Karte_Größe_120_80, Karte_Größe_120_160, Karte_Größe_160_160, Karte_Größe_240_240, Karte_Größe_320_320, Karte_Größe_1000_1000,
+                                 Karte_Größe_Nutzer, Karte_Größe_Zufall,
                                 
                                  -- Neue Kartenarten immer vor Chaos einfügen um Anpassungen in KartenDatentypen zu vermeiden.
-                                 Art_Inseln, Art_Kontinente, Art_Pangäa, Art_Nur_Land, Art_Chaos, Art_Zufall
+                                 Karte_Art_Inseln, Karte_Art_Kontinente, Karte_Art_Pangäa, Karte_Art_Nur_Land, Karte_Art_Chaos,
                                 
+                                 -- Neue Kartenformen immer vor Tugel Extrem einfügen um Anpassungen in KartenDatentypen zu vermeiden.
+                                 Karte_Form_X_Zylinder, Karte_Form_Y_Zylinder, Karte_Form_Torus, Karte_Form_Kugel, Karte_Form_Viereck, Karte_Form_Kugel_Gedreht, Karte_Form_Tugel, Karte_Form_Tugel_Gedreht,
+                                 Karte_Form_Tugel_Extrem,
                                 
+                                 -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
+                                 Karte_Temperatur_Kalt, Karte_Temperatur_Gemäßigt, Karte_Temperatur_Heiß, Karte_Temperatur_Eiszeit, Karte_Temperatur_Wüste,
                                 
-                                
-                                
-                                
-                                
-                                
+                                 -- Neue Kartenressorucen immer vor Überfluss einfügen um Anpassungen in KartenDatentypen zu vermeiden.
+                                 Karte_Ressource_Arm, Karte_Ressource_Wenig, Karte_Ressource_Mittel, Karte_Ressource_Viel, Karte_Ressource_Überfluss,
+                                   
+                                 -- Neue Schwierigkeitsgrade immer vor Schwer einfügen um Anpassungen weiter unten zu vermeiden.
+                                 Schwierigkeitsgrad_Leicht, Schwierigkeitsgrad_Mittel, Schwierigkeitsgrad_Schwer,
+                                 
+                                 Keine_Rasse, Menschen, Kasrodiah, Lasupin, Lamustra, Manuky, Suroka, Pryolon, Talbidahr, Moru_Phisihl, Larinos_Lotaris, Carupex, Alary, Tesorahn, Natries_Zermanis, Tridatus, Senelari,
+                                 Aspari_2, Ekropa
                                 );
    pragma Ordered (Rückgabe_Werte_Enum);
    
-   type Welches_Menü_Enum is (Haupt_Menü, Spiel_Menü, Optionen_Menü, Kartengröße_Menü, Kartenart_Menü);
+   type Welches_Menü_Enum is (Haupt_Menü, Spiel_Menü, Optionen_Menü, Kartengröße_Menü, Kartenart_Menü, Kartenform_Menü, Kartentemperatur_Menü, Kartenressourcen_Menü, Schwierigkeitsgrad_Menü, Spieleranzahl_Menü,
+                               Rassen_Menü);
    
    type Anfang_Ende_Enum is (Anfangswert, Endwert);
    for Anfang_Ende_Enum use (Anfangswert => 0, Endwert => 1);
-
-   type Schwierigkeitsgrad_Enum is (Leer, Einfach, Mittel, Schwer);
-   for Schwierigkeitsgrad_Enum use (Leer => 0, Einfach => 1, Mittel => 2, Schwer => 3);
-   pragma Ordered (Schwierigkeitsgrad_Enum);
-   subtype Schwierigkeitsgrad_Verwendet_Enum is Schwierigkeitsgrad_Enum range Einfach .. Schwierigkeitsgrad_Enum'Last;
+   
+   subtype Schwierigkeitsgrad_Verwendet_Enum is Rückgabe_Werte_Enum range Schwierigkeitsgrad_Leicht .. Schwierigkeitsgrad_Schwer;
+   
+   subtype Rassen_Enum is Rückgabe_Werte_Enum range Keine_Rasse .. Ekropa;
+   subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen .. Ekropa;
    
    type Anzeige_Art_Enum is (Konsole, SFML, Beides);
    subtype Anzeige_Art_Grafik_Enum is Anzeige_Art_Enum range SFML .. Beides;

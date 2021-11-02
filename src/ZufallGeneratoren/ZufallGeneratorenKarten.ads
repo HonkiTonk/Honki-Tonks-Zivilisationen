@@ -5,6 +5,7 @@ with Ada.Numerics.Float_Random;
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 
@@ -13,7 +14,7 @@ with Karten;
 package ZufallGeneratorenKarten is
      
    function StartPosition
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -101,7 +102,7 @@ private
    
    
    function StartPositionEAchse
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.EbeneVorhanden;
 
 end ZufallGeneratorenKarten;

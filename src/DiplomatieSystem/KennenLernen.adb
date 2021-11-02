@@ -7,8 +7,8 @@ with KIDiplomatie;
 package body KennenLernen is
 
    procedure Erstkontakt
-     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -50,8 +50,8 @@ package body KennenLernen is
    
    
    procedure ErstkontaktMenschMensch
-     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -61,8 +61,8 @@ package body KennenLernen is
    
    
    procedure ErstkontaktMenschKI
-     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;

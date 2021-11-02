@@ -12,7 +12,7 @@ with EinheitStadtDatentypen;
 package BefehleImSpiel is
 
    function Befehle
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
      with
        Pre =>
@@ -39,29 +39,29 @@ private
    StadtSuchenNachNamen : EinheitStadtRecords.RassePlatznummerRecord;
    
    procedure AuswahlEinheitStadt
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure EinheitOderStadt
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       AuswahlExtern : in Integer;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
    
    procedure BaueStadt
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure Technologie
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure EinheitBefehle
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum);
    
    procedure StadtUmbenennen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure StadtAbreißen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure AuswahlEinheitTransporter
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
@@ -75,11 +75,11 @@ private
    
    
    function BefehleKonsole
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer;
    
    function BefehleSFML
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer;
    
 end BefehleImSpiel;

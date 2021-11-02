@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
@@ -33,7 +34,7 @@ package LeseKarten is
    
    function Sichtbar
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
@@ -81,7 +82,7 @@ package LeseKarten is
 
    function Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.GesamtproduktionStadt
      with
        Pre =>
@@ -90,8 +91,8 @@ package LeseKarten is
             PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function BelegterGrund
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -102,7 +103,7 @@ package LeseKarten is
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function BelegterGrundLeer
-     (KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>
@@ -112,7 +113,7 @@ package LeseKarten is
    
    function BestimmteStadtBelegtGrund
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
        Pre =>

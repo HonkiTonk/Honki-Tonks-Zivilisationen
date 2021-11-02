@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
@@ -24,8 +25,8 @@ package KIBewegungAllgemein is
    
 private
 
-   BlockierendeEinheit : SonstigeDatentypen.Rassen_Enum;
-   BlockierendeStadt : SonstigeDatentypen.Rassen_Enum;
+   BlockierendeEinheit : SystemDatentypen.Rassen_Enum;
+   BlockierendeStadt : SystemDatentypen.Rassen_Enum;
    
    function FeldAngreifen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

@@ -8,7 +8,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 with ForschungKonstanten;
-with SystemDatentypen;
 
 with SchreibeWichtiges;
 with LeseForschungsDatenbank;
@@ -57,7 +56,7 @@ package body ForschungAllgemein is
 
    -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
    procedure Forschung
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
          
       WasErforschtWerdenSoll := AuswahlForschungNeu (RasseExtern => RasseExtern);
@@ -78,7 +77,7 @@ package body ForschungAllgemein is
 
 
    function AuswahlForschungNeu
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
@@ -141,7 +140,7 @@ package body ForschungAllgemein is
    
    
    function ForschungAuswahl
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
@@ -210,7 +209,7 @@ package body ForschungAllgemein is
    
    
    procedure Ermöglicht
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
    is begin
       
@@ -264,7 +263,7 @@ package body ForschungAllgemein is
    
    
    procedure Benötigt
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
    is begin
       
@@ -325,7 +324,7 @@ package body ForschungAllgemein is
    
    
    procedure ForschungsBaum
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuelleAuswahl := 1;
@@ -400,7 +399,7 @@ package body ForschungAllgemein is
    is begin
       
       RasseSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -422,7 +421,7 @@ package body ForschungAllgemein is
    
    
    procedure FortschrittMensch
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
@@ -460,7 +459,7 @@ package body ForschungAllgemein is
    
    
    procedure FortschrittKI
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
@@ -500,7 +499,7 @@ package body ForschungAllgemein is
    
    
    function ForschungAnforderungErfüllt
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       ForschungIDExtern : in EinheitStadtDatentypen.ForschungID)
       return Boolean
    is begin

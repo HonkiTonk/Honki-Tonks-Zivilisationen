@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 
@@ -18,8 +19,8 @@ with Karten;
 package body Handeln is
 
    function Handelsmenü
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
@@ -39,8 +40,8 @@ package body Handeln is
    
    
    function Handeln
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
@@ -110,8 +111,8 @@ package body Handeln is
    
    
    procedure GeldVerschenken
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -152,8 +153,8 @@ package body Handeln is
    
    
    procedure GeldVerlangen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -194,12 +195,12 @@ package body Handeln is
    
    
    procedure KontakteVerkaufen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       RassenZweiSchleife:
-      for RasseZweiSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseZweiSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
            RasseZweiSchleifenwert = RasseExtern
@@ -224,12 +225,12 @@ package body Handeln is
    
    
    procedure KontakteKaufen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       RassenEinsSchleife:
-      for RasseEinsSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseEinsSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
                
          if
            RasseEinsSchleifenwert = RasseExtern
@@ -254,8 +255,8 @@ package body Handeln is
    
    
    procedure KontakteTauschen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       KontakteKaufen (RasseExtern             => RasseExtern,
@@ -268,8 +269,8 @@ package body Handeln is
    
    
    procedure SichtbarkeitKaufen
-     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
      
       EAchseEinsSchleife:
@@ -304,8 +305,8 @@ package body Handeln is
 
 
    procedure SichtbarkeitVerkaufen
-     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
   
       EAchseZweiSchleife:
@@ -340,8 +341,8 @@ package body Handeln is
    
    
    procedure SichtbarkeitTauschen
-     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       SichtbarkeitKaufen (RasseEinsExtern => RasseEinsExtern,

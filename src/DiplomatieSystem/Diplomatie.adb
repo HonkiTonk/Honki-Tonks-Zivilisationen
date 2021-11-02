@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 
@@ -12,7 +13,7 @@ with DiplomatischerZustandAenderbar;
 package body Diplomatie is
    
    procedure DiplomatieMöglich
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -31,12 +32,12 @@ package body Diplomatie is
    
    
    function AndereRassenVorhanden
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
       RassenSchleife:
-      for RassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RassenSchleifenwert = RasseExtern
@@ -60,7 +61,7 @@ package body Diplomatie is
    
 
    procedure DiplomatieMenü
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       DiplomatieSchleife:
@@ -85,11 +86,11 @@ package body Diplomatie is
             end case;
             
             if
-              SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
+              SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
               or
-                GlobaleVariablen.RassenImSpiel (SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SonstigeDatentypen.Leer
+                GlobaleVariablen.RassenImSpiel (SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SonstigeDatentypen.Leer
                 or
-                  GlobaleVariablen.Diplomatie (RasseExtern, SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SonstigeDatentypen.Unbekannt
+                  GlobaleVariablen.Diplomatie (RasseExtern, SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SonstigeDatentypen.Unbekannt
             then
                Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                      TextZeileExtern => 21);
@@ -113,15 +114,15 @@ package body Diplomatie is
             is
                when 1 =>
                   DiplomatischeAktion := DiplomatischenStatusÄndern (RasseExtern             => RasseExtern,
-                                                                      KontaktierteRasseExtern => SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                                                                      KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
                when 2 =>
                   DiplomatischeAktion := Handeln.Handelsmenü (RasseExtern             => RasseExtern,
-                                                               KontaktierteRasseExtern => SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                                                               KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
                when 3 =>
                   EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
-                                                           KontaktierteRasseExtern => SonstigeDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                                                           KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
                when SystemKonstanten.ZurückKonstante =>
                   exit DiplomatischeAktionSchleife;
@@ -149,8 +150,8 @@ package body Diplomatie is
    
    -- Später abfragen für Menschen und KI für die jeweiligen Möglichkeiten einbauen.
    function DiplomatischenStatusÄndern
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       

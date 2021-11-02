@@ -30,7 +30,7 @@ private
    -- Dafür noch feste Standardwerte einbauen? Wäre dann später bei weiterführenden Einstellungen wie viel Wasser sinnvoll.
    type WahrscheinlichkeitenLandArray is array (KartenDatentypen.Kartenart_Verwendet_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of WahrscheinlichkeitenRecord;
    WahrscheinlichkeitenLand : constant WahrscheinlichkeitenLandArray := (
-                                                                         SystemDatentypen.Art_Inseln =>
+                                                                         SystemDatentypen.Karte_Art_Inseln =>
                                                                            (
                                                                             Masse_Eisschild    => (0.00, 0.05),
                                                                             Feld_Eisschild     => (0.05, 0.15),
@@ -41,7 +41,7 @@ private
                                                                             Feld_Fläche_Belegt => (0.00, 0.55)
                                                                            ),
                                                                                  
-                                                                         SystemDatentypen.Art_Kontinente =>
+                                                                         SystemDatentypen.Karte_Art_Kontinente =>
                                                                            (
                                                                             Masse_Eisschild    => (0.00, 0.05),
                                                                             Feld_Eisschild     => (0.05, 0.15),
@@ -52,7 +52,7 @@ private
                                                                             Feld_Fläche_Belegt => (0.00, 0.80)
                                                                            ),
                                                                                  
-                                                                         SystemDatentypen.Art_Pangäa =>
+                                                                         SystemDatentypen.Karte_Art_Pangäa =>
                                                                            (
                                                                             Masse_Eisschild    => (0.00, 0.05),
                                                                             Feld_Eisschild     => (0.05, 0.15),

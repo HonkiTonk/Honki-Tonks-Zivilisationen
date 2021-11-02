@@ -4,6 +4,7 @@ with Sf.System.Vector2;
 with Sf.Graphics.Color;
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
@@ -12,14 +13,14 @@ with EinheitStadtRecords;
 package KarteSFML is
    
    procedure KarteAnzeigen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
    
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
@@ -45,7 +46,7 @@ private
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
@@ -59,10 +60,10 @@ private
    procedure AnzeigeCursor
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure AbmessungBerechnen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    
    

@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with KartenRecords; use KartenRecords;
-with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 
@@ -25,7 +24,7 @@ package body KIEinheitHandlungen is
       case
         FeindlicheEinheit.Rasse
       is
-         when SonstigeDatentypen.Leer =>
+         when SystemDatentypen.Keine_Rasse =>
             NormaleHandlungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others =>
@@ -102,7 +101,7 @@ package body KIEinheitHandlungen is
    is begin
       
       if
-        FeindlicheEinheitExtern.Rasse = SonstigeDatentypen.Leer
+        FeindlicheEinheitExtern.Rasse = SystemDatentypen.Keine_Rasse
       then
          null;
          

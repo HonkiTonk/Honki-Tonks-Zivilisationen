@@ -19,7 +19,7 @@ package body GrafischeAnzeige is
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
              
       case
@@ -41,7 +41,7 @@ package body GrafischeAnzeige is
                                   GrundExtern              => KartenDatentypen.Leer,
                                   CursorExtern             => True,
                                   EigeneRasseExtern        => RasseExtern,
-                                  RasseExtern              => SonstigeDatentypen.Leer);
+                                  RasseExtern              => SystemDatentypen.Keine_Rasse);
                
             else
                Put (Item => SystemKonstanten.LeerZeichen);
@@ -55,7 +55,7 @@ package body GrafischeAnzeige is
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen.
@@ -109,7 +109,7 @@ package body GrafischeAnzeige is
    function AnzeigeCursor
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -124,7 +124,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => True,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SonstigeDatentypen.Leer);
+                            RasseExtern              => SystemDatentypen.Keine_Rasse);
          return True;
          
       else
@@ -137,7 +137,7 @@ package body GrafischeAnzeige is
    
    function AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -178,7 +178,7 @@ package body GrafischeAnzeige is
    
    function AnzeigeStadt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -206,7 +206,7 @@ package body GrafischeAnzeige is
    
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -218,7 +218,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SonstigeDatentypen.Leer);
+                            RasseExtern              => SystemDatentypen.Keine_Rasse);
            
       elsif
         LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
@@ -229,7 +229,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SonstigeDatentypen.Leer);
+                            RasseExtern              => SystemDatentypen.Keine_Rasse);
             
       elsif
         LeseKarten.Ressource (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
@@ -240,7 +240,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SonstigeDatentypen.Leer);
+                            RasseExtern              => SystemDatentypen.Keine_Rasse);
             
       elsif
         LeseKarten.Fluss (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
@@ -251,7 +251,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SonstigeDatentypen.Leer);
+                            RasseExtern              => SystemDatentypen.Keine_Rasse);
             
       else
          Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
@@ -260,7 +260,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SonstigeDatentypen.Leer);
+                            RasseExtern              => SystemDatentypen.Keine_Rasse);
       end if;
       
    end AnzeigeLandschaft;

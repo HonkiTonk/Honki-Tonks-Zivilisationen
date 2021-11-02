@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen;
+with SystemDatentypen;
 
 package KartenfelderBewerten is
 
    procedure KartenfelderBewerten
-     (RasseExtern : in SonstigeDatentypen.Rassen_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Enum);
 
 end KartenfelderBewerten;

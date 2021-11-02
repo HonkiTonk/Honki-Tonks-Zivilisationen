@@ -10,8 +10,8 @@ with DiplomatischerZustand;
 package body DiplomatischerZustandAenderbar is
 
    function StatusÄnderbarkeitPrüfen
-     (RasseEinsExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in SonstigeDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
    is begin

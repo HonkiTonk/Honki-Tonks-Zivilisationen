@@ -29,7 +29,7 @@ package body LeseVerbesserungenDatenbank is
    
    function VerbesserungWerte
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Bewertung_Werte_Enum)
       return EinheitStadtDatentypen.ProduktionElement
    is begin

@@ -1,19 +1,20 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 
 package KIDiplomatie is
 
    procedure Diplomatie
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_KI);
 
    procedure DiplomatieKIMensch
-     (RasseMenschExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      RasseKIExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseMenschExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseKIExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseMenschExtern) = SonstigeDatentypen.Spieler_Mensch
@@ -21,8 +22,8 @@ package KIDiplomatie is
             GlobaleVariablen.RassenImSpiel (RasseKIExtern) = SonstigeDatentypen.Spieler_KI);
 
    procedure DiplomatieKIKI
-     (EigeneRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseKIExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseKIExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_KI

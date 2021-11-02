@@ -75,7 +75,7 @@ package body GebaeudeBauen is
    
    
    procedure PreisGebäude
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -123,7 +123,7 @@ package body GebaeudeBauen is
    
    
    procedure PermanenteKostenGebäude
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       PermanenteGebäudeWerte := False;

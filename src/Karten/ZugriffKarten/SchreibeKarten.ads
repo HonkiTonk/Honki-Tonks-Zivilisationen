@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtDatentypen;
@@ -32,7 +33,7 @@ package SchreibeKarten is
    
    procedure Sichtbar
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
      with
        Pre =>
@@ -92,7 +93,7 @@ package SchreibeKarten is
 
    procedure BelegterGrund
      (PositionExtern : KartenRecords.AchsenKartenfeldPositivRecord;
-      BelegterGrundExtern : in KartenDatentypen.BelegterGrund)
+      BelegterGrundExtern : in KartenRecords.BelegterGrundRecord)
      with
        Pre =>
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -101,7 +102,7 @@ package SchreibeKarten is
 
    procedure Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewertungExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
      with
        Pre =>

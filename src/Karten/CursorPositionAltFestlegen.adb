@@ -7,7 +7,7 @@ with Karten;
 package body CursorPositionAltFestlegen is
 
    procedure CursorPositionAltFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
       
@@ -22,7 +22,7 @@ package body CursorPositionAltFestlegen is
    
    
    procedure AlteEAchseFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -39,7 +39,7 @@ package body CursorPositionAltFestlegen is
    
    
    procedure AlteYAchseFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
       
@@ -91,7 +91,7 @@ package body CursorPositionAltFestlegen is
    
    
    procedure AlteXAchseFestlegen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
       

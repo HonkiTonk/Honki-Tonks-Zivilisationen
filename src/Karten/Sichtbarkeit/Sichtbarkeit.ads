@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
@@ -27,7 +28,7 @@ package Sichtbarkeit is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
 
    procedure SichtbarkeitSetzen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>

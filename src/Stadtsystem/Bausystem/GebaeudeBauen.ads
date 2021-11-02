@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtRecords;
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 
 package GebaeudeBauen is
@@ -19,10 +20,10 @@ private
    PermanenteGebäudeWerte : Boolean;
    
    procedure PermanenteKostenGebäude
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure PreisGebäude
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure BauzeitGebäude
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

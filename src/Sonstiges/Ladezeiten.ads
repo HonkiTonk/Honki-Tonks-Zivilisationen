@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with Ada.Calendar; use Ada.Calendar;
 
-with SonstigeDatentypen;
 with SystemDatentypen;
 
 package Ladezeiten is
@@ -20,7 +19,7 @@ package Ladezeiten is
    type EinzelneZeitenArray is array (Einzelne_Zeiten_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    EinzelneZeiten : EinzelneZeitenArray;
    
-   type KIZeitenArray is array (SonstigeDatentypen.Rassen_Enum, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
+   type KIZeitenArray is array (SystemDatentypen.Rassen_Enum, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    KIZeiten : KIZeitenArray;
 
    procedure LadezeitenSpielweltErstellen
@@ -30,7 +29,7 @@ package Ladezeiten is
      (WelcheZeitExtern : in Einzelne_Zeiten_Enum);
    
    procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in SonstigeDatentypen.Rassen_Enum);
+     (WelcheZeitExtern : in SystemDatentypen.Rassen_Enum);
    
    procedure AnzeigeEinzelneZeitOhneWarten
      (WelcheZeitExtern : in Einzelne_Zeiten_Enum);
@@ -46,7 +45,7 @@ private
                                            Ladezeit        => 13
                                           );
    
-   type KITextArray is array (SonstigeDatentypen.Rassen_Enum'Range) of Positive;
+   type KITextArray is array (SystemDatentypen.Rassen_Enum'Range) of Positive;
    KIText : KITextArray := (32, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31);
 
    GesamtzeitSpielweltErstellen : Float;

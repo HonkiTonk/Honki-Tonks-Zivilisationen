@@ -103,7 +103,7 @@ package body Ladezeiten is
    
    
    procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in SonstigeDatentypen.Rassen_Enum)
+     (WelcheZeitExtern : in SystemDatentypen.Rassen_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -118,11 +118,11 @@ package body Ladezeiten is
       case
         WelcheZeitExtern
       is
-         when SonstigeDatentypen.Leer =>
+         when SystemDatentypen.Keine_Rasse =>
             GesamtzeitKI := 0.00;
             
             ZeitAuswahlSchleife:
-            for VerschiedeneZeitenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+            for VerschiedeneZeitenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
                
                GesamtzeitKI := GesamtzeitKI + Float (KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Endwert) - KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert));
                   

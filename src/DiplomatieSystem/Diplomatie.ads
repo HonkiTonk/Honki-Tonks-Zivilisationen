@@ -1,12 +1,13 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 
 package Diplomatie is
 
    procedure DiplomatieMöglich
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
@@ -20,7 +21,7 @@ private
    WelcheRasse : Integer;
 
    procedure DiplomatieMenü
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
@@ -28,12 +29,12 @@ private
 
 
    function DiplomatischenStatusÄndern
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer;
 
    function AndereRassenVorhanden
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>

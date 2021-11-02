@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords; use KartenRecords;
+with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SystemDatentypen;
 
 with KIDatentypen;
 with KIKonstanten;
@@ -157,7 +157,7 @@ package body KIAufgabeFestlegen is
       case
         WenAngreifen
       is
-         when SonstigeDatentypen.Leer =>
+         when SystemDatentypen.Keine_Rasse =>
             return;
             
          when others =>
@@ -202,14 +202,14 @@ package body KIAufgabeFestlegen is
    
    
    function ZielErmitteln
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
-      return SonstigeDatentypen.Rassen_Enum
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return SystemDatentypen.Rassen_Enum
    is begin
       
-      Ziel := SonstigeDatentypen.Leer;
+      Ziel := SystemDatentypen.Keine_Rasse;
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer

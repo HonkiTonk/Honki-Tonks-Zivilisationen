@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with KartenRecords;
 with KartenDatentypen;
@@ -9,11 +9,11 @@ with EinheitStadtDatentypen;
 package EinheitVerschieben is
 
    procedure VonEigenemLandWerfen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure EinheitVerschieben
-     (RasseLandExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseLandExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
 private
@@ -28,6 +28,6 @@ private
    
    procedure EinheitenErmitteln
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      KontaktierteRasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end EinheitVerschieben;

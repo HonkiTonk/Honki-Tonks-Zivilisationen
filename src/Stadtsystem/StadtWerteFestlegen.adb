@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
-with SonstigesKonstanten;
 with StadtKonstanten;
 
 with SchreibeKarten;
@@ -17,7 +16,7 @@ with GebaeudeRichtigeUmgebung;
 package body StadtWerteFestlegen is
    
    procedure StadtUmgebungGrößeFestlegenTechnologie
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtSchleife:
@@ -102,10 +101,7 @@ package body StadtWerteFestlegen is
               LeseKarten.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
             then
                SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
-                                             BelegterGrundExtern => 
-                                               (SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse) * SonstigesKonstanten.RassenMulitplikationWert
-                                                + KartenDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer))
-                                            );
+                                             BelegterGrundExtern => (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer));
                
             else
                null;

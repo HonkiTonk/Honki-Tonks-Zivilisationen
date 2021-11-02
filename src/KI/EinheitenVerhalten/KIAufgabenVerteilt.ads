@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
@@ -24,7 +25,7 @@ package KIAufgabenVerteilt is
    
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
@@ -36,7 +37,7 @@ package KIAufgabenVerteilt is
             GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_KI);
    
    function EinheitZiel
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with

@@ -22,16 +22,16 @@ package Karten is
 
    type KartengrößenArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
    Kartengrößen : KartengrößenArray := (
-                                            SystemDatentypen.Karte_20_20     => (20, 20),
-                                            SystemDatentypen.Karte_40_40     => (40, 40),
-                                            SystemDatentypen.Karte_80_80     => (80, 80),
-                                            SystemDatentypen.Karte_120_80    => (120, 80),
-                                            SystemDatentypen.Karte_120_160   => (120, 160),
-                                            SystemDatentypen.Karte_160_160   => (160, 160),
-                                            SystemDatentypen.Karte_240_240   => (240, 240),
-                                            SystemDatentypen.Karte_320_320   => (320, 320),
-                                            SystemDatentypen.Karte_1000_1000 => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
-                                            SystemDatentypen.Karte_Nutzer    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
+                                            SystemDatentypen.Karte_Größe_20_20     => (20, 20),
+                                            SystemDatentypen.Karte_Größe_40_40     => (40, 40),
+                                            SystemDatentypen.Karte_Größe_80_80     => (80, 80),
+                                            SystemDatentypen.Karte_Größe_120_80    => (120, 80),
+                                            SystemDatentypen.Karte_Größe_120_160   => (120, 160),
+                                            SystemDatentypen.Karte_Größe_160_160   => (160, 160),
+                                            SystemDatentypen.Karte_Größe_240_240   => (240, 240),
+                                            SystemDatentypen.Karte_Größe_320_320   => (320, 320),
+                                            SystemDatentypen.Karte_Größe_1000_1000 => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                            SystemDatentypen.Karte_Größe_Nutzer    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
                                            );
 
    Kartengröße : KartenDatentypen.Kartengröße_Enum;
@@ -47,27 +47,27 @@ package Karten is
    -- Alle Größen- und Abstandsangaben sind Radien.
    type GrößeLandartArray is array (KartenDatentypen.Kartenart_Verwendet_Enum'Range) of LandartenRecord;
    GrößeLandart : GrößeLandartArray := (
-                                            SystemDatentypen.Art_Inseln     => (3, 3),
-                                            SystemDatentypen.Art_Kontinente => (7, 7),
-                                            SystemDatentypen.Art_Pangäa     => (1, 1),
+                                            SystemDatentypen.Karte_Art_Inseln     => (3, 3),
+                                            SystemDatentypen.Karte_Art_Kontinente => (7, 7),
+                                            SystemDatentypen.Karte_Art_Pangäa     => (1, 1),
                                             others                       => (1, 1)
                                            );
    FelderVonLandartZuLandart : GrößeLandartArray := (
-                                                       SystemDatentypen.Art_Inseln     => (15, 15),
-                                                       SystemDatentypen.Art_Kontinente => (22, 22),
-                                                       SystemDatentypen.Art_Pangäa     => (1, 1),
+                                                       SystemDatentypen.Karte_Art_Inseln     => (15, 15),
+                                                       SystemDatentypen.Karte_Art_Kontinente => (22, 22),
+                                                       SystemDatentypen.Karte_Art_Pangäa     => (1, 1),
                                                        others                       => (1, 1)
                                                       );
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
-   Kartenart : KartenDatentypen.Kartenart_Verwendet_Enum := SystemDatentypen.Art_Inseln;
+   Kartenart : KartenDatentypen.Kartenart_Verwendet_Enum := SystemDatentypen.Karte_Art_Inseln;
    KartenartGemischt : Boolean := False;
    -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-   Kartentemperatur : KartenDatentypen.Kartentemperatur_Verwendet_Enum := KartenDatentypen.Kalt;
+   Kartentemperatur : KartenDatentypen.Kartentemperatur_Verwendet_Enum := SystemDatentypen.Karte_Temperatur_Kalt;
    -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht
-   Kartenform : KartenDatentypen.Kartenform_Verwendet_Enum := KartenDatentypen.X_Zylinder;
+   Kartenform : KartenDatentypen.Kartenform_Verwendet_Enum := SystemDatentypen.Karte_Form_X_Zylinder;
    -- Arm, Wenig, Mittel, Viel, Überfluss
-   Kartenressourcen : KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum := KartenDatentypen.Mittel;
+   Kartenressourcen : KartenDatentypen.Kartenressourcen_Verwendet_Enum := SystemDatentypen.Karte_Ressource_Mittel;
 
    type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenDatentypen.Karten_Grund_Enum;
    GeneratorKarte : GeneratorKarteArray;

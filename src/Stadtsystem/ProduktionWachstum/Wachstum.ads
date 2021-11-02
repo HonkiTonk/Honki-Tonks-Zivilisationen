@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 
@@ -9,7 +10,7 @@ package Wachstum is
    procedure StadtWachstum;
    
    procedure WachstumWichtiges
-     (RasseExtern : in SonstigeDatentypen.Rassen_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Enum);
    
 private
    
@@ -32,7 +33,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
    procedure WachstumsratenBerechnen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);

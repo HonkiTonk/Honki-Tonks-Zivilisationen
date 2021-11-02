@@ -32,58 +32,58 @@ package body EinheitenDatenbank is
             case
               RasseSchleifenwert
             is
-               when SonstigeDatentypen.Menschen =>
+               when SystemDatentypen.Menschen =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenMenschen.EinheitenMenschenListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Kasrodiah =>
+               when SystemDatentypen.Kasrodiah =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenKasrodiah.EinheitenKasrodiahListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Lasupin =>
+               when SystemDatentypen.Lasupin =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenLasupin.EinheitenLasupinListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Lamustra =>
+               when SystemDatentypen.Lamustra =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenLamustra.EinheitenLamustraListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Manuky =>
+               when SystemDatentypen.Manuky =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenManuky.EinheitenManukyListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Suroka =>
+               when SystemDatentypen.Suroka =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenSuroka.EinheitenSurokaListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Pryolon =>
+               when SystemDatentypen.Pryolon =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenPryolon.EinheitenPryolonListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Talbidahr =>
+               when SystemDatentypen.Talbidahr =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenTalbidahr.EinheitenTalbidahrListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Moru_Phisihl =>
+               when SystemDatentypen.Moru_Phisihl =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenMoruPhisihl.EinheitenMoruPhisihlListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Larinos_Lotaris =>
+               when SystemDatentypen.Larinos_Lotaris =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenLarinosLotaris.EinheitenLarinosLotarisListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Carupex =>
+               when SystemDatentypen.Carupex =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenCarupex.EinheitenCarupexListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Alary =>
+               when SystemDatentypen.Alary =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenAlary.EinheitenAlaryListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Tesorahn =>
+               when SystemDatentypen.Tesorahn =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenTesorahn.EinheitenTesorahnListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Natries_Zermanis =>
+               when SystemDatentypen.Natries_Zermanis =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenNatriesZermanis.EinheitenNatriesZermanisListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Tridatus =>
+               when SystemDatentypen.Tridatus =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenTridatus.EinheitenTridatusListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Senelari =>
+               when SystemDatentypen.Senelari =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenSenelari.EinheitenSenelariListe (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Aspari_2 =>
+               when SystemDatentypen.Aspari_2 =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenAspari2.EinheitenAspari2Liste (EinheitenSchleifenwert);
                   
-               when SonstigeDatentypen.Ekropa =>
+               when SystemDatentypen.Ekropa =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenEkropa.EinheitenEkropaListe (EinheitenSchleifenwert);
             end case;
             

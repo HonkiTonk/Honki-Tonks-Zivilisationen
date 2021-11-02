@@ -98,7 +98,7 @@ package body Laden is
       Natural'Read (Stream (File => DateiLadenNeu),
                     GlobaleVariablen.Rundengrenze);
       
-      SonstigeDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
+      SystemDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
                                            GlobaleVariablen.RasseAmZugNachLaden);
       
       SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
@@ -130,9 +130,9 @@ package body Laden is
       case
         Karten.Kartengröße
       is
-         when SystemDatentypen.Karte_Nutzer =>
+         when SystemDatentypen.Karte_Größe_Nutzer =>
             Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
-                                              Karten.Kartengrößen (SystemDatentypen.Karte_Nutzer));
+                                              Karten.Kartengrößen (SystemDatentypen.Karte_Größe_Nutzer));
             
          when others =>
             null;
@@ -163,7 +163,7 @@ package body Laden is
                                                   GlobaleVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
-      for GrenzenRassenSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for GrenzenRassenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          WichtigeRecords.GrenzenRecord'Read (Stream (File => DateiLadenNeu),
                                              GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));

@@ -20,7 +20,7 @@ private
    RückgabeRassen : Integer;
 
    procedure KISpieler
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_KI);
@@ -28,15 +28,15 @@ private
 
 
    function RasseImSpiel
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer;
 
    function RasseDurchgehen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer;
 
    function MenschlicherSpieler
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer
      with
        Pre =>
@@ -45,11 +45,11 @@ private
            (MenschlicherSpieler'Result in SystemKonstanten.RundeBeendenKonstante .. 5);
 
    function MenschAmZug
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Integer;
 
    function NochSpielerVorhanden
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean;
 
 end ImSpiel;

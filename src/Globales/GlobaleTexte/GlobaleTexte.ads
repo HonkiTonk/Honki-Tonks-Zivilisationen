@@ -26,8 +26,8 @@ package GlobaleTexte is
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
    Hauptmenü : TexteArray (1 .. 8);
-   Spielmenü : TexteArray (1 .. 6);
-   Optionsmenü : TexteArray (1 .. 7);
+   Spielmenü : TexteArray (1 .. 7);
+   Optionsmenü : TexteArray (1 .. 8);
    Grafikmenü : TexteArray (1 .. 1);
    Soundmenü : TexteArray (1 .. 1);
    Steuerungmenü : TexteArray (1 .. 45);

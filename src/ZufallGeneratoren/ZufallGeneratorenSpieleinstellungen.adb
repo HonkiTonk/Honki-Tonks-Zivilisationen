@@ -1,6 +1,7 @@
 pragma SPARK_Mode (Off);
 
 with GlobaleVariablen;
+with SonstigeDatentypen;
 
 package body ZufallGeneratorenSpieleinstellungen is
    
@@ -49,7 +50,7 @@ package body ZufallGeneratorenSpieleinstellungen is
    
    
    function ZufälligeKartenressourcen
-     return KartenDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum
+     return KartenDatentypen.Kartenressourcen_Verwendet_Enum
    is begin
       
       ZufälligeKartenressourcenWählen.Reset (ZufälligeKartenressourcenGewählt);
@@ -64,14 +65,14 @@ package body ZufallGeneratorenSpieleinstellungen is
    is begin
       
       ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
-      return SonstigeDatentypen.Rassen_Verwendet_Enum'Pos (ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt));
+      return SystemDatentypen.Rassen_Verwendet_Enum'Pos (ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt));
       
    end ZufälligeSpieleranzahl;
    
    
    
    function ZufälligeRasse
-     return SonstigeDatentypen.Rassen_Verwendet_Enum
+     return SystemDatentypen.Rassen_Verwendet_Enum
    is begin
       
       ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);

@@ -20,7 +20,7 @@ package body StadtProduktion is
       case
         StadtRasseNummerExtern.Rasse
       is
-         when SonstigeDatentypen.Leer =>
+         when SystemDatentypen.Keine_Rasse =>
             StadtProduktionAlle;
             
          when others =>
@@ -36,7 +36,7 @@ package body StadtProduktion is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SonstigeDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
                
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)

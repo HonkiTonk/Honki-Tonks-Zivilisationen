@@ -12,7 +12,7 @@ package BewegungCursorSFML is
      (KarteExtern : in Boolean;
       YÄnderungExtern : in Sf.sfInt32;
       XÄnderungExtern : in Sf.sfInt32;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
@@ -26,6 +26,6 @@ private
    procedure BewegungCursorBerechnen
      (YÄnderungExtern : in Sf.sfInt32;
       XÄnderungExtern : in Sf.sfInt32;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end BewegungCursorSFML;

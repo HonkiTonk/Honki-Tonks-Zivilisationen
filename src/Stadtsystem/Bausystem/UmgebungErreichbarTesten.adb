@@ -14,7 +14,7 @@ package body UmgebungErreichbarTesten is
    
    function UmgebungErreichbarTesten
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.MinimimMaximumID;
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldPositivRecord
@@ -112,7 +112,7 @@ package body UmgebungErreichbarTesten is
    
    function NochErreichbar
      (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.MinimimMaximumID)
       return Boolean
    is begin

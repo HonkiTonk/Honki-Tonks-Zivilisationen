@@ -16,7 +16,7 @@ package body StadtUmgebungsbereichFestlegen is
       case
         StadtRasseNummerExtern.Rasse
       is
-         when SonstigeDatentypen.Leer =>
+         when SystemDatentypen.Keine_Rasse =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
             raise Program_Error;
             

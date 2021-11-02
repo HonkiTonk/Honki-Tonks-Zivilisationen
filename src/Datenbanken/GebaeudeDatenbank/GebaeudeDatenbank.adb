@@ -32,58 +32,58 @@ package body GebaeudeDatenbank is
             case
               RasseSchleifenwert
             is
-               when SonstigeDatentypen.Menschen =>
+               when SystemDatentypen.Menschen =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeMenschen.GebäudeMenschenListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Kasrodiah =>
+               when SystemDatentypen.Kasrodiah =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeKasrodiah.GebäudeKasrodiahListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Lasupin =>
+               when SystemDatentypen.Lasupin =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLasupin.GebäudeLasupinListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Lamustra =>
+               when SystemDatentypen.Lamustra =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLamustra.GebäudeLamustraListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Manuky =>
+               when SystemDatentypen.Manuky =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeManuky.GebäudeManukyListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Suroka =>
+               when SystemDatentypen.Suroka =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeSuroka.GebäudeSurokaListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Pryolon =>
+               when SystemDatentypen.Pryolon =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudePryolon.GebäudePryolonListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Talbidahr =>
+               when SystemDatentypen.Talbidahr =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTalbidahr.GebäudeTalbidahrListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Moru_Phisihl =>
+               when SystemDatentypen.Moru_Phisihl =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeMoruPhisihl.GebäudeMoruPhisihlListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Larinos_Lotaris =>
+               when SystemDatentypen.Larinos_Lotaris =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLarinosLotaris.GebäudeLarinosLotarisListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Carupex =>
+               when SystemDatentypen.Carupex =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeCarupex.GebäudeCarupexListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Alary =>
+               when SystemDatentypen.Alary =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeAlary.GebäudeAlaryListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Tesorahn =>
+               when SystemDatentypen.Tesorahn =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTesorahn.GebäudeTesorahnListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Natries_Zermanis =>
+               when SystemDatentypen.Natries_Zermanis =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeNatriesZermanis.GebäudeNatriesZermanisListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Tridatus =>
+               when SystemDatentypen.Tridatus =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTridatus.GebäudeTridatusListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Senelari =>
+               when SystemDatentypen.Senelari =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeSenelari.GebäudeSenelariListe (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Aspari_2 =>
+               when SystemDatentypen.Aspari_2 =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeAspari2.GebäudeAspari2Liste (GebäudeSchleifenwert);
                   
-               when SonstigeDatentypen.Ekropa =>
+               when SystemDatentypen.Ekropa =>
                     GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeEkropa.GebäudeEkropaListe (GebäudeSchleifenwert);
             end case;
             

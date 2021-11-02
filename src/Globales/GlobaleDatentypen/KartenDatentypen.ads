@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with SystemDatentypen;
-with SonstigeDatentypen;
 
 package KartenDatentypen is
 
@@ -18,27 +17,17 @@ package KartenDatentypen is
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
 
-   subtype Kartengröße_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_20_20 .. SystemDatentypen.Karte_Zufall;
-   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range SystemDatentypen.Karte_20_20 .. SystemDatentypen.Karte_Nutzer;
-   subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range SystemDatentypen.Karte_20_20 .. SystemDatentypen.Karte_1000_1000;
+   subtype Kartengröße_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_Zufall;
+   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_Nutzer;
+   subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_1000_1000;
 
-   subtype Kartenart_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Art_Inseln .. SystemDatentypen.Art_Zufall;
-   subtype Kartenart_Verwendet_Enum is Kartenart_Enum range SystemDatentypen.Art_Inseln .. SystemDatentypen.Art_Chaos;
+   subtype Kartenart_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Art_Inseln .. SystemDatentypen.Karte_Art_Chaos;
 
-   type Kartentemperatur_Enum is (Leer, Kalt, Gemäßigt, Heiß, Eiszeit, Wüste);
-   for Kartentemperatur_Enum use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);
-   pragma Ordered (Kartentemperatur_Enum);
-   subtype Kartentemperatur_Verwendet_Enum is Kartentemperatur_Enum range Kalt .. Kartentemperatur_Enum'Last;
+   subtype Kartenform_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Form_X_Zylinder .. SystemDatentypen.Karte_Form_Tugel_Extrem;
 
-   type Kartenform_Enum is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht, Tugel, Tugel_Gedreht, Tugel_Extrem);
-   for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6, Tugel => 7, Tugel_Gedreht => 8, Tugel_Extrem => 9);
-   pragma Ordered (Kartenform_Enum);
-   subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kartenform_Enum'Last;
+   subtype Kartentemperatur_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Temperatur_Kalt .. SystemDatentypen.Karte_Temperatur_Wüste;
 
-   type Karten_Ressourcen_Reichtum_Enum is (Leer, Arm, Wenig, Mittel, Viel, Überfluss);
-   for Karten_Ressourcen_Reichtum_Enum use (Leer => 0, Arm => 1, Wenig => 2, Mittel => 3, Viel => 4, Überfluss => 5);
-   pragma Ordered (Karten_Ressourcen_Reichtum_Enum);
-   subtype Karten_Ressourcen_Reichtum_Verwendet_Enum is Karten_Ressourcen_Reichtum_Enum range Arm .. Karten_Ressourcen_Reichtum_Enum'Last;
+   subtype Kartenressourcen_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Ressource_Arm .. SystemDatentypen.Karte_Ressource_Überfluss;
 
    type Karten_Grund_Enum is (Leer,
                               -- Feld
@@ -122,7 +111,7 @@ package KartenDatentypen is
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. 18 * 1_000 + 100;
 
-   type SichtbarkeitArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
+   type SichtbarkeitArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
 
    type Besondere_Ressourcen_Enum is (Leer, Kohle);
    subtype Besondere_Ressourcen_Verwendet_Enum is Besondere_Ressourcen_Enum range Kohle .. Besondere_Ressourcen_Enum'Last;

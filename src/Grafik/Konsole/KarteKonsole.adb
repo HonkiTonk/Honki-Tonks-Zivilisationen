@@ -4,6 +4,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 
 with KartePositionPruefen;
@@ -14,7 +15,7 @@ with Karten;
 package body KarteKonsole is
    
    procedure AnzeigeKarteKonsole
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -58,28 +59,28 @@ package body KarteKonsole is
         XAchseExtern = Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse
       then
          if
-           (Karten.Kartenform = KartenDatentypen.X_Zylinder
+           (Karten.Kartenform = SystemDatentypen.Karte_Form_X_Zylinder
             or
-              Karten.Kartenform = KartenDatentypen.Torus
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Torus
             or
-              Karten.Kartenform = KartenDatentypen.Kugel
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Kugel
             or
-              Karten.Kartenform = KartenDatentypen.Kugel_Gedreht
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Kugel_Gedreht
             or
-              Karten.Kartenform = KartenDatentypen.Tugel
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel
             or
-              Karten.Kartenform = KartenDatentypen.Tugel_Gedreht
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Gedreht
             or
-              Karten.Kartenform = KartenDatentypen.Tugel_Extrem)
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Extrem)
            and
              KartenWert.XAchse > KartenKonstanten.LeerXAchse
          then
             New_Line;
                   
          elsif
-           Karten.Kartenform = KartenDatentypen.Y_Zylinder
+           Karten.Kartenform = SystemDatentypen.Karte_Form_Y_Zylinder
            or
-             Karten.Kartenform = KartenDatentypen.Viereck
+             Karten.Kartenform = SystemDatentypen.Karte_Form_Viereck
          then
             New_Line;
                

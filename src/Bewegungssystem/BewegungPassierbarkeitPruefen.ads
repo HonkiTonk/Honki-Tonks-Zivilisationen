@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
@@ -26,7 +27,7 @@ package BewegungPassierbarkeitPruefen is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer);
    
    function PassierbarkeitPrüfenID
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
@@ -79,7 +80,7 @@ private
    TransportplatzEntladen : EinheitStadtRecords.TransporterArray;
    
    function PassierbarTesten
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
@@ -93,7 +94,7 @@ private
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
    
    function IstNichtPassierbar
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean

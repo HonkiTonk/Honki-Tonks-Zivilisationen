@@ -34,7 +34,7 @@ package GlobaleVariablen is
    
 
    -- Cursor
-   type CursorImSpielArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
+   type CursorImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
    CursorImSpiel : CursorImSpielArray := (others => SonstigesKonstanten.LeerCursor);
    -- Cursor
    
@@ -46,14 +46,14 @@ package GlobaleVariablen is
 
    -- Nicht belegt, Menschlicher Spieler, KI
    RassenImSpiel : SonstigeDatentypen.RassenImSpielArray := (others => SonstigeDatentypen.Leer);
-   RasseAmZugNachLaden : SonstigeDatentypen.Rassen_Enum := SonstigeDatentypen.Leer;
+   RasseAmZugNachLaden : SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
 
    Schwierigkeitsgrad : SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
    Gewonnen : Boolean := False;
    WeiterSpielen : Boolean := False;
    
    -- Später über Nutzereingaben neu belegbar machen.
-   type GrenzenArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.GrenzenRecord;
+   type GrenzenArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.GrenzenRecord;
    Grenzen : GrenzenArray := (others => SonstigesKonstanten.LeerGrenzen);
    
    IronmanName : Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerString);
@@ -62,24 +62,24 @@ package GlobaleVariablen is
 
    
    -- Einheiten
-   type EinheitenGebautArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleEinheiten'Range) of EinheitStadtRecords.EinheitenGebautRecord;
+   type EinheitenGebautArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleEinheiten'Range) of EinheitStadtRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => EinheitenKonstanten.LeerEinheit));
    -- Einheiten
    
    
 
    -- Städte
-   type StadtGebautArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleStädte'Range) of EinheitStadtRecords.StadtGebautRecord;
+   type StadtGebautArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleStädte'Range) of EinheitStadtRecords.StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others => (others => StadtKonstanten.LeerStadt));
    -- Städte
    
    
 
    -- Wichtiges Zeug
-   type WichtigesArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.WichtigesRecord;
+   type WichtigesArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.WichtigesRecord;
    Wichtiges : WichtigesArray := (others => SonstigesKonstanten.LeerWichtigesZeug);
    
-   type DiplomatieArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range, SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.DiplomatieRecord;
+   type DiplomatieArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.DiplomatieRecord;
    Diplomatie : DiplomatieArray := (others => (others => SonstigesKonstanten.LeerDiplomatie));
    -- Wichtiges Zeug
                                                

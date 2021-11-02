@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with EinheitenKonstanten;
 
 with KIKonstanten;
@@ -123,7 +124,7 @@ package body KIBewegungDurchfuehren is
       FremdeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePosition);
             
       if
-        FremdeStadt.Rasse = SonstigeDatentypen.Leer
+        FremdeStadt.Rasse = SystemDatentypen.Keine_Rasse
       then
          case
            KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,

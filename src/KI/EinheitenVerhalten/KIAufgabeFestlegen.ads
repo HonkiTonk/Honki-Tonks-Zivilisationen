@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
@@ -101,8 +102,8 @@ private
 
    NullWert : Boolean;
 
-   WenAngreifen : SonstigeDatentypen.Rassen_Enum;
-   Ziel : SonstigeDatentypen.Rassen_Enum;
+   WenAngreifen : SystemDatentypen.Rassen_Enum;
+   Ziel : SystemDatentypen.Rassen_Enum;
 
    Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
 
@@ -129,7 +130,7 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI);
 
    function ZielErmitteln
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
-      return SonstigeDatentypen.Rassen_Enum;
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return SystemDatentypen.Rassen_Enum;
 
 end KIAufgabeFestlegen;

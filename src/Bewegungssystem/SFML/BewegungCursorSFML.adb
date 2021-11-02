@@ -11,7 +11,7 @@ package body BewegungCursorSFML is
      (KarteExtern : in Boolean;
       YÄnderungExtern : in Sf.sfInt32;
       XÄnderungExtern : in Sf.sfInt32;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -33,7 +33,7 @@ package body BewegungCursorSFML is
    procedure BewegungCursorBerechnen
      (YÄnderungExtern : in Sf.sfInt32;
       XÄnderungExtern : in Sf.sfInt32;
-      RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
             
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,

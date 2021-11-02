@@ -104,7 +104,7 @@ package body StadtBauen is
    
    
    function StadtnummerErmitteln
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -177,7 +177,7 @@ package body StadtBauen is
 
 
    function HauptstadtPrüfen
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       

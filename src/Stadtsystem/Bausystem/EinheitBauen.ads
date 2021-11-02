@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 
@@ -19,22 +20,22 @@ private
    PermanenteEinheitenWerte : Boolean;
    
    procedure PermanenteKostenEinheiten
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure MaximaleBewegungspunkte
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure MaximaleLebenspunkte
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure Verteidigung
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure Angriff
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure Preis
-     (RasseExtern : in SonstigeDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure BauzeitEinheit
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

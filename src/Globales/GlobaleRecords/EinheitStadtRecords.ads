@@ -6,7 +6,6 @@ with SystemDatentypen;
 with KartenRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with SonstigeDatentypen;
 
 with KIDatentypen;
 
@@ -14,7 +13,7 @@ package EinheitStadtRecords is
 
    type RassePlatznummerRecord is tagged record
       
-      Rasse : SonstigeDatentypen.Rassen_Enum;
+      Rasse : SystemDatentypen.Rassen_Enum;
       Platznummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;

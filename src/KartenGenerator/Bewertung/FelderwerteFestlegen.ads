@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with KartenRecords;
-with SonstigeDatentypen;
 
 with Karten;
 
@@ -18,7 +18,7 @@ package FelderwerteFestlegen is
    
    procedure KartenfelderBewertenKleineSchleife
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -34,7 +34,7 @@ private
    procedure BewertungSelbst
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SonstigeDatentypen.Rassen_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Enum;
       TeilerExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
      with
        Pre =>

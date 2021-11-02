@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
+with SystemDatentypen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with SonstigeDatentypen;
 
 package KartenRecords is
 
@@ -37,7 +37,14 @@ package KartenRecords is
    
    -- Die Bewertung rauswerfen und entsprechend die Einheiten beim Bauen einer Stadt alles Bewerten lassen?
    -- Felderbelegung stattdessen einbauen?
-   type FelderwertungArray is array (SonstigeDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.GesamtproduktionStadt;
+   type FelderwertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.GesamtproduktionStadt;
+   
+   type BelegterGrundRecord is record
+      
+      RasseBelegt : SystemDatentypen.Rassen_Enum;
+      StadtBelegt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      
+   end record;
    
    type KartenRecord is record
 
@@ -50,7 +57,7 @@ package KartenRecords is
       VerbesserungGebiet : KartenDatentypen.Karten_Verbesserung_Enum;
       Ressource : KartenDatentypen.Karten_Grund_Enum;
       
-      DurchStadtBelegterGrund : KartenDatentypen.BelegterGrund;
+      DurchStadtBelegterGrund : BelegterGrundRecord;
       Felderwertung : FelderwertungArray;
 
    end record;

@@ -1,14 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
-
 with GlobaleVariablen;
-with SystemKonstanten;
-with GlobaleTexte;
 
-with Auswahl;
 with ZufallGeneratorenSpieleinstellungen;
+with AuswahlMenue;
 
 package body SpielEinstellungenSonstiges is
 
@@ -16,28 +11,24 @@ package body SpielEinstellungenSonstiges is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      SpieleranzahlSchleife:
+      SchwierigkeitsgradSchleife:
       loop
 
-         SchwierigkeitAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Spiel_Einstellungen,
-                                                  TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                                  FrageZeileExtern  => 64,
-                                                  ErsteZeileExtern  => 65,
-                                                  LetzteZeileExtern => 71);
+         SchwierigkeitAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Schwierigkeitsgrad_Menü);
          
          case
            SchwierigkeitAuswahl
          is
-            when 1 .. 3 =>
-               GlobaleVariablen.Schwierigkeitsgrad := SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Val (SchwierigkeitAuswahl);
-               return SystemKonstanten.AuswahlFertig;
+            when SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Range =>
+               GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
+               return SystemDatentypen.Start_Weiter;
 
-            when 4 =>
+            when SystemDatentypen.Zufall =>
                GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
-               return SystemKonstanten.AuswahlFertig;
+               return SystemDatentypen.Start_Weiter;
                
             when SystemDatentypen.Zurück =>
-               return SystemKonstanten.AuswahlBelegung;
+               return SystemDatentypen.Auswahl_Belegung;
 
             when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return SchwierigkeitAuswahl;
@@ -49,7 +40,7 @@ package body SpielEinstellungenSonstiges is
                raise Program_Error;
          end case;
          
-      end loop SpieleranzahlSchleife;
+      end loop SchwierigkeitsgradSchleife;
       
    end SchwierigkeitsgradFestlegen;
 
