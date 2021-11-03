@@ -12,7 +12,6 @@ with SonstigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with EinheitStadtDatentypen;
-with SonstigeDatentypen;
 
 package GlobaleVariablen is
 
@@ -45,8 +44,8 @@ package GlobaleVariablen is
    Rundengrenze : Natural := Natural'First;
 
    -- Nicht belegt, Menschlicher Spieler, KI
-   RassenImSpiel : SonstigeDatentypen.RassenImSpielArray := (others => SonstigeDatentypen.Leer);
-   RasseAmZugNachLaden : SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
+   RassenImSpiel : SystemDatentypen.RassenImSpielArray := (others => SystemDatentypen.Leer);
+   RasseAmZugNachLaden : SystemDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
 
    Schwierigkeitsgrad : SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
    Gewonnen : Boolean := False;

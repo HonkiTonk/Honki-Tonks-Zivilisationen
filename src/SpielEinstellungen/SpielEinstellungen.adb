@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Calendar; use Ada.Calendar;
 
 with GlobaleVariablen;
-with SonstigeDatentypen;
 
 with ImSpiel;
 with KartenGenerator;
@@ -53,7 +52,7 @@ package body SpielEinstellungen is
             when SystemDatentypen.Start_Weiter =>
                exit AuswahlSchleife;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü | SystemDatentypen.Zurück =>
                return Auswahl;
 
             when others =>
@@ -84,10 +83,10 @@ package body SpielEinstellungen is
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
-            when SonstigeDatentypen.Spieler_Mensch | SonstigeDatentypen.Spieler_KI =>
+            when SystemDatentypen.Spieler_Mensch | SystemDatentypen.Spieler_KI =>
                RassenVorhanden := True;
                exit SicherheitsSchleife;
          end case;

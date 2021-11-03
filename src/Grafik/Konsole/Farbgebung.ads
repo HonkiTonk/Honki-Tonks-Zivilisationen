@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
+with EinheitenKonstanten;
 
 package Farbgebung is
 
@@ -18,9 +18,9 @@ package Farbgebung is
       RasseExtern : in SystemDatentypen.Rassen_Enum)
      with
        Pre =>
-         ((if EigeneRasseExtern /= SystemDatentypen.Keine_Rasse then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch)
+         ((if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch)
           and
-            (if RasseExtern /= SystemDatentypen.Keine_Rasse then GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer));
+            (if RasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer));
    
 private
    

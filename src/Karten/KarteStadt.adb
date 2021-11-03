@@ -9,6 +9,7 @@ with KartenRecords; use KartenRecords;
 with GlobaleTexte;
 with KartenKonstanten;
 with SystemKonstanten;
+with StadtKonstanten;
 
 with LeseKarten;
 with LeseStadtGebaut;
@@ -222,7 +223,7 @@ package body KarteStadt is
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
                             CursorExtern       => False,
                             EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                            RasseExtern        => SystemDatentypen.Keine_Rasse);
+                            RasseExtern        => StadtKonstanten.LeerRasse);
       end if;
       
       return False;
@@ -251,7 +252,7 @@ package body KarteStadt is
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
                             CursorExtern       => False,
                             EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                            RasseExtern        => SystemDatentypen.Keine_Rasse);
+                            RasseExtern        => StadtKonstanten.LeerRasse);
       end if;
       
    end GebäudeDarstellung;
@@ -279,7 +280,7 @@ package body KarteStadt is
                             GrundExtern        => KartenDatentypen.Leer,
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => SystemDatentypen.Keine_Rasse);
+                            RasseExtern        => StadtKonstanten.LeerRasse);
 
       else
          Farbgebung.Farben (EinheitIDExtern    => 0,
@@ -288,7 +289,7 @@ package body KarteStadt is
                             GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => SystemDatentypen.Keine_Rasse);
+                            RasseExtern        => StadtKonstanten.LeerRasse);
 
       end if;
       
@@ -358,7 +359,7 @@ package body KarteStadt is
                                GrundExtern        => KartenDatentypen.Leer,
                                CursorExtern       => True,
                                EigeneRasseExtern  => RasseExtern,
-                               RasseExtern        => SystemDatentypen.Keine_Rasse);
+                               RasseExtern        => StadtKonstanten.LeerRasse);
 
          else
             Put (Item => SystemKonstanten.LeerZeichen);
@@ -437,7 +438,7 @@ package body KarteStadt is
                             GrundExtern        => KartenDatentypen.Leer,
                             CursorExtern       => True,
                             EigeneRasseExtern  => RasseExtern,
-                            RasseExtern        => SystemDatentypen.Keine_Rasse);
+                            RasseExtern        => StadtKonstanten.LeerRasse);
 
       else
          InformationenStadtAufrufen := True;
@@ -456,7 +457,7 @@ package body KarteStadt is
                                   GrundExtern        => KartenDatentypen.Leer,
                                   CursorExtern       => True,
                                   EigeneRasseExtern  => RasseExtern,
-                                  RasseExtern        => SystemDatentypen.Keine_Rasse);
+                                  RasseExtern        => StadtKonstanten.LeerRasse);
 
             when others =>
                Farbgebung.Farben (EinheitIDExtern    => 0,
@@ -465,7 +466,7 @@ package body KarteStadt is
                                   GrundExtern        => LeseKarten.Grund (PositionExtern => KartenWert),
                                   CursorExtern       => True,
                                   EigeneRasseExtern  => RasseExtern,
-                                  RasseExtern        => SystemDatentypen.Keine_Rasse);
+                                  RasseExtern        => StadtKonstanten.LeerRasse);
          end case;
       end if;
       

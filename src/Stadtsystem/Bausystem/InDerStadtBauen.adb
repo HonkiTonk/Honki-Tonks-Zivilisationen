@@ -9,7 +9,6 @@ with SystemKonstanten;
 with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SystemDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;

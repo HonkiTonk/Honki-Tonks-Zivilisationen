@@ -6,6 +6,7 @@ with Ada.Float_Text_IO;
 with Sf.Graphics.Text;
 
 with GlobaleTexte;
+with EinheitenKonstanten;
 
 with Anzeige;
 with Eingabe;
@@ -118,7 +119,7 @@ package body Ladezeiten is
       case
         WelcheZeitExtern
       is
-         when SystemDatentypen.Keine_Rasse =>
+         when EinheitenKonstanten.LeerRasse =>
             GesamtzeitKI := 0.00;
             
             ZeitAuswahlSchleife:

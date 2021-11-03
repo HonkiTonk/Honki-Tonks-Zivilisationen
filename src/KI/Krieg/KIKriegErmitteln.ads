@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
@@ -13,14 +12,14 @@ package KIKriegErmitteln is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_KI);
 
    function KriegAnfangen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return SystemDatentypen.Rassen_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_KI);
 
 private
 
@@ -57,9 +56,9 @@ private
       return SystemDatentypen.Rassen_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_KI
+         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_KI
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SonstigeDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemDatentypen.Leer
           and
             EigeneRasseExtern /= FremdeRasseExtern);
 

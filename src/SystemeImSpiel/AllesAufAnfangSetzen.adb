@@ -6,7 +6,6 @@ with SonstigesKonstanten;
 with SystemKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SonstigeDatentypen;
 with SystemDatentypen;
 
 with Karten;
@@ -17,13 +16,13 @@ package body AllesAufAnfangSetzen is
    procedure AllesAufAnfangSetzen
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => SonstigeDatentypen.Leer);
+      GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer);
       GlobaleVariablen.EinheitenGebaut := (others => (others => EinheitenKonstanten.LeerEinheit));
       GlobaleVariablen.StadtGebaut := (others => (others => StadtKonstanten.LeerStadt));
       GlobaleVariablen.Wichtiges := (others => SonstigesKonstanten.LeerWichtigesZeug);
       GlobaleVariablen.Diplomatie := (others => (others => SonstigesKonstanten.LeerDiplomatie));
       GlobaleVariablen.RundenAnzahl := Positive'First;
-      GlobaleVariablen.RasseAmZugNachLaden := SystemDatentypen.Keine_Rasse;
+      GlobaleVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
       GlobaleVariablen.CursorImSpiel := (others => SonstigesKonstanten.LeerCursor);
       GlobaleVariablen.Gewonnen := False;
       GlobaleVariablen.IronmanName := SystemKonstanten.LeerUnboundedString;

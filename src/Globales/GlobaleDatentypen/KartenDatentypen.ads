@@ -13,9 +13,10 @@ package KartenDatentypen is
    subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
    subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
-   subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
+   
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
+   subtype EbeneVorhanden is Ebene range -2 .. 2;
 
    subtype Kartengröße_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_Zufall;
    subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_Nutzer;
@@ -28,7 +29,8 @@ package KartenDatentypen is
    subtype Kartentemperatur_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Temperatur_Kalt .. SystemDatentypen.Karte_Temperatur_Wüste;
 
    subtype Kartenressourcen_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Ressource_Arm .. SystemDatentypen.Karte_Ressource_Überfluss;
-
+   
+   -- Immer dran denken, alle Flussarten am Schluss hinzufügen.
    type Karten_Grund_Enum is (Leer,
                               -- Feld
                               Wasser, Küstengewässer, Unterwasser_Wasser, Unterwasser_Küstengewässer,
@@ -107,9 +109,6 @@ package KartenDatentypen is
    subtype Karten_Verbesserung_Weg_Enum is Karten_Weg_Enum range Straßenkreuzung_Vier .. Straße_Einzeln;
    subtype Karten_Verbesserung_Schiene_Enum is Karten_Weg_Enum range Schienenkreuzung_Vier .. Schiene_Einzeln;
    subtype Karten_Verbesserung_Tunnel_Enum is Karten_Weg_Enum range Tunnelkreuzung_Vier .. Tunnel_Einzeln;
-
-   subtype EbeneVorhanden is Ebene range -2 .. 2;
-   type BelegterGrund is range 0 .. 18 * 1_000 + 100;
 
    type SichtbarkeitArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
 

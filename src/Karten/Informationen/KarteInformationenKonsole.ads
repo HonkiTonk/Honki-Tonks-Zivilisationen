@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 
@@ -11,7 +10,7 @@ package KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
    
 private
    
@@ -27,15 +26,15 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
    procedure InformationenAllgemein
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
    procedure InformationenSichtbar
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);

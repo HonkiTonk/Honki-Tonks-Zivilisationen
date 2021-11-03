@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 
@@ -14,13 +13,13 @@ package ForschungAllgemein is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
    procedure ForschungsBaum
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
    procedure ForschungFortschritt;
 
@@ -32,7 +31,7 @@ package ForschungAllgemein is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
 private
 
@@ -49,14 +48,14 @@ private
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
    procedure Benötigt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
    procedure FortschrittMensch
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
@@ -71,13 +70,13 @@ private
       return EinheitStadtDatentypen.ForschungIDMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
    function ForschungAuswahl
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ForschungIDMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
 end ForschungAllgemein;

@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 

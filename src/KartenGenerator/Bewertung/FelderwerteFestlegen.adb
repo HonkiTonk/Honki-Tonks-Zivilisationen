@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SystemDatentypen; use SystemDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleVariablen;
 with KartenKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -37,7 +37,7 @@ package body FelderwerteFestlegen is
                                     KartenWertEins (KoordinatenExtern.EAchse).YAchse,
                                     KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := (others => 0);
                   KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse),
-                                                      RasseExtern       => SystemDatentypen.Keine_Rasse);
+                                                      RasseExtern       => EinheitenKonstanten.LeerRasse);
             end case;
             
          end loop XAchseÄnderungSchleife;
@@ -111,9 +111,9 @@ package body FelderwerteFestlegen is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Spieler_KI
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI
            and
-             (RasseExtern = SystemDatentypen.Keine_Rasse
+             (RasseExtern = EinheitenKonstanten.LeerRasse
               or
                 RasseExtern = RasseSchleifenwert)
          then

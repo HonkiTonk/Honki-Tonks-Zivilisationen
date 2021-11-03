@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
-with StadtKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -20,7 +19,7 @@ package body StadtProduktion is
       case
         StadtRasseNummerExtern.Rasse
       is
-         when SystemDatentypen.Keine_Rasse =>
+         when StadtKonstanten.LeerRasse =>
             StadtProduktionAlle;
             
          when others =>
@@ -41,7 +40,7 @@ package body StadtProduktion is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                      
             when others =>

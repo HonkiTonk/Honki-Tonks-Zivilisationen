@@ -3,8 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
 
-with SonstigeDatentypen; use SonstigeDatentypen;
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
@@ -16,14 +15,14 @@ package KarteSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
    
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
    
 private
    

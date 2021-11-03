@@ -12,7 +12,7 @@ package body DiplomatischerZustandAenderbar is
    function StatusÄnderbarkeitPrüfen
      (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      NeuerStatusExtern : in SonstigeDatentypen.Status_Untereinander_Bekannt_Enum)
+      NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
    is begin
       
@@ -38,13 +38,13 @@ package body DiplomatischerZustandAenderbar is
       case
         NeuerStatusExtern
       is
-         when SonstigeDatentypen.Neutral =>
+         when SystemDatentypen.Neutral =>
             ÄnderungMöglich := NeutralMöglich;
                         
-         when SonstigeDatentypen.Nichtangriffspakt =>
+         when SystemDatentypen.Nichtangriffspakt =>
             ÄnderungMöglich := NichtangriffspaktMöglich;
                         
-         when SonstigeDatentypen.Krieg =>
+         when SystemDatentypen.Krieg =>
             ÄnderungMöglich := KriegMöglich;
       end case;
       
@@ -81,14 +81,14 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if
-        AktuellerStatus = SonstigeDatentypen.Nichtangriffspakt
+        AktuellerStatus = SystemDatentypen.Nichtangriffspakt
         and
           ZeitSeitÄnderung >= SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
       then
          return True;
          
       elsif
-        AktuellerStatus = SonstigeDatentypen.Krieg
+        AktuellerStatus = SystemDatentypen.Krieg
         and
           ZeitSeitÄnderung >= 10
           and
@@ -109,13 +109,13 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if
-        AktuellerStatus = SonstigeDatentypen.Krieg
+        AktuellerStatus = SystemDatentypen.Krieg
       then
          EsHerrschtKrieg;
          return False;
          
       elsif
-        AktuellerStatus = SonstigeDatentypen.Neutral
+        AktuellerStatus = SystemDatentypen.Neutral
         and
           SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatus) - 10
       then
@@ -134,14 +134,14 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if        
-        AktuellerStatus = SonstigeDatentypen.Nichtangriffspakt
+        AktuellerStatus = SystemDatentypen.Nichtangriffspakt
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 24);
          return False;
          
       elsif
-        AktuellerStatus = SonstigeDatentypen.Neutral
+        AktuellerStatus = SystemDatentypen.Neutral
         and
           ZeitSeitÄnderung >= SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
       then

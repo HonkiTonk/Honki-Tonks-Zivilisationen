@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 
 package Handeln is
@@ -12,9 +11,9 @@ package Handeln is
       return Integer
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SonstigeDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
    
 private
    

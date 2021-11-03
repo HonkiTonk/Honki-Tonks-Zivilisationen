@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with Sf;
 
-with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 
@@ -15,7 +15,7 @@ package BewegungCursorSFML is
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
 
 private
 

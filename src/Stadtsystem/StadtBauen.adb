@@ -53,7 +53,7 @@ package body StadtBauen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SonstigeDatentypen.Spieler_KI =>
+         when SystemDatentypen.Spieler_KI =>
             StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
          when others =>
@@ -89,7 +89,7 @@ package body StadtBauen is
          return True;
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_KI
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI
       then
          return False;
          
@@ -119,7 +119,7 @@ package body StadtBauen is
             case
               GlobaleVariablen.RassenImSpiel (RasseExtern)
             is
-               when SonstigeDatentypen.Spieler_Mensch =>
+               when SystemDatentypen.Spieler_Mensch =>
                   Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                         TextZeileExtern => 7);
                

@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
@@ -16,7 +15,7 @@ package LeseGebaeudeDatenbank is
       return Wide_Wide_Character
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
       
    function PreisGeld
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -24,7 +23,7 @@ package LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
    function PreisRessourcen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -32,7 +31,7 @@ package LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
    function PermanenteKosten
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -41,7 +40,7 @@ package LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.GesamtePermanenteKosten
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
       
    function Anforderungen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -49,7 +48,7 @@ package LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.ForschungIDMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
       
    function PermanenterBonus
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -58,7 +57,7 @@ package LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
       
    function UmgebungBenötigt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -66,7 +65,7 @@ package LeseGebaeudeDatenbank is
       return KartenDatentypen.Karten_Grund_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
    function GebäudeSpezielleEigenschaft
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -74,7 +73,7 @@ package LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
    function GanzerEintrag
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -82,6 +81,6 @@ package LeseGebaeudeDatenbank is
       return DatenbankRecords.GebäudeListeRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
 end LeseGebaeudeDatenbank;

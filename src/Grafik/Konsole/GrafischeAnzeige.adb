@@ -41,7 +41,7 @@ package body GrafischeAnzeige is
                                   GrundExtern              => KartenDatentypen.Leer,
                                   CursorExtern             => True,
                                   EigeneRasseExtern        => RasseExtern,
-                                  RasseExtern              => SystemDatentypen.Keine_Rasse);
+                                  RasseExtern              => EinheitenKonstanten.LeerRasse);
                
             else
                Put (Item => SystemKonstanten.LeerZeichen);
@@ -124,7 +124,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => True,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SystemDatentypen.Keine_Rasse);
+                            RasseExtern              => EinheitenKonstanten.LeerRasse);
          return True;
          
       else
@@ -218,7 +218,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SystemDatentypen.Keine_Rasse);
+                            RasseExtern              => EinheitenKonstanten.LeerRasse);
            
       elsif
         LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
@@ -229,7 +229,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SystemDatentypen.Keine_Rasse);
+                            RasseExtern              => EinheitenKonstanten.LeerRasse);
             
       elsif
         LeseKarten.Ressource (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
@@ -240,7 +240,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SystemDatentypen.Keine_Rasse);
+                            RasseExtern              => EinheitenKonstanten.LeerRasse);
             
       elsif
         LeseKarten.Fluss (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
@@ -251,7 +251,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SystemDatentypen.Keine_Rasse);
+                            RasseExtern              => EinheitenKonstanten.LeerRasse);
             
       else
          Farbgebung.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
@@ -260,7 +260,7 @@ package body GrafischeAnzeige is
                             GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                             CursorExtern             => False,
                             EigeneRasseExtern        => RasseExtern,
-                            RasseExtern              => SystemDatentypen.Keine_Rasse);
+                            RasseExtern              => EinheitenKonstanten.LeerRasse);
       end if;
       
    end AnzeigeLandschaft;

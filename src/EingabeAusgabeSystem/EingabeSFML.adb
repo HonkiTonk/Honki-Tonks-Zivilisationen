@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
-with Ada.Integer_Wide_Wide_Text_IO;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf;
@@ -12,6 +11,7 @@ with Sf.Graphics.RenderWindow;
 
 with KartenDatentypen; use KartenDatentypen;
 with SystemKonstanten;
+with GlobaleTexte;
 
 with EingabeSystemeSFML;
 with GrafikAllgemein;
@@ -21,9 +21,7 @@ with Anzeige;
 package body EingabeSFML is
    
    function GanzeZahl
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
+     (ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
       return Integer
    is begin
@@ -45,9 +43,7 @@ package body EingabeSFML is
       loop
                   
          case
-           ZahlSchleife (TextDateiExtern     => TextDateiExtern,
-                         ZeileExtern         => ZeileExtern,
-                         ZahlenMinimumExtern => MinimalerWert,
+           ZahlSchleife (ZahlenMinimumExtern => MinimalerWert,
                          ZahlenMaximumExtern => MaximalerWert)
          is
             when 2 =>
@@ -124,9 +120,7 @@ package body EingabeSFML is
    
    
    function ZahlSchleife
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
+     (ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
       return KartenDatentypen.LoopRangeMinusZweiZuZwei
    is begin
@@ -134,9 +128,7 @@ package body EingabeSFML is
       ZahlenSchleife:
       loop
 
-         ZahlenAnzeige (TextDateiExtern     => TextDateiExtern,
-                        ZeileExtern         => ZeileExtern,
-                        ZahlenMinimumExtern => ZahlenMinimumExtern);
+         ZahlenAnzeige (ZahlenMinimumExtern => ZahlenMinimumExtern);
             
          EingabeSystemeSFML.TastenEingabe;
          Zahlen := EingabeSystemeSFML.TastaturTaste;
@@ -194,22 +186,28 @@ package body EingabeSFML is
    
    
    procedure ZahlenAnzeige
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer)
+     (ZahlenMinimumExtern : in Integer)
    is begin
       
-      -- Das Leeren und Befüllen des Fenster hier funktioniert so nicht richtig, weil damit z. B. keine Überschrift möglich ist.
-      GrafikAllgemein.FensterLeeren;
+      AnzeigeAnfang := ZahlenString'Last;
+      AktuellerWert := abs (Integer'Wide_Wide_Value (ZahlenString));
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => TextDateiExtern,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => ZeileExtern,
-                                     LetzteZeileExtern      => ZeileExtern,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      loop
+         
+         AktuellerWert := AktuellerWert / 10;
+         
+         if
+           AktuellerWert > 0
+         then
+            AnzeigeAnfang := AnzeigeAnfang - 1;
+            
+         else
+            exit;
+         end if;
+         
+      end loop;
+      
+      GrafikAllgemein.FensterLeeren;
 
       if
         ZahlenMinimumExtern > 0
@@ -224,12 +222,9 @@ package body EingabeSFML is
           WelchesVorzeichen = False
       then
          WelchesVorzeichen := True;
-         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
-                                            Width => 1,
-                                            Base  => 10);
          
          Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
-                                            str  => ZahlenString);
+                                            str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
          Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                        position => (10.00, 10.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
@@ -249,7 +244,6 @@ package body EingabeSFML is
             null;
                   
          else
-            Put (Item => "-");
             Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                                str  => "-");
             Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
@@ -257,12 +251,9 @@ package body EingabeSFML is
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                                text         => GrafikEinstellungen.TextStandard);
          end if;
-         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
-                                            Width => 1,
-                                            Base  => 10);
          
          Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
-                                            str  => ZahlenString);
+                                            str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
          Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                        position => (10.00, 10.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,

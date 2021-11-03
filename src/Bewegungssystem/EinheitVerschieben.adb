@@ -6,7 +6,6 @@ with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SonstigeDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -27,7 +26,7 @@ package body EinheitVerschieben is
       case
         GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
-         when SonstigeDatentypen.Nichtangriffspakt | SonstigeDatentypen.Neutral =>
+         when SystemDatentypen.Nichtangriffspakt | SystemDatentypen.Neutral =>
             EinheitNummer := 0;
             
          when others =>

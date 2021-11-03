@@ -187,7 +187,7 @@ package body KIStadt is
                   elsif
                     DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
                                                                        FremdeRasseExtern => FremdeEinheit.Rasse)
-                    /= SonstigeDatentypen.Krieg
+                    /= SystemDatentypen.Krieg
                   then
                      null;
                      

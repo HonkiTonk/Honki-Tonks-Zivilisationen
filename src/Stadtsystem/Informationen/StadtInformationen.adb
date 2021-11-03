@@ -5,7 +5,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Integer_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;

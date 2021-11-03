@@ -1,8 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
-with SonstigeDatentypen; use SonstigeDatentypen;
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtDatentypen;
@@ -37,7 +36,7 @@ package SchreibeKarten is
       SichtbarExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
           and
             PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -106,7 +105,7 @@ package SchreibeKarten is
       BewertungExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
           and
             PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and

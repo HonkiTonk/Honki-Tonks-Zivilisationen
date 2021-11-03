@@ -1,9 +1,8 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
 with EinheitStadtRecords;
@@ -22,7 +21,7 @@ package TransporterSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -30,7 +29,7 @@ package TransporterSuchen is
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SonstigeDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SystemDatentypen.Leer
           and
             TransporterExtern.Platznummer > 0);
 
@@ -39,7 +38,7 @@ package TransporterSuchen is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SonstigeDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SystemDatentypen.Leer
           and
             EinheitRasseNummerExtern.Platznummer > 0);
 

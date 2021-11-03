@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with Ada.Calendar; use Ada.Calendar;
 
-with SystemDatentypen; use SystemDatentypen;
+with EinheitenKonstanten;
 
 with Karte;
 with BefehleImSpiel;
@@ -47,7 +47,7 @@ package body ImSpiel is
          end loop RassenSchleife;
                
          if
-           GlobaleVariablen.RasseAmZugNachLaden = SystemDatentypen.Keine_Rasse
+           GlobaleVariablen.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
@@ -78,7 +78,7 @@ package body ImSpiel is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Leer
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer
       then
          return SystemKonstanten.StartNormalKonstante;
       
@@ -104,22 +104,22 @@ package body ImSpiel is
    is begin
             
       if
-        GlobaleVariablen.RasseAmZugNachLaden = SystemDatentypen.Keine_Rasse
+        GlobaleVariablen.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
         or
           RasseExtern = GlobaleVariablen.RasseAmZugNachLaden
       then
-         GlobaleVariablen.RasseAmZugNachLaden := SystemDatentypen.Keine_Rasse;
+         GlobaleVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
             
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
-            when SonstigeDatentypen.Spieler_Mensch =>
+            when SystemDatentypen.Spieler_Mensch =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
                
-            when SonstigeDatentypen.Spieler_KI =>
+            when SystemDatentypen.Spieler_KI =>
                KISpieler (RasseExtern => RasseExtern);
                
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                -- Dieser Fall sollte hier niemals eintreten.
                raise Program_Error;
          end case;
@@ -196,7 +196,7 @@ package body ImSpiel is
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
-            when SonstigeDatentypen.Spieler_Mensch =>
+            when SystemDatentypen.Spieler_Mensch =>
                Karte.AnzeigeKarte (RasseExtern => RasseExtern);
                AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
                
@@ -265,7 +265,7 @@ package body ImSpiel is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SonstigeDatentypen.Spieler_Mensch
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemDatentypen.Spieler_Mensch
          then
             null;
             

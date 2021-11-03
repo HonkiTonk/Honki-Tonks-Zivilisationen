@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
-with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 with KartenKonstanten;
@@ -79,7 +78,7 @@ package body SpielEinstellungenRasseSpieler is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => SonstigeDatentypen.Leer);
+      GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer);
       Spieler := 0;
 
       SpielerSchleife:
@@ -109,15 +108,15 @@ package body SpielEinstellungenRasseSpieler is
             case
               GlobaleVariablen.RassenImSpiel (SpielerartAuswahl)
             is
-               when SonstigeDatentypen.Leer =>
+               when SystemDatentypen.Leer =>
                   if
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 21) = SystemKonstanten.JaKonstante
                   then
-                     GlobaleVariablen.RassenImSpiel (SpielerartAuswahl) := SonstigeDatentypen.Spieler_Mensch;
+                     GlobaleVariablen.RassenImSpiel (SpielerartAuswahl) := SystemDatentypen.Spieler_Mensch;
                      Spieler := Spieler + 1;
                      
                   else
-                     GlobaleVariablen.RassenImSpiel (SpielerartAuswahl) := SonstigeDatentypen.Spieler_KI;
+                     GlobaleVariablen.RassenImSpiel (SpielerartAuswahl) := SystemDatentypen.Spieler_KI;
                      Spieler := Spieler + 1;
                   end if;
                
@@ -148,7 +147,7 @@ package body SpielEinstellungenRasseSpieler is
          is
             when SystemDatentypen.Rassen_Verwendet_Enum'Range =>
                if
-                 GlobaleVariablen.RassenImSpiel (RassenAuswahl) = SonstigeDatentypen.Leer
+                 GlobaleVariablen.RassenImSpiel (RassenAuswahl) = SystemDatentypen.Leer
                then
                   -- Hier wieder die Anzeige des langen Rassentexts einbauen.
                   
@@ -169,7 +168,7 @@ package body SpielEinstellungenRasseSpieler is
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 32)
                   is
                      when SystemKonstanten.JaKonstante =>
-                        GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SonstigeDatentypen.Leer;
+                        GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SystemDatentypen.Leer;
                         Spieler := Spieler - 1;
                         return SystemDatentypen.Rasse_Entfernen;
                      
@@ -209,7 +208,7 @@ package body SpielEinstellungenRasseSpieler is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>
@@ -232,7 +231,7 @@ package body SpielEinstellungenRasseSpieler is
                                                               TextZeileExtern => SystemDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 17);
-                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := SonstigeDatentypen.Leer;
+                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := SystemDatentypen.Leer;
                         
                      when others =>
                         null;

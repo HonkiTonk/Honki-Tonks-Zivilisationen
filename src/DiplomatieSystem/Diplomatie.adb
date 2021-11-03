@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 
@@ -42,9 +41,9 @@ package body Diplomatie is
          if
            RassenSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer
            or
-             GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt
          then
             null;
             
@@ -88,9 +87,9 @@ package body Diplomatie is
             if
               SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
               or
-                GlobaleVariablen.RassenImSpiel (SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SonstigeDatentypen.Leer
+                GlobaleVariablen.RassenImSpiel (SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SystemDatentypen.Leer
                 or
-                  GlobaleVariablen.Diplomatie (RasseExtern, SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SonstigeDatentypen.Unbekannt
+                  GlobaleVariablen.Diplomatie (RasseExtern, SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt
             then
                Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                      TextZeileExtern => 21);
@@ -167,14 +166,14 @@ package body Diplomatie is
          when 1 .. 2 =>
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
-                                                                                     NeuerStatusExtern => SonstigeDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
+                                                                                     NeuerStatusExtern => SystemDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
             return 1;
             
             -- Ist dazu da um im Kriegsfall sofort das Diplomatiemenü zu schließen.
          when 3 =>
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
-                                                                                     NeuerStatusExtern => SonstigeDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
+                                                                                     NeuerStatusExtern => SystemDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
             if
               KriegJetzt
             then

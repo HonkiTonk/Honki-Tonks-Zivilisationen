@@ -30,7 +30,7 @@ package body Wachstum is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>
@@ -224,14 +224,14 @@ package body Wachstum is
       case
         RasseExtern
       is
-         when SystemDatentypen.Keine_Rasse =>
+         when EinheitenKonstanten.LeerRasse =>
             RassenSchleife:
             for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
                
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
                is
-                  when SonstigeDatentypen.Leer =>
+                  when SystemDatentypen.Leer =>
                      null;
                      
                   when others =>

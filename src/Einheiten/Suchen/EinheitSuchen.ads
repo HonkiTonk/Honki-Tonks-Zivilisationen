@@ -1,8 +1,7 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
@@ -22,7 +21,7 @@ package EinheitSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
    function KoordinatenEinheitOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
@@ -43,7 +42,7 @@ package EinheitSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
 private
    

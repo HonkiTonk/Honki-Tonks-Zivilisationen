@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
-with SystemDatentypen;
 
 with KIDatentypen;
 
@@ -28,7 +27,7 @@ package body VerbesserungFertiggestellt is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>

@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords; use KartenRecords;
-with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -157,7 +156,7 @@ package body KIAufgabeFestlegen is
       case
         WenAngreifen
       is
-         when SystemDatentypen.Keine_Rasse =>
+         when EinheitenKonstanten.LeerRasse =>
             return;
             
          when others =>
@@ -206,13 +205,13 @@ package body KIAufgabeFestlegen is
       return SystemDatentypen.Rassen_Enum
    is begin
       
-      Ziel := SystemDatentypen.Keine_Rasse;
+      Ziel := EinheitenKonstanten.LeerRasse;
       
       RassenSchleife:
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
            or
              RasseSchleifenwert = RasseExtern
          then
@@ -221,7 +220,7 @@ package body KIAufgabeFestlegen is
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = SonstigeDatentypen.Krieg
+           = SystemDatentypen.Krieg
          then
             -- Hier noch mehr Überprüfungen einbauen?
             Ziel := RasseSchleifenwert;

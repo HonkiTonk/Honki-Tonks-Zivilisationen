@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen;
-
 with SchreibeEinheitenGebaut;
   
 with AufgabenAllgemein;

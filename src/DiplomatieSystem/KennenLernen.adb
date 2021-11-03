@@ -15,27 +15,27 @@ package body KennenLernen is
         DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
                                                            FremdeRasseExtern => FremdeRasseExtern)
       is
-         when SonstigeDatentypen.Unbekannt =>
+         when SystemDatentypen.Unbekannt =>
             DiplomatischerZustand.DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                                                RasseZweiExtern   => FremdeRasseExtern,
-                                                               NeuerStatusExtern => SonstigeDatentypen.Neutral);
+                                                               NeuerStatusExtern => SystemDatentypen.Neutral);
                
          when others =>
             return;
       end case;
       
       if
-        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch
         and
-          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SonstigeDatentypen.Spieler_Mensch
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SystemDatentypen.Spieler_Mensch
       then
          ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
                                   FremdeRasseExtern => FremdeRasseExtern);
       
       elsif
-        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch
         or
-          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SonstigeDatentypen.Spieler_Mensch
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SystemDatentypen.Spieler_Mensch
       then
          ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
                               FremdeRasseExtern => FremdeRasseExtern);

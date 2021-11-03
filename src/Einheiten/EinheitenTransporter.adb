@@ -7,7 +7,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 with EinheitenKonstanten;
-with SystemDatentypen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;

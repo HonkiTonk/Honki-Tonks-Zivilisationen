@@ -47,7 +47,7 @@ package body StadtEinheitenBauen is
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         and
-          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch
+          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 19);
@@ -121,7 +121,7 @@ package body StadtEinheitenBauen is
       case
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
-         when SonstigeDatentypen.Spieler_Mensch =>
+         when SystemDatentypen.Spieler_Mensch =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => EinheitStadtDatentypen.Produktion_Abgeschlossen);
          

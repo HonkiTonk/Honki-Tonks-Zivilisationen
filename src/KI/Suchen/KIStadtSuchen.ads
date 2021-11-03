@@ -1,8 +1,7 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtDatentypen;
@@ -17,7 +16,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
           and
             AnfangKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -28,7 +27,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) = SonstigeDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) = SystemDatentypen.Spieler_KI);
 
 private
 

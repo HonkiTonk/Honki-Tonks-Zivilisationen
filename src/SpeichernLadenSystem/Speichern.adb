@@ -10,7 +10,6 @@ with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;
 with SystemKonstanten;
-with SonstigeDatentypen;
 with KartenDatentypen;
 
 with Karten;
@@ -145,7 +144,7 @@ package body Speichern is
    procedure RassenGrenzenSpeichern
    is begin
       
-      SonstigeDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
+      SystemDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
                                                   GlobaleVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
@@ -169,7 +168,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>
@@ -197,7 +196,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
 
             when others =>
@@ -225,7 +224,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>
@@ -248,7 +247,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
 
             when others =>
@@ -258,7 +257,7 @@ package body Speichern is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when SonstigeDatentypen.Leer =>
+                     when SystemDatentypen.Leer =>
                         null;
                      
                      when others =>
@@ -284,7 +283,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>

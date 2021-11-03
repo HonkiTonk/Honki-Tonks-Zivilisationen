@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 package SystemDatentypen is
 
-   -- Sonstiges
+   -- Wichtige Werte
    type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Hauptmenü, Spiel_Beenden, Zurück, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
                                  Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges,
                                  
@@ -48,7 +48,7 @@ package SystemDatentypen is
    
    type NotAus is range 1 .. 100;
    subtype NotAusKlein is NotAus range 1 .. 5;
-   -- Sonstiges
+   -- Wichtige Werte
 
 
 
@@ -84,5 +84,24 @@ package SystemDatentypen is
    subtype Tastenbelegung_Verbesserung_Befehle_Enum is Tastenbelegung_Befehle_Enum range Straße_Bauen .. Roden_Trockenlegen;
    subtype Tastenbelegung_Allgemeine_Befehle_Enum is Tastenbelegung_Befehle_Enum range Heilen .. Tastenbelegung_Befehle_Enum'Last;
    -- Für Tastenbelegung
+   
+   
+   
+   -- Sonstiges
+   type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
+   type RassenImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Spieler_Enum;
+
+   type Staatsform_Enum is (Anarchie,
+                            Demokratie);
+
+   type StaatsformenArray is array (1 .. 5) of Staatsform_Enum;
+   -- Sonstiges
+
+
+
+   -- Für Diplomatie
+   type Status_Untereinander_Enum is (Unbekannt, Neutral, Nichtangriffspakt, Krieg);
+   subtype Status_Untereinander_Bekannt_Enum is Status_Untereinander_Enum range Neutral .. Status_Untereinander_Enum'Last;
+   -- Für Diplomatie
 
 end SystemDatentypen;

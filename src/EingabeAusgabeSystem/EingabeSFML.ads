@@ -6,7 +6,6 @@ with Sf.Window.Keyboard;
 
 with SystemDatentypen;
 with KartenDatentypen;
-with GlobaleTexte;
 
 package EingabeSFML is
    
@@ -19,9 +18,7 @@ package EingabeSFML is
    
 
    function GanzeZahl
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
+     (ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
       return Integer
      with
@@ -47,6 +44,9 @@ private
    ZahlenMaximum : constant Positive := 999_999_999;
    ZahlenMinimumPlusmacher : Positive;
    MaximumMinimumAktuelleStelle : Positive;
+   AnzeigeAnfang : Positive;
+   
+   AktuellerWert : Natural;
    
    ZahlenMinimum : constant Integer := -999_999_999;
    MaximalerWert : Integer;
@@ -183,9 +183,7 @@ private
                                                             );
    
    procedure ZahlenAnzeige
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer);
+     (ZahlenMinimumExtern : in Integer);
    
    procedure MinimumMaximumSetzen
      (ZahlenMinimumMaximumExtern : in Integer)
@@ -210,9 +208,7 @@ private
       return Integer;
 
    function ZahlSchleife
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
+     (ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
       return KartenDatentypen.LoopRangeMinusZweiZuZwei
      with

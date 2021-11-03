@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen;
-
 with SchreibeStadtGebaut;
 
 package body StadtMeldungenSetzen is
@@ -15,7 +13,7 @@ package body StadtMeldungenSetzen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>

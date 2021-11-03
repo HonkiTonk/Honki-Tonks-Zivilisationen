@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
@@ -16,9 +15,9 @@ package KampfsystemEinheiten is
        Pre =>
          (AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SonstigeDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SystemDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SonstigeDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer
           and
             VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and
@@ -32,7 +31,7 @@ package KampfsystemEinheiten is
        Pre =>
          (VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SonstigeDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer);
 
 private
 
@@ -80,9 +79,9 @@ private
        Pre =>
          (AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SonstigeDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SystemDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SonstigeDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer
           and
             VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and

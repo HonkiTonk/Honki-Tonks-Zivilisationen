@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -223,7 +222,7 @@ package body KIVorhandeneAufgaben is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
            or
              RasseSchleifenwert = EinheitRasseNummerExtern.Rasse
          then
@@ -232,7 +231,7 @@ package body KIVorhandeneAufgaben is
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = SonstigeDatentypen.Krieg
+           = SystemDatentypen.Krieg
          then
             return 5;
             

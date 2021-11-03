@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 
@@ -27,7 +26,7 @@ package body EinheitenModifizieren is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
            
             when others =>

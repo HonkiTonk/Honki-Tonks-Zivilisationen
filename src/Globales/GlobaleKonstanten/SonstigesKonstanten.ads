@@ -3,15 +3,12 @@ pragma SPARK_Mode (On);
 with WichtigeRecords;
 with KartenRecords;
 with EinheitStadtDatentypen;
-with KartenDatentypen;
-with SonstigeDatentypen;
+with SystemDatentypen;
 
 with DatenbankRecords;
 
 package SonstigesKonstanten is
    
-   RassenMulitplikationWert : constant KartenDatentypen.BelegterGrund := 1_000;
-
    LeerCursorGrafik : constant Wide_Wide_Character := '©';
    LeerPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    LeerPositionStadt : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
@@ -67,7 +64,7 @@ package SonstigesKonstanten is
                                                             RassenRundengrenze    => LeerRassenRundengrenze
                                                            );
    
-   LeerAktuellerZustand : constant SonstigeDatentypen.Status_Untereinander_Enum := SonstigeDatentypen.Unbekannt;
+   LeerAktuellerZustand : constant SystemDatentypen.Status_Untereinander_Enum := SystemDatentypen.Unbekannt;
    LeerAktuelleSympathieBewertung : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerZeitSeitLetzterÄnderung : constant Natural := Natural'First;
 
@@ -87,11 +84,11 @@ package SonstigesKonstanten is
                                                                      Produktion          => 0,
                                                                      Wirtschaft          => 0,
                                                                      Bewirtschaftung     => 0,
-                                                                     GültigeStaatsformen => (SonstigeDatentypen.Anarchie,
-                                                                                              SonstigeDatentypen.Anarchie,
-                                                                                              SonstigeDatentypen.Anarchie,
-                                                                                              SonstigeDatentypen.Anarchie,
-                                                                                              SonstigeDatentypen.Anarchie)
+                                                                     GültigeStaatsformen => (SystemDatentypen.Anarchie,
+                                                                                              SystemDatentypen.Anarchie,
+                                                                                              SystemDatentypen.Anarchie,
+                                                                                              SystemDatentypen.Anarchie,
+                                                                                              SystemDatentypen.Anarchie)
                                                                     );
 
 end SonstigesKonstanten;

@@ -3,9 +3,8 @@ pragma SPARK_Mode (Off);
 with Ada.Numerics.Discrete_Random;
 with Ada.Numerics.Float_Random;
 
-with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 
@@ -18,7 +17,7 @@ package ZufallGeneratorenKarten is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer),
          Post =>
            (StartPosition'Result.EAchse in -1 .. 0
             and

@@ -42,7 +42,7 @@ package body RasseEntfernen is
       GlobaleVariablen.CursorImSpiel (RasseExtern) := SonstigesKonstanten.LeerCursor;
       GlobaleVariablen.Wichtiges (RasseExtern) := SonstigesKonstanten.LeerWichtigesZeug;
       
-      GlobaleVariablen.RassenImSpiel (RasseExtern) := SonstigeDatentypen.Leer;
+      GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Leer;
       
    end RasseEntfernen;
    
@@ -92,7 +92,7 @@ package body RasseEntfernen is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      GlobaleVariablen.RassenImSpiel (RasseExtern) := SonstigeDatentypen.Spieler_KI;
+      GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Spieler_KI;
       KartenfelderBewerten.KartenfelderBewerten (RasseExtern => RasseExtern);
       
    end RasseAufKISetzen;

@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 
@@ -13,9 +12,9 @@ package KennenLernen is
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SonstigeDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SonstigeDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemDatentypen.Leer);
 
 private
 
@@ -26,9 +25,9 @@ private
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SystemDatentypen.Spieler_Mensch);
 
    procedure ErstkontaktMenschKI
      (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -37,8 +36,8 @@ private
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SonstigeDatentypen.Spieler_Mensch
+            (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch
              or
-               GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SonstigeDatentypen.Spieler_Mensch));
+               GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SystemDatentypen.Spieler_Mensch));
 
 end KennenLernen;

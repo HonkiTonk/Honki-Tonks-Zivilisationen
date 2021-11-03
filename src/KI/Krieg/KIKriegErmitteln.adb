@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenKonstanten;
 
 with DiplomatischerZustand;
 
@@ -17,14 +18,14 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
          then
             null;
             
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = SonstigeDatentypen.Krieg
+           = SystemDatentypen.Krieg
          then
             return True;
                   
@@ -49,13 +50,13 @@ package body KIKriegErmitteln is
         RasseExtern
       is
          when SystemDatentypen.Ekropa =>
-            return SystemDatentypen.Keine_Rasse;
+            return EinheitenKonstanten.LeerRasse;
             
          when others =>
             null;
       end case;
       
-      RasseGewählt := SystemDatentypen.Keine_Rasse;
+      RasseGewählt := EinheitenKonstanten.LeerRasse;
       Bewertungen := (others => 0);
       
       RassenSchleife:
@@ -64,7 +65,7 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
          then
             null;
             
@@ -104,11 +105,11 @@ package body KIKriegErmitteln is
          null;
          
       else
-         return SystemDatentypen.Keine_Rasse;
+         return EinheitenKonstanten.LeerRasse;
       end if;
       
       if
-        RasseGewählt = SystemDatentypen.Keine_Rasse
+        RasseGewählt = EinheitenKonstanten.LeerRasse
       then
          Bewertungen (FremdeRasseExtern) := Bewertung;
          

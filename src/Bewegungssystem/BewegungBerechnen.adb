@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen; use SystemDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -83,7 +82,7 @@ package body BewegungBerechnen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SonstigeDatentypen.Spieler_KI =>
+         when SystemDatentypen.Spieler_KI =>
             null;
             
          when others =>
@@ -108,12 +107,12 @@ package body BewegungBerechnen is
       
       -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedeckt wurde und stellt entsprechend Kontakt her.
       KontaktSchleife:
-      for FremdeSichtbarkeitSchleifenwert in SonstigeDatentypen.RassenImSpielArray'Range loop
+      for FremdeSichtbarkeitSchleifenwert in SystemDatentypen.RassenImSpielArray'Range loop
          
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = SonstigeDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = SystemDatentypen.Leer
          then
             null;
             

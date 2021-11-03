@@ -1,9 +1,8 @@
 pragma SPARK_Mode (On);
 
 with KartenRecords; use KartenRecords;
-with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 
@@ -21,7 +20,7 @@ package GrafischeAnzeige is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
 
 private
 

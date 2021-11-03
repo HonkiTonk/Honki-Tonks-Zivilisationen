@@ -117,7 +117,7 @@ package body Cheat is
          RassenZweiteSchleife:
          for RasseZweiSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SonstigeDatentypen.Neutral;
+            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SystemDatentypen.Neutral;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;
@@ -136,7 +136,7 @@ package body Cheat is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SonstigeDatentypen.Spieler_KI =>
+         when SystemDatentypen.Spieler_KI =>
             BewegungPlanSchleife:
             for BewegungGeplantSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
                       

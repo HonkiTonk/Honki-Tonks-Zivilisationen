@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen;
+with SystemDatentypen;
 
 with DatenbankRecords;
 
@@ -14,11 +14,11 @@ package RasseLarinosLotaris is
       Produktion          => 0,
       Wirtschaft          => 0,
       Bewirtschaftung     => 0,
-      GültigeStaatsformen => (SonstigeDatentypen.Anarchie,
-                               SonstigeDatentypen.Demokratie,
-                               SonstigeDatentypen.Anarchie,
-                               SonstigeDatentypen.Anarchie,
-                               SonstigeDatentypen.Anarchie)
+      GültigeStaatsformen => (SystemDatentypen.Anarchie,
+                               SystemDatentypen.Demokratie,
+                               SystemDatentypen.Anarchie,
+                               SystemDatentypen.Anarchie,
+                               SystemDatentypen.Anarchie)
      );
 
 end RasseLarinosLotaris;

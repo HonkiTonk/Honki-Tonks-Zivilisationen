@@ -5,7 +5,6 @@ with Ada.Float_Text_IO;
 with Ada.Integer_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 

@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -29,7 +28,7 @@ package body VerbesserungFestung is
       in
         KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SonstigeDatentypen.Spieler_Mensch
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch
       then
          case
            EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)

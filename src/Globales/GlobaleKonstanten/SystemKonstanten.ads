@@ -24,20 +24,6 @@ package SystemKonstanten is
 
 
 
-   -- Für die Spieleinstellungen
-   AuswahlKartengröße : constant Positive := 1;
-   AuswahlKartenart : constant Positive := 2;
-   AuswahlKartenform : constant Positive := 3;
-   AuswahlKartentemperatur : constant Positive := 4;
-   AuswahlSpieleranzahl : constant Positive := 5;
-   AuswahlBelegung : constant Positive := 6;
-   AuswahlSchwierigkeitsgrad : constant Positive := 7;
-   AuswahlFertig : constant Positive := 8;
-   AuswahlKartenressourcen : constant Positive := 9;
-   -- Für die Spieleinstellungen
-
-
-
    -- Für die Zahleneingabe
    GanzeZahlAbbruchKonstante : constant Integer := -1_000_000_000;
    -- Für die Zahleneingabe

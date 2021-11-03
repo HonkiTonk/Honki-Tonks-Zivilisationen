@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte;
 with EinheitenKonstanten;
-with SystemDatentypen;
 
 with SchreibeEinheitenGebaut;
 

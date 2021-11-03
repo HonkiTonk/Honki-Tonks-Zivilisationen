@@ -168,31 +168,33 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (06.11.2021):
+   -- Version 0.00.92 => 0.00.9 (06.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.92 => 0.00.9 (05.11.2021):
+   -- Version 0.00.92 => 0.00.92 (05.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.92 => 0.00.92 (04.11.2021):
+   -- Version 0.00.9220 => 0.00.92 (04.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9210 => 0.00.92 (03.11.2021):
+   -- Version 0.00.9210 => 0.00.9220 (03.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- SonstigeDatentypen vollständig in SystemDatentypen integriert.
+   -- Einige Leerwerte durch Konstante ersetzt.
+   -- SFML Anzeige für die Eingabe von Zahlen verbessert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    
@@ -204,7 +206,7 @@ package ChangelogNovember2021 is
    -- Code an die neuen Rückgabewerte und dadurch notwendigen Datentypen angepasst.
    -- Speicherung der Kartenfelderbelegung durch Städte neu geschrieben.
    -- Neues Menüsystem vollständig eingebaut.
-   -- Kleinigkeiten korrigiert.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
 

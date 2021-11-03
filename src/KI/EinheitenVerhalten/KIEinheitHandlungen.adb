@@ -24,7 +24,7 @@ package body KIEinheitHandlungen is
       case
         FeindlicheEinheit.Rasse
       is
-         when SystemDatentypen.Keine_Rasse =>
+         when EinheitenKonstanten.LeerRasse =>
             NormaleHandlungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others =>
@@ -101,7 +101,7 @@ package body KIEinheitHandlungen is
    is begin
       
       if
-        FeindlicheEinheitExtern.Rasse = SystemDatentypen.Keine_Rasse
+        FeindlicheEinheitExtern.Rasse = EinheitenKonstanten.LeerRasse
       then
          null;
          

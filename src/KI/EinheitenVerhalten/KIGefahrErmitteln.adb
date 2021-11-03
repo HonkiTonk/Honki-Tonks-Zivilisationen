@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 
@@ -107,7 +106,7 @@ package body KIGefahrErmitteln is
         DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                            FremdeRasseExtern => AndereEinheitExtern.Rasse)
       is
-         when SonstigeDatentypen.Krieg =>
+         when SystemDatentypen.Krieg =>
             null;
             
          when others =>

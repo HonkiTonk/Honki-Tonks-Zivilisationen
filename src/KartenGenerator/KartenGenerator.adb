@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen;
+with EinheitenKonstanten;
 
 with Ladezeiten;
 with KartenfelderBewerten;
@@ -29,7 +30,7 @@ package body KartenGenerator is
       RessourcenGenerieren;
 
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Kartenfelder_Bewerten, SystemDatentypen.Anfangswert) := Clock;
-      KartenfelderBewerten.KartenfelderBewerten (RasseExtern => SystemDatentypen.Keine_Rasse);
+      KartenfelderBewerten.KartenfelderBewerten (RasseExtern => EinheitenKonstanten.LeerRasse);
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Kartenfelder_Bewerten, SystemDatentypen.Endwert) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Kartenfelder_Bewerten);
       

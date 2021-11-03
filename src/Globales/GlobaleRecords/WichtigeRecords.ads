@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen;
-with SonstigeDatentypen;
+with SystemDatentypen;
 
 package WichtigeRecords is
 
@@ -32,7 +32,7 @@ package WichtigeRecords is
    
    type DiplomatieRecord is record
       
-      AktuellerZustand : SonstigeDatentypen.Status_Untereinander_Enum;
+      AktuellerZustand : SystemDatentypen.Status_Untereinander_Enum;
       AktuelleSympathieBewertung : EinheitStadtDatentypen.ProduktionFeld;
       ZeitSeitLetzterÄnderung : Natural;
       

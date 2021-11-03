@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with Sf.Window.Event;
 
 with SystemDatentypen; use SystemDatentypen;
-with SonstigeDatentypen; use SonstigeDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with SystemKonstanten;
@@ -16,7 +15,7 @@ package BefehleImSpiel is
       return Integer
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch),
          Post =>
            (Befehle'Result in SystemKonstanten.RundeBeendenKonstante .. 5);
 

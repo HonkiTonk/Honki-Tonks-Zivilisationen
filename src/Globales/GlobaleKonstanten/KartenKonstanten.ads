@@ -5,6 +5,7 @@ with KartenRecords;
 with SystemKonstanten;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
+with StadtKonstanten;
 
 with DatenbankRecords;
 
@@ -35,7 +36,7 @@ package KartenKonstanten is
    LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
    LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
    LeerRessource : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
-   LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (SystemDatentypen.Keine_Rasse, EinheitStadtDatentypen.MaximaleStädteMitNullWert'First);
+   LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (StadtKonstanten.LeerRasse, StadtKonstanten.LeerNummer);
    LeerFelderwertung : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (

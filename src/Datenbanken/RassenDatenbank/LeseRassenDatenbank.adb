@@ -72,12 +72,12 @@ package body LeseRassenDatenbank is
    
    function RassenGültigeStaatsform
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      StaatsformExtern : SonstigeDatentypen.Staatsform_Enum)
+      StaatsformExtern : SystemDatentypen.Staatsform_Enum)
       return Boolean
    is begin
             
       StaatsformenSchleife:
-      for StaatsformSchleifenwert in SonstigeDatentypen.StaatsformenArray'Range loop
+      for StaatsformSchleifenwert in SystemDatentypen.StaatsformenArray'Range loop
          
          if
            RassenDatenbank.RassenListe (RasseExtern).GültigeStaatsformen (StaatsformSchleifenwert) = StaatsformExtern

@@ -10,7 +10,6 @@ with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;
 with SystemKonstanten;
-with SonstigeDatentypen;
 with KartenDatentypen;
 
 with Karten;
@@ -159,7 +158,7 @@ package body Laden is
    procedure RassenGrenzenLaden
    is begin
       
-      SonstigeDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
+      SystemDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
                                                   GlobaleVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
@@ -183,7 +182,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>
@@ -211,7 +210,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>
@@ -239,7 +238,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>
@@ -262,7 +261,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
 
             when others =>
@@ -272,7 +271,7 @@ package body Laden is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when SonstigeDatentypen.Leer =>
+                     when SystemDatentypen.Leer =>
                         null;
                      
                      when others =>
@@ -298,7 +297,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenKonstanten;
 with EinheitStadtDatentypen;
+with StadtKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -812,7 +813,7 @@ package body Sichtbarkeit is
       case
         FremdeEinheitStadt.Rasse
       is
-         when SystemDatentypen.Keine_Rasse =>
+         when StadtKonstanten.LeerRasse =>
             null;
             
          when others =>
@@ -827,7 +828,7 @@ package body Sichtbarkeit is
       case
         FremdeEinheitStadt.Rasse
       is
-         when SystemDatentypen.Keine_Rasse =>
+         when StadtKonstanten.LeerRasse =>
             null;
             
          when others =>

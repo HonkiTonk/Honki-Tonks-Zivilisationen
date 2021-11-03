@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 
 with Sichtweiten;
@@ -13,7 +12,7 @@ package CursorPositionAltFestlegen is
       BewegungsfeldFestlegenExtern : in Positive)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SonstigeDatentypen.Spieler_Mensch
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch
           and
             BewegungsfeldFestlegenExtern <= Sichtweiten.Bewegungsfeld'Last);
    

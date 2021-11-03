@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen;
-
 with SchreibeEinheitenGebaut;
 
 package body EinheitenMeldungenSetzen is
@@ -15,7 +13,7 @@ package body EinheitenMeldungenSetzen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>

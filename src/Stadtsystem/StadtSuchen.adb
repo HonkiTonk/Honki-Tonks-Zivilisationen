@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
-with SystemDatentypen; use SystemDatentypen;
 with StadtKonstanten;
 
 with LeseStadtGebaut;
@@ -48,7 +47,7 @@ package body StadtSuchen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>
@@ -85,7 +84,7 @@ package body StadtSuchen is
          if
            RasseExtern = RasseSchleifenwert
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
          then
             null;
             
@@ -124,7 +123,7 @@ package body StadtSuchen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>

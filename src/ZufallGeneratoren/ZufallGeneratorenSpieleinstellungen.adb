@@ -1,7 +1,6 @@
 pragma SPARK_Mode (Off);
 
 with GlobaleVariablen;
-with SonstigeDatentypen;
 
 package body ZufallGeneratorenSpieleinstellungen is
    
@@ -85,7 +84,7 @@ package body ZufallGeneratorenSpieleinstellungen is
          case
            GlobaleVariablen.RassenImSpiel (RasseGewählt)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                return RasseGewählt;
             
             when others =>

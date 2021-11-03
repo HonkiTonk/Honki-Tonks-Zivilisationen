@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SonstigeDatentypen; use SonstigeDatentypen;
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 
@@ -15,7 +14,7 @@ package LeseForschungsDatenbank is
       return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
    function AnforderungForschung
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -24,7 +23,7 @@ package LeseForschungsDatenbank is
       return EinheitStadtDatentypen.ForschungIDMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
    
    function GanzerEintrag
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -32,6 +31,6 @@ package LeseForschungsDatenbank is
       return DatenbankRecords.ForschungListeRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SonstigeDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
 end LeseForschungsDatenbank;

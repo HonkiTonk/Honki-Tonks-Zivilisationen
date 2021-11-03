@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SystemDatentypen;
+with KartenDatentypen;
 
 package SpielEinstellungenKarten is
    
@@ -30,6 +31,7 @@ private
    BenutzerdefinierteGröße : Integer;
    
    function GrößeSelbstBestimmen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
+     (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum)
+      return SystemDatentypen.Rückgabe_Werte_Enum;
 
 end SpielEinstellungenKarten;

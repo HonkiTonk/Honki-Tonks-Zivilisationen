@@ -4,7 +4,6 @@ with SystemDatentypen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with SonstigeDatentypen;
 
 package DatenbankRecords is
 
@@ -123,7 +122,7 @@ package DatenbankRecords is
       Wirtschaft : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       Bewirtschaftung : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
-      GültigeStaatsformen : SonstigeDatentypen.StaatsformenArray;
+      GültigeStaatsformen : SystemDatentypen.StaatsformenArray;
       -- Besondere Eigenschaften hinzufügen, als Enum? oder was Anderes?
       
    end record;

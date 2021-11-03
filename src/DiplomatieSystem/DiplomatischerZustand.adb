@@ -11,7 +11,7 @@ package body DiplomatischerZustand is
    procedure DiplomatischenStatusÄndern
      (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      NeuerStatusExtern : in SonstigeDatentypen.Status_Untereinander_Enum)
+      NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Enum)
    is begin
       
       GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand := NeuerStatusExtern;
@@ -23,7 +23,7 @@ package body DiplomatischerZustand is
       case
         NeuerStatusExtern
       is
-         when SonstigeDatentypen.Krieg =>
+         when SystemDatentypen.Krieg =>
             SympathieÄndern (EigeneRasseExtern => RasseEinsExtern,
                               FremdeRasseExtern => RasseZweiExtern,
                               ÄnderungExtern   => -30);
@@ -42,7 +42,7 @@ package body DiplomatischerZustand is
    function DiplomatischenStatusPrüfen
      (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SonstigeDatentypen.Status_Untereinander_Enum
+      return SystemDatentypen.Status_Untereinander_Enum
    is begin
       
       return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuellerZustand;
@@ -111,7 +111,7 @@ package body DiplomatischerZustand is
         DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
                                      FremdeRasseExtern => GegnerischeRasseExtern)
       is
-         when SonstigeDatentypen.Neutral =>
+         when SystemDatentypen.Neutral =>
             if
               GlobaleVariablen.Diplomatie (EigeneRasseExtern, GegnerischeRasseExtern).ZeitSeitLetzterÄnderung < SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
             then
@@ -122,14 +122,14 @@ package body DiplomatischerZustand is
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                             RasseZweiExtern   => GegnerischeRasseExtern,
-                                            NeuerStatusExtern => SonstigeDatentypen.Krieg);
+                                            NeuerStatusExtern => SystemDatentypen.Krieg);
                return True;
                   
             else
                return False;
             end if;
                   
-         when SonstigeDatentypen.Krieg =>
+         when SystemDatentypen.Krieg =>
             return True;
 
          when others =>

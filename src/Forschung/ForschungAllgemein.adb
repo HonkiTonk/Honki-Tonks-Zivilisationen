@@ -404,13 +404,13 @@ package body ForschungAllgemein is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
                
-            when SonstigeDatentypen.Spieler_Mensch =>
+            when SystemDatentypen.Spieler_Mensch =>
                FortschrittMensch (RasseExtern => RasseSchleifenwert);
                
-            when SonstigeDatentypen.Spieler_KI =>
+            when SystemDatentypen.Spieler_KI =>
                FortschrittKI (RasseExtern => RasseSchleifenwert);
          end case;
                

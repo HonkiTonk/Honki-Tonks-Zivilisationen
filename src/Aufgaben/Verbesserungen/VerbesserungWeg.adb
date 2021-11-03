@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen;
 with KartenKonstanten;
 
 with SchreibeEinheitenGebaut;

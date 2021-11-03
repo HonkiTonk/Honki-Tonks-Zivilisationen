@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 
@@ -27,7 +26,7 @@ package body Handeln is
       case
         GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
-         when SonstigeDatentypen.Krieg =>
+         when SystemDatentypen.Krieg =>
             return 1;
             
          when others =>
@@ -207,9 +206,9 @@ package body Handeln is
            or
              RasseZweiSchleifenwert = KontaktierteRasseExtern
              or
-               GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
+               GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt
            or
-             GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= SonstigeDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt
          then
             null;
                   
@@ -237,9 +236,9 @@ package body Handeln is
            or
              RasseEinsSchleifenwert = KontaktierteRasseExtern
              or
-               GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
+               GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt
            or
-             GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= SonstigeDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt
          then
             null;
                   

@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with KartenDatentypen;
 with SystemKonstanten;
 with GlobaleTexte;
 
@@ -28,13 +27,13 @@ package body SpielEinstellungenKarten is
                return SystemDatentypen.Auswahl_Kartenart;
 
             when SystemDatentypen.Karte_Größe_Nutzer =>
-               return GrößeSelbstBestimmen;
+               return GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
             when SystemDatentypen.Karte_Größe_Zufall =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
                return SystemDatentypen.Auswahl_Kartenart;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü | SystemDatentypen.Zurück =>
                return KartengrößeAuswahl;
                
             when SystemDatentypen.Leer =>
@@ -51,6 +50,7 @@ package body SpielEinstellungenKarten is
    
    
    function GrößeSelbstBestimmen
+     (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum)
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
@@ -67,7 +67,7 @@ package body SpielEinstellungenKarten is
          null;
       end if;
       
-      Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+      Karten.Kartengrößen (KartengrößeExtern).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                       ZeileExtern         => 25,
                                                       ZahlenMinimumExtern => 20,
@@ -79,7 +79,8 @@ package body SpielEinstellungenKarten is
          return SystemDatentypen.Auswahl_Kartengröße;
                            
       else
-         Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+         Karten.Kartengrößen (KartengrößeExtern).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+         Karten.Kartengröße := KartengrößeExtern;
          return SystemDatentypen.Auswahl_Kartenart;
       end if;
       
@@ -87,7 +88,7 @@ package body SpielEinstellungenKarten is
 
 
 
-   -- 1 = Inseln, 2 = Kontinente, 3 = Pangäa, 4 = Nur Land, 5 = Chaos
+   -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
    function KartenartWählen
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
@@ -127,7 +128,7 @@ package body SpielEinstellungenKarten is
    
    
    
-   -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck, 6 = Kugel gedreht, 7 = Tugel, 8 = Tugel gedreht, 9 = Tugel extrem
+   -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel gedreht, Tugel, Tugel gedreht, Tugel extrem
    function KartenformWählen
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
@@ -167,7 +168,7 @@ package body SpielEinstellungenKarten is
 
 
 
-   -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
+   -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
    function KartentemperaturWählen
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
@@ -207,7 +208,7 @@ package body SpielEinstellungenKarten is
    
    
    
-   -- 1 = Arm, 2 = Wenig, 3 = Mittel, 4 = Viel, 5 = Überfluss
+   -- Arm, Wenig, Mittel, Viel, Überfluss
    function KartenressourcenWählen
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin

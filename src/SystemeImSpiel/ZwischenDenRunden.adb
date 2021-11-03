@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 
 with Ada.Calendar; use Ada.Calendar;
 
-with SonstigeDatentypen; use SonstigeDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with SystemKonstanten;
+with EinheitenKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -49,7 +49,7 @@ package body ZwischenDenRunden is
       EinheitenModifizieren.HeilungBewegungspunkteNeueRundeErmitteln;
       VerbesserungFertiggestellt.VerbesserungFertiggestellt;
       Wachstum.StadtWachstum;
-      StadtProduktion.StadtProduktion ((SystemDatentypen.Keine_Rasse, 0));
+      StadtProduktion.StadtProduktion ((EinheitenKonstanten.LeerRasse, 0));
       GeldForschungMengeSetzen;
       ForschungAllgemein.ForschungFortschritt;
       
@@ -126,7 +126,7 @@ package body ZwischenDenRunden is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SonstigeDatentypen.Spieler_KI
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI
          then
             KIVorhanden := True;
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
@@ -151,13 +151,13 @@ package body ZwischenDenRunden is
          for RasseZweiSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
             
             if
-              GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = SonstigeDatentypen.Unbekannt
+              GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt
               or
                 RasseEinsSchleifenwert = RasseZweiSchleifenwert
                 or
-                  GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = SonstigeDatentypen.Leer
+                  GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = SystemDatentypen.Leer
               or
-                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = SonstigeDatentypen.Leer
+                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = SystemDatentypen.Leer
             then
                null;
                   
@@ -186,7 +186,7 @@ package body ZwischenDenRunden is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Leer =>
+            when SystemDatentypen.Leer =>
                null;
             
             when others =>
@@ -212,7 +212,7 @@ package body ZwischenDenRunden is
         KIVorhanden
       is
          when True =>
-            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => SystemDatentypen.Keine_Rasse);
+            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => EinheitenKonstanten.LeerRasse);
             
          when False =>
             null;

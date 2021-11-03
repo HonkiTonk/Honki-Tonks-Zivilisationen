@@ -28,6 +28,8 @@ package body Hauptmenue is
 
                if
                  RückgabeKampagne = SystemDatentypen.Hauptmenü
+                 or
+                   RückgabeKampagne = SystemDatentypen.Zurück
                then
                   AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 

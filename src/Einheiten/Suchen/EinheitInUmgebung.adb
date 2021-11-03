@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SonstigeDatentypen; use SonstigeDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -29,7 +29,7 @@ package body EinheitInUmgebung is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SonstigeDatentypen.Spieler_Mensch =>
+            when SystemDatentypen.Spieler_Mensch =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);
                UmgebungEinheit (RasseExtern => RasseSchleifenwert);
                
@@ -150,7 +150,7 @@ package body EinheitInUmgebung is
                elsif
                  DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                                     FremdeRasseExtern => AndereEinheit.Rasse)
-                 = SonstigeDatentypen.Nichtangriffspakt
+                 = SystemDatentypen.Nichtangriffspakt
                then
                   null;
                   

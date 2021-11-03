@@ -4,7 +4,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with SystemDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;

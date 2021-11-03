@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with SystemDatentypen;
 
 with KIKonstanten;
 with KIDatentypen;
