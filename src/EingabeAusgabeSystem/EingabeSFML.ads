@@ -19,7 +19,8 @@ package EingabeSFML is
 
    function GanzeZahl
      (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+      ZahlenMaximumExtern : in Integer;
+      WelcheFrageExtern : in Positive)
       return Integer
      with
        Post =>
@@ -183,7 +184,8 @@ private
                                                             );
    
    procedure ZahlenAnzeige
-     (ZahlenMinimumExtern : in Integer);
+     (ZahlenMinimumExtern : in Integer;
+      WelcheFrageExtern : in Positive);
    
    procedure MinimumMaximumSetzen
      (ZahlenMinimumMaximumExtern : in Integer)
@@ -209,7 +211,8 @@ private
 
    function ZahlSchleife
      (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+      ZahlenMaximumExtern : in Integer;
+      WelcheFrageExtern : in Positive)
       return KartenDatentypen.LoopRangeMinusZweiZuZwei
      with
        Pre =>

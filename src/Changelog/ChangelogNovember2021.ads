@@ -147,45 +147,45 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (09.11.2021):
+   -- Version 0.00.92 => 0.00.9 (09.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (08.11.2021):
+   -- Version 0.00.92 => 0.00.92 (08.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (07.11.2021):
+   -- Version 0.00.9230 => 0.00.92 (07.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.92 => 0.00.9 (06.11.2021):
+   -- Version 0.00.9220 => 0.00.9230 (06.11.2021):
    
-   -- 
+   -- Menüanzeige- und auswahl durch die SFML verbessert/erweitert.
+   -- Zahleneingabe über die SFML verbessert.
+   -- Angefange die Rassen- und Spieleranzahlauswahl zu überarbeiten.
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.92 => 0.00.92 (05.11.2021):
+   -- Version 0.00.9220 => 0.00.9220 (05.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
+   -- null.
    
    
-   -- Version 0.00.9220 => 0.00.92 (04.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Version 0.00.9220 => 0.00.9220 (04.11.2021):
+   
+   -- null.
    
    
    

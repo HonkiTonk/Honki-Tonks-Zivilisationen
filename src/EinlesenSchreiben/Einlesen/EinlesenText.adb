@@ -115,84 +115,81 @@ package body EinlesenText is
                Kartentemperatur;
                
             when 11 =>
-               Spieleranzahl;
-               
-            when 12 =>
                Rassenauswahl;
                
-            when 13 =>
+            when 12 =>
                Schwierigkeitsgrad;
                
-            when 14 =>
+            when 13 =>
                Kartenform;
                
-            when 15 =>
+            when 14 =>
                Ressourcenmenge;
                
-            when 16 =>
+            when 15 =>
                JaNein;
                
-            when 17 =>
+            when 16 =>
                Rassen;
                
-            when 18 =>
+            when 17 =>
                Kartenfelder;
                
-            when 19 =>
+            when 18 =>
                Einheiten;
                
-            when 20 =>
+            when 19 =>
                Verbesserungen;
                
-            when 21 =>
+            when 20 =>
                Gebäude;
                
-            when 22 =>
+            when 21 =>
                Forschungen;
                
-            when 23 =>
+            when 22 =>
                Beschäftigungen;
                
-            when 24 =>
+            when 23 =>
                StädtenamenKI;
                
-            when 25 =>
+            when 24 =>
                Cheatmenü;
                
-            when 26 =>
+            when 25 =>
                AllgemeineInformationen;
                
-            when 27 =>
+            when 26 =>
                Würdigung;
                
-            when 28 =>
+            when 27 =>
                Diplomatiemenü;
                
-            when 29 =>
+            when 28 =>
                DiplomatieKI;
                
-            when 30 =>
+            when 29 =>
                Endmeldungen;
                
-            when 31 =>
+            when 30 =>
                Handelsmenü;
                
-            when 32 =>
+            when 31 =>
                DiplomatieStatus;
                
-            when 33 =>
+            when 32 =>
                Angebot;
                
-            when 34 =>
+            when 33 =>
                Fehlermeldung;
                
-            when 35 =>
+            when 34 =>
                Ladezeit;
                
-            when 36 =>
+            when 35 =>
                Frage;
                
-            when 37 =>
+            when 36 =>
                ZeugSachen;
          end case;
             
@@ -351,21 +348,6 @@ package body EinlesenText is
       end loop KartentemperaturSchleife;
       
    end Kartentemperatur;
-   
-   
-   
-   procedure Spieleranzahl
-   is begin
-      
-      SpieleranzahlSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Spieleranzahl'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Spieleranzahl (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
-         
-      end loop SpieleranzahlSchleife;
-      
-   end Spieleranzahl;
    
    
    

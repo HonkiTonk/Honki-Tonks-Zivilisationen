@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf;
 with Sf.Window.Mouse;
 with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics.Color;
 
 with KartenDatentypen; use KartenDatentypen;
 with SystemKonstanten;
@@ -22,7 +22,8 @@ package body EingabeSFML is
    
    function GanzeZahl
      (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+      ZahlenMaximumExtern : in Integer;
+      WelcheFrageExtern : in Positive)
       return Integer
    is begin
       
@@ -44,7 +45,8 @@ package body EingabeSFML is
                   
          case
            ZahlSchleife (ZahlenMinimumExtern => MinimalerWert,
-                         ZahlenMaximumExtern => MaximalerWert)
+                         ZahlenMaximumExtern => MaximalerWert,
+                         WelcheFrageExtern  => WelcheFrageExtern)
          is
             when 2 =>
                exit ZahlenAußenSchleife;
@@ -121,19 +123,19 @@ package body EingabeSFML is
    
    function ZahlSchleife
      (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+      ZahlenMaximumExtern : in Integer;
+      WelcheFrageExtern : in Positive)
       return KartenDatentypen.LoopRangeMinusZweiZuZwei
    is begin
       
       ZahlenSchleife:
       loop
 
-         ZahlenAnzeige (ZahlenMinimumExtern => ZahlenMinimumExtern);
+         ZahlenAnzeige (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                        WelcheFrageExtern   => WelcheFrageExtern);
             
          EingabeSystemeSFML.TastenEingabe;
          Zahlen := EingabeSystemeSFML.TastaturTaste;
-         
-         Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
          -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
          case
@@ -186,12 +188,14 @@ package body EingabeSFML is
    
    
    procedure ZahlenAnzeige
-     (ZahlenMinimumExtern : in Integer)
+     (ZahlenMinimumExtern : in Integer;
+      WelcheFrageExtern : in Positive)
    is begin
       
       AnzeigeAnfang := ZahlenString'Last;
       AktuellerWert := abs (Integer'Wide_Wide_Value (ZahlenString));
       
+      ZahlenlängeErmittelnSchleife:
       loop
          
          AktuellerWert := AktuellerWert / 10;
@@ -202,12 +206,28 @@ package body EingabeSFML is
             AnzeigeAnfang := AnzeigeAnfang - 1;
             
          else
-            exit;
+            exit ZahlenlängeErmittelnSchleife;
          end if;
          
-      end loop;
+      end loop ZahlenlängeErmittelnSchleife;
       
       GrafikAllgemein.FensterLeeren;
+      
+      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrageExtern)));
+      Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,
+                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.Schriftgröße)));
+      
+      Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
+                                    position => ((Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 10.00));
+      Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.TextStandard,
+                                 color => Sf.Graphics.Color.sfRed);
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                         text         => GrafikEinstellungen.TextStandard);
+      Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,
+                                         size => GrafikEinstellungen.Schriftgröße);
+      Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.TextStandard,
+                                 color => GrafikEinstellungen.Textfarbe);
 
       if
         ZahlenMinimumExtern > 0
@@ -226,7 +246,7 @@ package body EingabeSFML is
          Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                             str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
          Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
-                                       position => (10.00, 10.00));
+                                       position => ((Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 50.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                             text         => GrafikEinstellungen.TextStandard);
             
@@ -247,7 +267,7 @@ package body EingabeSFML is
             Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                                str  => "-");
             Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
-                                          position => (10.00, 10.00));
+                                          position => ((Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 50.00));
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                                text         => GrafikEinstellungen.TextStandard);
          end if;
@@ -255,7 +275,7 @@ package body EingabeSFML is
          Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                             str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
          Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
-                                       position => (10.00, 10.00));
+                                       position => ((Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 50.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                             text         => GrafikEinstellungen.TextStandard);
       end if;

@@ -26,7 +26,8 @@ package body Eingabe is
             
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             return EingabeSFML.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
-                                          ZahlenMaximumExtern => ZahlenMaximumExtern);
+                                          ZahlenMaximumExtern => ZahlenMaximumExtern,
+                                          WelcheFrageExtern   => ZeileExtern);
       end case;
       
    end GanzeZahl;

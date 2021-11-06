@@ -27,21 +27,21 @@ private
                                                        SystemDatentypen.Kartentemperatur_Menü => (2, 10),
                                                        SystemDatentypen.Kartenressourcen_Menü => (2, 9),
                                                        SystemDatentypen.Schwierigkeitsgrad_Menü => (2, 8),
-                                                       SystemDatentypen.Spieleranzahl_Menü => (2, 6),
                                                        SystemDatentypen.Rassen_Menü => (2, 23)
                                                       );
 
    Anfang : Positive;
    Ende : Positive;
    AktuelleAuswahl : Positive;
+   AnzeigeStartwert : Natural;
 
-   StartPositionYAchse : constant Float := 20.00;
-
-   TextPositionMaus : Float;
+   StartPositionYAchse : constant Float := 10.00;
+   ZeilenAbstand : Float;
 
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
    AktuellePosition : Sf.System.Vector2.sfVector2f;
+   TextPositionMaus : Sf.System.Vector2.sfVector2f;
 
    TextZugriff : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
 
@@ -91,6 +91,11 @@ private
 
    function TextMittelPositionErmitteln
      (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+      return Float;
+
+   function TextViertelPositionErmitteln
+     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr;
+      LinksRechtsExtern : in Boolean)
       return Float;
 
 end AuswahlMenue;

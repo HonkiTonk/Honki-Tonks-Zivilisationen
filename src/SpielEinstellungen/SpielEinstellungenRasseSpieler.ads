@@ -19,9 +19,6 @@ package SpielEinstellungenRasseSpieler is
 
    
    
-   function SpieleranzahlWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
    function SpielerbelegungWählen
      return SystemDatentypen.Rückgabe_Werte_Enum;
 

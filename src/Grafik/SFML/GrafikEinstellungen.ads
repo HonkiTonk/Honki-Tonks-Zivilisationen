@@ -27,7 +27,7 @@ package GrafikEinstellungen is
    Textstyle : Sf.sfUint32 := 0;
    TextStandard : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
-   AnzeigeAnfang : Sf.System.Vector2.sfVector2f := (20.00, 20.00);
+   AnzeigeAnfang : Sf.System.Vector2.sfVector2f := (10.00, 10.00);
    
    procedure StandardGrafikEinstellungenLaden;
    

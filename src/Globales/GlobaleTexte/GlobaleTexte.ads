@@ -35,7 +35,6 @@ package GlobaleTexte is
    Kartengröße : TexteArray (1 .. 14);
    Kartenart : TexteArray (1 .. 10);
    Kartentemperatur : TexteArray (1 .. 10);
-   Spieleranzahl : TexteArray (1 .. 6);
    Rassenauswahl : TexteArray (1 .. 23);
    Schwierigkeitsgrad : TexteArray (1 .. 8);
    Kartenform : TexteArray (1 .. 13);

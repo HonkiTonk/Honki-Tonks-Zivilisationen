@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
-
 with GlobaleTexte;
 with SystemKonstanten;
 with KartenKonstanten;
@@ -13,7 +10,6 @@ with LeseEinheitenGebaut;
 with Auswahl;
 with ZufallGeneratorenSpieleinstellungen;
 with Anzeige;
-with Eingabe;
 with ZufallGeneratorenKarten;
 with EinheitSuchen;
 with KartePositionPruefen;
@@ -22,57 +18,6 @@ with EinheitenErzeugenEntfernen;
 with AuswahlMenue;
 
 package body SpielEinstellungenRasseSpieler is
-
-   function SpieleranzahlWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      SpieleranzahlSchleife:
-      loop
-
-        SpieleranzahlAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Spieleranzahl_Menü);
-         
-         case
-           SpieleranzahlAuswahl
-         is
-            when SystemDatentypen.Eingabe =>
-               SpielerAnzahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
-                                                   ZeileExtern         => 1,
-                                                   ZahlenMinimumExtern => 1,
-                                                   ZahlenMaximumExtern => 18);
-               if
-                 SpielerAnzahl in 1 .. 18
-               then
-                  return SystemDatentypen.Auswahl_Belegung;
-                  
-               else
-                  null;
-               end if;
-
-            when SystemDatentypen.Zufall =>
-               SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.ZufälligeSpieleranzahl;
-               return SystemDatentypen.Auswahl_Belegung;
-               
-            when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Kartenressourcen;
-
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
-               return SystemDatentypen.Auswahl_Spieleranzahl;
-               
-            when SystemDatentypen.Leer =>
-               null;
-               
-            when others =>
-               raise Program_Error;
-         end case;
-
-         Put (Item => CSI & "2J" & CSI & "H");
-         
-      end loop SpieleranzahlSchleife;
-      
-   end SpieleranzahlWählen;
-
-
 
    function SpielerbelegungWählen
      return SystemDatentypen.Rückgabe_Werte_Enum
@@ -90,7 +35,7 @@ package body SpielEinstellungenRasseSpieler is
            SpielerartAuswahl
          is
             when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Spieleranzahl;
+               return SystemDatentypen.Auswahl_Kartenressourcen;
 
             when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return SpielerartAuswahl;

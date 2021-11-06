@@ -53,9 +53,7 @@ package body GrafikAllgemein is
    
    procedure TextAllgemeinFestlegen
    is begin
-      
-      GrafikEinstellungen.Schriftgröße := 24;
-      
+            
       Sf.Graphics.Text.setFont (text => GrafikEinstellungen.TextStandard,
                                 font => GrafikEinstellungen.Schriftart);
       Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,

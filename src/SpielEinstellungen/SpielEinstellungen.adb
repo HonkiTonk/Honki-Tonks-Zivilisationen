@@ -39,9 +39,6 @@ package body SpielEinstellungen is
                
             when SystemDatentypen.Auswahl_Kartenressourcen =>
                Auswahl := SpielEinstellungenKarten.KartenressourcenWählen;
-               
-            when SystemDatentypen.Auswahl_Spieleranzahl =>
-               Auswahl := SpielEinstellungenRasseSpieler.SpieleranzahlWählen;
 
             when SystemDatentypen.Auswahl_Belegung =>
                Auswahl := SpielEinstellungenRasseSpieler.SpielerbelegungWählen;

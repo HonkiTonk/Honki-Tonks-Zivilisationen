@@ -12,7 +12,7 @@ private
    
    LeereZeilenAbzieher : Natural;
    
-   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 37);
+   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 36);
 
    DateiTextEinlesen : File_Type;
    
@@ -30,7 +30,6 @@ private
    procedure Kartengröße;
    procedure Kartenart;
    procedure Kartentemperatur;
-   procedure Spieleranzahl;
    procedure Rassenauswahl;
    procedure Schwierigkeitsgrad;
    procedure Kartenform;
