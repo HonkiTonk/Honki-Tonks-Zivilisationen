@@ -223,11 +223,11 @@ package body SpielEinstellungenKarten is
          is
             when KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range =>
                Karten.Kartenressourcen := KartenressourcenAuswahl;
-               return SystemDatentypen.Auswahl_Belegung;
+               return SystemDatentypen.Auswahl_Rassen;
                
             when SystemDatentypen.Zufall =>
                Karten.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
-               return SystemDatentypen.Auswahl_Belegung;
+               return SystemDatentypen.Auswahl_Rassen;
                
             when SystemDatentypen.Zurück =>
                return SystemDatentypen.Auswahl_Kartentemperatur;

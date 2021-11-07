@@ -25,7 +25,7 @@ package GlobaleTexte is
    
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
-   Hauptmenü : TexteArray (1 .. 8);
+   Hauptmenü : TexteArray (1 .. 14);
    Spielmenü : TexteArray (1 .. 7);
    Optionsmenü : TexteArray (1 .. 8);
    Grafikmenü : TexteArray (1 .. 1);
@@ -35,7 +35,7 @@ package GlobaleTexte is
    Kartengröße : TexteArray (1 .. 14);
    Kartenart : TexteArray (1 .. 10);
    Kartentemperatur : TexteArray (1 .. 10);
-   Rassenauswahl : TexteArray (1 .. 23);
+   Rassenauswahl : TexteArray (1 .. 24);
    Schwierigkeitsgrad : TexteArray (1 .. 8);
    Kartenform : TexteArray (1 .. 13);
    Ressourcenmenge : TexteArray (1 .. 9);

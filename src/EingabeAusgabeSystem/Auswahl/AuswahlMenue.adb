@@ -11,6 +11,7 @@ with GlobaleTexte;
 with GrafikAllgemein;
 with GrafikEinstellungen;
 with Eingabe;
+with AllgemeineTextBerechnungenSFML;
 
 package body AuswahlMenue is
 
@@ -83,7 +84,7 @@ package body AuswahlMenue is
       Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.Schriftgröße)));
       
-      AktuellePosition := (TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), StartPositionYAchse);
+      AktuellePosition := (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), StartPositionYAchse);
       
       Sf.Graphics.Text.setPosition (text     => TextZugriff,
                                     position => AktuellePosition);
@@ -93,17 +94,6 @@ package body AuswahlMenue is
                                          text         => TextZugriff);
       
    end Überschrift;
-   
-   
-   
-   function TextMittelPositionErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
-      return Float
-   is begin
-      
-      return (Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextZugriffExtern).width / 2.00);
-      
-   end TextMittelPositionErmitteln;
    
          
    
@@ -128,11 +118,11 @@ package body AuswahlMenue is
            (ZeileSchleifenwert + AnzeigeStartwert) mod 2
          is
             when 0 =>
-               TextPositionMaus.x := TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
+               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
                                                                    LinksRechtsExtern => False);
                
             when others =>
-               TextPositionMaus.x := TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
+               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
                                                                    LinksRechtsExtern => True);
          end case;
          
@@ -165,26 +155,6 @@ package body AuswahlMenue is
    
    
    
-   function TextViertelPositionErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr;
-      LinksRechtsExtern : in Boolean)
-      return Float
-   is begin
-      
-      case
-        LinksRechtsExtern
-      is
-         when False =>
-            return Float (GrafikEinstellungen.FensterBreite) / 4.00 - Sf.Graphics.Text.getLocalBounds (text => TextZugriffExtern).width / 2.00;
-            
-         when True =>
-            return (Float (GrafikEinstellungen.FensterBreite) / 4.00) * 3.00 - Sf.Graphics.Text.getLocalBounds (text => TextZugriffExtern).width / 2.00;
-      end case;
-      
-   end TextViertelPositionErmitteln;
-   
-   
-   
    procedure AnzeigeMenüSFML
    is begin
       
@@ -206,11 +176,11 @@ package body AuswahlMenue is
            (TextSchleifenwert + AnzeigeStartwert) mod 2
          is
             when 0 =>
-               AktuellePosition.x := TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
+               AktuellePosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
                                                                    LinksRechtsExtern => False);
                
             when others =>
-               AktuellePosition.x := TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
+               AktuellePosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
                                                                    LinksRechtsExtern => True);
          end case;
          
@@ -242,10 +212,29 @@ package body AuswahlMenue is
          end case;
          
       end loop AnzeigeSchleife;
-        
+      
+      WeiterenTextAnzeigen;
+      
       GrafikAllgemein.FensterAnzeigen;
       
    end AnzeigeMenüSFML;
+   
+   
+   
+   procedure WeiterenTextAnzeigen
+   is begin
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
+                                         size => GrafikEinstellungen.Schriftgröße);
+      StringSetzen (WelcheZeileExtern => AktuelleAuswahl + 1 + (Ende - Anfang));
+      Sf.Graphics.Text.setPosition (text     => TextZugriff,
+                                    position => (10.00, 400.00));
+      Sf.Graphics.Text.setColor (text  => TextZugriff,
+                                 color => Sf.Graphics.Color.sfWhite);
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                         text         => TextZugriff);
+      
+   end WeiterenTextAnzeigen;
    
    
    
@@ -1036,10 +1025,15 @@ package body AuswahlMenue is
       elsif
         AktuelleAuswahl = Anfang + 19
       then
-         return SystemDatentypen.Zurück;
+         return SystemDatentypen.Fertig;
                     
       elsif
         AktuelleAuswahl = Anfang + 20
+      then
+         return SystemDatentypen.Zurück;
+                    
+      elsif
+        AktuelleAuswahl = Anfang + 21
       then
          return SystemDatentypen.Hauptmenü;
                     

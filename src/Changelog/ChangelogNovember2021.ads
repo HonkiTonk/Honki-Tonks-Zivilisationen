@@ -163,7 +163,8 @@ package ChangelogNovember2021 is
    
    -- Version 0.00.9230 => 0.00.92 (07.11.2021):
    
-   -- 
+   -- Die Rassen/Spielerauswahl weiter überarbeitet.
+   -- Angefangen die Textanzeige in den Menüs zu erweitern und verbessern.
    -- Kleinigkeiten korrigiert.
    
    
@@ -172,7 +173,7 @@ package ChangelogNovember2021 is
    
    -- Menüanzeige- und auswahl durch die SFML verbessert/erweitert.
    -- Zahleneingabe über die SFML verbessert.
-   -- Angefange die Rassen- und Spieleranzahlauswahl zu überarbeiten.
+   -- Angefangen die Rassen- und Spieleranzahlauswahl zu überarbeiten.
    -- Kleinigkeiten korrigiert.
    
    

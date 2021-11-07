@@ -40,8 +40,8 @@ package body SpielEinstellungen is
             when SystemDatentypen.Auswahl_Kartenressourcen =>
                Auswahl := SpielEinstellungenKarten.KartenressourcenWählen;
 
-            when SystemDatentypen.Auswahl_Belegung =>
-               Auswahl := SpielEinstellungenRasseSpieler.SpielerbelegungWählen;
+            when SystemDatentypen.Auswahl_Rassen =>
+               Auswahl := SpielEinstellungenRasseSpieler.RassenWählen;
 
             when SystemDatentypen.Auswahl_Schwierigkeitsgrad =>
                Auswahl := SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen;

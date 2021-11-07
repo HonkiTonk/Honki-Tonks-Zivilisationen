@@ -1,13 +1,11 @@
 pragma SPARK_Mode (On);
 
 with GlobaleTexte;
-with SystemKonstanten;
 with KartenKonstanten;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
-with Auswahl;
 with ZufallGeneratorenSpieleinstellungen;
 with Anzeige;
 with ZufallGeneratorenKarten;
@@ -18,69 +16,12 @@ with EinheitenErzeugenEntfernen;
 with AuswahlMenue;
 
 package body SpielEinstellungenRasseSpieler is
-
-   function SpielerbelegungWählen
+   
+   function RassenWählen
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer);
-      Spieler := 0;
-
-      SpielerSchleife:
-      while Spieler < SpielerAnzahl loop
-         
-         SpielerartAuswahl := RasseWählen;
-         
-         case
-           SpielerartAuswahl
-         is
-            when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Kartenressourcen;
-
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
-               return SpielerartAuswahl;
-               
-            when others =>
-               null;
-         end case;
-         
-         if
-           SpielerartAuswahl = SystemDatentypen.Rasse_Entfernen
-         then
-            null;
-            
-         else
-            case
-              GlobaleVariablen.RassenImSpiel (SpielerartAuswahl)
-            is
-               when SystemDatentypen.Leer =>
-                  if
-                    Auswahl.AuswahlJaNein (FrageZeileExtern => 21) = SystemKonstanten.JaKonstante
-                  then
-                     GlobaleVariablen.RassenImSpiel (SpielerartAuswahl) := SystemDatentypen.Spieler_Mensch;
-                     Spieler := Spieler + 1;
-                     
-                  else
-                     GlobaleVariablen.RassenImSpiel (SpielerartAuswahl) := SystemDatentypen.Spieler_KI;
-                     Spieler := Spieler + 1;
-                  end if;
-               
-               when others =>
-                  null;
-            end case;
-         end if;
-         
-      end loop SpielerSchleife;
-
-      return SystemDatentypen.Auswahl_Schwierigkeitsgrad;
-
-   end SpielerbelegungWählen;
-   
-
-   
-   function RasseWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
 
       RasseSchleife:
       loop
@@ -94,39 +35,26 @@ package body SpielEinstellungenRasseSpieler is
                if
                  GlobaleVariablen.RassenImSpiel (RassenAuswahl) = SystemDatentypen.Leer
                then
-                  -- Hier wieder die Anzeige des langen Rassentexts einbauen.
+                  GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SystemDatentypen.Spieler_Mensch;
                   
-                 -- Eingabe.WartenEingabe;
-               
-                  case
-                    Auswahl.AuswahlJaNein (FrageZeileExtern => 6)
-                  is
-                     when SystemKonstanten.JaKonstante =>
-                        return RassenAuswahl;
-                     
-                     when others =>
-                        null;
-                  end case;
+               elsif
+                 GlobaleVariablen.RassenImSpiel (RassenAuswahl) = SystemDatentypen.Spieler_Mensch
+               then
+                  GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SystemDatentypen.Spieler_KI;
                   
                else
-                  case
-                    Auswahl.AuswahlJaNein (FrageZeileExtern => 32)
-                  is
-                     when SystemKonstanten.JaKonstante =>
-                        GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SystemDatentypen.Leer;
-                        Spieler := Spieler - 1;
-                        return SystemDatentypen.Rasse_Entfernen;
-                     
-                     when others =>
-                        null;
-                  end case;
+                  GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SystemDatentypen.Leer;
                end if;
 
             when SystemDatentypen.Zufall =>
+               -- Zufallsgenerator entsprechend anpassen/einbauen
                return ZufallGeneratorenSpieleinstellungen.ZufälligeRasse;
+               
+            when SystemDatentypen.Fertig =>
+               return SystemDatentypen.Auswahl_Schwierigkeitsgrad;
 
             when SystemDatentypen.Zurück =>
-               return RassenAuswahl;
+               return SystemDatentypen.Auswahl_Kartenressourcen;
                
             when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return RassenAuswahl;
@@ -140,7 +68,7 @@ package body SpielEinstellungenRasseSpieler is
          
       end loop RasseSchleife;
       
-   end RasseWählen;
+   end RassenWählen;
 
 
 

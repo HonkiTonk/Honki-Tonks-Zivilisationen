@@ -28,7 +28,7 @@ package body SpielEinstellungenSonstiges is
                return SystemDatentypen.Start_Weiter;
                
             when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Belegung;
+               return SystemDatentypen.Auswahl_Rassen;
 
             when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
                return SchwierigkeitAuswahl;

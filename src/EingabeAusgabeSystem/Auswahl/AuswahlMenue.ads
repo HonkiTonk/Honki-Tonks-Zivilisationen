@@ -27,12 +27,13 @@ private
                                                        SystemDatentypen.Kartentemperatur_Menü => (2, 10),
                                                        SystemDatentypen.Kartenressourcen_Menü => (2, 9),
                                                        SystemDatentypen.Schwierigkeitsgrad_Menü => (2, 8),
-                                                       SystemDatentypen.Rassen_Menü => (2, 23)
+                                                       SystemDatentypen.Rassen_Menü => (2, 24)
                                                       );
 
    Anfang : Positive;
    Ende : Positive;
    AktuelleAuswahl : Positive;
+
    AnzeigeStartwert : Natural;
 
    StartPositionYAchse : constant Float := 10.00;
@@ -53,6 +54,7 @@ private
    procedure AnzeigeMenüSFML;
    procedure MausAuswahl;
    procedure Auswahl;
+   procedure WeiterenTextAnzeigen;
 
 
 
@@ -88,14 +90,5 @@ private
 
    function RasseAuswählen
      return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function TextMittelPositionErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
-      return Float;
-
-   function TextViertelPositionErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr;
-      LinksRechtsExtern : in Boolean)
-      return Float;
 
 end AuswahlMenue;

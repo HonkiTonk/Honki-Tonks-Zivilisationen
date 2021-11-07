@@ -19,10 +19,7 @@ package SpielEinstellungenRasseSpieler is
 
    
    
-   function SpielerbelegungWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function RasseWählen
+   function RassenWählen
      return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function UmgebungPrüfen
@@ -43,11 +40,7 @@ private
    
    FreieFelder : KartenDatentypen.SichtweiteMitNullwert;
    
-   Spieler : Natural;
-   
    RasseEntfernen : constant Positive := 20;
-   
-   SpielerAnzahl : Integer;
    
    RassenAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
    SpielerartAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
