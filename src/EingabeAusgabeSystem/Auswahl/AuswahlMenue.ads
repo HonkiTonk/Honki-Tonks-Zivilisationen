@@ -32,12 +32,16 @@ private
 
    Anfang : Positive;
    Ende : Positive;
-   AktuelleAuswahl : Positive;
+   AktuelleAuswahl : Positive := 1;
+   RassenBelegt : Positive;
+   RassenBelegtZähler : Positive;
 
    AnzeigeStartwert : Natural;
 
    StartPositionYAchse : constant Float := 10.00;
    ZeilenAbstand : Float;
+
+   LetztesMenü : SystemDatentypen.Welches_Menü_Enum := SystemDatentypen.Haupt_Menü;
 
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
@@ -56,39 +60,10 @@ private
    procedure Auswahl;
    procedure WeiterenTextAnzeigen;
 
+   procedure AnzeigeFarbeBestimmen
+     (TextZeileExtern : in Positive);
 
-
-   function Hauptmenü
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function Spielmenü
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function Optionsmenü
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function KartengrößeAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function KartenartAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function KartenformAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function KartentemperaturAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function KartenRessourcenAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function SchwierigkeitsgradAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function SpieleranzahlAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function RasseAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
+   procedure AllgemeinesFestlegen
+     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum);
 
 end AuswahlMenue;

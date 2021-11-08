@@ -21,19 +21,19 @@ package ZufallGeneratorenSpieleinstellungen is
    
    function ZufälligeKartenressourcen
      return KartenDatentypen.Kartenressourcen_Verwendet_Enum;
-   
-   function ZufälligeSpieleranzahl
-     return Positive;
      
-   function ZufälligeRasse
-     return SystemDatentypen.Rassen_Verwendet_Enum;
+   procedure ZufälligeRassen;
    
    function ZufälligerSchwiewrigkeitsgrad
      return SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
 
 private
    
-   RasseGewählt : SystemDatentypen.Rassen_Verwendet_Enum;
+   MenschVorhanden : Boolean;
+   
+   RasseImSpiel : SystemDatentypen.Spieler_Enum;
+   
+   -- RasseGewählt : SystemDatentypen.Rassen_Verwendet_Enum;
    
    -- Generatoren für zufällige Spieleinstellungen
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartengröße_Standard_Enum);
@@ -41,7 +41,7 @@ private
    package ZufälligeKartenformWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_Verwendet_Enum);
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartentemperatur_Verwendet_Enum);
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenressourcen_Verwendet_Enum);
-   package ZufälligeSpieleranzahlRasseWählen is new Ada.Numerics.Discrete_Random (SystemDatentypen.Rassen_Verwendet_Enum);
+   package ZufälligeRassenWählen is new Ada.Numerics.Discrete_Random (SystemDatentypen.Spieler_Enum);
    package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum);
 
    ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;
@@ -49,7 +49,7 @@ private
    ZufälligeKartenformGewählt : ZufälligeKartenformWählen.Generator;
    ZufälligeKartentemperaturGewählt : ZufälligeKartentemperaturWählen.Generator;
    ZufälligeKartenressourcenGewählt : ZufälligeKartenressourcenWählen.Generator;
-   ZufälligeSpieleranzahlRasseGewählt : ZufälligeSpieleranzahlRasseWählen.Generator;
+   ZufälligeRassenGewählt : ZufälligeRassenWählen.Generator;
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
    -- Generatoren für zufällige Spieleinstellungen
 

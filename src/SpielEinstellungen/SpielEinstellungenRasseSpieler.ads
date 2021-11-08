@@ -40,8 +40,6 @@ private
    
    FreieFelder : KartenDatentypen.SichtweiteMitNullwert;
    
-   RasseEntfernen : constant Positive := 20;
-   
    RassenAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
    SpielerartAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
    SpieleranzahlAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
@@ -55,5 +53,13 @@ private
    procedure FelderBestimmen
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure BelegungÄndern
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+   
+   
+   
+   function EineRasseBelegt
+     return Boolean;
 
 end SpielEinstellungenRasseSpieler;

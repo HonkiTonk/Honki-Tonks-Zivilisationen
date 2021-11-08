@@ -140,28 +140,28 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (10.11.2021):
+   -- Version 0.00.92 => 0.00.9 (10.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.92 => 0.00.9 (09.11.2021):
+   -- Version 0.00.9250 => 0.00.92 (09.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.92 => 0.00.92 (08.11.2021):
+   -- Version 0.00.9240 => 0.00.9250 (08.11.2021):
    
-   -- 
+   -- Auswahlmenü um diverse Funktionen/Anzeigen erweitert und verbessert.
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9230 => 0.00.92 (07.11.2021):
+   -- Version 0.00.9230 => 0.00.9240 (07.11.2021):
    
    -- Die Rassen/Spielerauswahl weiter überarbeitet.
    -- Angefangen die Textanzeige in den Menüs zu erweitern und verbessern.

@@ -1,5 +1,6 @@
 pragma SPARK_Mode (Off);
 
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 
 package body ZufallGeneratorenSpieleinstellungen is
@@ -59,41 +60,63 @@ package body ZufallGeneratorenSpieleinstellungen is
    
    
    
-   function ZufälligeSpieleranzahl
-     return Positive
+   procedure ZufälligeRassen
    is begin
       
-      ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
-      return SystemDatentypen.Rassen_Verwendet_Enum'Pos (ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt));
+      MenschVorhanden := False;
+      GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer);
+      ZufälligeRassenWählen.Reset (ZufälligeRassenGewählt);
       
-   end ZufälligeSpieleranzahl;
-   
-   
-   
-   function ZufälligeRasse
-     return SystemDatentypen.Rassen_Verwendet_Enum
-   is begin
-      
-      ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
-      
-      RasseWählenSchleife:
-      loop
+      RassenSchleife:
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         RasseGewählt := ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt);
-      
-         case
-           GlobaleVariablen.RassenImSpiel (RasseGewählt)
-         is
-            when SystemDatentypen.Leer =>
-               return RasseGewählt;
+         RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
+
+         if
+           RasseImSpiel = SystemDatentypen.Spieler_Mensch
+           and
+             MenschVorhanden = False
+         then
+            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
+            MenschVorhanden := True;
             
-            when others =>
-               null;
-         end case;
+         elsif
+           RasseImSpiel = SystemDatentypen.Spieler_Mensch
+         then
+            null;
+            
+         else
+            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
+         end if;
          
-      end loop RasseWählenSchleife;
+      end loop RassenSchleife;
       
-   end ZufälligeRasse;
+      case
+        MenschVorhanden
+      is
+         when True =>
+            return;
+            
+         when False =>
+            null;
+      end case;
+      
+      MenschlicherSpielerSchleife:
+      for MenschlicheRasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+
+         if
+           GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = SystemDatentypen.Spieler_KI
+         then
+            GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := SystemDatentypen.Spieler_Mensch;
+            return;
+            
+         else
+            null;
+         end if;
+         
+      end loop MenschlicherSpielerSchleife;
+      
+   end ZufälligeRassen;
    
    
    

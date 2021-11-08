@@ -32,26 +32,21 @@ package body SpielEinstellungenRasseSpieler is
            RassenAuswahl
          is
             when SystemDatentypen.Rassen_Verwendet_Enum'Range =>
-               if
-                 GlobaleVariablen.RassenImSpiel (RassenAuswahl) = SystemDatentypen.Leer
-               then
-                  GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SystemDatentypen.Spieler_Mensch;
-                  
-               elsif
-                 GlobaleVariablen.RassenImSpiel (RassenAuswahl) = SystemDatentypen.Spieler_Mensch
-               then
-                  GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SystemDatentypen.Spieler_KI;
-                  
-               else
-                  GlobaleVariablen.RassenImSpiel (RassenAuswahl) := SystemDatentypen.Leer;
-               end if;
+               BelegungÄndern (RasseExtern => RassenAuswahl);
 
             when SystemDatentypen.Zufall =>
                -- Zufallsgenerator entsprechend anpassen/einbauen
-               return ZufallGeneratorenSpieleinstellungen.ZufälligeRasse;
+               ZufallGeneratorenSpieleinstellungen.ZufälligeRassen;
                
             when SystemDatentypen.Fertig =>
-               return SystemDatentypen.Auswahl_Schwierigkeitsgrad;
+               if
+                 EineRasseBelegt = True
+               then
+                  return SystemDatentypen.Auswahl_Schwierigkeitsgrad;
+                  
+               else
+                  null;
+               end if;
 
             when SystemDatentypen.Zurück =>
                return SystemDatentypen.Auswahl_Kartenressourcen;
@@ -69,6 +64,52 @@ package body SpielEinstellungenRasseSpieler is
       end loop RasseSchleife;
       
    end RassenWählen;
+   
+   
+   
+   procedure BelegungÄndern
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      if
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer
+      then
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Spieler_Mensch;
+                  
+      elsif
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch
+      then
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Spieler_KI;
+                  
+      else
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Leer;
+      end if;
+      
+   end BelegungÄndern;
+   
+   
+   
+   function EineRasseBelegt
+     return Boolean
+   is begin
+      
+      RassenSchleife:
+      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+         
+         if
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemDatentypen.Leer
+         then
+            return True;
+            
+         else
+            null;
+         end if;
+         
+      end loop RassenSchleife;
+      
+      return False;
+      
+   end EineRasseBelegt;
 
 
 

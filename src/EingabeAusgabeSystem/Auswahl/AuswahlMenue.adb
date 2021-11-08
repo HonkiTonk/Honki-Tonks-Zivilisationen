@@ -6,12 +6,15 @@ with Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Color;
 
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
+with GlobaleVariablen;
 
 with GrafikAllgemein;
 with GrafikEinstellungen;
 with Eingabe;
 with AllgemeineTextBerechnungenSFML;
+with RueckgabeMenues;
 
 package body AuswahlMenue is
 
@@ -20,60 +23,62 @@ package body AuswahlMenue is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
+      AllgemeinesFestlegen (WelchesMenüExtern => WelchesMenüExtern);
+      
+      Auswahl;
+   
+      return RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
+                                              EndeExtern            => Ende,
+                                              AktuelleAuswahlExtern => AktuelleAuswahl,
+                                              WelchesMenüExtern     => WelchesMenü);
+      
+   end AuswahlMenü;
+
+
+
+   procedure AllgemeinesFestlegen
+     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
+   is begin
+
       WelchesMenü := WelchesMenüExtern;
       TextZugriff := GrafikEinstellungen.TextStandard;
       Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
       Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
-      AktuelleAuswahl := Anfang;
       ZeilenAbstand := 0.50 * Float (GrafikEinstellungen.Schriftgröße);
       
+      if
+        LetztesMenü = WelchesMenüExtern
+      then
+         if
+           AktuelleAuswahl < AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert)
+         then
+            AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
+
+         elsif
+           AktuelleAuswahl > AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert)
+         then
+            AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
+
+         else
+            null;
+         end if;
+         
+      else
+         AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
+         LetztesMenü := WelchesMenüExtern;
+      end if;
+      
       case
-        WelchesMenü
+        AnfangEndeMenü (WelchesMenü, SystemDatentypen.Anfangswert) mod 2
       is
-         when SystemDatentypen.Haupt_Menü =>
-            AnzeigeStartwert := 1;
+         when 0 =>
+            AnzeigeStartwert := 0;
             
          when others =>
-            AnzeigeStartwert := 0;
+            AnzeigeStartwert := 1;
       end case;
-      
-      Auswahl;
-   
-      case
-        WelchesMenü
-      is
-         when SystemDatentypen.Haupt_Menü =>
-            return Hauptmenü;
-            
-         when SystemDatentypen.Spiel_Menü =>
-            return Spielmenü;
-            
-         when SystemDatentypen.Optionen_Menü =>
-            return Optionsmenü;
-            
-         when SystemDatentypen.Kartengröße_Menü =>
-            return KartengrößeAuswählen;
-            
-         when SystemDatentypen.Kartenart_Menü =>
-            return KartenartAuswählen;
-            
-         when SystemDatentypen.Kartenform_Menü =>
-            return KartenformAuswählen;
-            
-         when SystemDatentypen.Kartentemperatur_Menü =>
-            return KartentemperaturAuswählen;
-            
-         when SystemDatentypen.Kartenressourcen_Menü =>
-            return KartenRessourcenAuswählen;
-            
-         when SystemDatentypen.Schwierigkeitsgrad_Menü =>
-            return SchwierigkeitsgradAuswählen;
-                        
-         when SystemDatentypen.Rassen_Menü =>
-            return RasseAuswählen;
-      end case;
-      
-   end AuswahlMenü;
+
+   end AllgemeinesFestlegen;
    
    
    
@@ -119,11 +124,11 @@ package body AuswahlMenue is
          is
             when 0 =>
                TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
-                                                                   LinksRechtsExtern => False);
+                                                                                                  LinksRechtsExtern => False);
                
             when others =>
                TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
-                                                                   LinksRechtsExtern => True);
+                                                                                                  LinksRechtsExtern => True);
          end case;
          
          if
@@ -177,26 +182,17 @@ package body AuswahlMenue is
          is
             when 0 =>
                AktuellePosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
-                                                                   LinksRechtsExtern => False);
+                                                                                                  LinksRechtsExtern => False);
                
             when others =>
                AktuellePosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
-                                                                   LinksRechtsExtern => True);
+                                                                                                  LinksRechtsExtern => True);
          end case;
          
          Sf.Graphics.Text.setPosition (text     => TextZugriff,
                                        position => AktuellePosition);
          
-         if
-           AktuelleAuswahl = TextSchleifenwert
-         then
-            Sf.Graphics.Text.setColor (text  => TextZugriff,
-                                       color => Sf.Graphics.Color.sfGreen);
-            
-         else
-            Sf.Graphics.Text.setColor (text  => TextZugriff,
-                                       color => Sf.Graphics.Color.sfWhite);
-         end if;
+         AnzeigeFarbeBestimmen (TextZeileExtern => TextSchleifenwert);
             
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                             text         => TextZugriff);
@@ -218,6 +214,68 @@ package body AuswahlMenue is
       GrafikAllgemein.FensterAnzeigen;
       
    end AnzeigeMenüSFML;
+   
+   
+   
+   procedure AnzeigeFarbeBestimmen
+     (TextZeileExtern : in Positive)
+   is begin
+      
+      if
+        AktuelleAuswahl = TextZeileExtern
+      then
+         Sf.Graphics.Text.setColor (text  => TextZugriff,
+                                    color => Sf.Graphics.Color.sfGreen);
+         
+      elsif
+        WelchesMenü = SystemDatentypen.Rassen_Menü
+      then
+         RassenBelegt := TextZeileExtern;
+         RassenBelegtZähler := Anfang;
+         
+         RassenSchleife:
+         for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+            
+            if
+              RassenBelegtZähler = RassenBelegt
+              and
+                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_Mensch
+            then
+               Sf.Graphics.Text.setColor (text  => TextZugriff,
+                                          color => Sf.Graphics.Color.sfBlue);
+               return;
+               
+            elsif
+              RassenBelegtZähler = RassenBelegt
+              and
+                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI
+            then
+               Sf.Graphics.Text.setColor (text  => TextZugriff,
+                                          color => Sf.Graphics.Color.sfYellow);
+               return;
+               
+            elsif
+              RassenBelegtZähler = RassenBelegt
+            then
+               Sf.Graphics.Text.setColor (text  => TextZugriff,
+                                          color => Sf.Graphics.Color.sfWhite);
+               return;
+               
+            else
+               RassenBelegtZähler := RassenBelegtZähler + 1;
+            end if;
+               
+         end loop RassenSchleife;
+         
+         Sf.Graphics.Text.setColor (text  => TextZugriff,
+                                    color => Sf.Graphics.Color.sfWhite);
+         
+      else
+         Sf.Graphics.Text.setColor (text  => TextZugriff,
+                                    color => Sf.Graphics.Color.sfWhite);
+      end if;
+      
+   end AnzeigeFarbeBestimmen;
    
    
    
@@ -340,717 +398,5 @@ package body AuswahlMenue is
       end loop AuswahlSchleife;
       
    end Auswahl;
-   
-   
-   
-   function Hauptmenü
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Start_Weiter;
-                  
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Laden;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Optionen;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Informationen;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Würdigungen;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end Hauptmenü;
-   
-   
-   
-   function Spielmenü
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Start_Weiter;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Speichern;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Laden;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Optionen;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end Spielmenü;
-   
-   
-   
-   function Optionsmenü
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Grafik;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Sound;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Steuerung;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Sonstiges;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 5
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end Optionsmenü;
-   
-   
-      
-   function KartengrößeAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Karte_Größe_20_20;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Karte_Größe_40_40;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Karte_Größe_80_80;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Karte_Größe_120_80;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Karte_Größe_120_160;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 5
-      then
-         return SystemDatentypen.Karte_Größe_160_160;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 6
-      then
-         return SystemDatentypen.Karte_Größe_240_240;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 7
-      then
-         return SystemDatentypen.Karte_Größe_320_320;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 8
-      then
-         return SystemDatentypen.Karte_Größe_1000_1000;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 9
-      then
-         return SystemDatentypen.Karte_Größe_Nutzer;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 10
-      then
-         return SystemDatentypen.Karte_Größe_Zufall;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 11
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end KartengrößeAuswählen;
-   
-   
-   
-   function KartenartAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Karte_Art_Inseln;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Karte_Art_Kontinente;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Karte_Art_Pangäa;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Karte_Art_Nur_Land;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Karte_Art_Chaos;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 5
-      then
-         return SystemDatentypen.Zufall;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 6
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 7
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end KartenartAuswählen;
-   
-   
-   
-   function KartenformAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Karte_Form_X_Zylinder;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Karte_Form_Y_Zylinder;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Karte_Form_Torus;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Karte_Form_Kugel;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Karte_Form_Viereck;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 5
-      then
-         return SystemDatentypen.Karte_Form_Kugel_Gedreht;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 6
-      then
-         return SystemDatentypen.Karte_Form_Tugel;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 7
-      then
-         return SystemDatentypen.Karte_Form_Tugel_Gedreht;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 8
-      then
-         return SystemDatentypen.Karte_Form_Tugel_Extrem;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 9
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 10
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end KartenformAuswählen;
-   
-   
-   
-   function KartentemperaturAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Karte_Temperatur_Kalt;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Karte_Temperatur_Gemäßigt;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Karte_Temperatur_Heiß;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Karte_Temperatur_Eiszeit;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Karte_Temperatur_Wüste;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 5
-      then
-         return SystemDatentypen.Zufall;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 6
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 7
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end KartentemperaturAuswählen;
-   
-   
-   
-   function KartenRessourcenAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Karte_Ressource_Arm;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Karte_Ressource_Wenig;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Karte_Ressource_Mittel;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Karte_Ressource_Viel;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Karte_Ressource_Überfluss;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 5
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 6
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end KartenRessourcenAuswählen;
-   
-   
-   
-   function SchwierigkeitsgradAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Schwierigkeitsgrad_Leicht;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Schwierigkeitsgrad_Mittel;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Schwierigkeitsgrad_Schwer;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Zufall;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Zufall;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 5
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end SchwierigkeitsgradAuswählen;
-   
-   
-   
-   function SpieleranzahlAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Eingabe;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Zufall;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end SpieleranzahlAuswählen;
-   
-   
-   
-   function RasseAuswählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahl = Anfang
-      then
-         return SystemDatentypen.Menschen;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 1
-      then
-         return SystemDatentypen.Kasrodiah;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 2
-      then
-         return SystemDatentypen.Lasupin;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 3
-      then
-         return SystemDatentypen.Lamustra;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 4
-      then
-         return SystemDatentypen.Manuky;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 5
-      then
-         return SystemDatentypen.Suroka;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 6
-      then
-         return SystemDatentypen.Pryolon;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 7
-      then
-         return SystemDatentypen.Talbidahr;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 8
-      then
-         return SystemDatentypen.Moru_Phisihl;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 9
-      then
-         return SystemDatentypen.Larinos_Lotaris;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 10
-      then
-         return SystemDatentypen.Carupex;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 11
-      then
-         return SystemDatentypen.Alary;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 12
-      then
-         return SystemDatentypen.Tesorahn;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 13
-      then
-         return SystemDatentypen.Natries_Zermanis;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 14
-      then
-         return SystemDatentypen.Tridatus;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 15
-      then
-         return SystemDatentypen.Senelari;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 16
-      then
-         return SystemDatentypen.Aspari_2;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 17
-      then
-         return SystemDatentypen.Ekropa;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 18
-      then
-         return SystemDatentypen.Zufall;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 19
-      then
-         return SystemDatentypen.Fertig;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 20
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahl = Anfang + 21
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahl = Ende
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahl not in Anfang .. Ende
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end RasseAuswählen;
    
 end AuswahlMenue;
