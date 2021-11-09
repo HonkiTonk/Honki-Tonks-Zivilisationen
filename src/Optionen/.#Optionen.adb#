@@ -15,8 +15,6 @@ package body Optionen is
    function Optionen
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
-      
-      RückgabeWert := 1_000;
 
       OptionenSchleife:
       loop

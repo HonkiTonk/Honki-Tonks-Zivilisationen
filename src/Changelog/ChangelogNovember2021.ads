@@ -133,23 +133,24 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (11.11.2021):
+   -- Version 0.00.92 => 0.00.9 (11.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.92 => 0.00.9 (10.11.2021):
+   -- Version 0.00.9260 => 0.00.92 (10.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9250 => 0.00.92 (09.11.2021):
+   -- Version 0.00.9250 => 0.00.9260 (09.11.2021):
    
-   -- 
+   -- Zeilenumbrüche in die Textanzeige eingebaut.
+   -- Angefangen die Befehle nach Darstellungsart aufzuteilen.
    -- Kleinigkeiten korrigiert.
    
    

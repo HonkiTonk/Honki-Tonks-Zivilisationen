@@ -2,24 +2,26 @@ pragma SPARK_Mode (On);
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with SystemDatentypen;
+
 package SystemKonstanten is
 
    -- Für die Auswahl
-   StartNormalKonstante : constant Positive := 1;
-   HauptmenüKonstante : constant Natural := 0;
-   SpielBeendenKonstante : constant Integer := -1;
-   ZurückKonstante : constant Integer := -2;
-   JaKonstante : constant Integer := -3;
-   NeinKonstante : constant Integer := -4;
-   SpeichernKonstante : constant Positive := 2;
-   LadenKonstante : constant Positive := 3;
-   OptionenKonstante : constant Positive := 4;
-   InformationenKonstante : constant Positive := 5;
-   WiederherstellenKonstante : constant Positive := 6;
-   WürdigungenKonstante : constant Positive := 7;
-   RundeBeendenKonstante : constant Integer := -1_000;
-   SiegKonstante : constant Positive := 1_000;
-   VernichtungKonstante : constant Positive := 2_000;
+   StartWeiterKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Start_Weiter;
+   HauptmenüKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Hauptmenü;
+   SpielBeendenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Spiel_Beenden;
+   ZurückKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Zurück;
+   JaKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Ja;
+   NeinKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Nein;
+   SpeichernKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Speichern;
+   LadenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Laden;
+   OptionenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Optionen;
+   InformationenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Informationen;
+   WiederherstellenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Wiederherstellen;
+   WürdigungenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Würdigungen;
+   RundeBeendenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Runde_Beenden;
+   SiegKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Sieg;
+   VernichtungKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Vernichtung;
    -- Für die Auswahl
 
 

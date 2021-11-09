@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
-with SystemKonstanten;
 
 package ImSpiel is
 
@@ -13,10 +12,10 @@ private
 
    RassenSchleifeVerlassenKonstante : constant Integer := -300;
 
-   AktuellerBefehlSpieler : Integer;
-   RückgabeWert : Integer;
-   RückgabeOptionen : Integer;
-   RückgabeRassen : Integer;
+   AktuellerBefehlSpieler : SystemDatentypen.Rückgabe_Werte_Enum;
+   RückgabeOptionen : SystemDatentypen.Rückgabe_Werte_Enum;
+   RückgabeRassen : SystemDatentypen.Rückgabe_Werte_Enum;
+   RückgabeWert : SystemDatentypen.Rückgabe_Werte_Enum;
 
    procedure KISpieler
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
@@ -28,24 +27,22 @@ private
 
    function RasseImSpiel
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer;
+      return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function RasseDurchgehen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer;
+      return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function MenschlicherSpieler
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer
+      return SystemDatentypen.Rückgabe_Werte_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch),
-         Post =>
-           (MenschlicherSpieler'Result in SystemKonstanten.RundeBeendenKonstante .. 5);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
 
    function MenschAmZug
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer;
+      return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function NochSpielerVorhanden
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)

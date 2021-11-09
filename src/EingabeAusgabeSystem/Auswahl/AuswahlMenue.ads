@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Sf.Graphics.Text;
 with Sf.Graphics;
 with Sf.System.Vector2;
@@ -35,11 +37,16 @@ private
    AktuelleAuswahl : Positive := 1;
    RassenBelegt : Positive;
    RassenBelegtZähler : Positive;
+   LetztesZeichen : Positive;
+   ErstesZeichen : Positive;
 
    AnzeigeStartwert : Natural;
 
    StartPositionYAchse : constant Float := 10.00;
    ZeilenAbstand : Float;
+   XPosition : Float;
+
+   AktuellerText : Unbounded_Wide_Wide_String;
 
    LetztesMenü : SystemDatentypen.Welches_Menü_Enum := SystemDatentypen.Haupt_Menü;
 

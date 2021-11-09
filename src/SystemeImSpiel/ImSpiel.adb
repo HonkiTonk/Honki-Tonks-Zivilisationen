@@ -33,15 +33,17 @@ package body ImSpiel is
             case
               RückgabeRassen
             is
-               when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
-                  null;
-                 -- return RückgabeRassen;
+               when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+                  return RückgabeRassen;
                   
-               when RassenSchleifeVerlassenKonstante =>
+               when SystemDatentypen.Schleife_Verlassen =>
                   exit RassenSchleife;
+                  
+               when SystemDatentypen.Start_Weiter =>
+                  null;
                
                when others =>
-                  null;
+                  raise Program_Error;
             end case;
             
          end loop RassenSchleife;
@@ -53,11 +55,7 @@ package body ImSpiel is
          then
             return SystemDatentypen.Hauptmenü;
             
-         else
-            null;
-         end if;
-         
-         if
+         elsif
            GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
          then
             return SystemDatentypen.Hauptmenü;
@@ -74,13 +72,13 @@ package body ImSpiel is
    
    function RasseImSpiel
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer
+      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer
       then
-         return SystemKonstanten.StartNormalKonstante;
+         return SystemDatentypen.Start_Weiter;
       
       elsif
         GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
@@ -88,7 +86,7 @@ package body ImSpiel is
           GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
          RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
-         return SystemKonstanten.StartNormalKonstante;
+         return SystemDatentypen.Start_Weiter;
          
       else
          return RasseDurchgehen (RasseExtern => RasseExtern);
@@ -100,7 +98,7 @@ package body ImSpiel is
    
    function RasseDurchgehen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer
+      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
             
       if
@@ -120,7 +118,6 @@ package body ImSpiel is
                KISpieler (RasseExtern => RasseExtern);
                
             when SystemDatentypen.Leer =>
-               -- Dieser Fall sollte hier niemals eintreten.
                raise Program_Error;
          end case;
 
@@ -128,7 +125,7 @@ package body ImSpiel is
          null;
       end if;
       
-      return SystemKonstanten.StartNormalKonstante;
+      return SystemDatentypen.Start_Weiter;
       
    end RasseDurchgehen;
    
@@ -148,46 +145,42 @@ package body ImSpiel is
    
    function MenschlicherSpieler
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer
+      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
                            
       RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
       
       if
-        (RückgabeWert = SystemKonstanten.SpielBeendenKonstante
+        (RückgabeWert = SystemDatentypen.Spiel_Beenden
          or
-           RückgabeWert = SystemKonstanten.HauptmenüKonstante)
+           RückgabeWert = SystemDatentypen.Hauptmenü)
         and
           NochSpielerVorhanden (RasseExtern => RasseExtern) = True
       then
          RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                         
       elsif
-        RückgabeWert = SystemKonstanten.SpielBeendenKonstante
+        RückgabeWert = SystemDatentypen.Spiel_Beenden
         or
-          RückgabeWert = SystemKonstanten.HauptmenüKonstante
+          RückgabeWert = SystemDatentypen.Hauptmenü
+          or
+            RückgabeWert = SystemDatentypen.Schleife_Verlassen
       then
          return RückgabeWert;
-
-      elsif
-        RückgabeWert = RassenSchleifeVerlassenKonstante
-      then
-         return RassenSchleifeVerlassenKonstante;
                         
       else
          null;
       end if;
       
-      return SystemKonstanten.StartNormalKonstante;
+      return SystemDatentypen.Start_Weiter;
       
    end MenschlicherSpieler;
 
 
 
-   -- Hier einen zweiten Task aufmachen der das Fenster verwaltet?
    function MenschAmZug
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer
+      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       SpielerSchleife:
@@ -208,44 +201,41 @@ package body ImSpiel is
          case
            AktuellerBefehlSpieler
          is
-            when SystemKonstanten.StartNormalKonstante =>
+            when SystemDatentypen.Start_Weiter =>
                null;
 
-            when SystemKonstanten.SpeichernKonstante =>
+            when SystemDatentypen.Speichern =>
                GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
-            when SystemKonstanten.LadenKonstante =>
+            when SystemDatentypen.Laden =>
                if
                  Laden.LadenNeu = True
                then
-                  return RassenSchleifeVerlassenKonstante;
+                  return SystemDatentypen.Schleife_Verlassen;
 
                else
                   null;
                end if;
                
-            when SystemKonstanten.OptionenKonstante =>
+            when SystemDatentypen.Optionen =>
                RückgabeOptionen := Optionen.Optionen;
                if
-                 RückgabeOptionen = SystemKonstanten.SpielBeendenKonstante
+                 RückgabeOptionen = SystemDatentypen.Spiel_Beenden
                  or
-                   RückgabeOptionen = SystemKonstanten.HauptmenüKonstante
+                   RückgabeOptionen = SystemDatentypen.Hauptmenü
                then
                   return RückgabeOptionen;
-                                    
+                  
                else
                   null;
                end if;
                
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü | SystemDatentypen.Runde_Beenden =>
                return AktuellerBefehlSpieler;
-
-            when SystemKonstanten.RundeBeendenKonstante =>
-               return SystemKonstanten.StartNormalKonstante;
                   
             when others =>
-               null;
+               raise Program_Error;
          end case;
                      
       end loop SpielerSchleife;

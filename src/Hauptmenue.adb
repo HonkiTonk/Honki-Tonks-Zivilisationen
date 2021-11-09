@@ -23,7 +23,7 @@ package body Hauptmenue is
          case
            AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Haupt_Menü)
          is
-            when SystemDatentypen.Start_Weiter =>
+            when SystemKonstanten.StartWeiterKonstante =>
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungenAuswahl;
 
                if
@@ -65,7 +65,7 @@ package body Hauptmenue is
                
             when SystemDatentypen.Optionen =>
                if
-                 Optionen.Optionen = SystemKonstanten.SpielBeendenKonstante
+                 Optionen.Optionen = SystemDatentypen.Spiel_Beenden
                then
                   exit HauptmenüSchleife;
 
