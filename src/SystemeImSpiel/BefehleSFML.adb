@@ -53,11 +53,12 @@ package body BefehleSFML is
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when SystemDatentypen.Menü_Zurück =>
-            return Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
-                                    TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
-                                    FrageZeileExtern  => 0,
-                                    ErsteZeileExtern  => 1,
-                                    LetzteZeileExtern => 6);
+            null;
+           -- return Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
+           --                         TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
+           --                         FrageZeileExtern  => 0,
+           --                         ErsteZeileExtern  => 1,
+           --                         LetzteZeileExtern => 6);
 
          when SystemDatentypen.Bauen =>
             BaueStadt (RasseExtern => RasseExtern);
@@ -125,7 +126,7 @@ package body BefehleSFML is
             null;
       end case;
 
-      return SystemKonstanten.StartNormalKonstante;
+      return SystemKonstanten.StartWeiterKonstante;
       
    end BefehleSFML;
    
@@ -213,7 +214,7 @@ package body BefehleSFML is
 
    procedure EinheitOderStadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      AuswahlExtern : in Integer;
+      AuswahlExtern : in SystemDatentypen.Rückgabe_Werte_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
    is begin

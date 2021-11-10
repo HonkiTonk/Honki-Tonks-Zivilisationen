@@ -29,7 +29,11 @@ private
                                                        SystemDatentypen.Kartentemperatur_Menü => (2, 10),
                                                        SystemDatentypen.Kartenressourcen_Menü => (2, 9),
                                                        SystemDatentypen.Schwierigkeitsgrad_Menü => (2, 8),
-                                                       SystemDatentypen.Rassen_Menü => (2, 24)
+                                                       SystemDatentypen.Rassen_Menü => (2, 24),
+                                                       SystemDatentypen.Grafik_Menü => (2, 7),
+                                                       SystemDatentypen.Sound_Menü => (1, 1),
+                                                       SystemDatentypen.Steuerung_Menü => (1, 1),
+                                                       SystemDatentypen.Sonstiges_Menü => (1, 1)
                                                       );
 
    Anfang : Positive;

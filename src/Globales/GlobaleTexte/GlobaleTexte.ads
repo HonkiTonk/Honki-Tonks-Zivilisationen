@@ -27,8 +27,8 @@ package GlobaleTexte is
    
    Hauptmenü : TexteArray (1 .. 14);
    Spielmenü : TexteArray (1 .. 7);
-   Optionsmenü : TexteArray (1 .. 8);
-   Grafikmenü : TexteArray (1 .. 1);
+   Optionsmenü : TexteArray (1 .. 15);
+   Grafikmenü : TexteArray (1 .. 13);
    Soundmenü : TexteArray (1 .. 1);
    Steuerungmenü : TexteArray (1 .. 45);
    Sonstigesmenü : TexteArray (1 .. 6);

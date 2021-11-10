@@ -6,6 +6,8 @@ package SystemDatentypen is
    type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Hauptmenü, Spiel_Beenden, Zurück, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
                                  Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen,
                                  
+                                 Auflösung_Ändern, Farbtiefe_Ändern, Bildrate_Ändern,
+                                 
                                  Auswahl_Kartengröße, Auswahl_Kartenart, Auswahl_Kartenform, Auswahl_Kartentemperatur, Auswahl_Rassen, Auswahl_Schwierigkeitsgrad, Auswahl_Kartenressourcen,
                                  
                                  Karte_Größe_20_20, Karte_Größe_40_40, Karte_Größe_80_80, Karte_Größe_120_80, Karte_Größe_120_160, Karte_Größe_160_160, Karte_Größe_240_240, Karte_Größe_320_320, Karte_Größe_1000_1000,
@@ -32,7 +34,8 @@ package SystemDatentypen is
                                 );
    pragma Ordered (Rückgabe_Werte_Enum);
    
-   type Welches_Menü_Enum is (Haupt_Menü, Spiel_Menü, Optionen_Menü, Kartengröße_Menü, Kartenart_Menü, Kartenform_Menü, Kartentemperatur_Menü, Kartenressourcen_Menü, Schwierigkeitsgrad_Menü, Rassen_Menü);
+   type Welches_Menü_Enum is (Haupt_Menü, Spiel_Menü, Optionen_Menü, Kartengröße_Menü, Kartenart_Menü, Kartenform_Menü, Kartentemperatur_Menü, Kartenressourcen_Menü, Schwierigkeitsgrad_Menü, Rassen_Menü,
+                              Grafik_Menü, Sound_Menü, Steuerung_Menü, Sonstiges_Menü);
    
    type Anfang_Ende_Enum is (Anfangswert, Endwert);
    for Anfang_Ende_Enum use (Anfangswert => 0, Endwert => 1);

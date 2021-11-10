@@ -7,7 +7,7 @@ with SystemDatentypen;
 package OptionenSteuerung is
 
    function SteuerungBelegen
-     return Integer;
+     return SystemDatentypen.Rückgabe_Werte_Enum;
 
 private
 
@@ -17,7 +17,7 @@ private
 
    NeueTasteSFML : Sf.Window.Keyboard.sfKeyCode;
 
-   AuswahlWert : Integer;
+   AuswahlWert : SystemDatentypen.Rückgabe_Werte_Enum;
 
    procedure AlteTasteEntfernen;
    procedure NeueTasteFestlegen;

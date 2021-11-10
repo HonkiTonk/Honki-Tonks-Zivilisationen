@@ -7,6 +7,7 @@ with Sf.Graphics.Font;
 with Sf.Graphics.Text;
 
 with GrafikEinstellungen;
+with GrafikStart;
 
 package body GrafikAllgemein is
 
@@ -30,6 +31,23 @@ package body GrafikAllgemein is
       
    end FensterAnzeigen;
    -- Immer letzter Grafikaufruf.
+   
+   
+   
+   procedure FensterAuflösungÄndern
+     (NeueAuflösungExtern : in Sf.System.Vector2.sfVector2u)
+   is begin
+      
+      GrafikStart.FensterEntfernen;
+      
+      GrafikEinstellungen.FensterBreite := NeueAuflösungExtern.x;
+      GrafikEinstellungen.FensterHöhe := NeueAuflösungExtern.y;
+      
+      GrafikStart.FensterErzeugen;
+     -- Sf.Graphics.RenderWindow.setSize (renderWindow => GrafikEinstellungen.Fenster,
+     --                                   size         => NeueAuflösungExtern);
+      
+   end FensterAuflösungÄndern;
    
    
    

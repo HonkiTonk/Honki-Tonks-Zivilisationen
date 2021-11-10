@@ -11,7 +11,7 @@ with GlobaleTexte;
 with GlobaleVariablen;
 
 with Eingabe;
-with Auswahl;
+with AuswahlMenue;
 with Anzeige;
 with SchreibenTastatur;
 with EingabeSystemeSFML;
@@ -21,30 +21,26 @@ with EingabeSFML;
 package body OptionenSteuerung is
 
    function SteuerungBelegen
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       BelegungSchleife:
       loop
          
-         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
-                                         TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
-                                         FrageZeileExtern  => 28,
-                                         ErsteZeileExtern  => 22,
-                                         LetzteZeileExtern => 66);
+         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Steuerung_Menü);
          
          case
            AuswahlWert
-         is
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante | SystemKonstanten.ZurückKonstante =>
-               return AuswahlWert;
-               
+         is   
             when SystemKonstanten.SpeichernKonstante =>
                SchreibenTastatur.TastenbelegungSchreiben;
                
             when SystemKonstanten.WiederherstellenKonstante =>
                Eingabe.StandardTastenbelegungLaden;
                SchreibenTastatur.TastenbelegungSchreiben;
+            
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante | SystemKonstanten.ZurückKonstante =>
+               return AuswahlWert;
                      
             when others =>
                AlteTasteEntfernen;
@@ -87,7 +83,7 @@ package body OptionenSteuerung is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
+      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
                
       Put_Line (EingabeKonsole.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeKonsole.Tastenbelegung (2, NeueAuswahl));
                
@@ -138,7 +134,7 @@ package body OptionenSteuerung is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
+      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
                
       -- Put_Line (Eingabe.Tastenbelegung (1, NeueAuswahl) & "    " & Eingabe.Tastenbelegung (2, NeueAuswahl));
                
@@ -198,7 +194,7 @@ package body OptionenSteuerung is
    procedure NeueTasteFestlegenKonsole
    is begin
       
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
+      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
          
       if
         EingabeKonsole.Tastenbelegung (1, NeueAuswahl) = NeueTasteKonsole
@@ -229,7 +225,7 @@ package body OptionenSteuerung is
    procedure NeueTasteFestlegenSFML
    is begin
       
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
+      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
          
       if
         EingabeSFML.Tastenbelegung (1, NeueAuswahl) = NeueTasteSFML

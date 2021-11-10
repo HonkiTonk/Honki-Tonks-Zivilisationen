@@ -62,6 +62,26 @@ package body RueckgabeMenues is
             return RasseAuswählen (AnfangExtern          => AnfangExtern,
                                     EndeExtern            => EndeExtern,
                                     AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
+         when SystemDatentypen.Grafik_Menü =>
+            return GrafikMenü (AnfangExtern          => AnfangExtern,
+                                EndeExtern            => EndeExtern,
+                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
+         when SystemDatentypen.Sound_Menü =>
+            return SoundMenü (AnfangExtern          => AnfangExtern,
+                               EndeExtern            => EndeExtern,
+                               AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
+         when SystemDatentypen.Steuerung_Menü =>
+            return SteuerungMenü (AnfangExtern          => AnfangExtern,
+                                   EndeExtern            => EndeExtern,
+                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
+         when SystemDatentypen.Sonstiges_Menü =>
+            return SonstigesMenü (AnfangExtern          => AnfangExtern,
+                                   EndeExtern            => EndeExtern,
+                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
    end RückgabeMenüs;
@@ -633,51 +653,6 @@ package body RueckgabeMenues is
    
    
    
-   function SpieleranzahlAuswählen
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
-      AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
-   is begin
-      
-      if
-        AktuelleAuswahlExtern = AnfangExtern
-      then
-         return SystemDatentypen.Eingabe;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
-      then
-         return SystemDatentypen.Zufall;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
-                    
-      else
-         raise Constraint_Error;
-      end if;
-      
-   end SpieleranzahlAuswählen;
-   
-   
-   
    function RasseAuswählen
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
@@ -810,5 +785,191 @@ package body RueckgabeMenues is
       end if;
       
    end RasseAuswählen;
+   
+   
+   
+   function GrafikMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return SystemDatentypen.Auflösung_Ändern;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return SystemDatentypen.Farbtiefe_Ändern;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return SystemDatentypen.Bildrate_Ändern;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return SystemDatentypen.Zurück;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return SystemDatentypen.Hauptmenü;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern
+      then
+         return SystemDatentypen.Spiel_Beenden;
+         
+      elsif
+        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
+      then
+         raise Program_Error;
+                    
+      else
+         raise Constraint_Error;
+      end if;
+      
+   end GrafikMenü;
+   
+   
+   
+   -- Ab hier umbauen
+   function SoundMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return SystemDatentypen.Eingabe;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return SystemDatentypen.Zufall;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return SystemDatentypen.Zurück;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return SystemDatentypen.Hauptmenü;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern
+      then
+         return SystemDatentypen.Spiel_Beenden;
+         
+      elsif
+        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
+      then
+         raise Program_Error;
+                    
+      else
+         raise Constraint_Error;
+      end if;
+      
+   end SoundMenü;
+   
+   
+            
+   function SteuerungMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return SystemDatentypen.Eingabe;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return SystemDatentypen.Zufall;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return SystemDatentypen.Zurück;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return SystemDatentypen.Hauptmenü;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern
+      then
+         return SystemDatentypen.Spiel_Beenden;
+         
+      elsif
+        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
+      then
+         raise Program_Error;
+                    
+      else
+         raise Constraint_Error;
+      end if;
+      
+   end SteuerungMenü;
+   
+   
+            
+   function SonstigesMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return SystemDatentypen.Eingabe;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return SystemDatentypen.Zufall;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return SystemDatentypen.Zurück;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return SystemDatentypen.Hauptmenü;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern
+      then
+         return SystemDatentypen.Spiel_Beenden;
+         
+      elsif
+        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
+      then
+         raise Program_Error;
+                    
+      else
+         raise Constraint_Error;
+      end if;
+      
+   end SonstigesMenü;
 
 end RueckgabeMenues;

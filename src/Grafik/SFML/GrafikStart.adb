@@ -22,7 +22,7 @@ package body GrafikStart is
             return;
             
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => GrafikEinstellungen.Modus,
+            GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungen.FensterBreite, GrafikEinstellungen.FensterHöhe, GrafikEinstellungen.PixelBit),
                                                                                    title => Name);
       end case;
 

@@ -9,9 +9,7 @@ package Optionen is
 
 private
 
-   Taste : Wide_Wide_Character;
-
-   Auswahl : SystemDatentypen.Rückgabe_Werte_Enum;
-   Rückgabe : SystemDatentypen.Rückgabe_Werte_Enum;
+   AuswahlWert : SystemDatentypen.Rückgabe_Werte_Enum;
+   RückgabeWert : SystemDatentypen.Rückgabe_Werte_Enum;
 
 end Optionen;

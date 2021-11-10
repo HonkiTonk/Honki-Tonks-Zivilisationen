@@ -35,7 +35,7 @@ private
 
    procedure EinheitOderStadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      AuswahlExtern : in Integer;
+      AuswahlExtern : in SystemDatentypen.Rückgabe_Werte_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
    

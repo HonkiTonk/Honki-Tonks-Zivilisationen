@@ -10,41 +10,41 @@ with EinlesenText;
 
 with AuswahlSprache;
 with Eingabe;
-with Auswahl;
+with AuswahlMenue;
 
 package body OptionenSonstiges is
 
    function Sonstiges
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       SonstigesSchleife:
       loop
 
-         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
-                                         TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
-                                         FrageZeileExtern  => 0,
-                                         ErsteZeileExtern  => SystemKonstanten.OptionenSonstigesErsteZeile,
-                                         LetzteZeileExtern => SystemKonstanten.OptionenSonstigesLetzteZeile);
+         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Sonstiges_Menü);
 
          case
            AuswahlWert
          is
-            when 1 =>
+            -- Hier noch entsprechende Werte einfügen/anlegen.
+            when SystemDatentypen.Speichern =>
                AnzahlAutomatischerSpielstände;
                
-            when 2 =>
+            when SystemDatentypen.Laden =>
                RundenBisAutospeichern;
                
-            when 3 =>
+            when SystemDatentypen.Ja =>
                SpracheWechseln;
                
             when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                SchreibenEinstellungen.SchreibenEinstellungen;
                return AuswahlWert;
                
-            when others =>
+            when SystemKonstanten.LeerKonstante =>
                null;
+               
+            when others =>
+               raise Program_Error;
          end case;
          
       end loop SonstigesSchleife;
@@ -56,15 +56,15 @@ package body OptionenSonstiges is
    procedure AnzahlAutomatischerSpielstände
    is begin
       
-      AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
+      EingegebeneZahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
                                         ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile,
                                         ZahlenMinimumExtern => 0,
                                         ZahlenMaximumExtern => 999_999_999);
       case
-        AuswahlWert
+        EingegebeneZahl
       is
          when 0 .. 999_999_999 =>
-            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := AuswahlWert;
+            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl;
             
          when others =>
             null;
@@ -77,16 +77,16 @@ package body OptionenSonstiges is
    procedure RundenBisAutospeichern
    is begin
       
-      AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
+      EingegebeneZahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
                                         ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile + 1,
                                         ZahlenMinimumExtern => 1,
                                         ZahlenMaximumExtern => 999_999_999);
 
       case
-        AuswahlWert
+        EingegebeneZahl
       is
          when 1 .. 999_999_999 =>
-            GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave := AuswahlWert;
+            GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl;
                      
          when others =>
             null;

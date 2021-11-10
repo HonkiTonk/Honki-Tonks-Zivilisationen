@@ -9,7 +9,6 @@ with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;
-with SystemKonstanten;
 with KartenDatentypen;
 
 with Karten;
@@ -55,8 +54,8 @@ package body Laden is
          case
            Auswahl.AuswahlJaNein (FrageZeileExtern => 24)
          is
-            when SystemKonstanten.JaKonstante =>
-               null;
+           -- when SystemKonstanten.JaKonstante =>
+           --    null;
                      
             when others =>
                -- Hier noch eine Fehlermeldung einbauen

@@ -67,13 +67,31 @@ private
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum;
 
-   function SpieleranzahlAuswählen
+   function RasseAuswählen
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum;
-
-   function RasseAuswählen
+   
+   function GrafikMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum;
+            
+   function SoundMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum;
+            
+   function SteuerungMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum;
+   
+   function SonstigesMenü
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)

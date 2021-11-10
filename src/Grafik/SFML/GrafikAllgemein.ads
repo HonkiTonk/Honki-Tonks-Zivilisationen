@@ -18,6 +18,9 @@ package GrafikAllgemein is
    procedure FensterAnzeigen;
    -- Immer letzter Grafikaufruf.
 
+   procedure FensterAuflösungÄndern
+     (NeueAuflösungExtern : in Sf.System.Vector2.sfVector2u);
+
    procedure AllgemeinesFestlegen;
    procedure SchriftartFestlegen;
    procedure TextAllgemeinFestlegen;

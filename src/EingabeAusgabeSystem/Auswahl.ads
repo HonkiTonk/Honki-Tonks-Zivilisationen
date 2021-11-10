@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with GlobaleTexte; use GlobaleTexte;
+with SystemDatentypen;
 
 package Auswahl is
 
@@ -23,7 +24,7 @@ package Auswahl is
 
    function AuswahlJaNein
      (FrageZeileExtern : in Positive)
-      return Integer;
+      return SystemDatentypen.Rückgabe_Werte_Enum;
    
 private
 

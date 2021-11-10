@@ -71,7 +71,12 @@ package body Karte is
             KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);
             KarteInformationenKonsole.KarteInformationenKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.Beides =>
+            -- KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);
+            -- KarteInformationenKonsole.KarteInformationenKonsole (RasseExtern => RasseExtern);
+            KarteSFML.KarteAnzeigen (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.SFML =>
             KarteSFML.KarteAnzeigen (RasseExtern => RasseExtern);
       end case;
 

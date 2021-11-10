@@ -7,6 +7,7 @@ with SystemDatentypen;
 package SystemKonstanten is
 
    -- Für die Auswahl
+   LeerKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Leer;
    StartWeiterKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Start_Weiter;
    HauptmenüKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Hauptmenü;
    SpielBeendenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Spiel_Beenden;
@@ -16,6 +17,10 @@ package SystemKonstanten is
    SpeichernKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Speichern;
    LadenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Laden;
    OptionenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Optionen;
+   GrafikKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Grafik;
+   SoundKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Sound;
+   SteuerungKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Steuerung;
+   SonstigesKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Sonstiges;
    InformationenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Informationen;
    WiederherstellenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Wiederherstellen;
    WürdigungenKonstante : constant SystemDatentypen.Rückgabe_Werte_Enum := SystemDatentypen.Würdigungen;

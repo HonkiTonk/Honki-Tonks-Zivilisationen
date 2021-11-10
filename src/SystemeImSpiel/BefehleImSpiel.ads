@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
-with SystemKonstanten;
 
 package BefehleImSpiel is
 

@@ -211,7 +211,7 @@ package body KarteSFML is
          GrafikAllgemein.PolygonZeichnen (RadiusExtern      => Abmessung.x / 2.00,
                                           PositionExtern    => Position,
                                           AnzahlEckenExtern => 3,
-                                          FarbeExtern       => Sf.Graphics.Color.sfBlack);
+                                          FarbeExtern       => Sf.Graphics.Color.sfRed);
          
       else
          null;

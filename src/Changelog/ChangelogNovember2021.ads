@@ -133,16 +133,18 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.92 => 0.00.9 (11.11.2021):
+   -- Version 0.00.9270 => 0.00.9 (11.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9260 => 0.00.92 (10.11.2021):
+   -- Version 0.00.9260 => 0.00.9270 (10.11.2021):
    
-   -- 
+   -- Die Rückgabewerte vorerst überall auf das neue Enum umgebaut.
+   -- Das Optionsmenü auf die SFML umgebaut.
+   -- Angefangen ein Grafikmenü einzubauen.
    -- Kleinigkeiten korrigiert.
    
    
@@ -151,7 +153,7 @@ package ChangelogNovember2021 is
    
    -- Zeilenumbrüche in die Textanzeige eingebaut.
    -- Angefangen die Befehle nach Darstellungsart aufzuteilen.
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
    

@@ -4,8 +4,8 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
-with SystemDatentypen;
 with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;

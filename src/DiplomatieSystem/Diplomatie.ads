@@ -30,7 +30,7 @@ private
    function DiplomatischenStatusÄndern
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer;
+      return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function AndereRassenVorhanden
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)

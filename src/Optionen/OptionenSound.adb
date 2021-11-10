@@ -5,7 +5,7 @@ with SystemKonstanten;
 package body OptionenSound is
 
    function OptionenSound
-     return Integer
+     return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       return SystemKonstanten.ZurückKonstante;

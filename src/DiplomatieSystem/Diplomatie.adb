@@ -5,8 +5,6 @@ with SystemKonstanten;
 
 with Anzeige;
 with Auswahl;
-with Handeln;
-with EinheitVerschieben;
 with DiplomatischerZustandAenderbar;
 
 package body Diplomatie is
@@ -74,15 +72,15 @@ package body Diplomatie is
                                             ErsteZeileExtern  => 1,
                                             LetzteZeileExtern => 19);
             
-            case
-              WelcheRasse
-            is
-               when SystemKonstanten.ZurückKonstante =>
-                  return;
+           -- case
+          --    WelcheRasse
+          --  is
+          --     when SystemKonstanten.ZurückKonstante =>
+           --       return;
                   
-               when others =>
-                  null;
-            end case;
+           --    when others =>
+          --        null;
+          --  end case;
             
             if
               SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
@@ -108,37 +106,37 @@ package body Diplomatie is
                                                     ErsteZeileExtern  => 3,
                                                     LetzteZeileExtern => 7);
             
-            case
-              DiplomatischeAktion
-            is
-               when 1 =>
-                  DiplomatischeAktion := DiplomatischenStatusÄndern (RasseExtern             => RasseExtern,
-                                                                      KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+         --   case
+         --     DiplomatischeAktion
+          --  is
+          --     when 1 =>
+          --        DiplomatischeAktion := DiplomatischenStatusÄndern (RasseExtern             => RasseExtern,
+          --                                                            KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
-               when 2 =>
-                  DiplomatischeAktion := Handeln.Handelsmenü (RasseExtern             => RasseExtern,
-                                                               KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+           --    when 2 =>
+           --       DiplomatischeAktion := Handeln.Handelsmenü (RasseExtern             => RasseExtern,
+            --                                                   KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
-               when 3 =>
-                  EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
-                                                           KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+            --   when 3 =>
+             --     EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
+             --                                              KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
-               when SystemKonstanten.ZurückKonstante =>
-                  exit DiplomatischeAktionSchleife;
+             --  when SystemKonstanten.ZurückKonstante =>
+             --     exit DiplomatischeAktionSchleife;
                   
-               when others =>
-                  return;
-            end case;
+            --   when others =>
+            --      return;
+          --  end case;
             
-            case
-              DiplomatischeAktion
-            is
-               when SystemKonstanten.ZurückKonstante =>
+          --  case
+          --    DiplomatischeAktion
+          --  is
+          --     when SystemKonstanten.ZurückKonstante =>
                   return;
                   
-               when others =>
-                  null;
-            end case;
+          --     when others =>
+          --        null;
+          --  end case;
          
          end loop DiplomatischeAktionSchleife;
       end loop DiplomatieSchleife;
@@ -151,7 +149,7 @@ package body Diplomatie is
    function DiplomatischenStatusÄndern
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Integer
+      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       StatusAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
@@ -167,7 +165,7 @@ package body Diplomatie is
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
                                                                                      NeuerStatusExtern => SystemDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
-            return 1;
+            return SystemDatentypen.Start_Weiter;
             
             -- Ist dazu da um im Kriegsfall sofort das Diplomatiemenü zu schließen.
          when 3 =>
@@ -180,11 +178,11 @@ package body Diplomatie is
                return SystemKonstanten.ZurückKonstante;
                
             else
-               return 1;
+               return SystemDatentypen.Start_Weiter;
             end if;
             
          when others =>
-            return 0;
+            return SystemDatentypen.Leer;
       end case;
       
    end DiplomatischenStatusÄndern;

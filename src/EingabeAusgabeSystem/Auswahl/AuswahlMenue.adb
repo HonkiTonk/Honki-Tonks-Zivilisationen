@@ -370,6 +370,12 @@ package body AuswahlMenue is
                         
          when SystemDatentypen.Rassen_Menü =>
             AktuellerText := GlobaleTexte.Rassenauswahl (WelcheZeileExtern);
+            
+         when SystemDatentypen.Grafik_Menü =>
+            AktuellerText := GlobaleTexte.Grafikmenü (WelcheZeileExtern);
+            
+         when others =>
+            raise Program_Error;
       end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
