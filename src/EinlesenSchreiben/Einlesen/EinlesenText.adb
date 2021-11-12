@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Directories; use Ada.Directories;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen;
 with SystemKonstanten;
@@ -29,8 +28,15 @@ package body EinlesenText is
       EinlesenSchleife:
       for WelcheDateienSchleifenwert in TextdateienEinlesen'Range loop
 
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheDateienSchleifenwert);
-         TextdateienEinlesen (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheDateienSchleifenwert)
+         is
+            when True =>
+               raise Program_Error;
+               
+            when False =>
+               TextdateienEinlesen (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
             
          case
            Exists (Name => Encode (Item => To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateienSchleifenwert))))
@@ -52,22 +58,24 @@ package body EinlesenText is
    
    
    
-   procedure DateiPrüfenZeileSetzen
+   function VorzeitigesZeilenende
      (AktuelleZeileExtern : in Positive)
+     return Boolean
    is begin
       
       case
         End_Of_File (File => DateiTextEinlesen)
       is
          when True =>
-            raise Program_Error;
+            return True;
                
          when False =>
             Set_Line (File => DateiTextEinlesen,
                       To   => Ada.Wide_Wide_Text_IO.Count (AktuelleZeileExtern));
+            return False;
       end case;
       
-   end DateiPrüfenZeileSetzen;
+   end VorzeitigesZeilenende;
    
    
    
@@ -207,8 +215,15 @@ package body EinlesenText is
       HauptmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Hauptmenü'Range loop
          
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Hauptmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Hauptmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Hauptmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop HauptmenüSchleife;
       
@@ -221,9 +236,16 @@ package body EinlesenText is
       
       SpielmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Spielmenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Spielmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Spielmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Spielmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop SpielmenüSchleife;
       
@@ -236,9 +258,16 @@ package body EinlesenText is
       
       OptionsmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Optionsmenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Optionsmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Optionsmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Optionsmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop OptionsmenüSchleife;
       
@@ -251,9 +280,16 @@ package body EinlesenText is
       
       GrafikmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Grafikmenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Grafikmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Grafikmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Grafikmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop GrafikmenüSchleife;
       
@@ -266,9 +302,16 @@ package body EinlesenText is
       
       SoundmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Soundmenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Soundmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Soundmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Soundmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop SoundmenüSchleife;
       
@@ -281,9 +324,16 @@ package body EinlesenText is
       
       SteuerungmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Steuerungmenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Steuerungmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Steuerungmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Steuerungmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop SteuerungmenüSchleife;
       
@@ -296,9 +346,16 @@ package body EinlesenText is
       
       SonstigesmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Sonstigesmenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Sonstigesmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Sonstigesmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Sonstigesmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop SonstigesmenüSchleife;
       
@@ -311,9 +368,16 @@ package body EinlesenText is
       
       KartengrößeSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartengröße'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Kartengröße (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Kartengröße (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Kartengröße (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop KartengrößeSchleife;
       
@@ -326,9 +390,16 @@ package body EinlesenText is
       
       KartenartSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenart'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Kartenart (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Kartenart (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Kartenart (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop KartenartSchleife;
       
@@ -341,9 +412,16 @@ package body EinlesenText is
       
       KartentemperaturSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartentemperatur'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Kartentemperatur (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Kartentemperatur (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Kartentemperatur (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop KartentemperaturSchleife;
       
@@ -356,9 +434,16 @@ package body EinlesenText is
       
       RassenauswahlSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Rassenauswahl'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Rassenauswahl (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Rassenauswahl (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Rassenauswahl (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop RassenauswahlSchleife;
       
@@ -371,9 +456,16 @@ package body EinlesenText is
       
       SchwierigkeitsgradSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Schwierigkeitsgrad'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Schwierigkeitsgrad (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Schwierigkeitsgrad (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Schwierigkeitsgrad (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop SchwierigkeitsgradSchleife;
       
@@ -386,9 +478,16 @@ package body EinlesenText is
       
       KartenformSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenform'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Kartenform (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Kartenform (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Kartenform (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop KartenformSchleife;
       
@@ -401,9 +500,16 @@ package body EinlesenText is
       
       RessourcenmengeSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Ressourcenmenge'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Ressourcenmenge (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Ressourcenmenge (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Ressourcenmenge (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop RessourcenmengeSchleife;
       
@@ -416,9 +522,16 @@ package body EinlesenText is
       
       JaNeinSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.JaNein'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.JaNein (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.JaNein (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.JaNein (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop JaNeinSchleife;
       
@@ -431,9 +544,16 @@ package body EinlesenText is
       
       RassenSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Rassen'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Rassen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Rassen (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Rassen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop RassenSchleife;
       
@@ -446,9 +566,16 @@ package body EinlesenText is
       
       KartenfelderSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Kartenfelder'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Kartenfelder (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Kartenfelder (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Kartenfelder (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop KartenfelderSchleife;
       
@@ -461,11 +588,16 @@ package body EinlesenText is
       
       EinheitenSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Einheiten'Range loop
-        
-         -- DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         Set_Line (File => DateiTextEinlesen,
-                   To   => Ada.Wide_Wide_Text_IO.Count (WelcheZeileSchleifenwert));
-         GlobaleTexte.Einheiten (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Einheiten (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Einheiten (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop EinheitenSchleife;
       
@@ -478,9 +610,16 @@ package body EinlesenText is
       
       VerbesserungenSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Verbesserungen'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Verbesserungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Verbesserungen (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Verbesserungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop VerbesserungenSchleife;
       
@@ -493,11 +632,16 @@ package body EinlesenText is
       
       GebäudeSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Gebäude'Range loop
-        
-         -- DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         Set_Line (File => DateiTextEinlesen,
-                   To   => Ada.Wide_Wide_Text_IO.Count (WelcheZeileSchleifenwert));
-         GlobaleTexte.Gebäude (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Gebäude (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Gebäude (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop GebäudeSchleife;
       
@@ -510,11 +654,16 @@ package body EinlesenText is
       
       ForschungenSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Forschungen'Range loop
-        
-         -- DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         Set_Line (File => DateiTextEinlesen,
-                   To   => Ada.Wide_Wide_Text_IO.Count (WelcheZeileSchleifenwert));
-         GlobaleTexte.Forschungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Forschungen (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Forschungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop ForschungenSchleife;
       
@@ -527,9 +676,16 @@ package body EinlesenText is
       
       BeschäftigungenSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Beschäftigungen'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Beschäftigungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Beschäftigungen (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Beschäftigungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop BeschäftigungenSchleife;
       
@@ -542,9 +698,16 @@ package body EinlesenText is
       
       StädtenamenKISchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.StädtenamenKI'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.StädtenamenKI (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.StädtenamenKI (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.StädtenamenKI (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop StädtenamenKISchleife;
       
@@ -557,9 +720,16 @@ package body EinlesenText is
       
       CheatmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Cheatmenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Cheatmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Cheatmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Cheatmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop CheatmenüSchleife;
       
@@ -572,9 +742,16 @@ package body EinlesenText is
       
       AllgemeineInformationenSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.AllgemeineInformationen'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.AllgemeineInformationen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.AllgemeineInformationen (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.AllgemeineInformationen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop AllgemeineInformationenSchleife;
       
@@ -587,9 +764,16 @@ package body EinlesenText is
       
       WürdigungSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Würdigung'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Würdigung (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Würdigung (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Würdigung (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop WürdigungSchleife;
       
@@ -602,9 +786,16 @@ package body EinlesenText is
       
       DiplomatiemenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Diplomatiemenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Diplomatiemenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Diplomatiemenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Diplomatiemenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop DiplomatiemenüSchleife;
       
@@ -617,9 +808,16 @@ package body EinlesenText is
       
       DiplomatieKISchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.DiplomatieKI'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.DiplomatieKI (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.DiplomatieKI (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.DiplomatieKI (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop DiplomatieKISchleife;
       
@@ -632,9 +830,16 @@ package body EinlesenText is
       
       EndmeldungenSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Endmeldungen'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Endmeldungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Endmeldungen (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Endmeldungen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop EndmeldungenSchleife;
       
@@ -647,9 +852,16 @@ package body EinlesenText is
       
       HandelsmenüSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Handelsmenü'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Handelsmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Handelsmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Handelsmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop HandelsmenüSchleife;
       
@@ -662,9 +874,16 @@ package body EinlesenText is
       
       DiplomatieStatusSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.DiplomatieStatus'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.DiplomatieStatus (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.DiplomatieStatus (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.DiplomatieStatus (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop DiplomatieStatusSchleife;
       
@@ -677,9 +896,16 @@ package body EinlesenText is
       
       AngebotSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Angebot'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Angebot (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Angebot (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Angebot (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop AngebotSchleife;
       
@@ -692,9 +918,16 @@ package body EinlesenText is
       
       FehlermeldungSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Fehlermeldung'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Fehlermeldung (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Fehlermeldung (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Fehlermeldung (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop FehlermeldungSchleife;
       
@@ -707,9 +940,16 @@ package body EinlesenText is
       
       LadezeitSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Ladezeit'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Ladezeit (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Ladezeit (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Ladezeit (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop LadezeitSchleife;
       
@@ -722,9 +962,16 @@ package body EinlesenText is
       
       FrageSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.Frage'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.Frage (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Frage (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Frage (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop FrageSchleife;
       
@@ -737,9 +984,16 @@ package body EinlesenText is
       
       ZeugSachenSchleife:
       for WelcheZeileSchleifenwert in GlobaleTexte.ZeugSachen'Range loop
-        
-         DateiPrüfenZeileSetzen (AktuelleZeileExtern => WelcheZeileSchleifenwert);
-         GlobaleTexte.ZeugSachen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.ZeugSachen (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.ZeugSachen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
          
       end loop ZeugSachenSchleife;
       

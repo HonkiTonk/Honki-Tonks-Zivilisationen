@@ -4,7 +4,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen;
 with EinheitStadtRecords;
-with NutzerRecords;
+with SystemRecords;
 with KartenRecords;
 with WichtigeRecords;
 with SystemKonstanten;
@@ -18,7 +18,7 @@ package GlobaleVariablen is
    -- Schreiben/Ausgabe
    -- Die einzelnen Textarrays hier rein oder in eine eigene Datei?
    type NutzerEinstellungenArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
-   NutzerEinstellungen : NutzerRecords.NutzerEinstellungenRecord := (
+   NutzerEinstellungen : SystemRecords.NutzerEinstellungenRecord := (
                                                                      -- Sprache
                                                                      SystemKonstanten.LeerUnboundedString,
                                                                      -- Anzahl Autosaves

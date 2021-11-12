@@ -29,8 +29,8 @@ package body OptionenGrafik is
                
             when SystemDatentypen.Bildrate_Ändern =>
                null;
-            
-            when SystemKonstanten.LeerKonstante =>
+               
+            when SystemDatentypen.Schriftgröße =>
                null;
                
             when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
@@ -51,11 +51,11 @@ package body OptionenGrafik is
       
       EingabeWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
                                         ZeileExtern         => 1,
-                                        ZahlenMinimumExtern => 640,
-                                        ZahlenMaximumExtern => 1_920);
+                                        ZahlenMinimumExtern => 1,
+                                        ZahlenMaximumExtern => 999_999_999);
       
       if
-        EingabeWert in 640 .. 1_920
+        EingabeWert > 0
       then
          NeueAuflösung.x := Sf.sfUint32 (EingabeWert);
            
@@ -65,11 +65,11 @@ package body OptionenGrafik is
       
       EingabeWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
                                         ZeileExtern         => 1,
-                                        ZahlenMinimumExtern => 480,
-                                        ZahlenMaximumExtern => 1_200);
+                                        ZahlenMinimumExtern => 1,
+                                        ZahlenMaximumExtern => 999_999_999);
       
       if
-        EingabeWert in 480 .. 1_200
+        EingabeWert > 0
       then
          NeueAuflösung.y := Sf.sfUint32 (EingabeWert);
            

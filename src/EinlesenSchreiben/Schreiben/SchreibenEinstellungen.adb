@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Directories; use Ada.Directories;
 
 with GlobaleVariablen;
-with NutzerRecords;
+with SystemRecords;
 
 package body SchreibenEinstellungen is
 
@@ -24,7 +24,7 @@ package body SchreibenEinstellungen is
                     Name => "Einstellungen/Einstellungen");
       end case;
          
-      NutzerRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+      SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                                      GlobaleVariablen.NutzerEinstellungen);
       
       Close (File => DateiEinstellungenSchreiben);

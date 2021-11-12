@@ -37,9 +37,6 @@ package body Optionen is
             when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return AuswahlWert;
                
-            when SystemKonstanten.LeerKonstante =>
-               null;
-               
             when others =>
                raise Program_Error;
          end case;

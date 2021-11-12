@@ -119,24 +119,24 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (13.11.2021):
+   -- Version 0.00.9280 => 0.00.9 (13.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (12.11.2021):
+   -- Version 0.00.9270 => 0.00.9280 (12.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Einlesen von Texten erzeugt jetzt keinen Programmstopp mehr wenn nicht genug Zeilen in der Textdatei sind sondern füllt diese nun mit einem Standardtext.
+   -- Menüs an die SFML angepasst.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
-   -- Version 0.00.9270 => 0.00.9 (11.11.2021):
+   -- Version 0.00.9270 => 0.00.9270 (11.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    

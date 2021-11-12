@@ -29,10 +29,10 @@ package GlobaleTexte is
    Spielmenü : TexteArray (1 .. 7);
    Optionsmenü : TexteArray (1 .. 15);
    Grafikmenü : TexteArray (1 .. 13);
-   Soundmenü : TexteArray (1 .. 1);
-   Steuerungmenü : TexteArray (1 .. 45);
-   Sonstigesmenü : TexteArray (1 .. 6);
-   Kartengröße : TexteArray (1 .. 28);
+   Soundmenü : TexteArray (1 .. 7);
+   Steuerungmenü : TexteArray (1 .. 91);
+   Sonstigesmenü : TexteArray (1 .. 13);
+   Kartengröße : TexteArray (1 .. 29);
    Kartenart : TexteArray (1 .. 19);
    Kartentemperatur : TexteArray (1 .. 19);
    Rassenauswahl : TexteArray (1 .. 47);

@@ -5,7 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf;
 with Sf.Window;
 
-package NutzerRecords is
+package SystemRecords is
 
    type NutzerEinstellungenRecord is record
       
@@ -26,5 +26,14 @@ package NutzerRecords is
       Zeiger : Sf.Window.sfCursor_Ptr;
       
    end record;
+   
+   
+   
+   type ZahlenEingabeRecord is record
+      
+      EingegebeneZahl : Integer;
+      EingabeAbbruch : Boolean;
+      
+   end record;
 
-end NutzerRecords;
+end SystemRecords;

@@ -23,17 +23,17 @@ private
                                                        SystemDatentypen.Haupt_Menü => (3, 8),
                                                        SystemDatentypen.Spiel_Menü => (2, 7),
                                                        SystemDatentypen.Optionen_Menü => (2, 8),
-                                                       SystemDatentypen.Kartengröße_Menü => (2, 14),
-                                                       SystemDatentypen.Kartenart_Menü => (2, 9),
+                                                       SystemDatentypen.Kartengröße_Menü => (2, 15),
+                                                       SystemDatentypen.Kartenart_Menü => (2, 10),
                                                        SystemDatentypen.Kartenform_Menü => (2, 13),
                                                        SystemDatentypen.Kartentemperatur_Menü => (2, 10),
                                                        SystemDatentypen.Kartenressourcen_Menü => (2, 9),
                                                        SystemDatentypen.Schwierigkeitsgrad_Menü => (2, 8),
                                                        SystemDatentypen.Rassen_Menü => (2, 24),
                                                        SystemDatentypen.Grafik_Menü => (2, 7),
-                                                       SystemDatentypen.Sound_Menü => (1, 1),
-                                                       SystemDatentypen.Steuerung_Menü => (1, 1),
-                                                       SystemDatentypen.Sonstiges_Menü => (1, 1)
+                                                       SystemDatentypen.Sound_Menü => (2, 4),
+                                                       SystemDatentypen.Steuerung_Menü => (2, 46),
+                                                       SystemDatentypen.Sonstiges_Menü => (2, 7)
                                                       );
 
    Anfang : Positive;

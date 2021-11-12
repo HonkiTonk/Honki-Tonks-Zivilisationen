@@ -26,22 +26,18 @@ package body OptionenSonstiges is
          case
            AuswahlWert
          is
-            -- Hier noch entsprechende Werte einfügen/anlegen.
-            when SystemDatentypen.Speichern =>
+            when SystemDatentypen.Anzahl_Speicherstände =>
                AnzahlAutomatischerSpielstände;
                
-            when SystemDatentypen.Laden =>
+            when SystemDatentypen.Runden_Bis_Autospeichern =>
                RundenBisAutospeichern;
                
-            when SystemDatentypen.Ja =>
+            when SystemDatentypen.Sprache =>
                SpracheWechseln;
                
             when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                SchreibenEinstellungen.SchreibenEinstellungen;
                return AuswahlWert;
-               
-            when SystemKonstanten.LeerKonstante =>
-               null;
                
             when others =>
                raise Program_Error;
@@ -57,17 +53,20 @@ package body OptionenSonstiges is
    is begin
       
       EingegebeneZahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
-                                        ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile,
-                                        ZahlenMinimumExtern => 0,
-                                        ZahlenMaximumExtern => 999_999_999);
+                                            ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile,
+                                            ZahlenMinimumExtern => 0,
+                                            ZahlenMaximumExtern => 999_999_999);
       case
         EingegebeneZahl
       is
          when 0 .. 999_999_999 =>
             GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl;
             
-         when others =>
+         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
             null;
+            
+         when others =>
+            raise Program_Error;
       end case;
       
    end AnzahlAutomatischerSpielstände;
@@ -78,18 +77,21 @@ package body OptionenSonstiges is
    is begin
       
       EingegebeneZahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
-                                        ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile + 1,
-                                        ZahlenMinimumExtern => 1,
-                                        ZahlenMaximumExtern => 999_999_999);
+                                            ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile + 1,
+                                            ZahlenMinimumExtern => 1,
+                                            ZahlenMaximumExtern => 999_999_999);
 
       case
         EingegebeneZahl
       is
          when 1 .. 999_999_999 =>
             GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl;
-                     
-         when others =>
+            
+         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
             null;
+            
+         when others =>
+            raise Program_Error;
       end case;
       
    end RundenBisAutospeichern;

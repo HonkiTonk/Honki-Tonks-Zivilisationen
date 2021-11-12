@@ -2,9 +2,18 @@ Kartenart wählen:
 Inseln
 Kontinente
 Pangäa
-Nur Land (Hiermit funktioniert die KI aktuell am besten)
-Chaos (Führt zu merkwürdigen Karten)
+Nur Land
+Chaos
 Zufällig
 Zurück
 Hauptmenü
 Spiel beenden
+Eine Karte mit kleinen Inseln generieren.
+Eine Karte mit Kontinenten generieren.
+Eine Karte mit einer großen Landmasse generieren.
+Eine Karte die ausschließlich aus Land besteht generieren.
+Eine Karte mit recht wenig Logik generieren.
+Eine zufällige Kartenart auswählen.
+Zurück gehen.
+Zurück zum Hauptmenü.
+Spiel beenden.

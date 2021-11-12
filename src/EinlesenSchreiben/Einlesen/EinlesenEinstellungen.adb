@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Directories; use Ada.Directories;
 
 with GlobaleVariablen;
-with NutzerRecords;
+with SystemRecords;
 
 with SchreibenEinstellungen;
 
@@ -25,7 +25,7 @@ package body EinlesenEinstellungen is
             return;
       end case;
          
-      NutzerRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+      SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                                     GlobaleVariablen.NutzerEinstellungen);
 
       Close (File => DateiEinstellungenEinlesen);

@@ -44,8 +44,6 @@ package body GrafikAllgemein is
       GrafikEinstellungen.FensterHöhe := NeueAuflösungExtern.y;
       
       GrafikStart.FensterErzeugen;
-     -- Sf.Graphics.RenderWindow.setSize (renderWindow => GrafikEinstellungen.Fenster,
-     --                                   size         => NeueAuflösungExtern);
       
    end FensterAuflösungÄndern;
    

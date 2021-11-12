@@ -124,14 +124,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end Hauptmenü;
@@ -166,7 +161,7 @@ package body RueckgabeMenues is
          return SystemDatentypen.Optionen;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -174,14 +169,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end Spielmenü;
@@ -216,12 +206,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Sonstiges;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -229,14 +219,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end Optionsmenü;
@@ -306,7 +291,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Karte_Größe_Zufall;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 11
+        AktuelleAuswahlExtern = EndeExtern - 2
+      then
+         return SystemDatentypen.Zurück;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -314,14 +304,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end KartengrößeAuswählen;
@@ -366,12 +351,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -379,14 +364,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end KartenartAuswählen;
@@ -446,12 +426,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Karte_Form_Tugel_Extrem;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 9
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 10
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -459,14 +439,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end KartenformAuswählen;
@@ -511,12 +486,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -524,14 +499,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end KartentemperaturAuswählen;
@@ -571,12 +541,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Karte_Ressource_Überfluss;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -584,14 +554,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end KartenRessourcenAuswählen;
@@ -626,12 +591,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
-         return SystemDatentypen.Zufall;
+         return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -639,14 +604,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end SchwierigkeitsgradAuswählen;
@@ -761,12 +721,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Fertig;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 20
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 21
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -774,14 +734,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end RasseAuswählen;
@@ -811,12 +766,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Bildrate_Ändern;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -824,21 +779,15 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end GrafikMenü;
    
    
    
-   -- Ab hier umbauen
    function SoundMenü
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
@@ -846,23 +795,23 @@ package body RueckgabeMenues is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
+      case
+        AnfangExtern
+      is
+         when 1 =>
+            null;
+            
+         when others =>
+            null;
+      end case;
+      
       if
-        AktuelleAuswahlExtern = AnfangExtern
-      then
-         return SystemDatentypen.Eingabe;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
-      then
-         return SystemDatentypen.Zufall;
-         
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -870,20 +819,16 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end SoundMenü;
    
    
-            
+   
+   -- Das hier noch anpassen.
    function SteuerungMenü
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
@@ -902,12 +847,12 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 2
+        AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -915,14 +860,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end SteuerungMenü;
@@ -939,20 +879,25 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Eingabe;
+         return SystemDatentypen.Anzahl_Speicherstände;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Zufall;
+         return SystemDatentypen.Runden_Bis_Autospeichern;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
+         return SystemDatentypen.Sprache;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern - 2
+      then
          return SystemDatentypen.Zurück;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 3
+        AktuelleAuswahlExtern = EndeExtern - 1
       then
          return SystemDatentypen.Hauptmenü;
                     
@@ -960,14 +905,9 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = EndeExtern
       then
          return SystemDatentypen.Spiel_Beenden;
-         
-      elsif
-        AktuelleAuswahlExtern not in AnfangExtern .. EndeExtern
-      then
-         raise Program_Error;
                     
       else
-         raise Constraint_Error;
+         raise Program_Error;
       end if;
       
    end SonstigesMenü;

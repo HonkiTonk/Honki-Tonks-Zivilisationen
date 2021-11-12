@@ -6,7 +6,7 @@ with Sf.Graphics.Text;
 with Sf.Graphics.Color;
 with Sf.System.Vector2;
 
-with NutzerRecords;
+with SystemRecords;
 
 package GrafikEinstellungen is
    
@@ -33,7 +33,7 @@ private
    SchriftgrößeStandard : constant Sf.sfUint32 := 24;
    TextstyleStandard : constant Sf.sfUint32 := 0;
    
-   FensterStandardEinstellungen : constant NutzerRecords.FensterRecord := (
+   FensterStandardEinstellungen : constant SystemRecords.FensterRecord := (
                                                                            Breite    => 640,
                                                                            Höhe      => 480,
                                                                            Farbtiefe => 32,
