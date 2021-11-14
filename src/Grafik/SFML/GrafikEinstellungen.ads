@@ -12,12 +12,16 @@ package GrafikEinstellungen is
    
    Fenster : Sf.Graphics.sfRenderWindow_Ptr;
    
-   FensterBreite : Sf.sfUint32 := 640;
-   FensterHöhe : Sf.sfUint32 := 480;
-   PixelBit : Sf.sfUint32 := 32;
-   MaximaleBilderrate : Sf.sfUint32 := 30;
-   MausZeiger : Sf.Window.sfCursor_Ptr := Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorCross);
+   FensterEinstellungen : SystemRecords.FensterRecord := (
+                                                          FensterBreite    => 640,
+                                                          FensterHöhe      => 480,
+                                                          Farbtiefe        => 32,
+                                                          Bildrate         => 30,
+                                                          MausZeiger       => Sf.Window.Cursor.sfCursorCross
+                                                         );
    
+   Maus : Sf.Window.sfCursor_Ptr;
+      
    Schriftart : Sf.Graphics.sfFont_Ptr;
    Schriftgröße : Sf.sfUint32 := 24;
    Textfarbe : Sf.Graphics.Color.sfColor := Sf.Graphics.Color.sfWhite;
@@ -34,11 +38,11 @@ private
    TextstyleStandard : constant Sf.sfUint32 := 0;
    
    FensterStandardEinstellungen : constant SystemRecords.FensterRecord := (
-                                                                           Breite    => 640,
-                                                                           Höhe      => 480,
-                                                                           Farbtiefe => 32,
-                                                                           Bildrate  => 30,
-                                                                           Zeiger    => Sf.Window.Cursor.createFromSystem (cursorType => Sf.Window.Cursor.sfCursorCross)
+                                                                           FensterBreite    => 640,
+                                                                           FensterHöhe      => 480,
+                                                                           Farbtiefe        => 32,
+                                                                           Bildrate         => 30,
+                                                                           MausZeiger       => Sf.Window.Cursor.sfCursorCross
                                                                           );
 
 end GrafikEinstellungen;

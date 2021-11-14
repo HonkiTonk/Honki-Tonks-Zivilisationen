@@ -30,7 +30,7 @@ private
                                                        SystemDatentypen.Kartenressourcen_Menü => (2, 9),
                                                        SystemDatentypen.Schwierigkeitsgrad_Menü => (2, 8),
                                                        SystemDatentypen.Rassen_Menü => (2, 24),
-                                                       SystemDatentypen.Grafik_Menü => (2, 7),
+                                                       SystemDatentypen.Grafik_Menü => (2, 8),
                                                        SystemDatentypen.Sound_Menü => (2, 4),
                                                        SystemDatentypen.Steuerung_Menü => (2, 46),
                                                        SystemDatentypen.Sonstiges_Menü => (2, 7)

@@ -12,7 +12,6 @@ with EinlesenSprache;
 with EinlesenText;
 with EinlesenTastatur;
 with EinlesenDatenbanken;
-with EinlesenEinstellungen;
 with SchreibenEinstellungen;
 with AuswahlSprache;
 
@@ -36,7 +35,6 @@ package body Einlesen is
    procedure EinlesenOhneAnzeige
    is begin
       
-      EinlesenEinstellungen.EinlesenEinstellungen;
       EinlesenDatenbanken.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;
       

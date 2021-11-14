@@ -6,6 +6,7 @@ with GlobaleVariablen;
 with SystemRecords;
 
 with SchreibenEinstellungen;
+with GrafikEinstellungen;
 
 package body EinlesenEinstellungen is
 
@@ -27,6 +28,9 @@ package body EinlesenEinstellungen is
          
       SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                                     GlobaleVariablen.NutzerEinstellungen);
+      
+      SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+                                        GrafikEinstellungen.FensterEinstellungen);
 
       Close (File => DateiEinstellungenEinlesen);
       

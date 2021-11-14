@@ -6,7 +6,7 @@ package GrafikStart is
    procedure FensterErzeugen;
    
 private
-   
+      
    Name : constant Wide_Wide_String := "Name des Spiels";
 
 end GrafikStart;

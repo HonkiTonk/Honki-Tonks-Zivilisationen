@@ -5,6 +5,8 @@ with Ada.Directories; use Ada.Directories;
 with GlobaleVariablen;
 with SystemRecords;
 
+with GrafikEinstellungen;
+
 package body SchreibenEinstellungen is
 
    procedure SchreibenEinstellungen
@@ -26,6 +28,9 @@ package body SchreibenEinstellungen is
          
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                                      GlobaleVariablen.NutzerEinstellungen);
+      
+      SystemRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+                                         GrafikEinstellungen.FensterEinstellungen);
       
       Close (File => DateiEinstellungenSchreiben);
       

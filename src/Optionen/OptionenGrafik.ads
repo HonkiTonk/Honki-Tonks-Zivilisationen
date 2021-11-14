@@ -13,10 +13,13 @@ private
 
    AuswahlWert : SystemDatentypen.Rückgabe_Werte_Enum;
 
-   EingabeWert : Integer;
+   EingabeAuflösung : Integer;
+   EingabeBildrate : Integer;
 
    NeueAuflösung : Sf.System.Vector2.sfVector2u;
 
    procedure AuflösungÄndern;
+   procedure BildrateÄndern;
+   procedure EinstellungenSpeichern;
 
 end OptionenGrafik;

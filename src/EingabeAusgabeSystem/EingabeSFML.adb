@@ -219,7 +219,7 @@ package body EingabeSFML is
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.Schriftgröße)));
       
       Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
-                                    position => ((Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 10.00));
+                                    position => ((Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 10.00));
       Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.TextStandard,
                                  color => Sf.Graphics.Color.sfRed);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
@@ -246,7 +246,8 @@ package body EingabeSFML is
          Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                             str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
          Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
-                                       position => ((Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 50.00));
+                                       position => ((Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00),
+                                                    50.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                             text         => GrafikEinstellungen.TextStandard);
             
@@ -267,7 +268,8 @@ package body EingabeSFML is
             Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                                str  => "-");
             Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
-                                          position => ((Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 50.00));
+                                          position => ((Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00),
+                                                       50.00));
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                                text         => GrafikEinstellungen.TextStandard);
          end if;
@@ -275,7 +277,8 @@ package body EingabeSFML is
          Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                             str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
          Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
-                                       position => ((Float (GrafikEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 50.00));
+                                       position => ((Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00),
+                                                    50.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                             text         => GrafikEinstellungen.TextStandard);
       end if;

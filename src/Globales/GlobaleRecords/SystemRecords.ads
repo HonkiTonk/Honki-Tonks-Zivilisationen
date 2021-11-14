@@ -4,6 +4,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf;
 with Sf.Window;
+with Sf.Window.Cursor;
 
 package SystemRecords is
 
@@ -19,11 +20,11 @@ package SystemRecords is
    
    type FensterRecord is record
       
-      Breite : Sf.sfUint32;
-      Höhe : Sf.sfUint32;
+      FensterBreite : Sf.sfUint32;
+      FensterHöhe : Sf.sfUint32;
       Farbtiefe : Sf.sfUint32;
       Bildrate : Sf.sfUint32;
-      Zeiger : Sf.Window.sfCursor_Ptr;
+      MausZeiger : Sf.Window.Cursor.sfCursorType;
       
    end record;
    

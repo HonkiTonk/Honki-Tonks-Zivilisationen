@@ -5,7 +5,7 @@ package body GrafikEinstellungen is
    procedure StandardGrafikEinstellungenLaden
    is begin
       
-      null;
+      FensterEinstellungen := FensterStandardEinstellungen;
       
    end StandardGrafikEinstellungenLaden;
 

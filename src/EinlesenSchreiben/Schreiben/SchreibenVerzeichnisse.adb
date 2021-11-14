@@ -48,7 +48,6 @@ package body SchreibenVerzeichnisse is
       end case;
       
       -- Erstellung eines Grafik- oder Soundordners ist sinnfrei, da das Programm ja keine Grafiken/Sounds generieren kann;
-      
       case
         Exists (Name => "Grafik")
       is
@@ -56,8 +55,7 @@ package body SchreibenVerzeichnisse is
             null;
 
          when False =>
-            -- Hier später einen raise Programm_Error einbauen.
-            null;
+            raise Program_Error;
       end case;
       
       case
@@ -67,8 +65,7 @@ package body SchreibenVerzeichnisse is
             null;
 
          when False =>
-            -- Hier später einen raise Programm_Error einbauen.
-            null;
+            raise Program_Error;
       end case;
       
    end SchreibenVerzeichnisse;

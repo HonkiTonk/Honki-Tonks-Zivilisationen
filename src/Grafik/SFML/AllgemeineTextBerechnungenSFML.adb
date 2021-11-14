@@ -12,10 +12,10 @@ package body AllgemeineTextBerechnungenSFML is
    is begin
       
       TextHalbeBreite := TextHalbeBreiteErmitteln (TextZugriffExtern => TextZugriffExtern);
-      Position := Float (GrafikEinstellungen.FensterBreite) / 2.00 - TextHalbeBreite;
+      Position := Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 2.00 - TextHalbeBreite;
       
       if
-        Position in 0.00 .. Float (GrafikEinstellungen.FensterBreite)
+        Position in 0.00 .. Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
       then
          return Position;
          
@@ -33,7 +33,7 @@ package body AllgemeineTextBerechnungenSFML is
       return Float
    is begin
       
-      Position := Float (GrafikEinstellungen.FensterBreite) / 4.00;
+      Position := Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 4.00;
       TextHalbeBreite := TextHalbeBreiteErmitteln (TextZugriffExtern => TextZugriffExtern);
       
       case
@@ -47,7 +47,7 @@ package body AllgemeineTextBerechnungenSFML is
       end case;
       
       if
-        Position in 0.00 .. Float (GrafikEinstellungen.FensterBreite)
+        Position in 0.00 .. Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
       then
          return Position;
          

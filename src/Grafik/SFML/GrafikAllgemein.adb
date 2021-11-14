@@ -5,6 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Font;
 with Sf.Graphics.Text;
+with Sf.Window.Cursor;
 
 with GrafikEinstellungen;
 with GrafikStart;
@@ -40,12 +41,37 @@ package body GrafikAllgemein is
       
       GrafikStart.FensterEntfernen;
       
-      GrafikEinstellungen.FensterBreite := NeueAuflösungExtern.x;
-      GrafikEinstellungen.FensterHöhe := NeueAuflösungExtern.y;
+      GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösungExtern.x;
+      GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösungExtern.y;
       
       GrafikStart.FensterErzeugen;
       
    end FensterAuflösungÄndern;
+   
+   
+   
+   procedure BildrateÄndern
+     (NeueBildrateExtern : in Sf.sfUint32)
+   is begin
+      
+      Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => GrafikEinstellungen.Fenster,
+                                                  limit        => NeueBildrateExtern);
+      
+   end BildrateÄndern;
+   
+   
+   
+   procedure MauszeigerFestlegen
+   is begin
+      
+      GrafikEinstellungen.Maus := Sf.Window.Cursor.createFromSystem (cursorType => GrafikEinstellungen.FensterEinstellungen.MausZeiger);
+      Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungen.Fenster,
+                                               cursor       => GrafikEinstellungen.Maus);
+      -- Die Mauszeigerposition auslagern? Eventuell nützlich für spätere Neupositionierung.
+      Sf.Graphics.RenderWindow.Mouse.setPosition (position   => (100, 100),
+                                                  relativeTo => GrafikEinstellungen.Fenster);
+      
+   end MauszeigerFestlegen;
    
    
    
@@ -132,9 +158,9 @@ package body GrafikAllgemein is
          raise Program_Error;
          
       elsif
-        AbmessungExtern.y > Float (GrafikEinstellungen.FensterHöhe)
+        AbmessungExtern.y > Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe)
         or
-          AbmessungExtern.x > Float (GrafikEinstellungen.FensterBreite)
+          AbmessungExtern.x > Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
       then
          raise Program_Error;
          
@@ -221,9 +247,9 @@ package body GrafikAllgemein is
         or
           PositionExtern.x < 0.00
           or
-            PositionExtern.y > Float (GrafikEinstellungen.FensterHöhe)
+            PositionExtern.y > Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe)
         or
-          PositionExtern.x > Float (GrafikEinstellungen.FensterBreite)
+          PositionExtern.x > Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
       then
          raise Program_Error;
          

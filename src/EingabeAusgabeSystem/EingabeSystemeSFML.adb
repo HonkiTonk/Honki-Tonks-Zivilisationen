@@ -117,50 +117,50 @@ package body EingabeSystemeSFML is
       MausZeigerPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
       
       if
-        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe / 50)
+        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterHöhe / 50)
         and
-          MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterBreite / 50)
+          MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterBreite / 50)
       then
          return SystemDatentypen.Links_Oben;
          
       elsif
-        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe / 50)
+        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterHöhe / 50)
         and
-          MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterBreite - GrafikEinstellungen.FensterBreite / 50)
+          MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterBreite - GrafikEinstellungen.FensterEinstellungen.FensterBreite / 50)
       then
          return SystemDatentypen.Rechts_Oben;
          
       elsif
-        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe - GrafikEinstellungen.FensterHöhe / 50)
+        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterHöhe - GrafikEinstellungen.FensterEinstellungen.FensterHöhe / 50)
         and
-          MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterBreite / 50)
+          MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterBreite / 50)
       then
          return SystemDatentypen.Links_Unten;
          
       elsif
-        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe - GrafikEinstellungen.FensterHöhe / 50)
+        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterHöhe - GrafikEinstellungen.FensterEinstellungen.FensterHöhe / 50)
         and
-          MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterBreite - GrafikEinstellungen.FensterBreite / 50)
+          MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterBreite - GrafikEinstellungen.FensterEinstellungen.FensterBreite / 50)
       then
          return SystemDatentypen.Rechts_Unten;
          
       elsif
-        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe / 50)
+        MausZeigerPosition.y <= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterHöhe / 50)
       then
          return SystemDatentypen.Oben;
            
       elsif
-        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterHöhe - GrafikEinstellungen.FensterHöhe / 50)
+        MausZeigerPosition.y >= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterHöhe - GrafikEinstellungen.FensterEinstellungen.FensterHöhe / 50)
       then
          return SystemDatentypen.Unten;
          
       elsif
-        MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterBreite / 50)
+        MausZeigerPosition.x <= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterBreite / 50)
       then
          return SystemDatentypen.Links;
          
       elsif
-        MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterBreite - GrafikEinstellungen.FensterBreite / 50)
+        MausZeigerPosition.x >= Sf.sfInt32 (GrafikEinstellungen.FensterEinstellungen.FensterBreite - GrafikEinstellungen.FensterEinstellungen.FensterBreite / 50)
       then
          return SystemDatentypen.Rechts;
          

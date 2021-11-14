@@ -84,45 +84,46 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (18.11.2021):
+   -- Version 0.00.93 => 0.00.9 (18.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (17.11.2021):
+   -- Version 0.00.93 => 0.00.93 (17.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (16.11.2021):
+   -- Version 0.00.93 => 0.00.93 (16.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (15.11.2021):
+   -- Version 0.00.9290 => 0.00.93 (15.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (14.11.2021):
+   -- Version 0.00.9280 => 0.00.9290 (14.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Bildrate ist jetzt einstellbar.
+   -- Grafikeinstellungen können jetzt gespeichert werden und werden zum Programmstart automatisch geladen.
+   -- Leichte Anpassungen in der Darstellungen des Einstellungenerklärtextes.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
-   -- Version 0.00.9280 => 0.00.9 (13.11.2021):
+   -- Version 0.00.9280 => 0.00.9280 (13.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    

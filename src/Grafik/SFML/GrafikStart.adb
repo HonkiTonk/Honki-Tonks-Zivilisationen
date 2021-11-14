@@ -22,7 +22,9 @@ package body GrafikStart is
             return;
             
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungen.FensterBreite, GrafikEinstellungen.FensterHöhe, GrafikEinstellungen.PixelBit),
+            GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungen.FensterEinstellungen.FensterBreite,
+                                                                                             GrafikEinstellungen.FensterEinstellungen.FensterHöhe,
+                                                                                             GrafikEinstellungen.FensterEinstellungen.Farbtiefe),
                                                                                    title => Name);
       end case;
 
@@ -32,14 +34,8 @@ package body GrafikStart is
          raise Program_Error;
 
       else
-         Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungen.Fenster,
-                                                  cursor       => GrafikEinstellungen.MausZeiger);
-         -- Woanders hinschieben? Anders gestalten? Mit Werten auf Basis der Fensterabmessungen.
-         Sf.Graphics.RenderWindow.Mouse.setPosition (position   => (100, 100),
-                                                     relativeTo => GrafikEinstellungen.Fenster);
-         Sf.Graphics.RenderWindow.setFramerateLimit (renderWindow => GrafikEinstellungen.Fenster,
-                                                     limit        => GrafikEinstellungen.MaximaleBilderrate);
-         
+         GrafikAllgemein.MauszeigerFestlegen;
+         GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => GrafikEinstellungen.FensterEinstellungen.Bildrate);
          GrafikAllgemein.AllgemeinesFestlegen;
          GrafikFenster.FensterFarbe;
       end if;

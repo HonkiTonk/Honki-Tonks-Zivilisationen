@@ -5,13 +5,15 @@ with SchreibenVerzeichnisse;
 with Einlesen;
 with Intro;
 with Hauptmenue;
+with EinlesenEinstellungen;
 
 procedure Start
 is begin
 
-   GrafikStart.FensterErzeugen;
-
    SchreibenVerzeichnisse.SchreibenVerzeichnisse;
+   EinlesenEinstellungen.EinlesenEinstellungen;
+
+   GrafikStart.FensterErzeugen;
    Einlesen.Einlesen;
 
    Intro.Intro;

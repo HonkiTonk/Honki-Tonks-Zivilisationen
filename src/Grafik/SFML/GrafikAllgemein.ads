@@ -21,9 +21,13 @@ package GrafikAllgemein is
    procedure FensterAuflösungÄndern
      (NeueAuflösungExtern : in Sf.System.Vector2.sfVector2u);
 
+   procedure BildrateÄndern
+     (NeueBildrateExtern : in Sf.sfUint32);
+
    procedure AllgemeinesFestlegen;
    procedure SchriftartFestlegen;
    procedure TextAllgemeinFestlegen;
+   procedure MauszeigerFestlegen;
 
    procedure TextDateiZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;

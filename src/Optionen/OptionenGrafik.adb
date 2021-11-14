@@ -1,17 +1,24 @@
 pragma SPARK_Mode (On);
 
+with Sf; use Sf;
+
 with SystemKonstanten;
 with GlobaleTexte;
 
 with AuswahlMenue;
 with GrafikAllgemein;
 with Eingabe;
+with GrafikEinstellungen;
+with SchreibenEinstellungen;
 
 package body OptionenGrafik is
 
    function OptionenGrafik
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
+      
+      EingabeBildrate := -1;
+      NeueAuflösung := (0, 0);
       
       GrafikSchleife:
       loop
@@ -28,10 +35,13 @@ package body OptionenGrafik is
                null;
                
             when SystemDatentypen.Bildrate_Ändern =>
-               null;
+               BildrateÄndern;
                
             when SystemDatentypen.Schriftgröße =>
                null;
+               
+            when SystemDatentypen.Speichern =>
+               EinstellungenSpeichern;
                
             when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return AuswahlWert;
@@ -49,36 +59,88 @@ package body OptionenGrafik is
    procedure AuflösungÄndern
    is begin
       
-      EingabeWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
-                                        ZeileExtern         => 1,
-                                        ZahlenMinimumExtern => 1,
-                                        ZahlenMaximumExtern => 999_999_999);
+      EingabeAuflösung := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
+                                              ZeileExtern         => 1,
+                                              ZahlenMinimumExtern => 1,
+                                              ZahlenMaximumExtern => 999_999_999);
       
       if
-        EingabeWert > 0
+        EingabeAuflösung > 0
       then
-         NeueAuflösung.x := Sf.sfUint32 (EingabeWert);
+         NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung);
            
       else
          return;
       end if;
       
-      EingabeWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
-                                        ZeileExtern         => 1,
-                                        ZahlenMinimumExtern => 1,
-                                        ZahlenMaximumExtern => 999_999_999);
+      EingabeAuflösung := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
+                                              ZeileExtern         => 1,
+                                              ZahlenMinimumExtern => 1,
+                                              ZahlenMaximumExtern => 999_999_999);
       
       if
-        EingabeWert > 0
+        EingabeAuflösung > 0
       then
-         NeueAuflösung.y := Sf.sfUint32 (EingabeWert);
+         NeueAuflösung.y := Sf.sfUint32 (EingabeAuflösung);
            
       else
+         NeueAuflösung.x := 0;
          return;
       end if;
       
       GrafikAllgemein.FensterAuflösungÄndern (NeueAuflösungExtern => NeueAuflösung);
       
    end AuflösungÄndern;
+   
+   
+   
+   procedure BildrateÄndern
+   is begin
+      
+      EingabeBildrate := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
+                                            ZeileExtern         => 1,
+                                            ZahlenMinimumExtern => 0,
+                                            ZahlenMaximumExtern => 999_999_999);
+      
+      if
+        EingabeBildrate >= 0
+      then
+         GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => Sf.sfUint32 (EingabeBildrate));
+         
+      else
+         null;
+      end if;
+      
+   end BildrateÄndern;
+   
+   
+   
+   procedure EinstellungenSpeichern
+   is begin
+      
+      if
+        EingabeBildrate > -1
+      then
+         GrafikEinstellungen.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate);
+         
+      else
+         null;
+      end if;
+      
+      if
+        NeueAuflösung.x > 0
+        and
+          NeueAuflösung.y > 0
+      then
+         GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
+         GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
+         
+      else
+         null;
+      end if;
+      
+      SchreibenEinstellungen.SchreibenEinstellungen;
+      
+   end EinstellungenSpeichern;
 
 end OptionenGrafik;

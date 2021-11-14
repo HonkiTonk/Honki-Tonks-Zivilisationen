@@ -766,6 +766,11 @@ package body RueckgabeMenues is
          return SystemDatentypen.Bildrate_Ändern;
                     
       elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return SystemDatentypen.Speichern;
+                    
+      elsif
         AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;

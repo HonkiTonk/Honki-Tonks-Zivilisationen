@@ -23,7 +23,7 @@ package body KarteSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      FensterKarte := (Float (GrafikEinstellungen.FensterBreite), Float (GrafikEinstellungen.FensterHöhe) * 0.80);
+      FensterKarte := (Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite), Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe) * 0.80);
       AbmessungBerechnen (RasseExtern => RasseExtern);
       GrafikAllgemein.FensterLeeren;
             
