@@ -17,17 +17,7 @@ package body BefehleImSpiel is
             return BefehleKonsole.BefehleKonsole (RasseExtern => RasseExtern);
             
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            null;
-      end case;
-      
-      case
-        GlobaleVariablen.AnzeigeArt
-      is
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             return BefehleSFML.BefehleSFML (RasseExtern => RasseExtern);
-            
-         when SystemDatentypen.Konsole =>
-            raise Program_Error;
       end case;
       
    end Befehle;

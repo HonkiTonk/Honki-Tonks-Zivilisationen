@@ -8,6 +8,7 @@ with KarteSFML;
 with KarteKonsole;
 with CursorPositionAltFestlegen;
 with Sichtweiten;
+with BerechnungenKarteSFML;
 
 package body Karte is
    
@@ -52,6 +53,9 @@ package body Karte is
             Sichtweiten.BewegungsfeldFestlegen := 3;
       end case;
       
+      BerechnungenKarteSFML.KartenfelderAbmessungBerechnen;
+      BerechnungenKarteSFML.StadtfelderAbmessungBerechnen;
+      
    end SichtweiteBewegungsfeldFestlegen;
    
    
@@ -72,7 +76,7 @@ package body Karte is
             KarteInformationenKonsole.KarteInformationenKonsole (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Beides =>
-            -- KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);
+            KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);
             -- KarteInformationenKonsole.KarteInformationenKonsole (RasseExtern => RasseExtern);
             KarteSFML.KarteAnzeigen (RasseExtern => RasseExtern);
             

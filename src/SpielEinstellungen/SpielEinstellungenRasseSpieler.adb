@@ -35,7 +35,6 @@ package body SpielEinstellungenRasseSpieler is
                BelegungÄndern (RasseExtern => RassenAuswahl);
 
             when SystemDatentypen.Zufall =>
-               -- Zufallsgenerator entsprechend anpassen/einbauen
                ZufallGeneratorenSpieleinstellungen.ZufälligeRassen;
                
             when SystemDatentypen.Fertig =>
@@ -51,11 +50,8 @@ package body SpielEinstellungenRasseSpieler is
             when SystemDatentypen.Zurück =>
                return SystemDatentypen.Auswahl_Kartenressourcen;
                
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return RassenAuswahl;
-               
-            when SystemDatentypen.Leer =>
-               null;
                
             when others =>
                raise Program_Error;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GrafikStart;
+with GrafikStartEnde;
 with SchreibenVerzeichnisse;
 with Einlesen;
 with Intro;
@@ -13,12 +13,12 @@ is begin
    SchreibenVerzeichnisse.SchreibenVerzeichnisse;
    EinlesenEinstellungen.EinlesenEinstellungen;
 
-   GrafikStart.FensterErzeugen;
+   GrafikStartEnde.FensterErzeugen;
    Einlesen.Einlesen;
 
    Intro.Intro;
    Hauptmenue.Hauptmenü;
 
-   GrafikStart.FensterEntfernen;
+   GrafikStartEnde.FensterEntfernen;
 
 end Start;

@@ -34,9 +34,6 @@ package EingabeSFML is
 
    function Tastenwert
      return SystemDatentypen.Tastenbelegung_Enum;
-
-   function BefehlEingabe
-     return SystemDatentypen.Tastenbelegung_Enum;
    
 private
    

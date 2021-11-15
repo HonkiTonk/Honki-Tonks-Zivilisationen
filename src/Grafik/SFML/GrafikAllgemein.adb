@@ -2,13 +2,14 @@ pragma SPARK_Mode (On);
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with Sf; use Sf;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Font;
 with Sf.Graphics.Text;
 with Sf.Window.Cursor;
 
 with GrafikEinstellungen;
-with GrafikStart;
+with GrafikStartEnde;
 
 package body GrafikAllgemein is
 
@@ -39,12 +40,12 @@ package body GrafikAllgemein is
      (NeueAuflösungExtern : in Sf.System.Vector2.sfVector2u)
    is begin
       
-      GrafikStart.FensterEntfernen;
+      GrafikStartEnde.FensterEntfernen;
       
       GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösungExtern.x;
       GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösungExtern.y;
       
-      GrafikStart.FensterErzeugen;
+      GrafikStartEnde.FensterErzeugen;
       
    end FensterAuflösungÄndern;
    
@@ -67,20 +68,31 @@ package body GrafikAllgemein is
       GrafikEinstellungen.Maus := Sf.Window.Cursor.createFromSystem (cursorType => GrafikEinstellungen.FensterEinstellungen.MausZeiger);
       Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungen.Fenster,
                                                cursor       => GrafikEinstellungen.Maus);
-      -- Die Mauszeigerposition auslagern? Eventuell nützlich für spätere Neupositionierung.
-      Sf.Graphics.RenderWindow.Mouse.setPosition (position   => (100, 100),
-                                                  relativeTo => GrafikEinstellungen.Fenster);
+      
+      MauszeigerPositionFestlegen (PositionExtern => (0, 0));
       
    end MauszeigerFestlegen;
    
    
    
-   procedure AllgemeinesFestlegen
+   procedure MauszeigerPositionFestlegen
+     (PositionExtern : in Sf.System.Vector2.sfVector2i)
    is begin
       
-      null;
+      if
+        PositionExtern.x <= 0
+        or
+          PositionExtern.y <= 0
+      then
+         Sf.Graphics.RenderWindow.Mouse.setPosition (position   => (1, 1),
+                                                     relativeTo => GrafikEinstellungen.Fenster);
+         
+      else
+         Sf.Graphics.RenderWindow.Mouse.setPosition (position   => PositionExtern,
+                                                     relativeTo => GrafikEinstellungen.Fenster);
+      end if;
       
-   end AllgemeinesFestlegen;
+   end MauszeigerPositionFestlegen;
    
    
    
@@ -95,11 +107,13 @@ package body GrafikAllgemein is
    
    procedure TextAllgemeinFestlegen
    is begin
-            
+      
+      GrafikEinstellungen.TextStandard := Sf.Graphics.Text.create;
+      
       Sf.Graphics.Text.setFont (text => GrafikEinstellungen.TextStandard,
                                 font => GrafikEinstellungen.Schriftart);
       Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,
-                                         size => GrafikEinstellungen.Schriftgröße);
+                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.TextStandard,
                                  color => (255, 0, 0, 255));
       Sf.Graphics.Text.setStyle (text  => GrafikEinstellungen.TextStandard,

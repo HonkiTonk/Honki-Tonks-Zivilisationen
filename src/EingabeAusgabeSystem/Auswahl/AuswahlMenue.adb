@@ -13,6 +13,7 @@ with GrafikEinstellungen;
 with Eingabe;
 with AllgemeineTextBerechnungenSFML;
 with RueckgabeMenues;
+with GrafikHintergrund;
 
 package body AuswahlMenue is
 
@@ -32,7 +33,7 @@ package body AuswahlMenue is
       
    end AuswahlMenü;
 
-
+   
 
    procedure AllgemeinesFestlegen
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
@@ -42,7 +43,7 @@ package body AuswahlMenue is
       TextZugriff := GrafikEinstellungen.TextStandard;
       Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
       Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
-      ZeilenAbstand := 0.50 * Float (GrafikEinstellungen.Schriftgröße);
+      ZeilenAbstand := 0.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       
       if
         LetztesMenü = WelchesMenüExtern
@@ -85,7 +86,7 @@ package body AuswahlMenue is
             
       StringSetzen (WelcheZeileExtern => 1);
       Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.Schriftgröße)));
+                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
       
       AktuellePosition := (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), StartPositionYAchse);
       
@@ -107,10 +108,10 @@ package body AuswahlMenue is
       
       StringSetzen (WelcheZeileExtern => 1);
       Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.Schriftgröße)));
+                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
       TextPositionMaus.y := StartPositionYAchse + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + ZeilenAbstand;
       Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
-                                         size => GrafikEinstellungen.Schriftgröße);
+                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       
       MausZeigerSchleife:
       for ZeileSchleifenwert in Anfang .. Ende loop
@@ -165,6 +166,8 @@ package body AuswahlMenue is
             
       GrafikAllgemein.FensterLeeren;
       
+      GrafikHintergrund.HintergrundMenü (WelchesMenüExtern => WelchesMenü);
+      
       Überschrift;
       AktuellePosition.y := AktuellePosition.y + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + ZeilenAbstand;
       
@@ -172,7 +175,7 @@ package body AuswahlMenue is
       for TextSchleifenwert in Anfang .. Ende loop
       
          Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
-                                            size => GrafikEinstellungen.Schriftgröße);
+                                            size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
          StringSetzen (WelcheZeileExtern => TextSchleifenwert);
          
          case
@@ -281,7 +284,7 @@ package body AuswahlMenue is
    is begin
       
       Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
-                                         size => GrafikEinstellungen.Schriftgröße);
+                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       StringSetzen (WelcheZeileExtern => AktuelleAuswahl + 1 + (Ende - Anfang));
       Sf.Graphics.Text.setColor (text  => TextZugriff,
                                  color => Sf.Graphics.Color.sfWhite);
@@ -345,7 +348,7 @@ package body AuswahlMenue is
             AktuellerText := GlobaleTexte.Hauptmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Spiel_Menü =>
-            AktuellerText := GlobaleTexte.Hauptmenü (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Spielmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Optionen_Menü =>
             AktuellerText := GlobaleTexte.Optionsmenü (WelcheZeileExtern);

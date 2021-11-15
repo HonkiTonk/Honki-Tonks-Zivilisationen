@@ -1,31 +1,31 @@
 pragma SPARK_Mode (On);
 
-with Sf;
-
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
+with KartenDatentypen;
 with KartenRecords;
 
 package BewegungCursorSFML is
-
-   procedure BewegungCursorRichtung
-     (KarteExtern : in Boolean;
-      YÄnderungExtern : in Sf.sfInt32;
-      XÄnderungExtern : in Sf.sfInt32;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+   
+   procedure CursorPlatzierenSFML
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
-
+   
 private
-
-   Position : KartenRecords.AchsenKartenfeldPositivRecord;
-
+   
+   YSichtAnfang : KartenDatentypen.Kartenfeld;
+   YSichtEnde : KartenDatentypen.Kartenfeld;
+   XSichtAnfang : KartenDatentypen.Kartenfeld;
+   XSichtEnde : KartenDatentypen.Kartenfeld;
+   
+   YMultiplikator : Float;
+   XMultiplikator : Float;
+   
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   procedure BewegungCursorBerechnen
-     (YÄnderungExtern : in Sf.sfInt32;
-      XÄnderungExtern : in Sf.sfInt32;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+   procedure SichtbereichFestlegen
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end BewegungCursorSFML;

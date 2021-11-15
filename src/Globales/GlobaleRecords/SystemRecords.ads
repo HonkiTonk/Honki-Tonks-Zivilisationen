@@ -5,6 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf;
 with Sf.Window;
 with Sf.Window.Cursor;
+with Sf.Graphics.Color;
 
 package SystemRecords is
 
@@ -25,6 +26,10 @@ package SystemRecords is
       Farbtiefe : Sf.sfUint32;
       Bildrate : Sf.sfUint32;
       MausZeiger : Sf.Window.Cursor.sfCursorType;
+      
+      Schriftgröße : Sf.sfUint32;
+      Textfarbe : Sf.Graphics.Color.sfColor;
+      Textstyle : Sf.sfUint32;
       
    end record;
    

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 package SystemDatentypen is
 
    -- Wichtige Werte
-   type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Hauptmenü, Spiel_Beenden, Zurück, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
+   type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Zurück, Hauptmenü, Spiel_Beenden, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
                                  Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, 
                                  
                                  -- Grafikmenü
@@ -39,13 +39,16 @@ package SystemDatentypen is
                                 );
    pragma Ordered (Rückgabe_Werte_Enum);
    
+   subtype Schwierigkeitsgrad_Verwendet_Enum is Rückgabe_Werte_Enum range Schwierigkeitsgrad_Leicht .. Schwierigkeitsgrad_Schwer;
+   
+   subtype Zurück_Beenden_Enum is Rückgabe_Werte_Enum range Zurück .. Spiel_Beenden;
+   subtype Hauptmenü_Beenden_Enum is Zurück_Beenden_Enum range Hauptmenü .. Spiel_Beenden;
+   
    type Welches_Menü_Enum is (Haupt_Menü, Spiel_Menü, Optionen_Menü, Kartengröße_Menü, Kartenart_Menü, Kartenform_Menü, Kartentemperatur_Menü, Kartenressourcen_Menü, Schwierigkeitsgrad_Menü, Rassen_Menü,
                               Grafik_Menü, Sound_Menü, Steuerung_Menü, Sonstiges_Menü);
    
    type Anfang_Ende_Enum is (Anfangswert, Endwert);
    for Anfang_Ende_Enum use (Anfangswert => 0, Endwert => 1);
-   
-   subtype Schwierigkeitsgrad_Verwendet_Enum is Rückgabe_Werte_Enum range Schwierigkeitsgrad_Leicht .. Schwierigkeitsgrad_Schwer;
    
    subtype Rassen_Enum is Rückgabe_Werte_Enum range Keine_Rasse .. Ekropa;
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen .. Ekropa;

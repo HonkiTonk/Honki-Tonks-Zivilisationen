@@ -36,9 +36,7 @@ private
    
    EinheitStadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    
-   Abmessung : Sf.System.Vector2.sfVector2f;
    Position : Sf.System.Vector2.sfVector2f;
-   FensterKarte : Sf.System.Vector2.sfVector2f;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
@@ -61,7 +59,7 @@ private
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
-   procedure AbmessungBerechnen
+   procedure SichtbereichFestlegen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    

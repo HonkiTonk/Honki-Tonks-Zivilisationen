@@ -82,9 +82,6 @@ package body Hauptmenue is
             when SystemDatentypen.Spiel_Beenden =>
                exit HauptmenüSchleife;
                
-            when SystemDatentypen.Leer =>
-               null;
-               
             when others =>
                raise Program_Error;
          end case;

@@ -29,15 +29,16 @@ package body SpielEinstellungenKarten is
             when SystemDatentypen.Karte_Größe_Nutzer =>
                return GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
+            when SystemDatentypen.Zufall =>
+               Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
+               return SystemDatentypen.Auswahl_Kartenart;
+               
             when SystemDatentypen.Karte_Größe_Zufall =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
                return SystemDatentypen.Auswahl_Kartenart;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü | SystemDatentypen.Zurück =>
+            when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                return KartengrößeAuswahl;
-               
-            when SystemDatentypen.Leer =>
-               null;
                
             when others =>
                raise Program_Error;
@@ -112,11 +113,8 @@ package body SpielEinstellungenKarten is
             when SystemDatentypen.Zurück =>
                return SystemDatentypen.Auswahl_Kartengröße;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenartAuswahl;
-               
-            when SystemDatentypen.Leer =>
-               null;
                
             when others =>
                raise Program_Error;
@@ -152,11 +150,8 @@ package body SpielEinstellungenKarten is
             when SystemDatentypen.Zurück =>
                return SystemDatentypen.Auswahl_Kartenart;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenformAuswahl;
-               
-            when SystemDatentypen.Leer =>
-               null;
                
             when others =>
                raise Program_Error;
@@ -192,11 +187,8 @@ package body SpielEinstellungenKarten is
             when SystemDatentypen.Zurück =>
                return SystemDatentypen.Auswahl_Kartenform;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartentemperaturAuswahl;
-               
-            when SystemDatentypen.Leer =>
-               null;
                
             when others =>
                raise Program_Error;
@@ -232,11 +224,8 @@ package body SpielEinstellungenKarten is
             when SystemDatentypen.Zurück =>
                return SystemDatentypen.Auswahl_Kartentemperatur;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenressourcenAuswahl;
-               
-            when SystemDatentypen.Leer =>
-               null;
                
             when others =>
                raise Program_Error;

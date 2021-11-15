@@ -30,11 +30,8 @@ package body SpielEinstellungenSonstiges is
             when SystemDatentypen.Zurück =>
                return SystemDatentypen.Auswahl_Rassen;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return SchwierigkeitAuswahl;
-               
-            when SystemDatentypen.Leer =>
-               null;
                
             when others =>
                raise Program_Error;

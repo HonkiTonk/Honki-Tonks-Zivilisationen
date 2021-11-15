@@ -12,10 +12,22 @@ package body CursorPositionAltFestlegen is
    is begin
       
       AlteEAchseFestlegen (RasseExtern => RasseExtern);
-      AlteYAchseFestlegen (RasseExtern                  => RasseExtern,
-                           BewegungsfeldFestlegenExtern => BewegungsfeldFestlegenExtern);
-      AlteXAchseFestlegen (RasseExtern                  => RasseExtern,
-                           BewegungsfeldFestlegenExtern => BewegungsfeldFestlegenExtern);
+      
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Konsole =>
+            AlteYAchseFestlegenKonsole (RasseExtern                  => RasseExtern,
+                                        BewegungsfeldFestlegenExtern => BewegungsfeldFestlegenExtern);
+            AlteXAchseFestlegenKonsole (RasseExtern                  => RasseExtern,
+                                        BewegungsfeldFestlegenExtern => BewegungsfeldFestlegenExtern);
+            
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+            AlteYAchseFestlegenSFML (RasseExtern                  => RasseExtern,
+                                     BewegungsfeldFestlegenExtern => BewegungsfeldFestlegenExtern);
+            AlteXAchseFestlegenSFML (RasseExtern                  => RasseExtern,
+                                     BewegungsfeldFestlegenExtern => BewegungsfeldFestlegenExtern);
+      end case;
       
    end CursorPositionAltFestlegen;
    
@@ -38,7 +50,7 @@ package body CursorPositionAltFestlegen is
    
    
    
-   procedure AlteYAchseFestlegen
+   procedure AlteYAchseFestlegenKonsole
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
@@ -86,11 +98,11 @@ package body CursorPositionAltFestlegen is
          end if;
       end if;
       
-   end AlteYAchseFestlegen;
+   end AlteYAchseFestlegenKonsole;
    
    
    
-   procedure AlteXAchseFestlegen
+   procedure AlteXAchseFestlegenKonsole
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
@@ -138,6 +150,76 @@ package body CursorPositionAltFestlegen is
          end if;
       end if;
       
-   end AlteXAchseFestlegen;
+   end AlteXAchseFestlegenKonsole;
+   
+   
+   
+   procedure AlteYAchseFestlegenSFML
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      BewegungsfeldFestlegenExtern : in Positive)
+   is begin
+      
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Sichtweiten.Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+      then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - 1;
+         
+      elsif
+        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - Sichtweiten.Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse < Karten.WeltkarteArray'First (2)
+      then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + 1;
+         
+      else
+         if
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Sichtweiten.Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+         then
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + 1;
+           
+         elsif
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - Sichtweiten.Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+         then
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - 1;
+            
+         else
+            null;
+         end if;
+      end if;
+      
+   end AlteYAchseFestlegenSFML;
+   
+   
+   
+   procedure AlteXAchseFestlegenSFML
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      BewegungsfeldFestlegenExtern : in Positive)
+   is begin
+      
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse + Sichtweiten.Bewegungsfeld (BewegungsfeldFestlegenExtern).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+      then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse - 1;
+         
+      elsif
+        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse - Sichtweiten.Bewegungsfeld (BewegungsfeldFestlegenExtern).XAchse < Karten.WeltkarteArray'First (3)
+      then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse + 1;
+         
+      else
+         if
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse + Sichtweiten.Bewegungsfeld (BewegungsfeldFestlegenExtern).XAchse
+         then
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse + 1;
+            
+         elsif
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse - Sichtweiten.Bewegungsfeld (BewegungsfeldFestlegenExtern).XAchse
+         then
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse - 1;
+            
+         else
+            null;
+         end if;
+      end if;
+      
+   end AlteXAchseFestlegenSFML;
 
 end CursorPositionAltFestlegen;

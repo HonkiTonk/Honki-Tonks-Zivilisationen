@@ -14,6 +14,7 @@ with EinlesenTastatur;
 with EinlesenDatenbanken;
 with SchreibenEinstellungen;
 with AuswahlSprache;
+with EinlesenTexturen;
 
 package body Einlesen is
 
@@ -37,6 +38,7 @@ package body Einlesen is
       
       EinlesenDatenbanken.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;
+      EinlesenTexturen.EinlesenTexturen;
       
    end EinlesenOhneAnzeige;
    

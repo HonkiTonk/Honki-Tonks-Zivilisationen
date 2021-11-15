@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_9; use Ada.Characters.Wide_Wide_Latin_9;
-
 with SchreibeStadtGebaut;
 
 with InDerStadtBauen;
@@ -20,10 +17,8 @@ package body InDerStadt is
       
       StadtSchleife:
       loop
-    
-         Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+         
          KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         New_Line;
 
          Befehl := Eingabe.Tastenwert;
          
@@ -53,6 +48,9 @@ package body InDerStadt is
                -- Stadt verlassen
             when SystemDatentypen.Menü_Zurück =>
                return;
+               
+            when SystemDatentypen.Mausbewegung =>
+               null;
                
             when others =>
                null;

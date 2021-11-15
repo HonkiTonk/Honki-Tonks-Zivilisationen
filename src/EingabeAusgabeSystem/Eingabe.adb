@@ -105,24 +105,6 @@ package body Eingabe is
    
    
    
-   function BefehlEingabe
-      return SystemDatentypen.Tastenbelegung_Enum
-   is begin
-      
-      case
-        GlobaleVariablen.AnzeigeArt
-      is
-         when SystemDatentypen.Konsole =>
-            return EingabeKonsole.Tastenwert;
-            
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            return EingabeSFML.BefehlEingabe;
-      end case;
-      
-   end BefehlEingabe;
-   
-   
-   
    procedure StandardTastenbelegungLaden
    is begin
       

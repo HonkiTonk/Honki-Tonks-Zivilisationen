@@ -22,6 +22,7 @@ package body EinlesenEinstellungen is
                   Name => "Einstellungen/Einstellungen");
 
          when False =>
+            GrafikEinstellungen.StandardGrafikEinstellungenLaden;
             SchreibenEinstellungen.SchreibenEinstellungen;
             return;
       end case;

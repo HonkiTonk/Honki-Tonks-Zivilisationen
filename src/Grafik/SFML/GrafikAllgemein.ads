@@ -24,10 +24,12 @@ package GrafikAllgemein is
    procedure BildrateÄndern
      (NeueBildrateExtern : in Sf.sfUint32);
 
-   procedure AllgemeinesFestlegen;
    procedure SchriftartFestlegen;
    procedure TextAllgemeinFestlegen;
    procedure MauszeigerFestlegen;
+
+   procedure MauszeigerPositionFestlegen
+     (PositionExtern : in Sf.System.Vector2.sfVector2i);
 
    procedure TextDateiZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;

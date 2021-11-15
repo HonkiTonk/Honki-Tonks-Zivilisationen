@@ -37,7 +37,7 @@ package body TextAnzeigeSFML is
                           TextZugriffExtern => TextZugriff);
       end case;
       
-      ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.Schriftgröße);
+      ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       AktuelleZeile := 0;
       
       if
@@ -181,7 +181,7 @@ package body TextAnzeigeSFML is
                           TextZugriffExtern => TextZugriff);
       end case;
       
-      ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.Schriftgröße);
+      ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       AktuelleZeile := 0;
       
       TextAnzeigeSchleife:

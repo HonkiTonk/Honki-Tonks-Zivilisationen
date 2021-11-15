@@ -8,9 +8,8 @@ with SystemDatentypen;
 
 with GrafikEinstellungen;
 with GrafikAllgemein;
-with GrafikFenster;
 
-package body GrafikStart is
+package body GrafikStartEnde is
 
    procedure FensterErzeugen
    is begin
@@ -36,8 +35,8 @@ package body GrafikStart is
       else
          GrafikAllgemein.MauszeigerFestlegen;
          GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => GrafikEinstellungen.FensterEinstellungen.Bildrate);
-         GrafikAllgemein.AllgemeinesFestlegen;
-         GrafikFenster.FensterFarbe;
+         GrafikAllgemein.SchriftartFestlegen;
+         GrafikAllgemein.TextAllgemeinFestlegen;
       end if;
       
    end FensterErzeugen;
@@ -51,4 +50,4 @@ package body GrafikStart is
       
    end FensterEntfernen;
 
-end GrafikStart;
+end GrafikStartEnde;

@@ -49,7 +49,7 @@ package body SpielEinstellungen is
             when SystemDatentypen.Start_Weiter =>
                exit AuswahlSchleife;
 
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü | SystemDatentypen.Zurück =>
+            when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                return Auswahl;
 
             when others =>

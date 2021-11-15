@@ -98,17 +98,30 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.93 => 0.00.93 (16.11.2021):
+   -- Version 0.00.9320 => 0.00.93 (16.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9290 => 0.00.93 (15.11.2021):
+   -- Version 0.00.9290 => 0.00.9320 (15.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesen von Grafiken/Texturen überarbeitet und sinnvoller aufgeteilt.
+   -- Festlegen der Grafikeinstellungen und Einlesen der Nutzereinstellungen überarbeitet.
+   -- Unnötigen Code gelöscht.
+   -- Es ist jetzt möglich bei der Kartengröße sowohl eine zufällige vordefinierte Größe, als auch eine komplett zufällige Größe auszuwählen.
+   -- Einstellungen zur Kartengenerierung wieder vervollständigt und fehlerbereinigt.
+   -- Die Bewegung des Cursor mittels Tasteneingabe durch eine Positionsbestimmung anhand der Mausposition ersetzt.
+   -- Eingabe über die SFML vereinfacht.
+   -- Angefangen die SFML Kartenanzeige zu überarbeiten.
+   -- Kartenfelder sollten jetzt immer die gleiche Größe haben und sich nicht mehr auf Basis der Zeigerposition verändern.
+   -- Die Bestimmung der Zeigerposition an die neue Kartenfeldergrößenermittlung angepasst.
+   -- Wenn als Anzeigeart Beides ausgewählt ist, dann wird jetzt auch die Karte in der Konsole angezeigt.
+   -- Angefangen die SFML Version der Stadtkartenanzeige zu programmieren.
+   -- Angefangen die Cursorbewegung in eine Konsolen- und eine SFML-Version aufzuteilen.
+   -- Angefangen das Scrollen mit dem Mauscursor so umzubauen, dass am Rand gescrollt und nicht komplett neu die Mausposition festgelegt wird.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

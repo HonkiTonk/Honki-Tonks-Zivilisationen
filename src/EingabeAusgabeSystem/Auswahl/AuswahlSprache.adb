@@ -20,7 +20,7 @@ package body AuswahlSprache is
    is begin
       
       ZehnerReihe := 0;
-      ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.Schriftgröße);
+      ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       
       SprachenListeFestlegen;
       

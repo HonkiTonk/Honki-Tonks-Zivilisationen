@@ -216,7 +216,7 @@ package body EingabeSFML is
       Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrageExtern)));
       Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.Schriftgröße)));
+                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
       
       Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
                                     position => ((Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 10.00));
@@ -225,9 +225,9 @@ package body EingabeSFML is
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                          text         => GrafikEinstellungen.TextStandard);
       Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,
-                                         size => GrafikEinstellungen.Schriftgröße);
+                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.TextStandard,
-                                 color => GrafikEinstellungen.Textfarbe);
+                                 color => GrafikEinstellungen.FensterEinstellungen.Textfarbe);
 
       if
         ZahlenMinimumExtern > 0
@@ -416,6 +416,8 @@ package body EingabeSFML is
      return Unbounded_Wide_Wide_String
    is begin
       
+      
+      
       return To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
    end NameEingeben;
@@ -463,6 +465,21 @@ package body EingabeSFML is
    is begin
       
       EingabeSystemeSFML.TastenEingabe;
+      
+      -- Das Mausrad muss? immer vor der Maustaste geprüft werden.
+      if
+        EingabeSystemeSFML.MausRad > 0.00
+      then
+         return SystemDatentypen.Ebene_Hoch;
+               
+      elsif
+        EingabeSystemeSFML.MausRad < 0.00
+      then
+         return SystemDatentypen.Ebene_Runter;
+               
+      else
+         null;
+      end if;
             
       case
         EingabeSystemeSFML.MausTaste
@@ -509,75 +526,6 @@ package body EingabeSFML is
       return SystemDatentypen.Leer;
       
    end Tastenwert;
-   
-   
-   
-   function BefehlEingabe
-     return SystemDatentypen.Tastenbelegung_Enum
-   is begin
-      
-      EingabeSystemeSFML.TastenEingabeErweitert;
-      
-      case
-        EingabeSystemeSFML.MausAmRand
-      is
-         when SystemDatentypen.Leer =>
-            null;
-            
-         when others =>
-            return EingabeSystemeSFML.MausAmRand;
-      end case;
-      
-      -- Das Mausrad muss? immer vor der Maustaste geprüft werden.
-      if
-        EingabeSystemeSFML.MausRad > 0.00
-      then
-         return SystemDatentypen.Ebene_Hoch;
-               
-      elsif
-        EingabeSystemeSFML.MausRad < 0.00
-      then
-         return SystemDatentypen.Ebene_Runter;
-               
-      else
-         null;
-      end if;
-      
-      case
-        EingabeSystemeSFML.MausTaste
-      is
-         when Sf.Window.Mouse.sfMouseLeft =>
-            return SystemDatentypen.Auswählen;
-            
-         when Sf.Window.Mouse.sfMouseRight =>
-            return SystemDatentypen.Menü_Zurück;
-            
-         when others =>
-            null;
-      end case;
-      
-      Taste := EingabeSystemeSFML.TastaturTaste;
-      
-      BelegungFeldSchleife:
-      for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
-         BelegungPositionSchleife:
-         for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
-            
-            if
-              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
-            then
-               return BelegungPositionSchleifenwert;
-                     
-            else
-               null;
-            end if;
-            
-         end loop BelegungPositionSchleife;
-      end loop BelegungFeldSchleife;
-      
-      return SystemDatentypen.Leer;
-      
-   end BefehlEingabe;
    
    
    

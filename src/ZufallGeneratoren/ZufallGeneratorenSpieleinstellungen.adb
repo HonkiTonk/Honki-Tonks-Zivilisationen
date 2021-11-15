@@ -1,17 +1,66 @@
 pragma SPARK_Mode (Off);
 
 with SystemDatentypen; use SystemDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with GlobaleVariablen;
 
+with Karten;
+
 package body ZufallGeneratorenSpieleinstellungen is
+   
+   function ZufälligeVordefinierteKartengröße
+     return KartenDatentypen.Kartengröße_Verwendet_Enum
+   is begin
+      
+      ZufälligeVordefinierteKartengrößeWählen.Reset (ZufälligeVordefinierteKartengrößeGewählt);
+      return ZufälligeVordefinierteKartengrößeWählen.Random (ZufälligeVordefinierteKartengrößeGewählt);
+        
+   end ZufälligeVordefinierteKartengröße;
+   
+   
    
    function ZufälligeKartengröße
      return KartenDatentypen.Kartengröße_Verwendet_Enum
    is begin
       
-      ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
-      return ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
-        
+      ZufälligeKartengrößeWählen.Reset (ZufälligeKartengrößeGewählt);
+      
+      YAchseBestimmenSchleife:
+      loop
+         
+         AuswahlGröße := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
+         
+         if
+           AuswahlGröße >= 20
+         then
+            Karten.Kartengrößen (SystemDatentypen.Karte_Größe_Nutzer).YAchsenGröße := AuswahlGröße;
+            exit YAchseBestimmenSchleife;
+
+         else
+            null;
+         end if;
+
+      end loop YAchseBestimmenSchleife;
+
+      XAchseBestimmenSchleife:
+      loop
+
+         AuswahlGröße := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
+         
+         if
+           AuswahlGröße >= 20
+         then
+            Karten.Kartengrößen (SystemDatentypen.Karte_Größe_Nutzer).XAchsenGröße := AuswahlGröße;
+            exit XAchseBestimmenSchleife;
+
+         else
+            null;
+         end if;
+
+      end loop XAchseBestimmenSchleife;
+      
+      return SystemDatentypen.Karte_Größe_Nutzer;
+      
    end ZufälligeKartengröße;
    
    
@@ -63,58 +112,59 @@ package body ZufallGeneratorenSpieleinstellungen is
    procedure ZufälligeRassen
    is begin
       
-      MenschVorhanden := False;
+      SpielerVorhanden := False;
       GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer);
       ZufälligeRassenWählen.Reset (ZufälligeRassenGewählt);
       
-      RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      SpielerSchleife:
+      while SpielerVorhanden = False loop
+         RassenSchleife:
+         for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
+            RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
 
-         if
-           RasseImSpiel = SystemDatentypen.Spieler_Mensch
-           and
-             MenschVorhanden = False
-         then
-            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
-            MenschVorhanden := True;
+            if
+              RasseImSpiel = SystemDatentypen.Spieler_KI
+            then
+               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
+               SpielerVorhanden := True;
             
-         elsif
-           RasseImSpiel = SystemDatentypen.Spieler_Mensch
-         then
-            null;
-            
-         else
-            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
-         end if;
+            else
+               null;
+            end if;
          
-      end loop RassenSchleife;
+         end loop RassenSchleife;
+      end loop SpielerSchleife;
       
-      case
-        MenschVorhanden
-      is
-         when True =>
-            return;
-            
-         when False =>
-            null;
-      end case;
+      ZufälligeRassenWählen.Reset (ZufälligeRassenGewählt);
       
-      MenschlicherSpielerSchleife:
-      for MenschlicheRasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      MenschFestlegenSchleife:
+      loop
+         MenschlicherSpielerSchleife:
+         for MenschlicheRasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
 
-         if
-           GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = SystemDatentypen.Spieler_KI
-         then
-            GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := SystemDatentypen.Spieler_Mensch;
-            return;
+            if
+              GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = SystemDatentypen.Spieler_KI
+            then
+               RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
+               
+               case
+                 RasseImSpiel
+               is
+                  when SystemDatentypen.Spieler_Mensch =>
+                     GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := SystemDatentypen.Spieler_Mensch;
+                     return;
+                     
+                  when others =>
+                     null;
+               end case;
             
-         else
-            null;
-         end if;
+            else
+               null;
+            end if;
          
-      end loop MenschlicherSpielerSchleife;
+         end loop MenschlicherSpielerSchleife;
+      end loop MenschFestlegenSchleife;
       
    end ZufälligeRassen;
    

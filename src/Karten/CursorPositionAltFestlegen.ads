@@ -21,11 +21,19 @@ private
    procedure AlteEAchseFestlegen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
-   procedure AlteYAchseFestlegen
+   procedure AlteYAchseFestlegenKonsole
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive);
 
-   procedure AlteXAchseFestlegen
+   procedure AlteXAchseFestlegenKonsole
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      BewegungsfeldFestlegenExtern : in Positive);
+
+   procedure AlteYAchseFestlegenSFML
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      BewegungsfeldFestlegenExtern : in Positive);
+
+   procedure AlteXAchseFestlegenSFML
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive);
 

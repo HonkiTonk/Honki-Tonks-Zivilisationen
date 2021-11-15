@@ -284,9 +284,14 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
          return SystemDatentypen.Karte_Größe_Nutzer;
-                    
+         
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 10
+      then
+         return SystemDatentypen.Zufall;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 11
       then
          return SystemDatentypen.Karte_Größe_Zufall;
                     
@@ -424,6 +429,11 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
          return SystemDatentypen.Karte_Form_Tugel_Extrem;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 9
+      then
+         return SystemDatentypen.Zufall;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 2
@@ -539,6 +549,11 @@ package body RueckgabeMenues is
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
          return SystemDatentypen.Karte_Ressource_Überfluss;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 5
+      then
+         return SystemDatentypen.Zufall;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 2

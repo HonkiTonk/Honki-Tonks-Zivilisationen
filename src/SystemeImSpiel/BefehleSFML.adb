@@ -31,6 +31,8 @@ with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
+with AuswahlMenue;
+with BewegungCursorSFML;
 
 package body BefehleSFML is
    
@@ -39,7 +41,7 @@ package body BefehleSFML is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      Befehl := Eingabe.BefehlEingabe;
+      Befehl := Eingabe.Tastenwert;
 
       case
         Befehl
@@ -53,12 +55,7 @@ package body BefehleSFML is
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when SystemDatentypen.Menü_Zurück =>
-            null;
-           -- return Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
-           --                         TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
-           --                         FrageZeileExtern  => 0,
-           --                         ErsteZeileExtern  => 1,
-           --                         LetzteZeileExtern => 6);
+            return AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Spiel_Menü);
 
          when SystemDatentypen.Bauen =>
             BaueStadt (RasseExtern => RasseExtern);
@@ -121,8 +118,11 @@ package body BefehleSFML is
             
          when SystemDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Mausbewegung =>
+            BewegungCursorSFML.CursorPlatzierenSFML (RasseExtern => RasseExtern);
          
-         when SystemDatentypen.Leer | SystemDatentypen.Mausbewegung =>
+         when SystemDatentypen.Leer =>
             null;
       end case;
 
