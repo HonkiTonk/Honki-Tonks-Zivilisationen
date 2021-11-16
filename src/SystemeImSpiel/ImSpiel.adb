@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with Ada.Calendar; use Ada.Calendar;
 
+with SystemKonstanten;
 with EinheitenKonstanten;
 
 with Karte;
@@ -12,6 +13,8 @@ with Speichern;
 with Laden;
 with RasseEntfernen;
 with ZwischenDenRunden;
+with Sichtweiten;
+with AuswahlMenue;
 
 with KI;
 
@@ -21,7 +24,7 @@ package body ImSpiel is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      Karte.SichtweiteBewegungsfeldFestlegen;
+      Sichtweiten.SichtweiteBewegungsfeldFestlegen;
       
       SpielSchleife:
       loop
@@ -203,7 +206,55 @@ package body ImSpiel is
          is
             when SystemDatentypen.Start_Weiter =>
                null;
+               
+            when SystemDatentypen.Runde_Beenden =>
+               return AktuellerBefehlSpieler;
+               
+            when SystemDatentypen.Spielmenü =>
+               RückgabeSpielmenü := Spielmenü (RasseExtern => RasseExtern);
 
+               if
+                 RückgabeSpielmenü = SystemDatentypen.Laden
+               then
+                  return SystemDatentypen.Schleife_Verlassen;
+                  
+               elsif
+                 RückgabeSpielmenü in SystemDatentypen.Hauptmenü_Beenden_Enum'Range
+               then
+                  return RückgabeSpielmenü;
+                  
+               elsif
+                 RückgabeSpielmenü = SystemKonstanten.StartWeiterKonstante
+               then
+                  null;
+                  
+               else
+                  raise Program_Error;
+               end if;
+               
+            when others =>
+               raise Program_Error;
+         end case;
+                     
+      end loop SpielerSchleife;
+      
+   end MenschAmZug;
+
+
+
+   function Spielmenü
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      SpielmenüSchleife:
+      loop
+         
+         AuswahlSpielmenü := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Spiel_Menü);
+
+         case
+           AuswahlSpielmenü
+         is
             when SystemDatentypen.Speichern =>
                GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
@@ -212,7 +263,7 @@ package body ImSpiel is
                if
                  Laden.LadenNeu = True
                then
-                  return SystemDatentypen.Schleife_Verlassen;
+                  return SystemDatentypen.Laden;
 
                else
                   null;
@@ -220,10 +271,9 @@ package body ImSpiel is
                
             when SystemDatentypen.Optionen =>
                RückgabeOptionen := Optionen.Optionen;
+               
                if
-                 RückgabeOptionen = SystemDatentypen.Spiel_Beenden
-                 or
-                   RückgabeOptionen = SystemDatentypen.Hauptmenü
+                 RückgabeOptionen in SystemDatentypen.Hauptmenü_Beenden_Enum'Range
                then
                   return RückgabeOptionen;
                   
@@ -231,16 +281,16 @@ package body ImSpiel is
                   null;
                end if;
                
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü | SystemDatentypen.Runde_Beenden =>
-               return AktuellerBefehlSpieler;
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range | SystemKonstanten.StartWeiterKonstante =>
+               return AuswahlSpielmenü;
                   
             when others =>
                raise Program_Error;
          end case;
-                     
-      end loop SpielerSchleife;
       
-   end MenschAmZug;
+      end loop SpielmenüSchleife;
+   
+   end Spielmenü;
    
    
    

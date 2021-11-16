@@ -86,8 +86,7 @@ private
       return SystemDatentypen.Rückgabe_Werte_Enum;
             
    function SteuerungMenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum;
    

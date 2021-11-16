@@ -43,9 +43,12 @@ private
    FlussWert : KartenDatentypen.Karten_Grund_Enum;
    RessourceWert : KartenDatentypen.Karten_Grund_Enum;
    
+   GrundWert : Karten_Grund_Alle_Felder_Enum;
+   
    EAchse : KartenDatentypen.EbeneVorhanden;
    YAchse : KartenDatentypen.KartenfeldPositiv;
    XAchse : KartenDatentypen.KartenfeldPositiv;
+   
 
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
    ZufallsPunktKarte : KartenRecords.AchsenKartenfeldPositivRecord;

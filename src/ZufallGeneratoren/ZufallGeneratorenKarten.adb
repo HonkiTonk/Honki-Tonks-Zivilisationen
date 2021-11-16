@@ -153,7 +153,23 @@ package body ZufallGeneratorenKarten is
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
-      return WerteWählenChaoskarte.Random (GrundGewählt);
+      
+      GrundSchleife:
+      loop
+         
+         GrundWert := WerteWählenChaoskarte.Random (GrundGewählt);
+         
+         case
+           GrundWert
+         is
+            when KartenDatentypen.Hügel_Mit =>
+               null;
+               
+            when others =>
+               return GrundWert;
+         end case;
+         
+      end loop GrundSchleife;
       
    end ChaoskarteGrund;
    
@@ -187,41 +203,37 @@ package body ZufallGeneratorenKarten is
    
    function ChaoskarteRessource
      (WasserLandExtern : in Boolean)
-      return KartenDatentypen.Karten_Grund_Enum
+         return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       RessourceWählenChaoskarte.Reset (RessourceGewählt);
-      
-      WählenSchleife:
-      loop
+      RessourceWert := RessourceWählenChaoskarte.Random (RessourceGewählt);
          
-         RessourceWert := RessourceWählenChaoskarte.Random (RessourceGewählt);
-         
-         case
-           WasserLandExtern
-         is
-            when True =>
-               if
-                 RessourceWert in KartenDatentypen.Karten_Grund_Ressourcen_Wasser'Range
-               then
-                  return RessourceWert;
+      case
+        WasserLandExtern
+      is
+         when True =>
+            if
+              RessourceWert in KartenDatentypen.Karten_Grund_Ressourcen_Wasser'Range
+            then
+               return RessourceWert;
                   
-               else
-                  return KartenDatentypen.Leer;
-               end if;
+            else
+               null;
+            end if;
 
-            when False =>
-               if
-                 RessourceWert in KartenDatentypen.Karten_Grund_Ressourcen_Land'Range
-               then
-                  return RessourceWert;
+         when False =>
+            if
+              RessourceWert in KartenDatentypen.Karten_Grund_Ressourcen_Land'Range
+            then
+               return RessourceWert;
                   
-               else
-                  return KartenDatentypen.Leer;
-               end if;
-         end case;
-         
-      end loop WählenSchleife;
+            else
+               null;
+            end if;
+      end case;
+            
+      return KartenDatentypen.Leer;
       
    end ChaoskarteRessource;
 

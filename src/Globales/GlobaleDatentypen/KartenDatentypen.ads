@@ -17,6 +17,8 @@ package KartenDatentypen is
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
+   
+   type SichtbereichAnfangEndeArray is array (1 .. 4) of Kartenfeld;
 
    subtype Kartengröße_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_Zufall;
    subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_Nutzer;
@@ -62,7 +64,7 @@ package KartenDatentypen is
    subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis .. Gestein;
    subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Tundra .. Gestein;
    subtype Karten_Grund_Ressourcen_Enum is Karten_Grund_Enum range Fisch .. Gold;
-   subtype Karten_Grund_Ressourcen_Wasser is Karten_Grund_Ressourcen_Enum range Fisch .. Wal;
+   subtype Karten_Grund_Ressourcen_Wasser is Karten_Grund_Ressourcen_Enum range Karten_Grund_Ressourcen_Enum'First .. Wal;
    subtype Karten_Grund_Ressourcen_Land is Karten_Grund_Ressourcen_Enum range Kohle .. Karten_Grund_Ressourcen_Enum'Last;
    subtype Karten_Fluss_Enum is Karten_Grund_Enum range Flusskreuzung_Vier .. Karten_Grund_Enum'Last;
    subtype Karten_Grund_Fluss_Enum is Karten_Fluss_Enum range Flusskreuzung_Vier .. Fluss_Einzeln;

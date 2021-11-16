@@ -17,7 +17,6 @@ with Auswahl;
 with Ladezeiten;
 with Informationen;
 with SpeichernLadenAllgemein;
-with Sichtweiten;
 
 package body Speichern is
 
@@ -106,11 +105,6 @@ package body Speichern is
                                                          Karten.Kartenform);
       KartenDatentypen.Kartengröße_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                             Karten.Kartengröße);
-      
-      Positive'Write (Stream (File => DateiSpeichernNeu),
-                      Sichtweiten.SichtweiteFestlegen);
-      Positive'Write (Stream (File => DateiSpeichernNeu),
-                      Sichtweiten.BewegungsfeldFestlegen);
       
       case
         Karten.Kartengröße

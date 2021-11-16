@@ -12,7 +12,7 @@ with LeseEinheitenGebaut;
 with LeseWichtiges;
 
 with InDerStadt;
-with BewegungEinheiten;
+with BewegungEinheitenKonsole;
 with BewegungCursor;
 with Auswahl;
 with NaechstesObjekt;
@@ -53,12 +53,7 @@ package body BefehleKonsole is
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when SystemDatentypen.Menü_Zurück =>
-            null;
-           -- return Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
-           --                         TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
-           --                         FrageZeileExtern  => 0,
-            --                        ErsteZeileExtern  => 1,
-            --                        LetzteZeileExtern => 6);
+            return SystemDatentypen.Spielmenü;
 
          when SystemDatentypen.Bauen =>
             BaueStadt (RasseExtern => RasseExtern);
@@ -262,7 +257,7 @@ package body BefehleKonsole is
          null;
                      
       else
-         BewegungEinheiten.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         BewegungEinheitenKonsole.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
    end EinheitSteuern;

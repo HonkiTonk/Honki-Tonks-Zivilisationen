@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleVariablen;
+
 package body RueckgabeMenues is
    
    function RückgabeMenüs
@@ -74,9 +76,8 @@ package body RueckgabeMenues is
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when SystemDatentypen.Steuerung_Menü =>
-            return SteuerungMenü (AnfangExtern          => AnfangExtern,
-                                   EndeExtern            => EndeExtern,
-                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            return SteuerungMenü (EndeExtern            => EndeExtern,
+                                  AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when SystemDatentypen.Sonstiges_Menü =>
             return SonstigesMenü (AnfangExtern          => AnfangExtern,
@@ -815,15 +816,14 @@ package body RueckgabeMenues is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      case
-        AnfangExtern
-      is
-         when 1 =>
-            null;
-            
-         when others =>
-            null;
-      end case;
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
       
       if
         AktuelleAuswahlExtern = EndeExtern - 2
@@ -848,23 +848,21 @@ package body RueckgabeMenues is
    
    
    
-   -- Das hier noch anpassen.
    function SteuerungMenü
-     (AnfangExtern : in Positive;
-      EndeExtern : in Positive;
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        AktuelleAuswahlExtern = AnfangExtern
+        AktuelleAuswahlExtern = EndeExtern - 4
       then
-         return SystemDatentypen.Eingabe;
+         return SystemDatentypen.Speichern;
                     
       elsif
-        AktuelleAuswahlExtern = AnfangExtern + 1
+        AktuelleAuswahlExtern = EndeExtern - 3
       then
-         return SystemDatentypen.Zufall;
+         return SystemDatentypen.Wiederherstellen;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 2
@@ -882,7 +880,8 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         GlobaleVariablen.UmbelegungNummer := AktuelleAuswahlExtern;
+         return SystemDatentypen.Eingabe;
       end if;
       
    end SteuerungMenü;

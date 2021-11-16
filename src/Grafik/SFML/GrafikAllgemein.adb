@@ -261,9 +261,9 @@ package body GrafikAllgemein is
         or
           PositionExtern.x < 0.00
           or
-            PositionExtern.y > Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe)
+            PositionExtern.y >= Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe)
         or
-          PositionExtern.x > Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
+          PositionExtern.x >= Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
       then
          raise Program_Error;
          

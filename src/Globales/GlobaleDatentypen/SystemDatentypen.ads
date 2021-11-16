@@ -4,7 +4,7 @@ package SystemDatentypen is
 
    -- Wichtige Werte
    type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Zurück, Hauptmenü, Spiel_Beenden, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
-                                 Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, 
+                                 Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, Spielmenü,
                                  
                                  -- Grafikmenü
                                  Auflösung_Ändern, Farbtiefe_Ändern, Bildrate_Ändern, Schriftgröße,

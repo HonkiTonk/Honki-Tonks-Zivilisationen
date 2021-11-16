@@ -24,12 +24,20 @@ package KarteSFML is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
    
+   
+   
+   function FarbeErmitteln
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
+      return Sf.Graphics.Color.sfColor;
+   
 private
    
    YSichtAnfang : KartenDatentypen.Kartenfeld;
    YSichtEnde : KartenDatentypen.Kartenfeld;
    XSichtAnfang : KartenDatentypen.Kartenfeld;
    XSichtEnde : KartenDatentypen.Kartenfeld;
+   
+   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
    YMultiplikator : Float;
    XMultiplikator : Float;
@@ -58,14 +66,5 @@ private
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
-   
-   procedure SichtbereichFestlegen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
-   
-   
-   
-   function FarbeErmitteln
-     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
-      return Sf.Graphics.Color.sfColor;
 
 end KarteSFML;

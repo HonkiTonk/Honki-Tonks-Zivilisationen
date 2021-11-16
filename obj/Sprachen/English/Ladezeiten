@@ -1,19 +1,19 @@
-Gesamtzeit Spielweltgenerierung:
-Generierung Ebene 0, 1 und 2 und Landschaft Ebene -2:
-Unterscheide zwischen See- und Küstengewässer:
-Generiere Landschaft Ebene 0:
-Generiere Landschaft Ebene -1:
-Generiere Flüsse:
-Generiere Ressourcen:
-Kartenfelder bewerten:
-Spieler platzieren:
-Dauer des Spielstarts:
-Berechnungszeit nach Zugende ohne KI:
-Zeit zum Speichern:
-Zeit zum Laden:
-KI 1 - Menschen:
+Total time game world generation:
+Generation level 0, 1 and 2 and landscape level -2:
+Distinguish between sea and coastal waters:
+Generate landscape level 0:
+Generate landscape level -1:
+Generate rivers:
+Generate resources:
+Rate map tiles:
+Place players:
+Duration of the game start:
+Calculation time after the end of the round without KI:
+Time to save:
+Time to load:
+KI 1 - Humans:
 KI 2 - Kasrodiah:
-KI 3 - Lasupin:
+KI 3 - Lasupine:
 KI 4 - Lamustra:
 KI 5 - Manuky:
 KI 6 - Suroka:
@@ -29,4 +29,4 @@ KI 15 - Tridatus:
 KI 16 - Senelari:
 KI 17 - Aspari 2:
 KI 18 - Ekropa:
-Gesamtzeit KI:
+Total time AI:

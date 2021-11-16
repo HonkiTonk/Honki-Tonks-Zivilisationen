@@ -78,7 +78,7 @@ package body OptionenSonstiges is
       
       EingegebeneZahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
                                             ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile + 1,
-                                            ZahlenMinimumExtern => 1,
+                                            ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => 999_999_999);
 
       case
@@ -86,6 +86,10 @@ package body OptionenSonstiges is
       is
          when 1 .. 999_999_999 =>
             GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl;
+            
+         when 0 =>
+            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl;
+            
             
          when SystemKonstanten.GanzeZahlAbbruchKonstante =>
             null;

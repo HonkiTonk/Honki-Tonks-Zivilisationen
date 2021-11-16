@@ -115,7 +115,6 @@ package body KarteStadtKonsole is
      
    
    
-   
    procedure GrafischeDarstellung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin

@@ -31,6 +31,12 @@ package GlobaleVariablen is
    -- Schreiben/Ausgabe
    
    
+   
+   -- Schlechte Lösung für die Umbelegung der Steuerung
+   UmbelegungNummer : Positive;
+   -- Schlechte Lösung für die Umbelegung der Steuerung
+   
+   
 
    -- Cursor
    type CursorImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;

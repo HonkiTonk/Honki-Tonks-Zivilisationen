@@ -8,6 +8,7 @@ with BewegungCursor;
 with Eingabe;
 with EinwohnerZuweisenEntfernen;
 with GebaeudeVerkaufen;
+with BewegungCursorSFML;
 
 package body InDerStadt is
 
@@ -50,7 +51,7 @@ package body InDerStadt is
                return;
                
             when SystemDatentypen.Mausbewegung =>
-               null;
+               BewegungCursorSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);
                
             when others =>
                null;

@@ -1,27 +1,27 @@
-Kartenform wählen:
-X-Zylinder
-Y-Zylinder
+Choose card shape:
+X-cylinder
+Y-cylinder
 Torus
-Kugel
-Viereck
-Kugel gedreht
+Sphere
+Square
+Sphere rotated
 Tugel
-Tugel gedreht
-Tugel extrem
-Zufall
-Zurück
-Hauptmenü
-Spiel beenden
-Eine Karte mit Übergang in X-Richtung generieren. (Walzenartig)
-Eine Karte mit Übergang in Y-Richtung generieren. (Walzenartig)
-Eine Karte mit Übergang in Y- und X-Richtung generieren. (Donutartig)
-Eine Karte mit Übergang in Y- und X-Richtung generieren. (Erdänhlich)
-Eine Karte ohne Übergänge generieren.
-Eine Karte mit Übergang in Y- und X-Richtung generieren. (Erdänhlich)
-Komisches Zeug das eventuell zu Abstürzen führt.
-Komisches Zeug das eventuell zu Abstürzen führt.
-Komisches Zeug das eventuell zu Abstürzen führt.
-Eine zufällige Kartenform auswählen.
-Zurück zur Auswahl der Kartenart.
-Zurück zum Hauptmenü.
-Das Spiel beenden.
+Tugel turned
+Tugel extreme
+conicidence
+Return
+Main menu
+Exit game
+Generate a map with a transition in the X direction. (Roller-like)
+Generate a map with a transition in the Y direction. (Roller-like)
+Generate a map with transition in Y and X directions. (Donut-like)
+Generate a map with transition in Y and X directions. (Earth-like)
+Generate a map with no transitions.
+Generate a map with transition in Y and X directions. (Earth-like)
+Strange stuff that may lead to crashes.
+Strange stuff that may lead to crashes.
+Strange stuff that may lead to crashes.
+Pick a random card shape.
+Back to the selection of the card type.
+Back to main menu.
+Quit the game.

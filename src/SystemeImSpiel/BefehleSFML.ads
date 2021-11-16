@@ -63,5 +63,8 @@ private
    
    procedure EinheitSteuern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+   
+   procedure AuswahlMaus
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end BefehleSFML;

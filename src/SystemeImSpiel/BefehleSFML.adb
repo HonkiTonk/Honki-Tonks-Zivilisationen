@@ -12,7 +12,6 @@ with LeseEinheitenGebaut;
 with LeseWichtiges;
 
 with InDerStadt;
-with BewegungEinheiten;
 with BewegungCursor;
 with Auswahl;
 with NaechstesObjekt;
@@ -31,8 +30,8 @@ with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
-with AuswahlMenue;
 with BewegungCursorSFML;
+with BewegungEinheitenSFML;
 
 package body BefehleSFML is
    
@@ -55,7 +54,7 @@ package body BefehleSFML is
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when SystemDatentypen.Menü_Zurück =>
-            return AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Spiel_Menü);
+            return SystemDatentypen.Spielmenü;
 
          when SystemDatentypen.Bauen =>
             BaueStadt (RasseExtern => RasseExtern);
@@ -120,15 +119,26 @@ package body BefehleSFML is
             Cheat.Menü (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Mausbewegung =>
-            BewegungCursorSFML.CursorPlatzierenSFML (RasseExtern => RasseExtern);
+            BewegungCursorSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
          
          when SystemDatentypen.Leer =>
+            -- Hier auch noch die Cursorbewegung einbauen?
             null;
       end case;
 
       return SystemKonstanten.StartWeiterKonstante;
       
    end BefehleSFML;
+   
+   
+   
+   procedure AuswahlMaus
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      null;
+      
+   end AuswahlMaus;
    
    
    
@@ -262,7 +272,7 @@ package body BefehleSFML is
          null;
                      
       else
-         BewegungEinheiten.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
    end EinheitSteuern;

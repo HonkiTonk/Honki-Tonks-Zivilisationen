@@ -7,7 +7,13 @@ with KartenRecords;
 
 package BewegungCursorSFML is
    
-   procedure CursorPlatzierenSFML
+   procedure CursorPlatzierenKarteSFML
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
+   
+   procedure CursorPlatzierenStadtSFML
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -15,17 +21,11 @@ package BewegungCursorSFML is
    
 private
    
-   YSichtAnfang : KartenDatentypen.Kartenfeld;
-   YSichtEnde : KartenDatentypen.Kartenfeld;
-   XSichtAnfang : KartenDatentypen.Kartenfeld;
-   XSichtEnde : KartenDatentypen.Kartenfeld;
+   SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
    YMultiplikator : Float;
    XMultiplikator : Float;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   
-   procedure SichtbereichFestlegen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end BewegungCursorSFML;

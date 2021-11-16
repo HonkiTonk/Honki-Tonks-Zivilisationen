@@ -5,8 +5,6 @@ with GlobaleVariablen;
 
 package Karte is
 
-   procedure SichtweiteBewegungsfeldFestlegen;
-
    procedure AnzeigeKarte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with

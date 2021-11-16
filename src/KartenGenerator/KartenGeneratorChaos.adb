@@ -36,15 +36,25 @@ package body KartenGeneratorChaos is
                  GrundZufall
                is
                   when KartenDatentypen.Karten_Grund_Wasser_Enum'Range =>
-                     SchreibeKarten.Ressource (PositionExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                               RessourceExtern => ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => True));
+                     RessourceZufall := ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => True);
                      
                   when KartenDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
-                     SchreibeKarten.Ressource (PositionExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                               RessourceExtern => ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => False));
+                     RessourceZufall := ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => False);
+                     
                      
                   when others =>
                      null;
+               end case;
+               
+               case
+                 RessourceZufall
+               is
+                  when KartenDatentypen.Leer =>
+                     null;
+                     
+                  when others =>
+                     SchreibeKarten.Ressource (PositionExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                               RessourceExtern => RessourceZufall);
                end case;
             
             end loop XAchseSchleife;

@@ -26,7 +26,7 @@ package body OptionenSteuerung is
       
       BelegungSchleife:
       loop
-         
+                  
          AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Steuerung_Menü);
          
          case
@@ -39,14 +39,15 @@ package body OptionenSteuerung is
                Eingabe.StandardTastenbelegungLaden;
                SchreibenTastatur.TastenbelegungSchreiben;
             
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante | SystemKonstanten.ZurückKonstante =>
+            when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
+               
+            when SystemDatentypen.Eingabe =>
+               AlteTasteEntfernen;
                      
             when others =>
-               AlteTasteEntfernen;
+               raise Program_Error;
          end case;
-         
-         NeueTasteFestlegen;
          
       end loop BelegungSchleife;
       
@@ -124,31 +125,30 @@ package body OptionenSteuerung is
    
    procedure AlteTasteEntfernenSFML
    is begin
+               
+      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (GlobaleVariablen.UmbelegungNummer);
+      Put_Line (NeueAuswahl'Wide_Wide_Image);
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 46,
-                                     LetzteZeileExtern      => 46,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      NeueTasteSchleife:
+      loop
+         
+         EingabeSystemeSFML.TastenEingabe;
+         NeueTasteSFML := EingabeSystemeSFML.TastaturTaste;
+         
+         case
+           NeueTasteSFML
+         is
+            when Sf.Window.Keyboard.sfKeyUnknown =>
+               null;
                
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
+            when Sf.Window.Keyboard.sfKeyEscape =>
+               return;
                
-      -- Put_Line (Eingabe.Tastenbelegung (1, NeueAuswahl) & "    " & Eingabe.Tastenbelegung (2, NeueAuswahl));
-               
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Fragen,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 29,
-                                     LetzteZeileExtern      => 29,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
-      
-      EingabeSystemeSFML.TastenEingabe;
-      NeueTasteSFML := EingabeSystemeSFML.TastaturTaste;
+            when others =>
+               exit NeueTasteSchleife;
+         end case;
+         
+      end loop NeueTasteSchleife;
                
       BelegungFeldSchleife:
       for BelegungFeldSchleifenwert in EingabeSFML.TastenbelegungArray'Range (1) loop
@@ -161,7 +161,6 @@ package body OptionenSteuerung is
                 BelegungPositionSchleifenwert /= NeueAuswahl
             then
                EingabeSFML.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := Sf.Window.Keyboard.sfKeyUnknown;
-               exit BelegungFeldSchleife;
                
             else
                null;
@@ -169,6 +168,8 @@ package body OptionenSteuerung is
             
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
+      
+      NeueTasteFestlegen;
       
    end AlteTasteEntfernenSFML;
    
@@ -224,8 +225,6 @@ package body OptionenSteuerung is
    
    procedure NeueTasteFestlegenSFML
    is begin
-      
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
          
       if
         EingabeSFML.Tastenbelegung (1, NeueAuswahl) = NeueTasteSFML

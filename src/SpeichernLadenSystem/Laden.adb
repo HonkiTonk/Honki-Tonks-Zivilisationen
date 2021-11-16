@@ -16,7 +16,6 @@ with Ladezeiten;
 with Informationen;
 with Auswahl;
 with SpeichernLadenAllgemein;
-with Sichtweiten;
 
 package body Laden is
 
@@ -119,11 +118,6 @@ package body Laden is
                                                        Karten.Kartenform);
       KartenDatentypen.Kartengröße_Enum'Read (Stream (File => DateiLadenNeu),
                                                           Karten.Kartengröße);
-      
-      Positive'Read (Stream (File => DateiLadenNeu),
-                     Sichtweiten.SichtweiteFestlegen);
-      Positive'Read (Stream (File => DateiLadenNeu),
-                     Sichtweiten.BewegungsfeldFestlegen);
       
       case
         Karten.Kartengröße

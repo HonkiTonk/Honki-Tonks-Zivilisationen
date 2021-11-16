@@ -91,17 +91,33 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.93 => 0.00.93 (17.11.2021):
+   -- Version 0.00.9350 => 0.00.93 (17.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9320 => 0.00.93 (16.11.2021):
+   -- Version 0.00.9320 => 0.00.9350 (16.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Anzeige der Karte in der Konsole vorübergehend entfernt, da es Abstürze verursacht.
+   -- Doppelten Code zusammengeführt.
+   -- Unnötigen Code gelöscht.
+   -- Mausbewegungen am Kartenrand führt jetzt zum korrekten Scrollen und nicht mehr zum Verschieben des ganzen Bildes.
+   -- Scrollen funktioniert jetzt mit allen Kartengrößen/Sichtbereichen.
+   -- Diverse Fehler korrigiert die zu einer Fehlplatzierung des Cursors oder von Kartenfelder führen konnten.
+   -- Durch das Festlegen von 0 Runden bis zum Autospeichern wird das Autospeichern jetzt ebenfalls deaktiviert.
+   -- Englische Übersetzung an das neue System angepasst und Kleinigkeiten korrigiert.
+   -- Fehler im Chaoskartengenerator korrigiert, welcher zu falsch gesetzten Werten und Abstürzen führte.
+   -- Code vereinfacht.
+   -- Es ist jetzt mit der SFML Version möglich die Steuerungsbelegung zu ändern.
+   -- Wenn man über das Spielmenü auf die Optionen zugreift landet man jetzt bei der Verwengung von Zurück wieder im Spielmenü und nicht mehr direkt im Spiel.
+   -- Angefangen eine SFML Version für die Anzeige der Stadt zu bauen.
+   -- Angefangen BewegungEinheit in eine Konsolen- und eine SFML-Version aufzuteilen.
+   -- Angefangen eine Funktion einzubauen, durch die man die Einheitenbefehle auch mit der Maus eingeben kann.
+   -- Es ist jetzt möglich die Einheiten durch Benutzung der Maus zu verschieben.
+   -- Leichte Anpassungen an der aktuellen Flussanzeige.
+   -- Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
@@ -121,7 +137,7 @@ package ChangelogNovember2021 is
    -- Angefangen die SFML Version der Stadtkartenanzeige zu programmieren.
    -- Angefangen die Cursorbewegung in eine Konsolen- und eine SFML-Version aufzuteilen.
    -- Angefangen das Scrollen mit dem Mauscursor so umzubauen, dass am Rand gescrollt und nicht komplett neu die Mausposition festgelegt wird.
-   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

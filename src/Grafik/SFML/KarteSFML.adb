@@ -4,7 +4,6 @@ with KartenRecords; use KartenRecords;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
-with KartenKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -15,7 +14,6 @@ with EinheitSuchen;
 with StadtSuchen;
 with KarteInformationenSFML;
 with BerechnungenKarteSFML;
-with Sichtweiten;
 
 package body KarteSFML is
    
@@ -41,17 +39,17 @@ package body KarteSFML is
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
         
-      SichtbereichFestlegen (RasseExtern => RasseExtern);
+      SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseExtern);
       
       YMultiplikator := 0.00;
             
       YAchseSchleife:
-      for YAchseSchleifenwert in YSichtAnfang .. YSichtEnde loop
+      for YAchseSchleifenwert in SichtbereichAnfangEnde (1) .. SichtbereichAnfangEnde (2) loop
          
          XMultiplikator := 0.00;
          
          XAchseSchleife:
-         for XAchseSchleifenwert in XSichtAnfang .. XSichtEnde loop
+         for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
                                                                         ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -94,73 +92,6 @@ package body KarteSFML is
       end loop YAchseSchleife;
       
    end Sichtbarkeit;
-   
-   
-   
-   procedure SichtbereichFestlegen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      YSichtAnfang := -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse;
-      YSichtEnde := Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).YAchse;
-      XSichtAnfang := -Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse;
-      XSichtEnde := Sichtweiten.SichtweitenStandard (Sichtweiten.SichtweiteFestlegen).XAchse;
-      
-      YBereichSchleife:
-      for YBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop
-         
-         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                     ÄnderungExtern    => (0, YBereichSchleifenwert, 1));
-         
-         case
-           KartenWert.YAchse
-         is
-            when KartenKonstanten.LeerYAchse =>
-               if
-                 YBereichSchleifenwert <= 0
-               then
-                  YSichtAnfang := YSichtAnfang + 1;
-                  YSichtEnde := YSichtEnde + 1;
-                  
-               else
-                  YSichtAnfang := YSichtAnfang - 1;
-                  YSichtEnde := YSichtEnde - 1;
-               end if;
-                  
-            when others =>
-               null;
-         end case;
-         
-      end loop YBereichSchleife;
-      
-      XBereichSchleife:
-      for XBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop
-         
-         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                     ÄnderungExtern    => (0, 1, XBereichSchleifenwert));
-         
-         case
-           KartenWert.XAchse
-         is
-            when KartenKonstanten.LeerXAchse =>
-               if
-                 XBereichSchleifenwert <= 0
-               then
-                  XSichtAnfang := XSichtAnfang + 1;
-                  XSichtEnde := XSichtEnde + 1;
-                  
-               else
-                  XSichtAnfang := XSichtAnfang - 1;
-                  XSichtEnde := XSichtEnde - 1;
-               end if;
-                  
-            when others =>
-               null;
-         end case;
-         
-      end loop XBereichSchleife;
-      
-   end SichtbereichFestlegen;
    
    
    
@@ -301,8 +232,8 @@ package body KarteSFML is
             null;
             
          when others =>
-            GrafikAllgemein.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
-                                              PositionExtern  => Position,
+            GrafikAllgemein.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
+                                              PositionExtern  => (Position.x, Position.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
                                               FarbeExtern     => Sf.Graphics.Color.sfBlue);
       end case;
       
@@ -401,7 +332,7 @@ package body KarteSFML is
             
          when KartenDatentypen.Korallen =>
             return (255, 114, 86, 255);
-            
+                        
          when others =>
             raise Program_Error;
       end case;
