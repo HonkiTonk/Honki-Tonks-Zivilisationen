@@ -31,6 +31,16 @@ package body EingabeSFML is
       MinimalerWert := MinimumErmitteln (ZahlenMinimumExtern => ZahlenMinimumExtern);
       
       if
+        WelcheFrageExtern > GlobaleTexte.Frage'Last
+      then
+         -- Hier später ein raise einbauen.
+         Frage := Positive'First;
+         
+      else
+         Frage := WelcheFrageExtern;
+      end if;
+      
+      if
         ZahlenMinimumExtern >= ZahlenMaximumExtern
       then
          return SystemKonstanten.GanzeZahlAbbruchKonstante;
@@ -46,7 +56,7 @@ package body EingabeSFML is
          case
            ZahlSchleife (ZahlenMinimumExtern => MinimalerWert,
                          ZahlenMaximumExtern => MaximalerWert,
-                         WelcheFrageExtern  => WelcheFrageExtern)
+                         WelcheFrageExtern   => Frage)
          is
             when 2 =>
                exit ZahlenAußenSchleife;

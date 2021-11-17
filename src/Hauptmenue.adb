@@ -11,11 +11,14 @@ with ImSpiel;
 with Laden;
 with Wuerdigung;
 with AuswahlMenue;
+with WelcheSFMLAnzeige;
 
 package body Hauptmenue is
 
    procedure Hauptmenü
    is begin
+      
+      WelcheSFMLAnzeige.AktuelleDarstellung := SystemDatentypen.SFML_Hauptmenü;
       
       HauptmenüSchleife:
       loop
@@ -87,6 +90,8 @@ package body Hauptmenue is
          end case;
 
       end loop HauptmenüSchleife;
+      
+      WelcheSFMLAnzeige.AktuelleDarstellung := SystemDatentypen.SFML_Ende;
 
    end Hauptmenü;
 

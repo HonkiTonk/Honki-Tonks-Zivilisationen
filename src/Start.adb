@@ -6,19 +6,34 @@ with Einlesen;
 with Intro;
 with Hauptmenue;
 with EinlesenEinstellungen;
+-- with WelcheSFMLAnzeige;
 
 procedure Start
-is begin
+is
 
-   SchreibenVerzeichnisse.SchreibenVerzeichnisse;
-   EinlesenEinstellungen.EinlesenEinstellungen;
+   task Logik;
 
-   GrafikStartEnde.FensterErzeugen;
-   Einlesen.Einlesen;
+   task body Logik
+   is begin
 
-   Intro.Intro;
-   Hauptmenue.Hauptmenü;
+      SchreibenVerzeichnisse.SchreibenVerzeichnisse;
+      EinlesenEinstellungen.EinlesenEinstellungen;
 
-   GrafikStartEnde.FensterEntfernen;
+      GrafikStartEnde.FensterErzeugen;
+
+      Einlesen.Einlesen;
+
+      Intro.Intro;
+
+      Hauptmenue.Hauptmenü;
+
+      GrafikStartEnde.FensterEntfernen;
+
+   end Logik;
+
+begin
+
+   null;
+   -- WelcheSFMLAnzeige.WelcheSFMLAnzeige;
 
 end Start;

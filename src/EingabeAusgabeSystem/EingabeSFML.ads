@@ -43,6 +43,7 @@ private
    ZahlenMinimumPlusmacher : Positive;
    MaximumMinimumAktuelleStelle : Positive;
    AnzeigeAnfang : Positive;
+   Frage : Positive;
    
    AktuellerWert : Natural;
    

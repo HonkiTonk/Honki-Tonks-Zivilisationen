@@ -77,24 +77,27 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (19.11.2021):
+   -- Version 0.00.93 => 0.00.9 (19.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.93 => 0.00.9 (18.11.2021):
+   -- Version 0.00.9360 => 0.00.93 (18.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9350 => 0.00.93 (17.11.2021):
+   -- Version 0.00.9350 => 0.00.9360 (17.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Steuerung von Einheiten erweitert. so dass die Einheit jetzt auch auf Tastenbefehle reagiert, wenn sie mit der Maus ausgewählt ist.
+   -- Goto funktioniert jetzt wieder korrekt.
+   -- Code vereinfacht/zusammengefasst.
+   -- Angefangen die Darstellung durch die SFML besser einzubauen.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
@@ -117,7 +120,7 @@ package ChangelogNovember2021 is
    -- Angefangen eine Funktion einzubauen, durch die man die Einheitenbefehle auch mit der Maus eingeben kann.
    -- Es ist jetzt möglich die Einheiten durch Benutzung der Maus zu verschieben.
    -- Leichte Anpassungen an der aktuellen Flussanzeige.
-   -- Kleinigkeiten korrigiert/angepasst/überarbeitet.
+   -- Contracts und Kleinigkeiten korrigiert/angepasst/überarbeitet/erweitert.
    
    
    

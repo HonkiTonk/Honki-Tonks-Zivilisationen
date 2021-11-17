@@ -58,6 +58,10 @@ package SystemDatentypen is
    
    type NotAus is range 1 .. 100;
    subtype NotAusKlein is NotAus range 1 .. 5;
+   
+   type SFML_Enum is (Konsole, SFML_Start,
+                      SFML_Intro, SFML_Hauptmenü,
+                      SFML_Ende);
    -- Wichtige Werte
 
 
