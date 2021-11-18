@@ -4,19 +4,8 @@ project Stream is
 
    for Source_Dirs use ("src/**");
    for Object_Dir use "obj/GenerierteDateien";
+   for Main use ("Start.adb");
    for Exec_Dir use "obj";
-   type T_Os is
-      ("Windows_NT", "Linux");
-   Os : T_Os := external ("OS");
-
-   case Os is
-
-      when "Windows_NT" =>
-         for Main use ("Start.adb");
-
-      when "Linux" =>
-         for Main use ("Start.adb");
-   end case;
 
    package Naming is
       for Casing use "MixedCase";
@@ -24,13 +13,11 @@ project Stream is
 
    package Compiler is
       for Switches ("ada") use ("-g", "-gnatW8", "-fstack-check", "-gnato", "-gnata", "-gnatf", "-gnat2020", "-O", "-gnatVacdefimoprst", 
-         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdfghijklmopqrtuvwxyza_c_re.u", "-gnatyACOSadefhiklnprsxM222L7");
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.v.w.x.zcdfghijklmopqrtuvwxyza_c_re", "-gnatyACOSadefhiklnprsxM222L7");
    end Compiler;
 
    package Builder is
       for Switches ("ada") use ("-k", "-s", "-j4", "-C");
-      for Executable_Suffix use "";
-      for Executable ("Start.adb") use "Start";
    end Builder;
 
    package Binder is

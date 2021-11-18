@@ -47,7 +47,7 @@ package body SchreibenVerzeichnisse is
             Create_Directory (New_Directory => "Datenbanken");
       end case;
       
-      -- Erstellung eines Grafik- oder Soundordners ist sinnfrei, da das Programm ja keine Grafiken/Sounds generieren kann;
+      -- Erstellung eines Grafik- oder Soundordners ist sinnfrei, da das Programm ja keine Grafiken/Sounds generieren kann.
       case
         Exists (Name => "Grafik")
       is

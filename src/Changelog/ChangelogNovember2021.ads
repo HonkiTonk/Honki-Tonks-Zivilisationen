@@ -77,24 +77,26 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.93 => 0.00.9 (19.11.2021):
+   -- Version 0.00.9380 => 0.00.9 (19.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9360 => 0.00.93 (18.11.2021):
+   -- Version 0.00.9360 => 0.00.9380 (18.11.2021):
    
-   -- 
+   -- Diverse Änderungen an der Art und Weise wie die Anzeige durch die SFML stattfindet getestet und dann frustriert alle rückgängig gemacht.
+   -- Eine Prüfung für die aktuellen Fenstereinstellungen einzubauen und alle aktuellen Fensterprüfungen/berechnungen angepasst.
+   -- Versucht herauszufinden warum die Anzeigeposition/bestimmung immer noch nicht passt.
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.9350 => 0.00.9360 (17.11.2021):
    
-   -- Die Steuerung von Einheiten erweitert. so dass die Einheit jetzt auch auf Tastenbefehle reagiert, wenn sie mit der Maus ausgewählt ist.
-   -- Goto funktioniert jetzt wieder korrekt.
+   -- Die Steuerung von Einheiten erweitert, so dass die Einheit jetzt auch auf Tastenbefehle reagiert, wenn sie mit der Maus ausgewählt ist.
+   -- Goto auf der Karte funktioniert jetzt wieder korrekt.
    -- Code vereinfacht/zusammengefasst.
    -- Angefangen die Darstellung durch die SFML besser einzubauen.
    -- Kleinigkeiten korrigiert/angepasst.

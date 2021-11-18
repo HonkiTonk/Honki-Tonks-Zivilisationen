@@ -45,7 +45,7 @@ package SystemDatentypen is
    subtype Hauptmenü_Beenden_Enum is Zurück_Beenden_Enum range Hauptmenü .. Spiel_Beenden;
    
    type Welches_Menü_Enum is (Haupt_Menü, Spiel_Menü, Optionen_Menü, Kartengröße_Menü, Kartenart_Menü, Kartenform_Menü, Kartentemperatur_Menü, Kartenressourcen_Menü, Schwierigkeitsgrad_Menü, Rassen_Menü,
-                              Grafik_Menü, Sound_Menü, Steuerung_Menü, Sonstiges_Menü);
+                               Grafik_Menü, Sound_Menü, Steuerung_Menü, Sonstiges_Menü);
    
    type Anfang_Ende_Enum is (Anfangswert, Endwert);
    for Anfang_Ende_Enum use (Anfangswert => 0, Endwert => 1);
@@ -58,10 +58,6 @@ package SystemDatentypen is
    
    type NotAus is range 1 .. 100;
    subtype NotAusKlein is NotAus range 1 .. 5;
-   
-   type SFML_Enum is (Konsole, SFML_Start,
-                      SFML_Intro, SFML_Hauptmenü,
-                      SFML_Ende);
    -- Wichtige Werte
 
 

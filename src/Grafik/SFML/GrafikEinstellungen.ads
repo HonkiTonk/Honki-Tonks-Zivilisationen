@@ -15,6 +15,15 @@ package GrafikEinstellungen is
    
    FensterEinstellungen : SystemRecords.FensterRecord;
    
+   type AktuelleAuflösung is record
+      
+      AktuelleFensterBreite : Sf.sfUint32;
+      AktuelleFensterHöhe : Sf.sfUint32;
+      
+   end record;
+   
+   AktuelleFensterEinstellungen : AktuelleAuflösung;
+   
    procedure StandardGrafikEinstellungenLaden;
    
 private

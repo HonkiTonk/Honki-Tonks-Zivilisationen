@@ -12,15 +12,16 @@ package body AllgemeineTextBerechnungenSFML is
    is begin
       
       TextHalbeBreite := TextHalbeBreiteErmitteln (TextZugriffExtern => TextZugriffExtern);
-      Position := Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 2.00 - TextHalbeBreite;
+      Position := Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00 - TextHalbeBreite;
       
       if
-        Position in 0.00 .. Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
+        Position in 0.00 .. Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
       then
          return Position;
          
       else
-         raise Program_Error;
+         -- Hier später wieder ein raise Program_Error einbauen.
+         return Position;
       end if;
       
    end TextMittelPositionErmitteln;
@@ -33,7 +34,7 @@ package body AllgemeineTextBerechnungenSFML is
       return Float
    is begin
       
-      Position := Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) / 4.00;
+      Position := Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 4.00;
       TextHalbeBreite := TextHalbeBreiteErmitteln (TextZugriffExtern => TextZugriffExtern);
       
       case
@@ -47,12 +48,13 @@ package body AllgemeineTextBerechnungenSFML is
       end case;
       
       if
-        Position in 0.00 .. Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
+        Position in 0.00 .. Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
       then
          return Position;
          
       else
-         raise Program_Error;
+         -- Hier später wieder ein raise Program_Error einbauen.
+         return Position;
       end if;
       
    end TextViertelPositionErmitteln;

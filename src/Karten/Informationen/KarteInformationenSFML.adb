@@ -18,7 +18,7 @@ package body KarteInformationenSFML is
             null;
       end case;
       
-      FensterInformationen := (Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite), Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe) * 0.20);
+      FensterInformationen := (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite), Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe) * 0.20);
       
    end KarteInformationenSFML;
 

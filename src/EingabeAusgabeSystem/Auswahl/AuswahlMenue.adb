@@ -290,7 +290,7 @@ package body AuswahlMenue is
                                  color => Sf.Graphics.Color.sfWhite);
       ErstesZeichen := 1;
       LetztesZeichen := 1;
-      XPosition := Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe - GrafikEinstellungen.FensterEinstellungen.FensterHöhe / 6);
+      XPosition := Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe - GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe / 6);
       
       TextSchleife:
       loop
@@ -301,14 +301,14 @@ package body AuswahlMenue is
                                                str  => To_Wide_Wide_String (Source => AktuellerText) (ErstesZeichen .. TextSchleifenwert));
             
             if
-              Sf.Graphics.Text.getLocalBounds (text => TextZugriff).width < Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) - 2.00 * StartPositionYAchse
+              Sf.Graphics.Text.getLocalBounds (text => TextZugriff).width < Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) - 2.00 * StartPositionYAchse
               and
                 TextSchleifenwert = To_Wide_Wide_String (Source => AktuellerText)'Last
             then
                exit TextSchleife;
                
             elsif
-              Sf.Graphics.Text.getLocalBounds (text => TextZugriff).width >= Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite) - 2.00 * StartPositionYAchse
+              Sf.Graphics.Text.getLocalBounds (text => TextZugriff).width >= Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) - 2.00 * StartPositionYAchse
               and
                 TextSchleifenwert < To_Wide_Wide_String (Source => AktuellerText)'Last
             then

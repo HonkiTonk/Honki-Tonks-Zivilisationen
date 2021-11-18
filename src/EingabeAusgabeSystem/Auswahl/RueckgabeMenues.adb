@@ -77,7 +77,7 @@ package body RueckgabeMenues is
             
          when SystemDatentypen.Steuerung_Menü =>
             return SteuerungMenü (EndeExtern            => EndeExtern,
-                                  AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when SystemDatentypen.Sonstiges_Menü =>
             return SonstigesMenü (AnfangExtern          => AnfangExtern,

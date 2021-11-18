@@ -14,6 +14,8 @@ package GrafikAllgemein is
    procedure FensterLeeren;
    -- Immer erster Grafikaufruf.
 
+   procedure FensterAnpassen;
+
    -- Immer letzter Grafikaufruf.
    procedure FensterAnzeigen;
    -- Immer letzter Grafikaufruf.

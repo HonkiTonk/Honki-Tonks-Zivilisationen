@@ -132,8 +132,8 @@ package body OptionenGrafik is
         and
           NeueAuflösung.y > 0
       then
-         GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
-         GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
+         GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite := NeueAuflösung.x;
+         GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe := NeueAuflösung.y;
          
       else
          null;

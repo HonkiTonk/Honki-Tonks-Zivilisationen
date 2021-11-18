@@ -5,6 +5,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
 with GrafikEinstellungen;
+with GrafikAllgemein;
 
 package body EingabeSystemeSFML is
 
@@ -19,7 +20,6 @@ package body EingabeSystemeSFML is
       
       EingabeSchleife:
       loop
-         -- while Sf.Graphics.RenderWindow.isOpen (renderWindow => GrafikEinstellungen.Fenster) = Sf.sfTrue loop
          TasteSchleife:
          while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
                                                    event        => ZeichenEingeben)
@@ -28,6 +28,10 @@ package body EingabeSystemeSFML is
             case
               ZeichenEingeben.eventType
             is
+               when Sf.Window.Event.sfEvtClosed =>
+                  -- Hier noch einen universellen Endebefehl einbauen.
+                  null;
+                  
                when Sf.Window.Event.sfEvtKeyPressed =>
                   TastaturTaste := ZeichenEingeben.key.code;
                   return;
@@ -53,12 +57,8 @@ package body EingabeSystemeSFML is
                      null;
                   end if;
                   
-               when Sf.Window.Event.sfEvtClosed =>
-                  null;
-                  -- Sf.Graphics.RenderWindow.close (renderWindow => GrafikEinstellungen.Fenster);
-                  
                when Sf.Window.Event.sfEvtResized =>
-                  null;
+                  GrafikAllgemein.FensterAnpassen;
                   
                when others =>
                   null;

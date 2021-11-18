@@ -1,39 +1,26 @@
 pragma SPARK_Mode (On);
 
-with GrafikStartEnde;
 with SchreibenVerzeichnisse;
 with Einlesen;
 with Intro;
 with Hauptmenue;
 with EinlesenEinstellungen;
--- with WelcheSFMLAnzeige;
+with GrafikStartEnde;
 
 procedure Start
-is
+is begin
 
-   task Logik;
+   SchreibenVerzeichnisse.SchreibenVerzeichnisse;
+   EinlesenEinstellungen.EinlesenEinstellungen;
 
-   task body Logik
-   is begin
+   GrafikStartEnde.FensterErzeugen;
 
-      SchreibenVerzeichnisse.SchreibenVerzeichnisse;
-      EinlesenEinstellungen.EinlesenEinstellungen;
+   Einlesen.Einlesen;
 
-      GrafikStartEnde.FensterErzeugen;
+   Intro.Intro;
 
-      Einlesen.Einlesen;
+   Hauptmenue.Hauptmenü;
 
-      Intro.Intro;
-
-      Hauptmenue.Hauptmenü;
-
-      GrafikStartEnde.FensterEntfernen;
-
-   end Logik;
-
-begin
-
-   null;
-   -- WelcheSFMLAnzeige.WelcheSFMLAnzeige;
+   GrafikStartEnde.FensterEntfernen;
 
 end Start;

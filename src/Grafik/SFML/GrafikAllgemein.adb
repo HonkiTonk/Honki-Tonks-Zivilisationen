@@ -25,6 +25,16 @@ package body GrafikAllgemein is
    
    
    
+   procedure FensterAnpassen
+   is begin
+            
+      GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).x;
+      GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).y;
+      
+   end FensterAnpassen;
+   
+   
+   
    -- Immer letzter Grafikaufruf.
    procedure FensterAnzeigen
    is begin
@@ -40,10 +50,13 @@ package body GrafikAllgemein is
      (NeueAuflösungExtern : in Sf.System.Vector2.sfVector2u)
    is begin
       
-      GrafikStartEnde.FensterEntfernen;
-      
       GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösungExtern.x;
       GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösungExtern.y;
+      
+      GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite := NeueAuflösungExtern.x;
+      GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe := NeueAuflösungExtern.y;
+      
+      GrafikStartEnde.FensterEntfernen;
       
       GrafikStartEnde.FensterErzeugen;
       
@@ -172,9 +185,9 @@ package body GrafikAllgemein is
          raise Program_Error;
          
       elsif
-        AbmessungExtern.y > Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe)
+        AbmessungExtern.y > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
         or
-          AbmessungExtern.x > Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
+          AbmessungExtern.x > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
       then
          raise Program_Error;
          
@@ -261,9 +274,9 @@ package body GrafikAllgemein is
         or
           PositionExtern.x < 0.00
           or
-            PositionExtern.y >= Float (GrafikEinstellungen.FensterEinstellungen.FensterHöhe)
+            PositionExtern.y >= Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
         or
-          PositionExtern.x >= Float (GrafikEinstellungen.FensterEinstellungen.FensterBreite)
+          PositionExtern.x >= Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
       then
          raise Program_Error;
          
