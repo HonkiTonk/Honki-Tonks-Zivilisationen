@@ -41,7 +41,6 @@ private
    AktuelleAuswahl : Positive := 1;
    RassenBelegt : Positive;
    RassenBelegtZähler : Positive;
-   LetztesZeichen : Positive;
    ErstesZeichen : Positive;
 
    AnzeigeStartwert : Natural;

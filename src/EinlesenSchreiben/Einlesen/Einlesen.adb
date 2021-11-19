@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar; use Ada.Calendar;
+-- with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen;
 with SystemKonstanten;
-with SystemDatentypen;
+-- with SystemDatentypen;
 
-with Ladezeiten;
+-- with Ladezeiten;
 with EinlesenSprache;
 with EinlesenText;
 with EinlesenTastatur;
@@ -18,21 +18,11 @@ with EinlesenTexturen;
 
 package body Einlesen is
 
-   procedure Einlesen
-   is begin
+   -- Ladezeiten später ändern und wieder einbauen, vor allem so dass die Nutzerauswahlzeit nicht berücksichtigt wird.
+   -- Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, SystemDatentypen.Anfangswert) := Clock;
+   -- Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, SystemDatentypen.Endwert) := Clock;
+   -- Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, SystemDatentypen.Anfangswert) := Clock;
-      
-      EinlesenOhneAnzeige;
-      EinlesenMitAnzeige;
-      
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, SystemDatentypen.Endwert) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
-      
-   end Einlesen;
-   
-   
-   
    procedure EinlesenOhneAnzeige
    is begin
       
@@ -44,6 +34,7 @@ package body Einlesen is
    
    
    
+   -- Die Anzeige wird nur für das Einlesen des Textes benötigt, später mal anpassen?
    procedure EinlesenMitAnzeige
    is begin
       

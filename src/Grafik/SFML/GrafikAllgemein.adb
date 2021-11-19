@@ -31,6 +31,14 @@ package body GrafikAllgemein is
       GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).x;
       GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).y;
       
+      Sf.Graphics.View.setSize (view => NeueAuflösungZugriff,
+                                size => (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite), Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)));
+      Sf.Graphics.View.setCenter (view   => NeueAuflösungZugriff,
+                                  center => (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00, Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe) / 2.00));
+      
+      Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungen.Fenster,
+                                        view         => NeueAuflösungZugriff);
+      
    end FensterAnpassen;
    
    

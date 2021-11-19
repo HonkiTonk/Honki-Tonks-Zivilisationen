@@ -289,13 +289,12 @@ package body AuswahlMenue is
       Sf.Graphics.Text.setColor (text  => TextZugriff,
                                  color => Sf.Graphics.Color.sfWhite);
       ErstesZeichen := 1;
-      LetztesZeichen := 1;
       XPosition := Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe - GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe / 6);
       
       TextSchleife:
       loop
          ZeichenSchleife:
-         for TextSchleifenwert in ErstesZeichen .. LetztesZeichen loop
+         for TextSchleifenwert in ErstesZeichen .. To_Wide_Wide_String (Source => AktuellerText)'Last loop
             
             Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
                                                str  => To_Wide_Wide_String (Source => AktuellerText) (ErstesZeichen .. TextSchleifenwert));
@@ -303,26 +302,23 @@ package body AuswahlMenue is
             if
               Sf.Graphics.Text.getLocalBounds (text => TextZugriff).width < Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) - 2.00 * StartPositionYAchse
               and
-                TextSchleifenwert = To_Wide_Wide_String (Source => AktuellerText)'Last
+                TextSchleifenwert < To_Wide_Wide_String (Source => AktuellerText)'Last
+            then
+               null;
+               
+            elsif
+              TextSchleifenwert = To_Wide_Wide_String (Source => AktuellerText)'Last
             then
                exit TextSchleife;
                
-            elsif
-              Sf.Graphics.Text.getLocalBounds (text => TextZugriff).width >= Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) - 2.00 * StartPositionYAchse
-              and
-                TextSchleifenwert < To_Wide_Wide_String (Source => AktuellerText)'Last
-            then
+            else
                Sf.Graphics.Text.setPosition (text     => TextZugriff,
                                              position => (StartPositionYAchse, XPosition));
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                                   text         => TextZugriff);
                XPosition := XPosition + ZeilenAbstand + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height;
                ErstesZeichen := TextSchleifenwert + 1;
-               LetztesZeichen := TextSchleifenwert + 1;
                exit ZeichenSchleife;
-               
-            else
-               LetztesZeichen := LetztesZeichen + 1;
             end if;
             
          end loop ZeichenSchleife;

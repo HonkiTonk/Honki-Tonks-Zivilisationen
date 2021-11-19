@@ -1,26 +1,43 @@
 pragma SPARK_Mode (On);
 
-with SchreibenVerzeichnisse;
-with Einlesen;
-with Intro;
-with Hauptmenue;
-with EinlesenEinstellungen;
-with GrafikStartEnde;
+with StartLogik;
+with StartGrafik;
+with StartSound;
 
 procedure Start
-is begin
+is
 
-   SchreibenVerzeichnisse.SchreibenVerzeichnisse;
-   EinlesenEinstellungen.EinlesenEinstellungen;
+   task Logik;
+   task Grafik;
+   task Sound;
 
-   GrafikStartEnde.FensterErzeugen;
+   task body Logik
+   is begin
 
-   Einlesen.Einlesen;
+      StartLogik.StartLogik;
 
-   Intro.Intro;
+   end Logik;
 
-   Hauptmenue.Hauptmenü;
 
-   GrafikStartEnde.FensterEntfernen;
+
+   task body Grafik
+   is begin
+
+      StartGrafik.StartGrafik;
+
+   end Grafik;
+
+
+
+   task body Sound
+   is begin
+
+      StartSound.StartSound;
+
+   end Sound;
+
+begin
+
+   null;
 
 end Start;

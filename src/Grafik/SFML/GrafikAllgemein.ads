@@ -5,6 +5,8 @@ with Sf.Graphics.RectangleShape;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
 with Sf.Graphics.CircleShape;
+with Sf.Graphics.Rect;
+with Sf.Graphics.View;
 
 with GlobaleTexte;
 
@@ -64,6 +66,9 @@ private
 
    Kreis : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
    Polygon : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
+
+   NeueAuflösung : Sf.Graphics.Rect.sfFloatRect;
+   NeueAuflösungZugriff : Sf.Graphics.sfView_Ptr := Sf.Graphics.View.createFromRect (rectangle => NeueAuflösung);
 
    procedure PositionPrüfen
      (PositionExtern : in Sf.System.Vector2.sfVector2f);
