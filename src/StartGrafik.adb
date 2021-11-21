@@ -9,7 +9,7 @@ package body StartGrafik is
    is begin
       
       GrafikStartenSchleife:
-      while SFMLDarstellungEinstellungen.FensterErzeugt = False loop
+      while SFMLDarstellungEinstellungen.ErzeugeFenster = False loop
          
          delay SFMLDarstellungEinstellungen.Wartezeit;
          

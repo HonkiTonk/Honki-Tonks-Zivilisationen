@@ -11,6 +11,7 @@ with ImSpiel;
 with Laden;
 with Wuerdigung;
 with AuswahlMenue;
+with SFMLDarstellungEinstellungen;
 
 package body Hauptmenue is
 
@@ -19,6 +20,8 @@ package body Hauptmenue is
       
       HauptmenüSchleife:
       loop
+         
+         SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Menüs;
          
          case
            AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Haupt_Menü)

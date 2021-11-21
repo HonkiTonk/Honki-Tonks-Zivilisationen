@@ -42,14 +42,14 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (24.11.2021):
+   -- Version 0.00.94 => 0.00.9 (24.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.94 => 0.00.9 (23.11.2021):
+   -- Version 0.00.94 => 0.00.94 (23.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -63,16 +63,16 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.94 => 0.00.94 (21.11.2021):
+   -- Version 0.00.9395 => 0.00.94 (21.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9390 => 0.00.94 (20.11.2021):
+   -- Version 0.00.9390 => 0.00.9395 (20.11.2021):
    
-   -- 
+   -- Weiter an der Trennung von Grafik und Spielelogik gearbeitet.
    -- Kleinigkeiten korrigiert.
    
    
@@ -83,7 +83,7 @@ package ChangelogNovember2021 is
    -- Fehler korrigiert der dazu führte dass das Spiel versuchte Text außerhalb des Spiels anzuzeigen und gestoppt wurde.
    -- Geschwindigkeit der Textanzeige bei langen Texten verbessert.
    -- Erneut angefangen die Art und Weise wie die Anzeige durch die SFML stattfindet zu ändern.
-   -- Angefangen eine halbwegs brauchbare? Lösung zu bauen, welche die Spielelogik, die Grafik und den Sound voneinander trennen.
+   -- Angefangen eine halbwegs brauchbare? Lösung zu bauen, welche die Spielelogik, die Grafik und den Sound voneinander trennt.
    -- Kleinigkeiten korrigiert/überarbeitet.
    
    

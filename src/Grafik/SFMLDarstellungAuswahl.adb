@@ -5,6 +5,7 @@ with SystemDatentypen;
 with SFMLDarstellungEinstellungen;
 with GrafikStartEnde;
 with Intro;
+with AuswahlMenue;
 
 package body SFMLDarstellungAuswahl is
 
@@ -48,7 +49,7 @@ package body SFMLDarstellungAuswahl is
                delay SFMLDarstellungEinstellungen.Wartezeit;
          
             when SystemDatentypen.SFML_Menüs =>
-               null;
+               AuswahlMenue.AnzeigeMenüSFML;
                
             when SystemDatentypen.SFML_Weltkarte =>
                null;
