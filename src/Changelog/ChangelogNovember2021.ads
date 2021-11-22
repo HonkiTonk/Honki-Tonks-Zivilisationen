@@ -35,14 +35,14 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (25.11.2021):
+   -- Version 0.00.94 => 0.00.9 (25.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.94 => 0.00.9 (24.11.2021):
+   -- Version 0.00.94 => 0.00.94 (24.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -56,16 +56,17 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.94 => 0.00.94 (22.11.2021):
+   -- Version 0.00.9400 => 0.00.94 (22.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9395 => 0.00.94 (21.11.2021):
+   -- Version 0.00.9395 => 0.00.9400 (21.11.2021):
    
-   -- 
+   -- Einfache Prüfung eingebaut, welche dass das Programm/die Spieletasks stoppt wenn ein kritischer Fehler aufgetreten ist.
+   -- Weiter an der getrennten SFML Anzeige und Spielelogik herumgebastelt.
    -- Kleinigkeiten korrigiert.
    
    

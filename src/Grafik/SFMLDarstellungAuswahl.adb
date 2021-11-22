@@ -6,6 +6,8 @@ with SFMLDarstellungEinstellungen;
 with GrafikStartEnde;
 with Intro;
 with AuswahlMenue;
+with GrafikAllgemein;
+with GrafikEinstellungen;
 
 package body SFMLDarstellungAuswahl is
 
@@ -21,6 +23,7 @@ package body SFMLDarstellungAuswahl is
             
          when SystemDatentypen.SFML_Start =>
             GrafikStartEnde.FensterErzeugen;
+            SFMLDarstellungEinstellungen.TextZugriffAnzeige := GrafikEinstellungen.TextStandard;
             
          when others =>
             SFMLDarstellungEinstellungen.KritischesProblem := True;
@@ -29,6 +32,8 @@ package body SFMLDarstellungAuswahl is
       
       GrafikSchleife:
       loop
+         
+         GrafikAllgemein.FensterLeeren;
          
          case
            SFMLDarstellungEinstellungen.AktuelleDarstellung
@@ -49,7 +54,7 @@ package body SFMLDarstellungAuswahl is
                delay SFMLDarstellungEinstellungen.Wartezeit;
          
             when SystemDatentypen.SFML_Menüs =>
-               AuswahlMenue.AnzeigeMenüSFML;
+               AuswahlMenue.AnzeigeSFMLAnfang;
                
             when SystemDatentypen.SFML_Weltkarte =>
                null;
@@ -60,6 +65,8 @@ package body SFMLDarstellungAuswahl is
             when SystemDatentypen.SFML_Ende =>
                exit GrafikSchleife;
          end case;
+      
+         GrafikAllgemein.FensterAnzeigen;
          
       end loop GrafikSchleife;
       

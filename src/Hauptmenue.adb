@@ -21,8 +21,6 @@ package body Hauptmenue is
       HauptmenüSchleife:
       loop
          
-         SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Menüs;
-         
          case
            AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Haupt_Menü)
          is
@@ -88,8 +86,10 @@ package body Hauptmenue is
             when others =>
                raise Program_Error;
          end case;
-
+         
       end loop HauptmenüSchleife;
+      
+      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Ende;
       
    end Hauptmenü;
 

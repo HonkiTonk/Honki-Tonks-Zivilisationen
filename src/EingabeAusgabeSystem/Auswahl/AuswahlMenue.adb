@@ -8,12 +8,12 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with GlobaleVariablen;
 
-with GrafikAllgemein;
 with GrafikEinstellungen;
 with Eingabe;
 with AllgemeineTextBerechnungenSFML;
 with RueckgabeMenues;
 with GrafikHintergrund;
+with SFMLDarstellungEinstellungen;
 
 package body AuswahlMenue is
 
@@ -23,13 +23,18 @@ package body AuswahlMenue is
    is begin
       
       AllgemeinesFestlegen (WelchesMenüExtern => WelchesMenüExtern);
+      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Menüs;
       
       Auswahl;
    
-      return RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
-                                              EndeExtern            => Ende,
-                                              AktuelleAuswahlExtern => AktuelleAuswahl,
-                                              WelchesMenüExtern     => WelchesMenü);
+      RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
+                                                        EndeExtern            => Ende,
+                                                        AktuelleAuswahlExtern => AktuelleAuswahl,
+                                                        WelchesMenüExtern     => WelchesMenü);
+      
+      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Pause;
+      
+      return RückgabeWert;
       
    end AuswahlMenü;
 
@@ -83,19 +88,21 @@ package body AuswahlMenue is
    
    procedure Überschrift
    is begin
-            
-      StringSetzen (WelcheZeileExtern => 1);
-      Sf.Graphics.Text.setCharacterSize (text => TextZugriffPosition,
+      
+      StringSetzen (WelcheZeileExtern     => 1,
+                    TextZugriffExtern     => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
+                    AnzeigePositionExtern => Anzeige_Text);
+      Sf.Graphics.Text.setCharacterSize (text => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
       
-      AktuellePosition := (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextZugriffExtern => TextZugriffPosition), StartPositionYAchse);
+      AktuellePosition := (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextZugriffExtern => SFMLDarstellungEinstellungen.TextZugriffAnzeige), StartPositionYAchse);
       
-      Sf.Graphics.Text.setPosition (text     => TextZugriffPosition,
+      Sf.Graphics.Text.setPosition (text     => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                     position => AktuellePosition);
-      Sf.Graphics.Text.setColor (text  => TextZugriffPosition,
+      Sf.Graphics.Text.setColor (text  => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                  color => Sf.Graphics.Color.sfRed);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => TextZugriffPosition);
+                                         text         => SFMLDarstellungEinstellungen.TextZugriffAnzeige);
       
    end Überschrift;
    
@@ -106,7 +113,9 @@ package body AuswahlMenue is
       
       MausZeigerPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
       
-      StringSetzen (WelcheZeileExtern => 1);
+      StringSetzen (WelcheZeileExtern     => 1,
+                    TextZugriffExtern     => TextZugriffPosition,
+                    AnzeigePositionExtern => Position_Text);
       Sf.Graphics.Text.setCharacterSize (text => TextZugriffPosition,
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
       TextPositionMaus.y := StartPositionYAchse + Sf.Graphics.Text.getLocalBounds (text => TextZugriffPosition).height + ZeilenAbstand;
@@ -115,8 +124,10 @@ package body AuswahlMenue is
       
       MausZeigerSchleife:
       for ZeileSchleifenwert in Anfang .. Ende loop
-                  
-         StringSetzen (WelcheZeileExtern => ZeileSchleifenwert);
+         
+         StringSetzen (WelcheZeileExtern     => ZeileSchleifenwert,
+                       TextZugriffExtern     => TextZugriffPosition,
+                       AnzeigePositionExtern => Position_Text);
          
          case
            (ZeileSchleifenwert + AnzeigeStartwert) mod 2
@@ -159,44 +170,58 @@ package body AuswahlMenue is
    
    
    
+   procedure AnzeigeSFMLAnfang
+   is begin
+      
+         WelchesMenüSFMLAnzeige := WelchesMenü;
+         AnfangSFMLAnzeige := Anfang;
+         EndeSFMLAnzeige := Ende;
+         AktuelleAuswahlSFMLAnzeige := AktuelleAuswahl;
+         
+         AnzeigeMenüSFML;
+      
+   end AnzeigeSFMLAnfang;
+   
+   
+   
    procedure AnzeigeMenüSFML
    is begin
       
       AktuellePosition := (0.00, 0.00);
             
-      GrafikAllgemein.FensterLeeren;
-      
-      GrafikHintergrund.HintergrundMenü (WelchesMenüExtern => WelchesMenü);
+      GrafikHintergrund.HintergrundMenü (WelchesMenüExtern => WelchesMenüSFMLAnzeige);
       
       Überschrift;
-      AktuellePosition.y := AktuellePosition.y + Sf.Graphics.Text.getLocalBounds (text => TextZugriffPosition).height + ZeilenAbstand;
+      AktuellePosition.y := AktuellePosition.y + Sf.Graphics.Text.getLocalBounds (text => SFMLDarstellungEinstellungen.TextZugriffAnzeige).height + ZeilenAbstand;
       
       AnzeigeSchleife:
-      for TextSchleifenwert in Anfang .. Ende loop
+      for TextSchleifenwert in AnfangSFMLAnzeige .. EndeSFMLAnzeige loop
       
-         Sf.Graphics.Text.setCharacterSize (text => TextZugriffPosition,
+         Sf.Graphics.Text.setCharacterSize (text => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                             size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
-         StringSetzen (WelcheZeileExtern => TextSchleifenwert);
+         StringSetzen (WelcheZeileExtern     => TextSchleifenwert,
+                       TextZugriffExtern     => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
+                       AnzeigePositionExtern => Anzeige_Text);
          
          case
            (TextSchleifenwert + AnzeigeStartwert) mod 2
          is
             when 0 =>
-               AktuellePosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriffPosition,
+               AktuellePosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                                                                                   LinksRechtsExtern => False);
                
             when others =>
-               AktuellePosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriffPosition,
+               AktuellePosition.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                                                                                   LinksRechtsExtern => True);
          end case;
          
-         Sf.Graphics.Text.setPosition (text     => TextZugriffPosition,
+         Sf.Graphics.Text.setPosition (text     => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                        position => AktuellePosition);
          
          AnzeigeFarbeBestimmen (TextZeileExtern => TextSchleifenwert);
             
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => TextZugriffPosition);
+                                            text         => SFMLDarstellungEinstellungen.TextZugriffAnzeige);
          
          case
            (TextSchleifenwert + AnzeigeStartwert) mod 2
@@ -205,14 +230,12 @@ package body AuswahlMenue is
                null;
                
             when others =>
-               AktuellePosition.y := AktuellePosition.y + Sf.Graphics.Text.getLocalBounds (text => TextZugriffPosition).height + ZeilenAbstand;
+               AktuellePosition.y := AktuellePosition.y + Sf.Graphics.Text.getLocalBounds (text => SFMLDarstellungEinstellungen.TextZugriffAnzeige).height + ZeilenAbstand;
          end case;
          
       end loop AnzeigeSchleife;
       
       WeiterenTextAnzeigen;
-      
-      GrafikAllgemein.FensterAnzeigen;
       
    end AnzeigeMenüSFML;
    
@@ -223,16 +246,16 @@ package body AuswahlMenue is
    is begin
       
       if
-        AktuelleAuswahl = TextZeileExtern
+        AktuelleAuswahlSFMLAnzeige = TextZeileExtern
       then
-         Sf.Graphics.Text.setColor (text  => TextZugriffPosition,
+         Sf.Graphics.Text.setColor (text  => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                     color => Sf.Graphics.Color.sfGreen);
          
       elsif
-        WelchesMenü = SystemDatentypen.Rassen_Menü
+        WelchesMenüSFMLAnzeige = SystemDatentypen.Rassen_Menü
       then
          RassenBelegt := TextZeileExtern;
-         RassenBelegtZähler := Anfang;
+         RassenBelegtZähler := AnfangSFMLAnzeige;
          
          RassenSchleife:
          for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -242,7 +265,7 @@ package body AuswahlMenue is
               and
                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_Mensch
             then
-               Sf.Graphics.Text.setColor (text  => TextZugriffPosition,
+               Sf.Graphics.Text.setColor (text  => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                           color => Sf.Graphics.Color.sfBlue);
                return;
                
@@ -251,14 +274,14 @@ package body AuswahlMenue is
               and
                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI
             then
-               Sf.Graphics.Text.setColor (text  => TextZugriffPosition,
+               Sf.Graphics.Text.setColor (text  => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                           color => Sf.Graphics.Color.sfYellow);
                return;
                
             elsif
               RassenBelegtZähler = RassenBelegt
             then
-               Sf.Graphics.Text.setColor (text  => TextZugriffPosition,
+               Sf.Graphics.Text.setColor (text  => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                           color => Sf.Graphics.Color.sfWhite);
                return;
                
@@ -268,11 +291,11 @@ package body AuswahlMenue is
                
          end loop RassenSchleife;
          
-         Sf.Graphics.Text.setColor (text  => TextZugriffPosition,
+         Sf.Graphics.Text.setColor (text  => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                     color => Sf.Graphics.Color.sfWhite);
          
       else
-         Sf.Graphics.Text.setColor (text  => TextZugriffPosition,
+         Sf.Graphics.Text.setColor (text  => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                     color => Sf.Graphics.Color.sfWhite);
       end if;
       
@@ -283,10 +306,12 @@ package body AuswahlMenue is
    procedure WeiterenTextAnzeigen
    is begin
       
-      Sf.Graphics.Text.setCharacterSize (text => TextZugriffPosition,
+      Sf.Graphics.Text.setCharacterSize (text => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
-      StringSetzen (WelcheZeileExtern => AktuelleAuswahl + 1 + (Ende - Anfang));
-      Sf.Graphics.Text.setColor (text  => TextZugriffPosition,
+      StringSetzen (WelcheZeileExtern     => AktuelleAuswahlSFMLAnzeige + 1 + (EndeSFMLAnzeige - AnfangSFMLAnzeige),
+                    TextZugriffExtern     => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
+                    AnzeigePositionExtern => Anzeige_Text);
+      Sf.Graphics.Text.setColor (text  => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                  color => Sf.Graphics.Color.sfWhite);
       ErstesZeichen := 1;
       XPosition := Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe - GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe / 6);
@@ -294,29 +319,29 @@ package body AuswahlMenue is
       TextSchleife:
       loop
          ZeichenSchleife:
-         for TextSchleifenwert in ErstesZeichen .. To_Wide_Wide_String (Source => AktuellerText)'Last loop
+         for TextSchleifenwert in ErstesZeichen .. To_Wide_Wide_String (Source => AktuellerText (Anzeige_Text))'Last loop
             
-            Sf.Graphics.Text.setUnicodeString (text => TextZugriffPosition,
-                                               str  => To_Wide_Wide_String (Source => AktuellerText) (ErstesZeichen .. TextSchleifenwert));
+            Sf.Graphics.Text.setUnicodeString (text => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
+                                               str  => To_Wide_Wide_String (Source => AktuellerText (Anzeige_Text)) (ErstesZeichen .. TextSchleifenwert));
             
             if
-              Sf.Graphics.Text.getLocalBounds (text => TextZugriffPosition).width < Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) - 2.00 * StartPositionYAchse
+              Sf.Graphics.Text.getLocalBounds (text => SFMLDarstellungEinstellungen.TextZugriffAnzeige).width < Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) - 2.00 * StartPositionYAchse
               and
-                TextSchleifenwert < To_Wide_Wide_String (Source => AktuellerText)'Last
+                TextSchleifenwert < To_Wide_Wide_String (Source => AktuellerText (Anzeige_Text))'Last
             then
                null;
                
             elsif
-              TextSchleifenwert = To_Wide_Wide_String (Source => AktuellerText)'Last
+              TextSchleifenwert = To_Wide_Wide_String (Source => AktuellerText (Anzeige_Text))'Last
             then
                exit TextSchleife;
                
             else
-               Sf.Graphics.Text.setPosition (text     => TextZugriffPosition,
+               Sf.Graphics.Text.setPosition (text     => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                              position => (StartPositionYAchse, XPosition));
                Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                                  text         => TextZugriffPosition);
-               XPosition := XPosition + ZeilenAbstand + Sf.Graphics.Text.getLocalBounds (text => TextZugriffPosition).height;
+                                                  text         => SFMLDarstellungEinstellungen.TextZugriffAnzeige);
+               XPosition := XPosition + ZeilenAbstand + Sf.Graphics.Text.getLocalBounds (text => SFMLDarstellungEinstellungen.TextZugriffAnzeige).height;
                ErstesZeichen := TextSchleifenwert + 1;
                exit ZeichenSchleife;
             end if;
@@ -324,67 +349,69 @@ package body AuswahlMenue is
          end loop ZeichenSchleife;
       end loop TextSchleife;
       
-      Sf.Graphics.Text.setPosition (text     => TextZugriffPosition,
+      Sf.Graphics.Text.setPosition (text     => SFMLDarstellungEinstellungen.TextZugriffAnzeige,
                                     position => (StartPositionYAchse, XPosition));
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => TextZugriffPosition);
+                                         text         => SFMLDarstellungEinstellungen.TextZugriffAnzeige);
       
    end WeiterenTextAnzeigen;
    
    
    
    procedure StringSetzen
-     (WelcheZeileExtern : in Positive)
+     (WelcheZeileExtern : in Positive;
+      TextZugriffExtern : in Sf.Graphics.sfText_Ptr;
+      AnzeigePositionExtern : in Anzeige_Position_Text_Enum)
    is begin
       
       case
         WelchesMenü
       is
          when SystemDatentypen.Haupt_Menü =>
-            AktuellerText := GlobaleTexte.Hauptmenü (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Hauptmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Spiel_Menü =>
-            AktuellerText := GlobaleTexte.Spielmenü (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Spielmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Optionen_Menü =>
-            AktuellerText := GlobaleTexte.Optionsmenü (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Optionsmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Kartengröße_Menü =>
-            AktuellerText := GlobaleTexte.Kartengröße (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Kartengröße (WelcheZeileExtern);
             
          when SystemDatentypen.Kartenart_Menü =>
-            AktuellerText := GlobaleTexte.Kartenart (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Kartenart (WelcheZeileExtern);
             
          when SystemDatentypen.Kartenform_Menü =>
-            AktuellerText := GlobaleTexte.Kartenform (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Kartenform (WelcheZeileExtern);
             
          when SystemDatentypen.Kartentemperatur_Menü =>
-            AktuellerText := GlobaleTexte.Kartentemperatur (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Kartentemperatur (WelcheZeileExtern);
             
          when SystemDatentypen.Kartenressourcen_Menü =>
-            AktuellerText := GlobaleTexte.Ressourcenmenge (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Ressourcenmenge (WelcheZeileExtern);
             
          when SystemDatentypen.Schwierigkeitsgrad_Menü =>
-            AktuellerText := GlobaleTexte.Schwierigkeitsgrad (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Schwierigkeitsgrad (WelcheZeileExtern);
                         
          when SystemDatentypen.Rassen_Menü =>
-            AktuellerText := GlobaleTexte.Rassenauswahl (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Rassenauswahl (WelcheZeileExtern);
             
          when SystemDatentypen.Grafik_Menü =>
-            AktuellerText := GlobaleTexte.Grafikmenü (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Grafikmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Sound_Menü =>
-            AktuellerText := GlobaleTexte.Soundmenü (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Soundmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Sonstiges_Menü =>
-            AktuellerText := GlobaleTexte.Sonstigesmenü (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Sonstigesmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Steuerung_Menü =>
-            AktuellerText := GlobaleTexte.Steuerungmenü (WelcheZeileExtern);
+            AktuellerText (AnzeigePositionExtern) := GlobaleTexte.Steuerungmenü (WelcheZeileExtern);
       end case;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextZugriffPosition,
-                                         str  => To_Wide_Wide_String (Source => AktuellerText));
+      Sf.Graphics.Text.setUnicodeString (text => TextZugriffExtern,
+                                         str  => To_Wide_Wide_String (Source => AktuellerText (AnzeigePositionExtern)));
       
    end StringSetzen;
 

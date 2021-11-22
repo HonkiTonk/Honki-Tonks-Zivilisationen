@@ -10,7 +10,7 @@ with SystemDatentypen;
 
 package AuswahlMenue is
 
-   procedure AnzeigeMenüSFML;
+   procedure AnzeigeSFMLAnfang;
 
    function AuswahlMenü
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
@@ -19,6 +19,7 @@ package AuswahlMenue is
 private
 
    WelchesMenü : SystemDatentypen.Welches_Menü_Enum;
+   WelchesMenüSFMLAnzeige : SystemDatentypen.Welches_Menü_Enum;
 
    type AnfangEndeMenüArray is array (SystemDatentypen.Welches_Menü_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Positive;
    AnfangEndeMenü : constant AnfangEndeMenüArray := (
@@ -46,6 +47,7 @@ private
    ErstesZeichen : Positive;
    AnfangSFMLAnzeige : Positive;
    EndeSFMLAnzeige : Positive;
+   AktuelleAuswahlSFMLAnzeige : Positive;
 
    AnzeigeStartwert : Natural;
 
@@ -53,9 +55,14 @@ private
    ZeilenAbstand : Float;
    XPosition : Float;
 
-   AktuellerText : Unbounded_Wide_Wide_String;
+   type Anzeige_Position_Text_Enum is (Anzeige_Text, Position_Text);
+
+   type AktuellerTextArray is array (Anzeige_Position_Text_Enum'Range) of Unbounded_Wide_Wide_String;
+   AktuellerText : AktuellerTextArray;
 
    LetztesMenü : SystemDatentypen.Welches_Menü_Enum := SystemDatentypen.Haupt_Menü;
+
+   RückgabeWert : SystemDatentypen.Rückgabe_Werte_Enum;
 
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
@@ -63,15 +70,17 @@ private
    TextPositionMaus : Sf.System.Vector2.sfVector2f;
 
    TextZugriffPosition : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   TextZugriffAnzeige : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
 
    procedure Überschrift;
    procedure MausAuswahl;
    procedure Auswahl;
    procedure WeiterenTextAnzeigen;
+   procedure AnzeigeMenüSFML;
 
    procedure StringSetzen
-     (WelcheZeileExtern : in Positive);
+     (WelcheZeileExtern : in Positive;
+      TextZugriffExtern : in Sf.Graphics.sfText_Ptr;
+      AnzeigePositionExtern : in Anzeige_Position_Text_Enum);
 
    procedure AnzeigeFarbeBestimmen
      (TextZeileExtern : in Positive);
