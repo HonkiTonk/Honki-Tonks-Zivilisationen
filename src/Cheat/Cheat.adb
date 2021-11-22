@@ -14,7 +14,7 @@ with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with LeseWichtiges;
 
-with Karte;
+-- with Karte;
 with Karten;
 with Anzeige;
 with ForschungAllgemein;
@@ -67,7 +67,8 @@ package body Cheat is
                return;
          end case;
          
-         Karte.AnzeigeKarte (RasseExtern => RasseExtern);
+         -- Karte hier nur Anzeigen wenn Konsole aktiv ist? Oder kann die Konsole auch wie die SFML ausgelagert werden?
+         -- Karte.AnzeigeKarte (RasseExtern => RasseExtern);
 
       end loop MenüSchleife;
       

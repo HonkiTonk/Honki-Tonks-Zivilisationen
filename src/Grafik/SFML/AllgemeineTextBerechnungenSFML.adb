@@ -20,7 +20,7 @@ package body AllgemeineTextBerechnungenSFML is
          return Position;
          
       else
-         -- Hier später wieder ein raise Program_Error einbauen.
+         -- Hier später ein Fehler.GrafikStopp einbauen?
          return Position;
       end if;
       
@@ -53,7 +53,7 @@ package body AllgemeineTextBerechnungenSFML is
          return Position;
          
       else
-         -- Hier später wieder ein raise Program_Error einbauen.
+         -- Hier später ein Fehler.GrafikStopp einbauen?
          return Position;
       end if;
       

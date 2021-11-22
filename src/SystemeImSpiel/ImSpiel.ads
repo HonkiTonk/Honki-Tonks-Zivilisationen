@@ -5,6 +5,8 @@ with GlobaleVariablen;
 
 package ImSpiel is
 
+   AktuelleRasse : SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
+
    function ImSpiel
      return SystemDatentypen.Rückgabe_Werte_Enum;
 
@@ -17,6 +19,7 @@ private
    RückgabeRassen : SystemDatentypen.Rückgabe_Werte_Enum;
    RückgabeWert : SystemDatentypen.Rückgabe_Werte_Enum;
    RückgabeSpielmenü : SystemDatentypen.Rückgabe_Werte_Enum;
+   RückgabeMenschAmZug : SystemDatentypen.Rückgabe_Werte_Enum;
    AuswahlSpielmenü : SystemDatentypen.Rückgabe_Werte_Enum;
 
    procedure KISpieler

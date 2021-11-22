@@ -5,7 +5,6 @@ with Ada.Calendar; use Ada.Calendar;
 with SystemKonstanten;
 with EinheitenKonstanten;
 
-with Karte;
 with BefehleImSpiel;
 with Optionen;
 with Ladezeiten;
@@ -15,6 +14,8 @@ with RasseEntfernen;
 with ZwischenDenRunden;
 with Sichtweiten;
 with AuswahlMenue;
+with SFMLDarstellungEinstellungen;
+with Fehler;
 
 with KI;
 
@@ -46,7 +47,7 @@ package body ImSpiel is
                   null;
                
                when others =>
-                  raise Program_Error;
+                  Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.ImSpiel - Falsche Rückgabe.");
             end case;
             
          end loop RassenSchleife;
@@ -121,7 +122,7 @@ package body ImSpiel is
                KISpieler (RasseExtern => RasseExtern);
                
             when SystemDatentypen.Leer =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Rasse ist Leer.");
          end case;
 
       else
@@ -186,19 +187,22 @@ package body ImSpiel is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
+      AktuelleRasse := RasseExtern;
+      
       SpielerSchleife:
       loop
+      
+         SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Weltkarte;
          
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
             when SystemDatentypen.Spieler_Mensch =>
-               Karte.AnzeigeKarte (RasseExtern => RasseExtern);
                AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
                
             when others =>
                -- Sollte niemals auftreten? Könnte auftreten wenn der Spieler eliminiert wird oder auf KI gesetzt wird? Mal ein besseres System bauen.
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.MenschAmZug - Nicht von Mensch belegt.");
          end case;
          
          case
@@ -208,7 +212,8 @@ package body ImSpiel is
                null;
                
             when SystemDatentypen.Runde_Beenden =>
-               return AktuellerBefehlSpieler;
+               RückgabeMenschAmZug := AktuellerBefehlSpieler;
+               exit SpielerSchleife;
                
             when SystemDatentypen.Spielmenü =>
                RückgabeSpielmenü := Spielmenü (RasseExtern => RasseExtern);
@@ -216,12 +221,14 @@ package body ImSpiel is
                if
                  RückgabeSpielmenü = SystemDatentypen.Laden
                then
-                  return SystemDatentypen.Schleife_Verlassen;
+                  RückgabeMenschAmZug := SystemDatentypen.Schleife_Verlassen;
+                  exit SpielerSchleife;
                   
                elsif
                  RückgabeSpielmenü in SystemDatentypen.Hauptmenü_Beenden_Enum'Range
                then
-                  return RückgabeSpielmenü;
+                  RückgabeMenschAmZug := RückgabeSpielmenü;
+                  exit SpielerSchleife;
                   
                elsif
                  RückgabeSpielmenü = SystemKonstanten.StartWeiterKonstante
@@ -229,14 +236,19 @@ package body ImSpiel is
                   null;
                   
                else
-                  raise Program_Error;
+                  Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.MenschAmZug - Keine gültige Menürückgabe.");
                end if;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.MenschAmZug - Kein gültiger Befehl.");
          end case;
                      
       end loop SpielerSchleife;
+      
+      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Pause;
+      AktuelleRasse := SystemDatentypen.Keine_Rasse;
+      
+      return RückgabeMenschAmZug;
       
    end MenschAmZug;
 
@@ -285,7 +297,7 @@ package body ImSpiel is
                return AuswahlSpielmenü;
                   
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.Spielmenü - Keine gültige Menürückgabe.");
          end case;
       
       end loop SpielmenüSchleife;

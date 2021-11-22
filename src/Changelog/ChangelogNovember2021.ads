@@ -49,17 +49,20 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.94 => 0.00.94 (23.11.2021):
+   -- Version 0.00.9420 => 0.00.94 (23.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9400 => 0.00.94 (22.11.2021):
+   -- Version 0.00.9400 => 0.00.9420 (22.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Trennung zwischen Spielelogik und Spielegrafik funktioniert in den Menüs jetzt fehlerfrei.
+   -- Eigenes Fehlersystem eingebaut um das Programm beim Auftreten eines kritischen Fehlers in einem der drei Bereiche (Logik, Grafik, Sound) sofort zu stoppen.
+   -- Fehlersystem gibt jetzt fehlerabhängige Meldungen aus.
+   -- Unnötige Befehlsaufrufe entfernt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

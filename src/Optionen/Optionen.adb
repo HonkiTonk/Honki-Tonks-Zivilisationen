@@ -7,6 +7,7 @@ with OptionenSound;
 with OptionenGrafik;
 with OptionenSonstiges;
 with AuswahlMenue;
+with Fehler;
 
 package body Optionen is
 
@@ -38,7 +39,7 @@ package body Optionen is
                return AuswahlWert;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "Optionen.Optionen - Ungültige Menüauswahl.");
          end case;
 
          case
@@ -51,7 +52,7 @@ package body Optionen is
                null;
                      
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "Optionen.Optionen - Ungültiger Rückgabewert.");
          end case;
 
       end loop OptionenSchleife;

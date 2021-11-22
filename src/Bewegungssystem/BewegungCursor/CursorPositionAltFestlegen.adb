@@ -168,7 +168,7 @@ package body CursorPositionAltFestlegen is
               KartenWert.YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                                                                                ÄnderungExtern   => (0, 1, 0)).YAchse;
+                                                                                                                                ÄnderungExtern    => (0, 1, 0)).YAchse;
                return;
                
             else
@@ -190,7 +190,7 @@ package body CursorPositionAltFestlegen is
               KartenWert.YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                                                                                ÄnderungExtern   => (0, -1, 0)).YAchse;
+                                                                                                                                ÄnderungExtern    => (0, -1, 0)).YAchse;
                return;
                
             else
@@ -220,7 +220,7 @@ package body CursorPositionAltFestlegen is
               KartenWert.XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                                                                                ÄnderungExtern   => (0, 0, 1)).XAchse;
+                                                                                                                                ÄnderungExtern    => (0, 0, 1)).XAchse;
                return;
                
             else
@@ -242,7 +242,7 @@ package body CursorPositionAltFestlegen is
               KartenWert.XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                                                                                ÄnderungExtern   => (0, 0, -1)).XAchse;
+                                                                                                                                ÄnderungExtern    => (0, 0, -1)).XAchse;
                return;
                
             else

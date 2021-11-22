@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with SystemKonstanten;
 
 with AuswahlMenue;
+with Fehler;
 
 package body OptionenSound is
 
@@ -22,7 +23,7 @@ package body OptionenSound is
                return AuswahlWert;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "OptionenSound.OptionenSound - Ungültige Menüauswahl.");
          end case;
          
       end loop SoundSchleife;

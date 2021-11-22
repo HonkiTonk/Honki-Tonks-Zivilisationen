@@ -11,6 +11,7 @@ with EinlesenText;
 with AuswahlSprache;
 with Eingabe;
 with AuswahlMenue;
+with Fehler;
 
 package body OptionenSonstiges is
 
@@ -40,7 +41,7 @@ package body OptionenSonstiges is
                return AuswahlWert;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.Sonstiges - Ungültige Menüauswahl.");
          end case;
          
       end loop SonstigesSchleife;
@@ -66,7 +67,7 @@ package body OptionenSonstiges is
             null;
             
          when others =>
-            raise Program_Error;
+            Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.AnzahlAutomatischerSpielstände - Ungültige Zahleneingabe.");
       end case;
       
    end AnzahlAutomatischerSpielstände;
@@ -95,7 +96,7 @@ package body OptionenSonstiges is
             null;
             
          when others =>
-            raise Program_Error;
+            Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern - Ungültige Zahleneingabe.");
       end case;
       
    end RundenBisAutospeichern;

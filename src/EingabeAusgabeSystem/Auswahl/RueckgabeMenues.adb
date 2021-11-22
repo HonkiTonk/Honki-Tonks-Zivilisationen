@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen;
 
+with Fehler;
+
 package body RueckgabeMenues is
    
    function RückgabeMenüs
@@ -127,7 +129,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.Hauptmenü - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end Hauptmenü;
@@ -172,7 +176,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.Spielmenü - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end Spielmenü;
@@ -222,7 +228,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.Optionsmenü - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end Optionsmenü;
@@ -312,7 +320,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartengrößeAuswählen - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end KartengrößeAuswählen;
@@ -372,7 +382,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartenartAuswählen - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end KartenartAuswählen;
@@ -452,7 +464,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartenformAuswählen - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end KartenformAuswählen;
@@ -512,7 +526,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartentemperaturAuswählen - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end KartentemperaturAuswählen;
@@ -572,7 +588,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartenRessourcenAuswählen - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end KartenRessourcenAuswählen;
@@ -622,7 +640,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.SchwierigkeitsgradAuswählen - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end SchwierigkeitsgradAuswählen;
@@ -752,7 +772,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.RasseAuswählen - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end RasseAuswählen;
@@ -802,7 +824,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.GrafikMenü - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end GrafikMenü;
@@ -841,7 +865,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.SoundMenü - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end SoundMenü;
@@ -926,7 +952,9 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.SonstigesMenü - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden;
       end if;
       
    end SonstigesMenü;

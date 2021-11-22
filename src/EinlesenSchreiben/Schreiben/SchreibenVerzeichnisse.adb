@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with Ada.Directories; use Ada.Directories;
 
+with Fehler;
+
 package body SchreibenVerzeichnisse is
 
    procedure SchreibenVerzeichnisse
@@ -55,7 +57,7 @@ package body SchreibenVerzeichnisse is
             null;
 
          when False =>
-            raise Program_Error;
+            Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Grafikverzeichnis nicht vorhanden.");
       end case;
       
       case
@@ -65,7 +67,7 @@ package body SchreibenVerzeichnisse is
             null;
 
          when False =>
-            raise Program_Error;
+            Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Soundverzeichnis nicht vorhanden.");
       end case;
       
    end SchreibenVerzeichnisse;

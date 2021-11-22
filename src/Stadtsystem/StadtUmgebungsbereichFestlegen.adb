@@ -7,6 +7,8 @@ with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 with LeseWichtiges;
 
+with Fehler;
+
 package body StadtUmgebungsbereichFestlegen is
 
    procedure StadtUmgebungsbereichFestlegen
@@ -18,7 +20,7 @@ package body StadtUmgebungsbereichFestlegen is
       is
          when StadtKonstanten.LeerRasse =>
             -- Dieser Fall sollte niemals eintreten, muss aber mitgenommen werden wegen dem Record.
-            raise Program_Error;
+            Fehler.LogikStopp (FehlermeldungExtern => "StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen - when StadtKonstanten.LeerRasse =>");
             
          when others =>
             StadtUmgebungErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);

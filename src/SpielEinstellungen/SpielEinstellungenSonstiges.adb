@@ -4,6 +4,7 @@ with GlobaleVariablen;
 
 with ZufallGeneratorenSpieleinstellungen;
 with AuswahlMenue;
+with Fehler;
 
 package body SpielEinstellungenSonstiges is
 
@@ -34,7 +35,7 @@ package body SpielEinstellungenSonstiges is
                return SchwierigkeitAuswahl;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen - Ungültige Menüasuwahl.");
          end case;
          
       end loop SchwierigkeitsgradSchleife;

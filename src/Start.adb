@@ -6,7 +6,7 @@ with StartLogik;
 with StartGrafik;
 with StartSound;
 
-with SFMLDarstellungEinstellungen;
+with Fehler;
 
 procedure Start
 is
@@ -57,7 +57,11 @@ begin
          exit SpielLäuftSchleife;
 
       elsif
-        SFMLDarstellungEinstellungen.KritischesProblem
+        Fehler.KritischesProblemLogik
+        or
+          Fehler.KritischesProblemGrafik
+          or
+            Fehler.KritischesProblemSound
       then
          Abort_Task (T => Current_Task);
 

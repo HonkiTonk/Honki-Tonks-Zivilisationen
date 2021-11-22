@@ -33,7 +33,7 @@ package body EingabeSFML is
       if
         WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
-         -- Hier später ein raise einbauen.
+         -- Hier später ein Fehler.LogikStopp einbauen.
          Frage := Positive'First;
          
       else

@@ -12,6 +12,7 @@ with SystemKonstanten;
 with Eingabe;
 with GrafikAllgemein;
 with GrafikEinstellungen;
+with Fehler;
 
 package body AuswahlSprache is
 
@@ -76,7 +77,7 @@ package body AuswahlSprache is
            and
              GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = SystemKonstanten.LeerUnboundedString
          then
-            raise Program_Error;
+            Fehler.LogikStopp (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen");
             
          elsif
            EndeSchleifenwert > GlobaleTexte.SprachenEinlesenArray'Last

@@ -14,7 +14,7 @@ with LeseStadtGebaut;
 
 with Anzeige;
 with Eingabe;
-with Karte;
+-- with Karte;
 with EinheitSuchen;
 with UmgebungErreichbarTesten;
 with StadtMeldungenSetzen;
@@ -53,7 +53,7 @@ package body StadtEinheitenBauen is
                                                TextZeileExtern => 19);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position := LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position;
-         Karte.AnzeigeKarte (RasseExtern => StadtRasseNummerExtern.Rasse);
+         -- Karte.AnzeigeKarte (RasseExtern => StadtRasseNummerExtern.Rasse);
          Eingabe.WartenEingabe;
          
       elsif

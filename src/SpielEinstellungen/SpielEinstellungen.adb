@@ -10,6 +10,7 @@ with Ladezeiten;
 with SpielEinstellungenKarten;
 with SpielEinstellungenRasseSpieler;
 with SpielEinstellungenSonstiges;
+with Fehler;
 
 package body SpielEinstellungen is
 
@@ -97,7 +98,7 @@ package body SpielEinstellungen is
             null;
             
          when False =>
-            raise Program_Error;
+            Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Es konnte keine Rasse platziert werden.");
       end case;
          
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, SystemDatentypen.Endwert) := Clock;

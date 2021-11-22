@@ -7,6 +7,7 @@ with Karten;
 with Eingabe;
 with ZufallGeneratorenSpieleinstellungen;
 with AuswahlMenue;
+with Fehler;
 
 package body SpielEinstellungenKarten is
 
@@ -41,7 +42,7 @@ package body SpielEinstellungenKarten is
                return KartengrößeAuswahl;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartengrößeWählen - Ungültige Menüauswahl.");
          end case;
          
       end loop KartengrößeSchleife;
@@ -117,7 +118,7 @@ package body SpielEinstellungenKarten is
                return KartenartAuswahl;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartenartWählen - Ungültige Menüauswahl.");
          end case;
 
       end loop KartenartSchleife;
@@ -154,7 +155,7 @@ package body SpielEinstellungenKarten is
                return KartenformAuswahl;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
          end case;
 
       end loop KartenformSchleife;
@@ -191,7 +192,7 @@ package body SpielEinstellungenKarten is
                return KartentemperaturAuswahl;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartentemperaturWählen - Ungültige Menüauswahl.");
          end case;
                   
       end loop KartentemperaturSchleife;
@@ -228,7 +229,7 @@ package body SpielEinstellungenKarten is
                return KartenressourcenAuswahl;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartenressourcenWählen - Ungültige Menüauswahl.");
          end case;
                   
       end loop KartenressourcenSchleife;

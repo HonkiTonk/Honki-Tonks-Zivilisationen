@@ -5,9 +5,11 @@ with SystemDatentypen;
 with SFMLDarstellungEinstellungen;
 with GrafikStartEnde;
 with Intro;
-with AuswahlMenue;
+with AuswahlMenueAnzeige;
 with GrafikAllgemein;
-with GrafikEinstellungen;
+with Karte;
+with ImSpiel;
+with Fehler;
 
 package body SFMLDarstellungAuswahl is
 
@@ -23,11 +25,9 @@ package body SFMLDarstellungAuswahl is
             
          when SystemDatentypen.SFML_Start =>
             GrafikStartEnde.FensterErzeugen;
-            SFMLDarstellungEinstellungen.TextZugriffAnzeige := GrafikEinstellungen.TextStandard;
             
          when others =>
-            SFMLDarstellungEinstellungen.KritischesProblem := True;
-            raise Program_Error;
+            Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Ungültige Startdarstellung.");
       end case;
       
       GrafikSchleife:
@@ -40,7 +40,7 @@ package body SFMLDarstellungAuswahl is
          is
             when SystemDatentypen.Konsole =>
                -- Eine Abfrage einbauen um das Starten des Fenster direkt zu verhindern? Aber wie wechselt man dann von der Konsole auf die Grafik? Nur per Neustart?
-               raise Program_Error;
+               Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Konsole wird bei SFML aufgerufen.");
             
             when SystemDatentypen.SFML_Start =>
                SFMLDarstellungEinstellungen.FensterErzeugt := True;
@@ -54,10 +54,21 @@ package body SFMLDarstellungAuswahl is
                delay SFMLDarstellungEinstellungen.Wartezeit;
          
             when SystemDatentypen.SFML_Menüs =>
-               AuswahlMenue.AnzeigeSFMLAnfang;
+               AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
+               
+            when SystemDatentypen.SFML_Eingabe =>
+               null;
                
             when SystemDatentypen.SFML_Weltkarte =>
-               null;
+               case
+                 ImSpiel.AktuelleRasse
+               is
+                  when SystemDatentypen.Keine_Rasse =>
+                     delay SFMLDarstellungEinstellungen.Wartezeit;
+                     
+                  when others =>
+                     Karte.AnzeigeKarte (RasseExtern => ImSpiel.AktuelleRasse);
+               end case;
                
             when SystemDatentypen.SFML_Stadtkarte =>
                null;

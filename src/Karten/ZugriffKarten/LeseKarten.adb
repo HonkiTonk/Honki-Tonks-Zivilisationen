@@ -4,6 +4,8 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
 
+with Fehler;
+
 package body LeseKarten is
    
    function Grund
@@ -174,7 +176,9 @@ package body LeseKarten is
         or
           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.StadtBelegt = StadtKonstanten.LeerNummer
       then
-         raise Program_Error;
+         Fehler.LogikStopp (FehlermeldungExtern => "LeseKarten.BelegterGrundLeer - Rasse oder Nummer nicht korrekt gesetzt");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return True;
          
       else
          return False;

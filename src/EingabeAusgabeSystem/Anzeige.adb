@@ -115,12 +115,13 @@ package body Anzeige is
         GlobaleVariablen.AnzeigeArt
       is
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            TextAnzeigeSFML.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,
-                                               TextDateiExtern             => TextDateiExtern,
-                                               FrageZeileExtern            => FrageZeileExtern,
-                                               ErsteZeileExtern            => ErsteZeileExtern,
-                                               LetzteZeileExtern           => LetzteZeileExtern,
-                                               AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
+            -- TextAnzeigeSFML.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,
+            --                                   TextDateiExtern             => TextDateiExtern,
+            --                                   FrageZeileExtern            => FrageZeileExtern,
+            --                                   ErsteZeileExtern            => ErsteZeileExtern,
+            --                                   LetzteZeileExtern           => LetzteZeileExtern,
+            --                                   AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
+            null;
             
          when SystemDatentypen.Konsole =>
             null;

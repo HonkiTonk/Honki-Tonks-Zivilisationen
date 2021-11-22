@@ -10,6 +10,7 @@ with Sf.Window.Cursor;
 
 with GrafikEinstellungen;
 with GrafikStartEnde;
+with Fehler;
 
 package body GrafikAllgemein is
 
@@ -190,14 +191,14 @@ package body GrafikAllgemein is
         or
           AbmessungExtern.x = 0.00
       then
-         raise Program_Error;
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.RechteckZeichnen - Rechteck ist ein Strich");
          
       elsif
         AbmessungExtern.y > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
         or
           AbmessungExtern.x > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
       then
-         raise Program_Error;
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.RechteckZeichnen - Rechteck ist größer als das Fenster");
          
       else
          Sf.Graphics.RectangleShape.setSize (shape => Rechteck,
@@ -225,7 +226,7 @@ package body GrafikAllgemein is
       if
         RadiusExtern = 0.00
       then
-         raise Program_Error;
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.KreisZeichnen - RadiusExtern = 0.00");
          
       else
          Sf.Graphics.CircleShape.setRadius (shape  => Kreis,
@@ -254,7 +255,7 @@ package body GrafikAllgemein is
       if
         RadiusExtern = 0.00
       then
-         raise Program_Error;
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.PolygonZeichnen - RadiusExtern = 0.00");
          
       else
          Sf.Graphics.CircleShape.setRadius (shape  => Polygon,
@@ -286,7 +287,7 @@ package body GrafikAllgemein is
         or
           PositionExtern.x >= Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
       then
-         raise Program_Error;
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.PositionPrüfen - Ein Objekt wurde außerhalb des Fensters positioniert.");
          
       else
          null;

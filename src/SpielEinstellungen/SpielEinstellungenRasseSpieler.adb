@@ -14,6 +14,7 @@ with KartePositionPruefen;
 with BewegungPassierbarkeitPruefen;
 with EinheitenErzeugenEntfernen;
 with AuswahlMenue;
+with Fehler;
 
 package body SpielEinstellungenRasseSpieler is
    
@@ -54,7 +55,7 @@ package body SpielEinstellungenRasseSpieler is
                return RassenAuswahl;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen - Ungültige Menüauswahl.");
          end case;
          
       end loop RasseSchleife;

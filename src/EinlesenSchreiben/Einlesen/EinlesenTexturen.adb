@@ -4,6 +4,7 @@ with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.Texture;
 
 with EingeleseneTexturen;
+with Fehler;
 
 package body EinlesenTexturen is
    
@@ -36,7 +37,7 @@ package body EinlesenTexturen is
          if
            EingeleseneTexturen.Hintergrund (HintergrundSchleifenwert) = null
          then
-            raise Program_Error;
+            Fehler.GrafikStopp (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrundMenüs - EingeleseneTexturen.Hintergrund (HintergrundSchleifenwert) = null");
             
          else
             null;
@@ -56,7 +57,7 @@ package body EinlesenTexturen is
       if
         EingeleseneTexturen.Kartenfelder = null
       then
-         raise Program_Error;
+         Fehler.GrafikStopp (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrundMenüs - EingeleseneTexturen.Kartenfelder = null");
             
       else
          null;

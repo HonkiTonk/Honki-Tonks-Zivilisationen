@@ -10,6 +10,7 @@ with GrafikAllgemein;
 with Eingabe;
 with GrafikEinstellungen;
 with SchreibenEinstellungen;
+with Fehler;
 
 package body OptionenGrafik is
 
@@ -47,7 +48,7 @@ package body OptionenGrafik is
                return AuswahlWert;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik - Ungültige Menüasuwahl.");
          end case;
          
       end loop GrafikSchleife;

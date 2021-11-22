@@ -12,6 +12,7 @@ with Laden;
 with Wuerdigung;
 with AuswahlMenue;
 with SFMLDarstellungEinstellungen;
+with Fehler;
 
 package body Hauptmenue is
 
@@ -84,7 +85,7 @@ package body Hauptmenue is
                exit HauptmenüSchleife;
                
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "Hauptmenue.Hauptmenü - Keine gültige Menüauswahl");
          end case;
          
       end loop HauptmenüSchleife;

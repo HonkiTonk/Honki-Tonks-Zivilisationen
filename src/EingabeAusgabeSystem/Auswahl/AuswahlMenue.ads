@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Sf.Graphics.Text;
 with Sf.Graphics;
 with Sf.System.Vector2;
@@ -10,16 +8,24 @@ with SystemDatentypen;
 
 package AuswahlMenue is
 
-   procedure AnzeigeSFMLAnfang;
+   WelchesMenü : SystemDatentypen.Welches_Menü_Enum;
+
+   Anfang : Positive;
+   Ende : Positive;
+   AktuelleAuswahl : Positive := 1;
+
+   AnzeigeStartwert : Natural;
 
    function AuswahlMenü
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
       return SystemDatentypen.Rückgabe_Werte_Enum;
 
-private
+   function StringSetzen
+     (WelcheZeileExtern : in Positive;
+      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
+      return Wide_Wide_String;
 
-   WelchesMenü : SystemDatentypen.Welches_Menü_Enum;
-   WelchesMenüSFMLAnzeige : SystemDatentypen.Welches_Menü_Enum;
+private
 
    type AnfangEndeMenüArray is array (SystemDatentypen.Welches_Menü_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Positive;
    AnfangEndeMenü : constant AnfangEndeMenüArray := (
@@ -39,26 +45,8 @@ private
                                                        SystemDatentypen.Sonstiges_Menü          => (2, 7)
                                                       );
 
-   Anfang : Positive;
-   Ende : Positive;
-   AktuelleAuswahl : Positive := 1;
-   RassenBelegt : Positive;
-   RassenBelegtZähler : Positive;
-   ErstesZeichen : Positive;
-   AnfangSFMLAnzeige : Positive;
-   EndeSFMLAnzeige : Positive;
-   AktuelleAuswahlSFMLAnzeige : Positive;
-
-   AnzeigeStartwert : Natural;
-
    StartPositionYAchse : constant Float := 10.00;
    ZeilenAbstand : Float;
-   XPosition : Float;
-
-   type Anzeige_Position_Text_Enum is (Anzeige_Text, Position_Text);
-
-   type AktuellerTextArray is array (Anzeige_Position_Text_Enum'Range) of Unbounded_Wide_Wide_String;
-   AktuellerText : AktuellerTextArray;
 
    LetztesMenü : SystemDatentypen.Welches_Menü_Enum := SystemDatentypen.Haupt_Menü;
 
@@ -66,24 +54,12 @@ private
 
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
-   AktuellePosition : Sf.System.Vector2.sfVector2f;
    TextPositionMaus : Sf.System.Vector2.sfVector2f;
 
-   TextZugriffPosition : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   TextZugriff : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
 
-   procedure Überschrift;
    procedure MausAuswahl;
    procedure Auswahl;
-   procedure WeiterenTextAnzeigen;
-   procedure AnzeigeMenüSFML;
-
-   procedure StringSetzen
-     (WelcheZeileExtern : in Positive;
-      TextZugriffExtern : in Sf.Graphics.sfText_Ptr;
-      AnzeigePositionExtern : in Anzeige_Position_Text_Enum);
-
-   procedure AnzeigeFarbeBestimmen
-     (TextZeileExtern : in Positive);
 
    procedure AllgemeinesFestlegen
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum);

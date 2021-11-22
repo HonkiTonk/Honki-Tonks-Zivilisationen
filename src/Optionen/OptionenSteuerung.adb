@@ -17,6 +17,7 @@ with SchreibenTastatur;
 with EingabeSystemeSFML;
 with EingabeKonsole;
 with EingabeSFML;
+with Fehler;
 
 package body OptionenSteuerung is
 
@@ -46,7 +47,7 @@ package body OptionenSteuerung is
                AlteTasteEntfernen;
                      
             when others =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "OptionenSteuerung.SteuerungBelegen - Ungültige Menüauswahl.");
          end case;
          
       end loop BelegungSchleife;

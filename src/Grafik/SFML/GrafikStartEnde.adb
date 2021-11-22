@@ -8,6 +8,7 @@ with SystemDatentypen;
 
 with GrafikEinstellungen;
 with GrafikAllgemein;
+with Fehler;
 
 package body GrafikStartEnde is
 
@@ -32,7 +33,7 @@ package body GrafikStartEnde is
       if
         GrafikEinstellungen.Fenster = null
       then
-         raise Program_Error;
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - GrafikEinstellungen.Fenster = null");
 
       else
          GrafikAllgemein.MauszeigerFestlegen;

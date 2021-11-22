@@ -14,6 +14,7 @@ with EinheitSuchen;
 with StadtSuchen;
 with KarteInformationenSFML;
 with BerechnungenKarteSFML;
+with Fehler;
 
 package body KarteSFML is
    
@@ -21,14 +22,10 @@ package body KarteSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
             
-      GrafikAllgemein.FensterLeeren;
-            
       Sichtbarkeit (InDerStadtExtern => False,
                     RasseExtern      => RasseExtern);
       
       KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseExtern);
-      
-      GrafikAllgemein.FensterAnzeigen;
       
    end KarteAnzeigen;
    
@@ -334,7 +331,9 @@ package body KarteSFML is
             return (255, 114, 86, 255);
                         
          when others =>
-            raise Program_Error;
+            Fehler.GrafikStopp (FehlermeldungExtern => "KarteSFML.FarbeErmitteln - when others =>");
+            -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+            return (0, 0, 0, 0);
       end case;
       
    end FarbeErmitteln;

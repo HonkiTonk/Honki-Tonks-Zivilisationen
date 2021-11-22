@@ -9,6 +9,7 @@ with LeseEinheitenGebaut;
 with StadtBauen;
 with Aufgaben;
 with EinheitenErzeugenEntfernen;
+with Fehler;
 
 with KIVorhandeneAufgaben;
 with KIAufgabeFestlegen;
@@ -70,8 +71,7 @@ package body KIAufgabenPlanung is
             null;
             
          when EinheitStadtDatentypen.Leer =>
-            -- Sollte niemals eintreten.
-            raise Program_Error;
+            Fehler.LogikStopp (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat keine Einheit ausgewählt.");
       end case;
       
    end EinheitSpezifischeAufgabenErmitteln;

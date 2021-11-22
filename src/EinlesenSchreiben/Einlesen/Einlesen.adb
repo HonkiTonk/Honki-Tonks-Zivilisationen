@@ -15,6 +15,7 @@ with EinlesenDatenbanken;
 with SchreibenEinstellungen;
 with AuswahlSprache;
 with EinlesenTexturen;
+with Fehler;
 
 package body Einlesen is
 
@@ -49,7 +50,7 @@ package body Einlesen is
                SchreibenEinstellungen.SchreibenEinstellungen;
             
             when False =>
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "Einlesen.EinlesenMitAnzeige - when False =>");
          end case;
          
       else

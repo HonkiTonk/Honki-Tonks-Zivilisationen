@@ -5,6 +5,8 @@ with SonstigesKonstanten;
 
 with LeseForschungsDatenbank;
 
+with Fehler;
+
 package body SchreibeWichtiges is
 
    procedure Geldmenge
@@ -220,8 +222,7 @@ package body SchreibeWichtiges is
             if
               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte >= GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
             then
-               -- Bei den folgenden Fehlermeldungen nochmal nacharbeiten?
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte - >= GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze");
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte + 1;
@@ -231,7 +232,7 @@ package body SchreibeWichtiges is
             if
               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
             then
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SchreibeWichtiges.AnzahlStädte - = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First");
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte - 1;
@@ -255,7 +256,7 @@ package body SchreibeWichtiges is
               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter - >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze");
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + 1;
@@ -265,7 +266,7 @@ package body SchreibeWichtiges is
             if
               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SchreibeWichtiges.AnzahlArbeiter - = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First");
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter - 1;
@@ -289,7 +290,7 @@ package body SchreibeWichtiges is
               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer - >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze");
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + 1;
@@ -299,7 +300,7 @@ package body SchreibeWichtiges is
             if
               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SchreibeWichtiges.AnzahlKämpfer - = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First");
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer - 1;
@@ -323,7 +324,7 @@ package body SchreibeWichtiges is
               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
               = GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
             then
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges - = GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze");
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges + 1;
@@ -333,7 +334,7 @@ package body SchreibeWichtiges is
             if
               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
             then
-               raise Program_Error;
+               Fehler.LogikStopp (FehlermeldungExtern => "SchreibeWichtiges.AnzahlSonstiges - = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First");
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges - 1;
