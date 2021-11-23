@@ -50,8 +50,8 @@ package body EingabeSystemeSFML is
                   if
                     Mausbewegungen > 15
                   then
-                     MausBewegt := True;
-                     return;
+                    MausBewegt := True;
+                   return;
                      
                   else
                      null;

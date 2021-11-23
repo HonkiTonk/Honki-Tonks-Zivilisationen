@@ -7,11 +7,11 @@ with GrafikEinstellungen;
 package body AllgemeineTextBerechnungenSFML is
 
    function TextMittelPositionErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float
    is begin
       
-      TextHalbeBreite := TextHalbeBreiteErmitteln (TextZugriffExtern => TextZugriffExtern);
+      TextHalbeBreite := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
       Position := Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00 - TextHalbeBreite;
       
       if
@@ -29,13 +29,13 @@ package body AllgemeineTextBerechnungenSFML is
    
    
    function TextViertelPositionErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr;
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
       LinksRechtsExtern : in Boolean)
       return Float
    is begin
       
       Position := Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 4.00;
-      TextHalbeBreite := TextHalbeBreiteErmitteln (TextZugriffExtern => TextZugriffExtern);
+      TextHalbeBreite := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
       
       case
         LinksRechtsExtern
@@ -62,11 +62,11 @@ package body AllgemeineTextBerechnungenSFML is
    
    
    function TextHalbeBreiteErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float
    is begin
       
-      return Sf.Graphics.Text.getLocalBounds (text => TextZugriffExtern).width / 2.00;
+      return Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00;
       
    end TextHalbeBreiteErmitteln;
 

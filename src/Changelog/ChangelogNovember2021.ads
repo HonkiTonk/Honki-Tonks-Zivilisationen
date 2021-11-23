@@ -28,30 +28,33 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (26.11.2021):
+   -- Version 0.00.94 => 0.00.9 (26.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.94 => 0.00.9 (25.11.2021):
+   -- Version 0.00.94 => 0.00.94 (25.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.94 => 0.00.94 (24.11.2021):
+   -- Version 0.00.9440 => 0.00.94 (24.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9420 => 0.00.94 (23.11.2021):
+   -- Version 0.00.9420 => 0.00.9440 (23.11.2021):
    
-   -- 
+   -- Angefangen die Konsolenanzeige auch in den Grafiktask zu verschieben.
+   -- Unnötigen Code entfernt/ausgeklammert.
+   -- SFML Anzeige der Weltkarte überarbeitet.
+   -- Nach dem Fehler gesucht der das Spiel auf der Weltkarte einfrieren lässt.
    -- Kleinigkeiten korrigiert.
    
    

@@ -5,7 +5,7 @@ with SystemDatentypen; use SystemDatentypen;
 with SchreibenVerzeichnisse;
 with EinlesenEinstellungen;
 with Einlesen;
-with SFMLDarstellungEinstellungen;
+with GrafikWichtigeEinstellungen;
 with Hauptmenue;
 
 package body StartLogik is
@@ -18,23 +18,23 @@ package body StartLogik is
       
       Einlesen.EinlesenOhneAnzeige;
       
-      SFMLDarstellungEinstellungen.ErzeugeFenster := True;
+      GrafikWichtigeEinstellungen.ErzeugeFenster := True;
       
       FensterVorhandenSchleife:
-      while SFMLDarstellungEinstellungen.FensterErzeugt = False loop
+      while GrafikWichtigeEinstellungen.FensterErzeugt = False loop
          
-         delay SFMLDarstellungEinstellungen.Wartezeit;
+         delay GrafikWichtigeEinstellungen.Wartezeit;
          
       end loop FensterVorhandenSchleife;
       
       Einlesen.EinlesenMitAnzeige;
       
-      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Intro;
+      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Intro;
       
       IntroSchleife:
-      while SFMLDarstellungEinstellungen.AktuelleDarstellung = SystemDatentypen.SFML_Intro loop
+      while GrafikWichtigeEinstellungen.AktuelleDarstellung = SystemDatentypen.Grafik_Intro loop
          
-         delay SFMLDarstellungEinstellungen.Wartezeit;
+         delay GrafikWichtigeEinstellungen.Wartezeit;
          
       end loop IntroSchleife;
       

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics.Color;
 
 with GlobaleVariablen;
 with SystemDatentypen;
@@ -19,7 +20,7 @@ package body GrafikStartEnde is
         GlobaleVariablen.AnzeigeArt
       is
          when SystemDatentypen.Konsole =>
-            return;
+            Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
             
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungen.FensterEinstellungen.FensterBreite,
@@ -33,7 +34,7 @@ package body GrafikStartEnde is
       if
         GrafikEinstellungen.Fenster = null
       then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - GrafikEinstellungen.Fenster = null");
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Das fenster ist null.");
 
       else
          GrafikAllgemein.MauszeigerFestlegen;
@@ -52,5 +53,24 @@ package body GrafikStartEnde is
       Sf.Graphics.RenderWindow.destroy (renderWindow => GrafikEinstellungen.Fenster);
       
    end FensterEntfernen;
+   
+   
+   
+   procedure FensterLeeren
+   is begin
+      
+      Sf.Graphics.RenderWindow.clear (renderWindow => GrafikEinstellungen.Fenster,
+                                      color        => Sf.Graphics.Color.sfBlack);
+      
+   end FensterLeeren;
+   
+   
+   
+   procedure FensterAnzeigen
+   is begin
+      
+      Sf.Graphics.RenderWindow.display (renderWindow => GrafikEinstellungen.Fenster);
+      
+   end FensterAnzeigen;
 
 end GrafikStartEnde;

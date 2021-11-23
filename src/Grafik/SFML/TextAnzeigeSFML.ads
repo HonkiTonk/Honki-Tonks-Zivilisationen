@@ -38,7 +38,7 @@ private
    
    AktuelleTextFarbe : Sf.Graphics.Color.sfColor;
             
-   TextZugriff : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   TextAccess : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
       
    procedure AnzeigeSelbst
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
@@ -47,16 +47,16 @@ private
    
    procedure TextZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
-      TextZugriffExtern : in Sf.Graphics.sfText_Ptr);
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr);
    
    procedure TextSetzen
      (TextExtern : in Wide_Wide_String;
-      TextZugriffExtern : in Sf.Graphics.sfText_Ptr);
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr);
    
    
       
    function TextMittelPositionErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float;
    
    function ZeilenPositionErmitteln

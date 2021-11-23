@@ -16,11 +16,11 @@ package body KarteStadtSFML is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      GrafikAllgemein.FensterLeeren;
+      -- GrafikAllgemein.FensterLeeren;
       
       GrafischeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      GrafikAllgemein.FensterAnzeigen;
+      -- GrafikAllgemein.FensterAnzeigen;
       
    end AnzeigeStadt;
    

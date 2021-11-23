@@ -30,7 +30,7 @@ with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
-with BewegungCursorSFML;
+-- with BewegungCursorSFML;
 with BewegungEinheitenSFML;
 
 package body BefehleSFML is
@@ -119,7 +119,8 @@ package body BefehleSFML is
             Cheat.Menü (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Mausbewegung =>
-            BewegungCursorSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
+            -- BewegungCursorSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
+            null;
          
          when SystemDatentypen.Leer =>
             -- Hier auch noch die Cursorbewegung einbauen?

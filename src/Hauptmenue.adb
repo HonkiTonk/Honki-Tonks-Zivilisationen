@@ -11,7 +11,7 @@ with ImSpiel;
 with Laden;
 with Wuerdigung;
 with AuswahlMenue;
-with SFMLDarstellungEinstellungen;
+with GrafikWichtigeEinstellungen;
 with Fehler;
 
 package body Hauptmenue is
@@ -90,7 +90,7 @@ package body Hauptmenue is
          
       end loop HauptmenüSchleife;
       
-      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Ende;
+      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Ende;
       
    end Hauptmenü;
 

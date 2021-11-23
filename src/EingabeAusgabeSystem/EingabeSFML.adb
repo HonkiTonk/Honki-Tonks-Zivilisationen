@@ -5,7 +5,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf;
 with Sf.Window.Mouse;
-with Sf.Graphics.Text;
+-- with Sf.Graphics.Text;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Color;
 
@@ -14,7 +14,6 @@ with SystemKonstanten;
 with GlobaleTexte;
 
 with EingabeSystemeSFML;
-with GrafikAllgemein;
 with GrafikEinstellungen;
 with Anzeige;
 
@@ -221,23 +220,23 @@ package body EingabeSFML is
          
       end loop ZahlenlängeErmittelnSchleife;
       
-      GrafikAllgemein.FensterLeeren;
+      -- GrafikAllgemein.FensterLeeren;
       
-      Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrageExtern)));
-      Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
       
-      Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
+      Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
-                                                 - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00), 10.00));
-      Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.TextStandard,
+                                                 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 10.00));
+      Sf.Graphics.Text.setColor (text  => TextAccess,
                                  color => Sf.Graphics.Color.sfRed);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => GrafikEinstellungen.TextStandard);
-      Sf.Graphics.Text.setCharacterSize (text => GrafikEinstellungen.TextStandard,
+                                         text         => TextAccess);
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
-      Sf.Graphics.Text.setColor (text  => GrafikEinstellungen.TextStandard,
+      Sf.Graphics.Text.setColor (text  => TextAccess,
                                  color => GrafikEinstellungen.FensterEinstellungen.Textfarbe);
 
       if
@@ -254,14 +253,14 @@ package body EingabeSFML is
       then
          WelchesVorzeichen := True;
          
-         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
+         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                             str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
-         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
+         Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
-                                                    - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00),
+                                                    - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
                                                     50.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => GrafikEinstellungen.TextStandard);
+                                            text         => TextAccess);
             
       else
          if
@@ -277,27 +276,27 @@ package body EingabeSFML is
             null;
                   
          else
-            Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
+            Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                                str  => "-");
-            Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
+            Sf.Graphics.Text.setPosition (text     => TextAccess,
                                           position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
-                                                       - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00),
+                                                       - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
                                                        50.00));
             Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                               text         => GrafikEinstellungen.TextStandard);
+                                               text         => TextAccess);
          end if;
          
-         Sf.Graphics.Text.setUnicodeString (text => GrafikEinstellungen.TextStandard,
+         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                             str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
-         Sf.Graphics.Text.setPosition (text     => GrafikEinstellungen.TextStandard,
+         Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
-                                                    - Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width / 2.00),
+                                                    - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
                                                     50.00));
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => GrafikEinstellungen.TextStandard);
+                                            text         => TextAccess);
       end if;
       
-      GrafikAllgemein.FensterAnzeigen;
+      -- GrafikAllgemein.FensterAnzeigen;
       
    end ZahlenAnzeige;
    

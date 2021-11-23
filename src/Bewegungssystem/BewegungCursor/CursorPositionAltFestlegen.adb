@@ -154,6 +154,15 @@ package body CursorPositionAltFestlegen is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse
+      then
+         return;
+         
+      else
+         null;
+      end if;
+      
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
                                                                   ÄnderungExtern    => (0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) + 1, 0));
                                                                   
@@ -205,6 +214,15 @@ package body CursorPositionAltFestlegen is
    procedure AlteXAchseFestlegenSFML
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
+      
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse
+      then
+         return;
+         
+      else
+         null;
+      end if;
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
                                                                   ÄnderungExtern    => (0, 0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) + 1));

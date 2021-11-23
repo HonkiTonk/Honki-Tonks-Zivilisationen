@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Sf.Graphics.RenderWindow;
+
 with KartenRecords; use KartenRecords;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
@@ -9,12 +11,13 @@ with LeseKarten;
 with LeseEinheitenGebaut;
 
 with KartePositionPruefen;
-with GrafikAllgemein;
 with EinheitSuchen;
 with StadtSuchen;
 with KarteInformationenSFML;
 with BerechnungenKarteSFML;
 with Fehler;
+with SFMLAllgemeinePruefungen;
+with GrafikEinstellungen;
 
 package body KarteSFML is
    
@@ -64,17 +67,20 @@ package body KarteSFML is
                                RasseExtern       => RasseExtern);
                         
                when False =>
-                  GrafikAllgemein.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
-                                                    PositionExtern  => Position,
-                                                    FarbeExtern     => Sf.Graphics.Color.sfBlack);
+                  -- Ist das Zeichnen von schwarzen Felder überhaupt notwendig? Immerhin wird ja vorher das Fenster imm geleert und auf Schwarz gesetzt.
+                  
+                  -- GrafikAllgemein.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
+                  --                                  PositionExtern  => Position,
+                  --                                  FarbeExtern     => Sf.Graphics.Color.sfBlack);
+                  
                   if
                     KartenWert = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
                   then
-                     GrafikAllgemein.PolygonZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                                      PositionExtern    => Position,
-                                                      AnzahlEckenExtern => 3,
-                                                      FarbeExtern       => Sf.Graphics.Color.sfBlack);
-               
+                     PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfBlack,
+                                      PositionZeichnenExtern => Position,
+                                      RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                      AnzahlEckenExtern      => 3);
+                     
                   else
                      null;
                   end if;
@@ -106,13 +112,225 @@ package body KarteSFML is
       -- Über den Transporteinheiten kommt der Cursor.
       
       AnzeigeLandschaft (KoordinatenExtern => KoordinatenExtern);
+            
       AnzeigeStadt (KoordinatenExtern => KoordinatenExtern);
+            
       AnzeigeEinheit (KoordinatenExtern => KoordinatenExtern);
+            
       AnzeigeCursor (InDerStadtExtern  => InDerStadtExtern,
                      KoordinatenExtern => KoordinatenExtern,
                      RasseExtern       => RasseExtern);
-      
+                  
    end IstSichtbar;
+   
+   
+   
+   procedure AnzeigeLandschaft
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      KartenfeldZeichnen (FarbeExtern            => FarbeErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KartenWert)),
+                          PositionZeichnenExtern => Position,
+                          AbmessungExtern        => BerechnungenKarteSFML.KartenfelderAbmessung);
+            
+      -- Mal Farben für die einzelnen Objekte einbauen.
+      case
+        LeseKarten.Ressource (PositionExtern => KoordinatenExtern)
+      is
+         when KartenDatentypen.Leer =>
+            null;
+            
+         when others =>
+            KreisZeichnen (FarbeExtern            => Sf.Graphics.Color.sfBlack,
+                           PositionZeichnenExtern => Position,
+                           RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00);
+      end case;
+      
+      case
+        LeseKarten.Fluss (PositionExtern => KoordinatenExtern)
+      is
+         when KartenDatentypen.Leer =>
+            null;
+            
+         when others =>
+            KartenfeldZeichnen (FarbeExtern            => Sf.Graphics.Color.sfBlue,
+                                PositionZeichnenExtern => (Position.x, Position.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+                                AbmessungExtern        => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00));
+      end case;
+                  
+      case
+        LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern)
+      is
+         when KartenDatentypen.Leer =>
+            null;
+            
+         when others =>
+            KartenfeldZeichnen (FarbeExtern            => Sf.Graphics.Color.sfRed,
+                                PositionZeichnenExtern => (Position.x, Position.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+                                AbmessungExtern        => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00));
+      end case;
+      
+      case
+        LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern)
+      is
+         when KartenDatentypen.Leer =>
+            null;
+            
+         when others =>
+            KartenfeldZeichnen (FarbeExtern            => Sf.Graphics.Color.sfCyan,
+                                PositionZeichnenExtern => Position,
+                                AbmessungExtern        => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00));
+      end case;
+      
+   end AnzeigeLandschaft;
+   
+   
+   
+   procedure KartenfeldZeichnen
+     (FarbeExtern : in Sf.Graphics.Color.sfColor;
+      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
+      AbmessungExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      SFMLAllgemeinePruefungen.PositionPrüfen (PositionExtern => PositionZeichnenExtern);
+      
+      if
+        AbmessungExtern.y = 0.00
+        or
+          AbmessungExtern.x = 0.00
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.RechteckZeichnen - Rechteck ist ein Strich");
+         
+      elsif
+        AbmessungExtern.y > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
+        or
+          AbmessungExtern.x > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.RechteckZeichnen - Rechteck ist größer als das Fenster");
+         
+      else
+         Sf.Graphics.RectangleShape.setSize (shape => RechteckZugriff,
+                                             size  => AbmessungExtern);
+         Sf.Graphics.RectangleShape.setPosition (shape    => RechteckZugriff,
+                                                 position => PositionZeichnenExtern);
+         Sf.Graphics.RectangleShape.setFillColor (shape => RechteckZugriff,
+                                                  color => FarbeExtern);
+         Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                      object       => RechteckZugriff);
+      end if;
+      
+   end KartenfeldZeichnen;
+   
+   
+   
+   procedure KreisZeichnen
+     (FarbeExtern : in Sf.Graphics.Color.sfColor;
+      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
+      RadiusExtern : in Float)
+   is begin
+      
+      SFMLAllgemeinePruefungen.PositionPrüfen (PositionExtern => PositionZeichnenExtern);
+      
+      if
+        RadiusExtern = 0.00
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.KreisZeichnen - Kreisradius ist 0.");
+         
+      else
+         Sf.Graphics.CircleShape.setRadius (shape  => KreisZugriff,
+                                            radius => RadiusExtern);
+         Sf.Graphics.CircleShape.setPosition (shape    => KreisZugriff,
+                                              position => PositionZeichnenExtern);
+         Sf.Graphics.CircleShape.setFillColor (shape => KreisZugriff,
+                                               color => FarbeExtern);
+         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                   object       => KreisZugriff);
+      end if;
+      
+   end KreisZeichnen;
+   
+   
+   
+   procedure PolygonZeichnen
+     (FarbeExtern : in Sf.Graphics.Color.sfColor;
+      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
+      RadiusExtern : in Float;
+      AnzahlEckenExtern : in Sf.sfSize_t)
+   is begin
+      
+      SFMLAllgemeinePruefungen.PositionPrüfen (PositionExtern => PositionZeichnenExtern);
+      
+      if
+        RadiusExtern = 0.00
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.PolygonZeichnen - RadiusExtern = 0.00");
+         
+      else
+         Sf.Graphics.CircleShape.setRadius (shape  => PolygonZugriff,
+                                            radius => RadiusExtern);
+         Sf.Graphics.CircleShape.setPointCount (shape => PolygonZugriff,
+                                                count => AnzahlEckenExtern);
+         Sf.Graphics.CircleShape.setPosition (shape    => PolygonZugriff,
+                                              position => PositionZeichnenExtern);
+         Sf.Graphics.CircleShape.setFillColor (shape => PolygonZugriff,
+                                               color => FarbeExtern);
+         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                   object       => PolygonZugriff);
+      end if;
+      
+   end PolygonZeichnen;
+   
+   
+   
+   procedure AnzeigeStadt
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+         
+      if
+        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
+      then
+         null;
+            
+      else
+         PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfYellow,
+                          PositionZeichnenExtern => Position,
+                          RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                          AnzahlEckenExtern      => 5);
+      end if;
+      
+   end AnzeigeStadt;
+   
+   
+   
+   procedure AnzeigeEinheit
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+         
+      if
+        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
+      then
+         null;
+            
+      elsif
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
+      then
+         PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfYellow,
+                          PositionZeichnenExtern => Position,
+                          RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                          AnzahlEckenExtern      => 4);
+            
+      else
+         PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfYellow,
+                          PositionZeichnenExtern => Position,
+                          RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                          AnzahlEckenExtern      => 4);
+      end if;
+      
+   end AnzeigeEinheit;
    
    
    
@@ -137,128 +355,16 @@ package body KarteSFML is
         and
           InDerStadtExtern = False
       then
-         GrafikAllgemein.PolygonZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                          PositionExtern    => Position,
-                                          AnzahlEckenExtern => 3,
-                                          FarbeExtern       => Sf.Graphics.Color.sfRed);
+         PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfRed,
+                          PositionZeichnenExtern => Position,
+                          RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                          AnzahlEckenExtern      => 3);
          
       else
          null;
       end if;
       
    end AnzeigeCursor;
-   
-   
-   
-   procedure AnzeigeEinheit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-   is begin
-      
-      EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
-         
-      if
-        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
-      then
-         null;
-            
-      elsif
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
-      then
-         GrafikAllgemein.PolygonZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                          PositionExtern    => Position,
-                                          AnzahlEckenExtern => 4,
-                                          FarbeExtern       => Sf.Graphics.Color.sfYellow);
-            
-      else
-         GrafikAllgemein.PolygonZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                          PositionExtern    => Position,
-                                          AnzahlEckenExtern => 4,
-                                          FarbeExtern       => Sf.Graphics.Color.sfYellow);
-      end if;
-      
-   end AnzeigeEinheit;
-   
-   
-   
-   procedure AnzeigeStadt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-   is begin
-      
-      EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
-         
-      if
-        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
-      then
-         null;
-            
-      else
-         GrafikAllgemein.PolygonZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                          PositionExtern    => Position,
-                                          AnzahlEckenExtern => 5,
-                                          FarbeExtern       => Sf.Graphics.Color.sfYellow);
-      end if;
-      
-   end AnzeigeStadt;
-   
-   
-   
-   procedure AnzeigeLandschaft
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-   is begin
-      
-      GrafikAllgemein.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
-                                        PositionExtern  => Position,
-                                        FarbeExtern     => FarbeErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KartenWert)));
-      
-      case
-        LeseKarten.Ressource (PositionExtern => KoordinatenExtern)
-      is
-         when KartenDatentypen.Leer =>
-            null;
-            
-         when others =>
-            GrafikAllgemein.KreisZeichnen (RadiusExtern   => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                           PositionExtern => Position,
-                                           FarbeExtern    => Sf.Graphics.Color.sfBlack);
-      end case;
-      
-      case
-        LeseKarten.Fluss (PositionExtern => KoordinatenExtern)
-      is
-         when KartenDatentypen.Leer =>
-            null;
-            
-         when others =>
-            GrafikAllgemein.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
-                                              PositionExtern  => (Position.x, Position.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                              FarbeExtern     => Sf.Graphics.Color.sfBlue);
-      end case;
-      
-      case
-        LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern)
-      is
-         when KartenDatentypen.Leer =>
-            null;
-            
-         when others =>
-            GrafikAllgemein.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
-                                              PositionExtern  => Position,
-                                              FarbeExtern     => Sf.Graphics.Color.sfRed);
-      end case;
-      
-      case
-        LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern)
-      is
-         when KartenDatentypen.Leer =>
-            null;
-            
-         when others =>
-            GrafikAllgemein.RechteckZeichnen (AbmessungExtern => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
-                                              PositionExtern  => Position,
-                                              FarbeExtern     => Sf.Graphics.Color.sfCyan);
-      end case;
-      
-   end AnzeigeLandschaft;
    
    
    
@@ -331,7 +437,7 @@ package body KarteSFML is
             return (255, 114, 86, 255);
                         
          when others =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "KarteSFML.FarbeErmitteln - when others =>");
+            Fehler.GrafikStopp (FehlermeldungExtern => "KarteSFML.FarbeErmitteln - Keine gültige Farbe gefunden.");
             -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
             return (0, 0, 0, 0);
       end case;

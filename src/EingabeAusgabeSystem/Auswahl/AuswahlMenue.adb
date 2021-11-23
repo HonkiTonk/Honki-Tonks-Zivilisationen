@@ -12,7 +12,7 @@ with GrafikEinstellungen;
 with Eingabe;
 with AllgemeineTextBerechnungenSFML;
 with RueckgabeMenues;
-with SFMLDarstellungEinstellungen;
+with GrafikWichtigeEinstellungen;
 
 package body AuswahlMenue is
 
@@ -22,7 +22,7 @@ package body AuswahlMenue is
    is begin
       
       AllgemeinesFestlegen (WelchesMenüExtern => WelchesMenüExtern);
-      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Menüs;
+      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Menüs;
       
       Auswahl;
    
@@ -31,7 +31,7 @@ package body AuswahlMenue is
                                                         AktuelleAuswahlExtern => AktuelleAuswahl,
                                                         WelchesMenüExtern     => WelchesMenü);
       
-      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Pause;
+      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
       
       return RückgabeWert;
       
@@ -44,7 +44,7 @@ package body AuswahlMenue is
    is begin
 
       WelchesMenü := WelchesMenüExtern;
-      Sf.Graphics.Text.setFont (text => TextZugriff,
+      Sf.Graphics.Text.setFont (text => TextAccess,
                                 font => GrafikEinstellungen.Schriftart);
       Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
       Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
@@ -91,19 +91,19 @@ package body AuswahlMenue is
       
       MausZeigerPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
       
-      Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => StringSetzen (WelcheZeileExtern => 1,
                                                                WelchesMenüExtern => WelchesMenü));
-      Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
-      TextPositionMaus.y := StartPositionYAchse + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + ZeilenAbstand;
-      Sf.Graphics.Text.setCharacterSize (text => TextZugriff,
+      TextPositionMaus.y := StartPositionYAchse + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + ZeilenAbstand;
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       
       MausZeigerSchleife:
       for ZeileSchleifenwert in Anfang .. Ende loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
+         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                             str  => StringSetzen (WelcheZeileExtern => ZeileSchleifenwert,
                                                                   WelchesMenüExtern => WelchesMenü));
          
@@ -111,19 +111,19 @@ package body AuswahlMenue is
            (ZeileSchleifenwert + AnzeigeStartwert) mod 2
          is
             when 0 =>
-               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
+               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern => TextAccess,
                                                                                                   LinksRechtsExtern => False);
                
             when others =>
-               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextZugriffExtern => TextZugriff,
+               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern => TextAccess,
                                                                                                   LinksRechtsExtern => True);
          end case;
          
          if
            MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus.y)
-           .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height)
+           .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
            and
-             MausZeigerPosition.x in Sf.sfInt32 (TextPositionMaus.x) .. Sf.sfInt32 (TextPositionMaus.x + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).width)
+             MausZeigerPosition.x in Sf.sfInt32 (TextPositionMaus.x) .. Sf.sfInt32 (TextPositionMaus.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width)
          then
             AktuelleAuswahl := ZeileSchleifenwert;
             return;
@@ -139,7 +139,7 @@ package body AuswahlMenue is
                null;
                
             when others =>
-               TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + ZeilenAbstand;
+               TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + ZeilenAbstand;
          end case;   
                   
       end loop MausZeigerSchleife;

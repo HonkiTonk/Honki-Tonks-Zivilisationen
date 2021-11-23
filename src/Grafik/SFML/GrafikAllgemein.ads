@@ -12,15 +12,7 @@ with GlobaleTexte;
 
 package GrafikAllgemein is
 
-   -- Immer erster Grafikaufruf.
-   procedure FensterLeeren;
-   -- Immer erster Grafikaufruf.
-
    procedure FensterAnpassen;
-
-   -- Immer letzter Grafikaufruf.
-   procedure FensterAnzeigen;
-   -- Immer letzter Grafikaufruf.
 
    procedure FensterAuflösungÄndern
      (NeueAuflösungExtern : in Sf.System.Vector2.sfVector2u);

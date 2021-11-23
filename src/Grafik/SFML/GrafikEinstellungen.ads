@@ -11,8 +11,7 @@ package GrafikEinstellungen is
    Fenster : Sf.Graphics.sfRenderWindow_Ptr;
    Maus : Sf.Window.sfCursor_Ptr;
    Schriftart : Sf.Graphics.sfFont_Ptr;
-   TextStandard : Sf.Graphics.sfText_Ptr;
-   
+      
    FensterEinstellungen : SystemRecords.FensterRecord;
    
    type AktuelleAuflösung is record

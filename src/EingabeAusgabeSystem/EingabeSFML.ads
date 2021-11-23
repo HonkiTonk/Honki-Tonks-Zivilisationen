@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Window.Keyboard;
+with Sf.Graphics;
+with Sf.Graphics.Text;
 
 with SystemDatentypen;
 with KartenDatentypen;
@@ -58,6 +60,8 @@ private
    
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Taste : Sf.Window.Keyboard.sfKeyCode;
+   
+   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    type EingabeZahlenUmwandelnArray is array (Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9) of Wide_Wide_Character;
    EingabeZahlenUmwandeln : constant EingabeZahlenUmwandelnArray := (

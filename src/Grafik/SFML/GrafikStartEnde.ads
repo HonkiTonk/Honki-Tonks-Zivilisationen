@@ -4,6 +4,9 @@ package GrafikStartEnde is
    
    procedure FensterEntfernen;
    procedure FensterErzeugen;
+
+   procedure FensterLeeren;
+   procedure FensterAnzeigen;
    
 private
       

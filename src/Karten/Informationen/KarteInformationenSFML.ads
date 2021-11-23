@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
 with Sf.System.Vector2;
+with Sf.Graphics;
+with Sf.Graphics.Text;
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
@@ -16,5 +18,7 @@ package KarteInformationenSFML is
 private
 
    FensterInformationen : Sf.System.Vector2.sfVector2f;
+
+   TextAccess : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
 
 end KarteInformationenSFML;

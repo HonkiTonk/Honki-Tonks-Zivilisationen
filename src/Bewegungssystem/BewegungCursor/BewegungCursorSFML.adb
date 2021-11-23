@@ -15,10 +15,12 @@ package body BewegungCursorSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      MausPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
+      
       if
-        Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster).y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y)
+        MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y)
         and
-          Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster).x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x)
+          MausPosition.x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x)
       then
          null;
          
@@ -38,11 +40,11 @@ package body BewegungCursorSFML is
          for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
             
             if
-              Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster).y
+              MausPosition.y
             in
               Sf.sfInt32 (YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y) .. Sf.sfInt32 (YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y + BerechnungenKarteSFML.KartenfelderAbmessung.y)
               and
-                Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster).x
+                MausPosition.x
             in
               Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x + BerechnungenKarteSFML.KartenfelderAbmessung.x)
             then
@@ -53,12 +55,13 @@ package body BewegungCursorSFML is
                  KartenWert.XAchse
                is
                   when KartenKonstanten.LeerXAchse =>
-                     return;
+                     null;
                      
                   when others =>
                      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := KartenWert;
-                     return;
                end case;
+               
+               return;
                
             else
                XMultiplikator := XMultiplikator + 1.00;

@@ -1,7 +1,11 @@
 pragma SPARK_Mode (On);
 
-with SFMLDarstellungAuswahl;
-with SFMLDarstellungEinstellungen;
+with SystemDatentypen;
+
+with GrafikWichtigeEinstellungen;
+with GrafikKonsole;
+with GrafikSFML;
+with Fehler;
 
 package body StartGrafik is
 
@@ -9,14 +13,34 @@ package body StartGrafik is
    is begin
       
       GrafikStartenSchleife:
-      while SFMLDarstellungEinstellungen.ErzeugeFenster = False loop
+      while GrafikWichtigeEinstellungen.ErzeugeFenster = False loop
          
-         delay SFMLDarstellungEinstellungen.Wartezeit;
+         delay GrafikWichtigeEinstellungen.Wartezeit;
          
       end loop GrafikStartenSchleife;
             
-      SFMLDarstellungAuswahl.SFMLDarstellungAuswahl;
+      GrafikArtAuswahl;
       
    end StartGrafik;
+   
+   
+   
+   procedure GrafikArtAuswahl
+   is begin
+      
+      case
+        GrafikWichtigeEinstellungen.AktuelleDarstellung
+      is
+         when SystemDatentypen.Konsole_Start =>
+            GrafikKonsole.GrafikKonsole;
+            
+         when SystemDatentypen.SFML_Start =>
+            GrafikSFML.GrafikSFML;
+            
+         when others =>
+            Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Ungültige Startdarstellung.");
+      end case;
+      
+   end GrafikArtAuswahl;
 
 end StartGrafik;

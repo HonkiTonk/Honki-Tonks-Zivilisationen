@@ -4,7 +4,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.RenderWindow;
 
-with GrafikAllgemein;
 with GrafikEinstellungen;
 
 package body TextAnzeigeSFML is
@@ -18,9 +17,9 @@ package body TextAnzeigeSFML is
       AktuelleAuswahlExtern : in Positive)
    is begin
       
-      GrafikAllgemein.FensterLeeren;
+      -- GrafikAllgemein.FensterLeeren;
       
-      TextZugriff := GrafikEinstellungen.TextStandard;
+      -- TextAccess := GrafikEinstellungen.TextStandard;
       
       case
         FrageDateiExtern
@@ -32,9 +31,9 @@ package body TextAnzeigeSFML is
             ÜberschriftAbstand := 1;
             AktuelleTextFarbe := Sf.Graphics.Color.sfRed;
             TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)),
-                        TextZugriffExtern => TextZugriff);
-            TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), StartPositionYAchse),
-                          TextZugriffExtern => TextZugriff);
+                        TextAccessExtern => TextAccess);
+            TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextAccessExtern => TextAccess), StartPositionYAchse),
+                          TextAccessExtern => TextAccess);
       end case;
       
       ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
@@ -74,7 +73,7 @@ package body TextAnzeigeSFML is
          
       end loop AnzeigeSchleife;
       
-      GrafikAllgemein.FensterAnzeigen;
+      -- GrafikAllgemein.FensterAnzeigen;
       
    end AnzeigeMitAuswahl;
    
@@ -82,10 +81,10 @@ package body TextAnzeigeSFML is
    
    procedure TextSetzen
      (TextExtern : in Wide_Wide_String;
-      TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
    is begin
       
-      Sf.Graphics.Text.setUnicodeString (text => TextZugriffExtern,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
                                          str  => TextExtern);
       
    end TextSetzen;
@@ -94,26 +93,26 @@ package body TextAnzeigeSFML is
    
    procedure TextZeichnen
      (PositionExtern : in Sf.System.Vector2.sfVector2f;
-      TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
    is begin
             
-      Sf.Graphics.Text.setPosition (text     => TextZugriffExtern,
+      Sf.Graphics.Text.setPosition (text     => TextAccessExtern,
                                     position => PositionExtern);
-      Sf.Graphics.Text.setColor (text  => TextZugriffExtern,
+      Sf.Graphics.Text.setColor (text  => TextAccessExtern,
                                  color => AktuelleTextFarbe);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => TextZugriffExtern);
+                                         text         => TextAccessExtern);
       
    end TextZeichnen;
    
    
    
    function TextMittelPositionErmitteln
-     (TextZugriffExtern : in Sf.Graphics.sfText_Ptr)
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float
    is begin
       
-      return (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextZugriffExtern).width / 2.00);
+      return (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00);
       
    end TextMittelPositionErmitteln;
    
@@ -126,7 +125,7 @@ package body TextAnzeigeSFML is
    is begin
       
       TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleZeileExtern)),
-                  TextZugriffExtern => TextZugriff);
+                  TextAccessExtern => TextAccess);
       
       if
         AktuelleAuswahlExtern = AktuelleZeileExtern
@@ -137,8 +136,8 @@ package body TextAnzeigeSFML is
          AktuelleTextFarbe := Sf.Graphics.Color.sfWhite;
       end if;
       
-      TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), ZeilenPositionErmitteln),
-                    TextZugriffExtern => TextZugriff);
+      TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextAccessExtern => TextAccess), ZeilenPositionErmitteln),
+                    TextAccessExtern => TextAccess);
       
    end AnzeigeSelbst;
    
@@ -162,9 +161,9 @@ package body TextAnzeigeSFML is
       LetzteZeileExtern : in Positive)
    is begin
       
-      GrafikAllgemein.FensterLeeren;
+      -- GrafikAllgemein.FensterLeeren;
       
-      TextZugriff := GrafikEinstellungen.TextStandard;
+      -- TextAccess := GrafikEinstellungen.TextStandard;
       
       case
         ÜberschriftDateiExtern
@@ -176,9 +175,9 @@ package body TextAnzeigeSFML is
             ÜberschriftAbstand := 1;
             AktuelleTextFarbe := Sf.Graphics.Color.sfRed;
             TextSetzen (TextExtern        => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)),
-                        TextZugriffExtern => TextZugriff);
-            TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextZugriffExtern => TextZugriff), StartPositionYAchse),
-                          TextZugriffExtern => TextZugriff);
+                        TextAccessExtern => TextAccess);
+            TextZeichnen (PositionExtern    => (TextMittelPositionErmitteln (TextAccessExtern => TextAccess), StartPositionYAchse),
+                          TextAccessExtern => TextAccess);
       end case;
       
       ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
@@ -195,7 +194,7 @@ package body TextAnzeigeSFML is
 
       end loop TextAnzeigeSchleife;
       
-      GrafikAllgemein.FensterAnzeigen;
+      -- GrafikAllgemein.FensterAnzeigen;
       
    end AnzeigeOhneAuswahl;
 

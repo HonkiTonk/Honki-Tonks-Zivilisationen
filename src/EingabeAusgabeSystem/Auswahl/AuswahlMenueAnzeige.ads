@@ -37,7 +37,7 @@ private
    
    AktuelleFarbe : Sf.Graphics.Color.sfColor;
    
-   TextZugriff : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    procedure AnzeigeMenüSFML;
    procedure Überschrift;

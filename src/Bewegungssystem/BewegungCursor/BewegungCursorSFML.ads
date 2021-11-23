@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Sf.System.Vector2;
+
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenDatentypen;
@@ -27,5 +29,7 @@ private
    XMultiplikator : Float;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   
+   MausPosition : Sf.System.Vector2.sfVector2i;
 
 end BewegungCursorSFML;

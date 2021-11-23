@@ -56,7 +56,7 @@ private
 
    TextPositionMaus : Sf.System.Vector2.sfVector2f;
 
-   TextZugriff : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
 
    procedure MausAuswahl;
    procedure Auswahl;

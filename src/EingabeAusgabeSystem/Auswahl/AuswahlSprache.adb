@@ -10,7 +10,6 @@ with GlobaleTexte;
 with SystemKonstanten;
 
 with Eingabe;
-with GrafikAllgemein;
 with GrafikEinstellungen;
 with Fehler;
 
@@ -184,7 +183,7 @@ package body AuswahlSprache is
       return Unbounded_Wide_Wide_String
    is begin
       
-      TextZugriff := GrafikEinstellungen.TextStandard;
+      -- TextAccess := GrafikEinstellungen.TextStandard;
       
       AuswahlSFMLSchleife:
       loop
@@ -277,18 +276,18 @@ package body AuswahlSprache is
       MausZeigerSchleife:
       for ZeileSchleifenwert in AktuelleSprachen'First .. Ende loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
+         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                             str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
          
          if
            MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus)
-             .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height)
+             .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
          then
             AktuelleAuswahl := ZeileSchleifenwert;
             return;
          
          else
-            TextPositionMaus := TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextZugriff).height + ZeilenAbstand;
+            TextPositionMaus := TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + ZeilenAbstand;
          end if;
          
       end loop MausZeigerSchleife;
@@ -389,7 +388,7 @@ package body AuswahlSprache is
       LetzteZeileExtern : in Positive)
    is begin
       
-      GrafikAllgemein.FensterLeeren;
+      -- GrafikAllgemein.FensterLeeren;
       Zeile := 0.00;
       
       AnzeigeSchleife:
@@ -404,21 +403,21 @@ package body AuswahlSprache is
             AktuelleTextFarbe := Sf.Graphics.Color.sfWhite;
          end if;
          
-         Sf.Graphics.Text.setUnicodeString (text => TextZugriff,
+         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                             str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
-         Sf.Graphics.Text.setPosition (text     => TextZugriff,
-                                       position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextZugriff).width / 2.00),
+         Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                       position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
                                                     StartPositionYAchse + ZeilenAbstand * Zeile));
-         Sf.Graphics.Text.setColor (text  => TextZugriff,
+         Sf.Graphics.Text.setColor (text  => TextAccess,
                                     color => AktuelleTextFarbe);
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => TextZugriff);
+                                            text         => TextAccess);
          
          Zeile := Zeile + 1.00;
          
       end loop AnzeigeSchleife;
       
-      GrafikAllgemein.FensterAnzeigen;
+      -- GrafikAllgemein.FensterAnzeigen;
       
    end AnzeigeSpracheSFML;
 

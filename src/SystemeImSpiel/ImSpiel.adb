@@ -14,7 +14,7 @@ with RasseEntfernen;
 with ZwischenDenRunden;
 with Sichtweiten;
 with AuswahlMenue;
-with SFMLDarstellungEinstellungen;
+with GrafikWichtigeEinstellungen;
 with Fehler;
 
 with KI;
@@ -192,7 +192,7 @@ package body ImSpiel is
       SpielerSchleife:
       loop
       
-         SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Weltkarte;
+         GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Weltkarte;
          
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
@@ -245,7 +245,7 @@ package body ImSpiel is
                      
       end loop SpielerSchleife;
       
-      SFMLDarstellungEinstellungen.AktuelleDarstellung := SystemDatentypen.SFML_Pause;
+      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
       AktuelleRasse := SystemDatentypen.Keine_Rasse;
       
       return RückgabeMenschAmZug;
