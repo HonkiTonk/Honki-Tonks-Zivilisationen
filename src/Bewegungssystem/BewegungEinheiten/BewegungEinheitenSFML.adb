@@ -1,15 +1,11 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics.RenderWindow;
 with Sf;
 
--- with EinheitStadtDatentypen; use EinheitStadtDatentypen;
--- with GlobaleTexte;
 with KartenKonstanten;
 
 with LeseEinheitenGebaut;
 
-with Karte;
 with KartePositionPruefen;
 with Eingabe;
 with EinheitenModifizieren;
@@ -24,26 +20,7 @@ package body BewegungEinheitenSFML is
 
    procedure BewegungEinheitenRichtung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-   is
-   
-      task KarteAnzeigen;
-      
-      task body KarteAnzeigen
-      is begin
-         
-         KarteAnzeigenLassen := True;
-         
-         while KarteAnzeigenLassen loop
-            
-            Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
-            
-         end loop;
-         
-         KarteAnzeigenLassen := True;
-         
-      end KarteAnzeigen;
-      
-   begin
+   is begin
       
       BewegenSchleife:
       loop
@@ -59,8 +36,7 @@ package body BewegungEinheitenSFML is
                null;
                
             when False =>
-               KarteAnzeigenLassen := False;
-               exit BewegenSchleife;
+               return;
          end case;
          
       end loop BewegenSchleife;
@@ -149,20 +125,22 @@ package body BewegungEinheitenSFML is
       return Boolean
    is begin
       
+      MausPosition := GrafikEinstellungen.MausPosition;
+      
       MausSchleife:
       loop
          
          if
-           Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster).x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x)
+           MausPosition.x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x)
            and
-             Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster).y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y)
+             MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y)
          then
             return MausInKarte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          elsif
-           Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster).x in Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x) .. Sf.sfInt32 (BerechnungenKarteSFML.FensterAnzeige.x)
+           MausPosition.x in Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.x) .. Sf.sfInt32 (BerechnungenKarteSFML.FensterAnzeige.x)
            and
-             Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster).y in Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y) .. Sf.sfInt32 (BerechnungenKarteSFML.FensterAnzeige.y)
+             MausPosition.y in Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y) .. Sf.sfInt32 (BerechnungenKarteSFML.FensterAnzeige.y)
          then
             return MausInAnzeige (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          

@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf;
-with Sf.Graphics.RenderWindow;
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
@@ -89,7 +88,8 @@ package body AuswahlMenue is
    procedure MausAuswahl
    is begin
       
-      MausZeigerPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
+      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
+      MausZeigerPosition := GrafikEinstellungen.MausPosition;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => StringSetzen (WelcheZeileExtern => 1,

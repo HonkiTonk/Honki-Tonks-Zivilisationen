@@ -6,6 +6,8 @@ with GlobaleVariablen;
 
 package InDerStadt is
 
+   AktuelleRasseStadt : EinheitStadtRecords.RassePlatznummerRecord;
+
    procedure InDerStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with

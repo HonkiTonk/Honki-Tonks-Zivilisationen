@@ -34,7 +34,7 @@ package body GrafikStartEnde is
       if
         GrafikEinstellungen.Fenster = null
       then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Das fenster ist null.");
+         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Das Fenster ist null.");
 
       else
          GrafikAllgemein.MauszeigerFestlegen;

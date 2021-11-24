@@ -67,7 +67,7 @@ package body KarteSFML is
                                RasseExtern       => RasseExtern);
                         
                when False =>
-                  -- Ist das Zeichnen von schwarzen Felder überhaupt notwendig? Immerhin wird ja vorher das Fenster imm geleert und auf Schwarz gesetzt.
+                  -- Ist das Zeichnen von schwarzen Felder überhaupt notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
                   
                   -- GrafikAllgemein.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
                   --                                  PositionExtern  => Position,

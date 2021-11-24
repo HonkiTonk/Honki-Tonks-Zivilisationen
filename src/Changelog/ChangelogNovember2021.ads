@@ -35,17 +35,21 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.94 => 0.00.94 (25.11.2021):
+   -- Version 0.00.9460 => 0.00.94 (25.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9440 => 0.00.94 (24.11.2021):
+   -- Version 0.00.9440 => 0.00.9460 (24.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Hülle für eine der Grafikstruktur entsprechende Soundstruktur eingebaut.
+   -- Fehler behoben der beim Scrollen immer wieder zu Abstürzen führte (endlich).
+   -- Fehler behoben der in der neuen Cursorbestimmung es unmöglich machte die Ebenen zu wechseln.
+   -- Angefangen die Stadtanzeige an die neue Logik/Grafiktrennung anzupassen.
+   -- Angefangen die Einheitenkontrolle an die neue Logik/Grafiktrennung anzupassen.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
    

@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Sf.System.Vector2;
+
 with KartenRecords; use KartenRecords;
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -21,10 +23,11 @@ private
    AufgabeDurchführen : Boolean;
    NullWert : Boolean;
    BewegungNochMöglich : Boolean;
-   KarteAnzeigenLassen : Boolean;
    
    Befehl : SystemDatentypen.Tastenbelegung_Enum;
    BefehlMaus : SystemDatentypen.Tastenbelegung_Enum;
+   
+   MausPosition : Sf.System.Vector2.sfVector2i;
       
    Änderung : KartenRecords.AchsenKartenfeldRecord;
    KeineÄnderung : constant KartenRecords.AchsenKartenfeldRecord := (0, 0, 0);

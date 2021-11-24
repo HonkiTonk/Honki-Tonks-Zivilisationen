@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with StadtKonstanten;
 
 with Fehler;
 with ImSpiel;
@@ -9,6 +11,8 @@ with Intro;
 with AuswahlMenueAnzeige;
 with Karte;
 with GrafikWichtigeEinstellungen;
+with KarteStadt;
+with InDerStadt;
 
 package body GrafikSFML is
    
@@ -47,18 +51,24 @@ package body GrafikSFML is
                null;
                
             when SystemDatentypen.Grafik_Weltkarte =>
-               case
-                 ImSpiel.AktuelleRasse
-               is
-                  when SystemDatentypen.Keine_Rasse =>
-                     delay GrafikWichtigeEinstellungen.Wartezeit;
+               if
+                 ImSpiel.AktuelleRasse = SystemDatentypen.Keine_Rasse
+               then
+                  delay GrafikWichtigeEinstellungen.Wartezeit;
                      
-                  when others =>
-                     Karte.AnzeigeKarte (RasseExtern => ImSpiel.AktuelleRasse);
-               end case;
+               else
+                  Karte.AnzeigeKarte (RasseExtern => ImSpiel.AktuelleRasse);
+               end if;
                
             when SystemDatentypen.Grafik_Stadtkarte =>
-               null;
+               if
+                 InDerStadt.AktuelleRasseStadt.Platznummer = StadtKonstanten.LeerNummer
+               then
+                  delay GrafikWichtigeEinstellungen.Wartezeit;
+                  
+               else
+                  KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => InDerStadt.AktuelleRasseStadt);
+               end if;
          
             when SystemDatentypen.Grafik_Ende =>
                exit GrafikSchleife;

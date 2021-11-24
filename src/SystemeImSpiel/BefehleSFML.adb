@@ -30,7 +30,6 @@ with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
--- with BewegungCursorSFML;
 with BewegungEinheitenSFML;
 
 package body BefehleSFML is
@@ -118,12 +117,8 @@ package body BefehleSFML is
          when SystemDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Mausbewegung =>
-            -- BewegungCursorSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
-            null;
-         
-         when SystemDatentypen.Leer =>
-            -- Hier auch noch die Cursorbewegung einbauen?
+         when SystemDatentypen.Mausbewegung | SystemDatentypen.Leer =>
+            -- Hier nicht die Mausbewegunsberechnungen einbauen, damit das Scrollen dann auch bei der Einheitenauswahl funktionieren wird, hoffentlich.
             null;
       end case;
 

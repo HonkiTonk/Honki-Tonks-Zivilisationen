@@ -191,9 +191,17 @@ package body ImSpiel is
       
       SpielerSchleife:
       loop
-      
-         GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Weltkarte;
          
+         case
+           GrafikWichtigeEinstellungen.AktuelleDarstellung
+         is
+            when SystemDatentypen.Grafik_Weltkarte =>
+               null;
+               
+            when others =>
+               GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Weltkarte;
+         end case;
+               
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is

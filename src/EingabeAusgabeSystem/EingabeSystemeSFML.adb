@@ -50,8 +50,10 @@ package body EingabeSystemeSFML is
                   if
                     Mausbewegungen > 15
                   then
-                    MausBewegt := True;
-                   return;
+                     MausBewegt := True;
+                     -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
+                     GrafikEinstellungen.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
+                     return;
                      
                   else
                      null;

@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.Window.Cursor;
 with Sf.Graphics;
 with Sf.Graphics.Color;
+with Sf.System.Vector2;
 
 with SystemRecords;
 
@@ -11,6 +12,8 @@ package GrafikEinstellungen is
    Fenster : Sf.Graphics.sfRenderWindow_Ptr;
    Maus : Sf.Window.sfCursor_Ptr;
    Schriftart : Sf.Graphics.sfFont_Ptr;
+   
+   MausPosition : Sf.System.Vector2.sfVector2i;
       
    FensterEinstellungen : SystemRecords.FensterRecord;
    

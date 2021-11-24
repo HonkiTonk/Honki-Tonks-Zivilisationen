@@ -68,7 +68,8 @@ package body GrafikAllgemein is
       Sf.Graphics.RenderWindow.setMouseCursor (renderWindow => GrafikEinstellungen.Fenster,
                                                cursor       => GrafikEinstellungen.Maus);
       
-      MauszeigerPositionFestlegen (PositionExtern => (0, 0));
+      GrafikEinstellungen.MausPosition := (1, 1);
+      MauszeigerPositionFestlegen (PositionExtern => (GrafikEinstellungen.MausPosition));
       
    end MauszeigerFestlegen;
    

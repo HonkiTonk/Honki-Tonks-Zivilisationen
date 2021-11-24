@@ -13,6 +13,7 @@ with Wuerdigung;
 with AuswahlMenue;
 with GrafikWichtigeEinstellungen;
 with Fehler;
+with SoundWichtigeEinstellungen;
 
 package body Hauptmenue is
 
@@ -91,6 +92,7 @@ package body Hauptmenue is
       end loop HauptmenüSchleife;
       
       GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Ende;
+      SoundWichtigeEinstellungen.AktuelleMusik := SystemDatentypen.Grafik_Ende;
       
    end Hauptmenü;
 

@@ -3,12 +3,12 @@ pragma SPARK_Mode (On);
 with SchreibeStadtGebaut;
 
 with InDerStadtBauen;
-with KarteStadt;
 with BewegungCursor;
 with Eingabe;
 with EinwohnerZuweisenEntfernen;
 with GebaeudeVerkaufen;
 with BewegungCursorSFML;
+with GrafikWichtigeEinstellungen;
 
 package body InDerStadt is
 
@@ -16,11 +16,12 @@ package body InDerStadt is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      AktuelleRasseStadt := StadtRasseNummerExtern;
+      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Stadtkarte;
+      
       StadtSchleife:
       loop
          
-         KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-
          Befehl := Eingabe.Tastenwert;
          
          case
@@ -48,6 +49,7 @@ package body InDerStadt is
 
                -- Stadt verlassen
             when SystemDatentypen.Menü_Zurück =>
+               AktuelleRasseStadt.Platznummer := 0;
                return;
                
             when SystemDatentypen.Mausbewegung =>

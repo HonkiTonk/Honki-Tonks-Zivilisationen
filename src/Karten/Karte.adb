@@ -3,8 +3,8 @@ pragma SPARK_Mode (On);
 with KarteInformationenKonsole;
 with KarteSFML;
 with KarteKonsole;
+with BewegungCursorSFML;
 with CursorPositionAltFestlegen;
--- with BewegungCursorSFML;
 
 package body Karte is
 
@@ -12,7 +12,7 @@ package body Karte is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- BewegungCursorSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
+      BewegungCursorSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
       CursorPositionAltFestlegen.CursorPositionAltFestlegen (RasseExtern => RasseExtern);
       
       case

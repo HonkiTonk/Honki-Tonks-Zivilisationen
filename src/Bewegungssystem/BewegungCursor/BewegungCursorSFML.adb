@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics.RenderWindow;
-
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 
@@ -15,7 +13,8 @@ package body BewegungCursorSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      MausPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
+      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kommt es zu einem Absturz.
+      MausPosition := GrafikEinstellungen.MausPosition;
       
       if
         MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y)
@@ -58,7 +57,8 @@ package body BewegungCursorSFML is
                      null;
                      
                   when others =>
-                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position := KartenWert;
+                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse := KartenWert.YAchse;
+                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse := KartenWert.XAchse;
                end case;
                
                return;
@@ -72,7 +72,7 @@ package body BewegungCursorSFML is
          YMultiplikator := YMultiplikator + 1.00;
          
       end loop YAchseSchleife;
-      
+            
    end CursorPlatzierenKarteSFML;
    
    
