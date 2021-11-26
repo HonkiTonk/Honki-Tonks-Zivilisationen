@@ -14,7 +14,7 @@ with RasseEntfernen;
 with ZwischenDenRunden;
 with Sichtweiten;
 with AuswahlMenue;
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 with Fehler;
 
 with KI;
@@ -193,13 +193,13 @@ package body ImSpiel is
       loop
          
          case
-           GrafikWichtigeEinstellungen.AktuelleDarstellung
+           InteraktionTasks.AktuelleDarstellung
          is
             when SystemDatentypen.Grafik_Weltkarte =>
                null;
                
             when others =>
-               GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Weltkarte;
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Weltkarte;
          end case;
                
          case
@@ -253,7 +253,7 @@ package body ImSpiel is
                      
       end loop SpielerSchleife;
       
-      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
       AktuelleRasse := SystemDatentypen.Keine_Rasse;
       
       return RückgabeMenschAmZug;

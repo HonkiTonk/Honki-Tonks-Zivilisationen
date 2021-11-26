@@ -3,13 +3,17 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Window.Keyboard;
-with Sf.Graphics;
-with Sf.Graphics.Text;
 
 with SystemDatentypen;
 with KartenDatentypen;
 
 package EingabeSFML is
+   
+   WelchesVorzeichen : Boolean;
+   
+   Frage : Positive;
+   
+   AktuellerWert : Natural;
    
    type TastenbelegungArray is array (1 .. 2, SystemDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
    Tastenbelegung : TastenbelegungArray;
@@ -38,20 +42,15 @@ package EingabeSFML is
      return SystemDatentypen.Tastenbelegung_Enum;
    
 private
-   
-   WelchesVorzeichen : Boolean;
-   
+      
    ZahlenMaximum : constant Positive := 999_999_999;
    ZahlenMinimumPlusmacher : Positive;
    MaximumMinimumAktuelleStelle : Positive;
-   AnzeigeAnfang : Positive;
-   Frage : Positive;
-   
-   AktuellerWert : Natural;
-   
+      
    ZahlenMinimum : constant Integer := -999_999_999;
    MaximalerWert : Integer;
    MinimalerWert : Integer;
+   EingegebeneZahl : Integer;
    
    ZahlenString : Wide_Wide_String (1 .. 9);
       
@@ -60,9 +59,7 @@ private
    
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Taste : Sf.Window.Keyboard.sfKeyCode;
-   
-   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
-   
+      
    type EingabeZahlenUmwandelnArray is array (Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9) of Wide_Wide_Character;
    EingabeZahlenUmwandeln : constant EingabeZahlenUmwandelnArray := (
                                                                      Sf.Window.Keyboard.sfKeyNum0 => '0',
@@ -186,8 +183,7 @@ private
                                                             );
    
    procedure ZahlenAnzeige
-     (ZahlenMinimumExtern : in Integer;
-      WelcheFrageExtern : in Positive);
+     (ZahlenMinimumExtern : in Integer);
    
    procedure MinimumMaximumSetzen
      (ZahlenMinimumMaximumExtern : in Integer)
@@ -213,8 +209,7 @@ private
 
    function ZahlSchleife
      (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer;
-      WelcheFrageExtern : in Positive)
+      ZahlenMaximumExtern : in Integer)
       return KartenDatentypen.LoopRangeMinusZweiZuZwei
      with
        Pre =>

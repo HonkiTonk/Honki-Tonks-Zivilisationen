@@ -11,9 +11,8 @@ with ImSpiel;
 with Laden;
 with Wuerdigung;
 with AuswahlMenue;
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 with Fehler;
-with SoundWichtigeEinstellungen;
 
 package body Hauptmenue is
 
@@ -91,8 +90,8 @@ package body Hauptmenue is
          
       end loop HauptmenüSchleife;
       
-      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Ende;
-      SoundWichtigeEinstellungen.AktuelleMusik := SystemDatentypen.Grafik_Ende;
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Ende;
+      InteraktionTasks.AktuelleMusik := SystemDatentypen.Grafik_Ende;
       
    end Hauptmenü;
 

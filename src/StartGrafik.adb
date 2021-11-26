@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen;
 
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 with GrafikKonsole;
 with GrafikSFML;
 with Fehler;
@@ -13,9 +13,9 @@ package body StartGrafik is
    is begin
       
       GrafikStartenSchleife:
-      while GrafikWichtigeEinstellungen.ErzeugeFenster = False loop
+      while InteraktionTasks.ErzeugeFenster = False loop
          
-         delay GrafikWichtigeEinstellungen.Wartezeit;
+         delay InteraktionTasks.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;
             
@@ -29,7 +29,7 @@ package body StartGrafik is
    is begin
       
       case
-        GrafikWichtigeEinstellungen.AktuelleDarstellung
+        InteraktionTasks.AktuelleDarstellung
       is
          when SystemDatentypen.Konsole_Start =>
             GrafikKonsole.GrafikKonsole;

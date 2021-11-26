@@ -8,7 +8,7 @@ with Eingabe;
 with EinwohnerZuweisenEntfernen;
 with GebaeudeVerkaufen;
 with BewegungCursorSFML;
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 
 package body InDerStadt is
 
@@ -17,7 +17,7 @@ package body InDerStadt is
    is begin
       
       AktuelleRasseStadt := StadtRasseNummerExtern;
-      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Stadtkarte;
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Stadtkarte;
       
       StadtSchleife:
       loop

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen;
 
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 with Intro;
 with ImSpiel;
 with Fehler;
@@ -17,11 +17,11 @@ package body GrafikKonsole is
       loop
                   
          case
-           GrafikWichtigeEinstellungen.AktuelleDarstellung
+           InteraktionTasks.AktuelleDarstellung
          is
             when SystemDatentypen.Konsole_Start =>
-               GrafikWichtigeEinstellungen.FensterErzeugt := True;
-               GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.FensterErzeugt := True;
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
             
             when SystemDatentypen.SFML_Start =>
                -- Aber wie wechselt man dann von der Konsole auf die Grafik? Nur per Neustart?
@@ -29,32 +29,29 @@ package body GrafikKonsole is
                
             when SystemDatentypen.Grafik_Intro =>
                Intro.Intro;
-               GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
                               
             when SystemDatentypen.Grafik_Pause =>
-               delay GrafikWichtigeEinstellungen.Wartezeit;
+               delay InteraktionTasks.WartezeitGrafik;
          
             when SystemDatentypen.Grafik_Menüs =>
                -- AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
-               GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
-               
-            when SystemDatentypen.Grafik_Eingabe =>
-               null;
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
                
             when SystemDatentypen.Grafik_Weltkarte =>
                case
                  ImSpiel.AktuelleRasse
                is
                   when SystemDatentypen.Keine_Rasse =>
-                     delay GrafikWichtigeEinstellungen.Wartezeit;
+                     delay InteraktionTasks.WartezeitGrafik;
                      
                   when others =>
                      Karte.AnzeigeKarte (RasseExtern => ImSpiel.AktuelleRasse);
-                     GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+                     InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
                end case;
                
             when SystemDatentypen.Grafik_Stadtkarte =>
-               GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
          
             when SystemDatentypen.Grafik_Ende =>
                exit GrafikSchleife;

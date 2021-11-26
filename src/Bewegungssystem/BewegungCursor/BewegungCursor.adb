@@ -39,7 +39,7 @@ package body BewegungCursor is
    is begin
       
       KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
-                                             ZeileExtern         => 40,
+                                             ZeileExtern         => 29,
                                              ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
                                              ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)));
       

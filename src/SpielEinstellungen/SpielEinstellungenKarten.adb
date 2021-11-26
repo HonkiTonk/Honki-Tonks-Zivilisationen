@@ -57,7 +57,7 @@ package body SpielEinstellungenKarten is
    is begin
       
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
-                                                      ZeileExtern         => 19,
+                                                      ZeileExtern         => 15,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
       if
@@ -71,7 +71,7 @@ package body SpielEinstellungenKarten is
       
       Karten.Kartengrößen (KartengrößeExtern).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
-                                                      ZeileExtern         => 25,
+                                                      ZeileExtern         => 21,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
       

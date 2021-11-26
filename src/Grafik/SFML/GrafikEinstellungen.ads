@@ -17,6 +17,8 @@ package GrafikEinstellungen is
       
    FensterEinstellungen : SystemRecords.FensterRecord;
    
+   -- Hier mal einen globalen Zeilenabstand einbauen.
+   
    type AktuelleAuflösung is record
       
       AktuelleFensterBreite : Sf.sfUint32;

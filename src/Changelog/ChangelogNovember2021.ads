@@ -21,24 +21,27 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (27.11.2021):
+   -- Version 0.00.94 => 0.00.9 (27.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.94 => 0.00.9 (26.11.2021):
+   -- Version 0.00.9470 => 0.00.94 (26.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9460 => 0.00.94 (25.11.2021):
+   -- Version 0.00.9460 => 0.00.9470 (25.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Zahleneingabe in der SFML funktioniert wieder und hat grafische Anzeige.
+   -- Goto funktioniert jetzt mit der SFML.
+   -- Fehler in der englische Übersetzung korrigiert.
+   -- Manuelles anpassen der Bildschirmauflösung und Bildrate ist jetzt möglich.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
@@ -49,7 +52,7 @@ package ChangelogNovember2021 is
    -- Fehler behoben der in der neuen Cursorbestimmung es unmöglich machte die Ebenen zu wechseln.
    -- Angefangen die Stadtanzeige an die neue Logik/Grafiktrennung anzupassen.
    -- Angefangen die Einheitenkontrolle an die neue Logik/Grafiktrennung anzupassen.
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

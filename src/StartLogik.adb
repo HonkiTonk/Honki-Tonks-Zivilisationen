@@ -5,7 +5,7 @@ with SystemDatentypen; use SystemDatentypen;
 with SchreibenVerzeichnisse;
 with EinlesenEinstellungen;
 with Einlesen;
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 with Hauptmenue;
 
 package body StartLogik is
@@ -18,23 +18,23 @@ package body StartLogik is
       
       Einlesen.EinlesenOhneAnzeige;
       
-      GrafikWichtigeEinstellungen.ErzeugeFenster := True;
+      InteraktionTasks.ErzeugeFenster := True;
       
       FensterVorhandenSchleife:
-      while GrafikWichtigeEinstellungen.FensterErzeugt = False loop
+      while InteraktionTasks.FensterErzeugt = False loop
          
-         delay GrafikWichtigeEinstellungen.Wartezeit;
+         delay InteraktionTasks.WartezeitLogik;
          
       end loop FensterVorhandenSchleife;
       
       Einlesen.EinlesenMitAnzeige;
       
-      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Intro;
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Intro;
       
       IntroSchleife:
-      while GrafikWichtigeEinstellungen.AktuelleDarstellung = SystemDatentypen.Grafik_Intro loop
+      while InteraktionTasks.AktuelleDarstellung = SystemDatentypen.Grafik_Intro loop
          
-         delay GrafikWichtigeEinstellungen.Wartezeit;
+         delay InteraktionTasks.WartezeitLogik;
          
       end loop IntroSchleife;
       

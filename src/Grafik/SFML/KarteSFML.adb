@@ -18,6 +18,8 @@ with BerechnungenKarteSFML;
 with Fehler;
 with SFMLAllgemeinePruefungen;
 with GrafikEinstellungen;
+with AnzeigeEingabe;
+with InteraktionTasks;
 
 package body KarteSFML is
    
@@ -29,6 +31,16 @@ package body KarteSFML is
                     RasseExtern      => RasseExtern);
       
       KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseExtern);
+      
+      case
+        InteraktionTasks.Eingabe
+      is
+         when True =>
+            AnzeigeEingabe.AnzeigeGanzeZahl;
+            
+         when False =>
+            null;
+      end case;
       
    end KarteAnzeigen;
    

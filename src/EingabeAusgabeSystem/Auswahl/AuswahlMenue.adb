@@ -11,7 +11,7 @@ with GrafikEinstellungen;
 with Eingabe;
 with AllgemeineTextBerechnungenSFML;
 with RueckgabeMenues;
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 
 package body AuswahlMenue is
 
@@ -21,7 +21,7 @@ package body AuswahlMenue is
    is begin
       
       AllgemeinesFestlegen (WelchesMenüExtern => WelchesMenüExtern);
-      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Menüs;
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Menüs;
       
       Auswahl;
    
@@ -30,7 +30,7 @@ package body AuswahlMenue is
                                                         AktuelleAuswahlExtern => AktuelleAuswahl,
                                                         WelchesMenüExtern     => WelchesMenü);
       
-      GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
       
       return RückgabeWert;
       

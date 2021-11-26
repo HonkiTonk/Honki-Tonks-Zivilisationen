@@ -5,17 +5,15 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf;
 with Sf.Window.Mouse;
--- with Sf.Graphics.Text;
-with Sf.Graphics.RenderWindow;
-with Sf.Graphics.Color;
 
 with KartenDatentypen; use KartenDatentypen;
 with SystemKonstanten;
 with GlobaleTexte;
 
 with EingabeSystemeSFML;
-with GrafikEinstellungen;
 with Anzeige;
+with InteraktionTasks;
+with Fehler;
 
 package body EingabeSFML is
    
@@ -28,56 +26,88 @@ package body EingabeSFML is
       
       MaximalerWert := MaximumErmitteln (ZahlenMaximumExtern => ZahlenMaximumExtern);
       MinimalerWert := MinimumErmitteln (ZahlenMinimumExtern => ZahlenMinimumExtern);
+      EingegebeneZahl := 0;
+      AktuellerWert := 0;
       
       if
         WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
-         -- Hier später ein Fehler.LogikStopp einbauen.
-         Frage := Positive'First;
+         Fehler.LogikStopp (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Frage ist außerhalb des Fragenbereichs.");
          
       else
          Frage := WelcheFrageExtern;
       end if;
       
       if
-        ZahlenMinimumExtern >= ZahlenMaximumExtern
+        ZahlenMinimumExtern > ZahlenMaximumExtern
       then
-         return SystemKonstanten.GanzeZahlAbbruchKonstante;
+         Fehler.LogikStopp (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Zahlenminimum ist größer als Zahlenmaximum.");
          
       else
          ZahlenString := ("000000000");
          WelchesVorzeichen := True;
       end if;
+      
+      InteraktionTasks.Eingabe := True;
+      
+      case
+        InteraktionTasks.AktuelleDarstellung
+      is
+         -- Brauche ich den Stadtteil wirklich? Eventuell um in der Stadt bestimmte Dinge festzulegen.
+         when SystemDatentypen.Grafik_Weltkarte | SystemDatentypen.Grafik_Stadtkarte =>
+            null;
+            
+         when others =>
+            InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Menüs;
+      end case;
 
       ZahlenAußenSchleife:
       loop
                   
          case
            ZahlSchleife (ZahlenMinimumExtern => MinimalerWert,
-                         ZahlenMaximumExtern => MaximalerWert,
-                         WelcheFrageExtern   => Frage)
+                         ZahlenMaximumExtern => MaximalerWert)
          is
             when 2 =>
                exit ZahlenAußenSchleife;
                
             when -1 =>
-               return SystemKonstanten.GanzeZahlAbbruchKonstante;
+               EingegebeneZahl := SystemKonstanten.GanzeZahlAbbruchKonstante;
+               exit ZahlenAußenSchleife;
                         
             when others =>
                null;
          end case;
                
       end loop ZahlenAußenSchleife;
-
-      case
+      
+      if
+        EingegebeneZahl = SystemKonstanten.GanzeZahlAbbruchKonstante
+      then
+         null;
+         
+      elsif
         WelchesVorzeichen
-      is
-         when True =>
-            return Integer'Wide_Wide_Value (ZahlenString);
+      then
+         EingegebeneZahl := Integer'Wide_Wide_Value (ZahlenString);
                   
-         when False =>
-            return -Integer'Wide_Wide_Value (ZahlenString);
+      else
+         EingegebeneZahl := -Integer'Wide_Wide_Value (ZahlenString);
+      end if;
+      
+      case
+        InteraktionTasks.AktuelleDarstellung
+      is
+         when SystemDatentypen.Grafik_Menüs =>
+            InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+            
+         when others =>
+            null;
       end case;
+      
+      InteraktionTasks.Eingabe := False;
+      
+      return EingegebeneZahl;
       
    end GanzeZahl;
    
@@ -132,16 +162,14 @@ package body EingabeSFML is
    
    function ZahlSchleife
      (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer;
-      WelcheFrageExtern : in Positive)
+      ZahlenMaximumExtern : in Integer)
       return KartenDatentypen.LoopRangeMinusZweiZuZwei
    is begin
       
       ZahlenSchleife:
       loop
 
-         ZahlenAnzeige (ZahlenMinimumExtern => ZahlenMinimumExtern,
-                        WelcheFrageExtern   => WelcheFrageExtern);
+         ZahlenAnzeige (ZahlenMinimumExtern => ZahlenMinimumExtern);
             
          EingabeSystemeSFML.TastenEingabe;
          Zahlen := EingabeSystemeSFML.TastaturTaste;
@@ -189,6 +217,8 @@ package body EingabeSFML is
             when others =>
                null;
          end case;
+         
+         AktuellerWert := Natural'Wide_Wide_Value (ZahlenString);
 
       end loop ZahlenSchleife;
       
@@ -197,106 +227,19 @@ package body EingabeSFML is
    
    
    procedure ZahlenAnzeige
-     (ZahlenMinimumExtern : in Integer;
-      WelcheFrageExtern : in Positive)
+     (ZahlenMinimumExtern : in Integer)
    is begin
-      
-      AnzeigeAnfang := ZahlenString'Last;
-      AktuellerWert := abs (Integer'Wide_Wide_Value (ZahlenString));
-      
-      ZahlenlängeErmittelnSchleife:
-      loop
-         
-         AktuellerWert := AktuellerWert / 10;
-         
-         if
-           AktuellerWert > 0
-         then
-            AnzeigeAnfang := AnzeigeAnfang - 1;
             
-         else
-            exit ZahlenlängeErmittelnSchleife;
-         end if;
-         
-      end loop ZahlenlängeErmittelnSchleife;
-      
-      -- GrafikAllgemein.FensterLeeren;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrageExtern)));
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
-      
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
-                                                 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 10.00));
-      Sf.Graphics.Text.setColor (text  => TextAccess,
-                                 color => Sf.Graphics.Color.sfRed);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => TextAccess);
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
-      Sf.Graphics.Text.setColor (text  => TextAccess,
-                                 color => GrafikEinstellungen.FensterEinstellungen.Textfarbe);
-
       if
-        ZahlenMinimumExtern > 0
-        and
-          Integer'Wide_Wide_Value (ZahlenString) = 0
-      then
-         null;
-            
-      elsif
         ZahlenMinimumExtern >= 0
         and
           WelchesVorzeichen = False
       then
          WelchesVorzeichen := True;
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
-         Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                       position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
-                                                    - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
-                                                    50.00));
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => TextAccess);
             
       else
-         if
-           WelchesVorzeichen
-         then
-            null;
-
-         elsif
-           WelchesVorzeichen = False
-           and
-             Integer'Wide_Wide_Value (ZahlenString) = 0
-         then
-            null;
-                  
-         else
-            Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                               str  => "-");
-            Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                          position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
-                                                       - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
-                                                       50.00));
-            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                               text         => TextAccess);
-         end if;
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => ZahlenString (AnzeigeAnfang .. ZahlenString'Last));
-         Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                       position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
-                                                    - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
-                                                    50.00));
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => TextAccess);
+         null;
       end if;
-      
-      -- GrafikAllgemein.FensterAnzeigen;
       
    end ZahlenAnzeige;
    

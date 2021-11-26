@@ -15,6 +15,8 @@ package body Eingabe is
       return Integer
    is begin
       
+      
+      -- TextDateiExtern später auch in Konsole entfernen.
       case
         GlobaleVariablen.AnzeigeArt
       is

@@ -6,11 +6,12 @@ with Sf.Graphics.RenderWindow;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 with AuswahlMenue;
 with GrafikEinstellungen;
 with GrafikHintergrund;
 with AllgemeineTextBerechnungenSFML;
+with AnzeigeEingabe;
 
 package body AuswahlMenueAnzeige is
 
@@ -18,9 +19,10 @@ package body AuswahlMenueAnzeige is
    is begin
       
       case
-        GrafikWichtigeEinstellungen.AktuelleDarstellung
+        InteraktionTasks.AktuelleDarstellung
       is
          when SystemDatentypen.Grafik_Menüs =>
+            -- In AuswahlMenue eine Prozedure mit out für alle Variablen bauen?
             ZeilenAbstand := 0.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
             WelchesMenü := AuswahlMenue.WelchesMenü;
             Anfang := AuswahlMenue.Anfang;
@@ -93,6 +95,16 @@ package body AuswahlMenueAnzeige is
       end loop AnzeigeSchleife;
       
       WeiterenTextAnzeigen;
+      
+      case
+        InteraktionTasks.Eingabe
+      is
+         when True =>
+            AnzeigeEingabe.AnzeigeGanzeZahl;
+            
+         when False =>
+            null;
+      end case;
       
    end AnzeigeMenüSFML;
    

@@ -61,7 +61,7 @@ package body OptionenGrafik is
    is begin
       
       EingabeAuflösung := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
-                                              ZeileExtern         => 1,
+                                              ZeileExtern         => 32,
                                               ZahlenMinimumExtern => 1,
                                               ZahlenMaximumExtern => 999_999_999);
       
@@ -75,7 +75,7 @@ package body OptionenGrafik is
       end if;
       
       EingabeAuflösung := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
-                                              ZeileExtern         => 1,
+                                              ZeileExtern         => 33,
                                               ZahlenMinimumExtern => 1,
                                               ZahlenMaximumExtern => 999_999_999);
       
@@ -99,7 +99,7 @@ package body OptionenGrafik is
    is begin
       
       EingabeBildrate := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
-                                            ZeileExtern         => 1,
+                                            ZeileExtern         => 34,
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => 999_999_999);
       

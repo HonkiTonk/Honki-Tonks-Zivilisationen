@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
 
-with SoundWichtigeEinstellungen;
+with InteraktionTasks;
 
 package body StartSound is
 
@@ -10,9 +10,9 @@ package body StartSound is
    is begin
       
       SoundSchleife:
-      while SoundWichtigeEinstellungen.AktuelleMusik /= SystemDatentypen.Grafik_Ende loop
+      while InteraktionTasks.AktuelleMusik /= SystemDatentypen.Grafik_Ende loop
          
-         delay SoundWichtigeEinstellungen.Wartezeit;
+         delay InteraktionTasks.WartezeitSound;
          
       end loop SoundSchleife;
       

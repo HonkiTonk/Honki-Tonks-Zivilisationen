@@ -10,7 +10,7 @@ with GrafikStartEnde;
 with Intro;
 with AuswahlMenueAnzeige;
 with Karte;
-with GrafikWichtigeEinstellungen;
+with InteraktionTasks;
 with KarteStadt;
 with InDerStadt;
 
@@ -27,34 +27,31 @@ package body GrafikSFML is
          GrafikStartEnde.FensterLeeren;
          
          case
-           GrafikWichtigeEinstellungen.AktuelleDarstellung
+           InteraktionTasks.AktuelleDarstellung
          is
             when SystemDatentypen.Konsole_Start =>
                -- Aber wie wechselt man dann von der Konsole auf die Grafik? Nur per Neustart?
                Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Konsole wird bei SFML aufgerufen.");
             
             when SystemDatentypen.SFML_Start =>
-               GrafikWichtigeEinstellungen.FensterErzeugt := True;
-               GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.FensterErzeugt := True;
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
                
             when SystemDatentypen.Grafik_Intro =>
                Intro.Intro;
-               GrafikWichtigeEinstellungen.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
                               
             when SystemDatentypen.Grafik_Pause =>
-               delay GrafikWichtigeEinstellungen.Wartezeit;
+               delay InteraktionTasks.WartezeitGrafik;
          
             when SystemDatentypen.Grafik_Menüs =>
                AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
-               
-            when SystemDatentypen.Grafik_Eingabe =>
-               null;
                
             when SystemDatentypen.Grafik_Weltkarte =>
                if
                  ImSpiel.AktuelleRasse = SystemDatentypen.Keine_Rasse
                then
-                  delay GrafikWichtigeEinstellungen.Wartezeit;
+                  delay InteraktionTasks.WartezeitGrafik;
                      
                else
                   Karte.AnzeigeKarte (RasseExtern => ImSpiel.AktuelleRasse);
@@ -64,7 +61,7 @@ package body GrafikSFML is
                if
                  InDerStadt.AktuelleRasseStadt.Platznummer = StadtKonstanten.LeerNummer
                then
-                  delay GrafikWichtigeEinstellungen.Wartezeit;
+                  delay InteraktionTasks.WartezeitGrafik;
                   
                else
                   KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => InDerStadt.AktuelleRasseStadt);
