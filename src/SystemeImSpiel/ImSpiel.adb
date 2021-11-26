@@ -12,7 +12,6 @@ with Speichern;
 with Laden;
 with RasseEntfernen;
 with ZwischenDenRunden;
-with Sichtweiten;
 with AuswahlMenue;
 with InteraktionTasks;
 with Fehler;
@@ -25,7 +24,8 @@ package body ImSpiel is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      Sichtweiten.SichtweiteBewegungsfeldFestlegen;
+      -- Muss hier einmal auf True gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechent werden vom Grafiktask.
+      InteraktionTasks.FensterVerändert := True;
       
       SpielSchleife:
       loop

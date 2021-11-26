@@ -5,7 +5,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
 with GrafikEinstellungen;
-with GrafikAllgemein;
+with InteraktionTasks;
 
 package body EingabeSystemeSFML is
 
@@ -60,7 +60,7 @@ package body EingabeSystemeSFML is
                   end if;
                   
                when Sf.Window.Event.sfEvtResized =>
-                  GrafikAllgemein.FensterAnpassen;
+                  InteraktionTasks.FensterVerändert := True;
                   
                when others =>
                   null;

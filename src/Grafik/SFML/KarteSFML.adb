@@ -16,7 +16,6 @@ with StadtSuchen;
 with KarteInformationenSFML;
 with BerechnungenKarteSFML;
 with Fehler;
-with SFMLAllgemeinePruefungen;
 with GrafikEinstellungen;
 with AnzeigeEingabe;
 with InteraktionTasks;
@@ -204,8 +203,6 @@ package body KarteSFML is
       AbmessungExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      SFMLAllgemeinePruefungen.PositionPrüfen (PositionExtern => PositionZeichnenExtern);
-      
       if
         AbmessungExtern.y = 0.00
         or
@@ -240,9 +237,7 @@ package body KarteSFML is
       PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
       RadiusExtern : in Float)
    is begin
-      
-      SFMLAllgemeinePruefungen.PositionPrüfen (PositionExtern => PositionZeichnenExtern);
-      
+            
       if
         RadiusExtern = 0.00
       then
@@ -269,9 +264,7 @@ package body KarteSFML is
       RadiusExtern : in Float;
       AnzahlEckenExtern : in Sf.sfSize_t)
    is begin
-      
-      SFMLAllgemeinePruefungen.PositionPrüfen (PositionExtern => PositionZeichnenExtern);
-      
+            
       if
         RadiusExtern = 0.00
       then

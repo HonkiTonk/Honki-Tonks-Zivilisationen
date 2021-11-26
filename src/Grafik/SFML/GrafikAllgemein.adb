@@ -10,7 +10,6 @@ with Sf.Window.Cursor;
 
 with GrafikEinstellungen;
 with GrafikStartEnde;
-with Fehler;
 
 package body GrafikAllgemein is
       
@@ -20,13 +19,13 @@ package body GrafikAllgemein is
       GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).x;
       GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).y;
       
-      Sf.Graphics.View.setSize (view => NeueAuflösungZugriff,
+      Sf.Graphics.View.setSize (view => NeueAuflösungAccess,
                                 size => (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite), Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)));
-      Sf.Graphics.View.setCenter (view   => NeueAuflösungZugriff,
+      Sf.Graphics.View.setCenter (view   => NeueAuflösungAccess,
                                   center => (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00, Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe) / 2.00));
       
       Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungen.Fenster,
-                                        view         => NeueAuflösungZugriff);
+                                        view         => NeueAuflösungAccess);
       
    end FensterAnpassen;
    
@@ -159,124 +158,5 @@ package body GrafikAllgemein is
       null;
       
    end TextZeichnen;
-   
-   
-   
-   procedure RechteckZeichnen
-     (AbmessungExtern : in Sf.System.Vector2.sfVector2f;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      FarbeExtern : in Sf.Graphics.Color.sfColor)
-   is begin
-      
-      PositionPrüfen (PositionExtern => PositionExtern);
-      
-      if
-        AbmessungExtern.y = 0.00
-        or
-          AbmessungExtern.x = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.RechteckZeichnen - Rechteck ist ein Strich");
-         
-      elsif
-        AbmessungExtern.y > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
-        or
-          AbmessungExtern.x > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.RechteckZeichnen - Rechteck ist größer als das Fenster");
-         
-      else
-         Sf.Graphics.RectangleShape.setSize (shape => Rechteck,
-                                             size  => AbmessungExtern);
-         Sf.Graphics.RectangleShape.setPosition (shape    => Rechteck,
-                                                 position => PositionExtern);
-         Sf.Graphics.RectangleShape.setFillColor (shape => Rechteck,
-                                                  color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
-                                                      object       => Rechteck);
-      end if;
-      
-   end RechteckZeichnen;
-   
-   
-   
-   procedure KreisZeichnen
-     (RadiusExtern : in Float;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      FarbeExtern : in Sf.Graphics.Color.sfColor)
-   is begin
-      
-      PositionPrüfen (PositionExtern => PositionExtern);
-      
-      if
-        RadiusExtern = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.KreisZeichnen - RadiusExtern = 0.00");
-         
-      else
-         Sf.Graphics.CircleShape.setRadius (shape  => Kreis,
-                                            radius => RadiusExtern);
-         Sf.Graphics.CircleShape.setPosition (shape    => Kreis,
-                                              position => PositionExtern);
-         Sf.Graphics.CircleShape.setFillColor (shape => Kreis,
-                                               color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.Fenster,
-                                                   object       => Kreis);
-      end if;
-      
-   end KreisZeichnen;
-   
-   
-   
-   procedure PolygonZeichnen
-     (RadiusExtern : in Float;
-      PositionExtern : in Sf.System.Vector2.sfVector2f;
-      AnzahlEckenExtern : in Sf.sfSize_t;
-      FarbeExtern : in Sf.Graphics.Color.sfColor)
-   is begin
-      
-      PositionPrüfen (PositionExtern => PositionExtern);
-      
-      if
-        RadiusExtern = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.PolygonZeichnen - RadiusExtern = 0.00");
-         
-      else
-         Sf.Graphics.CircleShape.setRadius (shape  => Polygon,
-                                            radius => RadiusExtern);
-         Sf.Graphics.CircleShape.setPointCount (shape => Polygon,
-                                                count => AnzahlEckenExtern);
-         Sf.Graphics.CircleShape.setPosition (shape    => Polygon,
-                                              position => PositionExtern);
-         Sf.Graphics.CircleShape.setFillColor (shape => Polygon,
-                                               color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.Fenster,
-                                                   object       => Polygon);
-      end if;
-      
-   end PolygonZeichnen;
-   
-   
-   
-   procedure PositionPrüfen
-     (PositionExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
-      if
-        PositionExtern.y < 0.00
-        or
-          PositionExtern.x < 0.00
-          or
-            PositionExtern.y >= Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
-        or
-          PositionExtern.x >= Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.PositionPrüfen - Ein Objekt wurde außerhalb des Fensters positioniert.");
-         
-      else
-         null;
-      end if;
-      
-   end PositionPrüfen;
 
 end GrafikAllgemein;

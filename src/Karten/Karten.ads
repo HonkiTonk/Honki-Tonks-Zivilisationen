@@ -34,7 +34,8 @@ package Karten is
                                             SystemDatentypen.Karte_Größe_Nutzer    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
                                            );
 
-   Kartengröße : KartenDatentypen.Kartengröße_Enum;
+   -- Muss einen Startwert haben damit der Grafiktask die Kartenfelder korrekt berechnen kann.
+   Kartengröße : KartenDatentypen.Kartengröße_Enum := SystemDatentypen.Karte_Größe_20_20;
 
    type LandartenRecord is record
 

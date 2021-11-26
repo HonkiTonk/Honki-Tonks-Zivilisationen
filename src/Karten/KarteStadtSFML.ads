@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Sf.Graphics;
+with Sf.Graphics.RectangleShape;
+
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
@@ -15,6 +18,8 @@ package KarteStadtSFML is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch);
 
 private
+
+   RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
 
    procedure GrafischeDarstellung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

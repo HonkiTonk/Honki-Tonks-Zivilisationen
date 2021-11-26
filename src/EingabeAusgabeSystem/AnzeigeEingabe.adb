@@ -7,7 +7,7 @@ with GlobaleTexte;
 
 with EingabeSFML;
 with GrafikEinstellungen;
-with GrafikAllgemein;
+with ObjekteZeichnenSFML;
 
 package body AnzeigeEingabe is
 
@@ -28,13 +28,14 @@ package body AnzeigeEingabe is
       Sf.Graphics.Text.setColor (text  => TextAccess,
                                  color => Sf.Graphics.Color.sfRed);
       
-      GrafikAllgemein.RechteckZeichnen (AbmessungExtern => (Sf.Graphics.Text.getLocalBounds (text => TextAccess).width + 20.00, 100.00),
-                                        PositionExtern  => (Sf.Graphics.Text.getPosition (text => TextAccess).x - 10.00, Sf.Graphics.Text.getPosition (text => TextAccess).y - 10.00),
-                                        FarbeExtern     => Sf.Graphics.Color.sfBlack);
+      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Sf.Graphics.Text.getLocalBounds (text => TextAccess).width + 20.00, 100.00),
+                                            PositionExtern       => (Sf.Graphics.Text.getPosition (text => TextAccess).x - 10.00, Sf.Graphics.Text.getPosition (text => TextAccess).y - 10.00),
+                                            FarbeExtern          => Sf.Graphics.Color.sfBlack,
+                                            RechteckAccessExtern => RechteckAccess);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                          text         => TextAccess);
-            
+      
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       Sf.Graphics.Text.setColor (text  => TextAccess,

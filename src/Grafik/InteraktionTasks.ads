@@ -16,6 +16,7 @@ package InteraktionTasks is
    -- Grafiktask
    ErzeugeFenster : Boolean := False;
    Eingabe : Boolean := False;
+   FensterVerändert : Boolean := False;
    
    AktuelleDarstellung : SystemDatentypen.Grafik_Aktuelle_Darstellung_Enum := SystemDatentypen.SFML_Start;
    

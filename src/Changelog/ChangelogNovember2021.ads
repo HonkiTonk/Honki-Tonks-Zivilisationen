@@ -21,16 +21,19 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.94 => 0.00.9 (27.11.2021):
+   -- Version 0.00.9480 => 0.00.9 (27.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9470 => 0.00.94 (26.11.2021):
+   -- Version 0.00.9470 => 0.00.9480 (26.11.2021):
    
-   -- 
+   -- Zeichnen allgemeiner Objekte verbessert.
+   -- Das Anpassen des Fenster bei manueller Größenänderung in den Grafiktask verschoben.
+   -- Die Größe der Kartenobjekte werden bei manueller Fensteränderung jetzt korrekt angepasst.
+   -- Die Kartenfeldergröße wird jetzt korrekt auf Basis der tatsächlichen Sichtweite/Kartengröße berechnet.
    -- Kleinigkeiten korrigiert.
    
    

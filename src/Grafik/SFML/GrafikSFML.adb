@@ -13,6 +13,8 @@ with Karte;
 with InteraktionTasks;
 with KarteStadt;
 with InDerStadt;
+with GrafikAllgemein;
+with Sichtweiten;
 
 package body GrafikSFML is
    
@@ -24,8 +26,21 @@ package body GrafikSFML is
       GrafikSchleife:
       loop
          
+         case
+           InteraktionTasks.FensterVerändert
+         is
+            when True =>
+               GrafikAllgemein.FensterAnpassen;
+               Sichtweiten.SichtweiteBewegungsfeldFestlegen;
+               InteraktionTasks.FensterVerändert := False;
+               
+            when False =>
+               null;
+         end case;
+         
          GrafikStartEnde.FensterLeeren;
          
+         -- Die Auswahl in eine eigene Funktion auslagern?
          case
            InteraktionTasks.AktuelleDarstellung
          is
