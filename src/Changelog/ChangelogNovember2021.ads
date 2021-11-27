@@ -1,29 +1,30 @@
 package ChangelogNovember2021 is
 
-   -- Version 0.00.9 => 0.00.9 (30.11.2021):
+   -- Version 0.00.95 => 0.00.95 (30.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (29.11.2021):
+   -- Version 0.00.95 => 0.00.95 (29.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (28.11.2021):
+   -- Version 0.00.9485 => 0.00.95 (28.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9480 => 0.00.9 (27.11.2021):
+   -- Version 0.00.9480 => 0.00.9485 (27.11.2021):
    
-   -- 
+   -- Zeichnen von allgemeinen Objekten wieder in einen eigenen Bereich ausgelagert.
+   -- Angefangen eine SFML Version der Texteingabe zu bauen.
    -- Kleinigkeiten korrigiert.
    
    

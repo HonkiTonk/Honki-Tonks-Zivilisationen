@@ -99,10 +99,13 @@ package body AuswahlMenueAnzeige is
       case
         InteraktionTasks.Eingabe
       is
-         when True =>
+         when SystemDatentypen.Text_Eingabe =>
+            AnzeigeEingabe.AnzeigeText;
+            
+         when SystemDatentypen.Zahlen_Eingabe =>
             AnzeigeEingabe.AnzeigeGanzeZahl;
             
-         when False =>
+         when SystemDatentypen.Keine_Eingabe =>
             null;
       end case;
       

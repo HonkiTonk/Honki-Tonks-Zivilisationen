@@ -11,6 +11,7 @@ package ObjekteZeichnenSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       FarbeExtern : in Sf.Graphics.Color.sfColor;
       RechteckAccessExtern : in Sf.Graphics.sfRectangleShape_Ptr);
+         
 
    procedure KreisZeichnen
      (RadiusExtern : in Float;

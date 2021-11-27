@@ -48,7 +48,7 @@ package body EingabeSFML is
          WelchesVorzeichen := True;
       end if;
       
-      InteraktionTasks.Eingabe := True;
+      InteraktionTasks.Eingabe := SystemDatentypen.Zahlen_Eingabe;
       
       case
         InteraktionTasks.AktuelleDarstellung
@@ -105,7 +105,7 @@ package body EingabeSFML is
             null;
       end case;
       
-      InteraktionTasks.Eingabe := False;
+      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
       
       return EingegebeneZahl;
       
@@ -359,8 +359,8 @@ package body EingabeSFML is
      return Unbounded_Wide_Wide_String
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                            TextZeileExtern => 32);
+      -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+      --                                       TextZeileExtern => 32);
       
       return NameEingeben;
       
@@ -384,8 +384,8 @@ package body EingabeSFML is
      return Unbounded_Wide_Wide_String
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
-                                            TextZeileExtern => 22);
+      -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
+      --                                      TextZeileExtern => 22);
 
       Name := NameEingeben;
 

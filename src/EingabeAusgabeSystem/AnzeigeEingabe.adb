@@ -63,5 +63,14 @@ package body AnzeigeEingabe is
                                          text         => TextAccess);
       
    end AnzeigeGanzeZahl;
+   
+   
+   
+   procedure AnzeigeText
+   is begin
+      
+      null;
+      
+   end AnzeigeText;
 
 end AnzeigeEingabe;

@@ -9,6 +9,7 @@ with Sf.Graphics.RectangleShape;
 package AnzeigeEingabe is
 
    procedure AnzeigeGanzeZahl;
+   procedure AnzeigeText;
    
 private
    

@@ -16,20 +16,20 @@ package body ObjekteZeichnenSFML is
       RechteckAccessExtern : in Sf.Graphics.sfRectangleShape_Ptr)
    is begin
       
-      -- Diese Prüfungen als Pre? Müsste bei einem Fehler auch direkt das Programm stoppen?
       if
         AbmessungExtern.y = 0.00
         or
           AbmessungExtern.x = 0.00
       then
-         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Rechteck ist ein Strich");
+         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Rechteck ist 0.");
          
-      elsif
-        AbmessungExtern.y > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
-        or
-          AbmessungExtern.x > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Rechteck ist größer als das Fenster");
+         -- Prüfung ob es kleiner als das Fenster ist funktioniert nicht, weil die Textboxen sonst bei langen Texten/kleinen Fenstern aus dem Fenster ragt.
+         -- elsif
+         --   AbmessungExtern.y > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
+         --   or
+         --     AbmessungExtern.x > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
+         -- then
+         --    Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Rechteck ist größer als das Fenster.");
          
       else
          Sf.Graphics.RectangleShape.setSize (shape => RechteckAccessExtern,

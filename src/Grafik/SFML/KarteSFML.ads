@@ -21,7 +21,7 @@ package KarteSFML is
    
    
    
-   function FarbeErmitteln
+   function FarbeKartenfeldErmitteln
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
       return Sf.Graphics.Color.sfColor;
    
@@ -43,10 +43,10 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
-   RechteckZugriff : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+   RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
 
-   KreisZugriff : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
-   PolygonZugriff : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
+   KreisAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
+   PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
    
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
@@ -62,22 +62,6 @@ private
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
-   
-   procedure KartenfeldZeichnen
-     (FarbeExtern : in Sf.Graphics.Color.sfColor;
-      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
-      AbmessungExtern : in Sf.System.Vector2.sfVector2f);
-   
-   procedure KreisZeichnen
-     (FarbeExtern : in Sf.Graphics.Color.sfColor;
-      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
-      RadiusExtern : in Float);
-   
-   procedure PolygonZeichnen
-     (FarbeExtern : in Sf.Graphics.Color.sfColor;
-      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
-      RadiusExtern : in Float;
-      AnzahlEckenExtern : in Sf.sfSize_t);
 
    procedure AnzeigeStadt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);

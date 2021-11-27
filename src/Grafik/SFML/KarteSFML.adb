@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics.RenderWindow;
-
 with KartenRecords; use KartenRecords;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
@@ -16,9 +14,9 @@ with StadtSuchen;
 with KarteInformationenSFML;
 with BerechnungenKarteSFML;
 with Fehler;
-with GrafikEinstellungen;
 with AnzeigeEingabe;
 with InteraktionTasks;
+with ObjekteZeichnenSFML;
 
 package body KarteSFML is
    
@@ -34,10 +32,13 @@ package body KarteSFML is
       case
         InteraktionTasks.Eingabe
       is
-         when True =>
+         when SystemDatentypen.Text_Eingabe =>
+            AnzeigeEingabe.AnzeigeText;
+            
+         when SystemDatentypen.Zahlen_Eingabe =>
             AnzeigeEingabe.AnzeigeGanzeZahl;
             
-         when False =>
+         when SystemDatentypen.Keine_Eingabe =>
             null;
       end case;
       
@@ -78,19 +79,16 @@ package body KarteSFML is
                                RasseExtern       => RasseExtern);
                         
                when False =>
-                  -- Ist das Zeichnen von schwarzen Felder überhaupt notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
-                  
-                  -- GrafikAllgemein.RechteckZeichnen (AbmessungExtern => BerechnungenKarteSFML.KartenfelderAbmessung,
-                  --                                  PositionExtern  => Position,
-                  --                                  FarbeExtern     => Sf.Graphics.Color.sfBlack);
+                  -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
                   
                   if
                     KartenWert = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
                   then
-                     PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfBlack,
-                                      PositionZeichnenExtern => Position,
-                                      RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                      AnzahlEckenExtern      => 3);
+                     ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                                          PositionExtern      => Position,
+                                                          AnzahlEckenExtern   => 3,
+                                                          FarbeExtern         => Sf.Graphics.Color.sfBlack,
+                                                          PolygonAccessExtern => PolygonAccess);
                      
                   else
                      null;
@@ -140,9 +138,10 @@ package body KarteSFML is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      KartenfeldZeichnen (FarbeExtern            => FarbeErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KartenWert)),
-                          PositionZeichnenExtern => Position,
-                          AbmessungExtern        => BerechnungenKarteSFML.KartenfelderAbmessung);
+      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
+                                            PositionExtern       => Position,
+                                            FarbeExtern          => FarbeKartenfeldErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KartenWert)),
+                                            RechteckAccessExtern => RechteckAccess);
             
       -- Mal Farben für die einzelnen Objekte einbauen.
       case
@@ -152,9 +151,10 @@ package body KarteSFML is
             null;
             
          when others =>
-            KreisZeichnen (FarbeExtern            => Sf.Graphics.Color.sfBlack,
-                           PositionZeichnenExtern => Position,
-                           RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00);
+            ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                               PositionExtern    => Position,
+                                               FarbeExtern       => Sf.Graphics.Color.sfBlack,
+                                               KreisAccessExtern => KreisAccess);
       end case;
       
       case
@@ -164,9 +164,10 @@ package body KarteSFML is
             null;
             
          when others =>
-            KartenfeldZeichnen (FarbeExtern            => Sf.Graphics.Color.sfBlue,
-                                PositionZeichnenExtern => (Position.x, Position.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                AbmessungExtern        => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00));
+            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
+                                                  PositionExtern       => (Position.x, Position.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+                                                  FarbeExtern          => Sf.Graphics.Color.sfBlue,
+                                                  RechteckAccessExtern => RechteckAccess);
       end case;
                   
       case
@@ -176,9 +177,10 @@ package body KarteSFML is
             null;
             
          when others =>
-            KartenfeldZeichnen (FarbeExtern            => Sf.Graphics.Color.sfRed,
-                                PositionZeichnenExtern => (Position.x, Position.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                AbmessungExtern        => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00));
+            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
+                                                  PositionExtern       => (Position.x, Position.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+                                                  FarbeExtern          => Sf.Graphics.Color.sfRed,
+                                                  RechteckAccessExtern => RechteckAccess);
       end case;
       
       case
@@ -188,102 +190,13 @@ package body KarteSFML is
             null;
             
          when others =>
-            KartenfeldZeichnen (FarbeExtern            => Sf.Graphics.Color.sfCyan,
-                                PositionZeichnenExtern => Position,
-                                AbmessungExtern        => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00));
+            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
+                                                  PositionExtern       => Position,
+                                                  FarbeExtern          => Sf.Graphics.Color.sfCyan,
+                                                  RechteckAccessExtern => RechteckAccess);
       end case;
       
    end AnzeigeLandschaft;
-   
-   
-   
-   procedure KartenfeldZeichnen
-     (FarbeExtern : in Sf.Graphics.Color.sfColor;
-      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
-      AbmessungExtern : in Sf.System.Vector2.sfVector2f)
-   is begin
-      
-      if
-        AbmessungExtern.y = 0.00
-        or
-          AbmessungExtern.x = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.RechteckZeichnen - Rechteck ist ein Strich");
-         
-      elsif
-        AbmessungExtern.y > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
-        or
-          AbmessungExtern.x > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.RechteckZeichnen - Rechteck ist größer als das Fenster");
-         
-      else
-         Sf.Graphics.RectangleShape.setSize (shape => RechteckZugriff,
-                                             size  => AbmessungExtern);
-         Sf.Graphics.RectangleShape.setPosition (shape    => RechteckZugriff,
-                                                 position => PositionZeichnenExtern);
-         Sf.Graphics.RectangleShape.setFillColor (shape => RechteckZugriff,
-                                                  color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
-                                                      object       => RechteckZugriff);
-      end if;
-      
-   end KartenfeldZeichnen;
-   
-   
-   
-   procedure KreisZeichnen
-     (FarbeExtern : in Sf.Graphics.Color.sfColor;
-      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
-      RadiusExtern : in Float)
-   is begin
-            
-      if
-        RadiusExtern = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.KreisZeichnen - Kreisradius ist 0.");
-         
-      else
-         Sf.Graphics.CircleShape.setRadius (shape  => KreisZugriff,
-                                            radius => RadiusExtern);
-         Sf.Graphics.CircleShape.setPosition (shape    => KreisZugriff,
-                                              position => PositionZeichnenExtern);
-         Sf.Graphics.CircleShape.setFillColor (shape => KreisZugriff,
-                                               color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.Fenster,
-                                                   object       => KreisZugriff);
-      end if;
-      
-   end KreisZeichnen;
-   
-   
-   
-   procedure PolygonZeichnen
-     (FarbeExtern : in Sf.Graphics.Color.sfColor;
-      PositionZeichnenExtern : in Sf.System.Vector2.sfVector2f;
-      RadiusExtern : in Float;
-      AnzahlEckenExtern : in Sf.sfSize_t)
-   is begin
-            
-      if
-        RadiusExtern = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikAllgemein.PolygonZeichnen - RadiusExtern = 0.00");
-         
-      else
-         Sf.Graphics.CircleShape.setRadius (shape  => PolygonZugriff,
-                                            radius => RadiusExtern);
-         Sf.Graphics.CircleShape.setPointCount (shape => PolygonZugriff,
-                                                count => AnzahlEckenExtern);
-         Sf.Graphics.CircleShape.setPosition (shape    => PolygonZugriff,
-                                              position => PositionZeichnenExtern);
-         Sf.Graphics.CircleShape.setFillColor (shape => PolygonZugriff,
-                                               color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.Fenster,
-                                                   object       => PolygonZugriff);
-      end if;
-      
-   end PolygonZeichnen;
    
    
    
@@ -299,10 +212,11 @@ package body KarteSFML is
          null;
             
       else
-         PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfYellow,
-                          PositionZeichnenExtern => Position,
-                          RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                          AnzahlEckenExtern      => 5);
+         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                              PositionExtern      => Position,
+                                              AnzahlEckenExtern   => 5,
+                                              FarbeExtern         => Sf.Graphics.Color.sfYellow,
+                                              PolygonAccessExtern => PolygonAccess);
       end if;
       
    end AnzeigeStadt;
@@ -323,16 +237,18 @@ package body KarteSFML is
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfYellow,
-                          PositionZeichnenExtern => Position,
-                          RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                          AnzahlEckenExtern      => 4);
+         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                              PositionExtern      => Position,
+                                              AnzahlEckenExtern   => 4,
+                                              FarbeExtern         => Sf.Graphics.Color.sfYellow,
+                                              PolygonAccessExtern => PolygonAccess);
             
       else
-         PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfYellow,
-                          PositionZeichnenExtern => Position,
-                          RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                          AnzahlEckenExtern      => 4);
+         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                              PositionExtern      => Position,
+                                              AnzahlEckenExtern   => 4,
+                                              FarbeExtern         => Sf.Graphics.Color.sfYellow,
+                                              PolygonAccessExtern => PolygonAccess);
       end if;
       
    end AnzeigeEinheit;
@@ -360,10 +276,11 @@ package body KarteSFML is
         and
           InDerStadtExtern = False
       then
-         PolygonZeichnen (FarbeExtern            => Sf.Graphics.Color.sfRed,
-                          PositionZeichnenExtern => Position,
-                          RadiusExtern           => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                          AnzahlEckenExtern      => 3);
+         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                              PositionExtern      => Position,
+                                              AnzahlEckenExtern   => 3,
+                                              FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                              PolygonAccessExtern => PolygonAccess);
          
       else
          null;
@@ -373,7 +290,7 @@ package body KarteSFML is
    
    
    
-   function FarbeErmitteln
+   function FarbeKartenfeldErmitteln
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
       return Sf.Graphics.Color.sfColor
    is begin
@@ -447,6 +364,6 @@ package body KarteSFML is
             return (0, 0, 0, 0);
       end case;
       
-   end FarbeErmitteln;
+   end FarbeKartenfeldErmitteln;
 
 end KarteSFML;
