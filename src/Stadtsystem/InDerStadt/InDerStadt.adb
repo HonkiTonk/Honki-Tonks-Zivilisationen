@@ -7,7 +7,6 @@ with BewegungCursor;
 with Eingabe;
 with EinwohnerZuweisenEntfernen;
 with GebaeudeVerkaufen;
-with BewegungCursorSFML;
 with InteraktionTasks;
 
 package body InDerStadt is
@@ -34,7 +33,14 @@ package body InDerStadt is
 
                -- Einwohner von Feld entfernen/zuweisen
             when SystemDatentypen.Auswählen =>
-               EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               if
+                 WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
+               then
+                  null;
+                  
+               else
+                  return;
+               end if;
                
             when SystemDatentypen.Bauen =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -53,7 +59,8 @@ package body InDerStadt is
                return;
                
             when SystemDatentypen.Mausbewegung =>
-               BewegungCursorSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);
+               -- Hier nicht die Mausbewegunsberechnungen einbauen um konsistent mit den Befehlen zu sein und keine Probeleme beim Zugriff auf das/die Fenster/Maus zu bekommen.
+               null;
                
             when others =>
                null;
@@ -62,5 +69,20 @@ package body InDerStadt is
       end loop StadtSchleife;
       
    end InDerStadt;
+   
+   
+   
+   function WasIstAusgewählt
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      -- Hier dann prüfen wo der Mauszeiger ist und entsprechend die Auswahl gestalten.
+      
+      EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+      return True;
+      
+   end WasIstAusgewählt;
 
 end InDerStadt;

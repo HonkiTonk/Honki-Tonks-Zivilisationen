@@ -2,12 +2,15 @@ pragma SPARK_Mode (On);
 
 with KarteStadtKonsole;
 with KarteStadtSFML;
+with BewegungCursorSFML;
 
 package body KarteStadt is
 
    procedure AnzeigeStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
+      
+      BewegungCursorSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);
       
       case
         GlobaleVariablen.AnzeigeArt
@@ -16,7 +19,7 @@ package body KarteStadt is
             KarteStadtKonsole.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when SystemDatentypen.Beides =>
-           -- KarteStadtKonsole.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            -- KarteStadtKonsole.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             KarteStadtSFML.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
          when SystemDatentypen.SFML =>

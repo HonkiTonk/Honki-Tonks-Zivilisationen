@@ -358,23 +358,26 @@ package body EingabeSFML is
    function StadtName
      return Unbounded_Wide_Wide_String
    is begin
-      
-      -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-      --                                       TextZeileExtern => 32);
-      
-      return NameEingeben;
+            
+      return NameEingeben (WelcheFrageExtern => 35);
       
    end StadtName;
    
    
    
    function NameEingeben
+     (WelcheFrageExtern : in Positive)
      return Unbounded_Wide_Wide_String
    is begin
       
+      Frage := WelcheFrageExtern;
+      InteraktionTasks.Eingabe := SystemDatentypen.Text_Eingabe;
       
+      EingegebenerName := EingabeSystemeSFML.TextEingeben;
       
-      return To_Unbounded_Wide_Wide_String (Source => Get_Line);
+      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
+      
+      return EingegebenerName;
       
    end NameEingeben;
    
@@ -384,10 +387,7 @@ package body EingabeSFML is
      return Unbounded_Wide_Wide_String
    is begin
       
-      -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
-      --                                      TextZeileExtern => 22);
-
-      Name := NameEingeben;
+      Name := NameEingeben (WelcheFrageExtern => 18);
 
       case
         To_Wide_Wide_String (Source => Name)'Length

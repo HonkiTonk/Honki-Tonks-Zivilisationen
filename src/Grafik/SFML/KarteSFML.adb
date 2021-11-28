@@ -80,19 +80,7 @@ package body KarteSFML is
                         
                when False =>
                   -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
-                  
-                  if
-                    KartenWert = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
-                  then
-                     ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                                          PositionExtern      => Position,
-                                                          AnzahlEckenExtern   => 3,
-                                                          FarbeExtern         => Sf.Graphics.Color.sfBlack,
-                                                          PolygonAccessExtern => PolygonAccess);
-                     
-                  else
-                     null;
-                  end if;
+                  null;
             end case;
             
             XMultiplikator := XMultiplikator + 1.00;

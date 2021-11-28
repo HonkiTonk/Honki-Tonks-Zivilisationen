@@ -16,6 +16,8 @@ package EingabeSystemeSFML is
 
    MausTaste : Sf.Window.Mouse.sfMouseButton;
 
+   EingegebenerName : Unbounded_Wide_Wide_String;
+
    procedure TastenEingabe;
 
 
@@ -25,12 +27,22 @@ package EingabeSystemeSFML is
 
 private
 
+   EingegebenesZeichen : Wide_Wide_Character;
+
    Mausbewegungen : Natural;
 
-   EingegebenerName : Unbounded_Wide_Wide_String;
+   CharacterZuText : Wide_Wide_String (1 .. 1);
 
    ZeichenEingeben : Sf.Window.Event.sfEvent;
 
-   TextEingegebenEvent : Sf.Window.Event.sfEvent;
+   TextEingegeben : Sf.Window.Event.sfEvent;
+
+   procedure TextPrüfen
+     (UnicodeNummerExtern : in Sf.sfUint32);
+
+   procedure ZeichenHinzufügen
+     (EingegebenesZeichenExtern : in Wide_Wide_Character);
+
+   procedure ZeichenEntfernen;
 
 end EingabeSystemeSFML;

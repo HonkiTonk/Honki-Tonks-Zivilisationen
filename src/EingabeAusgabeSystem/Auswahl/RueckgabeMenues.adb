@@ -91,6 +91,7 @@ package body RueckgabeMenues is
    
    
 
+   -- Theoretisch müsste ZurückHauptmenüBeenden hier auch funktionieren.
    function Hauptmenü
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
@@ -138,6 +139,7 @@ package body RueckgabeMenues is
    
    
    
+   -- Theoretisch müsste ZurückHauptmenüBeenden hier auch funktionieren.
    function Spielmenü
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
@@ -212,25 +214,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Sonstiges;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.Optionsmenü - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end Optionsmenü;
@@ -304,25 +290,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Karte_Größe_Zufall;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartengrößeAuswählen - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartengrößeAuswählen;
@@ -366,25 +336,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Zufall;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartenartAuswählen - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartenartAuswählen;
@@ -448,25 +402,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Zufall;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartenformAuswählen - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartenformAuswählen;
@@ -510,25 +448,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Zufall;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartentemperaturAuswählen - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartentemperaturAuswählen;
@@ -572,25 +494,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Zufall;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.KartenRessourcenAuswählen - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartenRessourcenAuswählen;
@@ -624,25 +530,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Zufall;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.SchwierigkeitsgradAuswählen - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end SchwierigkeitsgradAuswählen;
@@ -756,25 +646,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Fertig;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.RasseAuswählen - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end RasseAuswählen;
@@ -808,25 +682,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Speichern;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.GrafikMenü - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end GrafikMenü;
@@ -849,26 +707,8 @@ package body RueckgabeMenues is
          null;
       end if;
       
-      if
-        AktuelleAuswahlExtern = EndeExtern - 2
-      then
-         return SystemDatentypen.Zurück;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden;
-                    
-      else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.SoundMenü - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
-      end if;
+      return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       
    end SoundMenü;
    
@@ -936,7 +776,22 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Sprache;
                     
-      elsif
+      else
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      end if;
+      
+   end SonstigesMenü;
+   
+   
+   
+   function ZurückHauptmenüEnde
+     (EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
         AktuelleAuswahlExtern = EndeExtern - 2
       then
          return SystemDatentypen.Zurück;
@@ -952,11 +807,11 @@ package body RueckgabeMenues is
          return SystemDatentypen.Spiel_Beenden;
                     
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.SonstigesMenü - Ungültige Auswahl.");
+         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
          return SystemDatentypen.Spiel_Beenden;
       end if;
       
-   end SonstigesMenü;
+   end ZurückHauptmenüEnde;
 
 end RueckgabeMenues;

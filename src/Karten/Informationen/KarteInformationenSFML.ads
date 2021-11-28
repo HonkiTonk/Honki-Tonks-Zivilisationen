@@ -6,6 +6,7 @@ with Sf.Graphics.Text;
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
+with EinheitStadtRecords;
 
 package KarteInformationenSFML is
 
@@ -17,8 +18,20 @@ package KarteInformationenSFML is
 
 private
 
-   FensterInformationen : Sf.System.Vector2.sfVector2f;
+   StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
+   EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
 
-   TextAccess : Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   FensterInformationen : Sf.System.Vector2.sfVector2f;
+   ZeichenPosition : Sf.System.Vector2.sfVector2f;
+
+   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+
+   procedure StadtInformationen
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+
+   procedure EinheitInformationen
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+
+   procedure CheatInformationen;
 
 end KarteInformationenSFML;

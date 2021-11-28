@@ -37,9 +37,18 @@ package SystemRecords is
    
    type ZahlenEingabeRecord is record
       
-      EingegebeneZahl : Integer;
       EingabeAbbruch : Boolean;
+      EingegebeneZahl : Integer;
       
    end record;
-
+   
+   
+   
+   type TextEingabeRecord is record
+      
+      ErfolgreichAbbruch : Boolean;
+      EingegebenerText : Unbounded_Wide_Wide_String;
+      
+   end record;
+      
 end SystemRecords;

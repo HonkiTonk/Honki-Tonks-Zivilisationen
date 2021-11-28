@@ -9,18 +9,48 @@ with LeseStadtGebaut;
 with KarteSFML;
 with BerechnungenKarteSFML;
 with ObjekteZeichnenSFML;
+with Karten;
 
 package body KarteStadtSFML is
 
    procedure AnzeigeStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
-      
-      -- GrafikAllgemein.FensterLeeren;
-      
+            
       GrafischeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      -- GrafikAllgemein.FensterAnzeigen;
+      YMultiplikator := 0.00;
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in Karten.StadtkarteArray'Range (1) loop
+         
+         XMultiplikator := 0.00;
+         
+         XAchseSchleife:
+         for XAchseSchleifenwert in Karten.StadtkarteArray'Range (2) loop
+            
+            if
+              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = YAchseSchleifenwert
+              and
+                GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse = XAchseSchleifenwert
+            then
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
+                                                    PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                                    AnzahlEckenExtern   => 3,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                                    PolygonAccessExtern => PolygonAccess);
+               
+            else
+               XMultiplikator := XMultiplikator + 1.00;
+            end if;
+            
+         end loop XAchseSchleife;
+         
+         YMultiplikator := YMultiplikator + 1.00;
+         
+      end loop YAchseSchleife;
+      
+      -- Hier Baumenü und alles andere einbauen.
       
    end AnzeigeStadt;
    

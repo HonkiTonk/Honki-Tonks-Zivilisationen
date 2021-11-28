@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with Sf.Graphics;
 with Sf.Graphics.RectangleShape;
+with Sf.Graphics.CircleShape;
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
@@ -19,7 +20,12 @@ package KarteStadtSFML is
 
 private
 
+   YMultiplikator : Float;
+   XMultiplikator : Float;
+
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+
+   PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
 
    procedure GrafischeDarstellung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

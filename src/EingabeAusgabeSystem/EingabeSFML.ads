@@ -56,6 +56,7 @@ private
       
    MaximumMinimum : Unbounded_Wide_Wide_String;
    Name : Unbounded_Wide_Wide_String;
+   EingegebenerName : Unbounded_Wide_Wide_String;
    
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Taste : Sf.Window.Keyboard.sfKeyCode;
@@ -224,6 +225,7 @@ private
       return KartenDatentypen.LoopRangeMinusDreiZuDrei;
    
    function NameEingeben
-     return Unbounded_Wide_Wide_String;
+     (WelcheFrageExtern : in Positive)
+      return Unbounded_Wide_Wide_String;
 
 end EingabeSFML;

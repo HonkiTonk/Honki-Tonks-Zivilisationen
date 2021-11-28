@@ -20,4 +20,8 @@ private
 
    Befehl : SystemDatentypen.Tastenbelegung_Enum;
 
+   function WasIstAusgewählt
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return Boolean;
+
 end InDerStadt;

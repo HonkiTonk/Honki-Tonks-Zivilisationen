@@ -59,7 +59,7 @@ package GlobaleTexte is
    Angebot : TexteArray (1 .. 2);
    Fehlermeldung : TexteArray (1 .. 20);
    Ladezeit : TexteArray (1 .. 32);
-   Frage : TexteArray (1 .. 34);
+   Frage : TexteArray (1 .. 35);
    ZeugSachen : TexteArray (1 .. 67);
    
 end GlobaleTexte;

@@ -7,17 +7,23 @@ package ChangelogNovember2021 is
    
    
    
-   -- Version 0.00.95 => 0.00.95 (29.11.2021):
+   -- Version 0.00.9500 => 0.00.95 (29.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9485 => 0.00.95 (28.11.2021):
+   -- Version 0.00.9485 => 0.00.9500 (28.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Rudimentäres Texteingabesystem in der SFML gebaut.
+   -- Texteingabe in der SFML Version filtert jetzt alle? Befehlszeichen heraus, zeigt die Zeichen korrekt an und lässt entfernen von Zeichen zu.
+   -- In der SFML Version eine einfache Stadtanzeige, Positionsbestimmung und Mauszeiger für die Stadt eingebaut.
+   -- Angefangen die Mausauswahl innerhalb der Stadt einzubauen.
+   -- Angefangen die Karteninformationen in die SFML einzubauen.
+   -- Code zusammengefasst.
+   -- Unnötigen Code gelöscht.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

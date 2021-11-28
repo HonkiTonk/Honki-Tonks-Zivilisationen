@@ -6,6 +6,7 @@ with KartenKonstanten;
 with GrafikEinstellungen;
 with BerechnungenKarteSFML;
 with KartePositionPruefen;
+with Karten;
 
 package body BewegungCursorSFML is
    
@@ -81,7 +82,54 @@ package body BewegungCursorSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      null;
+      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kommt es zu einem Absturz.
+      MausPosition := GrafikEinstellungen.MausPosition;
+      
+      if
+        MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)
+        and
+          MausPosition.x in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.x)
+      then
+         null;
+         
+      else
+         return;
+      end if;
+      
+      BerechnungenKarteSFML.StadtfelderAbmessungBerechnen;
+      YMultiplikator := 0.00;
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in Karten.StadtkarteArray'Range (1) loop
+         
+         XMultiplikator := 0.00;
+         
+         XAchseSchleife:
+         for XAchseSchleifenwert in Karten.StadtkarteArray'Range (2) loop
+            
+            if
+              MausPosition.y
+            in
+              Sf.sfInt32 (YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y) .. Sf.sfInt32 (YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y)
+              and
+                MausPosition.x
+            in
+              Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x)
+            then
+               GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse := YAchseSchleifenwert;
+               GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse := XAchseSchleifenwert;
+               
+               return;
+               
+            else
+               XMultiplikator := XMultiplikator + 1.00;
+            end if;
+            
+         end loop XAchseSchleife;
+         
+         YMultiplikator := YMultiplikator + 1.00;
+         
+      end loop YAchseSchleife;
       
    end CursorPlatzierenStadtSFML;
 

@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
+
 with Sf; use Sf;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
@@ -77,23 +79,25 @@ package body EingabeSystemeSFML is
      return Unbounded_Wide_Wide_String
    is begin
       
+      EingegebenerName := To_Unbounded_Wide_Wide_String (Source => "");
+      
       EingabeSchleife:
       loop
          TasteSchleife:
          while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
-                                                   event        => TextEingegebenEvent)
+                                                   event        => TextEingegeben)
            = Sf.sfTrue loop
             
             case
-              TextEingegebenEvent.eventType
+              TextEingegeben.eventType
             is
                when Sf.Window.Event.sfEvtTextEntered =>
-                  -- EingegebenerName := EingegebenerName + TextEingegebenEvent.text.unicode;
-                  null;
+                  TextPrüfen (UnicodeNummerExtern => TextEingegeben.text.unicode);
                
+                  -- Im aktuellen System gibt es gar kein Abbruch für Speichern/Laden/Städtbau/usw., oder?
                when Sf.Window.Event.sfEvtKeyPressed =>
                   if
-                    TextEingegebenEvent.key.code = Sf.Window.Keyboard.sfKeyEnter
+                    TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                   then
                      exit EingabeSchleife;
                   
@@ -111,5 +115,66 @@ package body EingabeSystemeSFML is
       return EingegebenerName;
       
    end TextEingeben;
+   
+   
+   
+   procedure TextPrüfen
+     (UnicodeNummerExtern : in Sf.sfUint32)
+   is begin
+      
+      case
+        UnicodeNummerExtern
+      is
+         when 0 .. 7 | 9 .. 26 | 28 .. 31 | 128 .. 159 =>
+            return;
+            
+         when others =>
+            EingegebenesZeichen := Wide_Wide_Character'Val (UnicodeNummerExtern);
+      end case;
+      
+      case
+        EingegebenesZeichen
+      is
+         when ESC =>
+            null;
+            
+         when BS | DEL =>
+            ZeichenEntfernen;
+         
+         when others =>
+            ZeichenHinzufügen (EingegebenesZeichenExtern => EingegebenesZeichen);
+      end case;
+      
+   end TextPrüfen;
+   
+   
+   
+   procedure ZeichenHinzufügen
+     (EingegebenesZeichenExtern : in Wide_Wide_Character)
+   is begin
+      
+      CharacterZuText (1) := EingegebenesZeichenExtern;
+      
+      EingegebenerName := EingegebenerName & To_Unbounded_Wide_Wide_String (Source => CharacterZuText);
+      
+   end ZeichenHinzufügen;
+   
+   
+   
+   procedure ZeichenEntfernen
+   is begin
+      
+      if
+        To_Wide_Wide_String (Source => EingegebenerName)'Length < 1
+      then
+         null;
+         
+      else
+         EingegebenerName := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => EingegebenerName,
+                                                                     From    => To_Wide_Wide_String (Source => EingegebenerName)'Last,
+                                                                     Through => To_Wide_Wide_String (Source => EingegebenerName)'Last);
+      end if;
+      
+   end ZeichenEntfernen;
 
 end EingabeSystemeSFML;
