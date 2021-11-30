@@ -26,6 +26,8 @@ private
    
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheiten;
    
+   PlatzhalterText : Wide_Wide_String (1 .. 1);
+   
    EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    
    function Allgemeines

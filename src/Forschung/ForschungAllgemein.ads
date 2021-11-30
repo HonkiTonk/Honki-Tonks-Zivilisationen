@@ -1,12 +1,29 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Sf.Graphics;
+with Sf.System.Vector2;
+with Sf.Graphics.Text;
 
 with SystemDatentypen; use SystemDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleVariablen;
-with EinheitStadtDatentypen;
 
 package ForschungAllgemein is
+
+   AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
+   Ende : EinheitStadtDatentypen.MinimimMaximumID;
+
+   type AllgemeineAnzeigeTextRecord is record
+
+      Text : Unbounded_Wide_Wide_String;
+      Nummer : Natural;
+
+   end record;
+
+   type ForschungTextArray is array (EinheitStadtDatentypen.ForschungID'First .. EinheitStadtDatentypen.ForschungID'Last + 1) of AllgemeineAnzeigeTextRecord;
+   ForschungText : ForschungTextArray;
 
    procedure Beschreibung
      (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
@@ -43,10 +60,17 @@ private
    WasErforschtWerdenSoll : EinheitStadtDatentypen.ForschungIDMitNullWert;
    AktuellesForschungsprojekt : EinheitStadtDatentypen.ForschungIDMitNullWert;
 
-   AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
-   Ende : EinheitStadtDatentypen.ForschungID;
+   AktuelleForschung : Positive;
+   WelcherForschungstext : Positive;
 
-   ForschungID : Positive;
+   Zeilenabstand : Float;
+
+   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+
+   MausZeigerPosition : Sf.System.Vector2.sfVector2i;
+
+   StartPositionText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
+   TextPositionMaus : Sf.System.Vector2.sfVector2f;
 
    procedure Ermöglicht
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -68,6 +92,8 @@ private
    procedure FortschrittKI
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
+   procedure MausAuswahl;
+
 
 
    function AuswahlForschungNeu
@@ -83,5 +109,8 @@ private
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+
+   function ForschungAuswahlSFML
+     return EinheitStadtDatentypen.ForschungIDMitNullWert;
 
 end ForschungAllgemein;

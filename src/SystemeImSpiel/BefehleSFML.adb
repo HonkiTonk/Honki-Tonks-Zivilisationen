@@ -50,7 +50,7 @@ package body BefehleSFML is
                                                    RasseExtern    => RasseExtern);
             
          when SystemDatentypen.Auswählen =>
-            AuswahlEinheitStadt (RasseExtern => RasseExtern);
+            AuswahlMaus (RasseExtern => RasseExtern);
                  
          when SystemDatentypen.Menü_Zurück =>
             return SystemDatentypen.Spielmenü;
@@ -132,7 +132,8 @@ package body BefehleSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      null;
+      -- Hier später auf alles prüfen.
+      AuswahlEinheitStadt (RasseExtern => RasseExtern);
       
    end AuswahlMaus;
    
@@ -318,16 +319,17 @@ package body BefehleSFML is
          when others =>
             null;
       end case;
-                    
-      case
-        Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
-      is
-         when SystemKonstanten.JaKonstante =>
+          
+      -- Aktuell keine Sicherheitsabfrage aktiv.
+    --  case
+    --    Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
+    --  is
+    --     when SystemKonstanten.JaKonstante =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
                      
-         when others =>
-            null;
-      end case;
+    --     when others =>
+     --       null;
+    --  end case;
       
    end Technologie;
    

@@ -54,10 +54,10 @@ package SystemDatentypen is
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen .. Ekropa;
    
    type Grafik_Aktuelle_Darstellung_Enum is (Konsole_Start, SFML_Start, Grafik_Intro,
-                                           Grafik_Pause,
-                                           Grafik_Menüs,
-                                           Grafik_Weltkarte, Grafik_Stadtkarte, -- Grafik_Forschung, Grafik_Handeln, (in die Menüs schieben?)
-                                           Grafik_Ende);
+                                             Grafik_Pause,
+                                             Grafik_Menüs,
+                                             Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, -- Grafik_Handeln, (in die Menüs schieben? geht so nicht in die Menüs.)
+                                             Grafik_Ende);
    
    type Anzeige_Art_Enum is (Konsole, SFML, Beides);
    subtype Anzeige_Art_Grafik_Enum is Anzeige_Art_Enum range SFML .. Beides;
@@ -99,6 +99,7 @@ package SystemDatentypen is
    subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Verwendet_Enum range Oben .. Ebene_Runter;
    subtype Tastenbelegung_Bewegung_Stadt_Enum is Tastenbelegung_Verwendet_Enum range Oben .. Rechts_Unten;
    subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen .. Einheit_Verbessern;
+   subtype Tastenbelegung_Befehle_Anzeige is Tastenbelegung_Befehle_Enum range Straße_Bauen .. Verschanzen;
    subtype Tastenbelegung_Verbesserung_Befehle_Enum is Tastenbelegung_Befehle_Enum range Straße_Bauen .. Roden_Trockenlegen;
    subtype Tastenbelegung_Allgemeine_Befehle_Enum is Tastenbelegung_Befehle_Enum range Heilen .. Tastenbelegung_Befehle_Enum'Last;
    -- Für Tastenbelegung

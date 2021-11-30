@@ -4,9 +4,9 @@ with SystemDatentypen;
 
 with InteraktionTasks;
 with Intro;
-with ImSpiel;
 with Fehler;
 with Karte;
+with ForschungAnzeigeKonsole;
 
 package body GrafikKonsole is
 
@@ -40,17 +40,21 @@ package body GrafikKonsole is
                
             when SystemDatentypen.Grafik_Weltkarte =>
                case
-                 ImSpiel.AktuelleRasse
+                 InteraktionTasks.AktuelleRasse
                is
                   when SystemDatentypen.Keine_Rasse =>
                      delay InteraktionTasks.WartezeitGrafik;
                      
                   when others =>
-                     Karte.AnzeigeKarte (RasseExtern => ImSpiel.AktuelleRasse);
+                     Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasse);
                      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
                end case;
                
             when SystemDatentypen.Grafik_Stadtkarte =>
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               
+            when SystemDatentypen.Grafik_Forschung =>
+               ForschungAnzeigeKonsole.ForschungAnzeige;
                InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
          
             when SystemDatentypen.Grafik_Ende =>

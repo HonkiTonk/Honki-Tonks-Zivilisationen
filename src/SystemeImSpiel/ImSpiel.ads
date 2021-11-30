@@ -5,8 +5,6 @@ with GlobaleVariablen;
 
 package ImSpiel is
 
-   AktuelleRasse : SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
-
    function ImSpiel
      return SystemDatentypen.Rückgabe_Werte_Enum;
 

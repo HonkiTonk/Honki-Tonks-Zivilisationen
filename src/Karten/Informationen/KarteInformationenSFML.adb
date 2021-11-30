@@ -8,6 +8,7 @@ with Sf.Graphics.RenderWindow;
 with GlobaleTexte;
 with StadtKonstanten;
 with EinheitenKonstanten;
+with KartenDatentypen;
 
 with LeseWichtiges;
 with LeseKarten;
@@ -20,6 +21,8 @@ with ObjekteZeichnenSFML;
 with ForschungAllgemein;
 with KartenAllgemein;
 with AufgabenAllgemein;
+with StadtInformationenSFML;
+with InformationenEinheitenSFML;
 
 package body KarteInformationenSFML is
 
@@ -44,13 +47,18 @@ package body KarteInformationenSFML is
       
       WichtigesInformationen (RasseExtern => RasseExtern);
 
+      -- Diese Version hier auch noch in der Konsolenversion einbauen.
       case
         LeseKarten.Sichtbar (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
                              RasseExtern    => RasseExtern)
       is
          when True =>
             AllgemeineInformationen (RasseExtern => RasseExtern);
+            PositionText.y := PositionText.y + 3.00 * Zeilenabstand;
+              
             StadtInformationen (RasseExtern => RasseExtern);
+            PositionText.y := PositionText.y + 3.00 * Zeilenabstand;
+              
             EinheitInformationen (RasseExtern => RasseExtern);
 
          when False =>
@@ -174,17 +182,16 @@ package body KarteInformationenSFML is
       
       if
         LeseKarten.Hügel (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) = True
-      then
-         -- Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-         --                                TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
-         --                               ÜberschriftZeileExtern => 0,
-         --                               ErsteZeileExtern       => KartenDatentypen.Karten_Grund_Enum'Pos (KartenDatentypen.Hügel_Mit),
-         --                                LetzteZeileExtern      => KartenDatentypen.Karten_Grund_Enum'Pos (KartenDatentypen.Hügel_Mit),
-         --                                AbstandAnfangExtern    => GlobaleTexte.Leer,
-         --                                AbstandMitteExtern     => GlobaleTexte.Leer,
-         --                               AbstandEndeExtern      => GlobaleTexte.Leer);
+      then      
+         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenDatentypen.Hügel_Mit,
+                                       TextAccessExtern  => TextAccess);
+      
+         Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                       position => PositionText);
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                            text         => TextAccess);
          
-         null;
+         PositionText.x := PositionText.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width + 5.00;
          
       else
          null;
@@ -198,6 +205,7 @@ package body KarteInformationenSFML is
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                          text         => TextAccess);
       
+      PositionText.x := StartpunktText.x + Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) * 0.80;
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
       
                   
@@ -262,7 +270,9 @@ package body KarteInformationenSFML is
             return;
             
          when others =>
-            null;
+            PositionText := StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
+                                                          StadtRasseNummerExtern => StadtRasseNummer,
+                                                          AnzeigeAnfangenExtern  => PositionText);
       end case;
       
    end StadtInformationen;
@@ -282,7 +292,9 @@ package body KarteInformationenSFML is
             return;
             
          when others =>
-            null;
+            PositionText := InformationenEinheitenSFML.Einheiten (RasseExtern              => RasseExtern,
+                                                                  EinheitRasseNummerExtern => EinheitRasseNummer,
+                                                                  PositionTextExtern       => PositionText);
       end case;
       
    end EinheitInformationen;

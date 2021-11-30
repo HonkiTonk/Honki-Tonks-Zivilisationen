@@ -15,6 +15,7 @@ with Anzeige;
 with GesamtwerteFeld;
 with KampfwerteStadtErmitteln;
 with Cheat;
+with Fehler;
 
 package body StadtInformationen is
    
@@ -72,56 +73,37 @@ package body StadtInformationen is
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when KartenDatentypen.Leer =>
-            return;
+            Fehler.LogikStopp (FehlermeldungExtern => "StadtInformationenKonsole.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
          when KartenDatentypen.Eigene_Hauptstadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 1,
-                                              LetzteZeileExtern      => 1,
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+               Stadtart := 1;
 
             else
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 3,
-                                              LetzteZeileExtern      => 3,
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+               Stadtart := 3;
             end if;
                   
          when KartenDatentypen.Eigene_Stadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 2,
-                                              LetzteZeileExtern      => 2,
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+               Stadtart := 2;
                         
             else
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 4,
-                                              LetzteZeileExtern      => 4,
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+               Stadtart := 4;
             end if;
       end case;
+      
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => GlobaleTexte.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => Stadtart,
+                                     LetzteZeileExtern      => Stadtart,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
+                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
    end StadtArtBesitzer;
    

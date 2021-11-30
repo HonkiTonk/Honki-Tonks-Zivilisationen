@@ -1,12 +1,10 @@
 pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
-with Sf.Graphics.Text;
+with Sf; use Sf;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 with ForschungKonstanten;
@@ -19,6 +17,9 @@ with Anzeige;
 with Eingabe;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
+with InteraktionTasks;
+with GrafikEinstellungen;
+with GrafikTextAllgemein;
 
 with KIForschung;
 
@@ -35,7 +36,6 @@ package body ForschungAllgemein is
       if
         GlobaleVariablen.AnzeigeArt = SystemDatentypen.Konsole
       then
-         
          case
            IDExtern
          is
@@ -69,17 +69,10 @@ package body ForschungAllgemein is
                                                   str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (28)));
                
             when others =>
-               if
-                 IDExtern = 1
-               then
-                  ForschungID := Positive (IDExtern);
-                  
-               else
-                  ForschungID := 2 * Positive (IDExtern) - 1;
-               end if;
+               AktuelleForschung := 2 * Positive (IDExtern) - 1;
                
                Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (ForschungID)));
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (AktuelleForschung)));
          end case;
       end if;
       
@@ -114,30 +107,32 @@ package body ForschungAllgemein is
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
-      Anzeige.AllgemeineAnzeigeText := (others => (SystemKonstanten.LeerUnboundedString, 0));
+      ForschungText := (others => (SystemKonstanten.LeerUnboundedString, 0));
       Ende := 1;
 
       ForschungSchleife:
       for ForschungenSchleifenwert in EinheitStadtDatentypen.ForschungID loop
          
-         if
-           GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz), Positive (ForschungenSchleifenwert)) = SystemKonstanten.LeerUnboundedString
-         then
-            exit ForschungSchleife;
-            
-         else
-            null;
-         end if;
+         WelcherForschungstext := 2 * Positive (ForschungenSchleifenwert) - 1;
          
          case
            ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
                                          ForschungIDExtern => ForschungenSchleifenwert)
          is
             when True =>
-               Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
-                                                                                        Positive (ForschungenSchleifenwert));
-               Anzeige.AllgemeineAnzeigeText (Ende).Nummer := Positive (ForschungenSchleifenwert);
-               Ende := Ende + 1;
+               -- Später durch eine bessere Leerwertprüfung ersetzen.
+               if
+                 ForschungenSchleifenwert > 74
+               then
+                  null;
+                  
+               else
+                  ForschungText (Ende).Text := GlobaleTexte.Forschungen (WelcherForschungstext);
+                  ForschungText (Ende).Nummer := Positive (ForschungenSchleifenwert);
+                  -- Put_Line (WelcherForschungstext'Wide_Wide_Image);
+                  -- Put_Line (To_Wide_Wide_String (Source => ForschungText (Ende).Text));
+                  Ende := Ende + 1;
+               end if;
                   
             when False =>
                null;
@@ -145,30 +140,107 @@ package body ForschungAllgemein is
                   
       end loop ForschungSchleife;
 
-      if
-        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
-        and
-          Ende > 1
-      then
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
-
-      elsif
-        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
-        and
-          Ende = 1
-      then
-         return 0;
-         
-      else
-         Ende := Ende + 1;
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
-      end if;
-
+      ForschungText (Ende).Text := GlobaleTexte.Forschungen (GlobaleTexte.Forschungen'Last - 1);
       AktuelleAuswahl := 1;
-
-      return ForschungAuswahl (RasseExtern => RasseExtern);
+      
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Konsole =>
+            return ForschungAuswahl (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+            return ForschungAuswahlSFML;
+      end case;
 
    end AuswahlForschungNeu;
+   
+   
+   
+   function ForschungAuswahlSFML
+     return EinheitStadtDatentypen.ForschungIDMitNullWert
+   is begin
+      
+      GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
+                                                FontExtern         => GrafikEinstellungen.Schriftart,
+                                                SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
+                                                FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
+      Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
+      
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Forschung;
+      
+      AuswahlSchleife:
+      loop
+         
+         MausAuswahl;
+         
+         case
+           Eingabe.Tastenwert
+         is               
+            when SystemDatentypen.Auswählen =>
+               if
+                 AktuelleAuswahl <= 0
+               then
+                  null;
+                  
+               else
+                  InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+                  exit AuswahlSchleife;
+               end if;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop AuswahlSchleife;
+      
+      return EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
+      
+   end ForschungAuswahlSFML;
+   
+   
+   
+   procedure MausAuswahl
+   is begin
+      
+      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
+      MausZeigerPosition := GrafikEinstellungen.MausPosition;
+      TextPositionMaus := StartPositionText;
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (12)));
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                         size => 2 * GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      
+      TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00 * Zeilenabstand;
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      
+      MausZeigerSchleife:
+      for ForschungSchleifenwert in ForschungTextArray'First .. Ende loop
+         
+         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                            str  => To_Wide_Wide_String (Source => ForschungText (ForschungSchleifenwert).Text));
+         
+         if
+           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus.y)
+           .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
+           and
+             MausZeigerPosition.x in Sf.sfInt32 (TextPositionMaus.x) .. Sf.sfInt32 (TextPositionMaus.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width)
+         then
+            AktuelleAuswahl := ForschungSchleifenwert;
+            return;
+         
+         else
+            TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
+         end if;
+                  
+      end loop MausZeigerSchleife;
+      
+      AktuelleAuswahl := -1;
+      
+   end MausAuswahl;
    
    
    
@@ -176,33 +248,13 @@ package body ForschungAllgemein is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
-      
+            
       AuswahlSchleife:
       loop
 
-         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
-
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
-                                               TextZeileExtern => 16);
-
-         Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => AktuelleAuswahl);
-         
-         if
-           AktuelleAuswahl = Ende
-         then
-            null;
-                  
-         else
-            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                          TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
-                                          ÜberschriftZeileExtern => 0,
-                                          ErsteZeileExtern       => Positive (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer),
-                                          AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
-                                          AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
-
-            Ermöglicht (RasseExtern           => RasseExtern,
-                         ForschungNummerExtern => EinheitStadtDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
-         end if;
+         -- Muss auch hier raus.
+         Ermöglicht (RasseExtern           => RasseExtern,
+                      ForschungNummerExtern => EinheitStadtDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
          
          case
            Eingabe.Tastenwert
@@ -226,7 +278,7 @@ package body ForschungAllgemein is
                end if;
                
             when SystemDatentypen.Auswählen =>
-               return EinheitStadtDatentypen.ForschungIDMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
+               return EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
 
             when SystemDatentypen.Menü_Zurück =>
                return 0;
@@ -236,7 +288,7 @@ package body ForschungAllgemein is
          end case;
          
       end loop AuswahlSchleife;
-      
+            
    end ForschungAuswahl;
    
    
@@ -480,8 +532,11 @@ package body ForschungAllgemein is
          else
             null;
          end if;
+         
+         InteraktionTasks.AktuelleRasse := RasseExtern;
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
                                               ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseExtern));
+         InteraktionTasks.AktuelleRasse := SystemDatentypen.Keine_Rasse;
             
       else
          SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);

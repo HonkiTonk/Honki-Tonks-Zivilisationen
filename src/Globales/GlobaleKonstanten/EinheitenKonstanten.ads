@@ -54,7 +54,7 @@ package EinheitenKonstanten is
    -- Den Aufschlag nach StadtKonstanten verschieben da er wohl nur beim Bauen in der Stadt benötigt wird?
    EinheitAufschlag : constant Positive := 10_000;
    
-   EinheitBefehlAbzug : constant Positive := 21;
+   EinheitBefehlAbzug : constant Positive := 22;
       
    LeerEinheitenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
    LeerEinheitArt : constant EinheitStadtDatentypen.Einheit_Art_Enum := EinheitStadtDatentypen.Leer;

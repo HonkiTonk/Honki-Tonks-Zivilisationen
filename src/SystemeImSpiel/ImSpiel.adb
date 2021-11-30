@@ -187,7 +187,7 @@ package body ImSpiel is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      AktuelleRasse := RasseExtern;
+      InteraktionTasks.AktuelleRasse := RasseExtern;
       
       SpielerSchleife:
       loop
@@ -254,7 +254,7 @@ package body ImSpiel is
       end loop SpielerSchleife;
       
       InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
-      AktuelleRasse := SystemDatentypen.Keine_Rasse;
+      InteraktionTasks.AktuelleRasse := SystemDatentypen.Keine_Rasse;
       
       return RückgabeMenschAmZug;
       

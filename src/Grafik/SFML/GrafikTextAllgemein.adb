@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 
+with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.Text;
+
+with Fehler;
 
 package body GrafikTextAllgemein is
 
@@ -11,6 +14,15 @@ package body GrafikTextAllgemein is
       SchriftgrößeExtern : in Sf.sfUint32;
       FarbeExtern : in Sf.Graphics.Color.sfColor)
    is begin
+      
+      if
+        TextAccessExtern = null
+      then
+         Fehler.LogikStopp (FehlermeldungExtern => "GrafikTextAllgemein.TextAccessEinstellen - Access ist null.");
+            
+      else
+         null;
+      end if;
       
       Sf.Graphics.Text.setFont (text => TextAccessExtern,
                                 font => FontExtern);

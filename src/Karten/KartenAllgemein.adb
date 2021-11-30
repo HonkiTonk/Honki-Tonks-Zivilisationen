@@ -52,14 +52,7 @@ package body KartenAllgemein is
                                                   str  => "");
                
             when others =>
-               if
-                 KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) = 1
-               then
-                  GrundAktuell := KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern);
-                  
-               else
-                  GrundAktuell := 2 * KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
-               end if;
+               GrundAktuell := 2 * KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
                
                Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
                                                   str  => To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell)));

@@ -41,14 +41,7 @@ package body AufgabenAllgemein is
                                                   str  => "");
                
             when others =>
-               if
-                 KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern) = 1
-               then
-                  AktuelleVerbesserung := KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern);
-                  
-               else
-                  AktuelleVerbesserung := 2 * KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern) - 1;
-               end if;
+               AktuelleVerbesserung := 2 * KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern) - 1;
                
                Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
                                                   str  => To_Wide_Wide_String (Source => GlobaleTexte.Verbesserungen (AktuelleVerbesserung)));

@@ -9,6 +9,8 @@ package InteraktionTasks is
    
    -- Minimal möglicher Wert: 0.000000002 
    WartezeitLogik : constant Duration := 0.20;
+   
+   AktuelleRasse : SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
    -- Logiktask
    
    

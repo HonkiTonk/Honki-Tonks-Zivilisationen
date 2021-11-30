@@ -182,4 +182,8 @@ package StadtInformationen is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer);
 
+private
+
+   Stadtart : Positive;
+
 end StadtInformationen;

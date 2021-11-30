@@ -1,9 +1,17 @@
 package ChangelogNovember2021 is
 
-   -- Version 0.00.9510 => 0.00.95 (30.11.2021):
+   -- Version 0.00.9510 => 0.00.9530 (30.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- ASFML auf Version 2.5.2 aktualisiert.
+   -- Code vereinfacht.
+   -- ASML Kartenversion zeigt jetzt auch Informationen über Städte an.
+   -- ASML Kartenversion zeigt jetzt auch Informationen über Einheiten an.
+   -- Korrekturen an den Textdateien.
+   -- Einige Access ist nicht null Prüfungen eingebaut.
+   -- Angefangen die Forschungsauswahl an das neue System anzupassen.
+   -- Einfaches Forschungsmenü für die SFML gebaut.
+   -- Unnötigen Code entfernt.*
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

@@ -24,6 +24,7 @@ package body InformationenEinheiten is
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
       EinheitRasseNummer := Allgemeines (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
       
@@ -69,7 +70,7 @@ package body InformationenEinheiten is
          when others =>
             EinheitNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
-      EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
+      PlatzhalterText := EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
       New_Line;
       
       return (EinheitRasseNummerExtern.Rasse, EinheitNummer);
@@ -165,7 +166,7 @@ package body InformationenEinheiten is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      PlatzhalterText := EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end Beschäftigung;
    

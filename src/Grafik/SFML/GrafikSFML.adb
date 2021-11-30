@@ -5,7 +5,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
 
 with Fehler;
-with ImSpiel;
 with GrafikStartEnde;
 with Intro;
 with AuswahlMenueAnzeige;
@@ -15,6 +14,7 @@ with KarteStadt;
 with InDerStadt;
 with GrafikAllgemein;
 with Sichtweiten;
+with ForschungAnzeigeSFML;
 
 package body GrafikSFML is
    
@@ -46,7 +46,7 @@ package body GrafikSFML is
          is
             when SystemDatentypen.Konsole_Start =>
                -- Aber wie wechselt man dann von der Konsole auf die Grafik? Nur per Neustart?
-               Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Konsole wird bei SFML aufgerufen.");
+               Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Konsole wird bei SFML aufgerufen.");
             
             when SystemDatentypen.SFML_Start =>
                InteraktionTasks.FensterErzeugt := True;
@@ -64,12 +64,12 @@ package body GrafikSFML is
                
             when SystemDatentypen.Grafik_Weltkarte =>
                if
-                 ImSpiel.AktuelleRasse = SystemDatentypen.Keine_Rasse
+                 InteraktionTasks.AktuelleRasse = SystemDatentypen.Keine_Rasse
                then
                   delay InteraktionTasks.WartezeitGrafik;
                      
                else
-                  Karte.AnzeigeKarte (RasseExtern => ImSpiel.AktuelleRasse);
+                  Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasse);
                end if;
                
             when SystemDatentypen.Grafik_Stadtkarte =>
@@ -80,6 +80,17 @@ package body GrafikSFML is
                   
                else
                   KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => InDerStadt.AktuelleRasseStadt);
+               end if;
+               
+            when SystemDatentypen.Grafik_Forschung =>
+               if
+                 InteraktionTasks.AktuelleRasse = SystemDatentypen.Keine_Rasse
+               then
+                  -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
+                  Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Forschungsmenü wird ohen Rasse aufgerufen.");
+                     
+               else
+                  ForschungAnzeigeSFML.ForschungAnzeige;
                end if;
          
             when SystemDatentypen.Grafik_Ende =>

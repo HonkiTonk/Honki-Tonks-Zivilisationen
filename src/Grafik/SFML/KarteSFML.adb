@@ -131,7 +131,7 @@ package body KarteSFML is
                                             FarbeExtern          => FarbeKartenfeldErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KartenWert)),
                                             RechteckAccessExtern => RechteckAccess);
             
-      -- Mal Farben für die einzelnen Objekte einbauen.
+      -- Mal Farben für die einzelnen Objekte einbauen. Ist das überhaupt sinnvoll wenn ich da später sowieso Texturen drüberlege?
       case
         LeseKarten.Ressource (PositionExtern => KoordinatenExtern)
       is
