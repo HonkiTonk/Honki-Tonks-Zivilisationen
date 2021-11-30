@@ -27,8 +27,8 @@ package body GrafikStartEnde is
                                                                                              GrafikEinstellungen.FensterEinstellungen.FensterHöhe,
                                                                                              GrafikEinstellungen.FensterEinstellungen.Farbtiefe),
                                                                                    title => Name);
-            GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite := GrafikEinstellungen.FensterEinstellungen.FensterBreite;
-            GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe := GrafikEinstellungen.FensterEinstellungen.FensterHöhe;
+            GrafikEinstellungen.AktuelleFensterAuflösung.x := GrafikEinstellungen.FensterEinstellungen.FensterBreite;
+            GrafikEinstellungen.AktuelleFensterAuflösung.y := GrafikEinstellungen.FensterEinstellungen.FensterHöhe;
       end case;
 
       if

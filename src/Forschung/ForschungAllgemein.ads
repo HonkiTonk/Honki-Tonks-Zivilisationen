@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Sf.Graphics;
+
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
@@ -7,7 +9,8 @@ with EinheitStadtDatentypen;
 package ForschungAllgemein is
 
    procedure Beschreibung
-     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert);
+     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr);
 
    procedure Forschung
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
@@ -42,6 +45,8 @@ private
 
    AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
    Ende : EinheitStadtDatentypen.ForschungID;
+
+   ForschungID : Positive;
 
    procedure Ermöglicht
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;

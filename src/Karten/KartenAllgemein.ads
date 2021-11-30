@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Sf.Graphics;
+
 with KartenRecords;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
@@ -8,7 +10,8 @@ with SystemDatentypen;
 package KartenAllgemein is
 
    procedure Beschreibung
-     (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum);
+     (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr);
 
 
 
@@ -201,5 +204,9 @@ package KartenAllgemein is
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PassierbarkeitExtern : in EinheitStadtDatentypen.Passierbarkeit_Enum)
       return Boolean;
+
+private
+
+   GrundAktuell : Positive;
 
 end KartenAllgemein;

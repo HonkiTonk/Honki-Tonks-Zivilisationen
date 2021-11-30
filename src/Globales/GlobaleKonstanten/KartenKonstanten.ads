@@ -24,9 +24,9 @@ package KartenKonstanten is
    LeerFeldWerte : constant EinheitStadtDatentypen.ProduktionElement := 0;
    
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
-                                                                     KartenGrafik        => LeerKartenGrafik,
-                                                                     Passierbarkeit      => (others => LeerPassierbarkeit),
-                                                                     FeldWerte           => (others => (others => LeerFeldWerte))
+                                                                     KartenGrafik   => LeerKartenGrafik,
+                                                                     Passierbarkeit => (others => LeerPassierbarkeit),
+                                                                     FeldWerte      => (others => (others => LeerFeldWerte))
                                                                     );
    
    LeerGrund : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;

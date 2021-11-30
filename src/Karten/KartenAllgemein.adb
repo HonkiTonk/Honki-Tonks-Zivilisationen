@@ -1,7 +1,13 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
+with Sf.Graphics.Text;
+
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
+with GlobaleVariablen;
 
 with LeseKarten;
 with LeseKartenDatenbank;
@@ -12,25 +18,53 @@ with Anzeige;
 package body KartenAllgemein is
 
    procedure Beschreibung
-     (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum)
+     (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
    is begin
 
-      case
-        KartenGrundExtern
-      is
-         when KartenDatentypen.Leer =>
-            null;
+      if
+        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Konsole
+      then
+         
+         case
+           KartenGrundExtern
+         is
+            when KartenDatentypen.Leer =>
+               null;
             
-         when others =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern),
-                                           LetzteZeileExtern      => KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern),
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      end case;
+            when others =>
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                              TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
+                                              ÜberschriftZeileExtern => 0,
+                                              ErsteZeileExtern       => KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern),
+                                              LetzteZeileExtern      => KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern),
+                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                              AbstandMitteExtern     => GlobaleTexte.Leer,
+                                              AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+         end case;
+         
+      else
+         case
+           KartenGrundExtern
+         is
+            when KartenDatentypen.Leer =>
+               Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
+                                                  str  => "");
+               
+            when others =>
+               if
+                 KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) = 1
+               then
+                  GrundAktuell := KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern);
+                  
+               else
+                  GrundAktuell := 2 * KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
+               end if;
+               
+               Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell)));
+         end case;
+      end if;
       
    end Beschreibung;
    

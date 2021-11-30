@@ -406,7 +406,7 @@ package body AuswahlSprache is
          Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                             str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
          Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                       position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
+                                       position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
                                                     StartPositionYAchse + ZeilenAbstand * Zeile));
          Sf.Graphics.Text.setColor (text  => TextAccess,
                                     color => AktuelleTextFarbe);

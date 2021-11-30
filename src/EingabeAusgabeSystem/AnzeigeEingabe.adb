@@ -24,7 +24,7 @@ package body AnzeigeEingabe is
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
+                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00
                                                  - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 100.00));
       Sf.Graphics.Text.setColor (text  => TextAccess,
                                  color => Sf.Graphics.Color.sfRed);
@@ -58,7 +58,7 @@ package body AnzeigeEingabe is
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => AktuellerText));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
+                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00
                                                  - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 150.00));
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                          text         => TextAccess);
@@ -79,7 +79,7 @@ package body AnzeigeEingabe is
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
+                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00
                                                  - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 100.00));
       Sf.Graphics.Text.setColor (text  => TextAccess,
                                  color => Sf.Graphics.Color.sfRed);
@@ -100,7 +100,7 @@ package body AnzeigeEingabe is
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => EingabeSystemeSFML.EingegebenerName));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => ((Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00
+                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00
                                                  - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 150.00));
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                          text         => TextAccess);

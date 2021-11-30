@@ -1,16 +1,19 @@
 package ChangelogNovember2021 is
 
-   -- Version 0.00.95 => 0.00.95 (30.11.2021):
+   -- Version 0.00.9510 => 0.00.95 (30.11.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9500 => 0.00.95 (29.11.2021):
+   -- Version 0.00.9500 => 0.00.9510 (29.11.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Diverse Programmteile zusammengefasst.
+   -- Wichtige Informationen werden jetzt auf der Weltkarte angezeigt.
+   -- Allgemeine Informationen werden jetzt auf der Weltkarte angezeigt.
+   -- Angefangen Einheiten- und Stadtinformationen einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

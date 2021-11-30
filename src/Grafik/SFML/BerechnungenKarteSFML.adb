@@ -12,8 +12,8 @@ package body BerechnungenKarteSFML is
    procedure KartenfelderAbmessungBerechnen
    is begin
       
-      FensterKarte := (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) * AusschnittKarte, Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe));
-      FensterAnzeige := (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite), Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe));
+      FensterKarte := (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) * AusschnittKarte, Float (GrafikEinstellungen.AktuelleFensterAuflösung.y));
+      FensterAnzeige := (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x), Float (GrafikEinstellungen.AktuelleFensterAuflösung.y));
                   
       KartenfelderAbmessung.x := FensterKarte.x / Float (2 * Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) + 1);
       KartenfelderAbmessung.y := FensterKarte.y / Float (2 * Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True) + 1);
@@ -25,8 +25,8 @@ package body BerechnungenKarteSFML is
    procedure StadtfelderAbmessungBerechnen
    is begin
       
-      StadtKarte := (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) * AusschnittStadtKarte, Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe));
-      StadtAnzeige := (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite), Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe));
+      StadtKarte := (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) * AusschnittStadtKarte, Float (GrafikEinstellungen.AktuelleFensterAuflösung.y));
+      StadtAnzeige := (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x), Float (GrafikEinstellungen.AktuelleFensterAuflösung.y));
       
       StadtfelderAbmessung.x := StadtKarte.x / Float (KartenDatentypen.Stadtfeld'Last);
       StadtfelderAbmessung.y := StadtKarte.y / Float (KartenDatentypen.Stadtfeld'Last);

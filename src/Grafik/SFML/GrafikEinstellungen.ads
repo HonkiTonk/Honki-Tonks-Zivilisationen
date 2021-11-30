@@ -17,16 +17,30 @@ package GrafikEinstellungen is
       
    FensterEinstellungen : SystemRecords.FensterRecord;
    
-   -- Hier mal einen globalen Zeilenabstand einbauen.
+   -- Hier mal einen globalen Zeilenabstand einbauen. Geht nicht so einfach da hier die Größe und alles noch gar nicht feststeht.
    
-   type AktuelleAuflösung is record
+   AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2u;
+   
+   type SchriftfarbenRecord is record
       
-      AktuelleFensterBreite : Sf.sfUint32;
-      AktuelleFensterHöhe : Sf.sfUint32;
+      FarbeÜberschrift : Sf.Graphics.Color.sfColor;
+      FarbeStandardText : Sf.Graphics.Color.sfColor;
+      FarbeAusgewähltText : Sf.Graphics.Color.sfColor;
+      FarbeMenschText : Sf.Graphics.Color.sfColor;
+      FarbeKIText : Sf.Graphics.Color.sfColor;
+      FarbeSonstigerText : Sf.Graphics.Color.sfColor;
       
    end record;
    
-   AktuelleFensterEinstellungen : AktuelleAuflösung;
+   -- Später wie hier überall mehr konstante Standards und dann einfach zuweisen. Nutzereinstellungen dann auch in den Einstellugnen speichern!
+   Schriftfarben : SchriftfarbenRecord := (
+                                           FarbeÜberschrift    => Sf.Graphics.Color.sfRed,
+                                           FarbeStandardText   => Sf.Graphics.Color.sfWhite,
+                                           FarbeAusgewähltText => Sf.Graphics.Color.sfGreen,
+                                           FarbeMenschText     => Sf.Graphics.Color.sfBlue,
+                                           FarbeKIText         => Sf.Graphics.Color.sfYellow,
+                                           FarbeSonstigerText  => Sf.Graphics.Color.sfCyan
+                                          );
    
    procedure StandardGrafikEinstellungenLaden;
    
@@ -43,5 +57,15 @@ private
                                                                            Textfarbe     => Sf.Graphics.Color.sfWhite,
                                                                            Textstyle     => 0
                                                                           );
+   
+   SchriftfarbenStandard : constant SchriftfarbenRecord := (
+                                                            FarbeÜberschrift    => Sf.Graphics.Color.sfRed,
+                                                            FarbeStandardText   => Sf.Graphics.Color.sfWhite,
+                                                            FarbeAusgewähltText => Sf.Graphics.Color.sfGreen,
+                                                            FarbeMenschText     => Sf.Graphics.Color.sfBlue,
+                                                            FarbeKIText         => Sf.Graphics.Color.sfYellow,
+                                                            FarbeSonstigerText  => Sf.Graphics.Color.sfCyan
+                                                           );
+   
 
 end GrafikEinstellungen;

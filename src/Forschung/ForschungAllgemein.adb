@@ -4,6 +4,8 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
+with Sf.Graphics.Text;
+
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
@@ -22,33 +24,64 @@ with KIForschung;
 
 package body ForschungAllgemein is
 
+   -- In Funktion umschreiben die den String zurückgibt? Würde die Sache in der SFML (generell?) leichter machen?
+   -- RasseExtern einbauen um die Technologien aller Rassen einbauen zu können.
+   -- Auch bei allein anderen Beschreibungen dann so einbauen.
    procedure Beschreibung
-     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert)
+     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
+      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
    is begin
       
-      case
-        IDExtern
-      is
-         when 0 =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                           TextDateiExtern        => GlobaleTexte.Zeug,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 28,
-                                           LetzteZeileExtern      => 28,
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+      if
+        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Konsole
+      then
+         
+         case
+           IDExtern
+         is
+            when 0 =>
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                              TextDateiExtern        => GlobaleTexte.Zeug,
+                                              ÜberschriftZeileExtern => 0,
+                                              ErsteZeileExtern       => 28,
+                                              LetzteZeileExtern      => 28,
+                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                              AbstandMitteExtern     => GlobaleTexte.Leer,
+                                              AbstandEndeExtern      => GlobaleTexte.Leer);
             
-         when others =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => Positive (IDExtern),
-                                           LetzteZeileExtern      => Positive (IDExtern),
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Leer);
-      end case;
+            when others =>
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                              TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
+                                              ÜberschriftZeileExtern => 0,
+                                              ErsteZeileExtern       => Positive (IDExtern),
+                                              LetzteZeileExtern      => Positive (IDExtern),
+                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                              AbstandMitteExtern     => GlobaleTexte.Leer,
+                                              AbstandEndeExtern      => GlobaleTexte.Leer);
+         end case;
+         
+      else
+         case
+           IDExtern
+         is
+            when 0 =>
+               Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (28)));
+               
+            when others =>
+               if
+                 IDExtern = 1
+               then
+                  ForschungID := Positive (IDExtern);
+                  
+               else
+                  ForschungID := 2 * Positive (IDExtern) - 1;
+               end if;
+               
+               Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (ForschungID)));
+         end case;
+      end if;
       
    end Beschreibung;
 
@@ -102,7 +135,7 @@ package body ForschungAllgemein is
          is
             when True =>
                Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
-                                                                                           Positive (ForschungenSchleifenwert));
+                                                                                        Positive (ForschungenSchleifenwert));
                Anzeige.AllgemeineAnzeigeText (Ende).Nummer := Positive (ForschungenSchleifenwert);
                Ende := Ende + 1;
                   
@@ -141,7 +174,7 @@ package body ForschungAllgemein is
    
    function ForschungAuswahl
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-     return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
       AuswahlSchleife:

@@ -16,13 +16,13 @@ package body GrafikAllgemein is
    procedure FensterAnpassen
    is begin
             
-      GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).x;
-      GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).y;
+      GrafikEinstellungen.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).x;
+      GrafikEinstellungen.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungen.Fenster).y;
       
       Sf.Graphics.View.setSize (view => NeueAuflösungAccess,
-                                size => (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite), Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)));
+                                size => (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x), Float (GrafikEinstellungen.AktuelleFensterAuflösung.y)));
       Sf.Graphics.View.setCenter (view   => NeueAuflösungAccess,
-                                  center => (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00, Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe) / 2.00));
+                                  center => (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00));
       
       Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungen.Fenster,
                                         view         => NeueAuflösungAccess);
@@ -38,8 +38,7 @@ package body GrafikAllgemein is
       GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösungExtern.x;
       GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösungExtern.y;
       
-      GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite := NeueAuflösungExtern.x;
-      GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe := NeueAuflösungExtern.y;
+      GrafikEinstellungen.AktuelleFensterAuflösung := NeueAuflösungExtern;
       
       GrafikStartEnde.FensterEntfernen;
       

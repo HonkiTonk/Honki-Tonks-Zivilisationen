@@ -184,7 +184,8 @@ package body Cheat is
       Put (Item => "AufgabeEins: " & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "     AufgabeZwei: " & LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
-      ForschungAllgemein.Beschreibung (IDExtern => LeseWichtiges.Forschungsprojekt (RasseExtern => EinheitRasseNummerExtern.Rasse));
+      ForschungAllgemein.Beschreibung (IDExtern         => LeseWichtiges.Forschungsprojekt (RasseExtern => EinheitRasseNummerExtern.Rasse),
+                                       TextAccessExtern => null);
       New_Line;
       
    end KarteInfosEinheiten;
@@ -244,7 +245,8 @@ package body Cheat is
       Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
       Put_Line (Item => "KIAufgabe: " & LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
-      ForschungAllgemein.Beschreibung (IDExtern => LeseWichtiges.Forschungsprojekt (RasseExtern => StadtRasseNummerExtern.Rasse));
+      ForschungAllgemein.Beschreibung (IDExtern         => LeseWichtiges.Forschungsprojekt (RasseExtern => StadtRasseNummerExtern.Rasse),
+                                       TextAccessExtern => null);
       New_Line;
       
    end KarteStadtInfos;

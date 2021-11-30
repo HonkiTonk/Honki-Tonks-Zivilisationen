@@ -204,7 +204,7 @@ package body AuswahlMenueAnzeige is
       Sf.Graphics.Text.setColor (text  => TextAccess,
                                  color => Sf.Graphics.Color.sfWhite);
       ErstesZeichen := 1;
-      YPosition := Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe - GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe / 5);
+      YPosition := Float (GrafikEinstellungen.AktuelleFensterAuflösung.y - GrafikEinstellungen.AktuelleFensterAuflösung.y / 5);
       
       TextSchleife:
       loop
@@ -215,7 +215,7 @@ package body AuswahlMenueAnzeige is
                                                str  => To_Wide_Wide_String (Source => AktuellerText) (ErstesZeichen .. TextSchleifenwert));
             
             if
-              Sf.Graphics.Text.getLocalBounds (text => TextAccess).width < Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) - 2.00 * StartPositionYAchse
+              Sf.Graphics.Text.getLocalBounds (text => TextAccess).width < Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) - 2.00 * StartPositionYAchse
               and
                 TextSchleifenwert < To_Wide_Wide_String (Source => AktuellerText)'Last
             then

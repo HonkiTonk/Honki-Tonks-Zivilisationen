@@ -29,7 +29,7 @@ package body KarteInformationenKonsole is
    is begin
       
       InformationenWichtiges.Wichtiges (RasseExtern => RasseExtern);
-      InformationenSichtbar (RasseExtern => RasseExtern);
+      InformationenSichtbar (RasseExtern => RasseExtern); -- 
       Kartenposition (RasseExtern => RasseExtern);
       Gecheatet (RasseExtern => RasseExtern);
       
@@ -128,10 +128,14 @@ package body KarteInformationenKonsole is
    is begin
       
       Hügel (RasseExtern => RasseExtern);
-      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
-      AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
-      AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
-      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
+                                    TextAccessExtern  => null);
+      AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
+                                      TextAccessExtern         => null);
+      AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
+                                      TextAccessExtern         => null);
+      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
+                                    TextAccessExtern  => null);
       New_Line;
             
       FeldVerteidigung (RasseExtern => RasseExtern);
@@ -165,7 +169,8 @@ package body KarteInformationenKonsole is
          null;
       end if;
          
-      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
+                                    TextAccessExtern  => null);
       
    end Hügel;
    
@@ -300,8 +305,8 @@ package body KarteInformationenKonsole is
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Zeug,
                                      ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 58,
-                                     LetzteZeileExtern      => 58,
+                                     ErsteZeileExtern       => 57,
+                                     LetzteZeileExtern      => 57,
                                      AbstandAnfangExtern    => GlobaleTexte.Leer,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);

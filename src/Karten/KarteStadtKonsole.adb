@@ -511,7 +511,8 @@ package body KarteStadtKonsole is
          null;
       end if;
       
-      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => KartenWert));
+      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => KartenWert),
+                                    TextAccessExtern  => null);
       StadtInformationen.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert,
                                                          RasseExtern       => StadtRasseNummerExtern.Rasse);
       StadtInformationen.EinzelnesFeldRessourcengewinnung (KoordinatenExtern => KartenWert,

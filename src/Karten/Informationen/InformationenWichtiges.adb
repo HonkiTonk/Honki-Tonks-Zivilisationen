@@ -99,7 +99,8 @@ package body InformationenWichtiges is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      ForschungAllgemein.Beschreibung (IDExtern => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern));
+      ForschungAllgemein.Beschreibung (IDExtern         => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
+                                       TextAccessExtern => null);
       
    end Forschungsprojekt;
      

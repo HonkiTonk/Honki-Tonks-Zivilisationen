@@ -112,7 +112,7 @@ package body TextAnzeigeSFML is
       return Float
    is begin
       
-      return (Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00);
+      return (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccessExtern).width / 2.00);
       
    end TextMittelPositionErmitteln;
    
