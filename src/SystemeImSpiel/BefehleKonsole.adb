@@ -31,6 +31,7 @@ with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
+with ForschungAnzeigeKonsole;
 
 package body BefehleKonsole is
 
@@ -62,7 +63,9 @@ package body BefehleKonsole is
             Technologie (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Tech_Baum =>
-            ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
+            -- Kann in der SMFL Version ignoriert werden oder das auch in der Konsolenversion ändern und den Befehl komplett wegwerfen?
+            -- Muss bei reiner Anzeige dann auf jeden Fall auch in den Grafikteil.
+            ForschungAnzeigeKonsole.ForschungsBaum (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Nächste_Stadt =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);

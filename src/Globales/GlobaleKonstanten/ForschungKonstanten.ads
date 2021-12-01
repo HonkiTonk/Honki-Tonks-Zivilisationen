@@ -9,10 +9,11 @@ package ForschungKonstanten is
    
    LeerPreisForschung : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerForschungAnforderung : constant EinheitStadtDatentypen.ForschungIDMitNullWert := EinheitStadtDatentypen.ForschungIDMitNullWert'First;
+   ForschungUnmöglich : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := EinheitStadtDatentypen.ForschungIDNichtMöglich'First;
    
    LeerForschungListe : constant DatenbankRecords.ForschungListeRecord := (
                                                                            PreisForschung       => LeerPreisForschung,
-                                                                           AnforderungForschung => (others => LeerForschungAnforderung)
+                                                                           AnforderungForschung => (others => ForschungUnmöglich)
                                                                           );
    
    type TechnologieVerbesserungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;

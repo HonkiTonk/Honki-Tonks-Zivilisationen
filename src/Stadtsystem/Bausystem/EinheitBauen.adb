@@ -20,7 +20,8 @@ package body EinheitBauen is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      EinheitenBeschreibungen.BeschreibungLang (IDExtern => EinheitStadtDatentypen.EinheitenIDMitNullWert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - EinheitenKonstanten.EinheitAufschlag));
+      Put_Line (Item => EinheitenBeschreibungen.BeschreibungLang (IDExtern => EinheitStadtDatentypen.EinheitenIDMitNullWert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer
+                                                                  - EinheitenKonstanten.EinheitAufschlag)));
       
       New_Line;
       Preis (RasseExtern => StadtRasseNummerExtern.Rasse);

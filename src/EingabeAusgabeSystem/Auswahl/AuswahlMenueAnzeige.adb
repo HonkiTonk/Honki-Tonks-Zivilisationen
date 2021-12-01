@@ -5,6 +5,7 @@ with Sf.Graphics.RenderWindow;
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
+with SystemKonstanten;
 
 with InteraktionTasks;
 with AuswahlMenue;
@@ -195,9 +196,18 @@ package body AuswahlMenueAnzeige is
    
    procedure WeiterenTextAnzeigen
    is begin
-      
+            
       AktuellerText := To_Unbounded_Wide_Wide_String (Source => AuswahlMenue.StringSetzen (WelcheZeileExtern => AktuelleAuswahl + 1 + (Ende - Anfang),
                                                                                            WelchesMenüExtern => WelchesMenü));
+      
+      if
+        AktuellerText = SystemKonstanten.LeerString
+      then
+         return;
+         
+      else
+         null;
+      end if;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => AktuellerText));

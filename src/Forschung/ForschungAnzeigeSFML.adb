@@ -56,7 +56,7 @@ package body ForschungAnzeigeSFML is
          then
             WeiterenTextAnzeigen (WelcherTextExtern => ForschungText (ForschungSchleifenwert).Nummer);
             Sf.Graphics.Text.setColor (text  => TextAccess,
-                                        color => GrafikEinstellungen.Schriftfarben.FarbeAusgewähltText);
+                                       color => GrafikEinstellungen.Schriftfarben.FarbeAusgewähltText);
             
          else
             Sf.Graphics.Text.setColor (text  => TextAccess,
@@ -92,6 +92,15 @@ package body ForschungAnzeigeSFML is
          
       else
          WelcherText := 2 * WelcherTextExtern;
+      end if;
+      
+      if
+        WelcherText > GlobaleTexte.Forschungen'Last
+      then
+         return;
+         
+      else
+         null;
       end if;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,

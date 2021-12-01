@@ -4,9 +4,7 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 with EinheitenKonstanten;
-with GlobaleVariablen;
 
-with Anzeige;
 with Auswahl;
 with Fehler;
 
@@ -17,68 +15,42 @@ package body EinheitenBeschreibungen is
       return Wide_Wide_String
    is begin
       
-      if
-        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Konsole
-      then
-         case
-           IDExtern
-         is
-            when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
-               Fehler.LogikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.BeschreibungKurz - Einheit sollte existieren tut sie aber nicht.");
+      case
+        IDExtern
+      is
+         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
+            Fehler.LogikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.BeschreibungKurz - Einheit sollte existieren tut sie aber nicht.");
             
-            when others =>
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => Positive (IDExtern),
-                                              LetzteZeileExtern      => Positive (IDExtern),
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Leer);
+         when others =>
+            Textnummer := 2 * Positive (IDExtern) - 1;
                
-               Text := To_Unbounded_Wide_Wide_String (Source => "T");
-         end case;
+            BeschreibungText := GlobaleTexte.Einheiten (Textnummer);
+      end case;
       
-      else
-         case
-           IDExtern
-         is
-            when EinheitenKonstanten.LeerID =>
-               Fehler.LogikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.BeschreibungKurz - Einheit sollte existieren tut sie aber nicht.");
-               
-            when others =>
-               Textnummer := 2 * Positive (IDExtern) - 1;
-         end case;
-         
-         Text := GlobaleTexte.Einheiten (Textnummer);
-      end if;
-      
-      return To_Wide_Wide_String (Source => Text);
+      return To_Wide_Wide_String (Source => BeschreibungText);
          
    end BeschreibungKurz;
    
    
    
-   procedure BeschreibungLang
+   function BeschreibungLang
      (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert)
+      return Wide_Wide_String
    is begin
       
       case
         IDExtern
       is
          when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
-            return;
+            Fehler.LogikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.BeschreibungLang - Einheit sollte existieren tut sie aber nicht.");
             
          when others =>
-            null;
+            Textnummer := 2 * Positive (IDExtern);
+               
+            BeschreibungText := GlobaleTexte.Einheiten (Textnummer);
       end case;
       
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Lang,
-                                    ÜberschriftZeileExtern => 0,
-                                    ErsteZeileExtern       => Positive (IDExtern),
-                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleTexte.Leer);
+      return To_Wide_Wide_String (Source => BeschreibungText);
       
    end BeschreibungLang;
    
@@ -89,69 +61,37 @@ package body EinheitenBeschreibungen is
       return Wide_Wide_String
    is begin
       
-      if
-        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Konsole
-      then
-         case
-           ArbeitExtern
-         is
-            when SystemDatentypen.Leer =>
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 9,
-                                              LetzteZeileExtern      => 9,
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Leer);
-            
-            when others =>
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
-                                              ÜberschriftZeileExtern => 0,
-                                              -- Der Abzug wird für die Textanzeige benötigt. Die Konstante mal so anpassen dass sie bei Verlängerung der tastenbelegung nicht mehr kaputt geht.
-                                              ErsteZeileExtern       => SystemDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug,
-                                              LetzteZeileExtern      => SystemDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug,
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Leer);
-         end case;
-         
-         Text := To_Unbounded_Wide_Wide_String (Source => "T");
-         
-      else
-         case
-           ArbeitExtern
-         is
-            when SystemDatentypen.Leer =>
-               Text := GlobaleTexte.Beschäftigungen (17);
+      case
+        ArbeitExtern
+      is
+         when SystemDatentypen.Leer =>
+            BeschäftigungText := GlobaleTexte.Beschäftigungen (17);
                
-            when SystemDatentypen.Tastenbelegung_Befehle_Anzeige'Range =>
-               if
-                 ArbeitExtern = SystemDatentypen.Straße_Bauen
-               then
-                  Text := GlobaleTexte.Beschäftigungen (1);
+         when SystemDatentypen.Tastenbelegung_Befehle_Anzeige'Range =>
+            if
+              ArbeitExtern = SystemDatentypen.Straße_Bauen
+            then
+               BeschäftigungText := GlobaleTexte.Beschäftigungen (1);
                   
-               else
-                  Text := GlobaleTexte.Beschäftigungen (2 * (SystemDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug) - 1);
-               end if;
+            else
+               BeschäftigungText := GlobaleTexte.Beschäftigungen (2 * (SystemDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - EinheitenKonstanten.EinheitBefehlAbzug) - 1);
+            end if;
                
-            when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.Beschäftigung - Führt keine gültige Aufgabe durch.");
-         end case;
-      end if;
-      
-      return To_Wide_Wide_String (Source => Text);
+         when others =>
+            Fehler.LogikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.Beschäftigung - Führt keine gültige Aufgabe durch.");
+      end case;
+         
+      return To_Wide_Wide_String (Source => BeschäftigungText);
       
    end Beschäftigung;
    
-
+      
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
      (WelcheAuswahlExtern : in Natural)
       return Boolean
    is begin
-      
+         
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => WelcheAuswahlExtern)
       is

@@ -20,7 +20,7 @@ package body LeseForschungsDatenbank is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.ForschungID;
       WelcheAnforderungExtern : in Positive)
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return EinheitStadtDatentypen.ForschungIDNichtMöglich
    is begin
 
       return ForschungsDatenbank.ForschungListe (RasseExtern, IDExtern).AnforderungForschung (WelcheAnforderungExtern);

@@ -121,19 +121,11 @@ package body KarteInformationenSFML is
       
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (38)));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (38) & ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
+                                                                                                                                                RasseExtern => RasseExtern)));
 
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => TextAccess);
-
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => (PositionText.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width + 5.00, PositionText.y));
-                                         
-      ForschungAllgemein.Beschreibung (IDExtern         => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
-                                       TextAccessExtern => TextAccess);
-                                    
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                          text         => TextAccess);
       
@@ -183,8 +175,8 @@ package body KarteInformationenSFML is
       if
         LeseKarten.Hügel (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) = True
       then      
-         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenDatentypen.Hügel_Mit,
-                                       TextAccessExtern  => TextAccess);
+         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                            str  => KartenAllgemein.Beschreibung (KartenGrundExtern => KartenDatentypen.Hügel_Mit));
       
          Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => PositionText);
@@ -197,8 +189,8 @@ package body KarteInformationenSFML is
          null;
       end if;
          
-      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
-                                    TextAccessExtern  => TextAccess);
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
@@ -210,8 +202,8 @@ package body KarteInformationenSFML is
       
                   
 
-      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
-                                    TextAccessExtern  => TextAccess);
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
@@ -221,9 +213,8 @@ package body KarteInformationenSFML is
       
       
       
-      
-      AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
-                                      TextAccessExtern         => TextAccess);
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
@@ -233,8 +224,8 @@ package body KarteInformationenSFML is
       
       
       
-      AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
-                                      TextAccessExtern         => TextAccess);
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
@@ -244,8 +235,8 @@ package body KarteInformationenSFML is
       
       
       
-      KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position),
-                                    TextAccessExtern  => TextAccess);
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,

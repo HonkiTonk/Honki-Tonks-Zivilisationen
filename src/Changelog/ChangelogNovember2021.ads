@@ -10,7 +10,7 @@ package ChangelogNovember2021 is
    -- Einige Access ist nicht null Prüfungen eingebaut.
    -- Angefangen die Forschungsauswahl an das neue System anzupassen.
    -- Einfaches Forschungsmenü für die SFML gebaut.
-   -- Unnötigen Code entfernt.*
+   -- Unnötigen Code entfernt.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    

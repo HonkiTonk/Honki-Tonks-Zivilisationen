@@ -62,7 +62,9 @@ package body BefehleSFML is
             Technologie (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Tech_Baum =>
-            ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
+            -- Kann in der SMFL Version ignoriert werden oder das auch in der Konsolenversion ändern und den Befehl komplett wegwerfen?
+            -- ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
+            null;
             
          when SystemDatentypen.Nächste_Stadt =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);

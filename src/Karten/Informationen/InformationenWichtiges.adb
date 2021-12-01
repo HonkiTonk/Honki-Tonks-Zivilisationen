@@ -99,12 +99,12 @@ package body InformationenWichtiges is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      ForschungAllgemein.Beschreibung (IDExtern         => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
-                                       TextAccessExtern => null);
-      
+      Put_Line (Item => ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
+                                                         RasseExtern => RasseExtern));
+                
    end Forschungsprojekt;
-     
-     
+   
+                
           
    procedure Forschungszeit
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)

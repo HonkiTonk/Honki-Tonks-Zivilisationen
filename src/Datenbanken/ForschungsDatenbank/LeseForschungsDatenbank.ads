@@ -20,7 +20,7 @@ package LeseForschungsDatenbank is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.ForschungID;
       WelcheAnforderungExtern : in Positive)
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return EinheitStadtDatentypen.ForschungIDNichtMöglich
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);

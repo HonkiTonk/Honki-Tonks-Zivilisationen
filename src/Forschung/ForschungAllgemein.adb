@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
-
 with Sf; use Sf;
 
 with GlobaleTexte;
@@ -25,56 +22,35 @@ with KIForschung;
 
 package body ForschungAllgemein is
 
-   -- In Funktion umschreiben die den String zurückgibt? Würde die Sache in der SFML (generell?) leichter machen?
-   -- RasseExtern einbauen um die Technologien aller Rassen einbauen zu können.
    -- Auch bei allein anderen Beschreibungen dann so einbauen.
-   procedure Beschreibung
+   function Beschreibung
      (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
-      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return Wide_Wide_String
    is begin
       
       if
-        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Konsole
+        RasseExtern = SystemDatentypen.Menschen
       then
-         case
-           IDExtern
-         is
-            when 0 =>
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 28,
-                                              LetzteZeileExtern      => 28,
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Leer);
-            
-            when others =>
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => Positive (IDExtern),
-                                              LetzteZeileExtern      => Positive (IDExtern),
-                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                              AbstandMitteExtern     => GlobaleTexte.Leer,
-                                              AbstandEndeExtern      => GlobaleTexte.Leer);
-         end case;
-         
+         null;
+
       else
-         case
-           IDExtern
-         is
-            when 0 =>
-               Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (28)));
-               
-            when others =>
-               AktuelleForschung := 2 * Positive (IDExtern) - 1;
-               
-               Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (AktuelleForschung)));
-         end case;
+         null;
       end if;
+      
+      case
+        IDExtern
+      is
+         when ForschungKonstanten.LeerForschungAnforderung =>
+            BeschreibungText := GlobaleTexte.ZeugSachen (28);
+            
+         when others =>
+            AktuelleForschung := 2 * Positive (IDExtern) - 1;
+               
+            BeschreibungText := GlobaleTexte.Forschungen (AktuelleForschung);
+      end case;
+
+      return To_Wide_Wide_String (Source => BeschreibungText);
       
    end Beschreibung;
 
@@ -120,19 +96,9 @@ package body ForschungAllgemein is
                                          ForschungIDExtern => ForschungenSchleifenwert)
          is
             when True =>
-               -- Später durch eine bessere Leerwertprüfung ersetzen.
-               if
-                 ForschungenSchleifenwert > 74
-               then
-                  null;
-                  
-               else
-                  ForschungText (Ende).Text := GlobaleTexte.Forschungen (WelcherForschungstext);
-                  ForschungText (Ende).Nummer := Positive (ForschungenSchleifenwert);
-                  -- Put_Line (WelcherForschungstext'Wide_Wide_Image);
-                  -- Put_Line (To_Wide_Wide_String (Source => ForschungText (Ende).Text));
-                  Ende := Ende + 1;
-               end if;
+               ForschungText (Ende).Text := GlobaleTexte.Forschungen (WelcherForschungstext);
+               ForschungText (Ende).Nummer := Positive (ForschungenSchleifenwert);
+               Ende := Ende + 1;
                   
             when False =>
                null;
@@ -147,7 +113,7 @@ package body ForschungAllgemein is
         GlobaleVariablen.AnzeigeArt
       is
          when SystemDatentypen.Konsole =>
-            return ForschungAuswahl (RasseExtern => RasseExtern);
+            return ForschungAuswahlKonsole;
             
          when SystemDatentypen.SFML | SystemDatentypen.Beides =>
             return ForschungAuswahlSFML;
@@ -244,17 +210,12 @@ package body ForschungAllgemein is
    
    
    
-   function ForschungAuswahl
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
+   function ForschungAuswahlKonsole
+     return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
             
       AuswahlSchleife:
       loop
-
-         -- Muss auch hier raus.
-         Ermöglicht (RasseExtern           => RasseExtern,
-                      ForschungNummerExtern => EinheitStadtDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
          
          case
            Eingabe.Tastenwert
@@ -289,194 +250,7 @@ package body ForschungAllgemein is
          
       end loop AuswahlSchleife;
             
-   end ForschungAuswahl;
-   
-   
-   
-   procedure Ermöglicht
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
-   is begin
-      
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                    TextDateiExtern        => GlobaleTexte.Beschreibung_Forschung_Ermöglicht,
-                                    ÜberschriftZeileExtern => 43,
-                                    ErsteZeileExtern       => Positive (ForschungNummerExtern),
-                                    AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                    AbstandEndeExtern      => GlobaleTexte.Leer);
-      
-      TechnologienSchleife:
-      for TechnologieSchleifenwert in EinheitStadtDatentypen.ForschungID'Range loop
-         ErmöglichtSchleife:
-         for NeueForschungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
-         
-            if
-              LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                            IDExtern                => TechnologieSchleifenwert,
-                                                            WelcheAnforderungExtern => NeueForschungSchleifenwert)
-              = ForschungKonstanten.LeerForschungAnforderung
-            then
-               exit ErmöglichtSchleife;
-            
-            elsif
-              LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                            IDExtern                => TechnologieSchleifenwert,
-                                                            WelcheAnforderungExtern => NeueForschungSchleifenwert)
-              = ForschungNummerExtern
-            then
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                              TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => Positive (TechnologieSchleifenwert),
-                                              LetzteZeileExtern      => Positive (TechnologieSchleifenwert),
-                                              AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
-                                              AbstandEndeExtern      => GlobaleTexte.Leer);
-               exit ErmöglichtSchleife;
-               
-            else
-               null;
-            end if;
-         
-         end loop ErmöglichtSchleife;
-      end loop TechnologienSchleife;
-      
-      New_Line;
-      
-   end Ermöglicht;
-   
-   
-   
-   procedure Benötigt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
-   is begin
-      
-      ErsterDurchlauf := True;
-          
-      BenötigtSchleife:
-      for NeueForschungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
-         
-         if
-           LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                         IDExtern                => ForschungNummerExtern,
-                                                         WelcheAnforderungExtern => NeueForschungSchleifenwert)
-           = ForschungKonstanten.LeerForschungAnforderung
-         then
-            null;
-               
-         else
-            case
-              ErsterDurchlauf
-            is
-               when True =>
-                  Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                                 TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                                 ÜberschriftZeileExtern => 44,
-                                                 ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                                   IDExtern                => ForschungNummerExtern,
-                                                                                                                                   WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                                                 LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                                   IDExtern                => ForschungNummerExtern,
-                                                                                                                                   WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                                                 AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                 AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
-                                                 AbstandEndeExtern      => GlobaleTexte.Leer);
-                  ErsterDurchlauf := False;
-                  
-               when False =>
-                  Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                 TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                                 ÜberschriftZeileExtern => 0,
-                                                 ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                                   IDExtern                => ForschungNummerExtern,
-                                                                                                                                   WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                                                 LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                                   IDExtern                => ForschungNummerExtern,
-                                                                                                                                   WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                                                 AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                 AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
-                                                 AbstandEndeExtern      => GlobaleTexte.Leer);
-            end case;
-         end if;
-         
-      end loop BenötigtSchleife;
-      
-      New_Line;
-      
-   end Benötigt;
-   
-   
-   
-   procedure ForschungsBaum
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      AktuelleAuswahl := 1;
-      
-      ForschungsbaumSchleife:
-      loop
-         
-         Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-         
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                        ÜberschriftZeileExtern => 45,
-                                        ErsteZeileExtern       => Positive (AktuelleAuswahl),
-                                        LetzteZeileExtern      => Positive (AktuelleAuswahl),
-                                        AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Leer,
-                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
-         New_Line;
-         
-         Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                       TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
-                                       ÜberschriftZeileExtern => 0,
-                                       ErsteZeileExtern       => Positive (AktuelleAuswahl),
-                                       AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                       AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
-         New_Line;
-      
-         Benötigt (RasseExtern           => RasseExtern,
-                    ForschungNummerExtern => AktuelleAuswahl);
-         New_Line;
-         Ermöglicht (RasseExtern           => RasseExtern,
-                      ForschungNummerExtern => AktuelleAuswahl);
-         
-         case
-           Eingabe.Tastenwert
-         is
-            when SystemDatentypen.Rechts =>
-               if
-                 AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'Last
-               then
-                  AktuelleAuswahl := EinheitStadtDatentypen.ForschungID'First;
-                  
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
-
-            when SystemDatentypen.Links =>
-               if
-                 AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'First
-               then
-                  AktuelleAuswahl := EinheitStadtDatentypen.ForschungID'Last;
-                  
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
-                              
-            when SystemDatentypen.Menü_Zurück =>
-               Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-               return;
-                     
-            when others =>
-               null;
-         end case;
-         
-      end loop ForschungsbaumSchleife;
-      
-   end ForschungsBaum;
+   end ForschungAuswahlKonsole;
 
 
 
@@ -613,6 +387,14 @@ package body ForschungAllgemein is
            = ForschungKonstanten.LeerForschungAnforderung
          then
             null;
+            
+         elsif
+           LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                         IDExtern                => ForschungIDExtern,
+                                                         WelcheAnforderungExtern => AnforderungSchleifenwert)
+           = ForschungKonstanten.ForschungUnmöglich
+         then
+            return False;
                   
          elsif
            LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,

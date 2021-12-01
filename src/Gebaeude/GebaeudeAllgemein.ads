@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with GlobaleVariablen;
@@ -43,6 +45,8 @@ package GebaeudeAllgemein is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer);
    
 private
+   
+   BeschreibungText : Unbounded_Wide_Wide_String;
    
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;

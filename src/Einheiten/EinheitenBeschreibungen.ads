@@ -7,10 +7,9 @@ with SystemDatentypen;
 
 package EinheitenBeschreibungen is
    
-   procedure BeschreibungLang
-     (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert);
-   
-   
+   function BeschreibungLang
+     (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert)
+      return Wide_Wide_String;
    
    function Beschäftigung
      (ArbeitExtern : in SystemDatentypen.Tastenbelegung_Enum)
@@ -28,6 +27,7 @@ private
    
    Textnummer : Positive;
    
-   Text : Unbounded_Wide_Wide_String;
+   BeschreibungText : Unbounded_Wide_Wide_String;
+   BeschäftigungText : Unbounded_Wide_Wide_String;
 
 end EinheitenBeschreibungen;

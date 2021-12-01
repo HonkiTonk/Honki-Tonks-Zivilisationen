@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenRecords;
 with KartenDatentypen;
@@ -9,9 +9,9 @@ with SystemDatentypen;
 
 package KartenAllgemein is
 
-   procedure Beschreibung
-     (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum;
-      TextAccessExtern : in Sf.Graphics.sfText_Ptr);
+   function Beschreibung
+     (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum)
+      return Wide_Wide_String;
 
 
 
@@ -208,5 +208,7 @@ package KartenAllgemein is
 private
 
    GrundAktuell : Positive;
+
+   BeschreibungText : Unbounded_Wide_Wide_String;
 
 end KartenAllgemein;

@@ -25,17 +25,12 @@ package ForschungAllgemein is
    type ForschungTextArray is array (EinheitStadtDatentypen.ForschungID'First .. EinheitStadtDatentypen.ForschungID'Last + 1) of AllgemeineAnzeigeTextRecord;
    ForschungText : ForschungTextArray;
 
-   procedure Beschreibung
+   function Beschreibung
      (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
-      TextAccessExtern : in Sf.Graphics.sfText_Ptr);
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return Wide_Wide_String;
 
    procedure Forschung
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
-
-   procedure ForschungsBaum
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -55,8 +50,6 @@ package ForschungAllgemein is
 
 private
 
-   ErsterDurchlauf : Boolean;
-
    WasErforschtWerdenSoll : EinheitStadtDatentypen.ForschungIDMitNullWert;
    AktuellesForschungsprojekt : EinheitStadtDatentypen.ForschungIDMitNullWert;
 
@@ -65,26 +58,14 @@ private
 
    Zeilenabstand : Float;
 
+   BeschreibungText : Unbounded_Wide_Wide_String;
+
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
 
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
    StartPositionText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
    TextPositionMaus : Sf.System.Vector2.sfVector2f;
-
-   procedure Ermöglicht
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
-
-   procedure Benötigt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
    procedure FortschrittMensch
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
@@ -103,12 +84,8 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
-   function ForschungAuswahl
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+   function ForschungAuswahlKonsole
+     return EinheitStadtDatentypen.ForschungIDMitNullWert;
 
    function ForschungAuswahlSFML
      return EinheitStadtDatentypen.ForschungIDMitNullWert;

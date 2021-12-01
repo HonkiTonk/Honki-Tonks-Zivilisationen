@@ -203,16 +203,19 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.95 => 0.00.95 (02.12.2021):
+   -- Version 0.00.9540 => 0.00.95 (02.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9530 => 0.00.95 (01.12.2021):
+   -- Version 0.00.9530 => 0.00.9540 (01.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Prüfung eingebaut die verhindert das Erklärtext angezeigt wird wenn keiner vorhanden ist.
+   -- Prüfung eingebaut die verhindert das nicht vorhandene Technologien erforscht werden können.
+   -- Konsolenanzeige der Forschung aus der ForschungAllgemein ausgelagert um es später über den Grafiktask aufzurufen.
+   -- Code zusammengefasst/vereinfacht.
+   -- Kleinigkeiten korrigiert/überarbeitet.
 
 end ChangelogDezember2021;

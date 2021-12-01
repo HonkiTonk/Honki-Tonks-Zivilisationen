@@ -1,52 +1,31 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
-with Sf.Graphics.Text;
-
 with GlobaleTexte;
 with EinheitenKonstanten;
+with SystemKonstanten;
 
 with SchreibeEinheitenGebaut;
 
-with Anzeige;
-
 package body AufgabenAllgemein is
 
-   procedure Beschreibung
-     (KartenVerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
-      TextAccessExtern : in Sf.Graphics.sfText_Ptr)
+   function Beschreibung
+     (KartenVerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+      return Wide_Wide_String
    is begin
       
-      if
-        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Konsole
-      then
-         case
-           KartenVerbesserungExtern
-         is
-            when KartenDatentypen.Leer =>
-               null;
+      case
+        KartenVerbesserungExtern
+      is
+         when KartenDatentypen.Leer =>
+            BeschreibungText := SystemKonstanten.LeerUnboundedString;
             
-            when others =>
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Beschreibungen_Verbesserungen_Kurz,
-                                                     TextZeileExtern => KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern));
-         end case;
-         
-      else
-         case
-           KartenVerbesserungExtern
-         is
-            when KartenDatentypen.Leer =>
-               Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
-                                                  str  => "");
+         when others =>
+            AktuelleVerbesserung := 2 * KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern) - 1;
                
-            when others =>
-               AktuelleVerbesserung := 2 * KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern) - 1;
-               
-               Sf.Graphics.Text.setUnicodeString (text => TextAccessExtern,
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Verbesserungen (AktuelleVerbesserung)));
-         end case;
-      end if;
+            BeschreibungText := GlobaleTexte.Verbesserungen (AktuelleVerbesserung);
+      end case;
+      
+      return To_Wide_Wide_String (Source => BeschreibungText);
       
    end Beschreibung;
    

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
@@ -9,9 +9,9 @@ with KartenDatentypen;
 
 package AufgabenAllgemein is
 
-   procedure Beschreibung
-     (KartenVerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
-      TextAccessExtern : in Sf.Graphics.sfText_Ptr);
+   function Beschreibung
+     (KartenVerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+      return Wide_Wide_String;
 
    procedure Nullsetzung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -24,5 +24,7 @@ package AufgabenAllgemein is
 private
 
    AktuelleVerbesserung : Positive;
+
+   BeschreibungText : Unbounded_Wide_Wide_String;
 
 end AufgabenAllgemein;
