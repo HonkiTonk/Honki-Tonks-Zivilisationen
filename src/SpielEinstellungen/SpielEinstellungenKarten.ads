@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen;
 with KartenDatentypen;
+with SystemRecords;
 
 package SpielEinstellungenKarten is
    
@@ -28,7 +29,7 @@ private
    KartentemperaturAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
    KartenressourcenAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
    
-   BenutzerdefinierteGröße : Integer;
+   BenutzerdefinierteGröße : SystemRecords.ZahlenEingabeRecord;
    
    function GrößeSelbstBestimmen
      (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum)

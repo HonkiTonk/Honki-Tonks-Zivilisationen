@@ -5,7 +5,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Window.Keyboard;
 
 with SystemDatentypen;
-with KartenDatentypen;
 with SystemRecords;
 
 package EingabeSFML is
@@ -49,7 +48,7 @@ private
    MaximalerWert : Integer;
    MinimalerWert : Integer;
    
-   ZahlenString : Wide_Wide_String (1 .. 9);
+   ZahlenString : Wide_Wide_String (1 .. 10);
       
    MaximumMinimum : Unbounded_Wide_Wide_String;
    Name : Unbounded_Wide_Wide_String;
@@ -59,6 +58,8 @@ private
    Taste : Sf.Window.Keyboard.sfKeyCode;
    
    EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
+   
+   type Zahl_Prüfung_Enum is (Zahl, Abbruch, Fertig, Löschen, Vorzeichen_Minus, Vorzeichen_Plus, Leer);
       
    type EingabeZahlenUmwandelnArray is array (Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9) of Wide_Wide_Character;
    EingabeZahlenUmwandeln : constant EingabeZahlenUmwandelnArray := (
@@ -184,7 +185,8 @@ private
    
    procedure VorzeichenAnpassen
      (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer);
+      ZahlenMaximumExtern : in Integer;
+      PlusMinusExtern : in Boolean);
    
    procedure MinimumMaximumSetzen
      (ZahlenMinimumMaximumExtern : in Integer)
@@ -207,7 +209,7 @@ private
    
    function GanzeZahlPrüfung
      (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
-      return KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      return Zahl_Prüfung_Enum;
    
    function NameEingeben
      (WelcheFrageExtern : in Positive)

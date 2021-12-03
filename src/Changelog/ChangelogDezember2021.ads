@@ -189,17 +189,18 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.95 => 0.00.9 (04.12.2021):
+   -- Version 0.00.9570 => 0.00.9 (04.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9560 => 0.00.95 (03.12.2021):
+   -- Version 0.00.9560 => 0.00.9570 (03.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Alles an den neuen Rückgabewert für die Zahleneingabe angepasst.
+   -- Weiter an der neuen Zahleneingabe gebaut.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
    
@@ -210,7 +211,7 @@ package ChangelogDezember2021 is
    -- Auswahl der Sprachen funktioniert jetzt wieder korrekt.
    -- Es ist jetzt möglich die Sprachauswahl abzubrechen.
    -- Anzeige der Sprachauswahl in den Grafiktask verschoben.
-   -- Mit ConvecShapes der SFML herumexperimentiert.
+   -- Mit ConvexShapes der SFML herumexperimentiert.
    -- Einige weitere Fehlerprüfungen eingebaut/überarbeitet.
    -- Die Einheitensteuerung mit der Maus an die neue Tasteneingabe angepasst.
    -- Cursor wird jetzt nicht mehr in der Einheitensteuerung festgelegt.

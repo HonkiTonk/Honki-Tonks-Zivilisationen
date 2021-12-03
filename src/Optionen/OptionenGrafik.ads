@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.System.Vector2;
 
 with SystemDatentypen;
+with SystemRecords;
 
 package OptionenGrafik is
 
@@ -13,8 +14,8 @@ private
 
    AuswahlWert : SystemDatentypen.Rückgabe_Werte_Enum;
 
-   EingabeAuflösung : Integer;
-   EingabeBildrate : Integer;
+   EingabeAuflösung : SystemRecords.ZahlenEingabeRecord;
+   EingabeBildrate : SystemRecords.ZahlenEingabeRecord;
 
    NeueAuflösung : Sf.System.Vector2.sfVector2u;
 

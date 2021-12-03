@@ -23,14 +23,9 @@ package EingabeSystemeSFML is
    function TextEingeben
      return Unbounded_Wide_Wide_String;
 
-   function ZahlenEingeben
-     (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
-      return Unbounded_Wide_Wide_String;
-
 private
 
-   ErfolgreichAbbruch : Boolean;
+   -- ErfolgreichAbbruch : Boolean;
    SchleifeVerlassen : Boolean;
 
    EingegebenesZeichen : Wide_Wide_Character;
@@ -40,9 +35,6 @@ private
    ZeichenEingeben : Sf.Window.Event.sfEvent;
 
    TextEingegeben : Sf.Window.Event.sfEvent;
-
-   procedure ZahlPrüfen
-     (UnicodeNummerExtern : in Sf.sfUint32);
 
    procedure TextPrüfen
      (UnicodeNummerExtern : in Sf.sfUint32);

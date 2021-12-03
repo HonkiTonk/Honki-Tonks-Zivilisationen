@@ -58,16 +58,13 @@ package body OptionenSonstiges is
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => 999_999_999);
       case
-        EingegebeneZahl
+        EingegebeneZahl.EingabeAbbruch
       is
-         when 0 .. 999_999_999 =>
-            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl;
+         when True =>
+            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
             
-         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
+         when False =>
             null;
-            
-         when others =>
-            Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.AnzahlAutomatischerSpielstände - Ungültige Zahleneingabe.");
       end case;
       
    end AnzahlAutomatischerSpielstände;
@@ -83,20 +80,25 @@ package body OptionenSonstiges is
                                             ZahlenMaximumExtern => 999_999_999);
 
       case
-        EingegebeneZahl
+        EingegebeneZahl.EingabeAbbruch
       is
-         when 1 .. 999_999_999 =>
-            GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl;
+         when True =>
+            if
+              EingegebeneZahl.EingegebeneZahl in 1 .. 999_999_999
+            then
+               GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl.EingegebeneZahl;
+               
+            elsif
+              EingegebeneZahl.EingegebeneZahl = 0
+            then
+               GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
+               
+            else
+               Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern - Ungültige Zahl wurd eingegeben.");
+            end if;
             
-         when 0 =>
-            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl;
-            
-            
-         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
+         when False =>
             null;
-            
-         when others =>
-            Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern - Ungültige Zahleneingabe.");
       end case;
       
    end RundenBisAutospeichern;

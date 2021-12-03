@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemRecords;
 with GlobaleVariablen;
 with KartenRecords;
 
@@ -23,7 +24,7 @@ package BewegungCursor is
 
 private
 
-   KoordinatenPunkt : Integer;
+   KoordinatenPunkt : SystemRecords.ZahlenEingabeRecord;
 
    Position : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;

@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemKonstanten;
 with GlobaleTexte;
 
 with Karten;
@@ -53,38 +52,40 @@ package body SpielEinstellungenKarten is
    
    function GrößeSelbstBestimmen
      (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum)
-     return SystemDatentypen.Rückgabe_Werte_Enum
+      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                       ZeileExtern         => 15,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
-      if
-        BenutzerdefinierteGröße = SystemKonstanten.GanzeZahlAbbruchKonstante
-      then
-         return SystemDatentypen.Auswahl_Kartengröße;
-                     
-      else
-         null;
-      end if;
+      case
+        BenutzerdefinierteGröße.EingabeAbbruch
+      is
+         when False =>
+            return SystemDatentypen.Auswahl_Kartengröße;
+            
+         when True =>
+            null;
+      end case;
       
-      Karten.Kartengrößen (KartengrößeExtern).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+      Karten.Kartengrößen (KartengrößeExtern).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                       ZeileExtern         => 21,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
       
-      if
-        BenutzerdefinierteGröße = SystemKonstanten.GanzeZahlAbbruchKonstante
-      then
-         return SystemDatentypen.Auswahl_Kartengröße;
-                           
-      else
-         Karten.Kartengrößen (KartengrößeExtern).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-         Karten.Kartengröße := KartengrößeExtern;
-         return SystemDatentypen.Auswahl_Kartenart;
-      end if;
+      case
+        BenutzerdefinierteGröße.EingabeAbbruch
+      is
+         when False =>
+            return SystemDatentypen.Auswahl_Kartengröße;
+            
+         when True =>
+            Karten.Kartengrößen (KartengrößeExtern).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
+            Karten.Kartengröße := KartengrößeExtern;
+            return SystemDatentypen.Auswahl_Kartenart;
+      end case;
       
    end GrößeSelbstBestimmen;
 

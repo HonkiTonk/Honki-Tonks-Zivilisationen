@@ -6,7 +6,6 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf;
 with Sf.Window.Mouse;
 
-with KartenDatentypen; use KartenDatentypen;
 with GlobaleTexte;
 
 with EingabeSystemeSFML;
@@ -23,8 +22,16 @@ package body EingabeSFML is
       return SystemRecords.ZahlenEingabeRecord
    is begin
       
-      EingegebeneZahl.EingegebeneZahl := ZahlenMinimumExtern;
-      AktuellerWert := ZahlenMinimumExtern;
+      if
+        0 in ZahlenMinimumExtern .. ZahlenMaximumExtern
+      then
+         AktuellerWert := 0;
+         
+      else
+         AktuellerWert := ZahlenMinimumExtern;
+      end if;
+      
+      EingegebeneZahl.EingegebeneZahl := AktuellerWert;
       
       if
         WelcheFrageExtern > GlobaleTexte.Frage'Last
@@ -38,9 +45,11 @@ package body EingabeSFML is
          
       else
          Frage := WelcheFrageExtern;
-         ZahlenString := ("000000000");
-         WelchesVorzeichen := True;
-         InteraktionTasks.Eingabe := SystemDatentypen.Zahlen_Eingabe;
+         ZahlenString := ("0000000000");
+         VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                             ZahlenMaximumExtern => ZahlenMaximumExtern,
+                             PlusMinusExtern     => True);
+         InteraktionTasks.Eingabe := SystemDatentypen.Text_Eingabe;
       end if;
       
       case
@@ -74,12 +83,11 @@ package body EingabeSFML is
          EingegebeneZahl.EingegebeneZahl := -Integer'Wide_Wide_Value (ZahlenString);
       end if;
       
-      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
-      
       case
         InteraktionTasks.AktuelleDarstellung
       is
          when SystemDatentypen.Grafik_Menüs =>
+            InteraktionTasks.Eingabe := SystemDatentypen.Text_Eingabe;
             InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
             
          when others =>
@@ -97,57 +105,40 @@ package body EingabeSFML is
       ZahlenMaximumExtern : in Integer)
       return Boolean
    is begin
-      
+            
       ZahlenSchleife:
       loop
-
-         VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
-                             ZahlenMaximumExtern => ZahlenMaximumExtern);
             
          EingabeSystemeSFML.TastenEingabe;
          Zahlen := EingabeSystemeSFML.TastaturTaste;
          
-         -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
          case
            GanzeZahlPrüfung (ZeichenExtern => Zahlen)
          is
-            when 1 =>
+            when Zahl =>
                ZahlHinzufügen (ZahlenMaximumExtern   => ZahlenMaximumExtern,
                                 EingegebeneZahlExtern => Zahlen);
 
-            when -1 =>
+            when Abbruch =>
                return False;
 
-            when 2 =>
-               if
-                 -Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
-                 and
-                   WelchesVorzeichen = False
-               then
-                  return True;
-                  
-               elsif
-                 Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
-               then
-                  return True;
-                     
-               else
-                  if
-                    ZahlenMinimumExtern <= -100_000_000
-                  then
-                     ZahlenMinimumPlusmacher := -ZahlenMinimumExtern;
-                     ZahlenString := ZahlenMinimumPlusmacher'Wide_Wide_Image;
-                     WelchesVorzeichen := False;
-                     
-                  else
-                     MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => -ZahlenMinimumExtern);
-                  end if;
-               end if;
+            when Fertig =>
+               return True;
 
-            when -2 =>
+            when Löschen =>
                ZahlEntfernen;
+               
+            when Vorzeichen_Plus =>
+               VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                   ZahlenMaximumExtern => ZahlenMaximumExtern,
+                                   PlusMinusExtern     => True);
+               
+            when Vorzeichen_Minus =>
+               VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                   ZahlenMaximumExtern => ZahlenMaximumExtern,
+                                   PlusMinusExtern     => False);
                   
-            when others =>
+            when Leer =>
                null;
          end case;
          
@@ -161,7 +152,8 @@ package body EingabeSFML is
    
    procedure VorzeichenAnpassen
      (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+      ZahlenMaximumExtern : in Integer;
+      PlusMinusExtern : in Boolean)
    is begin
             
       if
@@ -173,19 +165,23 @@ package body EingabeSFML is
         ZahlenMaximumExtern < 0
       then
          WelchesVorzeichen := False;
-            
+         
+      elsif
+        PlusMinusExtern
+      then
+         WelchesVorzeichen := True;
+         
       else
-         null;
+         WelchesVorzeichen := False;
       end if;
       
    end VorzeichenAnpassen;
    
    
    
-   -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
    function GanzeZahlPrüfung
      (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
-      return KartenDatentypen.LoopRangeMinusDreiZuDrei
+      return Zahl_Prüfung_Enum
    is begin
       
       case
@@ -193,27 +189,25 @@ package body EingabeSFML is
       is
          when Sf.Window.Keyboard.sfKeyNum0 | Sf.Window.Keyboard.sfKeyNum1 | Sf.Window.Keyboard.sfKeyNum2 | Sf.Window.Keyboard.sfKeyNum3 | Sf.Window.Keyboard.sfKeyNum4 | Sf.Window.Keyboard.sfKeyNum5
             | Sf.Window.Keyboard.sfKeyNum6 | Sf.Window.Keyboard.sfKeyNum7 | Sf.Window.Keyboard.sfKeyNum8 | Sf.Window.Keyboard.sfKeyNum9 =>
-            return 1;
+            return Zahl;
             
-         when Sf.Window.Keyboard.sfKeyQ | Sf.Window.Keyboard.sfKeyEscape =>
-            return -1;
+         when Sf.Window.Keyboard.sfKeyEscape =>
+            return Abbruch;
 
          when Sf.Window.Keyboard.sfKeyDelete | Sf.Window.Keyboard.sfKeyBack =>
-            return -2;
+            return Löschen;
 
          when Sf.Window.Keyboard.sfKeyE | Sf.Window.Keyboard.sfKeyEnter =>
-            return 2;
+            return Fertig;
 
          when Sf.Window.Keyboard.sfKeySubtract =>
-            WelchesVorzeichen := False;
-            return 3;
+            return Vorzeichen_Minus;
             
          when Sf.Window.Keyboard.sfKeyAdd =>
-            WelchesVorzeichen := True;
-            return 3;
+            return Vorzeichen_Plus;
             
          when others =>
-            return 0;
+            return Leer;
       end case;
       
    end GanzeZahlPrüfung;
@@ -237,11 +231,6 @@ package body EingabeSFML is
         Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern
       then
          null;
-                  
-      elsif
-        ZahlenMaximumExtern >= 100_000_000
-      then
-         ZahlenString := ZahlenMaximumExtern'Wide_Wide_Image;
                        
       else
          MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => ZahlenMaximumExtern);
@@ -308,11 +297,8 @@ package body EingabeSFML is
    is begin
       
       Frage := WelcheFrageExtern;
-      InteraktionTasks.Eingabe := SystemDatentypen.Text_Eingabe;
       
       EingegebenerName := EingabeSystemeSFML.TextEingeben;
-      
-      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
       
       return EingegebenerName;
       

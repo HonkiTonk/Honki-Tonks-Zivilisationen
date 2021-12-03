@@ -17,10 +17,7 @@ package body OptionenGrafik is
    function OptionenGrafik
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
-      
-      EingabeBildrate := -1;
-      NeueAuflösung := (0, 0);
-      
+            
       GrafikSchleife:
       loop
          
@@ -62,13 +59,13 @@ package body OptionenGrafik is
       
       EingabeAuflösung := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
                                               ZeileExtern         => 32,
-                                              ZahlenMinimumExtern => 1,
-                                              ZahlenMaximumExtern => 999_999_999);
+                                              ZahlenMinimumExtern => 320,
+                                              ZahlenMaximumExtern => Integer'Last);
       
       if
-        EingabeAuflösung > 0
+        EingabeAuflösung.EingabeAbbruch
       then
-         NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung);
+         NeueAuflösung.x := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
            
       else
          return;
@@ -76,13 +73,13 @@ package body OptionenGrafik is
       
       EingabeAuflösung := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
                                               ZeileExtern         => 33,
-                                              ZahlenMinimumExtern => 1,
-                                              ZahlenMaximumExtern => 999_999_999);
+                                              ZahlenMinimumExtern => 240,
+                                              ZahlenMaximumExtern => Integer'Last);
       
       if
-        EingabeAuflösung > 0
+        EingabeAuflösung.EingabeAbbruch
       then
-         NeueAuflösung.y := Sf.sfUint32 (EingabeAuflösung);
+         NeueAuflösung.y := Sf.sfUint32 (EingabeAuflösung.EingegebeneZahl);
            
       else
          NeueAuflösung.x := 0;
@@ -101,12 +98,12 @@ package body OptionenGrafik is
       EingabeBildrate := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
                                             ZeileExtern         => 34,
                                             ZahlenMinimumExtern => 0,
-                                            ZahlenMaximumExtern => 999_999_999);
+                                            ZahlenMaximumExtern => Integer'Last);
       
       if
-        EingabeBildrate >= 0
+        EingabeBildrate.EingabeAbbruch
       then
-         GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => Sf.sfUint32 (EingabeBildrate));
+         GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
          
       else
          null;
@@ -119,10 +116,11 @@ package body OptionenGrafik is
    procedure EinstellungenSpeichern
    is begin
       
+      -- Das hier noch einmal überarbeiten, funktioniert nicht richtig mit dem neuen System.
       if
-        EingabeBildrate > -1
+        EingabeBildrate.EingabeAbbruch
       then
-         GrafikEinstellungen.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate);
+         GrafikEinstellungen.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
          
       else
          null;

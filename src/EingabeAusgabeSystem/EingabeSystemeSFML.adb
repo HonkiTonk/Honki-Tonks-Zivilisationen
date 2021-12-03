@@ -7,6 +7,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
 with SystemKonstanten;
+with SystemDatentypen;
 
 with GrafikEinstellungen;
 with InteraktionTasks;
@@ -77,107 +78,12 @@ package body EingabeSystemeSFML is
    
    
    
-   function ZahlenEingeben
-     (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
-      return Unbounded_Wide_Wide_String
-   is begin
-      
-      EingegebenerText := SystemKonstanten.LeerUnboundedString;
-      
-      if
-        ZahlenMinimumExtern = ZahlenMaximumExtern
-      then
-         null;
-         
-      else
-         null;
-      end if;
-      
-      EingabeSchleife:
-      loop
-         TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
-                                                   event        => TextEingegeben)
-           = Sf.sfTrue loop
-            
-            case
-              TextEingegeben.eventType
-            is
-               when Sf.Window.Event.sfEvtTextEntered =>
-                  TextPrüfen (UnicodeNummerExtern => TextEingegeben.text.unicode);
-               
-                  -- Im aktuellen System gibt es gar kein Abbruch für Speichern/Laden/Städtbau/usw., oder?
-               when Sf.Window.Event.sfEvtKeyPressed =>
-                  if
-                    TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
-                  then
-                     exit EingabeSchleife;
-                     
-                  elsif
-                    TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
-                  then
-                     exit EingabeSchleife;
-                  
-                  else
-                     null;
-                  end if;
-               
-               when others =>
-                  null;
-            end case;
-         
-         end loop TasteSchleife;
-      end loop EingabeSchleife;
-      
-      return EingegebenerText;
-      
-   end ZahlenEingeben;
-   
-   
-   
-   procedure ZahlPrüfen
-     (UnicodeNummerExtern : in Sf.sfUint32)
-   is begin
-      
-      case
-        UnicodeNummerExtern
-      is
-         when 8 | 45 | 48 .. 57 | 127  =>
-            -- Prüfung einbauen die entsprechend den String auf das richtige Vorzeichen setzt.
-            
-            EingegebenesZeichen := Wide_Wide_Character'Val (UnicodeNummerExtern);            
-            
-         when others =>
-            return;
-      end case;
-      
-      case
-        EingegebenesZeichen
-      is
-         when BS | DEL =>
-            ZeichenEntfernen;
-         
-         when others =>
-            if
-              To_Wide_Wide_String (Source => EingegebenerText)'Length > 11
-            then
-               null;
-               
-            else
-               ZeichenHinzufügen (EingegebenesZeichenExtern => EingegebenesZeichen);
-            end if;
-      end case;
-      
-   end ZahlPrüfen;
-   
-   
-   
    function TextEingeben
      return Unbounded_Wide_Wide_String
    is begin
       
       EingegebenerText := SystemKonstanten.LeerUnboundedString;
+      InteraktionTasks.Eingabe := SystemDatentypen.Text_Eingabe;
       
       EingabeSchleife:
       loop
@@ -215,6 +121,7 @@ package body EingabeSystemeSFML is
          end loop TasteSchleife;
       end loop EingabeSchleife;
    
+      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
       return EingegebenerText;
       
    end TextEingeben;

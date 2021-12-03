@@ -98,7 +98,7 @@ package body AnzeigeEingabe is
                                  color => Sf.Graphics.Color.sfWhite);
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => EingabeSystemeSFML.EingegebenerName));
+                                         str  => To_Wide_Wide_String (Source => EingabeSystemeSFML.EingegebenerText));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00
                                                  - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 150.00));

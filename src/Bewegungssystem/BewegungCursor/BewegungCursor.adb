@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with SystemKonstanten;
 with GlobaleTexte;
 with KartenKonstanten;
 
@@ -44,13 +43,13 @@ package body BewegungCursor is
                                              ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)));
       
       case
-        KoordinatenPunkt
+        KoordinatenPunkt.EingabeAbbruch
       is
-         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
+         when False =>
             return;
          
-         when others =>
-            Position.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt);
+         when True =>
+            Position.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
             KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                                    ZeileExtern         => 30,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
@@ -58,13 +57,13 @@ package body BewegungCursor is
       end case;
       
       case
-        KoordinatenPunkt
+        KoordinatenPunkt.EingabeAbbruch
       is
-         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
+         when False =>
             return;
          
-         when others =>
-            Position.YAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt);
+         when True =>
+            Position.YAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt.EingegebeneZahl);
             KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                                    ZeileExtern         => 31,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
@@ -72,13 +71,13 @@ package body BewegungCursor is
       end case;
 
       case
-        KoordinatenPunkt
+        KoordinatenPunkt.EingabeAbbruch
       is
-         when SystemKonstanten.GanzeZahlAbbruchKonstante =>
+         when False =>
             return;
          
-         when others =>
-            Position.XAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt);
+         when True =>
+            Position.XAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt.EingegebeneZahl);
             GlobaleVariablen.CursorImSpiel (RasseExtern).Position := Position;
             GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := Position;
       end case;

@@ -25,7 +25,7 @@ package body EingabeKonsole is
       if
         ZahlenMinimumExtern >= ZahlenMaximumExtern
       then
-         return SystemKonstanten.GanzeZahlAbbruchKonstante;
+         null; -- return SystemKonstanten.GanzeZahlAbbruchKonstante;
          
       else
          ZahlenString := ("000000000");
@@ -45,7 +45,8 @@ package body EingabeKonsole is
                exit ZahlenAußenSchleife;
                
             when -1 =>
-               return SystemKonstanten.GanzeZahlAbbruchKonstante;
+               -- return SystemKonstanten.GanzeZahlAbbruchKonstante;
+               null;
                         
             when others =>
                null;
@@ -57,12 +58,15 @@ package body EingabeKonsole is
         WelchesVorzeichen
       is
          when True =>
-            return Integer'Wide_Wide_Value (ZahlenString);
+            -- return Integer'Wide_Wide_Value (ZahlenString);
+            null;
                   
          when False =>
-            return -Integer'Wide_Wide_Value (ZahlenString);
+            -- return -Integer'Wide_Wide_Value (ZahlenString);
+            null;
       end case;
       
+      return (False, 1);
       
    end GanzeZahl;
    
