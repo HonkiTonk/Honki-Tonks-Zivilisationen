@@ -55,12 +55,11 @@ package SystemDatentypen is
    
    type Grafik_Aktuelle_Darstellung_Enum is (Konsole_Start, SFML_Start, Grafik_Intro,
                                              Grafik_Pause,
-                                             Grafik_Menüs,
+                                             Grafik_Menüs, Grafik_Sprache,
                                              Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, -- Grafik_Handeln, (in die Menüs schieben? geht so nicht in die Menüs.)
                                              Grafik_Ende);
    
-   type Anzeige_Art_Enum is (Konsole, SFML, Beides);
-   subtype Anzeige_Art_Grafik_Enum is Anzeige_Art_Enum range SFML .. Beides;
+   type Anzeige_Art_Enum is (Konsole, SFML);
    
    type Welche_Eingabe_Enum is (Keine_Eingabe, Zahlen_Eingabe, Text_Eingabe);
    
@@ -79,7 +78,7 @@ package SystemDatentypen is
 
 
    -- Für Tastenbelegung
-   type Tastenbelegung_Enum is (Leer, Mausbewegung,
+   type Tastenbelegung_Enum is (Leer,
                                 -- Bewegung
                                 Oben, Links, Unten, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
                                 Auswählen, Menü_Zurück,

@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 -- with Ada.Calendar; use Ada.Calendar;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen;
 with SystemKonstanten;
@@ -46,13 +45,29 @@ package body Einlesen is
            EinlesenSprache.EinlesenSprache
          is
             when True =>
-               GlobaleVariablen.NutzerEinstellungen.Sprache := AuswahlSprache.AuswahlSprache;
+               SpracheAuswählenSchleife:
+               loop
+                  
+                  GewählteSprache := AuswahlSprache.AuswahlSprache;
+                  
+                  if
+                    GewählteSprache = SystemKonstanten.LeerUnboundedString
+                  then
+                     null;
+                     
+                  else
+                     exit SpracheAuswählenSchleife;
+                  end if;
+                  
+               end loop SpracheAuswählenSchleife;
+                  
+               GlobaleVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
                SchreibenEinstellungen.SchreibenEinstellungen;
-            
+                  
             when False =>
-               Fehler.LogikStopp (FehlermeldungExtern => "Einlesen.EinlesenMitAnzeige - when False =>");
+               Fehler.LogikStopp (FehlermeldungExtern => "Einlesen.EinlesenMitAnzeige - Sprachen wurden nicht gefunden.");
          end case;
-         
+               
       else
          null;
       end if;

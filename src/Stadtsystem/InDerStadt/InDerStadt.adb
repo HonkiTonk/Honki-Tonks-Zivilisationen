@@ -58,10 +58,6 @@ package body InDerStadt is
                AktuelleRasseStadt.Platznummer := 0;
                return;
                
-            when SystemDatentypen.Mausbewegung =>
-               -- Hier nicht die Mausbewegunsberechnungen einbauen um konsistent mit den Befehlen zu sein und keine Probeleme beim Zugriff auf das/die Fenster/Maus zu bekommen.
-               null;
-               
             when others =>
                null;
          end case;

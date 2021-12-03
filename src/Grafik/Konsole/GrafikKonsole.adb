@@ -7,6 +7,7 @@ with Intro;
 with Fehler;
 with Karte;
 with ForschungAnzeigeKonsole;
+-- with AuswahlSpracheAnzeige;
 
 package body GrafikKonsole is
 
@@ -15,7 +16,9 @@ package body GrafikKonsole is
             
       GrafikSchleife:
       loop
-                  
+         
+         -- Hier die Auslagerung der Auswahl auch sinnvoll?
+         -- In der Konsolenanzeige später noch die Auswahlinteraktion einbauen.
          case
            InteraktionTasks.AktuelleDarstellung
          is
@@ -24,8 +27,11 @@ package body GrafikKonsole is
                InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
             
             when SystemDatentypen.SFML_Start =>
-               -- Aber wie wechselt man dann von der Konsole auf die Grafik? Nur per Neustart?
                Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Konsole wird bei SFML aufgerufen.");
+               
+            when SystemDatentypen.Grafik_Sprache =>
+               -- AuswahlSpracheAnzeige.AnzeigeSpracheKonsole;
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
                
             when SystemDatentypen.Grafik_Intro =>
                Intro.Intro;

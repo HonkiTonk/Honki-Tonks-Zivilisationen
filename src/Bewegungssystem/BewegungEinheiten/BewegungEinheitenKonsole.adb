@@ -2,12 +2,8 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with GlobaleTexte;
-with KartenKonstanten;
-
-with LeseEinheitenGebaut;
 
 with Karte;
-with KartePositionPruefen;
 with Eingabe;
 with EinheitenModifizieren;
 with StadtBauen;
@@ -95,19 +91,8 @@ package body BewegungEinheitenKonsole is
             BewegungNochMöglich := BewegungEinheiten.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          else
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                        ÄnderungExtern    => Änderung);
-         
-            case
-              KartenWert.XAchse
-            is
-               when KartenKonstanten.LeerXAchse =>
-                  BewegungNochMöglich := True;
-               
-               when others =>
-                  BewegungNochMöglich := BewegungEinheiten.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                             NeuePositionExtern       => KartenWert);
-            end case;
+            BewegungNochMöglich := BewegungEinheiten.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                       PositionÄnderungExtern  => Änderung);
          end if;
          
          case
@@ -120,6 +105,7 @@ package body BewegungEinheitenKonsole is
                return;
          end case;
 
+         -- Diesen Wert hier immer wieder auf Karte anzeigen setzen und nicht mehr die Karte direkt aufrufen.
          Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
          
       end loop BewegenSchleife;

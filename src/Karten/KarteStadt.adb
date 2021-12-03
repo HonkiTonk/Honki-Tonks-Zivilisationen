@@ -18,10 +18,6 @@ package body KarteStadt is
          when SystemDatentypen.Konsole =>
             KarteStadtKonsole.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
-         when SystemDatentypen.Beides =>
-            -- KarteStadtKonsole.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-            KarteStadtSFML.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-            
          when SystemDatentypen.SFML =>
             KarteStadtSFML.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end case;

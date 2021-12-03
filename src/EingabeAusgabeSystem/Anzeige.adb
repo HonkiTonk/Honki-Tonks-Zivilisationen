@@ -26,7 +26,7 @@ package body Anzeige is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole | SystemDatentypen.Beides =>
+         when SystemDatentypen.Konsole =>
             TextAnzeigeKonsole.AnzeigeOhneAuswahl (ÜberschriftDateiExtern => ÜberschriftDateiExtern,
                                                    TextDateiExtern        => TextDateiExtern,
                                                    ÜberschriftZeileExtern => ÜberschriftZeileExtern,
@@ -43,7 +43,7 @@ package body Anzeige is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             TextAnzeigeSFML.AnzeigeOhneAuswahl (ÜberschriftDateiExtern => ÜberschriftDateiExtern,
                                                 TextDateiExtern        => TextDateiExtern,
                                                 ÜberschriftZeileExtern => ÜberschriftZeileExtern,
@@ -99,7 +99,7 @@ package body Anzeige is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole | SystemDatentypen.Beides =>
+         when SystemDatentypen.Konsole =>
             TextAnzeigeKonsole.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,
                                                   TextDateiExtern             => TextDateiExtern,
                                                   FrageZeileExtern            => FrageZeileExtern,
@@ -114,7 +114,7 @@ package body Anzeige is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             -- TextAnzeigeSFML.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,
             --                                   TextDateiExtern             => TextDateiExtern,
             --                                   FrageZeileExtern            => FrageZeileExtern,

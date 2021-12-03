@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
+with SystemKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -16,6 +17,7 @@ with Eingabe;
 with StadtProduktion;
 with Sichtbarkeit;
 with EinheitenErzeugenEntfernen;
+with Fehler;
 
 package body StadtBauen is
 
@@ -45,21 +47,36 @@ package body StadtBauen is
          when others =>
             null;
       end case;
-            
-      StadtEintragen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                      PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
+      
+      -- Anpassen damit man bei Namen abbrechen kann. Eigenes System bauen um Städte ohne Namen zu ermöglichen oder einfach einen Namen ab sofort vorraussetzen?
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when SystemDatentypen.Spieler_KI =>
-            StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
+            StadtName := StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
-         when others =>
-            SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                                      NameExtern             => Eingabe.StadtName);
+         when SystemDatentypen.Spieler_Mensch =>
+            StadtName := Eingabe.StadtName;
+            
+            if
+              StadtName = SystemKonstanten.LeerUnboundedString
+            then
+               return False;
+               
+            else
+               null;
+            end if;
+            
+         when SystemDatentypen.Leer =>
+            Fehler.LogikStopp (FehlermeldungExtern => "StadtBauen.StadtBauen - Eine nicht vorhandene Rasse baut eine Stadt.");
       end case;
+            
+      -- Immer daran denken dass die Stadt bei StadtEintragen auf Leer gesetzt wird und deswegen der Name danach eingetragen werden muss.
+      StadtEintragen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                      PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                                NameExtern             => StadtName);
+      EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       return True;
       
@@ -202,12 +219,21 @@ package body StadtBauen is
    
    
    
-   procedure StandardStadtNamen
+   function StandardStadtNamen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return Unbounded_Wide_Wide_String
    is begin
       
-      SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                NameExtern             => GlobaleTexte.TexteEinlesen (22, WelcherName));
+      -- Standardnamen der KI einfach auf Basis der Stadtnummer festlegen?
+      
+      if
+        StadtRasseNummerExtern.Rasse = SystemDatentypen.Menschen
+      then
+         null;
+         
+      else
+         null;
+      end if;
       
       case
         WelcherName
@@ -218,6 +244,8 @@ package body StadtBauen is
          when others =>
             WelcherName := WelcherName + 1;
       end case;
+      
+      return GlobaleTexte.StädtenamenKI (WelcherName);
       
    end StandardStadtNamen;
 

@@ -189,24 +189,36 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (04.12.2021):
+   -- Version 0.00.95 => 0.00.9 (04.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.95 => 0.00.9 (03.12.2021):
+   -- Version 0.00.9560 => 0.00.95 (03.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9540 => 0.00.95 (02.12.2021):
+   -- Version 0.00.9540 => 0.00.9560 (02.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Tasteneingabe durch die SFML verbessert.
+   -- Die Möglichkeit SFML und Konsolengrafik gleichzeitig zu haben fürs Erste entfernt.
+   -- Auswahl der Sprachen funktioniert jetzt wieder korrekt.
+   -- Es ist jetzt möglich die Sprachauswahl abzubrechen.
+   -- Anzeige der Sprachauswahl in den Grafiktask verschoben.
+   -- Mit ConvecShapes der SFML herumexperimentiert.
+   -- Einige weitere Fehlerprüfungen eingebaut/überarbeitet.
+   -- Die Einheitensteuerung mit der Maus an die neue Tasteneingabe angepasst.
+   -- Cursor wird jetzt nicht mehr in der Einheitensteuerung festgelegt.
+   -- Fehler in der Einheitensteuerung korrigiert der es unmöglich machte den Übergang zu passieren.
+   -- Es ist jetzt möglich den Städtebau abzubrechen.
+   -- Städtenamen der KI an das neue Textsystem angepasst.
+   -- Angefangen ein Abbruchsystem für die Zahlen- und Texteingabe einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

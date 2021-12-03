@@ -6,16 +6,16 @@ with KartenKonstanten;
 
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen;
 with Eingabe;
 with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
-with BewegungCursorSFML;
 with BewegungEinheiten;
 with GrafikEinstellungen;
 with BerechnungenKarteSFML;
+with KartePositionPruefen;
 
+-- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr amchen als nur die Einheit zu bewegen.
 package body BewegungEinheitenSFML is
 
    procedure BewegungEinheitenRichtung
@@ -25,12 +25,11 @@ package body BewegungEinheitenSFML is
       BewegenSchleife:
       loop
          
-         -- Eingabe.Tastenwert direkt als Übergabeparameter?
-         Befehl := Eingabe.Tastenwert;
+         Änderung := KeineÄnderung;
          
          case
            EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           BefehlExtern             => Befehl)
+                           BefehlExtern             => Eingabe.Tastenwert)
          is
             when True =>
                null;
@@ -50,9 +49,7 @@ package body BewegungEinheitenSFML is
       BefehlExtern : in SystemDatentypen.Tastenbelegung_Enum)
       return Boolean
    is begin
-      
-      Änderung := KeineÄnderung;
-      
+            
       case
         BefehlExtern
       is
@@ -63,33 +60,29 @@ package body BewegungEinheitenSFML is
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
          when SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | SystemDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
-            AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => BefehlExtern);
-               
-            case
-              AufgabeDurchführen
-            is
-               when True =>
-                  return False;
-               
-               when False =>
-                  return True;
-            end case;
+            -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
+            return not Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                     BefehlExtern             => BefehlExtern);
                
          when SystemDatentypen.Bauen =>
-            NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-               
-         when SystemDatentypen.Mausbewegung =>
-            if
-              BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
-            then
-               null;
-                  
-            else
-               return False;
-            end if;
+            -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
+            return not StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when SystemDatentypen.Leer =>
+            -- Statt nur bei Leer nichts machen und in allen anderen Fällen zurück oder nur bei Menü_Zurück zurück und sonst nicht?
+            null;
             
          when others =>
+            return False;
+      end case;
+      
+      case
+        BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when True =>
+            null;
+            
+         when False =>
             return False;
       end case;
          
@@ -99,20 +92,11 @@ package body BewegungEinheitenSFML is
          BewegungNochMöglich := BewegungEinheiten.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       else
-         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                     ÄnderungExtern    => Änderung);
-         
-         case
-           KartenWert.XAchse
-         is
-            when KartenKonstanten.LeerXAchse =>
-               BewegungNochMöglich := True;
-               
-            when others =>
-               BewegungNochMöglich := BewegungEinheiten.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                          NeuePositionExtern       => KartenWert);
-         end case;
+         BewegungNochMöglich := BewegungEinheiten.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                    PositionÄnderungExtern  => Änderung);
       end if;
+      
+      Änderung := KeineÄnderung;
       
       return BewegungNochMöglich;
       
@@ -173,18 +157,23 @@ package body BewegungEinheitenSFML is
             when SystemDatentypen.Menü_Zurück =>
                return False;
                
-            when SystemDatentypen.Auswählen =>
-               BewegungCursorSFML.CursorPlatzierenKarteSFML (RasseExtern => EinheitRasseNummerExtern.Rasse);
-               
+            when SystemDatentypen.Auswählen =>               
                YÄnderungSchleife:
                for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   XÄnderungSchleife:
                   for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
+                     
+                     KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                 ÄnderungExtern   => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                     
                      if
-                       GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position.YAchse = LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).YAchse + YÄnderungSchleifenwert
-                       and
-                         GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position.XAchse = LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).XAchse + XÄnderungSchleifenwert
+                       KartenWert.XAchse = KartenKonstanten.LeerXAchse
+                     then
+                        null;
+                        
+                     elsif
+                       KartenWert = GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position
                      then
                         Änderung := (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert);
                         return True;
@@ -196,7 +185,7 @@ package body BewegungEinheitenSFML is
                   end loop XÄnderungSchleife;
                end loop YÄnderungSchleife;
                
-            when SystemDatentypen.Mausbewegung =>
+            when SystemDatentypen.Leer =>
                null;
                
             when others =>

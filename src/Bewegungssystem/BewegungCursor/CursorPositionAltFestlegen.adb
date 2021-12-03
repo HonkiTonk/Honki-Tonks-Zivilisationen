@@ -22,7 +22,7 @@ package body CursorPositionAltFestlegen is
             AlteYAchseFestlegenKonsole (RasseExtern => RasseExtern);
             AlteXAchseFestlegenKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             AlteYAchseFestlegenSFML (RasseExtern => RasseExtern);
             AlteXAchseFestlegenSFML (RasseExtern => RasseExtern);
       end case;

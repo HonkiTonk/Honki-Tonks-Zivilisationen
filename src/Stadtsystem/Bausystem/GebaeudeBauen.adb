@@ -20,7 +20,7 @@ package body GebaeudeBauen is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      GebaeudeAllgemein.BeschreibungLang (IDExtern => EinheitStadtDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag));
+      Put_Line (Item => GebaeudeAllgemein.BeschreibungLang (IDExtern => EinheitStadtDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag)));
       New_Line;
       PreisGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
       BauzeitGebäude (StadtRasseNummerExtern => StadtRasseNummerExtern);

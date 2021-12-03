@@ -22,7 +22,7 @@ package body GrafikStartEnde is
          when SystemDatentypen.Konsole =>
             Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungen.FensterEinstellungen.FensterBreite,
                                                                                              GrafikEinstellungen.FensterEinstellungen.FensterHöhe,
                                                                                              GrafikEinstellungen.FensterEinstellungen.Farbtiefe),

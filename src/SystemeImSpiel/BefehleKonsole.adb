@@ -120,7 +120,7 @@ package body BefehleKonsole is
          when SystemDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
          
-         when SystemDatentypen.Leer | SystemDatentypen.Mausbewegung =>
+         when SystemDatentypen.Leer =>
             null;
       end case;
 

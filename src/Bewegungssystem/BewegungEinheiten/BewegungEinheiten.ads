@@ -1,26 +1,19 @@
 pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with EinheitStadtRecords;
 with GlobaleVariablen;
-
-with Karten;
 
 package BewegungEinheiten is
    
    function BewegungPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      PositionÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
      with
        Pre =>
-         (NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch);
    
@@ -40,6 +33,8 @@ private
       
    EinheitAufFeld : EinheitStadtRecords.RassePlatznummerRecord;
    StadtAufFeld : EinheitStadtRecords.RassePlatznummerRecord;
+
+   NeuePosition : KartenRecords.AchsenKartenfeldPositivRecord;
      
    procedure EigeneEinheitAufFeld
      (BewegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord;

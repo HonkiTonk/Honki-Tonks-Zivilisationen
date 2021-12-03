@@ -4,6 +4,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen;
 with GlobaleTexte;
+with SystemRecords;
 
 package Eingabe is
 
@@ -17,10 +18,7 @@ package Eingabe is
       ZeileExtern : in Positive;
       ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
-      return Integer
-     with
-       Post =>
-         (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
+      return SystemRecords.ZahlenEingabeRecord;
 
    function StadtName
      return Unbounded_Wide_Wide_String;

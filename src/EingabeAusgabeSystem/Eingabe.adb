@@ -12,11 +12,10 @@ package body Eingabe is
       ZeileExtern : in Positive;
       ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
-      return Integer
+      return SystemRecords.ZahlenEingabeRecord
    is begin
       
-      
-      -- TextDateiExtern später auch in Konsole entfernen.
+      -- TextDateiExtern später auch in Konsole entfernen. Und alle Fragen nach Fragen verschieben, sonst funktioniert das hier nicht so richtig. Ist auch sinnvollder aufgeteilt dann.
       case
         GlobaleVariablen.AnzeigeArt
       is
@@ -26,7 +25,7 @@ package body Eingabe is
                                              ZahlenMinimumExtern => ZahlenMinimumExtern,
                                              ZahlenMaximumExtern => ZahlenMaximumExtern);
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             return EingabeSFML.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
                                           ZahlenMaximumExtern => ZahlenMaximumExtern,
                                           WelcheFrageExtern   => ZeileExtern);
@@ -46,7 +45,7 @@ package body Eingabe is
          when SystemDatentypen.Konsole =>
             return EingabeKonsole.StadtName;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             return EingabeSFML.StadtName;
       end case;
       
@@ -64,7 +63,7 @@ package body Eingabe is
          when SystemDatentypen.Konsole =>
             return EingabeKonsole.SpielstandName;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             return EingabeSFML.SpielstandName;
       end case;
       
@@ -81,7 +80,7 @@ package body Eingabe is
          when SystemDatentypen.Konsole =>
             EingabeKonsole.WartenEingabe;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             EingabeSFML.WartenEingabe;
       end case;
       
@@ -99,7 +98,7 @@ package body Eingabe is
          when SystemDatentypen.Konsole =>
             return EingabeKonsole.Tastenwert;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             return EingabeSFML.Tastenwert;
       end case;
       
@@ -116,7 +115,7 @@ package body Eingabe is
          when SystemDatentypen.Konsole =>
             EingabeKonsole.StandardTastenbelegungLaden;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             EingabeSFML.StandardTastenbelegungLaden;
       end case;
       

@@ -9,12 +9,6 @@ with EinheitStadtDatentypen;
 with EinheitStadtRecords;
 
 package GebaeudeAllgemein is
-
-   procedure BeschreibungKurz
-     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert);
-   
-   procedure BeschreibungLang
-     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert);
    
    procedure GebäudeProduktionBeenden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -34,6 +28,16 @@ package GebaeudeAllgemein is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer);
    
+   
+
+   function BeschreibungKurz
+     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
+      return Wide_Wide_String;
+   
+   function BeschreibungLang
+     (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
+      return Wide_Wide_String;
+   
    function GebäudeAnforderungenErfüllt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
@@ -45,6 +49,8 @@ package GebaeudeAllgemein is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer);
    
 private
+   
+   AktuellerText : Positive;
    
    BeschreibungText : Unbounded_Wide_Wide_String;
    

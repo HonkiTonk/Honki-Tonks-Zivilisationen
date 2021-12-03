@@ -6,6 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with SystemDatentypen;
 with KartenDatentypen;
 with GlobaleTexte;
+with SystemRecords;
 
 package EingabeKonsole is
 
@@ -23,10 +24,7 @@ package EingabeKonsole is
       ZeileExtern : in Positive;
       ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
-      return Integer
-     with
-       Post =>
-         (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
+      return SystemRecords.ZahlenEingabeRecord;
 
    function StadtName
      return Unbounded_Wide_Wide_String;

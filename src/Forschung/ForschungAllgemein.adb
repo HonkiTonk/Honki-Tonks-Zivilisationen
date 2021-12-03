@@ -115,7 +115,7 @@ package body ForschungAllgemein is
          when SystemDatentypen.Konsole =>
             return ForschungAuswahlKonsole;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             return ForschungAuswahlSFML;
       end case;
 

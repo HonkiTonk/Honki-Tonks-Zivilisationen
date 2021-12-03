@@ -20,7 +20,7 @@ package body EinlesenTastatur is
          when SystemDatentypen.Konsole =>
             BelegungKonsole;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             BelegungSFML;
       end case;
       

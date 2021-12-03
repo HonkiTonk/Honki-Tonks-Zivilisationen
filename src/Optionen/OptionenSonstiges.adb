@@ -106,15 +106,25 @@ package body OptionenSonstiges is
    procedure SpracheWechseln
    is begin
       
+      -- Das hier mit dem Einlesen.Einlesen zusammenführen? Geht das überhaupt sinnvoll?
       case
         EinlesenSprache.EinlesenSprache
       is
          when True =>
-            GlobaleVariablen.NutzerEinstellungen.Sprache := AuswahlSprache.AuswahlSprache;
-            EinlesenText.EinlesenDateien;
+            GewählteSprache := AuswahlSprache.AuswahlSprache;
+            
+            if
+              GewählteSprache = SystemKonstanten.LeerUnboundedString
+            then
+               null;
+               
+            else
+               GlobaleVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
+               EinlesenText.EinlesenDateien;
+            end if;
             
          when False =>
-            null;
+            Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.SpracheWechseln - Sprachen wurden nicht gefunden.");
       end case;
       
    end SpracheWechseln;

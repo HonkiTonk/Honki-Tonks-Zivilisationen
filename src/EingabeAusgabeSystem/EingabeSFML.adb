@@ -7,7 +7,6 @@ with Sf;
 with Sf.Window.Mouse;
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemKonstanten;
 with GlobaleTexte;
 
 with EingabeSystemeSFML;
@@ -21,34 +20,28 @@ package body EingabeSFML is
      (ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer;
       WelcheFrageExtern : in Positive)
-      return Integer
+      return SystemRecords.ZahlenEingabeRecord
    is begin
       
-      MaximalerWert := MaximumErmitteln (ZahlenMaximumExtern => ZahlenMaximumExtern);
-      MinimalerWert := MinimumErmitteln (ZahlenMinimumExtern => ZahlenMinimumExtern);
-      EingegebeneZahl := 0;
-      AktuellerWert := 0;
+      EingegebeneZahl.EingegebeneZahl := ZahlenMinimumExtern;
+      AktuellerWert := ZahlenMinimumExtern;
       
       if
         WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
          Fehler.LogikStopp (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Frage ist außerhalb des Fragenbereichs.");
          
-      else
-         Frage := WelcheFrageExtern;
-      end if;
-      
-      if
+      elsif
         ZahlenMinimumExtern > ZahlenMaximumExtern
       then
          Fehler.LogikStopp (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Zahlenminimum ist größer als Zahlenmaximum.");
          
       else
+         Frage := WelcheFrageExtern;
          ZahlenString := ("000000000");
          WelchesVorzeichen := True;
+         InteraktionTasks.Eingabe := SystemDatentypen.Zahlen_Eingabe;
       end if;
-      
-      InteraktionTasks.Eingabe := SystemDatentypen.Zahlen_Eingabe;
       
       case
         InteraktionTasks.AktuelleDarstellung
@@ -60,40 +53,28 @@ package body EingabeSFML is
          when others =>
             InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Menüs;
       end case;
-
-      ZahlenAußenSchleife:
-      loop
                   
-         case
-           ZahlSchleife (ZahlenMinimumExtern => MinimalerWert,
-                         ZahlenMaximumExtern => MaximalerWert)
-         is
-            when 2 =>
-               exit ZahlenAußenSchleife;
+      case
+        ZahlSchleife (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                      ZahlenMaximumExtern => ZahlenMaximumExtern)
+      is
+         when True =>
+            EingegebeneZahl.EingabeAbbruch := True;
                
-            when -1 =>
-               EingegebeneZahl := SystemKonstanten.GanzeZahlAbbruchKonstante;
-               exit ZahlenAußenSchleife;
-                        
-            when others =>
-               null;
-         end case;
-               
-      end loop ZahlenAußenSchleife;
+         when False =>
+            EingegebeneZahl.EingabeAbbruch := False;
+      end case;
       
       if
-        EingegebeneZahl = SystemKonstanten.GanzeZahlAbbruchKonstante
-      then
-         null;
-         
-      elsif
         WelchesVorzeichen
       then
-         EingegebeneZahl := Integer'Wide_Wide_Value (ZahlenString);
+         EingegebeneZahl.EingegebeneZahl := Integer'Wide_Wide_Value (ZahlenString);
                   
       else
-         EingegebeneZahl := -Integer'Wide_Wide_Value (ZahlenString);
+         EingegebeneZahl.EingegebeneZahl := -Integer'Wide_Wide_Value (ZahlenString);
       end if;
+      
+      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
       
       case
         InteraktionTasks.AktuelleDarstellung
@@ -104,72 +85,24 @@ package body EingabeSFML is
          when others =>
             null;
       end case;
-      
-      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
-      
+            
       return EingegebeneZahl;
       
    end GanzeZahl;
    
    
    
-   -- Diese beiden Ermittlungsfunktionen mal auslagern um sie hier und in EingabeKonsole (und eventuell auch woanders) verwenden zu können.
-   function MaximumErmitteln
-     (ZahlenMaximumExtern : in Integer)
-      return Integer
-   is begin
-      
-      if
-        ZahlenMaximumExtern > ZahlenMaximum
-      then
-         return ZahlenMaximum;
-         
-      elsif
-        ZahlenMaximumExtern < ZahlenMinimum
-      then
-         return SystemKonstanten.GanzeZahlAbbruchKonstante;
-         
-      else
-         return ZahlenMaximumExtern;
-      end if;
-      
-   end MaximumErmitteln;
-   
-   
-   
-   function MinimumErmitteln
-     (ZahlenMinimumExtern : in Integer)
-      return Integer
-   is begin
-      
-      if
-        ZahlenMinimumExtern < ZahlenMinimum
-      then
-         return ZahlenMinimum;
-           
-      elsif
-        ZahlenMinimumExtern > ZahlenMaximum
-      then
-         return SystemKonstanten.GanzeZahlAbbruchKonstante;
-           
-      else
-         return ZahlenMinimumExtern;
-      end if;
-      
-   end MinimumErmitteln;
-   
-   
-   
    function ZahlSchleife
      (ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
-      return KartenDatentypen.LoopRangeMinusZweiZuZwei
+      return Boolean
    is begin
       
       ZahlenSchleife:
       loop
 
-         ZahlenAnzeige (ZahlenMinimumExtern => ZahlenMinimumExtern);
+         VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                             ZahlenMaximumExtern => ZahlenMaximumExtern);
             
          EingabeSystemeSFML.TastenEingabe;
          Zahlen := EingabeSystemeSFML.TastaturTaste;
@@ -183,7 +116,7 @@ package body EingabeSFML is
                                 EingegebeneZahlExtern => Zahlen);
 
             when -1 =>
-               return -1;
+               return False;
 
             when 2 =>
                if
@@ -191,12 +124,12 @@ package body EingabeSFML is
                  and
                    WelchesVorzeichen = False
                then
-                  return 2;
+                  return True;
                   
                elsif
                  Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
                then
-                  return 2;
+                  return True;
                      
                else
                   if
@@ -226,22 +159,26 @@ package body EingabeSFML is
    
    
    
-   procedure ZahlenAnzeige
-     (ZahlenMinimumExtern : in Integer)
+   procedure VorzeichenAnpassen
+     (ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
    is begin
             
       if
         ZahlenMinimumExtern >= 0
-        and
-          WelchesVorzeichen = False
       then
          WelchesVorzeichen := True;
+         
+      elsif
+        ZahlenMaximumExtern < 0
+      then
+         WelchesVorzeichen := False;
             
       else
          null;
       end if;
       
-   end ZahlenAnzeige;
+   end VorzeichenAnpassen;
    
    
    
@@ -367,7 +304,7 @@ package body EingabeSFML is
    
    function NameEingeben
      (WelcheFrageExtern : in Positive)
-     return Unbounded_Wide_Wide_String
+      return Unbounded_Wide_Wide_String
    is begin
       
       Frage := WelcheFrageExtern;
@@ -422,7 +359,8 @@ package body EingabeSFML is
       
       EingabeSystemeSFML.TastenEingabe;
       
-      -- Das Mausrad muss? immer vor der Maustaste geprüft werden.
+      -- Das hier bis zur Schleife zu einem if-Block zusammenfassen?
+      -- Das Mausrad muss? vor der Maustaste geprüft werden.
       if
         EingabeSystemeSFML.MausRad > 0.00
       then
@@ -449,18 +387,16 @@ package body EingabeSFML is
          when others =>
             null;
       end case;
-      
+            
       case
-        EingabeSystemeSFML.MausBewegt
+        EingabeSystemeSFML.TastaturTaste
       is
-         when True =>
-            return SystemDatentypen.Mausbewegung;
+         when Sf.Window.Keyboard.sfKeyUnknown =>
+            return SystemDatentypen.Leer;
             
          when others =>
-            null;
+            Taste := EingabeSystemeSFML.TastaturTaste;
       end case;
-            
-      Taste := EingabeSystemeSFML.TastaturTaste;
       
       BelegungFeldSchleife:
       for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop

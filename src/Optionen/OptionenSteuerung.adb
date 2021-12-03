@@ -65,7 +65,7 @@ package body OptionenSteuerung is
          when SystemDatentypen.Konsole =>
             AlteTasteEntfernenKonsole;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             AlteTasteEntfernenSFML;
       end case;
       
@@ -185,7 +185,7 @@ package body OptionenSteuerung is
          when SystemDatentypen.Konsole =>
             AlteTasteEntfernenKonsole;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             NeueTasteFestlegenSFML;
       end case;
       

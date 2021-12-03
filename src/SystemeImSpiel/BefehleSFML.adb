@@ -119,8 +119,7 @@ package body BefehleSFML is
          when SystemDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Mausbewegung | SystemDatentypen.Leer =>
-            -- Hier nicht die Mausbewegunsberechnungen einbauen, damit das Scrollen dann auch bei der Einheitenauswahl funktionieren wird, hoffentlich.
+         when SystemDatentypen.Leer =>
             null;
       end case;
 

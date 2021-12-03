@@ -16,7 +16,7 @@ package body BefehleImSpiel is
          when SystemDatentypen.Konsole =>
             return BefehleKonsole.BefehleKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
+         when SystemDatentypen.SFML =>
             return BefehleSFML.BefehleSFML (RasseExtern => RasseExtern);
       end case;
       

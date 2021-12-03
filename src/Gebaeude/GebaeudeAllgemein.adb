@@ -4,6 +4,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
 with ForschungKonstanten;
+with SystemKonstanten;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;
@@ -11,49 +12,54 @@ with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
 with LeseWichtiges;
 
-with Anzeige;
 with GebaeudeRichtigeUmgebung;
 with StadtProduktion;
 
 package body GebaeudeAllgemein is
 
-   procedure BeschreibungKurz
+   function BeschreibungKurz
      (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
+     return Wide_Wide_String
    is begin
       
       case
         IDExtern
       is
          when EinheitStadtDatentypen.GebäudeIDMitNullwert'First =>
-            return;
+            -- Kann hier ein Stopp rein? Wahrscheinlich nicht mit dem aktuellen System, siehe auch den Parametertyp.
+            BeschreibungText := SystemKonstanten.LeerUnboundedString;
             
          when others =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
-                                                  TextZeileExtern => Positive (IDExtern));
+            AktuellerText := 2 * Positive (IDExtern) - 1;
+            
+            BeschreibungText := GlobaleTexte.Gebäude (AktuellerText);
       end case;
+      
+      return To_Wide_Wide_String (Source => BeschreibungText);
       
    end BeschreibungKurz;
    
    
    
-   procedure BeschreibungLang
+   function BeschreibungLang
      (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
+      return Wide_Wide_String
    is begin
       
       case
         IDExtern
       is
          when EinheitStadtDatentypen.GebäudeIDMitNullwert'First =>
-            null;
+            -- Kann hier ein Stopp rein? Wahrscheinlich nicht mit dem aktuellen System, siehe auch den Parametertyp.
+            BeschreibungText := SystemKonstanten.LeerUnboundedString;
             
          when others =>
-            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                          TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Lang,
-                                          ÜberschriftZeileExtern => 0,
-                                          ErsteZeileExtern       => Positive (IDExtern),
-                                          AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
-                                          AbstandEndeExtern      => GlobaleTexte.Leer);
+            AktuellerText := 2 * Positive (IDExtern);
+            
+            BeschreibungText := GlobaleTexte.Gebäude (AktuellerText);
       end case;
+      
+      return To_Wide_Wide_String (Source => BeschreibungText);
       
    end BeschreibungLang;
    

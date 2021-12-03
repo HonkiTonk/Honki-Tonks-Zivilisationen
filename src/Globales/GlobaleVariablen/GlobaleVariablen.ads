@@ -27,7 +27,7 @@ package GlobaleVariablen is
                                                                      10
                                                                     );
    
-   AnzeigeArt : SystemDatentypen.Anzeige_Art_Enum := SystemDatentypen.Beides;
+   AnzeigeArt : SystemDatentypen.Anzeige_Art_Enum := SystemDatentypen.SFML;
    -- Schreiben/Ausgabe
    
    

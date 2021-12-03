@@ -1,10 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
-
-with Sf.Graphics.RenderWindow;
-
 with GlobaleVariablen;
 with GlobaleTexte;
 with SystemKonstanten;
@@ -12,6 +7,7 @@ with SystemKonstanten;
 with Eingabe;
 with GrafikEinstellungen;
 with Fehler;
+with InteraktionTasks;
 
 package body AuswahlSprache is
 
@@ -20,18 +16,19 @@ package body AuswahlSprache is
    is begin
       
       ZehnerReihe := 0;
-      ZeilenAbstand := 1.25 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      ZeilenAbstand := 0.15 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      MehrereSeiten := False;
       
       SprachenListeFestlegen;
-      
+            
       case
         GlobaleVariablen.AnzeigeArt
       is
          when SystemDatentypen.Konsole =>
             return AuswahlSpracheKonsole;
             
-         when SystemDatentypen.SFML | SystemDatentypen.Beides =>
-            return AuswahlSpracheSFML (AnzeigeArtExtern => GlobaleVariablen.AnzeigeArt);
+         when SystemDatentypen.SFML =>
+            return AuswahlMausTastatur;
       end case;
       
    end AuswahlSprache;
@@ -76,7 +73,7 @@ package body AuswahlSprache is
            and
              GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = SystemKonstanten.LeerUnboundedString
          then
-            Fehler.LogikStopp (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen");
+            Fehler.LogikStopp (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen - Keine Sprachen vorhanden.");
             
          elsif
            EndeSchleifenwert > GlobaleTexte.SprachenEinlesenArray'Last
@@ -119,6 +116,7 @@ package body AuswahlSprache is
       
       Ende := Ende + 1;
       AktuelleSprachen (Ende) := MehrSprachen;
+      MehrereSeiten := True;
       
    end SprachenListeFestlegen;
    
@@ -130,9 +128,8 @@ package body AuswahlSprache is
       
       AuswahlKonsoleSchleife:
       loop
-
-         AnzeigeSpracheKonsole (AktuelleAuswahlExtern => AktuelleAuswahl,
-                                LetzteZeileExtern     => Ende);
+                  
+         InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Sprache;
          
          case
            Eingabe.Tastenwert
@@ -164,7 +161,6 @@ package body AuswahlSprache is
                   SprachenListeFestlegen;
                   
                else
-                  Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                   return AktuelleSprachen (AktuelleAuswahl);
                end if;
                      
@@ -178,90 +174,63 @@ package body AuswahlSprache is
    
    
    
-   function AuswahlSpracheSFML
-     (AnzeigeArtExtern : in SystemDatentypen.Anzeige_Art_Grafik_Enum)
-      return Unbounded_Wide_Wide_String
-   is begin
-      
-      -- TextAccess := GrafikEinstellungen.TextStandard;
-      
-      AuswahlSFMLSchleife:
-      loop
-         
-         AnzeigeSpracheSFML (AktuelleAuswahlExtern => AktuelleAuswahl,
-                             LetzteZeileExtern     => Ende);
-         
-         case
-           AnzeigeArtExtern
-         is
-            when SystemDatentypen.SFML =>
-               null;
-            
-            when SystemDatentypen.Beides =>
-               AnzeigeSpracheKonsole (AktuelleAuswahlExtern => AktuelleAuswahl,
-                                      LetzteZeileExtern     => Ende);
-         end case;
-         
-         if
-           AuswahlMausTastatur = SystemKonstanten.LeerUnboundedString
-         then
-            null;
-            
-         else
-            return AktuelleSprachen (AktuelleAuswahl);
-         end if;
-         
-      end loop AuswahlSFMLSchleife;
-      
-   end AuswahlSpracheSFML;
-   
-   
-   
    function AuswahlMausTastatur
      return Unbounded_Wide_Wide_String
    is begin
             
-      case
-        Eingabe.Tastenwert
-      is
-         when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
-            if
-              AktuelleAuswahl = AktuelleSprachen'First
-            then
-               AktuelleAuswahl := Ende;
+      Sf.Graphics.Text.setFont (text => TextAccess,
+                                font => GrafikEinstellungen.Schriftart);
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Sprache;
+      
+      AuswahlSchleife:
+      loop
+            
+         MausAuswahl;
+            
+         case
+           Eingabe.Tastenwert
+         is
+            when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
+               if
+                 AktuelleAuswahl = AktuelleSprachen'First
+               then
+                  AktuelleAuswahl := Ende;
                   
-            else
-               AktuelleAuswahl := AktuelleAuswahl - 1;
-            end if;
+               else
+                  AktuelleAuswahl := AktuelleAuswahl - 1;
+               end if;
 
-         when SystemDatentypen.Unten | SystemDatentypen.Ebene_Runter =>
-            if
-              AktuelleAuswahl = Ende
-            then
-               AktuelleAuswahl := AktuelleSprachen'First;
+            when SystemDatentypen.Unten | SystemDatentypen.Ebene_Runter =>
+               if
+                 AktuelleAuswahl = Ende
+               then
+                  AktuelleAuswahl := AktuelleSprachen'First;
                   
-            else
-               AktuelleAuswahl := AktuelleAuswahl + 1;
-            end if;
+               else
+                  AktuelleAuswahl := AktuelleAuswahl + 1;
+               end if;
                               
-         when SystemDatentypen.Auswählen =>
-            if
-              AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
-            then
-               SprachenListeFestlegen;
+            when SystemDatentypen.Auswählen =>
+               if
+                 AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
+               then
+                  SprachenListeFestlegen;
                   
-            else
-               return AktuelleSprachen (AktuelleAuswahl);
-            end if;
+               else
+                  return AktuelleSprachen (AktuelleAuswahl);
+               end if;
+               
+            when SystemDatentypen.Menü_Zurück =>
+               return SystemKonstanten.LeerUnboundedString;
             
-         when SystemDatentypen.Mausbewegung =>
-            MausAuswahl;
-                     
-         when others =>
-            null;
-      end case;
-            
-      return SystemKonstanten.LeerUnboundedString;
+            when others =>
+               null;
+         end case;
+      
+      end loop AuswahlSchleife;
       
    end AuswahlMausTastatur;
    
@@ -271,7 +240,7 @@ package body AuswahlSprache is
    is begin
       
       TextPositionMaus := StartPositionYAchse;
-      MausZeigerPosition := Sf.Graphics.RenderWindow.Mouse.getPosition (relativeTo => GrafikEinstellungen.Fenster);
+      MausZeigerPosition := GrafikEinstellungen.MausPosition;
       
       MausZeigerSchleife:
       for ZeileSchleifenwert in AktuelleSprachen'First .. Ende loop
@@ -280,145 +249,27 @@ package body AuswahlSprache is
                                             str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
          
          if
-           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus)
-             .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
+           AktuelleSprachen (ZeileSchleifenwert) = MehrSprachen
          then
-            AktuelleAuswahl := ZeileSchleifenwert;
-            return;
-         
-         else
-            TextPositionMaus := TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + ZeilenAbstand;
-         end if;
-         
-      end loop MausZeigerSchleife;
-      
-   end MausAuswahl;
-
-   
-
-   procedure AnzeigeSpracheKonsole
-     (AktuelleAuswahlExtern : in Positive;
-      LetzteZeileExtern : in Positive)
-   is begin
-      
-      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-      
-      LängsterText := 1;
-      
-      TextlängePrüfenSchleife:
-      for ZeilenSchleifenwert in AktuelleSprachenArray'First .. LetzteZeileExtern loop
-         
-         if
-           To_Wide_Wide_String (Source => AktuelleSprachen (ZeilenSchleifenwert))'Length > LängsterText
-         then
-            LängsterText := To_Wide_Wide_String (Source => AktuelleSprachen (ZeilenSchleifenwert))'Length;
+            TextPositionMaus := TextPositionMaus + 15.00;
             
          else
             null;
          end if;
          
-      end loop TextlängePrüfenSchleife;
-      
-      AnzeigeSchleife:
-      for ZeileSchleifenwert in AktuelleSprachenArray'First .. LetzteZeileExtern loop
-
          if
-           AktuelleAuswahlExtern = ZeileSchleifenwert
+           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus)
+           .. Sf.sfInt32 (TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
          then
-            RahmenTeilEinsSchleife:
-            for TextlängeEins in 1 .. LängsterText loop
-                  
-               if
-                 TextlängeEins = 1
-               then
-                  Put (Item => "╔");
-                  Put (Item => "═");
-
-               elsif
-                 TextlängeEins = LängsterText
-               then
-                  Put (Item => "═");
-                  Put_Line (Item => "╗");
-                  Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
-
-                  LeererPlatzSchleife:
-                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))'Length loop
-                        
-                     Put (" ");
-                        
-                  end loop LeererPlatzSchleife;
-
-                  Put_Line (Item => "║");
-                  Put (Item => "╚");
-
-               else
-                  Put (Item => "═");
-               end if;
-               
-            end loop RahmenTeilEinsSchleife;
-
-            RahmenTeilZweiSchleife:
-            for TextlängeZweiSchleifenwert in 1 .. LängsterText loop
-               
-               if
-                 TextlängeZweiSchleifenwert = LängsterText
-               then
-                  Put (Item => "═");
-                  Put_Line (Item => "╝");
-               
-               else
-                  Put (Item => "═");
-               end if;
-            
-            end loop RahmenTeilZweiSchleife;
+            AktuelleAuswahl := ZeileSchleifenwert;
+            return;
          
          else
-            Put_Line (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
+            TextPositionMaus := TextPositionMaus + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * ZeilenAbstand;
          end if;
          
-      end loop AnzeigeSchleife;
+      end loop MausZeigerSchleife;
       
-   end AnzeigeSpracheKonsole;
+   end MausAuswahl;
    
-   
-   
-   procedure AnzeigeSpracheSFML
-     (AktuelleAuswahlExtern : in Positive;
-      LetzteZeileExtern : in Positive)
-   is begin
-      
-      -- GrafikAllgemein.FensterLeeren;
-      Zeile := 0.00;
-      
-      AnzeigeSchleife:
-      for ZeileSchleifenwert in AktuelleSprachen'First .. LetzteZeileExtern loop
-         
-         if
-           AktuelleAuswahlExtern = ZeileSchleifenwert
-         then
-            AktuelleTextFarbe := Sf.Graphics.Color.sfGreen;
-            
-         else
-            AktuelleTextFarbe := Sf.Graphics.Color.sfWhite;
-         end if;
-         
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
-         Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                       position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
-                                                    StartPositionYAchse + ZeilenAbstand * Zeile));
-         Sf.Graphics.Text.setColor (text  => TextAccess,
-                                    color => AktuelleTextFarbe);
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                            text         => TextAccess);
-         
-         Zeile := Zeile + 1.00;
-         
-      end loop AnzeigeSchleife;
-      
-      -- GrafikAllgemein.FensterAnzeigen;
-      
-   end AnzeigeSpracheSFML;
-
 end AuswahlSprache;

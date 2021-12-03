@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
+with KartenKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -14,21 +15,35 @@ with KampfsystemEinheiten;
 with StadtSuchen;
 with KampfsystemStadt;
 with EinheitenTransporter;
+with KartePositionPruefen;
 
 package body BewegungEinheiten is
    
    function BewegungPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      PositionÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
    is begin
       
-      FeldPassierbar := BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                   NeuePositionExtern       => NeuePositionExtern);
+      NeuePosition := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                  ÄnderungExtern    => PositionÄnderungExtern);
       
-      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
+      case
+        NeuePosition.XAchse
+      is
+         when KartenKonstanten.LeerXAchse =>
+            return True;
+               
+         when others =>
+            null;
+      end case;
+      
+      FeldPassierbar := BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                   NeuePositionExtern       => NeuePosition);
+      
+      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition);
       StadtAufFeld := StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                            KoordinatenExtern => NeuePositionExtern);
+                                                                            KoordinatenExtern => NeuePosition);
       BewegungDurchführen := False;
       
       if
@@ -100,7 +115,7 @@ package body BewegungEinheiten is
       is
          when True =>
             BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                           NeuePositionExtern       => NeuePositionExtern);
+                                                           NeuePositionExtern       => NeuePosition);
             
          when False =>
             null;

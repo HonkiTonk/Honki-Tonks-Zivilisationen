@@ -31,7 +31,7 @@ package SystemKonstanten is
 
 
 
-   -- Für die Zahleneingabe
+   -- Für die Zahleneingabe später entfernen
    GanzeZahlAbbruchKonstante : constant Integer := -1_000_000_000;
    -- Für die Zahleneingabe
 

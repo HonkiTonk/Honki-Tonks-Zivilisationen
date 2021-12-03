@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtRecords;
@@ -23,8 +25,11 @@ private
    StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    WelcherName : Positive := 1;
 
-   procedure StandardStadtNamen
+   StadtName : Unbounded_Wide_Wide_String;
+
+   function StandardStadtNamen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return Unbounded_Wide_Wide_String
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

@@ -16,7 +16,7 @@ package body EingabeKonsole is
       ZeileExtern : in Positive;
       ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
-      return Integer
+      return SystemRecords.ZahlenEingabeRecord
    is begin
       
       MaximalerWert := MaximumErmitteln (ZahlenMaximumExtern => ZahlenMaximumExtern);

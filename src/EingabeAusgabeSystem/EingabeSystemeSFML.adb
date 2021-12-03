@@ -6,6 +6,8 @@ with Sf; use Sf;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
+with SystemKonstanten;
+
 with GrafikEinstellungen;
 with InteraktionTasks;
 
@@ -14,14 +16,14 @@ package body EingabeSystemeSFML is
    procedure TastenEingabe
    is begin
       
+      SchleifeVerlassen := False;
       TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
-      MausTaste := Sf.Window.Mouse.sfMouseXButton2;
-      MausBewegt := False;
-      Mausbewegungen := 0;
+      -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen?
+      MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
       MausRad := 0.00;
       
       EingabeSchleife:
-      loop
+      while SchleifeVerlassen = False loop
          TasteSchleife:
          while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
                                                    event        => ZeichenEingeben)
@@ -34,40 +36,40 @@ package body EingabeSystemeSFML is
                   -- Hier noch einen universellen Endebefehl einbauen.
                   null;
                   
-               when Sf.Window.Event.sfEvtKeyPressed =>
-                  TastaturTaste := ZeichenEingeben.key.code;
-                  return;
-                  
-               when Sf.Window.Event.sfEvtMouseWheelScrolled =>
-                  MausRad := ZeichenEingeben.mouseWheelScroll.eventDelta;
-                  return;
-                  
-               when Sf.Window.Event.sfEvtMouseButtonPressed =>
-                  MausTaste := ZeichenEingeben.mouseButton.button;
-                  return;
+               when Sf.Window.Event.sfEvtResized =>
+                  -- Schleife hier auch danach verlassen? Würde das irgendwas bringen?
+                  InteraktionTasks.FensterVerändert := True;
                   
                when Sf.Window.Event.sfEvtMouseMoved =>
-                  Mausbewegungen := Mausbewegungen + 1;
-                  
-                  if
-                    Mausbewegungen > 15
-                  then
-                     MausBewegt := True;
-                     -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
-                     GrafikEinstellungen.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
-                     return;
-                     
-                  else
-                     null;
-                  end if;
-                  
-               when Sf.Window.Event.sfEvtResized =>
-                  InteraktionTasks.FensterVerändert := True;
+                  -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
+                  GrafikEinstellungen.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
+                  -- Schleife muss auch hier verlassen werden, sonst wird die aktuelle Mausposition nicht oft genug festgelegt.
+                  SchleifeVerlassen := True;
                   
                when others =>
                   null;
             end case;
-         
+            
+            -- Gäbe es einen Vorteil diesen Teil in jeweils eine eigene Prüfung umzuwandeln? Eventuell um mehrere Dinge gleichzeitig festlegen zu können?
+            case
+              ZeichenEingeben.eventType
+            is
+               when Sf.Window.Event.sfEvtKeyPressed =>
+                  TastaturTaste := ZeichenEingeben.key.code;
+                  SchleifeVerlassen := True;
+                  
+               when Sf.Window.Event.sfEvtMouseWheelScrolled =>
+                  MausRad := ZeichenEingeben.mouseWheelScroll.eventDelta;
+                  SchleifeVerlassen := True;
+                  
+               when Sf.Window.Event.sfEvtMouseButtonPressed =>
+                  MausTaste := ZeichenEingeben.mouseButton.button;
+                  SchleifeVerlassen := True;
+                  
+               when others =>
+                  null;
+            end case;
+                     
          end loop TasteSchleife;
       end loop EingabeSchleife;
       
@@ -75,11 +77,22 @@ package body EingabeSystemeSFML is
    
    
    
-   function TextEingeben
-     return Unbounded_Wide_Wide_String
+   function ZahlenEingeben
+     (ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
+      return Unbounded_Wide_Wide_String
    is begin
       
-      EingegebenerName := To_Unbounded_Wide_Wide_String (Source => "");
+      EingegebenerText := SystemKonstanten.LeerUnboundedString;
+      
+      if
+        ZahlenMinimumExtern = ZahlenMaximumExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
       
       EingabeSchleife:
       loop
@@ -100,6 +113,96 @@ package body EingabeSystemeSFML is
                     TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                   then
                      exit EingabeSchleife;
+                     
+                  elsif
+                    TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
+                  then
+                     exit EingabeSchleife;
+                  
+                  else
+                     null;
+                  end if;
+               
+               when others =>
+                  null;
+            end case;
+         
+         end loop TasteSchleife;
+      end loop EingabeSchleife;
+      
+      return EingegebenerText;
+      
+   end ZahlenEingeben;
+   
+   
+   
+   procedure ZahlPrüfen
+     (UnicodeNummerExtern : in Sf.sfUint32)
+   is begin
+      
+      case
+        UnicodeNummerExtern
+      is
+         when 8 | 45 | 48 .. 57 | 127  =>
+            -- Prüfung einbauen die entsprechend den String auf das richtige Vorzeichen setzt.
+            
+            EingegebenesZeichen := Wide_Wide_Character'Val (UnicodeNummerExtern);            
+            
+         when others =>
+            return;
+      end case;
+      
+      case
+        EingegebenesZeichen
+      is
+         when BS | DEL =>
+            ZeichenEntfernen;
+         
+         when others =>
+            if
+              To_Wide_Wide_String (Source => EingegebenerText)'Length > 11
+            then
+               null;
+               
+            else
+               ZeichenHinzufügen (EingegebenesZeichenExtern => EingegebenesZeichen);
+            end if;
+      end case;
+      
+   end ZahlPrüfen;
+   
+   
+   
+   function TextEingeben
+     return Unbounded_Wide_Wide_String
+   is begin
+      
+      EingegebenerText := SystemKonstanten.LeerUnboundedString;
+      
+      EingabeSchleife:
+      loop
+         TasteSchleife:
+         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
+                                                   event        => TextEingegeben)
+           = Sf.sfTrue loop
+            
+            case
+              TextEingegeben.eventType
+            is
+               when Sf.Window.Event.sfEvtTextEntered =>
+                  TextPrüfen (UnicodeNummerExtern => TextEingegeben.text.unicode);
+               
+                  -- Im aktuellen System gibt es gar kein Abbruch für Speichern/Laden/Städtbau/usw., oder?
+               when Sf.Window.Event.sfEvtKeyPressed =>
+                  if
+                    TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
+                  then
+                     exit EingabeSchleife;
+                     
+                  elsif
+                    TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
+                  then
+                     exit EingabeSchleife;
                   
                   else
                      null;
@@ -112,7 +215,7 @@ package body EingabeSystemeSFML is
          end loop TasteSchleife;
       end loop EingabeSchleife;
    
-      return EingegebenerName;
+      return EingegebenerText;
       
    end TextEingeben;
    
@@ -136,7 +239,7 @@ package body EingabeSystemeSFML is
         EingegebenesZeichen
       is
          when ESC =>
-            null;
+            null; -- Kann ich ESC hier nicht entfernen wenn ich es bei der Eingebae bereits prüfe?
             
          when BS | DEL =>
             ZeichenEntfernen;
@@ -155,7 +258,7 @@ package body EingabeSystemeSFML is
       
       CharacterZuText (1) := EingegebenesZeichenExtern;
       
-      EingegebenerName := EingegebenerName & To_Unbounded_Wide_Wide_String (Source => CharacterZuText);
+      EingegebenerText := EingegebenerText & To_Unbounded_Wide_Wide_String (Source => CharacterZuText);
       
    end ZeichenHinzufügen;
    
@@ -165,14 +268,14 @@ package body EingabeSystemeSFML is
    is begin
       
       if
-        To_Wide_Wide_String (Source => EingegebenerName)'Length < 1
+        To_Wide_Wide_String (Source => EingegebenerText)'Length < 1
       then
          null;
          
       else
-         EingegebenerName := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => EingegebenerName,
-                                                                     From    => To_Wide_Wide_String (Source => EingegebenerName)'Last,
-                                                                     Through => To_Wide_Wide_String (Source => EingegebenerName)'Last);
+         EingegebenerText := Ada.Strings.Wide_Wide_Unbounded.Delete (Source  => EingegebenerText,
+                                                                     From    => To_Wide_Wide_String (Source => EingegebenerText)'Last,
+                                                                     Through => To_Wide_Wide_String (Source => EingegebenerText)'Last);
       end if;
       
    end ZeichenEntfernen;

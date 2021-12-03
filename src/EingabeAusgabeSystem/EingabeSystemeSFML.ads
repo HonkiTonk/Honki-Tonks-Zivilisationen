@@ -8,15 +8,13 @@ with Sf.Window.Mouse;
 
 package EingabeSystemeSFML is
 
-   MausBewegt : Boolean;
-
    MausRad : Float;
 
    TastaturTaste : Sf.Window.Keyboard.sfKeyCode;
 
    MausTaste : Sf.Window.Mouse.sfMouseButton;
 
-   EingegebenerName : Unbounded_Wide_Wide_String;
+   EingegebenerText : Unbounded_Wide_Wide_String;
 
    procedure TastenEingabe;
 
@@ -25,17 +23,26 @@ package EingabeSystemeSFML is
    function TextEingeben
      return Unbounded_Wide_Wide_String;
 
+   function ZahlenEingeben
+     (ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
+      return Unbounded_Wide_Wide_String;
+
 private
 
-   EingegebenesZeichen : Wide_Wide_Character;
+   ErfolgreichAbbruch : Boolean;
+   SchleifeVerlassen : Boolean;
 
-   Mausbewegungen : Natural;
+   EingegebenesZeichen : Wide_Wide_Character;
 
    CharacterZuText : Wide_Wide_String (1 .. 1);
 
    ZeichenEingeben : Sf.Window.Event.sfEvent;
 
    TextEingegeben : Sf.Window.Event.sfEvent;
+
+   procedure ZahlPrüfen
+     (UnicodeNummerExtern : in Sf.sfUint32);
 
    procedure TextPrüfen
      (UnicodeNummerExtern : in Sf.sfUint32);

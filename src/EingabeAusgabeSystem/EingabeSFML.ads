@@ -6,6 +6,7 @@ with Sf.Window.Keyboard;
 
 with SystemDatentypen;
 with KartenDatentypen;
+with SystemRecords;
 
 package EingabeSFML is
    
@@ -27,10 +28,7 @@ package EingabeSFML is
      (ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer;
       WelcheFrageExtern : in Positive)
-      return Integer
-     with
-       Post =>
-         (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
+      return SystemRecords.ZahlenEingabeRecord;
    
    function StadtName
      return Unbounded_Wide_Wide_String;
@@ -42,7 +40,7 @@ package EingabeSFML is
      return SystemDatentypen.Tastenbelegung_Enum;
    
 private
-      
+         
    ZahlenMaximum : constant Positive := 999_999_999;
    ZahlenMinimumPlusmacher : Positive;
    MaximumMinimumAktuelleStelle : Positive;
@@ -50,7 +48,6 @@ private
    ZahlenMinimum : constant Integer := -999_999_999;
    MaximalerWert : Integer;
    MinimalerWert : Integer;
-   EingegebeneZahl : Integer;
    
    ZahlenString : Wide_Wide_String (1 .. 9);
       
@@ -60,6 +57,8 @@ private
    
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Taste : Sf.Window.Keyboard.sfKeyCode;
+   
+   EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
       
    type EingabeZahlenUmwandelnArray is array (Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9) of Wide_Wide_Character;
    EingabeZahlenUmwandeln : constant EingabeZahlenUmwandelnArray := (
@@ -183,8 +182,9 @@ private
                                                                )
                                                             );
    
-   procedure ZahlenAnzeige
-     (ZahlenMinimumExtern : in Integer);
+   procedure VorzeichenAnpassen
+     (ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer);
    
    procedure MinimumMaximumSetzen
      (ZahlenMinimumMaximumExtern : in Integer)
@@ -200,25 +200,10 @@ private
    
    
    
-   function MaximumErmitteln
-     (ZahlenMaximumExtern : in Integer)
-      return Integer;
-
-   function MinimumErmitteln
-     (ZahlenMinimumExtern : in Integer)
-      return Integer;
-
    function ZahlSchleife
      (ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
-      return KartenDatentypen.LoopRangeMinusZweiZuZwei
-     with
-       Pre =>
-         (ZahlenMaximumExtern <= 999_999_999
-          and
-            ZahlenMinimumExtern < ZahlenMaximumExtern
-          and
-            ZahlenMinimumExtern >= -999_999_999);
+      return Boolean;
    
    function GanzeZahlPrüfung
      (ZeichenExtern : in Sf.Window.Keyboard.sfKeyCode)
