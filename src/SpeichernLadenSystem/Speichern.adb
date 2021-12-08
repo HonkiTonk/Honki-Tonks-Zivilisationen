@@ -38,7 +38,7 @@ package body Speichern is
       
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
-              Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName))));
+              Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName.EingegebenerText))));
       
       SonstigesSpeichern;
       KarteSpeichern;
@@ -318,7 +318,7 @@ package body Speichern is
       if
         To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= SystemKonstanten.LeerString
       then
-         SpeichernLadenAllgemein.SpielstandName := GlobaleVariablen.IronmanName;
+         SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
                
       else
          -- Anzeige der vorhandenen Spielstände einbauen
@@ -352,10 +352,10 @@ package body Speichern is
       if
         To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= SystemKonstanten.LeerString
       then
-         SpeichernLadenAllgemein.SpielstandName := GlobaleVariablen.IronmanName;
+         SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
                
       else
-         SpeichernLadenAllgemein.SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+         SpeichernLadenAllgemein.SpielstandName.EingegebenerText := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
          if
            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
          then

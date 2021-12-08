@@ -381,8 +381,18 @@ package body BefehleKonsole is
          null;
                   
       else
-         SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, StadtNummer),
-                                   NameExtern             => Eingabe.StadtName);
+         NeuerName := Eingabe.StadtName;
+         
+         case
+           NeuerName.ErfolgreichAbbruch
+         is
+            when False =>
+               null;
+               
+            when True =>
+               SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, StadtNummer),
+                                         NameExtern             => NeuerName.EingegebenerText);
+         end case;
       end if;
       
    end StadtUmbenennen;

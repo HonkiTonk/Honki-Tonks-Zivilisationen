@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Sf.Window.Keyboard;
 
 with SystemDatentypen;
@@ -15,6 +13,8 @@ package EingabeSFML is
    
    AktuellerWert : Natural;
    
+   subtype Grenzen is Integer range -1_000_000_000 .. 1_000_000_000;
+   
    type TastenbelegungArray is array (1 .. 2, SystemDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
    Tastenbelegung : TastenbelegungArray;
    
@@ -24,42 +24,37 @@ package EingabeSFML is
    
 
    function GanzeZahl
-     (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer;
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen;
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord;
    
    function StadtName
-     return Unbounded_Wide_Wide_String;
+     return SystemRecords.TextEingabeRecord;
 
    function SpielstandName
-     return Unbounded_Wide_Wide_String;
+     return SystemRecords.TextEingabeRecord;
 
    function Tastenwert
      return SystemDatentypen.Tastenbelegung_Enum;
    
 private
-         
-   ZahlenMaximum : constant Positive := 999_999_999;
-   ZahlenMinimumPlusmacher : Positive;
-   MaximumMinimumAktuelleStelle : Positive;
-      
-   ZahlenMinimum : constant Integer := -999_999_999;
-   MaximalerWert : Integer;
-   MinimalerWert : Integer;
    
+   AktuelleZahl : Positive;
+   
+   ZahlenStringLeer : constant Wide_Wide_String (1 .. 10) := "0000000000";
    ZahlenString : Wide_Wide_String (1 .. 10);
-      
-   MaximumMinimum : Unbounded_Wide_Wide_String;
-   Name : Unbounded_Wide_Wide_String;
-   EingegebenerName : Unbounded_Wide_Wide_String;
+   
    
    Zahlen : Sf.Window.Keyboard.sfKeyCode;
    Taste : Sf.Window.Keyboard.sfKeyCode;
    
    EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
    
-   type Zahl_Prüfung_Enum is (Zahl, Abbruch, Fertig, Löschen, Vorzeichen_Minus, Vorzeichen_Plus, Leer);
+   EingegebenerName : SystemRecords.TextEingabeRecord;
+   Name : SystemRecords.TextEingabeRecord;
+   
+   type Zahl_Prüfung_Enum is (Zahl_Hinzufügen, Eingabe_Abbrechen, Eingabe_Fertig, Zahl_Löschen, Vorzeichen_Minus, Vorzeichen_Plus, Leer);
       
    type EingabeZahlenUmwandelnArray is array (Sf.Window.Keyboard.sfKeyNum0 .. Sf.Window.Keyboard.sfKeyNum9) of Wide_Wide_Character;
    EingabeZahlenUmwandeln : constant EingabeZahlenUmwandelnArray := (
@@ -184,27 +179,25 @@ private
                                                             );
    
    procedure VorzeichenAnpassen
-     (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer;
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen;
       PlusMinusExtern : in Boolean);
-   
-   procedure MinimumMaximumSetzen
-     (ZahlenMinimumMaximumExtern : in Integer)
-     with
-       Pre =>
-         (ZahlenMinimumMaximumExtern in -99_999_999 .. 99_999_999);
 
    procedure ZahlHinzufügen
-     (ZahlenMaximumExtern : in Integer;
-      EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode);
+     (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode);
 
    procedure ZahlEntfernen;
    
+      
    
+   function MinimumMaximumSetzen
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen)
+      return Boolean;
    
    function ZahlSchleife
-     (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen)
       return Boolean;
    
    function GanzeZahlPrüfung
@@ -213,6 +206,6 @@ private
    
    function NameEingeben
      (WelcheFrageExtern : in Positive)
-      return Unbounded_Wide_Wide_String;
+      return SystemRecords.TextEingabeRecord;
 
 end EingabeSFML;

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Fixed; -- use Ada.Strings.Wide_Wide_Fixed;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf;
@@ -16,21 +18,13 @@ with Fehler;
 package body EingabeSFML is
    
    function GanzeZahl
-     (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer;
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen;
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord
    is begin
       
-      if
-        0 in ZahlenMinimumExtern .. ZahlenMaximumExtern
-      then
-         AktuellerWert := 0;
-         
-      else
-         AktuellerWert := ZahlenMinimumExtern;
-      end if;
-      
+      AktuellerWert := 0;
       EingegebeneZahl.EingegebeneZahl := AktuellerWert;
       
       if
@@ -44,12 +38,13 @@ package body EingabeSFML is
          Fehler.LogikStopp (FehlermeldungExtern => "EingabeSFML.GanzeZahl - Zahlenminimum ist größer als Zahlenmaximum.");
          
       else
+         -- Wegen der grafischen Anzeige festgelegt.
          Frage := WelcheFrageExtern;
-         ZahlenString := ("0000000000");
+         ZahlenString := ZahlenStringLeer;
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
-         InteraktionTasks.Eingabe := SystemDatentypen.Text_Eingabe;
+         InteraktionTasks.Eingabe := SystemDatentypen.Zahlen_Eingabe;
       end if;
       
       case
@@ -87,7 +82,7 @@ package body EingabeSFML is
         InteraktionTasks.AktuelleDarstellung
       is
          when SystemDatentypen.Grafik_Menüs =>
-            InteraktionTasks.Eingabe := SystemDatentypen.Text_Eingabe;
+            InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
             InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
             
          when others =>
@@ -101,8 +96,8 @@ package body EingabeSFML is
    
    
    function ZahlSchleife
-     (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen)
       return Boolean
    is begin
             
@@ -115,17 +110,25 @@ package body EingabeSFML is
          case
            GanzeZahlPrüfung (ZeichenExtern => Zahlen)
          is
-            when Zahl =>
-               ZahlHinzufügen (ZahlenMaximumExtern   => ZahlenMaximumExtern,
-                                EingegebeneZahlExtern => Zahlen);
+            when Zahl_Hinzufügen =>
+               ZahlHinzufügen (EingegebeneZahlExtern => Zahlen);
 
-            when Abbruch =>
+            when Eingabe_Abbrechen =>
                return False;
 
-            when Fertig =>
-               return True;
+            when Eingabe_Fertig =>
+               if
+                 MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                       ZahlenMaximumExtern => ZahlenMaximumExtern)
+                 = True
+               then
+                  return True;
+                  
+               else
+                  null;
+               end if;
 
-            when Löschen =>
+            when Zahl_Löschen =>
                ZahlEntfernen;
                
             when Vorzeichen_Plus =>
@@ -151,8 +154,8 @@ package body EingabeSFML is
    
    
    procedure VorzeichenAnpassen
-     (ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer;
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen;
       PlusMinusExtern : in Boolean)
    is begin
             
@@ -189,16 +192,16 @@ package body EingabeSFML is
       is
          when Sf.Window.Keyboard.sfKeyNum0 | Sf.Window.Keyboard.sfKeyNum1 | Sf.Window.Keyboard.sfKeyNum2 | Sf.Window.Keyboard.sfKeyNum3 | Sf.Window.Keyboard.sfKeyNum4 | Sf.Window.Keyboard.sfKeyNum5
             | Sf.Window.Keyboard.sfKeyNum6 | Sf.Window.Keyboard.sfKeyNum7 | Sf.Window.Keyboard.sfKeyNum8 | Sf.Window.Keyboard.sfKeyNum9 =>
-            return Zahl;
+            return Zahl_Hinzufügen;
             
          when Sf.Window.Keyboard.sfKeyEscape =>
-            return Abbruch;
+            return Eingabe_Abbrechen;
 
          when Sf.Window.Keyboard.sfKeyDelete | Sf.Window.Keyboard.sfKeyBack =>
-            return Löschen;
+            return Zahl_Löschen;
 
          when Sf.Window.Keyboard.sfKeyE | Sf.Window.Keyboard.sfKeyEnter =>
-            return Fertig;
+            return Eingabe_Fertig;
 
          when Sf.Window.Keyboard.sfKeySubtract =>
             return Vorzeichen_Minus;
@@ -215,25 +218,26 @@ package body EingabeSFML is
    
    
    procedure ZahlHinzufügen
-     (ZahlenMaximumExtern : in Integer;
-      EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode)
+     (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode)
    is begin
       
       ZahlenNachLinksVerschiebenSchleife:
-      for ZahlEinsSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop
+      for PositionSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop
                   
-         ZahlenString (ZahlEinsSchleifenwert - 1) := ZahlenString (ZahlEinsSchleifenwert);
+         ZahlenString (PositionSchleifenwert - 1) := ZahlenString (PositionSchleifenwert);
 
       end loop ZahlenNachLinksVerschiebenSchleife;
+      
       ZahlenString (ZahlenString'Last) := EingabeZahlenUmwandeln (EingegebeneZahlExtern);
-
+      
       if
-        Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern
+        ZahlenString (1) /= '0'
       then
-         null;
-                       
+         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Grenzen'Last'Wide_Wide_Image,
+                                                           Side   => Ada.Strings.Left);
+           
       else
-         MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => ZahlenMaximumExtern);
+         null;
       end if;
       
    end ZahlHinzufügen;
@@ -243,46 +247,73 @@ package body EingabeSFML is
    procedure ZahlEntfernen
    is begin
       
-      ZahlenNachRechtsVerschiebenSchleifeZwei:
-      for ZahlDreiSchleifenwert in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
+      ZahlenNachRechtsVerschiebenSchleife:
+      for PositionSchleifenwert in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
                   
-         ZahlenString (ZahlDreiSchleifenwert) := ZahlenString (ZahlDreiSchleifenwert - 1);
+         ZahlenString (PositionSchleifenwert) := ZahlenString (PositionSchleifenwert - 1);
 
-      end loop ZahlenNachRechtsVerschiebenSchleifeZwei;
+      end loop ZahlenNachRechtsVerschiebenSchleife;
+      
       ZahlenString (1) := '0';
       
    end ZahlEntfernen;
    
    
    
-   procedure MinimumMaximumSetzen
-     (ZahlenMinimumMaximumExtern : in Integer)
+   function MinimumMaximumSetzen
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen)
+      return Boolean
    is begin
       
-      MaximumMinimum := To_Unbounded_Wide_Wide_String (Source => ZahlenMinimumMaximumExtern'Wide_Wide_Image);
-      MaximumMinimumAktuelleStelle := To_Wide_Wide_String (Source => MaximumMinimum)'Length;
-      
-      MaximumSchleife:
-      for MaximumSchleifenwert in reverse ZahlenString'Range loop
+      if
+        (WelchesVorzeichen
+         and
+           Integer'Wide_Wide_Value (ZahlenString) > ZahlenMaximumExtern)
+        or
+          (WelchesVorzeichen = False
+           and
+             Integer'Wide_Wide_Value (ZahlenString) > ZahlenMaximumExtern
+           and
+             ZahlenMaximumExtern < 0)
+      then
+         AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
+                                                           Side   => Ada.Strings.Left)'Length;
+         ZahlenString := ZahlenStringLeer;
          
-         if
-           MaximumSchleifenwert > ZahlenString'Length - To_Wide_Wide_String (Source => MaximumMinimum)'Length + 1
-         then
-            ZahlenString (MaximumSchleifenwert) := To_Wide_Wide_String (Source => MaximumMinimum) (MaximumMinimumAktuelleStelle);
-            MaximumMinimumAktuelleStelle := MaximumMinimumAktuelleStelle - 1;
-            
-         else
-            ZahlenString (MaximumSchleifenwert) := '0';
-         end if;
+         ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
+                                                                                                                       Side   => Ada.Strings.Left);
+         return False;
          
-      end loop MaximumSchleife;
+      elsif
+        (WelchesVorzeichen = False
+         and
+           Integer'Wide_Wide_Value (ZahlenString) > ZahlenMinimumExtern)
+        or
+          (WelchesVorzeichen
+           and
+             Integer'Wide_Wide_Value (ZahlenString) < ZahlenMinimumExtern
+           and
+             ZahlenMinimumExtern > 0)
+      then
+         AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMinimumExtern'Wide_Wide_Image,
+                                                           Side   => Ada.Strings.Left)'Length;
+         ZahlenString := ZahlenStringLeer;
+         
+         ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMinimumExtern'Wide_Wide_Image,
+                                                                                                                       Side   => Ada.Strings.Left);
+         return False;
+         
+      else
+         return True;
+      end if;
       
    end MinimumMaximumSetzen;
    
    
    
    function StadtName
-     return Unbounded_Wide_Wide_String
+     return SystemRecords.TextEingabeRecord
    is begin
             
       return NameEingeben (WelcheFrageExtern => 35);
@@ -293,7 +324,7 @@ package body EingabeSFML is
    
    function NameEingeben
      (WelcheFrageExtern : in Positive)
-      return Unbounded_Wide_Wide_String
+      return SystemRecords.TextEingabeRecord
    is begin
       
       Frage := WelcheFrageExtern;
@@ -307,17 +338,27 @@ package body EingabeSFML is
    
    
    function SpielstandName
-     return Unbounded_Wide_Wide_String
+     return SystemRecords.TextEingabeRecord
    is begin
       
       Name := NameEingeben (WelcheFrageExtern => 18);
+      
+      case
+        Name.ErfolgreichAbbruch
+      is
+         when False =>
+            return Name;
+            
+         when True =>
+            null;
+      end case;
 
       case
-        To_Wide_Wide_String (Source => Name)'Length
+        To_Wide_Wide_String (Source => Name.EingegebenerText)'Length
       is
          when 0 =>
             -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist?
-            return To_Unbounded_Wide_Wide_String (Source => "Kein Name");
+            return (True, To_Unbounded_Wide_Wide_String (Source => "Kein Name"));
               
          when others =>
             return Name;

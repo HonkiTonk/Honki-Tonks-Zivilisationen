@@ -8,6 +8,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtDatentypen;
+with SystemRecords;
 
 package StadtBauen is
 
@@ -25,7 +26,7 @@ private
    StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    WelcherName : Positive := 1;
 
-   StadtName : Unbounded_Wide_Wide_String;
+   StadtName : SystemRecords.TextEingabeRecord;
 
    function StandardStadtNamen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

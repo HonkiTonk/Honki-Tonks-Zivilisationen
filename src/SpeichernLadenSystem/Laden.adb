@@ -37,7 +37,7 @@ package body Laden is
 
       Open (File => DateiLadenNeu,
             Mode => In_File,
-            Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName)));
+            Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName.EingegebenerText)));
 
       -- Versionsnummer laden
       Wide_Wide_String'Read (Stream (File => DateiLadenNeu),

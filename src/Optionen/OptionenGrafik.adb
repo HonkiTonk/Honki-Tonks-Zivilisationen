@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with Sf; use Sf;
 
 with SystemKonstanten;
-with GlobaleTexte;
 
 with AuswahlMenue;
 with GrafikAllgemein;
@@ -57,8 +56,7 @@ package body OptionenGrafik is
    procedure AuflösungÄndern
    is begin
       
-      EingabeAuflösung := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
-                                              ZeileExtern         => 32,
+      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => 32,
                                               ZahlenMinimumExtern => 320,
                                               ZahlenMaximumExtern => Integer'Last);
       
@@ -71,8 +69,7 @@ package body OptionenGrafik is
          return;
       end if;
       
-      EingabeAuflösung := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
-                                              ZeileExtern         => 33,
+      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => 33,
                                               ZahlenMinimumExtern => 240,
                                               ZahlenMaximumExtern => Integer'Last);
       
@@ -95,8 +92,7 @@ package body OptionenGrafik is
    procedure BildrateÄndern
    is begin
       
-      EingabeBildrate := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Leer,
-                                            ZeileExtern         => 34,
+      EingabeBildrate := Eingabe.GanzeZahl (ZeileExtern         => 34,
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => Integer'Last);
       

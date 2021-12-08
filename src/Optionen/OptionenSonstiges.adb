@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen;
 with SystemKonstanten;
-with GlobaleTexte;
 
 with SchreibenEinstellungen;
 with EinlesenSprache;
@@ -53,8 +52,7 @@ package body OptionenSonstiges is
    procedure AnzahlAutomatischerSpielstände
    is begin
       
-      EingegebeneZahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
-                                            ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile,
+      EingegebeneZahl := Eingabe.GanzeZahl (ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile,
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => 999_999_999);
       case
@@ -74,8 +72,7 @@ package body OptionenSonstiges is
    procedure RundenBisAutospeichern
    is begin
       
-      EingegebeneZahl := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
-                                            ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile + 1,
+      EingegebeneZahl := Eingabe.GanzeZahl (ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile + 1,
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => 999_999_999);
 

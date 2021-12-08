@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
-with SystemKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -53,13 +52,13 @@ package body StadtBauen is
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when SystemDatentypen.Spieler_KI =>
-            StadtName := StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
+            StadtName.EingegebenerText := StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
          when SystemDatentypen.Spieler_Mensch =>
             StadtName := Eingabe.StadtName;
             
             if
-              StadtName = SystemKonstanten.LeerUnboundedString
+              StadtName.ErfolgreichAbbruch = False
             then
                return False;
                
@@ -75,7 +74,7 @@ package body StadtBauen is
       StadtEintragen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
                       PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                                NameExtern             => StadtName);
+                                NameExtern             => StadtName.EingegebenerText);
       EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       return True;

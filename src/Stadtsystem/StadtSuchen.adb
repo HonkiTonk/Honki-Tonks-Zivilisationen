@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
 with StadtKonstanten;
@@ -117,6 +119,16 @@ package body StadtSuchen is
       
       StadtName := Eingabe.StadtName;
       
+      case
+        StadtName.ErfolgreichAbbruch
+      is
+         when False =>
+            return StadtKonstanten.LeerRasseNummer;
+            
+         when True =>
+            null;
+      end case;
+      
       RasseSchleife:
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
@@ -131,7 +143,7 @@ package body StadtSuchen is
                for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
                   if
-                    LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtName
+                    LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtName.EingegebenerText
                   then
                      return (RasseSchleifenwert, StadtNummerSchleifenwert);
                

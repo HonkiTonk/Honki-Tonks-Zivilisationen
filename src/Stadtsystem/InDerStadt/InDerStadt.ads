@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
+with SystemRecords;
 
 package InDerStadt is
 
@@ -19,6 +20,8 @@ package InDerStadt is
 private
 
    Befehl : SystemDatentypen.Tastenbelegung_Enum;
+
+   NeuerName : SystemRecords.TextEingabeRecord;
 
    function WasIstAusgewählt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

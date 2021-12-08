@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+with SystemRecords;
 
 package SpeichernLadenAllgemein is
 
-   SpielstandName : Unbounded_Wide_Wide_String;
+   SpielstandName : SystemRecords.TextEingabeRecord;
    
    function SpielstandNameErmitteln
      return Boolean;

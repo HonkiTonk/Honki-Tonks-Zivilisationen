@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
 with KartenKonstanten;
 
 with Karten;
@@ -37,8 +36,7 @@ package body BewegungCursor is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
-                                             ZeileExtern         => 29,
+      KoordinatenPunkt := Eingabe.GanzeZahl (ZeileExtern         => 29,
                                              ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
                                              ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)));
       
@@ -50,8 +48,7 @@ package body BewegungCursor is
          
          when True =>
             Position.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
-                                                   ZeileExtern         => 30,
+            KoordinatenPunkt := Eingabe.GanzeZahl (ZeileExtern         => 30,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
                                                    ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       end case;
@@ -64,8 +61,7 @@ package body BewegungCursor is
          
          when True =>
             Position.YAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt.EingegebeneZahl);
-            KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
-                                                   ZeileExtern         => 31,
+            KoordinatenPunkt := Eingabe.GanzeZahl (ZeileExtern         => 31,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
                                                    ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
       end case;

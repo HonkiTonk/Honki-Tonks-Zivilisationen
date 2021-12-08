@@ -5,10 +5,17 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with SystemDatentypen;
 with KartenDatentypen;
-with GlobaleTexte;
 with SystemRecords;
 
 package EingabeKonsole is
+
+   WelchesVorzeichen : Boolean;
+
+   Frage : Positive;
+
+   AktuellerWert : Natural;
+
+   subtype Grenzen is Integer range -1_000_000_000 .. 1_000_000_000;
 
    type TastenbelegungArray is array (1 .. 2, SystemDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Wide_Wide_Character;
    Tastenbelegung : TastenbelegungArray;
@@ -20,17 +27,16 @@ package EingabeKonsole is
 
 
    function GanzeZahl
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen;
+      WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord;
 
    function StadtName
-     return Unbounded_Wide_Wide_String;
+     return SystemRecords.TextEingabeRecord;
 
    function SpielstandName
-     return Unbounded_Wide_Wide_String;
+     return SystemRecords.TextEingabeRecord;
 
    function TastenEingabe
      return Wide_Wide_Character;
@@ -40,34 +46,27 @@ package EingabeKonsole is
 
 private
 
-   VorherNurNullstellen : Boolean;
-   WelchesVorzeichen : Boolean;
-
    Zahlen : Wide_Wide_Character;
    Taste : Wide_Wide_Character;
 
    IstZahl : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+   AktuelleZahl : Positive;
 
-   MaximumMinimumAktuelleStelle : Positive;
-   ZahlenMinimumPlusmacher : Positive;
-   ZahlenMaximum : constant Positive := 999_999_999;
-   ZahlenMinimum : constant Integer := -999_999_999;
-   MaximalerWert : Integer;
-   MinimalerWert : Integer;
-
-   Wert : Integer;
-
-   ZahlenString : Wide_Wide_String (1 .. 9);
+   ZahlenStringLeer : constant Wide_Wide_String (1 .. 10) := "0000000000";
+   ZahlenString : Wide_Wide_String (1 .. 10);
 
    Name : Unbounded_Wide_Wide_String;
-   MaximumMinimum : Unbounded_Wide_Wide_String;
+
+   EingegebeneZahl : SystemRecords.ZahlenEingabeRecord;
+
+   type Zahl_Prüfung_Enum is (Zahl_Hinzufügen, Eingabe_Abbrechen, Eingabe_Fertig, Zahl_Löschen, Vorzeichen_Minus, Vorzeichen_Plus, Leer);
 
    TastenbelegungStandard : constant TastenbelegungArray := (
                                                              1 =>
                                                                (
                                                                 SystemDatentypen.Oben                           => 'w',
                                                                 SystemDatentypen.Links                          => 'a',
-                                                                SystemDatentypen.Unten                         => 's',
+                                                                SystemDatentypen.Unten                          => 's',
                                                                 SystemDatentypen.Rechts                         => 'd',
                                                                 SystemDatentypen.Links_Oben                     => NUL,
                                                                 SystemDatentypen.Rechts_Oben                    => NUL,
@@ -168,49 +167,30 @@ private
                                                                 SystemDatentypen.Cheatmenü                      => NUL)
                                                             );
 
-   procedure ZahlenAnzeige
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer);
-
-   procedure MinimumMaximumSetzen
-     (ZahlenMinimumMaximumExtern : in Integer)
-     with
-       Pre =>
-         (ZahlenMinimumMaximumExtern in -99_999_999 .. 99_999_999);
+   procedure VorzeichenAnpassen
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen;
+      PlusMinusExtern : in Boolean);
 
    procedure ZahlHinzufügen
-     (ZahlenMaximumExtern : in Integer;
-      EingegebeneZahlExtern : in Wide_Wide_Character);
+     (EingegebeneZahlExtern : in Wide_Wide_Character);
 
    procedure ZahlEntfernen;
 
 
 
+   function MinimumMaximumSetzen
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen)
+      return Boolean;
+
    function GanzeZahlPrüfung
      (ZeichenExtern : in Wide_Wide_Character)
-      return KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      return Zahl_Prüfung_Enum;
 
    function ZahlSchleife
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
-      return KartenDatentypen.LoopRangeMinusZweiZuZwei
-     with
-       Pre =>
-         (ZahlenMaximumExtern <= 999_999_999
-          and
-            ZahlenMinimumExtern < ZahlenMaximumExtern
-          and
-            ZahlenMinimumExtern >= -999_999_999);
-
-   function MaximumErmitteln
-     (ZahlenMaximumExtern : in Integer)
-      return Integer;
-
-   function MinimumErmitteln
-     (ZahlenMinimumExtern : in Integer)
-      return Integer;
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen)
+      return Boolean;
 
 end EingabeKonsole;

@@ -50,8 +50,17 @@ package body InDerStadt is
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when SystemDatentypen.Stadt_Umbenennen =>
-               SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         NameExtern             => Eingabe.StadtName);
+               NeuerName := Eingabe.StadtName;
+               
+               if
+                 NeuerName.ErfolgreichAbbruch = True
+               then
+                  SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                            NameExtern             => NeuerName.EingegebenerText);
+                  
+               else
+                  null;
+               end if;
 
                -- Stadt verlassen
             when SystemDatentypen.Menü_Zurück =>

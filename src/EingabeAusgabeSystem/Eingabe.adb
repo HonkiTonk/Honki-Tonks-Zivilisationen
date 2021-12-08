@@ -8,8 +8,7 @@ with EingabeSFML;
 package body Eingabe is
 
    function GanzeZahl
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
+     (ZeileExtern : in Positive;
       ZahlenMinimumExtern : in Integer;
       ZahlenMaximumExtern : in Integer)
       return SystemRecords.ZahlenEingabeRecord
@@ -20,10 +19,9 @@ package body Eingabe is
         GlobaleVariablen.AnzeigeArt
       is
          when SystemDatentypen.Konsole =>
-            return EingabeKonsole.GanzeZahl (TextDateiExtern     => TextDateiExtern,
-                                             ZeileExtern         => ZeileExtern,
-                                             ZahlenMinimumExtern => ZahlenMinimumExtern,
-                                             ZahlenMaximumExtern => ZahlenMaximumExtern);
+            return EingabeKonsole.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                             ZahlenMaximumExtern => ZahlenMaximumExtern,
+                                             WelcheFrageExtern   => ZeileExtern);
             
          when SystemDatentypen.SFML =>
             return EingabeSFML.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
@@ -36,7 +34,7 @@ package body Eingabe is
    
 
    function StadtName
-     return Unbounded_Wide_Wide_String
+     return SystemRecords.TextEingabeRecord
    is begin
       
       case
@@ -54,7 +52,7 @@ package body Eingabe is
 
 
    function SpielstandName
-     return Unbounded_Wide_Wide_String
+     return SystemRecords.TextEingabeRecord
    is begin
       
       case

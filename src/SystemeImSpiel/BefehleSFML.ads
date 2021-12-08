@@ -5,6 +5,7 @@ with Sf.Window.Event;
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
+with SystemRecords;
 
 package BefehleSFML is
    
@@ -29,6 +30,8 @@ private
    BefehlNeu : Sf.Window.Event.sfEvent;
    
    StadtSuchenNachNamen : EinheitStadtRecords.RassePlatznummerRecord;
+   
+   NeuerName : SystemRecords.TextEingabeRecord;
    
    procedure AuswahlEinheitStadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);

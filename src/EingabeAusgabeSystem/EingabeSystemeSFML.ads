@@ -6,6 +6,8 @@ with Sf.Window.Event;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 
+with SystemRecords;
+
 package EingabeSystemeSFML is
 
    MausRad : Float;
@@ -21,11 +23,11 @@ package EingabeSystemeSFML is
 
 
    function TextEingeben
-     return Unbounded_Wide_Wide_String;
+     return SystemRecords.TextEingabeRecord;
 
 private
 
-   -- ErfolgreichAbbruch : Boolean;
+   ErfolgreichAbbruch : Boolean;
    SchleifeVerlassen : Boolean;
 
    EingegebenesZeichen : Wide_Wide_Character;

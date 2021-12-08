@@ -2,183 +2,144 @@ pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Wide_Wide_Characters.Handling; use Ada.Wide_Wide_Characters.Handling;
-with Ada.Integer_Wide_Wide_Text_IO;
+with Ada.Strings.Wide_Wide_Fixed;
 
-with KartenDatentypen; use KartenDatentypen;
-with SystemKonstanten;
+with GlobaleTexte;
 
 with Anzeige;
+with Fehler;
+with InteraktionTasks;
 
 package body EingabeKonsole is
 
    function GanzeZahl
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen;
+      WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord
    is begin
       
-      MaximalerWert := MaximumErmitteln (ZahlenMaximumExtern => ZahlenMaximumExtern);
-      MinimalerWert := MinimumErmitteln (ZahlenMinimumExtern => ZahlenMinimumExtern);
+      AktuellerWert := 0;
+      EingegebeneZahl.EingegebeneZahl := AktuellerWert;
       
       if
-        ZahlenMinimumExtern >= ZahlenMaximumExtern
+        WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
-         null; -- return SystemKonstanten.GanzeZahlAbbruchKonstante;
+         Fehler.LogikStopp (FehlermeldungExtern => "EingabeKonsole.GanzeZahl - Frage ist außerhalb des Fragenbereichs.");
+         
+      elsif
+        ZahlenMinimumExtern > ZahlenMaximumExtern
+      then
+         Fehler.LogikStopp (FehlermeldungExtern => "EingabeKonsole.GanzeZahl - Zahlenminimum ist größer als Zahlenmaximum.");
          
       else
-         ZahlenString := ("000000000");
-         WelchesVorzeichen := True;
+         -- Wegen der grafischen Anzeige festgelegt.
+         Frage := WelcheFrageExtern;
+         ZahlenString := ZahlenStringLeer;
+         VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                             ZahlenMaximumExtern => ZahlenMaximumExtern,
+                             PlusMinusExtern     => True);
+         InteraktionTasks.Eingabe := SystemDatentypen.Zahlen_Eingabe;
       end if;
-
-      ZahlenAußenSchleife:
-      loop
-                  
-         case
-           ZahlSchleife (TextDateiExtern     => TextDateiExtern,
-                         ZeileExtern         => ZeileExtern,
-                         ZahlenMinimumExtern => MinimalerWert,
-                         ZahlenMaximumExtern => MaximalerWert)
-         is
-            when 2 =>
-               exit ZahlenAußenSchleife;
-               
-            when -1 =>
-               -- return SystemKonstanten.GanzeZahlAbbruchKonstante;
-               null;
-                        
-            when others =>
-               null;
-         end case;
-               
-      end loop ZahlenAußenSchleife;
-
+      
       case
-        WelchesVorzeichen
+        InteraktionTasks.AktuelleDarstellung
+      is
+         -- Brauche ich den Stadtteil wirklich? Eventuell um in der Stadt bestimmte Dinge festzulegen.
+         when SystemDatentypen.Grafik_Weltkarte | SystemDatentypen.Grafik_Stadtkarte =>
+            null;
+            
+         when others =>
+            InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Menüs;
+      end case;
+                  
+      case
+        ZahlSchleife (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                      ZahlenMaximumExtern => ZahlenMaximumExtern)
       is
          when True =>
-            -- return Integer'Wide_Wide_Value (ZahlenString);
-            null;
-                  
+            EingegebeneZahl.EingabeAbbruch := True;
+               
          when False =>
-            -- return -Integer'Wide_Wide_Value (ZahlenString);
-            null;
+            EingegebeneZahl.EingabeAbbruch := False;
       end case;
       
-      return (False, 1);
+      if
+        WelchesVorzeichen
+      then
+         EingegebeneZahl.EingegebeneZahl := Integer'Wide_Wide_Value (ZahlenString);
+                  
+      else
+         EingegebeneZahl.EingegebeneZahl := -Integer'Wide_Wide_Value (ZahlenString);
+      end if;
+      
+      case
+        InteraktionTasks.AktuelleDarstellung
+      is
+         when SystemDatentypen.Grafik_Menüs =>
+            InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
+            InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+            
+         when others =>
+            null;
+      end case;
+            
+      return EingegebeneZahl;
       
    end GanzeZahl;
-   
-   
-   
-   function MaximumErmitteln
-     (ZahlenMaximumExtern : in Integer)
-      return Integer
-   is begin
-      
-      if
-        ZahlenMaximumExtern > ZahlenMaximum
-      then
-         return ZahlenMaximum;
-         
-      elsif
-        ZahlenMaximumExtern < ZahlenMinimum
-      then
-         return SystemKonstanten.GanzeZahlAbbruchKonstante;
-         
-      else
-         return ZahlenMaximumExtern;
-      end if;
-      
-   end MaximumErmitteln;
-   
-   
-   
-   function MinimumErmitteln
-     (ZahlenMinimumExtern : in Integer)
-      return Integer
-   is begin
-      
-      if
-        ZahlenMinimumExtern < ZahlenMinimum
-      then
-         return ZahlenMinimum;
-           
-      elsif
-        ZahlenMinimumExtern > ZahlenMaximum
-      then
-         return SystemKonstanten.GanzeZahlAbbruchKonstante;
-           
-      else
-         return ZahlenMinimumExtern;
-      end if;
-      
-   end MinimumErmitteln;
 
 
 
    function ZahlSchleife
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
-      return KartenDatentypen.LoopRangeMinusZweiZuZwei
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen)
+      return Boolean
    is begin
       
       ZahlenSchleife:
       loop
-
-         ZahlenAnzeige (TextDateiExtern     => TextDateiExtern,
-                        ZeileExtern         => ZeileExtern,
-                        ZahlenMinimumExtern => ZahlenMinimumExtern);
          
          Get_Immediate (Item => Zahlen);
-         Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
-         -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
          case
            GanzeZahlPrüfung (ZeichenExtern => Zahlen)
          is
-            when 1 =>
-               ZahlHinzufügen (ZahlenMaximumExtern   => ZahlenMaximumExtern,
-                                EingegebeneZahlExtern => Zahlen);
+            when Zahl_Hinzufügen =>
+               ZahlHinzufügen (EingegebeneZahlExtern => Zahlen);
 
-            when -1 =>
-               return -1;
+            when Eingabe_Abbrechen =>
+               return False;
 
-            when 2 =>
+            when Eingabe_Fertig =>
                if
-                 -Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
-                 and
-                   WelchesVorzeichen = False
+                 MinimumMaximumSetzen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                       ZahlenMaximumExtern => ZahlenMaximumExtern)
+                 = True
                then
-                  return 2;
+                  return True;
                   
-               elsif
-                 Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
-               then
-                  return 2;
-                     
                else
-                  if
-                    ZahlenMinimumExtern <= -100_000_000
-                  then
-                     ZahlenMinimumPlusmacher := -ZahlenMinimumExtern;
-                     ZahlenString := ZahlenMinimumPlusmacher'Wide_Wide_Image;
-                     WelchesVorzeichen := False;
-                     
-                  else
-                     MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => -ZahlenMinimumExtern);
-                  end if;
+                  null;
                end if;
 
-            when -2 =>
+            when Zahl_Löschen =>
                ZahlEntfernen;
+               
+            when Vorzeichen_Plus =>
+               VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                   ZahlenMaximumExtern => ZahlenMaximumExtern,
+                                   PlusMinusExtern     => True);
+               
+            when Vorzeichen_Minus =>
+               VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                   ZahlenMaximumExtern => ZahlenMaximumExtern,
+                                   PlusMinusExtern     => False);
                   
-            when others =>
+            when Leer =>
                null;
          end case;
+         
+         AktuellerWert := Natural'Wide_Wide_Value (ZahlenString);
 
       end loop ZahlenSchleife;
       
@@ -186,9 +147,37 @@ package body EingabeKonsole is
    
    
    
+   procedure VorzeichenAnpassen
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen;
+      PlusMinusExtern : in Boolean)
+   is begin
+            
+      if
+        ZahlenMinimumExtern >= 0
+      then
+         WelchesVorzeichen := True;
+         
+      elsif
+        ZahlenMaximumExtern < 0
+      then
+         WelchesVorzeichen := False;
+         
+      elsif
+        PlusMinusExtern
+      then
+         WelchesVorzeichen := True;
+         
+      else
+         WelchesVorzeichen := False;
+      end if;
+      
+   end VorzeichenAnpassen;
+   
+   
+   
    procedure ZahlHinzufügen
-     (ZahlenMaximumExtern : in Integer;
-      EingegebeneZahlExtern : in Wide_Wide_Character)
+     (EingegebeneZahlExtern : in Wide_Wide_Character)
    is begin
       
       ZahlenNachLinksVerschiebenSchleife:
@@ -197,20 +186,17 @@ package body EingabeKonsole is
          ZahlenString (ZahlEinsSchleifenwert - 1) := ZahlenString (ZahlEinsSchleifenwert);
 
       end loop ZahlenNachLinksVerschiebenSchleife;
+      
       ZahlenString (ZahlenString'Last) := EingegebeneZahlExtern;
 
       if
-        Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern
+        ZahlenString (1) /= '0'
       then
-         null;
-                  
-      elsif
-        ZahlenMaximumExtern >= 100_000_000
-      then
-         ZahlenString := ZahlenMaximumExtern'Wide_Wide_Image;
-                       
+         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Grenzen'Last'Wide_Wide_Image,
+                                                           Side   => Ada.Strings.Left);
+           
       else
-         MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => ZahlenMaximumExtern);
+         null;
       end if;
       
    end ZahlHinzufügen;
@@ -229,144 +215,110 @@ package body EingabeKonsole is
       ZahlenString (1) := '0';
       
    end ZahlEntfernen;
-   
-   
-   
-   procedure ZahlenAnzeige
-     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
-      ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer)
-   is begin
-      
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => TextDateiExtern,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => ZeileExtern,
-                                     LetzteZeileExtern      => ZeileExtern,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
-
-      if
-        ZahlenMinimumExtern > 0
-        and
-          Integer'Wide_Wide_Value (ZahlenString) = 0
-      then
-         null;
-            
-      elsif
-        ZahlenMinimumExtern >= 0
-        and
-          WelchesVorzeichen = False
-      then
-         WelchesVorzeichen := True;
-         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
-                                            Width => 1,
-                                            Base  => 10);
-            
-      else
-         if
-           WelchesVorzeichen
-         then
-            null;
-
-         elsif
-           WelchesVorzeichen = False
-           and
-             Integer'Wide_Wide_Value (ZahlenString) = 0
-         then
-            null;
-                  
-         else
-            Put (Item => "-");
-         end if;
-         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
-                                            Width => 1,
-                                            Base  => 10);
-      end if;
-      
-   end ZahlenAnzeige;
 
 
 
-   -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
    function GanzeZahlPrüfung
      (ZeichenExtern : in Wide_Wide_Character)
-      return KartenDatentypen.LoopRangeMinusDreiZuDrei
+      return Zahl_Prüfung_Enum
    is begin
       
       case
         ZeichenExtern
       is
          when '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' =>
-            return 1;
+            return Zahl_Hinzufügen;
             
-         when 'q' | 'Q' | ESC =>
-            return -1;
+         when ESC =>
+            return Eingabe_Abbrechen;
 
          when DEL =>
-            return -2;
+            return Zahl_Löschen;
 
-         when 'e' | 'E' | LF =>
-            return 2;
+         when LF =>
+            return Eingabe_Fertig;
 
          when '-' =>
-            WelchesVorzeichen := False;
-            return 3;
+            return Vorzeichen_Minus;
             
          when '+' =>
-            WelchesVorzeichen := True;
-            return 3;
+            return Vorzeichen_Plus;
             
          when others =>
-            return 0;
+            return Leer;
       end case;
       
    end GanzeZahlPrüfung;
    
    
    
-   procedure MinimumMaximumSetzen
-     (ZahlenMinimumMaximumExtern : in Integer)
+   function MinimumMaximumSetzen
+     (ZahlenMinimumExtern : in Grenzen;
+      ZahlenMaximumExtern : in Grenzen)
+      return Boolean
    is begin
       
-      MaximumMinimum := To_Unbounded_Wide_Wide_String (Source => ZahlenMinimumMaximumExtern'Wide_Wide_Image);
-      MaximumMinimumAktuelleStelle := To_Wide_Wide_String (Source => MaximumMinimum)'Length;
-      
-      MaximumSchleife:
-      for MaximumSchleifenwert in reverse ZahlenString'Range loop
+      if
+        (WelchesVorzeichen
+         and
+           Integer'Wide_Wide_Value (ZahlenString) > ZahlenMaximumExtern)
+        or
+          (WelchesVorzeichen = False
+           and
+             Integer'Wide_Wide_Value (ZahlenString) > ZahlenMaximumExtern
+           and
+             ZahlenMaximumExtern < 0)
+      then
+         AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
+                                                           Side   => Ada.Strings.Left)'Length;
+         ZahlenString := ZahlenStringLeer;
          
-         if
-           MaximumSchleifenwert > ZahlenString'Length - To_Wide_Wide_String (Source => MaximumMinimum)'Length + 1
-         then
-            ZahlenString (MaximumSchleifenwert) := To_Wide_Wide_String (Source => MaximumMinimum) (MaximumMinimumAktuelleStelle);
-            MaximumMinimumAktuelleStelle := MaximumMinimumAktuelleStelle - 1;
-            
-         else
-            ZahlenString (MaximumSchleifenwert) := '0';
-         end if;
+         ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMaximumExtern'Wide_Wide_Image,
+                                                                                                                       Side   => Ada.Strings.Left);
+         return False;
          
-      end loop MaximumSchleife;
+      elsif
+        (WelchesVorzeichen = False
+         and
+           Integer'Wide_Wide_Value (ZahlenString) > ZahlenMinimumExtern)
+        or
+          (WelchesVorzeichen
+           and
+             Integer'Wide_Wide_Value (ZahlenString) < ZahlenMinimumExtern
+           and
+             ZahlenMinimumExtern > 0)
+      then
+         AktuelleZahl := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMinimumExtern'Wide_Wide_Image,
+                                                           Side   => Ada.Strings.Left)'Length;
+         ZahlenString := ZahlenStringLeer;
+         
+         ZahlenString (ZahlenString'Last - AktuelleZahl + 1 .. ZahlenString'Last) := Ada.Strings.Wide_Wide_Fixed.Trim (Source => ZahlenMinimumExtern'Wide_Wide_Image,
+                                                                                                                       Side   => Ada.Strings.Left);
+         return False;
+         
+      else
+         return True;
+      end if;
       
    end MinimumMaximumSetzen;
 
    
 
    function StadtName
-     return Unbounded_Wide_Wide_String
+     return SystemRecords.TextEingabeRecord
    is begin
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                             TextZeileExtern => 32);
       
-      return To_Unbounded_Wide_Wide_String (Source => Get_Line);
+      return (True, To_Unbounded_Wide_Wide_String (Source => Get_Line));
       
    end StadtName;
 
 
 
    function SpielstandName
-     return Unbounded_Wide_Wide_String
+     return SystemRecords.TextEingabeRecord
    is begin
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
@@ -379,10 +331,10 @@ package body EingabeKonsole is
       is
          when 0 =>
             -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist.
-            return To_Unbounded_Wide_Wide_String (Source => "Kein Name");
+            return (True, To_Unbounded_Wide_Wide_String (Source => "Kein Name"));
               
          when others =>
-            return Name;
+            return (True, Name);
       end case;
       
    end SpielstandName;

@@ -23,6 +23,7 @@ package body EingabeSystemeSFML is
       MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
       MausRad := 0.00;
       
+      -- EingabeSchleife ist nicht notwendig, das entfernen macht aber die Probleme schlimmer, das ganze hier mal umbauen/in den Grafiktask verschieben.
       EingabeSchleife:
       while SchleifeVerlassen = False loop
          TasteSchleife:
@@ -79,7 +80,7 @@ package body EingabeSystemeSFML is
    
    
    function TextEingeben
-     return Unbounded_Wide_Wide_String
+     return SystemRecords.TextEingabeRecord
    is begin
       
       EingegebenerText := SystemKonstanten.LeerUnboundedString;
@@ -103,11 +104,13 @@ package body EingabeSystemeSFML is
                   if
                     TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
                   then
+                     ErfolgreichAbbruch := True;
                      exit EingabeSchleife;
                      
                   elsif
                     TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                   then
+                     ErfolgreichAbbruch := False;
                      exit EingabeSchleife;
                   
                   else
@@ -122,7 +125,8 @@ package body EingabeSystemeSFML is
       end loop EingabeSchleife;
    
       InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
-      return EingegebenerText;
+      
+      return (ErfolgreichAbbruch, EingegebenerText);
       
    end TextEingeben;
    

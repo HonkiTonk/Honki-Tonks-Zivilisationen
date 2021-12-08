@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
-
 with Karten;
 with Eingabe;
 with ZufallGeneratorenSpieleinstellungen;
@@ -55,8 +53,9 @@ package body SpielEinstellungenKarten is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
-                                                      ZeileExtern         => 15,
+      -- In eine Schleife umbauen?
+      
+      BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => 15,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
       case
@@ -70,8 +69,7 @@ package body SpielEinstellungenKarten is
       end case;
       
       Karten.Kartengrößen (KartengrößeExtern).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
-      BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
-                                                      ZeileExtern         => 21,
+      BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => 21,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
       

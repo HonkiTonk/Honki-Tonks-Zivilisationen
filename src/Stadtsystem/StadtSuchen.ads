@@ -1,13 +1,12 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
+with SystemRecords;
 
 with Karten;
 
@@ -53,6 +52,6 @@ private
    
    StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    
-   StadtName : Unbounded_Wide_Wide_String;
+   StadtName : SystemRecords.TextEingabeRecord;
 
 end StadtSuchen;

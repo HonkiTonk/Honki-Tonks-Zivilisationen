@@ -322,15 +322,15 @@ package body BefehleSFML is
       end case;
           
       -- Aktuell keine Sicherheitsabfrage aktiv.
-    --  case
-    --    Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
-    --  is
-    --     when SystemKonstanten.JaKonstante =>
-            ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
+      --  case
+      --    Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
+      --  is
+      --     when SystemKonstanten.JaKonstante =>
+      ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
                      
-    --     when others =>
-     --       null;
-    --  end case;
+      --     when others =>
+      --       null;
+      --  end case;
       
    end Technologie;
    
@@ -390,10 +390,20 @@ package body BefehleSFML is
         StadtNummer = StadtKonstanten.LeerNummer
       then
          null;
-                  
+         
       else
-         SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, StadtNummer),
-                                   NameExtern             => Eingabe.StadtName);
+         NeuerName := Eingabe.StadtName;
+         
+         case
+           NeuerName.ErfolgreichAbbruch
+         is
+            when False =>
+               null;
+               
+            when True =>
+               SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, StadtNummer),
+                                         NameExtern             => NeuerName.EingegebenerText);
+         end case;
       end if;
       
    end StadtUmbenennen;
