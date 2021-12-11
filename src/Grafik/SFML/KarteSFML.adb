@@ -23,7 +23,7 @@ package body KarteSFML is
    procedure KarteAnzeigen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
-            
+      
       Sichtbarkeit (InDerStadtExtern => False,
                     RasseExtern      => RasseExtern);
       

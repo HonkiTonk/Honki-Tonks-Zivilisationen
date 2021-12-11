@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with KarteInformationenKonsole;
 with KarteSFML;
 with KarteKonsole;
 with BewegungCursorSFML;
@@ -20,7 +19,6 @@ package body Karte is
       is
          when SystemDatentypen.Konsole =>
             KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);
-            KarteInformationenKonsole.KarteInformationenKonsole (RasseExtern => RasseExtern);
             
          when SystemDatentypen.SFML =>
             KarteSFML.KarteAnzeigen (RasseExtern => RasseExtern);

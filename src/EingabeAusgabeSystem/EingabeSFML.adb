@@ -46,17 +46,6 @@ package body EingabeSFML is
                              PlusMinusExtern     => True);
          InteraktionTasks.Eingabe := SystemDatentypen.Zahlen_Eingabe;
       end if;
-      
-      case
-        InteraktionTasks.AktuelleDarstellung
-      is
-         -- Brauche ich den Stadtteil wirklich? Eventuell um in der Stadt bestimmte Dinge festzulegen.
-         when SystemDatentypen.Grafik_Weltkarte | SystemDatentypen.Grafik_Stadtkarte =>
-            null;
-            
-         when others =>
-            InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Menüs;
-      end case;
                   
       case
         ZahlSchleife (ZahlenMinimumExtern => ZahlenMinimumExtern,
@@ -78,16 +67,7 @@ package body EingabeSFML is
          EingegebeneZahl.EingegebeneZahl := -Integer'Wide_Wide_Value (ZahlenString);
       end if;
       
-      case
-        InteraktionTasks.AktuelleDarstellung
-      is
-         when SystemDatentypen.Grafik_Menüs =>
-            InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
-            InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
-            
-         when others =>
-            null;
-      end case;
+      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
             
       return EingegebeneZahl;
       

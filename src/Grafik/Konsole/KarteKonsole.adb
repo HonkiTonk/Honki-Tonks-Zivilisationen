@@ -10,6 +10,7 @@ with KartePositionPruefen;
 with GrafischeAnzeige;
 with Sichtweiten;
 with Karten;
+with KarteInformationenKonsole;
 
 package body KarteKonsole is
    
@@ -45,6 +46,8 @@ package body KarteKonsole is
       end loop YAchseSchleife;
       
       New_Line;
+      
+      KarteInformationenKonsole.KarteInformationenKonsole (RasseExtern => RasseExtern);
       
    end AnzeigeKarteKonsole;
    

@@ -60,7 +60,7 @@ package body BewegungCursor is
             return;
          
          when True =>
-            Position.YAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt.EingegebeneZahl);
+            Position.YAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
             KoordinatenPunkt := Eingabe.GanzeZahl (ZeileExtern         => 31,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
                                                    ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
@@ -73,7 +73,7 @@ package body BewegungCursor is
             return;
          
          when True =>
-            Position.XAchse := KartenDatentypen.Kartenfeld (KoordinatenPunkt.EingegebeneZahl);
+            Position.XAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
             GlobaleVariablen.CursorImSpiel (RasseExtern).Position := Position;
             GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := Position;
       end case;

@@ -133,38 +133,36 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (12.12.2021):
+   -- Version 0.00.9590 => 0.00.9 (12.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (11.12.2021):
+   -- Version 0.00.9585 => 0.00.9590 (11.12.2021):
    
-   -- 
+   -- Fehler behoben der bei der Zahleneingabe manchmal für eine falsche grafische Darstellung sorgte.
+   -- Versucht die Fehlerursache für den Stopp in der Zahleneingabe zu finden.
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (10.12.2021):
+   -- Version 0.00.9585 => 0.00.9585 (10.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-   
-   -- Version 0.00.9 => 0.00.9 (09.12.2021):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    
-   -- Version 0.00.9585 => 0.00.9 (08.12.2021):
+   -- Version 0.00.9585 => 0.00.9585 (09.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+   
+   -- Version 0.00.9585 => 0.00.9585 (08.12.2021):
+   
+   -- null.
    
    
    
