@@ -23,10 +23,7 @@ package body EingabeSFML is
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord
    is begin
-      
-      AktuellerWert := 0;
-      EingegebeneZahl.EingegebeneZahl := AktuellerWert;
-      
+            
       if
         WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
@@ -40,6 +37,8 @@ package body EingabeSFML is
       else
          -- Wegen der grafischen Anzeige festgelegt.
          Frage := WelcheFrageExtern;
+         AktuellerWert := 0;
+         EingegebeneZahl.EingegebeneZahl := AktuellerWert;
          ZahlenString := ZahlenStringLeer;
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
@@ -58,6 +57,8 @@ package body EingabeSFML is
             EingegebeneZahl.EingabeAbbruch := False;
       end case;
       
+      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
+      
       if
         WelchesVorzeichen
       then
@@ -66,8 +67,6 @@ package body EingabeSFML is
       else
          EingegebeneZahl.EingegebeneZahl := -Integer'Wide_Wide_Value (ZahlenString);
       end if;
-      
-      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
             
       return EingegebeneZahl;
       

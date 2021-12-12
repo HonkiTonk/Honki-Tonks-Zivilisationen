@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
@@ -16,6 +18,7 @@ with GrafikAllgemein;
 with Sichtweiten;
 with ForschungAnzeigeSFML;
 with AuswahlSpracheAnzeige;
+with AnzeigeEingabe;
 
 package body GrafikSFML is
    
@@ -45,13 +48,11 @@ package body GrafikSFML is
            AnzeigeAuswahl
          is
             when True =>
-               null;
+               GrafikStartEnde.FensterAnzeigen;
                
             when False =>
                exit GrafikSchleife;
          end case;
-      
-         GrafikStartEnde.FensterAnzeigen;
          
       end loop GrafikSchleife;
       
@@ -121,6 +122,19 @@ package body GrafikSFML is
          
          when SystemDatentypen.Grafik_Ende =>
             return False;
+      end case;
+      
+      case
+        InteraktionTasks.Eingabe
+      is
+         when SystemDatentypen.Text_Eingabe =>
+            AnzeigeEingabe.AnzeigeText;
+            
+         when SystemDatentypen.Zahlen_Eingabe =>
+            AnzeigeEingabe.AnzeigeGanzeZahl;
+            
+         when SystemDatentypen.Keine_Eingabe =>
+            null;
       end case;
       
       return True;

@@ -14,8 +14,6 @@ with StadtSuchen;
 with KarteInformationenSFML;
 with BerechnungenKarteSFML;
 with Fehler;
-with AnzeigeEingabe;
-with InteraktionTasks;
 with ObjekteZeichnenSFML;
 
 package body KarteSFML is
@@ -28,19 +26,6 @@ package body KarteSFML is
                     RasseExtern      => RasseExtern);
       
       KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseExtern);
-      
-      case
-        InteraktionTasks.Eingabe
-      is
-         when SystemDatentypen.Text_Eingabe =>
-            AnzeigeEingabe.AnzeigeText;
-            
-         when SystemDatentypen.Zahlen_Eingabe =>
-            AnzeigeEingabe.AnzeigeGanzeZahl;
-            
-         when SystemDatentypen.Keine_Eingabe =>
-            null;
-      end case;
       
    end KarteAnzeigen;
    

@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with KarteSFML;
 with KarteKonsole;
 with BewegungCursorSFML;

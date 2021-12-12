@@ -12,7 +12,6 @@ with AuswahlMenue;
 with GrafikEinstellungen;
 with GrafikHintergrund;
 with AllgemeineTextBerechnungenSFML;
-with AnzeigeEingabe;
 
 package body AuswahlMenueAnzeige is
 
@@ -96,19 +95,6 @@ package body AuswahlMenueAnzeige is
       end loop AnzeigeSchleife;
       
       WeiterenTextAnzeigen;
-      
-      case
-        InteraktionTasks.Eingabe
-      is
-         when SystemDatentypen.Text_Eingabe =>
-            AnzeigeEingabe.AnzeigeText;
-            
-         when SystemDatentypen.Zahlen_Eingabe =>
-            AnzeigeEingabe.AnzeigeGanzeZahl;
-            
-         when SystemDatentypen.Keine_Eingabe =>
-            null;
-      end case;
       
    end AnzeigeMenüSFML;
    

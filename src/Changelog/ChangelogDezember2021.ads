@@ -105,37 +105,37 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (16.12.2021):
+   -- Version 0.00.96 => 0.00.9 (16.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (15.12.2021):
+   -- Version 0.00.96 => 0.00.96 (15.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (14.12.2021):
+   -- Version 0.00.96 => 0.00.96 (14.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (13.12.2021):
+   -- Version 0.00.9595 => 0.00.96 (13.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9590 => 0.00.9 (12.12.2021):
+   -- Version 0.00.9590 => 0.00.9595 (12.12.2021):
    
-   -- 
+   -- Weiter versucht die Fehlerursache für den Stopp in der Zahleneingabe zu finden.
    -- Kleinigkeiten korrigiert.
    
    
