@@ -21,6 +21,8 @@ package body InDerStadt is
       StadtSchleife:
       loop
          
+         -- Die aktuelle Anzeige hier einfach immer auf Grafik_Stadtkarte setzen?
+         
          Befehl := Eingabe.Tastenwert;
          
          case
@@ -44,6 +46,7 @@ package body InDerStadt is
                
             when SystemDatentypen.Bauen =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Stadtkarte;
                
                -- Gebäude verkaufen
             when SystemDatentypen.Einheit_Auflösen =>
@@ -65,13 +68,15 @@ package body InDerStadt is
                -- Stadt verlassen
             when SystemDatentypen.Menü_Zurück =>
                AktuelleRasseStadt.Platznummer := 0;
-               return;
+               exit StadtSchleife;
                
             when others =>
                null;
          end case;
          
       end loop StadtSchleife;
+      
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
       
    end InDerStadt;
    
@@ -83,6 +88,7 @@ package body InDerStadt is
    is begin
       
       -- Hier dann prüfen wo der Mauszeiger ist und entsprechend die Auswahl gestalten.
+      -- Daran denken dass das auch für weitere Einstellungen gilt und nicht nur für die Zuweisung von Bürgern.
       
       EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       

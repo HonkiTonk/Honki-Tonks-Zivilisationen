@@ -56,7 +56,7 @@ package SystemDatentypen is
    type Grafik_Aktuelle_Darstellung_Enum is (Konsole_Start, SFML_Start, Grafik_Intro,
                                              Grafik_Pause,
                                              Grafik_Menüs, Grafik_Sprache,
-                                             Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, -- Grafik_Handeln, (in die Menüs schieben? geht so nicht in die Menüs.)
+                                             Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, Grafik_Bauen, -- Grafik_Handeln, (in die Menüs schieben? geht so nicht in die Menüs.)
                                              Grafik_Ende);
    
    type Anzeige_Art_Enum is (Konsole, SFML);

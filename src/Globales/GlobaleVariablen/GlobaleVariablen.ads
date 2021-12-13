@@ -46,6 +46,8 @@ package GlobaleVariablen is
    
 
    -- Zeug
+   Debug : Boolean := True;
+   
    RundenAnzahl : Positive := Positive'First;
    Rundengrenze : Natural := Natural'First;
 

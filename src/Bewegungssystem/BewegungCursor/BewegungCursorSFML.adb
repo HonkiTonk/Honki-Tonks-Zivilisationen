@@ -120,7 +120,6 @@ package body BewegungCursorSFML is
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse := YAchseSchleifenwert;
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse := XAchseSchleifenwert;
-               
                return;
                
             else

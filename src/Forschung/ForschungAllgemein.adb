@@ -150,7 +150,6 @@ package body ForschungAllgemein is
                   null;
                   
                else
-                  InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
                   exit AuswahlSchleife;
                end if;
                
@@ -159,6 +158,8 @@ package body ForschungAllgemein is
          end case;
          
       end loop AuswahlSchleife;
+      
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
       
       return EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
       

@@ -93,27 +93,38 @@ package body KarteSFML is
       -- Über den nicht Transporteinheiten kommen die Transporteinheiten.
       -- Über den Transporteinheiten kommt der Cursor.
       
-      AnzeigeLandschaft (KoordinatenExtern => KoordinatenExtern);
+      -- Nicht vergessen Position hier in Übergabeparameter umzuwandeln.
+      AnzeigeLandschaft (KoordinatenExtern => KoordinatenExtern,
+                         PositionExtern    => Position);
             
       AnzeigeStadt (KoordinatenExtern => KoordinatenExtern);
             
       AnzeigeEinheit (KoordinatenExtern => KoordinatenExtern);
             
-      AnzeigeCursor (InDerStadtExtern  => InDerStadtExtern,
-                     KoordinatenExtern => KoordinatenExtern,
-                     RasseExtern       => RasseExtern);
+      case
+        GlobaleVariablen.Debug
+      is
+         when True =>
+            AnzeigeCursor (InDerStadtExtern  => InDerStadtExtern,
+                           KoordinatenExtern => KoordinatenExtern,
+                           RasseExtern       => RasseExtern);
+            
+         when False =>
+            null;
+      end case;
                   
    end IstSichtbar;
    
    
    
    procedure AnzeigeLandschaft
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
-                                            PositionExtern       => Position,
-                                            FarbeExtern          => FarbeKartenfeldErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KartenWert)),
+                                            PositionExtern       => PositionExtern,
+                                            FarbeExtern          => FarbeKartenfeldErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KoordinatenExtern)),
                                             RechteckAccessExtern => RechteckAccess);
             
       -- Mal Farben für die einzelnen Objekte einbauen. Ist das überhaupt sinnvoll wenn ich da später sowieso Texturen drüberlege?
@@ -124,8 +135,8 @@ package body KarteSFML is
             null;
             
          when others =>
-            ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                               PositionExtern    => Position,
+            ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
+                                               PositionExtern    => PositionExtern,
                                                FarbeExtern       => Sf.Graphics.Color.sfBlack,
                                                KreisAccessExtern => KreisAccess);
       end case;
@@ -138,7 +149,7 @@ package body KarteSFML is
             
          when others =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
-                                                  PositionExtern       => (Position.x, Position.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+                                                  PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
                                                   FarbeExtern          => Sf.Graphics.Color.sfBlue,
                                                   RechteckAccessExtern => RechteckAccess);
       end case;
@@ -151,7 +162,7 @@ package body KarteSFML is
             
          when others =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
-                                                  PositionExtern       => (Position.x, Position.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+                                                  PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
                                                   FarbeExtern          => Sf.Graphics.Color.sfRed,
                                                   RechteckAccessExtern => RechteckAccess);
       end case;
@@ -164,7 +175,7 @@ package body KarteSFML is
             
          when others =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
-                                                  PositionExtern       => Position,
+                                                  PositionExtern       => PositionExtern,
                                                   FarbeExtern          => Sf.Graphics.Color.sfCyan,
                                                   RechteckAccessExtern => RechteckAccess);
       end case;

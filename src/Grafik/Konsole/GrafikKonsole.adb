@@ -62,6 +62,9 @@ package body GrafikKonsole is
             when SystemDatentypen.Grafik_Forschung =>
                ForschungAnzeigeKonsole.ForschungAnzeige;
                InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               
+            when SystemDatentypen.Grafik_Bauen =>
+               null;
          
             when SystemDatentypen.Grafik_Ende =>
                exit GrafikSchleife;

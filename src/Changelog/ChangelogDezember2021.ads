@@ -119,17 +119,23 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.96 => 0.00.96 (14.12.2021):
+   -- Version 0.00.9610 => 0.00.96 (14.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9595 => 0.00.96 (13.12.2021):
+   -- Version 0.00.9595 => 0.00.9610 (13.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GeheZu in der SFML Version vorübergehend ausgebaut bis ich den Fehler darin gefunden habe.
+   -- Die Stadtanzeige in der SFML erweitert.
+   -- SFML Stadtanzeige zeigt jetzt die belegten Stadtfelder an.
+   -- SFML Stadtanzeige zeigt jetzt die Stadtumgebung an.
+   -- Angefangen einen Debugmodus einzubauen.
+   -- SFML Stadtanzeige sollte jetzt Gebäude anzeigen.
+   -- Angefangen eine Bauliste für die SFMLAnzeige zu bauen.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
    

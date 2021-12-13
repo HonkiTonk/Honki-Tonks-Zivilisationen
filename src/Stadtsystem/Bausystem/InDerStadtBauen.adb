@@ -1,25 +1,22 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SystemKonstanten;
-with GlobaleTexte;
+with Sf; use Sf;
+
 with EinheitenKonstanten;
 with StadtKonstanten;
+with GlobaleTexte;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
-     
-with Anzeige;
+
 with Eingabe;
-with Auswahl;
 with GebaeudeAllgemein;
 with EinheitenModifizieren;
-with EinheitBauen;
-with GebaeudeBauen;
+with InteraktionTasks;
+with GrafikTextAllgemein;
+with GrafikEinstellungen;
 
 package body InDerStadtBauen is
 
@@ -27,28 +24,23 @@ package body InDerStadtBauen is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      case
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
-      is
-         when StadtKonstanten.LeerBauprojekt =>
-            null;
-            
-         when others =>
-            if
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 14) = SystemKonstanten.JaKonstante
-            then
-               null;
-               
-            else
-               return;
-            end if;
-      end case;
+      AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      NeuesBauprojekt := BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
-                                      ÄndernSetzenExtern    => False);
-      SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      BauprojektExtern       => BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern));
+      if
+        NeuesBauprojekt = 0
+        or
+          NeuesBauprojekt = AktuellesBauprojekt
+      then
+         null;
+            
+      else
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => NeuesBauprojekt);
+         SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,
+                                         ÄndernSetzenExtern     => False);
+      end if;
       
    end Bauen;
 
@@ -60,31 +52,26 @@ package body InDerStadtBauen is
    is begin
 
       Ende := 1;
-      Anzeige.AllgemeineAnzeigeText := (others => (SystemKonstanten.LeerUnboundedString, 0));
+      Bauliste := (others => (True, 0));
 
       MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
       MöglicheEinheitenErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       if
-        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
-        and
-          Ende > 1
-      then
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
-
-      elsif
-        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
+        Bauliste (Ende).Nummer = 0
         and
           Ende = 1
       then
          return 0;
          
+      elsif
+        GlobaleVariablen.AnzeigeArt = SystemDatentypen.SFML
+      then
+         return AuswahlBauprojektSFML;
+         
       else
-         Ende := Ende + 1;
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
+         return AuswahlBauprojektKonsole;
       end if;
-
-      return AuswahlBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end BauobjektAuswählen;
    
@@ -96,24 +83,14 @@ package body InDerStadtBauen is
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in EinheitStadtDatentypen.GebäudeID'Range loop
-         
-         if
-           GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert)) = SystemKonstanten.LeerUnboundedString
-         then
-            exit GebäudeSchleife;
-            
-         else
-            null;
-         end if;
-         
+                  
          if
            GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                             IDExtern               => GebäudeSchleifenwert)
            = True
          then
-            Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
-            Anzeige.AllgemeineAnzeigeText (Ende).Nummer := StadtKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
+            Bauliste (Ende).GebäudeEinheit := True;
+            Bauliste (Ende).Nummer := StadtKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
             
          else
@@ -134,23 +111,12 @@ package body InDerStadtBauen is
       for EinheitSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
          
          if
-           GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert)) = SystemKonstanten.LeerUnboundedString
-         then
-            exit EinheitenSchleife;
-            
-         else
-            null;
-         end if;
-         
-         if
            EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                IDExtern               => EinheitSchleifenwert)
            = True
          then
-            Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                                Positive (EinheitSchleifenwert));
-            Anzeige.AllgemeineAnzeigeText (Ende).Nummer := EinheitenKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
+            Bauliste (Ende).GebäudeEinheit := False;
+            Bauliste (Ende).Nummer := EinheitenKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
             
          else
@@ -163,65 +129,151 @@ package body InDerStadtBauen is
    
    
    
-   function AuswahlBauprojekt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return Natural
+   function AuswahlBauprojektSFML
+     return Natural
    is begin
       
-      Anzeige.AktuelleAuswahl := 1;
-
+      GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
+                                                FontExtern         => GrafikEinstellungen.Schriftart,
+                                                SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
+                                                FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
+      Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
+      
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Bauen;
+      
       AuswahlSchleife:
       loop
-
-         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
-
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
-                                               TextZeileExtern => 13);
-
-         Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => Anzeige.AktuelleAuswahl);
          
-         if
-           Anzeige.AktuelleAuswahl = Ende
-         then
-            null;
+         MausAuswahl;
+         
+         case
+           Eingabe.Tastenwert
+         is               
+            when SystemDatentypen.Auswählen =>
+               if
+                 AktuelleAuswahl <= 0
+               then
+                  null;
                   
-         elsif
-           Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer > EinheitenKonstanten.EinheitAufschlag
+               else
+                  exit AuswahlSchleife;
+               end if;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop AuswahlSchleife;
+      
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      
+      return 0;
+      
+   end AuswahlBauprojektSFML;
+   
+   
+   
+   procedure MausAuswahl
+   is begin
+      
+      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
+      MausZeigerPosition := GrafikEinstellungen.MausPosition;
+      TextPositionMaus := StartPositionText;
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (9)));
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                         size => 2 * GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      
+      TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00 * Zeilenabstand;
+      
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      
+      MausZeigerSchleife:
+      for BaulisteSchleifenwert in BaulisteArray'First .. Ende loop
+         
+         case
+           Bauliste (BaulisteSchleifenwert).GebäudeEinheit
+         is
+            when True =>
+               Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (Bauliste (BaulisteSchleifenwert).Nummer)));
+               
+            when False =>
+               Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (Bauliste (BaulisteSchleifenwert).Nummer)));
+         end case;
+               
+         if
+           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus.y)
+           .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
+           and
+             MausZeigerPosition.x in Sf.sfInt32 (TextPositionMaus.x) .. Sf.sfInt32 (TextPositionMaus.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width)
          then
-            EinheitBauen.AnzeigeEinheiten (StadtRasseNummerExtern => StadtRasseNummerExtern);
-            
+            AktuelleAuswahl := BaulisteSchleifenwert;
+            return;
+         
          else
-            GebaeudeBauen.AnzeigeGebäude (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
          end if;
+                  
+      end loop MausZeigerSchleife;
+      
+      AktuelleAuswahl := -1;
+      
+   end MausAuswahl;
+   
+   
+   
+   function AuswahlBauprojektKonsole
+     return Natural
+   is begin
+      
+      AktuelleAuswahl := 1;
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Bauen;
+      
+      AuswahlSchleife:
+      loop
          
          case
            Eingabe.Tastenwert
          is
             when SystemDatentypen.Oben =>
                if
-                 Anzeige.AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
+                 AktuelleAuswahl = Bauliste'First
                then
-                  Anzeige.AktuelleAuswahl := Ende;
+                  AktuelleAuswahl := Ende;
                   
                else
-                  Anzeige.AktuelleAuswahl := Anzeige.AktuelleAuswahl - 1;
+                  AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
             when SystemDatentypen.Unten =>
                if
-                 Anzeige.AktuelleAuswahl = Ende
+                 AktuelleAuswahl = Ende
                then
-                  Anzeige.AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
+                  AktuelleAuswahl := Bauliste'First;
                   
                else
-                  Anzeige.AktuelleAuswahl := Anzeige.AktuelleAuswahl + 1;
+                  AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
             when SystemDatentypen.Auswählen =>
-               return Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer;
+               GewähltesBauprojekt := Bauliste (AktuelleAuswahl).Nummer;
+               exit AuswahlSchleife;
 
             when SystemDatentypen.Menü_Zurück =>
-               return 0;
+               if
+                 AktuellesBauprojekt /= 0
+               then
+                  GewähltesBauprojekt := AktuellesBauprojekt;
+                  
+               else
+                  GewähltesBauprojekt := 0;
+               end if;
+               
+               exit AuswahlSchleife;
                      
             when others =>
                null;
@@ -229,6 +281,10 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-   end AuswahlBauprojekt;
+      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      
+      return GewähltesBauprojekt;
+      
+   end AuswahlBauprojektKonsole;
 
 end InDerStadtBauen;

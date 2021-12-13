@@ -93,7 +93,10 @@ package body BefehleSFML is
             Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
 
          when SystemDatentypen.GeheZu =>
-            BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
+            -- Funktioniert in der SFML nicht richtig. Fehler liegt irgendwo im Grafikteil da die Logik nach wie vor weiterläuft.
+            -- Möglicherweise in BerechnungenKarteSFML.SichtbereichKarteBerechnen oder weil die Darstellungsermittlung läuft während BewegungCursor.GeheZuCursor die Werte des Cursors ändert.
+            -- BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
+            null;
 
          when SystemDatentypen.Stadt_Umbenennen =>
             StadtUmbenennen (RasseExtern => RasseExtern);

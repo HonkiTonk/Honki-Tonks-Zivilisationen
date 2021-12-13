@@ -61,7 +61,8 @@ private
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure AnzeigeLandschaft
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
 
    procedure AnzeigeStadt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
