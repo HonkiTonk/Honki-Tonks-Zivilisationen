@@ -205,6 +205,13 @@ package body EinheitenModifizieren is
          null;
          
       elsif
+        LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                              IDExtern    => IDExtern)
+        = ForschungKonstanten.ForschungUnmöglich
+      then
+         return False;
+         
+      elsif
         LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
                                  WelcheTechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                   IDExtern    => IDExtern))

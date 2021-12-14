@@ -85,23 +85,7 @@ package body ForschungAnzeigeSFML is
       Sf.Graphics.Text.setColor (text  => TextAccess,
                                  color => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
       
-      if
-        WelcherTextExtern < 1
-      then
-         WelcherText := GlobaleTexte.Forschungen'Last;
-         
-      else
-         WelcherText := 2 * WelcherTextExtern;
-      end if;
-      
-      if
-        WelcherText > GlobaleTexte.Forschungen'Last
-      then
-         return;
-         
-      else
-         null;
-      end if;
+      WelcherText := 2 * WelcherTextExtern;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (WelcherText)));

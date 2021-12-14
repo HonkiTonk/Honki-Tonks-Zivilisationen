@@ -109,7 +109,7 @@ package LeseStadtGebaut is
    
    function Bauprojekt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return Natural
+      return EinheitStadtRecords.BauprojektRecord
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

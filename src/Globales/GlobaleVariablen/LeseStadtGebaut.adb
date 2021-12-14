@@ -5,6 +5,7 @@ with KartenKonstanten;
 with StadtKonstanten;
 
 with Karten;
+with Fehler;
 
 package body LeseStadtGebaut is
 
@@ -177,18 +178,17 @@ package body LeseStadtGebaut is
    
    function Bauprojekt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return Natural
+      return EinheitStadtRecords.BauprojektRecord
    is begin
       
       case
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt.Nummer
       is
-         when StadtKonstanten.BauprojekteGebäudeAnfang .. StadtKonstanten.BauprojekteGebäudeEnde | StadtKonstanten.BauprojekteEinheitenAnfang .. StadtKonstanten.BauprojekteEinheitenEnde
-            | StadtKonstanten.LeerBauprojekt =>
-            null;
+         when EinheitStadtDatentypen.MinimimMaximumID'First =>
+            Fehler.LogikStopp (FehlermeldungExtern => "LeseStadtGebaut.Bauprojekt - Aktuelles Bauprojekt ist ungültig.");
             
          when others =>
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := StadtKonstanten.LeerBauprojekt;
+            null;
       end case;
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt;

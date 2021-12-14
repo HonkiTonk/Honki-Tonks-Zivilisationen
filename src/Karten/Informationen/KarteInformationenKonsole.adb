@@ -15,7 +15,7 @@ with Anzeige;
 with Cheat;
 with EinheitSuchen;
 with StadtSuchen;
-with StadtInformationen;
+with StadtInformationenKonsole;
 with AufgabenAllgemein;
 with KartenAllgemein;
 with GesamtwerteFeld;
@@ -105,8 +105,8 @@ package body KarteInformationenKonsole is
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      StadtInformationen.Stadt (RasseExtern            => RasseExtern,
-                                StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtInformationenKonsole.Stadt (RasseExtern            => RasseExtern,
+                                       StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       -- Debuginformationen, nur sichtbar wenn Cheat aktiviert ist.
       case

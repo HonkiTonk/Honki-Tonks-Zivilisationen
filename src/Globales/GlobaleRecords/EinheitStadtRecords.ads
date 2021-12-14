@@ -60,6 +60,15 @@ package EinheitStadtRecords is
       Verteidigung : EinheitStadtDatentypen.ProduktionFeld;
       
    end record;
+   
+   
+   
+   type BauprojektRecord is record
+
+      GebäudeEinheit : Boolean;
+      Nummer : EinheitStadtDatentypen.MinimimMaximumID;
+
+   end record;
 
 
 
@@ -83,7 +92,7 @@ package EinheitStadtRecords is
       PermanenteKostenPosten : PermanenteKostenArray;
       
       Forschungsrate : EinheitStadtDatentypen.GesamtproduktionStadt;
-      Bauprojekt : Natural;
+      Bauprojekt : BauprojektRecord;
       Bauzeit : EinheitStadtDatentypen.KostenLager;
 
       Korruption : EinheitStadtDatentypen.GesamtproduktionStadt;

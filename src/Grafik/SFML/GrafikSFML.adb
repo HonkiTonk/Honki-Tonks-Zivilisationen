@@ -45,8 +45,6 @@ package body GrafikSFML is
          
          GrafikStartEnde.FensterLeeren;
          
-         -- Hier die Steuerung einbauen? Habe ich das schon probiert und würde das was bringen?
-         
          case
            AnzeigeAuswahl
          is
@@ -124,12 +122,11 @@ package body GrafikSFML is
             end if;
             
          when SystemDatentypen.Grafik_Bauen =>
-            
             if
               InteraktionTasks.AktuelleRasse = SystemDatentypen.Keine_Rasse
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
-               Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Forschungsmenü wird ohne Rasse aufgerufen.");
+               Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Baumenü wird ohne Rasse aufgerufen.");
                      
             else
                BauAuswahlAnzeigeSFML.BauAuswahlAnzeige;

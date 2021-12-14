@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf; use Sf;
@@ -12,6 +13,7 @@ with GrafikTextAllgemein;
 with GrafikEinstellungen;
 with ObjekteZeichnenSFML;
 with AllgemeineTextBerechnungenSFML;
+with Fehler;
 
 package body BauAuswahlAnzeigeSFML is
 
@@ -46,6 +48,7 @@ package body BauAuswahlAnzeigeSFML is
         
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      Bauliste := InDerStadtBauen.Bauliste;
       
       AnzeigeSchleife:
       for BaulisteSchleifenwert in Bauliste'First .. Ende loop
@@ -53,7 +56,7 @@ package body BauAuswahlAnzeigeSFML is
          if
            AktuelleAuswahl = BaulisteSchleifenwert
          then
-           -- WeiterenTextAnzeigen (WelcherTextExtern => Bauliste (BaulisteSchleifenwert).Nummer);
+            WeiterenTextAnzeigen (WelcherTextExtern => Bauliste (BaulisteSchleifenwert));
             Sf.Graphics.Text.setColor (text  => TextAccess,
                                        color => GrafikEinstellungen.Schriftfarben.FarbeAusgewähltText);
             
@@ -62,8 +65,20 @@ package body BauAuswahlAnzeigeSFML is
                                        color => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
          end if;
          
-        -- Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-        --                                    str  => To_Wide_Wide_String (Source => ForschungText (BaulisteSchleifenwert).Text));
+         WelcherTextKurz := 2 * Natural (Bauliste (BaulisteSchleifenwert).Nummer) - 1;
+         
+         case
+           Bauliste (BaulisteSchleifenwert).GebäudeEinheit
+         is
+            when True =>
+               Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (WelcherTextKurz)));
+               
+            when False =>
+               Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (WelcherTextKurz)));
+         end case;
+         
          Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => TextPosition);
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
@@ -78,44 +93,39 @@ package body BauAuswahlAnzeigeSFML is
    
    
    procedure WeiterenTextAnzeigen
-     (WelcherTextExtern : in Natural;
-      GebäudeEinheitExtern : in Boolean)
+     (WelcherTextExtern : in EinheitStadtRecords.BauprojektRecord)
    is begin
       
+      WelcherTextLang := 2 * Natural (WelcherTextExtern.Nummer);
+      
       case
-        GebäudeEinheitExtern
+        WelcherTextExtern.GebäudeEinheit
       is
          when True =>
-            null;
+            if
+              WelcherTextLang > GlobaleTexte.Gebäude'Last
+            then
+               Fehler.LogikStopp (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.WeiterenTextAnzeigen - Gebäude ist außerhalb der Liste.");
+               
+            else
+               Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (WelcherTextLang)));
+            end if;
             
          when False =>
-            null;
+            if
+              WelcherTextLang > GlobaleTexte.Einheiten'Last
+            then
+               Fehler.LogikStopp (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.WeiterenTextAnzeigen - Einheit ist außerhalb der Liste.");
+               
+            else
+               Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (WelcherTextLang)));
+            end if;
       end case;
       
       Sf.Graphics.Text.setColor (text  => TextAccess,
                                  color => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
-      
-      if
-        WelcherTextExtern < 1
-      then
-         null;
-        -- WelcherText := GlobaleTexte.Forschungen'Last;
-         
-      else
-         WelcherText := 2 * WelcherTextExtern;
-      end if;
-      
-    --  if
-    --    WelcherText > GlobaleTexte.Forschungen'Last
-    --  then
-     --    return;
-         
-    --  else
-     --    null;
-     -- end if;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (WelcherText)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,

@@ -80,20 +80,20 @@ package body LeseEinheitenDatenbank is
    function Anforderungen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return EinheitStadtDatentypen.ForschungIDNichtMöglich
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Anforderungen;
       
    end Anforderungen;
    
-      
+   
 
    function Passierbarkeit
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
-   return Boolean
+      return Boolean
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Passierbarkeit (WelcheUmgebungExtern);
@@ -105,7 +105,7 @@ package body LeseEinheitenDatenbank is
    function MaximaleLebenspunkte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.MaximaleEinheiten
+      return EinheitStadtDatentypen.MaximaleEinheiten
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximaleLebenspunkte;
@@ -117,7 +117,7 @@ package body LeseEinheitenDatenbank is
    function MaximaleBewegungspunkte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.BewegungFloat
+      return EinheitStadtDatentypen.BewegungFloat
    is begin
       
       if
@@ -137,7 +137,7 @@ package body LeseEinheitenDatenbank is
    function WirdVerbessertZu
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.EinheitenIDMitNullWert
+      return EinheitStadtDatentypen.EinheitenIDMitNullWert
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).WirdVerbessertZu;
@@ -149,7 +149,7 @@ package body LeseEinheitenDatenbank is
    function Beförderungsgrenze
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.MaximaleStädte
+      return EinheitStadtDatentypen.MaximaleStädte
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Beförderungsgrenze;
@@ -161,7 +161,7 @@ package body LeseEinheitenDatenbank is
    function MaximalerRang
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximalerRang;
@@ -173,7 +173,7 @@ package body LeseEinheitenDatenbank is
    function Reichweite
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Reichweite;
@@ -185,7 +185,7 @@ package body LeseEinheitenDatenbank is
    function Angriff
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
       if
@@ -204,7 +204,7 @@ package body LeseEinheitenDatenbank is
    function Verteidigung
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
       if
@@ -223,7 +223,7 @@ package body LeseEinheitenDatenbank is
    function KannTransportieren
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportieren;
@@ -235,7 +235,7 @@ package body LeseEinheitenDatenbank is
    function KannTransportiertWerden
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportiertWerden;
@@ -247,7 +247,7 @@ package body LeseEinheitenDatenbank is
    function Transportkapazität
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
       if
@@ -273,7 +273,7 @@ package body LeseEinheitenDatenbank is
    function GanzerEintrag
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-   return DatenbankRecords.EinheitenListeRecord
+      return DatenbankRecords.EinheitenListeRecord
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern);

@@ -87,7 +87,7 @@ package SystemDatentypen is
                                 -- Einheitenbefehle Verbesserungen
                                 Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen,
                                 -- Einheitenbefehle allgemein
-                                Heilen, Verschanzen, Runde_Aussetzen, Plündern, Einheit_Auflösen, Einheit_Verbessern,
+                                Heilen, Verschanzen, Runde_Aussetzen, Plündern, Auflösen, Einheit_Verbessern,
                                 Heimatstadt_Ändern,
                                 -- Sonstiges
                                 Infos, Diplomatie, GeheZu,

@@ -74,7 +74,7 @@ package body Ladezeiten is
    is begin
       
       AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => WelcheZeitExtern);
-      Eingabe.WartenEingabe;
+    --  Eingabe.WartenEingabe;
       
    end AnzeigeEinzelneZeit;
    

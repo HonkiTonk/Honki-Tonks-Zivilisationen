@@ -82,7 +82,7 @@ package body StadtEinheitenBauen is
          KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                           RasseExtern               => StadtRasseNummerExtern.Rasse,
                                                                           IDExtern                  => EinheitStadtDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut
-                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - EinheitenKonstanten.EinheitAufschlag),
+                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt.Nummer),
                                                                           NotwendigeFelderExtern    => 1);
       end if;
         
@@ -104,13 +104,12 @@ package body StadtEinheitenBauen is
    
    procedure EinheitPlatzieren
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-     KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KoordinatenExtern,
                                                   EinheitNummerExtern    => EinheitNummer,
-                                                  IDExtern               => 
-                                                    EinheitStadtDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag),
+                                                  IDExtern               =>  EinheitStadtDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
                                                   StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       RessourcenExtern       => StadtKonstanten.LeerStadt.Ressourcen,

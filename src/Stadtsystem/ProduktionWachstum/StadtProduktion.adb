@@ -245,17 +245,16 @@ package body StadtProduktion is
                                                                                                             WelcherPostenExtern    => EinheitStadtDatentypen.Geld),
                                          ÄndernSetzenExtern     => True);
       
-      case
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
-      is
-         when StadtKonstanten.LeerBauprojekt =>
-            SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                               GeldgewinnungExtern    => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) / 5,
-                                               ÄndernSetzenExtern     => True);
-            
-         when others =>
-            null;
-      end case;
+      if
+        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer = StadtKonstanten.LeerBauprojekt.Nummer
+      then
+         SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                            GeldgewinnungExtern    => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) / 5,
+                                            ÄndernSetzenExtern     => True);
+         
+      else
+         null;
+      end if;
 
       case
         -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?

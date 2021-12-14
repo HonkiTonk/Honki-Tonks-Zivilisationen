@@ -4,7 +4,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with StadtKonstanten;
 
 with KIDatentypen; use KIDatentypen;
 
@@ -76,7 +75,7 @@ package body KIStadt is
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + StadtKonstanten.GebäudeAufschlag);
+                                         BauprojektExtern       => (True, GebäudeBauenExtern.ID));
          
       elsif
         GebäudeBauenExtern.ID = EinheitStadtDatentypen.GebäudeIDMitNullwert'First
@@ -93,7 +92,7 @@ package body KIStadt is
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
          end case;
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (EinheitBauenExtern.ID) + EinheitenKonstanten.EinheitAufschlag);
+                                         BauprojektExtern       => (False, EinheitBauenExtern.ID));
       
       elsif
         EinheitBauenExtern.Bewertung >= GebäudeBauenExtern.Bewertung
@@ -110,13 +109,13 @@ package body KIStadt is
                                                      BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
          end case;
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (EinheitBauenExtern.ID) + EinheitenKonstanten.EinheitAufschlag);
+                                         BauprojektExtern       => (False, EinheitBauenExtern.ID));
 
       else
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + StadtKonstanten.GebäudeAufschlag);
+                                         BauprojektExtern       => (True, GebäudeBauenExtern.ID));
       end if;
       
    end NeuesBauprojekt;

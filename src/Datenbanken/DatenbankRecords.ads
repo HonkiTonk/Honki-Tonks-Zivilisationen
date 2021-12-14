@@ -18,7 +18,7 @@ package DatenbankRecords is
       PreisGeld : EinheitStadtDatentypen.KostenLager;
       PreisRessourcen : EinheitStadtDatentypen.KostenLager;
       PermanenteKosten : EinheitStadtRecords.PermanenteKostenArray;
-      Anforderungen : EinheitStadtDatentypen.ForschungIDMitNullWert;
+      Anforderungen : EinheitStadtDatentypen.ForschungIDNichtMöglich;
 
       Passierbarkeit : PassierbarkeitArray;
       
@@ -67,7 +67,7 @@ package DatenbankRecords is
       PreisRessourcen : EinheitStadtDatentypen.KostenLager;
       PermanenteKosten : EinheitStadtRecords.PermanenteKostenArray;
       
-      Anforderungen : EinheitStadtDatentypen.ForschungIDMitNullWert;
+      Anforderungen : EinheitStadtDatentypen.ForschungIDNichtMöglich;
       
       PermanenterBonus : PermanenterBonusArray;
       

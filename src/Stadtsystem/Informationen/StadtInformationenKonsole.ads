@@ -8,7 +8,7 @@ with KartenDatentypen;
 
 with Karten;
 
-package StadtInformationen is
+package StadtInformationenKonsole is
 
    procedure Stadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -186,4 +186,4 @@ private
 
    Stadtart : Positive;
 
-end StadtInformationen;
+end StadtInformationenKonsole;

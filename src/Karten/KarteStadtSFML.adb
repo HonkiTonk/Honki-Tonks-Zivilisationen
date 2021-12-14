@@ -15,7 +15,7 @@ with BerechnungenKarteSFML;
 with ObjekteZeichnenSFML;
 with Karten;
 with KartePositionPruefen;
-with BauAuswahlAnzeigeSFML;
+with StadtInformationenSFML;
 
 package body KarteStadtSFML is
 
@@ -67,8 +67,11 @@ package body KarteStadtSFML is
          
       end loop YAchseSchleife;
       
-      -- Hier Baumenü und alles andere einbauen.
-      BauAuswahlAnzeigeSFML.BauAuswahlAnzeige;
+      TextPosition := StadtInformationenSFML.Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
+                                                    StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    AnzeigeAnfangenExtern  => (BerechnungenKarteSFML.StadtKarte.x + 5.00, 5.00));
+      
+      -- Wie und wo jetzt die Anzeige der Mauszeigerinformationen einbauen?
       
    end AnzeigeStadt;
    
@@ -130,13 +133,16 @@ package body KarteStadtSFML is
           XAchseExtern > Karten.Stadtkarte'Last (2) - 7
       then
          KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                     ÄnderungExtern   => (0, YAchseExtern - 4, XAchseExtern - 17));
+                                                                     ÄnderungExtern    => (0, YAchseExtern - 4, XAchseExtern - 17));
          
          case
            KartenWert.XAchse
          is
             when KartenKonstanten.LeerXAchse =>
-               null;
+               ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
+                                                     PositionExtern       => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                                     FarbeExtern          => Sf.Graphics.Color.sfBlack,
+                                                     RechteckAccessExtern => RechteckAccess);
                
             when others =>
                DarstellungUmgebungErweitert (KartePositionExtern    => KartenWert,
@@ -327,7 +333,7 @@ package body KarteStadtSFML is
                                            WelchesGebäudeExtern  => GebäudeID)
       is
          when True =>
-            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x,
+            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
                                                  PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
                                                  AnzahlEckenExtern   => 3,
                                                  FarbeExtern         => Sf.Graphics.Color.sfMagenta,

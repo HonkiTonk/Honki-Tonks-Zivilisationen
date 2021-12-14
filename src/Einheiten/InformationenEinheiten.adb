@@ -13,7 +13,7 @@ with LeseEinheitenDatenbank;
 
 with Anzeige;
 with EinheitenBeschreibungen;
-with StadtInformationen;
+with StadtInformationenKonsole;
 with KampfwerteEinheitErmitteln;
 with Cheat;
 
@@ -282,7 +282,7 @@ package body InformationenEinheiten is
                                            AbstandEndeExtern      => GlobaleTexte.Leer);
                
          when others =>
-            StadtInformationen.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+            StadtInformationenKonsole.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       end case;
       New_Line;
       

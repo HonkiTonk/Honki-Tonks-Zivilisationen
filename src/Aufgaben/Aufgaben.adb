@@ -201,7 +201,7 @@ package body Aufgaben is
          when SystemDatentypen.Runde_Aussetzen =>
             RundeAussetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when SystemDatentypen.Einheit_Auflösen =>
+         when SystemDatentypen.Auflösen =>
             EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          when SystemDatentypen.Plündern =>

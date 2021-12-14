@@ -35,6 +35,8 @@ private
    YMultiplikator : Float;
    XMultiplikator : Float;
 
+   TextPosition : Sf.System.Vector2.sfVector2f;
+
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;

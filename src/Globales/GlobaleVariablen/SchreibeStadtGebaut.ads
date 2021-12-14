@@ -120,7 +120,7 @@ package SchreibeStadtGebaut is
    
    procedure Bauprojekt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BauprojektExtern : in Natural)
+      BauprojektExtern : in EinheitStadtRecords.BauprojektRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

@@ -5,8 +5,8 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Strings.Wide_Wide_Fixed; -- use Ada.Strings.Wide_Wide_Fixed;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
+with Sf.Window.Mouse; use Sf.Window.Mouse;
 with Sf;
-with Sf.Window.Mouse;
 
 with GlobaleTexte;
 
@@ -365,7 +365,6 @@ package body EingabeSFML is
       
       EingabeSystemeSFML.TastenEingabe;
       
-      -- Das hier bis zur Schleife zu einem if-Block zusammenfassen?
       -- Das Mausrad muss? vor der Maustaste geprüft werden.
       if
         EingabeSystemeSFML.MausRad > 0.00
@@ -376,33 +375,25 @@ package body EingabeSFML is
         EingabeSystemeSFML.MausRad < 0.00
       then
          return SystemDatentypen.Ebene_Runter;
-               
+         
+      elsif
+        EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseLeft
+      then
+         return SystemDatentypen.Auswählen;
+         
+      elsif
+        EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseRight
+      then
+         return SystemDatentypen.Menü_Zurück;
+         
+      elsif
+        EingabeSystemeSFML.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
+      then
+         return SystemDatentypen.Leer;
+            
       else
-         null;
+         Taste := EingabeSystemeSFML.TastaturTaste;
       end if;
-            
-      case
-        EingabeSystemeSFML.MausTaste
-      is
-         when Sf.Window.Mouse.sfMouseLeft =>
-            return SystemDatentypen.Auswählen;
-            
-         when Sf.Window.Mouse.sfMouseRight =>
-            return SystemDatentypen.Menü_Zurück;
-            
-         when others =>
-            null;
-      end case;
-            
-      case
-        EingabeSystemeSFML.TastaturTaste
-      is
-         when Sf.Window.Keyboard.sfKeyUnknown =>
-            return SystemDatentypen.Leer;
-            
-         when others =>
-            Taste := EingabeSystemeSFML.TastaturTaste;
-      end case;
       
       BelegungFeldSchleife:
       for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop

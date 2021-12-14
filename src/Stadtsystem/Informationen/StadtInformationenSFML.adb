@@ -4,7 +4,6 @@ with Sf.Graphics.RenderWindow;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
-with EinheitenKonstanten;
 with StadtKonstanten;
 
 with LeseStadtGebaut;
@@ -306,35 +305,19 @@ package body StadtInformationenSFML is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      case
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
-      is
-         when StadtKonstanten.LeerBauprojekt =>
-            Text := GlobaleTexte.ZeugSachen (28);
+      if
+        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer = StadtKonstanten.LeerBauprojekt.Nummer
+      then
+         Text := GlobaleTexte.ZeugSachen (28);
             
-         when StadtKonstanten.BauprojekteGebäudeAnfang .. StadtKonstanten.BauprojekteGebäudeEnde =>
-            if
-              LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag = 1
-            then
-               Text := GlobaleTexte.Gebäude (1);
-               
-            else
-               Text := GlobaleTexte.Gebäude (2 * (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag) - 1);
-            end if;
+      elsif
+        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).GebäudeEinheit = True
+      then
+         Text := GlobaleTexte.Gebäude (2 * Natural (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer) - 1);
 
-         when StadtKonstanten.BauprojekteEinheitenAnfang .. StadtKonstanten.BauprojekteEinheitenEnde =>
-            if
-              LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag = 1
-            then
-               Text := GlobaleTexte.Einheiten (1);
-               
-            else
-               Text := GlobaleTexte.Einheiten (2 * (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag) - 1);
-            end if;
-            
-         when others =>
-            Fehler.LogikStopp (FehlermeldungExtern => "StadtInformationenSFML.AktuellesBauprojekt - Kein gültiges Bauprojekt.");
-      end case;
+      else
+         Text := GlobaleTexte.Einheiten (2 * Natural (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer) - 1);
+      end if;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (12)) & To_Wide_Wide_String (Source => Text));

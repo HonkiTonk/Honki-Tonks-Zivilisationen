@@ -49,7 +49,7 @@ package body InDerStadt is
                InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Stadtkarte;
                
                -- Gebäude verkaufen
-            when SystemDatentypen.Einheit_Auflösen =>
+            when SystemDatentypen.Auflösen =>
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when SystemDatentypen.Stadt_Umbenennen =>
@@ -65,7 +65,6 @@ package body InDerStadt is
                   null;
                end if;
 
-               -- Stadt verlassen
             when SystemDatentypen.Menü_Zurück =>
                AktuelleRasseStadt.Platznummer := 0;
                exit StadtSchleife;

@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with EinheitenKonstanten;
-with StadtKonstanten;
 
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
@@ -12,7 +10,7 @@ package body KIStadtLaufendeBauprojekte is
 
    function StadtLaufendeBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BauprojektExtern : in Natural)
+      BauprojektExtern : in EinheitStadtRecords.BauprojektRecord)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -27,9 +25,11 @@ package body KIStadtLaufendeBauprojekte is
              LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenDatentypen.Leer
          then
             null;
-               
+            
          elsif
-           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) = BauprojektExtern
+           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).GebäudeEinheit = BauprojektExtern.GebäudeEinheit
+           and
+             LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer = BauprojektExtern.Nummer
          then
             GleichesBauprojekt := GleichesBauprojekt + 1;
                
@@ -64,11 +64,11 @@ package body KIStadtLaufendeBauprojekte is
             null;
                
          elsif
-           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) in StadtKonstanten.BauprojekteEinheitenAnfang .. StadtKonstanten.BauprojekteEinheitenEnde
+           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).GebäudeEinheit = False
          then
             if
               LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag))
+                                                 IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer))
               = EinheitArtExtern
             then
                GleichesBauprojekt := GleichesBauprojekt + 1;

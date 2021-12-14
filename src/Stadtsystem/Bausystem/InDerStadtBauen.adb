@@ -4,7 +4,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf; use Sf;
 
-with EinheitenKonstanten;
+with EinheitStadtRecords; use EinheitStadtRecords;
 with StadtKonstanten;
 with GlobaleTexte;
 
@@ -17,6 +17,7 @@ with EinheitenModifizieren;
 with InteraktionTasks;
 with GrafikTextAllgemein;
 with GrafikEinstellungen;
+with Fehler;
 
 package body InDerStadtBauen is
 
@@ -28,7 +29,7 @@ package body InDerStadtBauen is
       NeuesBauprojekt := BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       if
-        NeuesBauprojekt = 0
+        NeuesBauprojekt.Nummer = 0
         or
           NeuesBauprojekt = AktuellesBauprojekt
       then
@@ -48,10 +49,10 @@ package body InDerStadtBauen is
 
    function BauobjektAuswählen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return Natural
+      return EinheitStadtRecords.BauprojektRecord
    is begin
 
-      Ende := 1;
+      Ende := 0;
       Bauliste := (others => (True, 0));
 
       MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -60,9 +61,9 @@ package body InDerStadtBauen is
       if
         Bauliste (Ende).Nummer = 0
         and
-          Ende = 1
+          Ende = 0
       then
-         return 0;
+         return StadtKonstanten.LeerBauprojekt;
          
       elsif
         GlobaleVariablen.AnzeigeArt = SystemDatentypen.SFML
@@ -89,9 +90,9 @@ package body InDerStadtBauen is
                                                             IDExtern               => GebäudeSchleifenwert)
            = True
          then
+            EndeErhöhen;
             Bauliste (Ende).GebäudeEinheit := True;
-            Bauliste (Ende).Nummer := StadtKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
-            Ende := Ende + 1;
+            Bauliste (Ende).Nummer := GebäudeSchleifenwert;
             
          else
             null;
@@ -115,9 +116,9 @@ package body InDerStadtBauen is
                                                                IDExtern               => EinheitSchleifenwert)
            = True
          then
+            EndeErhöhen;
             Bauliste (Ende).GebäudeEinheit := False;
-            Bauliste (Ende).Nummer := EinheitenKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
-            Ende := Ende + 1;
+            Bauliste (Ende).Nummer := EinheitSchleifenwert;
             
          else
             null;
@@ -129,8 +130,25 @@ package body InDerStadtBauen is
    
    
    
+   procedure EndeErhöhen
+   is begin
+      
+      case
+        Ende
+      is
+         when EinheitStadtDatentypen.MinimimMaximumID'Last =>
+            Fehler.LogikStopp (FehlermeldungExtern => "InDerStadtBauen.EndeErhöhen - Ende ist über dem erlaubten Wert.");
+            
+         when others =>
+            Ende := Ende + 1;
+      end case;
+      
+   end EndeErhöhen;
+   
+   
+   
    function AuswahlBauprojektSFML
-     return Natural
+     return EinheitStadtRecords.BauprojektRecord
    is begin
       
       GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
@@ -151,13 +169,18 @@ package body InDerStadtBauen is
          is               
             when SystemDatentypen.Auswählen =>
                if
-                 AktuelleAuswahl <= 0
+                 AktuelleAuswahl < 0
                then
                   null;
                   
                else
+                  GewähltesBauprojekt := Bauliste (AktuelleAuswahl);
                   exit AuswahlSchleife;
                end if;
+               
+            when SystemDatentypen.Menü_Zurück =>
+               GewähltesBauprojekt := StadtKonstanten.LeerBauprojekt;
+               exit AuswahlSchleife;
                
             when others =>
                null;
@@ -167,7 +190,7 @@ package body InDerStadtBauen is
       
       InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
       
-      return 0;
+      return GewähltesBauprojekt;
       
    end AuswahlBauprojektSFML;
    
@@ -198,13 +221,13 @@ package body InDerStadtBauen is
          is
             when True =>
                Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (Bauliste (BaulisteSchleifenwert).Nummer)));
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Gebäude (2 * Positive (Bauliste (BaulisteSchleifenwert).Nummer) - 1)));
                
             when False =>
                Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (Bauliste (BaulisteSchleifenwert).Nummer)));
+                                                  str  => To_Wide_Wide_String (Source => GlobaleTexte.Einheiten (2 * Positive (Bauliste (BaulisteSchleifenwert).Nummer) - 1)));
          end case;
-               
+         
          if
            MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus.y)
            .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
@@ -227,7 +250,7 @@ package body InDerStadtBauen is
    
    
    function AuswahlBauprojektKonsole
-     return Natural
+     return EinheitStadtRecords.BauprojektRecord
    is begin
       
       AktuelleAuswahl := 1;
@@ -260,17 +283,17 @@ package body InDerStadtBauen is
                end if;
                               
             when SystemDatentypen.Auswählen =>
-               GewähltesBauprojekt := Bauliste (AktuelleAuswahl).Nummer;
+               GewähltesBauprojekt := Bauliste (AktuelleAuswahl);
                exit AuswahlSchleife;
 
             when SystemDatentypen.Menü_Zurück =>
                if
-                 AktuellesBauprojekt /= 0
+                 AktuellesBauprojekt.Nummer /= 0
                then
                   GewähltesBauprojekt := AktuellesBauprojekt;
                   
                else
-                  GewähltesBauprojekt := 0;
+                  GewähltesBauprojekt := StadtKonstanten.LeerBauprojekt;
                end if;
                
                exit AuswahlSchleife;

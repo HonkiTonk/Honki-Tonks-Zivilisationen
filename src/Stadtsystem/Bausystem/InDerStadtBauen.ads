@@ -12,15 +12,8 @@ with KartenRecords;
 
 package InDerStadtBauen is
 
-   type BaulisteRecord is record
-
-      GebäudeEinheit : Boolean;
-      Nummer : Natural;
-
-   end record;
-
    -- Im Array immer die größte Auswahlfläche reinschreiben, damit es bei allen funktioniert.
-   type BaulisteArray is array (EinheitStadtDatentypen.MinimimMaximumID'First + 2 .. EinheitStadtDatentypen.MinimimMaximumID'Last) of BaulisteRecord;
+   type BaulisteArray is array (EinheitStadtDatentypen.MinimimMaximumID'First + 2 .. EinheitStadtDatentypen.MinimimMaximumID'Last) of EinheitStadtRecords.BauprojektRecord;
    Bauliste : BaulisteArray;
 
    AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
@@ -36,13 +29,14 @@ package InDerStadtBauen is
 
 private
 
-   AktuellesBauprojekt : Natural;
-   NeuesBauprojekt : Natural;
    WasGebautWerdenSoll : Natural;
    Befehl : Natural;
-   GewähltesBauprojekt : Natural;
 
    Zeilenabstand : Float;
+
+   AktuellesBauprojekt : EinheitStadtRecords.BauprojektRecord;
+   NeuesBauprojekt : EinheitStadtRecords.BauprojektRecord;
+   GewähltesBauprojekt : EinheitStadtRecords.BauprojektRecord;
 
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
@@ -60,24 +54,23 @@ private
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
    procedure MausAuswahl;
+   procedure EndeErhöhen;
 
 
 
    function BauobjektAuswählen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return Natural
+      return EinheitStadtRecords.BauprojektRecord
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch),
-         Post =>
-           (BauobjektAuswählen'Result <= 99_999);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch);
 
    function AuswahlBauprojektSFML
-     return Natural;
+     return EinheitStadtRecords.BauprojektRecord;
 
    function AuswahlBauprojektKonsole
-     return Natural;
+     return EinheitStadtRecords.BauprojektRecord;
 
 end InDerStadtBauen;

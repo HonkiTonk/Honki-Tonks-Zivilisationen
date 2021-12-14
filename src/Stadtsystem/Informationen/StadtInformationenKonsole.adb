@@ -6,7 +6,6 @@ with Ada.Integer_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
-with EinheitenKonstanten;
 with StadtKonstanten;
 
 with LeseStadtGebaut;
@@ -17,7 +16,7 @@ with KampfwerteStadtErmitteln;
 with Cheat;
 with Fehler;
 
-package body StadtInformationen is
+package body StadtInformationenKonsole is
    
    procedure Stadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -324,42 +323,40 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      case
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
-      is
-         when StadtKonstanten.LeerBauprojekt =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                           TextDateiExtern        => GlobaleTexte.Zeug,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 28,
-                                           LetzteZeileExtern      => 28,
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+      if
+        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer = StadtKonstanten.LeerBauprojekt.Nummer
+      then
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                        TextDateiExtern        => GlobaleTexte.Zeug,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => 28,
+                                        LetzteZeileExtern      => 28,
+                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Leer);
             
-         when StadtKonstanten.BauprojekteGebäudeAnfang .. StadtKonstanten.BauprojekteGebäudeEnde =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag,
-                                           LetzteZeileExtern      => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag,
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+      elsif
+        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).GebäudeEinheit = True
+      then
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+                                        LetzteZeileExtern      => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Leer);
 
-         when StadtKonstanten.BauprojekteEinheitenAnfang .. StadtKonstanten.BauprojekteEinheitenEnde =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag,
-                                           LetzteZeileExtern      => LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - EinheitenKonstanten.EinheitAufschlag,
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Leer);
-            
-         when others =>
-            null;
-      end case;
+      else
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+                                        LetzteZeileExtern      => Positive (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer),
+                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Leer);
+      end if;
                                               
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Zeug,
@@ -496,4 +493,4 @@ package body StadtInformationen is
       
    end StadtfeldBewirtschaftet;
 
-end StadtInformationen;
+end StadtInformationenKonsole;

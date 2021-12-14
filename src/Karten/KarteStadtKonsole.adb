@@ -17,7 +17,7 @@ with LeseGebaeudeDatenbank;
 
 with KartePositionPruefen;
 with Karten;
-with StadtInformationen;
+with StadtInformationenKonsole;
 with Anzeige;
 with GebaeudeAllgemein;
 with KartenAllgemein;
@@ -36,8 +36,8 @@ package body KarteStadtKonsole is
       InformationenStadtAufrufen := False;
 
       GrafischeDarstellung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      StadtInformationen.Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
-                                StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtInformationenKonsole.Stadt (RasseExtern            => StadtRasseNummerExtern.Rasse,
+                                       StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       case
         InformationenStadtAufrufen
@@ -512,17 +512,17 @@ package body KarteStadtKonsole is
       end if;
       
       Put (Item => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => KartenWert)));
-      StadtInformationen.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert,
-                                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
-      StadtInformationen.EinzelnesFeldRessourcengewinnung (KoordinatenExtern => KartenWert,
-                                                           RasseExtern       => StadtRasseNummerExtern.Rasse);
-      StadtInformationen.EinzelnesFeldGeldgewinnung (KoordinatenExtern => KartenWert,
-                                                     RasseExtern       => StadtRasseNummerExtern.Rasse);
-      StadtInformationen.EinzelnesFeldWissensgewinnung (KoordinatenExtern => KartenWert,
-                                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
-      StadtInformationen.StadtfeldBewirtschaftet (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                  CursorYAchseabstraktionExtern => CursorYAchseabstraktion,
-                                                  CursorXAchseabstraktionExtern => CursorXAchseabstraktion);
+      StadtInformationenKonsole.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert,
+                                                                RasseExtern       => StadtRasseNummerExtern.Rasse);
+      StadtInformationenKonsole.EinzelnesFeldRessourcengewinnung (KoordinatenExtern => KartenWert,
+                                                                  RasseExtern       => StadtRasseNummerExtern.Rasse);
+      StadtInformationenKonsole.EinzelnesFeldGeldgewinnung (KoordinatenExtern => KartenWert,
+                                                            RasseExtern       => StadtRasseNummerExtern.Rasse);
+      StadtInformationenKonsole.EinzelnesFeldWissensgewinnung (KoordinatenExtern => KartenWert,
+                                                               RasseExtern       => StadtRasseNummerExtern.Rasse);
+      StadtInformationenKonsole.StadtfeldBewirtschaftet (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                         CursorYAchseabstraktionExtern => CursorYAchseabstraktion,
+                                                         CursorXAchseabstraktionExtern => CursorXAchseabstraktion);
       
    end WeitereInformationen;
 

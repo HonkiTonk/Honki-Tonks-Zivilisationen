@@ -51,9 +51,6 @@ package EinheitenKonstanten is
                                                                         Meldungen                    => (others => LeerMeldung)
                                                                        );
    
-   -- Den Aufschlag nach StadtKonstanten verschieben da er wohl nur beim Bauen in der Stadt benötigt wird?
-   EinheitAufschlag : constant Positive := 10_000;
-   
    EinheitBefehlAbzug : constant Positive := 22;
       
    LeerEinheitenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
@@ -61,7 +58,7 @@ package EinheitenKonstanten is
    LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPermanenteKosten : constant EinheitStadtDatentypen.GesamtePermanenteKosten := 0;
-   LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
+   LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
    LeerMaximaleLebenspunkte : constant EinheitStadtDatentypen.MaximaleEinheiten := EinheitStadtDatentypen.MaximaleEinheiten'First;
    LeerMaximaleBewegungspunkte : constant EinheitStadtDatentypen.BewegungFloat := 1.00;

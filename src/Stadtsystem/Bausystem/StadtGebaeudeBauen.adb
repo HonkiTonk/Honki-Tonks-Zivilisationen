@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with GlobaleTexte;
-with StadtKonstanten;
 with EinheitStadtDatentypen;
 
 with KIDatentypen;
@@ -19,8 +18,7 @@ package body StadtGebaeudeBauen is
    is begin
       
       GebaeudeAllgemein.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                   IDExtern               =>
-                                                     EinheitStadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - StadtKonstanten.GebäudeAufschlag));
+                                                   IDExtern               => EinheitStadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer));
             
       if
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Spieler_Mensch

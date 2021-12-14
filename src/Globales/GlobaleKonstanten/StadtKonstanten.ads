@@ -32,7 +32,7 @@ package StadtKonstanten is
    LeerGeldgewinnung : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
    LeerPermanenteKosten : constant EinheitStadtDatentypen.GesamtePermanenteKosten := 0;
    LeerForschungsrate : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
-   LeerBauprojekt : constant Natural := Natural'First;
+   LeerBauprojekt : constant EinheitStadtRecords.BauprojektRecord := (True, 0);
    LeerBauzeit : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerKorruption : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
    LeerGebäude : constant Boolean := False;
@@ -63,20 +63,13 @@ package StadtKonstanten is
                                                                   Meldungen               => (others => LeerMeldung),
                                                                   KIBeschäftigung         => LeerKIBeschäftigung
                                                                  );
-   
-   GebäudeAufschlag : constant Positive := 1_000;
-
-   BauprojekteGebäudeAnfang : constant Positive := 1_001;
-   BauprojekteGebäudeEnde : constant Positive := 9_999;
-   BauprojekteEinheitenAnfang : constant Positive := 10_001;
-   BauprojekteEinheitenEnde : constant Positive := 99_999;
 
    MaximaleBauzeit : constant EinheitStadtDatentypen.KostenLager := EinheitStadtDatentypen.KostenLager'Last;
    
    LeerGebäudeGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
    LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
+   LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPermanenterBonus : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerUmgebungBenötigt : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
    LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer;

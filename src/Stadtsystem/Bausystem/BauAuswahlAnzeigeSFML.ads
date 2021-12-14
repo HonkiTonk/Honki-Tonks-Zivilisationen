@@ -6,6 +6,8 @@ with Sf.Graphics.RectangleShape;
 with Sf.System.Vector2;
 
 with EinheitStadtDatentypen;
+with EinheitStadtRecords;
+
 with InDerStadtBauen;
 
 package BauAuswahlAnzeigeSFML is
@@ -17,7 +19,8 @@ private
    AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
    Ende : EinheitStadtDatentypen.MinimimMaximumID;
 
-   WelcherText : Positive;
+   WelcherTextKurz : Positive;
+   WelcherTextLang : Positive;
 
    Zeilenabstand : Float;
    AbstandÜberschrift : Float;
@@ -34,7 +37,6 @@ private
    Bauliste : InDerStadtBauen.BaulisteArray;
 
    procedure WeiterenTextAnzeigen
-     (WelcherTextExtern : in Natural;
-      GebäudeEinheitExtern : in Boolean);
+     (WelcherTextExtern : in EinheitStadtRecords.BauprojektRecord);
 
 end BauAuswahlAnzeigeSFML;

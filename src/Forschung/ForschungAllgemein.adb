@@ -61,18 +61,23 @@ package body ForschungAllgemein is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
          
+      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       WasErforschtWerdenSoll := AuswahlForschungNeu (RasseExtern => RasseExtern);
 
-      case
-        WasErforschtWerdenSoll
-      is
-         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
-            null;
+      if
+        WasErforschtWerdenSoll = ForschungKonstanten.LeerForschungAnforderung
+      then
+         null;
+         
+      elsif
+        WasErforschtWerdenSoll = AktuellesForschungsprojekt
+      then
+         null;
                
-         when others =>
-            SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
-                                                 ForschungIDExtern => WasErforschtWerdenSoll);
-      end case;
+      else
+         SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+                                              ForschungIDExtern => WasErforschtWerdenSoll);
+      end if;
       
    end Forschung;
 
@@ -84,7 +89,7 @@ package body ForschungAllgemein is
    is begin
       
       ForschungText := (others => (SystemKonstanten.LeerUnboundedString, 0));
-      Ende := 1;
+      Ende := 0;
 
       ForschungSchleife:
       for ForschungenSchleifenwert in EinheitStadtDatentypen.ForschungID loop
@@ -96,17 +101,16 @@ package body ForschungAllgemein is
                                          ForschungIDExtern => ForschungenSchleifenwert)
          is
             when True =>
+               Ende := Ende + 1;
                ForschungText (Ende).Text := GlobaleTexte.Forschungen (WelcherForschungstext);
                ForschungText (Ende).Nummer := Positive (ForschungenSchleifenwert);
-               Ende := Ende + 1;
                   
             when False =>
                null;
          end case;
                   
       end loop ForschungSchleife;
-
-      ForschungText (Ende).Text := GlobaleTexte.Forschungen (GlobaleTexte.Forschungen'Last - 1);
+      
       AktuelleAuswahl := 1;
       
       case
@@ -150,8 +154,13 @@ package body ForschungAllgemein is
                   null;
                   
                else
+                  GewählteForschung := EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
                   exit AuswahlSchleife;
                end if;
+               
+            when SystemDatentypen.Menü_Zurück =>
+               GewählteForschung := ForschungKonstanten.LeerForschungAnforderung;
+               exit AuswahlSchleife;
                
             when others =>
                null;
@@ -161,7 +170,7 @@ package body ForschungAllgemein is
       
       InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
       
-      return EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
+      return GewählteForschung;
       
    end ForschungAuswahlSFML;
    

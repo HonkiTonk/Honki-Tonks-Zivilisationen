@@ -52,6 +52,7 @@ private
 
    WasErforschtWerdenSoll : EinheitStadtDatentypen.ForschungIDMitNullWert;
    AktuellesForschungsprojekt : EinheitStadtDatentypen.ForschungIDMitNullWert;
+   GewählteForschung : EinheitStadtDatentypen.ForschungIDMitNullWert;
 
    AktuelleForschung : Positive;
    WelcherForschungstext : Positive;

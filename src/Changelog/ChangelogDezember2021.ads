@@ -98,31 +98,35 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (17.12.2021):
+   -- Version 0.00.96 => 0.00.9 (17.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.96 => 0.00.9 (16.12.2021):
+   -- Version 0.00.96 => 0.00.96 (16.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.96 => 0.00.96 (15.12.2021):
+   -- Version 0.00.9630 => 0.00.96 (15.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9610 => 0.00.96 (14.12.2021):
+   -- Version 0.00.9610 => 0.00.9630 (14.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Verwaltung der Bauprojekte von Städten überarbeitet.
+   -- SFML Stadtanzeige zeigt die Gebäude jetzt korrekt an.
+   -- Auswahl der Forschungen und Stadtproduktion so angepasst dass der vorhandene Fortschritt nicht mehr verloren geht wenn man das laufende Projekt noch eimal auswählt oder das aktuelle Projekt nicht geändert wird.
+   -- An der Steuerung herumgebastelt.
+   -- Angefangen die Textanzeigen der Stadt einzubauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

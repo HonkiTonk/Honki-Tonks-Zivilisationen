@@ -171,6 +171,13 @@ package body GebaeudeAllgemein is
          null;
          
       elsif
+        LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                             IDExtern    => IDExtern)
+        = ForschungKonstanten.ForschungUnmöglich
+      then
+         return False;
+         
+      elsif
         LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
                                  WelcheTechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                  IDExtern    => IDExtern))

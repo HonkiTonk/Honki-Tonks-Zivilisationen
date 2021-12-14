@@ -9,15 +9,13 @@ package KIStadtLaufendeBauprojekte is
 
    function StadtLaufendeBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BauprojektExtern : in Natural)
+      BauprojektExtern : in EinheitStadtRecords.BauprojektRecord)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI
-          and
-            BauprojektExtern <= 99_999);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI);
    
    function GleicheEinheitArtBauprojekte
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
