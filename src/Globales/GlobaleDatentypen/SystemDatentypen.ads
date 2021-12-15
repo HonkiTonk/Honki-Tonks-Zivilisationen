@@ -61,7 +61,7 @@ package SystemDatentypen is
    
    type Anzeige_Art_Enum is (Konsole, SFML);
    
-   type Welche_Eingabe_Enum is (Keine_Eingabe, Zahlen_Eingabe, Text_Eingabe);
+   type Welche_Eingabe_Enum is (Keine_Eingabe, Zahlen_Eingabe, Text_Eingabe, Einheit_Auswahl);
    
    type NotAus is range 1 .. 100;
    subtype NotAusKlein is NotAus range 1 .. 5;

@@ -50,7 +50,7 @@ package body BefehleSFML is
                                                    RasseExtern    => RasseExtern);
             
          when SystemDatentypen.Auswählen =>
-            AuswahlMaus (RasseExtern => RasseExtern);
+            AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when SystemDatentypen.Menü_Zurück =>
             return SystemDatentypen.Spielmenü;
@@ -132,17 +132,6 @@ package body BefehleSFML is
    
    
    
-   procedure AuswahlMaus
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      -- Hier später auf alles prüfen.
-      AuswahlEinheitStadt (RasseExtern => RasseExtern);
-      
-   end AuswahlMaus;
-   
-   
-   
    procedure AuswahlEinheitStadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -158,17 +147,13 @@ package body BefehleSFML is
           StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => 15),
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
         StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => SystemKonstanten.JaKonstante,
-                           StadtNummerExtern   => StadtNummer,
-                           EinheitNummerExtern => EinheitNummer);
+         StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
          
       elsif
         EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
@@ -211,12 +196,9 @@ package body BefehleSFML is
       is
          when EinheitenKonstanten.LeerNummer =>
             null;
-                        
+            
          when others =>
-            EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                              AuswahlExtern       => SystemKonstanten.NeinKonstante,
-                              StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
-                              EinheitNummerExtern => EinheitTransportNummer);
+            EinheitSteuern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
    end AuswahlEinheitTransporter;
@@ -225,20 +207,13 @@ package body BefehleSFML is
 
    procedure EinheitOderStadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      AuswahlExtern : in SystemDatentypen.Rückgabe_Werte_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
-      case
-        AuswahlExtern
-      is
-         when SystemKonstanten.JaKonstante =>
-            StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
-            
-         when others =>
-            EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
-      end case;
+      -- Hier eine grafische Abfrage einbauen.
+      StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
+      EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
       
    end EinheitOderStadt;
    

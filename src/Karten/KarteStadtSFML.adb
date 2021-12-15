@@ -1,6 +1,9 @@
 pragma SPARK_Mode (On);
 
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with Sf.Graphics.Color;
+with Sf.Graphics.RenderWindow;
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
@@ -16,6 +19,7 @@ with ObjekteZeichnenSFML;
 with Karten;
 with KartePositionPruefen;
 with StadtInformationenSFML;
+with GrafikEinstellungen;
 
 package body KarteStadtSFML is
 
@@ -211,6 +215,7 @@ package body KarteStadtSFML is
                                                   PositionExtern       => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
                                                   FarbeExtern          => Sf.Graphics.Color.sfBlack,
                                                   RechteckAccessExtern => RechteckAccess);
+            return;
       end case;
       
       if
@@ -225,6 +230,29 @@ package body KarteStadtSFML is
       else
          null;
       end if;
+      
+      case
+        LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                              KoordinatenExtern      => KartePositionExtern)
+      is
+         when True =>
+            Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
+                                                size  => (BerechnungenKarteSFML.StadtfelderAbmessung.x - 2.00, BerechnungenKarteSFML.StadtfelderAbmessung.y - 2.00));
+            Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,
+                                                    position => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y));
+            Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
+                                                     color => Sf.Graphics.Color.sfTransparent);
+            Sf.Graphics.RectangleShape.setOutlineColor (shape => RechteckRahmenAccess,
+                                                        color => Sf.Graphics.Color.sfBlack);
+            Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
+                                                            thickness => 2.00);
+            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+                                                         object       => RechteckRahmenAccess);
+            
+         when False =>
+            null;
+      end case;
+         
       
    end DarstellungUmgebungErweitert;
    

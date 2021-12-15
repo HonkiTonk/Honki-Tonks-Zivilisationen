@@ -91,30 +91,31 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (18.12.2021):
+   -- Version 0.00.96 => 0.00.9 (18.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.96 => 0.00.9 (17.12.2021):
+   -- Version 0.00.96 => 0.00.96 (17.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.96 => 0.00.96 (16.12.2021):
+   -- Version 0.00.9635 => 0.00.96 (16.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9630 => 0.00.96 (15.12.2021):
+   -- Version 0.00.9630 => 0.00.9635 (15.12.2021):
    
-   -- 
+   -- Die von einer Stadt belegten Felder werden jetzt grafisch im Stadtkartenfenster angezeigt.
+   -- Code vereinfacht.
    -- Kleinigkeiten korrigiert.
    
    

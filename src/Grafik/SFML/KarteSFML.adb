@@ -188,6 +188,7 @@ package body KarteSFML is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
+      -- Hier kann man die belegten Stadtfelder nicht einbauen. Eventuell über die Stdtgröße loopen, wenn eine Stadt gefunden wurde?
       EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
@@ -221,14 +222,14 @@ package body KarteSFML is
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                               PositionExtern      => Position,
                                               AnzahlEckenExtern   => 4,
                                               FarbeExtern         => Sf.Graphics.Color.sfYellow,
                                               PolygonAccessExtern => PolygonAccess);
             
       else
-         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
                                               PositionExtern      => Position,
                                               AnzahlEckenExtern   => 4,
                                               FarbeExtern         => Sf.Graphics.Color.sfYellow,
@@ -245,6 +246,7 @@ package body KarteSFML is
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
+      -- Das kann wohl raus, auf jeden Fall in der SFML Version.
       case
         InDerStadtExtern
       is

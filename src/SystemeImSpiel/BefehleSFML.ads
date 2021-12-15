@@ -38,7 +38,6 @@ private
 
    procedure EinheitOderStadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      AuswahlExtern : in SystemDatentypen.Rückgabe_Werte_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
    
@@ -66,8 +65,5 @@ private
    
    procedure EinheitSteuern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
-   
-   procedure AuswahlMaus
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end BefehleSFML;
