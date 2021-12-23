@@ -9,6 +9,9 @@ with EingabeSFML;
 with GrafikEinstellungen;
 with ObjekteZeichnenSFML;
 with EingabeSystemeSFML;
+with EinheitenBeschreibungen;
+with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
 package body AnzeigeEingabe is
 
@@ -106,5 +109,62 @@ package body AnzeigeEingabe is
                                          text         => TextAccess);
       
    end AnzeigeText;
+   
+   
+   
+   procedure AnzeigeEinheitenStadt
+   is begin
+      
+      Sf.Graphics.Text.setFont (text => TextAccess,
+                                font => GrafikEinstellungen.Schriftart);
+      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      
+      StadtRasseNummer := AuswahlStadtEinheit.StadtRasseNummer; -- Die zwei Dinger hier können später weg.
+      EinheitRasseNummer := AuswahlStadtEinheit.EinheitRasseNummer;
+      
+      AktuelleAuswahl := AuswahlStadtEinheit.AktuelleAuswahl;
+      WelcheAuswahl := AuswahlStadtEinheit.WelcheAuswahl;
+      
+      if
+        AktuelleAuswahl = 1
+      then
+         Sf.Graphics.Text.setColor (text  => TextAccess,
+                                    color => Sf.Graphics.Color.sfGreen);
+         
+      else
+         Sf.Graphics.Text.setColor (text  => TextAccess,
+                                    color => Sf.Graphics.Color.sfBlack);
+      end if;
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (2)) & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
+      Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
+                                                 (Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00)));
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                         text         => TextAccess);
+      
+      if
+        AktuelleAuswahl = -1
+      then
+         Sf.Graphics.Text.setColor (text  => TextAccess,
+                                    color => Sf.Graphics.Color.sfGreen);
+         
+      else
+         Sf.Graphics.Text.setColor (text  => TextAccess,
+                                    color => Sf.Graphics.Color.sfBlack);
+      end if;
+      
+      Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
+                                                 (Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00 + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00)));
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                         text         => TextAccess);
+      
+      
+   end AnzeigeEinheitenStadt;
 
 end AnzeigeEingabe;

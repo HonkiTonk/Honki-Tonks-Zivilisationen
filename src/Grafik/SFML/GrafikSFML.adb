@@ -146,7 +146,7 @@ package body GrafikSFML is
             AnzeigeEingabe.AnzeigeGanzeZahl;
             
          when SystemDatentypen.Einheit_Auswahl =>
-            null;
+            AnzeigeEingabe.AnzeigeEinheitenStadt;
             
          when SystemDatentypen.Keine_Eingabe =>
             null;

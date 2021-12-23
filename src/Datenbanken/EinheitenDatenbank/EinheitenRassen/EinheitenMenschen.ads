@@ -95,7 +95,7 @@ package EinheitenMenschen is
          Reichweite              => 2,
          Angriff                 => 3,
          Verteidigung            => 1,
-         KannTransportieren      => 0,
+         KannTransportieren      => 1,
          KannTransportiertWerden => 1,
          Transportkapazität      => 0),
                                                

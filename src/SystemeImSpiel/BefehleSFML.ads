@@ -6,6 +6,7 @@ with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with SystemRecords;
+with KartenDatentypen;
 
 package BefehleSFML is
    
@@ -18,6 +19,8 @@ private
    Transportiert : Boolean;
    AufgabeDurchführen : Boolean;
    NullWert : Boolean;
+   
+   Auswahl : KartenDatentypen.LoopRangeMinusEinsZuEins;
    
    Befehl : SystemDatentypen.Tastenbelegung_Enum;
 
@@ -42,9 +45,6 @@ private
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
    
    procedure BaueStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
-   
-   procedure Technologie
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure EinheitBefehle

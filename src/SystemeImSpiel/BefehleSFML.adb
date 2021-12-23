@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -9,11 +10,9 @@ with SystemKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
-with LeseWichtiges;
 
 with InDerStadt;
 with BewegungCursor;
-with Auswahl;
 with NaechstesObjekt;
 with Aufgaben;
 with Anzeige;
@@ -31,6 +30,7 @@ with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
 with BewegungEinheitenSFML;
+with AuswahlStadtEinheit;
 
 package body BefehleSFML is
    
@@ -59,7 +59,7 @@ package body BefehleSFML is
             BaueStadt (RasseExtern => RasseExtern);
            
          when SystemDatentypen.Forschung =>
-            Technologie (RasseExtern => RasseExtern);
+            ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
             
          when SystemDatentypen.Tech_Baum =>
             -- Kann in der SMFL Version ignoriert werden oder das auch in der Konsolenversion ändern und den Befehl komplett wegwerfen?
@@ -184,8 +184,8 @@ package body BefehleSFML is
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         EinheitTransportNummer:= EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern =>
-                                                                                       (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+         EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern =>
+                                                                                        (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
 
       else
          EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -211,9 +211,20 @@ package body BefehleSFML is
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
-      -- Hier eine grafische Abfrage einbauen.
-      StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
-      EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
+      case
+        AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => RasseExtern,
+                                                 StadtNummerExtern   => StadtNummerExtern,
+                                                 EinheitNummerExtern => EinheitNummerExtern)
+      is
+         when 1 =>
+            StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
+            
+         when -1 =>
+            EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
+               
+         when others =>
+            null;
+      end case;
       
    end EinheitOderStadt;
    
@@ -281,36 +292,6 @@ package body BefehleSFML is
       end if;
       
    end BaueStadt;
-   
-   
-   
-   procedure Technologie
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      case
-        LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
-      is
-         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
-            ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
-            return;
-            
-         when others =>
-            null;
-      end case;
-          
-      -- Aktuell keine Sicherheitsabfrage aktiv.
-      --  case
-      --    Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
-      --  is
-      --     when SystemKonstanten.JaKonstante =>
-      ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
-                     
-      --     when others =>
-      --       null;
-      --  end case;
-      
-   end Technologie;
    
    
    
@@ -404,15 +385,15 @@ package body BefehleSFML is
             null;
       end case;
          
-      case
-        Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
-      is
-         when SystemKonstanten.JaKonstante =>
-            StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+      -- case
+      --    Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
+      --  is
+      --     when SystemKonstanten.JaKonstante =>
+      StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
-         when others =>
-            null;
-      end case;
+      --   when others =>
+      --      null;
+      --  end case;
       
    end StadtAbreißen;
 

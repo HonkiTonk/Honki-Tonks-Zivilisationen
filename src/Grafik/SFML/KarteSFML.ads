@@ -65,7 +65,8 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f);
 
    procedure AnzeigeStadt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);

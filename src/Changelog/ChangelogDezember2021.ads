@@ -49,66 +49,64 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (24.12.2021):
+   -- Version 0.00.96 => 0.00.9 (24.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (23.12.2021):
+   -- Version 0.00.9650 => 0.00.96 (23.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (22.12.2021):
+   -- Version 0.00.9635 => 0.00.9650 (22.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-   
-   -- Version 0.00.9 => 0.00.9 (21.12.2021):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Eigene und fremde Städte werden jetzt unterschiedlich dargestellt.
+   -- Haupt- und normale Städte unterscheiden sich jetzt.
+   -- Unnötigen Code gelöscht.
+   -- Es ist jetzt in der SFML Anzeige möglich sich zwischen Stadt und Einheit zu entscheiden wenn sich eine Einheit auf einer Stadt befindet.
+   -- Angefangen die Auswahlmöglichkeit für Stadt/Einheit zu verbessern so dass sie auch für Transporter mit Einheiten funktioniert.
+   -- Kleinigkeiten korrigiert/Angepasst.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (20.12.2021):
+   -- Version 0.00.9635 => 0.00.9635 (21.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-   
-   -- Version 0.00.9 => 0.00.9 (19.12.2021):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    
-   -- Version 0.00.96 => 0.00.9 (18.12.2021):
+   -- Version 0.00.9635 => 0.00.9635 (20.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-   
-   -- Version 0.00.96 => 0.00.96 (17.12.2021):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    
-   -- Version 0.00.9635 => 0.00.96 (16.12.2021):
+   -- Version 0.00.9635 => 0.00.9635 (19.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+   
+   -- Version 0.00.9635 => 0.00.9635 (18.12.2021):
+   
+   -- null.
+   
+   
+   
+   -- Version 0.00.9635 => 0.00.9635 (17.12.2021):
+   
+   -- null.
+   
+   
+   
+   -- Version 0.00.9635 => 0.00.9635 (16.12.2021):
+   
+   -- null.
    
    
    

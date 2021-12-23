@@ -20,6 +20,7 @@ with Karten;
 with KartePositionPruefen;
 with StadtInformationenSFML;
 with GrafikEinstellungen;
+with Fehler;
 
 package body KarteStadtSFML is
 
@@ -221,11 +222,26 @@ package body KarteStadtSFML is
       if
         LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern) = KartePositionExtern
       then
-         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 5.00,
-                                              PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
-                                              AnzahlEckenExtern   => 5,
-                                              FarbeExtern         => Sf.Graphics.Color.sfYellow,
-                                              PolygonAccessExtern => PolygonAccess);
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
+         is
+            when KartenDatentypen.Eigene_Hauptstadt =>
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 6.00,
+                                                    PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                                    AnzahlEckenExtern   => 6,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                                    PolygonAccessExtern => PolygonAccess);
+               
+            when KartenDatentypen.Eigene_Stadt =>
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 5.00,
+                                                    PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                                    AnzahlEckenExtern   => 5,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                                    PolygonAccessExtern => PolygonAccess);
+               
+            when KartenDatentypen.Leer =>
+               Fehler.LogikStopp (FehlermeldungExtern => "KarteStadtSFML.DarstellungUmgebungErweitert - Vorhandene Stadt ist nicht vorhanden.");
+         end case;
          
       else
          null;

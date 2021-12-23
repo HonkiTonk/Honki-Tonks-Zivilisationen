@@ -7,6 +7,7 @@ with EinheitenKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
+with LeseStadtGebaut;
 
 with KartePositionPruefen;
 with EinheitSuchen;
@@ -97,7 +98,8 @@ package body KarteSFML is
       AnzeigeLandschaft (KoordinatenExtern => KoordinatenExtern,
                          PositionExtern    => Position);
             
-      AnzeigeStadt (KoordinatenExtern => KoordinatenExtern);
+      AnzeigeStadt (KoordinatenExtern => KoordinatenExtern,
+                    RasseExtern       => RasseExtern);
             
       AnzeigeEinheit (KoordinatenExtern => KoordinatenExtern);
             
@@ -185,23 +187,63 @@ package body KarteSFML is
    
    
    procedure AnzeigeStadt
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- Hier kann man die belegten Stadtfelder nicht einbauen. Eventuell über die Stdtgröße loopen, wenn eine Stadt gefunden wurde?
+      -- Hier kann man die belegten Stadtfelder nicht einbauen. Eventuell über die Stadtgröße loopen, wenn eine Stadt gefunden wurde?
       EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
         EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
       then
          null;
+         
+      elsif
+        EinheitStadtRasseNummer.Rasse = RasseExtern
+      then
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer)
+         is
+            when KartenDatentypen.Eigene_Hauptstadt =>
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
+                                                    PositionExtern      => Position,
+                                                    AnzahlEckenExtern   => 6,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                                    PolygonAccessExtern => PolygonAccess);
+               
+            when KartenDatentypen.Eigene_Stadt =>
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                                    PositionExtern      => Position,
+                                                    AnzahlEckenExtern   => 5,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                                    PolygonAccessExtern => PolygonAccess);
+               
+            when KartenDatentypen.Leer =>
+               Fehler.LogikStopp (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene, eigene Stadt ist nicht vorhanden.");
+         end case;
             
       else
-         ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                              PositionExtern      => Position,
-                                              AnzahlEckenExtern   => 5,
-                                              FarbeExtern         => Sf.Graphics.Color.sfYellow,
-                                              PolygonAccessExtern => PolygonAccess);
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer)
+         is
+            when KartenDatentypen.Eigene_Hauptstadt =>
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
+                                                    PositionExtern      => Position,
+                                                    AnzahlEckenExtern   => 6,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfYellow,
+                                                    PolygonAccessExtern => PolygonAccess);
+               
+            when KartenDatentypen.Eigene_Stadt =>
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                                    PositionExtern      => Position,
+                                                    AnzahlEckenExtern   => 5,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfYellow,
+                                                    PolygonAccessExtern => PolygonAccess);
+               
+            when KartenDatentypen.Leer =>
+               Fehler.LogikStopp (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene, fremde Stadt ist nicht vorhanden.");
+         end case;
       end if;
       
    end AnzeigeStadt;
