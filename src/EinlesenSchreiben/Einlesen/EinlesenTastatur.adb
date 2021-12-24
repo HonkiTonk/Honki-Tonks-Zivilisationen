@@ -17,10 +17,10 @@ package body EinlesenTastatur is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             BelegungKonsole;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             BelegungSFML;
       end case;
       

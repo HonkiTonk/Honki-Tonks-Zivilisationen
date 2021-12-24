@@ -14,7 +14,7 @@ private
    
    WelchesBild : Positive;
 
-   Sprite : Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
+   SpriteAccess : Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
       
    procedure HintergrundbildLaden
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum);

@@ -52,10 +52,10 @@ package body EinlesenTexturen is
    procedure EinlesenKartenfelder
    is begin
       
-      EingeleseneTexturen.Kartenfelder := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Kartenfelder.png");
+      EingeleseneTexturen.KartenfelderAccess := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Kartenfelder.png");
          
       if
-        EingeleseneTexturen.Kartenfelder = null
+        EingeleseneTexturen.KartenfelderAccess = null
       then
          Fehler.GrafikStopp (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrundMenüs - EingeleseneTexturen.Kartenfelder = null");
             

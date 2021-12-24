@@ -27,7 +27,7 @@ package body EingabeSystemeSFML is
       EingabeSchleife:
       while SchleifeVerlassen = False loop
          TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
+         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.FensterAccess,
                                                    event        => ZeichenEingeben)
            = Sf.sfTrue loop
             
@@ -89,7 +89,7 @@ package body EingabeSystemeSFML is
       EingabeSchleife:
       loop
          TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.Fenster,
+         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.FensterAccess,
                                                    event        => TextEingegeben)
            = Sf.sfTrue loop
             
@@ -99,7 +99,6 @@ package body EingabeSystemeSFML is
                when Sf.Window.Event.sfEvtTextEntered =>
                   TextPrüfen (UnicodeNummerExtern => TextEingegeben.text.unicode);
                
-                  -- Im aktuellen System gibt es gar kein Abbruch für Speichern/Laden/Städtbau/usw., oder?
                when Sf.Window.Event.sfEvtKeyPressed =>
                   if
                     TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
@@ -150,7 +149,7 @@ package body EingabeSystemeSFML is
         EingegebenesZeichen
       is
          when ESC =>
-            null; -- Kann ich ESC hier nicht entfernen wenn ich es bei der Eingebae bereits prüfe?
+            null; -- Kann ich ESC hier nicht entfernen wenn ich es bei der Eingabe bereits prüfe?
             
          when BS | DEL =>
             ZeichenEntfernen;

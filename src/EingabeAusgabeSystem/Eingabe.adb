@@ -18,12 +18,12 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             return EingabeKonsole.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
                                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                                              WelcheFrageExtern   => ZeileExtern);
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             return EingabeSFML.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
                                           ZahlenMaximumExtern => ZahlenMaximumExtern,
                                           WelcheFrageExtern   => ZeileExtern);
@@ -40,10 +40,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             return EingabeKonsole.StadtName;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             return EingabeSFML.StadtName;
       end case;
       
@@ -58,10 +58,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             return EingabeKonsole.SpielstandName;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             return EingabeSFML.SpielstandName;
       end case;
       
@@ -75,10 +75,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             EingabeKonsole.WartenEingabe;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             EingabeSFML.WartenEingabe;
       end case;
       
@@ -93,10 +93,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             return EingabeKonsole.Tastenwert;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             return EingabeSFML.Tastenwert;
       end case;
       
@@ -110,10 +110,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             EingabeKonsole.StandardTastenbelegungLaden;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             EingabeSFML.StandardTastenbelegungLaden;
       end case;
       

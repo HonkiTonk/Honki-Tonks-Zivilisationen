@@ -28,7 +28,7 @@ package body BauAuswahlAnzeigeSFML is
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
       
       GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                                FontExtern         => GrafikEinstellungen.Schriftart,
+                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
                                                 SchriftgrößeExtern => 2 * GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
                                                 FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeÜberschrift);
       
@@ -40,7 +40,7 @@ package body BauAuswahlAnzeigeSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (9)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), StartPositionText.y));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00 * Zeilenabstand;
@@ -81,7 +81,7 @@ package body BauAuswahlAnzeigeSFML is
          
          Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => TextPosition);
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                             text         => TextAccess);
          
          TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
@@ -128,7 +128,7 @@ package body BauAuswahlAnzeigeSFML is
                                  color => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
    end WeiterenTextAnzeigen;

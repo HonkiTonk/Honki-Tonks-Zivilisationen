@@ -100,7 +100,7 @@ package body TextAnzeigeSFML is
                                     position => PositionExtern);
       Sf.Graphics.Text.setColor (text  => TextAccessExtern,
                                  color => AktuelleTextFarbe);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccessExtern);
       
    end TextZeichnen;

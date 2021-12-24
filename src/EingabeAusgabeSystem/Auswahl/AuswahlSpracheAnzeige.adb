@@ -20,7 +20,7 @@ package body AuswahlSpracheAnzeige is
       AktuelleSprachen := AuswahlSprache.AktuelleSprachen;
       ZeilenAbstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.Schriftart);
+                                font => GrafikEinstellungen.SchriftartAccess);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       
@@ -51,7 +51,7 @@ package body AuswahlSpracheAnzeige is
                                           position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), YPosition));
             Sf.Graphics.Text.setColor (text  => TextAccess,
                                        color => AktuelleTextFarbe);
-            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                                text         => TextAccess);
          
             YPosition := YPosition + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * ZeilenAbstand;
@@ -88,7 +88,7 @@ package body AuswahlSpracheAnzeige is
                                                  position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), YPosition + 15.00));
             Sf.Graphics.ConvexShape.setFillColor (shape => PfeilAccess,
                                                   color => AktuelleTextFarbe);
-            Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => GrafikEinstellungen.Fenster,
+            Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => GrafikEinstellungen.FensterAccess,
                                                       object       => PfeilAccess);
             
          else

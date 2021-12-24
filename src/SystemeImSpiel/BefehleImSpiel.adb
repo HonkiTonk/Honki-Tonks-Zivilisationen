@@ -13,10 +13,10 @@ package body BefehleImSpiel is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             return BefehleKonsole.BefehleKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             return BefehleSFML.BefehleSFML (RasseExtern => RasseExtern);
       end case;
       

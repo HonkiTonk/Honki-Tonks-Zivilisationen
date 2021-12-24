@@ -53,13 +53,13 @@ package SystemDatentypen is
    subtype Rassen_Enum is Rückgabe_Werte_Enum range Keine_Rasse .. Ekropa;
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen .. Ekropa;
    
-   type Grafik_Aktuelle_Darstellung_Enum is (Konsole_Start, SFML_Start, Grafik_Intro,
+   type Grafik_Aktuelle_Darstellung_Enum is (Grafik_Konsole, Grafik_SFML, Grafik_Intro,
                                              Grafik_Pause,
                                              Grafik_Menüs, Grafik_Sprache,
-                                             Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, Grafik_Bauen, -- Grafik_Handeln, (in die Menüs schieben? geht so nicht in die Menüs.)
+                                             Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, Grafik_Bauen, -- Grafik_Handeln, (in die Menüs schieben? Geht so nicht in die Menüs.)
                                              Grafik_Ende);
    
-   type Anzeige_Art_Enum is (Konsole, SFML);
+   subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Konsole .. Grafik_SFML;
    
    type Welche_Eingabe_Enum is (Keine_Eingabe, Zahlen_Eingabe, Text_Eingabe, Einheit_Auswahl);
    

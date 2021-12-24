@@ -82,10 +82,10 @@ package body GrafikSFML is
       case
         InteraktionTasks.AktuelleDarstellung
       is
-         when SystemDatentypen.Konsole_Start =>
+         when SystemDatentypen.Grafik_Konsole =>
             Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Konsole wird bei SFML aufgerufen.");
             
-         when SystemDatentypen.SFML_Start =>
+         when SystemDatentypen.Grafik_SFML =>
             InteraktionTasks.FensterErzeugt := True;
             InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
             

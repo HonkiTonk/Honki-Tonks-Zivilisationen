@@ -24,7 +24,7 @@ package body AuswahlStadtEinheit is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.Schriftart);
+                                font => GrafikEinstellungen.SchriftartAccess);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;

@@ -28,7 +28,7 @@ package body StadtInformationenSFML is
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
       
       GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                                FontExtern         => GrafikEinstellungen.Schriftart,
+                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
                                                 SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
                                                 FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
       
@@ -105,7 +105,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (Stadtart)) & " " & StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -134,7 +134,7 @@ package body StadtInformationenSFML is
                                                                                                                                                   EinwohnerArbeiterExtern => True)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -151,7 +151,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (6)) & LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -168,7 +168,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (7)) & LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -185,7 +185,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (8)) & LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -202,7 +202,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (9)) & LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -219,7 +219,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (10)) & LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -237,7 +237,7 @@ package body StadtInformationenSFML is
                                          & KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -255,7 +255,7 @@ package body StadtInformationenSFML is
                                          & KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -272,7 +272,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (11)) & LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -292,7 +292,7 @@ package body StadtInformationenSFML is
                                                                                                                                                              EinwohnerArbeiterExtern => False))'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -323,7 +323,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (12)) & To_Wide_Wide_String (Source => Text));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -334,7 +334,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (13)) & LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -353,7 +353,7 @@ package body StadtInformationenSFML is
                                                                                                                                              RasseExtern       => RasseExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -372,7 +372,7 @@ package body StadtInformationenSFML is
                                                                                                                                                 RasseExtern       => RasseExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -391,7 +391,7 @@ package body StadtInformationenSFML is
                                                                                                                                           RasseExtern       => RasseExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -410,7 +410,7 @@ package body StadtInformationenSFML is
                                                                                                                                             RasseExtern       => RasseExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -441,7 +441,7 @@ package body StadtInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (42)) & To_Wide_Wide_String (Source => Text));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;

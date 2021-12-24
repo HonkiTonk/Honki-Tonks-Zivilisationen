@@ -45,7 +45,7 @@ package body AuswahlMenue is
 
       WelchesMenü := WelchesMenüExtern;
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.Schriftart);
+                                font => GrafikEinstellungen.SchriftartAccess);
       Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
       Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
       ZeilenAbstand := 0.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);

@@ -31,7 +31,7 @@ package body InformationenEinheitenSFML is
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
       
       GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                                FontExtern         => GrafikEinstellungen.Schriftart,
+                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
                                                 SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
                                                 FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
       
@@ -87,7 +87,7 @@ package body InformationenEinheitenSFML is
                                          str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -108,7 +108,7 @@ package body InformationenEinheitenSFML is
                                                                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -127,7 +127,7 @@ package body InformationenEinheitenSFML is
                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -146,7 +146,7 @@ package body InformationenEinheitenSFML is
                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -164,7 +164,7 @@ package body InformationenEinheitenSFML is
                                          & EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -182,7 +182,7 @@ package body InformationenEinheitenSFML is
                                          & LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -201,7 +201,7 @@ package body InformationenEinheitenSFML is
                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -220,7 +220,7 @@ package body InformationenEinheitenSFML is
                                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -239,7 +239,7 @@ package body InformationenEinheitenSFML is
                                                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -268,7 +268,7 @@ package body InformationenEinheitenSFML is
       
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -286,7 +286,7 @@ package body InformationenEinheitenSFML is
                                                                                                                                                                         AngreiferExtern          => False)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -304,7 +304,7 @@ package body InformationenEinheitenSFML is
                                                                                                                                                                     AngreiferExtern          => False)'Wide_Wide_Image);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -346,7 +346,7 @@ package body InformationenEinheitenSFML is
                                                      str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (50)));
                   Sf.Graphics.Text.setPosition (text     => TextAccess,
                                                 position => PositionText);
-                  Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                  Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                                      text         => TextAccess);
       
                   PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -360,7 +360,7 @@ package body InformationenEinheitenSFML is
                                                                                                                                                             PlatzExtern              => LadungSchleifenwert)))));
                   Sf.Graphics.Text.setPosition (text     => TextAccess,
                                                 position => PositionText);
-                  Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                  Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                                      text         => TextAccess);
       
                   PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -377,7 +377,7 @@ package body InformationenEinheitenSFML is
                                                                                                                                                             PlatzExtern              => LadungSchleifenwert)))));
                   Sf.Graphics.Text.setPosition (text     => TextAccess,
                                                 position => PositionText);
-                  Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                  Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                                      text         => TextAccess);
       
                   PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;

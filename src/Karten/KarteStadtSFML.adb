@@ -262,7 +262,7 @@ package body KarteStadtSFML is
                                                         color => Sf.Graphics.Color.sfBlack);
             Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
                                                             thickness => 2.00);
-            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.FensterAccess,
                                                          object       => RechteckRahmenAccess);
             
          when False =>

@@ -9,6 +9,7 @@ with GrafikEinstellungen;
 
 package body ObjekteZeichnenSFML is
 
+   -- Für alle eine Accessprüfung auf = null einbauen
    procedure RechteckZeichnen
      (AbmessungExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -38,7 +39,7 @@ package body ObjekteZeichnenSFML is
                                                  position => PositionExtern);
          Sf.Graphics.RectangleShape.setFillColor (shape => RechteckAccessExtern,
                                                   color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.Fenster,
+         Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.FensterAccess,
                                                       object       => RechteckAccessExtern);
       end if;
       
@@ -65,7 +66,7 @@ package body ObjekteZeichnenSFML is
                                               position => PositionExtern);
          Sf.Graphics.CircleShape.setFillColor (shape => KreisAccessExtern,
                                                color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.Fenster,
+         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.FensterAccess,
                                                    object       => KreisAccessExtern);
       end if;
       
@@ -95,7 +96,7 @@ package body ObjekteZeichnenSFML is
                                               position => PositionExtern);
          Sf.Graphics.CircleShape.setFillColor (shape => PolygonAccessExtern,
                                                color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.Fenster,
+         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungen.FensterAccess,
                                                    object       => PolygonAccessExtern);
       end if;
       

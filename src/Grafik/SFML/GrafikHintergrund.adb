@@ -13,10 +13,10 @@ package body GrafikHintergrund is
       
       HintergrundbildLaden (WelchesMenüExtern => WelchesMenüExtern);
       
-      Sf.Graphics.Sprite.setTexture (sprite  => Sprite,
+      Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
                                      texture => EingeleseneTexturen.Hintergrund (WelchesBild));
-      Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungen.Fenster,
-                                           object       => Sprite);
+      Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungen.FensterAccess,
+                                           object       => SpriteAccess);
       
    end HintergrundMenü;
    

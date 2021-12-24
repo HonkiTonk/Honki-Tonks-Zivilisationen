@@ -22,7 +22,7 @@ package body AnzeigeEingabe is
       WelcheFrage := EingabeSFML.Frage;
       
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.Schriftart);
+                                font => GrafikEinstellungen.SchriftartAccess);
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrage)));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
@@ -38,7 +38,7 @@ package body AnzeigeEingabe is
                                             FarbeExtern          => Sf.Graphics.Color.sfBlack,
                                             RechteckAccessExtern => RechteckAccess);
       
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
@@ -64,7 +64,7 @@ package body AnzeigeEingabe is
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00
                                                  - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 150.00));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
    end AnzeigeGanzeZahl;
@@ -77,7 +77,7 @@ package body AnzeigeEingabe is
       WelcheFrage := EingabeSFML.Frage;
       
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.Schriftart);
+                                font => GrafikEinstellungen.SchriftartAccess);
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrage)));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
@@ -93,7 +93,7 @@ package body AnzeigeEingabe is
                                             FarbeExtern          => Sf.Graphics.Color.sfBlack,
                                             RechteckAccessExtern => RechteckAccess);
       
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
@@ -106,7 +106,7 @@ package body AnzeigeEingabe is
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00
                                                  - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00), 150.00));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
    end AnzeigeText;
@@ -118,7 +118,7 @@ package body AnzeigeEingabe is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.Schriftart);
+                                font => GrafikEinstellungen.SchriftartAccess);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
@@ -178,7 +178,7 @@ package body AnzeigeEingabe is
             end if;
             Sf.Graphics.Text.setPosition (text     => TextAccess,
                                           position => (TextPosition.x - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00, TextPosition.y));
-            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                                text         => TextAccess);
             TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
          end if;

@@ -19,20 +19,20 @@ package body GrafikStartEnde is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
             
-         when SystemDatentypen.SFML =>
-            GrafikEinstellungen.Fenster := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungen.FensterEinstellungen.FensterBreite,
-                                                                                             GrafikEinstellungen.FensterEinstellungen.FensterHöhe,
-                                                                                             GrafikEinstellungen.FensterEinstellungen.Farbtiefe),
-                                                                                   title => Name);
+         when SystemDatentypen.Grafik_SFML =>
+            GrafikEinstellungen.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungen.FensterEinstellungen.FensterBreite,
+                                                                                                   GrafikEinstellungen.FensterEinstellungen.FensterHöhe,
+                                                                                                   GrafikEinstellungen.FensterEinstellungen.Farbtiefe),
+                                                                                         title => Name);
             GrafikEinstellungen.AktuelleFensterAuflösung.x := GrafikEinstellungen.FensterEinstellungen.FensterBreite;
             GrafikEinstellungen.AktuelleFensterAuflösung.y := GrafikEinstellungen.FensterEinstellungen.FensterHöhe;
       end case;
 
       if
-        GrafikEinstellungen.Fenster = null
+        GrafikEinstellungen.FensterAccess = null
       then
          Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Das Fenster ist null.");
 
@@ -40,7 +40,6 @@ package body GrafikStartEnde is
          GrafikAllgemein.MauszeigerFestlegen;
          GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => GrafikEinstellungen.FensterEinstellungen.Bildrate);
          GrafikAllgemein.SchriftartFestlegen;
-         GrafikAllgemein.TextAllgemeinFestlegen;
       end if;
       
    end FensterErzeugen;
@@ -50,7 +49,7 @@ package body GrafikStartEnde is
    procedure FensterEntfernen
    is begin
       
-      Sf.Graphics.RenderWindow.destroy (renderWindow => GrafikEinstellungen.Fenster);
+      Sf.Graphics.RenderWindow.destroy (renderWindow => GrafikEinstellungen.FensterAccess);
       
    end FensterEntfernen;
    
@@ -59,7 +58,7 @@ package body GrafikStartEnde is
    procedure FensterLeeren
    is begin
       
-      Sf.Graphics.RenderWindow.clear (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.clear (renderWindow => GrafikEinstellungen.FensterAccess,
                                       color        => Sf.Graphics.Color.sfBlack);
       
    end FensterLeeren;
@@ -69,7 +68,7 @@ package body GrafikStartEnde is
    procedure FensterAnzeigen
    is begin
       
-      Sf.Graphics.RenderWindow.display (renderWindow => GrafikEinstellungen.Fenster);
+      Sf.Graphics.RenderWindow.display (renderWindow => GrafikEinstellungen.FensterAccess);
       
    end FensterAnzeigen;
 

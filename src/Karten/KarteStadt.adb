@@ -15,10 +15,10 @@ package body KarteStadt is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             KarteStadtKonsole.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             KarteStadtSFML.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end case;
       

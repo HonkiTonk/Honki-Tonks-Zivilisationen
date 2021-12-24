@@ -26,7 +26,7 @@ package body Anzeige is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             TextAnzeigeKonsole.AnzeigeOhneAuswahl (ÜberschriftDateiExtern => ÜberschriftDateiExtern,
                                                    TextDateiExtern        => TextDateiExtern,
                                                    ÜberschriftZeileExtern => ÜberschriftZeileExtern,
@@ -36,21 +36,21 @@ package body Anzeige is
                                                    AbstandMitteExtern     => AbstandMitteExtern,
                                                    AbstandEndeExtern      => AbstandEndeExtern);
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             null;
       end case;
       
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             TextAnzeigeSFML.AnzeigeOhneAuswahl (ÜberschriftDateiExtern => ÜberschriftDateiExtern,
                                                 TextDateiExtern        => TextDateiExtern,
                                                 ÜberschriftZeileExtern => ÜberschriftZeileExtern,
                                                 ErsteZeileExtern       => ErsteZeileExtern,
                                                 LetzteZeileExtern      => LetzteZeileExtern);
             
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             null;
       end case;
       
@@ -99,7 +99,7 @@ package body Anzeige is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             TextAnzeigeKonsole.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,
                                                   TextDateiExtern             => TextDateiExtern,
                                                   FrageZeileExtern            => FrageZeileExtern,
@@ -107,14 +107,14 @@ package body Anzeige is
                                                   LetzteZeileExtern           => LetzteZeileExtern,
                                                   AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             null;
       end case;
       
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             -- TextAnzeigeSFML.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,
             --                                   TextDateiExtern             => TextDateiExtern,
             --                                   FrageZeileExtern            => FrageZeileExtern,
@@ -123,7 +123,7 @@ package body Anzeige is
             --                                   AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
             null;
             
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             null;
       end case;
       

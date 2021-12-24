@@ -62,10 +62,10 @@ package body OptionenSteuerung is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             AlteTasteEntfernenKonsole;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             AlteTasteEntfernenSFML;
       end case;
       
@@ -182,10 +182,10 @@ package body OptionenSteuerung is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             AlteTasteEntfernenKonsole;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             NeueTasteFestlegenSFML;
       end case;
       

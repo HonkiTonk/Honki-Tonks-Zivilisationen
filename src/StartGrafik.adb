@@ -31,10 +31,10 @@ package body StartGrafik is
       case
         InteraktionTasks.AktuelleDarstellung
       is
-         when SystemDatentypen.Konsole_Start =>
+         when SystemDatentypen.Grafik_Konsole =>
             GrafikKonsole.GrafikKonsole;
             
-         when SystemDatentypen.SFML_Start =>
+         when SystemDatentypen.Grafik_SFML =>
             GrafikSFML.GrafikSFML;
             
          when others =>

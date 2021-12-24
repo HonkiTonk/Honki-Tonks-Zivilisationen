@@ -22,11 +22,11 @@ package body GrafikKonsole is
          case
            InteraktionTasks.AktuelleDarstellung
          is
-            when SystemDatentypen.Konsole_Start =>
+            when SystemDatentypen.Grafik_Konsole =>
                InteraktionTasks.FensterErzeugt := True;
                InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
             
-            when SystemDatentypen.SFML_Start =>
+            when SystemDatentypen.Grafik_SFML =>
                Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Konsole wird bei SFML aufgerufen.");
                
             when SystemDatentypen.Grafik_Sprache =>

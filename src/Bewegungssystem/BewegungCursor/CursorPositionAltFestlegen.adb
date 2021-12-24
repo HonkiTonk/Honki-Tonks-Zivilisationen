@@ -18,11 +18,11 @@ package body CursorPositionAltFestlegen is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             AlteYAchseFestlegenKonsole (RasseExtern => RasseExtern);
             AlteXAchseFestlegenKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             AlteYAchseFestlegenSFML (RasseExtern => RasseExtern);
             AlteXAchseFestlegenSFML (RasseExtern => RasseExtern);
       end case;

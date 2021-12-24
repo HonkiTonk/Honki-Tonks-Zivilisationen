@@ -10,7 +10,7 @@ package body GrafikTextAllgemein is
    -- Das hier als "globale" Aufrufprozedur verwenden und dann kleinere Sachen Aufrufen um die einzelnen Teile auch so zu nutzen? Sinnvoll oder zu kleinteilig und nutzlos?
    procedure TextAccessEinstellen
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
-      FontExtern : in Sf.Graphics.sfFont_Ptr;
+      FontAccessExtern : in Sf.Graphics.sfFont_Ptr;
       SchriftgrößeExtern : in Sf.sfUint32;
       FarbeExtern : in Sf.Graphics.Color.sfColor)
    is begin
@@ -25,7 +25,7 @@ package body GrafikTextAllgemein is
       end if;
       
       Sf.Graphics.Text.setFont (text => TextAccessExtern,
-                                font => FontExtern);
+                                font => FontAccessExtern);
       Sf.Graphics.Text.setCharacterSize (text => TextAccessExtern,
                                          size => SchriftgrößeExtern);
       Sf.Graphics.Text.setColor (text  => TextAccessExtern,

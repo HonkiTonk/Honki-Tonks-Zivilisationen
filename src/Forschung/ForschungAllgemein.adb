@@ -116,10 +116,10 @@ package body ForschungAllgemein is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             return ForschungAuswahlKonsole;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             return ForschungAuswahlSFML;
       end case;
 
@@ -132,7 +132,7 @@ package body ForschungAllgemein is
    is begin
       
       GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                                FontExtern         => GrafikEinstellungen.Schriftart,
+                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
                                                 SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
                                                 FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;

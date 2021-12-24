@@ -30,7 +30,7 @@ package body AuswahlMenueAnzeige is
             AktuelleAuswahl := AuswahlMenue.AktuelleAuswahl;
             AnzeigeStartwert := AuswahlMenue.AnzeigeStartwert;
             Sf.Graphics.Text.setFont (text => TextAccess,
-                                      font => GrafikEinstellungen.Schriftart);
+                                      font => GrafikEinstellungen.SchriftartAccess);
             
             AnzeigeMenüSFML;
             
@@ -79,7 +79,7 @@ package body AuswahlMenueAnzeige is
          
          AnzeigeFarbeBestimmen (TextZeileExtern => TextSchleifenwert);
          
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                             text         => TextAccess);
          
          case
@@ -173,7 +173,7 @@ package body AuswahlMenueAnzeige is
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => AktuellePosition);
       AnzeigeFarbeBestimmen (TextZeileExtern => 1);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
    end Überschrift;
@@ -225,7 +225,7 @@ package body AuswahlMenueAnzeige is
             else
                Sf.Graphics.Text.setPosition (text     => TextAccess,
                                              position => (StartPositionXAchse, YPosition));
-               Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+               Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                                   text         => TextAccess);
                YPosition := YPosition + ZeilenAbstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
                ErstesZeichen := TextSchleifenwert + 1;
@@ -237,7 +237,7 @@ package body AuswahlMenueAnzeige is
       
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => (StartPositionXAchse, YPosition));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
                                          text         => TextAccess);
       
    end WeiterenTextAnzeigen;

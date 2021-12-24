@@ -24,10 +24,10 @@ package body AuswahlSprache is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Konsole =>
+         when SystemDatentypen.Grafik_Konsole =>
             return AuswahlSpracheKonsole;
             
-         when SystemDatentypen.SFML =>
+         when SystemDatentypen.Grafik_SFML =>
             return AuswahlMausTastatur;
       end case;
       
@@ -179,7 +179,7 @@ package body AuswahlSprache is
    is begin
             
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.Schriftart);
+                                font => GrafikEinstellungen.SchriftartAccess);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       

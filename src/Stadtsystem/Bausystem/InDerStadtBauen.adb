@@ -66,7 +66,7 @@ package body InDerStadtBauen is
          return StadtKonstanten.LeerBauprojekt;
          
       elsif
-        GlobaleVariablen.AnzeigeArt = SystemDatentypen.SFML
+        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Grafik_SFML
       then
          return AuswahlBauprojektSFML;
          
@@ -152,7 +152,7 @@ package body InDerStadtBauen is
    is begin
       
       GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                                FontExtern         => GrafikEinstellungen.Schriftart,
+                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
                                                 SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
                                                 FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;

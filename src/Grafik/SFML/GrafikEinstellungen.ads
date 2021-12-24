@@ -9,9 +9,9 @@ with SystemRecords;
 
 package GrafikEinstellungen is
    
-   Fenster : Sf.Graphics.sfRenderWindow_Ptr;
-   Maus : Sf.Window.sfCursor_Ptr;
-   Schriftart : Sf.Graphics.sfFont_Ptr;
+   FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
+   MausAccess : Sf.Window.sfCursor_Ptr;
+   SchriftartAccess : Sf.Graphics.sfFont_Ptr;
    
    MausPosition : Sf.System.Vector2.sfVector2i;
       
