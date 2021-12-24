@@ -10,6 +10,10 @@ private
 
    ZeichenEingeben : Sf.Window.Event.sfEvent;
 
+   procedure AnzeigeEingaben;
+
+
+
    function AnzeigeAuswahl
      return Boolean;
 

@@ -5,8 +5,10 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Graphics.Text;
 with Sf.Graphics;
 with Sf.Graphics.RectangleShape;
+with Sf.System.Vector2;
 
 with EinheitStadtRecords;
+with SystemDatentypen;
 
 with AuswahlStadtEinheit;
 
@@ -14,7 +16,9 @@ package AnzeigeEingabe is
 
    procedure AnzeigeGanzeZahl;
    procedure AnzeigeText;
-   procedure AnzeigeEinheitenStadt;
+   
+   procedure AnzeigeEinheitenStadt
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
 private
    
@@ -26,12 +30,16 @@ private
    
    AktuelleAuswahl : Integer;
    
+   Zeilenabstand : Float;
+   
    AktuellerText : Unbounded_Wide_Wide_String;
    
    WelcheAuswahl : AuswahlStadtEinheit.AuswahlRecord;
    
    StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
+   
+   TextPosition : Sf.System.Vector2.sfVector2f;
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    

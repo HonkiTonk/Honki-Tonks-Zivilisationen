@@ -25,10 +25,11 @@ private
    Befehl : SystemDatentypen.Tastenbelegung_Enum;
 
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-   EinheitTransportNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   TransporterNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    
    StadtOderEinheit : Integer;
+   AusgewählteEinheit : Integer;
    
    BefehlNeu : Sf.Window.Event.sfEvent;
    

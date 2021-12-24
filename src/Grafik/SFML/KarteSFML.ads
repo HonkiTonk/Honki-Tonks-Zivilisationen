@@ -49,15 +49,13 @@ private
    PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
    
    procedure Sichtbarkeit
-     (InDerStadtExtern : in Boolean;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
    
    procedure IstSichtbar
-     (InDerStadtExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure AnzeigeLandschaft
@@ -72,8 +70,7 @@ private
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
 
    procedure AnzeigeCursor
-     (InDerStadtExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end KarteSFML;

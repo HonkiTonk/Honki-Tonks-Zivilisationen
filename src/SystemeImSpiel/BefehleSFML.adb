@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -24,7 +23,6 @@ with StadtSuchen;
 with Eingabe;
 with ForschungAllgemein;
 with StadtEntfernen;
-with EinheitenTransporter;
 with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
@@ -179,26 +177,37 @@ package body BefehleSFML is
         and
           Transportiert = False
       then
-         EinheitTransportNummer := EinheitRasseNummerExtern.Platznummer;
+         TransporterNummer := EinheitRasseNummerExtern.Platznummer;
+         AusgewählteEinheit := 0;
 
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern =>
-                                                                                        (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+         TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         AusgewählteEinheit := AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                                                                         StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
+                                                                         EinheitNummerExtern => TransporterNummer);
 
       else
-         EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         TransporterNummer := EinheitRasseNummerExtern.Platznummer;
+         AusgewählteEinheit := AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                                                                         StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
+                                                                         EinheitNummerExtern => TransporterNummer);
       end if;
       
       case
-        EinheitTransportNummer
+        AusgewählteEinheit
       is
-         when EinheitenKonstanten.LeerNummer =>
-            null;
+         when 0 =>
+            EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer));
+            
+         when Positive (EinheitStadtRecords.TransporterArray'First) .. Positive (EinheitStadtRecords.TransporterArray'Last) =>
+            EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer),
+                                                                                                                            PlatzExtern              =>
+                                                                                                                               EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (AusgewählteEinheit))));
             
          when others =>
-            EinheitSteuern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            null;
       end case;
       
    end AuswahlEinheitTransporter;
@@ -216,10 +225,10 @@ package body BefehleSFML is
                                                  StadtNummerExtern   => StadtNummerExtern,
                                                  EinheitNummerExtern => EinheitNummerExtern)
       is
-         when 1 =>
+         when 0 =>
             StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
-         when -1 =>
+         when 1 =>
             EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
                
          when others =>

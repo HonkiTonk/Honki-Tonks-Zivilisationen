@@ -13,7 +13,7 @@ package InteraktionTasks is
    AktuelleRasse : SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
    -- Logiktask
    
-   
+   -- EingabeTastenwert : Boolean := False;
    
    -- Grafiktask
    ErzeugeFenster : Boolean := False;

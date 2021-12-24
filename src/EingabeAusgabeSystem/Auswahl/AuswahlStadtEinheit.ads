@@ -5,15 +5,11 @@ with Sf.Graphics;
 with Sf.Graphics.Text;
 
 with SystemDatentypen;
-with KartenDatentypen;
 with EinheitStadtDatentypen;
 with EinheitStadtRecords;
 
 package AuswahlStadtEinheit is
-   
-   StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
-   EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
-   
+      
    AktuelleAuswahl : Integer;
    
    type MöglicheAuswahlenArray is array (0 .. EinheitStadtRecords.TransporterArray'Last) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
@@ -31,11 +27,11 @@ package AuswahlStadtEinheit is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
-      return KartenDatentypen.LoopRangeMinusEinsZuEins;
+      return Integer;
    
 private
-   
-   Auswahl : KartenDatentypen.LoopRangeMinusEinsZuEins;
+      
+   Zeilenabstand : Float;
    
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
    
@@ -43,6 +39,7 @@ private
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
-   procedure MausAuswahl;
+   procedure MausAuswahl
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
 end AuswahlStadtEinheit;

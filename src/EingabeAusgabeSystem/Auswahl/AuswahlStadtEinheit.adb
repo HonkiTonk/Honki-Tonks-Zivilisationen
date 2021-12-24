@@ -17,15 +17,17 @@ package body AuswahlStadtEinheit is
 
    function AuswahlStadtEinheit
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      -- Wenn die StadtNummerExtern = 0 ist, dann wird von einem beladenen Transporter ausgegangen.
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
-      return KartenDatentypen.LoopRangeMinusEinsZuEins
+      return Integer
    is begin
       
       Sf.Graphics.Text.setFont (text => TextAccess,
                                 font => GrafikEinstellungen.Schriftart);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
       
       WelcheAuswahl.MöglicheAuswahlen := (others => 0);
       
@@ -48,9 +50,6 @@ package body AuswahlStadtEinheit is
               
          end loop TransporterSchleife;
       end if;
-
-      StadtRasseNummer := (RasseExtern, StadtNummerExtern); -- Die zwei Dinger hier können weg.
-      EinheitRasseNummer := (RasseExtern, EinheitNummerExtern);
       
       AktuelleAuswahl := 0;
       
@@ -59,18 +58,15 @@ package body AuswahlStadtEinheit is
       AuswahlSchleife:
       loop
          
-         MausAuswahl;
+         MausAuswahl (RasseExtern => RasseExtern);
          
          case
            Eingabe.Tastenwert
          is               
             when SystemDatentypen.Auswählen =>
                if
-                 AktuelleAuswahl = 1
-                 or
-                   AktuelleAuswahl = -1
+                 AktuelleAuswahl >= 0
                then
-                  Auswahl := KartenDatentypen.LoopRangeMinusEinsZuEins (AktuelleAuswahl);
                   exit AuswahlSchleife;
                   
                else
@@ -78,7 +74,7 @@ package body AuswahlStadtEinheit is
                end if;
                
             when SystemDatentypen.Menü_Zurück =>
-               Auswahl := 0;
+               AktuelleAuswahl := -1;
                exit AuswahlSchleife;
                
             when others =>
@@ -89,56 +85,75 @@ package body AuswahlStadtEinheit is
       
       InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
       
-      return Auswahl;
+      return AktuelleAuswahl;
       
    end AuswahlStadtEinheit;
    
    
    
    procedure MausAuswahl
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
       MausZeigerPosition := GrafikEinstellungen.MausPosition;
+      TextPositionMaus := (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00);
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (2)) & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
+      AuswahlSchleife:
+      for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop
+         
+         if
+           AuswahlSchleifenwert = WelcheAuswahl.MöglicheAuswahlen'First
+         then
+            case
+              WelcheAuswahl.StadtEinheit
+            is
+               when True =>
+                  Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (2))
+                                                     & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
+         
+               when False =>
+                  Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                     str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
+            end case;
+            
+         else
+            if
+              WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+            then
+               null;
+               
+            else
+               Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                  str  => EinheitenBeschreibungen.BeschreibungKurz
+                                                    (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert)))));
+            end if;
+         end if;
+            
+         if
+           -- Hier besser MaximaleStädteMitNullWert prüfen, wenn gleich es auch mit MaximaleEinheitenMitNullWert gehen sollte.
+           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+         then
+            null;
+            
+         elsif
+           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus.y)
+           .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
+           and
+             MausZeigerPosition.x in Sf.sfInt32 (TextPositionMaus.x - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00)
+               .. Sf.sfInt32 (TextPositionMaus.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00)
+         then
+            AktuelleAuswahl := Natural (AuswahlSchleifenwert);
+            return;
+         
+         else
+            TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
+         end if;
+         
+      end loop AuswahlSchleife;
               
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
-                                                 (Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00)));
-      
-      TextPositionMaus := Sf.Graphics.Text.getPosition (text => TextAccess);
-      
-      if
-        MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus.y)
-        .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
-        and
-          MausZeigerPosition.x in Sf.sfInt32 (TextPositionMaus.x) .. Sf.sfInt32 (TextPositionMaus.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width)
-      then
-         AktuelleAuswahl := 1;
-         return;
-         
-      else
-         Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                       position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
-                                                    (Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00 + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00)));
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
-         TextPositionMaus := Sf.Graphics.Text.getPosition (text => TextAccess);
-      end if;
-      
-      if
-        MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus.y)
-        .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
-        and
-          MausZeigerPosition.x in Sf.sfInt32 (TextPositionMaus.x) .. Sf.sfInt32 (TextPositionMaus.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width)
-      then
-         AktuelleAuswahl := -1;
-         
-      else
-         AktuelleAuswahl := 0;
-      end if;
+      AktuelleAuswahl := -1;
       
    end MausAuswahl;
 

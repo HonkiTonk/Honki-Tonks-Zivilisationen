@@ -23,8 +23,7 @@ package body KarteSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Sichtbarkeit (InDerStadtExtern => False,
-                    RasseExtern      => RasseExtern);
+      Sichtbarkeit (RasseExtern => RasseExtern);
       
       KarteInformationenSFML.KarteInformationenSFML (RasseExtern => RasseExtern);
       
@@ -33,8 +32,7 @@ package body KarteSFML is
    
 
    procedure Sichtbarkeit
-     (InDerStadtExtern : in Boolean;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
         
       SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseExtern);
@@ -60,8 +58,7 @@ package body KarteSFML is
                                    RasseExtern    => RasseExtern)
             is
                when True =>
-                  IstSichtbar (InDerStadtExtern  => InDerStadtExtern,
-                               KoordinatenExtern => KartenWert,
+                  IstSichtbar (KoordinatenExtern => KartenWert,
                                RasseExtern       => RasseExtern);
                         
                when False =>
@@ -82,8 +79,7 @@ package body KarteSFML is
    
    
    procedure IstSichtbar
-     (InDerStadtExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -107,8 +103,7 @@ package body KarteSFML is
         GlobaleVariablen.Debug
       is
          when True =>
-            AnzeigeCursor (InDerStadtExtern  => InDerStadtExtern,
-                           KoordinatenExtern => KoordinatenExtern,
+            AnzeigeCursor (KoordinatenExtern => KoordinatenExtern,
                            RasseExtern       => RasseExtern);
             
          when False =>
@@ -283,26 +278,12 @@ package body KarteSFML is
    
    
    procedure AnzeigeCursor
-     (InDerStadtExtern : in Boolean;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- Das kann wohl raus, auf jeden Fall in der SFML Version.
-      case
-        InDerStadtExtern
-      is
-         when False =>
-            null;
-            
-         when True =>
-            null;
-      end case;
-      
       if
         KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
-        and
-          InDerStadtExtern = False
       then
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
                                               PositionExtern      => Position,

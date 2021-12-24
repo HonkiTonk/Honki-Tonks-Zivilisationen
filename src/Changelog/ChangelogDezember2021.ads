@@ -42,24 +42,26 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (25.12.2021):
+   -- Version 0.00.96 => 0.00.9 (25.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.96 => 0.00.9 (24.12.2021):
+   -- Version 0.00.9660 => 0.00.96 (24.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9650 => 0.00.96 (23.12.2021):
+   -- Version 0.00.9650 => 0.00.9660 (23.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Es ist jetzt in der SFML Version möglich die Einheiten auf einem Transporter einzeln auszuwählen.
+   -- Auswahlsystem für Städte/Einheiten verbessert.
+   -- Die aktuelle Transpoterladung wird jetzt korrekt angezeigt.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
    
@@ -70,7 +72,7 @@ package ChangelogDezember2021 is
    -- Unnötigen Code gelöscht.
    -- Es ist jetzt in der SFML Anzeige möglich sich zwischen Stadt und Einheit zu entscheiden wenn sich eine Einheit auf einer Stadt befindet.
    -- Angefangen die Auswahlmöglichkeit für Stadt/Einheit zu verbessern so dass sie auch für Transporter mit Einheiten funktioniert.
-   -- Kleinigkeiten korrigiert/Angepasst.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    

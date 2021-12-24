@@ -354,32 +354,34 @@ package body InformationenEinheitenSFML is
                   
       
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                                     str  => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
-                                                                                                                  LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                     PlatzExtern              => LadungSchleifenwert)))'Wide_Wide_Image);
+                                                     str  => EinheitenBeschreibungen.BeschreibungKurz
+                                                       (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
+                                                                                                                         LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                            PlatzExtern              => LadungSchleifenwert)))));
                   Sf.Graphics.Text.setPosition (text     => TextAccess,
                                                 position => PositionText);
                   Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                                      text         => TextAccess);
       
                   PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
-                     
+                  
                elsif
                  LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PlatzExtern              => LadungSchleifenwert)
                  /= EinheitenKonstanten.LeerTransportiert
                then
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                                     str  => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
-                                                                                                                  LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                     PlatzExtern              => LadungSchleifenwert)))'Wide_Wide_Image);
+                                                     str  => EinheitenBeschreibungen.BeschreibungKurz
+                                                       (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
+                                                                                                                         LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                            PlatzExtern              => LadungSchleifenwert)))));
                   Sf.Graphics.Text.setPosition (text     => TextAccess,
                                                 position => PositionText);
                   Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
                                                      text         => TextAccess);
       
                   PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
-                     
+                  
                else
                   null;
                end if;

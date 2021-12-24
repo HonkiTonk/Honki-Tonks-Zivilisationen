@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Color;
 
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 
 with EingabeSFML;
@@ -113,58 +114,77 @@ package body AnzeigeEingabe is
    
    
    procedure AnzeigeEinheitenStadt
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Sf.Graphics.Text.setFont (text => TextAccess,
                                 font => GrafikEinstellungen.Schriftart);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
-      
-      StadtRasseNummer := AuswahlStadtEinheit.StadtRasseNummer; -- Die zwei Dinger hier können später weg.
-      EinheitRasseNummer := AuswahlStadtEinheit.EinheitRasseNummer;
+      Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
       
       AktuelleAuswahl := AuswahlStadtEinheit.AktuelleAuswahl;
       WelcheAuswahl := AuswahlStadtEinheit.WelcheAuswahl;
+      TextPosition := (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00);
       
-      if
-        AktuelleAuswahl = 1
-      then
-         Sf.Graphics.Text.setColor (text  => TextAccess,
-                                    color => Sf.Graphics.Color.sfGreen);
+      AuswahlSchleife:
+      for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop
          
-      else
-         Sf.Graphics.Text.setColor (text  => TextAccess,
-                                    color => Sf.Graphics.Color.sfBlack);
-      end if;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (2)) & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
-                                                 (Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00)));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => TextAccess);
-      
-      if
-        AktuelleAuswahl = -1
-      then
-         Sf.Graphics.Text.setColor (text  => TextAccess,
-                                    color => Sf.Graphics.Color.sfGreen);
+         if
+           AuswahlSchleifenwert = WelcheAuswahl.MöglicheAuswahlen'First
+         then
+            case
+              WelcheAuswahl.StadtEinheit
+            is
+               when True =>
+                  Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (2))
+                                                     & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
          
-      else
-         Sf.Graphics.Text.setColor (text  => TextAccess,
-                                    color => Sf.Graphics.Color.sfBlack);
-      end if;
-      
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => ((Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00),
-                                                 (Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00 + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00)));
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummer)));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
-                                         text         => TextAccess);
-      
-      
+               when False =>
+                  Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                     str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
+            end case;
+            
+         else
+            if
+              WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
+            then
+               null;
+               
+            else
+               Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                                  str  => EinheitenBeschreibungen.BeschreibungKurz
+                                                    (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert)))));
+            end if;
+         end if;
+            
+         if
+           -- Hier besser MaximaleStädteMitNullWert prüfen, wenn gleich es auch mit MaximaleEinheitenMitNullWert gehen sollte.
+           WelcheAuswahl.MöglicheAuswahlen (AuswahlSchleifenwert) = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+         then
+            null;
+         
+         else
+            if
+              AktuelleAuswahl = Natural (AuswahlSchleifenwert)
+            then
+               Sf.Graphics.Text.setColor (text  => TextAccess,
+                                          color => Sf.Graphics.Color.sfGreen);
+         
+            else
+               Sf.Graphics.Text.setColor (text  => TextAccess,
+                                          color => Sf.Graphics.Color.sfBlack);
+            end if;
+            Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                          position => (TextPosition.x - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00, TextPosition.y));
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.Fenster,
+                                               text         => TextAccess);
+            TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
+         end if;
+         
+      end loop AuswahlSchleife;
+            
    end AnzeigeEinheitenStadt;
 
 end AnzeigeEingabe;

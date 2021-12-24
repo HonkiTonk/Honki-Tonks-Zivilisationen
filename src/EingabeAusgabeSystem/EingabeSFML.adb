@@ -363,7 +363,14 @@ package body EingabeSFML is
      return SystemDatentypen.Tastenbelegung_Enum
    is begin
       
+      -- InteraktionTasks.EingabeTastenwert := True;
+      
       EingabeSystemeSFML.TastenEingabe;
+      -- while InteraktionTasks.EingabeTastenwert loop
+         
+      --     delay 0.000000002;
+         
+      --  end loop;
       
       -- Das Mausrad muss? vor der Maustaste geprüft werden.
       if

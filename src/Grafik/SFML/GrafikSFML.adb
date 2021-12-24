@@ -20,6 +20,7 @@ with ForschungAnzeigeSFML;
 with AuswahlSpracheAnzeige;
 with AnzeigeEingabe;
 with BauAuswahlAnzeigeSFML;
+-- with EingabeSystemeSFML;
 
 package body GrafikSFML is
    
@@ -44,6 +45,17 @@ package body GrafikSFML is
          end case;
          
          GrafikStartEnde.FensterLeeren;
+         
+        -- case
+        --   InteraktionTasks.EingabeTastenwert
+        -- is
+        --    when True =>
+        --       EingabeSystemeSFML.TastenEingabe;
+        --       InteraktionTasks.EingabeTastenwert := False;
+               
+        --    when False =>
+        --       null;
+        -- end case;
          
          case
            AnzeigeAuswahl
@@ -136,6 +148,17 @@ package body GrafikSFML is
             return False;
       end case;
       
+      AnzeigeEingaben;
+      
+      return True;
+      
+   end AnzeigeAuswahl;
+   
+   
+   
+   procedure AnzeigeEingaben
+   is begin
+      
       case
         InteraktionTasks.Eingabe
       is
@@ -146,14 +169,19 @@ package body GrafikSFML is
             AnzeigeEingabe.AnzeigeGanzeZahl;
             
          when SystemDatentypen.Einheit_Auswahl =>
-            AnzeigeEingabe.AnzeigeEinheitenStadt;
-            
+            if
+              InteraktionTasks.AktuelleRasse = SystemDatentypen.Keine_Rasse
+            then
+               null;
+                     
+            else
+               AnzeigeEingabe.AnzeigeEinheitenStadt (RasseExtern => InteraktionTasks.AktuelleRasse);
+            end if;
+               
          when SystemDatentypen.Keine_Eingabe =>
             null;
       end case;
       
-      return True;
-      
-   end AnzeigeAuswahl;
+   end AnzeigeEingaben;
 
 end GrafikSFML;
