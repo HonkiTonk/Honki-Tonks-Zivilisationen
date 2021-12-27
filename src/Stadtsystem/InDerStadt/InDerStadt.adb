@@ -16,7 +16,7 @@ package body InDerStadt is
    is begin
       
       AktuelleRasseStadt := StadtRasseNummerExtern;
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Stadtkarte;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Stadtkarte);
       
       StadtSchleife:
       loop
@@ -46,7 +46,7 @@ package body InDerStadt is
                
             when SystemDatentypen.Bauen =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Stadtkarte;
+               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Stadtkarte);
                
                -- Gebäude verkaufen
             when SystemDatentypen.Auflösen =>
@@ -75,7 +75,7 @@ package body InDerStadt is
          
       end loop StadtSchleife;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
       
    end InDerStadt;
    

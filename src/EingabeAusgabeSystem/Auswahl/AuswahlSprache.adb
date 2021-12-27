@@ -129,7 +129,7 @@ package body AuswahlSprache is
       AuswahlKonsoleSchleife:
       loop
                   
-         InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Sprache;
+         InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Sprache);
          
          case
            Eingabe.Tastenwert
@@ -183,7 +183,7 @@ package body AuswahlSprache is
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Sprache;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Sprache);
       
       AuswahlSchleife:
       loop

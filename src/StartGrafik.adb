@@ -13,7 +13,7 @@ package body StartGrafik is
    is begin
       
       GrafikStartenSchleife:
-      while InteraktionTasks.ErzeugeFenster = False loop
+      while InteraktionTasks.ErzeugeFensterAbrufen = False loop
          
          delay InteraktionTasks.WartezeitGrafik;
          
@@ -29,7 +29,7 @@ package body StartGrafik is
    is begin
       
       case
-        InteraktionTasks.AktuelleDarstellung
+        InteraktionTasks.AktuelleDarstellungAbrufen
       is
          when SystemDatentypen.Grafik_Konsole =>
             GrafikKonsole.GrafikKonsole;
@@ -38,7 +38,7 @@ package body StartGrafik is
             GrafikSFML.GrafikSFML;
             
          when others =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Ungültige Startdarstellung.");
+            Fehler.GrafikStopp (FehlermeldungExtern => "StartGrafik.GrafikArtAuswahl - Ungültige Startdarstellung.");
       end case;
       
    end GrafikArtAuswahl;

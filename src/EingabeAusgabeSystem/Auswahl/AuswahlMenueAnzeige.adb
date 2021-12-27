@@ -19,7 +19,7 @@ package body AuswahlMenueAnzeige is
    is begin
       
       case
-        InteraktionTasks.AktuelleDarstellung
+        InteraktionTasks.AktuelleDarstellungAbrufen
       is
          when SystemDatentypen.Grafik_Menüs =>
             -- In AuswahlMenue eine Prozedure mit out für alle Variablen bauen?

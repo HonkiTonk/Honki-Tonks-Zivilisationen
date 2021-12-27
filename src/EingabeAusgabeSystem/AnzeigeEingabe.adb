@@ -170,11 +170,11 @@ package body AnzeigeEingabe is
               AktuelleAuswahl = Natural (AuswahlSchleifenwert)
             then
                Sf.Graphics.Text.setColor (text  => TextAccess,
-                                          color => Sf.Graphics.Color.sfGreen);
+                                          color => GrafikEinstellungen.Schriftfarben.FarbeAusgewähltText);
          
             else
                Sf.Graphics.Text.setColor (text  => TextAccess,
-                                          color => Sf.Graphics.Color.sfBlack);
+                                          color => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
             end if;
             Sf.Graphics.Text.setPosition (text     => TextAccess,
                                           position => (TextPosition.x - Sf.Graphics.Text.getLocalBounds (text => TextAccess).width / 2.00, TextPosition.y));

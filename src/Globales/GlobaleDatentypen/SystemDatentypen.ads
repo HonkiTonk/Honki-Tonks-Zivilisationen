@@ -61,6 +61,10 @@ package SystemDatentypen is
    
    subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Konsole .. Grafik_SFML;
    
+   type Musik_Aktuelle_Auswahl_Enum is (Musik_Konsole, Musik_SFML,
+                                       
+                                        Musik_Ende);
+   
    type Welche_Eingabe_Enum is (Keine_Eingabe, Zahlen_Eingabe, Text_Eingabe, Einheit_Auswahl);
    
    type NotAus is range 1 .. 100;

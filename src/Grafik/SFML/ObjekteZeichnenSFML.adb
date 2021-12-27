@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RectangleShape;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.CircleShape;
@@ -32,6 +33,11 @@ package body ObjekteZeichnenSFML is
          -- then
          --    Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Rechteck ist größer als das Fenster.");
          
+      elsif
+        RechteckAccessExtern = null
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Access = null");
+         
       else
          Sf.Graphics.RectangleShape.setSize (shape => RechteckAccessExtern,
                                              size  => AbmessungExtern);
@@ -58,6 +64,11 @@ package body ObjekteZeichnenSFML is
         RadiusExtern = 0.00
       then
          Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.KreisZeichnen - Der Radius ist 0.");
+         
+      elsif
+        KreisAccessExtern = null
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.KreisZeichnen - Access = null");
          
       else
          Sf.Graphics.CircleShape.setRadius (shape  => KreisAccessExtern,
@@ -86,6 +97,11 @@ package body ObjekteZeichnenSFML is
         RadiusExtern = 0.00
       then
          Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.PolygonZeichnen - Der Radius ist 0.");
+         
+      elsif
+        PolygonAccessExtern = null
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.PolygonZeichnen - Access = null");
          
       else
          Sf.Graphics.CircleShape.setRadius (shape  => PolygonAccessExtern,

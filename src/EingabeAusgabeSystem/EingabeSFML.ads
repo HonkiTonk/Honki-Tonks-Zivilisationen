@@ -85,7 +85,7 @@ private
                                                                 SystemDatentypen.Ebene_Runter                   => Sf.Window.Keyboard.sfKeySubtract,
 
                                                                 SystemDatentypen.Auswählen                      => Sf.Window.Keyboard.sfKeyE,
-                                                                SystemDatentypen.Menü_Zurück                    => Sf.Window.Keyboard.sfKeyQ,
+                                                                SystemDatentypen.Menü_Zurück                    => Sf.Window.Keyboard.sfKeyEscape,
                                                                 SystemDatentypen.Bauen                          => Sf.Window.Keyboard.sfKeyB,
                                                                 SystemDatentypen.Forschung                      => Sf.Window.Keyboard.sfKeyT,
                                                                 SystemDatentypen.Tech_Baum                      => Sf.Window.Keyboard.sfKeyX,

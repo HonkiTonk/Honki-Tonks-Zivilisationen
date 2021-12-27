@@ -28,24 +28,25 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (27.12.2021):
+   -- Version 0.00.9670 => 0.00.9 (27.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.96 => 0.00.9 (26.12.2021):
+   -- Version 0.00.9665 => 0.00.9670 (26.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einige null Prüfungen für verschiedene Accesse eingebaut.
+   -- Testhintergründe entfernt.
+   -- Direkten Zugriff auf die Variablen in InteraktionTasks durch Prozeduren und Funktionen ersetzt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    
-   -- Version 0.00.9665 => 0.00.96 (25.12.2021):
+   -- Version 0.00.9665 => 0.00.9665 (25.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    

@@ -137,7 +137,7 @@ package body ForschungAllgemein is
                                                 FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Forschung;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Forschung);
       
       AuswahlSchleife:
       loop
@@ -168,7 +168,7 @@ package body ForschungAllgemein is
          
       end loop AuswahlSchleife;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
       
       return GewählteForschung;
       
@@ -317,10 +317,10 @@ package body ForschungAllgemein is
             null;
          end if;
          
-         InteraktionTasks.AktuelleRasse := RasseExtern;
+         InteraktionTasks.AktuelleRasseÄndern (RasseExtern => RasseExtern);
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
                                               ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseExtern));
-         InteraktionTasks.AktuelleRasse := SystemDatentypen.Keine_Rasse;
+         InteraktionTasks.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse);
             
       else
          SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);

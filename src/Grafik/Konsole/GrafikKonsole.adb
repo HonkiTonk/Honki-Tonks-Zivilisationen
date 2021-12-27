@@ -20,48 +20,48 @@ package body GrafikKonsole is
          -- Hier die Auslagerung der Auswahl auch sinnvoll?
          -- In der Konsolenanzeige später noch die Auswahlinteraktion einbauen.
          case
-           InteraktionTasks.AktuelleDarstellung
+           InteraktionTasks.AktuelleDarstellungAbrufen
          is
             when SystemDatentypen.Grafik_Konsole =>
-               InteraktionTasks.FensterErzeugt := True;
-               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.FensterErzeugtÄndern;
+               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
             
             when SystemDatentypen.Grafik_SFML =>
                Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Konsole wird bei SFML aufgerufen.");
                
             when SystemDatentypen.Grafik_Sprache =>
                -- AuswahlSpracheAnzeige.AnzeigeSpracheKonsole;
-               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Intro =>
                Intro.Intro;
-               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                               
             when SystemDatentypen.Grafik_Pause =>
                delay InteraktionTasks.WartezeitGrafik;
          
             when SystemDatentypen.Grafik_Menüs =>
                -- AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
-               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Weltkarte =>
                case
-                 InteraktionTasks.AktuelleRasse
+                 InteraktionTasks.AktuelleRasseAbrufen
                is
                   when SystemDatentypen.Keine_Rasse =>
                      delay InteraktionTasks.WartezeitGrafik;
                      
                   when others =>
-                     Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasse);
-                     InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+                     Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasseAbrufen);
+                     InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                end case;
                
             when SystemDatentypen.Grafik_Stadtkarte =>
-               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Forschung =>
                ForschungAnzeigeKonsole.ForschungAnzeige;
-               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Bauen =>
                null;

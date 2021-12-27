@@ -11,8 +11,10 @@ package body EinlesenTexturen is
    procedure EinlesenTexturen
    is begin
       
-      EinlesenHintergrundMenüs;
-      EinlesenKartenfelder;
+      null;
+      
+      -- EinlesenHintergrundMenüs;
+      -- EinlesenKartenfelder;
       
    end EinlesenTexturen;
    

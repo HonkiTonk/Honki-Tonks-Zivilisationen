@@ -157,7 +157,7 @@ package body InDerStadtBauen is
                                                 FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
       Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Bauen;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Bauen);
       
       AuswahlSchleife:
       loop
@@ -188,7 +188,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
       
       return GewähltesBauprojekt;
       
@@ -254,7 +254,7 @@ package body InDerStadtBauen is
    is begin
       
       AktuelleAuswahl := 1;
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Bauen;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Bauen);
       
       AuswahlSchleife:
       loop
@@ -304,7 +304,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
       
       return GewähltesBauprojekt;
       

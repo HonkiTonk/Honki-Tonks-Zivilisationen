@@ -53,7 +53,7 @@ package body AuswahlStadtEinheit is
       
       AktuelleAuswahl := 0;
       
-      InteraktionTasks.Eingabe := SystemDatentypen.Einheit_Auswahl;
+      InteraktionTasks.EingabeÄndern (EingabeExtern => SystemDatentypen.Einheit_Auswahl);
       
       AuswahlSchleife:
       loop
@@ -83,7 +83,7 @@ package body AuswahlStadtEinheit is
          
       end loop AuswahlSchleife;
       
-      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
+      InteraktionTasks.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
       
       return AktuelleAuswahl;
       

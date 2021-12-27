@@ -43,7 +43,7 @@ package body EingabeSFML is
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
-         InteraktionTasks.Eingabe := SystemDatentypen.Zahlen_Eingabe;
+         InteraktionTasks.EingabeÄndern (EingabeExtern => SystemDatentypen.Zahlen_Eingabe);
       end if;
                   
       case
@@ -57,7 +57,7 @@ package body EingabeSFML is
             EingegebeneZahl.EingabeAbbruch := False;
       end case;
       
-      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
+      InteraktionTasks.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
       
       if
         WelchesVorzeichen

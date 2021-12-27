@@ -40,7 +40,7 @@ package body EingabeSystemeSFML is
                   
                when Sf.Window.Event.sfEvtResized =>
                   -- Schleife hier auch danach verlassen? Würde das irgendwas bringen?
-                  InteraktionTasks.FensterVerändert := True;
+                  InteraktionTasks.FensterVerändertÄndern;
                   
                when Sf.Window.Event.sfEvtMouseMoved =>
                   -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
@@ -84,7 +84,7 @@ package body EingabeSystemeSFML is
    is begin
       
       EingegebenerText := SystemKonstanten.LeerUnboundedString;
-      InteraktionTasks.Eingabe := SystemDatentypen.Text_Eingabe;
+      InteraktionTasks.EingabeÄndern (EingabeExtern => SystemDatentypen.Text_Eingabe);
       
       EingabeSchleife:
       loop
@@ -123,7 +123,7 @@ package body EingabeSystemeSFML is
          end loop TasteSchleife;
       end loop EingabeSchleife;
    
-      InteraktionTasks.Eingabe := SystemDatentypen.Keine_Eingabe;
+      InteraktionTasks.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
       
       return (ErfolgreichAbbruch, EingegebenerText);
       
@@ -138,7 +138,7 @@ package body EingabeSystemeSFML is
       case
         UnicodeNummerExtern
       is
-         when 0 .. 7 | 9 .. 26 | 28 .. 31 | 128 .. 159 =>
+         when 0 .. 7 | 9 .. 31 | 128 .. 159 =>
             return;
             
          when others =>
@@ -148,9 +148,6 @@ package body EingabeSystemeSFML is
       case
         EingegebenesZeichen
       is
-         when ESC =>
-            null; -- Kann ich ESC hier nicht entfernen wenn ich es bei der Eingabe bereits prüfe?
-            
          when BS | DEL =>
             ZeichenEntfernen;
          

@@ -90,8 +90,8 @@ package body Hauptmenue is
          
       end loop HauptmenüSchleife;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Ende;
-      InteraktionTasks.AktuelleMusik := SystemDatentypen.Grafik_Ende;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Ende);
+      InteraktionTasks.AktuelleMusikÄndern (MusikExtern => SystemDatentypen.Musik_Ende);
       
    end Hauptmenü;
 

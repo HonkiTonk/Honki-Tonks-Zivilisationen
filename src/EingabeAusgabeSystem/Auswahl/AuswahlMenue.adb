@@ -22,7 +22,7 @@ package body AuswahlMenue is
    is begin
       
       AllgemeinesFestlegen (WelchesMenüExtern => WelchesMenüExtern);
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Menüs;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Menüs);
       
       Auswahl;
    
@@ -31,7 +31,7 @@ package body AuswahlMenue is
                                                         AktuelleAuswahlExtern => AktuelleAuswahl,
                                                         WelchesMenüExtern     => WelchesMenü);
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
       
       return RückgabeWert;
       

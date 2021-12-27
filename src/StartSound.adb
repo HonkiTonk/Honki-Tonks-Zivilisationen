@@ -10,7 +10,7 @@ package body StartSound is
    is begin
       
       SoundSchleife:
-      while InteraktionTasks.AktuelleMusik /= SystemDatentypen.Grafik_Ende loop
+      while InteraktionTasks.AktuelleMusikAbfragen = SystemDatentypen.Musik_SFML loop
          
          delay InteraktionTasks.WartezeitSound;
          

@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics.RenderWindow;
+-- with Sf.Graphics.RenderWindow;
 
-with GrafikEinstellungen;
-with EingeleseneTexturen;
+-- with GrafikEinstellungen;
+-- with EingeleseneTexturen;
 
 package body GrafikHintergrund is
 
@@ -11,12 +11,14 @@ package body GrafikHintergrund is
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
    is begin
       
-      HintergrundbildLaden (WelchesMenüExtern => WelchesMenüExtern);
+      null;
       
-      Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
-                                     texture => EingeleseneTexturen.Hintergrund (WelchesBild));
-      Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungen.FensterAccess,
-                                           object       => SpriteAccess);
+      -- HintergrundbildLaden (WelchesMenüExtern => WelchesMenüExtern);
+      
+      -- Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
+      --                               texture => EingeleseneTexturen.Hintergrund (WelchesBild));
+      -- Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungen.FensterAccess,
+      --                                     object       => SpriteAccess);
       
    end HintergrundMenü;
    

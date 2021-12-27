@@ -33,12 +33,12 @@ package body GrafikSFML is
       loop
          
          case
-           InteraktionTasks.FensterVerändert
+           InteraktionTasks.FensterVerändertAbrufen
          is
             when True =>
                GrafikAllgemein.FensterAnpassen;
                Sichtweiten.SichtweiteBewegungsfeldFestlegen;
-               InteraktionTasks.FensterVerändert := False;
+               InteraktionTasks.FensterVerändertÄndern;
                
             when False =>
                null;
@@ -80,21 +80,21 @@ package body GrafikSFML is
    is begin
       
       case
-        InteraktionTasks.AktuelleDarstellung
+        InteraktionTasks.AktuelleDarstellungAbrufen
       is
          when SystemDatentypen.Grafik_Konsole =>
             Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Konsole wird bei SFML aufgerufen.");
             
          when SystemDatentypen.Grafik_SFML =>
-            InteraktionTasks.FensterErzeugt := True;
-            InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+            InteraktionTasks.FensterErzeugtÄndern;
+            InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
             
          when SystemDatentypen.Grafik_Sprache =>
             AuswahlSpracheAnzeige.AnzeigeSpracheSFML;
                
          when SystemDatentypen.Grafik_Intro =>
             Intro.Intro;
-            InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
+            InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                               
          when SystemDatentypen.Grafik_Pause =>
             delay InteraktionTasks.WartezeitGrafik;
@@ -104,12 +104,12 @@ package body GrafikSFML is
                
          when SystemDatentypen.Grafik_Weltkarte =>
             if
-              InteraktionTasks.AktuelleRasse = SystemDatentypen.Keine_Rasse
+              InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                delay InteraktionTasks.WartezeitGrafik;
                      
             else
-               Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasse);
+               Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasseAbrufen);
             end if;
                
          when SystemDatentypen.Grafik_Stadtkarte =>
@@ -124,7 +124,7 @@ package body GrafikSFML is
                
          when SystemDatentypen.Grafik_Forschung =>
             if
-              InteraktionTasks.AktuelleRasse = SystemDatentypen.Keine_Rasse
+              InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
                Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Forschungsmenü wird ohne Rasse aufgerufen.");
@@ -135,7 +135,7 @@ package body GrafikSFML is
             
          when SystemDatentypen.Grafik_Bauen =>
             if
-              InteraktionTasks.AktuelleRasse = SystemDatentypen.Keine_Rasse
+              InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
                Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Baumenü wird ohne Rasse aufgerufen.");
@@ -160,7 +160,7 @@ package body GrafikSFML is
    is begin
       
       case
-        InteraktionTasks.Eingabe
+        InteraktionTasks.EingabeAbrufen
       is
          when SystemDatentypen.Text_Eingabe =>
             AnzeigeEingabe.AnzeigeText;
@@ -170,12 +170,12 @@ package body GrafikSFML is
             
          when SystemDatentypen.Einheit_Auswahl =>
             if
-              InteraktionTasks.AktuelleRasse = SystemDatentypen.Keine_Rasse
+              InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                null;
                      
             else
-               AnzeigeEingabe.AnzeigeEinheitenStadt (RasseExtern => InteraktionTasks.AktuelleRasse);
+               AnzeigeEingabe.AnzeigeEinheitenStadt (RasseExtern => InteraktionTasks.AktuelleRasseAbrufen);
             end if;
                
          when SystemDatentypen.Keine_Eingabe =>

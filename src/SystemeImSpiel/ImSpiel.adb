@@ -25,7 +25,7 @@ package body ImSpiel is
    is begin
       
       -- Muss hier einmal auf True gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechent werden vom Grafiktask.
-      InteraktionTasks.FensterVerändert := True;
+      InteraktionTasks.FensterVerändertÄndern;
       
       SpielSchleife:
       loop
@@ -187,7 +187,7 @@ package body ImSpiel is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      InteraktionTasks.AktuelleRasse := RasseExtern;
+      InteraktionTasks.AktuelleRasseÄndern (RasseExtern => RasseExtern);
       
       SpielerSchleife:
       loop
@@ -196,7 +196,7 @@ package body ImSpiel is
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
             when SystemDatentypen.Spieler_Mensch =>
-               InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Weltkarte;
+               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Weltkarte);
                AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
                
             when others =>
@@ -244,8 +244,8 @@ package body ImSpiel is
                      
       end loop SpielerSchleife;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Pause;
-      InteraktionTasks.AktuelleRasse := SystemDatentypen.Keine_Rasse;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      InteraktionTasks.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse);
       
       return RückgabeMenschAmZug;
       

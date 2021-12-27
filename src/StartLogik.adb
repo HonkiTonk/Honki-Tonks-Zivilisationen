@@ -18,10 +18,10 @@ package body StartLogik is
       
       Einlesen.EinlesenOhneAnzeige;
       
-      InteraktionTasks.ErzeugeFenster := True;
+      InteraktionTasks.ErzeugeFensterÄndern;
       
       FensterVorhandenSchleife:
-      while InteraktionTasks.FensterErzeugt = False loop
+      while InteraktionTasks.FensterErzeugtAbrufen = False loop
          
          delay InteraktionTasks.WartezeitLogik;
          
@@ -29,10 +29,10 @@ package body StartLogik is
       
       Einlesen.EinlesenMitAnzeige;
       
-      InteraktionTasks.AktuelleDarstellung := SystemDatentypen.Grafik_Intro;
+      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Intro);
       
       IntroSchleife:
-      while InteraktionTasks.AktuelleDarstellung = SystemDatentypen.Grafik_Intro loop
+      while InteraktionTasks.AktuelleDarstellungAbrufen = SystemDatentypen.Grafik_Intro loop
          
          delay InteraktionTasks.WartezeitLogik;
          

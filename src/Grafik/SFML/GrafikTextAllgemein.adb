@@ -18,7 +18,7 @@ package body GrafikTextAllgemein is
       if
         TextAccessExtern = null
       then
-         Fehler.LogikStopp (FehlermeldungExtern => "GrafikTextAllgemein.TextAccessEinstellen - Access ist null.");
+         Fehler.LogikStopp (FehlermeldungExtern => "GrafikTextAllgemein.TextAccessEinstellen - TextAccessExtern = null.");
             
       else
          null;
