@@ -44,7 +44,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line ("Wofür das verwenden? Eventuell für das manuelle Schließen des Fensters?");
+      -- Put_Line ("Wofür das verwenden? Eventuell für das manuelle Schließen des Fensters?");
       Put_Line (FehlermeldungExtern);
       KritischesProblemLogik := True;
       KritischesProblemGrafik := True;

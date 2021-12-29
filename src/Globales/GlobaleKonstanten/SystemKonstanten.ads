@@ -31,8 +31,19 @@ package SystemKonstanten is
 
 
 
+   -- Wird das so überhaupt benötigt?
+   -- Wartezeiten
+   WartezeitLogik : constant Duration := 0.20;
+   WartezeitGrafik : constant Duration := 0.0002;
+   WartezeitSound : constant Duration := 0.20;
+
+   WartezeitMinimal : constant Duration := 0.000000002;
+   -- Wartezeiten
+
+
+
    -- Für die Zahleneingabe später entfernen
-   GanzeZahlAbbruchKonstante : constant Integer := -1_000_000_000;
+   -- GanzeZahlAbbruchKonstante : constant Integer := -1_000_000_000;
    -- Für die Zahleneingabe
 
 

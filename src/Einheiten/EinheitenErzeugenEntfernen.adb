@@ -1,8 +1,12 @@
 pragma SPARK_Mode (On);
 
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with EinheitenKonstanten;
+
 with SchreibeEinheitenGebaut;
 with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
 
 with Sichtbarkeit;
 with RasseEntfernen;
@@ -71,12 +75,51 @@ package body EinheitenErzeugenEntfernen is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      EinheitEntfernenLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      Entfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      RasseEntfernen.RasseExistenzPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      
+   end EinheitEntfernen;
+   
+   
+   
+   procedure EinheitEntfernenLadung
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+   is begin
+      
+      TransporterSchleife:
+      for LadungSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
+        
+         EinheitNummer := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             PlatzExtern              => LadungSchleifenwert);
+         
+         if
+           EinheitNummer = EinheitenKonstanten.LeerNummer
+         then
+            null;
+            
+         else
+            Entfernen (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer));
+         end if;
+         
+      end loop TransporterSchleife;
+               
+   end EinheitEntfernenLadung;
+   
+   
+   
+   procedure Entfernen
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+   is begin
+      
       EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      VorzeichenWechselExtern  => -1);
 
       SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      RasseEntfernen.RasseExistenzPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
-   end EinheitEntfernen;
+   end Entfernen;
 
 end EinheitenErzeugenEntfernen;

@@ -54,7 +54,7 @@ package SystemDatentypen is
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen .. Ekropa;
    
    type Grafik_Aktuelle_Darstellung_Enum is (Grafik_Konsole, Grafik_SFML, Grafik_Intro,
-                                             Grafik_Pause,
+                                             Grafik_Pause, Grafik_Laden,
                                              Grafik_Menüs, Grafik_Sprache,
                                              Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, Grafik_Bauen, -- Grafik_Handeln, (in die Menüs schieben? Geht so nicht in die Menüs.)
                                              Grafik_Ende);

@@ -4,16 +4,6 @@ with SystemDatentypen;
 
 package InteraktionTasks is
    
-   -- Wird das so überhaupt benötigt?
-   -- Feste Wartezeiten
-   WartezeitLogik : constant Duration := 0.20;
-   WartezeitGrafik : constant Duration := 0.0002;
-   WartezeitSound : constant Duration := 0.20;
-   WartezeitMinimal : constant Duration := 0.000000002;
-   -- Feste Wartezeiten
-   
-   
-
    -- Jeden Taskbereich in einen eigenen Bereich verschieben?
    -- Die Bereiche sind auch nur mäßig sinnvoll sortiert.
    -- Logiktask

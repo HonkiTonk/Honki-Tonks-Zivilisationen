@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SystemDatentypen;
+with SystemKonstanten;
 
 with InteraktionTasks;
 with GrafikKonsole;
@@ -15,7 +16,7 @@ package body StartGrafik is
       GrafikStartenSchleife:
       while InteraktionTasks.ErzeugeFensterAbrufen = False loop
          
-         delay InteraktionTasks.WartezeitGrafik;
+         delay SystemKonstanten.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;
             

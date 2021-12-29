@@ -191,12 +191,13 @@ package body ImSpiel is
       
       SpielerSchleife:
       loop
-                        
+         
+         InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Weltkarte);
+         
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
             when SystemDatentypen.Spieler_Mensch =>
-               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Weltkarte);
                AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
                
             when others =>

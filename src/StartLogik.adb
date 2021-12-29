@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
+with SystemKonstanten;
 
 with SchreibenVerzeichnisse;
 with EinlesenEinstellungen;
@@ -23,7 +24,7 @@ package body StartLogik is
       FensterVorhandenSchleife:
       while InteraktionTasks.FensterErzeugtAbrufen = False loop
          
-         delay InteraktionTasks.WartezeitLogik;
+         delay SystemKonstanten.WartezeitLogik;
          
       end loop FensterVorhandenSchleife;
       
@@ -34,7 +35,7 @@ package body StartLogik is
       IntroSchleife:
       while InteraktionTasks.AktuelleDarstellungAbrufen = SystemDatentypen.Grafik_Intro loop
          
-         delay InteraktionTasks.WartezeitLogik;
+         delay SystemKonstanten.WartezeitLogik;
          
       end loop IntroSchleife;
       

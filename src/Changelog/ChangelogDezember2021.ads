@@ -14,24 +14,26 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (29.12.2021):
+   -- Version 0.00.9680 => 0.00.9 (29.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9 => 0.00.9 (28.12.2021):
+   -- Version 0.00.9670 => 0.00.9680 (28.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Bei der Zerstörung eines Transporters sollte jetzt die Ladung mit vernichtet werden.
+   -- Stadtumgebung wird bei Belegung jetzt farblich markiert.
+   -- Diverse grafische Anpassungen.
+   -- Herumexperimentiert.
+   -- Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
-   -- Version 0.00.9670 => 0.00.9 (27.12.2021):
+   -- Version 0.00.9670 => 0.00.9670 (27.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    

@@ -192,54 +192,37 @@ package body KarteSFML is
       if
         EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
       then
-         null;
+         return;
          
       elsif
         EinheitStadtRasseNummer.Rasse = RasseExtern
       then
-         case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer)
-         is
-            when KartenDatentypen.Eigene_Hauptstadt =>
-               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
-                                                    PositionExtern      => Position,
-                                                    AnzahlEckenExtern   => 6,
-                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
-                                                    PolygonAccessExtern => PolygonAccess);
-               
-            when KartenDatentypen.Eigene_Stadt =>
-               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                                    PositionExtern      => Position,
-                                                    AnzahlEckenExtern   => 5,
-                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
-                                                    PolygonAccessExtern => PolygonAccess);
-               
-            when KartenDatentypen.Leer =>
-               Fehler.LogikStopp (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene, eigene Stadt ist nicht vorhanden.");
-         end case;
-            
+         AktuelleFarbe := Sf.Graphics.Color.sfRed;
+         
       else
-         case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer)
-         is
-            when KartenDatentypen.Eigene_Hauptstadt =>
-               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
-                                                    PositionExtern      => Position,
-                                                    AnzahlEckenExtern   => 6,
-                                                    FarbeExtern         => Sf.Graphics.Color.sfYellow,
-                                                    PolygonAccessExtern => PolygonAccess);
-               
-            when KartenDatentypen.Eigene_Stadt =>
-               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                                    PositionExtern      => Position,
-                                                    AnzahlEckenExtern   => 5,
-                                                    FarbeExtern         => Sf.Graphics.Color.sfYellow,
-                                                    PolygonAccessExtern => PolygonAccess);
-               
-            when KartenDatentypen.Leer =>
-               Fehler.LogikStopp (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene, fremde Stadt ist nicht vorhanden.");
-         end case;
+         AktuelleFarbe := Sf.Graphics.Color.sfYellow;
       end if;
+      
+      case
+        LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer)
+      is
+         when KartenDatentypen.Eigene_Hauptstadt =>
+            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
+                                                 PositionExtern      => Position,
+                                                 AnzahlEckenExtern   => 5,
+                                                 FarbeExtern         => AktuelleFarbe,
+                                                 PolygonAccessExtern => PolygonAccess);
+               
+         when KartenDatentypen.Eigene_Stadt =>
+            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
+                                                 PositionExtern      => Position,
+                                                 AnzahlEckenExtern   => 6,
+                                                 FarbeExtern         => AktuelleFarbe,
+                                                 PolygonAccessExtern => PolygonAccess);
+               
+         when KartenDatentypen.Leer =>
+            Fehler.GrafikStopp (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene Stadt ist nicht vorhanden.");
+      end case;
       
    end AnzeigeStadt;
    

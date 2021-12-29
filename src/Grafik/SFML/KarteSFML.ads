@@ -39,6 +39,8 @@ private
    
    EinheitStadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    
+   AktuelleFarbe : Sf.Graphics.Color.sfColor;
+   
    Position : Sf.System.Vector2.sfVector2f;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;

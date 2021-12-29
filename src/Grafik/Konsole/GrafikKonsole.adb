@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with SystemDatentypen;
+with SystemKonstanten;
 
 with InteraktionTasks;
 with Intro;
@@ -38,7 +39,10 @@ package body GrafikKonsole is
                InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                               
             when SystemDatentypen.Grafik_Pause =>
-               delay InteraktionTasks.WartezeitGrafik;
+               delay SystemKonstanten.WartezeitGrafik;
+               
+            when SystemDatentypen.Grafik_Laden =>
+               null;
          
             when SystemDatentypen.Grafik_Menüs =>
                -- AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
@@ -49,7 +53,7 @@ package body GrafikKonsole is
                  InteraktionTasks.AktuelleRasseAbrufen
                is
                   when SystemDatentypen.Keine_Rasse =>
-                     delay InteraktionTasks.WartezeitGrafik;
+                     delay SystemKonstanten.WartezeitGrafik;
                      
                   when others =>
                      Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasseAbrufen);

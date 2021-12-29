@@ -4,6 +4,7 @@ with Sf.Graphics;
 with Sf.Graphics.RectangleShape;
 with Sf.Graphics.CircleShape;
 with Sf.System.Vector2;
+with Sf.Graphics.Color;
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen;
@@ -25,6 +26,7 @@ package KarteStadtSFML is
 private
 
    InformationenStadtAufrufen : Boolean;
+   FeldBewirtschaftet : Boolean;
 
    Stadtumgebungsgröße : KartenDatentypen.Stadtfeld;
 
@@ -34,6 +36,8 @@ private
 
    YMultiplikator : Float;
    XMultiplikator : Float;
+
+   AktuelleFarbe : Sf.Graphics.Color.sfColor;
 
    TextPosition : Sf.System.Vector2.sfVector2f;
 

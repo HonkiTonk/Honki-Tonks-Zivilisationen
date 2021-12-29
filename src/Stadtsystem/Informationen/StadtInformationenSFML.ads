@@ -10,7 +10,6 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenRecords;
-with KartenDatentypen;
 
 with Karten;
 
@@ -187,15 +186,5 @@ private
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
-
-   procedure StadtfeldBewirtschaftet
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      CursorYAchseabstraktionExtern : in KartenDatentypen.Kartenfeld;
-      CursorXAchseabstraktionExtern : in KartenDatentypen.Kartenfeld)
-     with
-       Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer);
 
 end StadtInformationenSFML;

@@ -5,6 +5,7 @@ with Sf.Graphics.RenderWindow;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
+with KartenDatentypen;
 
 with LeseStadtGebaut;
 
@@ -78,7 +79,7 @@ package body StadtInformationenSFML is
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when KartenDatentypen.Leer =>
-            Fehler.LogikStopp (FehlermeldungExtern => "StadtInformationenSFML.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
+            Fehler.GrafikStopp (FehlermeldungExtern => "StadtInformationenSFML.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
          when KartenDatentypen.Eigene_Hauptstadt =>
             if
@@ -416,36 +417,5 @@ package body StadtInformationenSFML is
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
       
    end EinzelnesFeldWissensgewinnung;
-   
-   
-   
-   procedure StadtfeldBewirtschaftet
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      CursorYAchseabstraktionExtern : in KartenDatentypen.Kartenfeld;
-      CursorXAchseabstraktionExtern : in KartenDatentypen.Kartenfeld)
-   is begin
-      
-      case
-        LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 YPositionExtern        => CursorYAchseabstraktionExtern,
-                                                 XPositionExtern        => CursorXAchseabstraktionExtern)
-      is
-         when True =>
-            Text := GlobaleTexte.JaNein (1);
-               
-         when False =>
-            Text := GlobaleTexte.JaNein (2);
-      end case;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (42)) & To_Wide_Wide_String (Source => Text));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
-                                         text         => TextAccess);
-      
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
-      
-   end StadtfeldBewirtschaftet;
 
 end StadtInformationenSFML;

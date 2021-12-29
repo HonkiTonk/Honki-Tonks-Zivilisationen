@@ -4,7 +4,6 @@ with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
-with SystemKonstanten;
 with EinheitenKonstanten;
 
 with SchreibeWichtiges;
@@ -21,8 +20,8 @@ with EinheitInUmgebung;
 with EinheitenModifizieren;
 with Ladezeiten;
 with Speichern;
-with Auswahl;
 with VerbesserungFertiggestellt;
+-- with InteraktionTasks;
 
 package body ZwischenDenRunden is
 
@@ -30,16 +29,18 @@ package body ZwischenDenRunden is
      return Boolean
    is begin
       
+      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Laden);
+      
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, SystemDatentypen.Anfangswert) := Clock;
       
       case
         NachSiegWeiterspielen
       is
          when True =>
-            return True;
+            null;
             
          when False =>
-            null;
+            return True;
       end case;
       
       StadtMeldungenSetzen.StadtMeldungenSetzenRundenEnde;
@@ -62,6 +63,8 @@ package body ZwischenDenRunden is
             
       GesamteZeitenAnzeigen;
       
+      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      
       return False;
       
    end BerechnungenNachZugendeAllerSpieler;
@@ -72,6 +75,7 @@ package body ZwischenDenRunden is
      return Boolean
    is begin
       
+      -- Muss an das neue System angepasst werden.
       case
         GlobaleVariablen.WeiterSpielen
       is
@@ -81,10 +85,10 @@ package body ZwischenDenRunden is
             then
                null;
             
-            elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = SystemKonstanten.JaKonstante
-            then
-               GlobaleVariablen.WeiterSpielen := True;
+               -- elsif
+               --   Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = SystemKonstanten.JaKonstante
+               --  then
+               --    GlobaleVariablen.WeiterSpielen := True;
                                  
             else
                return True;
@@ -94,7 +98,8 @@ package body ZwischenDenRunden is
             null;
       end case;
       
-      return False;
+      GlobaleVariablen.WeiterSpielen := True;
+      return True;
       
    end NachSiegWeiterspielen;
    

@@ -32,4 +32,14 @@ package EinheitenErzeugenEntfernen is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SystemDatentypen.Leer);
 
+private
+
+   EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+
+   procedure EinheitEntfernenLadung
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+
+   procedure Entfernen
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+
 end EinheitenErzeugenEntfernen;

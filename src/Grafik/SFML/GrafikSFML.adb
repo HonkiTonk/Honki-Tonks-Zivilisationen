@@ -5,6 +5,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
+with SystemKonstanten;
 
 with Fehler;
 with GrafikStartEnde;
@@ -97,7 +98,10 @@ package body GrafikSFML is
             InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                               
          when SystemDatentypen.Grafik_Pause =>
-            delay InteraktionTasks.WartezeitGrafik;
+            delay SystemKonstanten.WartezeitGrafik;
+               
+         when SystemDatentypen.Grafik_Laden =>
+            null;
          
          when SystemDatentypen.Grafik_Menüs =>
             AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
@@ -106,7 +110,7 @@ package body GrafikSFML is
             if
               InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
-               delay InteraktionTasks.WartezeitGrafik;
+               delay SystemKonstanten.WartezeitGrafik;
                      
             else
                Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasseAbrufen);
@@ -116,7 +120,7 @@ package body GrafikSFML is
             if
               InDerStadt.AktuelleRasseStadt.Platznummer = StadtKonstanten.LeerNummer
             then
-               delay InteraktionTasks.WartezeitGrafik;
+               delay SystemKonstanten.WartezeitGrafik;
                   
             else
                KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => InDerStadt.AktuelleRasseStadt);

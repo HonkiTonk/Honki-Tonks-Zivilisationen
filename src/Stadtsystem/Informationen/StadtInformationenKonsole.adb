@@ -72,7 +72,7 @@ package body StadtInformationenKonsole is
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when KartenDatentypen.Leer =>
-            Fehler.LogikStopp (FehlermeldungExtern => "StadtInformationenKonsole.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
+            Fehler.GrafikStopp (FehlermeldungExtern => "StadtInformationenKonsole.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
          when KartenDatentypen.Eigene_Hauptstadt =>
             if

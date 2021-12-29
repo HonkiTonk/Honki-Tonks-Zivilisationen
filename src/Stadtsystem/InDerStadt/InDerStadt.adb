@@ -16,12 +16,11 @@ package body InDerStadt is
    is begin
       
       AktuelleRasseStadt := StadtRasseNummerExtern;
-      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Stadtkarte);
       
       StadtSchleife:
       loop
          
-         -- Die aktuelle Anzeige hier einfach immer auf Grafik_Stadtkarte setzen?
+         InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Stadtkarte);
          
          Befehl := Eingabe.Tastenwert;
          
@@ -46,7 +45,6 @@ package body InDerStadt is
                
             when SystemDatentypen.Bauen =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Stadtkarte);
                
                -- Gebäude verkaufen
             when SystemDatentypen.Auflösen =>

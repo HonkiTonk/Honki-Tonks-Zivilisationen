@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 -- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with Sf.Graphics.Color;
 with Sf.Graphics.RenderWindow;
 
 with KartenDatentypen; use KartenDatentypen;
@@ -76,6 +75,7 @@ package body KarteStadtSFML is
                                                     StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                     AnzeigeAnfangenExtern  => (BerechnungenKarteSFML.StadtKarte.x + 5.00, 5.00));
       
+      -- Werden die Mausinformationen in der SFML Version überhaupt benötigt?
       -- Wie und wo jetzt die Anzeige der Mauszeigerinformationen einbauen?
       
    end AnzeigeStadt;
@@ -137,6 +137,18 @@ package body KarteStadtSFML is
         and
           XAchseExtern > Karten.Stadtkarte'Last (2) - 7
       then
+         case
+           LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    YPositionExtern        => YAchseExtern - 4,
+                                                    XPositionExtern        => XAchseExtern - 17)
+         is
+            when True =>
+               FeldBewirtschaftet := True;
+               
+            when False =>
+               FeldBewirtschaftet := False;
+         end case;
+         
          KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                      ÄnderungExtern    => (0, YAchseExtern - 4, XAchseExtern - 17));
          
@@ -152,22 +164,6 @@ package body KarteStadtSFML is
             when others =>
                DarstellungUmgebungErweitert (KartePositionExtern    => KartenWert,
                                              StadtRasseNummerExtern => StadtRasseNummerExtern);
-         end case;
-      
-         case
-           LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    YPositionExtern        => YAchseExtern - 4,
-                                                    XPositionExtern        => XAchseExtern - 17)
-         is
-            when True =>
-               ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.StadtfelderAbmessung.x / 8.00,
-                                                  PositionExtern    => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
-                                                                        YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
-                                                  FarbeExtern       => Sf.Graphics.Color.sfRed,
-                                                  KreisAccessExtern => KreisAccess);
-               
-            when False =>
-               null;
          end case;
 
       elsif
@@ -226,21 +222,23 @@ package body KarteStadtSFML is
            LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
          is
             when KartenDatentypen.Eigene_Hauptstadt =>
-               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 6.00,
-                                                    PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
-                                                    AnzahlEckenExtern   => 6,
-                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
-                                                    PolygonAccessExtern => PolygonAccess);
-               
-            when KartenDatentypen.Eigene_Stadt =>
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 5.00,
-                                                    PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                                    PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.50,
+                                                                            YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y / 3.50),
                                                     AnzahlEckenExtern   => 5,
                                                     FarbeExtern         => Sf.Graphics.Color.sfRed,
                                                     PolygonAccessExtern => PolygonAccess);
                
+            when KartenDatentypen.Eigene_Stadt =>
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 6.00,
+                                                    PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,
+                                                                            YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y / 3.00),
+                                                    AnzahlEckenExtern   => 6,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                                    PolygonAccessExtern => PolygonAccess);
+               
             when KartenDatentypen.Leer =>
-               Fehler.LogikStopp (FehlermeldungExtern => "KarteStadtSFML.DarstellungUmgebungErweitert - Vorhandene Stadt ist nicht vorhanden.");
+               Fehler.GrafikStopp (FehlermeldungExtern => "KarteStadtSFML.DarstellungUmgebungErweitert - Vorhandene Stadt ist nicht vorhanden.");
          end case;
          
       else
@@ -252,16 +250,25 @@ package body KarteStadtSFML is
                                               KoordinatenExtern      => KartePositionExtern)
       is
          when True =>
+            if
+              FeldBewirtschaftet
+            then
+               AktuelleFarbe := Sf.Graphics.Color.sfGreen;
+               
+            else
+               AktuelleFarbe := Sf.Graphics.Color.sfBlack;
+            end if;
+            
             Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
-                                                size  => (BerechnungenKarteSFML.StadtfelderAbmessung.x - 2.00, BerechnungenKarteSFML.StadtfelderAbmessung.y - 2.00));
+                                                size  => (BerechnungenKarteSFML.StadtfelderAbmessung.x - 6.00, BerechnungenKarteSFML.StadtfelderAbmessung.y - 6.00));
             Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,
-                                                    position => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y));
+                                                    position => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + 3.00, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + 3.00));
             Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
                                                      color => Sf.Graphics.Color.sfTransparent);
             Sf.Graphics.RectangleShape.setOutlineColor (shape => RechteckRahmenAccess,
-                                                        color => Sf.Graphics.Color.sfBlack);
+                                                        color => AktuelleFarbe);
             Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
-                                                            thickness => 2.00);
+                                                            thickness => 3.00);
             Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.FensterAccess,
                                                          object       => RechteckRahmenAccess);
             
@@ -350,14 +357,14 @@ package body KarteStadtSFML is
       if
         YAchseExtern = 1
         and
-          XAchseExtern < 13
+          XAchseExtern <= 12
       then
          GebäudeID := EinheitStadtDatentypen.GebäudeID (XAchseExtern);
                
       elsif
         YAchseExtern = 2
         and
-          XAchseExtern < 13
+          XAchseExtern <= 12
       then
          GebäudeID := EinheitStadtDatentypen.GebäudeID (XAchseExtern) + 12;
                
