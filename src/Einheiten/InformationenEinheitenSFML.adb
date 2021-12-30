@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with Sf.Graphics.RenderWindow;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
@@ -17,6 +15,7 @@ with Cheat;
 with GrafikTextAllgemein;
 with GrafikEinstellungen;
 with StadtInformationenSFML;
+with UmwandlungenAdaNachEigenes;
 
 package body InformationenEinheitenSFML is
 
@@ -121,10 +120,14 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      KommazahlVorhandeneBewegungspunkte := UmwandlungenAdaNachEigenes.BewegungspunkteImageNachNormal (KommazahlExtern => LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      KommazahlMaximaleBewegungspunkte := UmwandlungenAdaNachEigenes.BewegungspunkteImageNachNormal
+        (KommazahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (15)) & LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image
-                                         & Trennzeichen & LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                          IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (15)) & To_Wide_Wide_String (Source => KommazahlVorhandeneBewegungspunkte) & Trennzeichen
+                                         & To_Wide_Wide_String (Source => KommazahlMaximaleBewegungspunkte));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,

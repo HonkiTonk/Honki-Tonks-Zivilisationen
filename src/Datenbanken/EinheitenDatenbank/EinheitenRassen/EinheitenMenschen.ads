@@ -21,7 +21,7 @@ package EinheitenMenschen is
          Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
                                      others                       => False),
          MaximaleLebenspunkte    => 3,
-         MaximaleBewegungspunkte => 3.00,
+         MaximaleBewegungspunkte => 22.22,
          WirdVerbessertZu        => 0,
          Beförderungsgrenze      => 30,
          MaximalerRang           => 3,

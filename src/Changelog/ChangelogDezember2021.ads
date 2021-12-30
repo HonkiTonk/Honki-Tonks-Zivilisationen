@@ -7,16 +7,16 @@ package ChangelogDezember2021 is
    
    
    
-   -- Version 0.00.9 => 0.00.9 (30.12.2021):
+   -- Version 0.00.9685 => 0.00.9 (30.12.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.9680 => 0.00.9 (29.12.2021):
+   -- Version 0.00.9680 => 0.00.9685 (29.12.2021):
    
-   -- 
+   -- Unnötig lange an der passenden Anzeige für Kommazahlen herumgebastelt.
    -- Kleinigkeiten korrigiert.
    
    

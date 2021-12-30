@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Sf.System.Vector2;
 with Sf.Graphics;
 with Sf.Graphics.Text;
@@ -35,6 +37,9 @@ private
    Zeilenabstand : Float;
    
    Trennzeichen : constant Wide_Wide_String (1 .. 1) := "/";
+   
+   KommazahlVorhandeneBewegungspunkte : Unbounded_Wide_Wide_String;
+   KommazahlMaximaleBewegungspunkte : Unbounded_Wide_Wide_String;
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
