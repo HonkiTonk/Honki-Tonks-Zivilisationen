@@ -66,6 +66,7 @@ package EinheitStadtDatentypen is
    subtype MaximaleStädteMitNullWert is MaximaleEinheitenMitNullWert range 0 .. 100;
    subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. 100;
 
+   -- Das hier mal an die neuen Produktionsidee anpassen.
    type KostenLager is range -10_000 .. 10_000;
    subtype GesamtePermanenteKosten is KostenLager range -500 .. 5_000;
    subtype GesamtproduktionStadt is GesamtePermanenteKosten range -500 .. 500;

@@ -15,7 +15,6 @@ with Cheat;
 with GrafikTextAllgemein;
 with GrafikEinstellungen;
 with StadtInformationenSFML;
-with UmwandlungenAdaNachEigenes;
 
 package body InformationenEinheitenSFML is
 
@@ -101,10 +100,14 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WertLinksVomTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert (ZahlExtern => LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      WertRechtsVomTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert
+        (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                    IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (14)) & LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image
-                                         & Trennzeichen & LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (14)) & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen 
+                                         & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -120,14 +123,14 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      KommazahlVorhandeneBewegungspunkte := UmwandlungenAdaNachEigenes.BewegungspunkteImageNachNormal (KommazahlExtern => LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      KommazahlMaximaleBewegungspunkte := UmwandlungenAdaNachEigenes.BewegungspunkteImageNachNormal
+      WertLinksVomTrennzeichen := UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal (KommazahlExtern => LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      WertRechtsVomTrennzeichen := UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal
         (KommazahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (15)) & To_Wide_Wide_String (Source => KommazahlVorhandeneBewegungspunkte) & Trennzeichen
-                                         & To_Wide_Wide_String (Source => KommazahlMaximaleBewegungspunkte));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (15)) & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
+                                         & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -143,10 +146,14 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WertLinksVomTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert (ZahlExtern => LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      WertRechtsVomTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert
+        (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (16)) & LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image
-                                         & Trennzeichen & LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (16)) & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
+                                         & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -180,9 +187,10 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WertOhneTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert (ZahlExtern => LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (18))
-                                         & LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (18)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -236,10 +244,14 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WertLinksVomTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert (ZahlExtern => LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      WertRechtsVomTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert
+        (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (26)) & LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image
-                                         & Trennzeichen & LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (26)) & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
+                                         & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,

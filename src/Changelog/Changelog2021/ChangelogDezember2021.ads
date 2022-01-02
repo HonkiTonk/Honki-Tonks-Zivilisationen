@@ -1,16 +1,14 @@
 package ChangelogDezember2021 is
 
-   -- Version 0.00.9 => 0.00.9 (31.12.2021):
+   -- Version 0.00.9685 => 0.00.9685 (31.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
+   -- null.
    
    
-   -- Version 0.00.9685 => 0.00.9 (30.12.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Version 0.00.9685 => 0.00.9685 (30.12.2021):
+   
+   -- null.
    
    
    

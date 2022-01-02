@@ -9,7 +9,6 @@ with GlobaleTexte;
 with EinheitenKonstanten;
 
 with Anzeige;
-with Eingabe;
 -- with GrafikAllgemein;
 -- with GrafikEinstellungen;
 
@@ -46,11 +45,6 @@ package body Ladezeiten is
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
-           -- GrafikAllgemein.TextZeichnen (PositionExtern => (10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width,
-           --                                                  10.00
-           --                                                  + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).height * Float (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern))),
-           --                               TextExtern     => GesamtzeitSpielweltErstellen'Wide_Wide_Image);
-            Eingabe.WartenEingabe;
             
          when others =>
             Ada.Float_Text_IO.Put (Item => Float (SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Endwert) - SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
@@ -58,11 +52,6 @@ package body Ladezeiten is
                                    Aft  => 6,
                                    Exp  => 0);
             New_Line;
-          --  GrafikAllgemein.TextZeichnen (PositionExtern => (10.00 + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).width,
-           --                                                  10.00
-           --                                                  + Sf.Graphics.Text.getLocalBounds (text => GrafikEinstellungen.TextStandard).height * Float (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern))),
-           --                               TextExtern     => Float (SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Endwert)
-            --                                - SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Anfangswert))'Wide_Wide_Image);
       end case;
                         
    end LadezeitenSpielweltErstellen;
@@ -74,7 +63,7 @@ package body Ladezeiten is
    is begin
       
       AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => WelcheZeitExtern);
-    --  Eingabe.WartenEingabe;
+      -- Eingabe.WartenEingabe;
       
    end AnzeigeEinzelneZeit;
    

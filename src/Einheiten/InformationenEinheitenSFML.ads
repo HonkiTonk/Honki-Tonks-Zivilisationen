@@ -11,6 +11,8 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 
+with UmwandlungenAdaNachEigenes;
+
 package InformationenEinheitenSFML is
 
    function Einheiten
@@ -38,14 +40,18 @@ private
    
    Trennzeichen : constant Wide_Wide_String (1 .. 1) := "/";
    
-   KommazahlVorhandeneBewegungspunkte : Unbounded_Wide_Wide_String;
-   KommazahlMaximaleBewegungspunkte : Unbounded_Wide_Wide_String;
+   -- Alternativ auch aktueller Wert und maximaler Wert.
+   WertLinksVomTrennzeichen : Unbounded_Wide_Wide_String;
+   WertRechtsVomTrennzeichen : Unbounded_Wide_Wide_String;
+   WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    
    PositionText : Sf.System.Vector2.sfVector2f;
+   
+   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
    
    function Allgemeines
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
