@@ -4,9 +4,8 @@ with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen;
 
-package Ladezeiten is
+package LadezeitenDatentypen is
 
-   
    type Spielwelt_Erstellen_Zeit_Enum is (Leer, Gesamtzeit, Generiere_Normal_Himmel_Weltraum_Planeteninneres, Generiere_Küstengewässer, Generiere_Landschaft_Ebene_Oberfläche, Generiere_Unterwasser_Unterirdisch,
                                           Generiere_Flüsse, Generiere_Ressourcen, Kartenfelder_Bewerten, Spieler_Platzieren);
    subtype Spielwelt_Erstellen_Zeit_Verwendet_Enum is Spielwelt_Erstellen_Zeit_Enum range Gesamtzeit .. Spielwelt_Erstellen_Zeit_Enum'Last;
@@ -21,22 +20,8 @@ package Ladezeiten is
    
    type KIZeitenArray is array (SystemDatentypen.Rassen_Enum, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    KIZeiten : KIZeitenArray;
-
-   procedure LadezeitenSpielweltErstellen
-     (WelcheZeitExtern : in Spielwelt_Erstellen_Zeit_Verwendet_Enum);
    
-   procedure AnzeigeEinzelneZeit
-     (WelcheZeitExtern : in Einzelne_Zeiten_Enum);
-   
-   procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in SystemDatentypen.Rassen_Enum);
-   
-   procedure AnzeigeEinzelneZeitOhneWarten
-     (WelcheZeitExtern : in Einzelne_Zeiten_Enum);
-
-private
-
-   -- Für die Textausgabe
+   -- Für die Textausgabe, irgendwann einmal an das neue Textsystem anpassen.
    type AufschlagArray is array (Einzelne_Zeiten_Enum'Range) of Positive;
    Aufschlag : constant AufschlagArray := (
                                            Startzeit       => 10,
@@ -48,7 +33,4 @@ private
    type KITextArray is array (SystemDatentypen.Rassen_Enum'Range) of Positive;
    KIText : KITextArray := (32, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31);
 
-   GesamtzeitSpielweltErstellen : Float;
-   GesamtzeitKI : Float;
-
-end Ladezeiten;
+end LadezeitenDatentypen;

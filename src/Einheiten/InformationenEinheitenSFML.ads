@@ -51,8 +51,6 @@ private
    
    PositionText : Sf.System.Vector2.sfVector2f;
    
-   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
-   
    function Allgemeines
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return EinheitStadtRecords.RassePlatznummerRecord;
@@ -95,5 +93,13 @@ private
    
    procedure Gecheatet
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+   
+   
+   
+   function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
+   
+   function ZahlAlsStringProduktionFeld is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.ProduktionFeld);
+   
+   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.GesamtproduktionStadt);
 
 end InformationenEinheitenSFML;

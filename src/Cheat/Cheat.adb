@@ -23,6 +23,7 @@ with EingabeSystemeSFML;
 
 package body Cheat is
 
+   -- Die Umwandlung von Wide_Wide_Image im Cheat/Debugmenü einfach ignorieren, weil die Anzeige hier sowieso nicht wichtig ist?
    procedure Menü
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -195,6 +196,8 @@ package body Cheat is
    procedure KarteInfosFeld
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
+      
+      -- Die Stadtbelegung eventuell in die Konsolenanzeige verschieben? Die Belegung wird ja auch in der SFML angezeigt.
       
       Put (Item => "Aktuelle GrundID: " & LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)'Wide_Wide_Image);
       Put_Line (Item => "    Aktuelle Stadtbelegung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,

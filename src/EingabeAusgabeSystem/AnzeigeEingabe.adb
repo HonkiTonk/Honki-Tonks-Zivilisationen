@@ -47,16 +47,16 @@ package body AnzeigeEingabe is
                                  color => Sf.Graphics.Color.sfWhite);
       
       WelchesVorzeichen := EingabeSFML.WelchesVorzeichen;
-      AktuellerWert := EingabeSFML.AktuellerWert;
+      AktuellerWert := ZahlAlsStringNatural (ZahlExtern => EingabeSFML.AktuellerWert);
       
       case
         WelchesVorzeichen
       is
          when False =>
-            AktuellerText := (To_Unbounded_Wide_Wide_String (Source => "-" & AktuellerWert'Wide_Wide_Image));
+            AktuellerText := To_Unbounded_Wide_Wide_String (Source => "-") & AktuellerWert;
                               
          when True =>
-            AktuellerText := (To_Unbounded_Wide_Wide_String (Source => AktuellerWert'Wide_Wide_Image));         
+            AktuellerText := AktuellerWert;         
       end case;
                               
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,

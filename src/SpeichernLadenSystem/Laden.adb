@@ -13,6 +13,7 @@ with KartenDatentypen;
 
 with Karten;
 with Ladezeiten;
+with LadezeitenDatentypen;
 with Informationen;
 with Auswahl;
 with SpeichernLadenAllgemein;
@@ -33,7 +34,7 @@ package body Laden is
             return False;
       end case;
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit, SystemDatentypen.Anfangswert) := Clock;
 
       Open (File => DateiLadenNeu,
             Mode => In_File,
@@ -74,8 +75,8 @@ package body Laden is
 
       Close (File => DateiLadenNeu);
 
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, SystemDatentypen.Endwert) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Ladezeit);
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit, SystemDatentypen.Endwert) := Clock;
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Ladezeit);
 
       return True;
       

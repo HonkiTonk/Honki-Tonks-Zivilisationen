@@ -11,6 +11,10 @@ with Fehler;
 procedure Start
 is
 
+   LogikID : Task_Id;
+   GrafikID : Task_Id;
+   SoundID : Task_Id;
+
    type TasksLaufenArray is array (1 .. 3) of Boolean;
    TasksLaufen : TasksLaufenArray := (others => True);
 
@@ -21,6 +25,7 @@ is
    task body Logik
    is begin
 
+      LogikID := Current_Task;
       StartLogik.StartLogik;
       TasksLaufen (1) := False;
 
@@ -31,6 +36,7 @@ is
    task body Grafik
    is begin
 
+      GrafikID := Current_Task;
       StartGrafik.StartGrafik;
       TasksLaufen (2) := False;
 
@@ -41,6 +47,7 @@ is
    task body Sound
    is begin
 
+      SoundID := Current_Task;
       StartSound.StartSound;
       TasksLaufen (3) := False;
 
@@ -63,7 +70,11 @@ begin
           or
             Fehler.KritischesProblemSound
       then
-         Abort_Task (T => Current_Task);
+         -- So besser? Immerhin gibt es keine Konsolenmeldung mehr über den Abbruch des Environment Tasks.
+         Abort_Task (T => LogikID);
+         Abort_Task (T => GrafikID);
+         Abort_Task (T => SoundID);
+         exit SpielLäuftSchleife;
 
       else
          delay 0.20;

@@ -206,10 +206,11 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                          IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (24))
-                                         & LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (24)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -225,10 +226,11 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (25))
-                                         & LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (25)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -296,9 +298,11 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                        AngreiferExtern          => False));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (60)) & KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                                        AngreiferExtern          => False)'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (60)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -314,9 +318,11 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                    AngreiferExtern          => False));
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (61)) & KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                                    AngreiferExtern          => False)'Wide_Wide_Image);
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (61)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,

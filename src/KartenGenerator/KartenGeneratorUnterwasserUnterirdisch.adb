@@ -8,16 +8,16 @@ with SystemDatentypen;
 with SchreibeKarten;
 with LeseKarten;
 
-with Ladezeiten;
 with Karten;
 with ZufallGeneratorenKarten;
+with LadezeitenDatentypen;
 
 package body KartenGeneratorUnterwasserUnterirdisch is
 
    procedure UnterwasserUnterirdisch
    is begin
       
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Anfangswert) := Clock;
          
       YAchseUnterwasserSchleife:
       for YAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
@@ -39,7 +39,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
          end loop XAchseUnterwasserSchleife;
       end loop YAchseUnterwasserSchleife;
          
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Endwert) := Clock;
+      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Endwert) := Clock;
       
    end UnterwasserUnterirdisch;
    

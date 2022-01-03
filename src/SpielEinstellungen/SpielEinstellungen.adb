@@ -6,11 +6,12 @@ with GlobaleVariablen;
 
 with ImSpiel;
 with KartenGenerator;
-with Ladezeiten;
+with LadezeitenDatentypen;
 with SpielEinstellungenKarten;
 with SpielEinstellungenRasseSpieler;
 with SpielEinstellungenSonstiges;
 with Fehler;
+with Ladezeiten;
 
 package body SpielEinstellungen is
 
@@ -71,7 +72,7 @@ package body SpielEinstellungen is
       
       KartenGenerator.KartenGenerator;
       
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren, SystemDatentypen.Anfangswert) := Clock;
       SpielEinstellungenRasseSpieler.StartwerteErmitteln;
       RassenVorhanden := False;
       
@@ -101,10 +102,10 @@ package body SpielEinstellungen is
             Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Es konnte keine Rasse platziert werden.");
       end case;
          
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, SystemDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Spieler_Platzieren);
+      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren, SystemDatentypen.Endwert) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Spieler_Platzieren);
 
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Gesamtzeit);
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Gesamtzeit);
       
       return ImSpiel.ImSpiel;
       

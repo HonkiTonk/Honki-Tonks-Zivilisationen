@@ -189,17 +189,19 @@ package ChangelogJanuar2022 is
    
    
 
-   -- Version 0.00.97 => 0.00.97 (04.01.2022):
+   -- Version 0.00.9700 => 0.00.97 (04.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9690 => 0.00.97 (03.01.2022):
+   -- Version 0.00.9690 => 0.00.9700 (03.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Nutzungung von Wide_Wide_Image überall wo es sinnvoll war vollständig durch eigene Lösung ersetzt.
+   -- Lizenz für den SourceCode auf GitHub hinzugefügt.
+   -- Die Taskverwaltung von Start überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
@@ -207,7 +209,7 @@ package ChangelogJanuar2022 is
    
    -- Kommazahlen werden jetzt in der richtigen Form angezeigt.
    -- Eine eigene Funktion gebaut um bei der Umwandlung einer Zahl in einen String direkt die anfänglichen Leerzeichen zu entfernen.
-   -- Kleinigkeiten korrigiert.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
 

@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with Sf.System.Vector2;
 with Sf.Graphics;
 with Sf.Graphics.Text;
@@ -8,6 +10,10 @@ with Sf.Graphics.RectangleShape;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
+with EinheitStadtDatentypen;
+with KartenDatentypen;
+
+with UmwandlungenAdaNachEigenes;
 
 package KarteInformationenSFML is
 
@@ -23,6 +29,10 @@ private
    EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
 
    Zeilenabstand : Float;
+
+   WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
+   YAchsenWert : Unbounded_Wide_Wide_String;
+   XAchsenWert : Unbounded_Wide_Wide_String;
 
    StartpunktText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
 
@@ -47,5 +57,15 @@ private
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure CheatInformationen;
+
+
+
+   function ZahlAlsStringInteger is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Integer);
+
+   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.KostenLager);
+
+   function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
+
+   function ZahlAlsStringKartenfeldPositivMitNullwert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.KartenfeldPositivMitNullwert);
 
 end KarteInformationenSFML;

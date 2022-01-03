@@ -17,6 +17,7 @@ with Auswahl;
 with Ladezeiten;
 with Informationen;
 with SpeichernLadenAllgemein;
+with LadezeitenDatentypen;
 
 package body Speichern is
 
@@ -34,7 +35,7 @@ package body Speichern is
             null;
       end case;
 
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit, SystemDatentypen.Anfangswert) := Clock;
       
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
@@ -51,16 +52,16 @@ package body Speichern is
       
       Close (File => DateiSpeichernNeu);
          
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, SystemDatentypen.Endwert) := Clock;
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit, SystemDatentypen.Endwert) := Clock;
       
       case
         AutospeichernExtern
       is
          when True =>
-            Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => Ladezeiten.Speicherzeit);
+            Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit);
             
          when False =>
-            Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Speicherzeit);
+            Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit);
       end case;
    
    end SpeichernNeu;
@@ -355,6 +356,7 @@ package body Speichern is
          SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
                
       else
+         -- Hier kann Wide_Wide_Image bleiben weil die Zahl ja nur als Namensbestandteil für den Spielstand fungiert.
          SpeichernLadenAllgemein.SpielstandName.EingegebenerText := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
          if
            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1

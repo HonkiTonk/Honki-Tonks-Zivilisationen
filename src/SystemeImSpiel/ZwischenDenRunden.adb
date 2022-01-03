@@ -21,6 +21,7 @@ with EinheitenModifizieren;
 with Ladezeiten;
 with Speichern;
 with VerbesserungFertiggestellt;
+with LadezeitenDatentypen;
 -- with InteraktionTasks;
 
 package body ZwischenDenRunden is
@@ -30,8 +31,9 @@ package body ZwischenDenRunden is
    is begin
       
       -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Laden);
+      -- Das Umschalten der Darstellung der Ladezeiten in die Prozeduren der jeweiligen Ladezeiten einbauen?
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden, SystemDatentypen.Anfangswert) := Clock;
       
       case
         NachSiegWeiterspielen
@@ -137,8 +139,8 @@ package body ZwischenDenRunden is
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
             
          else
-            Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert) := Clock;
-            Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Endwert) := Ladezeiten.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert);
+            LadezeitenDatentypen.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert) := Clock;
+            LadezeitenDatentypen.KIZeiten (RasseSchleifenwert, SystemDatentypen.Endwert) := LadezeitenDatentypen.KIZeiten (RasseSchleifenwert, SystemDatentypen.Anfangswert);
          end if;
          
       end loop RassenSchleife;
@@ -223,8 +225,8 @@ package body ZwischenDenRunden is
             null;
       end case;
       
-      Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, SystemDatentypen.Endwert) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Zwischen_Runden);
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden, SystemDatentypen.Endwert) := Clock;
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Zwischen_Runden);
       
    end GesamteZeitenAnzeigen;
 

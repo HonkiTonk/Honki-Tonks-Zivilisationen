@@ -11,7 +11,8 @@ with Fehler;
 with InteraktionTasks;
 
 package body EingabeKonsole is
-
+   
+   -- Wide_Wide_Image kann hier so bleiben, außer bei der Konsolenanzeige selbst.
    function GanzeZahl
      (ZahlenMinimumExtern : in Grenzen;
       ZahlenMaximumExtern : in Grenzen;

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-with Ada.Strings.Wide_Wide_Fixed; -- use Ada.Strings.Wide_Wide_Fixed;
+with Ada.Strings.Wide_Wide_Fixed;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Window.Mouse; use Sf.Window.Mouse;
@@ -17,6 +17,7 @@ with Fehler;
 
 package body EingabeSFML is
    
+   -- Wide_Wide_Image kann hier so bleiben weil es nicht für die Anzeige verwendet wird.
    function GanzeZahl
      (ZahlenMinimumExtern : in Grenzen;
       ZahlenMaximumExtern : in Grenzen;

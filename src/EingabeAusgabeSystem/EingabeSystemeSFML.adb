@@ -11,6 +11,7 @@ with SystemDatentypen;
 
 with GrafikEinstellungen;
 with InteraktionTasks;
+with Fehler;
 
 package body EingabeSystemeSFML is
 
@@ -36,7 +37,8 @@ package body EingabeSystemeSFML is
             is
                when Sf.Window.Event.sfEvtClosed =>
                   -- Hier noch einen universellen Endebefehl einbauen.
-                  null;
+                  -- Nur als Zwischenlösung gedacht, später wieder entfernen!
+                  Fehler.UnschönerStopp;
                   
                when Sf.Window.Event.sfEvtResized =>
                   -- Schleife hier auch danach verlassen? Würde das irgendwas bringen?

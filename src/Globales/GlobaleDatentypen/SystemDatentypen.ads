@@ -112,6 +112,7 @@ package SystemDatentypen is
    -- Sonstiges
    type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
    pragma Ordered (Spieler_Enum);
+   
    type RassenImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Spieler_Enum;
 
    type Staatsform_Enum is (Anarchie,

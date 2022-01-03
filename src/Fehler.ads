@@ -19,6 +19,10 @@ package Fehler is
    procedure SonstigesStopp
      (FehlermeldungExtern : in Wide_Wide_String);
    
+   -- Nur als Zwischenlösung gedacht, später wieder entfernen!
+   procedure UnschönerStopp;
+   -- Nur als Zwischenlösung gedacht, später wieder entfernen!
+   
 private
 
    -- Die Exceptions sind reichlich nutzlos im aktuellen System, trotzdem drinnen lassen oder entfernen?

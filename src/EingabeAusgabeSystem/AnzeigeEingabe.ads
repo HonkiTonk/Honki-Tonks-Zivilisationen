@@ -11,6 +11,7 @@ with EinheitStadtRecords;
 with SystemDatentypen;
 
 with AuswahlStadtEinheit;
+with UmwandlungenAdaNachEigenes;
 
 package AnzeigeEingabe is
 
@@ -26,13 +27,12 @@ private
    
    WelcheFrage : Positive;
    
-   AktuellerWert : Natural;
-   
    AktuelleAuswahl : Integer;
    
    Zeilenabstand : Float;
    
    AktuellerText : Unbounded_Wide_Wide_String;
+   AktuellerWert : Unbounded_Wide_Wide_String;
    
    WelcheAuswahl : AuswahlStadtEinheit.AuswahlRecord;
    
@@ -44,5 +44,9 @@ private
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+   
+   
+   
+   function ZahlAlsStringNatural is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Natural);
 
 end AnzeigeEingabe;

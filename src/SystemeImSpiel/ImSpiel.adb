@@ -7,7 +7,7 @@ with EinheitenKonstanten;
 
 with BefehleImSpiel;
 with Optionen;
-with Ladezeiten;
+with LadezeitenDatentypen;
 with Speichern;
 with Laden;
 with RasseEntfernen;
@@ -139,9 +139,9 @@ package body ImSpiel is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
             
-      Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert) := Clock;
       KI.KI (RasseExtern => RasseExtern);
-      Ladezeiten.KIZeiten (RasseExtern, SystemDatentypen.Endwert) := Clock;
+      LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Endwert) := Clock;
       
    end KISpieler;
    

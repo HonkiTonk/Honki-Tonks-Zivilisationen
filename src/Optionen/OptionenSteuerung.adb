@@ -128,6 +128,7 @@ package body OptionenSteuerung is
    is begin
                
       NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (GlobaleVariablen.UmbelegungNummer);
+      -- Das hier später entfernen.
       Put_Line (NeueAuswahl'Wide_Wide_Image);
       
       NeueTasteSchleife:

@@ -1,8 +1,13 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
+with KartenDatentypen;
+
+with UmwandlungenAdaNachEigenes;
 
 package KarteInformationenKonsole is
 
@@ -18,6 +23,10 @@ private
    
    EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
+
+   WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
+   YAchsenWert : Unbounded_Wide_Wide_String;
+   XAchsenWert : Unbounded_Wide_Wide_String;
    
    procedure InformationenStadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -65,5 +74,11 @@ private
    
    procedure Hügel
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+   
+   
+
+   function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
+
+   function ZahlAlsStringKartenfeldPositivMitNullwert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.KartenfeldPositivMitNullwert);
 
 end KarteInformationenKonsole;

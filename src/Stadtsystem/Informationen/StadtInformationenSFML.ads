@@ -10,8 +10,10 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenRecords;
+with EinheitStadtDatentypen;
 
 with Karten;
+with UmwandlungenAdaNachEigenes;
 
 package StadtInformationenSFML is
 
@@ -39,6 +41,7 @@ private
    Zeilenabstand : Float;
    
    Text : Unbounded_Wide_Wide_String;
+   WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
@@ -186,5 +189,13 @@ private
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+   
+   
+   
+   function ZahlAlsStringProduktionFeld is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.ProduktionFeld);
+   
+   function ZahlAlsStringGesamtproduktionStadt is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.GesamtproduktionStadt);
+   
+   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.KostenLager);
 
 end StadtInformationenSFML;

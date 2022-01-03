@@ -7,7 +7,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenDatentypen;
 
 with LeseKarten;
 
@@ -29,7 +28,7 @@ package body KarteInformationenKonsole is
    is begin
       
       InformationenWichtiges.Wichtiges (RasseExtern => RasseExtern);
-      InformationenSichtbar (RasseExtern => RasseExtern); -- 
+      InformationenSichtbar (RasseExtern => RasseExtern);
       Kartenposition (RasseExtern => RasseExtern);
       Gecheatet (RasseExtern => RasseExtern);
       
@@ -306,8 +305,11 @@ package body KarteInformationenKonsole is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
-      Put_Line (Item => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse'Wide_Wide_Image & "," & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse'Wide_Wide_Image
-                & "," & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse'Wide_Wide_Image);
+      WertOhneTrennzeichen := ZahlAlsStringEbeneVorhanden (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse);
+      YAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse);
+      XAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse);
+      
+      Put_Line (Item => To_Wide_Wide_String (Source => WertOhneTrennzeichen) & ", " & To_Wide_Wide_String (Source => YAchsenWert) & ", " & To_Wide_Wide_String (Source => XAchsenWert));
       New_Line;
       
    end Kartenposition;
