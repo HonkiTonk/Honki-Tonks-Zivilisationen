@@ -5,7 +5,6 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf.Window.Event;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
-
 with SystemRecords;
 
 package EingabeSystemeSFML is

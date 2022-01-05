@@ -15,8 +15,10 @@ is
    GrafikID : Task_Id;
    SoundID : Task_Id;
 
-   type TasksLaufenArray is array (1 .. 3) of Boolean;
-   TasksLaufen : TasksLaufenArray := (others => True);
+   type Tasks_Enum is (Task_Logik, Task_Grafik, Task_Sound);
+
+   type TasksLaufenArray is array (Tasks_Enum'Range) of Boolean;
+   TasksLaufen : TasksLaufenArray;
 
    task Logik;
    task Grafik;
@@ -26,8 +28,10 @@ is
    is begin
 
       LogikID := Current_Task;
+
+      TasksLaufen (Task_Logik) := True;
       StartLogik.StartLogik;
-      TasksLaufen (1) := False;
+      TasksLaufen (Task_Logik) := False;
 
    end Logik;
 
@@ -37,8 +41,10 @@ is
    is begin
 
       GrafikID := Current_Task;
+
+      TasksLaufen (Task_Grafik) := True;
       StartGrafik.StartGrafik;
-      TasksLaufen (2) := False;
+      TasksLaufen (Task_Grafik) := False;
 
    end Grafik;
 
@@ -48,12 +54,30 @@ is
    is begin
 
       SoundID := Current_Task;
+
+      TasksLaufen (Task_Sound) := True;
       StartSound.StartSound;
-      TasksLaufen (3) := False;
+      TasksLaufen (Task_Sound) := False;
 
    end Sound;
 
 begin
+
+   TaskIDsBelegenLassenSchleife:
+   loop
+
+      if
+        TasksLaufen = (True, True, True)
+      then
+         exit TaskIDsBelegenLassenSchleife;
+
+      else
+         delay 0.02;
+      end if;
+
+   end loop TaskIDsBelegenLassenSchleife;
+
+
 
    SpielLäuftSchleife:
    loop
@@ -64,16 +88,36 @@ begin
          exit SpielLäuftSchleife;
 
       elsif
-        Fehler.KritischesProblemLogik
+        (Is_Terminated (T => LogikID) = True
+         and
+           TasksLaufen (Task_Logik) = True)
         or
-          Fehler.KritischesProblemGrafik
-          or
-            Fehler.KritischesProblemSound
+          Fehler.KritischesProblemLogik
       then
-         -- So besser? Immerhin gibt es keine Konsolenmeldung mehr über den Abbruch des Environment Tasks.
-         Abort_Task (T => LogikID);
          Abort_Task (T => GrafikID);
          Abort_Task (T => SoundID);
+         exit SpielLäuftSchleife;
+
+      elsif
+        (Is_Terminated (T => GrafikID) = True
+         and
+           TasksLaufen (Task_Grafik) = True)
+        or
+          Fehler.KritischesProblemGrafik
+      then
+         Abort_Task (T => LogikID);
+         Abort_Task (T => GrafikID);
+         exit SpielLäuftSchleife;
+
+      elsif
+        (Is_Terminated (T => SoundID) = True
+         and
+           TasksLaufen (Task_Sound) = True)
+        or
+          Fehler.KritischesProblemSound
+      then
+         Abort_Task (T => LogikID);
+         Abort_Task (T => GrafikID);
          exit SpielLäuftSchleife;
 
       else

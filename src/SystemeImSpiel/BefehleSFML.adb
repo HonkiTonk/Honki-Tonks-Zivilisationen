@@ -123,7 +123,7 @@ package body BefehleSFML is
          when SystemDatentypen.Leer =>
             null;
       end case;
-
+      
       return SystemKonstanten.StartWeiterKonstante;
       
    end BefehleSFML;

@@ -161,45 +161,46 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (08.01.2022):
+   -- Version 0.00.97 => 0.00.9 (08.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (07.01.2022):
+   -- Version 0.00.97 => 0.00.97 (07.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
           
          
-   -- Version 0.00.97 => 0.00.9 (06.01.2022):
+   -- Version 0.00.9710 => 0.00.97 (06.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
        
-   -- Version 0.00.97 => 0.00.97 (05.01.2022):
+   -- Version 0.00.9700 => 0.00.9710 (05.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Abbruchmechanik beim Auftreten eines kritischen Fehlers verbessert. Sie sollte nun immer das Programm sofort und korrekt beenden.
+   -- Ada.Integer_Text_IO Reste vollständig durch Ada.Integer_Wide_Wide_Text_IO ersetzt.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9700 => 0.00.97 (04.01.2022):
+   -- Version 0.00.9700 => 0.00.9700 (04.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
    -- Version 0.00.9690 => 0.00.9700 (03.01.2022):
    
    -- Die Nutzungung von Wide_Wide_Image überall wo es sinnvoll war vollständig durch eigene Lösung ersetzt.
-   -- Lizenz für den SourceCode auf GitHub hinzugefügt.
+   -- Angefangen die Anzeige der Ladezeiten in eine Konsolen- und eine SFML-Version zu unterteilen.
+   -- Lizenz für den SourceCode hinzugefügt.
    -- Die Taskverwaltung von Start überarbeitet.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    

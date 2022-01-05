@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Integer_Text_IO;
+with Ada.Integer_Wide_Wide_Text_IO;
 
 with GlobaleTexte;
 
@@ -40,7 +40,7 @@ package body InformationenWichtiges is
                                      AbstandAnfangExtern    => GlobaleTexte.Leer,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.RundenAnzahl,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => GlobaleVariablen.RundenAnzahl,
                                Width => 1);
       
    end Rundenanzahl;
@@ -59,7 +59,7 @@ package body InformationenWichtiges is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern),
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern),
                                Width => 1);
       
    end Geldmenge;
@@ -78,7 +78,7 @@ package body InformationenWichtiges is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern)),
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern)),
                                Width => 1);
       New_Line;
       
@@ -118,7 +118,7 @@ package body InformationenWichtiges is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)),
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)),
                                Width => 1);
       New_Line;
       
@@ -138,7 +138,7 @@ package body InformationenWichtiges is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)),
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)),
                                Width => 1);
       
    end Forschungsmenge;
@@ -157,7 +157,7 @@ package body InformationenWichtiges is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)),
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)),
                                Width => 1);
       New_Line (Spacing => 2);
       
