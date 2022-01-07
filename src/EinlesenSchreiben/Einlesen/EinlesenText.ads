@@ -60,5 +60,5 @@ private
    procedure Ladezeit;
    procedure Frage;
    procedure ZeugSachen;
-
+   
 end EinlesenText;

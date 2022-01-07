@@ -5,7 +5,6 @@ with Sf; use Sf;
 with SystemKonstanten;
 
 with AuswahlMenue;
-with GrafikAllgemein;
 with Eingabe;
 with GrafikEinstellungen;
 with SchreibenEinstellungen;
@@ -44,7 +43,7 @@ package body OptionenGrafik is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik - Ungültige Menüasuwahl.");
+               Fehler.LogikStopp (FehlermeldungExtern => "OptionenGrafik.OptionenGrafik - Ungültige Menüauswahl.");
          end case;
          
       end loop GrafikSchleife;
@@ -58,7 +57,7 @@ package body OptionenGrafik is
       
       EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => 32,
                                               ZahlenMinimumExtern => 320,
-                                              ZahlenMaximumExtern => Integer'Last);
+                                              ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
       
       if
         EingabeAuflösung.EingabeAbbruch
@@ -71,7 +70,7 @@ package body OptionenGrafik is
       
       EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => 33,
                                               ZahlenMinimumExtern => 240,
-                                              ZahlenMaximumExtern => Integer'Last);
+                                              ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
       
       if
         EingabeAuflösung.EingabeAbbruch
@@ -83,7 +82,9 @@ package body OptionenGrafik is
          return;
       end if;
       
-      GrafikAllgemein.FensterAuflösungÄndern (NeueAuflösungExtern => NeueAuflösung);
+      GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
+      GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
+      GrafikEinstellungen.AktuelleFensterAuflösung := NeueAuflösung;
       
    end AuflösungÄndern;
    
@@ -94,12 +95,13 @@ package body OptionenGrafik is
       
       EingabeBildrate := Eingabe.GanzeZahl (ZeileExtern         => 34,
                                             ZahlenMinimumExtern => 0,
-                                            ZahlenMaximumExtern => Integer'Last);
+                                            ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
       
       if
         EingabeBildrate.EingabeAbbruch
       then
-         GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
+         null;
+         -- GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
          
       else
          null;

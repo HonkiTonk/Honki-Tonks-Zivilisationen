@@ -12,8 +12,8 @@ package Eingabe is
 
    function GanzeZahl
      (ZeileExtern : in Positive;
-      ZahlenMinimumExtern : in Integer;
-      ZahlenMaximumExtern : in Integer)
+      ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
       return SystemRecords.ZahlenEingabeRecord;
 
    function StadtName

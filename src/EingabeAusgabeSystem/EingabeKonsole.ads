@@ -15,8 +15,6 @@ package EingabeKonsole is
 
    AktuellerWert : Natural;
 
-   subtype Grenzen is Integer range -1_000_000_000 .. 1_000_000_000;
-
    type TastenbelegungArray is array (1 .. 2, SystemDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Wide_Wide_Character;
    Tastenbelegung : TastenbelegungArray;
 
@@ -27,8 +25,8 @@ package EingabeKonsole is
 
 
    function GanzeZahl
-     (ZahlenMinimumExtern : in Grenzen;
-      ZahlenMaximumExtern : in Grenzen;
+     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord;
 
@@ -168,8 +166,8 @@ private
                                                             );
 
    procedure VorzeichenAnpassen
-     (ZahlenMinimumExtern : in Grenzen;
-      ZahlenMaximumExtern : in Grenzen;
+     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
       PlusMinusExtern : in Boolean);
 
    procedure ZahlHinzufügen
@@ -180,8 +178,8 @@ private
 
 
    function MinimumMaximumSetzen
-     (ZahlenMinimumExtern : in Grenzen;
-      ZahlenMaximumExtern : in Grenzen)
+     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
       return Boolean;
 
    function GanzeZahlPrüfung
@@ -189,8 +187,8 @@ private
       return Zahl_Prüfung_Enum;
 
    function ZahlSchleife
-     (ZahlenMinimumExtern : in Grenzen;
-      ZahlenMaximumExtern : in Grenzen)
+     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
       return Boolean;
 
 end EingabeKonsole;

@@ -114,6 +114,8 @@ package SystemDatentypen is
    pragma Ordered (Spieler_Enum);
    
    type RassenImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Spieler_Enum;
+   
+   subtype Grenzen is Integer range -1_000_000_000 .. 1_000_000_000;
 
    type Staatsform_Enum is (Anarchie,
                             Demokratie);

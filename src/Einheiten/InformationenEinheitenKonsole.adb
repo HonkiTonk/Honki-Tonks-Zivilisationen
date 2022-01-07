@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Float_Text_IO;
 with Ada.Integer_Wide_Wide_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
@@ -17,7 +16,7 @@ with StadtInformationenKonsole;
 with KampfwerteEinheitErmitteln;
 with Cheat;
 
-package body InformationenEinheiten is
+package body InformationenEinheitenKonsole is
 
    procedure Einheiten
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -115,16 +114,17 @@ package body InformationenEinheiten is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Float_Text_IO.Put (Item => Float (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                             Fore => 1,
-                             Aft  => 2,
-                             Exp  => 0);
+      -- Das hier später durch einen Aufruf von UmwandlungAdaNachEigenes ersetzen, wie bei der SFML Version.
+      AnzeigeBewegungFloat.Put (Item => LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                Fore => 1,
+                                Aft  => 2,
+                                Exp  => 0);
       Put (Item => " / ");
-      Ada.Float_Text_IO.Put (Item => Float (LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))),
-                             Fore => 1,
-                             Aft  => 2,
-                             Exp  => 0);
+      AnzeigeBewegungFloat.Put (Item => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+                                Fore => 1,
+                                Aft  => 2,
+                                Exp  => 0);
       
    end Bewegungspunkte;
    
@@ -423,4 +423,4 @@ package body InformationenEinheiten is
       
    end Gecheatet;
 
-end InformationenEinheiten;
+end InformationenEinheitenKonsole;

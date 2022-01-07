@@ -8,7 +8,6 @@ with Sf.Graphics.Font;
 with Sf.Window.Cursor;
 
 with GrafikEinstellungen;
-with GrafikStartEnde;
 
 package body GrafikAllgemein is
       
@@ -27,23 +26,6 @@ package body GrafikAllgemein is
                                         view         => NeueAuflösungAccess);
       
    end FensterAnpassen;
-   
-   
-   
-   procedure FensterAuflösungÄndern
-     (NeueAuflösungExtern : in Sf.System.Vector2.sfVector2u)
-   is begin
-      
-      GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösungExtern.x;
-      GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösungExtern.y;
-      
-      GrafikEinstellungen.AktuelleFensterAuflösung := NeueAuflösungExtern;
-      
-      GrafikStartEnde.FensterEntfernen;
-      
-      GrafikStartEnde.FensterErzeugen;
-      
-   end FensterAuflösungÄndern;
    
    
    
@@ -100,7 +82,7 @@ package body GrafikAllgemein is
    procedure SchriftartFestlegen
    is begin
       
-      GrafikEinstellungen.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => "Grafik/OregonLdo-d9q7.ttf");
+      GrafikEinstellungen.SchriftartAccess := Sf.Graphics.Font.createFromFile (filename => "Sprachen/FreeSans.ttf");
       
    end SchriftartFestlegen;
 

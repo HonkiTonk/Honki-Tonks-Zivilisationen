@@ -9,9 +9,6 @@ package GrafikAllgemein is
 
    procedure FensterAnpassen;
 
-   procedure FensterAuflösungÄndern
-     (NeueAuflösungExtern : in Sf.System.Vector2.sfVector2u);
-
    procedure BildrateÄndern
      (NeueBildrateExtern : in Sf.sfUint32);
 
@@ -24,6 +21,7 @@ package GrafikAllgemein is
 private
 
    NeueAuflösung : Sf.Graphics.Rect.sfFloatRect;
+
    NeueAuflösungAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.createFromRect (rectangle => NeueAuflösung);
 
 end GrafikAllgemein;

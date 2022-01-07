@@ -168,17 +168,18 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.97 => 0.00.97 (07.01.2022):
+   -- Version 0.00.9710 => 0.00.9715 (07.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Korrekturen an den Texten vorgenommen.
+   -- Ada.Float_Text_IO vollständig durch eigenes Package ersetzt.
+   -- Neue Textfont eingebaut.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
           
          
-   -- Version 0.00.9710 => 0.00.97 (06.01.2022):
+   -- Version 0.00.9710 => 0.00.9710 (06.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
        

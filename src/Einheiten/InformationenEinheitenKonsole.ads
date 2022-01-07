@@ -1,11 +1,13 @@
 pragma SPARK_Mode (On);
 
+with Ada.Wide_Wide_Text_IO;
+
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 
-package InformationenEinheiten is
+package InformationenEinheitenKonsole is
 
    procedure Einheiten
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -72,5 +74,7 @@ private
    
    procedure Gecheatet
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+   
+   package AnzeigeBewegungFloat is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitStadtDatentypen.BewegungFloat);
 
-end InformationenEinheiten;
+end InformationenEinheitenKonsole;

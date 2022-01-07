@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Wide_Wide_Text_IO;
+
 with SystemDatentypen;
 
 with LadezeitenDatentypen;
@@ -22,5 +24,7 @@ private
 
    GesamtzeitSpielweltErstellen : Float;
    GesamtzeitKI : Float;
+   
+   package AnzeigeFloat is new Ada.Wide_Wide_Text_IO.Float_IO (Float);
 
 end LadezeitenKonsole;

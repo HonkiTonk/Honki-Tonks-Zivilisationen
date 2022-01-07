@@ -19,7 +19,7 @@ with AufgabenAllgemein;
 with KartenAllgemein;
 with GesamtwerteFeld;
 with InformationenWichtiges;
-with InformationenEinheiten;
+with InformationenEinheitenKonsole;
      
 package body KarteInformationenKonsole is
 
@@ -55,8 +55,8 @@ package body KarteInformationenKonsole is
                null;
                 
             else
-               InformationenEinheiten.Einheiten (RasseExtern              => RasseExtern,
-                                                 EinheitRasseNummerExtern => EinheitRasseNummer);
+               InformationenEinheitenKonsole.Einheiten (RasseExtern              => RasseExtern,
+                                                        EinheitRasseNummerExtern => EinheitRasseNummer);
             end if;
             
          when False =>

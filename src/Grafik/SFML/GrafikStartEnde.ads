@@ -9,7 +9,8 @@ package GrafikStartEnde is
    procedure FensterAnzeigen;
    
 private
-      
+     
+   -- Das hier so lassen oder durch die erste Zeile der Textdatei - Hauptmenü ersetzen?
    Name : constant Wide_Wide_String := "Name des Spiels";
 
 end GrafikStartEnde;

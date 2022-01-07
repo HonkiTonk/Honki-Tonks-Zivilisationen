@@ -14,8 +14,8 @@ package body EingabeKonsole is
    
    -- Wide_Wide_Image kann hier so bleiben, außer bei der Konsolenanzeige selbst.
    function GanzeZahl
-     (ZahlenMinimumExtern : in Grenzen;
-      ZahlenMaximumExtern : in Grenzen;
+     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
       WelcheFrageExtern : in Positive)
       return SystemRecords.ZahlenEingabeRecord
    is begin
@@ -92,8 +92,8 @@ package body EingabeKonsole is
 
 
    function ZahlSchleife
-     (ZahlenMinimumExtern : in Grenzen;
-      ZahlenMaximumExtern : in Grenzen)
+     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
       return Boolean
    is begin
       
@@ -149,8 +149,8 @@ package body EingabeKonsole is
    
    
    procedure VorzeichenAnpassen
-     (ZahlenMinimumExtern : in Grenzen;
-      ZahlenMaximumExtern : in Grenzen;
+     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen;
       PlusMinusExtern : in Boolean)
    is begin
             
@@ -193,7 +193,7 @@ package body EingabeKonsole is
       if
         ZahlenString (1) /= '0'
       then
-         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => Grenzen'Last'Wide_Wide_Image,
+         ZahlenString := Ada.Strings.Wide_Wide_Fixed.Trim (Source => SystemDatentypen.Grenzen'Last'Wide_Wide_Image,
                                                            Side   => Ada.Strings.Left);
            
       else
@@ -254,8 +254,8 @@ package body EingabeKonsole is
    
    
    function MinimumMaximumSetzen
-     (ZahlenMinimumExtern : in Grenzen;
-      ZahlenMaximumExtern : in Grenzen)
+     (ZahlenMinimumExtern : in SystemDatentypen.Grenzen;
+      ZahlenMaximumExtern : in SystemDatentypen.Grenzen)
       return Boolean
    is begin
       

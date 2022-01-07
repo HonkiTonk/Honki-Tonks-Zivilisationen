@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Calendar; use Ada.Calendar;
-with Ada.Float_Text_IO;
 
 with GlobaleTexte;
 with EinheitenKonstanten;
@@ -39,13 +38,13 @@ package body LadezeitenKonsole is
                             - LadezeitenDatentypen.SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert));
                
             end loop ZeitAuswahlSchleife;
-            Ada.Float_Text_IO.Put (Item => GesamtzeitSpielweltErstellen,
+            AnzeigeFloat.Put (Item => GesamtzeitSpielweltErstellen,
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
             
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (LadezeitenDatentypen.SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Endwert)
+            AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Endwert)
                                    - LadezeitenDatentypen.SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
                                    Fore => 1,
                                    Aft  => 6,
@@ -81,7 +80,7 @@ package body LadezeitenKonsole is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
-      Ada.Float_Text_IO.Put (Item => Float (LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Endwert)
+      AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Endwert)
                              - LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
                              Fore => 1,
                              Aft  => 6,
@@ -119,14 +118,14 @@ package body LadezeitenKonsole is
                   
             end loop ZeitAuswahlSchleife;
             
-            Ada.Float_Text_IO.Put (Item => GesamtzeitKI,
+            AnzeigeFloat.Put (Item => GesamtzeitKI,
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
             New_Line;
             
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (LadezeitenDatentypen.KIZeiten (WelcheZeitExtern, SystemDatentypen.Endwert) - LadezeitenDatentypen.KIZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
+            AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.KIZeiten (WelcheZeitExtern, SystemDatentypen.Endwert) - LadezeitenDatentypen.KIZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
