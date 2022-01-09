@@ -4,10 +4,11 @@ with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;
 with GlobaleVariablen;
 
-with InteraktionTasks;
+with InteraktionSoundtask;
 
 package body StartSound is
 
+   -- Später eine Unterteilung für Musik und Sound machen wie bei Grafik mit Bilddarstellung und Eingabeanzeige?
    procedure StartSound
    is begin
       
@@ -22,7 +23,7 @@ package body StartSound is
       end case;
       
       SoundSchleife:
-      while InteraktionTasks.AktuelleMusikAbfragen = SystemDatentypen.Musik_SFML loop
+      while InteraktionSoundtask.AktuelleMusikAbfragen = SystemDatentypen.Musik_SFML loop
          
          delay SystemKonstanten.WartezeitSound;
          

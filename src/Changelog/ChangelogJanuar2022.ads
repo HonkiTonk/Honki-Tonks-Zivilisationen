@@ -133,38 +133,40 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (12.01.2022):
+   -- Version 0.00.97 => 0.00.9 (12.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (11.01.2022):
+   -- Version 0.00.97 => 0.00.97 (11.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (10.01.2022):
+   -- Version 0.00.9720 => 0.00.97 (10.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (09.01.2022):
+   -- Version 0.00.9715 => 0.00.9720 (09.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Angefangen die Verzeichnisstruktur des Projekts zu verbessern.
+   -- Fehlersystem und Prüfung auf unerwartet beendete Tasks verbessert.
+   -- InteraktionTask in die Dateien InteraktionGrafiktask, InteraktionLogiktask und InteraktionSoundtask aufgeteilt.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (08.01.2022):
+   -- Version 0.00.9715 => 0.00.9715 (08.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
       

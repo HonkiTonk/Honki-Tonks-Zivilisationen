@@ -6,8 +6,9 @@ with SystemKonstanten;
 with SchreibenVerzeichnisse;
 with EinlesenEinstellungen;
 with Einlesen;
-with InteraktionTasks;
+with InteraktionLogiktask;
 with Hauptmenue;
+with InteraktionGrafiktask;
 
 package body StartLogik is
 
@@ -19,10 +20,10 @@ package body StartLogik is
       
       Einlesen.EinlesenOhneAnzeige;
       
-      InteraktionTasks.ErzeugeFensterÄndern;
+      InteraktionGrafiktask.ErzeugeFensterÄndern;
       
       FensterVorhandenSchleife:
-      while InteraktionTasks.FensterErzeugtAbrufen = False loop
+      while InteraktionLogiktask.FensterErzeugtAbrufen = False loop
          
          delay SystemKonstanten.WartezeitLogik;
          
@@ -30,10 +31,10 @@ package body StartLogik is
       
       Einlesen.EinlesenMitAnzeige;
       
-      InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Intro);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Intro);
       
       IntroSchleife:
-      while InteraktionTasks.AktuelleDarstellungAbrufen = SystemDatentypen.Grafik_Intro loop
+      while InteraktionGrafiktask.AktuelleDarstellungAbrufen = SystemDatentypen.Grafik_Intro loop
          
          delay SystemKonstanten.WartezeitLogik;
          

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen;
 with SystemKonstanten;
 
-with InteraktionTasks;
+with InteraktionGrafiktask;
 with GrafikKonsole;
 with GrafikSFML;
 with Fehler;
@@ -14,23 +14,14 @@ package body StartGrafik is
    is begin
       
       GrafikStartenSchleife:
-      while InteraktionTasks.ErzeugeFensterAbrufen = False loop
+      while InteraktionGrafiktask.ErzeugeFensterAbrufen = False loop
          
          delay SystemKonstanten.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;
             
-      GrafikArtAuswahl;
-      
-   end StartGrafik;
-   
-   
-   
-   procedure GrafikArtAuswahl
-   is begin
-      
       case
-        InteraktionTasks.AktuelleDarstellungAbrufen
+        InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
          when SystemDatentypen.Grafik_Konsole =>
             GrafikKonsole.GrafikKonsole;
@@ -42,6 +33,6 @@ package body StartGrafik is
             Fehler.GrafikStopp (FehlermeldungExtern => "StartGrafik.GrafikArtAuswahl - Ungültige Startdarstellung.");
       end case;
       
-   end GrafikArtAuswahl;
+   end StartGrafik;
 
 end StartGrafik;

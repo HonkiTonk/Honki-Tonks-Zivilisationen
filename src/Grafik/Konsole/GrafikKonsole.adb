@@ -3,11 +3,12 @@ pragma SPARK_Mode (On);
 with SystemDatentypen;
 with SystemKonstanten;
 
-with InteraktionTasks;
-with Intro;
+with InteraktionLogiktask;
+with IntroKonsole;
 with Fehler;
 with Karte;
 with ForschungAnzeigeKonsole;
+with InteraktionGrafiktask;
 -- with AuswahlSpracheAnzeige;
 
 package body GrafikKonsole is
@@ -21,22 +22,22 @@ package body GrafikKonsole is
          -- Hier die Auslagerung der Auswahl auch sinnvoll?
          -- In der Konsolenanzeige später noch die Auswahlinteraktion einbauen.
          case
-           InteraktionTasks.AktuelleDarstellungAbrufen
+           InteraktionGrafiktask.AktuelleDarstellungAbrufen
          is
             when SystemDatentypen.Grafik_Konsole =>
-               InteraktionTasks.FensterErzeugtÄndern;
-               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionLogiktask.FensterErzeugtÄndern;
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
             
             when SystemDatentypen.Grafik_SFML =>
                Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Konsole wird bei SFML aufgerufen.");
                
             when SystemDatentypen.Grafik_Sprache =>
                -- AuswahlSpracheAnzeige.AnzeigeSpracheKonsole;
-               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Intro =>
-               Intro.Intro;
-               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               IntroKonsole.Intro;
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                               
             when SystemDatentypen.Grafik_Pause =>
                delay SystemKonstanten.WartezeitGrafik;
@@ -46,26 +47,26 @@ package body GrafikKonsole is
          
             when SystemDatentypen.Grafik_Menüs =>
                -- AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
-               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Weltkarte =>
                case
-                 InteraktionTasks.AktuelleRasseAbrufen
+                 InteraktionLogiktask.AktuelleRasseAbrufen
                is
                   when SystemDatentypen.Keine_Rasse =>
                      delay SystemKonstanten.WartezeitGrafik;
                      
                   when others =>
-                     Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasseAbrufen);
-                     InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+                     Karte.AnzeigeKarte (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
+                     InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                end case;
                
             when SystemDatentypen.Grafik_Stadtkarte =>
-               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Forschung =>
                ForschungAnzeigeKonsole.ForschungAnzeige;
-               InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Bauen =>
                null;

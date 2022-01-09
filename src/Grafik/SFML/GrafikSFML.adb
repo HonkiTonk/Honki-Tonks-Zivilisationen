@@ -9,10 +9,10 @@ with SystemKonstanten;
 
 with Fehler;
 with GrafikStartEnde;
-with Intro;
+with IntroSFML;
 with AuswahlMenueAnzeige;
 with Karte;
-with InteraktionTasks;
+with InteraktionGrafiktask;
 with KarteStadt;
 with InDerStadt;
 with GrafikAllgemein;
@@ -21,7 +21,7 @@ with ForschungAnzeigeSFML;
 with AuswahlSpracheAnzeige;
 with AnzeigeEingabe;
 with BauAuswahlAnzeigeSFML;
--- with EingabeSystemeSFML;
+with InteraktionLogiktask;
 
 package body GrafikSFML is
    
@@ -34,29 +34,18 @@ package body GrafikSFML is
       loop
          
          case
-           InteraktionTasks.FensterVerändertAbrufen
+           InteraktionGrafiktask.FensterVerändertAbrufen
          is
             when True =>
                GrafikAllgemein.FensterAnpassen;
                Sichtweiten.SichtweiteBewegungsfeldFestlegen;
-               InteraktionTasks.FensterVerändertÄndern;
+               InteraktionGrafiktask.FensterVerändertÄndern;
                
             when False =>
                null;
          end case;
          
          GrafikStartEnde.FensterLeeren;
-         
-        -- case
-        --   InteraktionTasks.EingabeTastenwert
-        -- is
-        --    when True =>
-        --       EingabeSystemeSFML.TastenEingabe;
-        --       InteraktionTasks.EingabeTastenwert := False;
-               
-        --    when False =>
-        --       null;
-        -- end case;
          
          case
            AnzeigeAuswahl
@@ -81,21 +70,21 @@ package body GrafikSFML is
    is begin
       
       case
-        InteraktionTasks.AktuelleDarstellungAbrufen
+        InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
          when SystemDatentypen.Grafik_Konsole =>
             Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Konsole wird bei SFML aufgerufen.");
             
          when SystemDatentypen.Grafik_SFML =>
-            InteraktionTasks.FensterErzeugtÄndern;
-            InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+            InteraktionLogiktask.FensterErzeugtÄndern;
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
             
          when SystemDatentypen.Grafik_Sprache =>
             AuswahlSpracheAnzeige.AnzeigeSpracheSFML;
                
          when SystemDatentypen.Grafik_Intro =>
-            Intro.Intro;
-            InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+            IntroSFML.Intro;
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                               
          when SystemDatentypen.Grafik_Pause =>
             delay SystemKonstanten.WartezeitGrafik;
@@ -108,12 +97,12 @@ package body GrafikSFML is
                
          when SystemDatentypen.Grafik_Weltkarte =>
             if
-              InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
+              InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                delay SystemKonstanten.WartezeitGrafik;
                      
             else
-               Karte.AnzeigeKarte (RasseExtern => InteraktionTasks.AktuelleRasseAbrufen);
+               Karte.AnzeigeKarte (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
             end if;
                
          when SystemDatentypen.Grafik_Stadtkarte =>
@@ -128,7 +117,7 @@ package body GrafikSFML is
                
          when SystemDatentypen.Grafik_Forschung =>
             if
-              InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
+              InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
                Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Forschungsmenü wird ohne Rasse aufgerufen.");
@@ -139,7 +128,7 @@ package body GrafikSFML is
             
          when SystemDatentypen.Grafik_Bauen =>
             if
-              InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
+              InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
                Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Baumenü wird ohne Rasse aufgerufen.");
@@ -164,7 +153,7 @@ package body GrafikSFML is
    is begin
       
       case
-        InteraktionTasks.EingabeAbrufen
+        InteraktionGrafiktask.EingabeAbrufen
       is
          when SystemDatentypen.Text_Eingabe =>
             AnzeigeEingabe.AnzeigeText;
@@ -174,12 +163,12 @@ package body GrafikSFML is
             
          when SystemDatentypen.Einheit_Auswahl =>
             if
-              InteraktionTasks.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
+              InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                null;
                      
             else
-               AnzeigeEingabe.AnzeigeEinheitenStadt (RasseExtern => InteraktionTasks.AktuelleRasseAbrufen);
+               AnzeigeEingabe.AnzeigeEinheitenStadt (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
             end if;
                
          when SystemDatentypen.Keine_Eingabe =>
