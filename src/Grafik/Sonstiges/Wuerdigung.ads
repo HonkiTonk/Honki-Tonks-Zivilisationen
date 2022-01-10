@@ -2,6 +2,11 @@ pragma SPARK_Mode (On);
 
 package Wuerdigung is
 
-   procedure Wuerdigung;
+   procedure Würdigung;
+
+private
+
+   procedure WürdigungKonsole;
+   procedure WürdigungSFML;
 
 end Wuerdigung;

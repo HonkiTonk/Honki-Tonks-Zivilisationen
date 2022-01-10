@@ -10,7 +10,6 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
 
-with Anzeige;
 with StadtWerteFestlegen;
 with Eingabe;
 with StadtProduktion;
@@ -110,8 +109,8 @@ package body StadtBauen is
          return False;
          
       else
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 6);
+         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+         --                                      TextZeileExtern => 6);
          return False;
       end if;
       
@@ -136,8 +135,9 @@ package body StadtBauen is
               GlobaleVariablen.RassenImSpiel (RasseExtern)
             is
                when SystemDatentypen.Spieler_Mensch =>
-                  Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                        TextZeileExtern => 7);
+                  -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                  --                                       TextZeileExtern => 7);
+                  null;
                
                when others =>
                   null;

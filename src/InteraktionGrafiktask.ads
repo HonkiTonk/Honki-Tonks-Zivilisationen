@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen;
 
 package InteraktionGrafiktask is
-   
+    
    procedure ErzeugeFensterÄndern;
    procedure FensterVerändertÄndern;
    

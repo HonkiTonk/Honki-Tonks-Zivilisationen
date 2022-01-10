@@ -18,7 +18,7 @@ with StadtInformationenKonsole;
 with AufgabenAllgemein;
 with KartenAllgemein;
 with GesamtwerteFeld;
-with InformationenWichtiges;
+with InformationenWichtigesKonsole;
 with InformationenEinheitenKonsole;
      
 package body KarteInformationenKonsole is
@@ -27,7 +27,7 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      InformationenWichtiges.Wichtiges (RasseExtern => RasseExtern);
+      InformationenWichtigesKonsole.Wichtiges (RasseExtern => RasseExtern);
       InformationenSichtbar (RasseExtern => RasseExtern);
       Kartenposition (RasseExtern => RasseExtern);
       Gecheatet (RasseExtern => RasseExtern);

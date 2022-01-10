@@ -16,7 +16,6 @@ package EingabeSFML is
    type TastenbelegungArray is array (1 .. 2, SystemDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
    Tastenbelegung : TastenbelegungArray;
    
-   procedure WartenEingabe;
    procedure StandardTastenbelegungLaden;
    
    

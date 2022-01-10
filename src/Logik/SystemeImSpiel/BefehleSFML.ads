@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Sf.Window.Event;
-
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
@@ -18,7 +16,7 @@ private
 
    Transportiert : Boolean;
    AufgabeDurchführen : Boolean;
-   NullWert : Boolean;
+   StadtErfolgreichGebaut : Boolean;
    
    Auswahl : KartenDatentypen.LoopRangeMinusEinsZuEins;
    
@@ -28,10 +26,8 @@ private
    TransporterNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    StadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    
-   StadtOderEinheit : Integer;
+   -- Ist Integer um mit dem aktuellen Auswahlsystem zu funktionieren.
    AusgewählteEinheit : Integer;
-   
-   BefehlNeu : Sf.Window.Event.sfEvent;
    
    StadtSuchenNachNamen : EinheitStadtRecords.RassePlatznummerRecord;
    

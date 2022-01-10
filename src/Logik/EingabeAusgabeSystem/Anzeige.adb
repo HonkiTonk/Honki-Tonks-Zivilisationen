@@ -49,25 +49,33 @@ package body Anzeige is
       TextZeileExtern : in Positive)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => TextDateiExtern,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => TextZeileExtern,
-                                     LetzteZeileExtern      => TextZeileExtern,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Grafik_Konsole =>
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                           TextDateiExtern        => TextDateiExtern,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => TextZeileExtern,
+                                           LetzteZeileExtern      => TextZeileExtern,
+                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+                                           AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
-      if
-        TextDateiExtern = GlobaleTexte.Fehlermeldungen
-        and
-          TextZeileExtern /= 16
-      then
-         Eingabe.WartenEingabe;
+            if
+              TextDateiExtern = GlobaleTexte.Fehlermeldungen
+              and
+                TextZeileExtern /= 16
+            then
+               Eingabe.WartenEingabe;
             
-      else
-         null;
-      end if;
+            else
+               null;
+            end if;
+            
+         when SystemDatentypen.Grafik_SFML =>
+            Fehler.GrafikStopp (FehlermeldungExtern => "Anzeige.EinzeiligeAnzeigeOhneAuswahl - SFML wird in Konsolengrafik aufgerufen.");
+      end case;
       
    end EinzeiligeAnzeigeOhneAuswahl;
 
@@ -94,23 +102,7 @@ package body Anzeige is
                                                   AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
             
          when SystemDatentypen.Grafik_SFML =>
-            null;
-      end case;
-      
-      case
-        GlobaleVariablen.AnzeigeArt
-      is
-         when SystemDatentypen.Grafik_SFML =>
-            -- TextAnzeigeSFML.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,
-            --                                   TextDateiExtern             => TextDateiExtern,
-            --                                   FrageZeileExtern            => FrageZeileExtern,
-            --                                   ErsteZeileExtern            => ErsteZeileExtern,
-            --                                   LetzteZeileExtern           => LetzteZeileExtern,
-            --                                   AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
-            null;
-            
-         when SystemDatentypen.Grafik_Konsole =>
-            null;
+            Fehler.GrafikStopp (FehlermeldungExtern => "Anzeige.AnzeigeMitAuswahlNeu - SFML wird in Konsolengrafik aufgerufen.");
       end case;
       
    end AnzeigeMitAuswahlNeu;

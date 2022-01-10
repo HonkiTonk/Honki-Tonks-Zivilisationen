@@ -23,13 +23,13 @@ with KIForschung;
 
 package body ForschungAllgemein is
 
-   -- Auch bei allein anderen Beschreibungen dann so einbauen.
    function Beschreibung
      (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
+      -- RasseExtern wird später benötigt wenn es verschiedene Forschungsbäume gibt.
       if
         RasseExtern = SystemDatentypen.Menschen
       then
@@ -67,11 +67,8 @@ package body ForschungAllgemein is
 
       if
         WasErforschtWerdenSoll = ForschungKonstanten.LeerForschungAnforderung
-      then
-         null;
-         
-      elsif
-        WasErforschtWerdenSoll = AktuellesForschungsprojekt
+        or
+          WasErforschtWerdenSoll = AktuellesForschungsprojekt
       then
          null;
                
@@ -290,6 +287,7 @@ package body ForschungAllgemein is
    
    
    
+   -- Die beiden Forschrittprozeduren zusammenführen? Sinnvoll oder könnte es bei Erweiterungen kompliziert werden?
    procedure FortschrittMensch
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin

@@ -10,8 +10,6 @@ package ImSpiel is
 
 private
 
-   RassenSchleifeVerlassenKonstante : constant Integer := -300;
-
    AktuellerBefehlSpieler : SystemDatentypen.Rückgabe_Werte_Enum;
    RückgabeOptionen : SystemDatentypen.Rückgabe_Werte_Enum;
    RückgabeRassen : SystemDatentypen.Rückgabe_Werte_Enum;
@@ -54,5 +52,12 @@ private
    function NochSpielerVorhanden
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean;
+
+   function Befehle
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
 
 end ImSpiel;

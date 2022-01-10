@@ -4,6 +4,7 @@ with GlobaleVariablen;
 
 with EingabeKonsole;
 with EingabeSFML;
+with Fehler;
 
 package body Eingabe is
 
@@ -79,7 +80,7 @@ package body Eingabe is
             EingabeKonsole.WartenEingabe;
             
          when SystemDatentypen.Grafik_SFML =>
-            EingabeSFML.WartenEingabe;
+            Fehler.LogikStopp (FehlermeldungExtern => "Eingabe.WartenEingabe - Nur bei Konsole so nötig.");
       end case;
       
    end WartenEingabe;

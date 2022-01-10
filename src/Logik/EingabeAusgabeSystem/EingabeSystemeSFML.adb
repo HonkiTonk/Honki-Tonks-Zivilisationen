@@ -18,7 +18,6 @@ package body EingabeSystemeSFML is
    procedure TastenEingabe
    is begin
       
-      SchleifeVerlassen := False;
       TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
       -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen?
       MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
@@ -26,7 +25,7 @@ package body EingabeSystemeSFML is
       
       -- EingabeSchleife ist nicht notwendig, das entfernen macht aber die Probleme schlimmer, das ganze hier mal umbauen/in den Grafiktask verschieben.
       EingabeSchleife:
-      while SchleifeVerlassen = False loop
+      loop
          TasteSchleife:
          while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.FensterAccess,
                                                    event        => ZeichenEingeben)
@@ -41,14 +40,11 @@ package body EingabeSystemeSFML is
                   Fehler.GrafikStopp (FehlermeldungExtern => "");
                   
                when Sf.Window.Event.sfEvtResized =>
-                  -- Schleife hier auch danach verlassen? Würde das irgendwas bringen?
                   InteraktionGrafiktask.FensterVerändertÄndern;
                   
                when Sf.Window.Event.sfEvtMouseMoved =>
                   -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
                   GrafikEinstellungen.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
-                  -- Schleife muss auch hier verlassen werden, sonst wird die aktuelle Mausposition nicht oft genug festgelegt.
-                  SchleifeVerlassen := True;
                   
                when others =>
                   null;
@@ -60,19 +56,18 @@ package body EingabeSystemeSFML is
             is
                when Sf.Window.Event.sfEvtKeyPressed =>
                   TastaturTaste := ZeichenEingeben.key.code;
-                  SchleifeVerlassen := True;
                   
                when Sf.Window.Event.sfEvtMouseWheelScrolled =>
                   MausRad := ZeichenEingeben.mouseWheelScroll.eventDelta;
-                  SchleifeVerlassen := True;
                   
                when Sf.Window.Event.sfEvtMouseButtonPressed =>
                   MausTaste := ZeichenEingeben.mouseButton.button;
-                  SchleifeVerlassen := True;
                   
                when others =>
                   null;
             end case;
+            
+            exit EingabeSchleife;
                      
          end loop TasteSchleife;
       end loop EingabeSchleife;

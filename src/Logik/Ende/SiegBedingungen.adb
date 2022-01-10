@@ -2,13 +2,10 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
-with GlobaleTexte;
 with GlobaleVariablen;
 
 with LeseWichtiges;
 
-with Anzeige;
-with Eingabe;
 with Cheat;
 with Enden;
 
@@ -96,16 +93,7 @@ package body SiegBedingungen is
             return True;
             
          when 1 =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                           TextDateiExtern        => GlobaleTexte.Gewonnen,
-                                           ÜberschriftZeileExtern => 50,
-                                           ErsteZeileExtern       => 1,
-                                           LetzteZeileExtern      => 1,
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
             GlobaleVariablen.Gewonnen := True;
-            Eingabe.WartenEingabe;
             return True;
             
          when others =>
@@ -131,16 +119,7 @@ package body SiegBedingungen is
          elsif
            LeseWichtiges.Geldmenge (RasseExtern => RassenGeldSchleifenwert) = Integer'Last
          then
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                           TextDateiExtern        => GlobaleTexte.Gewonnen,
-                                           ÜberschriftZeileExtern => 50,
-                                           ErsteZeileExtern       => 2,
-                                           LetzteZeileExtern      => 2,
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
             GlobaleVariablen.Gewonnen := True;
-            Eingabe.WartenEingabe;
             return True;
             
          else
@@ -166,16 +145,7 @@ package body SiegBedingungen is
             return False;
             
          when True =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                           TextDateiExtern        => GlobaleTexte.Gewonnen,
-                                           ÜberschriftZeileExtern => 50,
-                                           ErsteZeileExtern       => 3,
-                                           LetzteZeileExtern      => 3,
-                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-                                           AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
             GlobaleVariablen.Gewonnen := True;
-            Eingabe.WartenEingabe;
             return True;
       end case;
          

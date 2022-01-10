@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
 with EinheitStadtDatentypen;
 
 with KIDatentypen;
@@ -8,7 +7,6 @@ with KIDatentypen;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
-with Anzeige;
 with GebaeudeAllgemein;
 
 package body StadtGebaeudeBauen is
@@ -27,8 +25,9 @@ package body StadtGebaeudeBauen is
                                                BeschäftigungExtern   => KIDatentypen.Keine_Aufgabe);
                
       else
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                               TextZeileExtern => 29);
+         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+         --                                      TextZeileExtern => 29);
+         null;
       end if;
       
    end GebäudeFertiggestellt;

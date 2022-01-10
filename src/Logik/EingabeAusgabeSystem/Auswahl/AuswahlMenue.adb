@@ -83,6 +83,57 @@ package body AuswahlMenue is
       end case;
 
    end AllgemeinesFestlegen;
+
+      
+   
+   procedure Auswahl
+   is begin
+      
+      AuswahlSchleife:
+      loop
+      
+         MausAuswahl;
+      
+         case
+           Eingabe.Tastenwert
+         is
+            when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
+               if
+                 AktuelleAuswahl = Anfang
+               then
+                  AktuelleAuswahl := Ende;
+
+               else
+                  AktuelleAuswahl := AktuelleAuswahl - 1;
+               end if;
+
+            when SystemDatentypen.Unten | SystemDatentypen.Ebene_Runter =>
+               if
+                 AktuelleAuswahl = Ende
+               then
+                  AktuelleAuswahl := Anfang;
+
+               else
+                  AktuelleAuswahl := AktuelleAuswahl + 1;
+               end if;
+               
+               -- Später noch erweitern?
+            when SystemDatentypen.Links =>
+               null;
+               
+            when SystemDatentypen.Rechts =>
+               null;
+                              
+            when SystemDatentypen.Auswählen =>
+               return;
+            
+            when others =>
+               null;
+         end case;
+         
+      end loop AuswahlSchleife;
+      
+   end Auswahl;
    
          
    
@@ -146,57 +197,6 @@ package body AuswahlMenue is
       end loop MausZeigerSchleife;
       
    end MausAuswahl;
-
-      
-   
-   procedure Auswahl
-   is begin
-      
-      AuswahlSchleife:
-      loop
-      
-         MausAuswahl;
-      
-         case
-           Eingabe.Tastenwert
-         is
-            when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
-               if
-                 AktuelleAuswahl = Anfang
-               then
-                  AktuelleAuswahl := Ende;
-
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
-
-            when SystemDatentypen.Unten | SystemDatentypen.Ebene_Runter =>
-               if
-                 AktuelleAuswahl = Ende
-               then
-                  AktuelleAuswahl := Anfang;
-
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
-               
-               -- Später noch erweitern?
-            when SystemDatentypen.Links =>
-               null;
-               
-            when SystemDatentypen.Rechts =>
-               null;
-                              
-            when SystemDatentypen.Auswählen =>
-               return;
-            
-            when others =>
-               null;
-         end case;
-         
-      end loop AuswahlSchleife;
-      
-   end Auswahl;
    
    
    

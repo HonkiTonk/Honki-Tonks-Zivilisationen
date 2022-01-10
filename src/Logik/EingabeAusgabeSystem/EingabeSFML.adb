@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Ada.Strings.Wide_Wide_Fixed;
 
@@ -11,7 +10,6 @@ with Sf;
 with GlobaleTexte;
 
 with EingabeSystemeSFML;
-with Anzeige;
 with Fehler;
 with InteraktionGrafiktask;
 
@@ -295,7 +293,8 @@ package body EingabeSFML is
    function StadtName
      return SystemRecords.TextEingabeRecord
    is begin
-            
+      
+      -- Diese Funktion wird auch beim Suchen nach einer Stadt benutzt, Frage universeller gestalten oder eine entsprechende Prüfung welcher Fall vorliegt.
       return NameEingeben (WelcheFrageExtern => 35);
       
    end StadtName;
@@ -348,30 +347,11 @@ package body EingabeSFML is
    
    
    
-   procedure WartenEingabe
-   is begin
-      
-      New_Line;
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                            TextZeileExtern => 47);
-      EingabeSystemeSFML.TastenEingabe;
-      
-   end WartenEingabe;
-   
-   
-   
    function Tastenwert
      return SystemDatentypen.Tastenbelegung_Enum
    is begin
       
-      -- InteraktionTasks.EingabeTastenwert := True;
-      
       EingabeSystemeSFML.TastenEingabe;
-      -- while InteraktionTasks.EingabeTastenwert loop
-         
-      --     delay 0.000000002;
-         
-      --  end loop;
       
       -- Das Mausrad muss? vor der Maustaste geprüft werden.
       if

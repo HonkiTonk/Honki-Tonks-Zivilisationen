@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with GlobaleTexte;
 with SystemKonstanten;
 
-with Anzeige;
 with Auswahl;
 with DiplomatischerZustandAenderbar;
 
@@ -20,8 +19,7 @@ package body Diplomatie is
             DiplomatieMenü (RasseExtern => RasseExtern);
             
          when False =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                  TextZeileExtern => 20);
+            null;
       end case;
       
    end DiplomatieMöglich;
@@ -89,8 +87,9 @@ package body Diplomatie is
                 or
                   GlobaleVariablen.Diplomatie (RasseExtern, SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt
             then
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                     TextZeileExtern => 21);
+               -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+               --                                     TextZeileExtern => 21);
+               null;
             
             else
                exit WelcheRasseSchleife;

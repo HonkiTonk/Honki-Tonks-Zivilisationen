@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with Ada.Task_Identification; use Ada.Task_Identification;
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with StartLogik;
 with StartGrafik;
@@ -105,6 +105,7 @@ begin
       then
          Abort_Task (T => TaskID (Task_Grafik));
          Abort_Task (T => TaskID (Task_Sound));
+         Put_Line (Item => "Logiktask wurde abgebrochen.");
          exit SpielLäuftSchleife;
 
       elsif
@@ -113,7 +114,8 @@ begin
           TasksLaufen (Task_Grafik) = True
       then
          Abort_Task (T => TaskID (Task_Logik));
-         Abort_Task (T => TaskID (Task_Grafik));
+         Abort_Task (T => TaskID (Task_Sound));
+         Put_Line (Item => "Grafiktask wurde abgebrochen.");
          exit SpielLäuftSchleife;
 
       elsif
@@ -123,6 +125,7 @@ begin
       then
          Abort_Task (T => TaskID (Task_Logik));
          Abort_Task (T => TaskID (Task_Grafik));
+         Put_Line (Item => "Soundtask wurde abgebrochen.");
          exit SpielLäuftSchleife;
 
       else

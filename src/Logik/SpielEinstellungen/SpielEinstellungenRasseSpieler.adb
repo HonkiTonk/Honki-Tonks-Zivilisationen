@@ -1,13 +1,11 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
 with KartenKonstanten;
 with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
 with ZufallGeneratorenSpieleinstellungen;
-with Anzeige;
 with ZufallGeneratorenKarten;
 with EinheitSuchen;
 with KartePositionPruefen;
@@ -136,12 +134,13 @@ package body SpielEinstellungenRasseSpieler is
                     NotAusSchleifenwert
                   is
                      when SystemDatentypen.NotAus'Last =>
-                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                              TextZeileExtern => 16);
-                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
-                                                              TextZeileExtern => SystemDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
-                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                              TextZeileExtern => 17);
+                        -- Neue Meldung durch den Grafiktask anzeigen lassen.
+                        -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                        --                                      TextZeileExtern => 16);
+                        -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
+                        --                                      TextZeileExtern => SystemDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
+                        -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                        --                                      TextZeileExtern => 17);
                         GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := SystemDatentypen.Leer;
                         
                      when others =>

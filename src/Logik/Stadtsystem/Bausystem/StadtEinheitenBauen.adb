@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with GlobaleTexte;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -12,9 +11,6 @@ with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with Anzeige;
-with Eingabe;
--- with Karte;
 with EinheitSuchen;
 with UmgebungErreichbarTesten;
 with StadtMeldungenSetzen;
@@ -49,12 +45,8 @@ package body StadtEinheitenBauen is
         and
           GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 19);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position := LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position;
-         -- Karte.AnzeigeKarte (RasseExtern => StadtRasseNummerExtern.Rasse);
-         Eingabe.WartenEingabe;
          
       elsif
         EinheitNummer = EinheitenKonstanten.LeerNummer

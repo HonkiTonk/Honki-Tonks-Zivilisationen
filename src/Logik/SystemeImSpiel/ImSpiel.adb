@@ -5,7 +5,6 @@ with Ada.Calendar; use Ada.Calendar;
 with SystemKonstanten;
 with EinheitenKonstanten;
 
-with BefehleImSpiel;
 with Optionen;
 with LadezeitenDatentypen;
 with Speichern;
@@ -16,6 +15,8 @@ with AuswahlMenue;
 with InteraktionLogiktask;
 with Fehler;
 with InteraktionGrafiktask;
+with BefehleKonsole;
+with BefehleSFML;
 
 with KI;
 
@@ -25,7 +26,7 @@ package body ImSpiel is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      -- Muss hier einmal auf True gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechent werden vom Grafiktask.
+      -- Muss hier einmal auf True gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechnet werden vom Grafiktask.
       InteraktionGrafiktask.FensterVerändertÄndern;
       
       SpielSchleife:
@@ -199,7 +200,7 @@ package body ImSpiel is
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
             when SystemDatentypen.Spieler_Mensch =>
-               AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
+               AktuellerBefehlSpieler := Befehle (RasseExtern => RasseExtern);
                
             when others =>
                -- Sollte niemals auftreten? Könnte auftreten wenn der Spieler eliminiert wird oder auf KI gesetzt wird? Mal ein besseres System bauen.
@@ -331,5 +332,24 @@ package body ImSpiel is
       return False;
       
    end NochSpielerVorhanden;
+   
+   
+   
+   function Befehle
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Grafik_Konsole =>
+            return BefehleKonsole.BefehleKonsole (RasseExtern => RasseExtern);
+            
+         when SystemDatentypen.Grafik_SFML =>
+            return BefehleSFML.BefehleSFML (RasseExtern => RasseExtern);
+      end case;
+      
+   end Befehle;
 
 end ImSpiel;

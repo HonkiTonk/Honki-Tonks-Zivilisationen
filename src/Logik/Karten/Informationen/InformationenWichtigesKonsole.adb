@@ -10,20 +10,20 @@ with LeseWichtiges;
 with Anzeige;
 with ForschungAllgemein;
 
-package body InformationenWichtiges is
+package body InformationenWichtigesKonsole is
    
    procedure Wichtiges
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Allgemeine Informationen über die eigene Rasse, immer sichtbar
-      InformationenWichtiges.Rundenanzahl;
-      InformationenWichtiges.Geldmenge (RasseExtern => RasseExtern);
-      InformationenWichtiges.GeldGewinn (RasseExtern => RasseExtern);
-      InformationenWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
-      InformationenWichtiges.Forschungszeit (RasseExtern => RasseExtern);
-      InformationenWichtiges.Forschungsmenge (RasseExtern => RasseExtern);
-      InformationenWichtiges.Forschungsrate (RasseExtern => RasseExtern);
+      Rundenanzahl;
+      Geldmenge (RasseExtern => RasseExtern);
+      GeldGewinn (RasseExtern => RasseExtern);
+      Forschungsprojekt (RasseExtern => RasseExtern);
+      Forschungszeit (RasseExtern => RasseExtern);
+      Forschungsmenge (RasseExtern => RasseExtern);
+      Forschungsrate (RasseExtern => RasseExtern);
       
    end Wichtiges;
    
@@ -163,4 +163,4 @@ package body InformationenWichtiges is
       
    end Forschungsrate;
 
-end InformationenWichtiges;
+end InformationenWichtigesKonsole;

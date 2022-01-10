@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 
-package InformationenWichtiges is
+package InformationenWichtigesKonsole is
 
    procedure Wichtiges
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
@@ -51,4 +51,4 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
 
-end InformationenWichtiges;
+end InformationenWichtigesKonsole;

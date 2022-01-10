@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with GlobaleVariablen;
@@ -14,7 +13,6 @@ with InDerStadt;
 with BewegungCursor;
 with NaechstesObjekt;
 with Aufgaben;
-with Anzeige;
 with Diplomatie;
 with Cheat;
 with StadtBauen;
@@ -64,6 +62,8 @@ package body BefehleSFML is
             -- ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
             null;
             
+            -- Die folgenden vier Befehle scheinen gar nicht mehr zu funktionieren.
+            -- genau wie bei GeheZu könnte es eventuell helfen nicht den Cursor zu platzieren sondern den Rendermittelpunkt dahin zu verschieben.
          when SystemDatentypen.Nächste_Stadt =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
@@ -243,8 +243,6 @@ package body BefehleSFML is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse := 1;
-      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse := 1;
       InDerStadt.InDerStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtBetreten;
@@ -294,7 +292,7 @@ package body BefehleSFML is
       if
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) > EinheitenKonstanten.LeerEinheit.Bewegungspunkte
       then
-         NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+         StadtErfolgreichGebaut := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
       else
          null;
@@ -323,25 +321,12 @@ package body BefehleSFML is
       if
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 8);
          AufgabeDurchführen := False;
                      
       else
          AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
                                                               BefehlExtern             => BefehlExtern);
       end if;
-      
-      case
-        AufgabeDurchführen
-      is
-         when False =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                  TextZeileExtern => 2);
-            
-         when True =>
-            null;
-      end case;
       
    end EinheitBefehle;
    

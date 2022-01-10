@@ -80,7 +80,7 @@ package body Hauptmenue is
                Informationen.Informationen;
                
             when SystemDatentypen.Würdigungen =>
-               Wuerdigung.Wuerdigung;
+               Wuerdigung.Würdigung;
                
             when SystemDatentypen.Spiel_Beenden =>
                exit HauptmenüSchleife;

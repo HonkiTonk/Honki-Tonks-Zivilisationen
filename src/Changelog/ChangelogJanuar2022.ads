@@ -126,31 +126,33 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (13.01.2022):
+   -- Version 0.00.97 => 0.00.9 (13.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (12.01.2022):
+   -- Version 0.00.97 => 0.00.97 (12.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.97 (11.01.2022):
+   -- Version 0.00.9730 => 0.00.97 (11.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9720 => 0.00.97 (10.01.2022):
+   -- Version 0.00.9720 => 0.00.9730 (10.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code entfernt.
+   -- Diverse Abstürze im Zusammenhang mit falschen/sinnlosen Aufrufen der alten Anzeigeart behoben.
+   -- Wieder einmal an der Steuerung herumgebastelt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
       

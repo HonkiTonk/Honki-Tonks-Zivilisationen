@@ -5,7 +5,6 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Sf.Window.Keyboard;
 
 with KartenDatentypen; use KartenDatentypen;
-with GlobaleTexte;
 
 with SchreibeWichtiges;
 with SchreibeKarten;
@@ -14,12 +13,9 @@ with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 with LeseWichtiges;
 
--- with Karte;
 with Karten;
-with Anzeige;
 with ForschungAllgemein;
 with EingabeSystemeSFML;
-
 
 package body Cheat is
 
@@ -30,15 +26,6 @@ package body Cheat is
       
       MenüSchleife:
       loop
-
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Cheat_Menü,
-                                        TextDateiExtern        => GlobaleTexte.Cheat_Menü,
-                                        ÜberschriftZeileExtern => 1,
-                                        ErsteZeileExtern       => 2,
-                                        LetzteZeileExtern      => 3,
-                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                        AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
-                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
          
          EingabeSystemeSFML.TastenEingabe;
          

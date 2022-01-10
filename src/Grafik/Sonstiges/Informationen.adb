@@ -4,6 +4,8 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with GlobaleTexte;
+with GlobaleVariablen;
+with SystemDatentypen;
 
 with Eingabe;
 with Anzeige;
@@ -13,6 +15,24 @@ package body Informationen is
    procedure Informationen
    is begin
 
+      -- Genau wie Würdigungen muss das hier eh geändert werden um mit den seperaten Tasks zu funktionieren!
+      case
+        GlobaleVariablen.AnzeigeArt
+      is
+         when SystemDatentypen.Grafik_Konsole =>
+            InformationenKonsole;
+            
+         when SystemDatentypen.Grafik_SFML =>
+            InformationenSFML;
+      end case;
+      
+   end Informationen;
+   
+   
+   
+   procedure InformationenKonsole
+   is begin
+      
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Allgemeine_Informationen,
@@ -29,6 +49,15 @@ package body Informationen is
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       Eingabe.WartenEingabe;
       
-   end Informationen;
+   end InformationenKonsole;
+   
+   
+   
+   procedure InformationenSFML
+   is begin
+      
+      null;
+      
+   end InformationenSFML;
 
 end Informationen;

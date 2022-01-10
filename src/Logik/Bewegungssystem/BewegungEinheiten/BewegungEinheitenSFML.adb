@@ -15,7 +15,7 @@ with GrafikEinstellungen;
 with BerechnungenKarteSFML;
 with KartePositionPruefen;
 
--- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr amchen als nur die Einheit zu bewegen.
+-- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr mahen als nur die Einheit zu bewegen.
 package body BewegungEinheitenSFML is
 
    procedure BewegungEinheitenRichtung
@@ -109,6 +109,7 @@ package body BewegungEinheitenSFML is
       return Boolean
    is begin
       
+      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
       MausPosition := GrafikEinstellungen.MausPosition;
       
       MausSchleife:

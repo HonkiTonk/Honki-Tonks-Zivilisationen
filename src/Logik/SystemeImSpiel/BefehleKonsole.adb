@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with GlobaleVariablen;
@@ -17,7 +16,6 @@ with BewegungCursor;
 with Auswahl;
 with NaechstesObjekt;
 with Aufgaben;
-with Anzeige;
 with Diplomatie;
 with Cheat;
 with StadtBauen;
@@ -344,25 +342,13 @@ package body BefehleKonsole is
       if
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 8);
+         
          AufgabeDurchführen := False;
                      
       else
          AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
                                                               BefehlExtern             => BefehlExtern);
       end if;
-      
-      case
-        AufgabeDurchführen
-      is
-         when False =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                  TextZeileExtern => 2);
-            
-         when True =>
-            null;
-      end case;
       
    end EinheitBefehle;
    
