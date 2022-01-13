@@ -5,11 +5,11 @@ Benötigt ASFML und die SFML.
 My turn based strategy game (Civilization clone), written in Ada.
 Requires ASFML and the SFML.
 
-Version: 0.00.9730
+Version: 0.00.9735
 
-Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren. Außerdem werden diverse Control Sequence Introducer Befehle verwendet, welche nicht in jeder Konsole korrekt funktionieren. Ausgelegt auf eine Konsolengröße von 110x35, bei anderen Abmessungen kann es zu zusätzlichen merkwürdigen Textformatierungen kommen.
+Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos kompilieren und funktionieren.
 
-It is only tested intensively under Linux, but should work without any problems under other operating systems. Various Control Sequence Introducer commands are used, which do not work correctly in every console. Designed for a console size of 110x35, other dimensions may lead to additional strange text formatting.
+It is only tested intensively under Linux, but should compilate and work without any problems under other operating systems.
 
 Mich unterstützen/Support me:
 

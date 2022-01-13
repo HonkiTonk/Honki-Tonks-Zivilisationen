@@ -6,6 +6,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
 with KartenDatentypen;
+with TextKonstanten;
 
 with LeseStadtGebaut;
 
@@ -134,7 +135,7 @@ package body StadtInformationenSFML is
                                                                                                             EinwohnerArbeiterExtern => True));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (5)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugEinwohner)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -153,7 +154,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (6)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugNahrungsmittel)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -172,7 +173,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (7)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugNahrungsproduktion)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -191,7 +192,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (8)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugRessourcenproduktion)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -210,7 +211,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (9)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugGeldproduktion)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -229,7 +230,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (10)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugWissensproduktion)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -248,7 +249,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (25)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerteidigung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -267,7 +268,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (24)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAngriff)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -286,7 +287,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (11)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugKorruption)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -308,7 +309,7 @@ package body StadtInformationenSFML is
                                                                                                 EinwohnerArbeiterExtern => False));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (41)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerfügbareArbeiter)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -339,7 +340,7 @@ package body StadtInformationenSFML is
       end if;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (12)) & To_Wide_Wide_String (Source => Text));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugBauprojekt)) & " " & To_Wide_Wide_String (Source => Text));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -352,7 +353,7 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (13)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerbleibendeBauzeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -373,7 +374,7 @@ package body StadtInformationenSFML is
                                                                                                       RasseExtern       => RasseExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (20)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugNahrungsgewinnung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -394,7 +395,7 @@ package body StadtInformationenSFML is
                                                                                                          RasseExtern       => RasseExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (21)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugRessourcengewinnung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -415,7 +416,7 @@ package body StadtInformationenSFML is
                                                                                                    RasseExtern       => RasseExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (22)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugGeldgewinnung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
@@ -436,7 +437,7 @@ package body StadtInformationenSFML is
                                                                                                      RasseExtern       => RasseExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (23)) & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugWissensgewinnung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => TextPosition);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,

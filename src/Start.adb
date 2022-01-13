@@ -12,8 +12,7 @@ with StartSound;
 procedure Start
 is
 
-   -- RecordStartAttempt : constant Positive := 2;
-   -- RecordTasksAttempt : constant Positive := 4;
+   -- RecordStartAttempt : constant Positive := 3;
 
    type Tasks_Enum is (Task_Logik, Task_Grafik, Task_Sound);
 
@@ -134,8 +133,7 @@ begin
 
    end loop SpielLäuftSchleife;
 
-   -- Put_Line (FOSDEM.RecordStringsAttempt'Wide_Wide_Image);
+   -- Put_Line (FOSDEM.RecordImageAttempt'Wide_Wide_Image);
    -- Put_Line (RecordStartAttempt'Wide_Wide_Image);
-   -- Put_Line (RecordTasksAttempt'Wide_Wide_Image);
 
 end Start;

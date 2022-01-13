@@ -112,38 +112,38 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (15.01.2022):
+   -- Version 0.00.97 => 0.00.9 (15.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (14.01.2022):
+   -- Version 0.00.9735 => 0.00.97 (14.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (13.01.2022):
+   -- Version 0.00.9730 => 0.00.9735 (13.01.2022):
    
-   -- 
+   -- Noch mehr erfolglos an der Steuerung herumgebastelt.
+   -- Kleine Korrekturen an der Textanzeige vorgenommen.
+   -- Angefangen Textkonstanten einzubauen.
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.97 (12.01.2022):
+   -- Version 0.00.9730 => 0.00.9730 (12.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
       
-   -- Version 0.00.9730 => 0.00.97 (11.01.2022):
+   -- Version 0.00.9730 => 0.00.9730 (11.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
       
