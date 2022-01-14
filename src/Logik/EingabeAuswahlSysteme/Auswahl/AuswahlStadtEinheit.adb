@@ -4,6 +4,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
+with TextKonstanten;
 
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
@@ -110,7 +111,7 @@ package body AuswahlStadtEinheit is
             is
                when True =>
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (2))
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugStadt))
                                                      & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
          
                when False =>

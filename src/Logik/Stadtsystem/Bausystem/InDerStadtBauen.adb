@@ -7,6 +7,7 @@ with Sf; use Sf;
 with EinheitStadtRecords; use EinheitStadtRecords;
 with StadtKonstanten;
 with GlobaleTexte;
+with TextKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -204,7 +205,7 @@ package body InDerStadtBauen is
       TextPositionMaus := StartPositionText;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (9)));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageBauprojekt)));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => 2 * GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       

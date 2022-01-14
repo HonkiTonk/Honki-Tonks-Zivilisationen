@@ -5,6 +5,7 @@ with Sf.Graphics.Color;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
+with TextKonstanten;
 
 with EingabeSFML;
 with GrafikEinstellungen;
@@ -138,7 +139,7 @@ package body AnzeigeEingabe is
             is
                when True =>
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (2))
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugStadt))
                                                      & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
          
                when False =>

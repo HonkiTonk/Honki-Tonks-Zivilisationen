@@ -72,6 +72,40 @@ package TextKonstanten is
    
    
    
-   
+   FrageWievieleSpieler : constant Positive := 1;
+   FrageRasseÜbernehmen : constant Positive := 2;
+   FrageBeschäftigungAbbrechen : constant Positive := 3;
+   FrageLandverbesserungErsetzen : constant Positive := 4;
+   FrageEinheitAuflösen : constant Positive := 5;
+   FrageGebäudeAbreißen : constant Positive := 6;
+   FrageKriegErklären : constant Positive := 7;
+   FrageLandverbesserungPlündern : constant Positive := 8;
+   FrageBauprojekt : constant Positive := 9;
+   FrageBauvorgangAbbrechen : constant Positive := 10;
+   FrageStadtBetreten : constant Positive := 11;
+   FrageForschungsprojekt : constant Positive := 12;
+   FrageForschungAbbrechen : constant Positive := 13;
+   FrageSpielstandÜberschreiben : constant Positive := 14;
+   FrageYAchsengrößeEingeben : constant Positive := 15;
+   FrageSpracheWählen : constant Positive := 16;
+   FrageMenschlicherSpieler : constant Positive := 17;
+   FrageSpielstandname : constant Positive := 18;
+   FrageRundenAutomatischSpeichern : constant Positive := 19;
+   FrageLadeFalscheVersion : constant Positive := 20;
+   FrageXAchsengrößeEingeben : constant Positive := 21;
+   FrageEinheitAuswählen : constant Positive := 22;
+   FrageTastenbelegung : constant Positive := 23;
+   FrageNeueTaste : constant Positive := 24;
+   FrageStadtAbreißen : constant Positive := 25;
+   FrageRassenzuweißungEntfernen : constant Positive := 26;
+   FrageRasseDiplomatie : constant Positive := 27;
+   FrageGewonnenWeiterspielen : constant Positive := 28;
+   FrageWelcheEbene : constant Positive := 29;
+   FrageWelcheYPosition : constant Positive := 30;
+   FrageWelcheXPosition : constant Positive := 31;
+   FrageAuflösungsbreite : constant Positive := 32;
+   FrageAuflösungshöhe : constant Positive := 33;
+   FrageBildrate : constant Positive := 34;
+   FrageStadtname : constant Positive := 35;
 
 end TextKonstanten;

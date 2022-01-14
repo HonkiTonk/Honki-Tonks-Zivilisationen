@@ -5,6 +5,7 @@ with Sf; use Sf;
 with GlobaleTexte;
 with SystemKonstanten;
 with ForschungKonstanten;
+with TextKonstanten;
 
 with SchreibeWichtiges;
 with LeseForschungsDatenbank;
@@ -43,7 +44,7 @@ package body ForschungAllgemein is
         IDExtern
       is
          when ForschungKonstanten.LeerForschungAnforderung =>
-            BeschreibungText := GlobaleTexte.ZeugSachen (28);
+            BeschreibungText := GlobaleTexte.ZeugSachen (TextKonstanten.ZeugKeines);
             
          when others =>
             AktuelleForschung := 2 * Positive (IDExtern) - 1;
@@ -182,7 +183,7 @@ package body ForschungAllgemein is
       TextPositionMaus := StartPositionText;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (12)));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageForschungsprojekt)));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => 2 * GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
       

@@ -105,24 +105,25 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (16.01.2022):
+   -- Version 0.00.97 => 0.00.9 (16.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (15.01.2022):
+   -- Version 0.00.9740 => 0.00.97 (15.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9735 => 0.00.97 (14.01.2022):
+   -- Version 0.00.9735 => 0.00.9740 (14.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mehr Textkonstanten angelegt und eingebaut.
+   -- Dateien- und Ordneraufteilung weiter überarbeitet.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
       
