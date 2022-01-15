@@ -98,24 +98,25 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (17.01.2022):
+   -- Version 0.00.97 => 0.00.9 (17.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (16.01.2022):
+   -- Version 0.00.9745 => 0.00.97 (16.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9740 => 0.00.97 (15.01.2022):
+   -- Version 0.00.9740 => 0.00.9745 (15.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Bausystem für Gebäude und das Forschungssystem überdacht.
+   -- Angefangen eine farbliche Markierung für Felder welche sich bereits im Besitz einer Rasse befinden anzulegen.
+   -- Kommentare und Kleinigkeiten angepasst.
    
    
       

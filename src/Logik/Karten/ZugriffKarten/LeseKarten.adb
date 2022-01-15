@@ -208,5 +208,16 @@ package body LeseKarten is
       end if;
       
    end BestimmteStadtBelegtGrund;
+   
+   
+   
+   function RasseBelegtGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      return SystemDatentypen.Rassen_Enum
+   is begin
+      
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt;
+      
+   end RasseBelegtGrund;
 
 end LeseKarten;

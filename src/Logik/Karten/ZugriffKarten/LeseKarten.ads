@@ -123,5 +123,14 @@ package LeseKarten is
             KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   function RasseBelegtGrund
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      return SystemDatentypen.Rassen_Enum
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end LeseKarten;

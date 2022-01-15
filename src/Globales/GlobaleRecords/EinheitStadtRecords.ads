@@ -69,10 +69,22 @@ package EinheitStadtRecords is
       Nummer : EinheitStadtDatentypen.MinimimMaximumID;
 
    end record;
+   
+   
+   
+   type GebäudeRecord is record -- XXX
+      
+      Vorhanden : Boolean;
+      InvestierteRessourcen : EinheitStadtDatentypen.KostenLager;
+      
+   end record;
 
 
 
    type EinwohnerArbeiterArray is array (1 .. 2) of EinheitStadtDatentypen.ProduktionFeld;
+   
+   -- Wenn ich ein Record für das Array hier anlege, dann könnten darin die bereits erzeugten Ressourcen gespeichert werden und beim Wechsel des Bauprojekts blieben die angefangenen Gebäude erhalten. XXX
+   -- Ginge auch bei Einheiten, ist da aber vielleicht nicht so sinnvoll.
    type GebäudeVorhandenArray is array (EinheitStadtDatentypen.GebäudeID'Range) of Boolean;
    type StadtMeldungenArray is array (EinheitStadtDatentypen.Stadt_Meldung_Art_Enum'Range) of EinheitStadtDatentypen.Stadt_Meldung_Enum;
    type UmgebungBewirtschaftungArray is array (KartenDatentypen.LoopRangeMinusDreiZuDrei'Range, KartenDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;

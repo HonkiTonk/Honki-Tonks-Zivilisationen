@@ -98,6 +98,10 @@ package body KarteSFML is
                     RasseExtern       => RasseExtern);
             
       AnzeigeEinheit (KoordinatenExtern => KoordinatenExtern);
+      
+      -- Nicht vergessen Position hier in Übergabeparameter umzuwandeln.
+      AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
+                           PositionExtern    => Position);
             
       case
         GlobaleVariablen.Debug
@@ -257,6 +261,30 @@ package body KarteSFML is
       end if;
       
    end AnzeigeEinheit;
+   
+   
+   
+   procedure AnzeigeFeldbesitzer
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      case
+        LeseKarten.RasseBelegtGrund (KoordinatenExtern => KoordinatenExtern)
+      is
+         when SystemDatentypen.Keine_Rasse =>
+            null;
+            
+         when others =>
+            -- Rassenfarben einbauen!
+            -- Rahmen drumherum ziehen? Die Anzahl der Balken könnte ich durch eine Prüfung der umliegenden Felder festlegen lassen?
+            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
+                                                  PositionExtern       => PositionExtern,
+                                                  FarbeExtern          => (255, 0, 0, 40),
+                                                  RechteckAccessExtern => RechteckAccess);
+      end case;
+      
+   end AnzeigeFeldbesitzer;
    
    
    

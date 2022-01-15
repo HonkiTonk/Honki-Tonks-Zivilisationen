@@ -74,5 +74,9 @@ private
    procedure AnzeigeCursor
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure AnzeigeFeldbesitzer
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
 
 end KarteSFML;

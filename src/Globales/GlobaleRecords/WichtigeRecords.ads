@@ -4,6 +4,15 @@ with EinheitStadtDatentypen;
 with SystemDatentypen;
 
 package WichtigeRecords is
+   
+   type ForschungRecord is record -- XXX
+      
+      TechnologieErforscht : EinheitStadtDatentypen.ErforschtArray;
+      InvestierteForschung : EinheitStadtDatentypen.KostenLager;
+      
+   end record;
+   
+   
 
    type WichtigesRecord is record
       
@@ -14,7 +23,8 @@ package WichtigeRecords is
       Forschungsmenge : EinheitStadtDatentypen.KostenLager;
       VerbleibendeForschungszeit : EinheitStadtDatentypen.KostenLager;
       Forschungsprojekt : EinheitStadtDatentypen.ForschungIDMitNullWert;
-
+      
+      -- Wenn ich ein Record für diese Variable hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
       Erforscht : EinheitStadtDatentypen.ErforschtArray;
       
       AnzahlStädte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
