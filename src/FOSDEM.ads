@@ -2,29 +2,36 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 package FOSDEM is
    
-   RecordInputOutputAttempt : constant Positive := 2;
+   RecordStringsAttempt : constant Positive := 7;
    
 private
    
+   -- Stringtype, Wide_Stringtype, Wide_Wide_Stringtype.
+   
+   MostImportantString : Unbounded_Wide_Wide_String
+     := To_Unbounded_Wide_Wide_String ("Put Wide_Wide_String here");
+   
+   SometimesNeededString : Wide_Wide_String (1 .. 10)
+     := To_Wide_Wide_String (MostImportantString) (1 .. 10);
+   
+   SingleTestCharacter : constant Wide_Wide_Character := '@';
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    -- Text_IO
    -- Stream_IO
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
    
    
    IntegerNumber : Integer := 3;
@@ -39,82 +46,7 @@ private
    
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   -- Stringtype, Wide_Stringtype, Wide_Wide_Stringtype.
-   
-      MostImportantString : Unbounded_Wide_Wide_String
-     := To_Unbounded_Wide_Wide_String ("Put Wide_Wide_String here");
-   
-   SometimesNeededString : Wide_Wide_String (1 .. 10)
-     := To_Wide_Wide_String (MostImportantString) (1 .. 10);
-   
-   SingleTestCharacter : constant Wide_Wide_Character := '@';
-   
-   
-   
-   
-   
-   
-   
-   RecordImageAttempt : constant Positive := 3;
-   
-   
-   
-   
-   
-   
-   
-   
-   RecordStringsAttempt : constant Positive := 6;
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
+   RecordInputOutputAttempt : constant Positive := 3;
+   RecordImageAttempt : constant Positive := 4;
 
 end FOSDEM;

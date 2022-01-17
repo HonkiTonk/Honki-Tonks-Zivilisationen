@@ -22,6 +22,7 @@ package body EinlesenSprache is
 
          Get_Next_Entry (Search          => Suche,
                          Directory_Entry => Verzeichnis);
+         
          if
            Simple_Name (Directory_Entry => Verzeichnis) = "."
            or
@@ -30,17 +31,16 @@ package body EinlesenSprache is
             null;
                   
          else
-            -- Alphabetisch in ein Stringarray einlesen und dann entsprechend weitersuchen lassen
             VerzeichnisInnenSchleife:
             for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
-            
                if
                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= SystemKonstanten.LeerUnboundedString
                then
                   null;
             
                else
-                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert)
+                    := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
                   exit VerzeichnisInnenSchleife;
                end if;
          

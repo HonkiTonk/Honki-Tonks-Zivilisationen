@@ -6,6 +6,7 @@ with Sf.Graphics.Color;
 with Sf.System.Vector2;
 
 with SystemRecords;
+with SystemDatentypen;
 
 package GrafikEinstellungen is
    
@@ -42,6 +43,29 @@ package GrafikEinstellungen is
                                            FarbeSonstigerText  => Sf.Graphics.Color.sfCyan
                                           );
    
+   type RassenFarbenArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
+   -- Weniger transparente Version für Rahmen bauen.
+   RassenFarben : RassenFarbenArray := (
+                                        SystemDatentypen.Menschen         => (0, 0, 255, 40),
+                                        SystemDatentypen.Kasrodiah        => (0, 0, 255, 40),
+                                        SystemDatentypen.Lasupin          => (0, 0, 255, 40),
+                                        SystemDatentypen.Lamustra         => (0, 0, 255, 40),
+                                        SystemDatentypen.Manuky           => (0, 0, 255, 40),
+                                        SystemDatentypen.Suroka           => (0, 0, 255, 40),
+                                        SystemDatentypen.Pryolon          => (0, 0, 255, 40),
+                                        SystemDatentypen.Talbidahr        => (0, 0, 255, 40),
+                                        SystemDatentypen.Moru_Phisihl     => (0, 0, 255, 40),
+                                        SystemDatentypen.Larinos_Lotaris  => (0, 0, 255, 40),
+                                        SystemDatentypen.Carupex          => (0, 0, 255, 40),
+                                        SystemDatentypen.Alary            => (0, 0, 255, 40),
+                                        SystemDatentypen.Tesorahn         => (0, 0, 255, 40),
+                                        SystemDatentypen.Natries_Zermanis => (0, 0, 255, 40),
+                                        SystemDatentypen.Tridatus         => (0, 0, 255, 40),
+                                        SystemDatentypen.Senelari         => (0, 255, 0, 40),
+                                        SystemDatentypen.Aspari_2         => (0, 0, 255, 40),
+                                        SystemDatentypen.Ekropa           => (255, 0, 0, 40)
+                                       );
+   
    procedure StandardGrafikEinstellungenLaden;
    
 private
@@ -67,5 +91,25 @@ private
                                                             FarbeSonstigerText  => Sf.Graphics.Color.sfCyan
                                                            );
    
-
+   RassenFarbenStandard : constant RassenFarbenArray := (
+                                                         SystemDatentypen.Menschen         => (0, 0, 255, 40),
+                                                         SystemDatentypen.Kasrodiah        => (0, 0, 255, 40),
+                                                         SystemDatentypen.Lasupin          => (0, 0, 255, 40),
+                                                         SystemDatentypen.Lamustra         => (0, 0, 255, 40),
+                                                         SystemDatentypen.Manuky           => (0, 0, 255, 40),
+                                                         SystemDatentypen.Suroka           => (0, 0, 255, 40),
+                                                         SystemDatentypen.Pryolon          => (0, 0, 255, 40),
+                                                         SystemDatentypen.Talbidahr        => (0, 0, 255, 40),
+                                                         SystemDatentypen.Moru_Phisihl     => (0, 0, 255, 40),
+                                                         SystemDatentypen.Larinos_Lotaris  => (0, 0, 255, 40),
+                                                         SystemDatentypen.Carupex          => (0, 0, 255, 40),
+                                                         SystemDatentypen.Alary            => (0, 0, 255, 40),
+                                                         SystemDatentypen.Tesorahn         => (0, 0, 255, 40),
+                                                         SystemDatentypen.Natries_Zermanis => (0, 0, 255, 40),
+                                                         SystemDatentypen.Tridatus         => (0, 0, 255, 40),
+                                                         SystemDatentypen.Senelari         => (0, 255, 0, 40),
+                                                         SystemDatentypen.Aspari_2         => (0, 0, 255, 40),
+                                                         SystemDatentypen.Ekropa           => (255, 0, 0, 40)
+                                                        );
+   
 end GrafikEinstellungen;

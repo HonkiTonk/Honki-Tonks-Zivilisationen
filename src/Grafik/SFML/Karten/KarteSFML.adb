@@ -1,9 +1,15 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
+with Sf.Graphics.RenderWindow;
+
 with KartenRecords; use KartenRecords;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
+with KartenKonstanten;
+with StadtKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -16,6 +22,8 @@ with KarteInformationenSFML;
 with BerechnungenKarteSFML;
 with Fehler;
 with ObjekteZeichnenSFML;
+with GrafikEinstellungen;
+with GrafikTextAllgemein;
 
 package body KarteSFML is
    
@@ -50,6 +58,7 @@ package body KarteSFML is
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
                                                                         ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
+            -- Die Position durchzureichen bedeutet auch gleichzeitig den aktuellen Multiplikator mit durchzureichen!
             Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
             Position.y := YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y;
             
@@ -59,7 +68,8 @@ package body KarteSFML is
             is
                when True =>
                   IstSichtbar (KoordinatenExtern => KartenWert,
-                               RasseExtern       => RasseExtern);
+                               RasseExtern       => RasseExtern,
+                               PositionExtern    => Position);
                         
                when False =>
                   -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
@@ -80,7 +90,8 @@ package body KarteSFML is
    
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen.
@@ -90,25 +101,26 @@ package body KarteSFML is
       -- Über den nicht Transporteinheiten kommen die Transporteinheiten.
       -- Über den Transporteinheiten kommt der Cursor.
       
-      -- Nicht vergessen Position hier in Übergabeparameter umzuwandeln.
       AnzeigeLandschaft (KoordinatenExtern => KoordinatenExtern,
-                         PositionExtern    => Position);
+                         PositionExtern    => PositionExtern);
             
       AnzeigeStadt (KoordinatenExtern => KoordinatenExtern,
-                    RasseExtern       => RasseExtern);
+                    RasseExtern       => RasseExtern,
+                    PositionExtern    => PositionExtern);
             
-      AnzeigeEinheit (KoordinatenExtern => KoordinatenExtern);
+      AnzeigeEinheit (KoordinatenExtern => KoordinatenExtern,
+                      PositionExtern    => PositionExtern);
       
-      -- Nicht vergessen Position hier in Übergabeparameter umzuwandeln.
       AnzeigeFeldbesitzer (KoordinatenExtern => KoordinatenExtern,
-                           PositionExtern    => Position);
+                           PositionExtern    => PositionExtern);
             
       case
         GlobaleVariablen.Debug
       is
          when True =>
             AnzeigeCursor (KoordinatenExtern => KoordinatenExtern,
-                           RasseExtern       => RasseExtern);
+                           RasseExtern       => RasseExtern,
+                           PositionExtern    => PositionExtern);
             
          when False =>
             null;
@@ -187,10 +199,10 @@ package body KarteSFML is
    
    procedure AnzeigeStadt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      -- Hier kann man die belegten Stadtfelder nicht einbauen. Eventuell über die Stadtgröße loopen, wenn eine Stadt gefunden wurde?
       EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
@@ -212,14 +224,14 @@ package body KarteSFML is
       is
          when KartenDatentypen.Eigene_Hauptstadt =>
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                                 PositionExtern      => Position,
+                                                 PositionExtern      => PositionExtern,
                                                  AnzahlEckenExtern   => 5,
                                                  FarbeExtern         => AktuelleFarbe,
                                                  PolygonAccessExtern => PolygonAccess);
                
          when KartenDatentypen.Eigene_Stadt =>
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
-                                                 PositionExtern      => Position,
+                                                 PositionExtern      => PositionExtern,
                                                  AnzahlEckenExtern   => 6,
                                                  FarbeExtern         => AktuelleFarbe,
                                                  PolygonAccessExtern => PolygonAccess);
@@ -233,7 +245,8 @@ package body KarteSFML is
    
    
    procedure AnzeigeEinheit
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
       EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
@@ -247,14 +260,14 @@ package body KarteSFML is
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= EinheitenKonstanten.LeerWirdTransportiert
       then
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
-                                              PositionExtern      => Position,
+                                              PositionExtern      => PositionExtern,
                                               AnzahlEckenExtern   => 4,
                                               FarbeExtern         => Sf.Graphics.Color.sfYellow,
                                               PolygonAccessExtern => PolygonAccess);
             
       else
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.80,
-                                              PositionExtern      => Position,
+                                              PositionExtern      => PositionExtern,
                                               AnzahlEckenExtern   => 4,
                                               FarbeExtern         => Sf.Graphics.Color.sfYellow,
                                               PolygonAccessExtern => PolygonAccess);
@@ -269,35 +282,101 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
+      AktuelleRasse := LeseKarten.RasseBelegtGrund (KoordinatenExtern => KoordinatenExtern);
+      
       case
-        LeseKarten.RasseBelegtGrund (KoordinatenExtern => KoordinatenExtern)
+        AktuelleRasse
       is
          when SystemDatentypen.Keine_Rasse =>
-            null;
+            return;
             
          when others =>
-            -- Rassenfarben einbauen!
             -- Rahmen drumherum ziehen? Die Anzahl der Balken könnte ich durch eine Prüfung der umliegenden Felder festlegen lassen?
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                   PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => (255, 0, 0, 40),
+                                                  FarbeExtern          => GrafikEinstellungen.RassenFarben (AktuelleRasse),
                                                   RechteckAccessExtern => RechteckAccess);
       end case;
+      
+      RahmenBesetztesFeld (KoordinatenExtern => KoordinatenExtern,
+                           PositionExtern    => PositionExtern,
+                           RasseExtern       => AktuelleRasse);
       
    end AnzeigeFeldbesitzer;
    
    
    
+   procedure RahmenBesetztesFeld
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+   is begin
+            
+      -- Für den Rahmen weniger Transparenz benutzen.
+      Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
+                                          size  => (BerechnungenKarteSFML.KartenfelderAbmessung.x - 6.00, BerechnungenKarteSFML.KartenfelderAbmessung.y - 6.00));
+      Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,
+                                              position => (PositionExtern.x + 3.00, PositionExtern.y + 3.00));
+      Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
+                                               color => Sf.Graphics.Color.sfTransparent);
+      Sf.Graphics.RectangleShape.setOutlineColor (shape => RechteckRahmenAccess,
+                                                  color => GrafikEinstellungen.RassenFarben (RasseExtern));
+      Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
+                                                      thickness => 3.00);
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.FensterAccess,
+                                                   object       => RechteckRahmenAccess);
+      
+      KartenWertRahmen := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                        ÄnderungExtern    => (0, -1, 0));
+      
+      case
+        KartenWertRahmen.YAchse
+      is
+         when KartenKonstanten.LeerYAchse =>
+            return;
+            
+         when others =>
+            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KartenWertRahmen);
+            
+            if
+              StadtRasseNummer.Platznummer = StadtKonstanten.LeerNummer
+            then
+               return;
+               
+            else
+               null;
+            end if;
+      end case;
+      
+      -- Möglicherweise die Schriftfarbe durch die Rahmenfarbe ersetzen? Die Belegungsfarbe ist auf jeden Fall ungeeignet.
+      -- Text wird von den anderen Feldern immer wieder überschrieben.
+      GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
+                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
+                                                SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
+                                                FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
+      
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                         str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
+      Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                    position => PositionExtern);
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
+                                         text         => TextAccess);
+      
+   end RahmenBesetztesFeld;
+   
+   
+   
    procedure AnzeigeCursor
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
       if
         KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
       then
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
-                                              PositionExtern      => Position,
+                                              PositionExtern      => PositionExtern,
                                               AnzahlEckenExtern   => 3,
                                               FarbeExtern         => Sf.Graphics.Color.sfRed,
                                               PolygonAccessExtern => PolygonAccess);

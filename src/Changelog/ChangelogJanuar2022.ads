@@ -91,24 +91,27 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (18.01.2022):
+   -- Version 0.00.97 => 0.00.9 (18.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (17.01.2022):
+   -- Version 0.00.9750 => 0.00.97 (17.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9745 => 0.00.97 (16.01.2022):
+   -- Version 0.00.9745 => 0.00.9750 (16.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Farben für die einzelnen Rassen eingebaut.
+   -- Angefangen ein System zur Rahmengebung von belegten Felder einzubauen.
+   -- Versucht einen Fehler zu korrigieren der es ermöglicht Textdateien als Ordner einzulesen.
+   -- Der Name einer Stadt wird jetzt direkt auf der Weltkarte angezeigt, noch etwas unsauber.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
       
