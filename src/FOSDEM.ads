@@ -2,9 +2,22 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 package FOSDEM is
    
-   RecordStringsAttempt : constant Positive := 7;
+   RecordInputOutputAttempt : constant Positive := 3;
    
 private
+   
+   -- Text_IO
+   -- Stream_IO
+   
+   IntegerNumber : Integer := 3;
+   FloatNumber : Float := 0.20;
+   
+   IntegerNumberToText : Unbounded_Wide_Wide_String
+     := To_Unbounded_Wide_Wide_String (Source => IntegerNumber'Wide_Wide_Image);
+   FloatNumberToText : Unbounded_Wide_Wide_String
+     := To_Unbounded_Wide_Wide_String (Source => FloatNumber'Wide_Wide_Image);
+   
+   -- 1.00 -- 1.00E0001
    
    -- Stringtype, Wide_Stringtype, Wide_Wide_Stringtype.
    
@@ -16,37 +29,7 @@ private
    
    SingleTestCharacter : constant Wide_Wide_Character := '@';
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   -- Text_IO
-   -- Stream_IO
-   
-   
-   IntegerNumber : Integer := 3;
-   FloatNumber : Float := 0.20;
-   
-   IntegerNumberToText : Unbounded_Wide_Wide_String
-     := To_Unbounded_Wide_Wide_String (Source => IntegerNumber'Wide_Wide_Image);
-   FloatNumberToText : Unbounded_Wide_Wide_String
-     := To_Unbounded_Wide_Wide_String (Source => FloatNumber'Wide_Wide_Image);
-   
-   
-   
-   
-   
-   RecordInputOutputAttempt : constant Positive := 3;
    RecordImageAttempt : constant Positive := 4;
+   RecordStringsAttempt : constant Positive := 7;
 
 end FOSDEM;

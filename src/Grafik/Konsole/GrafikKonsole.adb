@@ -49,6 +49,9 @@ package body GrafikKonsole is
                -- AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
                InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
+            when SystemDatentypen.Editoren_Anzeigen_Enum'Range =>
+               null;
+               
             when SystemDatentypen.Grafik_Weltkarte =>
                case
                  InteraktionLogiktask.AktuelleRasseAbrufen

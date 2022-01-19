@@ -22,13 +22,13 @@ package body AuswahlMenueAnzeige is
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
          when SystemDatentypen.Grafik_Menüs =>
-            -- In AuswahlMenue eine Prozedure mit out für alle Variablen bauen?
             ZeilenAbstand := 0.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
             WelchesMenü := AuswahlMenue.WelchesMenü;
             Anfang := AuswahlMenue.Anfang;
             Ende := AuswahlMenue.Ende;
             AktuelleAuswahl := AuswahlMenue.AktuelleAuswahl;
             AnzeigeStartwert := AuswahlMenue.AnzeigeStartwert;
+            
             Sf.Graphics.Text.setFont (text => TextAccess,
                                       font => GrafikEinstellungen.SchriftartAccess);
             

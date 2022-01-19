@@ -133,7 +133,7 @@ begin
 
    end loop SpielLäuftSchleife;
 
-   -- Put_Line (FOSDEM.RecordStringsAttempt'Wide_Wide_Image);
+   -- Put_Line (FOSDEM.RecordInputOutputAttempt'Wide_Wide_Image);
    -- Put_Line (RecordStartAttempt'Wide_Wide_Image);
 
 end Start;

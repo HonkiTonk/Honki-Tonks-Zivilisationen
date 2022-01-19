@@ -201,6 +201,9 @@ package body EinlesenText is
                
             when 36 =>
                ZeugSachen;
+               
+            when 37 =>
+               Editoren;
          end case;
             
          Close (File => DateiTextEinlesen);
@@ -1000,5 +1003,27 @@ package body EinlesenText is
       end loop ZeugSachenSchleife;
       
    end ZeugSachen;
+      
+   
+   
+   procedure Editoren
+   is begin
+      
+      EditorenSchleife:
+      for WelcheZeileSchleifenwert in GlobaleTexte.Editoren'Range loop
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Editoren (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               
+            when False =>
+               GlobaleTexte.Editoren (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
+         
+      end loop EditorenSchleife;
+      
+   end Editoren;
 
 end EinlesenText;

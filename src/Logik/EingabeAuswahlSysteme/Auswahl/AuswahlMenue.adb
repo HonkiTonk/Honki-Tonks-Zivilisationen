@@ -44,8 +44,10 @@ package body AuswahlMenue is
    is begin
 
       WelchesMenü := WelchesMenüExtern;
+     
       Sf.Graphics.Text.setFont (text => TextAccess,
                                 font => GrafikEinstellungen.SchriftartAccess);
+            
       Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
       Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
       ZeilenAbstand := 0.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
@@ -206,6 +208,7 @@ package body AuswahlMenue is
       return Wide_Wide_String
    is begin
       
+      -- Bei zu langem Text keinen leeren String zurückgeben sondern das Programm stoppen?
       case
         WelchesMenüExtern
       is
@@ -213,7 +216,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Hauptmenü'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Hauptmenü (WelcheZeileExtern));
@@ -223,7 +226,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Spielmenü'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Spielmenü (WelcheZeileExtern));
@@ -233,7 +236,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Optionsmenü'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Optionsmenü (WelcheZeileExtern));
@@ -243,7 +246,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Kartengröße'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Kartengröße (WelcheZeileExtern));
@@ -253,7 +256,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Kartenart'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Kartenart (WelcheZeileExtern));
@@ -263,7 +266,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Kartenform'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Kartenform (WelcheZeileExtern));
@@ -273,7 +276,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Kartentemperatur'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Kartentemperatur (WelcheZeileExtern));
@@ -283,7 +286,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Ressourcenmenge'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Ressourcenmenge (WelcheZeileExtern));
@@ -293,7 +296,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Schwierigkeitsgrad'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Schwierigkeitsgrad (WelcheZeileExtern));
@@ -303,7 +306,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Rassenauswahl'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Rassenauswahl (WelcheZeileExtern));
@@ -313,7 +316,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Grafikmenü'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Grafikmenü (WelcheZeileExtern));
@@ -323,7 +326,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Soundmenü'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Soundmenü (WelcheZeileExtern));
@@ -333,7 +336,7 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Sonstigesmenü'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Sonstigesmenü (WelcheZeileExtern));
@@ -343,12 +346,24 @@ package body AuswahlMenue is
             if
               WelcheZeileExtern > GlobaleTexte.Steuerungmenü'Last
             then
-               return SystemKonstanten.LeerString;
+               null;
                
             else
                return To_Wide_Wide_String (Source => GlobaleTexte.Steuerungmenü (WelcheZeileExtern));
             end if;
+            
+         when SystemDatentypen.Editoren_Menü =>
+            if
+              WelcheZeileExtern > GlobaleTexte.Editoren'Last
+            then
+               null;
+               
+            else
+               return To_Wide_Wide_String (Source => GlobaleTexte.Editoren (WelcheZeileExtern));
+            end if;
       end case;
+      
+      return SystemKonstanten.LeerString;
       
    end StringSetzen;
    

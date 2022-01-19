@@ -14,6 +14,7 @@ with AuswahlMenue;
 with Fehler;
 with InteraktionSoundtask;
 with InteraktionGrafiktask;
+with DatenbankenEditoren;
 
 package body Hauptmenue is
 
@@ -69,6 +70,16 @@ package body Hauptmenue is
             when SystemDatentypen.Optionen =>
                if
                  Optionen.Optionen = SystemDatentypen.Spiel_Beenden
+               then
+                  exit HauptmenüSchleife;
+
+               else
+                  null;
+               end if;
+               
+            when SystemDatentypen.Editoren =>
+               if
+                 DatenbankenEditoren.DatenbankenEditoren = SystemDatentypen.Spiel_Beenden
                then
                   exit HauptmenüSchleife;
 

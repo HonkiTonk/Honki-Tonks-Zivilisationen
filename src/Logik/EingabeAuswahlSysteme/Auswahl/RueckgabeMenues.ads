@@ -100,5 +100,11 @@ private
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum;
+   
+   function EditorenMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum;
 
 end RueckgabeMenues;

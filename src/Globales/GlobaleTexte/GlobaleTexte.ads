@@ -25,7 +25,7 @@ package GlobaleTexte is
    
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
-   Hauptmenü : TexteArray (1 .. 14);
+   Hauptmenü : TexteArray (1 .. 16);
    Spielmenü : TexteArray (1 .. 13);
    Optionsmenü : TexteArray (1 .. 15);
    Grafikmenü : TexteArray (1 .. 15);
@@ -61,5 +61,6 @@ package GlobaleTexte is
    Ladezeit : TexteArray (1 .. 32);
    Frage : TexteArray (1 .. 35);
    ZeugSachen : TexteArray (1 .. 67);
+   Editoren : TexteArray (1 .. 17);
    
 end GlobaleTexte;

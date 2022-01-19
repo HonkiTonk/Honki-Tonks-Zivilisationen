@@ -4,7 +4,7 @@ package SystemDatentypen is
 
    -- Wichtige Werte
    type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Zurück, Hauptmenü, Spiel_Beenden, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
-                                 Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, Spielmenü,
+                                 Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, Spielmenü, Editoren,
                                  
                                  -- Grafikmenü
                                  Auflösung_Ändern, Farbtiefe_Ändern, Bildrate_Ändern, Schriftgröße,
@@ -45,7 +45,7 @@ package SystemDatentypen is
    subtype Hauptmenü_Beenden_Enum is Zurück_Beenden_Enum range Hauptmenü .. Spiel_Beenden;
    
    type Welches_Menü_Enum is (Haupt_Menü, Spiel_Menü, Optionen_Menü, Kartengröße_Menü, Kartenart_Menü, Kartenform_Menü, Kartentemperatur_Menü, Kartenressourcen_Menü, Schwierigkeitsgrad_Menü, Rassen_Menü,
-                               Grafik_Menü, Sound_Menü, Steuerung_Menü, Sonstiges_Menü);
+                               Grafik_Menü, Sound_Menü, Steuerung_Menü, Sonstiges_Menü, Editoren_Menü);
    
    type Anfang_Ende_Enum is (Anfangswert, Endwert);
    for Anfang_Ende_Enum use (Anfangswert => 0, Endwert => 1);
@@ -56,10 +56,12 @@ package SystemDatentypen is
    type Grafik_Aktuelle_Darstellung_Enum is (Grafik_Konsole, Grafik_SFML, Grafik_Intro,
                                              Grafik_Pause, Grafik_Laden,
                                              Grafik_Menüs, Grafik_Sprache,
+                                             Grafik_Editoren,
                                              Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, Grafik_Bauen, -- Grafik_Handeln, (in die Menüs schieben? Geht so nicht in die Menüs.)
                                              Grafik_Ende);
    
    subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Konsole .. Grafik_SFML;
+   subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren .. Grafik_Editoren;
    
    type Musik_Aktuelle_Auswahl_Enum is (Musik_Konsole, Musik_SFML,
                                        

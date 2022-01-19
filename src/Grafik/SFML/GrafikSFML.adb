@@ -95,6 +95,9 @@ package body GrafikSFML is
          when SystemDatentypen.Grafik_Menüs =>
             AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
                
+         when SystemDatentypen.Editoren_Anzeigen_Enum'Range =>
+            AnzeigeEditoren;
+               
          when SystemDatentypen.Grafik_Weltkarte =>
             if
               InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
@@ -176,5 +179,14 @@ package body GrafikSFML is
       end case;
       
    end AnzeigeEingaben;
+   
+   
+   
+   procedure AnzeigeEditoren
+   is begin
+      
+      null;
+      
+   end AnzeigeEditoren;
 
 end GrafikSFML;

@@ -14,7 +14,7 @@ package AuswahlMenueAnzeige is
    procedure AnzeigeSFMLAnfang;
    
 private
-   
+      
    WelchesMenü : SystemDatentypen.Welches_Menü_Enum;
    
    Anfang : Positive;

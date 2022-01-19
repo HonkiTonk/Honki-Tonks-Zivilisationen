@@ -77,31 +77,31 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (20.01.2022):
+   -- Version 0.00.97 => 0.00.9 (20.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (19.01.2022):
+   -- Version 0.00.9755 => 0.00.97 (19.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (18.01.2022):
+   -- Version 0.00.9750 => 0.00.9755 (18.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- An der Textanzeige herumgebastelt.
+   -- Angefangen die Datenbankeditoren einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
       
-   -- Version 0.00.9750 => 0.00.97 (17.01.2022):
+   -- Version 0.00.9750 => 0.00.9750 (17.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
       

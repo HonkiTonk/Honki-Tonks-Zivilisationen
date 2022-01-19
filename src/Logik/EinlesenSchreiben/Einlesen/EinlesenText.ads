@@ -15,7 +15,7 @@ private
    
    NichtGenugZeilen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "!!!!!");
    
-   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 36);
+   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 37);
 
    DateiTextEinlesen : File_Type;
    
@@ -60,5 +60,6 @@ private
    procedure Ladezeit;
    procedure Frage;
    procedure ZeugSachen;
+   procedure Editoren;
    
 end EinlesenText;

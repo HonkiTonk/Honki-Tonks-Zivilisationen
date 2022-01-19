@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with GlobaleVariablen;
 
 with Fehler;
@@ -85,6 +87,11 @@ package body RueckgabeMenues is
             return SonstigesMenü (AnfangExtern          => AnfangExtern,
                                    EndeExtern            => EndeExtern,
                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+               
+         when SystemDatentypen.Editoren_Menü =>
+            return EditorenMenü (AnfangExtern          => AnfangExtern,
+                                  EndeExtern            => EndeExtern,
+                                  AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
    end RückgabeMenüs;
@@ -98,7 +105,7 @@ package body RueckgabeMenues is
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
-      
+            
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
@@ -117,10 +124,15 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Informationen;
+         return SystemDatentypen.Editoren;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return SystemDatentypen.Informationen;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 5
       then
          return SystemDatentypen.Würdigungen;
                     
@@ -782,6 +794,49 @@ package body RueckgabeMenues is
       end if;
       
    end SonstigesMenü;
+   
+   
+   
+   function EditorenMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return SystemDatentypen.Auflösung_Ändern;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return SystemDatentypen.Farbtiefe_Ändern;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return SystemDatentypen.Bildrate_Ändern;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return SystemDatentypen.Speichern;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return SystemDatentypen.Speichern;
+                    
+      else
+         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
+                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      end if;
+      
+      -- return SystemDatentypen.Editoren;
+      
+   end EditorenMenü;
    
    
    
