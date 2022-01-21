@@ -149,7 +149,7 @@ package body LeseEinheitenDatenbank is
    function Beförderungsgrenze
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.MaximaleStädte
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Beförderungsgrenze;
@@ -161,7 +161,7 @@ package body LeseEinheitenDatenbank is
    function MaximalerRang
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximalerRang;
@@ -173,7 +173,7 @@ package body LeseEinheitenDatenbank is
    function Reichweite
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Reichweite;
@@ -185,17 +185,10 @@ package body LeseEinheitenDatenbank is
    function Angriff
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Angriff < 0
-      then
-         return 0;
-         
-      else
-         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Angriff;
-      end if;
+      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Angriff;
       
    end Angriff;
    
@@ -204,17 +197,11 @@ package body LeseEinheitenDatenbank is
    function Verteidigung
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Verteidigung < 0
-      then
-         return 0;
-         
-      else
-         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Verteidigung;
-      end if;
+      
+      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Verteidigung;
       
    end Verteidigung;
    
@@ -223,7 +210,7 @@ package body LeseEinheitenDatenbank is
    function KannTransportieren
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Transportwerte
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportieren;
@@ -235,7 +222,7 @@ package body LeseEinheitenDatenbank is
    function KannTransportiertWerden
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Transportwerte
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportiertWerden;
@@ -247,7 +234,7 @@ package body LeseEinheitenDatenbank is
    function Transportkapazität
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Transportwerte
    is begin
       
       if

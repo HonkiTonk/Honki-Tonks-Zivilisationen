@@ -143,7 +143,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      ErfahrungspunkteExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      ErfahrungspunkteExtern : in EinheitStadtDatentypen.Kampfwerte;
       AddierenSetzenExtern : in Boolean)
    is begin
       
@@ -333,7 +333,7 @@ package body SchreibeEinheitenGebaut is
    procedure Transportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-      LadungspositionExtern : in EinheitStadtDatentypen.MaximaleStädte)
+      LadungspositionExtern : in EinheitStadtDatentypen.Transportplätze)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungspositionExtern) := LadungExtern;

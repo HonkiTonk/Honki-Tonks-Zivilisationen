@@ -44,7 +44,7 @@ package body TransporterSuchen is
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.Transportwerte
    is begin
 
       TransporterSchleife:
@@ -67,7 +67,7 @@ package body TransporterSuchen is
          
       end loop TransporterSchleife;
       
-      return EinheitenKonstanten.LeerNummer;
+      return EinheitStadtDatentypen.Transportwerte'First;
       
    end EinheitAufTransporterSuchen;
 

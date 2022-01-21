@@ -58,7 +58,7 @@ package LeseEinheitenGebaut is
    
    function Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -67,7 +67,7 @@ package LeseEinheitenGebaut is
    
    function Rang
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -140,7 +140,7 @@ package LeseEinheitenGebaut is
       
    function Transportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PlatzExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+      PlatzExtern : in EinheitStadtDatentypen.Transportplätze)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>

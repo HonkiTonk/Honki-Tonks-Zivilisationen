@@ -66,7 +66,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      ErfahrungspunkteExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      ErfahrungspunkteExtern : in EinheitStadtDatentypen.Kampfwerte;
       AddierenSetzenExtern : in Boolean)
      with
        Pre =>
@@ -159,7 +159,7 @@ package SchreibeEinheitenGebaut is
    procedure Transportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-      LadungspositionExtern : in EinheitStadtDatentypen.MaximaleStädte)
+      LadungspositionExtern : in EinheitStadtDatentypen.Transportplätze)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

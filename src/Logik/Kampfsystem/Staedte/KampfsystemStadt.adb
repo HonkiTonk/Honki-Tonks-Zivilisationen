@@ -146,8 +146,8 @@ package body KampfsystemStadt is
    
    
    procedure SchadenStadtBerechnen
-     (AngriffExtern : in EinheitStadtDatentypen.ProduktionFeld;
-      VerteidigungExtern : in EinheitStadtDatentypen.ProduktionFeld)
+     (AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
+      VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte)
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?

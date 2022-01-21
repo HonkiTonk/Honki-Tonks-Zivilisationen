@@ -41,6 +41,13 @@ package EinheitStadtDatentypen is
    
    type Lebenspunkte is range 0 .. 1_000;
    subtype LebenspunkteVorhanden is Lebenspunkte range 1 .. Lebenspunkte'Last;
+   
+   -- Negativer Bereich für Abzug.
+   type KampfwerteAllgemein is range -100 .. 100;
+   type Kampfwerte is range 0 .. 100;
+   
+   type Transportwerte is range 0 .. 10;
+   subtype Transportplätze is Transportwerte range 1 .. Transportwerte'Last;
    -- Für Einheiten
 
 

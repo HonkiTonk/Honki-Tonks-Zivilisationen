@@ -90,8 +90,9 @@ package body KampfsystemEinheiten is
 
    procedure KampfBerechnung
      (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      AngriffExtern : in EinheitStadtDatentypen.ProduktionFeld;
-      VerteidigungExtern : in EinheitStadtDatentypen.ProduktionFeld)
+      -- Hier besser nicht den KampfwerteRecord verwenden, sonst komme ich noch durcheinander dass das ja zwei unterschiedliche Einheiten sind welche sich hier bekämpfen.
+      AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
+      VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte)
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?

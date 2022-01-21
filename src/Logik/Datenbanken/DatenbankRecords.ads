@@ -26,15 +26,15 @@ package DatenbankRecords is
       MaximaleBewegungspunkte : EinheitStadtDatentypen.VorhandeneBewegungspunkte;
       WirdVerbessertZu : EinheitStadtDatentypen.EinheitenIDMitNullWert;
 
-      Beförderungsgrenze : EinheitStadtDatentypen.MaximaleStädte;
-      MaximalerRang : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Reichweite : EinheitStadtDatentypen.ProduktionFeld;
-      Angriff : EinheitStadtDatentypen.ProduktionFeld;
-      Verteidigung : EinheitStadtDatentypen.ProduktionFeld;
+      Beförderungsgrenze : EinheitStadtDatentypen.Kampfwerte;
+      MaximalerRang : EinheitStadtDatentypen.Kampfwerte;
+      Reichweite : EinheitStadtDatentypen.Kampfwerte;
+      Angriff : EinheitStadtDatentypen.Kampfwerte;
+      Verteidigung : EinheitStadtDatentypen.Kampfwerte;
 
-      KannTransportieren : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      KannTransportiertWerden : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Transportkapazität : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      KannTransportieren : EinheitStadtDatentypen.Transportwerte;
+      KannTransportiertWerden : EinheitStadtDatentypen.Transportwerte;
+      Transportkapazität : EinheitStadtDatentypen.Transportwerte;
       
    end record;
    
@@ -83,6 +83,13 @@ package DatenbankRecords is
 
    -- Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung, Angriff
    -- Wird direkt für die Datenbankenwerte unten drunter gebraucht!
+   -- Aufteilen damit die einzelnen Werte eigene Datentypen haben können.
+   -- Bewertung
+   -- Produktion
+   -- Kampf
+   type BewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Bewertung_Enum'Range) of KartenDatentypen.BewertungFeld;
+   type GewinnungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Gewinnung_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
+   type KampfArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.KampfwerteAllgemein;
    type GewinnBewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Bewertung_Werte_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
       
    -- KartenDatenbank

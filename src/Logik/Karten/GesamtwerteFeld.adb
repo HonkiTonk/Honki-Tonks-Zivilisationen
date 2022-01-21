@@ -221,7 +221,7 @@ package body GesamtwerteFeld is
    function FeldVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       if
@@ -235,9 +235,9 @@ package body GesamtwerteFeld is
                                                     RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenExtern,
                                              RasseExtern    => RasseExtern)
-        > EinheitStadtDatentypen.ProduktionFeld'Last
+        > EinheitStadtDatentypen.Kampfwerte'Last
       then
-         return EinheitStadtDatentypen.ProduktionFeld'Last;
+         return EinheitStadtDatentypen.Kampfwerte'Last;
          
       elsif
         KartenAllgemein.GrundVerteidigung (PositionExtern => KoordinatenExtern,
@@ -250,9 +250,9 @@ package body GesamtwerteFeld is
                                                     RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenExtern,
                                              RasseExtern    => RasseExtern)
-        < EinheitStadtDatentypen.ProduktionFeld'First
+        < EinheitStadtDatentypen.Kampfwerte'First
       then
-         return EinheitStadtDatentypen.ProduktionFeld'First;
+         return EinheitStadtDatentypen.Kampfwerte'First;
          
       else
          return KartenAllgemein.GrundVerteidigung (PositionExtern => KoordinatenExtern,
@@ -274,7 +274,7 @@ package body GesamtwerteFeld is
    function FeldAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       if
@@ -288,9 +288,9 @@ package body GesamtwerteFeld is
                                                RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussAngriff (PositionExtern => KoordinatenExtern,
                                         RasseExtern    => RasseExtern)
-        > EinheitStadtDatentypen.ProduktionFeld'Last
+        > EinheitStadtDatentypen.Kampfwerte'Last
       then
-         return EinheitStadtDatentypen.ProduktionFeld'Last;
+         return EinheitStadtDatentypen.Kampfwerte'Last;
          
       elsif
         KartenAllgemein.GrundAngriff (PositionExtern => KoordinatenExtern,
@@ -303,9 +303,9 @@ package body GesamtwerteFeld is
                                                RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussAngriff (PositionExtern => KoordinatenExtern,
                                         RasseExtern    => RasseExtern)
-        < EinheitStadtDatentypen.ProduktionFeld'First
+        < EinheitStadtDatentypen.Kampfwerte'First
       then
-         return EinheitStadtDatentypen.ProduktionFeld'First;
+         return EinheitStadtDatentypen.Kampfwerte'First;
          
       else
          return KartenAllgemein.GrundAngriff (PositionExtern => KoordinatenExtern,

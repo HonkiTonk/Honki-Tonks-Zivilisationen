@@ -12,12 +12,12 @@ package body KampfwerteStadtErmitteln is
 
    function AktuelleVerteidigungStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      VerteidigungWert := LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                         RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                         WelcherWertExtern  => KartenDatentypen.Verteidigung)
+      VerteidigungWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                            RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                            WelcherWertExtern  => KartenDatentypen.Verteidigung))
         + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -32,9 +32,9 @@ package body KampfwerteStadtErmitteln is
             null;
             
          else
-            VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                           IDExtern           => GebäudeSchleifenwert,
-                                                                                           WelcherBonusExtern => KartenDatentypen.Verteidigung);
+            VerteidigungWert := VerteidigungWert + EinheitStadtDatentypen.Kampfwerte (LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                                              IDExtern           => GebäudeSchleifenwert,
+                                                                                                                              WelcherBonusExtern => KartenDatentypen.Verteidigung));
          end if;
          
       end loop GebäudeSchleife;
@@ -47,12 +47,12 @@ package body KampfwerteStadtErmitteln is
    
    function AktuellerAngriffStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      AngriffWert := LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                    RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                    WelcherWertExtern  => KartenDatentypen.Angriff)
+      AngriffWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                       RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                       WelcherWertExtern  => KartenDatentypen.Angriff))
         + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -67,9 +67,9 @@ package body KampfwerteStadtErmitteln is
             null;
             
          else
-            AngriffWert := AngriffWert + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                 IDExtern           => GebäudeSchleifenwert,
-                                                                                 WelcherBonusExtern => KartenDatentypen.Angriff);
+            AngriffWert := AngriffWert + EinheitStadtDatentypen.Kampfwerte (LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                                    IDExtern           => GebäudeSchleifenwert,
+                                                                                                                    WelcherBonusExtern => KartenDatentypen.Angriff));
          end if;
          
       end loop GebäudeSchleife;

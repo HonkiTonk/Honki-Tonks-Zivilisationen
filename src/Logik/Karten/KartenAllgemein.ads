@@ -38,12 +38,12 @@ package KartenAllgemein is
    function GrundVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function GrundAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function GrundBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -73,12 +73,12 @@ package KartenAllgemein is
    function FlussVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function FlussAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function FlussBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -108,12 +108,12 @@ package KartenAllgemein is
    function WegVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function WegAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function WegBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -143,12 +143,12 @@ package KartenAllgemein is
    function VerbesserungVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function VerbesserungAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function VerbesserungBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -178,12 +178,12 @@ package KartenAllgemein is
    function RessourceVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function RessourceAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return EinheitStadtDatentypen.Kampfwerte;
 
    function RessourceBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;

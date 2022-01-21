@@ -25,8 +25,8 @@ package KampfsystemEinheiten is
 
    procedure KampfBerechnung
      (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      AngriffExtern : in EinheitStadtDatentypen.ProduktionFeld;
-      VerteidigungExtern : in EinheitStadtDatentypen.ProduktionFeld)
+      AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
+      VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte)
      with
        Pre =>
          (VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze

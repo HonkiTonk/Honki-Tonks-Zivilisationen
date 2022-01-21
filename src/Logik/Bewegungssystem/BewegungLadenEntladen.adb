@@ -21,7 +21,7 @@ package body BewegungLadenEntladen is
       case
         FreierPlatzNummer
       is
-         when EinheitenKonstanten.LeerTransportiert =>
+         when EinheitStadtDatentypen.Transportwerte'First =>
             null;
             
          when others =>
@@ -51,9 +51,10 @@ package body BewegungLadenEntladen is
    
    
    
+   -- Ist das nicht identisch mit dem Zeug in TransporterSuchen?
    function FreienPlatzErmitteln
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.Transportwerte
    is begin
       
       TransporterSchleife:
@@ -73,7 +74,7 @@ package body BewegungLadenEntladen is
          
       end loop TransporterSchleife;
       
-      return EinheitenKonstanten.LeerWirdTransportiert;
+      return EinheitStadtDatentypen.Transportwerte'First;
       
    end FreienPlatzErmitteln;
      

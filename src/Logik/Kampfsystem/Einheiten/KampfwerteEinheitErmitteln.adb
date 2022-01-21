@@ -15,7 +15,7 @@ package body KampfwerteEinheitErmitteln is
    function AktuelleVerteidigungEinheit
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngreiferExtern : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       VerteidigungWert := LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -32,9 +32,9 @@ package body KampfwerteEinheitErmitteln is
       end case;
       
       if
-        VerteidigungWert + Bonus > EinheitStadtDatentypen.GesamtproduktionStadt'Last
+        VerteidigungWert + Bonus > EinheitStadtDatentypen.Kampfwerte'Last
       then
-         return EinheitStadtDatentypen.GesamtproduktionStadt'Last;
+         return EinheitStadtDatentypen.Kampfwerte'Last;
          
       else
          return VerteidigungWert + Bonus;
@@ -46,7 +46,7 @@ package body KampfwerteEinheitErmitteln is
    
    function VerteidigungsbonusVerteidiger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       VerteidigungWertFloat := Float (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -76,10 +76,10 @@ package body KampfwerteEinheitErmitteln is
       if
         VerteidigungWertFloat > Float (EinheitStadtDatentypen.GesamtproduktionStadt'Last)
       then
-         return EinheitStadtDatentypen.GesamtproduktionStadt'Last;
+         return EinheitStadtDatentypen.Kampfwerte'Last;
                
       else
-         return EinheitStadtDatentypen.GesamtproduktionStadt (VerteidigungWertFloat);
+         return EinheitStadtDatentypen.Kampfwerte (VerteidigungWertFloat);
       end if;
       
    end VerteidigungsbonusVerteidiger;
@@ -87,7 +87,7 @@ package body KampfwerteEinheitErmitteln is
    
    
    function VerteidigungsbonusAngreifer
-     return EinheitStadtDatentypen.GesamtproduktionStadt
+     return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       return 0;
@@ -99,7 +99,7 @@ package body KampfwerteEinheitErmitteln is
    function AktuellerAngriffEinheit
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       AngreiferExtern : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       AngriffWert := LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -116,9 +116,9 @@ package body KampfwerteEinheitErmitteln is
       end case;
      
       if
-        AngriffWert + Bonus > EinheitStadtDatentypen.GesamtproduktionStadt'Last
+        AngriffWert + Bonus > EinheitStadtDatentypen.Kampfwerte'Last
       then
-         return EinheitStadtDatentypen.GesamtproduktionStadt'Last;
+         return EinheitStadtDatentypen.Kampfwerte'Last;
          
       else
          return AngriffWert + Bonus;
@@ -130,7 +130,7 @@ package body KampfwerteEinheitErmitteln is
    
    function AngriffsbonusAngreifer
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       AngriffWertFloat := Float (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
@@ -142,10 +142,10 @@ package body KampfwerteEinheitErmitteln is
       if
         AngriffWertFloat > Float (EinheitStadtDatentypen.ProduktionFeld'Last)
       then
-         return EinheitStadtDatentypen.GesamtproduktionStadt'Last;
+         return EinheitStadtDatentypen.Kampfwerte'Last;
                
       else
-         return EinheitStadtDatentypen.GesamtproduktionStadt (AngriffWertFloat);
+         return EinheitStadtDatentypen.Kampfwerte (AngriffWertFloat);
       end if;
       
    end AngriffsbonusAngreifer;
@@ -153,7 +153,7 @@ package body KampfwerteEinheitErmitteln is
    
    
    function AngriffsbonusVerteidiger
-     return EinheitStadtDatentypen.GesamtproduktionStadt
+     return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       return 0;

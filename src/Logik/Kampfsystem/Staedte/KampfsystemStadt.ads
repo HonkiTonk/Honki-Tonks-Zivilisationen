@@ -62,8 +62,8 @@ private
                                                             );
    
    procedure SchadenStadtBerechnen
-     (AngriffExtern : in EinheitStadtDatentypen.ProduktionFeld;
-      VerteidigungExtern : in EinheitStadtDatentypen.ProduktionFeld);
+     (AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
+      VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte);
    
    
    

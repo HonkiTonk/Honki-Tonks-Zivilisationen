@@ -21,7 +21,7 @@ package EinheitStadtRecords is
    
    
    type KIBewegungPlanArray is array (KartenDatentypen.Stadtfeld'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
-   type TransporterArray is array (EinheitStadtDatentypen.MaximaleStädte'First .. 5) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   type TransporterArray is array (EinheitStadtDatentypen.Transportplätze'First .. 5) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (EinheitStadtDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitStadtDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record
@@ -32,8 +32,8 @@ package EinheitStadtRecords is
       
       Lebenspunkte : EinheitStadtDatentypen.Lebenspunkte;
       Bewegungspunkte : EinheitStadtDatentypen.VorhandeneBewegungspunkte;
-      Erfahrungspunkte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Rang : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      Erfahrungspunkte : EinheitStadtDatentypen.Kampfwerte;
+      Rang : EinheitStadtDatentypen.Kampfwerte;
       
       Beschäftigung : SystemDatentypen.Tastenbelegung_Enum;
       BeschäftigungNachfolger : SystemDatentypen.Tastenbelegung_Enum;
@@ -56,8 +56,8 @@ package EinheitStadtRecords is
    
    type KampfwerteRecord is record
       
-      Angriff : EinheitStadtDatentypen.ProduktionFeld;
-      Verteidigung : EinheitStadtDatentypen.ProduktionFeld;
+      Angriff : EinheitStadtDatentypen.Kampfwerte;
+      Verteidigung : EinheitStadtDatentypen.Kampfwerte;
       
    end record;
    

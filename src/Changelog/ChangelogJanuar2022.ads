@@ -56,24 +56,24 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (23.01.2022):
+   -- Version 0.00.97 => 0.00.9 (23.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (22.01.2022):
+   -- Version 0.00.9765 => 0.00.97 (22.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9760 => 0.00.97 (21.01.2022):
+   -- Version 0.00.9760 => 0.00.9765 (21.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weitere Datentypen für diverse Werte angelegt, eingebaut und generell angefangen die Werte auf individuellere/besser anpassbare Datentypen umzuschreiben.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
       

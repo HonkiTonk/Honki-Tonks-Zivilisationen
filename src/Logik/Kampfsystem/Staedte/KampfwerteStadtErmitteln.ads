@@ -9,7 +9,7 @@ package KampfwerteStadtErmitteln is
 
    function AktuelleVerteidigungStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer
@@ -18,7 +18,7 @@ package KampfwerteStadtErmitteln is
    
    function AktuellerAngriffStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer
@@ -27,7 +27,7 @@ package KampfwerteStadtErmitteln is
    
 private
    
-   VerteidigungWert : EinheitStadtDatentypen.ProduktionFeld;
-   AngriffWert : EinheitStadtDatentypen.ProduktionFeld;
+   VerteidigungWert : EinheitStadtDatentypen.Kampfwerte;
+   AngriffWert : EinheitStadtDatentypen.Kampfwerte;
 
 end KampfwerteStadtErmitteln;

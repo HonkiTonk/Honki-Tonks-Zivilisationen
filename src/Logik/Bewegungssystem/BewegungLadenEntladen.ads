@@ -60,13 +60,14 @@ private
    TransporterNummer : EinheitStadtDatentypen.MaximaleEinheiten;
    
    EinheitAusladen : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-   FreierPlatzNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   
+   FreierPlatzNummer : EinheitStadtDatentypen.Transportwerte;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FreienPlatzErmitteln
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
+      return EinheitStadtDatentypen.Transportwerte
      with
        Pre =>
          (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze

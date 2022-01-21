@@ -148,24 +148,24 @@ package body KartenAllgemein is
    function GrundVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       if
         LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Verteidigung)
-           + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Verteidigung)
+         return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                                                  RasseExtern       => RasseExtern,
+                                                                                  WelcherWertExtern => KartenDatentypen.Verteidigung)
+                                                   + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
+                                                                                    RasseExtern       => RasseExtern,
+                                                                                    WelcherWertExtern => KartenDatentypen.Verteidigung))
            / 2;
          
       else
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Verteidigung);
+         return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                                                  RasseExtern       => RasseExtern,
+                                                                                  WelcherWertExtern => KartenDatentypen.Verteidigung));
       end if;
       
    end GrundVerteidigung;
@@ -175,24 +175,24 @@ package body KartenAllgemein is
    function GrundAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       if
         LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Angriff)
-           + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Angriff)
+         return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                                                  RasseExtern       => RasseExtern,
+                                                                                  WelcherWertExtern => KartenDatentypen.Angriff)
+                                                   + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
+                                                                                    RasseExtern       => RasseExtern,
+                                                                                    WelcherWertExtern => KartenDatentypen.Angriff))
            / 2;
          
       else
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Angriff);
+         return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                                                  RasseExtern       => RasseExtern,
+                                                                                  WelcherWertExtern => KartenDatentypen.Angriff));
       end if;
       
    end GrundAngriff;
@@ -272,12 +272,12 @@ package body KartenAllgemein is
    function FlussVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Verteidigung);
+      return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                                                               RasseExtern       => RasseExtern,
+                                                                               WelcherWertExtern => KartenDatentypen.Verteidigung));
       
    end FlussVerteidigung;
    
@@ -286,12 +286,12 @@ package body KartenAllgemein is
    function FlussAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Angriff);
+      return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                                                               RasseExtern       => RasseExtern,
+                                                                               WelcherWertExtern => KartenDatentypen.Angriff));
       
    end FlussAngriff;
    
@@ -370,12 +370,12 @@ package body KartenAllgemein is
    function WegVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Verteidigung);
+      return EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                                                               RasseExtern        => RasseExtern,
+                                                                                               WelcherWertExtern  => KartenDatentypen.Verteidigung));
       
    end WegVerteidigung;
    
@@ -384,12 +384,12 @@ package body KartenAllgemein is
    function WegAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Angriff);
+      return EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                                                               RasseExtern        => RasseExtern,
+                                                                                               WelcherWertExtern  => KartenDatentypen.Angriff));
       
    end WegAngriff;
    
@@ -468,12 +468,12 @@ package body KartenAllgemein is
    function VerbesserungVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Verteidigung);
+      return EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                                                               RasseExtern        => RasseExtern,
+                                                                                               WelcherWertExtern  => KartenDatentypen.Verteidigung));
       
    end VerbesserungVerteidigung;
    
@@ -482,12 +482,12 @@ package body KartenAllgemein is
    function VerbesserungAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Angriff);
+      return EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                                                               RasseExtern        => RasseExtern,
+                                                                                               WelcherWertExtern  => KartenDatentypen.Angriff));
       
    end VerbesserungAngriff;
    
@@ -566,12 +566,12 @@ package body KartenAllgemein is
    function RessourceVerteidigung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Verteidigung);
+      return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                                                               RasseExtern       => RasseExtern,
+                                                                               WelcherWertExtern => KartenDatentypen.Verteidigung));
       
    end RessourceVerteidigung;
    
@@ -580,12 +580,12 @@ package body KartenAllgemein is
    function RessourceAngriff
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Angriff);
+      return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                                                               RasseExtern       => RasseExtern,
+                                                                               WelcherWertExtern => KartenDatentypen.Angriff));
       
    end RessourceAngriff;
    

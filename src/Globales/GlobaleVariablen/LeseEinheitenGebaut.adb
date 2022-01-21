@@ -99,7 +99,7 @@ package body LeseEinheitenGebaut is
    
    function Erfahrungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       if
@@ -123,7 +123,7 @@ package body LeseEinheitenGebaut is
    
    function Rang
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Kampfwerte
    is begin
       
       if
@@ -268,7 +268,7 @@ package body LeseEinheitenGebaut is
       
    function Transportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PlatzExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
+      PlatzExtern : in EinheitStadtDatentypen.Transportplätze)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
