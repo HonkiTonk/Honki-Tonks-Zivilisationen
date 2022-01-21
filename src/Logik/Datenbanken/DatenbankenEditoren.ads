@@ -7,4 +7,8 @@ package DatenbankenEditoren is
    function DatenbankenEditoren
      return SystemDatentypen.Rückgabe_Werte_Enum;
 
+private
+
+   AuswahlWert : SystemDatentypen.Rückgabe_Werte_Enum;
+
 end DatenbankenEditoren;

@@ -43,7 +43,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LebenspunkteExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      LebenspunkteExtern : in EinheitStadtDatentypen.Lebenspunkte;
       RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
@@ -81,9 +81,9 @@ package body SchreibeEinheitenGebaut is
                
          when -1 =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte - LebenspunkteExtern < EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte - LebenspunkteExtern < EinheitStadtDatentypen.Lebenspunkte'First
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte := EinheitStadtDatentypen.Lebenspunkte'First;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte

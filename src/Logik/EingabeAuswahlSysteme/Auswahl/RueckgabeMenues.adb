@@ -807,27 +807,27 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Auflösung_Ändern;
+         return SystemDatentypen.Kartenfeld_Editor;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Farbtiefe_Ändern;
+         return SystemDatentypen.Einheiten_Editor;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Bildrate_Ändern;
+         return SystemDatentypen.Gebäude_Editor;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Speichern;
+         return SystemDatentypen.Forschung_Editor;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Speichern;
+         return SystemDatentypen.Verbesserungen_Editor;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,

@@ -40,7 +40,7 @@ package LeseEinheitenGebaut is
       
    function Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Lebenspunkte
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -49,7 +49,7 @@ package LeseEinheitenGebaut is
    
    function Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.BewegungFloat
+      return EinheitStadtDatentypen.VorhandeneBewegungspunkte
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

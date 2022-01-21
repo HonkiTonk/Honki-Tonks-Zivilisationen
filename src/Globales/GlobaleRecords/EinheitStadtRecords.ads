@@ -30,8 +30,8 @@ package EinheitStadtRecords is
       Position : KartenRecords.AchsenKartenfeldPositivRecord;
       Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
-      Lebenspunkte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      Bewegungspunkte : EinheitStadtDatentypen.BewegungFloat;
+      Lebenspunkte : EinheitStadtDatentypen.Lebenspunkte;
+      Bewegungspunkte : EinheitStadtDatentypen.VorhandeneBewegungspunkte;
       Erfahrungspunkte : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       Rang : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       

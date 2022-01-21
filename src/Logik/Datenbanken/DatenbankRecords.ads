@@ -22,8 +22,8 @@ package DatenbankRecords is
 
       Passierbarkeit : PassierbarkeitArray;
       
-      MaximaleLebenspunkte : EinheitStadtDatentypen.MaximaleEinheiten;
-      MaximaleBewegungspunkte : EinheitStadtDatentypen.BewegungFloat;
+      MaximaleLebenspunkte : EinheitStadtDatentypen.LebenspunkteVorhanden;
+      MaximaleBewegungspunkte : EinheitStadtDatentypen.VorhandeneBewegungspunkte;
       WirdVerbessertZu : EinheitStadtDatentypen.EinheitenIDMitNullWert;
 
       Beförderungsgrenze : EinheitStadtDatentypen.MaximaleStädte;
@@ -82,10 +82,9 @@ package DatenbankRecords is
 
 
    -- Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung, Angriff
+   -- Wird direkt für die Datenbankenwerte unten drunter gebraucht!
    type GewinnBewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Bewertung_Werte_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
-   
-   type BewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
-   
+      
    -- KartenDatenbank
    type KartenListeRecord is record
 

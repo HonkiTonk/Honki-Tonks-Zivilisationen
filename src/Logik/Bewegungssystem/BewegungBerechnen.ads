@@ -26,10 +26,10 @@ package BewegungBerechnen is
    
 private
       
-   KleinerAbzug : constant EinheitStadtDatentypen.BewegungFloat := 1.00;
-   MittlererAbzug : constant EinheitStadtDatentypen.BewegungFloat := 2.00;
-   GroßerAbzug : constant EinheitStadtDatentypen.BewegungFloat := 3.00;
-   KeinAbzug : constant EinheitStadtDatentypen.BewegungFloat := 0.00;
+   KleinerAbzug : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 1.00;
+   MittlererAbzug : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 2.00;
+   GroßerAbzug : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 3.00;
+   KeinAbzug : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 0.00;
    EinheitUnbewegbar : constant EinheitStadtDatentypen.BewegungFloat := -1.00;
    
    BewegungspunkteAbzug : EinheitStadtDatentypen.BewegungFloat;
@@ -38,7 +38,7 @@ private
    
    Welchen_Bonus : Bewegungsbonuse_Enum;
    
-   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of EinheitStadtDatentypen.BewegungFloat;
+   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of EinheitStadtDatentypen.VorhandeneBewegungspunkte;
    Bewegungsmodifikator : constant BewegungsmodifikatorArray := (Leer         => 0.00,
                                                                  Straße_Fluss => 0.50,
                                                                  Schiene      => 1.00);

@@ -1,5 +1,16 @@
 pragma SPARK_Mode (On);
 
+with SystemKonstanten;
+
+with EinheitenDatenbankEditor;
+with ForschungDatenbankEditor;
+with GebaeudeDatenbankEditor;
+with KartenDatenbankEditor;
+with VerbesserungenDatenbankEditor;
+
+with AuswahlMenue;
+with Fehler;
+
 package body DatenbankenEditoren is
 
    function DatenbankenEditoren
@@ -9,7 +20,32 @@ package body DatenbankenEditoren is
       EditorenSchleife:
       loop
          
-         return SystemDatentypen.Start_Weiter;
+         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Editoren_Menü);
+         
+         case
+           AuswahlWert
+         is
+            when SystemDatentypen.Kartenfeld_Editor =>
+               KartenDatenbankEditor.KartenDatenbankEditor;
+               
+            when SystemDatentypen.Einheiten_Editor =>
+               EinheitenDatenbankEditor.EinheitenDatenbankEditor;
+               
+            when SystemDatentypen.Gebäude_Editor =>
+               GebaeudeDatenbankEditor.GebäudeDatenbankEditor;
+               
+            when SystemDatentypen.Forschung_Editor =>
+               ForschungDatenbankEditor.ForschungDatenbankEditor;
+               
+            when SystemDatentypen.Verbesserungen_Editor =>
+               VerbesserungenDatenbankEditor.VerbesserungenDatenbankEditor;
+               
+            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+               return AuswahlWert;
+               
+            when others =>
+               Fehler.LogikStopp (FehlermeldungExtern => "DatenbankenEditoren.DatenbankenEditoren - Ungültige Menüauswahl.");
+         end case;
          
       end loop EditorenSchleife;
       

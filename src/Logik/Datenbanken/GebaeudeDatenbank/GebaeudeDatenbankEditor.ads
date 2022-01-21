@@ -2,6 +2,10 @@ pragma SPARK_Mode (On);
 
 package GebaeudeDatenbankEditor is
 
-   procedure GebaeudeDatenbankSpeichern;
+   procedure GebäudeDatenbankEditor;
+
+private
+
+   procedure GebäudeDatenbankSpeichern;
 
 end GebaeudeDatenbankEditor;

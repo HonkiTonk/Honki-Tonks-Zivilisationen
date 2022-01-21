@@ -349,7 +349,7 @@ package body KarteSFML is
       end case;
       
       -- Möglicherweise die Schriftfarbe durch die Rahmenfarbe ersetzen? Die Belegungsfarbe ist auf jeden Fall ungeeignet.
-      -- Text wird von den anderen Feldern immer wieder überschrieben.
+      -- Text wird von den anderen Feldern immer wieder überschrieben. Eventuell ein zweites Mal über die ganzen Felder gehen?
       GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
                                                 FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
                                                 SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,

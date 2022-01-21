@@ -75,6 +75,6 @@ private
    procedure Gecheatet
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
-   package AnzeigeBewegungFloat is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitStadtDatentypen.BewegungFloat);
+   package AnzeigeBewegungFloat is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitStadtDatentypen.VorhandeneBewegungspunkte);
 
 end InformationenEinheitenKonsole;

@@ -139,8 +139,9 @@ package body KampfsystemEinheiten is
               
       end loop AngerichteterSchadenSchleife;
       
+      -- Den Schadensdatentyp abhängig von den Lebenspunkten machen? Oder ein anderes System bauen?
       SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
-                                            LebenspunkteExtern       => AngerichteterSchaden,
+                                            LebenspunkteExtern       => EinheitStadtDatentypen.Lebenspunkte (AngerichteterSchaden),
                                             RechnenSetzenExtern      => -1);
       
    end KampfBerechnung;

@@ -37,6 +37,10 @@ package EinheitStadtDatentypen is
    subtype Einheit_Meldung_Verwendet_Enum is Einheit_Meldung_Enum range Aufgabe_Abgeschlossen .. Einheit_Meldung_Enum'Last;
 
    type BewegungFloat is digits 2 range -100.00 .. 100.00;
+   subtype VorhandeneBewegungspunkte is BewegungFloat range 0.00 .. BewegungFloat'Last;
+   
+   type Lebenspunkte is range 0 .. 1_000;
+   subtype LebenspunkteVorhanden is Lebenspunkte range 1 .. Lebenspunkte'Last;
    -- Für Einheiten
 
 

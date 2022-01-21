@@ -48,7 +48,7 @@ private
    Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    StadtNummerNeu : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    
-   Heilungsrate : constant EinheitStadtDatentypen.MaximaleStädte := 10;
+   Heilungsrate : constant EinheitStadtDatentypen.LebenspunkteVorhanden := 10;
    ErhalteneErfahrungspunkte : EinheitStadtDatentypen.MaximaleStädte;
       
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;

@@ -55,7 +55,7 @@ package body LeseEinheitenGebaut is
       
    function Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.MaximaleStädteMitNullWert
+      return EinheitStadtDatentypen.Lebenspunkte
    is begin
       
      -- if
@@ -79,7 +79,7 @@ package body LeseEinheitenGebaut is
    
    function Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.BewegungFloat
+      return EinheitStadtDatentypen.VorhandeneBewegungspunkte
    is begin
       
       if

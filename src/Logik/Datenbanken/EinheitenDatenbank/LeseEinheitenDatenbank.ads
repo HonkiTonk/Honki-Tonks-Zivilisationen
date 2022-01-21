@@ -69,7 +69,7 @@ package LeseEinheitenDatenbank is
    function MaximaleLebenspunkte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.MaximaleEinheiten
+      return EinheitStadtDatentypen.LebenspunkteVorhanden
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
@@ -77,7 +77,7 @@ package LeseEinheitenDatenbank is
    function MaximaleBewegungspunkte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.BewegungFloat
+      return EinheitStadtDatentypen.VorhandeneBewegungspunkte
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);

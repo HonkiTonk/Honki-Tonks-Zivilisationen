@@ -63,31 +63,31 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (22.01.2022):
+   -- Version 0.00.97 => 0.00.9 (22.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (21.01.2022):
+   -- Version 0.00.9760 => 0.00.97 (21.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.97 => 0.00.9 (20.01.2022):
+   -- Version 0.00.9755 => 0.00.9760 (20.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an den Editorenmenüs herumgebastelt.
+   -- Angefangen die Datentypen für die Einheitenwerte besser aufzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
       
-   -- Version 0.00.9755 => 0.00.97 (19.01.2022):
+   -- Version 0.00.9755 => 0.00.9755 (19.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
       

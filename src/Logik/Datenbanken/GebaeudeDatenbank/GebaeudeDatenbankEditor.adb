@@ -1,16 +1,25 @@
 pragma SPARK_Mode (On);
 
-with GebaeudeDatenbank;
+-- with GebaeudeDatenbank;
 
 with SchreibenDatenbanken;
 
 package body GebaeudeDatenbankEditor is
+   
+   procedure GebäudeDatenbankEditor
+   is begin
+      
+      null;
+      
+   end GebäudeDatenbankEditor;
+   
+   
 
-   procedure GebaeudeDatenbankSpeichern
+   procedure GebäudeDatenbankSpeichern
    is begin
       
       SchreibenDatenbanken.SchreibenGebäudeDatenbank;
       
-   end GebaeudeDatenbankSpeichern;
+   end GebäudeDatenbankSpeichern;
 
 end GebaeudeDatenbankEditor;

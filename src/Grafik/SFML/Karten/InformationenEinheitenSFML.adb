@@ -101,8 +101,8 @@ package body InformationenEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      WertLinksVomTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert (ZahlExtern => LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      WertRechtsVomTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert
+      WertLinksVomTrennzeichen := ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      WertRechtsVomTrennzeichen := ZahlAlsStringLebenspunkte
         (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       

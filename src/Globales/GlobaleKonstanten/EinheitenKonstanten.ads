@@ -20,8 +20,8 @@ package EinheitenKonstanten is
    LeerID : constant EinheitStadtDatentypen.EinheitenIDMitNullWert := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
    LeerPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    LeerHeimatstadt : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerLebenspunkte : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerBewegungspunkte : constant EinheitStadtDatentypen.BewegungFloat := 0.00;
+   LeerLebenspunkte : constant EinheitStadtDatentypen.Lebenspunkte := EinheitStadtDatentypen.Lebenspunkte'First;
+   LeerBewegungspunkte : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 0.00;
    LeerErfahrungspunkte : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRang : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerBeschäftigung : constant SystemDatentypen.Tastenbelegung_Enum := SystemDatentypen.Leer;
@@ -60,8 +60,8 @@ package EinheitenKonstanten is
    LeerPermanenteKosten : constant EinheitStadtDatentypen.GesamtePermanenteKosten := 0;
    LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
-   LeerMaximaleLebenspunkte : constant EinheitStadtDatentypen.MaximaleEinheiten := EinheitStadtDatentypen.MaximaleEinheiten'First;
-   LeerMaximaleBewegungspunkte : constant EinheitStadtDatentypen.BewegungFloat := 1.00;
+   LeerMaximaleLebenspunkte : constant EinheitStadtDatentypen.LebenspunkteVorhanden := EinheitStadtDatentypen.LebenspunkteVorhanden'First;
+   LeerMaximaleBewegungspunkte : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 1.00;
    LeerWirdVerbessertZu : constant EinheitStadtDatentypen.EinheitenIDMitNullWert := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
    LeerBeförderungsgrenze : constant EinheitStadtDatentypen.MaximaleStädte := EinheitStadtDatentypen.MaximaleStädte'First;
    LeerMaximalerRang : constant EinheitStadtDatentypen.MaximaleStädte := EinheitStadtDatentypen.MaximaleStädte'First;

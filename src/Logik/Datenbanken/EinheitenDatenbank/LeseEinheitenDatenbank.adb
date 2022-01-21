@@ -105,7 +105,7 @@ package body LeseEinheitenDatenbank is
    function MaximaleLebenspunkte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.MaximaleEinheiten
+      return EinheitStadtDatentypen.LebenspunkteVorhanden
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximaleLebenspunkte;
@@ -117,7 +117,7 @@ package body LeseEinheitenDatenbank is
    function MaximaleBewegungspunkte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.BewegungFloat
+      return EinheitStadtDatentypen.VorhandeneBewegungspunkte
    is begin
       
       if

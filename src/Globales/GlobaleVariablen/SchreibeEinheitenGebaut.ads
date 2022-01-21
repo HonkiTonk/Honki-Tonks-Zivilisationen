@@ -46,7 +46,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      LebenspunkteExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+      LebenspunkteExtern : in EinheitStadtDatentypen.Lebenspunkte;
       RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
      with
        Pre =>
