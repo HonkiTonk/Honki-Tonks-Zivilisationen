@@ -56,17 +56,17 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.97 => 0.00.9 (23.01.2022):
+   -- Version 0.00.9770 => 0.00.9 (23.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9765 => 0.00.97 (22.01.2022):
+   -- Version 0.00.9765 => 0.00.9770 (22.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen Bewertung, Wirtschaft und Kampf in eigene Datentypen und Enums auszulagern und entsprechend alles anzupassen.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
       

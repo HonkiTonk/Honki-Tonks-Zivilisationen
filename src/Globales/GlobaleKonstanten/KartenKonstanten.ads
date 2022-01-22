@@ -21,12 +21,17 @@ package KartenKonstanten is
    
    LeerKartenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
    LeerPassierbarkeit : constant Boolean := False;
-   LeerFeldWerte : constant EinheitStadtDatentypen.ProduktionElement := 0;
+      
+   LeerBewertung : constant KartenDatentypen.BewertungFeld := 0;
+   LeerWirtschaft : constant EinheitStadtDatentypen.ProduktionElement := 0;
+   LeerKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
                                                                      KartenGrafik   => LeerKartenGrafik,
                                                                      Passierbarkeit => (others => LeerPassierbarkeit),
-                                                                     FeldWerte      => (others => (others => LeerFeldWerte))
+                                                                     Bewertung      => (others => LeerBewertung),
+                                                                     Wirtschaft     => (others => (others => LeerWirtschaft)),
+                                                                     Kampf          => (others => (others => LeerKampf))
                                                                     );
    
    LeerGrund : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
@@ -52,12 +57,17 @@ package KartenKonstanten is
                                                           );
    
    LeerVerbesserungGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
-   LeerVerbesserungWerte : constant EinheitStadtDatentypen.ProduktionElement := 0;
+      
+   LeerVerbesserungBewertung : constant KartenDatentypen.BewertungFeld := 0;
+   LeerVerbesserungWirtschaft : constant EinheitStadtDatentypen.ProduktionElement := 0;
+   LeerVerbesserungKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
                                                                                  VerbesserungGrafik => LeerVerbesserungGrafik,
                                                                                  Passierbarkeit     => (others => LeerPassierbarkeit),
-                                                                                 VerbesserungWerte  => (others => (others => LeerVerbesserungWerte))
+                                                                                 Bewertung      => (others => LeerVerbesserungBewertung),
+                                                                                 Wirtschaft     => (others => (others => LeerVerbesserungWirtschaft)),
+                                                                                 Kampf          => (others => (others => LeerVerbesserungKampf))
                                                                                 );
    
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;

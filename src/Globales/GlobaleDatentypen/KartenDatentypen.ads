@@ -119,10 +119,7 @@ package KartenDatentypen is
    
    type BewertungFeld is range -10 .. 10;
 
-   type Bewertung_Werte_Enum is (Wertigkeit, Nahrung, Produktion, Geld, Wissen, Verteidigung, Angriff);
-   subtype Bonus_Werte_Enum is Bewertung_Werte_Enum range Nahrung .. Angriff;
-   subtype Bewertung_Enum is Bewertung_Werte_Enum range Wertigkeit .. Wertigkeit;
-   subtype Gewinnung_Enum is Bewertung_Werte_Enum range Nahrung .. Wissen;
-   subtype Kampf_Enum is Bewertung_Werte_Enum range Verteidigung .. Angriff;
+   type Wirtschaft_Enum is (Nahrung, Produktion, Geld, Wissen);
+   type Kampf_Enum is (Verteidigung, Angriff);
 
 end KartenDatentypen;

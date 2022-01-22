@@ -25,18 +25,43 @@ package body LeseVerbesserungenDatenbank is
       
    end Passierbarkeit;
    
+   
+   
+   function VerbesserungBewertung
+     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.BewertungFeld
+   is begin
+      
+      return VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).Bewertung (RasseExtern);
+      
+   end VerbesserungBewertung;
+   
       
    
-   function VerbesserungWerte
+   function VerbesserungWirtschaft
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in KartenDatentypen.Bewertung_Werte_Enum)
+      WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungWerte (RasseExtern, WelcherWertExtern);
+      return VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
       
-   end VerbesserungWerte;
+   end VerbesserungWirtschaft;
+   
+      
+   
+   function VerbesserungKampf
+     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.KampfwerteAllgemein
+   is begin
+      
+      return VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).Kampf (RasseExtern, WelcherWertExtern);
+      
+   end VerbesserungKampf;
    
    
    

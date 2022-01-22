@@ -56,8 +56,9 @@ package DatenbankRecords is
 
 
    
-   -- GebaeudeDatenbank
-   type PermanenterBonusArray is array (KartenDatentypen.Bonus_Werte_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
+   -- GebäudeDatenbank
+   type BonusWirtschaftArray is array (KartenDatentypen.Wirtschaft_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
+   type BonusKampfArray is array (KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.Kampfwerte;
    
    type GebäudeListeRecord is record
       
@@ -69,7 +70,8 @@ package DatenbankRecords is
       
       Anforderungen : EinheitStadtDatentypen.ForschungIDNichtMöglich;
       
-      PermanenterBonus : PermanenterBonusArray;
+      BonusWirtschaft : BonusWirtschaftArray;
+      BonusKampf : BonusKampfArray;
       
       UmgebungBenötigt : KartenDatentypen.Karten_Grund_Enum;
       GebäudeSpezielleEigenschaft : EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
@@ -77,20 +79,13 @@ package DatenbankRecords is
    end record;
    
    type GebäudeListeArray is array (EinheitStadtDatentypen.GebäudeID'Range) of GebäudeListeRecord;
-   -- GebaeudeDatenbank
+   -- GebäudeDatenbank
 
 
 
-   -- Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung, Angriff
-   -- Wird direkt für die Datenbankenwerte unten drunter gebraucht!
-   -- Aufteilen damit die einzelnen Werte eigene Datentypen haben können.
-   -- Bewertung
-   -- Produktion
-   -- Kampf
-   type BewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Bewertung_Enum'Range) of KartenDatentypen.BewertungFeld;
-   type GewinnungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Gewinnung_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
+   type BewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.BewertungFeld;
+   type WirtschaftArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Wirtschaft_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
    type KampfArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.KampfwerteAllgemein;
-   type GewinnBewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Bewertung_Werte_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
       
    -- KartenDatenbank
    type KartenListeRecord is record
@@ -98,7 +93,10 @@ package DatenbankRecords is
       KartenGrafik : Wide_Wide_Character;
       
       Passierbarkeit : PassierbarkeitArray;
-      FeldWerte : GewinnBewertungArray;
+      
+      Bewertung : BewertungArray;
+      Wirtschaft : WirtschaftArray;
+      Kampf : KampfArray;
       
    end record;
    -- KartenDatenbank
@@ -111,7 +109,10 @@ package DatenbankRecords is
       VerbesserungGrafik : Wide_Wide_Character;
       
       Passierbarkeit : PassierbarkeitArray;
-      VerbesserungWerte : GewinnBewertungArray;
+      
+      Bewertung : BewertungArray;
+      Wirtschaft : WirtschaftArray;
+      Kampf : KampfArray;
       
    end record;
    -- VerbesserungenDatenbank

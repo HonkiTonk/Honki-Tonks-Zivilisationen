@@ -70,7 +70,8 @@ package StadtKonstanten is
    LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
-   LeerPermanenterBonus : constant EinheitStadtDatentypen.ProduktionFeld := 0;
+   LeerBonusWirtschaft : constant EinheitStadtDatentypen.ProduktionFeld := 0;
+   LeerBonusKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    LeerUmgebungBenötigt : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
    LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer;
    
@@ -80,7 +81,8 @@ package StadtKonstanten is
                                                                          PreisRessourcen             => LeerPreisRessourcen,
                                                                          PermanenteKosten            => (others => LeerPermanenteKosten),
                                                                          Anforderungen               => LeerAnforderungen,
-                                                                         PermanenterBonus            => (others => LeerPermanenterBonus),
+                                                                         BonusWirtschaft             => (others => LeerBonusWirtschaft),
+                                                                         BonusKampf                  => (others => LeerBonusKampf),
                                                                          UmgebungBenötigt            => LeerUmgebungBenötigt,
                                                                          GebäudeSpezielleEigenschaft => LeerSpezielleEigenschaft
                                                                         );

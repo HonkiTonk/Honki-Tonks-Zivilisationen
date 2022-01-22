@@ -26,22 +26,30 @@ private
       KartenDatentypen.Eigene_Hauptstadt =>
         (VerbesserungGrafik => '♣',
          Passierbarkeit     => (others => True),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Eigene_Stadt =>
         (VerbesserungGrafik => '♠',
          Passierbarkeit     => (others => True),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Fremde_Hauptstadt =>
         (VerbesserungGrafik => '⌂',
          Passierbarkeit     => (others => True),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Fremde_Stadt =>
         (VerbesserungGrafik => '¤',
          Passierbarkeit     => (others => True),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
       -- Städte
       
       
@@ -53,7 +61,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True, 
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Mine =>
         (VerbesserungGrafik => 'M',
@@ -61,7 +71,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Festung =>
         (VerbesserungGrafik => 'B',
@@ -69,14 +81,18 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Sperre =>
         (VerbesserungGrafik => 'S',
          Passierbarkeit     => (EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
       -- Gebilde
       
       
@@ -89,7 +105,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straße_Waagrecht =>
         (VerbesserungGrafik => '═',
@@ -97,7 +115,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True, 
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straße_Senkrecht =>
         (VerbesserungGrafik => '║',
@@ -105,7 +125,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenkurve_Unten_Rechts =>
         (VerbesserungGrafik => '╔',
@@ -113,7 +135,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True, 
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenkurve_Unten_Links =>
         (VerbesserungGrafik => '╗',
@@ -121,7 +145,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenkurve_Oben_Rechts =>
         (VerbesserungGrafik => '╚',
@@ -129,7 +155,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenkurve_Oben_Links =>
         (VerbesserungGrafik => '╝',
@@ -137,7 +165,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenkreuzung_Drei_Oben =>
         (VerbesserungGrafik => '╩',
@@ -145,7 +175,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenkreuzung_Drei_Unten =>
         (VerbesserungGrafik => '╦',
@@ -153,7 +185,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenkreuzung_Drei_Rechts =>
         (VerbesserungGrafik => '╠',
@@ -161,7 +195,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenkreuzung_Drei_Links =>
         (VerbesserungGrafik => '╣',
@@ -169,7 +205,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenendstück_Links =>
         (VerbesserungGrafik => '╞',
@@ -177,7 +215,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenendstück_Rechts =>
         (VerbesserungGrafik => '╡',
@@ -185,7 +225,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenendstück_Unten =>
         (VerbesserungGrafik => '╨',
@@ -193,7 +235,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straßenendstück_Oben =>
         (VerbesserungGrafik => '╥',
@@ -201,7 +245,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
                                                   
       KartenDatentypen.Straße_Einzeln =>
         (VerbesserungGrafik => '▫',
@@ -209,7 +255,9 @@ private
                                 EinheitStadtDatentypen.Luft     => True,
                                 EinheitStadtDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1))),
+         Bewertung          => (others => 1),
+         Wirtschaft         => (others => (others => 1)),
+         Kampf              => (others => (others => 1))),
       -- Straßen
       
       

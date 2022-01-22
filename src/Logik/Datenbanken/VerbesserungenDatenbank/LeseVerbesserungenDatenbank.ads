@@ -18,11 +18,28 @@ package LeseVerbesserungenDatenbank is
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean;
    
-   function VerbesserungWerte
+   function VerbesserungBewertung
+     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.BewertungFeld
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+   
+   function VerbesserungWirtschaft
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in KartenDatentypen.Bewertung_Werte_Enum)
+      WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+   
+   function VerbesserungKampf
+     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.KampfwerteAllgemein
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);

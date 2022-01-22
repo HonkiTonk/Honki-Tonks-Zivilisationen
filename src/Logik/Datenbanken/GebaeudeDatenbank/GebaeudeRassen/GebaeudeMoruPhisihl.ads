@@ -17,10 +17,9 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 0,
-         PermanenterBonus            => (KartenDatentypen.Nahrung      => 10,
-                                         KartenDatentypen.Verteidigung => 10,
-                                         KartenDatentypen.Angriff      => 10,
-                                         others                        => 0),
+         BonusWirtschaft             => (KartenDatentypen.Nahrung => 10,
+                                         others                   => 0),
+         BonusKampf                  => (others => 10),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -31,7 +30,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 2,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -42,7 +42,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 50,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 1,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -53,7 +54,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 10,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
       
@@ -64,7 +66,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 9,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -75,7 +78,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 11,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -86,7 +90,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 21,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -97,7 +102,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 16,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -108,7 +114,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 13,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -119,7 +126,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 15,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -130,7 +138,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 15,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -141,7 +150,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 14,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -152,7 +162,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 33,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -163,7 +174,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 27,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -174,7 +186,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 22,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -185,7 +198,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 25,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -196,7 +210,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 34,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -207,7 +222,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 37,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -218,7 +234,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 30,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -229,7 +246,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 43,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -240,7 +258,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 41,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -251,7 +270,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 45,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -262,7 +282,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 53,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -273,7 +294,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 56,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -284,7 +306,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 60,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
@@ -295,7 +318,8 @@ package GebaeudeMoruPhisihl is
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 63,
-         PermanenterBonus            => (others => 0),
+         BonusWirtschaft             => (others => 0),
+         BonusKampf                  => (others => 0),
          UmgebungBenötigt            => KartenDatentypen.Leer,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                                               

@@ -44,7 +44,7 @@ package EinheitStadtDatentypen is
    
    -- Negativer Bereich für Abzug.
    type KampfwerteAllgemein is range -100 .. 100;
-   type Kampfwerte is range 0 .. 100;
+   subtype Kampfwerte is KampfwerteAllgemein range 0 .. 100;
    
    type Transportwerte is range 0 .. 10;
    subtype Transportplätze is Transportwerte range 1 .. Transportwerte'Last;

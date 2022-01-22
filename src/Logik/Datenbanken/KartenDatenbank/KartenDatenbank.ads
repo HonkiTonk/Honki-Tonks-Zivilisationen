@@ -26,20 +26,24 @@ private
       -- Feld
       -- Normal
       KartenDatentypen.Eis =>
-        (KartenGrafik        => ' ',
-         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
-                                 EinheitStadtDatentypen.Luft     => True,
-                                 EinheitStadtDatentypen.Weltraum => True,
-                                 others                     => False),
-         FeldWerte           => (others => (others => 1))),
-                                      
+        (KartenGrafik   => ' ',
+         Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
+                            EinheitStadtDatentypen.Luft     => True,
+                            EinheitStadtDatentypen.Weltraum => True,
+                            others                          => False),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
+     
       KartenDatentypen.Wasser =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Wasser      => True,
                                  EinheitStadtDatentypen.Luft        => True,
                                  EinheitStadtDatentypen.Weltraum    => True,
                                  others                        => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flachland =>
         (KartenGrafik        => ' ',
@@ -47,7 +51,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Tundra =>
         (KartenGrafik        => ' ',
@@ -55,7 +61,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Wüste =>
         (KartenGrafik        => ' ',
@@ -63,7 +71,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
       KartenDatentypen.Hügel =>
@@ -72,7 +82,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Gebirge =>
         (KartenGrafik        => ' ',
@@ -80,7 +92,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Wald =>
         (KartenGrafik        => ' ',
@@ -88,7 +102,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Dschungel =>
         (KartenGrafik        => ' ',
@@ -96,7 +112,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Küstengewässer =>
         (KartenGrafik        => ' ',
@@ -105,7 +123,9 @@ private
                                  EinheitStadtDatentypen.Weltraum     => True,
                                  EinheitStadtDatentypen.Küstenwasser => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Sumpf =>
         (KartenGrafik        => ' ',
@@ -113,7 +133,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
       KartenDatentypen.Hügel_Mit =>
@@ -122,7 +144,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       -- Normal
       
       
@@ -132,49 +156,65 @@ private
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Erde =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       
       KartenDatentypen.Erdgestein =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       
       KartenDatentypen.Sand =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       
       KartenDatentypen.Unterwasser_Wasser =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterwasser => True,
                                  others                        => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterwasser_Küstengewässer =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterwasser => True,
                                  others                        => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       
       KartenDatentypen.Korallen =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterwasser => True,
                                  others                        => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       
       KartenDatentypen.Unterwasser_Wald =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterwasser => True,
                                  others                        => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       -- Unterwasser/Unterirdisch
       
       
@@ -184,19 +224,25 @@ private
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                 => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Gestein =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       
       KartenDatentypen.Planetenkern =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                 => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       -- Planeteninneres
       
       
@@ -207,13 +253,17 @@ private
          Passierbarkeit      => (EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Weltraum =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       -- Luft/Weltraum
       -- Feld
       
@@ -224,51 +274,67 @@ private
       KartenDatentypen.Kohle =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Eisen =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Öl =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Fisch =>
         (KartenGrafik        => '≈',
          Passierbarkeit      => (others => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       
       KartenDatentypen.Wal =>
         (KartenGrafik        => '≈',
          Passierbarkeit      => (others => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Hochwertiger_Boden =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Gold =>
         (KartenGrafik        => '♦',
          Passierbarkeit      => (others => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft wird!
       -- Ressourcen
       
       
       
-      -- Flüsss
+      -- Flüsse
       -- Normal
-        KartenDatentypen.Flusskreuzung_Vier =>
-          (KartenGrafik        => '╋',
-           Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
-                                   EinheitStadtDatentypen.Luft     => True,
-                                   EinheitStadtDatentypen.Weltraum => True,
-                                   others                     => False),
-           FeldWerte           => (others => (others => 1))),
+      KartenDatentypen.Flusskreuzung_Vier =>
+        (KartenGrafik        => '╋',
+         Passierbarkeit      => (EinheitStadtDatentypen.Boden    => True,
+                                 EinheitStadtDatentypen.Luft     => True,
+                                 EinheitStadtDatentypen.Weltraum => True,
+                                 others                     => False),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Fluss_Waagrecht =>
         (KartenGrafik        => '━',
@@ -276,7 +342,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Fluss_Senkrecht =>
         (KartenGrafik        => '┃',
@@ -284,7 +352,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flusskurve_Unten_Rechts =>
         (KartenGrafik        => '┏',
@@ -292,7 +362,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flusskurve_Unten_Links =>
         (KartenGrafik        => '┓',
@@ -300,7 +372,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flusskurve_Oben_Rechts =>
         (KartenGrafik        => '┗',
@@ -308,7 +382,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flusskurve_Oben_Links =>
         (KartenGrafik        => '┛',
@@ -316,7 +392,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flusskreuzung_Drei_Oben =>
         (KartenGrafik        => '┻',
@@ -324,7 +402,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flusskreuzung_Drei_Unten =>
         (KartenGrafik        => '┳',
@@ -332,7 +412,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flusskreuzung_Drei_Rechts =>
         (KartenGrafik        => '┣',
@@ -340,7 +422,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others =>                  False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flusskreuzung_Drei_Links =>
         (KartenGrafik        => '┫',
@@ -348,7 +432,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flussendstück_Links =>
         (KartenGrafik        => '╺',
@@ -356,7 +442,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flussendstück_Rechts =>
         (KartenGrafik        => '╸',
@@ -364,7 +452,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flussendstück_Unten =>
         (KartenGrafik        => '╹',
@@ -372,7 +462,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Flussendstück_Oben =>
         (KartenGrafik        => '╻',
@@ -380,7 +472,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Fluss_Einzeln =>
         (KartenGrafik        => '▪',
@@ -388,7 +482,9 @@ private
                                  EinheitStadtDatentypen.Luft     => True,
                                  EinheitStadtDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       -- Normal
       
       
@@ -398,97 +494,129 @@ private
         (KartenGrafik        => '╋',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdischer_Fluss_Waagrecht =>
         (KartenGrafik        => '━',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdischer_Fluss_Senkrecht =>
         (KartenGrafik        => '┃',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdische_Flusskurve_Unten_Rechts =>
         (KartenGrafik        => '┏',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdische_Flusskurve_Unten_Links =>
         (KartenGrafik        => '┓',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdische_Flusskurve_Oben_Rechts =>
         (KartenGrafik        => '┗',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdische_Flusskurve_Oben_Links =>
         (KartenGrafik        => '┛',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Oben =>
         (KartenGrafik        => '┻',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Unten =>
         (KartenGrafik        => '┳',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts =>
         (KartenGrafik        => '┣',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Links =>
         (KartenGrafik        => '┫',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdisches_Flussendstück_Links =>
         (KartenGrafik        => '╺',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdisches_Flussendstück_Rechts =>
         (KartenGrafik        => '╸',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdisches_Flussendstück_Unten =>
         (KartenGrafik        => '╹',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdisches_Flussendstück_Oben =>
         (KartenGrafik        => '╻',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Unterirdischer_Fluss_Einzeln =>
         (KartenGrafik        => '▪',
          Passierbarkeit      => (EinheitStadtDatentypen.Unterirdisch => True,
                                  others                         => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
       -- Unterirdisch
       
       
@@ -498,99 +626,131 @@ private
         (KartenGrafik        => '╋',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavafluss_Waagrecht =>
         (KartenGrafik        => '━',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavafluss_Senkrecht =>
         (KartenGrafik        => '┃',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflusskurve_Unten_Rechts =>
         (KartenGrafik        => '┏',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflusskurve_Unten_Links =>
         (KartenGrafik        => '┓',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflusskurve_Oben_Rechts =>
         (KartenGrafik        => '┗',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflusskurve_Oben_Links =>
         (KartenGrafik        => '┛',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflusskreuzung_Drei_Oben =>
         (KartenGrafik        => '┻',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflusskreuzung_Drei_Unten =>
         (KartenGrafik        => '┳',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflusskreuzung_Drei_Rechts =>
         (KartenGrafik        => '┣',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflusskreuzung_Drei_Links =>
         (KartenGrafik        => '┫',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflussendstück_Links =>
         (KartenGrafik        => '╺',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflussendstück_Rechts =>
         (KartenGrafik        => '╸',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflussendstück_Unten =>
         (KartenGrafik        => '╹',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavaflussendstück_Oben =>
         (KartenGrafik        => '╻',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1))),
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1))),
                                       
       KartenDatentypen.Lavafluss_Einzeln =>
         (KartenGrafik        => '▪',
          Passierbarkeit      => (EinheitStadtDatentypen.Planeteninneres => True,
                                  others                            => False),
-         FeldWerte           => (others => (others => 1)))
+         Bewertung      => (others => 1),
+         Wirtschaft     => (others => (others => 1)),
+         Kampf          => (others => (others => 1)))
       -- Lava
-      -- Flüsss
+      -- Flüsse
       
       -- others                 => GlobaleKonstanten.LeerKartenListe
      );
