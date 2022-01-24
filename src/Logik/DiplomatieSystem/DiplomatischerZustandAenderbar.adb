@@ -4,7 +4,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with SonstigesKonstanten;
 
-with Anzeige;
+with TextAnzeigeKonsole;
 with DiplomatischerZustand;
 
 package body DiplomatischerZustandAenderbar is
@@ -19,8 +19,8 @@ package body DiplomatischerZustandAenderbar is
       if
         NeuerStatusExtern = GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 22);
+         TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                          TextZeileExtern => 22);
          return False;
          
       else
@@ -69,8 +69,8 @@ package body DiplomatischerZustandAenderbar is
    procedure EsHerrschtKrieg
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                            TextZeileExtern => 23);
+      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                       TextZeileExtern => 23);
       
    end EsHerrschtKrieg;
    
@@ -136,8 +136,8 @@ package body DiplomatischerZustandAenderbar is
       if        
         AktuellerStatus = SystemDatentypen.Nichtangriffspakt
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 24);
+         TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                          TextZeileExtern => 24);
          return False;
          
       elsif

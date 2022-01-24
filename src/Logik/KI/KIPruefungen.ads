@@ -26,7 +26,7 @@ package KIPruefungen is
    
    function UmgebungStadtBauenPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -61,7 +61,7 @@ private
    function KartenfeldUmgebungPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return Boolean
      with
        Pre =>
@@ -107,14 +107,14 @@ private
    
    function NeuesStadtFeldSuchen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
+      MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld;
       YUmgebungExtern : in KartenDatentypen.KartenfeldPositiv;
       XUmgebungExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FelderDurchgehen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      MindestBewertungFeldExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
+      MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return KartenRecords.AchsenKartenfeldPositivRecord;
    
 end KIPruefungen;

@@ -9,7 +9,7 @@ with TextKonstanten;
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
 
-with GrafikEinstellungen;
+with EinstellungenSFML;
 with InteraktionGrafiktask;
 with Eingabe;
 with EinheitenBeschreibungen;
@@ -25,10 +25,10 @@ package body AuswahlStadtEinheit is
    is begin
       
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.SchriftartAccess);
+                                font => EinstellungenSFML.SchriftartAccess);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
-      Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
+                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
+      Zeilenabstand := Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
       WelcheAuswahl.MöglicheAuswahlen := (others => 0);
       
@@ -97,8 +97,8 @@ package body AuswahlStadtEinheit is
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausZeigerPosition := GrafikEinstellungen.MausPosition;
-      TextPositionMaus := (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00, Float (GrafikEinstellungen.AktuelleFensterAuflösung.y) / 2.00);
+      MausZeigerPosition := EinstellungenSFML.MausPosition;
+      TextPositionMaus := (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, Float (EinstellungenSFML.AktuelleFensterAuflösung.y) / 2.00);
       
       AuswahlSchleife:
       for AuswahlSchleifenwert in WelcheAuswahl.MöglicheAuswahlen'Range loop

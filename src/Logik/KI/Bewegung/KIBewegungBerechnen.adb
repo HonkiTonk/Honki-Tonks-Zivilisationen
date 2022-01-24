@@ -57,13 +57,11 @@ package body KIBewegungBerechnen is
    is begin
       
       DurchlaufSchleife:
-      for DurchlaufSchleifenwert in 1 .. 8 loop
+      for DurchlaufSchleifenwert in BewertungArray'First .. BewertungArray'Last - 1 loop
          
          FelderBewerten (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
                          AktuelleKoordinatenExtern => AktuelleKoordinatenExtern);
          BewertungSortieren;
-                  
-         
          
          case
            PlanschrittFestlegen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
@@ -92,23 +90,36 @@ package body KIBewegungBerechnen is
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      BewertungPosition := 1;
-         
-      YAchseÄnderungSchleife:
-      for YAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
-         XAchseÄnderungSchleife:
-         for XAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      BewertungPosition := BewertungArray'First;
+      
+      EAchseÄnderungSchleife:
+      for EAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         YAchseÄnderungSchleife:
+         for YAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            XAchseÄnderungSchleife:
+            for XAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-            FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert) := BewertungFeldposition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                 KoordinatenExtern        => AktuelleKoordinatenExtern,
-                                                                                                                 YÄnderungExtern          => YAchseÄnderungSchleifenwert,
-                                                                                                                 XÄnderungExtern          => XAchseÄnderungSchleifenwert);
-         
-            Bewertung (BewertungPosition) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse, FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
-            BewertungPosition := BewertungPosition + 1;
+               FeldBewertung (EAchseÄnderungSchleifenwert, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert) := BewertungFeldposition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                  KoordinatenExtern        => AktuelleKoordinatenExtern,
+                                                                                                                                                  EÄnderungExtern          => EAchseÄnderungSchleifenwert,
+                                                                                                                                                  YÄnderungExtern          => YAchseÄnderungSchleifenwert,
+                                                                                                                                                  XÄnderungExtern          => XAchseÄnderungSchleifenwert);
                
-         end loop XAchseÄnderungSchleife;
-      end loop YAchseÄnderungSchleife;
+               Bewertung (BewertungPosition) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse, FeldBewertung (EAchseÄnderungSchleifenwert, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
+               
+               case
+                 BewertungPosition
+               is
+                  when BewertungArray'Last =>
+                     exit EAchseÄnderungSchleife;
+                     
+                  when others =>
+                     BewertungPosition := BewertungPosition + 1;
+               end case;
+               
+            end loop XAchseÄnderungSchleife;
+         end loop YAchseÄnderungSchleife;
+      end loop EAchseÄnderungSchleife;
       
    end FelderBewerten;
    
@@ -150,10 +161,10 @@ package body KIBewegungBerechnen is
       case
         Bewertung (DurchlaufExtern).Bewertung
       is
-         when 0 =>
+         when KIKonstanten.BewertungBewegungNullwert =>
             return False;
                
-         when 11 =>
+         when KIKonstanten.BewertungBewegungZielpunkt =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PositionExtern           => (Bewertung (DurchlaufExtern).EAchse, Bewertung (DurchlaufExtern).YAchse, Bewertung (DurchlaufExtern).XAchse),
                                                     PlanpositionExtern       => AktuellePlanpositionExtern);
@@ -185,28 +196,31 @@ package body KIBewegungBerechnen is
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      EÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
       YÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
       XÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+      return KIDatentypen.BewegungBewertung
    is begin
             
       if
-        YÄnderungExtern = 0
+        EÄnderungExtern = 0
         and
-          XÄnderungExtern = 0
+          YÄnderungExtern = 0
+          and
+            XÄnderungExtern = 0
       then
-         return 0;
+         return KIKonstanten.BewertungBewegungNullwert;
 
       else
          KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                     ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
+                                                                     ÄnderungExtern    => (EÄnderungExtern, YÄnderungExtern, XÄnderungExtern));
       end if;
             
       case
         KartenWert.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            return 0;
+            return KIKonstanten.BewertungBewegungNullwert;
 
          when others =>
             null;
@@ -220,7 +234,7 @@ package body KIBewegungBerechnen is
             null;
             
          when True =>
-            return 0;
+            return KIKonstanten.BewertungBewegungNullwert;
       end case;
                   
       case
@@ -239,7 +253,7 @@ package body KIBewegungBerechnen is
                null;
                
             else
-               return 0;
+               return KIKonstanten.BewertungBewegungNullwert;
             end if;
       end case;
       
@@ -247,13 +261,13 @@ package body KIBewegungBerechnen is
         KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => KartenWert,
                                           EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when -1 | 0 =>
+         when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal =>
             return BerechnungBewertungPosition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                 KoordinatenExtern        => KoordinatenExtern,
                                                 NeueKoordinatenExtern    => KartenWert);
             
-         when 1 =>
-            return 0;
+         when KIKonstanten.KeineBewegung =>
+            return KIKonstanten.BewertungBewegungNullwert;
       end case;
       
    end BewertungFeldposition;
@@ -264,68 +278,68 @@ package body KIBewegungBerechnen is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+      return KIDatentypen.BewegungBewertung
    is begin
       
       -- KoordinatenExtern ist der aktuelle Punkt, NeueKoordinatenExtern ist der mögliche neue Punkt.
       if
         LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = NeueKoordinatenExtern
       then
-         return 11;
+         return KIKonstanten.BewertungBewegungZielpunkt;
          
       else
-         PositionAlt := (0,
+         PositionAlt := (abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.EAchse - KoordinatenExtern.EAchse),
                          abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse),
                          abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse));
 
-         PositionNeu := (0,
+         PositionNeu := (abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.EAchse - NeueKoordinatenExtern.EAchse),
                          abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse),
                          abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse));
       end if;
         
       if
-        PositionNeu.YAchse < PositionAlt.YAchse
-        and
-          PositionNeu.XAchse < PositionAlt.XAchse
+        PositionNeu.EAchse < PositionAlt.EAchse
       then
-         return 10;
+         EÄnderung := 5;
          
       elsif
-        (PositionNeu.YAchse < PositionAlt.YAchse
-         and
-           PositionNeu.XAchse = PositionAlt.XAchse)
-        or
-          (PositionNeu.YAchse = PositionAlt.YAchse
-           and
-             PositionNeu.XAchse < PositionAlt.XAchse)
+        PositionNeu.EAchse = PositionAlt.EAchse
       then
-         return 5;
-         
-      elsif
-        (PositionNeu.YAchse < PositionAlt.YAchse
-         and
-           PositionNeu.XAchse > PositionAlt.XAchse)
-        or
-          (PositionNeu.YAchse > PositionAlt.YAchse
-           and
-             PositionNeu.XAchse < PositionAlt.XAchse)
-      then
-         return 3;
-        
-      elsif
-        (PositionNeu.YAchse = PositionAlt.YAchse
-         and
-           PositionNeu.XAchse > PositionAlt.XAchse)
-        or
-          (PositionNeu.YAchse > PositionAlt.YAchse
-           and
-             PositionNeu.XAchse = PositionAlt.XAchse)
-      then
-         return 2;
+         EÄnderung := 3;
          
       else
-         return 1;
+         EÄnderung := 1;
       end if;
+        
+      if
+        PositionNeu.YAchse < PositionAlt.YAchse
+      then
+         YÄnderung := 5;
+         
+      elsif
+        PositionNeu.YAchse = PositionAlt.YAchse
+      then
+         YÄnderung := 3;
+         
+      else
+         YÄnderung := 1;
+      end if;
+        
+      if
+        PositionNeu.XAchse < PositionAlt.XAchse
+      then
+         XÄnderung := 5;
+         
+      elsif
+        PositionNeu.XAchse = PositionAlt.XAchse
+      then
+         XÄnderung := 3;
+         
+      else
+         XÄnderung := 1;
+      end if;
+      
+      return EÄnderung + YÄnderung + XÄnderung;
       
    end BerechnungBewertungPosition;
    
@@ -417,7 +431,7 @@ package body KIBewegungBerechnen is
                KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                  PlanschrittExtern        => ErsterZugExtern),
                                                                                         ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-                     
+               
                if
                  KartenWertVereinfachung.XAchse = KartenKonstanten.LeerXAchse
                then
@@ -436,6 +450,7 @@ package body KIBewegungBerechnen is
                                                              PlanpositionExtern       => (PositionSchleifenwert + 1));
                
                   end loop BewegungPlanVerschiebenSchleife;
+                  
                   SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                           PositionExtern           => KIKonstanten.LeerKoordinate,
                                                           PlanpositionExtern       => EinheitStadtRecords.KIBewegungPlanArray'Last);
@@ -464,7 +479,7 @@ package body KIBewegungBerechnen is
          if
            EinheitRasseNummerExtern.Platznummer = EinheitSchleifenwert
            or
-             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerID
+             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert)) = EinheitenKonstanten.LeerID
          then
             null;
             

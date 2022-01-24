@@ -7,13 +7,9 @@ with Sf.Graphics.ConvexShape;
 
 with AuswahlSprache;
 
-package AuswahlSpracheAnzeige is
+package AnzeigeSprachauswahlSFML is
    
-   procedure AnzeigeSpracheSFML;
-
-   procedure AnzeigeSpracheKonsole;
-    -- (AktuelleAuswahlExtern : in Positive;
-    --  LetzteZeileExtern : in Positive);
+   procedure AnzeigeSprache;
     
 private
    
@@ -35,4 +31,4 @@ private
    
    AktuelleSprachen : AuswahlSprache.AktuelleSprachenArray;
 
-end AuswahlSpracheAnzeige;
+end AnzeigeSprachauswahlSFML;

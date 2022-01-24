@@ -11,13 +11,13 @@ with SchreibeWichtiges;
 with LeseForschungsDatenbank;
 with LeseWichtiges;
 
-with Anzeige;
+with TextAnzeigeKonsole;
 with Eingabe;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
 with InteraktionLogiktask;
-with GrafikEinstellungen;
-with GrafikTextAllgemein;
+with EinstellungenSFML;
+with TextAllgemeinSFML;
 with InteraktionGrafiktask;
 
 with KIForschung;
@@ -130,11 +130,11 @@ package body ForschungAllgemein is
      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
-      GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
-                                                SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
-                                                FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
-      Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
+      TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
+                                              FontAccessExtern   => EinstellungenSFML.SchriftartAccess,
+                                              SchriftgrößeExtern => EinstellungenSFML.FensterEinstellungen.Schriftgröße,
+                                              FarbeExtern        => EinstellungenSFML.Schriftfarben.FarbeStandardText);
+      Zeilenabstand := Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Forschung);
       
@@ -179,18 +179,18 @@ package body ForschungAllgemein is
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausZeigerPosition := GrafikEinstellungen.MausPosition;
+      MausZeigerPosition := EinstellungenSFML.MausPosition;
       TextPositionMaus := StartPositionText;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageForschungsprojekt)));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => 2 * GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+                                         size => 2 * EinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00 * Zeilenabstand;
       
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       MausZeigerSchleife:
       for ForschungSchleifenwert in ForschungTextArray'First .. Ende loop
@@ -231,7 +231,7 @@ package body ForschungAllgemein is
          is
             when SystemDatentypen.Oben =>
                if
-                 AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
+                 AktuelleAuswahl = TextAnzeigeKonsole.AllgemeineAnzeigeText'First
                then
                   AktuelleAuswahl := Ende;
                else
@@ -242,7 +242,7 @@ package body ForschungAllgemein is
                if
                  AktuelleAuswahl = Ende
                then
-                  AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
+                  AktuelleAuswahl := TextAnzeigeKonsole.AllgemeineAnzeigeText'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;

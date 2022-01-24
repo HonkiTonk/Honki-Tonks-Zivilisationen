@@ -6,7 +6,7 @@ with EinheitStadtDatentypen;
 with KartenDatentypen;
 with EinheitenKonstanten;
 
-package Farbgebung is
+package FarbgebungKonsole is
 
    procedure Farben
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
@@ -40,4 +40,4 @@ private
    procedure FarbenFeld
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum);
 
-end Farbgebung;
+end FarbgebungKonsole;

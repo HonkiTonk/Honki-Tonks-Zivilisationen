@@ -35,5 +35,9 @@ private
    SichtweitenKonsoleStandard : constant SichtweitenArray := (1 => (0, 6, 8),
                                                               2 => (0, 6, 16),
                                                               3 => (0, 6, 24));
+   
+   BewegungsfeldKonsole : constant SichtweitenArray := (1 => (0, SichtweitenKonsoleStandard (1).YAchse - 1, SichtweitenKonsoleStandard (1).XAchse - 1),
+                                                        2 => (0, SichtweitenKonsoleStandard (2).YAchse - 1, SichtweitenKonsoleStandard (2).XAchse - 1),
+                                                        3 => (0, SichtweitenKonsoleStandard (3).YAchse - 1, SichtweitenKonsoleStandard (3).XAchse - 1));
 
 end Sichtweiten;

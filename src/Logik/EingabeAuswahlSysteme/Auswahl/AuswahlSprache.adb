@@ -5,7 +5,7 @@ with GlobaleTexte;
 with SystemKonstanten;
 
 with Eingabe;
-with GrafikEinstellungen;
+with EinstellungenSFML;
 with Fehler;
 with InteraktionGrafiktask;
 
@@ -16,7 +16,7 @@ package body AuswahlSprache is
    is begin
       
       ZehnerReihe := 0;
-      ZeilenAbstand := 0.15 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      ZeilenAbstand := 0.15 * Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße);
       MehrereSeiten := False;
       
       SprachenListeFestlegen;
@@ -179,9 +179,9 @@ package body AuswahlSprache is
    is begin
             
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.SchriftartAccess);
+                                font => EinstellungenSFML.SchriftartAccess);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Sprache);
       
@@ -240,7 +240,7 @@ package body AuswahlSprache is
    is begin
       
       TextPositionMaus := StartPositionYAchse;
-      MausZeigerPosition := GrafikEinstellungen.MausPosition;
+      MausZeigerPosition := EinstellungenSFML.MausPosition;
       
       MausZeigerSchleife:
       for ZeileSchleifenwert in AktuelleSprachen'First .. Ende loop

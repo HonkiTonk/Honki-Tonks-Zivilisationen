@@ -144,6 +144,7 @@ package body BefehleSFML is
         and
           StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
+         -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          EinheitOderStadt (RasseExtern         => RasseExtern,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);

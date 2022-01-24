@@ -4,14 +4,14 @@ with KartenDatenbank;
 
 package body LeseKartenDatenbank is
 
-   function KartenGrafik
+   function KartenGrafikKonsole
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
       return Wide_Wide_Character
    is begin
       
       return KartenDatenbank.KartenListe (GrundExtern).KartenGrafik;
       
-   end KartenGrafik;
+   end KartenGrafikKonsole;
    
    
       
@@ -27,16 +27,41 @@ package body LeseKartenDatenbank is
    
    
    
-   function FeldWerte
+   function Bewertung
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.BewertungFeld
+   is begin
+      
+      return KartenDatenbank.KartenListe (GrundExtern).Bewertung (RasseExtern);
+      
+   end Bewertung;
+   
+   
+   
+   function Wirtschaft
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in KartenDatentypen.Bewertung_Werte_Enum)
+      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (GrundExtern).FeldWerte (RasseExtern, WelcherWertExtern);
+      return KartenDatenbank.KartenListe (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
-   end FeldWerte;
+   end Wirtschaft;
+   
+   
+   
+   function Kampf
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.KampfwerteAllgemein
+   is begin
+      
+      return KartenDatenbank.KartenListe (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+      
+   end Kampf;
    
    
    

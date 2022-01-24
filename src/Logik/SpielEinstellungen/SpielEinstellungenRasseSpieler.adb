@@ -122,7 +122,7 @@ package body SpielEinstellungenRasseSpieler is
                
             when others =>
                StartwerteFestlegenSchleife:
-               for NotAusSchleifenwert in SystemDatentypen.NotAus'Range loop
+               for NotAusSchleifenwert in NotAus'Range loop
                   
                   StartKoordinaten := ((0, 0, 0), (0, 0, 0));
                   GezogeneWerte := ZufallGeneratorenKarten.StartPosition (RasseSchleifenwert);
@@ -133,7 +133,7 @@ package body SpielEinstellungenRasseSpieler is
                   case
                     NotAusSchleifenwert
                   is
-                     when SystemDatentypen.NotAus'Last =>
+                     when NotAus'Last =>
                         -- Neue Meldung durch den Grafiktask anzeigen lassen.
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                         --                                      TextZeileExtern => 16);

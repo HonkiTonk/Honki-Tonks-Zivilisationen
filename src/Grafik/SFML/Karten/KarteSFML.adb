@@ -22,8 +22,8 @@ with KarteInformationenSFML;
 with BerechnungenKarteSFML;
 with Fehler;
 with ObjekteZeichnenSFML;
-with GrafikEinstellungen;
-with GrafikTextAllgemein;
+with EinstellungenSFML;
+with TextAllgemeinSFML;
 
 package body KarteSFML is
    
@@ -139,8 +139,7 @@ package body KarteSFML is
                                             PositionExtern       => PositionExtern,
                                             FarbeExtern          => FarbeKartenfeldErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KoordinatenExtern)),
                                             RechteckAccessExtern => RechteckAccess);
-            
-      -- Mal Farben für die einzelnen Objekte einbauen. Ist das überhaupt sinnvoll wenn ich da später sowieso Texturen drüberlege?
+      
       case
         LeseKarten.Ressource (PositionExtern => KoordinatenExtern)
       is
@@ -294,7 +293,7 @@ package body KarteSFML is
             -- Rahmen drumherum ziehen? Die Anzahl der Balken könnte ich durch eine Prüfung der umliegenden Felder festlegen lassen?
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                   PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => GrafikEinstellungen.RassenFarben (AktuelleRasse),
+                                                  FarbeExtern          => EinstellungenSFML.RassenFarben (AktuelleRasse),
                                                   RechteckAccessExtern => RechteckAccess);
       end case;
       
@@ -320,10 +319,10 @@ package body KarteSFML is
       Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
                                                color => Sf.Graphics.Color.sfTransparent);
       Sf.Graphics.RectangleShape.setOutlineColor (shape => RechteckRahmenAccess,
-                                                  color => GrafikEinstellungen.RassenFarben (RasseExtern));
+                                                  color => EinstellungenSFML.RassenFarben (RasseExtern));
       Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
                                                       thickness => 3.00);
-      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.FensterAccess,
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenSFML.FensterAccess,
                                                    object       => RechteckRahmenAccess);
       
       KartenWertRahmen := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
@@ -350,16 +349,17 @@ package body KarteSFML is
       
       -- Möglicherweise die Schriftfarbe durch die Rahmenfarbe ersetzen? Die Belegungsfarbe ist auf jeden Fall ungeeignet.
       -- Text wird von den anderen Feldern immer wieder überschrieben. Eventuell ein zweites Mal über die ganzen Felder gehen?
-      GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
-                                                SchriftgrößeExtern => GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
-                                                FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
+      -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen?
+      TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
+                                              FontAccessExtern   => EinstellungenSFML.SchriftartAccess,
+                                              SchriftgrößeExtern => EinstellungenSFML.FensterEinstellungen.Schriftgröße,
+                                              FarbeExtern        => EinstellungenSFML.Schriftfarben.FarbeStandardText);
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionExtern);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
    end RahmenBesetztesFeld;

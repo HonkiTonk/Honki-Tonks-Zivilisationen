@@ -5,7 +5,8 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
-with EinheitStadtDatentypen;
+
+with KIDatentypen;
 
 with Karten;
 
@@ -25,6 +26,7 @@ private
    PlanungErfolgreich : Boolean;
    PlanungErfolgreichRekursiv : Boolean;
    
+   
    BewertungPosition : Positive;
    
    YAchseKoordinatePrüfen : KartenDatentypen.KartenfeldPositiv;
@@ -42,18 +44,22 @@ private
    PositionAlt : KartenRecords.AchsenKartenfeldPositivRecord;
    PositionNeu : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   type FeldBewertungArray is array (KartenDatentypen.LoopRangeMinusEinsZuEins'Range, KartenDatentypen.LoopRangeMinusEinsZuEins'Range) of EinheitStadtDatentypen.ProduktionSonstiges;
+   EÄnderung : KIDatentypen.BewegungBewertung;
+   YÄnderung : KIDatentypen.BewegungBewertung;
+   XÄnderung : KIDatentypen.BewegungBewertung;
+   
+   type FeldBewertungArray is array (KartenDatentypen.LoopRangeMinusEinsZuEins'Range, KartenDatentypen.LoopRangeMinusEinsZuEins'Range, KartenDatentypen.LoopRangeMinusEinsZuEins'Range) of KIDatentypen.BewegungBewertung;
    FeldBewertung : FeldBewertungArray;
    
    type BewertungRecord is new KartenRecords.AchsenKartenfeldPositivRecord with record
       
-      Bewertung : EinheitStadtDatentypen.ProduktionSonstiges;
+      Bewertung : KIDatentypen.BewegungBewertung;
       
    end record;
    
    Sortieren : BewertungRecord;
    
-   type BewertungArray is array (1 .. 9) of BewertungRecord;
+   type BewertungArray is array (1 .. 27) of BewertungRecord;
    Bewertung : BewertungArray;
    
    procedure VorhandenenPlanVereinfachen
@@ -100,9 +106,10 @@ private
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      EÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
       YÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
       XÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+      return KIDatentypen.BewegungBewertung
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -117,7 +124,7 @@ private
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+      return KIDatentypen.BewegungBewertung
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

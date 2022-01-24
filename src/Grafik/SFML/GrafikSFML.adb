@@ -1,25 +1,23 @@
 pragma SPARK_Mode (On);
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
 with SystemKonstanten;
 
 with Fehler;
-with GrafikStartEnde;
+with StartEndeSFML;
 with IntroSFML;
-with AuswahlMenueAnzeige;
+with AnzeigeAuswahlMenueSFML;
 with Karte;
 with InteraktionGrafiktask;
 with KarteStadt;
 with InDerStadt;
-with GrafikAllgemein;
+with AllgemeinSFML;
 with Sichtweiten;
 with ForschungAnzeigeSFML;
-with AuswahlSpracheAnzeige;
-with AnzeigeEingabe;
+with AnzeigeSprachauswahlSFML;
+with AnzeigeEingabeSFML;
 with BauAuswahlAnzeigeSFML;
 with InteraktionLogiktask;
 
@@ -28,7 +26,7 @@ package body GrafikSFML is
    procedure GrafikSFML
    is begin
       
-      GrafikStartEnde.FensterErzeugen;
+      StartEndeSFML.FensterErzeugen;
 
       GrafikSchleife:
       loop
@@ -37,7 +35,7 @@ package body GrafikSFML is
            InteraktionGrafiktask.FensterVerändertAbrufen
          is
             when True =>
-               GrafikAllgemein.FensterAnpassen;
+               AllgemeinSFML.FensterAnpassen;
                Sichtweiten.SichtweiteBewegungsfeldFestlegen;
                InteraktionGrafiktask.FensterVerändertÄndern;
                
@@ -45,13 +43,13 @@ package body GrafikSFML is
                null;
          end case;
          
-         GrafikStartEnde.FensterLeeren;
+         StartEndeSFML.FensterLeeren;
          
          case
            AnzeigeAuswahl
          is
             when True =>
-               GrafikStartEnde.FensterAnzeigen;
+               StartEndeSFML.FensterAnzeigen;
                
             when False =>
                exit GrafikSchleife;
@@ -59,7 +57,7 @@ package body GrafikSFML is
          
       end loop GrafikSchleife;
       
-      GrafikStartEnde.FensterEntfernen;
+      StartEndeSFML.FensterEntfernen;
       
    end GrafikSFML;
    
@@ -80,7 +78,7 @@ package body GrafikSFML is
             InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
             
          when SystemDatentypen.Grafik_Sprache =>
-            AuswahlSpracheAnzeige.AnzeigeSpracheSFML;
+            AnzeigeSprachauswahlSFML.AnzeigeSprache;
                
          when SystemDatentypen.Grafik_Intro =>
             IntroSFML.Intro;
@@ -88,12 +86,12 @@ package body GrafikSFML is
                               
          when SystemDatentypen.Grafik_Pause =>
             delay SystemKonstanten.WartezeitGrafik;
-               
+            
          when SystemDatentypen.Grafik_Laden =>
             null;
          
          when SystemDatentypen.Grafik_Menüs =>
-            AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
+            AnzeigeAuswahlMenueSFML.AnzeigeAnfang;
                
          when SystemDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;
@@ -159,10 +157,10 @@ package body GrafikSFML is
         InteraktionGrafiktask.EingabeAbrufen
       is
          when SystemDatentypen.Text_Eingabe =>
-            AnzeigeEingabe.AnzeigeText;
+            AnzeigeEingabeSFML.AnzeigeText;
             
          when SystemDatentypen.Zahlen_Eingabe =>
-            AnzeigeEingabe.AnzeigeGanzeZahl;
+            AnzeigeEingabeSFML.AnzeigeGanzeZahl;
             
          when SystemDatentypen.Einheit_Auswahl =>
             if
@@ -171,7 +169,7 @@ package body GrafikSFML is
                null;
                      
             else
-               AnzeigeEingabe.AnzeigeEinheitenStadt (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
+               AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
             end if;
                
          when SystemDatentypen.Keine_Eingabe =>

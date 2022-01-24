@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with EinheitStadtDatentypen;
 with EinheitenKonstanten;
 
-with KIDatentypen;
+with KIKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -14,11 +14,10 @@ with StadtSuchen;
 
 package body KIBewegungAllgemein is
 
-   -- -1 = Belegt und Angriff, 0 = Unbelegt, 1 = Belegt und kein Angriff
    function FeldBetreten
      (FeldPositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return KartenDatentypen.LoopRangeMinusEinsZuEins
+      return KIDatentypen.Bewegung_Enum
    is begin
       
       BlockierendeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldPositionExtern).Rasse;
@@ -29,17 +28,17 @@ package body KIBewegungAllgemein is
         and
           BlockierendeStadt = EinheitenKonstanten.LeerRasse
       then
-         return 0;
+         return KIKonstanten.BewegungNormal;
          
       elsif
         BlockierendeEinheit = EinheitRasseNummerExtern.Rasse
       then
-         return 1;
+         return KIKonstanten.KeineBewegung;
          
       elsif
         BlockierendeStadt = EinheitRasseNummerExtern.Rasse
       then
-         return 0;
+         return KIKonstanten.BewegungNormal;
          
       else
          null;
@@ -50,7 +49,7 @@ package body KIBewegungAllgemein is
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when EinheitStadtDatentypen.Leer | EinheitStadtDatentypen.Arbeiter =>
-            return 1;
+            return KIKonstanten.KeineBewegung;
             
          when others =>
             return FeldAngreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -62,7 +61,7 @@ package body KIBewegungAllgemein is
    
    function FeldAngreifen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return KartenDatentypen.LoopRangeMinusEinsZuEins
+      return KIDatentypen.Bewegung_Enum
    is begin
       
       if
@@ -72,7 +71,7 @@ package body KIBewegungAllgemein is
                                                              FremdeRasseExtern => BlockierendeStadt)
         /= SystemDatentypen.Krieg
       then
-         return 1;
+         return KIKonstanten.KeineBewegung;
          
       elsif
         BlockierendeStadt = EinheitenKonstanten.LeerRasse
@@ -81,7 +80,7 @@ package body KIBewegungAllgemein is
                                                              FremdeRasseExtern => BlockierendeEinheit)
         /= SystemDatentypen.Krieg
       then
-         return 1;
+         return KIKonstanten.KeineBewegung;
          
       else
          null;
@@ -91,10 +90,10 @@ package body KIBewegungAllgemein is
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIDatentypen.Angreifen | KIDatentypen.Verbesserung_Zerstören | KIDatentypen.Erkunden | KIDatentypen.Verteidigen =>
-            return -1;
+            return KIKonstanten.BewegungAngriff;
             
          when others =>
-            return 1;
+            return KIKonstanten.KeineBewegung;
       end case;
       
    end FeldAngreifen;

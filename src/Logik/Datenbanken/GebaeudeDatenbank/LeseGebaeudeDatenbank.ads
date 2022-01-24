@@ -49,12 +49,21 @@ package LeseGebaeudeDatenbank is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
-      
-   function PermanenterBonus
+   
+   function WirtschaftBonus
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
-      WelcherBonusExtern : in KartenDatentypen.Bonus_Werte_Enum)
+      WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         
+   function KampfBonus
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      KampfBonusExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);

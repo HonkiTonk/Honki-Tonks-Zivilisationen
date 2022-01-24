@@ -47,6 +47,8 @@ private
    GezogeneWerte : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
+   type NotAus is range 1 .. 100;
+   
    type KoordinatenArray is array (1 .. 2) of KartenRecords.AchsenKartenfeldPositivRecord;
    StartKoordinaten : KoordinatenArray;
    

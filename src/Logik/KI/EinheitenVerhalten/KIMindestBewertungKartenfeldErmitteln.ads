@@ -4,13 +4,13 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenRecords;
-with EinheitStadtDatentypen;
+with KartenDatentypen;
 
 package KIMindestBewertungKartenfeldErmitteln is
 
    function MindestBewertungKartenfeldStadtBauen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KartenDatentypen.GesamtbewertungFeld
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -19,7 +19,7 @@ package KIMindestBewertungKartenfeldErmitteln is
    
 private
    
-   MindestBewertungKartenfeld : EinheitStadtDatentypen.GesamtproduktionStadt;
+   MindestBewertungKartenfeld : KartenDatentypen.GesamtbewertungFeld;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 

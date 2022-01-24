@@ -9,9 +9,9 @@ with Sf.Graphics.Color;
 
 with SystemDatentypen;
 
-package AuswahlMenueAnzeige is
+package AnzeigeAuswahlMenueSFML is
 
-   procedure AnzeigeSFMLAnfang;
+   procedure AnzeigeAnfang;
    
 private
       
@@ -39,11 +39,11 @@ private
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
-   procedure AnzeigeMenüSFML;
+   procedure AnzeigeMenü;
    procedure Überschrift;
    procedure WeiterenTextAnzeigen;
    
    procedure AnzeigeFarbeBestimmen
      (TextZeileExtern : in Positive);
 
-end AuswahlMenueAnzeige;
+end AnzeigeAuswahlMenueSFML;

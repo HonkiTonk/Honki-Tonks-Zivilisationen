@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with Sf.Graphics.Text;
 
-with GrafikEinstellungen;
+with EinstellungenSFML;
 
 package body AllgemeineTextBerechnungenSFML is
 
@@ -12,10 +12,10 @@ package body AllgemeineTextBerechnungenSFML is
    is begin
       
       TextHalbeBreite := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
-      Position := Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00 - TextHalbeBreite;
+      Position := Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00 - TextHalbeBreite;
       
       if
-        Position in 0.00 .. Float (GrafikEinstellungen.AktuelleFensterAuflösung.x)
+        Position in 0.00 .. Float (EinstellungenSFML.AktuelleFensterAuflösung.x)
       then
          return Position;
          
@@ -34,7 +34,7 @@ package body AllgemeineTextBerechnungenSFML is
       return Float
    is begin
       
-      Position := Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 4.00;
+      Position := Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00;
       TextHalbeBreite := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
       
       case
@@ -48,7 +48,7 @@ package body AllgemeineTextBerechnungenSFML is
       end case;
       
       if
-        Position in 0.00 .. Float (GrafikEinstellungen.AktuelleFensterAuflösung.x)
+        Position in 0.00 .. Float (EinstellungenSFML.AktuelleFensterAuflösung.x)
       then
          return Position;
          
@@ -58,6 +58,39 @@ package body AllgemeineTextBerechnungenSFML is
       end if;
       
    end TextViertelPositionErmitteln;
+   
+   
+   
+   function TextViertelPositionErmittelnLogik
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      LinksRechtsExtern : in Boolean)
+      return Float
+   is begin
+      
+      PositionLogik := Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00;
+      TextHalbeBreiteLogik := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
+      
+      case
+        LinksRechtsExtern
+      is
+         when False =>
+            PositionLogik := PositionLogik - TextHalbeBreiteLogik;
+            
+         when True =>
+            PositionLogik := PositionLogik * 3.00 - TextHalbeBreiteLogik;
+      end case;
+      
+      if
+        PositionLogik in 0.00 .. Float (EinstellungenSFML.AktuelleFensterAuflösung.x)
+      then
+         return PositionLogik;
+         
+      else
+         -- Hier später ein Fehler.GrafikStopp einbauen?
+         return PositionLogik;
+      end if;
+      
+   end TextViertelPositionErmittelnLogik;
    
    
    

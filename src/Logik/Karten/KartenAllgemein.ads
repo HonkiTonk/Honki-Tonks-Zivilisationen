@@ -13,8 +13,6 @@ package KartenAllgemein is
      (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum)
       return Wide_Wide_String;
 
-
-
    function GrundNahrung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
@@ -48,7 +46,7 @@ package KartenAllgemein is
    function GrundBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return KartenDatentypen.BewertungFeld;
 
    function FlussNahrung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -83,7 +81,7 @@ package KartenAllgemein is
    function FlussBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return KartenDatentypen.BewertungFeld;
 
    function WegNahrung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -118,7 +116,7 @@ package KartenAllgemein is
    function WegBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return KartenDatentypen.BewertungFeld;
 
    function VerbesserungNahrung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -153,7 +151,7 @@ package KartenAllgemein is
    function VerbesserungBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return KartenDatentypen.BewertungFeld;
 
    function RessourceNahrung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -188,7 +186,7 @@ package KartenAllgemein is
    function RessourceBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement;
+      return KartenDatentypen.BewertungFeld;
 
    function PassierbarGrund
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;

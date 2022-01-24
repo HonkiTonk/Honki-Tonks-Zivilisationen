@@ -8,7 +8,7 @@ with GlobaleVariablen;
 
 with Karten;
 
-package GrafischeAnzeige is
+package GrafischeAnzeigeKonsole is
 
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
@@ -53,4 +53,4 @@ private
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean;
 
-end GrafischeAnzeige;
+end GrafischeAnzeigeKonsole;

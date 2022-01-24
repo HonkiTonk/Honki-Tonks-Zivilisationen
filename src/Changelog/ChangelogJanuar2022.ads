@@ -21,45 +21,50 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (28.01.2022):
+   -- Version 0.00.98 => 0.00.9 (28.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (27.01.2022):
+   -- Version 0.00.98 => 0.00.98 (27.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (26.01.2022):
+   -- Version 0.00.98 => 0.00.98 (26.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (25.01.2022):
+   -- Version 0.00.9790 => 0.00.98 (25.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9 => 0.00.9 (24.01.2022):
+   -- Version 0.00.9770 => 0.00.9790 (24.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Bewertung, Wirtschaftleistung und Kampfwerte vollstöndig in eigene Enums/Datentypen ausgelagert und überall eingebaut.
+   -- Zusätzliche Fehlermeldungen/Programmstopps eingebaut.
+   -- Die Wegfindung der KI auf drei Achsen erweitert.
+   -- Unnötigen Code gelöscht.
+   -- Diverse Dateien umbenannt um die Übersichtlichkeit der Trennung zwischen Konsolen- und SFML-Grafik zu verbessern.
+   -- Erneut an der Steuerung herumgebastelt.
+   -- Anzeigefehler in den Menüs korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
       
-   -- Version 0.00.9770 => 0.00.9 (23.01.2022):
+   -- Version 0.00.9770 => 0.00.9770 (23.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
       

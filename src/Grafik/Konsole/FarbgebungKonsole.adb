@@ -10,7 +10,7 @@ with LeseEinheitenDatenbank;
 with LeseVerbesserungenDatenbank;
 with LeseKartenDatenbank;
 
-package body Farbgebung is
+package body FarbgebungKonsole is
 
    procedure Farben
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
@@ -214,12 +214,12 @@ package body Farbgebung is
       elsif
         RessourceExtern /= KartenDatentypen.Leer
       then
-         Put (Item => LeseKartenDatenbank.KartenGrafik (GrundExtern => RessourceExtern) & CSI & "0m");
+         Put (Item => LeseKartenDatenbank.KartenGrafikKonsole (GrundExtern => RessourceExtern) & CSI & "0m");
             
       else
-         Put (Item => LeseKartenDatenbank.KartenGrafik (GrundExtern => GrundExtern) & CSI & "0m");
+         Put (Item => LeseKartenDatenbank.KartenGrafikKonsole (GrundExtern => GrundExtern) & CSI & "0m");
       end if;
       
    end FarbenCursorEinheitVerbesserung;
 
-end Farbgebung;
+end FarbgebungKonsole;

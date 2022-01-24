@@ -4,6 +4,7 @@ package GrafikSFML is
 
    procedure GrafikSFML;
 
+
 private
 
    procedure AnzeigeEingaben;

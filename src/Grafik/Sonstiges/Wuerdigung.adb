@@ -8,7 +8,7 @@ with GlobaleVariablen;
 with SystemDatentypen;
 
 with Eingabe;
-with Anzeige;
+with TextAnzeigeKonsole;
 
 package body Wuerdigung is
 
@@ -35,14 +35,14 @@ package body Wuerdigung is
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Würdigungen,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 1,
-                                     LetzteZeileExtern      => 1,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Würdigungen,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 1,
+                                                LetzteZeileExtern      => 1,
+                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                                AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
+                                                AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       
       New_Line;
       Eingabe.WartenEingabe;

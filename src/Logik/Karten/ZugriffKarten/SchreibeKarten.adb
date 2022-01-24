@@ -108,7 +108,7 @@ package body SchreibeKarten is
    procedure Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      BewertungExtern : in EinheitStadtDatentypen.GesamtproduktionStadt)
+      BewertungExtern : in KartenDatentypen.GesamtbewertungFeld)
    is begin
       
       Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Felderwertung (RasseExtern) := BewertungExtern;

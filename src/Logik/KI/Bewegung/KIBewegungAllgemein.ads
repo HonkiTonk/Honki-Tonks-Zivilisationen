@@ -6,6 +6,8 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
 
+with KIDatentypen;
+
 with Karten;
 
 package KIBewegungAllgemein is
@@ -13,7 +15,7 @@ package KIBewegungAllgemein is
    function FeldBetreten
      (FeldPositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return KartenDatentypen.LoopRangeMinusEinsZuEins
+      return KIDatentypen.Bewegung_Enum
      with
        Pre =>
          (FeldPositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -29,6 +31,6 @@ private
    
    function FeldAngreifen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-     return KartenDatentypen.LoopRangeMinusEinsZuEins;
+     return KIDatentypen.Bewegung_Enum;
 
 end KIBewegungAllgemein;

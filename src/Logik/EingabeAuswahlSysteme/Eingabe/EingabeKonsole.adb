@@ -6,7 +6,7 @@ with Ada.Strings.Wide_Wide_Fixed;
 
 with GlobaleTexte;
 
-with Anzeige;
+with TextAnzeigeKonsole;
 with Fehler;
 with InteraktionGrafiktask;
 
@@ -309,8 +309,8 @@ package body EingabeKonsole is
      return SystemRecords.TextEingabeRecord
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                            TextZeileExtern => 32);
+      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+                                                       TextZeileExtern => 32);
       
       return (True, To_Unbounded_Wide_Wide_String (Source => Get_Line));
       
@@ -322,8 +322,8 @@ package body EingabeKonsole is
      return SystemRecords.TextEingabeRecord
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
-                                            TextZeileExtern => 22);
+      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
+                                                       TextZeileExtern => 22);
 
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
 
@@ -402,8 +402,8 @@ package body EingabeKonsole is
    is begin
       
       New_Line;
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                            TextZeileExtern => 47);
+      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+                                                       TextZeileExtern => 47);
       Get_Immediate (Taste);
       
    end WartenEingabe;

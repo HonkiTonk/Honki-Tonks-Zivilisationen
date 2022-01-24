@@ -5,7 +5,7 @@ with Ada.Directories; use Ada.Directories;
 with GlobaleVariablen;
 with SystemRecords;
 
-with GrafikEinstellungen;
+with EinstellungenSFML;
 
 package body SchreibenEinstellungen is
 
@@ -30,7 +30,7 @@ package body SchreibenEinstellungen is
                                                      GlobaleVariablen.NutzerEinstellungen);
       
       SystemRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
-                                         GrafikEinstellungen.FensterEinstellungen);
+                                         EinstellungenSFML.FensterEinstellungen);
       
       Close (File => DateiEinstellungenSchreiben);
       

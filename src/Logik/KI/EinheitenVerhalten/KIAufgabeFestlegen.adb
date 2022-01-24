@@ -6,7 +6,7 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
-with KIDatentypen;
+with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -426,7 +426,7 @@ package body KIAufgabeFestlegen is
             elsif
               KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => KartenWert,
                                                 EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
-                /= 0
+                /= KIKonstanten.BewegungNormal
             then
                null;
                

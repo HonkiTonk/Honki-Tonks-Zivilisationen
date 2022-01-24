@@ -10,7 +10,7 @@ with StadtKonstanten;
 
 with LeseKarten;
 
-with Anzeige;
+with TextAnzeigeKonsole;
 with Cheat;
 with EinheitSuchen;
 with StadtSuchen;
@@ -151,14 +151,14 @@ package body KarteInformationenKonsole is
       if
         LeseKarten.Hügel (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) = True
       then
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
-                                        ÜberschriftZeileExtern => 0,
-                                        ErsteZeileExtern       => KartenDatentypen.Karten_Grund_Enum'Pos (KartenDatentypen.Hügel_Mit),
-                                        LetzteZeileExtern      => KartenDatentypen.Karten_Grund_Enum'Pos (KartenDatentypen.Hügel_Mit),
-                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                        AbstandMitteExtern     => GlobaleTexte.Leer,
-                                        AbstandEndeExtern      => GlobaleTexte.Leer);
+         TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                   TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
+                                                   ÜberschriftZeileExtern => 0,
+                                                   ErsteZeileExtern       => KartenDatentypen.Karten_Grund_Enum'Pos (KartenDatentypen.Hügel_Mit),
+                                                   LetzteZeileExtern      => KartenDatentypen.Karten_Grund_Enum'Pos (KartenDatentypen.Hügel_Mit),
+                                                   AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                                   AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                   AbstandEndeExtern      => GlobaleTexte.Leer);
          
       else
          null;
@@ -174,17 +174,17 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 19,
-                                     LetzteZeileExtern      => 19,
-                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Zeug,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 19,
+                                                LetzteZeileExtern      => 19,
+                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                                   RasseExtern       => RasseExtern)),
-                               Width => 1);
+                                                                                             RasseExtern       => RasseExtern)),
+                                         Width => 1);
       
    end FeldVerteidigung;
    
@@ -194,17 +194,17 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 59,
-                                     LetzteZeileExtern      => 59,
-                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Zeug,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 59,
+                                                LetzteZeileExtern      => 59,
+                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                              RasseExtern       => RasseExtern)),
-                               Width => 1);
+                                                                                        RasseExtern       => RasseExtern)),
+                                         Width => 1);
       
    end FeldAngriff;
    
@@ -214,17 +214,17 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 20,
-                                     LetzteZeileExtern      => 20,
-                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Zeug,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 20,
+                                                LetzteZeileExtern      => 20,
+                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                              RasseExtern       => RasseExtern)),
-                               Width => 1);
+                                                                                        RasseExtern       => RasseExtern)),
+                                         Width => 1);
       New_Line;
       
    end FeldNahrung;
@@ -235,17 +235,17 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 21,
-                                     LetzteZeileExtern      => 21,
-                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Zeug,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 21,
+                                                LetzteZeileExtern      => 21,
+                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldProduktion (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                                 RasseExtern       => RasseExtern)),
-                               Width => 1);
+                                                                                           RasseExtern       => RasseExtern)),
+                                         Width => 1);
       
    end FeldProduktion;
    
@@ -255,17 +255,17 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 22,
-                                     LetzteZeileExtern      => 22,
-                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Zeug,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 22,
+                                                LetzteZeileExtern      => 22,
+                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                           RasseExtern       => RasseExtern)),
-                               Width => 1);
+                                                                                     RasseExtern       => RasseExtern)),
+                                         Width => 1);
       
    end FeldGeld;
    
@@ -275,17 +275,17 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 23,
-                                     LetzteZeileExtern      => 23,
-                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Zeug,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 23,
+                                                LetzteZeileExtern      => 23,
+                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                             RasseExtern       => RasseExtern)),
-                               Width => 1);
+                                                                                       RasseExtern       => RasseExtern)),
+                                         Width => 1);
       New_Line;
       
    end FeldWissen;
@@ -296,14 +296,14 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 57,
-                                     LetzteZeileExtern      => 57,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Zeug,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 57,
+                                                LetzteZeileExtern      => 57,
+                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       WertOhneTrennzeichen := ZahlAlsStringEbeneVorhanden (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse);
       YAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse);

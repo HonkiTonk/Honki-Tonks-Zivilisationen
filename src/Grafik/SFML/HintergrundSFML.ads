@@ -5,7 +5,7 @@ with Sf.Graphics.Sprite;
 
 with SystemDatentypen;
 
-package GrafikHintergrund is
+package HintergrundSFML is
 
    procedure HintergrundMenü
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum);
@@ -19,4 +19,4 @@ private
    procedure HintergrundbildLaden
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum);
 
-end GrafikHintergrund;
+end HintergrundSFML;

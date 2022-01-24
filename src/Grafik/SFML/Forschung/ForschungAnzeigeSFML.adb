@@ -9,8 +9,8 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 
-with GrafikTextAllgemein;
-with GrafikEinstellungen;
+with TextAllgemeinSFML;
+with EinstellungenSFML;
 with ObjekteZeichnenSFML;
 with AllgemeineTextBerechnungenSFML;
 
@@ -19,17 +19,17 @@ package body ForschungAnzeigeSFML is
    procedure ForschungAnzeige
    is begin
       
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x), Float ( GrafikEinstellungen.AktuelleFensterAuflösung.y)),
+      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (EinstellungenSFML.AktuelleFensterAuflösung.x), Float (EinstellungenSFML.AktuelleFensterAuflösung.y)),
                                             PositionExtern       => (0.00, 0.00),
                                             FarbeExtern          => (105, 105, 105, 255),
                                             RechteckAccessExtern => RechteckAccess);
       
-      Zeilenabstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
+      Zeilenabstand := Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
-      GrafikTextAllgemein.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                                FontAccessExtern   => GrafikEinstellungen.SchriftartAccess,
-                                                SchriftgrößeExtern => 2 * GrafikEinstellungen.FensterEinstellungen.Schriftgröße,
-                                                FarbeExtern        => GrafikEinstellungen.Schriftfarben.FarbeÜberschrift);
+      TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
+                                              FontAccessExtern   => EinstellungenSFML.SchriftartAccess,
+                                              SchriftgrößeExtern => 2 * EinstellungenSFML.FensterEinstellungen.Schriftgröße,
+                                              FarbeExtern        => EinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       TextPosition := StartPositionText;
       Ende := ForschungAllgemein.Ende;
@@ -40,14 +40,14 @@ package body ForschungAnzeigeSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageForschungsprojekt)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), StartPositionText.y));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00 * Zeilenabstand;
       AbstandÜberschrift := TextPosition.y;
         
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       AnzeigeSchleife:
       for ForschungSchleifenwert in ForschungText'First .. Ende loop
@@ -57,18 +57,18 @@ package body ForschungAnzeigeSFML is
          then
             WeiterenTextAnzeigen (WelcherTextExtern => ForschungText (ForschungSchleifenwert).Nummer);
             Sf.Graphics.Text.setColor (text  => TextAccess,
-                                       color => GrafikEinstellungen.Schriftfarben.FarbeAusgewähltText);
+                                       color => EinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
             
          else
             Sf.Graphics.Text.setColor (text  => TextAccess,
-                                       color => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
+                                       color => EinstellungenSFML.Schriftfarben.FarbeStandardText);
          end if;
          
          Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                             str  => To_Wide_Wide_String (Source => ForschungText (ForschungSchleifenwert).Text));
          Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => TextPosition);
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
+         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
                                             text         => TextAccess);
          
          TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
@@ -84,15 +84,15 @@ package body ForschungAnzeigeSFML is
    is begin
             
       Sf.Graphics.Text.setColor (text  => TextAccess,
-                                 color => GrafikEinstellungen.Schriftfarben.FarbeStandardText);
+                                 color => EinstellungenSFML.Schriftfarben.FarbeStandardText);
       
       WelcherText := 2 * WelcherTextExtern;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (WelcherText)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => (Float (GrafikEinstellungen.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
+                                    position => (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
+      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
    end WeiterenTextAnzeigen;

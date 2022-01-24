@@ -1,28 +1,26 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.RenderWindow;
 
-with GrafikEinstellungen;
+with EinstellungenSFML;
 with AllgemeineTextBerechnungenSFML;
 
-package body AuswahlSpracheAnzeige is
+package body AnzeigeSprachauswahlSFML is
    
-   procedure AnzeigeSpracheSFML
+   procedure AnzeigeSprache
    is begin
       
       MehrereSeiten := AuswahlSprache.MehrereSeiten;
       AktuelleAuswahl := AuswahlSprache.AktuelleAuswahl;
       Ende := AuswahlSprache.Ende;
       AktuelleSprachen := AuswahlSprache.AktuelleSprachen;
-      ZeilenAbstand := Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße) * 0.15;
+      ZeilenAbstand := Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.SchriftartAccess);
+                                font => EinstellungenSFML.SchriftartAccess);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       YPosition := StartPositionYAchse;
             
@@ -32,10 +30,10 @@ package body AuswahlSpracheAnzeige is
          if
            AktuelleAuswahl = ZeileSchleifenwert
          then
-            AktuelleTextFarbe := GrafikEinstellungen.Schriftfarben.FarbeAusgewähltText;
+            AktuelleTextFarbe := EinstellungenSFML.Schriftfarben.FarbeAusgewähltText;
             
          else
-            AktuelleTextFarbe := GrafikEinstellungen.Schriftfarben.FarbeStandardText;
+            AktuelleTextFarbe := EinstellungenSFML.Schriftfarben.FarbeStandardText;
          end if;
          
          if
@@ -51,7 +49,7 @@ package body AuswahlSpracheAnzeige is
                                           position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), YPosition));
             Sf.Graphics.Text.setColor (text  => TextAccess,
                                        color => AktuelleTextFarbe);
-            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungen.FensterAccess,
+            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
                                                text         => TextAccess);
          
             YPosition := YPosition + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * ZeilenAbstand;
@@ -88,7 +86,7 @@ package body AuswahlSpracheAnzeige is
                                                  position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), YPosition + 15.00));
             Sf.Graphics.ConvexShape.setFillColor (shape => PfeilAccess,
                                                   color => AktuelleTextFarbe);
-            Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => GrafikEinstellungen.FensterAccess,
+            Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => EinstellungenSFML.FensterAccess,
                                                       object       => PfeilAccess);
             
          else
@@ -97,91 +95,6 @@ package body AuswahlSpracheAnzeige is
          
       end loop AnzeigeSchleife;
       
-   end AnzeigeSpracheSFML;
-   
-   
+   end AnzeigeSprache;
 
-   procedure AnzeigeSpracheKonsole
-   is begin
-      
-      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-      
-      --  LängsterText := 1;
-      
-      --  TextlängePrüfenSchleife:
-      --  for ZeilenSchleifenwert in AktuelleSprachenArray'First .. LetzteZeileExtern loop
-         
-      --     if
-      --      To_Wide_Wide_String (Source => AktuelleSprachen (ZeilenSchleifenwert))'Length > LängsterText
-      --    then
-      --       LängsterText := To_Wide_Wide_String (Source => AktuelleSprachen (ZeilenSchleifenwert))'Length;
-            
-      --    else
-      --       null;
-      --    end if;
-         
-      --  end loop TextlängePrüfenSchleife;
-      
-      -- AnzeigeSchleife:
-      --  for ZeileSchleifenwert in AktuelleSprachenArray'First .. LetzteZeileExtern loop
-
-      --     if
-      --       AktuelleAuswahlExtern = ZeileSchleifenwert
-      --     then
-      --       RahmenTeilEinsSchleife:
-      --       for TextlängeEins in 1 .. LängsterText loop
-                  
-      --        if
-      --          TextlängeEins = 1
-      --       then
-      Put (Item => "╔");
-      Put (Item => "═");
-
-      --       elsif
-      --        TextlängeEins = LängsterText
-      --      then
-      Put (Item => "═");
-      Put_Line (Item => "╗");
-      Put (Item => "║");
-      --         Put (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
-
-      --         LeererPlatzSchleife:
-      --         for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))'Length loop
-                        
-      Put (" ");
-                        
-      --        end loop LeererPlatzSchleife;
-
-      Put_Line (Item => "║");
-      Put (Item => "╚");
-
-      --      else
-      Put (Item => "═");
-      --     end if;
-               
-      --  end loop RahmenTeilEinsSchleife;
-
-      --  RahmenTeilZweiSchleife:
-      --  for TextlängeZweiSchleifenwert in 1 .. LängsterText loop
-               
-      --    if
-      --      TextlängeZweiSchleifenwert = LängsterText
-      --    then
-      Put (Item => "═");
-      Put_Line (Item => "╝");
-               
-      --    else
-      Put (Item => "═");
-      --    end if;
-            
-      --  end loop RahmenTeilZweiSchleife;
-         
-      -- else
-      --     Put_Line (Item => To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert)));
-      --  end if;
-         
-      --  end loop AnzeigeSchleife;
-      
-   end AnzeigeSpracheKonsole;
-
-end AuswahlSpracheAnzeige;
+end AnzeigeSprachauswahlSFML;

@@ -117,9 +117,10 @@ package KartenDatentypen is
    type Besondere_Ressourcen_Enum is (Leer, Kohle);
    subtype Besondere_Ressourcen_Verwendet_Enum is Besondere_Ressourcen_Enum range Kohle .. Besondere_Ressourcen_Enum'Last;
    
-   type BewertungFeld is range -10 .. 10;
+   type GesamtbewertungFeld is range -100 .. 100;
+   subtype BewertungFeld is GesamtbewertungFeld range -10 .. 10;
 
-   type Wirtschaft_Enum is (Nahrung, Produktion, Geld, Wissen);
+   type Wirtschaft_Enum is (Nahrung, Produktion, Geld, Forschung);
    type Kampf_Enum is (Verteidigung, Angriff);
 
 end KartenDatentypen;

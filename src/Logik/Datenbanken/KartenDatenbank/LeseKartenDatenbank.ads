@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package LeseKartenDatenbank is
 
-   function KartenGrafik
+   function KartenGrafikKonsole
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
       return Wide_Wide_Character;
       
@@ -18,11 +18,28 @@ package LeseKartenDatenbank is
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean;
    
-   function FeldWerte
+   function Bewertung
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.BewertungFeld
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+   
+   function Wirtschaft
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      WelcherWertExtern : in KartenDatentypen.Bewertung_Werte_Enum)
+      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+   
+   function Kampf
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.KampfwerteAllgemein
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);

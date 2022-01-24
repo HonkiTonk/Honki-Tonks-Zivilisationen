@@ -42,7 +42,7 @@ package KartenKonstanten is
    LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
    LeerRessource : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
    LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (StadtKonstanten.LeerRasse, StadtKonstanten.LeerNummer);
-   LeerFelderwertung : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
+   LeerFelderwertung : constant KartenDatentypen.GesamtbewertungFeld := 0;
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
                                                            Grund                   => LeerGrund,
@@ -96,5 +96,12 @@ package KartenKonstanten is
                                            SystemDatentypen.Karte_Größe_1000_1000 => 72,
                                            SystemDatentypen.Karte_Größe_Nutzer    => 1
                                           );
+   
+   WirtschaftNahrung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Nahrung;
+   WirtschaftProduktion : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Produktion;
+   WirtschaftGeld : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Geld;
+   WirtschaftForschung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Forschung;
+   KampfVerteidigung : constant KartenDatentypen.Kampf_Enum := KartenDatentypen.Verteidigung;
+   KampfAngriff : constant KartenDatentypen.Kampf_Enum := KartenDatentypen.Angriff;
 
 end KartenKonstanten;

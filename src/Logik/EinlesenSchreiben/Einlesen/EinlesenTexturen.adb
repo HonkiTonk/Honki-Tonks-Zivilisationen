@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.Texture;
 
-with EingeleseneTexturen;
+with EingeleseneTexturenSFML;
 with Fehler;
 
 package body EinlesenTexturen is
@@ -24,20 +24,20 @@ package body EinlesenTexturen is
    is begin
       
       HintergrundSchleife:
-      for HintergrundSchleifenwert in EingeleseneTexturen.Hintergrund'Range loop
+      for HintergrundSchleifenwert in EingeleseneTexturenSFML.Hintergrund'Range loop
          
          case
            HintergrundSchleifenwert
          is
             when 1 =>
-               EingeleseneTexturen.Hintergrund (HintergrundSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Hintergrund/Hintergrund" & HintergrundSchleifenwert'Image & ".png");
+               EingeleseneTexturenSFML.Hintergrund (HintergrundSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Hintergrund/Hintergrund" & HintergrundSchleifenwert'Image & ".png");
                
             when 2 =>
-               EingeleseneTexturen.Hintergrund (HintergrundSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Hintergrund/Hintergrund" & HintergrundSchleifenwert'Image & ".png");
+               EingeleseneTexturenSFML.Hintergrund (HintergrundSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Hintergrund/Hintergrund" & HintergrundSchleifenwert'Image & ".png");
          end case;
          
          if
-           EingeleseneTexturen.Hintergrund (HintergrundSchleifenwert) = null
+           EingeleseneTexturenSFML.Hintergrund (HintergrundSchleifenwert) = null
          then
             Fehler.GrafikStopp (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrundMenüs - EingeleseneTexturen.Hintergrund (HintergrundSchleifenwert) = null");
             
@@ -54,10 +54,10 @@ package body EinlesenTexturen is
    procedure EinlesenKartenfelder
    is begin
       
-      EingeleseneTexturen.KartenfelderAccess := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Kartenfelder.png");
+      EingeleseneTexturenSFML.KartenfelderAccess := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Kartenfelder.png");
          
       if
-        EingeleseneTexturen.KartenfelderAccess = null
+        EingeleseneTexturenSFML.KartenfelderAccess = null
       then
          Fehler.GrafikStopp (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrundMenüs - EingeleseneTexturen.Kartenfelder = null");
             

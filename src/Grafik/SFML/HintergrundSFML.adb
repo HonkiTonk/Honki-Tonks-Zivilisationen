@@ -5,7 +5,7 @@ pragma SPARK_Mode (On);
 -- with GrafikEinstellungen;
 -- with EingeleseneTexturen;
 
-package body GrafikHintergrund is
+package body HintergrundSFML is
 
    procedure HintergrundMenü
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
@@ -40,4 +40,4 @@ package body GrafikHintergrund is
       
    end HintergrundbildLaden;
 
-end GrafikHintergrund;
+end HintergrundSFML;

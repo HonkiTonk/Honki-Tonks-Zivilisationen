@@ -75,14 +75,14 @@ package body KIBewegungDurchfuehren is
         KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => NeuePosition,
                                           EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when 0 =>
+         when KIKonstanten.BewegungNormal =>
             BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 1 =>
+         when KIKonstanten.KeineBewegung=>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
             return;
             
-         when -1 =>
+         when KIKonstanten.BewegungAngriff =>
             Blockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       

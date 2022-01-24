@@ -6,7 +6,7 @@ with SystemKonstanten;
 
 with AuswahlMenue;
 with Eingabe;
-with GrafikEinstellungen;
+with EinstellungenSFML;
 with SchreibenEinstellungen;
 with Fehler;
 
@@ -82,9 +82,9 @@ package body OptionenGrafik is
          return;
       end if;
       
-      GrafikEinstellungen.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
-      GrafikEinstellungen.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
-      GrafikEinstellungen.AktuelleFensterAuflösung := NeueAuflösung;
+      EinstellungenSFML.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
+      EinstellungenSFML.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
+      EinstellungenSFML.AktuelleFensterAuflösung := NeueAuflösung;
       
    end AuflösungÄndern;
    
@@ -118,7 +118,7 @@ package body OptionenGrafik is
       if
         EingabeBildrate.EingabeAbbruch
       then
-         GrafikEinstellungen.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
+         EinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
          
       else
          null;
@@ -129,7 +129,7 @@ package body OptionenGrafik is
         and
           NeueAuflösung.y > 0
       then
-         GrafikEinstellungen.AktuelleFensterAuflösung := NeueAuflösung;
+         EinstellungenSFML.AktuelleFensterAuflösung := NeueAuflösung;
          
       else
          null;

@@ -5,7 +5,7 @@ pragma SPARK_Mode (On);
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 
-with GrafikEinstellungen;
+with EinstellungenSFML;
 with BerechnungenKarteSFML;
 with KartePositionPruefen;
 with Karten;
@@ -17,7 +17,7 @@ package body BewegungCursorSFML is
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kommt es zu einem Absturz.
-      MausPosition := GrafikEinstellungen.MausPosition;
+      MausPosition := EinstellungenSFML.MausPosition;
       
       if
         MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.FensterKarte.y)
@@ -85,7 +85,7 @@ package body BewegungCursorSFML is
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kommt es zu einem Absturz.
-      MausPosition := GrafikEinstellungen.MausPosition;
+      MausPosition := EinstellungenSFML.MausPosition;
       
       if
         MausPosition.y in 0 .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)

@@ -11,9 +11,10 @@ with EinheitenKonstanten;
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with Anzeige;
+with TextAnzeigeKonsole;
 with Eingabe;
 
+-- Wird für die Konsole benötigt, msus aber noch in Logik und Grafik aufgeteilt werden.
 package body EinheitenTransporter is
 
    function EinheitTransporterAuswählen
@@ -21,9 +22,9 @@ package body EinheitenTransporter is
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
-      Anzeige.AllgemeineAnzeigeText := (others => (SystemKonstanten.LeerUnboundedString, 0));
-      Anzeige.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                            Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));
+      TextAnzeigeKonsole.AllgemeineAnzeigeText := (others => (SystemKonstanten.LeerUnboundedString, 0));
+      TextAnzeigeKonsole.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
+                                                       Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));
       AktuellePosition := 2;
       Ende := 1;
 
@@ -41,7 +42,7 @@ package body EinheitenTransporter is
             null;
             
          else
-            Anzeige.AllgemeineAnzeigeText (AktuellePosition)
+            TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuellePosition)
               := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),                  
                   Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Transportiert)))),
                   Positive (Transportiert));
@@ -69,16 +70,16 @@ package body EinheitenTransporter is
          
          Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
 
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
-                                               TextZeileExtern => 27);
-         Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => EinheitStadtDatentypen.MinimimMaximumID (AktuelleAuswahl));
+         TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
+                                                          TextZeileExtern => 27);
+         TextAnzeigeKonsole.AllgemeineAnzeige (AktuelleAuswahlExtern => EinheitStadtDatentypen.MinimimMaximumID (AktuelleAuswahl));
                   
          case
            Eingabe.Tastenwert
          is               
             when SystemDatentypen.Oben =>
                if
-                 AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
+                 AktuelleAuswahl = TextAnzeigeKonsole.AllgemeineAnzeigeText'First
                then
                   AktuelleAuswahl := Ende;
                else
@@ -89,13 +90,13 @@ package body EinheitenTransporter is
                if
                  AktuelleAuswahl = Ende
                then
-                  AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
+                  AktuelleAuswahl := TextAnzeigeKonsole.AllgemeineAnzeigeText'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
             when SystemDatentypen.Auswählen =>
-               return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
+               return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
             when SystemDatentypen.Menü_Zurück =>
                return 0;

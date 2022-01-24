@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-package body GrafikEinstellungen is
+package body EinstellungenSFML is
 
    procedure StandardGrafikEinstellungenLaden
    is begin
@@ -9,4 +9,4 @@ package body GrafikEinstellungen is
       
    end StandardGrafikEinstellungenLaden;
 
-end GrafikEinstellungen;
+end EinstellungenSFML;

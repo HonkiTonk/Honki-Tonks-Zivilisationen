@@ -6,7 +6,7 @@ with GlobaleVariablen;
 with SystemRecords;
 
 with SchreibenEinstellungen;
-with GrafikEinstellungen;
+with EinstellungenSFML;
 
 package body EinlesenEinstellungen is
 
@@ -22,7 +22,7 @@ package body EinlesenEinstellungen is
                   Name => "Einstellungen/Einstellungen");
 
          when False =>
-            GrafikEinstellungen.StandardGrafikEinstellungenLaden;
+            EinstellungenSFML.StandardGrafikEinstellungenLaden;
             SchreibenEinstellungen.SchreibenEinstellungen;
             return;
       end case;
@@ -31,7 +31,7 @@ package body EinlesenEinstellungen is
                                                     GlobaleVariablen.NutzerEinstellungen);
       
       SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                        GrafikEinstellungen.FensterEinstellungen);
+                                        EinstellungenSFML.FensterEinstellungen);
 
       Close (File => DateiEinstellungenEinlesen);
       

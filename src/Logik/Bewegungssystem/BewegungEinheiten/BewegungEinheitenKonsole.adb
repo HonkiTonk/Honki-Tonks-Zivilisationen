@@ -8,7 +8,7 @@ with Eingabe;
 with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
-with Anzeige;
+with TextAnzeigeKonsole;
 with BewegungEinheiten;
 
 package body BewegungEinheitenKonsole is
@@ -73,8 +73,8 @@ package body BewegungEinheitenKonsole is
                
                   when False =>
                      Änderung := KeineÄnderung;
-                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                           TextZeileExtern => 2);
+                     TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                                      TextZeileExtern => 2);
                end case;
                
             when SystemDatentypen.Bauen =>

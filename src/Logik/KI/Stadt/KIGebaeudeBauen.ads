@@ -5,6 +5,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 
+with KIDatentypen;
 with KIRecords;
 
 package KIGebaeudeBauen is
@@ -20,7 +21,7 @@ package KIGebaeudeBauen is
    
 private
    
-   Gesamtwertung : EinheitStadtDatentypen.GesamtproduktionStadt;
+   Gesamtwertung : KIDatentypen.BauenBewertung;
    
    GebäudeBewertet : KIRecords.GebäudeIDBewertungRecord;
    
@@ -33,10 +34,12 @@ private
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI);
    
+   
+   
    function NahrungsproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KIDatentypen.BauenBewertung
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
@@ -46,7 +49,7 @@ private
    function GeldproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KIDatentypen.BauenBewertung
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
@@ -56,7 +59,7 @@ private
    function WissensgewinnBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KIDatentypen.BauenBewertung
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
@@ -66,7 +69,7 @@ private
    function RessourcenproduktionBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KIDatentypen.BauenBewertung
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
@@ -76,7 +79,7 @@ private
    function VerteidigungBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KIDatentypen.BauenBewertung
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
@@ -86,7 +89,7 @@ private
    function AngriffBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KIDatentypen.BauenBewertung
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
@@ -96,7 +99,7 @@ private
    function KostenBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KIDatentypen.BauenBewertung
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range

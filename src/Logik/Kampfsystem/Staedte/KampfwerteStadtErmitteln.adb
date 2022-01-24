@@ -1,10 +1,11 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenKonstanten;
+
 with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
 with LeseVerbesserungenDatenbank;
-with KartenDatentypen;
 
 with GesamtwerteFeld;
 
@@ -15,9 +16,9 @@ package body KampfwerteStadtErmitteln is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      VerteidigungWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                            RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                            WelcherWertExtern  => KartenDatentypen.Verteidigung))
+      VerteidigungWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
         + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -32,9 +33,9 @@ package body KampfwerteStadtErmitteln is
             null;
             
          else
-            VerteidigungWert := VerteidigungWert + EinheitStadtDatentypen.Kampfwerte (LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                                              IDExtern           => GebäudeSchleifenwert,
-                                                                                                                              WelcherBonusExtern => KartenDatentypen.Verteidigung));
+            VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+                                                                                     IDExtern         => GebäudeSchleifenwert,
+                                                                                     KampfBonusExtern => KartenKonstanten.KampfVerteidigung);
          end if;
          
       end loop GebäudeSchleife;
@@ -50,9 +51,9 @@ package body KampfwerteStadtErmitteln is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      AngriffWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                       RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                       WelcherWertExtern  => KartenDatentypen.Angriff))
+      AngriffWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                           RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                           WelcherWertExtern  => KartenKonstanten.KampfAngriff))
         + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -67,9 +68,9 @@ package body KampfwerteStadtErmitteln is
             null;
             
          else
-            AngriffWert := AngriffWert + EinheitStadtDatentypen.Kampfwerte (LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                                    IDExtern           => GebäudeSchleifenwert,
-                                                                                                                    WelcherBonusExtern => KartenDatentypen.Angriff));
+            AngriffWert := AngriffWert + LeseGebaeudeDatenbank.KampfBonus (RasseExtern      => StadtRasseNummerExtern.Rasse,
+                                                                           IDExtern         => GebäudeSchleifenwert,
+                                                                           KampfBonusExtern => KartenKonstanten.KampfAngriff);
          end if;
          
       end loop GebäudeSchleife;

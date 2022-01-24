@@ -18,8 +18,6 @@ package EingabeSystemeSFML is
 
    EingegebenerText : Unbounded_Wide_Wide_String;
 
-   ZeichenEingeben : Sf.Window.Event.sfEvent;
-
    procedure TastenEingabe;
 
 
@@ -35,7 +33,7 @@ private
 
    CharacterZuText : Wide_Wide_String (1 .. 1);
 
-
+   ZeichenEingeben : Sf.Window.Event.sfEvent;
    TextEingegeben : Sf.Window.Event.sfEvent;
 
    procedure TextPrüfen

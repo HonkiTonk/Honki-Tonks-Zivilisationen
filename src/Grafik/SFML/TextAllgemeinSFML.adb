@@ -5,7 +5,7 @@ with Sf.Graphics.Text;
 
 with Fehler;
 
-package body GrafikTextAllgemein is
+package body TextAllgemeinSFML is
 
    -- Das hier als "globale" Aufrufprozedur verwenden und dann kleinere Sachen Aufrufen um die einzelnen Teile auch so zu nutzen? Sinnvoll oder zu kleinteilig und nutzlos?
    procedure TextAccessEinstellen
@@ -33,4 +33,4 @@ package body GrafikTextAllgemein is
       
    end TextAccessEinstellen;
 
-end GrafikTextAllgemein;
+end TextAllgemeinSFML;

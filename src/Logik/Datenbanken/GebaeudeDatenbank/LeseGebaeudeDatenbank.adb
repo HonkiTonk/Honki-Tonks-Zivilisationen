@@ -62,19 +62,32 @@ package body LeseGebaeudeDatenbank is
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).Anforderungen;
       
    end Anforderungen;
-
-
-      
-   function PermanenterBonus
+   
+   
+   
+   function WirtschaftBonus
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
-      WelcherBonusExtern : in KartenDatentypen.Bonus_Werte_Enum)
+      WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PermanenterBonus (WelcherBonusExtern);
+      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).BonusWirtschaft (WWirtschaftBonusExtern);
       
-   end PermanenterBonus;
+   end WirtschaftBonus;
+   
+   
+   
+   function KampfBonus
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID;
+      KampfBonusExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.Kampfwerte
+   is begin
+      
+      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).BonusKampf (KampfBonusExtern);
+      
+   end KampfBonus;
 
 
       

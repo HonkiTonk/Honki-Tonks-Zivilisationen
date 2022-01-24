@@ -8,7 +8,7 @@ with GlobaleVariablen;
 with SystemDatentypen;
 
 with Eingabe;
-with Anzeige;
+with TextAnzeigeKonsole;
 
 package body Informationen is
 
@@ -35,18 +35,18 @@ package body Informationen is
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Allgemeine_Informationen,
-                                            TextZeileExtern => 1);      
+      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Allgemeine_Informationen,
+                                                       TextZeileExtern => 1);      
       Put_Line (Item => Versionsnummer);
 
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Allgemeine_Informationen,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 2,
-                                     LetzteZeileExtern      => 12,
-                                     AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
-                                     AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Allgemeine_Informationen,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 2,
+                                                LetzteZeileExtern      => 12,
+                                                AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                                AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
+                                                AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       Eingabe.WartenEingabe;
       
    end InformationenKonsole;

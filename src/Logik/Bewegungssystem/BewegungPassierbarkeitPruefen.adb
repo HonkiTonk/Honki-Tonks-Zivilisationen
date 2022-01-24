@@ -14,6 +14,7 @@ with StadtSuchen;
 with UmgebungErreichbarTesten;
 with KartePositionPruefen;
 with KartenAllgemein;
+with Fehler;
 
 package body BewegungPassierbarkeitPruefen is
    
@@ -29,6 +30,7 @@ package body BewegungPassierbarkeitPruefen is
         IDEinheit
       is
          when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
+            Fehler.LogikStopp (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer - Einheit ist vorhanden hat aber keine ID.");
             return False;
             
          when others =>
@@ -181,7 +183,7 @@ package body BewegungPassierbarkeitPruefen is
         and
           UmgebungExtern /= EinheitStadtDatentypen.Planeteninneres
           and
-            UmgebungExtern /= EinheitStadtDatentypen.Planeteninneres
+            UmgebungExtern /= EinheitStadtDatentypen.Lava
       then
          null;
                   

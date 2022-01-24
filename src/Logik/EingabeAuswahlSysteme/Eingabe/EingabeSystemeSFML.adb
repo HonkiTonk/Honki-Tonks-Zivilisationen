@@ -9,7 +9,7 @@ with Sf.Graphics.RenderWindow;
 with SystemKonstanten;
 with SystemDatentypen;
 
-with GrafikEinstellungen;
+with EinstellungenSFML;
 with Fehler;
 with InteraktionGrafiktask;
 
@@ -27,9 +27,10 @@ package body EingabeSystemeSFML is
       EingabeSchleife:
       loop
          TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.FensterAccess,
+         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => EinstellungenSFML.FensterAccess,
                                                    event        => ZeichenEingeben)
            = Sf.sfTrue loop
+            
             
             case
               ZeichenEingeben.eventType
@@ -44,13 +45,14 @@ package body EingabeSystemeSFML is
                   
                when Sf.Window.Event.sfEvtMouseMoved =>
                   -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
-                  GrafikEinstellungen.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
+                  EinstellungenSFML.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
                   
                when others =>
                   null;
             end case;
             
             -- Gäbe es einen Vorteil diesen Teil in jeweils eine eigene Prüfung umzuwandeln? Eventuell um mehrere Dinge gleichzeitig festlegen zu können?
+            -- Beeinflusst das nicht auch die Auswertung in EingabeSFML? Hier einzeln durchgehen und dann in EingabeSFML die Auswertungsreihenfolge festlegen?
             case
               ZeichenEingeben.eventType
             is
@@ -86,7 +88,7 @@ package body EingabeSystemeSFML is
       EingabeSchleife:
       loop
          TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungen.FensterAccess,
+         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => EinstellungenSFML.FensterAccess,
                                                    event        => TextEingegeben)
            = Sf.sfTrue loop
             

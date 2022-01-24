@@ -13,6 +13,11 @@ package AllgemeineTextBerechnungenSFML is
       LinksRechtsExtern : in Boolean)
       return Float;
    
+   function TextViertelPositionErmittelnLogik
+     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
+      LinksRechtsExtern : in Boolean)
+      return Float;
+   
    function TextHalbeBreiteErmitteln
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float;
@@ -21,5 +26,8 @@ private
    
    Position : Float;
    TextHalbeBreite : Float;
+   
+   PositionLogik : Float;
+   TextHalbeBreiteLogik : Float;
 
 end AllgemeineTextBerechnungenSFML;

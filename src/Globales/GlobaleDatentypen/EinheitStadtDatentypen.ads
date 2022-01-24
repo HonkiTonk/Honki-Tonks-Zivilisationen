@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 
 package EinheitStadtDatentypen is
    
-   -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
+   -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste.
+   -- Dieser Kommentar braucht mal eine Überarbeitung!
    type MinimimMaximumID is range -1 .. 78;
    
    

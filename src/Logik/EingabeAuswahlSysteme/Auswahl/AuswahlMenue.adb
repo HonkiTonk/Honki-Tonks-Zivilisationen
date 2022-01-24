@@ -8,7 +8,7 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 
-with GrafikEinstellungen;
+with EinstellungenSFML;
 with Eingabe;
 with AllgemeineTextBerechnungenSFML;
 with RueckgabeMenues;
@@ -46,11 +46,11 @@ package body AuswahlMenue is
       WelchesMenü := WelchesMenüExtern;
      
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungen.SchriftartAccess);
+                                font => EinstellungenSFML.SchriftartAccess);
             
       Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
       Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
-      ZeilenAbstand := 0.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+      ZeilenAbstand := 0.50 * Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       if
         LetztesMenü = WelchesMenüExtern
@@ -143,16 +143,16 @@ package body AuswahlMenue is
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausZeigerPosition := GrafikEinstellungen.MausPosition;
+      MausZeigerPosition := EinstellungenSFML.MausPosition;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => StringSetzen (WelcheZeileExtern => 1,
                                                                WelchesMenüExtern => WelchesMenü));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungen.FensterEinstellungen.Schriftgröße)));
+                                         size => Sf.sfUint32 (1.50 * Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße)));
       TextPositionMaus.y := StartPositionYAchse + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + ZeilenAbstand;
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungen.FensterEinstellungen.Schriftgröße);
+                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       MausZeigerSchleife:
       for ZeileSchleifenwert in Anfang .. Ende loop
@@ -165,12 +165,12 @@ package body AuswahlMenue is
            (ZeileSchleifenwert + AnzeigeStartwert) mod 2
          is
             when 0 =>
-               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern => TextAccess,
-                                                                                                  LinksRechtsExtern => False);
+               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmittelnLogik (TextAccessExtern => TextAccess,
+                                                                                                       LinksRechtsExtern => False);
                
             when others =>
-               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern => TextAccess,
-                                                                                                  LinksRechtsExtern => True);
+               TextPositionMaus.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmittelnLogik (TextAccessExtern => TextAccess,
+                                                                                                       LinksRechtsExtern => True);
          end case;
          
          if

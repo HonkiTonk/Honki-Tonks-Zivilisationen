@@ -5,7 +5,6 @@ with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
 with KartenDatentypen;
-with EinheitStadtDatentypen;
 
 with Karten;
 
@@ -82,7 +81,7 @@ package LeseKarten is
    function Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KartenDatentypen.GesamtbewertungFeld
      with
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

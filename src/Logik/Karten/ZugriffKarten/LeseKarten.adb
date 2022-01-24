@@ -131,7 +131,7 @@ package body LeseKarten is
    function Bewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return KartenDatentypen.GesamtbewertungFeld
    is begin
       
       return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Felderwertung (RasseExtern);

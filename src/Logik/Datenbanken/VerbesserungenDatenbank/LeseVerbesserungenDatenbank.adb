@@ -27,7 +27,7 @@ package body LeseVerbesserungenDatenbank is
    
    
    
-   function VerbesserungBewertung
+   function Bewertung
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
@@ -35,11 +35,11 @@ package body LeseVerbesserungenDatenbank is
       
       return VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).Bewertung (RasseExtern);
       
-   end VerbesserungBewertung;
+   end Bewertung;
    
       
    
-   function VerbesserungWirtschaft
+   function Wirtschaft
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
@@ -48,11 +48,11 @@ package body LeseVerbesserungenDatenbank is
       
       return VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
       
-   end VerbesserungWirtschaft;
+   end Wirtschaft;
    
       
    
-   function VerbesserungKampf
+   function Kampf
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
@@ -61,7 +61,7 @@ package body LeseVerbesserungenDatenbank is
       
       return VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).Kampf (RasseExtern, WelcherWertExtern);
       
-   end VerbesserungKampf;
+   end Kampf;
    
    
    

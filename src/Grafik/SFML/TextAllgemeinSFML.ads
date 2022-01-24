@@ -4,7 +4,7 @@ with Sf;
 with Sf.Graphics;
 with Sf.Graphics.Color;
 
-package GrafikTextAllgemein is
+package TextAllgemeinSFML is
 
    procedure TextAccessEinstellen
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
@@ -12,4 +12,4 @@ package GrafikTextAllgemein is
       SchriftgrößeExtern : in Sf.sfUint32;
       FarbeExtern : in Sf.Graphics.Color.sfColor);
 
-end GrafikTextAllgemein;
+end TextAllgemeinSFML;

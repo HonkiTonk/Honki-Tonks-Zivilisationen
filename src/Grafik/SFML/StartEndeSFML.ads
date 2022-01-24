@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-package GrafikStartEnde is
+package StartEndeSFML is
    
    procedure FensterErzeugen;
    procedure FensterEntfernen;
@@ -14,4 +14,4 @@ private
    -- Oder durch eine andere Textzeile ersetzen? Wobei sich der Spielenamen ja nicht ändert.
    Name : constant Wide_Wide_String := "Name des Spiels";
 
-end GrafikStartEnde;
+end StartEndeSFML;

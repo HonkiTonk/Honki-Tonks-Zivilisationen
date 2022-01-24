@@ -13,7 +13,7 @@ with SystemDatentypen;
 with AuswahlStadtEinheit;
 with UmwandlungenAdaNachEigenes;
 
-package AnzeigeEingabe is
+package AnzeigeEingabeSFML is
 
    procedure AnzeigeGanzeZahl;
    procedure AnzeigeText;
@@ -49,4 +49,4 @@ private
    
    function ZahlAlsStringNatural is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Natural);
 
-end AnzeigeEingabe;
+end AnzeigeEingabeSFML;

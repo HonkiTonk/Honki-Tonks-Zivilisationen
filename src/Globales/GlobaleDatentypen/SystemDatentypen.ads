@@ -72,9 +72,6 @@ package SystemDatentypen is
                                         Musik_Ende);
    
    type Welche_Eingabe_Enum is (Keine_Eingabe, Zahlen_Eingabe, Text_Eingabe, Einheit_Auswahl);
-   
-   type NotAus is range 1 .. 100;
-   subtype NotAusKlein is NotAus range 1 .. 5;
    -- Wichtige Werte
 
 

@@ -1,9 +1,10 @@
 pragma SPARK_Mode (On);
 
 with KartenRecords;
-with EinheitStadtDatentypen;
 with SystemDatentypen;
+with KartenDatentypen;
 
+with KIDatentypen;
 with KIRecords;
 
 package KIKonstanten is
@@ -15,7 +16,7 @@ package KIKonstanten is
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
 
-   type KartenfeldBewertungStadtBauenMinimumArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.GesamtproduktionStadt;
+   type KartenfeldBewertungStadtBauenMinimumArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamtbewertungFeld;
    KartenfeldBewertungStadtBauenMinimum : constant KartenfeldBewertungStadtBauenMinimumArray := (
                                                                                                  SystemDatentypen.Menschen         => 10,
                                                                                                  SystemDatentypen.Kasrodiah        => 10,
@@ -36,5 +37,12 @@ package KIKonstanten is
                                                                                                  SystemDatentypen.Aspari_2         => 10,
                                                                                                  SystemDatentypen.Ekropa           => 10
                                                                                                 );
+
+   BewertungBewegungNullwert : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'First;
+   BewertungBewegungZielpunkt : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'Last;
+
+   BewegungAngriff : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Belegt_Angriff;
+   BewegungNormal : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Unbelegt;
+   KeineBewegung : constant KIDatentypen.Bewegung_Enum := KIDatentypen.Belegt_Kein_Angriff;
 
 end KIKonstanten;

@@ -12,7 +12,7 @@ with GlobaleVariablen;
 
 with Eingabe;
 with AuswahlMenue;
-with Anzeige;
+with TextAnzeigeKonsole;
 with SchreibenTastatur;
 with EingabeSystemeSFML;
 with EingabeKonsole;
@@ -76,27 +76,27 @@ package body OptionenSteuerung is
    procedure AlteTasteEntfernenKonsole
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Zeug,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 46,
-                                     LetzteZeileExtern      => 46,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Zeug,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 46,
+                                                LetzteZeileExtern      => 46,
+                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
       NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
                
       Put_Line (EingabeKonsole.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeKonsole.Tastenbelegung (2, NeueAuswahl));
                
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                     TextDateiExtern        => GlobaleTexte.Fragen,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => 29,
-                                     LetzteZeileExtern      => 29,
-                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                     AbstandMitteExtern     => GlobaleTexte.Leer,
-                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                TextDateiExtern        => GlobaleTexte.Fragen,
+                                                ÜberschriftZeileExtern => 0,
+                                                ErsteZeileExtern       => 29,
+                                                LetzteZeileExtern      => 29,
+                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                                AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       
       NeueTasteKonsole := EingabeKonsole.TastenEingabe;
       

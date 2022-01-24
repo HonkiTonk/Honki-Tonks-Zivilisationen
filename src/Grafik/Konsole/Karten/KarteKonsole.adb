@@ -7,7 +7,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 
 with KartePositionPruefen;
-with GrafischeAnzeige;
+with GrafischeAnzeigeKonsole;
 with Sichtweiten;
 with Karten;
 with KarteInformationenKonsole;
@@ -35,9 +35,9 @@ package body KarteKonsole is
                   null;
                   
                when others =>
-                  GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => False,
-                                                 KoordinatenExtern => KartenWert,
-                                                 RasseExtern       => RasseExtern);
+                  GrafischeAnzeigeKonsole.Sichtbarkeit (InDerStadtExtern  => False,
+                                                        KoordinatenExtern => KartenWert,
+                                                        RasseExtern       => RasseExtern);
             end case;
             
             NeueZeileKartenform (XAchseExtern => XAchseSchleifenwert);

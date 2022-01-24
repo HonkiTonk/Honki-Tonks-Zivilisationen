@@ -37,7 +37,7 @@ package KartenRecords is
    
    -- Die Bewertung rauswerfen und entsprechend die Einheiten beim Bauen einer Stadt alles Bewerten lassen?
    -- Felderbelegung stattdessen einbauen?
-   type FelderwertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.GesamtproduktionStadt;
+   type FelderwertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamtbewertungFeld;
    
    type BelegterGrundRecord is record
       

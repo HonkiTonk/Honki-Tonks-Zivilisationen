@@ -18,7 +18,7 @@ with ObjekteZeichnenSFML;
 with Karten;
 with KartePositionPruefen;
 with StadtInformationenSFML;
-with GrafikEinstellungen;
+with EinstellungenSFML;
 with Fehler;
 
 package body KarteStadtSFML is
@@ -269,7 +269,7 @@ package body KarteStadtSFML is
                                                         color => AktuelleFarbe);
             Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
                                                             thickness => 3.00);
-            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungen.FensterAccess,
+            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenSFML.FensterAccess,
                                                          object       => RechteckRahmenAccess);
             
          when False =>

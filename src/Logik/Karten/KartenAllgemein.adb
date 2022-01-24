@@ -4,6 +4,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;
 with GlobaleTexte;
+with KartenKonstanten;
 
 with LeseKarten;
 with LeseKartenDatenbank;
@@ -42,24 +43,24 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      if
-        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
-      then
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Nahrung)
-           + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Nahrung)
-           / 2;
-         
-      else
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Nahrung);
-      end if;
-      
-      
+      case
+        LeseKarten.Hügel (PositionExtern => PositionExtern)
+      is
+         when True =>
+            return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                   RasseExtern         => RasseExtern,
+                                                   WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
+              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenDatentypen.Hügel_Mit,
+                                                RasseExtern         => RasseExtern,
+                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
+              / 2;
+            
+         when False =>
+            return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                   RasseExtern         => RasseExtern,
+                                                   WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
+      end case;
+            
    end GrundNahrung;
    
    
@@ -70,22 +71,23 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      if
-        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
-      then
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Produktion)
-           + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Produktion)
-           / 2;
-         
-      else
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Produktion);
-      end if;
+      case
+        LeseKarten.Hügel (PositionExtern => PositionExtern)
+      is
+         when True =>
+            return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                   RasseExtern         => RasseExtern,
+                                                   WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
+              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenDatentypen.Hügel_Mit,
+                                                RasseExtern         => RasseExtern,
+                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
+              / 2;
+            
+         when False =>
+            return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                   RasseExtern         => RasseExtern,
+                                                   WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
+      end case;
       
    end GrundProduktion;
    
@@ -97,22 +99,23 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      if
-        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
-      then
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Geld)
-           + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Geld)
-           / 2;
-         
-      else
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Geld);
-      end if;
+      case
+        LeseKarten.Hügel (PositionExtern => PositionExtern)
+      is
+         when True =>
+            return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                   RasseExtern         => RasseExtern,
+                                                   WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
+              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenDatentypen.Hügel_Mit,
+                                                RasseExtern         => RasseExtern,
+                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
+              / 2;
+            
+         when False =>
+            return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                   RasseExtern         => RasseExtern,
+                                                   WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
+      end case;
       
    end GrundGeld;
    
@@ -124,22 +127,23 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      if
-        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
-      then
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Wissen)
-           + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Wissen)
-           / 2;
-         
-      else
-         return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                               RasseExtern       => RasseExtern,
-                                               WelcherWertExtern => KartenDatentypen.Wissen);
-      end if;
+      case
+        LeseKarten.Hügel (PositionExtern => PositionExtern)
+      is
+         when True =>
+            return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                   RasseExtern         => RasseExtern,
+                                                   WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
+              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenDatentypen.Hügel_Mit,
+                                                RasseExtern         => RasseExtern,
+                                                WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
+              / 2;
+            
+         when False =>
+            return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                                   RasseExtern         => RasseExtern,
+                                                   WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
+      end case;
             
    end GrundWissen;
    
@@ -151,22 +155,23 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      if
-        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
-      then
-         return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                                                                  RasseExtern       => RasseExtern,
-                                                                                  WelcherWertExtern => KartenDatentypen.Verteidigung)
-                                                   + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
-                                                                                    RasseExtern       => RasseExtern,
-                                                                                    WelcherWertExtern => KartenDatentypen.Verteidigung))
-           / 2;
+      case
+        LeseKarten.Hügel (PositionExtern => PositionExtern)
+      is
+         when True =>
+            return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                              RasseExtern    => RasseExtern,
+                                              KampfArtExtern => KartenKonstanten.KampfVerteidigung)
+              + LeseKartenDatenbank.Kampf (GrundExtern    => KartenDatentypen.Hügel_Mit,
+                                           RasseExtern    => RasseExtern,
+                                           KampfArtExtern => KartenKonstanten.KampfVerteidigung)
+              / 2;
          
-      else
-         return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                                                                  RasseExtern       => RasseExtern,
-                                                                                  WelcherWertExtern => KartenDatentypen.Verteidigung));
-      end if;
+         when False =>
+            return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                              RasseExtern    => RasseExtern,
+                                              KampfArtExtern => KartenKonstanten.KampfVerteidigung);
+      end case;
       
    end GrundVerteidigung;
    
@@ -178,22 +183,23 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      if
-        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
-      then
-         return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                                                                  RasseExtern       => RasseExtern,
-                                                                                  WelcherWertExtern => KartenDatentypen.Angriff)
-                                                   + LeseKartenDatenbank.FeldWerte (GrundExtern       => KartenDatentypen.Hügel_Mit,
-                                                                                    RasseExtern       => RasseExtern,
-                                                                                    WelcherWertExtern => KartenDatentypen.Angriff))
-           / 2;
+      case
+        LeseKarten.Hügel (PositionExtern => PositionExtern)
+      is
+         when True =>
+            return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                              RasseExtern    => RasseExtern,
+                                              KampfArtExtern => KartenKonstanten.KampfAngriff)
+              + LeseKartenDatenbank.Kampf (GrundExtern    => KartenDatentypen.Hügel_Mit,
+                                           RasseExtern    => RasseExtern,
+                                           KampfArtExtern => KartenKonstanten.KampfAngriff)
+              / 2;
          
-      else
-         return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                                                                  RasseExtern       => RasseExtern,
-                                                                                  WelcherWertExtern => KartenDatentypen.Angriff));
-      end if;
+         when False =>
+            return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                              RasseExtern    => RasseExtern,
+                                              KampfArtExtern => KartenKonstanten.KampfAngriff);
+      end case;
       
    end GrundAngriff;
    
@@ -202,12 +208,11 @@ package body KartenAllgemein is
    function GrundBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return KartenDatentypen.BewertungFeld
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Wertigkeit);
+      return LeseKartenDatenbank.Bewertung (GrundExtern => LeseKarten.Grund (PositionExtern => PositionExtern),
+                                            RasseExtern => RasseExtern);
       
    end GrundBewertung;
    
@@ -219,9 +224,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Nahrung);
+      return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                             RasseExtern         => RasseExtern,
+                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       
    end FlussNahrung;
    
@@ -233,9 +238,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Produktion);
+      return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                             RasseExtern         => RasseExtern,
+                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       
    end FlussProduktion;
    
@@ -247,9 +252,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Geld);
+      return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                             RasseExtern         => RasseExtern,
+                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       
    end FlussGeld;
    
@@ -261,9 +266,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Wissen);
+      return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                             RasseExtern         => RasseExtern,
+                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       
    end FlussWissen;
    
@@ -275,9 +280,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                                                               RasseExtern       => RasseExtern,
-                                                                               WelcherWertExtern => KartenDatentypen.Verteidigung));
+      return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                        RasseExtern    => RasseExtern,
+                                        KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       
    end FlussVerteidigung;
    
@@ -289,9 +294,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                                                               RasseExtern       => RasseExtern,
-                                                                               WelcherWertExtern => KartenDatentypen.Angriff));
+      return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                        RasseExtern    => RasseExtern,
+                                        KampfArtExtern => KartenKonstanten.KampfAngriff);
       
    end FlussAngriff;
    
@@ -300,12 +305,11 @@ package body KartenAllgemein is
    function FlussBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return KartenDatentypen.BewertungFeld
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Fluss (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Wertigkeit);
+      return LeseKartenDatenbank.Bewertung (GrundExtern => LeseKarten.Fluss (PositionExtern => PositionExtern),
+                                            RasseExtern => RasseExtern);
       
    end FlussBewertung;
    
@@ -317,9 +321,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Nahrung);
+      return LeseVerbesserungenDatenbank.Wirtschaft (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                     RasseExtern        => RasseExtern,
+                                                     WelcherWertExtern  => KartenKonstanten.WirtschaftNahrung);
       
    end WegNahrung;
    
@@ -331,9 +335,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Produktion);
+      return LeseVerbesserungenDatenbank.Wirtschaft (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                     RasseExtern        => RasseExtern,
+                                                     WelcherWertExtern  => KartenKonstanten.WirtschaftProduktion);
       
    end WegProduktion;
    
@@ -345,9 +349,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Geld);
+      return LeseVerbesserungenDatenbank.Wirtschaft (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                     RasseExtern        => RasseExtern,
+                                                     WelcherWertExtern  => KartenKonstanten.WirtschaftGeld);
       
    end WegGeld;
    
@@ -359,9 +363,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Wissen);
+      return LeseVerbesserungenDatenbank.Wirtschaft (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                     RasseExtern        => RasseExtern,
+                                                     WelcherWertExtern  => KartenKonstanten.WirtschaftForschung);
       
    end WegWissen;
    
@@ -373,9 +377,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                                                               RasseExtern        => RasseExtern,
-                                                                                               WelcherWertExtern  => KartenDatentypen.Verteidigung));
+      return LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                RasseExtern        => RasseExtern,
+                                                WelcherWertExtern  => KartenKonstanten.KampfVerteidigung);
       
    end WegVerteidigung;
    
@@ -387,9 +391,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                                                               RasseExtern        => RasseExtern,
-                                                                                               WelcherWertExtern  => KartenDatentypen.Angriff));
+      return LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                RasseExtern        => RasseExtern,
+                                                WelcherWertExtern  => KartenKonstanten.KampfAngriff);
       
    end WegAngriff;
    
@@ -398,12 +402,11 @@ package body KartenAllgemein is
    function WegBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return KartenDatentypen.BewertungFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Wertigkeit);
+      return LeseVerbesserungenDatenbank.Bewertung (VerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern),
+                                                    RasseExtern        => RasseExtern);
       
    end WegBewertung;
    
@@ -415,9 +418,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Nahrung);
+      return LeseVerbesserungenDatenbank.Wirtschaft (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                     RasseExtern        => RasseExtern,
+                                                     WelcherWertExtern  => KartenKonstanten.WirtschaftNahrung);
       
    end VerbesserungNahrung;
    
@@ -429,9 +432,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Produktion);
+      return LeseVerbesserungenDatenbank.Wirtschaft (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                     RasseExtern        => RasseExtern,
+                                                     WelcherWertExtern  => KartenKonstanten.WirtschaftProduktion);
       
    end VerbesserungProduktion;
    
@@ -443,9 +446,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Geld);
+      return LeseVerbesserungenDatenbank.Wirtschaft (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                     RasseExtern        => RasseExtern,
+                                                     WelcherWertExtern  => KartenKonstanten.WirtschaftGeld);
       
    end VerbesserungGeld;
    
@@ -457,9 +460,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Wissen);
+      return LeseVerbesserungenDatenbank.Wirtschaft (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                     RasseExtern        => RasseExtern,
+                                                     WelcherWertExtern  => KartenKonstanten.WirtschaftForschung);
       
    end VerbesserungWissen;
    
@@ -471,9 +474,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                                                               RasseExtern        => RasseExtern,
-                                                                                               WelcherWertExtern  => KartenDatentypen.Verteidigung));
+      return LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                RasseExtern        => RasseExtern,
+                                                WelcherWertExtern  => KartenKonstanten.KampfVerteidigung);
       
    end VerbesserungVerteidigung;
    
@@ -485,9 +488,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                                                               RasseExtern        => RasseExtern,
-                                                                                               WelcherWertExtern  => KartenDatentypen.Angriff));
+      return LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                RasseExtern        => RasseExtern,
+                                                WelcherWertExtern  => KartenKonstanten.KampfAngriff);
       
    end VerbesserungAngriff;
    
@@ -496,12 +499,11 @@ package body KartenAllgemein is
    function VerbesserungBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return KartenDatentypen.BewertungFeld
    is begin
       
-      return LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
-                                                            RasseExtern        => RasseExtern,
-                                                            WelcherWertExtern  => KartenDatentypen.Wertigkeit);
+      return LeseVerbesserungenDatenbank.Bewertung (VerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern),
+                                                    RasseExtern        => RasseExtern);
       
    end VerbesserungBewertung;
    
@@ -513,9 +515,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Nahrung);
+      return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                             RasseExtern         => RasseExtern,
+                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung);
       
    end RessourceNahrung;
    
@@ -527,9 +529,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Produktion);
+      return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                             RasseExtern         => RasseExtern,
+                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion);
       
    end RessourceProduktion;
    
@@ -541,9 +543,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Geld);
+      return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                             RasseExtern         => RasseExtern,
+                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld);
       
    end RessourceGeld;
    
@@ -555,9 +557,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Wissen);
+      return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                             RasseExtern         => RasseExtern,
+                                             WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung);
       
    end RessourceWissen;
    
@@ -569,9 +571,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                                                               RasseExtern       => RasseExtern,
-                                                                               WelcherWertExtern => KartenDatentypen.Verteidigung));
+      return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                        RasseExtern    => RasseExtern,
+                                        KampfArtExtern => KartenKonstanten.KampfVerteidigung);
       
    end RessourceVerteidigung;
    
@@ -583,9 +585,9 @@ package body KartenAllgemein is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitStadtDatentypen.Kampfwerte (LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                                                               RasseExtern       => RasseExtern,
-                                                                               WelcherWertExtern => KartenDatentypen.Angriff));
+      return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                        RasseExtern    => RasseExtern,
+                                        KampfArtExtern => KartenKonstanten.KampfAngriff);
       
    end RessourceAngriff;
    
@@ -594,12 +596,11 @@ package body KartenAllgemein is
    function RessourceBewertung
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return KartenDatentypen.BewertungFeld
    is begin
       
-      return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Ressource (PositionExtern => PositionExtern),
-                                            RasseExtern       => RasseExtern,
-                                            WelcherWertExtern => KartenDatentypen.Wertigkeit);
+      return LeseKartenDatenbank.Bewertung (GrundExtern => LeseKarten.Ressource (PositionExtern => PositionExtern),
+                                            RasseExtern => RasseExtern);
       
    end RessourceBewertung;
    
