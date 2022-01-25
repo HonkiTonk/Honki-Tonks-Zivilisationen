@@ -23,6 +23,7 @@ package body EinlesenEinstellungen is
 
          when False =>
             EinstellungenSFML.StandardGrafikEinstellungenLaden;
+            -- Muss das schreiben hier sein? Könnte auch weggelassen werden, bis der Nutzer eigene Einstellungen vornimmt.
             SchreibenEinstellungen.SchreibenEinstellungen;
             return;
       end case;
@@ -32,6 +33,10 @@ package body EinlesenEinstellungen is
       
       SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                         EinstellungenSFML.FensterEinstellungen);
+      SystemRecords.SchriftfarbenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+                                              EinstellungenSFML.Schriftfarben);
+      EinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                EinstellungenSFML.RassenFarben);
 
       Close (File => DateiEinstellungenEinlesen);
       

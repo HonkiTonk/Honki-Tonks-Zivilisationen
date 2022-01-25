@@ -10,15 +10,6 @@ package body InteraktionGrafiktask is
    end ErzeugeFensterÄndern;
    
    
-   
-   procedure FensterVerändertÄndern
-   is begin
-      
-      FensterVerändert := not FensterVerändert;
-      
-   end FensterVerändertÄndern;
-   
-   
       
    procedure EingabeÄndern
      (EingabeExtern : in SystemDatentypen.Welche_Eingabe_Enum)
@@ -47,16 +38,6 @@ package body InteraktionGrafiktask is
       return ErzeugeFenster;
       
    end ErzeugeFensterAbrufen;
-   
-   
-      
-   function FensterVerändertAbrufen
-     return Boolean
-   is begin
-      
-      return FensterVerändert;
-      
-   end FensterVerändertAbrufen;
    
    
    

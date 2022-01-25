@@ -27,7 +27,7 @@ package body ImSpiel is
    is begin
       
       -- Muss hier einmal auf True gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechnet werden vom Grafiktask.
-      InteraktionGrafiktask.FensterVerändertÄndern;
+      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert;
       
       SpielSchleife:
       loop

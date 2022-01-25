@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Color;
+with Sf.Window.VideoMode;
 
 with GlobaleVariablen;
 with SystemDatentypen;
@@ -23,12 +24,8 @@ package body StartEndeSFML is
             Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
             
          when SystemDatentypen.Grafik_SFML =>
-            EinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenSFML.FensterEinstellungen.FensterBreite,
-                                                                                                 EinstellungenSFML.FensterEinstellungen.FensterHöhe,
-                                                                                                 EinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                       title => Name);
-            EinstellungenSFML.AktuelleFensterAuflösung.x := EinstellungenSFML.FensterEinstellungen.FensterBreite;
-            EinstellungenSFML.AktuelleFensterAuflösung.y := EinstellungenSFML.FensterEinstellungen.FensterHöhe;
+            FensterErzeugenErweitert;
+            
       end case;
 
       if
@@ -38,11 +35,44 @@ package body StartEndeSFML is
 
       else
          AllgemeinSFML.MauszeigerFestlegen;
-         AllgemeinSFML.BildrateÄndern (NeueBildrateExtern => EinstellungenSFML.FensterEinstellungen.Bildrate);
+         AllgemeinSFML.BildrateÄndern;
          AllgemeinSFML.SchriftartFestlegen;
       end if;
       
    end FensterErzeugen;
+   
+   
+   
+   procedure FensterErzeugenErweitert
+   is begin
+      
+      case
+        EinstellungenSFML.FensterEinstellungen.FensterVollbild
+      is
+         when 7 =>
+            EinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenSFML.FensterEinstellungen.FensterBreite,
+                                                                                                 EinstellungenSFML.FensterEinstellungen.FensterHöhe,
+                                                                                                 EinstellungenSFML.FensterEinstellungen.Farbtiefe),
+                                                                                       title => Name,
+                                                                                       style => EinstellungenSFML.FensterEinstellungen.FensterVollbild);
+      
+            EinstellungenSFML.AktuelleFensterAuflösung.x := EinstellungenSFML.FensterEinstellungen.FensterBreite;
+            EinstellungenSFML.AktuelleFensterAuflösung.y := EinstellungenSFML.FensterEinstellungen.FensterHöhe;
+            
+         when 8 =>
+            EinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Window.VideoMode.getDesktopMode.width;
+            EinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Window.VideoMode.getDesktopMode.height;
+            EinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenSFML.AktuelleFensterAuflösung.x,
+                                                                                                 EinstellungenSFML.AktuelleFensterAuflösung.y,
+                                                                                                 EinstellungenSFML.FensterEinstellungen.Farbtiefe),
+                                                                                       title => Name,
+                                                                                       style => EinstellungenSFML.FensterEinstellungen.FensterVollbild);
+            
+         when others =>
+            Fehler.GrafikStopp (FehlermeldungExtern => "StartEndeSFML.FensterErzeugenErweitert - Unbekannter Fenstermodus ausgewählt.");
+      end case;
+            
+   end FensterErzeugenErweitert;
    
    
    

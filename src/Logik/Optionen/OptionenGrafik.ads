@@ -21,6 +21,7 @@ private
 
    procedure AuflösungÄndern;
    procedure BildrateÄndern;
+   procedure VollbildFenster;
    procedure EinstellungenSpeichern;
 
 end OptionenGrafik;

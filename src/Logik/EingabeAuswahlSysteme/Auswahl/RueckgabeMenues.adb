@@ -682,7 +682,7 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Farbtiefe_Ändern;
+         return SystemDatentypen.Vollbild_Fenster;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2

@@ -35,17 +35,24 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.98 => 0.00.98 (26.01.2022):
+   -- Version 0.00.9810 => 0.00.98 (26.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9790 => 0.00.98 (25.01.2022):
+   -- Version 0.00.9790 => 0.00.9810 (25.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Farben für die einzelnen Rassen festgelegt.
+   -- Diverse Standardwerte für die Grafik werden jetzt bei nicht vorhandenen Nutzerwerten verwendet.
+   -- Schriftarten in einen eigenen Ordner ausgelagert damit sie nicht mehr als Sprache erkannt werden.
+   -- Die Grafikoptionen sollten jetzt korrekt die Werte ändern und speichern können.
+   -- Vollbildmodus eingebaut.
+   -- Grafikoption eingebaut um zwischen Vollbild und Fenstermodus hin und her zu wechseln.
+   -- Musik und Sound für später in zwei eigene Tasks aufgeteilt.
+   -- Grundlagen für das Einbauen von Musik und Sound eingebaut.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
       

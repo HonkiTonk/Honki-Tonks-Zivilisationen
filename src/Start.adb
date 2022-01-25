@@ -5,12 +5,13 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with StartLogik;
 with StartGrafik;
+with StartMusik;
 with StartSound;
 
 procedure Start
 is
 
-   type Tasks_Enum is (Task_Logik, Task_Grafik, Task_Sound);
+   type Tasks_Enum is (Task_Logik, Task_Grafik, Task_Musik, Task_Sound);
 
    type TasksLaufenArray is array (Tasks_Enum'Range) of Boolean;
    TasksLaufen : TasksLaufenArray;
@@ -20,6 +21,7 @@ is
 
    task Logik;
    task Grafik;
+   task Musik;
    task Sound;
 
    task body Logik
@@ -48,6 +50,19 @@ is
 
 
 
+   task body Musik
+   is begin
+
+      TaskID (Task_Musik) := Current_Task;
+
+      TasksLaufen (Task_Musik) := True;
+      StartMusik.StartMusik;
+      TasksLaufen (Task_Musik) := False;
+
+   end Musik;
+
+
+
    task body Sound
    is begin
 
@@ -69,6 +84,8 @@ begin
         and
           TasksLaufen (Task_Grafik) = True
         and
+          TasksLaufen (Task_Musik) = True
+        and
           TasksLaufen (Task_Sound) = True
       then
          exit TaskIDsBelegenLassenSchleife;
@@ -89,6 +106,8 @@ begin
         and
           TasksLaufen (Task_Grafik) = False
         and
+          TasksLaufen (Task_Musik) = False
+        and
           TasksLaufen (Task_Sound) = False
       then
          exit SpielLäuftSchleife;
@@ -99,6 +118,7 @@ begin
           TasksLaufen (Task_Logik) = True
       then
          Abort_Task (T => TaskID (Task_Grafik));
+         Abort_Task (T => TaskID (Task_Musik));
          Abort_Task (T => TaskID (Task_Sound));
          Put_Line (Item => "Logiktask wurde abgebrochen.");
          exit SpielLäuftSchleife;
@@ -109,8 +129,20 @@ begin
           TasksLaufen (Task_Grafik) = True
       then
          Abort_Task (T => TaskID (Task_Logik));
+         Abort_Task (T => TaskID (Task_Musik));
          Abort_Task (T => TaskID (Task_Sound));
          Put_Line (Item => "Grafiktask wurde abgebrochen.");
+         exit SpielLäuftSchleife;
+
+      elsif
+        Is_Terminated (T => TaskID (Task_Musik)) = True
+        and
+          TasksLaufen (Task_Musik) = True
+      then
+         Abort_Task (T => TaskID (Task_Logik));
+         Abort_Task (T => TaskID (Task_Grafik));
+         Abort_Task (T => TaskID (Task_Sound));
+         Put_Line (Item => "Musiktask wurde abgebrochen.");
          exit SpielLäuftSchleife;
 
       elsif
@@ -120,6 +152,7 @@ begin
       then
          Abort_Task (T => TaskID (Task_Logik));
          Abort_Task (T => TaskID (Task_Grafik));
+         Abort_Task (T => TaskID (Task_Musik));
          Put_Line (Item => "Soundtask wurde abgebrochen.");
          exit SpielLäuftSchleife;
 

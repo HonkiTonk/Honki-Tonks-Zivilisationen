@@ -24,6 +24,7 @@ with InformationenEinheitenSFML;
 package body KarteInformationenSFML is
 
    -- Den gesamten Text auf einem eigenen View schreiben und dann anzeigen. Damit sollte dann die Skalierung des Textes einfach? funktionieren.
+   -- Das dann überall so machen und die Views in einer Datei schreiben um sie von der Grafik jederzeit in beliebiger Mischung anzeigen zu können?
    procedure KarteInformationenSFML
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -32,6 +33,11 @@ package body KarteInformationenSFML is
                                               FontAccessExtern   => EinstellungenSFML.SchriftartAccess,
                                               SchriftgrößeExtern => EinstellungenSFML.FensterEinstellungen.Schriftgröße,
                                               FarbeExtern        => EinstellungenSFML.Schriftfarben.FarbeStandardText);
+      
+      -- Sf.Graphics.View.setSize (view => InformationenViewAcces,
+      --                          size => (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (EinstellungenSFML.AktuelleFensterAuflösung.y)));
+      -- Sf.Graphics.RenderWindow.setView (renderWindow => EinstellungenSFML.FensterAccess,
+      --                                  view         => InformationenViewAcces);
       
       FensterInformationen := (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (EinstellungenSFML.AktuelleFensterAuflösung.y));
       
@@ -62,7 +68,10 @@ package body KarteInformationenSFML is
             null;
       end case;
 
-      CheatInformationen;
+      DebugInformationen;
+      
+      Sf.Graphics.RenderWindow.setView (renderWindow => EinstellungenSFML.FensterAccess,
+                                        view         => Sf.Graphics.RenderWindow.getDefaultView (renderWindow => EinstellungenSFML.FensterAccess));
       
    end KarteInformationenSFML;
    
@@ -307,11 +316,11 @@ package body KarteInformationenSFML is
    
    
    
-   procedure CheatInformationen
+   procedure DebugInformationen
    is begin
       
       null;
       
-   end CheatInformationen;
+   end DebugInformationen;
 
 end KarteInformationenSFML;

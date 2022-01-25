@@ -27,6 +27,8 @@ package body EinlesenSprache is
            Simple_Name (Directory_Entry => Verzeichnis) = "."
            or
              Simple_Name (Directory_Entry => Verzeichnis) = ".."
+           or
+             Simple_Name (Directory_Entry => Verzeichnis) = "Schriftart"
          then
             null;
                   

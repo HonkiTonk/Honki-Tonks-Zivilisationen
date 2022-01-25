@@ -31,6 +31,10 @@ package body SchreibenEinstellungen is
       
       SystemRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                          EinstellungenSFML.FensterEinstellungen);
+      SystemRecords.SchriftfarbenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
+                                               EinstellungenSFML.Schriftfarben);
+      EinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
+                                                 EinstellungenSFML.RassenFarben);
       
       Close (File => DateiEinstellungenSchreiben);
       

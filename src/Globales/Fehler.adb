@@ -46,6 +46,26 @@ package body Fehler is
    
    
    
+   procedure MusikStopp
+     (FehlermeldungExtern : in Wide_Wide_String)
+   is begin
+      
+      if
+        FehlermeldungExtern = SystemKonstanten.LeerString
+      then
+         null;
+         
+      else
+         Put_Line ("Fehler.MusikStopp:");
+         Put_Line (FehlermeldungExtern);
+      end if;
+      
+      raise MusikFehler;
+      
+   end MusikStopp;
+         
+   
+      
    procedure SoundStopp
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin

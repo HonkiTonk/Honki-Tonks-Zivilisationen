@@ -35,6 +35,7 @@ package SystemKonstanten is
    -- Wartezeiten
    WartezeitLogik : constant Duration := 0.20;
    WartezeitGrafik : constant Duration := 0.0002;
+   WartezeitMusik : constant Duration := 0.20;
    WartezeitSound : constant Duration := 0.20;
 
    WartezeitMinimal : constant Duration := 0.000000002;

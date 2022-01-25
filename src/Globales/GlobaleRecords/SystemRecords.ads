@@ -5,6 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf;
 with Sf.Window;
 with Sf.Window.Cursor;
+with Sf.Window.Window;
 with Sf.Graphics.Color;
 
 package SystemRecords is
@@ -21,6 +22,8 @@ package SystemRecords is
    
    type FensterRecord is record
       
+      FensterVollbild : Sf.Window.Window.sfWindowStyle;
+      -- Auflösung für Fenstermodus und eine für Vollbildmodus erstellen? Oder für beide nur eine benutzen?
       FensterBreite : Sf.sfUint32;
       FensterHöhe : Sf.sfUint32;
       Farbtiefe : Sf.sfUint32;
@@ -30,6 +33,19 @@ package SystemRecords is
       Schriftgröße : Sf.sfUint32;
       Textfarbe : Sf.Graphics.Color.sfColor;
       Textstyle : Sf.sfUint32;
+      
+   end record;
+   
+   
+   
+   type SchriftfarbenRecord is record
+      
+      FarbeÜberschrift : Sf.Graphics.Color.sfColor;
+      FarbeStandardText : Sf.Graphics.Color.sfColor;
+      FarbeAusgewähltText : Sf.Graphics.Color.sfColor;
+      FarbeMenschText : Sf.Graphics.Color.sfColor;
+      FarbeKIText : Sf.Graphics.Color.sfColor;
+      FarbeSonstigerText : Sf.Graphics.Color.sfColor;
       
    end record;
    

@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with SystemDatentypen;
 
 package InteraktionLogiktask is
+   
+   EinlesenAbgeschlossen : Boolean := False;
 
    procedure FensterErzeugtÄndern;
    

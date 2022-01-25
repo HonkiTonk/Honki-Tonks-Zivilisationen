@@ -1,13 +1,13 @@
 Graphics menu
 Change resolution
-Change color depth
+Fullscreen
 Change frame rate
 Save
 Return
 Main menu
 Exit game
 Change the resolution of the game. The new resolution must be at least 1x1.
-Change the color depth. Not built in yet.
+Toggle between window and fullscreen mode.
 Set the maximum frame rate. 0 removes any limit.
 Save settings permanently.
 Back to the options menu.

@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Sf; use Sf;
-
 with SystemKonstanten;
+with TextKonstanten;
 
+with InteraktionGrafiktask; use InteraktionGrafiktask;
 with AuswahlMenue;
 with Eingabe;
 with EinstellungenSFML;
@@ -27,8 +27,9 @@ package body OptionenGrafik is
             when SystemDatentypen.Auflösung_Ändern =>
                AuflösungÄndern;
             
-            when SystemDatentypen.Farbtiefe_Ändern =>
-               null;
+               -- Brauche ich diese Option überhaupt?
+            when SystemDatentypen.Vollbild_Fenster =>
+               VollbildFenster;
                
             when SystemDatentypen.Bildrate_Ändern =>
                BildrateÄndern;
@@ -55,7 +56,7 @@ package body OptionenGrafik is
    procedure AuflösungÄndern
    is begin
       
-      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => 32,
+      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageAuflösungsbreite,
                                               ZahlenMinimumExtern => 320,
                                               ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
       
@@ -68,7 +69,7 @@ package body OptionenGrafik is
          return;
       end if;
       
-      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => 33,
+      EingabeAuflösung := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageAuflösungshöhe,
                                               ZahlenMinimumExtern => 240,
                                               ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
       
@@ -84,8 +85,16 @@ package body OptionenGrafik is
       
       EinstellungenSFML.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
       EinstellungenSFML.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
-      EinstellungenSFML.AktuelleFensterAuflösung := NeueAuflösung;
       
+      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Auflösung_Verändert;
+      
+      ErzeugungNeuesFensterAbwartenSchleife:
+      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Auflösung_Verändert loop
+         
+         delay 0.002;
+         
+      end loop ErzeugungNeuesFensterAbwartenSchleife;
+            
    end AuflösungÄndern;
    
    
@@ -93,47 +102,64 @@ package body OptionenGrafik is
    procedure BildrateÄndern
    is begin
       
-      EingabeBildrate := Eingabe.GanzeZahl (ZeileExtern         => 34,
+      EingabeBildrate := Eingabe.GanzeZahl (ZeileExtern         => TextKonstanten.FrageBildrate,
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => SystemDatentypen.Grenzen'Last);
       
       if
         EingabeBildrate.EingabeAbbruch
       then
-         null;
-         -- GrafikAllgemein.BildrateÄndern (NeueBildrateExtern => Sf.sfUint32 (EingabeBildrate.EingegebeneZahl));
+         return;
          
       else
          null;
       end if;
+      
+      EinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
+      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Bildrate_Ändern;
+      
+      NeueBildrateAbwartenSchleife:
+      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Bildrate_Ändern loop
+         
+         delay 0.002;
+         
+      end loop NeueBildrateAbwartenSchleife;
       
    end BildrateÄndern;
    
    
    
-   procedure EinstellungenSpeichern
+   procedure VollbildFenster
    is begin
       
-      -- Das hier noch einmal überarbeiten, funktioniert nicht richtig mit dem neuen System.
-      if
-        EingabeBildrate.EingabeAbbruch
-      then
-         EinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
-         
-      else
-         null;
-      end if;
+      case
+        EinstellungenSFML.FensterEinstellungen.FensterVollbild
+      is
+         when 7 =>
+            EinstellungenSFML.FensterEinstellungen.FensterVollbild := 8;
+            
+         when 8 =>
+            EinstellungenSFML.FensterEinstellungen.FensterVollbild := 7;
+            
+         when others =>
+            Fehler.LogikStopp (FehlermeldungExtern => "OptionenGrafik.VollbildFenster - Unbekannter Fenstermodus ausgewählt.");
+      end case;
       
-      if
-        NeueAuflösung.x > 0
-        and
-          NeueAuflösung.y > 0
-      then
-         EinstellungenSFML.AktuelleFensterAuflösung := NeueAuflösung;
+      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Modus_Verändert;
+      
+      ErzeugungNeuesFensterAbwartenSchleife:
+      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Modus_Verändert loop
          
-      else
-         null;
-      end if;
+         delay 0.002;
+         
+      end loop ErzeugungNeuesFensterAbwartenSchleife;
+      
+   end VollbildFenster;
+   
+   
+   
+   procedure EinstellungenSpeichern
+   is begin
       
       SchreibenEinstellungen.SchreibenEinstellungen;
       

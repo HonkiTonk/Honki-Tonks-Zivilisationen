@@ -41,7 +41,7 @@ package body EingabeSystemeSFML is
                   Fehler.GrafikStopp (FehlermeldungExtern => "");
                   
                when Sf.Window.Event.sfEvtResized =>
-                  InteraktionGrafiktask.FensterVerändertÄndern;
+                  InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert;
                   
                when Sf.Window.Event.sfEvtMouseMoved =>
                   -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.

@@ -1,14 +1,17 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen; use SystemDatentypen;
+with SystemDatentypen;
 with SystemKonstanten;
 with GlobaleVariablen;
 
+with SoundSFML;
+with InteraktionLogiktask;
+with SoundKonsole;
+with Fehler;
 with InteraktionSoundtask;
 
 package body StartSound is
 
-   -- Später eine Unterteilung für Musik und Sound machen wie bei Grafik mit Bilddarstellung und Eingabeanzeige?
    procedure StartSound
    is begin
       
@@ -22,12 +25,25 @@ package body StartSound is
             null;
       end case;
       
-      SoundSchleife:
-      while InteraktionSoundtask.AktuelleMusikAbfragen = SystemDatentypen.Musik_SFML loop
+      EinlesenAbwartenSchleife:
+      while InteraktionLogiktask.EinlesenAbgeschlossen = False loop
          
          delay SystemKonstanten.WartezeitSound;
          
-      end loop SoundSchleife;
+      end loop EinlesenAbwartenSchleife;
+      
+      case
+        InteraktionSoundtask.AktuellenSoundAbfragen
+      is
+         when SystemDatentypen.Sound_SFML =>
+            SoundSFML.SoundSFML;
+            
+         when SystemDatentypen.Sound_Konsole =>
+            SoundKonsole.SoundKonsole;
+            
+         when others =>
+            Fehler.MusikStopp (FehlermeldungExtern => "StartSound.StartSound - Ungültige Soundwiedergabeart.");
+      end case;
       
    end StartSound;
 

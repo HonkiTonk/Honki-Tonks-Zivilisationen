@@ -32,14 +32,25 @@ package body GrafikSFML is
       loop
          
          case
-           InteraktionGrafiktask.FensterVerändertAbrufen
+           InteraktionGrafiktask.FensterVerändert
          is
-            when True =>
+            when InteraktionGrafiktask.Fenster_Verändert_Enum'Range =>
                AllgemeinSFML.FensterAnpassen;
                Sichtweiten.SichtweiteBewegungsfeldFestlegen;
-               InteraktionGrafiktask.FensterVerändertÄndern;
+               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung;
                
-            when False =>
+            when InteraktionGrafiktask.Fenster_Unverändert_Enum'Range =>
+               null;
+         end case;
+         
+         case
+           InteraktionGrafiktask.FensterVerändert
+         is
+            when InteraktionGrafiktask.Bildrate_Ändern =>
+               AllgemeinSFML.BildrateÄndern;
+               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung;
+               
+            when others =>
                null;
          end case;
          
@@ -71,7 +82,7 @@ package body GrafikSFML is
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
          when SystemDatentypen.Grafik_Konsole =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Konsole wird bei SFML aufgerufen.");
+            Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Konsole wird bei SFML aufgerufen.");
             
          when SystemDatentypen.Grafik_SFML =>
             InteraktionLogiktask.FensterErzeugtÄndern;
@@ -121,7 +132,7 @@ package body GrafikSFML is
               InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
-               Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Forschungsmenü wird ohne Rasse aufgerufen.");
+               Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Forschungsmenü wird ohne Rasse aufgerufen.");
                      
             else
                ForschungAnzeigeSFML.ForschungAnzeige;
@@ -132,7 +143,7 @@ package body GrafikSFML is
               InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
-               Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.GrafikSFML - Baumenü wird ohne Rasse aufgerufen.");
+               Fehler.GrafikStopp (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Baumenü wird ohne Rasse aufgerufen.");
                      
             else
                BauAuswahlAnzeigeSFML.BauAuswahlAnzeige;

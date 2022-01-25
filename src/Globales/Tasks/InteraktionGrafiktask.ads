@@ -3,9 +3,13 @@ pragma SPARK_Mode (On);
 with SystemDatentypen;
 
 package InteraktionGrafiktask is
+      
+   type Fenster_Ändern_Enum is (Keine_Änderung, Bildrate_Ändern, Fenster_Verändert, Auflösung_Verändert, Modus_Verändert);
+   subtype Fenster_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert .. Modus_Verändert;
+   subtype Fenster_Unverändert_Enum is Fenster_Ändern_Enum range Keine_Änderung .. Bildrate_Ändern;
+   FensterVerändert : Fenster_Ändern_Enum;
     
    procedure ErzeugeFensterÄndern;
-   procedure FensterVerändertÄndern;
    
    procedure EingabeÄndern
      (EingabeExtern : in SystemDatentypen.Welche_Eingabe_Enum);
@@ -18,9 +22,6 @@ package InteraktionGrafiktask is
    function ErzeugeFensterAbrufen
      return Boolean;
    
-   function FensterVerändertAbrufen
-     return Boolean;
-   
    function EingabeAbrufen
      return SystemDatentypen.Welche_Eingabe_Enum;
    
@@ -30,7 +31,6 @@ package InteraktionGrafiktask is
 private
 
    ErzeugeFenster : Boolean := False;
-   FensterVerändert : Boolean := False;
    
    Eingabe : SystemDatentypen.Welche_Eingabe_Enum := SystemDatentypen.Keine_Eingabe;
    

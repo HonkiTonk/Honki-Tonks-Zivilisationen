@@ -7,7 +7,7 @@ package SystemDatentypen is
                                  Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, Spielmenü,
                                  
                                  -- Grafikmenü
-                                 Auflösung_Ändern, Farbtiefe_Ändern, Bildrate_Ändern, Schriftgröße,
+                                 Auflösung_Ändern, Vollbild_Fenster, Bildrate_Ändern, Schriftgröße,
                                  
                                  -- Soundmenü
                                  
@@ -67,9 +67,15 @@ package SystemDatentypen is
    subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Konsole .. Grafik_SFML;
    subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren .. Grafik_Editoren;
    
-   type Musik_Aktuelle_Auswahl_Enum is (Musik_Konsole, Musik_SFML,
+   type Musik_Aktuelle_Auswahl_Enum is (Musik_SFML,
                                        
                                         Musik_Ende);
+   
+   -- Sound in der Konsole drin lassen? Piepsound kann sie ja theoretisch? Als zukünftiges Feature?
+   -- Wahrscheinlich einfach nur sinnlos und wird niemals eingebaut werden.
+   type Sound_Aktuelle_Auswahl_Enum is (Sound_Konsole, Sound_SFML,
+                                        
+                                        Sound_Ende);
    
    type Welche_Eingabe_Enum is (Keine_Eingabe, Zahlen_Eingabe, Text_Eingabe, Einheit_Auswahl);
    -- Wichtige Werte

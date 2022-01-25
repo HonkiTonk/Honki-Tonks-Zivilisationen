@@ -31,6 +31,7 @@ package body StartLogik is
       
       Einlesen.EinlesenMitAnzeige;
       
+      InteraktionLogiktask.EinlesenAbgeschlossen := True;
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Intro);
       
       IntroSchleife:

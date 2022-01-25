@@ -8,10 +8,7 @@ with Sf.Graphics.View;
 package AllgemeinSFML is
 
    procedure FensterAnpassen;
-
-   procedure BildrateÄndern
-     (NeueBildrateExtern : in Sf.sfUint32);
-
+   procedure BildrateÄndern;
    procedure SchriftartFestlegen;
    procedure MauszeigerFestlegen;
 

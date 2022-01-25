@@ -6,6 +6,8 @@ with Sf.System.Vector2;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 with Sf.Graphics.RectangleShape;
+with Sf.Graphics.Rect;
+with Sf.Graphics.View;
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
@@ -44,6 +46,10 @@ private
 
    RechteckAcces : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
 
+   InformationenViewGröße : Sf.Graphics.Rect.sfFloatRect;
+
+   InformationenViewAcces : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.createFromRect (rectangle => InformationenViewGröße);
+
    procedure WichtigesInformationen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
@@ -56,7 +62,7 @@ private
    procedure AllgemeineInformationen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
-   procedure CheatInformationen;
+   procedure DebugInformationen;
 
 
 

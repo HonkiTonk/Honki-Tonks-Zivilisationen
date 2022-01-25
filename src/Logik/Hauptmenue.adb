@@ -15,6 +15,7 @@ with Fehler;
 with InteraktionSoundtask;
 with InteraktionGrafiktask;
 with DatenbankenEditoren;
+with InteraktionMusiktask;
 
 package body Hauptmenue is
 
@@ -103,7 +104,8 @@ package body Hauptmenue is
       end loop HauptmenüSchleife;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Ende);
-      InteraktionSoundtask.AktuelleMusikÄndern (MusikExtern => SystemDatentypen.Musik_Ende);
+      InteraktionMusiktask.AktuelleMusik := SystemDatentypen.Musik_Ende;
+      InteraktionSoundtask.AktuellenSoundÄndern (SoundExtern => SystemDatentypen.Sound_Ende);
       
    end Hauptmenü;
 
