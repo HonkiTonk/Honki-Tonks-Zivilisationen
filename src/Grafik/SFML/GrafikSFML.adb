@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+-- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
@@ -13,13 +15,15 @@ with Karte;
 with InteraktionGrafiktask;
 with KarteStadt;
 with InDerStadt;
-with AllgemeinSFML;
+with GrafikAllgemeinSFML;
 with Sichtweiten;
 with ForschungAnzeigeSFML;
 with AnzeigeSprachauswahlSFML;
 with AnzeigeEingabeSFML;
 with BauAuswahlAnzeigeSFML;
 with InteraktionLogiktask;
+with EingabeSystemeSFML;
+-- with GrafikEinstellungenSFML;
 
 package body GrafikSFML is
    
@@ -35,7 +39,7 @@ package body GrafikSFML is
            InteraktionGrafiktask.FensterVerändert
          is
             when InteraktionGrafiktask.Fenster_Verändert_Enum'Range =>
-               AllgemeinSFML.FensterAnpassen;
+               GrafikAllgemeinSFML.FensterAnpassen;
                Sichtweiten.SichtweiteBewegungsfeldFestlegen;
                InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung;
                
@@ -47,7 +51,7 @@ package body GrafikSFML is
            InteraktionGrafiktask.FensterVerändert
          is
             when InteraktionGrafiktask.Bildrate_Ändern =>
-               AllgemeinSFML.BildrateÄndern;
+               GrafikAllgemeinSFML.BildrateÄndern;
                InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung;
                
             when others =>
@@ -55,6 +59,27 @@ package body GrafikSFML is
          end case;
          
          StartEndeSFML.FensterLeeren;
+         
+         case
+           InteraktionGrafiktask.TastenEingabe
+         is
+            when True =>
+               EingabeSystemeSFML.TastenEingabe;
+               InteraktionGrafiktask.TastenEingabe := False;
+               
+            when False =>
+               null;
+         end case;
+         
+         case
+           InteraktionGrafiktask.TextEingabe
+         is
+            when True =>
+               EingabeSystemeSFML.TextEingeben;
+               
+            when False =>
+               null;
+         end case;
          
          case
            AnzeigeAuswahl

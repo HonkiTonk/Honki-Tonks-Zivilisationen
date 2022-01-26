@@ -14,7 +14,7 @@ with TextAnzeigeKonsole;
 with EinheitenBeschreibungen;
 with StadtInformationenKonsole;
 with KampfwerteEinheitErmitteln;
-with Cheat;
+with DebugPlatzhalter;
 
 package body InformationenEinheitenKonsole is
 
@@ -30,7 +30,7 @@ package body InformationenEinheitenKonsole is
       if
         RasseExtern = EinheitRasseNummerExtern.Rasse
         or
-          Cheat.FeindlicheInformationenSehen
+          DebugPlatzhalter.FeindlicheInformationenSehen
       then
          Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
          Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummer);
@@ -49,7 +49,7 @@ package body InformationenEinheitenKonsole is
       end if;
                         
       New_Line;
-      Gecheatet (EinheitRasseNummerExtern => EinheitRasseNummer);
+      DebugInformationen (EinheitRasseNummerExtern => EinheitRasseNummer);
       
    end Einheiten;
    
@@ -407,20 +407,20 @@ package body InformationenEinheitenKonsole is
    
    
    
-   procedure Gecheatet
+   procedure DebugInformationen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
       case
-        Cheat.FeindlicheInformationenSehen
+        DebugPlatzhalter.FeindlicheInformationenSehen
       is
          when False =>
             null;
             
          when True =>
-            Cheat.KarteInfosEinheiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);                     
+            DebugPlatzhalter.KarteInfosEinheiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);                     
       end case;
       
-   end Gecheatet;
+   end DebugInformationen;
 
 end InformationenEinheitenKonsole;

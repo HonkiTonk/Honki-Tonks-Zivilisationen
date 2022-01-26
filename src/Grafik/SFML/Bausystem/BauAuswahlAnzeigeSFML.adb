@@ -11,7 +11,7 @@ with GlobaleTexte;
 with TextKonstanten;
 
 with TextAllgemeinSFML;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with ObjekteZeichnenSFML;
 with AllgemeineTextBerechnungenSFML;
 with Fehler;
@@ -21,17 +21,17 @@ package body BauAuswahlAnzeigeSFML is
    procedure BauAuswahlAnzeige
    is begin
       
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (EinstellungenSFML.AktuelleFensterAuflösung.x), Float (EinstellungenSFML.AktuelleFensterAuflösung.y)),
+      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
                                             PositionExtern       => (0.00, 0.00),
                                             FarbeExtern          => (105, 105, 105, 255),
                                             RechteckAccessExtern => RechteckAccess);
       
-      Zeilenabstand := Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
       TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                              FontAccessExtern   => EinstellungenSFML.SchriftartAccess,
-                                              SchriftgrößeExtern => 2 * EinstellungenSFML.FensterEinstellungen.Schriftgröße,
-                                              FarbeExtern        => EinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+                                              FontAccessExtern   => GrafikEinstellungenSFML.SchriftartAccess,
+                                              SchriftgrößeExtern => 2 * GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße,
+                                              FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       TextPosition := StartPositionText;
       Ende := InDerStadtBauen.Ende;
@@ -41,14 +41,14 @@ package body BauAuswahlAnzeigeSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageBauprojekt)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), StartPositionText.y));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00 * Zeilenabstand;
       AbstandÜberschrift := TextPosition.y;
         
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
+                                         size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
       Bauliste := InDerStadtBauen.Bauliste;
       
       AnzeigeSchleife:
@@ -59,11 +59,11 @@ package body BauAuswahlAnzeigeSFML is
          then
             WeiterenTextAnzeigen (WelcherTextExtern => Bauliste (BaulisteSchleifenwert));
             Sf.Graphics.Text.setColor (text  => TextAccess,
-                                       color => EinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
             
          else
             Sf.Graphics.Text.setColor (text  => TextAccess,
-                                       color => EinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
          end if;
          
          WelcherTextKurz := 2 * Natural (Bauliste (BaulisteSchleifenwert).Nummer) - 1;
@@ -82,7 +82,7 @@ package body BauAuswahlAnzeigeSFML is
          
          Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => TextPosition);
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                             text         => TextAccess);
          
          TextPosition.y := TextPosition.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
@@ -126,10 +126,10 @@ package body BauAuswahlAnzeigeSFML is
       end case;
       
       Sf.Graphics.Text.setColor (text  => TextAccess,
-                                 color => EinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+                                    position => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00, AbstandÜberschrift));
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
    end WeiterenTextAnzeigen;

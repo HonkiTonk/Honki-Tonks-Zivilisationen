@@ -110,7 +110,7 @@ private
                                                                 SystemDatentypen.Stadt_Suchen                   => 'y',
 
                                                                 SystemDatentypen.Runde_Beenden                  => 'r',
-                                                                SystemDatentypen.Cheatmenü                      => 'c'),
+                                                                SystemDatentypen.Debugmenü                      => 'c'),
 
                                                              2 =>
                                                                (
@@ -162,7 +162,7 @@ private
                                                                 SystemDatentypen.Stadt_Suchen                   => NUL,
 
                                                                 SystemDatentypen.Runde_Beenden                  => NUL,
-                                                                SystemDatentypen.Cheatmenü                      => NUL)
+                                                                SystemDatentypen.Debugmenü                      => NUL)
                                                             );
 
    procedure VorzeichenAnpassen

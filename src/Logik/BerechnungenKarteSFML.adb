@@ -4,7 +4,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 
 with Sichtweiten;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with KartePositionPruefen;
 
 package body BerechnungenKarteSFML is
@@ -12,8 +12,8 @@ package body BerechnungenKarteSFML is
    procedure KartenfelderAbmessungBerechnen
    is begin
       
-      FensterKarte := (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * AusschnittKarte, Float (EinstellungenSFML.AktuelleFensterAuflösung.y));
-      FensterAnzeige := (Float (EinstellungenSFML.AktuelleFensterAuflösung.x), Float (EinstellungenSFML.AktuelleFensterAuflösung.y));
+      FensterKarte := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * AusschnittKarte, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
+      FensterAnzeige := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
                   
       KartenfelderAbmessung.x := FensterKarte.x / Float (2 * Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) + 1);
       KartenfelderAbmessung.y := FensterKarte.y / Float (2 * Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => True) + 1);
@@ -25,8 +25,8 @@ package body BerechnungenKarteSFML is
    procedure StadtfelderAbmessungBerechnen
    is begin
       
-      StadtKarte := (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * AusschnittStadtKarte, Float (EinstellungenSFML.AktuelleFensterAuflösung.y));
-      StadtAnzeige := (Float (EinstellungenSFML.AktuelleFensterAuflösung.x), Float (EinstellungenSFML.AktuelleFensterAuflösung.y));
+      StadtKarte := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * AusschnittStadtKarte, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
+      StadtAnzeige := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
       StadtfelderAbmessung.x := StadtKarte.x / Float (KartenDatentypen.Stadtfeld'Last);
       StadtfelderAbmessung.y := StadtKarte.y / Float (KartenDatentypen.Stadtfeld'Last);

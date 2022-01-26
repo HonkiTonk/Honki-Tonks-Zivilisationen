@@ -6,7 +6,7 @@ with GlobaleVariablen;
 with SystemRecords;
 
 with SchreibenEinstellungen;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 
 package body EinlesenEinstellungen is
 
@@ -22,7 +22,7 @@ package body EinlesenEinstellungen is
                   Name => "Einstellungen/Einstellungen");
 
          when False =>
-            EinstellungenSFML.StandardGrafikEinstellungenLaden;
+            GrafikEinstellungenSFML.StandardGrafikEinstellungenLaden;
             -- Muss das schreiben hier sein? Könnte auch weggelassen werden, bis der Nutzer eigene Einstellungen vornimmt.
             SchreibenEinstellungen.SchreibenEinstellungen;
             return;
@@ -32,11 +32,11 @@ package body EinlesenEinstellungen is
                                                     GlobaleVariablen.NutzerEinstellungen);
       
       SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                        EinstellungenSFML.FensterEinstellungen);
+                                        GrafikEinstellungenSFML.FensterEinstellungen);
       SystemRecords.SchriftfarbenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                              EinstellungenSFML.Schriftfarben);
-      EinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                EinstellungenSFML.RassenFarben);
+                                              GrafikEinstellungenSFML.Schriftfarben);
+      GrafikEinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                      GrafikEinstellungenSFML.RassenFarben);
 
       Close (File => DateiEinstellungenEinlesen);
       

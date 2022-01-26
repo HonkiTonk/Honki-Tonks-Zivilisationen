@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with Sf.Graphics.RenderWindow;
 
@@ -18,7 +18,7 @@ with ObjekteZeichnenSFML;
 with Karten;
 with KartePositionPruefen;
 with StadtInformationenSFML;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with Fehler;
 
 package body KarteStadtSFML is
@@ -26,7 +26,7 @@ package body KarteStadtSFML is
    procedure AnzeigeStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
-      
+            
       Stadtumgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       InformationenStadtAufrufen := False;
       YAchsenabstraktion := -Stadtumgebungsgröße;
@@ -269,7 +269,7 @@ package body KarteStadtSFML is
                                                         color => AktuelleFarbe);
             Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
                                                             thickness => 3.00);
-            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenSFML.FensterAccess,
+            Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                          object       => RechteckRahmenAccess);
             
          when False =>
@@ -353,7 +353,7 @@ package body KarteStadtSFML is
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
-      
+            
       if
         YAchseExtern = 1
         and
@@ -379,20 +379,26 @@ package body KarteStadtSFML is
          return;
       end if;
       
+      Put_Line ("T2");
+      Put_Line (StadtRasseNummerExtern.Platznummer'Wide_Wide_Image);
       case
         LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                            WelchesGebäudeExtern  => GebäudeID)
       is
          when True =>
+            Put_Line ("T4");
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
                                                  PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
                                                  AnzahlEckenExtern   => 3,
                                                  FarbeExtern         => Sf.Graphics.Color.sfMagenta,
                                                  PolygonAccessExtern => PolygonAccess);
+            Put_Line ("T5");
             
          when False =>
+            Put_Line ("T3");
             null;
       end case;
+      Put_Line ("T3");
       
    end DarstellungGebäude;
 

@@ -8,6 +8,9 @@ package InteraktionGrafiktask is
    subtype Fenster_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert .. Modus_Verändert;
    subtype Fenster_Unverändert_Enum is Fenster_Ändern_Enum range Keine_Änderung .. Bildrate_Ändern;
    FensterVerändert : Fenster_Ändern_Enum;
+   
+   TastenEingabe : Boolean := False;
+   TextEingabe : Boolean := False;
     
    procedure ErzeugeFensterÄndern;
    

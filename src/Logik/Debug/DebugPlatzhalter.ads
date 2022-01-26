@@ -4,9 +4,9 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 
-package Cheat is
+package DebugPlatzhalter is
    
-   GewonnenDurchCheat : Boolean := False;
+   DebugSieg : Boolean := False;
    FeindlicheInformationenSehen : Boolean := False;
    
    procedure Menü
@@ -51,4 +51,4 @@ private
    
    procedure Krieg;
 
-end Cheat;
+end DebugPlatzhalter;

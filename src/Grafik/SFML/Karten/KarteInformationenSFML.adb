@@ -10,7 +10,7 @@ with TextKonstanten;
 with LeseWichtiges;
 with LeseKarten;
 
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with StadtSuchen;
 with EinheitSuchen;
 with TextAllgemeinSFML;
@@ -30,24 +30,24 @@ package body KarteInformationenSFML is
    is begin
       
       TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                              FontAccessExtern   => EinstellungenSFML.SchriftartAccess,
-                                              SchriftgrößeExtern => EinstellungenSFML.FensterEinstellungen.Schriftgröße,
-                                              FarbeExtern        => EinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                              FontAccessExtern   => GrafikEinstellungenSFML.SchriftartAccess,
+                                              SchriftgrößeExtern => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße,
+                                              FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       
       -- Sf.Graphics.View.setSize (view => InformationenViewAcces,
       --                          size => (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (EinstellungenSFML.AktuelleFensterAuflösung.y)));
       -- Sf.Graphics.RenderWindow.setView (renderWindow => EinstellungenSFML.FensterAccess,
       --                                  view         => InformationenViewAcces);
       
-      FensterInformationen := (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (EinstellungenSFML.AktuelleFensterAuflösung.y));
+      FensterInformationen := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.20, Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
       
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => FensterInformationen,
-                                            PositionExtern       => (Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, 0.00),
+                                            PositionExtern       => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, 0.00),
                                             FarbeExtern          => (105, 105, 105, 255),
                                             RechteckAccessExtern => RechteckAcces);
       
-      PositionText := (StartpunktText.x + Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, StartpunktText.y);
-      Zeilenabstand := Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+      PositionText := (StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, StartpunktText.y);
+      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
       WichtigesInformationen (RasseExtern => RasseExtern);
 
@@ -70,8 +70,8 @@ package body KarteInformationenSFML is
 
       DebugInformationen;
       
-      Sf.Graphics.RenderWindow.setView (renderWindow => EinstellungenSFML.FensterAccess,
-                                        view         => Sf.Graphics.RenderWindow.getDefaultView (renderWindow => EinstellungenSFML.FensterAccess));
+      Sf.Graphics.RenderWindow.setView (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                        view         => Sf.Graphics.RenderWindow.getDefaultView (renderWindow => GrafikEinstellungenSFML.FensterAccess));
       
    end KarteInformationenSFML;
    
@@ -90,7 +90,7 @@ package body KarteInformationenSFML is
                                          & To_Wide_Wide_String (Source => YAchsenWert) & "," & To_Wide_Wide_String (Source => XAchsenWert));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -104,7 +104,7 @@ package body KarteInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuelleRunde)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -117,7 +117,7 @@ package body KarteInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuelleGeldmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -130,7 +130,7 @@ package body KarteInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuellerGeldzuwachs)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -144,7 +144,7 @@ package body KarteInformationenSFML is
 
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -157,7 +157,7 @@ package body KarteInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerbleibendeForschungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -170,7 +170,7 @@ package body KarteInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuelleForschungsmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -183,7 +183,7 @@ package body KarteInformationenSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuellerForschungsgewinn)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -204,7 +204,7 @@ package body KarteInformationenSFML is
       
          Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => PositionText);
-         Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                             text         => TextAccess);
          
          PositionText.x := PositionText.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width + 5.00;
@@ -218,10 +218,10 @@ package body KarteInformationenSFML is
       
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
-      PositionText.x := StartpunktText.x + Float (EinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80;
+      PositionText.x := StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80;
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
       
                   
@@ -230,7 +230,7 @@ package body KarteInformationenSFML is
                                          str  => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -241,7 +241,7 @@ package body KarteInformationenSFML is
                                          str  => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -252,7 +252,7 @@ package body KarteInformationenSFML is
                                          str  => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
@@ -263,7 +263,7 @@ package body KarteInformationenSFML is
                                          str  => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
       PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;

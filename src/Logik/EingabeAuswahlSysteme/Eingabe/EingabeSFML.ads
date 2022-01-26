@@ -118,7 +118,7 @@ private
                                                                 SystemDatentypen.Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyY,
 
                                                                 SystemDatentypen.Runde_Beenden                  => Sf.Window.Keyboard.sfKeyR,
-                                                                SystemDatentypen.Cheatmenü                      => Sf.Window.Keyboard.sfKeyC
+                                                                SystemDatentypen.Debugmenü                      => Sf.Window.Keyboard.sfKeyC
                                                                ),
 
                                                              2 =>
@@ -171,7 +171,7 @@ private
                                                                 SystemDatentypen.Stadt_Suchen                   => Sf.Window.Keyboard.sfKeyUnknown,
 
                                                                 SystemDatentypen.Runde_Beenden                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemDatentypen.Cheatmenü                      => Sf.Window.Keyboard.sfKeyUnknown
+                                                                SystemDatentypen.Debugmenü                      => Sf.Window.Keyboard.sfKeyUnknown
                                                                )
                                                             );
    
@@ -184,6 +184,7 @@ private
      (EingegebeneZahlExtern : in Sf.Window.Keyboard.sfKeyCode);
 
    procedure ZahlEntfernen;
+   procedure EingabeAbwarten;
    
       
    

@@ -28,17 +28,22 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.98 => 0.00.98 (27.01.2022):
+   -- Version 0.00.9830 => 0.00.98 (27.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9810 => 0.00.98 (26.01.2022):
+   -- Version 0.00.9810 => 0.00.9830 (26.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Codeformatierung leicht überarbeitet.
+   -- Changelogvorlagen angelegt.
+   -- Internet Struktur und Benennung überarbeitet.
+   -- Angefangen Chat durch Debug zu ersetzen.
+   -- Endlich einen Weg gefunden die Tasteneingabe vernünftig im Grafiktask aufzurufen.
+   -- Auch die Texteingabe erfolgreich in den Grafiktask verschoben.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
       

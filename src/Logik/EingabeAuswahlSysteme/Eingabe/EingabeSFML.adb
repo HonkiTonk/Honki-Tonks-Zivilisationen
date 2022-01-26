@@ -9,6 +9,7 @@ with Sf;
 
 with GlobaleTexte;
 with TextKonstanten;
+with SystemKonstanten;
 
 with EingabeSystemeSFML;
 with Fehler;
@@ -83,7 +84,9 @@ package body EingabeSFML is
       ZahlenSchleife:
       loop
             
-         EingabeSystemeSFML.TastenEingabe;
+         -- Hier nicht mehr direkt darauf zugreifen.
+         -- EingabeSystemeSFML.TastenEingabe;
+         EingabeAbwarten;
          Zahlen := EingabeSystemeSFML.TastaturTaste;
          
          case
@@ -309,9 +312,21 @@ package body EingabeSFML is
       
       Frage := WelcheFrageExtern;
       
-      EingegebenerName := EingabeSystemeSFML.TextEingeben;
+      EingabeSystemeSFML.EingegebenerText := SystemKonstanten.LeerUnboundedString;
       
-      return EingegebenerName;
+      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Text_Eingabe);
+      
+      InteraktionGrafiktask.TextEingabe := True;
+        
+      while InteraktionGrafiktask.TextEingabe loop
+         
+         delay 0.0002;
+         
+      end loop;
+      
+      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
+      
+      return (EingabeSystemeSFML.ErfolgreichAbbruch, EingabeSystemeSFML.EingegebenerText);
       
    end NameEingeben;
    
@@ -348,13 +363,28 @@ package body EingabeSFML is
    
    
    
+   procedure EingabeAbwarten
+   is begin
+      
+      InteraktionGrafiktask.TastenEingabe := True;
+        
+      while InteraktionGrafiktask.TastenEingabe loop
+         
+         delay 0.0002;
+         
+      end loop;
+      
+   end EingabeAbwarten;
+   
+   
+   
    function Tastenwert
      return SystemDatentypen.Tastenbelegung_Enum
    is begin
+            
+      EingabeAbwarten;
       
-      EingabeSystemeSFML.TastenEingabe;
-      
-      -- Das Mausrad muss? vor der Maustaste geprüft werden.
+      -- Das Mausrad muss? vor der Maustaste geprüft werden. Sollte mit dem neuen System nicht mehr der Fall sein.
       if
         EingabeSystemeSFML.MausRad > 0.00
       then

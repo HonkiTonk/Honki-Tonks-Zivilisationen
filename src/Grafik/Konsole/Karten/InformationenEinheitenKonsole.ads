@@ -72,7 +72,7 @@ private
    procedure Ladung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
-   procedure Gecheatet
+   procedure DebugInformationen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    package AnzeigeBewegungFloat is new Ada.Wide_Wide_Text_IO.Float_IO (EinheitStadtDatentypen.VorhandeneBewegungspunkte);

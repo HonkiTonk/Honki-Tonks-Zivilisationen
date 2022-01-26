@@ -51,7 +51,7 @@ private
    procedure Kartenposition
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
-   procedure Gecheatet
+   procedure DebugInformationen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure FeldWissen

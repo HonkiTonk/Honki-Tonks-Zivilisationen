@@ -134,7 +134,8 @@ package body OptionenSteuerung is
       NeueTasteSchleife:
       loop
          
-         EingabeSystemeSFML.TastenEingabe;
+         -- Hier nicht mehr direkt darauf zugreifen sondern so wie in allen anderen Menüs.
+         -- EingabeSystemeSFML.TastenEingabe;
          NeueTasteSFML := EingabeSystemeSFML.TastaturTaste;
          
          case

@@ -64,7 +64,6 @@ package body InDerStadt is
                end if;
 
             when SystemDatentypen.Menü_Zurück =>
-               AktuelleRasseStadt.Platznummer := 0;
                exit StadtSchleife;
                
             when others =>
@@ -74,6 +73,9 @@ package body InDerStadt is
       end loop StadtSchleife;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      
+      -- Die Nummer erst nach Änderung der aktuellen Darstellung auf 0 setzen, sonst könnte es zu Problemen kommen wenn die Nummer 0 ist und der Grafiktask genau in diesem Moment diesen Wert übergibt.
+      AktuelleRasseStadt.Platznummer := 0;
       
    end InDerStadt;
    

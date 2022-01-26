@@ -6,7 +6,7 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.CircleShape;
 
 with Fehler;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 
 package body ObjekteZeichnenSFML is
 
@@ -45,7 +45,7 @@ package body ObjekteZeichnenSFML is
                                                  position => PositionExtern);
          Sf.Graphics.RectangleShape.setFillColor (shape => RechteckAccessExtern,
                                                   color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenSFML.FensterAccess,
+         Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                       object       => RechteckAccessExtern);
       end if;
       
@@ -77,7 +77,7 @@ package body ObjekteZeichnenSFML is
                                               position => PositionExtern);
          Sf.Graphics.CircleShape.setFillColor (shape => KreisAccessExtern,
                                                color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => EinstellungenSFML.FensterAccess,
+         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                    object       => KreisAccessExtern);
       end if;
       
@@ -112,7 +112,7 @@ package body ObjekteZeichnenSFML is
                                               position => PositionExtern);
          Sf.Graphics.CircleShape.setFillColor (shape => PolygonAccessExtern,
                                                color => FarbeExtern);
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => EinstellungenSFML.FensterAccess,
+         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                    object       => PolygonAccessExtern);
       end if;
       

@@ -48,7 +48,7 @@ package GlobaleTexte is
    Forschungen : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.ForschungID'Last));
    Beschäftigungen : TexteArray (1 .. 18);
    StädtenamenKI : TexteArray (1 .. 3);
-   Cheatmenü : TexteArray (1 .. 3);
+   Debugmenü : TexteArray (1 .. 3);
    AllgemeineInformationen : TexteArray (1 .. 16);
    Würdigung : TexteArray (1 .. 1);
    Diplomatiemenü : TexteArray (1 .. 7);

@@ -17,7 +17,7 @@ with Auswahl;
 with NaechstesObjekt;
 with Aufgaben;
 with Diplomatie;
-with Cheat;
+with DebugPlatzhalter;
 with StadtBauen;
 with EinheitSuchen;
 with StadtSuchen;
@@ -115,8 +115,8 @@ package body BefehleKonsole is
          when SystemDatentypen.Runde_Beenden =>
             return SystemKonstanten.RundeBeendenKonstante;
             
-         when SystemDatentypen.Cheatmenü =>
-            Cheat.Menü (RasseExtern => RasseExtern);
+         when SystemDatentypen.Debugmenü =>
+            DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
          
          when SystemDatentypen.Leer =>
             null;

@@ -13,7 +13,7 @@ with LeseStadtGebaut;
 with TextAnzeigeKonsole;
 with GesamtwerteFeld;
 with KampfwerteStadtErmitteln;
-with Cheat;
+with DebugPlatzhalter;
 with Fehler;
 
 package body StadtInformationenKonsole is
@@ -29,11 +29,11 @@ package body StadtInformationenKonsole is
       StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Einwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-      -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist.
+      -- Volle Stadtinformationen, nur sichtbar wenn eigene Stadt oder durch Debug.
       if
         StadtRasseNummerExtern.Rasse = RasseExtern
         or
-          Cheat.FeindlicheInformationenSehen
+          DebugPlatzhalter.FeindlicheInformationenSehen
       then
          AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
          AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);

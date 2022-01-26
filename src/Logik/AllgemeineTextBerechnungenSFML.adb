@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with Sf.Graphics.Text;
 
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 
 package body AllgemeineTextBerechnungenSFML is
 
@@ -12,10 +12,10 @@ package body AllgemeineTextBerechnungenSFML is
    is begin
       
       TextHalbeBreite := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
-      Position := Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00 - TextHalbeBreite;
+      Position := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 2.00 - TextHalbeBreite;
       
       if
-        Position in 0.00 .. Float (EinstellungenSFML.AktuelleFensterAuflösung.x)
+        Position in 0.00 .. Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)
       then
          return Position;
          
@@ -34,7 +34,7 @@ package body AllgemeineTextBerechnungenSFML is
       return Float
    is begin
       
-      Position := Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00;
+      Position := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00;
       TextHalbeBreite := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
       
       case
@@ -48,7 +48,7 @@ package body AllgemeineTextBerechnungenSFML is
       end case;
       
       if
-        Position in 0.00 .. Float (EinstellungenSFML.AktuelleFensterAuflösung.x)
+        Position in 0.00 .. Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)
       then
          return Position;
          
@@ -67,7 +67,7 @@ package body AllgemeineTextBerechnungenSFML is
       return Float
    is begin
       
-      PositionLogik := Float (EinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00;
+      PositionLogik := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00;
       TextHalbeBreiteLogik := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
       
       case
@@ -81,7 +81,7 @@ package body AllgemeineTextBerechnungenSFML is
       end case;
       
       if
-        PositionLogik in 0.00 .. Float (EinstellungenSFML.AktuelleFensterAuflösung.x)
+        PositionLogik in 0.00 .. Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)
       then
          return PositionLogik;
          

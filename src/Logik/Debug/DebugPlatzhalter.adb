@@ -17,9 +17,9 @@ with Karten;
 with ForschungAllgemein;
 with EingabeSystemeSFML;
 
-package body Cheat is
+package body DebugPlatzhalter is
 
-   -- Die Umwandlung von Wide_Wide_Image im Cheat/Debugmenü einfach ignorieren, weil die Anzeige hier sowieso nicht wichtig ist?
+   -- Die Umwandlung von Wide_Wide_Image im Debugmenü einfach ignorieren, weil die Anzeige hier sowieso nicht wichtig ist?
    procedure Menü
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -27,7 +27,8 @@ package body Cheat is
       MenüSchleife:
       loop
          
-         EingabeSystemeSFML.TastenEingabe;
+         -- Hier nicht mehr direkt darauf zugreifen sondern so wie in allen anderen Menüs.
+         -- EingabeSystemeSFML.TastenEingabe;
          
          case
            EingabeSystemeSFML.TastaturTaste
@@ -44,7 +45,7 @@ package body Cheat is
                Krieg;
                
             when Sf.Window.Keyboard.sfKeyG =>
-               GewonnenDurchCheat := not GewonnenDurchCheat;
+               DebugSieg := not DebugSieg;
                
             when Sf.Window.Keyboard.sfKeyM =>
                SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
@@ -241,4 +242,4 @@ package body Cheat is
       
    end KarteStadtInfos;
 
-end Cheat;
+end DebugPlatzhalter;

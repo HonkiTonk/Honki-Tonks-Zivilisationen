@@ -11,7 +11,7 @@ with StadtKonstanten;
 with LeseKarten;
 
 with TextAnzeigeKonsole;
-with Cheat;
+with DebugPlatzhalter;
 with EinheitSuchen;
 with StadtSuchen;
 with StadtInformationenKonsole;
@@ -30,7 +30,7 @@ package body KarteInformationenKonsole is
       InformationenWichtigesKonsole.Wichtiges (RasseExtern => RasseExtern);
       InformationenSichtbar (RasseExtern => RasseExtern);
       Kartenposition (RasseExtern => RasseExtern);
-      Gecheatet (RasseExtern => RasseExtern);
+      DebugInformationen (RasseExtern => RasseExtern);
       
    end KarteInformationenKonsole;
    
@@ -107,15 +107,15 @@ package body KarteInformationenKonsole is
       StadtInformationenKonsole.Stadt (RasseExtern            => RasseExtern,
                                        StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-      -- Debuginformationen, nur sichtbar wenn Cheat aktiviert ist.
+      -- Debuginformationen.
       case
-        Cheat.FeindlicheInformationenSehen
+        DebugPlatzhalter.FeindlicheInformationenSehen
       is
          when False =>
             null;
                                  
          when True =>
-            Cheat.KarteStadtInfos (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            DebugPlatzhalter.KarteStadtInfos (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end case;
       
    end InformationenStadt;
@@ -316,20 +316,20 @@ package body KarteInformationenKonsole is
    
    
    
-   procedure Gecheatet
+   procedure DebugInformationen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
-        Cheat.FeindlicheInformationenSehen
+        DebugPlatzhalter.FeindlicheInformationenSehen
       is
          when False =>
             null;
             
          when True =>
-            Cheat.KarteInfosFeld (RasseExtern => RasseExtern);
+            DebugPlatzhalter.KarteInfosFeld (RasseExtern => RasseExtern);
       end case;
       
-   end Gecheatet;
+   end DebugInformationen;
 
 end KarteInformationenKonsole;

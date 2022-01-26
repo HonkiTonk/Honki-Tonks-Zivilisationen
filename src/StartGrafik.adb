@@ -12,10 +12,10 @@ package body StartGrafik is
 
    procedure StartGrafik
    is begin
-      
+
       GrafikStartenSchleife:
       while InteraktionGrafiktask.ErzeugeFensterAbrufen = False loop
-         
+
          delay SystemKonstanten.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;

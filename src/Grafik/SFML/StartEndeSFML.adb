@@ -8,8 +8,8 @@ with Sf.Window.VideoMode;
 with GlobaleVariablen;
 with SystemDatentypen;
 
-with EinstellungenSFML;
-with AllgemeinSFML;
+with GrafikEinstellungenSFML;
+with GrafikAllgemeinSFML;
 with Fehler;
 
 package body StartEndeSFML is
@@ -29,14 +29,14 @@ package body StartEndeSFML is
       end case;
 
       if
-        EinstellungenSFML.FensterAccess = null
+        GrafikEinstellungenSFML.FensterAccess = null
       then
          Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - FensterAccess = null.");
 
       else
-         AllgemeinSFML.MauszeigerFestlegen;
-         AllgemeinSFML.BildrateÄndern;
-         AllgemeinSFML.SchriftartFestlegen;
+         GrafikAllgemeinSFML.MauszeigerFestlegen;
+         GrafikAllgemeinSFML.BildrateÄndern;
+         GrafikAllgemeinSFML.SchriftartFestlegen;
       end if;
       
    end FensterErzeugen;
@@ -47,26 +47,26 @@ package body StartEndeSFML is
    is begin
       
       case
-        EinstellungenSFML.FensterEinstellungen.FensterVollbild
+        GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild
       is
          when 7 =>
-            EinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenSFML.FensterEinstellungen.FensterBreite,
-                                                                                                 EinstellungenSFML.FensterEinstellungen.FensterHöhe,
-                                                                                                 EinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                       title => Name,
-                                                                                       style => EinstellungenSFML.FensterEinstellungen.FensterVollbild);
+            GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite,
+                                                                                                       GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe,
+                                                                                                       GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
+                                                                                             title => Name,
+                                                                                             style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
       
-            EinstellungenSFML.AktuelleFensterAuflösung.x := EinstellungenSFML.FensterEinstellungen.FensterBreite;
-            EinstellungenSFML.AktuelleFensterAuflösung.y := EinstellungenSFML.FensterEinstellungen.FensterHöhe;
+            GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite;
+            GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe;
             
          when 8 =>
-            EinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Window.VideoMode.getDesktopMode.width;
-            EinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Window.VideoMode.getDesktopMode.height;
-            EinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (EinstellungenSFML.AktuelleFensterAuflösung.x,
-                                                                                                 EinstellungenSFML.AktuelleFensterAuflösung.y,
-                                                                                                 EinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                       title => Name,
-                                                                                       style => EinstellungenSFML.FensterEinstellungen.FensterVollbild);
+            GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Window.VideoMode.getDesktopMode.width;
+            GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Window.VideoMode.getDesktopMode.height;
+            GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x,
+                                                                                                       GrafikEinstellungenSFML.AktuelleFensterAuflösung.y,
+                                                                                                       GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
+                                                                                             title => Name,
+                                                                                             style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
             
          when others =>
             Fehler.GrafikStopp (FehlermeldungExtern => "StartEndeSFML.FensterErzeugenErweitert - Unbekannter Fenstermodus ausgewählt.");
@@ -79,7 +79,7 @@ package body StartEndeSFML is
    procedure FensterEntfernen
    is begin
       
-      Sf.Graphics.RenderWindow.destroy (renderWindow => EinstellungenSFML.FensterAccess);
+      Sf.Graphics.RenderWindow.destroy (renderWindow => GrafikEinstellungenSFML.FensterAccess);
       
    end FensterEntfernen;
    
@@ -88,7 +88,7 @@ package body StartEndeSFML is
    procedure FensterLeeren
    is begin
       
-      Sf.Graphics.RenderWindow.clear (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.clear (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                       color        => Sf.Graphics.Color.sfBlack);
       
    end FensterLeeren;
@@ -98,7 +98,7 @@ package body StartEndeSFML is
    procedure FensterAnzeigen
    is begin
       
-      Sf.Graphics.RenderWindow.display (renderWindow => EinstellungenSFML.FensterAccess);
+      Sf.Graphics.RenderWindow.display (renderWindow => GrafikEinstellungenSFML.FensterAccess);
       
    end FensterAnzeigen;
 

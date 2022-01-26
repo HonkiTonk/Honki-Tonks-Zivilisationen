@@ -164,7 +164,7 @@ package body EinlesenText is
                StädtenamenKI;
                
             when 24 =>
-               Cheatmenü;
+               Debugmenü;
                
             when 25 =>
                AllgemeineInformationen;
@@ -720,25 +720,25 @@ package body EinlesenText is
    
    
    
-   procedure Cheatmenü
+   procedure Debugmenü
    is begin
       
-      CheatmenüSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.Cheatmenü'Range loop
+      DebugmenüSchleife:
+      for WelcheZeileSchleifenwert in GlobaleTexte.Debugmenü'Range loop
          
          case
            VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
          is
             when True =>
-               GlobaleTexte.Cheatmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
+               GlobaleTexte.Debugmenü (WelcheZeileSchleifenwert) := NichtGenugZeilen;
                
             when False =>
-               GlobaleTexte.Cheatmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               GlobaleTexte.Debugmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
          end case;
          
-      end loop CheatmenüSchleife;
+      end loop DebugmenüSchleife;
       
-   end Cheatmenü;
+   end Debugmenü;
    
    
    

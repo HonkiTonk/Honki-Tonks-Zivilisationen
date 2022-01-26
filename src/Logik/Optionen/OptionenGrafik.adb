@@ -6,7 +6,7 @@ with TextKonstanten;
 with InteraktionGrafiktask; use InteraktionGrafiktask;
 with AuswahlMenue;
 with Eingabe;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with SchreibenEinstellungen;
 with Fehler;
 
@@ -83,8 +83,8 @@ package body OptionenGrafik is
          return;
       end if;
       
-      EinstellungenSFML.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
-      EinstellungenSFML.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
+      GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
+      GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
       
       InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Auflösung_Verändert;
       
@@ -115,7 +115,7 @@ package body OptionenGrafik is
          null;
       end if;
       
-      EinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
+      GrafikEinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
       InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Bildrate_Ändern;
       
       NeueBildrateAbwartenSchleife:
@@ -133,13 +133,13 @@ package body OptionenGrafik is
    is begin
       
       case
-        EinstellungenSFML.FensterEinstellungen.FensterVollbild
+        GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild
       is
          when 7 =>
-            EinstellungenSFML.FensterEinstellungen.FensterVollbild := 8;
+            GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild := 8;
             
          when 8 =>
-            EinstellungenSFML.FensterEinstellungen.FensterVollbild := 7;
+            GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild := 7;
             
          when others =>
             Fehler.LogikStopp (FehlermeldungExtern => "OptionenGrafik.VollbildFenster - Unbekannter Fenstermodus ausgewählt.");

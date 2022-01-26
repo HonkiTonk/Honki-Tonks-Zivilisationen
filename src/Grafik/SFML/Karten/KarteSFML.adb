@@ -22,7 +22,7 @@ with KarteInformationenSFML;
 with BerechnungenKarteSFML;
 with Fehler;
 with ObjekteZeichnenSFML;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with TextAllgemeinSFML;
 
 package body KarteSFML is
@@ -293,7 +293,7 @@ package body KarteSFML is
             -- Rahmen drumherum ziehen? Die Anzahl der Balken könnte ich durch eine Prüfung der umliegenden Felder festlegen lassen?
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                   PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => EinstellungenSFML.RassenFarben (AktuelleRasse),
+                                                  FarbeExtern          => GrafikEinstellungenSFML.RassenFarben (AktuelleRasse),
                                                   RechteckAccessExtern => RechteckAccess);
       end case;
       
@@ -319,10 +319,10 @@ package body KarteSFML is
       Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
                                                color => Sf.Graphics.Color.sfTransparent);
       Sf.Graphics.RectangleShape.setOutlineColor (shape => RechteckRahmenAccess,
-                                                  color => EinstellungenSFML.RassenFarben (RasseExtern));
+                                                  color => GrafikEinstellungenSFML.RassenFarben (RasseExtern));
       Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
                                                       thickness => 3.00);
-      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                    object       => RechteckRahmenAccess);
       
       KartenWertRahmen := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
@@ -351,15 +351,15 @@ package body KarteSFML is
       -- Text wird von den anderen Feldern immer wieder überschrieben. Eventuell ein zweites Mal über die ganzen Felder gehen?
       -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen?
       TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                              FontAccessExtern   => EinstellungenSFML.SchriftartAccess,
-                                              SchriftgrößeExtern => EinstellungenSFML.FensterEinstellungen.Schriftgröße,
-                                              FarbeExtern        => EinstellungenSFML.Schriftfarben.FarbeStandardText);
+                                              FontAccessExtern   => GrafikEinstellungenSFML.SchriftartAccess,
+                                              SchriftgrößeExtern => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße,
+                                              FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionExtern);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                          text         => TextAccess);
       
    end RahmenBesetztesFeld;

@@ -8,7 +8,7 @@ with Sf.System.Vector2;
 with SystemRecords;
 with SystemDatentypen;
 
-package EinstellungenSFML is
+package GrafikEinstellungenSFML is
    
    FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
    MausAccess : Sf.Window.sfCursor_Ptr;
@@ -84,4 +84,4 @@ private
                                                          SystemDatentypen.Ekropa           => (255, 30, 30, 100)
                                                         );
    
-end EinstellungenSFML;
+end GrafikEinstellungenSFML;

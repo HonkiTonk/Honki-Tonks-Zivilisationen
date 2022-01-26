@@ -16,7 +16,7 @@ with Eingabe;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
 with InteraktionLogiktask;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with TextAllgemeinSFML;
 with InteraktionGrafiktask;
 
@@ -131,10 +131,10 @@ package body ForschungAllgemein is
    is begin
       
       TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                              FontAccessExtern   => EinstellungenSFML.SchriftartAccess,
-                                              SchriftgrößeExtern => EinstellungenSFML.FensterEinstellungen.Schriftgröße,
-                                              FarbeExtern        => EinstellungenSFML.Schriftfarben.FarbeStandardText);
-      Zeilenabstand := Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+                                              FontAccessExtern   => GrafikEinstellungenSFML.SchriftartAccess,
+                                              SchriftgrößeExtern => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße,
+                                              FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Forschung);
       
@@ -179,18 +179,18 @@ package body ForschungAllgemein is
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausZeigerPosition := EinstellungenSFML.MausPosition;
+      MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
       TextPositionMaus := StartPositionText;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageForschungsprojekt)));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => 2 * EinstellungenSFML.FensterEinstellungen.Schriftgröße);
+                                         size => 2 * GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00 * Zeilenabstand;
       
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
+                                         size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       MausZeigerSchleife:
       for ForschungSchleifenwert in ForschungTextArray'First .. Ende loop

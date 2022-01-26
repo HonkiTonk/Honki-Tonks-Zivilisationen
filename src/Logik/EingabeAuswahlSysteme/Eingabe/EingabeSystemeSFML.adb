@@ -6,10 +6,10 @@ with Sf; use Sf;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
-with SystemKonstanten;
-with SystemDatentypen;
+-- with SystemKonstanten;
+-- with SystemDatentypen;
 
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with Fehler;
 with InteraktionGrafiktask;
 
@@ -17,114 +17,97 @@ package body EingabeSystemeSFML is
 
    procedure TastenEingabe
    is begin
-      
+            
       TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
       -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen?
       MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
       MausRad := 0.00;
       
-      -- EingabeSchleife ist nicht notwendig, das entfernen macht aber die Probleme schlimmer, das ganze hier mal umbauen/in den Grafiktask verschieben.
-      EingabeSchleife:
-      loop
-         TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => EinstellungenSFML.FensterAccess,
-                                                   event        => ZeichenEingeben)
-           = Sf.sfTrue loop
+      TasteSchleife:
+      while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                event        => ZeichenEingeben)
+        = Sf.sfTrue loop
+                        
+         case
+           ZeichenEingeben.eventType
+         is
+            when Sf.Window.Event.sfEvtClosed =>
+               -- Hier noch einen universellen Endebefehl einbauen.
+               -- Nur als Zwischenlösung gedacht, später wieder entfernen!
+               Fehler.GrafikStopp (FehlermeldungExtern => "");
+                  
+            when Sf.Window.Event.sfEvtResized =>
+               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert;
+                  
+            when Sf.Window.Event.sfEvtMouseMoved =>
+               -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
+               GrafikEinstellungenSFML.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
+                  
+            when others =>
+               null;
+         end case;
             
-            
-            case
-              ZeichenEingeben.eventType
-            is
-               when Sf.Window.Event.sfEvtClosed =>
-                  -- Hier noch einen universellen Endebefehl einbauen.
-                  -- Nur als Zwischenlösung gedacht, später wieder entfernen!
-                  Fehler.GrafikStopp (FehlermeldungExtern => "");
+         -- Gäbe es einen Vorteil diesen Teil in jeweils eine eigene Prüfung umzuwandeln? Eventuell um mehrere Dinge gleichzeitig festlegen zu können?
+         -- Beeinflusst das nicht auch die Auswertung in EingabeSFML? Hier einzeln durchgehen und dann in EingabeSFML die Auswertungsreihenfolge festlegen?
+         case
+           ZeichenEingeben.eventType
+         is
+            when Sf.Window.Event.sfEvtKeyPressed =>
+               TastaturTaste := ZeichenEingeben.key.code;
                   
-               when Sf.Window.Event.sfEvtResized =>
-                  InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert;
+            when Sf.Window.Event.sfEvtMouseWheelScrolled =>
+               MausRad := ZeichenEingeben.mouseWheelScroll.eventDelta;
                   
-               when Sf.Window.Event.sfEvtMouseMoved =>
-                  -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.
-                  EinstellungenSFML.MausPosition := (ZeichenEingeben.mouseMove.x, ZeichenEingeben.mouseMove.y);
+            when Sf.Window.Event.sfEvtMouseButtonPressed =>
+               MausTaste := ZeichenEingeben.mouseButton.button;
                   
-               when others =>
-                  null;
-            end case;
-            
-            -- Gäbe es einen Vorteil diesen Teil in jeweils eine eigene Prüfung umzuwandeln? Eventuell um mehrere Dinge gleichzeitig festlegen zu können?
-            -- Beeinflusst das nicht auch die Auswertung in EingabeSFML? Hier einzeln durchgehen und dann in EingabeSFML die Auswertungsreihenfolge festlegen?
-            case
-              ZeichenEingeben.eventType
-            is
-               when Sf.Window.Event.sfEvtKeyPressed =>
-                  TastaturTaste := ZeichenEingeben.key.code;
-                  
-               when Sf.Window.Event.sfEvtMouseWheelScrolled =>
-                  MausRad := ZeichenEingeben.mouseWheelScroll.eventDelta;
-                  
-               when Sf.Window.Event.sfEvtMouseButtonPressed =>
-                  MausTaste := ZeichenEingeben.mouseButton.button;
-                  
-               when others =>
-                  null;
-            end case;
-            
-            exit EingabeSchleife;
+            when others =>
+               null;
+         end case;
                      
-         end loop TasteSchleife;
-      end loop EingabeSchleife;
+      end loop TasteSchleife;
       
    end TastenEingabe;
    
    
    
-   function TextEingeben
-     return SystemRecords.TextEingabeRecord
+   procedure TextEingeben
    is begin
       
-      EingegebenerText := SystemKonstanten.LeerUnboundedString;
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Text_Eingabe);
-      
-      EingabeSchleife:
-      loop
-         TasteSchleife:
-         while Sf.Graphics.RenderWindow.pollEvent (renderWindow => EinstellungenSFML.FensterAccess,
-                                                   event        => TextEingegeben)
-           = Sf.sfTrue loop
+     
+      TasteSchleife:
+      while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                event        => TextEingegeben)
+        = Sf.sfTrue loop
             
-            case
-              TextEingegeben.eventType
-            is
-               when Sf.Window.Event.sfEvtTextEntered =>
-                  TextPrüfen (UnicodeNummerExtern => TextEingegeben.text.unicode);
+         case
+           TextEingegeben.eventType
+         is
+            when Sf.Window.Event.sfEvtTextEntered =>
+               TextPrüfen (UnicodeNummerExtern => TextEingegeben.text.unicode);
                
-               when Sf.Window.Event.sfEvtKeyPressed =>
-                  if
-                    TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
-                  then
-                     ErfolgreichAbbruch := True;
-                     exit EingabeSchleife;
+            when Sf.Window.Event.sfEvtKeyPressed =>
+               if
+                 TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEnter
+               then
+                  ErfolgreichAbbruch := True;
+                  InteraktionGrafiktask.TextEingabe := False;
                      
-                  elsif
-                    TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
-                  then
-                     ErfolgreichAbbruch := False;
-                     exit EingabeSchleife;
+               elsif
+                 TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
+               then
+                  ErfolgreichAbbruch := False;
+                  InteraktionGrafiktask.TextEingabe := False;
                   
-                  else
-                     null;
-                  end if;
-               
-               when others =>
+               else
                   null;
-            end case;
+               end if;
+               
+            when others =>
+               null;
+         end case;
          
-         end loop TasteSchleife;
-      end loop EingabeSchleife;
-   
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
-      
-      return (ErfolgreichAbbruch, EingegebenerText);
+      end loop TasteSchleife;
       
    end TextEingeben;
    

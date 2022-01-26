@@ -5,7 +5,7 @@ with Sf.System.Vector2;
 with Sf.Graphics.Rect;
 with Sf.Graphics.View;
 
-package AllgemeinSFML is
+package GrafikAllgemeinSFML is
 
    procedure FensterAnpassen;
    procedure BildrateÄndern;
@@ -21,4 +21,4 @@ private
 
    NeueAuflösungAccess : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.createFromRect (rectangle => NeueAuflösung);
 
-end AllgemeinSFML;
+end GrafikAllgemeinSFML;

@@ -105,7 +105,7 @@ package SystemDatentypen is
                                 -- Sonstiges
                                 Infos, Diplomatie, GeheZu,
                                 Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen,
-                                Runde_Beenden, Cheatmenü);
+                                Runde_Beenden, Debugmenü);
 
    subtype Tastenbelegung_Verwendet_Enum is Tastenbelegung_Enum range Oben .. Tastenbelegung_Enum'Last;
    subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Verwendet_Enum range Oben .. Ebene_Runter;

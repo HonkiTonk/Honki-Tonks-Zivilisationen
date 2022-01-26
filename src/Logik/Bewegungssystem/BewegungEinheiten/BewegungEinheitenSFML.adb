@@ -11,7 +11,7 @@ with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
 with BewegungEinheiten;
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with BerechnungenKarteSFML;
 with KartePositionPruefen;
 
@@ -110,7 +110,7 @@ package body BewegungEinheitenSFML is
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
-      MausPosition := EinstellungenSFML.MausPosition;
+      MausPosition := GrafikEinstellungenSFML.MausPosition;
       
       MausSchleife:
       loop

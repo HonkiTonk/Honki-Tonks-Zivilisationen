@@ -91,7 +91,7 @@ private
    procedure Ladung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
-   procedure Gecheatet
+   procedure DebugInformationen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    

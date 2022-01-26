@@ -9,7 +9,7 @@ with StadtKonstanten;
 with SystemDatentypen;
 
 with Karten;
-with Cheat;
+with DebugPlatzhalter;
 
 package body AllesAufAnfangSetzen is
 
@@ -28,8 +28,8 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.IronmanName := SystemKonstanten.LeerUnboundedString;
       GlobaleVariablen.WeiterSpielen := False;
       
-      Cheat.GewonnenDurchCheat := False;
-      Cheat.FeindlicheInformationenSehen := False;
+      DebugPlatzhalter.DebugSieg := False;
+      DebugPlatzhalter.FeindlicheInformationenSehen := False;
 
       Karten.Weltkarte := (others => (others => (others => KartenKonstanten.LeerWeltkarte)));
       Karten.KartenartGemischt := False;

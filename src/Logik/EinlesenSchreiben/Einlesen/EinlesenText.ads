@@ -47,7 +47,7 @@ private
    procedure Forschungen;
    procedure Beschäftigungen;
    procedure StädtenamenKI;
-   procedure Cheatmenü;
+   procedure Debugmenü;
    procedure AllgemeineInformationen;
    procedure Würdigung;
    procedure Diplomatiemenü;

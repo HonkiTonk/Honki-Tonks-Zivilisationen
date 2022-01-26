@@ -4,7 +4,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.RenderWindow;
 
-with EinstellungenSFML;
+with GrafikEinstellungenSFML;
 with AllgemeineTextBerechnungenSFML;
 
 package body AnzeigeSprachauswahlSFML is
@@ -16,11 +16,11 @@ package body AnzeigeSprachauswahlSFML is
       AktuelleAuswahl := AuswahlSprache.AktuelleAuswahl;
       Ende := AuswahlSprache.Ende;
       AktuelleSprachen := AuswahlSprache.AktuelleSprachen;
-      ZeilenAbstand := Float (EinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+      ZeilenAbstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => EinstellungenSFML.SchriftartAccess);
+                                font => GrafikEinstellungenSFML.SchriftartAccess);
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => EinstellungenSFML.FensterEinstellungen.Schriftgröße);
+                                         size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       YPosition := StartPositionYAchse;
             
@@ -30,10 +30,10 @@ package body AnzeigeSprachauswahlSFML is
          if
            AktuelleAuswahl = ZeileSchleifenwert
          then
-            AktuelleTextFarbe := EinstellungenSFML.Schriftfarben.FarbeAusgewähltText;
+            AktuelleTextFarbe := GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText;
             
          else
-            AktuelleTextFarbe := EinstellungenSFML.Schriftfarben.FarbeStandardText;
+            AktuelleTextFarbe := GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText;
          end if;
          
          if
@@ -49,7 +49,7 @@ package body AnzeigeSprachauswahlSFML is
                                           position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), YPosition));
             Sf.Graphics.Text.setColor (text  => TextAccess,
                                        color => AktuelleTextFarbe);
-            Sf.Graphics.RenderWindow.drawText (renderWindow => EinstellungenSFML.FensterAccess,
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                text         => TextAccess);
          
             YPosition := YPosition + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * ZeilenAbstand;
@@ -86,7 +86,7 @@ package body AnzeigeSprachauswahlSFML is
                                                  position => (AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess), YPosition + 15.00));
             Sf.Graphics.ConvexShape.setFillColor (shape => PfeilAccess,
                                                   color => AktuelleTextFarbe);
-            Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => EinstellungenSFML.FensterAccess,
+            Sf.Graphics.RenderWindow.drawConvexShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                       object       => PfeilAccess);
             
          else

@@ -6,7 +6,7 @@ with GlobaleVariablen;
 
 with LeseWichtiges;
 
-with Cheat;
+with DebugPlatzhalter;
 with Enden;
 
 package body SiegBedingungen is
@@ -139,7 +139,7 @@ package body SiegBedingungen is
    is begin
       
       case
-        Cheat.GewonnenDurchCheat
+        DebugPlatzhalter.DebugSieg
       is
          when False =>
             return False;
