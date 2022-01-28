@@ -16,7 +16,7 @@ with Karten;
 with UmwandlungenAdaNachEigenes;
 
 package StadtInformationenSFML is
-
+     
    function Stadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;

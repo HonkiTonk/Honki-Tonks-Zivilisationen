@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with StadtKonstanten;
+
 with SchreibeStadtGebaut;
 
 with InDerStadtBauen;
@@ -15,7 +17,7 @@ package body InDerStadt is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      AktuelleRasseStadt := StadtRasseNummerExtern;
+      AktuelleStadtNummerGrafik := StadtRasseNummerExtern.Platznummer;
       
       StadtSchleife:
       loop
@@ -74,8 +76,8 @@ package body InDerStadt is
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
       
-      -- Die Nummer erst nach Änderung der aktuellen Darstellung auf 0 setzen, sonst könnte es zu Problemen kommen wenn die Nummer 0 ist und der Grafiktask genau in diesem Moment diesen Wert übergibt.
-      AktuelleRasseStadt.Platznummer := 0;
+      -- Theoretisch kann diese Wertzuweisung raus, sicherheitshalber trotzdem drinnen lassen?
+      AktuelleStadtNummerGrafik := StadtKonstanten.LeerNummer;
       
    end InDerStadt;
    

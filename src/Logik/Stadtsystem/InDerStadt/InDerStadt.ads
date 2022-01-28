@@ -2,12 +2,13 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
+with EinheitStadtDatentypen;
 with GlobaleVariablen;
 with SystemRecords;
 
 package InDerStadt is
 
-   AktuelleRasseStadt : EinheitStadtRecords.RassePlatznummerRecord;
+   AktuelleStadtNummerGrafik : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
 
    procedure InDerStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

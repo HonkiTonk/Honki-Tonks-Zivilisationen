@@ -30,6 +30,16 @@ package body ZwischenDenRunden is
      return Boolean
    is begin
       
+      case
+        GlobaleVariablen.RasseAmZugNachLaden
+      is
+         when EinheitenKonstanten.LeerRasse =>
+            null;
+            
+         when others =>
+            return False;
+      end case;
+      
       -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Laden);
       -- Das Umschalten der Darstellung der Ladezeiten in die Prozeduren der jeweiligen Ladezeiten einbauen?
       

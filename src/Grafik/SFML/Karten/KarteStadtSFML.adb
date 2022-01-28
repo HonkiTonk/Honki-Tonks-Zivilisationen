@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with Sf.Graphics.RenderWindow;
 
 with KartenDatentypen; use KartenDatentypen;
@@ -62,7 +60,7 @@ package body KarteStadtSFML is
                when False =>
                   null;
             end case;
-                        
+            
             XMultiplikator := XMultiplikator + 1.00;
             
          end loop XAchseSchleife;
@@ -75,8 +73,28 @@ package body KarteStadtSFML is
                                                     StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                     AnzeigeAnfangenExtern  => (BerechnungenKarteSFML.StadtKarte.x + 5.00, 5.00));
       
+      if
+        GrafikEinstellungenSFML.MausPosition.x in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.x)
+        and
+          GrafikEinstellungenSFML.MausPosition.y in Sf.sfInt32 (0.00) .. Sf.sfInt32 (BerechnungenKarteSFML.StadtKarte.y)
+      then
+         MausInformationen := True;
+         
+      else
+         MausInformationen := False;
+      end if;
+      
       -- Werden die Mausinformationen in der SFML Version überhaupt benötigt?
-      -- Wie und wo jetzt die Anzeige der Mauszeigerinformationen einbauen?
+      case
+        MausInformationen
+      is
+         when True =>
+            -- Hier eventuell Informationen wie den Gebäudenamen und was das Gebäude macht einbauen?
+            null;
+            
+         when False =>
+            null;
+      end case;
       
    end AnzeigeStadt;
    
@@ -106,7 +124,7 @@ package body KarteStadtSFML is
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
-      
+            
       if
         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse = YAchseExtern
         and
@@ -379,26 +397,20 @@ package body KarteStadtSFML is
          return;
       end if;
       
-      Put_Line ("T2");
-      Put_Line (StadtRasseNummerExtern.Platznummer'Wide_Wide_Image);
       case
         LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                            WelchesGebäudeExtern  => GebäudeID)
       is
          when True =>
-            Put_Line ("T4");
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
                                                  PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
                                                  AnzahlEckenExtern   => 3,
                                                  FarbeExtern         => Sf.Graphics.Color.sfMagenta,
                                                  PolygonAccessExtern => PolygonAccess);
-            Put_Line ("T5");
             
          when False =>
-            Put_Line ("T3");
             null;
       end case;
-      Put_Line ("T3");
       
    end DarstellungGebäude;
 

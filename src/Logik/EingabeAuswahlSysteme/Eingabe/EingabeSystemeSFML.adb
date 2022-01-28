@@ -74,7 +74,6 @@ package body EingabeSystemeSFML is
    procedure TextEingeben
    is begin
       
-     
       TasteSchleife:
       while Sf.Graphics.RenderWindow.pollEvent (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                                 event        => TextEingegeben)

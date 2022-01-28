@@ -27,6 +27,7 @@ private
 
    InformationenStadtAufrufen : Boolean;
    FeldBewirtschaftet : Boolean;
+   MausInformationen : Boolean;
 
    Stadtumgebungsgröße : KartenDatentypen.Stadtfeld;
 

@@ -446,5 +446,5 @@ package body StadtInformationenSFML is
       TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
       
    end EinzelnesFeldWissensgewinnung;
-
+   
 end StadtInformationenSFML;

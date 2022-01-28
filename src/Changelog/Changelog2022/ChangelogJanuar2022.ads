@@ -14,33 +14,36 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (29.01.2022):
+   -- Version 0.00.98 => 0.00.9 (29.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.98 => 0.00.9 (28.01.2022):
+   -- Version 0.00.9840 => 0.00.98 (28.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9830 => 0.00.98 (27.01.2022):
+   -- Version 0.00.9830 => 0.00.9840 (27.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Codeformatierung leicht überarbeitet.
+   -- Fehler behoben der beim Verlassen einer Stadt zu einem Absturz führen konnte.
+   -- Stadtinformationen erweitert, so dass es jetzt theoretisch möglich Informationen auf Basis der aktuellen Mausposition anzuzeigen.
+   -- Fehler behoben der beim Laden eine Spielstandes im Spiel dazu führte dass die Rundenendeberechnung direkt durchgeführt wurden.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
-      
+   
    -- Version 0.00.9810 => 0.00.9830 (26.01.2022):
    
    -- Codeformatierung leicht überarbeitet.
    -- Changelogvorlagen angelegt.
-   -- Internet Struktur und Benennung überarbeitet.
-   -- Angefangen Chat durch Debug zu ersetzen.
+   -- Interne Struktur und Benennung überarbeitet.
+   -- Angefangen Cheat durch Debug zu ersetzen.
    -- Endlich einen Weg gefunden die Tasteneingabe vernünftig im Grafiktask aufzurufen.
    -- Auch die Texteingabe erfolgreich in den Grafiktask verschoben.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
