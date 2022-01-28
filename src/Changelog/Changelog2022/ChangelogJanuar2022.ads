@@ -7,24 +7,25 @@ package ChangelogJanuar2022 is
    
    
       
-   -- Version 0.00.9 => 0.00.9 (30.01.2022):
+   -- Version 0.00.98 => 0.00.9 (30.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.98 => 0.00.9 (29.01.2022):
+   -- Version 0.00.9845 => 0.00.98 (29.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9840 => 0.00.98 (28.01.2022):
+   -- Version 0.00.9840 => 0.00.9845 (28.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mit dem Musikteil der SFML herumexperimentiert.
+   -- Einlesen erweitert so dass es jetzt auch Musikdateien einliest.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
       

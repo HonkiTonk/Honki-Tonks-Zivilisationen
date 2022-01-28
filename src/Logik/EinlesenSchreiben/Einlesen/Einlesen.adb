@@ -15,6 +15,8 @@ with SchreibenEinstellungen;
 with AuswahlSprache;
 with EinlesenTexturen;
 with Fehler;
+with EinlesenMusik;
+with EinlesenSounds;
 
 package body Einlesen is
 
@@ -29,6 +31,8 @@ package body Einlesen is
       EinlesenDatenbanken.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;
       EinlesenTexturen.EinlesenTexturen;
+      EinlesenMusik.EinlesenMusik;
+      EinlesenSounds.EinlesenSounds;
       
    end EinlesenOhneAnzeige;
    
