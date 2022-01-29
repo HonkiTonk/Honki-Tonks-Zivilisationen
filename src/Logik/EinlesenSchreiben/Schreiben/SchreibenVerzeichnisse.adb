@@ -50,7 +50,6 @@ package body SchreibenVerzeichnisse is
             Create_Directory (New_Directory => "Datenbanken");
       end case;
       
-      -- Erstellung eines Grafik- oder Soundordners ist sinnfrei, da das Programm ja keine Grafiken/Sounds generieren kann.
       case
         Exists (Name => "Grafik")
       is
@@ -58,8 +57,9 @@ package body SchreibenVerzeichnisse is
             null;
 
          when False =>
-            Create_Directory (New_Directory => "Datenbanken");
+            Create_Directory (New_Directory => "Grafik");
             -- Später wieder Fehlermeldung einbauen, aktuell aber eher störend.
+            -- Oder nichts einbauen und einfach keine Texturen anzeigen?
             -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Grafikverzeichnis nicht vorhanden.");
       end case;
       
@@ -72,6 +72,7 @@ package body SchreibenVerzeichnisse is
          when False =>
             Create_Directory (New_Directory => "Audio");
             -- Später wieder Fehlermeldung einbauen, aktuell aber eher störend.
+            -- Oder nichts einbauen und einfach keine Sounds spielen?
             -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Audioverzeichnis nicht vorhanden.");
       end case;
       
@@ -84,6 +85,7 @@ package body SchreibenVerzeichnisse is
          when False =>
             Create_Directory (New_Directory => "Audio/Musik");
             -- Später wieder Fehlermeldung einbauen, aktuell aber eher störend.
+            -- Oder nichts einbauen und einfach keine Musik spielen?
             -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Musikverzeichnis nicht vorhanden.");
       end case;
       
@@ -96,6 +98,7 @@ package body SchreibenVerzeichnisse is
          when False =>
             Create_Directory (New_Directory => "Audio/Sound");
             -- Später wieder Fehlermeldung einbauen, aktuell aber eher störend.
+            -- Oder nichts einbauen und einfach keine Sounds spielen?
             -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Soundverzeichnis nicht vorhanden.");
       end case;
       

@@ -1,23 +1,24 @@
 package ChangelogJanuar2022 is
       
-   -- Version 0.00.9 => 0.00.9 (31.01.2022):
+   -- Version 0.00.98 => 0.00.9 (31.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.98 => 0.00.9 (30.01.2022):
+   -- Version 0.00.9850 => 0.00.98 (30.01.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
       
-   -- Version 0.00.9845 => 0.00.98 (29.01.2022):
+   -- Version 0.00.9845 => 0.00.9850 (29.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Musikliste angelegt und die Möglichkeit für rassenspezifische Musikstücke eingebaut.
+   -- Prüfung eingebaut ob ein Musikstück vorhanden und eingelesen ist.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
       

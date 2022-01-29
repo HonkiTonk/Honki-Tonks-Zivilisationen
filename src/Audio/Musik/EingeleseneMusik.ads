@@ -2,8 +2,11 @@ pragma SPARK_Mode (On);
 
 with Sf.Audio;
 
+with SystemDatentypen;
+
 package EingeleseneMusik is
 
-   MusikTest : Sf.Audio.sfMusic_Ptr;
+   type MusikArray is array (SystemDatentypen.Rassen_Enum'Range, 1 .. 5) of Sf.Audio.sfMusic_Ptr;
+   Musik : MusikArray := (others => (others => null));
 
 end EingeleseneMusik;
