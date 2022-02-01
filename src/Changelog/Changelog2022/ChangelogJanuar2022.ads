@@ -1,16 +1,19 @@
 package ChangelogJanuar2022 is
       
-   -- Version 0.00.98 => 0.00.9 (31.01.2022):
+   -- Version 0.00.9850 => 0.00.9860 (31.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mit dem Soundteil der SFML herumexperimentiert.
+   -- Einlesen erweitert so dass jetzt auch Sounddateien eingelesen werden.
+   -- Einfache Testsoundausgabe eingebaut.
+   -- Soundliste angelegt und die Möglichkeit für rassenspezifische Sounds eingebaut.
+   -- Weitere Konstanten angelegt und eingebaut.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
       
-   -- Version 0.00.9850 => 0.00.98 (30.01.2022):
+   -- Version 0.00.9850 => 0.00.9850 (30.01.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
       

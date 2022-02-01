@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen;
 with SystemDatentypen;
+with SystemKonstanten;
 
 with DatenbankRecords;
 
@@ -18,7 +19,7 @@ package ForschungKonstanten is
    
    type TechnologieVerbesserungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
-                                                                       SystemDatentypen.Menschen =>
+                                                                       SystemKonstanten.MenschenKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -26,10 +27,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Kasrodiah =>
+                                                                       SystemKonstanten.KasrodiahKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -37,10 +38,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Lasupin =>
+                                                                       SystemKonstanten.LasupinKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -48,10 +49,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Lamustra =>
+                                                                       SystemKonstanten.LamustraKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -59,10 +60,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Manuky =>
+                                                                       SystemKonstanten.ManukyKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -70,10 +71,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Suroka =>
+                                                                       SystemKonstanten.SurokaKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -81,10 +82,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Pryolon =>
+                                                                       SystemKonstanten.PryolonKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -92,10 +93,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Talbidahr =>
+                                                                       SystemKonstanten.TalbidahrKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -103,10 +104,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Moru_Phisihl =>
+                                                                       SystemKonstanten.MoruPhisihlKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -114,10 +115,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Larinos_Lotaris =>
+                                                                       SystemKonstanten.LarinosLotarisKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -125,10 +126,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Carupex =>
+                                                                       SystemKonstanten.CarupexKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -136,10 +137,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Alary =>
+                                                                       SystemKonstanten.AlaryKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -147,10 +148,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Tesorahn =>
+                                                                       SystemKonstanten.TesorahnKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -158,10 +159,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Natries_Zermanis =>
+                                                                       SystemKonstanten.NatriesZermanisKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -169,10 +170,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Tridatus =>
+                                                                       SystemKonstanten.TridatusKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -180,10 +181,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Senelari =>
+                                                                       SystemKonstanten.SenelariKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -191,10 +192,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Aspari_2 =>
+                                                                       SystemKonstanten.Aspari2Konstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -202,10 +203,10 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Ekropa =>
+                                                                       SystemKonstanten.EkropaKonstante =>
                                                                          (
                                                                           SystemDatentypen.Straße_Bauen       => 0,
                                                                           SystemDatentypen.Wald_Aufforsten    => 0,
@@ -213,7 +214,7 @@ package ForschungKonstanten is
                                                                           SystemDatentypen.Farm_Bauen         => 2,
                                                                           SystemDatentypen.Festung_Bauen      => 11,
                                                                           SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                               => LeerForschungAnforderung
+                                                                          others                              => LeerForschungAnforderung
                                                                          )
                                                                       );
 

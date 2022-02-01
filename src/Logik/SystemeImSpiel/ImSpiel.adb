@@ -248,7 +248,7 @@ package body ImSpiel is
       end loop SpielerSchleife;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
-      InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse);
+      InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemKonstanten.LeerRasse);
       
       return RückgabeMenschAmZug;
       

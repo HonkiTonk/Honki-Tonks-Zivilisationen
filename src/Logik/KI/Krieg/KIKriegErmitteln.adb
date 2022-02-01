@@ -49,7 +49,7 @@ package body KIKriegErmitteln is
       case
         RasseExtern
       is
-         when SystemDatentypen.Ekropa =>
+         when SystemKonstanten.EkropaKonstante =>
             return EinheitenKonstanten.LeerRasse;
             
          when others =>

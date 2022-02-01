@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-package IntroKonsole is
+package MusikIntroSFML is
 
    procedure Intro;
 
-end IntroKonsole;
+end MusikIntroSFML;

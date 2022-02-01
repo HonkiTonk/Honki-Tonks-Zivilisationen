@@ -10,6 +10,16 @@ with StadtKonstanten;
 with DatenbankRecords;
 
 package KartenKonstanten is
+   
+   -- Für Karteneinstellungen
+   RessourcenArmKonstante : constant KartenDatentypen.Kartenressourcen_Verwendet_Enum := SystemDatentypen.Karte_Ressource_Arm;
+   RessourcenWenigKonstante : constant KartenDatentypen.Kartenressourcen_Verwendet_Enum := SystemDatentypen.Karte_Ressource_Wenig;
+   RessourcenMittelKonstante : constant KartenDatentypen.Kartenressourcen_Verwendet_Enum := SystemDatentypen.Karte_Ressource_Mittel;
+   RessourcenVielKonstante : constant KartenDatentypen.Kartenressourcen_Verwendet_Enum := SystemDatentypen.Karte_Ressource_Viel;
+   RessourcenÜberflussKonstante : constant KartenDatentypen.Kartenressourcen_Verwendet_Enum := SystemDatentypen.Karte_Ressource_Überfluss;
+   -- Für Karteneinstellungen
+   
+   
 
    LeerEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
    LeerYAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
@@ -65,9 +75,9 @@ package KartenKonstanten is
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
                                                                                  VerbesserungGrafik => LeerVerbesserungGrafik,
                                                                                  Passierbarkeit     => (others => LeerPassierbarkeit),
-                                                                                 Bewertung      => (others => LeerVerbesserungBewertung),
-                                                                                 Wirtschaft     => (others => (others => LeerVerbesserungWirtschaft)),
-                                                                                 Kampf          => (others => (others => LeerVerbesserungKampf))
+                                                                                 Bewertung          => (others => LeerVerbesserungBewertung),
+                                                                                 Wirtschaft         => (others => (others => LeerVerbesserungWirtschaft)),
+                                                                                 Kampf              => (others => (others => LeerVerbesserungKampf))
                                                                                 );
    
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;

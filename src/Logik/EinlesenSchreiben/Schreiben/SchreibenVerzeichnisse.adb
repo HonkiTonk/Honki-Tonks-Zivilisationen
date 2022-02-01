@@ -58,8 +58,8 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik");
-            -- Später wieder Fehlermeldung einbauen, aktuell aber eher störend.
-            -- Oder nichts einbauen und einfach keine Texturen anzeigen?
+            -- Statt einer Fehlermeldung könnte man auch einfach keine Texturen verwenden und die reinen Farbfelder anzeigen.
+            -- Später wieder Fehlermeldung einbauen?
             -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Grafikverzeichnis nicht vorhanden.");
       end case;
       
@@ -71,8 +71,8 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio");
-            -- Später wieder Fehlermeldung einbauen, aktuell aber eher störend.
-            -- Oder nichts einbauen und einfach keine Sounds spielen?
+            -- Statt einer Fehlermeldung könnte man auch einfach keine Audiodateien abspielen.
+            -- Später wieder Fehlermeldung einbauen?
             -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Audioverzeichnis nicht vorhanden.");
       end case;
       
@@ -84,8 +84,8 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio/Musik");
-            -- Später wieder Fehlermeldung einbauen, aktuell aber eher störend.
-            -- Oder nichts einbauen und einfach keine Musik spielen?
+            -- Statt einer Fehlermeldung könnte man auch einfach keine Musik spielen.
+            -- Später wieder Fehlermeldung einbauen?
             -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Musikverzeichnis nicht vorhanden.");
       end case;
       
@@ -97,8 +97,8 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio/Sound");
-            -- Später wieder Fehlermeldung einbauen, aktuell aber eher störend.
-            -- Oder nichts einbauen und einfach keine Sounds spielen?
+            -- Statt einer Fehlermeldung könnte man auch einfach keine Sounds spielen.
+            -- Später wieder Fehlermeldung einbauen?
             -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Soundverzeichnis nicht vorhanden.");
       end case;
       

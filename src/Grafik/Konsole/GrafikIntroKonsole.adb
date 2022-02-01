@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-package body IntroKonsole is
+package body GrafikIntroKonsole is
 
    procedure Intro
    is begin
@@ -9,4 +9,4 @@ package body IntroKonsole is
       
    end Intro;
 
-end IntroKonsole;
+end GrafikIntroKonsole;

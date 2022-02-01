@@ -10,6 +10,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
+with SystemKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -286,7 +287,7 @@ package body KarteSFML is
       case
         AktuelleRasse
       is
-         when SystemDatentypen.Keine_Rasse =>
+         when SystemKonstanten.LeerRasse =>
             return;
             
          when others =>

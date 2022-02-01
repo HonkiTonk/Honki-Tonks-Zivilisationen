@@ -7,7 +7,6 @@ package GrafikSFML is
 
    procedure GrafikSFML;
 
-
 private
 
    AktuelleRasse : SystemDatentypen.Rassen_Enum;

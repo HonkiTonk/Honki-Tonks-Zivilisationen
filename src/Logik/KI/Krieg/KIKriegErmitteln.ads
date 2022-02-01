@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
-
+with SystemKonstanten;
 
 package KIKriegErmitteln is
 
@@ -30,24 +30,24 @@ private
    Bewertungen : BewertungenArray;
 
    NotwendigeBewertung : constant BewertungenArray := (
-                                                       SystemDatentypen.Menschen         => 10,
-                                                       SystemDatentypen.Kasrodiah        => 10,
-                                                       SystemDatentypen.Lasupin          => 10,
-                                                       SystemDatentypen.Lamustra         => 10,
-                                                       SystemDatentypen.Manuky           => 10,
-                                                       SystemDatentypen.Suroka           => 10,
-                                                       SystemDatentypen.Pryolon          => 10,
-                                                       SystemDatentypen.Talbidahr        => 10,
-                                                       SystemDatentypen.Moru_Phisihl     => 10,
-                                                       SystemDatentypen.Larinos_Lotaris  => 10,
-                                                       SystemDatentypen.Carupex          => 10,
-                                                       SystemDatentypen.Alary            => 10,
-                                                       SystemDatentypen.Tesorahn         => 10,
-                                                       SystemDatentypen.Natries_Zermanis => 10,
-                                                       SystemDatentypen.Tridatus         => 10,
-                                                       SystemDatentypen.Senelari         => 10,
-                                                       SystemDatentypen.Aspari_2         => 10,
-                                                       SystemDatentypen.Ekropa           => 0
+                                                       SystemKonstanten.MenschenKonstante        => 10,
+                                                       SystemKonstanten.KasrodiahKonstante       => 10,
+                                                       SystemKonstanten.LasupinKonstante         => 10,
+                                                       SystemKonstanten.LamustraKonstante        => 10,
+                                                       SystemKonstanten.ManukyKonstante          => 10,
+                                                       SystemKonstanten.SurokaKonstante          => 10,
+                                                       SystemKonstanten.PryolonKonstante         => 10,
+                                                       SystemKonstanten.TalbidahrKonstante       => 10,
+                                                       SystemKonstanten.MoruPhisihlKonstante     => 10,
+                                                       SystemKonstanten.LarinosLotarisKonstante  => 10,
+                                                       SystemKonstanten.CarupexKonstante         => 10,
+                                                       SystemKonstanten.AlaryKonstante           => 10,
+                                                       SystemKonstanten.TesorahnKonstante        => 10,
+                                                       SystemKonstanten.NatriesZermanisKonstante => 10,
+                                                       SystemKonstanten.TridatusKonstante        => 10,
+                                                       SystemKonstanten.SenelariKonstante        => 10,
+                                                       SystemKonstanten.Aspari2Konstante         => 10,
+                                                       SystemKonstanten.EkropaKonstante          => 0
                                                       );
 
    function StärkeVerhältnisErmitteln

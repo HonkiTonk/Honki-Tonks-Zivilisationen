@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with GlobaleVariablen;
+with SystemKonstanten;
+with KartenKonstanten;
 
 with Fehler;
 
@@ -479,27 +479,27 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Ressource_Arm;
+         return KartenKonstanten.RessourcenArmKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Ressource_Wenig;
+         return KartenKonstanten.RessourcenWenigKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Ressource_Mittel;
+         return KartenKonstanten.RessourcenMittelKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Ressource_Viel;
+         return KartenKonstanten.RessourcenVielKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Ressource_Überfluss;
+         return KartenKonstanten.RessourcenÜberflussKonstante;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
@@ -525,17 +525,17 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Schwierigkeitsgrad_Leicht;
+         return SystemKonstanten.SchwierigkeitLeichtKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Schwierigkeitsgrad_Mittel;
+         return SystemKonstanten.SchwierigkeitMittelKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Schwierigkeitsgrad_Schwer;
+         return SystemKonstanten.SchwierigkeitSchwerKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
@@ -561,92 +561,92 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Menschen;
+         return SystemKonstanten.MenschenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Kasrodiah;
+         return SystemKonstanten.KasrodiahKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Lasupin;
+         return SystemKonstanten.LasupinKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Lamustra;
+         return SystemKonstanten.LamustraKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Manuky;
+         return SystemKonstanten.ManukyKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Suroka;
+         return SystemKonstanten.SurokaKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return SystemDatentypen.Pryolon;
+         return SystemKonstanten.PryolonKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return SystemDatentypen.Talbidahr;
+         return SystemKonstanten.TalbidahrKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return SystemDatentypen.Moru_Phisihl;
+         return SystemKonstanten.MoruPhisihlKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return SystemDatentypen.Larinos_Lotaris;
+         return SystemKonstanten.LarinosLotarisKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 10
       then
-         return SystemDatentypen.Carupex;
+         return SystemKonstanten.CarupexKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 11
       then
-         return SystemDatentypen.Alary;
+         return SystemKonstanten.AlaryKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 12
       then
-         return SystemDatentypen.Tesorahn;
+         return SystemKonstanten.TesorahnKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 13
       then
-         return SystemDatentypen.Natries_Zermanis;
+         return SystemKonstanten.NatriesZermanisKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 14
       then
-         return SystemDatentypen.Tridatus;
+         return SystemKonstanten.TridatusKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 15
       then
-         return SystemDatentypen.Senelari;
+         return SystemKonstanten.SenelariKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 16
       then
-         return SystemDatentypen.Aspari_2;
+         return SystemKonstanten.Aspari2Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 17
       then
-         return SystemDatentypen.Ekropa;
+         return SystemKonstanten.EkropaKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 18

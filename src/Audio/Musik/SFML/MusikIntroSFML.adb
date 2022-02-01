@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-package body IntroSFML is
+package body MusikIntroSFML is
 
    procedure Intro
    is begin
@@ -9,4 +9,4 @@ package body IntroSFML is
       
    end Intro;
 
-end IntroSFML;
+end MusikIntroSFML;

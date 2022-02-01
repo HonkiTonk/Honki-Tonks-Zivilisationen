@@ -5,7 +5,7 @@ with SystemKonstanten;
 with GlobaleVariablen;
 
 with InteraktionLogiktask;
-with Musik;
+with MusikSFML;
 
 package body StartMusik is
 
@@ -29,7 +29,7 @@ package body StartMusik is
          
       end loop EinlesenAbwartenSchleife;
       
-      Musik.Musik;
+      MusikSFML.MusikSFML;
       
    end StartMusik;
 

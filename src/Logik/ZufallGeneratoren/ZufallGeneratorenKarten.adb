@@ -1,5 +1,7 @@
 pragma SPARK_Mode (Off);
 
+with SystemKonstanten;
+
 with LeseKarten;
 
 with BewegungPassierbarkeitPruefen;
@@ -46,8 +48,8 @@ package body ZufallGeneratorenKarten is
       case
         RasseExtern
       is
-         when SystemDatentypen.Talbidahr | SystemDatentypen.Tesorahn =>
-            -- Vorübergehend geändert, da alle Rassen gerade den menschlichen Einheitenbaum haben
+         when SystemKonstanten.TalbidahrKonstante | SystemKonstanten.TesorahnKonstante =>
+            -- Vorübergehend geändert, da alle Rassen gerade den menschlichen Einheitenbaum verwenden.
             return 0; -- -1;
             
          when others =>

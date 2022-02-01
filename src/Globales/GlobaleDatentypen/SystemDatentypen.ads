@@ -13,7 +13,7 @@ package SystemDatentypen is
                                  
                                  
                                  -- Editoren
-                                  Editoren, Kartenfeld_Editor, Einheiten_Editor, Gebäude_Editor, Forschung_Editor, Verbesserungen_Editor,
+                                 Editoren, Kartenfeld_Editor, Einheiten_Editor, Gebäude_Editor, Forschung_Editor, Verbesserungen_Editor,
                                  
                                  
                                  -- Karteneinstellungen
@@ -35,15 +35,15 @@ package SystemDatentypen is
                                  -- Neue Kartenressorucen immer vor Überfluss einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Karte_Ressource_Arm, Karte_Ressource_Wenig, Karte_Ressource_Mittel, Karte_Ressource_Viel, Karte_Ressource_Überfluss,
                                    
-                                 -- Neue Schwierigkeitsgrade immer vor Schwer einfügen um Anpassungen weiter unten zu vermeiden.
-                                 Schwierigkeitsgrad_Leicht, Schwierigkeitsgrad_Mittel, Schwierigkeitsgrad_Schwer,
+                                 -- Neue Schwierigkeitsgrade immer vor Schwer einfügen um Anpassungen weiter unten zu vermeiden. Außer wenn es schwerer als schwer werden soll, dann aber auch unten ändern.
+                                 Schwierigkeit_Leicht, Schwierigkeit_Mittel, Schwierigkeit_Schwer,
                                  
                                  Keine_Rasse, Menschen, Kasrodiah, Lasupin, Lamustra, Manuky, Suroka, Pryolon, Talbidahr, Moru_Phisihl, Larinos_Lotaris, Carupex, Alary, Tesorahn, Natries_Zermanis, Tridatus, Senelari,
                                  Aspari_2, Ekropa
                                 );
    pragma Ordered (Rückgabe_Werte_Enum);
    
-   subtype Schwierigkeitsgrad_Verwendet_Enum is Rückgabe_Werte_Enum range Schwierigkeitsgrad_Leicht .. Schwierigkeitsgrad_Schwer;
+   subtype Schwierigkeitsgrad_Verwendet_Enum is Rückgabe_Werte_Enum range Schwierigkeit_Leicht .. Schwierigkeit_Schwer;
    
    subtype Zurück_Beenden_Enum is Rückgabe_Werte_Enum range Zurück .. Spiel_Beenden;
    subtype Hauptmenü_Beenden_Enum is Zurück_Beenden_Enum range Hauptmenü .. Spiel_Beenden;
@@ -67,7 +67,7 @@ package SystemDatentypen is
    subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Konsole .. Grafik_SFML;
    subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren .. Grafik_Editoren;
    
-   type Musik_Aktuelle_Auswahl_Enum is (Musik_SFML,
+   type Musik_Aktuelle_Auswahl_Enum is (Musik_Konsole, Musik_SFML, Musik_Intro,
                                        
                                         Musik_Ende);
    

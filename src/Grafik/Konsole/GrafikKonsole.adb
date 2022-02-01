@@ -4,7 +4,7 @@ with SystemDatentypen;
 with SystemKonstanten;
 
 with InteraktionLogiktask;
-with IntroKonsole;
+with GrafikIntroKonsole;
 with Fehler;
 with Karte;
 with ForschungAnzeigeKonsole;
@@ -36,7 +36,7 @@ package body GrafikKonsole is
                InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                
             when SystemDatentypen.Grafik_Intro =>
-               IntroKonsole.Intro;
+               GrafikIntroKonsole.Intro;
                InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
                               
             when SystemDatentypen.Grafik_Pause =>
@@ -56,7 +56,7 @@ package body GrafikKonsole is
                case
                  InteraktionLogiktask.AktuelleRasseAbrufen
                is
-                  when SystemDatentypen.Keine_Rasse =>
+                  when SystemKonstanten.LeerRasse =>
                      delay SystemKonstanten.WartezeitGrafik;
                      
                   when others =>

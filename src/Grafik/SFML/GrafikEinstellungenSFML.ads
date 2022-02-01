@@ -7,6 +7,7 @@ with Sf.System.Vector2;
 
 with SystemRecords;
 with SystemDatentypen;
+with SystemKonstanten;
 
 package GrafikEinstellungenSFML is
    
@@ -64,24 +65,24 @@ private
    
    -- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht.
    RassenFarbenStandard : constant RassenFarbenArray := (
-                                                         SystemDatentypen.Menschen         => (255, 230, 200, 100),
-                                                         SystemDatentypen.Kasrodiah        => (255, 100, 40, 100),
-                                                         SystemDatentypen.Lasupin          => (65, 145, 140, 100),
-                                                         SystemDatentypen.Lamustra         => (60, 255, 240, 100),
-                                                         SystemDatentypen.Manuky           => (255, 255, 30, 100),
-                                                         SystemDatentypen.Suroka           => (135, 10, 255, 100),
-                                                         SystemDatentypen.Pryolon          => (65, 50, 15, 100),
-                                                         SystemDatentypen.Talbidahr        => (255, 20, 255, 100),
-                                                         SystemDatentypen.Moru_Phisihl     => (255, 255, 180, 100),
-                                                         SystemDatentypen.Larinos_Lotaris  => (255, 210, 135, 100),
-                                                         SystemDatentypen.Carupex          => (210, 210, 210, 100),
-                                                         SystemDatentypen.Alary            => (165, 105, 0, 100),
-                                                         SystemDatentypen.Tesorahn         => (10, 60, 240, 100),
-                                                         SystemDatentypen.Natries_Zermanis => (170, 120, 130, 100),
-                                                         SystemDatentypen.Tridatus         => (20, 95, 20, 100),
-                                                         SystemDatentypen.Senelari         => (0, 210, 0, 100),
-                                                         SystemDatentypen.Aspari_2         => (90, 90, 90, 100),
-                                                         SystemDatentypen.Ekropa           => (255, 30, 30, 100)
+                                                         SystemKonstanten.MenschenKonstante        => (255, 230, 200, 100),
+                                                         SystemKonstanten.KasrodiahKonstante       => (255, 100, 40, 100),
+                                                         SystemKonstanten.LasupinKonstante         => (65, 145, 140, 100),
+                                                         SystemKonstanten.LamustraKonstante        => (60, 255, 240, 100),
+                                                         SystemKonstanten.ManukyKonstante          => (255, 255, 30, 100),
+                                                         SystemKonstanten.SurokaKonstante          => (135, 10, 255, 100),
+                                                         SystemKonstanten.PryolonKonstante         => (65, 50, 15, 100),
+                                                         SystemKonstanten.TalbidahrKonstante       => (255, 20, 255, 100),
+                                                         SystemKonstanten.MoruPhisihlKonstante     => (255, 255, 180, 100),
+                                                         SystemKonstanten.LarinosLotarisKonstante  => (255, 210, 135, 100),
+                                                         SystemKonstanten.CarupexKonstante         => (210, 210, 210, 100),
+                                                         SystemKonstanten.AlaryKonstante           => (165, 105, 0, 100),
+                                                         SystemKonstanten.TesorahnKonstante        => (10, 60, 240, 100),
+                                                         SystemKonstanten.NatriesZermanisKonstante => (170, 120, 130, 100),
+                                                         SystemKonstanten.TridatusKonstante        => (20, 95, 20, 100),
+                                                         SystemKonstanten.SenelariKonstante        => (0, 210, 0, 100),
+                                                         SystemKonstanten.Aspari2Konstante         => (90, 90, 90, 100),
+                                                         SystemKonstanten.EkropaKonstante          => (255, 30, 30, 100)
                                                         );
    
 end GrafikEinstellungenSFML;

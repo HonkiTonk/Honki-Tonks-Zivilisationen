@@ -1,18 +1,34 @@
 pragma SPARK_Mode (On);
 
+with Sf.Audio; use Sf.Audio;
+with Sf.Audio.SoundBuffer;
+
 with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;
 
 with InteraktionSoundtask;
 with Fehler;
+with EingeleseneSounds;
 
 package body SoundSFML is
 
    procedure SoundSFML
    is begin
       
+      -- Sound wird direkt parallel aufgerufen. Steht auch im SFML Tutorial und der Beschreibung der ASFML.
+      if
+        EingeleseneSounds.Sound (SystemKonstanten.LeerRasse, 1) = null
+      then
+         null;
+         
+      else
+         Sf.Audio.Sound.setBuffer (sound  => SoundTest,
+                                   buffer => EingeleseneSounds.Sound (SystemKonstanten.LeerRasse, 1));
+         Sf.Audio.Sound.play (sound => SoundTest);
+      end if;
+      
       SoundSchleife:
-      while InteraktionSoundtask.AktuellenSoundAbfragen = SystemDatentypen.Sound_SFML loop
+      loop
          
          case
            InteraktionSoundtask.AktuellenSoundAbfragen
@@ -28,6 +44,19 @@ package body SoundSFML is
          end case;
          
       end loop SoundSchleife;
+      
+      if
+        EingeleseneSounds.Sound (SystemKonstanten.LeerRasse, 1) = null
+      then
+         null;
+         
+      else
+         -- Vor dem stoppen noch prüfen ob überhaupt Sound läuft?
+         Sf.Audio.Sound.stop (sound => SoundTest);
+         -- Beide destroys sind nötig sonst gibt es die Fehlermeldung "AL lib: (EE) alc_cleanup: 1 device not closed" beim Beenden des Programms.
+         Sf.Audio.SoundBuffer.destroy (soundBuffer => EingeleseneSounds.Sound (SystemKonstanten.LeerRasse, 1));
+         Sf.Audio.Sound.destroy (sound => SoundTest);
+      end if;
       
    end SoundSFML;
 

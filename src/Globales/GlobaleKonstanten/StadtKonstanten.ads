@@ -16,7 +16,7 @@ with KIDatentypen;
 
 package StadtKonstanten is
    
-   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
+   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemKonstanten.LeerRasse;
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
    
@@ -91,46 +91,46 @@ package StadtKonstanten is
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert =>
                                                                      (
-                                                                      SystemDatentypen.Menschen         => 10,
-                                                                      SystemDatentypen.Kasrodiah        => 10,
-                                                                      SystemDatentypen.Lasupin          => 10,
-                                                                      SystemDatentypen.Lamustra         => 10,
-                                                                      SystemDatentypen.Manuky           => 10,
-                                                                      SystemDatentypen.Suroka           => 10,
-                                                                      SystemDatentypen.Pryolon          => 10,
-                                                                      SystemDatentypen.Talbidahr        => 10,
-                                                                      SystemDatentypen.Moru_Phisihl     => 10,
-                                                                      SystemDatentypen.Larinos_Lotaris  => 10,
-                                                                      SystemDatentypen.Carupex          => 10,
-                                                                      SystemDatentypen.Alary            => 10,
-                                                                      SystemDatentypen.Tesorahn         => 10,
-                                                                      SystemDatentypen.Natries_Zermanis => 10,
-                                                                      SystemDatentypen.Tridatus         => 10,
-                                                                      SystemDatentypen.Senelari         => 10,
-                                                                      SystemDatentypen.Aspari_2         => 10,
-                                                                      SystemDatentypen.Ekropa           => 10
+                                                                      SystemKonstanten.MenschenKonstante        => 10,
+                                                                      SystemKonstanten.KasrodiahKonstante       => 10,
+                                                                      SystemKonstanten.LasupinKonstante         => 10,
+                                                                      SystemKonstanten.LamustraKonstante        => 10,
+                                                                      SystemKonstanten.ManukyKonstante          => 10,
+                                                                      SystemKonstanten.SurokaKonstante          => 10,
+                                                                      SystemKonstanten.PryolonKonstante         => 10,
+                                                                      SystemKonstanten.TalbidahrKonstante       => 10,
+                                                                      SystemKonstanten.MoruPhisihlKonstante     => 10,
+                                                                      SystemKonstanten.LarinosLotarisKonstante  => 10,
+                                                                      SystemKonstanten.CarupexKonstante         => 10,
+                                                                      SystemKonstanten.AlaryKonstante           => 10,
+                                                                      SystemKonstanten.TesorahnKonstante        => 10,
+                                                                      SystemKonstanten.NatriesZermanisKonstante => 10,
+                                                                      SystemKonstanten.TridatusKonstante        => 10,
+                                                                      SystemKonstanten.SenelariKonstante        => 10,
+                                                                      SystemKonstanten.Aspari2Konstante         => 10,
+                                                                      SystemKonstanten.EkropaKonstante          => 10
                                                                      ),
 
                                                                    SystemDatentypen.Endwert =>
                                                                      (
-                                                                      SystemDatentypen.Menschen         => 20,
-                                                                      SystemDatentypen.Kasrodiah        => 20,
-                                                                      SystemDatentypen.Lasupin          => 20,
-                                                                      SystemDatentypen.Lamustra         => 20,
-                                                                      SystemDatentypen.Manuky           => 20,
-                                                                      SystemDatentypen.Suroka           => 20,
-                                                                      SystemDatentypen.Pryolon          => 20,
-                                                                      SystemDatentypen.Talbidahr        => 20,
-                                                                      SystemDatentypen.Moru_Phisihl     => 20,
-                                                                      SystemDatentypen.Larinos_Lotaris  => 20,
-                                                                      SystemDatentypen.Carupex          => 20,
-                                                                      SystemDatentypen.Alary            => 20,
-                                                                      SystemDatentypen.Tesorahn         => 20,
-                                                                      SystemDatentypen.Natries_Zermanis => 20,
-                                                                      SystemDatentypen.Tridatus         => 20,
-                                                                      SystemDatentypen.Senelari         => 20,
-                                                                      SystemDatentypen.Aspari_2         => 20,
-                                                                      SystemDatentypen.Ekropa           => 20
+                                                                      SystemKonstanten.MenschenKonstante        => 20,
+                                                                      SystemKonstanten.KasrodiahKonstante       => 20,
+                                                                      SystemKonstanten.LasupinKonstante         => 20,
+                                                                      SystemKonstanten.LamustraKonstante        => 20,
+                                                                      SystemKonstanten.ManukyKonstante          => 20,
+                                                                      SystemKonstanten.SurokaKonstante          => 20,
+                                                                      SystemKonstanten.PryolonKonstante         => 20,
+                                                                      SystemKonstanten.TalbidahrKonstante       => 20,
+                                                                      SystemKonstanten.MoruPhisihlKonstante     => 20,
+                                                                      SystemKonstanten.LarinosLotarisKonstante  => 20,
+                                                                      SystemKonstanten.CarupexKonstante         => 20,
+                                                                      SystemKonstanten.AlaryKonstante           => 20,
+                                                                      SystemKonstanten.TesorahnKonstante        => 20,
+                                                                      SystemKonstanten.NatriesZermanisKonstante => 20,
+                                                                      SystemKonstanten.TridatusKonstante        => 20,
+                                                                      SystemKonstanten.SenelariKonstante        => 20,
+                                                                      SystemKonstanten.Aspari2Konstante         => 20,
+                                                                      SystemKonstanten.EkropaKonstante          => 20
                                                                      )
                                                                   );
 

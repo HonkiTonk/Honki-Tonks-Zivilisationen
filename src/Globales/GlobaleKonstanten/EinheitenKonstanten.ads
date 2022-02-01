@@ -13,7 +13,7 @@ with KIDatentypen;
 
 package EinheitenKonstanten is
    
-   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
+   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemKonstanten.LeerRasse;
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
 

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
+with SystemKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -226,7 +227,7 @@ package body StadtBauen is
       -- Standardnamen der KI einfach auf Basis der Stadtnummer festlegen?
       
       if
-        StadtRasseNummerExtern.Rasse = SystemDatentypen.Menschen
+        StadtRasseNummerExtern.Rasse = SystemKonstanten.MenschenKonstante
       then
          null;
          

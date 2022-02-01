@@ -5,80 +5,81 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
+with SystemKonstanten;
 
 package StadtUmgebungsbereichFestlegen is
    
    type TechnologieUmgebungsgrößeArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of EinheitStadtDatentypen.ForschungID;
    TechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
-                                                                               SystemDatentypen.Menschen =>
+                                                                               SystemKonstanten.MenschenKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
                                                                                              
-                                                                               SystemDatentypen.Kasrodiah =>
+                                                                               SystemKonstanten.KasrodiahKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Lasupin =>
+                                                                               SystemKonstanten.LasupinKonstante =>
+                                                                                 (SystemDatentypen.Anfangswert => 19,
+                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               
+                                                                               SystemKonstanten.LamustraKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Lamustra =>
+                                                                               SystemKonstanten.ManukyKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Manuky =>
+                                                                               SystemKonstanten.SurokaKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Suroka =>
+                                                                               SystemKonstanten.PryolonKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Pryolon =>
+                                                                               SystemKonstanten.TalbidahrKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Talbidahr =>
+                                                                               SystemKonstanten.MoruPhisihlKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Moru_Phisihl =>
+                                                                               SystemKonstanten.LarinosLotarisKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Larinos_Lotaris =>
+                                                                               SystemKonstanten.CarupexKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Carupex =>
+                                                                               SystemKonstanten.AlaryKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Alary =>
+                                                                               SystemKonstanten.TesorahnKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Tesorahn =>
+                                                                               SystemKonstanten.NatriesZermanisKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Natries_Zermanis =>
+                                                                               SystemKonstanten.TridatusKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Tridatus =>
+                                                                               SystemKonstanten.SenelariKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Senelari =>
+                                                                               SystemKonstanten.Aspari2Konstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43),
             
-                                                                               SystemDatentypen.Aspari_2 =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
-            
-                                                                               SystemDatentypen.Ekropa =>
+                                                                               SystemKonstanten.EkropaKonstante =>
                                                                                  (SystemDatentypen.Anfangswert => 19,
                                                                                   SystemDatentypen.Endwert     => 43)
                                                                               );

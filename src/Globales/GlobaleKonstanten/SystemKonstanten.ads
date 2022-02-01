@@ -43,12 +43,6 @@ package SystemKonstanten is
 
 
 
-   -- Für die Zahleneingabe später entfernen
-   -- GanzeZahlAbbruchKonstante : constant Integer := -1_000_000_000;
-   -- Für die Zahleneingabe
-
-
-
    -- Für die Optionen/Menüs
    JaAnzeigeKonstante : constant Positive := 7;
    NeinAnzeigeKonstante : constant Positive := 8;
@@ -65,5 +59,40 @@ package SystemKonstanten is
    LeerString : constant Wide_Wide_String := "";
    LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
    LeerZeichen : constant Wide_Wide_Character := ' ';
+
+
+
+   -- Für Spieleinstellungen
+
+
+   SchwierigkeitLeichtKonstante : constant SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum := SystemDatentypen.Schwierigkeit_Leicht;
+   SchwierigkeitMittelKonstante : constant SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum := SystemDatentypen.Schwierigkeit_Mittel;
+   SchwierigkeitSchwerKonstante : constant SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum := SystemDatentypen.Schwierigkeit_Schwer;
+   -- Für Spieleinstellungen
+
+
+
+   -- Für Rassenoptionen
+   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse;
+
+   MenschenKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Menschen;
+   KasrodiahKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Kasrodiah;
+   LasupinKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Lasupin;
+   LamustraKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Lamustra;
+   ManukyKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Manuky;
+   SurokaKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Suroka;
+   PryolonKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Pryolon;
+   TalbidahrKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Talbidahr;
+   MoruPhisihlKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Moru_Phisihl;
+   LarinosLotarisKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Larinos_Lotaris;
+   CarupexKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Carupex;
+   AlaryKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Alary;
+   TesorahnKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Tesorahn;
+   NatriesZermanisKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Natries_Zermanis;
+   TridatusKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Tridatus;
+   SenelariKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Senelari;
+   Aspari2Konstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Aspari_2;
+   EkropaKonstante : constant SystemDatentypen.Rassen_Verwendet_Enum := SystemDatentypen.Ekropa;
+   -- Für Rassenoptionen
 
 end SystemKonstanten;

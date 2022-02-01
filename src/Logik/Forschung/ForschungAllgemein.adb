@@ -32,7 +32,7 @@ package body ForschungAllgemein is
       
       -- RasseExtern wird später benötigt wenn es verschiedene Forschungsbäume gibt.
       if
-        RasseExtern = SystemDatentypen.Menschen
+        RasseExtern = SystemKonstanten.MenschenKonstante
       then
          null;
 
@@ -320,7 +320,7 @@ package body ForschungAllgemein is
          InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RasseExtern);
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
                                               ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseExtern));
-         InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse);
+         InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemKonstanten.LeerRasse);
             
       else
          SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
