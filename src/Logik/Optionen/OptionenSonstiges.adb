@@ -26,13 +26,13 @@ package body OptionenSonstiges is
          case
            AuswahlWert
          is
-            when SystemDatentypen.Anzahl_Speicherstände =>
+            when SystemKonstanten.AnzahlSpeicherständeKonstante =>
                AnzahlAutomatischerSpielstände;
                
-            when SystemDatentypen.Runden_Bis_Autospeichern =>
+            when SystemKonstanten.RundenBisAutospeichernKonstante =>
                RundenBisAutospeichern;
                
-            when SystemDatentypen.Sprache =>
+            when SystemKonstanten.SpracheKonstante =>
                SpracheWechseln;
                
             when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
@@ -52,7 +52,7 @@ package body OptionenSonstiges is
    procedure AnzahlAutomatischerSpielstände
    is begin
       
-      EingegebeneZahl := Eingabe.GanzeZahl (ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile,
+      EingegebeneZahl := Eingabe.GanzeZahl (ZeileExtern         => 2,
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => 999_999_999);
       case
@@ -72,7 +72,7 @@ package body OptionenSonstiges is
    procedure RundenBisAutospeichern
    is begin
       
-      EingegebeneZahl := Eingabe.GanzeZahl (ZeileExtern         => SystemKonstanten.OptionenSonstigesErsteZeile + 1,
+      EingegebeneZahl := Eingabe.GanzeZahl (ZeileExtern         => 3,
                                             ZahlenMinimumExtern => 0,
                                             ZahlenMaximumExtern => 999_999_999);
 

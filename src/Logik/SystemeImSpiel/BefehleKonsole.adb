@@ -52,7 +52,7 @@ package body BefehleKonsole is
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when SystemDatentypen.Menü_Zurück =>
-            return SystemDatentypen.Spielmenü;
+            return SystemKonstanten.SpielmenüKonstante;
 
          when SystemDatentypen.Bauen =>
             BaueStadt (RasseExtern => RasseExtern);

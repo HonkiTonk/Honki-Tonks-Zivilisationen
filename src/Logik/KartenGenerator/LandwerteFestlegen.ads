@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
+with KartenKonstanten;
 
 with Karten;
 
@@ -17,41 +17,41 @@ private
    XAchse : KartenDatentypen.KartenfeldPositiv;
    
    MinimaleLandgröße : constant Karten.GrößeLandartArray := (
-                                                                 SystemDatentypen.Karte_Art_Inseln     => (2, 2),
-                                                                 SystemDatentypen.Karte_Art_Kontinente => (6, 6),
-                                                                 SystemDatentypen.Karte_Art_Pangäa     => (1, 1),
+                                                                 KartenKonstanten.KartenartInselnKonstante     => (2, 2),
+                                                                 KartenKonstanten.KartenartKontinenteKonstante => (6, 6),
+                                                                 KartenKonstanten.KartenartPangäaKonstante     => (1, 1),
                                                                  others                      => (1, 1)
                                                                 );
    MaximaleLandgröße : constant Karten.GrößeLandartArray := (
-                                                                 SystemDatentypen.Karte_Art_Inseln     => (3, 3),
-                                                                 SystemDatentypen.Karte_Art_Kontinente => (8, 8),
-                                                                 SystemDatentypen.Karte_Art_Pangäa     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                                                 KartenKonstanten.KartenartInselnKonstante     => (3, 3),
+                                                                 KartenKonstanten.KartenartKontinenteKonstante => (8, 8),
+                                                                 KartenKonstanten.KartenartPangäaKonstante     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
                                                                  others                      => (1, 1)
                                                                 );
    
    MinimalerAbstand : constant Karten.GrößeLandartArray := (
-                                                              SystemDatentypen.Karte_Art_Inseln     => (8, 8),
-                                                              SystemDatentypen.Karte_Art_Kontinente => (13, 13),
-                                                              SystemDatentypen.Karte_Art_Pangäa     => (1, 1),
+                                                              KartenKonstanten.KartenartInselnKonstante     => (8, 8),
+                                                              KartenKonstanten.KartenartKontinenteKonstante => (13, 13),
+                                                              KartenKonstanten.KartenartPangäaKonstante     => (1, 1),
                                                               others                      => (1, 1)
                                                              );
    MaximalerAbstand : constant Karten.GrößeLandartArray := (
-                                                              SystemDatentypen.Karte_Art_Inseln     => (15, 15),
-                                                              SystemDatentypen.Karte_Art_Kontinente => (22, 22),
-                                                              SystemDatentypen.Karte_Art_Pangäa     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                                              KartenKonstanten.KartenartInselnKonstante     => (15, 15),
+                                                              KartenKonstanten.KartenartKontinenteKonstante => (22, 22),
+                                                              KartenKonstanten.KartenartPangäaKonstante     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
                                                               others                      => (1, 1)
                                                              );
    
    TeilerGröße : constant Karten.GrößeLandartArray := (
-                                                           SystemDatentypen.Karte_Art_Inseln     => (7, 7),
-                                                           SystemDatentypen.Karte_Art_Kontinente => (3, 3),
-                                                           SystemDatentypen.Karte_Art_Pangäa     => (2, 2),
+                                                           KartenKonstanten.KartenartInselnKonstante     => (7, 7),
+                                                           KartenKonstanten.KartenartKontinenteKonstante => (3, 3),
+                                                           KartenKonstanten.KartenartPangäaKonstante     => (2, 2),
                                                            others                      => (1, 1)
                                                           );
    TeilerAbstand : constant Karten.GrößeLandartArray := (
-                                                           SystemDatentypen.Karte_Art_Inseln     => (3, 3),
-                                                           SystemDatentypen.Karte_Art_Kontinente => (2, 2),
-                                                           SystemDatentypen.Karte_Art_Pangäa     => (1, 1),
+                                                           KartenKonstanten.KartenartInselnKonstante     => (3, 3),
+                                                           KartenKonstanten.KartenartKontinenteKonstante => (2, 2),
+                                                           KartenKonstanten.KartenartPangäaKonstante     => (1, 1),
                                                            others                      => (1, 1)
                                                           );
    

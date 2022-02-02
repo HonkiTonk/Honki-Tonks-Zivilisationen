@@ -12,7 +12,7 @@ with GrafikEinstellungenSFML;
 with GrafikAllgemeinSFML;
 with Fehler;
 
-package body StartEndeSFML is
+package body GrafikStartEndeSFML is
 
    procedure FensterErzeugen
    is begin
@@ -102,4 +102,4 @@ package body StartEndeSFML is
       
    end FensterAnzeigen;
 
-end StartEndeSFML;
+end GrafikStartEndeSFML;

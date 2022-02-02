@@ -164,7 +164,7 @@ package body Diplomatie is
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
                                                                                      NeuerStatusExtern => SystemDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
-            return SystemDatentypen.Start_Weiter;
+            return SystemKonstanten.StartWeiterKonstante;
             
             -- Ist dazu da um im Kriegsfall sofort das Diplomatiemenü zu schließen.
          when 3 =>
@@ -177,7 +177,7 @@ package body Diplomatie is
                return SystemKonstanten.ZurückKonstante;
                
             else
-               return SystemDatentypen.Start_Weiter;
+               return SystemKonstanten.StartWeiterKonstante;
             end if;
             
          when others =>

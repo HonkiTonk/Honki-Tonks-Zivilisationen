@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten;
-
 with SchreibeKarten;
 with LeseKarten;
 
@@ -52,7 +50,7 @@ package body KartenGeneratorStandard is
       case
         Karten.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Nur_Land =>
+         when KartenKonstanten.KartenartLandKonstante =>
             GenerierungNurLand;
             return;
             

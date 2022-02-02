@@ -14,7 +14,7 @@ is
    type Tasks_Enum is (Task_Logik, Task_Grafik, Task_Musik, Task_Sound);
 
    type TasksLaufenArray is array (Tasks_Enum'Range) of Boolean;
-   TasksLaufen : TasksLaufenArray;
+   TasksLaufen : TasksLaufenArray := (others => False);
 
    type TaskIDArray is array (Tasks_Enum'Range) of Task_Id;
    TaskID : TaskIDArray;

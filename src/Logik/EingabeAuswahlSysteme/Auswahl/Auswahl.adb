@@ -4,6 +4,8 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with SystemKonstanten;
+
 with TextAnzeigeKonsole;
 with Eingabe;
 
@@ -154,7 +156,7 @@ package body Auswahl is
             null;
       end case;
       
-      return SystemDatentypen.Ja;
+      return SystemKonstanten.JaKonstante;
       
    end AuswahlJaNein;
 

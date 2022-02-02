@@ -4,6 +4,7 @@ with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen;
 with EinheitenKonstanten;
+with KartenKonstanten;
 
 with Ladezeiten;
 with KartenfelderBewerten;
@@ -44,15 +45,17 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Normal_Himmel_Weltraum_Planeteninneres, SystemDatentypen.Anfangswert) := Clock;
       LandwerteFestlegen.GrößeFestlegen;
+      
       case
         Karten.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos =>
+         when KartenKonstanten.KartenartChaosKonstante =>
             KartenGeneratorChaos.Chaos;
             
          when others =>
             KartenGeneratorStandard.StandardKarte;
       end case;
+      
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Normal_Himmel_Weltraum_Planeteninneres, SystemDatentypen.Endwert) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Generiere_Normal_Himmel_Weltraum_Planeteninneres);
       
@@ -68,7 +71,7 @@ package body KartenGenerator is
       case
         Karten.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos | SystemDatentypen.Karte_Art_Nur_Land =>
+         when KartenKonstanten.KartenartChaosKonstante | KartenKonstanten.KartenartLandKonstante =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer, SystemDatentypen.Endwert)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer, SystemDatentypen.Anfangswert);
             
@@ -90,7 +93,7 @@ package body KartenGenerator is
       case
         Karten.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos =>
+         when KartenKonstanten.KartenartChaosKonstante =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche, SystemDatentypen.Endwert)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche, SystemDatentypen.Anfangswert);
             
@@ -112,7 +115,7 @@ package body KartenGenerator is
       case
         Karten.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos =>
+         when KartenKonstanten.KartenartChaosKonstante =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Endwert)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Anfangswert);
             
@@ -134,7 +137,7 @@ package body KartenGenerator is
       case
         Karten.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos =>
+         when KartenKonstanten.KartenartChaosKonstante =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse, SystemDatentypen.Endwert)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse, SystemDatentypen.Anfangswert);
             
@@ -156,7 +159,7 @@ package body KartenGenerator is
       case
         Karten.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos =>
+         when KartenKonstanten.KartenartChaosKonstante =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen, SystemDatentypen.Endwert)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen, SystemDatentypen.Anfangswert);
             

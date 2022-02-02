@@ -4,7 +4,7 @@ package SystemDatentypen is
 
    -- Wichtige Werte
    type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Zurück, Hauptmenü, Spiel_Beenden, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
-                                 Rasse_Entfernen, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, Spielmenü,
+                                 Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, Spielmenü,
                                  
                                  -- Grafikmenü
                                  Auflösung_Ändern, Vollbild_Fenster, Bildrate_Ändern, Schriftgröße,
@@ -14,11 +14,11 @@ package SystemDatentypen is
                                  
                                  -- Editoren
                                  Editoren, Kartenfeld_Editor, Einheiten_Editor, Gebäude_Editor, Forschung_Editor, Verbesserungen_Editor,
-                                 
-                                 
+                                                                  
                                  -- Karteneinstellungen
                                  Auswahl_Kartengröße, Auswahl_Kartenart, Auswahl_Kartenform, Auswahl_Kartentemperatur, Auswahl_Rassen, Auswahl_Schwierigkeitsgrad, Auswahl_Kartenressourcen,
                                  
+                                 -- Neue Kartengrößen immer zwischen 20 und 1.000 einfügen um Anpassungen in KartenDatentypen zu vermeiden, außer die minimale oder maximale Kartengröße soll verändert werden.
                                  Karte_Größe_20_20, Karte_Größe_40_40, Karte_Größe_80_80, Karte_Größe_120_80, Karte_Größe_120_160, Karte_Größe_160_160, Karte_Größe_240_240, Karte_Größe_320_320, Karte_Größe_1000_1000,
                                  Karte_Größe_Nutzer, Karte_Größe_Zufall,
                                 

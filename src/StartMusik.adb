@@ -5,7 +5,10 @@ with SystemKonstanten;
 with GlobaleVariablen;
 
 with InteraktionLogiktask;
+with InteraktionMusiktask;
 with MusikSFML;
+with MusikKonsole;
+with Fehler;
 
 package body StartMusik is
 
@@ -29,7 +32,18 @@ package body StartMusik is
          
       end loop EinlesenAbwartenSchleife;
       
-      MusikSFML.MusikSFML;
+      case
+        InteraktionMusiktask.AktuelleMusik
+      is
+         when SystemDatentypen.Musik_SFML =>
+            MusikSFML.MusikSFML;
+            
+         when SystemDatentypen.Musik_Konsole =>
+            MusikKonsole.MusikKonsole;
+            
+         when others =>
+            Fehler.MusikStopp (FehlermeldungExtern => "StartMusik.StartMusik - Ungültige Musikwiedergabeart.");
+      end case;
       
    end StartMusik;
 

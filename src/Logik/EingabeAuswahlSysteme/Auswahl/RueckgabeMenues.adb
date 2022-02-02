@@ -109,42 +109,42 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Start_Weiter;
+         return SystemKonstanten.StartWeiterKonstante;
                   
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Laden;
+         return SystemKonstanten.LadenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Optionen;
+         return SystemKonstanten.OptionenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Editoren;
+         return SystemKonstanten.EditorenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Informationen;
+         return SystemKonstanten.InformationenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Würdigungen;
+         return SystemKonstanten.WürdigungenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden;
+         return SystemKonstanten.SpielBeendenKonstante;
                     
       else
          Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.Hauptmenü - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return SystemKonstanten.SpielBeendenKonstante;
       end if;
       
    end Hauptmenü;
@@ -162,37 +162,37 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Start_Weiter;
+         return SystemKonstanten.StartWeiterKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Speichern;
+         return SystemKonstanten.SpeichernKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Laden;
+         return SystemKonstanten.LadenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Optionen;
+         return SystemKonstanten.OptionenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 1
       then
-         return SystemDatentypen.Hauptmenü;
+         return SystemKonstanten.HauptmenüKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden;
+         return SystemKonstanten.SpielBeendenKonstante;
                     
       else
          Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.Spielmenü - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return SystemKonstanten.SpielBeendenKonstante;
       end if;
       
    end Spielmenü;
@@ -209,22 +209,22 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Grafik;
+         return SystemKonstanten.GrafikKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Sound;
+         return SystemKonstanten.SoundKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Steuerung;
+         return SystemKonstanten.SteuerungKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Sonstiges;
+         return SystemKonstanten.SonstigesKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -245,62 +245,62 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Größe_20_20;
+         return KartenKonstanten.Kartengröße2020Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Größe_40_40;
+         return KartenKonstanten.Kartengröße4040Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Größe_80_80;
+         return KartenKonstanten.Kartengröße8080Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Größe_120_80;
+         return KartenKonstanten.Kartengröße12080Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Größe_120_160;
+         return KartenKonstanten.Kartengröße120160Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Karte_Größe_160_160;
+         return KartenKonstanten.Kartengröße160160Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return SystemDatentypen.Karte_Größe_240_240;
+         return KartenKonstanten.Kartengröße240240Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return SystemDatentypen.Karte_Größe_320_320;
+         return KartenKonstanten.Kartengröße320320Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return SystemDatentypen.Karte_Größe_1000_1000;
+         return KartenKonstanten.Kartengröße10001000Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return SystemDatentypen.Karte_Größe_Nutzer;
+         return KartenKonstanten.KartengrößeNutzerKonstante;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 10
       then
-         return SystemDatentypen.Zufall;
+         return SystemKonstanten.ZufallKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 11
       then
-         return SystemDatentypen.Karte_Größe_Zufall;
+         return KartenKonstanten.KartengrößeZufallKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -321,32 +321,32 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Art_Inseln;
+         return KartenKonstanten.KartenartInselnKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Art_Kontinente;
+         return KartenKonstanten.KartenartKontinenteKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Art_Pangäa;
+         return KartenKonstanten.KartenartPangäaKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Art_Nur_Land;
+         return KartenKonstanten.KartenartLandKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Art_Chaos;
+         return KartenKonstanten.KartenartChaosKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Zufall;
+         return SystemKonstanten.ZufallKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -367,52 +367,52 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Form_X_Zylinder;
+         return KartenKonstanten.KartenformXZylinderKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Form_Y_Zylinder;
+         return KartenKonstanten.KartenformYZylinderKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Form_Torus;
+         return KartenKonstanten.KartenformTorusKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Form_Kugel;
+         return KartenKonstanten.KartenformKugelKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Form_Viereck;
+         return KartenKonstanten.KartenformViereckKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Karte_Form_Kugel_Gedreht;
+         return KartenKonstanten.KartenformKugelGedrehtKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return SystemDatentypen.Karte_Form_Tugel;
+         return KartenKonstanten.KartenformTugelKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return SystemDatentypen.Karte_Form_Tugel_Gedreht;
+         return KartenKonstanten.KartenformTugelGedrehtKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return SystemDatentypen.Karte_Form_Tugel_Extrem;
+         return KartenKonstanten.KartenformTugelExtremKonstante;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return SystemDatentypen.Zufall;
+         return SystemKonstanten.ZufallKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -433,32 +433,32 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Temperatur_Kalt;
+         return KartenKonstanten.TemperaturKaltKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Temperatur_Gemäßigt;
+         return KartenKonstanten.TemperaturGemäßigtKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Temperatur_Heiß;
+         return KartenKonstanten.TemperaturHeißKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Temperatur_Eiszeit;
+         return KartenKonstanten.TemperaturEiszeitKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Temperatur_Wüste;
+         return KartenKonstanten.TemperaturWüsteKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Zufall;
+         return SystemKonstanten.ZufallKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -504,7 +504,7 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Zufall;
+         return SystemKonstanten.ZufallKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -540,7 +540,7 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Zufall;
+         return SystemKonstanten.ZufallKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -651,12 +651,12 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 18
       then
-         return SystemDatentypen.Zufall;
+         return SystemKonstanten.ZufallKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 19
       then
-         return SystemDatentypen.Fertig;
+         return SystemKonstanten.FertigKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -677,22 +677,22 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Auflösung_Ändern;
+         return SystemKonstanten.AuflösungÄndernKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Vollbild_Fenster;
+         return SystemKonstanten.VollbildFensterKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Bildrate_Ändern;
+         return SystemKonstanten.BildrateÄndernKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Speichern;
+         return SystemKonstanten.SpeichernKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -735,31 +735,31 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = EndeExtern - 4
       then
-         return SystemDatentypen.Speichern;
+         return SystemKonstanten.SpeichernKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 3
       then
-         return SystemDatentypen.Wiederherstellen;
+         return SystemKonstanten.WiederherstellenKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 2
       then
-         return SystemDatentypen.Zurück;
+         return SystemKonstanten.ZurückKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 1
       then
-         return SystemDatentypen.Hauptmenü;
+         return SystemKonstanten.HauptmenüKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden;
+         return SystemKonstanten.SpielBeendenKonstante;
                     
       else
          GlobaleVariablen.UmbelegungNummer := AktuelleAuswahlExtern;
-         return SystemDatentypen.Eingabe;
+         return SystemKonstanten.EingabeKonstante;
       end if;
       
    end SteuerungMenü;
@@ -776,17 +776,17 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Anzahl_Speicherstände;
+         return SystemKonstanten.AnzahlSpeicherständeKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Runden_Bis_Autospeichern;
+         return SystemKonstanten.RundenBisAutospeichernKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Sprache;
+         return SystemKonstanten.SpracheKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -807,34 +807,34 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Kartenfeld_Editor;
+         return SystemKonstanten.KartenfeldEditorKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Einheiten_Editor;
+         return SystemKonstanten.EinheitenEditorKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Gebäude_Editor;
+         return SystemKonstanten.GebäudeEditorKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Forschung_Editor;
+         return SystemKonstanten.ForschungEditorKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Verbesserungen_Editor;
+         return SystemKonstanten.VerbesserungenEditorKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
                                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
-      -- return SystemDatentypen.Editoren;
+      -- return SystemKonstanten.EditorenKonstante;
       
    end EditorenMenü;
    
@@ -849,22 +849,22 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = EndeExtern - 2
       then
-         return SystemDatentypen.Zurück;
+         return SystemKonstanten.ZurückKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 1
       then
-         return SystemDatentypen.Hauptmenü;
+         return SystemKonstanten.HauptmenüKonstante;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden;
+         return SystemKonstanten.SpielBeendenKonstante;
                     
       else
          Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden;
+         return SystemKonstanten.SpielBeendenKonstante;
       end if;
       
    end ZurückHauptmenüEnde;

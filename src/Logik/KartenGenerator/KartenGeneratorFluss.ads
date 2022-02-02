@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 with KartenRecords;
+with KartenKonstanten;
 
 with Karten;
 
@@ -14,11 +14,11 @@ private
    
    type WahscheinlichkeitFlussArray is array (KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range) of Float;
    WahrscheinlichkeitFluss : constant WahscheinlichkeitFlussArray := (
-                                                                      SystemDatentypen.Karte_Temperatur_Kalt     => 0.25,
-                                                                      SystemDatentypen.Karte_Temperatur_Gemäßigt => 0.30,
-                                                                      SystemDatentypen.Karte_Temperatur_Heiß     => 0.25,
-                                                                      SystemDatentypen.Karte_Temperatur_Eiszeit  => 0.15,
-                                                                      SystemDatentypen.Karte_Temperatur_Wüste    => 0.15
+                                                                      KartenKonstanten.TemperaturKaltKonstante     => 0.25,
+                                                                      KartenKonstanten.TemperaturGemäßigtKonstante => 0.30,
+                                                                      KartenKonstanten.TemperaturHeißKonstante     => 0.25,
+                                                                      KartenKonstanten.TemperaturEiszeitKonstante  => 0.15,
+                                                                      KartenKonstanten.TemperaturWüsteKonstante    => 0.15
                                                                      );
    
    type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartenDatentypen.Karten_Fluss_Enum;

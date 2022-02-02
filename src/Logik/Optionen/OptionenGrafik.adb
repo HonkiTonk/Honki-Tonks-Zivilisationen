@@ -24,20 +24,20 @@ package body OptionenGrafik is
          case
            AuswahlWert
          is
-            when SystemDatentypen.Auflösung_Ändern =>
+            when SystemKonstanten.AuflösungÄndernKonstante =>
                AuflösungÄndern;
             
                -- Brauche ich diese Option überhaupt?
-            when SystemDatentypen.Vollbild_Fenster =>
+            when SystemKonstanten.VollbildFensterKonstante =>
                VollbildFenster;
                
-            when SystemDatentypen.Bildrate_Ändern =>
+            when SystemKonstanten.BildrateÄndernKonstante =>
                BildrateÄndern;
                
-            when SystemDatentypen.Schriftgröße =>
+            when SystemKonstanten.SchriftgrößeKonstante =>
                null;
                
-            when SystemDatentypen.Speichern =>
+            when SystemKonstanten.SpeichernKonstante =>
                EinstellungenSpeichern;
                
             when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenKonstanten;
 with EinheitenKonstanten;
+with SystemKonstanten;
 
 with LeseEinheitenGebaut;
 
@@ -33,21 +34,21 @@ package body SpielEinstellungenRasseSpieler is
             when SystemDatentypen.Rassen_Verwendet_Enum'Range =>
                BelegungÄndern (RasseExtern => RassenAuswahl);
 
-            when SystemDatentypen.Zufall =>
+            when SystemKonstanten.ZufallKonstante =>
                ZufallGeneratorenSpieleinstellungen.ZufälligeRassen;
                
-            when SystemDatentypen.Fertig =>
+            when SystemKonstanten.FertigKonstante =>
                if
                  EineRasseBelegt = True
                then
-                  return SystemDatentypen.Auswahl_Schwierigkeitsgrad;
+                  return SystemKonstanten.AuswahlSchwierigkeitsgradKonstante;
                   
                else
                   null;
                end if;
 
-            when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Kartenressourcen;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartenressourcenKonstante;
                
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return RassenAuswahl;

@@ -25,19 +25,19 @@ package body DatenbankenEditoren is
          case
            AuswahlWert
          is
-            when SystemDatentypen.Kartenfeld_Editor =>
+            when SystemKonstanten.KartenfeldEditorKonstante =>
                KartenDatenbankEditor.KartenDatenbankEditor;
                
-            when SystemDatentypen.Einheiten_Editor =>
+            when SystemKonstanten.EinheitenEditorKonstante =>
                EinheitenDatenbankEditor.EinheitenDatenbankEditor;
                
-            when SystemDatentypen.Gebäude_Editor =>
+            when SystemKonstanten.GebäudeEditorKonstante =>
                GebaeudeDatenbankEditor.GebäudeDatenbankEditor;
                
-            when SystemDatentypen.Forschung_Editor =>
+            when SystemKonstanten.ForschungEditorKonstante =>
                ForschungDatenbankEditor.ForschungDatenbankEditor;
                
-            when SystemDatentypen.Verbesserungen_Editor =>
+            when SystemKonstanten.VerbesserungenEditorKonstante =>
                VerbesserungenDatenbankEditor.VerbesserungenDatenbankEditor;
                
             when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>

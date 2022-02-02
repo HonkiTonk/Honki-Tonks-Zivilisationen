@@ -32,14 +32,14 @@ package body Hauptmenue is
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungenAuswahl;
 
                if
-                 RückgabeKampagne = SystemDatentypen.Hauptmenü
+                 RückgabeKampagne = SystemKonstanten.HauptmenüKonstante
                  or
-                   RückgabeKampagne = SystemDatentypen.Zurück
+                   RückgabeKampagne = SystemKonstanten.ZurückKonstante
                then
                   AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
                elsif
-                 RückgabeKampagne = SystemDatentypen.Spiel_Beenden
+                 RückgabeKampagne = SystemKonstanten.SpielBeendenKonstante
                then
                   exit HauptmenüSchleife;
 
@@ -47,17 +47,17 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemDatentypen.Laden =>
+            when SystemKonstanten.LadenKonstante =>
                if
                  Laden.LadenNeu = True
                then
                   case
                     ImSpiel.ImSpiel
                   is
-                     when SystemDatentypen.Hauptmenü =>
+                     when SystemKonstanten.HauptmenüKonstante =>
                         AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when SystemDatentypen.Spiel_Beenden =>
+                     when SystemKonstanten.SpielBeendenKonstante =>
                         exit HauptmenüSchleife;
 
                      when others =>
@@ -68,9 +68,9 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemDatentypen.Optionen =>
+            when SystemKonstanten.OptionenKonstante =>
                if
-                 Optionen.Optionen = SystemDatentypen.Spiel_Beenden
+                 Optionen.Optionen = SystemKonstanten.SpielBeendenKonstante
                then
                   exit HauptmenüSchleife;
 
@@ -78,9 +78,9 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemDatentypen.Editoren =>
+            when SystemKonstanten.EditorenKonstante =>
                if
-                 DatenbankenEditoren.DatenbankenEditoren = SystemDatentypen.Spiel_Beenden
+                 DatenbankenEditoren.DatenbankenEditoren = SystemKonstanten.SpielBeendenKonstante
                then
                   exit HauptmenüSchleife;
 
@@ -88,13 +88,13 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemDatentypen.Informationen =>
+            when SystemKonstanten.InformationenKonstante =>
                Informationen.Informationen;
                
-            when SystemDatentypen.Würdigungen =>
+            when SystemKonstanten.WürdigungenKonstante =>
                Wuerdigung.Würdigung;
                
-            when SystemDatentypen.Spiel_Beenden =>
+            when SystemKonstanten.SpielBeendenKonstante =>
                exit HauptmenüSchleife;
                
             when others =>

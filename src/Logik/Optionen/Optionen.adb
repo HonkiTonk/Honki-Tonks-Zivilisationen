@@ -45,7 +45,7 @@ package body Optionen is
          case
            RückgabeWert
          is
-            when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                return RückgabeWert;
                
             when SystemKonstanten.ZurückKonstante =>

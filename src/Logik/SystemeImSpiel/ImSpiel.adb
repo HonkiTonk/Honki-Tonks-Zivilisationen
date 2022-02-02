@@ -39,13 +39,13 @@ package body ImSpiel is
             case
               RückgabeRassen
             is
-               when SystemDatentypen.Spiel_Beenden | SystemDatentypen.Hauptmenü =>
+               when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
                   return RückgabeRassen;
                   
-               when SystemDatentypen.Schleife_Verlassen =>
+               when SystemKonstanten.SchleifeVerlassenKonstante =>
                   exit RassenSchleife;
                   
-               when SystemDatentypen.Start_Weiter =>
+               when SystemKonstanten.StartWeiterKonstante =>
                   null;
                
                when others =>
@@ -59,12 +59,12 @@ package body ImSpiel is
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
-            return SystemDatentypen.Hauptmenü;
+            return SystemKonstanten.HauptmenüKonstante;
             
          elsif
            GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
          then
-            return SystemDatentypen.Hauptmenü;
+            return SystemKonstanten.HauptmenüKonstante;
             
          else
             null;
@@ -84,7 +84,7 @@ package body ImSpiel is
       if
         GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer
       then
-         return SystemDatentypen.Start_Weiter;
+         return SystemKonstanten.StartWeiterKonstante;
       
       elsif
         GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
@@ -92,7 +92,7 @@ package body ImSpiel is
           GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
          RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
-         return SystemDatentypen.Start_Weiter;
+         return SystemKonstanten.StartWeiterKonstante;
          
       else
          return RasseDurchgehen (RasseExtern => RasseExtern);
@@ -131,7 +131,7 @@ package body ImSpiel is
          null;
       end if;
       
-      return SystemDatentypen.Start_Weiter;
+      return SystemKonstanten.StartWeiterKonstante;
       
    end RasseDurchgehen;
    
@@ -157,20 +157,20 @@ package body ImSpiel is
       RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
       
       if
-        (RückgabeWert = SystemDatentypen.Spiel_Beenden
+        (RückgabeWert = SystemKonstanten.SpielBeendenKonstante
          or
-           RückgabeWert = SystemDatentypen.Hauptmenü)
+           RückgabeWert = SystemKonstanten.HauptmenüKonstante)
         and
           NochSpielerVorhanden (RasseExtern => RasseExtern) = True
       then
          RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                         
       elsif
-        RückgabeWert = SystemDatentypen.Spiel_Beenden
+        RückgabeWert = SystemKonstanten.SpielBeendenKonstante
         or
-          RückgabeWert = SystemDatentypen.Hauptmenü
+          RückgabeWert = SystemKonstanten.HauptmenüKonstante
           or
-            RückgabeWert = SystemDatentypen.Schleife_Verlassen
+            RückgabeWert = SystemKonstanten.SchleifeVerlassenKonstante
       then
          return RückgabeWert;
                         
@@ -178,7 +178,7 @@ package body ImSpiel is
          null;
       end if;
       
-      return SystemDatentypen.Start_Weiter;
+      return SystemKonstanten.StartWeiterKonstante;
       
    end MenschlicherSpieler;
 
@@ -210,20 +210,20 @@ package body ImSpiel is
          case
            AktuellerBefehlSpieler
          is
-            when SystemDatentypen.Start_Weiter =>
+            when SystemKonstanten.StartWeiterKonstante =>
                null;
                
-            when SystemDatentypen.Runde_Beenden =>
+            when SystemKonstanten.RundeBeendenKonstante =>
                RückgabeMenschAmZug := AktuellerBefehlSpieler;
                exit SpielerSchleife;
                
-            when SystemDatentypen.Spielmenü =>
+            when SystemKonstanten.SpielmenüKonstante =>
                RückgabeSpielmenü := Spielmenü (RasseExtern => RasseExtern);
 
                if
-                 RückgabeSpielmenü = SystemDatentypen.Laden
+                 RückgabeSpielmenü = SystemKonstanten.LadenKonstante
                then
-                  RückgabeMenschAmZug := SystemDatentypen.Schleife_Verlassen;
+                  RückgabeMenschAmZug := SystemKonstanten.SchleifeVerlassenKonstante;
                   exit SpielerSchleife;
                   
                elsif
@@ -269,21 +269,21 @@ package body ImSpiel is
          case
            AuswahlSpielmenü
          is
-            when SystemDatentypen.Speichern =>
+            when SystemKonstanten.SpeichernKonstante =>
                GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
-            when SystemDatentypen.Laden =>
+            when SystemKonstanten.LadenKonstante =>
                if
                  Laden.LadenNeu = True
                then
-                  return SystemDatentypen.Laden;
+                  return SystemKonstanten.LadenKonstante;
 
                else
                   null;
                end if;
                
-            when SystemDatentypen.Optionen =>
+            when SystemKonstanten.OptionenKonstante =>
                RückgabeOptionen := Optionen.Optionen;
                
                if

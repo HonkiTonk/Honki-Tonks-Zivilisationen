@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with KartenKonstanten;
+with SystemKonstanten;
+
 with Karten;
 with Eingabe;
 with ZufallGeneratorenSpieleinstellungen;
@@ -22,18 +25,18 @@ package body SpielEinstellungenKarten is
          is
             when KartenDatentypen.Kartengröße_Standard_Enum'Range =>
                Karten.Kartengröße := KartengrößeAuswahl;
-               return SystemDatentypen.Auswahl_Kartenart;
+               return SystemKonstanten.AuswahlKartenartKonstante;
 
-            when SystemDatentypen.Karte_Größe_Nutzer =>
+            when KartenKonstanten.KartengrößeNutzerKonstante =>
                return GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
-            when SystemDatentypen.Zufall =>
+            when SystemKonstanten.ZufallKonstante =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
-               return SystemDatentypen.Auswahl_Kartenart;
+               return SystemKonstanten.AuswahlKartenartKonstante;
                
-            when SystemDatentypen.Karte_Größe_Zufall =>
+            when KartenKonstanten.KartengrößeZufallKonstante =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
-               return SystemDatentypen.Auswahl_Kartenart;
+               return SystemKonstanten.AuswahlKartenartKonstante;
 
             when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                return KartengrößeAuswahl;
@@ -62,7 +65,7 @@ package body SpielEinstellungenKarten is
         BenutzerdefinierteGröße.EingabeAbbruch
       is
          when False =>
-            return SystemDatentypen.Auswahl_Kartengröße;
+            return SystemKonstanten.AuswahlKartengrößeKonstante;
             
          when True =>
             null;
@@ -77,12 +80,12 @@ package body SpielEinstellungenKarten is
         BenutzerdefinierteGröße.EingabeAbbruch
       is
          when False =>
-            return SystemDatentypen.Auswahl_Kartengröße;
+            return SystemKonstanten.AuswahlKartengrößeKonstante;
             
          when True =>
             Karten.Kartengrößen (KartengrößeExtern).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
             Karten.Kartengröße := KartengrößeExtern;
-            return SystemDatentypen.Auswahl_Kartenart;
+            return SystemKonstanten.AuswahlKartenartKonstante;
       end case;
       
    end GrößeSelbstBestimmen;
@@ -104,14 +107,14 @@ package body SpielEinstellungenKarten is
          is
             when KartenDatentypen.Kartenart_Verwendet_Enum'Range =>
                Karten.Kartenart := KartenartAuswahl;
-               return SystemDatentypen.Auswahl_Kartenform;
+               return SystemKonstanten.AuswahlKartenformKonstante;
                
-            when SystemDatentypen.Zufall =>
+            when SystemKonstanten.ZufallKonstante =>
                Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
-               return SystemDatentypen.Auswahl_Kartenform;
+               return SystemKonstanten.AuswahlKartenformKonstante;
                
-            when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Kartengröße;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartengrößeKonstante;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenartAuswahl;
@@ -141,14 +144,14 @@ package body SpielEinstellungenKarten is
          is
             when KartenDatentypen.Kartenform_Verwendet_Enum'Range =>
                Karten.Kartenform := KartenformAuswahl;
-               return SystemDatentypen.Auswahl_Kartentemperatur;
+               return SystemKonstanten.AuswahlKartentemperaturKonstante;
                
-            when SystemDatentypen.Zufall =>
+            when SystemKonstanten.ZufallKonstante =>
                Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
-               return SystemDatentypen.Auswahl_Kartentemperatur;
+               return SystemKonstanten.AuswahlKartentemperaturKonstante;
                
-            when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Kartenart;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartenartKonstante;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenformAuswahl;
@@ -178,14 +181,14 @@ package body SpielEinstellungenKarten is
          is
             when KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range =>
                Karten.Kartentemperatur := KartentemperaturAuswahl;
-               return SystemDatentypen.Auswahl_Kartenressourcen;
+               return SystemKonstanten.AuswahlKartenressourcenKonstante;
                
-            when SystemDatentypen.Zufall =>
+            when SystemKonstanten.ZufallKonstante =>
                Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
-               return SystemDatentypen.Auswahl_Kartenressourcen;
+               return SystemKonstanten.AuswahlKartenressourcenKonstante;
                
-            when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Kartenform;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartenformKonstante;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartentemperaturAuswahl;
@@ -215,14 +218,14 @@ package body SpielEinstellungenKarten is
          is
             when KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range =>
                Karten.Kartenressourcen := KartenressourcenAuswahl;
-               return SystemDatentypen.Auswahl_Rassen;
+               return SystemKonstanten.AuswahlRassenKonstante;
                
-            when SystemDatentypen.Zufall =>
+            when SystemKonstanten.ZufallKonstante =>
                Karten.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
-               return SystemDatentypen.Auswahl_Rassen;
+               return SystemKonstanten.AuswahlRassenKonstante;
                
-            when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Kartentemperatur;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlKartentemperaturKonstante;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenressourcenAuswahl;

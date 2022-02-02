@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with GlobaleVariablen;
+with SystemKonstanten;
 
 with ZufallGeneratorenSpieleinstellungen;
 with AuswahlMenue;
@@ -22,14 +23,14 @@ package body SpielEinstellungenSonstiges is
          is
             when SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Range =>
                GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
-               return SystemDatentypen.Start_Weiter;
+               return SystemKonstanten.StartWeiterKonstante;
 
-            when SystemDatentypen.Zufall =>
+            when SystemKonstanten.ZufallKonstante =>
                GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
-               return SystemDatentypen.Start_Weiter;
+               return SystemKonstanten.StartWeiterKonstante;
                
-            when SystemDatentypen.Zurück =>
-               return SystemDatentypen.Auswahl_Rassen;
+            when SystemKonstanten.ZurückKonstante =>
+               return SystemKonstanten.AuswahlRassenKonstante;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return SchwierigkeitAuswahl;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SystemDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;
 
 with InteraktionLogiktask;
@@ -29,7 +29,7 @@ package body GrafikKonsole is
                InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
             
             when SystemDatentypen.Grafik_SFML =>
-               Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - Konsole wird bei SFML aufgerufen.");
+               Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - SFML wird bei Konsole aufgerufen.");
                
             when SystemDatentypen.Grafik_Sprache =>
                -- AuswahlSpracheAnzeige.AnzeigeSpracheKonsole;
@@ -53,16 +53,15 @@ package body GrafikKonsole is
                null;
                
             when SystemDatentypen.Grafik_Weltkarte =>
-               case
-                 InteraktionLogiktask.AktuelleRasseAbrufen
-               is
-                  when SystemKonstanten.LeerRasse =>
-                     delay SystemKonstanten.WartezeitGrafik;
+               if
+                 InteraktionLogiktask.AktuelleRasseAbrufen = SystemKonstanten.LeerRasse
+               then
+                  delay SystemKonstanten.WartezeitGrafik;
                      
-                  when others =>
-                     Karte.AnzeigeKarte (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
-                     InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
-               end case;
+               else
+                  Karte.AnzeigeKarte (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
+                  InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               end if;
                
             when SystemDatentypen.Grafik_Stadtkarte =>
                InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);

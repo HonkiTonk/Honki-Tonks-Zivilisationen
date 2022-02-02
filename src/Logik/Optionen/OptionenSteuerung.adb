@@ -43,7 +43,7 @@ package body OptionenSteuerung is
             when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
                
-            when SystemDatentypen.Eingabe =>
+            when SystemKonstanten.EingabeKonstante =>
                AlteTasteEntfernen;
                      
             when others =>

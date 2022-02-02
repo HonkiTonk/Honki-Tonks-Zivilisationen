@@ -1,6 +1,7 @@
 pragma SPARK_Mode (Off);
 
 with SystemKonstanten;
+with KartenKonstanten;
 
 with LeseKarten;
 
@@ -66,49 +67,49 @@ package body ZufallGeneratorenKarten is
       case
         Karten.Kartengröße
       is
-         when SystemDatentypen.Karte_Größe_20_20 =>
+         when KartenKonstanten.Kartengröße2020Konstante =>
             WerteWählen20.Reset (PositionGewählt20);
             YAchse := WerteWählen20.Random (PositionGewählt20);
             XAchse := WerteWählen20.Random (PositionGewählt20);
 
-         when SystemDatentypen.Karte_Größe_40_40 =>
+         when KartenKonstanten.Kartengröße4040Konstante =>
             WerteWählen40.Reset (PositionGewählt40);
             YAchse := WerteWählen40.Random (PositionGewählt40);
             XAchse := WerteWählen40.Random (PositionGewählt40);
             
-         when SystemDatentypen.Karte_Größe_80_80 =>
+         when KartenKonstanten.Kartengröße8080Konstante =>
             WerteWählen80.Reset (PositionGewählt80);
             YAchse := WerteWählen80.Random (PositionGewählt80);
             XAchse := WerteWählen80.Random (PositionGewählt80);
             
-         when SystemDatentypen.Karte_Größe_120_80 =>
+         when KartenKonstanten.Kartengröße12080Konstante =>
             WerteWählen80.Reset (PositionGewählt80);
             WerteWählen120.Reset (PositionGewählt120);
             YAchse := WerteWählen120.Random (PositionGewählt120);
             XAchse := WerteWählen80.Random (PositionGewählt80);
             
-         when SystemDatentypen.Karte_Größe_120_160 =>
+         when KartenKonstanten.Kartengröße120160Konstante =>
             WerteWählen120.Reset (PositionGewählt120);
             WerteWählen160.Reset (PositionGewählt160);
             YAchse := WerteWählen120.Random (PositionGewählt120);
             XAchse := WerteWählen160.Random (PositionGewählt160);
             
-         when SystemDatentypen.Karte_Größe_160_160 =>
+         when KartenKonstanten.Kartengröße160160Konstante =>
             WerteWählen160.Reset (PositionGewählt160);
             YAchse := WerteWählen160.Random (PositionGewählt160);
             XAchse := WerteWählen160.Random (PositionGewählt160);
             
-         when SystemDatentypen.Karte_Größe_240_240 =>
+         when KartenKonstanten.Kartengröße240240Konstante =>
             WerteWählen240.Reset (PositionGewählt240);
             YAchse := WerteWählen240.Random (PositionGewählt240);
             XAchse := WerteWählen240.Random (PositionGewählt240);
             
-         when SystemDatentypen.Karte_Größe_320_320 =>
+         when KartenKonstanten.Kartengröße320320Konstante =>
             WerteWählen320.Reset (PositionGewählt320);
             YAchse := WerteWählen320.Random (PositionGewählt320);
             XAchse := WerteWählen320.Random (PositionGewählt320);
             
-         when SystemDatentypen.Karte_Größe_1000_1000 =>
+         when KartenKonstanten.Kartengröße10001000Konstante =>
             WerteWählen1000.Reset (PositionGewählt1000);
             YAchse := WerteWählen1000.Random (PositionGewählt1000);
             XAchse := WerteWählen1000.Random (PositionGewählt1000);

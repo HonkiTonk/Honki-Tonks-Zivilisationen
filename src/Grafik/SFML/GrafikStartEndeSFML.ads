@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-package StartEndeSFML is
+package GrafikStartEndeSFML is
    
    procedure FensterErzeugen;
    procedure FensterEntfernen;
@@ -16,4 +16,4 @@ private
    
    procedure FensterErzeugenErweitert;
 
-end StartEndeSFML;
+end GrafikStartEndeSFML;

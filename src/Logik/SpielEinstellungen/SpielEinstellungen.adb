@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar; use Ada.Calendar;
 
 with GlobaleVariablen;
+with SystemKonstanten;
 
 with ImSpiel;
 with KartenGenerator;
@@ -19,7 +20,7 @@ package body SpielEinstellungen is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
 
-      Auswahl := SystemDatentypen.Auswahl_Kartengröße;
+      Auswahl := SystemKonstanten.AuswahlKartengrößeKonstante;
 
       AuswahlSchleife:
       loop
@@ -27,28 +28,28 @@ package body SpielEinstellungen is
          case
            Auswahl
          is
-            when SystemDatentypen.Auswahl_Kartengröße =>
+            when SystemKonstanten.AuswahlKartengrößeKonstante =>
                Auswahl := SpielEinstellungenKarten.KartengrößeWählen;
 
-            when SystemDatentypen.Auswahl_Kartenart =>
+            when SystemKonstanten.AuswahlKartenartKonstante =>
                Auswahl := SpielEinstellungenKarten.KartenartWählen;
                
-            when SystemDatentypen.Auswahl_Kartenform =>
+            when SystemKonstanten.AuswahlKartenformKonstante =>
                Auswahl := SpielEinstellungenKarten.KartenformWählen;
 
-            when SystemDatentypen.Auswahl_Kartentemperatur =>
+            when SystemKonstanten.AuswahlKartentemperaturKonstante =>
                Auswahl := SpielEinstellungenKarten.KartentemperaturWählen;
                
-            when SystemDatentypen.Auswahl_Kartenressourcen =>
+            when SystemKonstanten.AuswahlKartenressourcenKonstante =>
                Auswahl := SpielEinstellungenKarten.KartenressourcenWählen;
 
-            when SystemDatentypen.Auswahl_Rassen =>
+            when SystemKonstanten.AuswahlRassenKonstante =>
                Auswahl := SpielEinstellungenRasseSpieler.RassenWählen;
 
-            when SystemDatentypen.Auswahl_Schwierigkeitsgrad =>
+            when SystemKonstanten.AuswahlSchwierigkeitsgradKonstante =>
                Auswahl := SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
-            when SystemDatentypen.Start_Weiter =>
+            when SystemKonstanten.StartWeiterKonstante =>
                exit AuswahlSchleife;
 
             when SystemDatentypen.Zurück_Beenden_Enum'Range =>

@@ -40,7 +40,7 @@ package body ZwischenDenRunden is
             return False;
       end case;
       
-      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Laden);
+      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemKonstanten.GrafikKonstante_Laden);
       -- Das Umschalten der Darstellung der Ladezeiten in die Prozeduren der jeweiligen Ladezeiten einbauen?
       
       LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden, SystemDatentypen.Anfangswert) := Clock;
@@ -75,7 +75,7 @@ package body ZwischenDenRunden is
             
       GesamteZeitenAnzeigen;
       
-      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemKonstanten.GrafikKonstante_Pause);
       
       return False;
       

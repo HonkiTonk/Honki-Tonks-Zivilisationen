@@ -182,16 +182,18 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.00.98 => 0.00.9 (02.02.2022):
+   -- Version 0.00.9870 => 0.00.9 (02.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9860 => 0.00.98 (01.02.2022):
+   -- Version 0.00.9860 => 0.00.9870 (01.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mehr Konstanten angelegt, eingebaut und dabei hoffentlich nichts kaputt gemacht.
+   -- Musik- und Soundsystem verbessert.
+   -- Interne Struktur leicht überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
 
 end ChangelogFebruar2022;

@@ -61,28 +61,28 @@ package body KarteKonsole is
         XAchseExtern = Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False)
       then
          if
-           (Karten.Kartenform = SystemDatentypen.Karte_Form_X_Zylinder
+           (Karten.Kartenform = KartenKonstanten.KartenformXZylinderKonstante
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Torus
+              Karten.Kartenform = KartenKonstanten.KartenformTorusKonstante
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Kugel
+              Karten.Kartenform = KartenKonstanten.KartenformKugelKonstante
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Kugel_Gedreht
+              Karten.Kartenform = KartenKonstanten.KartenformKugelGedrehtKonstante
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel
+              Karten.Kartenform = KartenKonstanten.KartenformTugelKonstante
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Gedreht
+              Karten.Kartenform = KartenKonstanten.KartenformTugelGedrehtKonstante
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Extrem)
+              Karten.Kartenform = KartenKonstanten.KartenformTugelExtremKonstante)
            and
              KartenWert.XAchse > KartenKonstanten.LeerXAchse
          then
             New_Line;
                   
          elsif
-           Karten.Kartenform = SystemDatentypen.Karte_Form_Y_Zylinder
+           Karten.Kartenform = KartenKonstanten.KartenformYZylinderKonstante
            or
-             Karten.Kartenform = SystemDatentypen.Karte_Form_Viereck
+             Karten.Kartenform = KartenKonstanten.KartenformViereckKonstante
          then
             New_Line;
                

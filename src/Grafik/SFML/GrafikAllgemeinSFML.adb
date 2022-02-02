@@ -5,7 +5,7 @@ with Sf.Graphics.RenderWindow;
 with Sf.Graphics.Font;
 with Sf.Window.Cursor;
 
-with StartEndeSFML;
+with GrafikStartEndeSFML;
 with GrafikEinstellungenSFML;
 with InteraktionGrafiktask;
 
@@ -18,8 +18,8 @@ package body GrafikAllgemeinSFML is
         InteraktionGrafiktask.FensterVerändert
       is
          when InteraktionGrafiktask.Auflösung_Verändert | InteraktionGrafiktask.Modus_Verändert =>
-            StartEndeSFML.FensterEntfernen;
-            StartEndeSFML.FensterErzeugen;
+            GrafikStartEndeSFML.FensterEntfernen;
+            GrafikStartEndeSFML.FensterErzeugen;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y;
             InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung;

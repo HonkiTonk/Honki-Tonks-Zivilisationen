@@ -8,7 +8,7 @@ with StadtKonstanten;
 with SystemKonstanten;
 
 with Fehler;
-with StartEndeSFML;
+with GrafikStartEndeSFML;
 with GrafikIntroSFML;
 with AnzeigeAuswahlMenueSFML;
 with Karte;
@@ -30,7 +30,7 @@ package body GrafikSFML is
    procedure GrafikSFML
    is begin
       
-      StartEndeSFML.FensterErzeugen;
+      GrafikStartEndeSFML.FensterErzeugen;
 
       GrafikSchleife:
       loop
@@ -58,7 +58,7 @@ package body GrafikSFML is
                null;
          end case;
          
-         StartEndeSFML.FensterLeeren;
+         GrafikStartEndeSFML.FensterLeeren;
          
          case
            InteraktionGrafiktask.TastenEingabe
@@ -85,7 +85,7 @@ package body GrafikSFML is
            AnzeigeAuswahl
          is
             when True =>
-               StartEndeSFML.FensterAnzeigen;
+               GrafikStartEndeSFML.FensterAnzeigen;
                
             when False =>
                exit GrafikSchleife;
@@ -93,7 +93,7 @@ package body GrafikSFML is
          
       end loop GrafikSchleife;
       
-      StartEndeSFML.FensterEntfernen;
+      GrafikStartEndeSFML.FensterEntfernen;
       
    end GrafikSFML;
    
