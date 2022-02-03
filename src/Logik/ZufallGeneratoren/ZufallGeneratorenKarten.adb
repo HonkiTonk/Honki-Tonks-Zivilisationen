@@ -1,6 +1,5 @@
 pragma SPARK_Mode (Off);
 
-with SystemKonstanten;
 with KartenKonstanten;
 
 with LeseKarten;

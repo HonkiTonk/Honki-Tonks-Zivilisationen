@@ -179,7 +179,7 @@ package body ForschungAnzeigeKonsole is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Rechts =>
+            when SystemKonstanten.RechtsKonstante =>
                if
                  AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'Last
                then
@@ -189,7 +189,7 @@ package body ForschungAnzeigeKonsole is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
 
-            when SystemDatentypen.Links =>
+            when SystemKonstanten.LinksKonstante =>
                if
                  AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'First
                then
@@ -199,7 +199,7 @@ package body ForschungAnzeigeKonsole is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
                               
-            when SystemDatentypen.Menü_Zurück =>
+            when SystemKonstanten.MenüZurückKonstante =>
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return;
                      

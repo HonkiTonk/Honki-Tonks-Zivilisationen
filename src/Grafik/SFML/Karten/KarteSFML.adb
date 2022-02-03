@@ -10,7 +10,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
-with SystemKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;

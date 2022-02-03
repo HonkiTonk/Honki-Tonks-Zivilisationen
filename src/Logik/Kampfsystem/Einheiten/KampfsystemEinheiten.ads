@@ -4,6 +4,7 @@ with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
+with SystemKonstanten;
 
 package KampfsystemEinheiten is
 
@@ -15,9 +16,9 @@ package KampfsystemEinheiten is
        Pre =>
          (AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
           and
             VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and
@@ -31,7 +32,7 @@ package KampfsystemEinheiten is
        Pre =>
          (VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante);
 
 private
 
@@ -79,9 +80,9 @@ private
        Pre =>
          (AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
           and
             VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and

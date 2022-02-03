@@ -134,7 +134,7 @@ package body AuswahlSprache is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
+            when SystemKonstanten.ObenKonstante | SystemKonstanten.EbeneHochKonstante =>
                if
                  AktuelleAuswahl = AktuelleSprachen'First
                then
@@ -144,7 +144,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Unten | SystemDatentypen.Ebene_Runter =>
+            when SystemKonstanten.UntenKonstante | SystemKonstanten.EbeneRunterKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -154,7 +154,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemDatentypen.Auswählen =>
+            when SystemKonstanten.AuswählenKonstante =>
                if
                  AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
                then
@@ -193,7 +193,7 @@ package body AuswahlSprache is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
+            when SystemKonstanten.ObenKonstante | SystemKonstanten.EbeneHochKonstante =>
                if
                  AktuelleAuswahl = AktuelleSprachen'First
                then
@@ -203,7 +203,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Unten | SystemDatentypen.Ebene_Runter =>
+            when SystemKonstanten.UntenKonstante | SystemKonstanten.EbeneRunterKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -213,7 +213,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemDatentypen.Auswählen =>
+            when SystemKonstanten.AuswählenKonstante =>
                if
                  AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
                then
@@ -223,7 +223,7 @@ package body AuswahlSprache is
                   return AktuelleSprachen (AktuelleAuswahl);
                end if;
                
-            when SystemDatentypen.Menü_Zurück =>
+            when SystemKonstanten.MenüZurückKonstante =>
                return SystemKonstanten.LeerUnboundedString;
             
             when others =>

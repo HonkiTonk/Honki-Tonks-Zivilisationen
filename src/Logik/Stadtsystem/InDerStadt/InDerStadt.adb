@@ -35,7 +35,7 @@ package body InDerStadt is
                                                       RasseExtern    => StadtRasseNummerExtern.Rasse);
 
                -- Einwohner von Feld entfernen/zuweisen
-            when SystemDatentypen.Auswählen =>
+            when SystemKonstanten.AuswählenKonstante =>
                if
                  WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
                then
@@ -45,14 +45,14 @@ package body InDerStadt is
                   return;
                end if;
                
-            when SystemDatentypen.Bauen =>
+            when SystemKonstanten.BauenKonstante =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
                -- Gebäude verkaufen
-            when SystemDatentypen.Auflösen =>
+            when SystemKonstanten.AuflösenKonstante =>
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-            when SystemDatentypen.Stadt_Umbenennen =>
+            when SystemKonstanten.StadtUmbenennenKonstante =>
                NeuerName := Eingabe.StadtName;
                
                if
@@ -65,7 +65,7 @@ package body InDerStadt is
                   null;
                end if;
 
-            when SystemDatentypen.Menü_Zurück =>
+            when SystemKonstanten.MenüZurückKonstante =>
                exit StadtSchleife;
                
             when others =>

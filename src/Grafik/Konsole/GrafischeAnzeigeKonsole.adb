@@ -4,7 +4,6 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
-with SystemKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;

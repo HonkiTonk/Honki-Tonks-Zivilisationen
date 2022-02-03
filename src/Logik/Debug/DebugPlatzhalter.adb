@@ -126,7 +126,7 @@ package body DebugPlatzhalter is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemDatentypen.Spieler_KI =>
+         when SystemKonstanten.SpielerKIKonstante =>
             BewegungPlanSchleife:
             for BewegungGeplantSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
                       

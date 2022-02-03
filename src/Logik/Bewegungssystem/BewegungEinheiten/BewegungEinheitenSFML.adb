@@ -56,7 +56,7 @@ package body BewegungEinheitenSFML is
          when SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             Änderung := Richtung (BefehlExtern);
                
-         when SystemDatentypen.Heimatstadt_Ändern =>
+         when SystemKonstanten.HeimatstadtÄndernKonstante =>
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
          when SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | SystemDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
@@ -64,11 +64,11 @@ package body BewegungEinheitenSFML is
             return not Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      BefehlExtern             => BefehlExtern);
                
-         when SystemDatentypen.Bauen =>
+         when SystemKonstanten.BauenKonstante =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
             return not StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when SystemDatentypen.Leer =>
+         when SystemKonstanten.LeerTastenbelegungKonstante =>
             -- Statt nur bei Leer nichts machen und in allen anderen Fällen zurück oder nur bei Menü_Zurück zurück und sonst nicht?
             null;
             
@@ -155,10 +155,10 @@ package body BewegungEinheitenSFML is
          case
            BefehlMaus
          is
-            when SystemDatentypen.Menü_Zurück =>
+            when SystemKonstanten.MenüZurückKonstante =>
                return False;
                
-            when SystemDatentypen.Auswählen =>               
+            when SystemKonstanten.AuswählenKonstante =>               
                YÄnderungSchleife:
                for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   XÄnderungSchleife:
@@ -186,7 +186,7 @@ package body BewegungEinheitenSFML is
                   end loop XÄnderungSchleife;
                end loop YÄnderungSchleife;
                
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerTastenbelegungKonstante =>
                null;
                
             when others =>

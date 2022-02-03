@@ -83,10 +83,10 @@ package body SpielEinstellungen is
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
                
-            when SystemDatentypen.Spieler_Mensch | SystemDatentypen.Spieler_KI =>
+            when SystemKonstanten.SpielerMenschKonstante | SystemKonstanten.SpielerKIKonstante =>
                RassenVorhanden := True;
                exit SicherheitsSchleife;
          end case;

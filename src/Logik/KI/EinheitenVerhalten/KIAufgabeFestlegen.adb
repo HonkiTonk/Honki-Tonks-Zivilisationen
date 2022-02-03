@@ -38,7 +38,7 @@ package body KIAufgabeFestlegen is
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Tut_Nichts);
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern      => SystemDatentypen.Leer);
+                                              BeschäftigungExtern      => SystemKonstanten.LeerTastenbelegungKonstante);
       
    end KeineAufgabe;
    
@@ -211,7 +211,7 @@ package body KIAufgabeFestlegen is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
            or
              RasseSchleifenwert = RasseExtern
          then

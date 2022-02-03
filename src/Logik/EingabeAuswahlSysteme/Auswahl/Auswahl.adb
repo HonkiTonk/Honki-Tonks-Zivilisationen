@@ -39,7 +39,7 @@ package body Auswahl is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Oben =>
+            when SystemKonstanten.ObenKonstante =>
                if
                  AktuelleAuswahl = Anfang
                then
@@ -49,7 +49,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Unten =>
+            when SystemKonstanten.UntenKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -59,7 +59,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemDatentypen.Auswählen =>
+            when SystemKonstanten.AuswählenKonstante =>
                -- Hauptmenü
                if
                  GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 1)

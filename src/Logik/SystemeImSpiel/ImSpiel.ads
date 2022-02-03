@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
+with SystemKonstanten;
 
 package ImSpiel is
 
@@ -22,7 +23,7 @@ private
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerKIKonstante);
 
 
 
@@ -39,7 +40,7 @@ private
       return SystemDatentypen.Rückgabe_Werte_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
 
    function MenschAmZug
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
@@ -58,6 +59,6 @@ private
       return SystemDatentypen.Rückgabe_Werte_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
 
 end ImSpiel;

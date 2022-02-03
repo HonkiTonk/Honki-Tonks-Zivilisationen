@@ -63,9 +63,9 @@ package body SchreibeEinheitenGebaut is
                case
                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung
                is
-                  when SystemDatentypen.Heilen =>
+                  when SystemKonstanten.HeilenKonstante =>
                      Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BeschäftigungExtern     => SystemDatentypen.Leer);
+                                     BeschäftigungExtern     => SystemKonstanten.LeerTastenbelegungKonstante);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                           ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                           RechnenSetzenExtern      => 0);

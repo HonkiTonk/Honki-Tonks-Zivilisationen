@@ -4,6 +4,7 @@ with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
+with SystemKonstanten;
 
 package KampfsystemStadt is
 
@@ -13,9 +14,9 @@ package KampfsystemStadt is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= SystemDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
           and
             AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
           and

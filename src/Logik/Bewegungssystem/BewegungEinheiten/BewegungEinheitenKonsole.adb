@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
 
-with KartenDatentypen; use KartenDatentypen;
 with GlobaleTexte;
 
 with Karte;
@@ -22,42 +21,17 @@ package body BewegungEinheitenKonsole is
       BewegenSchleife:
       loop
          
+         Änderung := KeineÄnderung;
+         
          Befehl := Eingabe.Tastenwert;
          
          case
            Befehl
          is
-            when SystemDatentypen.Oben =>
-               Änderung := (0, -1, 0);
-            
-            when SystemDatentypen.Links =>
-               Änderung := (0, 0, -1);
-            
-            when SystemDatentypen.Unten =>
-               Änderung := (0, 1, 0);
-            
-            when SystemDatentypen.Rechts  =>
-               Änderung := (0, 0, 1);
-            
-            when SystemDatentypen.Links_Oben =>
-               Änderung := (0, -1, -1);
-            
-            when SystemDatentypen.Rechts_Oben =>
-               Änderung := (0, -1, 1);
-            
-            when SystemDatentypen.Links_Unten =>
-               Änderung := (0, 1, -1);
-
-            when SystemDatentypen.Rechts_Unten =>
-               Änderung := (0, 1, 1);
-            
-            when SystemDatentypen.Ebene_Hoch =>
-               Änderung := (1, 0, 0);
-            
-            when SystemDatentypen.Ebene_Runter =>
-               Änderung := (-1, 0, 0);
+            when SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
+               Änderung := Richtung (Befehl);
                
-            when SystemDatentypen.Heimatstadt_Ändern =>
+            when SystemKonstanten.HeimatstadtÄndernKonstante =>
                EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
                
@@ -77,7 +51,7 @@ package body BewegungEinheitenKonsole is
                                                                       TextZeileExtern => 2);
                end case;
                
-            when SystemDatentypen.Bauen =>
+            when SystemKonstanten.BauenKonstante =>
                NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
             

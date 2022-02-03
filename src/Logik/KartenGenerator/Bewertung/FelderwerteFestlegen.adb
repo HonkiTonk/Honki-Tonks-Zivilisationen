@@ -4,6 +4,7 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with SystemKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -110,7 +111,7 @@ package body FelderwerteFestlegen is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.SpielerKIKonstante
            and
              (RasseExtern = EinheitenKonstanten.LeerRasse
               or

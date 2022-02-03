@@ -64,12 +64,12 @@ package body EinheitenBeschreibungen is
       case
         ArbeitExtern
       is
-         when SystemDatentypen.Leer =>
+         when SystemKonstanten.LeerTastenbelegungKonstante =>
             BeschäftigungText := GlobaleTexte.Beschäftigungen (17);
                
          when SystemDatentypen.Tastenbelegung_Befehle_Anzeige'Range =>
             if
-              ArbeitExtern = SystemDatentypen.Straße_Bauen
+              ArbeitExtern = SystemKonstanten.StraßeBauenKonstante
             then
                BeschäftigungText := GlobaleTexte.Beschäftigungen (1);
                   

@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
-with SystemKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -51,10 +50,10 @@ package body StadtBauen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemDatentypen.Spieler_KI =>
+         when SystemKonstanten.SpielerKIKonstante =>
             StadtName.EingegebenerText := StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
-         when SystemDatentypen.Spieler_Mensch =>
+         when SystemKonstanten.SpielerMenschKonstante =>
             StadtName := Eingabe.StadtName;
             
             if
@@ -66,7 +65,7 @@ package body StadtBauen is
                null;
             end if;
             
-         when SystemDatentypen.Leer =>
+         when SystemKonstanten.LeerSpielerKonstante =>
             Fehler.LogikStopp (FehlermeldungExtern => "StadtBauen.StadtBauen - Eine nicht vorhandene Rasse baut eine Stadt.");
       end case;
             
@@ -105,7 +104,7 @@ package body StadtBauen is
          return True;
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemKonstanten.SpielerKIKonstante
       then
          return False;
          
@@ -135,7 +134,7 @@ package body StadtBauen is
             case
               GlobaleVariablen.RassenImSpiel (RasseExtern)
             is
-               when SystemDatentypen.Spieler_Mensch =>
+               when SystemKonstanten.SpielerMenschKonstante =>
                   -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                   --                                       TextZeileExtern => 7);
                   null;

@@ -82,7 +82,7 @@ package body BewegungBerechnen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemDatentypen.Spieler_KI =>
+         when SystemKonstanten.SpielerKIKonstante =>
             null;
             
          when others =>
@@ -112,7 +112,7 @@ package body BewegungBerechnen is
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = SystemDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
          then
             null;
             

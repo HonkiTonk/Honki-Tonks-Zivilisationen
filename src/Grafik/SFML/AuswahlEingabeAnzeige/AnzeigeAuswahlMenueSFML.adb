@@ -130,13 +130,13 @@ package body AnzeigeAuswahlMenueSFML is
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
                is
-                  when SystemDatentypen.Spieler_Mensch =>
+                  when SystemKonstanten.SpielerMenschKonstante =>
                      AktuelleFarbe := Sf.Graphics.Color.sfBlue;
                      
-                  when SystemDatentypen.Spieler_KI =>
+                  when SystemKonstanten.SpielerKIKonstante =>
                      AktuelleFarbe := Sf.Graphics.Color.sfYellow;
                      
-                  when SystemDatentypen.Leer =>
+                  when SystemKonstanten.LeerSpielerKonstante =>
                      null;
                end case;
                

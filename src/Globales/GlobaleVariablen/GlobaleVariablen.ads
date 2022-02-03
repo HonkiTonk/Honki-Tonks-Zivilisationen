@@ -52,7 +52,7 @@ package GlobaleVariablen is
    Rundengrenze : Natural := Natural'First;
 
    -- Nicht belegt, Menschlicher Spieler, KI
-   RassenImSpiel : SystemDatentypen.RassenImSpielArray := (others => SystemDatentypen.Leer);
+   RassenImSpiel : SystemDatentypen.RassenImSpielArray := (others => SystemKonstanten.LeerSpielerKonstante);
    RasseAmZugNachLaden : SystemDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
 
    Schwierigkeitsgrad : SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;

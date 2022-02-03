@@ -164,7 +164,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
                
             when others =>
@@ -192,7 +192,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
 
             when others =>
@@ -220,7 +220,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
                
             when others =>
@@ -243,7 +243,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
 
             when others =>
@@ -253,7 +253,7 @@ package body Speichern is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when SystemDatentypen.Leer =>
+                     when SystemKonstanten.LeerSpielerKonstante =>
                         null;
                      
                      when others =>
@@ -279,7 +279,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
                
             when others =>

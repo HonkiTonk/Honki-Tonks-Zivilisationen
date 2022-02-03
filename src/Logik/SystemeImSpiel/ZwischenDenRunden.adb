@@ -5,6 +5,7 @@ with Ada.Calendar; use Ada.Calendar;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitenKonstanten;
+with SystemKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -143,7 +144,7 @@ package body ZwischenDenRunden is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.SpielerKIKonstante
          then
             KIVorhanden := True;
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
@@ -172,9 +173,9 @@ package body ZwischenDenRunden is
               or
                 RasseEinsSchleifenwert = RasseZweiSchleifenwert
                 or
-                  GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = SystemDatentypen.Leer
+                  GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
               or
-                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = SystemDatentypen.Leer
+                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
             then
                null;
                   
@@ -203,7 +204,7 @@ package body ZwischenDenRunden is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
             
             when others =>

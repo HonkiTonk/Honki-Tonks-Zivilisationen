@@ -176,7 +176,7 @@ package body KIAufgabenPlanung is
             
          when KIDatentypen.Stadt_Bewachen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => SystemDatentypen.Verschanzen);
+                                                                 BefehlExtern             => SystemKonstanten.VerschanzenKonstante);
             
          when KIDatentypen.Verbesserung_Anlegen =>
             AufgabeDurchführen := KIAufgabeUmsetzen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -189,11 +189,11 @@ package body KIAufgabenPlanung is
             
          when KIDatentypen.Einheit_Heilen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => SystemDatentypen.Heilen);
+                                                                 BefehlExtern             => SystemKonstanten.HeilenKonstante);
             
          when KIDatentypen.Einheit_Festsetzen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => SystemDatentypen.Verschanzen);
+                                                                 BefehlExtern             => SystemKonstanten.VerschanzenKonstante);
             
          when KIDatentypen.Einheit_Verbessern =>
             AufgabeDurchführen := KIAufgabeUmsetzen.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -221,7 +221,7 @@ package body KIAufgabenPlanung is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => SystemDatentypen.Leer);
+                                                    BeschäftigungExtern     => SystemKonstanten.LeerTastenbelegungKonstante);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
       end case;

@@ -4,7 +4,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
 with ForschungKonstanten;
-with SystemKonstanten;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;

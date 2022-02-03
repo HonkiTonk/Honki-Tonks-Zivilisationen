@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 
 with Ada.Calendar; use Ada.Calendar;
 
-with SystemKonstanten;
 with EinheitenKonstanten;
 
 with Optionen;
@@ -82,7 +81,7 @@ package body ImSpiel is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.LeerSpielerKonstante
       then
          return SystemKonstanten.StartWeiterKonstante;
       
@@ -117,13 +116,13 @@ package body ImSpiel is
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
-            when SystemDatentypen.Spieler_Mensch =>
+            when SystemKonstanten.SpielerMenschKonstante =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
                
-            when SystemDatentypen.Spieler_KI =>
+            when SystemKonstanten.SpielerKIKonstante =>
                KISpieler (RasseExtern => RasseExtern);
                
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Rasse ist Leer.");
          end case;
 
@@ -199,7 +198,7 @@ package body ImSpiel is
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
-            when SystemDatentypen.Spieler_Mensch =>
+            when SystemKonstanten.SpielerMenschKonstante =>
                AktuellerBefehlSpieler := Befehle (RasseExtern => RasseExtern);
                
             when others =>
@@ -319,7 +318,7 @@ package body ImSpiel is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemDatentypen.Spieler_Mensch
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemKonstanten.SpielerMenschKonstante
          then
             null;
             

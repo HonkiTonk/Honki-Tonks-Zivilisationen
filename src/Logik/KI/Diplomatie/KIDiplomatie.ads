@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
+with SystemKonstanten;
 
 package KIDiplomatie is
 
@@ -9,24 +10,24 @@ package KIDiplomatie is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerKIKonstante);
 
    procedure DiplomatieKIMensch
      (RasseMenschExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       RasseKIExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseMenschExtern) = SystemDatentypen.Spieler_Mensch
+         (GlobaleVariablen.RassenImSpiel (RasseMenschExtern) = SystemKonstanten.SpielerMenschKonstante
           and
-            GlobaleVariablen.RassenImSpiel (RasseKIExtern) = SystemDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (RasseKIExtern) = SystemKonstanten.SpielerKIKonstante);
 
    procedure DiplomatieKIKI
      (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       FremdeRasseKIExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_KI
+         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemKonstanten.SpielerKIKonstante
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseKIExtern) = SystemDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseKIExtern) = SystemKonstanten.SpielerKIKonstante);
 
 end KIDiplomatie;

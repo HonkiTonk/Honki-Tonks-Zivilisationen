@@ -35,6 +35,7 @@ package StadtKonstanten is
    LeerBauprojekt : constant EinheitStadtRecords.BauprojektRecord := (True, 0);
    LeerBauzeit : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerKorruption : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
+   LeerZufriedenheit : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerGebäude : constant Boolean := False;
    LeerName : constant Unbounded_Wide_Wide_String := SystemKonstanten.LeerUnboundedString;
    LeerUmgebungBewitschaftet : constant Boolean := False;
@@ -56,6 +57,7 @@ package StadtKonstanten is
                                                                   Bauprojekt              => LeerBauprojekt,
                                                                   Bauzeit                 => LeerBauzeit,
                                                                   Korruption              => LeerKorruption,
+                                                                  Zufriedenheit           => LeerZufriedenheit,
                                                                   GebäudeVorhanden        => (others => LeerGebäude),
                                                                   Name                    => LeerName,
                                                                   UmgebungBewirtschaftung => (others => (others => LeerUmgebungBewitschaftet)),

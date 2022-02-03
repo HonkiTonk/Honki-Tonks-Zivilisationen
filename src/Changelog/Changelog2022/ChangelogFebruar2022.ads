@@ -154,14 +154,14 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.0. => 0.0. (06.02.2022):
+   -- Version 0.00.9 => 0.0. (06.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9 => 0.0. (05.02.2022):
+   -- Version 0.00.9 => 0.00.9 (05.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -175,17 +175,19 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.00.9 => 0.00.9 (03.02.2022):
+   -- Version 0.00.9885 => 0.00.9 (03.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9870 => 0.00.9 (02.02.2022):
+   -- Version 0.00.9870 => 0.00.9885 (02.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Vorerst für alle stabileren Teile von SystemDatentypen auch SystemKonstanten angelegt.
+   -- Grundgerüst für Stadtzufriedenheit eingebaut.
+   -- Namensgebung verbessert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/verbessert.
    
    
 

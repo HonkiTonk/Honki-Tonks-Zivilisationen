@@ -5,6 +5,7 @@ with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenRecords;
 with KartenDatentypen;
+with SystemKonstanten;
 
 package KIMindestBewertungKartenfeldErmitteln is
 
@@ -15,7 +16,7 @@ package KIMindestBewertungKartenfeldErmitteln is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemKonstanten.SpielerKIKonstante);
    
 private
    

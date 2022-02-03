@@ -3,8 +3,12 @@ pragma SPARK_Mode (On);
 package SystemDatentypen is
 
    -- Wichtige Werte
-   type Rückgabe_Werte_Enum is (Leer, Start_Weiter, Zurück, Hauptmenü, Spiel_Beenden, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall, Eingabe,
-                                 Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, Spielmenü,
+   -- Der Leerwert wird vielleicht gar nicht benötigt.
+   type Rückgabe_Werte_Enum is (Leer_Rückgabe,
+                                 
+                                 -- Allgemeines
+                                 Start_Weiter, Zurück, Hauptmenü, Spiel_Beenden, Ja, Nein, Speichern, Laden, Optionen, Informationen, Wiederherstellen, Würdigungen, Runde_Beenden, Sieg, Vernichtung, Zufall,
+                                 Eingabe, Grafik, Sound, Steuerung, Sonstiges, Fertig, Schleife_Verlassen, Anzahl_Speicherstände, Runden_Bis_Autospeichern, Sprache, Spielmenü,
                                  
                                  -- Grafikmenü
                                  Auflösung_Ändern, Vollbild_Fenster, Bildrate_Ändern, Schriftgröße,
@@ -61,7 +65,7 @@ package SystemDatentypen is
                                              Grafik_Pause, Grafik_Laden,
                                              Grafik_Menüs, Grafik_Sprache,
                                              Grafik_Editoren,
-                                             Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, Grafik_Bauen, -- Grafik_Handeln, (in die Menüs schieben? Geht so nicht in die Menüs.)
+                                             Grafik_Weltkarte, Grafik_Stadtkarte, Grafik_Forschung, Grafik_Bauen, -- Grafik_Debug, -- Grafik_Handeln, (in die Menüs schieben? Geht so nicht in die Menüs.)
                                              Grafik_Ende);
    
    subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Konsole .. Grafik_SFML;
@@ -91,17 +95,23 @@ package SystemDatentypen is
 
 
    -- Für Tastenbelegung
-   type Tastenbelegung_Enum is (Leer,
+   -- Raus- und reinzoomen einbauen.
+   type Tastenbelegung_Enum is (Leer_Tastenbelegung,
+                                
                                 -- Bewegung
                                 Oben, Links, Unten, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
-                                Auswählen, Menü_Zurück,
-                                Bauen, Forschung, Tech_Baum,
+                                
+                                Auswählen, Menü_Zurück, Bauen, Forschung, Tech_Baum,
+                                
                                 Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Nächste_Stadt_Mit_Meldung, Nächste_Einheit_Mit_Meldung,
+                                
                                 -- Einheitenbefehle Verbesserungen
                                 Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen,
+                                
                                 -- Einheitenbefehle allgemein
                                 Heilen, Verschanzen, Runde_Aussetzen, Plündern, Auflösen, Einheit_Verbessern,
                                 Heimatstadt_Ändern,
+                                
                                 -- Sonstiges
                                 Infos, Diplomatie, GeheZu,
                                 Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen,
@@ -119,7 +129,7 @@ package SystemDatentypen is
    
    
    -- Sonstiges
-   type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
+   type Spieler_Enum is (Leer_Spieler, Spieler_Mensch, Spieler_KI);
    pragma Ordered (Spieler_Enum);
    
    type RassenImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Spieler_Enum;

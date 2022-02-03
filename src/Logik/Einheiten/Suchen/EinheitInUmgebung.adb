@@ -7,6 +7,7 @@ with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with SystemKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -29,7 +30,7 @@ package body EinheitInUmgebung is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Spieler_Mensch =>
+            when SystemKonstanten.SpielerMenschKonstante =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);
                UmgebungEinheit (RasseExtern => RasseSchleifenwert);
                

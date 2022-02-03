@@ -219,6 +219,17 @@ package body LeseStadtGebaut is
    
    
    
+   function Zufriedenheit
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return EinheitStadtDatentypen.ProduktionFeld
+   is begin
+      
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Zufriedenheit;
+      
+   end Zufriedenheit;
+   
+   
+   
    function GebäudeVorhanden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID)

@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen;
 with GlobaleVariablen;
+with SystemKonstanten;
 
 package ForschungAnzeigeKonsole is
 
@@ -12,7 +13,7 @@ package ForschungAnzeigeKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
 private
 
@@ -25,13 +26,13 @@ private
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    procedure Benötigt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
 end ForschungAnzeigeKonsole;

@@ -5,6 +5,7 @@ with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
 with EinheitenKonstanten;
+with SystemKonstanten;
 
 package FarbgebungKonsole is
 
@@ -18,9 +19,9 @@ package FarbgebungKonsole is
       RasseExtern : in SystemDatentypen.Rassen_Enum)
      with
        Pre =>
-         ((if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch)
+         ((if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemKonstanten.SpielerMenschKonstante)
           and
-            (if RasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer));
+            (if RasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante));
    
 private
    

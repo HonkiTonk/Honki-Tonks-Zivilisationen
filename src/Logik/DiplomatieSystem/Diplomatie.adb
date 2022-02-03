@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 
 with GlobaleTexte;
-with SystemKonstanten;
 
 with Auswahl;
 with DiplomatischerZustandAenderbar;
@@ -37,7 +36,7 @@ package body Diplomatie is
          if
            RassenSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.LeerSpielerKonstante
            or
              GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt
          then
@@ -83,7 +82,7 @@ package body Diplomatie is
             if
               SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
               or
-                GlobaleVariablen.RassenImSpiel (SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SystemDatentypen.Leer
+                GlobaleVariablen.RassenImSpiel (SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SystemKonstanten.LeerSpielerKonstante
                 or
                   GlobaleVariablen.Diplomatie (RasseExtern, SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt
             then
@@ -181,7 +180,7 @@ package body Diplomatie is
             end if;
             
          when others =>
-            return SystemDatentypen.Leer;
+            return SystemKonstanten.LeerRückgabeKonstante;
       end case;
       
    end DiplomatischenStatusÄndern;

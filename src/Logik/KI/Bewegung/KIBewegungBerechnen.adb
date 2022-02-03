@@ -40,7 +40,7 @@ package body KIBewegungBerechnen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern      => SystemDatentypen.Leer);
+                                                    BeschäftigungExtern      => SystemKonstanten.LeerTastenbelegungKonstante);
       end case;
       
       return PlanungErfolgreich;

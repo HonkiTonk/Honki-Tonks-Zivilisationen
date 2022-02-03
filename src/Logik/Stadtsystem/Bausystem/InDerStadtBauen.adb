@@ -168,7 +168,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is               
-            when SystemDatentypen.Auswählen =>
+            when SystemKonstanten.AuswählenKonstante =>
                if
                  AktuelleAuswahl < 0
                then
@@ -179,7 +179,7 @@ package body InDerStadtBauen is
                   exit AuswahlSchleife;
                end if;
                
-            when SystemDatentypen.Menü_Zurück =>
+            when SystemKonstanten.MenüZurückKonstante =>
                GewähltesBauprojekt := StadtKonstanten.LeerBauprojekt;
                exit AuswahlSchleife;
                
@@ -263,7 +263,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Oben =>
+            when SystemKonstanten.ObenKonstante =>
                if
                  AktuelleAuswahl = Bauliste'First
                then
@@ -273,7 +273,7 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Unten =>
+            when SystemKonstanten.UntenKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -283,11 +283,11 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemDatentypen.Auswählen =>
+            when SystemKonstanten.AuswählenKonstante =>
                GewähltesBauprojekt := Bauliste (AktuelleAuswahl);
                exit AuswahlSchleife;
 
-            when SystemDatentypen.Menü_Zurück =>
+            when SystemKonstanten.MenüZurückKonstante =>
                if
                  AktuellesBauprojekt.Nummer /= 0
                then

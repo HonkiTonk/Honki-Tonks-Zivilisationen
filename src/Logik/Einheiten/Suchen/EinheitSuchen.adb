@@ -52,7 +52,7 @@ package body EinheitSuchen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
                
             when others =>
@@ -90,7 +90,7 @@ package body EinheitSuchen is
          if
            RasseExtern = RasseSchleifenwert
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
          then
             null;
            

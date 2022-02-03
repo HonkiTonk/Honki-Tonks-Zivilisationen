@@ -5,6 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtDatentypen;
+with SystemKonstanten;
 
 with Karten;
 
@@ -16,7 +17,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
             AnfangKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -27,7 +28,7 @@ package KIStadtSuchen is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) = SystemDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) = SystemKonstanten.SpielerKIKonstante);
 
 private
 

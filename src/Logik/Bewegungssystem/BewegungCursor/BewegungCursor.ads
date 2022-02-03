@@ -5,6 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with SystemRecords;
 with GlobaleVariablen;
 with KartenRecords;
+with SystemKonstanten;
 
 package BewegungCursor is
 
@@ -14,13 +15,13 @@ package BewegungCursor is
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
      
    procedure GeheZuCursor
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
 
 private
 
@@ -33,16 +34,16 @@ private
    
    type RichtungArray is array (SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
-                                         SystemDatentypen.Oben         => (0, -1, 0),
-                                         SystemDatentypen.Links        => (0, 0, -1),
-                                         SystemDatentypen.Unten        => (0, 1, 0),
-                                         SystemDatentypen.Rechts       => (0, 0, 1),
-                                         SystemDatentypen.Links_Oben   => (0, -1, -1),
-                                         SystemDatentypen.Rechts_Oben  => (0, -1, 1),
-                                         SystemDatentypen.Links_Unten  => (0, 1, -1),
-                                         SystemDatentypen.Rechts_Unten => (0, 1, 1),
-                                         SystemDatentypen.Ebene_Hoch   => (1, 0, 0),
-                                         SystemDatentypen.Ebene_Runter => (-1, 0, 0)
+                                         SystemKonstanten.ObenKonstante        => (0, -1, 0),
+                                         SystemKonstanten.LinksKonstante       => (0, 0, -1),
+                                         SystemKonstanten.UntenKonstante       => (0, 1, 0),
+                                         SystemKonstanten.RechtsKonstante      => (0, 0, 1),
+                                         SystemKonstanten.LinksObenKonstante   => (0, -1, -1),
+                                         SystemKonstanten.RechtsObenKonstante  => (0, -1, 1),
+                                         SystemKonstanten.LinksUntenKonstante  => (0, 1, -1),
+                                         SystemKonstanten.RechtsUntenKonstante => (0, 1, 1),
+                                         SystemKonstanten.EbeneHochKonstante   => (1, 0, 0),
+                                         SystemKonstanten.EbeneRunterKonstante => (-1, 0, 0)
                                         );
    
    procedure BewegungCursorBerechnen
@@ -56,7 +57,7 @@ private
           or
             ÄnderungExtern.XAchse /= 0)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    procedure BewegungCursorBerechnenStadt
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
@@ -69,6 +70,6 @@ private
           or
             ÄnderungExtern.XAchse /= 0)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
 end BewegungCursor;

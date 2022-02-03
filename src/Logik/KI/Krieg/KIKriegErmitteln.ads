@@ -12,14 +12,14 @@ package KIKriegErmitteln is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerKIKonstante);
 
    function KriegAnfangen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return SystemDatentypen.Rassen_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_KI);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerKIKonstante);
 
 private
 
@@ -56,9 +56,9 @@ private
       return SystemDatentypen.Rassen_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_KI
+         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemKonstanten.SpielerKIKonstante
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
             EigeneRasseExtern /= FremdeRasseExtern);
 

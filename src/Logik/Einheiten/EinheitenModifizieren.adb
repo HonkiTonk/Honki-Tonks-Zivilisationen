@@ -26,7 +26,7 @@ package body EinheitenModifizieren is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
            
             when others =>
@@ -58,7 +58,7 @@ package body EinheitenModifizieren is
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
-        AktuelleBeschäftigung = SystemDatentypen.Leer
+        AktuelleBeschäftigung = SystemKonstanten.LeerTastenbelegungKonstante
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -74,7 +74,7 @@ package body EinheitenModifizieren is
       case
         AktuelleBeschäftigung
       is
-         when SystemDatentypen.Heilen | SystemDatentypen.Verschanzen =>
+         when SystemKonstanten.HeilenKonstante | SystemKonstanten.VerschanzenKonstante =>
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   LebenspunkteExtern       => Heilungsrate,
                                                   RechnenSetzenExtern      => 1);

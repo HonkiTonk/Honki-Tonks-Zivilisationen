@@ -45,37 +45,37 @@ package body BefehleSFML is
                                                    RichtungExtern => Befehl,
                                                    RasseExtern    => RasseExtern);
             
-         when SystemDatentypen.Auswählen =>
+         when SystemKonstanten.AuswählenKonstante =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
-         when SystemDatentypen.Menü_Zurück =>
+         when SystemKonstanten.MenüZurückKonstante =>
             return SystemKonstanten.SpielmenüKonstante;
 
-         when SystemDatentypen.Bauen =>
+         when SystemKonstanten.BauenKonstante =>
             BaueStadt (RasseExtern => RasseExtern);
            
-         when SystemDatentypen.Forschung =>
+         when SystemKonstanten.ForschungKonstante =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Tech_Baum =>
+         when SystemKonstanten.TechBaumKonstante =>
             -- Kann in der SMFL Version ignoriert werden oder das auch in der Konsolenversion ändern und den Befehl komplett wegwerfen?
             -- ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
             null;
             
             -- Die folgenden vier Befehle scheinen gar nicht mehr zu funktionieren.
             -- genau wie bei GeheZu könnte es eventuell helfen nicht den Cursor zu platzieren sondern den Rendermittelpunkt dahin zu verschieben.
-         when SystemDatentypen.Nächste_Stadt =>
+         when SystemKonstanten.NächsteStadtKonstante =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Einheit_Mit_Bewegungspunkte =>
+         when SystemKonstanten.EinheitMitBewegungspunkteKonstante =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
             
-         when SystemDatentypen.Alle_Einheiten =>
+         when SystemKonstanten.AlleEinheitenKonstante =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
             
-         when SystemDatentypen.Einheiten_Ohne_Bewegungspunkte =>
+         when SystemKonstanten.EinheitenOhneBewegungspunkteKonstante =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
@@ -83,44 +83,44 @@ package body BefehleSFML is
             EinheitBefehle (RasseExtern  => RasseExtern,
                             BefehlExtern => Befehl);
             
-         when SystemDatentypen.Infos =>
+         when SystemKonstanten.InfosKonstante =>
             -- Hier mal was reinbauen.
             null;
 
-         when SystemDatentypen.Diplomatie =>
+         when SystemKonstanten.DiplomatieKonstante =>
             Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
 
-         when SystemDatentypen.GeheZu =>
+         when SystemKonstanten.GeheZuKonstante =>
             -- Funktioniert in der SFML nicht richtig. Fehler liegt irgendwo im Grafikteil da die Logik nach wie vor weiterläuft.
             -- Möglicherweise in BerechnungenKarteSFML.SichtbereichKarteBerechnen oder weil die Darstellungsermittlung läuft während BewegungCursor.GeheZuCursor die Werte des Cursors ändert.
             -- BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
             null;
 
-         when SystemDatentypen.Stadt_Umbenennen =>
+         when SystemKonstanten.StadtUmbenennenKonstante =>
             StadtUmbenennen (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Stadt_Abreißen =>
+         when SystemKonstanten.StadtAbreißenKonstante =>
             StadtAbreißen (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Stadt_Suchen =>
+         when SystemKonstanten.StadtSuchenKonstante =>
             StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
-         when SystemDatentypen.Nächste_Stadt_Mit_Meldung =>
+         when SystemKonstanten.NächsteStadtMeldungKonstante =>
             NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Nächste_Einheit_Mit_Meldung =>
+         when SystemKonstanten.NächsteEinheitMeldungKonstante =>
             NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Heimatstadt_Ändern =>
+         when SystemKonstanten.HeimatstadtÄndernKonstante =>
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
-         when SystemDatentypen.Runde_Beenden =>
+         when SystemKonstanten.RundeBeendenTastenbelegungKonstante =>
             return SystemKonstanten.RundeBeendenKonstante;
             
-         when SystemDatentypen.Debugmenü =>
+         when SystemKonstanten.DebugmenüKonstante =>
             DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Leer =>
+         when SystemKonstanten.LeerTastenbelegungKonstante =>
             null;
       end case;
       
@@ -254,7 +254,7 @@ package body BefehleSFML is
    is begin
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= SystemDatentypen.Leer
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= SystemKonstanten.LeerTastenbelegungKonstante
         and then
           EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then

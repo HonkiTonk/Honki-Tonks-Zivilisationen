@@ -99,7 +99,7 @@ package body AuswahlMenue is
          case
            Eingabe.Tastenwert
          is
-            when SystemDatentypen.Oben | SystemDatentypen.Ebene_Hoch =>
+            when SystemKonstanten.ObenKonstante | SystemKonstanten.EbeneHochKonstante =>
                if
                  AktuelleAuswahl = Anfang
                then
@@ -109,7 +109,7 @@ package body AuswahlMenue is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemDatentypen.Unten | SystemDatentypen.Ebene_Runter =>
+            when SystemKonstanten.UntenKonstante | SystemKonstanten.EbeneRunterKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -120,13 +120,13 @@ package body AuswahlMenue is
                end if;
                
                -- Später noch erweitern?
-            when SystemDatentypen.Links =>
+            when SystemKonstanten.LinksKonstante =>
                null;
                
-            when SystemDatentypen.Rechts =>
+            when SystemKonstanten.RechtsKonstante =>
                null;
                               
-            when SystemDatentypen.Auswählen =>
+            when SystemKonstanten.AuswählenKonstante =>
                return;
             
             when others =>

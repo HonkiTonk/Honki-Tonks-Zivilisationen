@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
+with SystemKonstanten;
 
 with DatenbankRecords;
 
@@ -14,7 +15,7 @@ package LeseEinheitenDatenbank is
       return Wide_Wide_Character
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
       
    function EinheitArt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -22,7 +23,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Einheit_Art_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function PreisGeld
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -30,7 +31,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function PreisRessourcen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -38,7 +39,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function PermanenteKosten
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -47,7 +48,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.GesamtePermanenteKosten
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function Anforderungen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -55,7 +56,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.ForschungIDNichtMöglich
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    function Passierbarkeit
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -64,7 +65,7 @@ package LeseEinheitenDatenbank is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
       
    function MaximaleLebenspunkte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -72,7 +73,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.LebenspunkteVorhanden
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function MaximaleBewegungspunkte
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -80,7 +81,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.VorhandeneBewegungspunkte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function WirdVerbessertZu
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -88,7 +89,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.EinheitenIDMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    function Beförderungsgrenze
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -96,7 +97,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function MaximalerRang
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -104,7 +105,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function Reichweite
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -112,7 +113,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function Angriff
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -120,7 +121,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function Verteidigung
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -128,7 +129,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    function KannTransportieren
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -136,7 +137,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Transportwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function KannTransportiertWerden
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -144,7 +145,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Transportwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function Transportkapazität
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -152,7 +153,7 @@ package LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Transportwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function GanzerEintrag
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -160,6 +161,6 @@ package LeseEinheitenDatenbank is
       return DatenbankRecords.EinheitenListeRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
 end LeseEinheitenDatenbank;

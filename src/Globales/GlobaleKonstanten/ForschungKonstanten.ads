@@ -21,200 +21,200 @@ package ForschungKonstanten is
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
                                                                        SystemKonstanten.MenschenKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.KasrodiahKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.LasupinKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.LamustraKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.ManukyKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.SurokaKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.PryolonKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.TalbidahrKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.MoruPhisihlKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.LarinosLotarisKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.CarupexKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.AlaryKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.TesorahnKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.NatriesZermanisKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.TridatusKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.SenelariKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.Aspari2Konstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.EkropaKonstante =>
                                                                          (
-                                                                          SystemDatentypen.Straße_Bauen       => 0,
-                                                                          SystemDatentypen.Wald_Aufforsten    => 0,
-                                                                          SystemDatentypen.Mine_Bauen         => 6,
-                                                                          SystemDatentypen.Farm_Bauen         => 2,
-                                                                          SystemDatentypen.Festung_Bauen      => 11,
-                                                                          SystemDatentypen.Roden_Trockenlegen => 1,
-                                                                          others                              => LeerForschungAnforderung
+                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
+                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          SystemKonstanten.MineBauenKonstante         => 6,
+                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
+                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
+                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          others                                      => LeerForschungAnforderung
                                                                          )
                                                                       );
 

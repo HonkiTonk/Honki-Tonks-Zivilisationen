@@ -4,6 +4,7 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
+with SystemKonstanten;
 
 with DatenbankRecords;
 
@@ -24,7 +25,7 @@ package LeseVerbesserungenDatenbank is
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function Wirtschaft
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
@@ -33,7 +34,7 @@ package LeseVerbesserungenDatenbank is
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function Kampf
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
@@ -42,7 +43,7 @@ package LeseVerbesserungenDatenbank is
       return EinheitStadtDatentypen.KampfwerteAllgemein
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
    
    function GanzerEintrag
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)

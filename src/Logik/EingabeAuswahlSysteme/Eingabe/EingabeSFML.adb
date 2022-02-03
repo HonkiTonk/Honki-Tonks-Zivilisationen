@@ -9,7 +9,6 @@ with Sf;
 
 with GlobaleTexte;
 with TextKonstanten;
-with SystemKonstanten;
 
 with EingabeSystemeSFML;
 with Fehler;
@@ -388,27 +387,27 @@ package body EingabeSFML is
       if
         EingabeSystemeSFML.MausRad > 0.00
       then
-         return SystemDatentypen.Ebene_Hoch;
+         return SystemKonstanten.EbeneHochKonstante;
                
       elsif
         EingabeSystemeSFML.MausRad < 0.00
       then
-         return SystemDatentypen.Ebene_Runter;
+         return SystemKonstanten.EbeneRunterKonstante;
          
       elsif
         EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseLeft
       then
-         return SystemDatentypen.Auswählen;
+         return SystemKonstanten.AuswählenKonstante;
          
       elsif
         EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseRight
       then
-         return SystemDatentypen.Menü_Zurück;
+         return SystemKonstanten.MenüZurückKonstante;
          
       elsif
         EingabeSystemeSFML.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
       then
-         return SystemDatentypen.Leer;
+         return SystemKonstanten.LeerTastenbelegungKonstante;
             
       else
          Taste := EingabeSystemeSFML.TastaturTaste;
@@ -431,7 +430,7 @@ package body EingabeSFML is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return SystemDatentypen.Leer;
+      return SystemKonstanten.LeerTastenbelegungKonstante;
       
    end Tastenwert;
    

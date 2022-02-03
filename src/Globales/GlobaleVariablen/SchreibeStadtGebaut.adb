@@ -400,6 +400,39 @@ package body SchreibeStadtGebaut is
    
    
    
+   procedure Zufriedenheit
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      ZufriedenheitExtern : in EinheitStadtDatentypen.ProduktionFeld;
+      ÄndernSetzenExtern : in Boolean)
+   is begin
+      
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Zufriedenheit + ZufriedenheitExtern > EinheitStadtDatentypen.ProduktionFeld'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Zufriedenheit := EinheitStadtDatentypen.ProduktionFeld'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Zufriedenheit + ZufriedenheitExtern < EinheitStadtDatentypen.ProduktionFeld'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Zufriedenheit := EinheitStadtDatentypen.ProduktionFeld'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Zufriedenheit
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Zufriedenheit + ZufriedenheitExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Zufriedenheit := ZufriedenheitExtern;
+      end case;
+      
+   end Zufriedenheit;
+   
+   
+   
    procedure GebäudeVorhanden
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID;

@@ -8,7 +8,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
 with GlobaleTexte;
 with KartenKonstanten;
-with SystemKonstanten;
 with StadtKonstanten;
 
 with LeseKarten;

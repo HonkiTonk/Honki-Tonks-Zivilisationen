@@ -433,7 +433,7 @@ package body EingabeKonsole is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return SystemDatentypen.Leer;
+      return SystemKonstanten.LeerTastenbelegungKonstante;
       
    end Tastenwert;
    

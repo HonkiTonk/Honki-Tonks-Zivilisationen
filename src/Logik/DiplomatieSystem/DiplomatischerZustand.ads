@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
+with SystemKonstanten;
 
 package DiplomatischerZustand is
 
@@ -21,9 +22,9 @@ package DiplomatischerZustand is
        Pre =>
          (RasseEinsExtern /= RasseZweiExtern
           and
-            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    procedure SympathieÄndern
      (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -33,9 +34,9 @@ package DiplomatischerZustand is
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    procedure VergangeneZeitÄndern
      (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -44,9 +45,9 @@ package DiplomatischerZustand is
        Pre =>
          (RasseEinsExtern /= RasseZweiExtern
           and
-            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
 
 
@@ -58,9 +59,9 @@ package DiplomatischerZustand is
        Pre =>
          (EigeneRasseExtern /= GegnerischeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (GegnerischeRasseExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (GegnerischeRasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    function DiplomatischenStatusPrüfen
      (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -70,9 +71,9 @@ package DiplomatischerZustand is
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    function DiplomatischerStatusLetzteÄnderung
      (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -82,9 +83,9 @@ package DiplomatischerZustand is
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
    function AktuelleSympathie
      (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -94,8 +95,8 @@ package DiplomatischerZustand is
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= SystemKonstanten.LeerSpielerKonstante
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
 
 end DiplomatischerZustand;

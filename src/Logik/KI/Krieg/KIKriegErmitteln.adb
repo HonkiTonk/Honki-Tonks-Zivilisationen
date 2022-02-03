@@ -18,7 +18,7 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
          then
             null;
             
@@ -65,7 +65,7 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
          then
             null;
             

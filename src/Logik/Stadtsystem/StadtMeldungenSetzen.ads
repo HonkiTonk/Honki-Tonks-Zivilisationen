@@ -4,6 +4,7 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
+with SystemKonstanten;
 
 package StadtMeldungenSetzen is
 
@@ -14,7 +15,7 @@ package StadtMeldungenSetzen is
       EreignisExtern : in EinheitStadtDatentypen.Stadt_Meldungen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
           and
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
    

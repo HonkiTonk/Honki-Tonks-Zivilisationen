@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with KartenDatentypen; use KartenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
+with SystemKonstanten;
 
 with LeseWichtiges;
 
@@ -66,7 +67,7 @@ package body SiegBedingungen is
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when SystemDatentypen.Leer =>
+            when SystemKonstanten.LeerSpielerKonstante =>
                null;
                
             when others =>
@@ -112,7 +113,7 @@ package body SiegBedingungen is
       for RassenGeldSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = SystemDatentypen.Leer
+           GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
          then
             null;
             

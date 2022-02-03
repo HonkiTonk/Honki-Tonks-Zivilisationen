@@ -55,7 +55,7 @@ package body KampfwerteEinheitErmitteln is
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when SystemDatentypen.Verschanzen =>
+         when SystemKonstanten.VerschanzenKonstante =>
             VerteidigungWertFloat := VerteidigungWertFloat * VerschanzungBonus;
                   
          when others =>

@@ -108,6 +108,7 @@ package EinheitStadtRecords is
       Bauzeit : EinheitStadtDatentypen.KostenLager;
 
       Korruption : EinheitStadtDatentypen.GesamtproduktionStadt;
+      Zufriedenheit : EinheitStadtDatentypen.ProduktionFeld;
       GebäudeVorhanden : GebäudeVorhandenArray;
       Name : Unbounded_Wide_Wide_String;
 

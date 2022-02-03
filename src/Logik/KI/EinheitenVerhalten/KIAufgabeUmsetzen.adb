@@ -36,7 +36,7 @@ package body KIAufgabeUmsetzen is
       is
          when KartenDatentypen.Leer =>
             return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BefehlExtern             => SystemDatentypen.Straße_Bauen);
+                                                 BefehlExtern             => SystemKonstanten.StraßeBauenKonstante);
             
          when others =>
             null;
@@ -69,26 +69,26 @@ package body KIAufgabeUmsetzen is
            LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => SystemDatentypen.Mine_Bauen)
+                                       BefehlExtern             => SystemKonstanten.MineBauenKonstante)
         = True
       then
-         Befehl := SystemDatentypen.Mine_Bauen;
+         Befehl := SystemKonstanten.MineBauenKonstante;
          
       elsif
         Grund = KartenDatentypen.Eis
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => SystemDatentypen.Festung_Bauen)
+                                       BefehlExtern             => SystemKonstanten.FestungBauenKonstante)
         = True
       then
-         Befehl := SystemDatentypen.Festung_Bauen;
+         Befehl := SystemKonstanten.FestungBauenKonstante;
          
       elsif
         Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => SystemDatentypen.Farm_Bauen)
+                                     BefehlExtern             => SystemKonstanten.FarmBauenKonstante)
         = True
       then
-         Befehl := SystemDatentypen.Farm_Bauen;
+         Befehl := SystemKonstanten.FarmBauenKonstante;
             
       else
          return False;
@@ -107,7 +107,7 @@ package body KIAufgabeUmsetzen is
    is begin
       
       NullWert := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                BefehlExtern             => SystemDatentypen.Einheit_Verbessern);
+                                                BefehlExtern             => SystemKonstanten.EinheitVerbessernKonstante);
       
       return False;
       

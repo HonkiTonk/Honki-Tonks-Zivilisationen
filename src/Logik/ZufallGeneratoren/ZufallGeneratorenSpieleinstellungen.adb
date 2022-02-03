@@ -4,6 +4,7 @@ with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with GlobaleVariablen;
 with KartenKonstanten;
+with SystemKonstanten;
 
 with Karten;
 
@@ -114,7 +115,7 @@ package body ZufallGeneratorenSpieleinstellungen is
    is begin
       
       SpielerVorhanden := False;
-      GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer);
+      GlobaleVariablen.RassenImSpiel := (others => SystemKonstanten.LeerSpielerKonstante);
       ZufälligeRassenWählen.Reset (ZufälligeRassenGewählt);
       
       SpielerSchleife:
@@ -125,7 +126,7 @@ package body ZufallGeneratorenSpieleinstellungen is
             RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
 
             if
-              RasseImSpiel = SystemDatentypen.Spieler_KI
+              RasseImSpiel = SystemKonstanten.SpielerKIKonstante
             then
                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
                SpielerVorhanden := True;
@@ -145,15 +146,15 @@ package body ZufallGeneratorenSpieleinstellungen is
          for MenschlicheRasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
 
             if
-              GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = SystemDatentypen.Spieler_KI
+              GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = SystemKonstanten.SpielerKIKonstante
             then
                RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
                
                case
                  RasseImSpiel
                is
-                  when SystemDatentypen.Spieler_Mensch =>
-                     GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := SystemDatentypen.Spieler_Mensch;
+                  when SystemKonstanten.SpielerMenschKonstante =>
+                     GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := SystemKonstanten.SpielerMenschKonstante;
                      return;
                      
                   when others =>

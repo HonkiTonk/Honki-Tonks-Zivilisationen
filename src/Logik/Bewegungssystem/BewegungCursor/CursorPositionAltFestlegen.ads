@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with SystemDatentypen; use SystemDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
+with SystemKonstanten;
 
 package CursorPositionAltFestlegen is
 
@@ -10,7 +11,7 @@ package CursorPositionAltFestlegen is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
    
 private
    

@@ -222,7 +222,7 @@ package body KIVorhandeneAufgaben is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
            or
              RasseSchleifenwert = EinheitRasseNummerExtern.Rasse
          then
