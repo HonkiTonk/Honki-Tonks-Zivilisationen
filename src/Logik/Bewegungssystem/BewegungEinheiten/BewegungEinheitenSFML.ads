@@ -60,6 +60,10 @@ private
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;
    
+   function EinheitBewegenMaus
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return Boolean;
+   
    function MausInAnzeige
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;

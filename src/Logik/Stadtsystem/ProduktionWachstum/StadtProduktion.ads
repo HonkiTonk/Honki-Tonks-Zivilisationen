@@ -37,6 +37,22 @@ private
    
    procedure StadtProduktionAlle;
    
+   procedure KorruptionBerechnen
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante);
+   
+   procedure ZufriedenheitBerechnen
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante);
+   
    procedure StadtProduktionNullSetzen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with

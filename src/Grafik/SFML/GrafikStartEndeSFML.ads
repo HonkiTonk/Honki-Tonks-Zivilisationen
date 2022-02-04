@@ -12,7 +12,7 @@ private
      
    -- Das hier so lassen oder durch die erste Zeile der Textdatei - Hauptmenü ersetzen?
    -- Oder durch eine andere Textzeile ersetzen? Wobei sich der Spielenamen ja nicht ändert.
-   Name : constant Wide_Wide_String := "Name des Spiels";
+   Name : constant Wide_Wide_String := "Honki Tonk´s Zivilisation";
    
    procedure FensterErzeugenErweitert;
 

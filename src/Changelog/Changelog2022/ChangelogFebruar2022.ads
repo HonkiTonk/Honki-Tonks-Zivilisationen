@@ -147,38 +147,41 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.0. => 0.0. (07.02.2022):
+   -- Version 0.00.9 => 0.0. (07.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9 => 0.0. (06.02.2022):
+   -- Version 0.00.99 => 0.00.9 (06.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9 => 0.00.9 (05.02.2022):
+   -- Version 0.00.9890 => 0.00.99 (05.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9 => 0.00.9 (04.02.2022):
+   -- Version 0.00.9885 => 0.00.9890 (04.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Talbidahr/Tesorahn starten jetzt wieder korrekt Unterirdisch/Unterwasser.
+   -- Es ist jetzt möglich in der SFML Version durch die Maussteuerung die Einheiten auf eine andere Ebene zu bewegen, wenn diese Ebene für die Einheit pasierbar ist.
+   -- Hüllen für die Berechnung von Korruption und Zufriedenheit eingebaut.
+   -- Angefangen die Bewegungs- und Positionsberechnungen alle um die EAchse zu erweitern.
+   -- Bescheuerten Namen eingebaut.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.00.9885 => 0.00.9 (03.02.2022):
+   -- Version 0.00.9885 => 0.00.9885 (03.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

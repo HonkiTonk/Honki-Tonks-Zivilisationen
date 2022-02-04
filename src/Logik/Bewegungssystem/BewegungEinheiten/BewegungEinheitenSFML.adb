@@ -14,6 +14,7 @@ with BewegungEinheiten;
 with GrafikEinstellungenSFML;
 with BerechnungenKarteSFML;
 with KartePositionPruefen;
+with BewegungCursor;
 
 -- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr mahen als nur die Einheit zu bewegen.
 package body BewegungEinheitenSFML is
@@ -85,7 +86,7 @@ package body BewegungEinheitenSFML is
          when False =>
             return False;
       end case;
-         
+      
       if
         Änderung = KeineÄnderung
       then
@@ -93,7 +94,7 @@ package body BewegungEinheitenSFML is
             
       else
          BewegungNochMöglich := BewegungEinheiten.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                    PositionÄnderungExtern  => Änderung);
+                                                                  PositionÄnderungExtern   => Änderung);
       end if;
       
       Änderung := KeineÄnderung;
@@ -158,33 +159,25 @@ package body BewegungEinheitenSFML is
             when SystemKonstanten.MenüZurückKonstante =>
                return False;
                
-            when SystemKonstanten.AuswählenKonstante =>               
-               YÄnderungSchleife:
-               for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                  XÄnderungSchleife:
-                  for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                     
-                     
-                     KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                 ÄnderungExtern   => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-                     
-                     if
-                       KartenWert.XAchse = KartenKonstanten.LeerXAchse
-                     then
-                        null;
-                        
-                     elsif
-                       KartenWert = GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position
-                     then
-                        Änderung := (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert);
-                        return True;
-                        
-                     else
-                        null;
-                     end if;
-                     
-                  end loop XÄnderungSchleife;
-               end loop YÄnderungSchleife;
+            when SystemKonstanten.EbeneHochKonstante =>
+               BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
+                                                      RichtungExtern => BefehlMaus,
+                                                      RasseExtern    => EinheitRasseNummerExtern.Rasse);
+               
+            when SystemKonstanten.EbeneRunterKonstante =>
+               BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
+                                                      RichtungExtern => BefehlMaus,
+                                                      RasseExtern    => EinheitRasseNummerExtern.Rasse);
+               
+            when SystemKonstanten.AuswählenKonstante =>
+               if
+                 EinheitBewegenMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+               then
+                  return True;
+                  
+               else
+                  null;
+               end if;
                
             when SystemKonstanten.LeerTastenbelegungKonstante =>
                null;
@@ -197,6 +190,46 @@ package body BewegungEinheitenSFML is
       end loop EingabeSchleife;
       
    end MausInKarte;
+   
+   
+   
+   function EinheitBewegenMaus
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      EÄnderungSchleife:
+      for EÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         YÄnderungSchleife:
+         for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            XÄnderungSchleife:
+            for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+                                          
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                           ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                     
+               if
+                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+               then
+                  null;
+                        
+               elsif
+                 KartenWert = GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position
+               then
+                  Änderung := (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert);
+                  return True;
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife;
+         end loop YÄnderungSchleife;
+      end loop EÄnderungSchleife;
+      
+      return False;
+      
+   end EinheitBewegenMaus;
    
    
    

@@ -73,6 +73,9 @@ package body StadtProduktion is
    is begin
       
       StadtProduktionNullSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      KorruptionBerechnen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      ZufriedenheitBerechnen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
       FelderProduktionBerechnen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       WeitereNahrungsproduktionÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -82,6 +85,26 @@ package body StadtProduktion is
       WeitereForschungsrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtProduktionBerechnung;
+   
+   
+   
+   procedure KorruptionBerechnen
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end KorruptionBerechnen;
+   
+   
+   
+   procedure ZufriedenheitBerechnen
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end ZufriedenheitBerechnen;
    
    
    
@@ -143,20 +166,23 @@ package body StadtProduktion is
    is begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
-                                              NahrungsproduktionExtern => StadtKonstanten.LeerStadt.Nahrungsproduktion,
+                                              NahrungsproduktionExtern => StadtKonstanten.LeerNahrungsproduktion,
                                               ÄndernSetzenExtern       => False);
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ProduktionrateExtern   => StadtKonstanten.LeerStadt.Produktionrate,
+                                          ProduktionrateExtern   => StadtKonstanten.LeerProduktionrate,
                                           ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         GeldgewinnungExtern    => StadtKonstanten.LeerStadt.Geldgewinnung,
+                                         GeldgewinnungExtern    => StadtKonstanten.LeerGeldgewinnung,
                                          ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                          ForschungsrateExtern   => StadtKonstanten.LeerStadt.Forschungsrate,
+                                          ForschungsrateExtern   => StadtKonstanten.LeerForschungsrate,
                                           ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      KorruptionExtern       => StadtKonstanten.LeerStadt.Korruption,
+                                      KorruptionExtern       => StadtKonstanten.LeerKorruption,
                                       ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.Zufriedenheit (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         ZufriedenheitExtern    => StadtKonstanten.LeerZufriedenheit,
+                                         ÄndernSetzenExtern    => False);
       
    end StadtProduktionNullSetzen;
    

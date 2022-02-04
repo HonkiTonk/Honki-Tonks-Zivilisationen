@@ -115,6 +115,7 @@ package body Sichtbarkeit is
    
    
    
+   -- Das hier Parallelisieren?
    procedure QuadrantenDurchlaufen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin

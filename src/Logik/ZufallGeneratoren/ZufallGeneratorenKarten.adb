@@ -49,8 +49,8 @@ package body ZufallGeneratorenKarten is
         RasseExtern
       is
          when SystemKonstanten.TalbidahrKonstante | SystemKonstanten.TesorahnKonstante =>
-            -- Vorübergehend geändert, da alle Rassen gerade den menschlichen Einheitenbaum verwenden.
-            return 0; -- -1;
+            -- Nutzen aktuell noch eine modifizierte Menschendatenbank, sollte aber für Testzwecke schon einmal funktionieren.
+            return -1;
             
          when others =>
             return 0;

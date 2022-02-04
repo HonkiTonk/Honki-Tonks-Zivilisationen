@@ -4,8 +4,8 @@ with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
-with EinheitenKonstanten;
 with SystemKonstanten;
+with StadtKonstanten;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -34,7 +34,7 @@ package body ZwischenDenRunden is
       case
         GlobaleVariablen.RasseAmZugNachLaden
       is
-         when EinheitenKonstanten.LeerRasse =>
+         when StadtKonstanten.LeerRasse =>
             null;
             
          when others =>
@@ -63,7 +63,7 @@ package body ZwischenDenRunden is
       EinheitenModifizieren.HeilungBewegungspunkteNeueRundeErmitteln;
       VerbesserungFertiggestellt.VerbesserungFertiggestellt;
       Wachstum.StadtWachstum;
-      StadtProduktion.StadtProduktion ((EinheitenKonstanten.LeerRasse, 0));
+      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtKonstanten.LeerRasseNummer);
       GeldForschungMengeSetzen;
       ForschungAllgemein.ForschungFortschritt;
       
@@ -230,7 +230,7 @@ package body ZwischenDenRunden is
         KIVorhanden
       is
          when True =>
-            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => EinheitenKonstanten.LeerRasse);
+            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => StadtKonstanten.LeerRasse);
             
          when False =>
             null;
