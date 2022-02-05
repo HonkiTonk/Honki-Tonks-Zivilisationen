@@ -5,6 +5,7 @@ with Sf.Graphics.Color;
 with Sf.Graphics.RectangleShape;
 with Sf.Graphics.CircleShape;
 with Sf.Graphics.Text;
+with Sf.Graphics.Sprite;
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen;
@@ -38,10 +39,11 @@ private
    
    SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
+   Kartenfeld : KartenDatentypen.Karten_Grund_Enum;
+   
    YMultiplikator : Float;
    XMultiplikator : Float;
-   
-   
+      
    StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    EinheitStadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    
@@ -53,6 +55,8 @@ private
    KartenWertRahmen : KartenRecords.AchsenKartenfeldPositivRecord;
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   
+   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    RechteckRahmenAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
@@ -94,5 +98,9 @@ private
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure KartenfeldZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
 
 end KarteSFML;

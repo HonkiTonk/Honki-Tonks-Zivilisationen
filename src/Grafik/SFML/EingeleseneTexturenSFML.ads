@@ -9,4 +9,6 @@ package EingeleseneTexturenSFML is
 
    KartenfelderAccess : Sf.Graphics.sfTexture_Ptr;
 
+   -- Kartenfelderarray anlegen?
+
 end EingeleseneTexturenSFML;

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
+with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 
 with KartenRecords; use KartenRecords;
@@ -24,6 +25,7 @@ with Fehler;
 with ObjekteZeichnenSFML;
 with GrafikEinstellungenSFML;
 with TextAllgemeinSFML;
+with EingeleseneTexturenSFML;
 
 package body KarteSFML is
    
@@ -135,10 +137,8 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
-                                            PositionExtern       => PositionExtern,
-                                            FarbeExtern          => FarbeKartenfeldErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KoordinatenExtern)),
-                                            RechteckAccessExtern => RechteckAccess);
+      KartenfeldZeichnen (KoordinatenExtern => KoordinatenExtern,
+                          PositionExtern    => PositionExtern);
       
       case
         LeseKarten.Ressource (PositionExtern => KoordinatenExtern)
@@ -193,6 +193,39 @@ package body KarteSFML is
       end case;
       
    end AnzeigeLandschaft;
+   
+   
+   
+   procedure KartenfeldZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Kartenfeld := LeseKarten.Grund (PositionExtern => KoordinatenExtern);
+      
+      if
+        Kartenfeld = KartenDatentypen.Flachland
+        and
+          EingeleseneTexturenSFML.KartenfelderAccess /= null
+      then
+         -- Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
+         --                                texture => EingeleseneTexturenSFML.KartenfelderAccess);
+         -- Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+         --                                      object       => SpriteAccess);
+         -- Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
+         --                                 position => PositionExtern);
+         -- Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
+         --                              scale  => (1.00, 0.80));
+         null;
+         
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
+                                               PositionExtern       => PositionExtern,
+                                               FarbeExtern          => FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
+      
+   end KartenfeldZeichnen;
    
    
    

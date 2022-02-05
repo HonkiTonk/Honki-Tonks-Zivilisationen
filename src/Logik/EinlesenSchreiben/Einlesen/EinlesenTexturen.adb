@@ -14,7 +14,7 @@ package body EinlesenTexturen is
       null;
       
       -- EinlesenHintergrundMenüs;
-      -- EinlesenKartenfelder;
+      EinlesenKartenfelder;
       
    end EinlesenTexturen;
    
@@ -54,7 +54,7 @@ package body EinlesenTexturen is
    procedure EinlesenKartenfelder
    is begin
       
-      EingeleseneTexturenSFML.KartenfelderAccess := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Kartenfelder.png");
+      EingeleseneTexturenSFML.KartenfelderAccess := Sf.Graphics.Texture.createFromFile (filename => "Grafik/1.png");
          
       if
         EingeleseneTexturenSFML.KartenfelderAccess = null
