@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Directories; use Ada.Directories;
+
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.Texture;
 
@@ -54,16 +56,15 @@ package body EinlesenTexturen is
    procedure EinlesenKartenfelder
    is begin
       
-      EingeleseneTexturenSFML.KartenfelderAccess := Sf.Graphics.Texture.createFromFile (filename => "Grafik/1.png");
-         
-      if
-        EingeleseneTexturenSFML.KartenfelderAccess = null
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrundMenüs - EingeleseneTexturen.Kartenfelder = null");
+      case
+        Exists (Name => "Grafik/Kartenfelder/Flachland Test.png")
+      is
+         when False =>
+            null;
             
-      else
-         null;
-      end if;
+         when True =>
+            EingeleseneTexturenSFML.KartenfelderAccess := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Kartenfelder/Flachland Test.png");
+      end case;
       
    end EinlesenKartenfelder;
    

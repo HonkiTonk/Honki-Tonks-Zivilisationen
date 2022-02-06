@@ -19,7 +19,7 @@ package body EingabeSystemeSFML is
    is begin
             
       TastaturTaste := Sf.Window.Keyboard.sfKeyUnknown;
-      -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen?
+      -- Kann man sfMouseButtonCount einfach so als Leerwert nehmen? Scheint zu funktionieren.
       MausTaste := Sf.Window.Mouse.sfMouseButtonCount;
       MausRad := 0.00;
       

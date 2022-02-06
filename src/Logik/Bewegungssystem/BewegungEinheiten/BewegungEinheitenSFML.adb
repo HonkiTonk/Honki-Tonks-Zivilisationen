@@ -23,10 +23,10 @@ package body BewegungEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      Änderung := KeineÄnderung;
+      
       BewegenSchleife:
       loop
-         
-         Änderung := KeineÄnderung;
          
          case
            EinheitBefehle (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -77,31 +77,42 @@ package body BewegungEinheitenSFML is
             return False;
       end case;
       
-      case
-        BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-      is
-         when True =>
-            null;
-            
-         when False =>
-            return False;
-      end case;
-      
       if
         Änderung = KeineÄnderung
+      then
+         return BefehleMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      else
+         null;
+      end if;
+      
+      return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                             ÄnderungExtern           => Änderung);
+      
+   end EinheitBefehle;
+   
+   
+   
+   function PositionÄndern
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return Boolean
+   is begin
+      
+      if
+        ÄnderungExtern = KeineÄnderung
       then
          BewegungNochMöglich := BewegungEinheiten.NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       else
          BewegungNochMöglich := BewegungEinheiten.BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                  PositionÄnderungExtern   => Änderung);
+                                                                    PositionÄnderungExtern   => ÄnderungExtern);
+         Änderung := KeineÄnderung;
       end if;
-      
-      Änderung := KeineÄnderung;
       
       return BewegungNochMöglich;
       
-   end EinheitBefehle;
+   end PositionÄndern;
    
    
    
@@ -145,9 +156,7 @@ package body BewegungEinheitenSFML is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean
    is begin
-      
-      Änderung := KeineÄnderung;
-      
+            
       EingabeSchleife:
       loop
          
@@ -207,17 +216,19 @@ package body BewegungEinheitenSFML is
                                           
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                            ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-                     
+               
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
                then
                   null;
-                        
+                  
                elsif
                  KartenWert = GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position
                then
                   Änderung := (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert);
-                  return True;
+                  
+                  return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                         ÄnderungExtern           => Änderung);
                         
                else
                   null;

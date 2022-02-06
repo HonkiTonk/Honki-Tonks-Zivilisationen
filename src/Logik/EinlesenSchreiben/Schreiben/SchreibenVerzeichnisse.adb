@@ -64,6 +64,19 @@ package body SchreibenVerzeichnisse is
       end case;
       
       case
+        Exists (Name => "Grafik/Kartenfelder")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Kartenfelder");
+            -- Statt einer Fehlermeldung könnte man auch einfach keine Texturen verwenden und die reinen Farbfelder anzeigen.
+            -- Später wieder Fehlermeldung einbauen?
+            -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Grafikverzeichnis nicht vorhanden.");
+      end case;
+      
+      case
         Exists (Name => "Audio")
       is
          when True =>

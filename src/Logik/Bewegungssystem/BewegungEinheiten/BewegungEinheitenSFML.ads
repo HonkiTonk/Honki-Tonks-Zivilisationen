@@ -52,6 +52,11 @@ private
       BefehlExtern : in SystemDatentypen.Tastenbelegung_Enum)
       return Boolean;
    
+   function PositionÄndern
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return Boolean;
+   
    function BefehleMaus
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return Boolean;

@@ -208,15 +208,15 @@ package body KarteSFML is
         and
           EingeleseneTexturenSFML.KartenfelderAccess /= null
       then
-         -- Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
-         --                                texture => EingeleseneTexturenSFML.KartenfelderAccess);
-         -- Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-         --                                      object       => SpriteAccess);
-         -- Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
-         --                                 position => PositionExtern);
-         -- Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
-         --                              scale  => (1.00, 0.80));
-         null;
+         Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
+                                        texture => EingeleseneTexturenSFML.KartenfelderAccess);
+         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
+                                         position => PositionExtern);
+         Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
+                                      scale  => (1.00, 0.80));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => SpriteAccess);
          
       else
          ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,

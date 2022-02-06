@@ -126,14 +126,14 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.0. => 0.0. (10.02.2022):
+   -- Version 0.00.99 => 0.0. (10.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.99 => 0.0. (09.02.2022):
+   -- Version 0.00.99 => 0.00.99 (09.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -147,17 +147,19 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.00.99 => 0.00.99 (07.02.2022):
+   -- Version 0.00.9900 => 0.00.99 (07.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9895 => 0.00.99 (06.02.2022):
+   -- Version 0.00.9895 => 0.00.9900 (06.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einlesesystem für Texturen so geändert dass bei nicht vorhandenen Texturen das Programm nicht mehr stoppt, sonder später einfach nur einfarbige Felder anzeigt.
+   -- Fehlersuche im Bewegungssystem der Einheiten.
+   -- Fehler behoben der dazu führte das die Einheit direkt zwei Felder bewegt wurde anstatt von einem.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
