@@ -147,19 +147,25 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.00.9900 => 0.00.99 (07.02.2022):
+   -- Version 0.00.9910 => 0.00.99 (07.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9895 => 0.00.9900 (06.02.2022):
+   -- Version 0.00.9895 => 0.00.9910 (06.02.2022):
    
    -- Einlesesystem für Texturen so geändert dass bei nicht vorhandenen Texturen das Programm nicht mehr stoppt, sonder später einfach nur einfarbige Felder anzeigt.
    -- Fehlersuche im Bewegungssystem der Einheiten.
-   -- Fehler behoben der dazu führte das die Einheit direkt zwei Felder bewegt wurde anstatt von einem.
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Fehler behoben der dazu führte das die Einheit direkt zwei Felder bewegt wurde anstatt nur eins.
+   
+   -- Fehler behoben der dazu führte das eine Einheit ohne Bewegungspunkte nicht gleich abgewählt wurde.
+   -- Fehler im Berechnungssystem der neuen Kartenposition gefunden und über seine Lösung nachgedacht.
+   -- Einfaches Berechnungssystem für die Größe von Kartenfeldertexturen, sowohl für die Weltkarte als auch für die Stadtkarte, eingebaut.
+   -- Stadthintergrund lädt jetzt die Texture des Kartenfeldes auf dem die Stadt steht.
+   -- Wenn die Texture nicht geladen werden konnte, dann wird weiterhin einfach nur ein einfarbiges Feld dargestellt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

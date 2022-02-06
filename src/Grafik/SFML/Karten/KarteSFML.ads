@@ -50,6 +50,8 @@ private
    AktuelleFarbe : Sf.Graphics.Color.sfColor;
    
    Position : Sf.System.Vector2.sfVector2f;
+   SkalierungKartenfeld : Sf.System.Vector2.sfVector2f;
+   GrößeTextur : Sf.System.Vector2.sfVector2f;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWertRahmen : KartenRecords.AchsenKartenfeldPositivRecord;
@@ -102,5 +104,11 @@ private
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
+   
+   
+   
+   function SkalierungTexturenKartenfelderWeltkarteBerechnen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+      return Sf.System.Vector2.sfVector2f;
 
 end KarteSFML;

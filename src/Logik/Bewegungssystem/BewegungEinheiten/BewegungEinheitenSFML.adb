@@ -16,7 +16,7 @@ with BerechnungenKarteSFML;
 with KartePositionPruefen;
 with BewegungCursor;
 
--- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr mahen als nur die Einheit zu bewegen.
+-- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr machen als nur die Einheit bewegen.
 package body BewegungEinheitenSFML is
 
    procedure BewegungEinheitenRichtung
@@ -179,14 +179,7 @@ package body BewegungEinheitenSFML is
                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
                
             when SystemKonstanten.AuswählenKonstante =>
-               if
-                 EinheitBewegenMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-               then
-                  return True;
-                  
-               else
-                  null;
-               end if;
+               return EinheitBewegenMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
             when SystemKonstanten.LeerTastenbelegungKonstante =>
                null;

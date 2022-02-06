@@ -19,6 +19,7 @@ with KartePositionPruefen;
 
 package body BewegungEinheiten is
    
+   -- Hier wird True zurückgegeben wenn keine Bewegung stattfindet, damit klar ist dass noch eine weitere Bewegung stattfinden kann.
    function BewegungPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
@@ -26,14 +27,14 @@ package body BewegungEinheiten is
    is begin
       
       NeuePosition := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                  ÄnderungExtern    => PositionÄnderungExtern);
+                                                                    ÄnderungExtern    => PositionÄnderungExtern);
       
       case
         NeuePosition.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
             return True;
-               
+            
          when others =>
             null;
       end case;

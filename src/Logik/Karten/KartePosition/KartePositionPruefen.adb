@@ -10,6 +10,10 @@ package body KartePositionPruefen is
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
+      -- Mal neu/fertig schreiben.
+      -- Da jetzt die EAchse als Bewegungspunkt eingebaut ist, kann später in den Array nicht mehr die Änderung als EAchse verwendet werden.
+      -- Das sorgt möglicherweise auch für die zufälligen Abstürze während des Spielens.
+      -- Die Arrays sind da wegen der Parallelisierung der Kartenfelderbewertung.
       case
         Karten.Kartenform
       is

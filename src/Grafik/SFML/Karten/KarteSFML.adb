@@ -75,6 +75,7 @@ package body KarteSFML is
                         
                when False =>
                   -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
+                  -- Schwarze Felder zu zeichnen könnte fehlerhafte Größenverhältnisse überdecken, lieber lassen.
                   null;
             end case;
             
@@ -213,7 +214,7 @@ package body KarteSFML is
          Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
                                          position => PositionExtern);
          Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
-                                      scale  => (1.00, 0.80));
+                                      scale  => SkalierungTexturenKartenfelderWeltkarteBerechnen (SpriteAccessExtern => SpriteAccess));
          
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                               object       => SpriteAccess);
@@ -226,6 +227,58 @@ package body KarteSFML is
       end if;
       
    end KartenfeldZeichnen;
+   
+   
+   
+   function SkalierungTexturenKartenfelderWeltkarteBerechnen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      GrößeTextur := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
+      
+      if
+        GrößeTextur.x > BerechnungenKarteSFML.KartenfelderAbmessung.x
+      then
+         SkalierungKartenfeld.x := BerechnungenKarteSFML.KartenfelderAbmessung.x / GrößeTextur.x;
+         
+      elsif
+        GrößeTextur.x < BerechnungenKarteSFML.KartenfelderAbmessung.x
+      then
+         SkalierungKartenfeld.x := GrößeTextur.x / BerechnungenKarteSFML.KartenfelderAbmessung.x;
+         
+      else
+         SkalierungKartenfeld.x := 1.00;
+      end if;
+      
+      if
+        GrößeTextur.y > BerechnungenKarteSFML.KartenfelderAbmessung.y
+      then
+         SkalierungKartenfeld.y := BerechnungenKarteSFML.KartenfelderAbmessung.y / GrößeTextur.y;
+         
+      elsif
+        GrößeTextur.y < BerechnungenKarteSFML.KartenfelderAbmessung.y
+      then
+         SkalierungKartenfeld.y := GrößeTextur.y / BerechnungenKarteSFML.KartenfelderAbmessung.y;
+         
+      else
+         SkalierungKartenfeld.y := 1.00;
+      end if;
+      
+      if
+        SkalierungKartenfeld.x <= 0.00
+        or
+          SkalierungKartenfeld.y <= 0.00
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "KarteSFML.SkalierungTexturenKartenfelderWeltkarteBerechnen - Skalierungsfaktor wurde auf <= 0.00 gesetzt.");
+         
+      else
+         null;
+      end if;
+      
+      return SkalierungKartenfeld;
+      
+   end SkalierungTexturenKartenfelderWeltkarteBerechnen;
    
    
    

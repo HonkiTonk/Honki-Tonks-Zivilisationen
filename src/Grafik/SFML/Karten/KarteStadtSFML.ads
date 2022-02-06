@@ -5,6 +5,7 @@ with Sf.Graphics.RectangleShape;
 with Sf.Graphics.CircleShape;
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
+with Sf.Graphics.Sprite;
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen;
@@ -36,14 +37,20 @@ private
 
    YAchsenabstraktion : KartenDatentypen.Kartenfeld;
 
+   Kartenfeld : KartenDatentypen.Karten_Grund_Enum;
+
    YMultiplikator : Float;
    XMultiplikator : Float;
 
    AktuelleFarbe : Sf.Graphics.Color.sfColor;
 
    TextPosition : Sf.System.Vector2.sfVector2f;
+   SkalierungKartenfeld : Sf.System.Vector2.sfVector2f;
+   GrößeTextur : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+
+   SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    RechteckRahmenAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
@@ -77,5 +84,11 @@ private
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
+
+
+
+   function SkalierungTexturenKartenfelderStadtkarteBerechnen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+      return Sf.System.Vector2.sfVector2f;
 
 end KarteStadtSFML;

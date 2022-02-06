@@ -14,6 +14,7 @@ with KartenAllgemein;
 
 package body FelderwerteFestlegen is
    
+   -- Bei Bewertung auch die EAchse berücksichtigen? Mal drüber nachdenken ob das sinnvoll ist.
    procedure EinzelnesKartenfeldBewerten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin

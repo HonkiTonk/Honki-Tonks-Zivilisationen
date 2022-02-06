@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 
 with KartenDatentypen; use KartenDatentypen;
@@ -18,6 +19,7 @@ with KartePositionPruefen;
 with StadtInformationenSFML;
 with GrafikEinstellungenSFML;
 with Fehler;
+with EingeleseneTexturenSFML;
 
 package body KarteStadtSFML is
 
@@ -104,11 +106,29 @@ package body KarteStadtSFML is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtKarte,
-                                            PositionExtern       => (0.00, 0.00),
-                                            FarbeExtern          => KarteSFML.FarbeKartenfeldErmitteln (GrundExtern => LeseKarten.Grund
-                                                                                                        (PositionExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern))),
-                                            RechteckAccessExtern => RechteckAccess);
+      Kartenfeld := LeseKarten.Grund (PositionExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern));
+      
+      if
+        Kartenfeld = KartenDatentypen.Flachland
+        and
+          EingeleseneTexturenSFML.KartenfelderAccess /= null
+      then
+         Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
+                                        texture => EingeleseneTexturenSFML.KartenfelderAccess);
+         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
+                                         position => (0.00, 0.00));
+         Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
+                                      scale  => (100.00, 100.00));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => SpriteAccess);
+         
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtKarte,
+                                               PositionExtern       => (0.00, 0.00),
+                                               FarbeExtern          => KarteSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
       
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtAnzeige.x - BerechnungenKarteSFML.StadtKarte.x, BerechnungenKarteSFML.StadtAnzeige.y),
                                             PositionExtern       => (BerechnungenKarteSFML.StadtKarte.x, 0.00),
@@ -299,17 +319,37 @@ package body KarteStadtSFML is
    
    
    
+   -- Die Texturen müssen dann ja auch in der Stadt angezeigt werden.
+   -- Mal Farben für die einzelnen Objekte einbauen.
+   -- Ist sinnvoll, wenn die Texturen nicht geladen werden können sieht man es gleich und das Spiel funktioniert immer noch.
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
-                                            PositionExtern       => PositionExtern,
-                                            FarbeExtern          => KarteSFML.FarbeKartenfeldErmitteln (GrundExtern => LeseKarten.Grund (PositionExtern => KoordinatenExtern)),
-                                            RechteckAccessExtern => RechteckAccess);
-            
-      -- Mal Farben für die einzelnen Objekte einbauen. Ist das überhaupt sinnvoll wenn ich da später sowieso Texturen drüberlege?
+      Kartenfeld := LeseKarten.Grund (PositionExtern => KoordinatenExtern);
+      
+      if
+        Kartenfeld = KartenDatentypen.Flachland
+        and
+          EingeleseneTexturenSFML.KartenfelderAccess /= null
+      then
+         Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
+                                        texture => EingeleseneTexturenSFML.KartenfelderAccess);
+         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
+                                         position => PositionExtern);
+         Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
+                                      scale  => SkalierungTexturenKartenfelderStadtkarteBerechnen (SpriteAccessExtern => SpriteAccess));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => SpriteAccess);
+         
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
+                                               PositionExtern       => PositionExtern,
+                                               FarbeExtern          => KarteSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
       case
         LeseKarten.Ressource (PositionExtern => KoordinatenExtern)
       is
@@ -363,6 +403,58 @@ package body KarteStadtSFML is
       end case;
       
    end AnzeigeLandschaft;
+   
+   
+   
+   function SkalierungTexturenKartenfelderStadtkarteBerechnen
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      GrößeTextur := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
+      
+      if
+        GrößeTextur.x > BerechnungenKarteSFML.StadtfelderAbmessung.x
+      then
+         SkalierungKartenfeld.x := BerechnungenKarteSFML.StadtfelderAbmessung.x / GrößeTextur.x;
+         
+      elsif
+        GrößeTextur.x < BerechnungenKarteSFML.StadtfelderAbmessung.x
+      then
+         SkalierungKartenfeld.x := GrößeTextur.x / BerechnungenKarteSFML.StadtfelderAbmessung.x;
+         
+      else
+         SkalierungKartenfeld.x := 1.00;
+      end if;
+      
+      if
+        GrößeTextur.y > BerechnungenKarteSFML.StadtfelderAbmessung.y
+      then
+         SkalierungKartenfeld.y := BerechnungenKarteSFML.StadtfelderAbmessung.y / GrößeTextur.y;
+         
+      elsif
+        GrößeTextur.y < BerechnungenKarteSFML.StadtfelderAbmessung.y
+      then
+         SkalierungKartenfeld.y := GrößeTextur.y / BerechnungenKarteSFML.StadtfelderAbmessung.y;
+         
+      else
+         SkalierungKartenfeld.y := 1.00;
+      end if;
+      
+      if
+        SkalierungKartenfeld.x <= 0.00
+        or
+          SkalierungKartenfeld.y <= 0.00
+      then
+         Fehler.GrafikStopp (FehlermeldungExtern => "KarteStadtSFML.SkalierungTexturenKartenfelderStadtkarteBerechnen - Skalierungsfaktor wurde auf <= 0.00 gesetzt.");
+         
+      else
+         null;
+      end if;
+      
+      return SkalierungKartenfeld;
+      
+   end SkalierungTexturenKartenfelderStadtkarteBerechnen;
    
    
    
