@@ -235,31 +235,22 @@ package body KarteSFML is
       return Sf.System.Vector2.sfVector2f
    is begin
       
+      -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden?
       GrößeTextur := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
       
       if
-        GrößeTextur.x > BerechnungenKarteSFML.KartenfelderAbmessung.x
+        GrößeTextur.x /= BerechnungenKarteSFML.KartenfelderAbmessung.x
       then
          SkalierungKartenfeld.x := BerechnungenKarteSFML.KartenfelderAbmessung.x / GrößeTextur.x;
-         
-      elsif
-        GrößeTextur.x < BerechnungenKarteSFML.KartenfelderAbmessung.x
-      then
-         SkalierungKartenfeld.x := GrößeTextur.x / BerechnungenKarteSFML.KartenfelderAbmessung.x;
          
       else
          SkalierungKartenfeld.x := 1.00;
       end if;
       
       if
-        GrößeTextur.y > BerechnungenKarteSFML.KartenfelderAbmessung.y
+        GrößeTextur.y /= BerechnungenKarteSFML.KartenfelderAbmessung.y
       then
          SkalierungKartenfeld.y := BerechnungenKarteSFML.KartenfelderAbmessung.y / GrößeTextur.y;
-         
-      elsif
-        GrößeTextur.y < BerechnungenKarteSFML.KartenfelderAbmessung.y
-      then
-         SkalierungKartenfeld.y := GrößeTextur.y / BerechnungenKarteSFML.KartenfelderAbmessung.y;
          
       else
          SkalierungKartenfeld.y := 1.00;

@@ -117,8 +117,41 @@ package body KarteStadtSFML is
                                         texture => EingeleseneTexturenSFML.KartenfelderAccess);
          Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
                                          position => (0.00, 0.00));
+         
+         -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden?
+         GrößeTextur := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccess).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccess).height);
+      
+         if
+           GrößeTextur.x /= BerechnungenKarteSFML.StadtKarte.x
+         then
+            SkalierungKartenfeld.x := BerechnungenKarteSFML.StadtKarte.x / GrößeTextur.x;
+         
+         else
+            SkalierungKartenfeld.x := 1.00;
+         end if;
+      
+         if
+           GrößeTextur.y /= BerechnungenKarteSFML.StadtKarte.y
+         then
+            SkalierungKartenfeld.y := BerechnungenKarteSFML.StadtKarte.y / GrößeTextur.y;
+         
+         else
+            SkalierungKartenfeld.y := 1.00;
+         end if;
+      
+         if
+           SkalierungKartenfeld.x <= 0.00
+           or
+             SkalierungKartenfeld.y <= 0.00
+         then
+            Fehler.GrafikStopp (FehlermeldungExtern => "KarteStadtSFML.GrafischeDarstellung - Skalierungsfaktor wurde auf <= 0.00 gesetzt.");
+         
+         else
+            null;
+         end if;
+         
          Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
-                                      scale  => (100.00, 100.00));
+                                      scale  => SkalierungKartenfeld);
          
          Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                               object       => SpriteAccess);
@@ -411,31 +444,22 @@ package body KarteStadtSFML is
       return Sf.System.Vector2.sfVector2f
    is begin
       
+      -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden?
       GrößeTextur := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
       
       if
-        GrößeTextur.x > BerechnungenKarteSFML.StadtfelderAbmessung.x
+        GrößeTextur.x /= BerechnungenKarteSFML.StadtfelderAbmessung.x
       then
          SkalierungKartenfeld.x := BerechnungenKarteSFML.StadtfelderAbmessung.x / GrößeTextur.x;
-         
-      elsif
-        GrößeTextur.x < BerechnungenKarteSFML.StadtfelderAbmessung.x
-      then
-         SkalierungKartenfeld.x := GrößeTextur.x / BerechnungenKarteSFML.StadtfelderAbmessung.x;
          
       else
          SkalierungKartenfeld.x := 1.00;
       end if;
       
       if
-        GrößeTextur.y > BerechnungenKarteSFML.StadtfelderAbmessung.y
+        GrößeTextur.y /= BerechnungenKarteSFML.StadtfelderAbmessung.y
       then
          SkalierungKartenfeld.y := BerechnungenKarteSFML.StadtfelderAbmessung.y / GrößeTextur.y;
-         
-      elsif
-        GrößeTextur.y < BerechnungenKarteSFML.StadtfelderAbmessung.y
-      then
-         SkalierungKartenfeld.y := GrößeTextur.y / BerechnungenKarteSFML.StadtfelderAbmessung.y;
          
       else
          SkalierungKartenfeld.y := 1.00;

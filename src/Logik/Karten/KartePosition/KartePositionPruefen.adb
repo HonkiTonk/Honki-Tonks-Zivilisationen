@@ -11,9 +11,11 @@ package body KartePositionPruefen is
    is begin
       
       -- Mal neu/fertig schreiben.
-      -- Da jetzt die EAchse als Bewegungspunkt eingebaut ist, kann später in den Array nicht mehr die Änderung als EAchse verwendet werden.
+      -- Die Prüfung wird ständig aufgerufen, müssten die Renderer und die Mausbewegung sein. Kann man diese Aufrufe reduzieren?
+      -- Überschreibt wahrscheinlich die Berechnung der Einheitenbewegung.
       -- Das sorgt möglicherweise auch für die zufälligen Abstürze während des Spielens.
       -- Die Arrays sind da wegen der Parallelisierung der Kartenfelderbewertung.
+      -- Boolean für Logik und Grafik einbauen und die jeweiligen Array darum erweitern?
       case
         Karten.Kartenform
       is

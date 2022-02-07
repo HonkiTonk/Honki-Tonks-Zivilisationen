@@ -16,7 +16,7 @@ package body BewegungCursorSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kommt es zu einem Absturz.
+      -- Niemals direkt die Mausposition abrufen sondern immer die Werte vom Grafiktask ermitteln lassen. Sonst kann es aufgrund von Mehrfachnutzung des FensterAccess zu Abstürzen kommen.
       MausPosition := GrafikEinstellungenSFML.MausPosition;
       
       if
@@ -51,7 +51,7 @@ package body BewegungCursorSFML is
               Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x + BerechnungenKarteSFML.KartenfelderAbmessung.x)
             then
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                           ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
                case
                  KartenWert.XAchse
