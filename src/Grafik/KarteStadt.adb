@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KarteStadtKonsole;
 with KarteStadtSFML;
-with BewegungCursorSFML;
+with CursorPlatzierenSFML;
 
 package body KarteStadt is
 
@@ -10,7 +10,7 @@ package body KarteStadt is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      BewegungCursorSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);
+      CursorPlatzierenSFML.CursorPlatzierenStadtSFML (RasseExtern => StadtRasseNummerExtern.Rasse);
       
       case
         GlobaleVariablen.AnzeigeArt

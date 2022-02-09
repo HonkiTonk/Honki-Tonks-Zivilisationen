@@ -93,6 +93,8 @@ package body BefehleSFML is
          when SystemKonstanten.GeheZuKonstante =>
             -- Funktioniert in der SFML nicht richtig. Fehler liegt irgendwo im Grafikteil da die Logik nach wie vor weiterläuft.
             -- Möglicherweise in BerechnungenKarteSFML.SichtbereichKarteBerechnen oder weil die Darstellungsermittlung läuft während BewegungCursor.GeheZuCursor die Werte des Cursors ändert.
+            -- Eventuell war es auch die Vermischung der Kartenpositionermittlung in BerechnungenKarteSFML die diesen Fehler ausgelöst hat.
+            -- Auf jeden Fall nicht mehr hier einbinden, da sonst wieder die Ermittlung von Logik und Grafik gleichzeitig aufgerufen wird. 
             -- BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
             null;
 

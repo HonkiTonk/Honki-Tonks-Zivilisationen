@@ -10,9 +10,11 @@ package KartePositionPruefen is
    
    function KartenPositionBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
+       -- Die Contracts hier mal überarbeiten, sind unvollständig und vielleicht auch zu lang?
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and

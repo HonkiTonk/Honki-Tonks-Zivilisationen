@@ -32,7 +32,8 @@ package body UmgebungErreichbarTesten is
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
                
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           LogikGrafikExtern => True);
                
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -123,7 +124,8 @@ package body UmgebungErreichbarTesten is
          for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             KartenWertZwei := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuellePositionExtern,
-                                                                            ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                            ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                            LogikGrafikExtern => True);
             
             if
               KartenWertZwei.XAchse = KartenKonstanten.LeerXAchse

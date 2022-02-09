@@ -93,7 +93,8 @@ package body EinwohnerZuweisenEntfernen is
    is begin
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                  ÄnderungExtern    => (0, RelativeCursorPositionY, RelativeCursorPositionX));
+                                                                  ÄnderungExtern    => (0, RelativeCursorPositionY, RelativeCursorPositionX),
+                                                                  LogikGrafikExtern => True);
          
       if
         KartenWert.XAchse = KartenKonstanten.LeerXAchse

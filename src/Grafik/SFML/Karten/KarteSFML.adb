@@ -58,7 +58,8 @@ package body KarteSFML is
          for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                        ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                        LogikGrafikExtern => False);
             
             -- Die Position durchzureichen bedeutet auch gleichzeitig den aktuellen Multiplikator mit durchzureichen!
             Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
@@ -403,7 +404,8 @@ package body KarteSFML is
                                                    object       => RechteckRahmenAccess);
       
       KartenWertRahmen := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                        ÄnderungExtern    => (0, -1, 0));
+                                                                        ÄnderungExtern    => (0, -1, 0),
+                                                                        LogikGrafikExtern => False);
       
       case
         KartenWertRahmen.YAchse

@@ -81,7 +81,8 @@ package body VerbesserungWeg is
          for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

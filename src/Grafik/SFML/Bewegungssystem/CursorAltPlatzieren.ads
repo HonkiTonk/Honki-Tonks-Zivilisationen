@@ -5,9 +5,9 @@ with KartenRecords;
 with GlobaleVariablen;
 with SystemKonstanten;
 
-package CursorPositionAltFestlegen is
+package CursorAltPlatzieren is
 
-   procedure CursorPositionAltFestlegen
+   procedure CursorAltPlatzieren
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -32,4 +32,4 @@ private
    procedure AlteXAchseFestlegenSFML
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
-end CursorPositionAltFestlegen;
+end CursorAltPlatzieren;

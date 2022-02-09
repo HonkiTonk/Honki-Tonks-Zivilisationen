@@ -218,7 +218,8 @@ package body KartenGeneratorStandard is
          for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).XAchse .. Karten.GrößeLandart (Karten.Kartenart).XAchse loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
+                                                                        LogikGrafikExtern => True);
 
             if
               KartenWert.YAchse <= Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisschild (Karten.Kartengröße)
@@ -250,7 +251,8 @@ package body KartenGeneratorStandard is
          for XÄnderungZweiSchleifenwert in -Karten.FelderVonLandartZuLandart (Karten.Kartenart).XAchse .. Karten.FelderVonLandartZuLandart (Karten.Kartenart).XAchse loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

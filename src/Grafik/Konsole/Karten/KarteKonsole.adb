@@ -26,7 +26,8 @@ package body KarteKonsole is
          for XAchseSchleifenwert in -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) .. Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                        LogikGrafikExtern => False);
             
             case
               KartenWert.XAchse

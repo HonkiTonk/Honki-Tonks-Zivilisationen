@@ -167,7 +167,8 @@ package body KIStadt is
          for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             case
               KartenWert.XAchse

@@ -2,8 +2,8 @@ pragma SPARK_Mode (On);
 
 with KarteSFML;
 with KarteKonsole;
-with BewegungCursorSFML;
-with CursorPositionAltFestlegen;
+with CursorPlatzierenSFML;
+with CursorAltPlatzieren;
 
 package body Karte is
 
@@ -11,8 +11,9 @@ package body Karte is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      BewegungCursorSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
-      CursorPositionAltFestlegen.CursorPositionAltFestlegen (RasseExtern => RasseExtern);
+      -- CursorPositionAltFestlegen braucht eine aktuelle Cursor Position. Kann man aber bestimmt trotzdem optimieren.
+      CursorPlatzierenSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
+      CursorAltPlatzieren.CursorAltPlatzieren (RasseExtern => RasseExtern);
       
       case
         GlobaleVariablen.AnzeigeArt

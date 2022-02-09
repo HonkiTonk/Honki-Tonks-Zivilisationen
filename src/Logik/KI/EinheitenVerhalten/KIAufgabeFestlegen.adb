@@ -261,7 +261,8 @@ package body KIAufgabeFestlegen is
                   
                else
                   KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                              LogikGrafikExtern => True);
                   
                   if
                     KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -409,7 +410,8 @@ package body KIAufgabeFestlegen is
          for XAchseSchleifenwert in -Umgebung .. Umgebung loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

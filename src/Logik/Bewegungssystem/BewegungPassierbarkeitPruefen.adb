@@ -302,7 +302,8 @@ package body BewegungPassierbarkeitPruefen is
          for XAchseEinheitenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
+                                                                        LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

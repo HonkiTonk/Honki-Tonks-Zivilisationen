@@ -398,7 +398,8 @@ package body KarteStadtKonsole is
 
          else            
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
-                                                                        ÄnderungExtern    => (0, YAchsenabstraktion, UmgebungSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchsenabstraktion, UmgebungSchleifenwert),
+                                                                        LogikGrafikExtern => False);
             
             case
               KartenWert.XAchse
@@ -446,7 +447,8 @@ package body KarteStadtKonsole is
          CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse - 17;
                
          KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                     ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
+                                                                     ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
+                                                                     LogikGrafikExtern => False);
          case
            KartenWert.XAchse
          is
@@ -482,7 +484,8 @@ package body KarteStadtKonsole is
       CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse - 17;
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
-                                                                  ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
+                                                                  ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
+                                                                  LogikGrafikExtern => False);
       
       case
         KartenWert.XAchse

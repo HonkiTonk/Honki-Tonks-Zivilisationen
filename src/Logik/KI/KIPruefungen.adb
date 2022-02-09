@@ -72,7 +72,8 @@ package body KIPruefungen is
             
             StadtVerbesserungUmgebungKoordinaten
               := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                               ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                               ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                               LogikGrafikExtern => True);
             
             if
               StadtVerbesserungUmgebungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
@@ -288,7 +289,8 @@ package body KIPruefungen is
          for XAchseSchleifenwert in -XUmgebungExtern .. XUmgebungExtern loop
                
             StadtBauenUmgebungKoordinaten := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                           LogikGrafikExtern => True);
                
             if
               (YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
@@ -387,7 +389,8 @@ package body KIPruefungen is
          for XAchseUmgebungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                        ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

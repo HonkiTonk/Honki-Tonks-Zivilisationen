@@ -119,31 +119,32 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.0. => 0.0. (11.02.2022):
+   -- Version 0.00.99 => 0.0. (11.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.99 => 0.0. (10.02.2022):
+   -- Version 0.00.99 => 0.00.99 (10.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.99 => 0.00.99 (09.02.2022):
+   -- Version 0.00.9925 => 0.00.99 (09.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9915 => 0.00.99 (08.02.2022):
+   -- Version 0.00.9915 => 0.00.9925 (08.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler in den Berechnungen der Kartenpositionen korrigiert, welcher durch die Trennung von Logik und Grafik entstanden ist.
+   -- Einige Textateien umbenannt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

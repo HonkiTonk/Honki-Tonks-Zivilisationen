@@ -104,7 +104,8 @@ package body KartenGeneratorFluss is
          for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   
             KartenWertTesten (EbeneExtern) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
-                                                                                            ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                                            ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                            LogikGrafikExtern => True);
                      
             if
               KartenWertTesten (EbeneExtern).XAchse = KartenKonstanten.LeerXAchse
@@ -145,7 +146,8 @@ package body KartenGeneratorFluss is
          for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
             KartenWert (EbeneExtern) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
-                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                                      ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                      LogikGrafikExtern => True);
 
             if
               KartenWert (EbeneExtern).XAchse = KartenKonstanten.LeerXAchse

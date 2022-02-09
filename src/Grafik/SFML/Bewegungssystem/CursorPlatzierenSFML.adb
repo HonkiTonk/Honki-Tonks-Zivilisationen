@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 
@@ -10,8 +8,11 @@ with BerechnungenKarteSFML;
 with KartePositionPruefen;
 with Karten;
 
-package body BewegungCursorSFML is
+package body CursorPlatzierenSFML is
    
+   -- Kann man dieses Paket nicht auch aus Logik heraus aufrufen dank dem neuen System?
+   -- Gibt eventuell Probleme in der grafischen Darstellung wenn die Position in der Logik geändert wird, die Grafik aber noch mit der alten Position angefangen hat zu rechnen.
+   -- Eventuell später auf Logik umbauen? Man könnte im Grafikteil die aktuelle Cursorposition ja immer mitgeben oder kann es dadurch zu Problemen kommen? Möglicherweise.
    procedure CursorPlatzierenKarteSFML
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -51,7 +52,8 @@ package body BewegungCursorSFML is
               Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x + BerechnungenKarteSFML.KartenfelderAbmessung.x)
             then
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => False);
                
                case
                  KartenWert.XAchse
@@ -134,4 +136,4 @@ package body BewegungCursorSFML is
       
    end CursorPlatzierenStadtSFML;
 
-end BewegungCursorSFML;
+end CursorPlatzierenSFML;

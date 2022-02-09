@@ -8,15 +8,16 @@ package body KartePositionKartenformen is
 
    function KartenPositionXZylinder
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -25,11 +26,11 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      YAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYAchseFest (YAchseExtern          => KoordinatenExtern.YAchse,
-                                                                                                  ÄnderungYAchseExtern  => ÄnderungExtern.YAchse);
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYAchseFest (YAchseExtern          => KoordinatenExtern.YAchse,
+                                                                                                                     ÄnderungYAchseExtern  => ÄnderungExtern.YAchse);
       
       case
-        YAchse (KoordinatenExtern.EAchse)
+        YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.KartenfeldPositivMitNullwert'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -38,11 +39,12 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      XAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => KoordinatenExtern.XAchse,
-                                                                                                ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern          => KoordinatenExtern.XAchse,
+                                                                                                                   ÄnderungXAchseExtern  => ÄnderungExtern.XAchse,
+                                                                                                                   ArrayPositionExtern   => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern     => LogikGrafikExtern);
 
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
       
    end KartenPositionXZylinder;
@@ -51,15 +53,16 @@ package body KartePositionKartenformen is
    
    function KartenPositionYZylinder
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -68,11 +71,11 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      XAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXAchseFest (XAchseExtern          => KoordinatenExtern.XAchse,
-                                                                                                  ÄnderungXAchseExtern  => ÄnderungExtern.XAchse);
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXAchseFest (XAchseExtern          => KoordinatenExtern.XAchse,
+                                                                                                                     ÄnderungXAchseExtern  => ÄnderungExtern.XAchse);
       
       case
-        XAchse (KoordinatenExtern.EAchse)
+        XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.KartenfeldPositivMitNullwert'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -81,11 +84,12 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      YAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => KoordinatenExtern.YAchse,
-                                                                                                ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => KoordinatenExtern.YAchse,
+                                                                                                                   ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
 
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
    end KartenPositionYZylinder;
    
@@ -93,15 +97,16 @@ package body KartePositionKartenformen is
    
    function KartenPositionTorus
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -110,15 +115,17 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      YAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => KoordinatenExtern.YAchse,
-                                                                                                ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => KoordinatenExtern.YAchse,
+                                                                                                                   ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
       
-      XAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => KoordinatenExtern.XAchse,
-                                                                                                ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => KoordinatenExtern.XAchse,
+                                                                                                                   ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
       
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
    end KartenPositionTorus;
    
@@ -126,15 +133,16 @@ package body KartePositionKartenformen is
    
    function KartenPositionKugel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -143,16 +151,18 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      ZwischenPositionAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                   ÄnderungExtern    => ÄnderungExtern);
+      ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                      ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                                      LogikGrafikExtern => LogikGrafikExtern);
       
-      YAchse (KoordinatenExtern.EAchse) := ZwischenPositionAchse (KoordinatenExtern.EAchse).YAchse;
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse;
       
-      XAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (KoordinatenExtern.EAchse).XAchse,
-                                                                                                ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse,
+                                                                                                                   ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
       
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
    end KartenPositionKugel;
    
@@ -160,15 +170,16 @@ package body KartePositionKartenformen is
    
    function KartenPositionViereck
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -177,11 +188,11 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      YAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYAchseFest (YAchseExtern          => KoordinatenExtern.YAchse,
-                                                                                                  ÄnderungYAchseExtern  => ÄnderungExtern.YAchse);
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYAchseFest (YAchseExtern          => KoordinatenExtern.YAchse,
+                                                                                                                     ÄnderungYAchseExtern  => ÄnderungExtern.YAchse);
       
       case
-        YAchse (KoordinatenExtern.EAchse)
+        YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.KartenfeldPositivMitNullwert'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -190,11 +201,11 @@ package body KartePositionKartenformen is
             null;
       end case;
       
-      XAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXAchseFest (XAchseExtern          => KoordinatenExtern.XAchse,
-                                                                                                  ÄnderungXAchseExtern  => ÄnderungExtern.XAchse);
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXAchseFest (XAchseExtern          => KoordinatenExtern.XAchse,
+                                                                                                                     ÄnderungXAchseExtern  => ÄnderungExtern.XAchse);
       
       case
-        XAchse (KoordinatenExtern.EAchse)
+        XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.KartenfeldPositivMitNullwert'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -203,7 +214,7 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
    end KartenPositionViereck;
    
@@ -211,15 +222,16 @@ package body KartePositionKartenformen is
    
    function KartenPositionKugelGedreht
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -228,16 +240,18 @@ package body KartePositionKartenformen is
             null;
       end case;
 
-      ZwischenPositionAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                   ÄnderungExtern    => ÄnderungExtern);
+      ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                      ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                                      LogikGrafikExtern => LogikGrafikExtern);
       
-      XAchse (KoordinatenExtern.EAchse) := ZwischenPositionAchse (KoordinatenExtern.EAchse).XAchse;
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse;
       
-      YAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionAchse (KoordinatenExtern.EAchse).YAchse,
-                                                                                                ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse,
+                                                                                                                   ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
       
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
    end KartenPositionKugelGedreht;
    
@@ -246,15 +260,16 @@ package body KartePositionKartenformen is
    -- Die Tugel brauchen wahrscheinlich neue Berechnungen
    function KartenPositionTugel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -263,21 +278,25 @@ package body KartePositionKartenformen is
             null;
       end case;
             
-      ZwischenPositionAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                   ÄnderungExtern    => ÄnderungExtern);
+      ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                      ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                                      LogikGrafikExtern => LogikGrafikExtern);
       
-      ZwischenPositionTugelAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                        ÄnderungExtern    => ÄnderungExtern);
+      ZwischenPositionTugelAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                           ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                                           LogikGrafikExtern => LogikGrafikExtern);
       
-      YAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (KoordinatenExtern.EAchse).YAchse,
-                                                                                                ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse,
+                                                                                                                   ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
             
-      XAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (KoordinatenExtern.EAchse).XAchse,
-                                                                                                ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse,
+                                                                                                                   ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
       
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
    end KartenPositionTugel;
    
@@ -285,15 +304,16 @@ package body KartePositionKartenformen is
    
    function KartenPositionTugelGedreht
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -302,21 +322,25 @@ package body KartePositionKartenformen is
             null;
       end case;
             
-      ZwischenPositionAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                   ÄnderungExtern    => ÄnderungExtern);
+      ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                      ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                                      LogikGrafikExtern => LogikGrafikExtern);
       
-      ZwischenPositionTugelAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                        ÄnderungExtern    => ÄnderungExtern);
+      ZwischenPositionTugelAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                           ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                                           LogikGrafikExtern => LogikGrafikExtern);
       
-      YAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (KoordinatenExtern.EAchse).YAchse,
-                                                                                                ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse,
+                                                                                                                   ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
             
-      XAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (KoordinatenExtern.EAchse).XAchse,
-                                                                                                ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse,
+                                                                                                                   ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
       
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
    end KartenPositionTugelGedreht;
    
@@ -324,15 +348,16 @@ package body KartePositionKartenformen is
      
    function KartenPositionTugelExtrem
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      EAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
-                                                                                                  ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                                                     ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
       
       case
-        EAchse (KoordinatenExtern.EAchse)
+        EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenDatentypen.Ebene'First =>
             return KartenKonstanten.LeerKartenPosition;
@@ -341,21 +366,25 @@ package body KartePositionKartenformen is
             null;
       end case;
             
-      ZwischenPositionAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                   ÄnderungExtern    => ÄnderungExtern);
+      ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                      ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                                      LogikGrafikExtern => LogikGrafikExtern);
       
-      ZwischenPositionTugelAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
-                                                                                                                        ÄnderungExtern    => ÄnderungExtern);
+      ZwischenPositionTugelAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                           ÄnderungExtern    => ÄnderungExtern,
+                                                                                                                                           LogikGrafikExtern => LogikGrafikExtern);
       
-      YAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (KoordinatenExtern.EAchse).YAchse,
-                                                                                                ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse,
+                                                                                                                   ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
             
-      XAchse (KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (KoordinatenExtern.EAchse).XAchse,
-                                                                                                ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
-                                                                                                ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse,
+                                                                                                                   ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                                                                   ArrayPositionExtern  => KoordinatenExtern.EAchse,
+                                                                                                                   LogikGrafikExtern    => LogikGrafikExtern);
       
-      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
       
    end KartenPositionTugelExtrem;
 

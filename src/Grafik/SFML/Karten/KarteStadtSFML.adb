@@ -221,7 +221,8 @@ package body KarteStadtSFML is
          end case;
          
          KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                     ÄnderungExtern    => (0, YAchseExtern - 4, XAchseExtern - 17));
+                                                                     ÄnderungExtern    => (0, YAchseExtern - 4, XAchseExtern - 17),
+                                                                     LogikGrafikExtern => False);
          
          case
            KartenWert.XAchse

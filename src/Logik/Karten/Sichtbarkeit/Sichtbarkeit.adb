@@ -185,7 +185,8 @@ package body Sichtbarkeit is
    is begin
               
       KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                          ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
+                                                                          ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
+                                                                          LogikGrafikExtern => True);
             
       if
         KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
@@ -311,7 +312,8 @@ package body Sichtbarkeit is
    is begin
                     
       KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                          ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
+                                                                          ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
+                                                                          LogikGrafikExtern => True);
             
       if
         KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
@@ -437,7 +439,8 @@ package body Sichtbarkeit is
    is begin
                     
       KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                          ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
+                                                                          ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
+                                                                          LogikGrafikExtern => True);
             
       if
         KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
@@ -563,7 +566,8 @@ package body Sichtbarkeit is
    is begin
                     
       KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                          ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
+                                                                          ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
+                                                                          LogikGrafikExtern => True);
             
       if
         KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
@@ -690,7 +694,8 @@ package body Sichtbarkeit is
    is begin
       
       KartenBlockadeWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                          ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
+                                                                          ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern),
+                                                                          LogikGrafikExtern => True);
       
       if
         KartenBlockadeWert.XAchse = KartenKonstanten.LeerXAchse
@@ -735,7 +740,8 @@ package body Sichtbarkeit is
          for XÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             case
               KartenWert.XAchse
@@ -767,7 +773,8 @@ package body Sichtbarkeit is
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             case
               KartenWert.XAchse

@@ -120,7 +120,8 @@ package body StadtProduktion is
          for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

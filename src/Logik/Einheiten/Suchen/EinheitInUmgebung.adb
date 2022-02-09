@@ -125,7 +125,8 @@ package body EinheitInUmgebung is
          for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
       
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
-                                                                        ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                        LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

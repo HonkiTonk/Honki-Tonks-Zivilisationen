@@ -30,7 +30,8 @@ package body KIMindestBewertungKartenfeldErmitteln is
             for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                               
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                           ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                           ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => True);
                      
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse

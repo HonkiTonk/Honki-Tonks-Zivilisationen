@@ -8,7 +8,7 @@ with KartenDatentypen;
 with KartenRecords;
 with SystemKonstanten;
 
-package BewegungCursorSFML is
+package CursorPlatzierenSFML is
    
    procedure CursorPlatzierenKarteSFML
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
@@ -33,4 +33,4 @@ private
    
    MausPosition : Sf.System.Vector2.sfVector2i;
 
-end BewegungCursorSFML;
+end CursorPlatzierenSFML;

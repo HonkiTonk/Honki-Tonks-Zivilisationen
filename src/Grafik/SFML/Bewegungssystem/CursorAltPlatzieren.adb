@@ -7,9 +7,9 @@ with Karten;
 with KartePositionPruefen;
 with Sichtweiten;
 
-package body CursorPositionAltFestlegen is
+package body CursorAltPlatzieren is
 
-   procedure CursorPositionAltFestlegen
+   procedure CursorAltPlatzieren
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -27,7 +27,7 @@ package body CursorPositionAltFestlegen is
             AlteXAchseFestlegenSFML (RasseExtern => RasseExtern);
       end case;
       
-   end CursorPositionAltFestlegen;
+   end CursorAltPlatzieren;
    
    
    
@@ -164,7 +164,8 @@ package body CursorPositionAltFestlegen is
       end if;
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                  ÄnderungExtern    => (0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) + 1, 0));
+                                                                  ÄnderungExtern    => (0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) + 1, 0),
+                                                                  LogikGrafikExtern => False);
                                                                   
       case
         KartenWert.YAchse
@@ -177,7 +178,8 @@ package body CursorPositionAltFestlegen is
               KartenWert.YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                                                                                ÄnderungExtern    => (0, 1, 0)).YAchse;
+                                                                                                                                ÄnderungExtern    => (0, 1, 0),
+                                                                                                                                LogikGrafikExtern => False).YAchse;
                return;
                
             else
@@ -186,7 +188,8 @@ package body CursorPositionAltFestlegen is
       end case;
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                  ÄnderungExtern    => (0, -Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) - 1, 0));
+                                                                  ÄnderungExtern    => (0, -Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) - 1, 0),
+                                                                  LogikGrafikExtern => False);
       
       case
         KartenWert.YAchse
@@ -199,7 +202,8 @@ package body CursorPositionAltFestlegen is
               KartenWert.YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                                                                                ÄnderungExtern    => (0, -1, 0)).YAchse;
+                                                                                                                                ÄnderungExtern    => (0, -1, 0),
+                                                                                                                                LogikGrafikExtern => False).YAchse;
                return;
                
             else
@@ -225,7 +229,8 @@ package body CursorPositionAltFestlegen is
       end if;
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                  ÄnderungExtern    => (0, 0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) + 1));
+                                                                  ÄnderungExtern    => (0, 0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) + 1),
+                                                                  LogikGrafikExtern => False);
                                                                   
       case
         KartenWert.XAchse
@@ -238,7 +243,8 @@ package body CursorPositionAltFestlegen is
               KartenWert.XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                                                                                ÄnderungExtern    => (0, 0, 1)).XAchse;
+                                                                                                                                ÄnderungExtern    => (0, 0, 1),
+                                                                                                                                LogikGrafikExtern => False).XAchse;
                return;
                
             else
@@ -247,7 +253,8 @@ package body CursorPositionAltFestlegen is
       end case;
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                  ÄnderungExtern    => (0, 0, -Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) - 1));
+                                                                  ÄnderungExtern    => (0, 0, -Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) - 1),
+                                                                  LogikGrafikExtern => False);
       
       case
         KartenWert.XAchse
@@ -260,7 +267,8 @@ package body CursorPositionAltFestlegen is
               KartenWert.XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse
             then
                GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                                                                                ÄnderungExtern    => (0, 0, -1)).XAchse;
+                                                                                                                                ÄnderungExtern    => (0, 0, -1),
+                                                                                                                                LogikGrafikExtern => False).XAchse;
                return;
                
             else
@@ -270,4 +278,4 @@ package body CursorPositionAltFestlegen is
    
    end AlteXAchseFestlegenSFML;
 
-end CursorPositionAltFestlegen;
+end CursorAltPlatzieren;

@@ -25,7 +25,8 @@ package body FelderwerteFestlegen is
          for XAchseÄnderungSchleifenwert in LoopRangeMinusDreiZuDrei'Range loop
                   
             KartenWertEins (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                       ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
+                                                                                                       ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
+                                                                                                       LogikGrafikExtern => True);
             
             case
               KartenWertEins (KoordinatenExtern.EAchse).XAchse
@@ -59,7 +60,8 @@ package body FelderwerteFestlegen is
          for BewertungXÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
             KartenWertZwei (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                       ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert));
+                                                                                                       ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
+                                                                                                       LogikGrafikExtern => True);
 
             case
               KartenWertZwei (KoordinatenExtern.EAchse).XAchse

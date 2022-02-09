@@ -183,7 +183,8 @@ package body KartenGeneratorLandschaft is
          for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusZweiZuZwei'Range loop
 
             KartenWertAbstand := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
-                                                                               ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                               ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                               LogikGrafikExtern => True);
             
             if
               KartenWertAbstand.XAchse = KartenKonstanten.LeerXAchse

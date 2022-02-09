@@ -49,7 +49,8 @@ package body BerechnungenKarteSFML is
       for YBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop
          
          KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                     ÄnderungExtern    => (0, YBereichSchleifenwert, 1));
+                                                                     ÄnderungExtern    => (0, YBereichSchleifenwert, 1),
+                                                                     LogikGrafikExtern => False);
          
          case
            KartenWert.YAchse
@@ -76,7 +77,8 @@ package body BerechnungenKarteSFML is
       for XBereichSchleifenwert in XSichtAnfang .. XSichtEnde loop
          
          KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                     ÄnderungExtern    => (0, 1, XBereichSchleifenwert));
+                                                                     ÄnderungExtern    => (0, 1, XBereichSchleifenwert),
+                                                                     LogikGrafikExtern => False);
          
          case
            KartenWert.XAchse

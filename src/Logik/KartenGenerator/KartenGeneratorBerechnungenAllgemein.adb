@@ -24,7 +24,8 @@ package body KartenGeneratorBerechnungenAllgemein is
          for XAchsenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
-                                                                        ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert));
+                                                                        ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert),
+                                                                        LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

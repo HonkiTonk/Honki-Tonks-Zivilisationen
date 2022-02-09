@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
@@ -28,15 +26,9 @@ package body BewegungEinheiten is
       return Boolean
    is begin
       
-      New_Line;
-      Put_Line (LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse'Wide_Wide_Image & "  "
-                & LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).YAchse'Wide_Wide_Image & "  "
-                & LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).XAchse'Wide_Wide_Image);
-      Put_Line (PositionÄnderungExtern.EAchse'Wide_Wide_Image & "  " & PositionÄnderungExtern.YAchse'Wide_Wide_Image & "  " & PositionÄnderungExtern.XAchse'Wide_Wide_Image);
       NeuePosition := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                    ÄnderungExtern    => PositionÄnderungExtern);
-      Put_Line (NeuePosition.EAchse'Wide_Wide_Image & "  " & NeuePosition.YAchse'Wide_Wide_Image & "  " & NeuePosition.XAchse'Wide_Wide_Image);
-      New_Line;
+                                                                    ÄnderungExtern    => PositionÄnderungExtern,
+                                                                    LogikGrafikExtern => True);
       
       case
         NeuePosition.XAchse
