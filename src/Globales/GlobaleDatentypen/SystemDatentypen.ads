@@ -32,7 +32,11 @@ package SystemDatentypen is
                                  -- Neue Kartenformen immer vor Tugel Extrem einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Karte_Form_X_Zylinder, Karte_Form_Y_Zylinder, Karte_Form_Torus, Karte_Form_Kugel, Karte_Form_Viereck, Karte_Form_Kugel_Gedreht, Karte_Form_Tugel, Karte_Form_Tugel_Gedreht,
                                  Karte_Form_Tugel_Extrem,
-                                
+                                 
+                                 -- Immer eventuelle Anpassungen in den KartenDatentypen berücksichtigen.
+                                 Karte_E_Achse_Fest, Karte_E_Achse_Normaler_Übergang, Karte_Y_Achse_Fest, Karte_Y_Achse_Normaler_Übergang, Karte_Y_Achse_Verschobener_Übergang, Karte_X_Achse_Fest,
+                                 Karte_X_Achse_Normaler_Übergang, Karte_X_Achse_Verschobener_Übergang,      
+                                 
                                  -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Karte_Temperatur_Kalt, Karte_Temperatur_Gemäßigt, Karte_Temperatur_Heiß, Karte_Temperatur_Eiszeit, Karte_Temperatur_Wüste,
                                 

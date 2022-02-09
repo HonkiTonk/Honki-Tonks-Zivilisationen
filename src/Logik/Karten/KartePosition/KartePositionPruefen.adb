@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartePositionKartenformen;
+with KartePositionNormaleKartenformen;
+with KartePositionAbstrakteKartenformen;
 
 package body KartePositionPruefen is
    
@@ -13,52 +14,63 @@ package body KartePositionPruefen is
       
       -- Mal neu/fertig schreiben.
       -- Die Prüfung wird ständig aufgerufen, müssten die Renderer und die Mausbewegung sein. Kann man diese Aufrufe reduzieren?
-      -- Die Arrays sind da wegen der Parallelisierung der Kartenfelderbewertung.
+      -- Die Arrays sind da wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
       
       case
         Karten.Kartenform
       is
+         -- Normale Kartenformen
          when KartenKonstanten.KartenformXZylinderKonstante =>
-            return KartePositionKartenformen.KartenPositionXZylinder (KoordinatenExtern => KoordinatenExtern,
-                                                                      ÄnderungExtern    => ÄnderungExtern,
-                                                                      LogikGrafikExtern => LogikGrafikExtern);
+            return KartePositionNormaleKartenformen.KartenPositionXZylinder (KoordinatenExtern => KoordinatenExtern,
+                                                                             ÄnderungExtern    => ÄnderungExtern,
+                                                                             LogikGrafikExtern => LogikGrafikExtern);
             
          when KartenKonstanten.KartenformYZylinderKonstante =>
-            return KartePositionKartenformen.KartenPositionYZylinder (KoordinatenExtern => KoordinatenExtern,
-                                                                      ÄnderungExtern    => ÄnderungExtern,
-                                                                      LogikGrafikExtern => LogikGrafikExtern);
+            return KartePositionNormaleKartenformen.KartenPositionYZylinder (KoordinatenExtern => KoordinatenExtern,
+                                                                             ÄnderungExtern    => ÄnderungExtern,
+                                                                             LogikGrafikExtern => LogikGrafikExtern);
             
          when KartenKonstanten.KartenformTorusKonstante =>
-            return KartePositionKartenformen.KartenPositionTorus (KoordinatenExtern => KoordinatenExtern,
-                                                                  ÄnderungExtern    => ÄnderungExtern,
-                                                                  LogikGrafikExtern => LogikGrafikExtern);
-            
-         when KartenKonstanten.KartenformKugelKonstante =>
-            return KartePositionKartenformen.KartenPositionKugel (KoordinatenExtern => KoordinatenExtern,
-                                                                  ÄnderungExtern    => ÄnderungExtern,
-                                                                  LogikGrafikExtern => LogikGrafikExtern);
-            
-         when KartenKonstanten.KartenformViereckKonstante =>
-            return KartePositionKartenformen.KartenPositionViereck (KoordinatenExtern => KoordinatenExtern,
-                                                                    ÄnderungExtern    => ÄnderungExtern,
-                                                                    LogikGrafikExtern => LogikGrafikExtern);
-
-         when KartenKonstanten.KartenformKugelGedrehtKonstante =>
-            return KartePositionKartenformen.KartenPositionKugelGedreht (KoordinatenExtern => KoordinatenExtern,
+            return KartePositionNormaleKartenformen.KartenPositionTorus (KoordinatenExtern => KoordinatenExtern,
                                                                          ÄnderungExtern    => ÄnderungExtern,
                                                                          LogikGrafikExtern => LogikGrafikExtern);
             
-            -- Hier soll er die Sachen aus Kugel und Torus zusammen machen
+         when KartenKonstanten.KartenformKugelKonstante =>
+            return KartePositionNormaleKartenformen.KartenPositionKugel (KoordinatenExtern => KoordinatenExtern,
+                                                                         ÄnderungExtern    => ÄnderungExtern,
+                                                                         LogikGrafikExtern => LogikGrafikExtern);
+            
+         when KartenKonstanten.KartenformViereckKonstante =>
+            return KartePositionNormaleKartenformen.KartenPositionViereck (KoordinatenExtern => KoordinatenExtern,
+                                                                           ÄnderungExtern    => ÄnderungExtern,
+                                                                           LogikGrafikExtern => LogikGrafikExtern);
+
+         when KartenKonstanten.KartenformKugelGedrehtKonstante =>
+            return KartePositionNormaleKartenformen.KartenPositionKugelGedreht (KoordinatenExtern => KoordinatenExtern,
+                                                                                ÄnderungExtern    => ÄnderungExtern,
+                                                                                LogikGrafikExtern => LogikGrafikExtern);
+            -- Normale Kartenformen
+            
+            
+            
+            -- Abstrakte Kartenformen
          when KartenKonstanten.KartenformTugelKonstante =>
-            return KartePositionKartenformen.KartenPositionTugel (KoordinatenExtern => KoordinatenExtern,
-                                                                  ÄnderungExtern    => ÄnderungExtern,
-                                                                  LogikGrafikExtern => LogikGrafikExtern);
+            return KartePositionAbstrakteKartenformen.KartenPositionTugel (KoordinatenExtern => KoordinatenExtern,
+                                                                           ÄnderungExtern    => ÄnderungExtern,
+                                                                           LogikGrafikExtern => LogikGrafikExtern);
             
          when KartenKonstanten.KartenformTugelGedrehtKonstante =>
-            return (0, 0, 0);
+            return KartePositionAbstrakteKartenformen.KartenPositionTugelGedreht (KoordinatenExtern => KoordinatenExtern,
+                                                                                  ÄnderungExtern    => ÄnderungExtern,
+                                                                                  LogikGrafikExtern => LogikGrafikExtern);
             
          when KartenKonstanten.KartenformTugelExtremKonstante =>
-            return (0, 0, 0);
+            return KartePositionAbstrakteKartenformen.KartenPositionTugelExtrem (KoordinatenExtern => KoordinatenExtern,
+                                                                                 ÄnderungExtern    => ÄnderungExtern,
+                                                                                 LogikGrafikExtern => LogikGrafikExtern);
+            
+            
+            -- Abstrakte Kartenformen
       end case;
       
    end KartenPositionBestimmen;

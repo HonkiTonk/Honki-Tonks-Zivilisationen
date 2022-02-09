@@ -30,7 +30,7 @@ package Karten is
                                             KartenKonstanten.Kartengröße240240Konstante   => (240, 240),
                                             KartenKonstanten.Kartengröße320320Konstante   => (320, 320),
                                             KartenKonstanten.Kartengröße10001000Konstante => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
-                                            KartenKonstanten.KartengrößeNutzerKonstante    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
+                                            KartenKonstanten.KartengrößeNutzerKonstante   => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
                                            );
 
    -- Muss einen Startwert haben damit der Grafiktask die Kartenfelder korrekt berechnen kann.
@@ -50,22 +50,28 @@ package Karten is
                                             KartenKonstanten.KartenartInselnKonstante     => (3, 3),
                                             KartenKonstanten.KartenartKontinenteKonstante => (7, 7),
                                             KartenKonstanten.KartenartPangäaKonstante     => (1, 1),
-                                            others                       => (1, 1)
+                                            others                                        => (1, 1)
                                            );
    FelderVonLandartZuLandart : GrößeLandartArray := (
                                                        KartenKonstanten.KartenartInselnKonstante     => (15, 15),
                                                        KartenKonstanten.KartenartKontinenteKonstante => (22, 22),
                                                        KartenKonstanten.KartenartPangäaKonstante     => (1, 1),
-                                                       others                       => (1, 1)
+                                                       others                                        => (1, 1)
                                                       );
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
    Kartenart : KartenDatentypen.Kartenart_Verwendet_Enum := KartenKonstanten.KartenartInselnKonstante;
    KartenartGemischt : Boolean := False;
+
    -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
    Kartentemperatur : KartenDatentypen.Kartentemperatur_Verwendet_Enum := KartenKonstanten.TemperaturKaltKonstante;
+
    -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht
    Kartenform : KartenDatentypen.Kartenform_Verwendet_Enum := KartenKonstanten.KartenformXZylinderKonstante;
+
+   -- EAchsenübergang, YAchsenübergang, XAchsenübergang
+   KartenformEingestellt : KartenRecords.KartenformRecord := KartenKonstanten.KartenformStandard;
+
    -- Arm, Wenig, Mittel, Viel, Überfluss
    Kartenressourcen : KartenDatentypen.Kartenressourcen_Verwendet_Enum := KartenKonstanten.RessourcenMittelKonstante;
 

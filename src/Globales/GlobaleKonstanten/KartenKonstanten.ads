@@ -40,6 +40,10 @@ package KartenKonstanten is
    KartenformTugelGedrehtKonstante : constant KartenDatentypen.Kartenform_Verwendet_Enum := SystemDatentypen.Karte_Form_Tugel_Gedreht;
    KartenformTugelExtremKonstante : constant KartenDatentypen.Kartenform_Verwendet_Enum := SystemDatentypen.Karte_Form_Tugel_Extrem;
    
+   KartenformStandard : constant KartenRecords.KartenformRecord := (SystemDatentypen.Karte_E_Achse_Fest,
+                                                                    SystemDatentypen.Karte_Y_Achse_Fest,
+                                                                    SystemDatentypen.Karte_X_Achse_Normaler_Übergang);
+   
    TemperaturKaltKonstante : constant KartenDatentypen.Kartentemperatur_Verwendet_Enum := SystemDatentypen.Karte_Temperatur_Kalt;
    TemperaturGemäßigtKonstante : constant KartenDatentypen.Kartentemperatur_Verwendet_Enum := SystemDatentypen.Karte_Temperatur_Gemäßigt;
    TemperaturHeißKonstante : constant KartenDatentypen.Kartentemperatur_Verwendet_Enum := SystemDatentypen.Karte_Temperatur_Heiß;
@@ -55,7 +59,8 @@ package KartenKonstanten is
    
    
 
-   LeerEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
+   LeerVorhandeneEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
+   LeerEAchse : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
    LeerYAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
    LeerXAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
 

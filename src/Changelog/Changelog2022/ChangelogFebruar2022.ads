@@ -126,17 +126,22 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.00.99 => 0.00.99 (10.02.2022):
+   -- Version 0.00.9940 => 0.00.99 (10.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9925 => 0.00.99 (09.02.2022):
+   -- Version 0.00.9925 => 0.00.9940 (09.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Berechnungen der Kartenpositionen zu modifiziert dass eine ungültige EAchsenPosition nicht mehr zu einem gültigen Rückgabewert führt und umgekehrt.
+   -- Kartenformen- und berechnungen in Normal und Abstrakt eingeteilt.
+   -- Neue Kartenformen- und berechnungen eingebaut.
+   -- Tugel, Tugel gedreht und Tugel extrem sollten jetzt 'korrekt' funktioneiren.
+   -- Angefangen ein universelleres Kartenformensystem einzubauen, was bei weniger Programmierarbeit mehr Einstellmöglichkeiten für den Spieler bieten sollte.
+   -- Fehler in der Positionsberechnung gesucht und gefunden.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

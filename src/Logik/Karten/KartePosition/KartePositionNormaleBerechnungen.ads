@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with KartenDatentypen; use KartenDatentypen;
+with KartenDatentypen;
 with KartenRecords;
 
-package KartePositionBerechnungen is
+package KartePositionNormaleBerechnungen is
 
    function PositionBestimmenEAchseFest
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
@@ -49,11 +49,11 @@ package KartePositionBerechnungen is
 private
    
    type PositionFeldArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositivMitNullwert;
-   PolYAchse : PositionFeldArray;
-   PolXAchse : PositionFeldArray;
+   YAchseZwischenwert : PositionFeldArray;
+   XAchseZwischenwert : PositionFeldArray;
    
    type ÜberhangArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of Integer;
    ÜberhangYAchse : ÜberhangArray;
    ÜberhangXAchse : ÜberhangArray;
 
-end KartePositionBerechnungen;
+end KartePositionNormaleBerechnungen;

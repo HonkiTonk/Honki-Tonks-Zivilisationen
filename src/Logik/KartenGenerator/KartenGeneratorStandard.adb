@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+
 with SchreibeKarten;
 with LeseKarten;
 
@@ -51,14 +53,15 @@ package body KartenGeneratorStandard is
         Karten.Kartenart
       is
          when KartenKonstanten.KartenartLandKonstante =>
+            Put_Line ("c");
             GenerierungNurLand;
-            return;
+            Put_Line ("d");
             
          when others =>
+            Put_Line ("e");
             StandardKarteGenerieren;
+            Put_Line ("f");
       end case;
-      
-      
       
    end StandardKarte;
    
@@ -212,14 +215,17 @@ package body KartenGeneratorStandard is
       XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
+      
       YAchseLandflächeErzeugenSchleife:
       for YÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).YAchse .. Karten.GrößeLandart (Karten.Kartenart).YAchse loop
          XAchseLandflächeErzeugenSchleife:
          for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).XAchse .. Karten.GrößeLandart (Karten.Kartenart).XAchse loop
             
+            Put_Line ("111");
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
                                                                         ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
                                                                         LogikGrafikExtern => True);
+            Put_Line ("222");
 
             if
               KartenWert.YAchse <= Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisschild (Karten.Kartengröße)

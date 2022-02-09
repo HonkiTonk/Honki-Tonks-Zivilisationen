@@ -17,7 +17,7 @@ package KartenRecords is
    
    type AchsenKartenfeldPositivRecord is tagged record
       
-      EAchse : KartenDatentypen.EbeneVorhanden;
+      EAchse : KartenDatentypen.Ebene;
       YAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
       XAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
       
@@ -70,6 +70,16 @@ package KartenRecords is
       Position : AchsenKartenfeldPositivRecord;
       PositionAlt : AchsenKartenfeldPositivRecord;
       PositionStadt : AchsenStadtfeldRecord;
+      
+   end record;
+   
+   
+   
+   type KartenformRecord is record
+      
+      EAchseEinstellung : KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum;
+      YAchseEinstellung : KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum;
+      XAchseEinstellung : KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum;
       
    end record;
 
