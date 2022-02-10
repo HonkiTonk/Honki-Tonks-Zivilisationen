@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with SchreibeKarten;
 with LeseKarten;
 
@@ -53,14 +51,10 @@ package body KartenGeneratorStandard is
         Karten.Kartenart
       is
          when KartenKonstanten.KartenartLandKonstante =>
-            Put_Line ("c");
             GenerierungNurLand;
-            Put_Line ("d");
             
          when others =>
-            Put_Line ("e");
             StandardKarteGenerieren;
-            Put_Line ("f");
       end case;
       
    end StandardKarte;
@@ -210,24 +204,28 @@ package body KartenGeneratorStandard is
    
    
    
+   -- Hier eventuell noch einmal drüber gehen, wenn die Sachen gedreht sind werden eventuell falsche Werte gesetzt.
    procedure LandmasseGenerieren
      (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
       XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
-      
       
       YAchseLandflächeErzeugenSchleife:
       for YÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).YAchse .. Karten.GrößeLandart (Karten.Kartenart).YAchse loop
          XAchseLandflächeErzeugenSchleife:
          for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).XAchse .. Karten.GrößeLandart (Karten.Kartenart).XAchse loop
             
-            Put_Line ("111");
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
                                                                         ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
                                                                         LogikGrafikExtern => True);
-            Put_Line ("222");
-
+            
+            -- Theoretisch sollte die erste Prüfung nicht nötig sein, da die Zweite nei einer LeerAchse auch nicht erfüllt sein dürfte.
             if
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+            then
+               null;
+               
+            elsif
               KartenWert.YAchse <= Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisschild (Karten.Kartengröße)
               or
                 KartenWert.YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisschild (Karten.Kartengröße)

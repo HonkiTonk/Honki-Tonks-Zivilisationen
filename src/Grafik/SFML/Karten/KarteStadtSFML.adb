@@ -109,12 +109,10 @@ package body KarteStadtSFML is
       Kartenfeld := LeseKarten.Grund (PositionExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
       if
-        Kartenfeld = KartenDatentypen.Flachland
-        and
-          EingeleseneTexturenSFML.KartenfelderAccess /= null
+        EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null
       then
          Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
-                                        texture => EingeleseneTexturenSFML.KartenfelderAccess);
+                                        texture => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld));
          Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
                                          position => (0.00, 0.00));
          
@@ -364,12 +362,10 @@ package body KarteStadtSFML is
       Kartenfeld := LeseKarten.Grund (PositionExtern => KoordinatenExtern);
       
       if
-        Kartenfeld = KartenDatentypen.Flachland
-        and
-          EingeleseneTexturenSFML.KartenfelderAccess /= null
+        EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null
       then
          Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
-                                        texture => EingeleseneTexturenSFML.KartenfelderAccess);
+                                        texture => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld));
          Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
                                          position => PositionExtern);
          Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,

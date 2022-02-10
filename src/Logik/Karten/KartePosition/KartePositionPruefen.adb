@@ -15,6 +15,7 @@ package body KartePositionPruefen is
       -- Mal neu/fertig schreiben.
       -- Die Prüfung wird ständig aufgerufen, müssten die Renderer und die Mausbewegung sein. Kann man diese Aufrufe reduzieren?
       -- Die Arrays sind da wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
+      -- Vielleicht sollte man die Contracts auch überarbeiten, wenn man das System an sich überarbeitet?
       
       case
         Karten.Kartenform

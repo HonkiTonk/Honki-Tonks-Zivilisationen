@@ -17,6 +17,7 @@ with KennenLernen;
 
 package body Sichtbarkeit is
    
+   -- Über die Sachen hier nochmal drüber gehen. Eventuell auch Sicht nach oben einbauen?
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenDatentypen.Sichtweite

@@ -76,6 +76,8 @@ package KartenDatentypen is
    subtype Karten_Grund_Lavafluss_Enum is Karten_Fluss_Enum range Lavaflusskreuzung_Vier .. Lavafluss_Einzeln;
    subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Sumpf;
    
+   subtype Test is Karten_Grund_Enum range Wasser .. Lavafluss_Einzeln;
+   
    -- Flachland muss hier immer am Schluss kommen, sonst geht der Kartengenerator kaputt!
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Flachland;
    subtype Karten_Unterwasser_Generator_Enum is Karten_Grund_Alle_Felder_Enum range Korallen .. Unterwasser_Wald;

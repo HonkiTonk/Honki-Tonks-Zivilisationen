@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with Ada.Directories; use Ada.Directories;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.Texture;
@@ -57,15 +58,79 @@ package body EinlesenTexturen is
    is begin
       
       case
-        Exists (Name => "Grafik/Kartenfelder/Flachland Test.png")
+        Exists (Name => "Grafik/Kartenfelder/0")
       is
          when False =>
-            null;
+            return;
             
          when True =>
-            EingeleseneTexturenSFML.KartenfelderAccess := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Kartenfelder/Flachland Test.png");
+            AktuelleZeile := 1;
+            
+            Open (File => DateiTextEinlesen,
+                  Mode => In_File,
+                  Name => "Grafik/Kartenfelder/0");
       end case;
       
+      DateipfadeEinlesenSchleife:
+      for DateipfadeEinlesenSchleifenwert in KartenfelderEinlesenArray'Range loop
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => AktuelleZeile)
+         is
+            when True =>
+               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - Nicht genug Zeilen in der 0-Datei.");
+               Close (File => DateiTextEinlesen);
+               return;
+               
+            when False =>
+               KartenfelderEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
+         
+         AktuelleZeile := AktuelleZeile + 1;
+         
+      end loop DateipfadeEinlesenSchleife;
+      
+      Close (File => DateiTextEinlesen);
+      
+      TexturenZuweisenSchleife:
+      for TexturenZuweisenSchleifenwert in EingeleseneTexturenSFML.KartenfelderAccessArray'Range loop
+         
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert))))
+         is
+            when True =>
+               EingeleseneTexturenSFML.KartenfelderAccess (TexturenZuweisenSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert))));
+                  
+            when False =>
+               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - " & To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenSFML.KartenfelderAccess (TexturenZuweisenSchleifenwert) := null;
+         end case;
+         
+      end loop TexturenZuweisenSchleife;
+      
    end EinlesenKartenfelder;
+   
+   
+   
+   -- Allgemeine Einlesenfunktionen und -prozeduren bauen.
+   function VorzeitigesZeilenende
+     (AktuelleZeileExtern : in Positive)
+      return Boolean
+   is begin
+      
+      case
+        End_Of_File (File => DateiTextEinlesen)
+      is
+         when True =>
+            return True;
+               
+         when False =>
+            Set_Line (File => DateiTextEinlesen,
+                      To   => Ada.Wide_Wide_Text_IO.Count (AktuelleZeileExtern));
+            return False;
+      end case;
+      
+   end VorzeitigesZeilenende;
    
 end EinlesenTexturen;

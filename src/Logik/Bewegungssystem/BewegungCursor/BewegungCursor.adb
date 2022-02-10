@@ -121,7 +121,7 @@ package body BewegungCursor is
         KartenWert.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
-            return;
+            null;
 
          when others =>
             GlobaleVariablen.CursorImSpiel (RasseExtern).Position := KartenWert;

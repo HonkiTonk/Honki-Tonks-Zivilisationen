@@ -10,6 +10,8 @@ with Fehler;
 
 package body EinlesenText is
 
+   -- Beim Überarbeiten von Einlesen einbauen dass die Dateien geschlossen werden bevor das Programm angehalten wird.
+   -- Vermutlich nicht notwendig, aber sicher ist sicher.
    procedure EinlesenDateien
    is begin
       

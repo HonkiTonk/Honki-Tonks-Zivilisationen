@@ -65,20 +65,25 @@ package body KarteSFML is
             Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
             Position.y := YMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.y;
             
-            case
+            if
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+            then
+               null;
+               
+            elsif
               LeseKarten.Sichtbar (PositionExtern => KartenWert,
                                    RasseExtern    => RasseExtern)
-            is
-               when True =>
-                  IstSichtbar (KoordinatenExtern => KartenWert,
-                               RasseExtern       => RasseExtern,
-                               PositionExtern    => Position);
-                        
-               when False =>
-                  -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
-                  -- Schwarze Felder zu zeichnen könnte fehlerhafte Größenverhältnisse überdecken, lieber lassen.
-                  null;
-            end case;
+              = True
+            then
+               IstSichtbar (KoordinatenExtern => KartenWert,
+                            RasseExtern       => RasseExtern,
+                            PositionExtern    => Position);
+               
+            else
+               -- Ist das Zeichnen von schwarzen Felder notwendig? Immerhin wird ja vorher das Fenster immer geleert und auf Schwarz gesetzt.
+               -- Schwarze Felder zu zeichnen könnte fehlerhafte Größenverhältnisse überdecken, lieber lassen.
+               null;
+            end if;
             
             XMultiplikator := XMultiplikator + 1.00;
                           
@@ -162,10 +167,8 @@ package body KarteSFML is
             null;
             
          when others =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
-                                                  PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                                  FarbeExtern          => Sf.Graphics.Color.sfBlue,
-                                                  RechteckAccessExtern => RechteckAccess);
+            FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
+                           PositionExtern    => PositionExtern);
       end case;
                   
       case
@@ -206,12 +209,10 @@ package body KarteSFML is
       Kartenfeld := LeseKarten.Grund (PositionExtern => KoordinatenExtern);
       
       if
-        Kartenfeld = KartenDatentypen.Flachland
-        and
-          EingeleseneTexturenSFML.KartenfelderAccess /= null
+        EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null
       then
          Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
-                                        texture => EingeleseneTexturenSFML.KartenfelderAccess);
+                                        texture => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld));
          Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
                                          position => PositionExtern);
          Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
@@ -228,6 +229,37 @@ package body KarteSFML is
       end if;
       
    end KartenfeldZeichnen;
+   
+   
+   
+   procedure FlussZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      KartenfeldFluss := LeseKarten.Fluss (PositionExtern => KoordinatenExtern);
+      
+      if
+        EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss) /= null
+      then
+         Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
+                                        texture => EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss));
+         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
+                                         position => PositionExtern);
+         Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
+                                      scale  => SkalierungTexturenKartenfelderWeltkarteBerechnen (SpriteAccessExtern => SpriteAccess));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => SpriteAccess);
+         
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
+                                               PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+                                               FarbeExtern          => Sf.Graphics.Color.sfBlue,
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
+      
+   end FlussZeichnen;
    
    
    
@@ -408,9 +440,9 @@ package body KarteSFML is
                                                                         LogikGrafikExtern => False);
       
       case
-        KartenWertRahmen.YAchse
+        KartenWertRahmen.XAchse
       is
-         when KartenKonstanten.LeerYAchse =>
+         when KartenKonstanten.LeerXAchse =>
             return;
             
          when others =>

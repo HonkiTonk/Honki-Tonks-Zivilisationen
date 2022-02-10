@@ -2,23 +2,14 @@ pragma SPARK_Mode (On);
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with SystemKonstanten;
-
 package body Fehler is
 
    procedure LogikStopp
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      if
-        FehlermeldungExtern = SystemKonstanten.LeerString
-      then
-         null;
-         
-      else      
-         Put_Line ("Fehler.LogikStopp:");
-         Put_Line (FehlermeldungExtern);
-      end if;
+      Put_Line ("Fehler.LogikStopp:");
+      Put_Line (FehlermeldungExtern);
       
       raise LogikFehler;
       
@@ -29,16 +20,9 @@ package body Fehler is
    procedure GrafikStopp
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
-      
-      if
-        FehlermeldungExtern = SystemKonstanten.LeerString
-      then
-         null;
          
-      else   
-         Put_Line ("Fehler.GrafikStopp:");
-         Put_Line (FehlermeldungExtern);
-      end if;
+      Put_Line ("Fehler.GrafikStopp:");
+      Put_Line (FehlermeldungExtern);
       
       raise GrafikFehler;
       
@@ -50,15 +34,8 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      if
-        FehlermeldungExtern = SystemKonstanten.LeerString
-      then
-         null;
-         
-      else
-         Put_Line ("Fehler.MusikStopp:");
-         Put_Line (FehlermeldungExtern);
-      end if;
+      Put_Line ("Fehler.MusikStopp:");
+      Put_Line (FehlermeldungExtern);
       
       raise MusikFehler;
       
@@ -70,18 +47,55 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      if
-        FehlermeldungExtern = SystemKonstanten.LeerString
-      then
-         null;
-         
-      else   
-         Put_Line ("Fehler.SoundStopp:");
-         Put_Line (FehlermeldungExtern);
-      end if;
+      Put_Line ("Fehler.SoundStopp:");
+      Put_Line (FehlermeldungExtern);
       
       raise SoundFehler;
       
    end SoundStopp;
+   
+   
+   
+   procedure LogikMeldung
+     (FehlermeldungExtern : in Wide_Wide_String)
+   is begin
+      
+      Put_Line ("Fehler.LogikMeldung:");
+      Put_Line (FehlermeldungExtern);
+      
+   end LogikMeldung;
+   
+   
+   
+   procedure GrafikMeldung
+     (FehlermeldungExtern : in Wide_Wide_String)
+   is begin
+      
+      Put_Line ("Fehler.GrafikMeldung:");
+      Put_Line (FehlermeldungExtern);
+      
+   end GrafikMeldung;
+   
+   
+   
+   procedure MusikMeldung
+     (FehlermeldungExtern : in Wide_Wide_String)
+   is begin
+      
+      Put_Line ("Fehler.MusikMeldung:");
+      Put_Line (FehlermeldungExtern);
+      
+   end MusikMeldung;
+   
+   
+   
+   procedure SoundMeldung
+     (FehlermeldungExtern : in Wide_Wide_String)
+   is begin
+      
+      Put_Line ("Fehler.SoundMeldung:");
+      Put_Line (FehlermeldungExtern);
+      
+   end SoundMeldung;
 
 end Fehler;

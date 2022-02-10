@@ -59,7 +59,6 @@ package KartenKonstanten is
    
    
 
-   LeerVorhandeneEAchse : constant KartenDatentypen.EbeneVorhanden := KartenDatentypen.EbeneVorhanden'First;
    LeerEAchse : constant KartenDatentypen.Ebene := KartenDatentypen.Ebene'First;
    LeerYAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
    LeerXAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;

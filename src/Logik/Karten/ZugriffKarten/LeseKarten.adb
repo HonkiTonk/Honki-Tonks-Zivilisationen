@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
@@ -10,6 +8,7 @@ with Fehler;
 
 package body LeseKarten is
    
+   -- Position auf Koordinaten ändern, damit weniger Probleme mit der Grafikposition auftreten.
    function Grund
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenDatentypen.Karten_Grund_Enum

@@ -112,24 +112,31 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.0. => 0.0. (12.02.2022):
+   -- Version 0.00.99 => 0.0. (12.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.99 => 0.0. (11.02.2022):
+   -- Version 0.00.9960 => 0.00.99 (11.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9940 => 0.00.99 (10.02.2022):
+   -- Version 0.00.9940 => 0.00.9960 (10.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einige fehlende Prüfungen auf eine gültige Kartenposition eingefügt.
+   -- Fehler in den Post Conditions der Positionsberechnung korrigiert, der zu Stopps beim Generieren von Karten führte.
+   -- Neue Textur für Flachland erstellt.
+   -- Warnmeldungen für Fehler die fehlende Grafikdateien hinzugefügt, welche auf das Fehlen von nicht notwendigen Dateien hinweisen aber das Programm nicht stoppen.
+   -- Einlesen von Kartenfeldertexturen erweitert, so dass alle vorhandenen Texturen eingelesen werden und die fehlenden ignoriert werden.
+   -- Einlesen von Kartenfeldertexturen ermöglicht jetzt einfache, externe Modifikationen wie die Textdateien.
+   -- Erste Texturen für alle vorhandenen Kartenfelder erstellt.
+   -- Leerdateien für alle Ressourcen- und Sonstigekartenfelder angelegt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
@@ -138,7 +145,7 @@ package ChangelogFebruar2022 is
    -- Berechnungen der Kartenpositionen zu modifiziert dass eine ungültige EAchsenPosition nicht mehr zu einem gültigen Rückgabewert führt und umgekehrt.
    -- Kartenformen- und berechnungen in Normal und Abstrakt eingeteilt.
    -- Neue Kartenformen- und berechnungen eingebaut.
-   -- Tugel, Tugel gedreht und Tugel extrem sollten jetzt 'korrekt' funktioneiren.
+   -- Tugel, Tugel gedreht und Tugel extrem sollten jetzt 'korrekt' funktionieren.
    -- Angefangen ein universelleres Kartenformensystem einzubauen, was bei weniger Programmierarbeit mehr Einstellmöglichkeiten für den Spieler bieten sollte.
    -- Fehler in der Positionsberechnung gesucht und gefunden.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.

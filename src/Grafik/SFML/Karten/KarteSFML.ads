@@ -40,6 +40,7 @@ private
    SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
    Kartenfeld : KartenDatentypen.Karten_Grund_Enum;
+   KartenfeldFluss : KartenDatentypen.Karten_Grund_Enum;
    
    YMultiplikator : Float;
    XMultiplikator : Float;
@@ -102,6 +103,10 @@ private
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure KartenfeldZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+   
+   procedure FlussZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
    
