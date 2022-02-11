@@ -17,7 +17,7 @@ package body KIAufgabeUmsetzen is
       case
         LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             if
               VerbesserungGebiet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
             then
@@ -34,7 +34,7 @@ package body KIAufgabeUmsetzen is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  BefehlExtern             => SystemKonstanten.StraßeBauenKonstante);
             

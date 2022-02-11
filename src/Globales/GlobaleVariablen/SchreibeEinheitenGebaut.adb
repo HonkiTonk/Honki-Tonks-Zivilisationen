@@ -21,10 +21,10 @@ package body SchreibeEinheitenGebaut is
    
    procedure Position
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := PositionExtern;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := KoordinatenExtern;
       
    end Position;
    
@@ -320,11 +320,11 @@ package body SchreibeEinheitenGebaut is
    
    procedure KIBewegungPlan
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      PlanpositionExtern : in KartenDatentypen.Stadtfeld)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PlanplatzExtern : in KartenDatentypen.Stadtfeld)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanpositionExtern) := PositionExtern;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanplatzExtern) := KoordinatenExtern;
       
    end KIBewegungPlan;
    
@@ -333,10 +333,10 @@ package body SchreibeEinheitenGebaut is
    procedure Transportiert
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
-      LadungspositionExtern : in EinheitStadtDatentypen.Transportplätze)
+      LadungsplatzExtern : in EinheitStadtDatentypen.Transportplätze)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungspositionExtern) := LadungExtern;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungsplatzExtern) := LadungExtern;
       
    end Transportiert;
    

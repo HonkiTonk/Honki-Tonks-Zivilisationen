@@ -207,12 +207,12 @@ package body FarbgebungKonsole is
          end case;
             
       elsif
-        VerbesserungExtern /= KartenDatentypen.Leer
+        VerbesserungExtern /= KartenDatentypen.Leer_Verbesserung
       then
          Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
 
       elsif
-        RessourceExtern /= KartenDatentypen.Leer
+        RessourceExtern /= KartenDatentypen.Leer_Grund
       then
          Put (Item => LeseKartenDatenbank.KartenGrafikKonsole (GrundExtern => RessourceExtern) & CSI & "0m");
             

@@ -112,17 +112,19 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.00.99 => 0.0. (12.02.2022):
+   -- Version 0.00.9970 => 0.0. (12.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9960 => 0.00.99 (11.02.2022):
+   -- Version 0.00.9960 => 0.00.9970 (11.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Testtexturen für die Ressourcen erstellt und eingebunden.
+   -- Hüllen für das Einlesen, Speichern und Darstellen der restlichen Texturen angelegt.
+   -- Angefangen bestimmte Benennungen zur Unterscheidung der aktuellen Koordinatenposition, der aktuellen Grafikposition und der aktuellen Arrayposition einzuführen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

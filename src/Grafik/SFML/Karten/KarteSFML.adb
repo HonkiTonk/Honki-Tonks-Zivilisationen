@@ -147,55 +147,17 @@ package body KarteSFML is
       KartenfeldZeichnen (KoordinatenExtern => KoordinatenExtern,
                           PositionExtern    => PositionExtern);
       
-      case
-        LeseKarten.Ressource (PositionExtern => KoordinatenExtern)
-      is
-         when KartenDatentypen.Leer =>
-            null;
-            
-         when others =>
-            ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
-                                               PositionExtern    => PositionExtern,
-                                               FarbeExtern       => Sf.Graphics.Color.sfBlack,
-                                               KreisAccessExtern => KreisAccess);
-      end case;
+      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                         PositionExtern    => PositionExtern);
       
-      case
-        LeseKarten.Fluss (PositionExtern => KoordinatenExtern)
-      is
-         when KartenDatentypen.Leer =>
-            null;
-            
-         when others =>
-            FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
-                           PositionExtern    => PositionExtern);
-      end case;
-                  
-      case
-        LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern)
-      is
-         when KartenDatentypen.Leer =>
-            null;
-            
-         when others =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
-                                                  PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                                  FarbeExtern          => Sf.Graphics.Color.sfRed,
-                                                  RechteckAccessExtern => RechteckAccess);
-      end case;
+      FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
+                     PositionExtern    => PositionExtern);
       
-      case
-        LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern)
-      is
-         when KartenDatentypen.Leer =>
-            null;
-            
-         when others =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
-                                                  PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => Sf.Graphics.Color.sfCyan,
-                                                  RechteckAccessExtern => RechteckAccess);
-      end case;
+      WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                   PositionExtern    => PositionExtern);
+      
+      VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+                            PositionExtern    => PositionExtern);
       
    end AnzeigeLandschaft;
    
@@ -240,6 +202,11 @@ package body KarteSFML is
       KartenfeldFluss := LeseKarten.Fluss (PositionExtern => KoordinatenExtern);
       
       if
+        KartenfeldFluss = KartenDatentypen.Leer_Grund
+      then
+         null;
+      
+      elsif
         EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss) /= null
       then
          Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
@@ -260,6 +227,88 @@ package body KarteSFML is
       end if;
       
    end FlussZeichnen;
+   
+   
+   
+   procedure RessourceZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      KartenfeldRessource := LeseKarten.Ressource (PositionExtern => KoordinatenExtern);
+      
+      if
+        KartenfeldRessource = KartenDatentypen.Leer_Grund
+      then
+         null;
+      
+      elsif
+        EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldRessource) /= null
+      then
+         Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
+                                        texture => EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldRessource));
+         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
+                                         position => PositionExtern);
+         Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
+                                      scale  => SkalierungTexturenKartenfelderWeltkarteBerechnen (SpriteAccessExtern => SpriteAccess));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => SpriteAccess);
+            
+      else
+         ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
+                                            PositionExtern    => PositionExtern,
+                                            FarbeExtern       => Sf.Graphics.Color.sfBlack,
+                                            KreisAccessExtern => KreisAccess);
+      end if;
+      
+   end RessourceZeichnen;
+   
+   
+   
+   procedure WegZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Wegfeld := LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern);
+      
+      if
+        Wegfeld = KartenDatentypen.Leer_Verbesserung
+      then
+         null;
+            
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
+                                               PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
+                                               FarbeExtern          => Sf.Graphics.Color.sfRed,
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
+      
+   end WegZeichnen;
+   
+   
+   
+   procedure VerbesserungZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Verbesserungsfeld := LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern);
+      
+      if
+        Verbesserungsfeld = KartenDatentypen.Leer_Verbesserung
+      then
+         null;
+            
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00, BerechnungenKarteSFML.KartenfelderAbmessung.y / 2.00),
+                                               PositionExtern       => PositionExtern,
+                                               FarbeExtern          => Sf.Graphics.Color.sfCyan,
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
+      
+   end VerbesserungZeichnen;
    
    
    
@@ -345,7 +394,7 @@ package body KarteSFML is
                                                  FarbeExtern         => AktuelleFarbe,
                                                  PolygonAccessExtern => PolygonAccess);
                
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             Fehler.GrafikStopp (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene Stadt ist nicht vorhanden.");
       end case;
       

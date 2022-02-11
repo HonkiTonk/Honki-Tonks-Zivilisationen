@@ -33,7 +33,7 @@ package body KIPruefungen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenDatentypen.Leer =>
+            when KartenDatentypen.Leer_Verbesserung =>
                null;
                
             when others =>
@@ -124,9 +124,9 @@ package body KIPruefungen is
          return False;
          
       elsif
-        LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer_Verbesserung
         and
-          LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer
+          LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= KartenDatentypen.Leer_Verbesserung
       then
          return False;
          

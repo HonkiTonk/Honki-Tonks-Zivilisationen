@@ -12,7 +12,7 @@ package body KartenGeneratorLandschaft is
    procedure GenerierungLandschaft
    is begin
 
-      Karten.GeneratorKarte := (others => (others => KartenDatentypen.Leer));
+      Karten.GeneratorKarte := (others => (others => KartenDatentypen.Leer_Grund));
       Karten.GeneratorGrund := (others => (others => False));
       
       AbstandEisschicht;
@@ -192,7 +192,7 @@ package body KartenGeneratorLandschaft is
                null;
                
             elsif
-              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= KartenDatentypen.Leer
+              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= KartenDatentypen.Leer_Grund
             then
                null;
                

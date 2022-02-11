@@ -90,7 +90,7 @@ package body BewegungBerechnen is
       end case;
       
       SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                        PositionExtern           => NeuePositionExtern);
+                                        KoordinatenExtern        => NeuePositionExtern);
       NachBewegung (NeuePositionExtern       => NeuePositionExtern,
                     EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -212,7 +212,7 @@ package body BewegungBerechnen is
          case
            LeseKarten.Fluss (PositionExtern => NeuePositionExtern)
          is
-            when KartenDatentypen.Leer =>
+            when KartenDatentypen.Leer_Grund =>
                null;
 
             when others =>

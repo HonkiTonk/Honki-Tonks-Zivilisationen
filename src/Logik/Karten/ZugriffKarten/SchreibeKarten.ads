@@ -19,7 +19,7 @@ package SchreibeKarten is
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GrundExtern /= KartenDatentypen.Leer);
+            GrundExtern /= KartenDatentypen.Leer_Grund);
    
    procedure Hügel
      (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -51,7 +51,7 @@ package SchreibeKarten is
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (FlussExtern = KartenDatentypen.Leer
+            (FlussExtern = KartenDatentypen.Leer_Grund
              or
                FlussExtern in KartenDatentypen.Karten_Fluss_Enum));
 
@@ -64,7 +64,7 @@ package SchreibeKarten is
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (WegExtern = KartenDatentypen.Leer
+            (WegExtern = KartenDatentypen.Leer_Verbesserung
              or
                WegExtern in KartenDatentypen.Karten_Weg_Enum));
 

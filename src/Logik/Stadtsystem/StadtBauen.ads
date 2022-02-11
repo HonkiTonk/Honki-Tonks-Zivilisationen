@@ -72,6 +72,6 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante),
          Post =>
-           (HauptstadtPrüfen'Result /= KartenDatentypen.Leer);
+           (HauptstadtPrüfen'Result /= KartenDatentypen.Leer_Verbesserung);
 
 end StadtBauen;

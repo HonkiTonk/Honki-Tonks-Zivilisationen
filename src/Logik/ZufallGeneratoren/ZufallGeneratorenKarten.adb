@@ -194,7 +194,7 @@ package body ZufallGeneratorenKarten is
             return FlussWert;
                   
          else
-            return KartenDatentypen.Leer;
+            return KartenDatentypen.Leer_Grund;
          end if;
          
       end loop WählenSchleife;
@@ -235,7 +235,7 @@ package body ZufallGeneratorenKarten is
             end if;
       end case;
             
-      return KartenDatentypen.Leer;
+      return KartenDatentypen.Leer_Grund;
       
    end ChaoskarteRessource;
 

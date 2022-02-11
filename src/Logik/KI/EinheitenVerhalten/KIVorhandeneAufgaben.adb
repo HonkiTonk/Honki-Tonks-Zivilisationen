@@ -173,7 +173,7 @@ package body KIVorhandeneAufgaben is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenDatentypen.Leer =>
+            when KartenDatentypen.Leer_Verbesserung =>
                null;
                
             when others =>

@@ -28,7 +28,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
             case
               LeseKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert))
             is
-               when KartenDatentypen.Leer =>               
+               when KartenDatentypen.Leer_Grund =>               
                   GrundErzeugen (YPositionExtern => YAchseUnterwasserSchleifenwert,
                                  XPositionExtern => XAchseUnterwasserSchleifenwert);
                   
@@ -120,7 +120,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
       case
         LeseKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern))
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Grund =>
             SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
                                   GrundExtern    => KartenDatentypen.Unterwasser_Wasser);
             

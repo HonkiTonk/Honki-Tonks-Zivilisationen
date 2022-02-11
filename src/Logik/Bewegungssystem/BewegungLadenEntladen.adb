@@ -36,12 +36,12 @@ package body BewegungLadenEntladen is
             end if;
             SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                    LadungExtern             => LadungExtern,
-                                                   LadungspositionExtern    => FreierPlatzNummer);
+                                                   LadungsplatzExtern       => FreierPlatzNummer);
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
                                                      RechnenSetzenExtern      => 0);
             SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                              PositionExtern           => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => TransporterExtern));
+                                              KoordinatenExtern        => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => TransporterExtern));
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                        TransporterExtern        => TransporterExtern.Platznummer);
             GlobaleVariablen.CursorImSpiel (TransporterExtern.Rasse).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
@@ -99,7 +99,7 @@ package body BewegungLadenEntladen is
          then
             SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                    LadungExtern             => EinheitenKonstanten.LeerTransportiert,
-                                                   LadungspositionExtern    => TransporterLeerenSchleifenwert);
+                                                   LadungsplatzExtern       => TransporterLeerenSchleifenwert);
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                        TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);
             exit TransporterLeerenSchleife;
@@ -134,7 +134,7 @@ package body BewegungLadenEntladen is
             when others =>
                SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                  PlatzExtern              => TransporterUmladenSchleifenwert)),
-                                                 PositionExtern           => NeuePositionExtern);
+                                                 KoordinatenExtern        => NeuePositionExtern);
          end case;
                
       end loop TransporterUmladenSchleife;
@@ -163,7 +163,7 @@ package body BewegungLadenEntladen is
             when others =>
                SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                  PlatzExtern              => BelegterPlatzSchleifenwert)),
-                                                 PositionExtern           =>
+                                                 KoordinatenExtern        =>
                                                     UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
                                                                                                        RasseExtern               => EinheitRasseNummerExtern.Rasse,
                                                                                                        IDExtern                  =>

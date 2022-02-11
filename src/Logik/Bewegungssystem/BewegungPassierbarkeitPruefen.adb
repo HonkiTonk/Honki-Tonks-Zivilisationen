@@ -127,7 +127,7 @@ package body BewegungPassierbarkeitPruefen is
       
       -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
       if
-        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer_Verbesserung
         and
           KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
@@ -136,7 +136,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer
+        LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer_Verbesserung
         and then
           KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
                                          PassierbarkeitExtern => UmgebungExtern)
@@ -145,7 +145,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
          
       elsif
-        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer_Verbesserung
         and then
           KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)

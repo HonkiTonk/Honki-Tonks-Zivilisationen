@@ -82,13 +82,13 @@ package KartenKonstanten is
                                                                      Kampf          => (others => (others => LeerKampf))
                                                                     );
    
-   LeerGrund : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
+   LeerGrund : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer_Grund;
    LeerHügel : constant Boolean := False;
    LeerSichtbar : constant Boolean := False;
-   LeerFluss : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
-   LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
-   LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer;
-   LeerRessource : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
+   LeerFluss : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer_Grund;
+   LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
+   LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
+   LeerRessource : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer_Grund;
    LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (StadtKonstanten.LeerRasse, StadtKonstanten.LeerNummer);
    LeerFelderwertung : constant KartenDatentypen.GesamtbewertungFeld := 0;
 

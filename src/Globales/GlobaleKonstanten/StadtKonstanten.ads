@@ -20,7 +20,7 @@ package StadtKonstanten is
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
    
-   LeerID : constant KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenDatentypen.Leer;
+   LeerID : constant KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenDatentypen.Leer_Verbesserung;
    LeerPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    LeerEinwohner : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerArbeiter : constant EinheitStadtDatentypen.ProduktionFeld := 0;
@@ -74,7 +74,7 @@ package StadtKonstanten is
    LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerBonusKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerUmgebungBenötigt : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer;
+   LeerUmgebungBenötigt : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer_Grund;
    LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (

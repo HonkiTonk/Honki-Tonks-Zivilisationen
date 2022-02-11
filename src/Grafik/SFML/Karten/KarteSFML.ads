@@ -41,6 +41,10 @@ private
    
    Kartenfeld : KartenDatentypen.Karten_Grund_Enum;
    KartenfeldFluss : KartenDatentypen.Karten_Grund_Enum;
+   KartenfeldRessource : KartenDatentypen.Karten_Grund_Enum;
+   
+   Wegfeld : KartenDatentypen.Karten_Verbesserung_Enum;
+   Verbesserungsfeld : KartenDatentypen.Karten_Verbesserung_Enum;
    
    YMultiplikator : Float;
    XMultiplikator : Float;
@@ -107,6 +111,18 @@ private
       PositionExtern : in Sf.System.Vector2.sfVector2f);
    
    procedure FlussZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+   
+   procedure RessourceZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+   
+   procedure WegZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+   
+   procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
    

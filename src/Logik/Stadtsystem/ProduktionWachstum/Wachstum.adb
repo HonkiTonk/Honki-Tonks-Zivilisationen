@@ -40,7 +40,7 @@ package body Wachstum is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))
                   is
-                     when KartenDatentypen.Leer =>
+                     when KartenDatentypen.Leer_Verbesserung =>
                         null;
                
                      when others =>
@@ -266,7 +266,7 @@ package body Wachstum is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
-            when KartenDatentypen.Leer =>
+            when KartenDatentypen.Leer_Verbesserung =>
                null;
                
             when others =>

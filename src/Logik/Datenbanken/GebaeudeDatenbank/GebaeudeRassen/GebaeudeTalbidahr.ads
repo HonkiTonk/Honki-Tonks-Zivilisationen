@@ -20,7 +20,7 @@ package GebaeudeTalbidahr is
          BonusWirtschaft             => (KartenDatentypen.Nahrung => 10,
                                          others                   => 0),
          BonusKampf                  => (others => 10),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Nahrungslager
@@ -32,7 +32,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 2,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Holzpalisade
@@ -44,7 +44,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 1,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Schmiede
@@ -56,7 +56,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 10,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
       
       -- Bibliothek
@@ -68,7 +68,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 9,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Steinmauer
@@ -80,7 +80,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 11,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Bücherei
@@ -92,7 +92,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 21,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Bewässerungssystem
@@ -104,7 +104,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 16,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Kaserne
@@ -116,7 +116,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 13,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Wassermühle
@@ -128,7 +128,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 15,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Windmühle
@@ -140,7 +140,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 15,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Seehafen
@@ -152,7 +152,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 14,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Hochofen
@@ -164,7 +164,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 33,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Universität
@@ -176,7 +176,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 27,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Burg
@@ -188,7 +188,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 22,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Schwere Burg
@@ -200,7 +200,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 25,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Festungen
@@ -212,7 +212,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 34,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Kohlekraftwerk
@@ -224,7 +224,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 37,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Fabrik
@@ -236,7 +236,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 30,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Krankenhaus
@@ -248,7 +248,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 43,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Flughafen
@@ -260,7 +260,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 41,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Atomkraftwerk
@@ -272,7 +272,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 45,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
@@ -284,7 +284,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 53,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Genklinik
@@ -296,7 +296,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 56,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Fusionskraftwerk
@@ -308,7 +308,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 60,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- NAMR Kraftwerk
@@ -320,7 +320,7 @@ package GebaeudeTalbidahr is
          Anforderungen               => 63,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer,
+         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                                               
       others => StadtKonstanten.LeerGebäudeListe

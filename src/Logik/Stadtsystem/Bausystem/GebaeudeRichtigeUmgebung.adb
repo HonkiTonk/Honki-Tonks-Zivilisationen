@@ -21,7 +21,7 @@ package body GebaeudeRichtigeUmgebung is
         LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                  IDExtern    => GebäudeIDExtern)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Grund =>
             return True;
                
          when others =>

@@ -37,24 +37,29 @@ package KartenDatentypen is
    subtype Kartenressourcen_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Ressource_Arm .. SystemDatentypen.Karte_Ressource_Überfluss;
    
    -- Immer dran denken, alle Flussarten am Schluss hinzufügen.
-   type Karten_Grund_Enum is (Leer,
+   type Karten_Grund_Enum is (Leer_Grund,
+                              
                               -- Feld
                               Wasser, Küstengewässer, Unterwasser_Wasser, Unterwasser_Küstengewässer,
                               Eis, Unterwasser_Eis,
                               Lava, Planetenkern,
                               Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Flachland, Hügel_Mit, Wolken, Weltraum, Erde, Erdgestein, Sand, Gestein,
                               Korallen, Unterwasser_Wald,
+                              
                               -- Ressourcen
                               Fisch, Wal,
                               Kohle, Eisen, Öl, Hochwertiger_Boden, Gold,
+                              
                               -- Fluss
                               Flusskreuzung_Vier, Fluss_Waagrecht, Fluss_Senkrecht, Flusskurve_Unten_Rechts, Flusskurve_Unten_Links, Flusskurve_Oben_Rechts, Flusskurve_Oben_Links, Flusskreuzung_Drei_Oben,
                               Flusskreuzung_Drei_Unten, Flusskreuzung_Drei_Rechts, Flusskreuzung_Drei_Links, Flussendstück_Links, Flussendstück_Rechts, Flussendstück_Unten, Flussendstück_Oben, Fluss_Einzeln,
+                              
                               -- Unterirdischer Fluss
                               Unterirdische_Flusskreuzung_Vier, Unterirdischer_Fluss_Waagrecht, Unterirdischer_Fluss_Senkrecht, Unterirdische_Flusskurve_Unten_Rechts, Unterirdische_Flusskurve_Unten_Links,
                               Unterirdische_Flusskurve_Oben_Rechts, Unterirdische_Flusskurve_Oben_Links, Unterirdische_Flusskreuzung_Drei_Oben, Unterirdische_Flusskreuzung_Drei_Unten,
                               Unterirdische_Flusskreuzung_Drei_Rechts, Unterirdische_Flusskreuzung_Drei_Links, Unterirdisches_Flussendstück_Links, Unterirdisches_Flussendstück_Rechts,
                               Unterirdisches_Flussendstück_Unten, Unterirdisches_Flussendstück_Oben, Unterirdischer_Fluss_Einzeln,
+                              
                               -- Lavafluss
                               Lavaflusskreuzung_Vier, Lavafluss_Waagrecht, Lavafluss_Senkrecht, Lavaflusskurve_Unten_Rechts, Lavaflusskurve_Unten_Links, Lavaflusskurve_Oben_Rechts, Lavaflusskurve_Oben_Links,
                               Lavaflusskreuzung_Drei_Oben, Lavaflusskreuzung_Drei_Unten, Lavaflusskreuzung_Drei_Rechts, Lavaflusskreuzung_Drei_Links, Lavaflussendstück_Links, Lavaflussendstück_Rechts,
@@ -76,7 +81,7 @@ package KartenDatentypen is
    subtype Karten_Grund_Lavafluss_Enum is Karten_Fluss_Enum range Lavaflusskreuzung_Vier .. Lavafluss_Einzeln;
    subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Sumpf;
    
-   subtype Test is Karten_Grund_Enum range Wasser .. Lavafluss_Einzeln;
+   subtype Karten_Grund_Vorhanden_Enum is Karten_Grund_Enum range Wasser .. Lavafluss_Einzeln;
    
    -- Flachland muss hier immer am Schluss kommen, sonst geht der Kartengenerator kaputt!
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Flachland;
@@ -85,28 +90,33 @@ package KartenDatentypen is
    
 
    -- Immer dran denken, alle Wegearten am Schluss hinzufügen.
-   type Karten_Verbesserung_Enum is (Leer,
+   type Karten_Verbesserung_Enum is (Leer_Verbesserung,
+                                     
                                      -- Städte
                                      Eigene_Hauptstadt, Eigene_Stadt,
                                      Fremde_Hauptstadt, Fremde_Stadt,
+                                     
                                      -- Gebilde
                                      Farm, Mine,
                                      Festung, Sperre,
+                                     
                                      -- Wege - Straßen
                                      Straßenkreuzung_Vier, Straße_Waagrecht, Straße_Senkrecht, Straßenkurve_Unten_Rechts, Straßenkurve_Unten_Links, Straßenkurve_Oben_Rechts, Straßenkurve_Oben_Links,
                                      Straßenkreuzung_Drei_Oben, Straßenkreuzung_Drei_Unten, Straßenkreuzung_Drei_Rechts, Straßenkreuzung_Drei_Links, Straßenendstück_Links, Straßenendstück_Rechts,
                                      Straßenendstück_Unten, Straßenendstück_Oben, Straße_Einzeln,
+                                     
                                      -- Schienen
                                      Schienenkreuzung_Vier, Schiene_Waagrecht, Schiene_Senkrecht, Schienenkurve_Unten_Rechts, Schienenkurve_Unten_Links, Schienenkurve_Oben_Rechts, Schienenkurve_Oben_Links,
                                      Schienenkreuzung_Drei_Oben, Schienenkreuzung_Drei_Unten, Schienenkreuzung_Drei_Rechts, Schienenkreuzung_Drei_Links, Schienenendstück_Links, Schienenendstück_Rechts,
                                      Schienenendstück_Unten, Schienenendstück_Oben, Schiene_Einzeln,
+                                     
                                      -- Tunnel
                                      Tunnelkreuzung_Vier, Tunnel_Waagrecht, Tunnel_Senkrecht, Tunnelkurve_Unten_Rechts, Tunnelkurve_Unten_Links, Tunnelkurve_Oben_Rechts, Tunnelkurve_Oben_Links,
                                      Tunnelkreuzung_Drei_Oben, Tunnelkreuzung_Drei_Unten, Tunnelkreuzung_Drei_Rechts, Tunnelkreuzung_Drei_Links, Tunnelendstück_Links, Tunnelendstück_Rechts,
                                      Tunnelendstück_Unten, Tunnelendstück_Oben, Tunnel_Einzeln
                                     );
 
-   subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer .. Eigene_Stadt;
+   subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer_Verbesserung .. Eigene_Stadt;
    subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Fremde_Stadt;
    subtype Karten_Verbesserung_Eigene_Städte_Enum is Karten_Verbesserung_Städte_Enum range Eigene_Hauptstadt .. Eigene_Stadt;
    subtype Karten_Verbesserung_Fremde_Städte_Enum is Karten_Verbesserung_Städte_Enum range Fremde_Hauptstadt .. Fremde_Stadt;
@@ -117,6 +127,8 @@ package KartenDatentypen is
    subtype Karten_Verbesserung_Weg_Enum is Karten_Weg_Enum range Straßenkreuzung_Vier .. Straße_Einzeln;
    subtype Karten_Verbesserung_Schiene_Enum is Karten_Weg_Enum range Schienenkreuzung_Vier .. Schiene_Einzeln;
    subtype Karten_Verbesserung_Tunnel_Enum is Karten_Weg_Enum range Tunnelkreuzung_Vier .. Tunnel_Einzeln;
+   
+   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Karten_Verbesserung_Enum'Last;
 
    type SichtbarkeitArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
 

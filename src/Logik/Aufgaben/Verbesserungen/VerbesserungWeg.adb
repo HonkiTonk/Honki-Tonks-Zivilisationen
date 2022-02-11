@@ -136,7 +136,7 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             Wegewert := Wegewert - 1_000;
 
          when KartenDatentypen.Straße_Senkrecht =>
@@ -186,7 +186,7 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             Wegewert := Wegewert - 100;
 
          when KartenDatentypen.Straße_Senkrecht =>
@@ -236,7 +236,7 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             Wegewert := Wegewert - 10;
                      
          when KartenDatentypen.Straße_Waagrecht =>
@@ -286,7 +286,7 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             Wegewert := Wegewert - 1;
                      
          when KartenDatentypen.Straße_Waagrecht =>

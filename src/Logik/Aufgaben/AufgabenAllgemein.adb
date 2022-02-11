@@ -15,7 +15,7 @@ package body AufgabenAllgemein is
       case
         KartenVerbesserungExtern
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             BeschreibungText := SystemKonstanten.LeerUnboundedString;
             
          when others =>

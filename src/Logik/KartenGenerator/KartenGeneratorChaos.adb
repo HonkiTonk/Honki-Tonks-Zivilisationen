@@ -49,7 +49,7 @@ package body KartenGeneratorChaos is
                case
                  RessourceZufall
                is
-                  when KartenDatentypen.Leer =>
+                  when KartenDatentypen.Leer_Grund =>
                      null;
                      
                   when others =>

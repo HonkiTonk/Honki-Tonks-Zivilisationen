@@ -101,15 +101,15 @@ package body KIBewegungDurchfuehren is
       for PositionSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'First + 1 .. EinheitStadtRecords.KIBewegungPlanArray'Last loop
                
          SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 PositionExtern           => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                  PlanschrittExtern        => PositionSchleifenwert),
-                                                 PlanpositionExtern       => (PositionSchleifenwert - 1));
+                                                 PlanplatzExtern          => (PositionSchleifenwert - 1));
          
       end loop BewegungPlanVerschiebenSchleife;
             
       SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              PositionExtern           => KIKonstanten.LeerKoordinate,
-                                              PlanpositionExtern       => EinheitStadtRecords.KIBewegungPlanArray'Last);
+                                              KoordinatenExtern        => KIKonstanten.LeerKoordinate,
+                                              PlanplatzExtern          => EinheitStadtRecords.KIBewegungPlanArray'Last);
       
    end BewegtSich;
    

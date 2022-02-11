@@ -50,7 +50,7 @@ package body StadtProduktion is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
                   is
-                     when KartenDatentypen.Leer =>
+                     when KartenDatentypen.Leer_Verbesserung =>
                         null;
                   
                      when others =>

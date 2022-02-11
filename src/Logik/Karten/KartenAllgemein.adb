@@ -21,7 +21,7 @@ package body KartenAllgemein is
       case
         KartenGrundExtern
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Grund =>
             -- Darf nicht als Fehler behandelt werden. Wegen nicht aufgedeckter Felder?
             BeschreibungText := SystemKonstanten.LeerUnboundedString;
             

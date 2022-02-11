@@ -73,8 +73,8 @@ package body KIBewegungBerechnen is
                
             when False =>
                SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       PositionExtern           => KIKonstanten.LeerKoordinate,
-                                                       PlanpositionExtern       => AktuellePlanpositionExtern);
+                                                       KoordinatenExtern        => KIKonstanten.LeerKoordinate,
+                                                       PlanplatzExtern          => AktuellePlanpositionExtern);
          end case;
          
       end loop DurchlaufSchleife;
@@ -166,14 +166,14 @@ package body KIBewegungBerechnen is
                
          when KIKonstanten.BewertungBewegungZielpunkt =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    PositionExtern           => (Bewertung (DurchlaufExtern).EAchse, Bewertung (DurchlaufExtern).YAchse, Bewertung (DurchlaufExtern).XAchse),
-                                                    PlanpositionExtern       => AktuellePlanpositionExtern);
+                                                    KoordinatenExtern        => (Bewertung (DurchlaufExtern).EAchse, Bewertung (DurchlaufExtern).YAchse, Bewertung (DurchlaufExtern).XAchse),
+                                                    PlanplatzExtern          => AktuellePlanpositionExtern);
             return True;
                
          when others =>
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    PositionExtern           => (Bewertung (DurchlaufExtern).EAchse, Bewertung (DurchlaufExtern).YAchse, Bewertung (DurchlaufExtern).XAchse),
-                                                    PlanpositionExtern       => AktuellePlanpositionExtern);
+                                                    KoordinatenExtern        => (Bewertung (DurchlaufExtern).EAchse, Bewertung (DurchlaufExtern).YAchse, Bewertung (DurchlaufExtern).XAchse),
+                                                    PlanplatzExtern          => AktuellePlanpositionExtern);
             
             if
               AktuellePlanpositionExtern = EinheitStadtRecords.KIBewegungPlanArray'Last
@@ -447,15 +447,15 @@ package body KIBewegungBerechnen is
                   for PositionSchleifenwert in ErsterZugExtern .. EinheitStadtRecords.KIBewegungPlanArray'Last - 1 loop
                
                      SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             PositionExtern           => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                              PlanschrittExtern        => (ÜberNächsterZugExtern)),
-                                                             PlanpositionExtern       => (PositionSchleifenwert + 1));
+                                                             PlanplatzExtern          => (PositionSchleifenwert + 1));
                
                   end loop BewegungPlanVerschiebenSchleife;
                   
                   SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          PositionExtern           => KIKonstanten.LeerKoordinate,
-                                                          PlanpositionExtern       => EinheitStadtRecords.KIBewegungPlanArray'Last);
+                                                          KoordinatenExtern        => KIKonstanten.LeerKoordinate,
+                                                          PlanplatzExtern          => EinheitStadtRecords.KIBewegungPlanArray'Last);
                            
                else
                   null;

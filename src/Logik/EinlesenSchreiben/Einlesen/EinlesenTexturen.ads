@@ -3,8 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with KartenDatentypen;
 with SystemKonstanten;
+
+with EingeleseneTexturenSFML;
 
 package EinlesenTexturen is
 
@@ -16,12 +17,23 @@ private
 
    DateiTextEinlesen : File_Type;
 
-   -- Das hier mal an die Länge in EingeleseneTexturen anpassen.
-   type KartenfelderEinlesenArray is array (KartenDatentypen.Test'Range) of Unbounded_Wide_Wide_String;
+   type KartenfelderEinlesenArray is array (EingeleseneTexturenSFML.KartenfelderAccessArray'Range) of Unbounded_Wide_Wide_String;
    KartenfelderEinlesen : KartenfelderEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+
+   type VerbesserungenEinlesenArray is array (EingeleseneTexturenSFML.VerbesserungenAccessArray'Range) of Unbounded_Wide_Wide_String;
+   VerbesserungenEinlesen : VerbesserungenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+
+   type EinheitenEinlesenArray is array (EingeleseneTexturenSFML.EinheitenAccesArray'Range) of Unbounded_Wide_Wide_String;
+   EinheitenEinlesen : EinheitenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+
+   type GebäudeEinlesenArray is array (EingeleseneTexturenSFML.GebäudeAccessArray'Range) of Unbounded_Wide_Wide_String;
+   GebäudeEinlesen : GebäudeEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
 
    procedure EinlesenHintergrundMenüs;
    procedure EinlesenKartenfelder;
+   procedure EinlesenVerbesserungen;
+   procedure EinlesenEinheiten;
+   procedure EinlesenGebäude;
 
 
 

@@ -76,7 +76,7 @@ package body KartenGeneratorFluss is
             case
               LeseKarten.Fluss (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartenDatentypen.Leer =>
+               when KartenDatentypen.Leer_Grund =>
                   null;
                   
                when others =>
@@ -113,7 +113,7 @@ package body KartenGeneratorFluss is
                null;
                
             elsif
-              LeseKarten.Fluss (PositionExtern => KartenWertTesten (EbeneExtern)) /= KartenDatentypen.Leer
+              LeseKarten.Fluss (PositionExtern => KartenWertTesten (EbeneExtern)) /= KartenDatentypen.Leer_Grund
               and
                 BeliebigerFlusswert (EbeneExtern) <= WahrscheinlichkeitFluss (Karten.Kartentemperatur) * 1.25
             then
@@ -202,7 +202,7 @@ package body KartenGeneratorFluss is
    is begin
       
       if
-        LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = KartenDatentypen.Leer
+        LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = KartenDatentypen.Leer_Grund
       then
          Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 1_000;
                
@@ -284,7 +284,7 @@ package body KartenGeneratorFluss is
    is begin
       
       if
-        LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = KartenDatentypen.Leer
+        LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = KartenDatentypen.Leer_Grund
       then
          Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 100;
                
@@ -366,7 +366,7 @@ package body KartenGeneratorFluss is
    is begin
       
       if
-        LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = KartenDatentypen.Leer
+        LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = KartenDatentypen.Leer_Grund
       then
          Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 10;
                
@@ -448,7 +448,7 @@ package body KartenGeneratorFluss is
    is begin
       
       if
-        LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = KartenDatentypen.Leer
+        LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = KartenDatentypen.Leer_Grund
       then
          Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 1;
                

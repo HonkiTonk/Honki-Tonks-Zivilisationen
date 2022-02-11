@@ -6,18 +6,18 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.Texture;
 
-with EingeleseneTexturenSFML;
 with Fehler;
 
 package body EinlesenTexturen is
    
    procedure EinlesenTexturen
    is begin
-      
-      null;
-      
+            
       -- EinlesenHintergrundMenüs;
       EinlesenKartenfelder;
+      EinlesenVerbesserungen;
+      EinlesenEinheiten;
+      EinlesenGebäude;
       
    end EinlesenTexturen;
    
@@ -113,7 +113,35 @@ package body EinlesenTexturen is
    
    
    
+   procedure EinlesenVerbesserungen
+   is begin
+      
+      null;
+      
+   end EinlesenVerbesserungen;
+   
+   
+   
+   procedure EinlesenEinheiten
+   is begin
+      
+      null;
+      
+   end EinlesenEinheiten;
+   
+   
+   
+   procedure EinlesenGebäude
+   is begin
+      
+      null;
+      
+   end EinlesenGebäude;
+   
+   
+   
    -- Allgemeine Einlesenfunktionen und -prozeduren bauen.
+   -- DateiTextEinlesen auch über Extern machen.
    function VorzeitigesZeilenende
      (AktuelleZeileExtern : in Positive)
       return Boolean

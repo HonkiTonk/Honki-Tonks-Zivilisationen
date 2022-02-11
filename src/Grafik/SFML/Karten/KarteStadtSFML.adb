@@ -307,7 +307,7 @@ package body KarteStadtSFML is
                                                     FarbeExtern         => Sf.Graphics.Color.sfRed,
                                                     PolygonAccessExtern => PolygonAccess);
                
-            when KartenDatentypen.Leer =>
+            when KartenDatentypen.Leer_Verbesserung =>
                Fehler.GrafikStopp (FehlermeldungExtern => "KarteStadtSFML.DarstellungUmgebungErweitert - Vorhandene Stadt ist nicht vorhanden.");
          end case;
          
@@ -383,7 +383,7 @@ package body KarteStadtSFML is
       case
         LeseKarten.Ressource (PositionExtern => KoordinatenExtern)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Grund =>
             null;
             
          when others =>
@@ -396,7 +396,7 @@ package body KarteStadtSFML is
       case
         LeseKarten.Fluss (PositionExtern => KoordinatenExtern)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Grund =>
             null;
             
          when others =>
@@ -409,7 +409,7 @@ package body KarteStadtSFML is
       case
         LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             null;
             
          when others =>
@@ -422,7 +422,7 @@ package body KarteStadtSFML is
       case
         LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern)
       is
-         when KartenDatentypen.Leer =>
+         when KartenDatentypen.Leer_Verbesserung =>
             null;
             
          when others =>

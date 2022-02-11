@@ -186,7 +186,7 @@ package body VerbesserungFertiggestellt is
         KartenDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
       then
          SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                            VerbesserungExtern => KartenDatentypen.Leer);
+                                            VerbesserungExtern => KartenDatentypen.Leer_Verbesserung);
                   
       else
          null;

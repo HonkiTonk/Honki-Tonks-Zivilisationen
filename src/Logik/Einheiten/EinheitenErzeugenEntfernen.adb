@@ -26,7 +26,7 @@ package body EinheitenErzeugenEntfernen is
                                   IDExtern                 => IDExtern);
       
       SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                        PositionExtern           => KoordinatenExtern);
+                                        KoordinatenExtern        => KoordinatenExtern);
       
       SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
                                            HeimatstadtExtern        => StadtRasseNummerExtern.Platznummer);
