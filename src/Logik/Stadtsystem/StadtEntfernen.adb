@@ -59,7 +59,7 @@ package body StadtEntfernen is
                                                     KoordinatenExtern      => KartenWert)
               = True
             then
-               SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
+               SchreibeKarten.BelegterGrund (KoordinatenExtern   => KartenWert,
                                              BelegterGrundExtern => KartenKonstanten.LeerDurchStadtBelegterGrund);
             
             else

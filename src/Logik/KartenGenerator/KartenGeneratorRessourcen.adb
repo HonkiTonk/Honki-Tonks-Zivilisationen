@@ -47,14 +47,14 @@ package body KartenGeneratorRessourcen is
               and
                 Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
             then
-               RessourcenWasser (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+               RessourcenWasser (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                
             elsif
               LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
               and
                 (Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False)
             then
-               RessourcenLand (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+               RessourcenLand (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                   
             else
                null;
@@ -68,7 +68,7 @@ package body KartenGeneratorRessourcen is
    
    
    procedure RessourcenWasser
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       WasserRessourcenSchleife:
@@ -77,9 +77,9 @@ package body KartenGeneratorRessourcen is
          if
            ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, WasserRessourceSchleifenwert)
          then
-            SchreibeKarten.Ressource (PositionExtern  => PositionExtern,
-                                      RessourceExtern => WasserRessourceSchleifenwert);
-            RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
+            SchreibeKarten.Ressource (KoordinatenExtern  => KoordinatenExtern,
+                                      RessourceExtern    => WasserRessourceSchleifenwert);
+            RessourcenUmgebungBelegen (KoordinatenExtern => KoordinatenExtern);
             return;
                         
          else
@@ -93,7 +93,7 @@ package body KartenGeneratorRessourcen is
    
    
    procedure RessourcenLand
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       LandRessourcenSchleife:
@@ -102,9 +102,9 @@ package body KartenGeneratorRessourcen is
          if
            ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, LandRessourceSchleifenwert)
          then
-            SchreibeKarten.Ressource (PositionExtern  => PositionExtern,
-                                      RessourceExtern => LandRessourceSchleifenwert);
-            RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
+            SchreibeKarten.Ressource (KoordinatenExtern  => KoordinatenExtern,
+                                      RessourceExtern    => LandRessourceSchleifenwert);
+            RessourcenUmgebungBelegen (KoordinatenExtern => KoordinatenExtern);
             return;
                         
          else
@@ -118,7 +118,7 @@ package body KartenGeneratorRessourcen is
    
    
    procedure RessourcenUmgebungBelegen
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       YAchseSchleife:
@@ -126,7 +126,7 @@ package body KartenGeneratorRessourcen is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                         ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                         LogikGrafikExtern => True);
             

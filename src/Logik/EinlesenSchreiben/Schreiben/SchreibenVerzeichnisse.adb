@@ -2,13 +2,117 @@ pragma SPARK_Mode (On);
 
 with Ada.Directories; use Ada.Directories;
 
--- with Fehler;
-
 package body SchreibenVerzeichnisse is
 
    procedure SchreibenVerzeichnisse
    is begin
+      
+      -- Überall noch eine Meldung einbauen dass die Verzeichnisse erzeugt wurden, sie sollten ja theoretisch von Anfang an vorhanden sein.
+      SchreibeGrafikVerzeichnisse;
+      SchreibeAudioVerzeichnisse;
+      SchreibeSonstigesVerzeichnisse;
+      
+   end SchreibenVerzeichnisse;
+   
+   
+   
+   procedure SchreibeGrafikVerzeichnisse
+   is begin
+      
+      case
+        Exists (Name => "Grafik")
+      is
+         when True =>
+            null;
 
+         when False =>
+            Create_Directory (New_Directory => "Grafik");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Kartenfelder")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Kartenfelder");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Einheiten")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Einheiten");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Bauwerke")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Bauwerke");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Hintergrund")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Hintergrund");
+      end case;
+      
+   end SchreibeGrafikVerzeichnisse;
+   
+   
+   
+   procedure SchreibeAudioVerzeichnisse
+   is begin
+      
+      case
+        Exists (Name => "Audio")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Audio");
+      end case;
+      
+      case
+        Exists (Name => "Audio/Musik")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Audio/Musik");
+      end case;
+      
+      case
+        Exists (Name => "Audio/Sound")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Audio/Sound");
+      end case;
+      
+   end SchreibeAudioVerzeichnisse;
+   
+   
+   
+   procedure SchreibeSonstigesVerzeichnisse
+   is begin
+      
       case
         Exists (Name => "Sprachen")
       is
@@ -50,71 +154,6 @@ package body SchreibenVerzeichnisse is
             Create_Directory (New_Directory => "Datenbanken");
       end case;
       
-      case
-        Exists (Name => "Grafik")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Grafik");
-            -- Statt einer Fehlermeldung könnte man auch einfach keine Texturen verwenden und die reinen Farbfelder anzeigen.
-            -- Später wieder Fehlermeldung einbauen?
-            -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Grafikverzeichnis nicht vorhanden.");
-      end case;
-      
-      case
-        Exists (Name => "Grafik/Kartenfelder")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Grafik/Kartenfelder");
-            -- Statt einer Fehlermeldung könnte man auch einfach keine Texturen verwenden und die reinen Farbfelder anzeigen.
-            -- Später wieder Fehlermeldung einbauen?
-            -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Grafikverzeichnis nicht vorhanden.");
-      end case;
-      
-      case
-        Exists (Name => "Audio")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Audio");
-            -- Statt einer Fehlermeldung könnte man auch einfach keine Audiodateien abspielen.
-            -- Später wieder Fehlermeldung einbauen?
-            -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Audioverzeichnis nicht vorhanden.");
-      end case;
-      
-      case
-        Exists (Name => "Audio/Musik")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Audio/Musik");
-            -- Statt einer Fehlermeldung könnte man auch einfach keine Musik spielen.
-            -- Später wieder Fehlermeldung einbauen?
-            -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Musikverzeichnis nicht vorhanden.");
-      end case;
-      
-      case
-        Exists (Name => "Audio/Sound")
-      is
-         when True =>
-            null;
-
-         when False =>
-            Create_Directory (New_Directory => "Audio/Sound");
-            -- Statt einer Fehlermeldung könnte man auch einfach keine Sounds spielen.
-            -- Später wieder Fehlermeldung einbauen?
-            -- Fehler.LogikStopp (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibenVerzeichnisse - Soundverzeichnis nicht vorhanden.");
-      end case;
-      
-   end SchreibenVerzeichnisse;
+   end SchreibeSonstigesVerzeichnisse;
 
 end SchreibenVerzeichnisse;

@@ -15,11 +15,39 @@ package KartenRecords is
    
    
    
+   type YXAchsenKartenfeldMitNullwertRecord is record
+            
+      YAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
+      XAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
+            
+   end record;
+   
+   
+   
+   type YXAchsenKartenfeldPositivRecord is record
+      
+      YAchse : KartenDatentypen.KartenfeldPositiv;
+      XAchse : KartenDatentypen.KartenfeldPositiv;
+      
+   end record;
+   
+   
+   
+   -- Mal auf Nullwert umbenennen.
    type AchsenKartenfeldPositivRecord is tagged record
       
       EAchse : KartenDatentypen.Ebene;
       YAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
       XAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
+      
+   end record;
+   
+   
+   
+   type YXAchsenKartenfeldRecord is record
+      
+      YAchse : KartenDatentypen.Kartenfeld;
+      XAchse : KartenDatentypen.Kartenfeld;
       
    end record;
    

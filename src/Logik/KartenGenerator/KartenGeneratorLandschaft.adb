@@ -34,7 +34,7 @@ package body KartenGeneratorLandschaft is
                null;
 
             else
-               LandschaftBestimmen (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+               LandschaftBestimmen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             end if;
                         
          end loop XAchseSchleife;
@@ -81,7 +81,7 @@ package body KartenGeneratorLandschaft is
    
    
    procedure LandschaftBestimmen
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       GrundSchleife:
@@ -90,26 +90,26 @@ package body KartenGeneratorLandschaft is
          if
            GrundSchleifenwert = KartenDatentypen.Flachland
          then
-            Karten.GeneratorGrund (PositionExtern.YAchse, PositionExtern.XAchse) := True;
+            Karten.GeneratorGrund (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) := True;
             return;
             
          elsif
            GrundSchleifenwert = KartenDatentypen.Wüste
            and
-             Karten.GeneratorKarte (PositionExtern.YAchse, PositionExtern.XAchse) = KartenDatentypen.Tundra
+             Karten.GeneratorKarte (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) = KartenDatentypen.Tundra
          then
             null;
             
          elsif
            GrundSchleifenwert = KartenDatentypen.Tundra
            and
-             Karten.GeneratorKarte (PositionExtern.YAchse, PositionExtern.XAchse) = KartenDatentypen.Wüste
+             Karten.GeneratorKarte (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) = KartenDatentypen.Wüste
          then
             null;
             
          elsif
-           GrundFestlegen (PositionExtern => PositionExtern,
-                           GrundExtern    => GrundSchleifenwert)
+           GrundFestlegen (KoordinatenExtern => KoordinatenExtern,
+                           GrundExtern       => GrundSchleifenwert)
            = True
          then
             return;
@@ -125,28 +125,28 @@ package body KartenGeneratorLandschaft is
    
    
    function GrundFestlegen
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in KartenDatentypen.Karten_Grund_Generator_Enum)
       return Boolean
    is begin
       
-      AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (PositionExtern => PositionExtern,
-                                                                                                GrundExtern    => GrundExtern,
-                                                                                                EbeneExtern    => 0);
+      AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                                                GrundExtern       => GrundExtern,
+                                                                                                EbeneExtern       => 0);
       
       if
         ZufallGeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GrundExtern, AnzahlGleicherGrund)
       then
-         SchreibeKarten.Grund (PositionExtern => PositionExtern,
-                               GrundExtern    => GrundExtern);
-         Karten.GeneratorGrund (PositionExtern.YAchse, PositionExtern.XAchse) := True;
+         SchreibeKarten.Grund (KoordinatenExtern => KoordinatenExtern,
+                               GrundExtern       => GrundExtern);
+         Karten.GeneratorGrund (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) := True;
                
          case
            GrundExtern
          is
             when KartenDatentypen.Wüste | KartenDatentypen.Tundra =>
-               AbstandTundraWüste (GrundExtern    => GrundExtern,
-                                    PositionExtern => PositionExtern);
+               AbstandTundraWüste (GrundExtern       => GrundExtern,
+                                   KoordinatenExtern => KoordinatenExtern);
                      
             when others =>
                null;
@@ -159,7 +159,7 @@ package body KartenGeneratorLandschaft is
                null;
                      
             when others =>
-               WeitereHügel (PositionExtern => PositionExtern);
+               WeitereHügel (KoordinatenExtern => KoordinatenExtern);
          end case;
                
          return True;
@@ -174,7 +174,7 @@ package body KartenGeneratorLandschaft is
    
    procedure AbstandTundraWüste
      (GrundExtern : in KartenDatentypen.Karten_Grund_Generator_Enum;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       YAchseSchleife:
@@ -182,7 +182,7 @@ package body KartenGeneratorLandschaft is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusZweiZuZwei'Range loop
 
-            KartenWertAbstand := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+            KartenWertAbstand := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                                ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                LogikGrafikExtern => True);
             
@@ -208,21 +208,21 @@ package body KartenGeneratorLandschaft is
    
    
    procedure WeitereHügel
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (PositionExtern => PositionExtern,
-                                                                                                GrundExtern    => KartenDatentypen.Gebirge,
-                                                                                                EbeneExtern    => 0)
-        + KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (PositionExtern => PositionExtern,
-                                                                             GrundExtern    => KartenDatentypen.Hügel,
-                                                                             EbeneExtern    => 0);
+      AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                                                GrundExtern       => KartenDatentypen.Gebirge,
+                                                                                                EbeneExtern       => 0)
+        + KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                             GrundExtern       => KartenDatentypen.Hügel,
+                                                                             EbeneExtern       => 0);
       
       if
         ZufallGeneratorenKarten.ZufälligerWert <= ZusatzHügel (AnzahlGleicherGrund)
       then
-         SchreibeKarten.Hügel (PositionExtern => PositionExtern,
-                                HügelExtern   => True);
+         SchreibeKarten.Hügel (KoordinatenExtern => KoordinatenExtern,
+                                HügelExtern       => True);
          
       else
          null;

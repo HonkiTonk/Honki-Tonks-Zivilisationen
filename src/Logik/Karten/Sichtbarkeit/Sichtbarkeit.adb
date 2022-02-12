@@ -811,9 +811,9 @@ package body Sichtbarkeit is
             return;
             
          when False =>
-            SchreibeKarten.Sichtbar (PositionExtern => KoordinatenExtern,
-                                     RasseExtern    => RasseExtern,
-                                     SichtbarExtern => True);
+            SchreibeKarten.Sichtbar (KoordinatenExtern => KoordinatenExtern,
+                                     RasseExtern       => RasseExtern,
+                                     SichtbarExtern    => True);
       end case;
       
       FremdeEinheitStadt := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,

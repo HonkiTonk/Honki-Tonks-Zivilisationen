@@ -366,7 +366,7 @@ package body Aufgaben is
             null;
             
          when others =>
-            SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+            SchreibeKarten.VerbesserungGebiet (KoordinatenExtern  => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                VerbesserungExtern => KartenDatentypen.Leer_Verbesserung);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 10,
@@ -380,8 +380,8 @@ package body Aufgaben is
             null;
             
          when others =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                            WegExtern      => KartenDatentypen.Leer_Verbesserung);
+            SchreibeKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                            WegExtern         => KartenDatentypen.Leer_Verbesserung);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 5,
                                          RechnenSetzenExtern => True);

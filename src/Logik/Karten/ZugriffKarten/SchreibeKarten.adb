@@ -5,113 +5,113 @@ with LeseKarten;
 package body SchreibeKarten is
 
    procedure Grund
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
    is begin
       
       if
         GrundExtern = KartenDatentypen.Hügel
         and
-          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
+          LeseKarten.Hügel (PositionExtern => KoordinatenExtern) = True
       then
-         Hügel (PositionExtern => PositionExtern,
-                 HügelExtern   => False);
+         Hügel (KoordinatenExtern => KoordinatenExtern,
+                 HügelExtern       => False);
             
       else
          null;
       end if;
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund := GrundExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := GrundExtern;
       
    end Grund;
    
    
    
    procedure Hügel
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       HügelExtern : in Boolean)
    is begin
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Hügel := HügelExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Hügel := HügelExtern;
       
    end Hügel;
    
    
    
    procedure Sichtbar
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
    is begin
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Sichtbar (RasseExtern) := SichtbarExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) := SichtbarExtern;
         
    end Sichtbar;
    
    
    
    procedure Fluss
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       FlussExtern : in KartenDatentypen.Karten_Grund_Enum)
    is begin
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss := FlussExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := FlussExtern;
       
    end Fluss;
    
    
    
    procedure VerbesserungWeg
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       WegExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
    is begin
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg := WegExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := WegExtern;
       
    end VerbesserungWeg;
    
    
    
    procedure VerbesserungGebiet
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
    is begin
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet := VerbesserungExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := VerbesserungExtern;
       
    end VerbesserungGebiet;
    
    
    
    procedure Ressource
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RessourceExtern : in KartenDatentypen.Karten_Grund_Enum)
    is begin
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := RessourceExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;
       
    end Ressource;
    
    
    
    procedure BelegterGrund
-     (PositionExtern : KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord;
       BelegterGrundExtern : in KartenRecords.BelegterGrundRecord)
    is begin
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).DurchStadtBelegterGrund := BelegterGrundExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund := BelegterGrundExtern;
       
    end BelegterGrund;
    
    
    
    procedure Bewertung
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       BewertungExtern : in KartenDatentypen.GesamtbewertungFeld)
    is begin
       
-      Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Felderwertung (RasseExtern) := BewertungExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern) := BewertungExtern;
       
    end Bewertung;
 

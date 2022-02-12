@@ -10,7 +10,7 @@ with KartePositionPruefen;
 package body KartenGeneratorBerechnungenAllgemein is
 
    function GleicherGrundAnzahlBestimmen
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in KartenDatentypen.Karten_Grund_Alle_Felder_Enum;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return AnzahlGleicherFelder
@@ -23,7 +23,7 @@ package body KartenGeneratorBerechnungenAllgemein is
          XAchseSchleife:
          for XAchsenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                         ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert),
                                                                         LogikGrafikExtern => True);
                

@@ -25,15 +25,12 @@ private
      );
 
    procedure WasserweltErzeugen
-     (YPositionExtern : in KartenDatentypen.KartenfeldPositiv;
-      XPositionExtern : in KartenDatentypen.KartenfeldPositiv);
+     (YXAchsenExtern : in KartenRecords.YXAchsenKartenfeldPositivRecord);
 
    procedure ErdweltErzeugen
-     (YPositionExtern : in KartenDatentypen.KartenfeldPositiv;
-      XPositionExtern : in KartenDatentypen.KartenfeldPositiv);
+     (YXAchsenExtern : in KartenRecords.YXAchsenKartenfeldPositivRecord);
 
    procedure GrundErzeugen
-     (YPositionExtern : in KartenDatentypen.KartenfeldPositiv;
-      XPositionExtern : in KartenDatentypen.KartenfeldPositiv);
+     (YXAchsenExtern : in KartenRecords.YXAchsenKartenfeldPositivRecord);
 
 end KartenGeneratorUnterwasserUnterirdisch;

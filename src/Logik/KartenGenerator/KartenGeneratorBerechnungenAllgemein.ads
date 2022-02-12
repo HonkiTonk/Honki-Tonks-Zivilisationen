@@ -9,7 +9,7 @@ package KartenGeneratorBerechnungenAllgemein is
    AnzahlGleicherGrundBestimmen : AnzahlGleicherFelder;
 
    function GleicherGrundAnzahlBestimmen
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in KartenDatentypen.Karten_Grund_Alle_Felder_Enum;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return AnzahlGleicherFelder;

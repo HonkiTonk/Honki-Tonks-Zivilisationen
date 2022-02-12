@@ -85,9 +85,9 @@ package body DebugPlatzhalter is
             XAchseSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               SchreibeKarten.Sichtbar (PositionExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                        RasseExtern    => RasseExtern,
-                                        SichtbarExtern => True);
+               SchreibeKarten.Sichtbar (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                        RasseExtern       => RasseExtern,
+                                        SichtbarExtern    => True);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;

@@ -126,9 +126,17 @@ package body SpielEinstellungenRasseSpieler is
                   
                   StartKoordinaten := ((0, 0, 0), (0, 0, 0));
                   GezogeneWerte := ZufallGeneratorenKarten.StartPosition (RasseSchleifenwert);
-
-                  exit StartwerteFestlegenSchleife when UmgebungPrüfen (PositionExtern => GezogeneWerte,
-                                                                         RasseExtern    => RasseSchleifenwert);
+                  
+                  case
+                    UmgebungPrüfen (KoordinatenExtern => GezogeneWerte,
+                                     RasseExtern       => RasseSchleifenwert)
+                  is
+                     when True =>
+                        exit StartwerteFestlegenSchleife;
+                        
+                     when False =>
+                        null;
+                  end case;
 
                   case
                     NotAusSchleifenwert
@@ -157,7 +165,7 @@ package body SpielEinstellungenRasseSpieler is
 
 
    function UmgebungPrüfen
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
@@ -165,11 +173,11 @@ package body SpielEinstellungenRasseSpieler is
       FreieFelder := 0;
       
       case
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => PositionExtern).Platznummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern).Platznummer
       is
          when EinheitenKonstanten.LeerNummer =>
-            StartKoordinaten (1) := PositionExtern;
-            FelderBestimmen (PositionExtern => PositionExtern,
+            StartKoordinaten (1) := KoordinatenExtern;
+            FelderBestimmen (KoordinatenExtern => KoordinatenExtern,
                              RasseExtern    => RasseExtern);
                            
          when others =>
@@ -191,7 +199,7 @@ package body SpielEinstellungenRasseSpieler is
    
    
    procedure FelderBestimmen
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
             
@@ -202,7 +210,7 @@ package body SpielEinstellungenRasseSpieler is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                         LogikGrafikExtern => True);
                   

@@ -18,8 +18,8 @@ package body KartenGeneratorChaos is
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                GrundZufall := ZufallGeneratorenKarten.ChaoskarteGrund;
-               SchreibeKarten.Grund (PositionExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                     GrundExtern    => GrundZufall);
+               SchreibeKarten.Grund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                     GrundExtern       => GrundZufall);
                
                case
                  GrundZufall
@@ -28,8 +28,8 @@ package body KartenGeneratorChaos is
                      null;
                      
                   when others =>
-                     SchreibeKarten.Fluss (PositionExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                           FlussExtern    => ZufallGeneratorenKarten.ChaoskarteFluss);
+                     SchreibeKarten.Fluss (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                           FlussExtern       => ZufallGeneratorenKarten.ChaoskarteFluss);
                end case;
                
                case
@@ -53,8 +53,8 @@ package body KartenGeneratorChaos is
                      null;
                      
                   when others =>
-                     SchreibeKarten.Ressource (PositionExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                               RessourceExtern => RessourceZufall);
+                     SchreibeKarten.Ressource (KoordinatenExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                               RessourceExtern    => RessourceZufall);
                end case;
             
             end loop XAchseSchleife;

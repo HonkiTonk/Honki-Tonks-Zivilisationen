@@ -59,8 +59,8 @@ package body KartenGeneratorKueste is
                null;
                
             else
-               SchreibeKarten.Grund (PositionExtern => KoordinatenExtern,
-                                     GrundExtern    => KartenDatentypen.Küstengewässer);
+               SchreibeKarten.Grund (KoordinatenExtern => KoordinatenExtern,
+                                     GrundExtern       => KartenDatentypen.Küstengewässer);
                return;
             end if;
                         

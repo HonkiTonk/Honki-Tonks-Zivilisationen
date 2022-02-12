@@ -105,17 +105,18 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.0. => 0.0. (13.02.2022):
+   -- Version 0.00.9975 => 0.0. (13.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9970 => 0.0. (12.02.2022):
+   -- Version 0.00.9970 => 0.00.9975 (12.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Verzeichnisserzeugung überarbeitet und an die neuen Texturverzeichnisse angepasst.
+   -- Weiter die Benennungen überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

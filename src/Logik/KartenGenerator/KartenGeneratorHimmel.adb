@@ -16,8 +16,8 @@ package body KartenGeneratorHimmel is
          XAchseHimmelSchleife:
          for XAchseHimmelSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-            SchreibeKarten.Grund (PositionExtern => (1, YAchseHimmelSchleifenwert, XAchseHimmelSchleifenwert),
-                                  GrundExtern    => KartenDatentypen.Wolken);
+            SchreibeKarten.Grund (KoordinatenExtern => (1, YAchseHimmelSchleifenwert, XAchseHimmelSchleifenwert),
+                                  GrundExtern       => KartenDatentypen.Wolken);
                
          end loop XAchseHimmelSchleife;
       end loop YAchseHimmelSchleife;

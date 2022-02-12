@@ -120,9 +120,9 @@ package body FelderwerteFestlegen is
               or
                 RasseExtern = RasseSchleifenwert)
          then
-            SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
-                                      RasseExtern     => RasseSchleifenwert,
-                                      BewertungExtern =>
+            SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
+                                      RasseExtern        => RasseSchleifenwert,
+                                      BewertungExtern    =>
                                         LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                               RasseExtern    => RasseSchleifenwert)
                                       + KartenAllgemein.GrundBewertung (PositionExtern => KoordinatenUmgebungExtern,
@@ -137,9 +137,9 @@ package body FelderwerteFestlegen is
                   null;
             
                when others =>
-                  SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
-                                            RasseExtern     => RasseSchleifenwert,
-                                            BewertungExtern =>
+                  SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
+                                            RasseExtern        => RasseSchleifenwert,
+                                            BewertungExtern    =>
                                                LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.FlussBewertung (PositionExtern => KoordinatenUmgebungExtern,
@@ -155,9 +155,9 @@ package body FelderwerteFestlegen is
                   null;
             
                when others =>
-                  SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
-                                            RasseExtern     => RasseSchleifenwert,
-                                            BewertungExtern =>
+                  SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
+                                            RasseExtern        => RasseSchleifenwert,
+                                            BewertungExtern    =>
                                                LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.WegBewertung (PositionExtern => KoordinatenUmgebungExtern,
@@ -173,9 +173,9 @@ package body FelderwerteFestlegen is
                   null;
             
                when others =>
-                  SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
-                                            RasseExtern     => RasseSchleifenwert,
-                                            BewertungExtern =>
+                  SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
+                                            RasseExtern        => RasseSchleifenwert,
+                                            BewertungExtern    =>
                                                LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.VerbesserungBewertung (PositionExtern => KoordinatenUmgebungExtern,
@@ -191,9 +191,9 @@ package body FelderwerteFestlegen is
                   null;
             
                when others =>
-                  SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
-                                            RasseExtern     => RasseSchleifenwert,
-                                            BewertungExtern =>
+                  SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
+                                            RasseExtern        => RasseSchleifenwert,
+                                            BewertungExtern    =>
                                                LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
                                                                      RasseExtern    => RasseSchleifenwert)
                                             + KartenAllgemein.RessourceBewertung (PositionExtern => KoordinatenUmgebungExtern,

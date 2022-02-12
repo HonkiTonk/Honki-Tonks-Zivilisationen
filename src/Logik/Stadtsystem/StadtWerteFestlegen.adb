@@ -70,7 +70,7 @@ package body StadtWerteFestlegen is
                                                       KoordinatenExtern      => KartenWert)
               = True
             then
-               SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
+               SchreibeKarten.BelegterGrund (KoordinatenExtern   => KartenWert,
                                              BelegterGrundExtern => KartenKonstanten.LeerDurchStadtBelegterGrund);
                
                case
@@ -101,7 +101,7 @@ package body StadtWerteFestlegen is
             elsif
               LeseKarten.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
             then
-               SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
+               SchreibeKarten.BelegterGrund (KoordinatenExtern   => KartenWert,
                                              BelegterGrundExtern => (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer));
                
             else

@@ -74,12 +74,12 @@ private
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden);
    
    procedure RessourcenWasser
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
    
    procedure RessourcenLand
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
    
    procedure RessourcenUmgebungBelegen
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord);
 
 end KartenGeneratorRessourcen;
