@@ -5,7 +5,7 @@ with KartenKonstanten;
 
 with Sichtweiten;
 with GrafikEinstellungenSFML;
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 
 package body BerechnungenKarteSFML is
    
@@ -48,9 +48,9 @@ package body BerechnungenKarteSFML is
       YBereichSchleife:
       for YBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop
          
-         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                     ÄnderungExtern    => (0, YBereichSchleifenwert, 1),
-                                                                     LogikGrafikExtern => False);
+         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                        ÄnderungExtern    => (0, YBereichSchleifenwert, 1),
+                                                                        LogikGrafikExtern => False);
          
          case
            KartenWert.YAchse
@@ -76,9 +76,9 @@ package body BerechnungenKarteSFML is
       XBereichSchleife:
       for XBereichSchleifenwert in XSichtAnfang .. XSichtEnde loop
          
-         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                     ÄnderungExtern    => (0, 1, XBereichSchleifenwert),
-                                                                     LogikGrafikExtern => False);
+         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                        ÄnderungExtern    => (0, 1, XBereichSchleifenwert),
+                                                                        LogikGrafikExtern => False);
          
          case
            KartenWert.XAchse

@@ -5,7 +5,7 @@ with KartenKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 
 package body KartenGeneratorKueste is
 
@@ -19,7 +19,7 @@ package body KartenGeneratorKueste is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                               
             case
-              LeseKarten.Grund (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when KartenDatentypen.Wasser =>
                   GewässerFestlegen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -44,9 +44,9 @@ package body KartenGeneratorKueste is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           LogikGrafikExtern => True);
                         
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -54,7 +54,7 @@ package body KartenGeneratorKueste is
                null;
                
             elsif
-              LeseKarten.Grund (PositionExtern => KartenWert) /= KartenDatentypen.Flachland
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) /= KartenDatentypen.Flachland
             then
                null;
                

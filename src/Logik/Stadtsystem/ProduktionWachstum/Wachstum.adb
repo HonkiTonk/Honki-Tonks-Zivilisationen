@@ -5,6 +5,7 @@ with SonstigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenDatentypen;
+with KartenKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -40,7 +41,7 @@ package body Wachstum is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))
                   is
-                     when KartenDatentypen.Leer_Verbesserung =>
+                     when KartenKonstanten.LeerVerbesserung =>
                         null;
                
                      when others =>

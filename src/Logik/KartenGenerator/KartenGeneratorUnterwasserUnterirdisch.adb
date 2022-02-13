@@ -26,9 +26,9 @@ package body KartenGeneratorUnterwasserUnterirdisch is
          for XAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             case
-              LeseKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert))
+              LeseKarten.Grund (KoordinatenExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert))
             is
-               when KartenDatentypen.Leer_Grund =>               
+               when KartenKonstanten.LeerGrund =>               
                   GrundErzeugen (YXAchsenExtern => (YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert));
                   
                when others =>
@@ -49,34 +49,34 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Eis
+        LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Eis
       then
          SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
                                GrundExtern       => KartenDatentypen.Unterwasser_Eis);
                      
       elsif
-        LeseKarten.Grund (PositionExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Wasser
+        LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Wasser
       then
          WasserweltErzeugen (YXAchsenExtern => YXAchsenExtern);
                      
       elsif
-        LeseKarten.Grund (PositionExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Küstengewässer
+        LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Küstengewässer
       then
          SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
                                GrundExtern       => KartenDatentypen.Unterwasser_Küstengewässer);
                      
       elsif
-        LeseKarten.Grund (PositionExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Gebirge
+        LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Gebirge
         or
-          LeseKarten.Grund (PositionExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Hügel
+          LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Hügel
           or
-            LeseKarten.Hügel (PositionExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = True
+            LeseKarten.Hügel (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = True
       then
          SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
                                GrundExtern       => KartenDatentypen.Erdgestein);
                   
       elsif
-        LeseKarten.Grund (PositionExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Wüste
+        LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenDatentypen.Wüste
       then
          SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
                                GrundExtern       => KartenDatentypen.Sand);
@@ -114,9 +114,9 @@ package body KartenGeneratorUnterwasserUnterirdisch is
       end loop GrundSchleife;
       
       case
-        LeseKarten.Grund (PositionExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse))
+        LeseKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse))
       is
-         when KartenDatentypen.Leer_Grund =>
+         when KartenKonstanten.LeerGrund =>
             SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
                                   GrundExtern       => KartenDatentypen.Unterwasser_Wasser);
             

@@ -49,7 +49,7 @@ package body KampfwerteEinheitErmitteln is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      VerteidigungWertFloat := Float (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+      VerteidigungWertFloat := Float (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                         RasseExtern       => EinheitRasseNummerExtern.Rasse));
       
       case
@@ -64,7 +64,7 @@ package body KampfwerteEinheitErmitteln is
             
       case
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                    KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+                                                    KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when StadtKonstanten.LeerNummer =>
             null;
@@ -133,7 +133,7 @@ package body KampfwerteEinheitErmitteln is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      AngriffWertFloat := Float (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+      AngriffWertFloat := Float (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                               RasseExtern       => EinheitRasseNummerExtern.Rasse));
             
       -- Diesen Bonus anders gestalten, vielleicht auf Basis der Bewegungspunkte?

@@ -4,7 +4,7 @@ with KartenKonstanten;
 
 with Karten;
 with Eingabe;
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 
 package body BewegungCursor is
 
@@ -74,8 +74,8 @@ package body BewegungCursor is
          
          when True =>
             Position.XAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Position := Position;
-            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := Position;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := Position;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := Position;
       end case;
       
    end GeheZuCursor;
@@ -90,32 +90,32 @@ package body BewegungCursor is
       if
         ÄnderungExtern.EAchse = 1
         and
-          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse = Karten.Weltkarte'Last (1)
+          GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse = Karten.Weltkarte'Last (1)
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse := Karten.Weltkarte'First (1);
+         GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse := Karten.Weltkarte'First (1);
          return;
          
       elsif
         ÄnderungExtern.EAchse = -1
         and
-          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse = Karten.Weltkarte'First (1)
+          GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse = Karten.Weltkarte'First (1)
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse := Karten.Weltkarte'Last (1);
+         GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse := Karten.Weltkarte'Last (1);
          return;
          
       elsif
         ÄnderungExtern.EAchse /= 0
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse + ÄnderungExtern.EAchse;
+         GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse + ÄnderungExtern.EAchse;
          return;
          
       else
          null;
       end if;
             
-      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                  ÄnderungExtern    => ÄnderungExtern,
-                                                                  LogikGrafikExtern => True);
+      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
+                                                                     ÄnderungExtern    => ÄnderungExtern,
+                                                                     LogikGrafikExtern => True);
       
       case
         KartenWert.XAchse
@@ -124,7 +124,7 @@ package body BewegungCursor is
             null;
 
          when others =>
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Position := KartenWert;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := KartenWert;
       end case;
       
    end BewegungCursorBerechnen;
@@ -137,31 +137,31 @@ package body BewegungCursor is
    is begin
 
       if
-        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse + ÄnderungExtern.YAchse < Karten.Stadtkarte'First (1)
+        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse + ÄnderungExtern.YAchse < Karten.Stadtkarte'First (1)
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse := Karten.Stadtkarte'Last (1);
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse := Karten.Stadtkarte'Last (1);
 
       elsif
-        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse + ÄnderungExtern.YAchse > Karten.Stadtkarte'Last (1)
+        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse + ÄnderungExtern.YAchse > Karten.Stadtkarte'Last (1)
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse := Karten.Stadtkarte'First (1);
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse := Karten.Stadtkarte'First (1);
 
       else
-         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse + ÄnderungExtern.YAchse;
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse + ÄnderungExtern.YAchse;
       end if;
       
       if
-        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse + ÄnderungExtern.XAchse < Karten.Stadtkarte'First (2)
+        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse + ÄnderungExtern.XAchse < Karten.Stadtkarte'First (2)
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse := Karten.Stadtkarte'Last (2);
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse := Karten.Stadtkarte'Last (2);
 
       elsif
-        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse + ÄnderungExtern.XAchse > Karten.Stadtkarte'Last (2)
+        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse + ÄnderungExtern.XAchse > Karten.Stadtkarte'Last (2)
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse := Karten.Stadtkarte'First (2);
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse := Karten.Stadtkarte'First (2);
 
       else
-         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse + ÄnderungExtern.XAchse;
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse + ÄnderungExtern.XAchse;
       end if;
       
    end BewegungCursorBerechnenStadt;

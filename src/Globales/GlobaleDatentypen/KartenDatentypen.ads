@@ -10,6 +10,7 @@ package KartenDatentypen is
    subtype Stadtfeld is KartenfeldPositiv range 1 .. 20;
    subtype SichtweiteMitNullwert is KartenfeldPositivMitNullwert range 0 .. 10;
    subtype Sichtweite is SichtweiteMitNullwert range 1 .. 10;
+   -- Die Drei hier mal umbenennen?
    subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
    subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
@@ -66,22 +67,22 @@ package KartenDatentypen is
                               Lavaflussendstück_Unten, Lavaflussendstück_Oben, Lavafluss_Einzeln
                              );
    pragma Ordered (Karten_Grund_Enum);
+   
+   subtype Karten_Grund_Vorhanden_Enum is Karten_Grund_Enum range Wasser .. Karten_Grund_Enum'Last;
 
-   subtype Karten_Grund_Alle_Felder_Enum is Karten_Grund_Enum range Wasser .. Unterwasser_Wald;
+   subtype Karten_Grund_Alle_Felder_Enum is Karten_Grund_Vorhanden_Enum range Wasser .. Unterwasser_Wald;
    subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser .. Unterwasser_Eis;
    subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser .. Unterwasser_Küstengewässer;
    subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis .. Gestein;
    subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Tundra .. Gestein;
-   subtype Karten_Grund_Ressourcen_Enum is Karten_Grund_Enum range Fisch .. Gold;
+   subtype Karten_Grund_Ressourcen_Enum is Karten_Grund_Vorhanden_Enum range Fisch .. Gold;
    subtype Karten_Grund_Ressourcen_Wasser is Karten_Grund_Ressourcen_Enum range Karten_Grund_Ressourcen_Enum'First .. Wal;
    subtype Karten_Grund_Ressourcen_Land is Karten_Grund_Ressourcen_Enum range Kohle .. Karten_Grund_Ressourcen_Enum'Last;
-   subtype Karten_Fluss_Enum is Karten_Grund_Enum range Flusskreuzung_Vier .. Karten_Grund_Enum'Last;
+   subtype Karten_Fluss_Enum is Karten_Grund_Vorhanden_Enum range Flusskreuzung_Vier .. Karten_Grund_Vorhanden_Enum'Last;
    subtype Karten_Grund_Fluss_Enum is Karten_Fluss_Enum range Flusskreuzung_Vier .. Fluss_Einzeln;
    subtype Karten_Grund_Unterirdischer_Fluss_Enum is Karten_Fluss_Enum range Unterirdische_Flusskreuzung_Vier .. Unterirdischer_Fluss_Einzeln;
    subtype Karten_Grund_Lavafluss_Enum is Karten_Fluss_Enum range Lavaflusskreuzung_Vier .. Lavafluss_Einzeln;
    subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Sumpf;
-   
-   subtype Karten_Grund_Vorhanden_Enum is Karten_Grund_Enum range Wasser .. Lavafluss_Einzeln;
    
    -- Flachland muss hier immer am Schluss kommen, sonst geht der Kartengenerator kaputt!
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Flachland;
@@ -115,20 +116,20 @@ package KartenDatentypen is
                                      Tunnelkreuzung_Drei_Oben, Tunnelkreuzung_Drei_Unten, Tunnelkreuzung_Drei_Rechts, Tunnelkreuzung_Drei_Links, Tunnelendstück_Links, Tunnelendstück_Rechts,
                                      Tunnelendstück_Unten, Tunnelendstück_Oben, Tunnel_Einzeln
                                     );
+   
+   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Karten_Verbesserung_Enum'Last;
 
    subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer_Verbesserung .. Eigene_Stadt;
-   subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Fremde_Stadt;
+   subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Vorhanden_Enum range Eigene_Hauptstadt .. Fremde_Stadt;
    subtype Karten_Verbesserung_Eigene_Städte_Enum is Karten_Verbesserung_Städte_Enum range Eigene_Hauptstadt .. Eigene_Stadt;
    subtype Karten_Verbesserung_Fremde_Städte_Enum is Karten_Verbesserung_Städte_Enum range Fremde_Hauptstadt .. Fremde_Stadt;
-   subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Enum range Farm .. Sperre;
+   subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Vorhanden_Enum range Farm .. Sperre;
    subtype Karten_Verbesserung_Gebilde_Friedlich_Enum is Karten_Verbesserung_Gebilde_Enum range Farm .. Mine;
    subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung .. Sperre;
-   subtype Karten_Weg_Enum is Karten_Verbesserung_Enum range Straßenkreuzung_Vier .. Karten_Verbesserung_Enum'Last;
+   subtype Karten_Weg_Enum is Karten_Verbesserung_Vorhanden_Enum range Straßenkreuzung_Vier .. Karten_Verbesserung_Vorhanden_Enum'Last;
    subtype Karten_Verbesserung_Weg_Enum is Karten_Weg_Enum range Straßenkreuzung_Vier .. Straße_Einzeln;
    subtype Karten_Verbesserung_Schiene_Enum is Karten_Weg_Enum range Schienenkreuzung_Vier .. Schiene_Einzeln;
    subtype Karten_Verbesserung_Tunnel_Enum is Karten_Weg_Enum range Tunnelkreuzung_Vier .. Tunnel_Einzeln;
-   
-   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Karten_Verbesserung_Enum'Last;
 
    type SichtbarkeitArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
 

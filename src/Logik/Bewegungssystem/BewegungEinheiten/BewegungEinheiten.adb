@@ -15,7 +15,7 @@ with KampfsystemEinheiten;
 with StadtSuchen;
 with KampfsystemStadt;
 with EinheitenTransporter;
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 
 package body BewegungEinheiten is
    
@@ -26,9 +26,9 @@ package body BewegungEinheiten is
       return Boolean
    is begin
       
-      NeuePosition := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                    ÄnderungExtern    => PositionÄnderungExtern,
-                                                                    LogikGrafikExtern => True);
+      NeuePosition := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                       ÄnderungExtern    => PositionÄnderungExtern,
+                                                                       LogikGrafikExtern => True);
       
       case
         NeuePosition.XAchse
@@ -41,7 +41,7 @@ package body BewegungEinheiten is
       end case;
       
       FeldPassierbar := BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                   NeuePositionExtern       => NeuePosition);
+                                                                                   NeueKoordinatenExtern       => NeuePosition);
       
       EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition);
       StadtAufFeld := StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
@@ -117,7 +117,7 @@ package body BewegungEinheiten is
       is
          when True =>
             BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                           NeuePositionExtern       => NeuePosition);
+                                                           NeueKoordinatenExtern    => NeuePosition);
             
          when False =>
             null;

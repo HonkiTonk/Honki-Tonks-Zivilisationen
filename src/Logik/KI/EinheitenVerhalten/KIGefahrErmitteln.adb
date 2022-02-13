@@ -11,7 +11,7 @@ with LeseKarten;
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with EinheitSuchen;
 with DiplomatischerZustand;
 
@@ -46,9 +46,9 @@ package body KIGefahrErmitteln is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -56,8 +56,8 @@ package body KIGefahrErmitteln is
                null;
                
             elsif
-              LeseKarten.Sichtbar (PositionExtern => KartenWert,
-                                   RasseExtern    => EinheitRasseNummerExtern.Rasse)
+              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                   RasseExtern       => EinheitRasseNummerExtern.Rasse)
               = False
             then
                null;

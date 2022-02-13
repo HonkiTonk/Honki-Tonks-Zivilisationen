@@ -8,6 +8,6 @@ private
 
    procedure SchreibeGrafikVerzeichnisse;
    procedure SchreibeAudioVerzeichnisse;
-   procedure SchreibeSonstigesVerzeichnisse;
+   procedure SchreibeSonstigeVerzeichnisse;
 
 end SchreibenVerzeichnisse;

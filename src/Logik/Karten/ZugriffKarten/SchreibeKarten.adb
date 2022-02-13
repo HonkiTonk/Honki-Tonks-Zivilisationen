@@ -12,7 +12,7 @@ package body SchreibeKarten is
       if
         GrundExtern = KartenDatentypen.Hügel
         and
-          LeseKarten.Hügel (PositionExtern => KoordinatenExtern) = True
+          LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern) = True
       then
          Hügel (KoordinatenExtern => KoordinatenExtern,
                  HügelExtern       => False);

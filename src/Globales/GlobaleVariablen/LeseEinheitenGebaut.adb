@@ -20,25 +20,25 @@ package body LeseEinheitenGebaut is
    
   
    
-   function Position
+   function Koordinaten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
         or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := KartenKonstanten.LeerKartenPosition;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KartenKonstanten.LeerKartenKoordinaten;
 
       else
          null;
       end if;
       
-      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
+      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten;
       
-   end Position;
+   end Koordinaten;
    
    
    
@@ -220,7 +220,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := KartenKonstanten.LeerKartenPosition;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KartenKonstanten.LeerKartenKoordinaten;
 
       else
          null;
@@ -254,7 +254,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern) := KartenKonstanten.LeerKartenPosition;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern) := KartenKonstanten.LeerKartenKoordinaten;
 
       else
          null;

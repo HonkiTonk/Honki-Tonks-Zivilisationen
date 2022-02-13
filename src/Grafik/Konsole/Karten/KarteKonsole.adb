@@ -6,7 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with GrafischeAnzeigeKonsole;
 with Sichtweiten;
 with Karten;
@@ -25,9 +25,9 @@ package body KarteKonsole is
          XAchseSchleife:
          for XAchseSchleifenwert in -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) .. Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                        LogikGrafikExtern => False);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => False);
             
             case
               KartenWert.XAchse

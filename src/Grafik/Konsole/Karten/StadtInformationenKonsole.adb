@@ -7,6 +7,7 @@ with Ada.Integer_Wide_Wide_Text_IO;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
+with KartenKonstanten;
 
 with LeseStadtGebaut;
 
@@ -71,7 +72,7 @@ package body StadtInformationenKonsole is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserung =>
             Fehler.GrafikStopp (FehlermeldungExtern => "StadtInformationenKonsole.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
          when KartenDatentypen.Eigene_Hauptstadt =>
@@ -479,8 +480,8 @@ package body StadtInformationenKonsole is
       
       case
         LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 YPositionExtern        => CursorYAchseabstraktionExtern,
-                                                 XPositionExtern        => CursorXAchseabstraktionExtern)
+                                                 YKoordinateExtern      => CursorYAchseabstraktionExtern,
+                                                 XKoordinateExtern      => CursorXAchseabstraktionExtern)
       is
          when True =>
             TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Menü_Auswahl,

@@ -12,7 +12,7 @@ with LeseStadtGebaut;
 
 with StadtSuchen;
 with UmgebungErreichbarTesten;
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with KartenAllgemein;
 with Fehler;
 
@@ -20,7 +20,7 @@ package body BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -34,9 +34,9 @@ package body BewegungPassierbarkeitPruefen is
             return False;
             
          when others =>
-            return PassierbarkeitPrüfenID (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                            IDExtern           => IDEinheit,
-                                            NeuePositionExtern => NeuePositionExtern);
+            return PassierbarkeitPrüfenID (RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                            IDExtern              => IDEinheit,
+                                            NeueKoordinatenExtern => NeueKoordinatenExtern);
       end case;
       
    end PassierbarkeitPrüfenNummer;
@@ -47,7 +47,7 @@ package body BewegungPassierbarkeitPruefen is
    function PassierbarkeitPrüfenID
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
             
@@ -55,19 +55,19 @@ package body BewegungPassierbarkeitPruefen is
       for PassierbarkeitSchleifenwert in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
          
          case
-           PassierbarTesten (RasseExtern        => RasseExtern,
-                             UmgebungExtern     => PassierbarkeitSchleifenwert,
-                             IDExtern           => IDExtern,
-                             NeuePositionExtern => NeuePositionExtern)
+           PassierbarTesten (RasseExtern           => RasseExtern,
+                             UmgebungExtern        => PassierbarkeitSchleifenwert,
+                             IDExtern              => IDExtern,
+                             NeueKoordinatenExtern => NeueKoordinatenExtern)
          is
             when False =>
-               Passierbar := IstNichtPassierbar (RasseExtern        => RasseExtern,
-                                                 UmgebungExtern     => PassierbarkeitSchleifenwert,
-                                                 NeuePositionExtern => NeuePositionExtern);
+               Passierbar := IstNichtPassierbar (RasseExtern           => RasseExtern,
+                                                 UmgebungExtern        => PassierbarkeitSchleifenwert,
+                                                 NeueKoordinatenExtern => NeueKoordinatenExtern);
                
             when True =>
-               Passierbar := IstPassierbar (UmgebungExtern     => PassierbarkeitSchleifenwert,
-                                            NeuePositionExtern => NeuePositionExtern);
+               Passierbar := IstPassierbar (UmgebungExtern        => PassierbarkeitSchleifenwert,
+                                            NeueKoordinatenExtern => NeueKoordinatenExtern);
          end case;
          
          case
@@ -91,19 +91,19 @@ package body BewegungPassierbarkeitPruefen is
    function IstNichtPassierbar
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
       if
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                    KoordinatenExtern => NeuePositionExtern)
+                                                    KoordinatenExtern => NeueKoordinatenExtern)
         = EinheitenKonstanten.LeerNummer
       then
          null;
                   
       elsif
-        LeseVerbesserungenDatenbank.Passierbarkeit (VerbesserungExtern   => LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern),
+        LeseVerbesserungenDatenbank.Passierbarkeit (VerbesserungExtern   => LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern),
                                                     WelcheUmgebungExtern => UmgebungExtern)
         = False
       then
@@ -121,40 +121,41 @@ package body BewegungPassierbarkeitPruefen is
    
    function IstPassierbar
      (UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
       -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
       if
-        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer_Verbesserung
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenKonstanten.LeerVerbesserungGebiet
         and
-          KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
+          KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
         = False
       then
          null;
                   
       elsif
-        LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer_Verbesserung
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenKonstanten.LeerVerbesserungWeg
         and then
-          KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
+          KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
                                          PassierbarkeitExtern => UmgebungExtern)
         = False
       then
          null;
          
+         -- Warum kommt die Prüfung hier noch einmal?
       elsif
-        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= KartenDatentypen.Leer_Verbesserung
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenKonstanten.LeerVerbesserungGebiet
         and then
-          KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
+          KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
         = False
       then
          null;
          
       elsif
-        KartenAllgemein.PassierbarGrund (PositionExtern       => NeuePositionExtern,
+        KartenAllgemein.PassierbarGrund (KoordinatenExtern    => NeueKoordinatenExtern,
                                          PassierbarkeitExtern => UmgebungExtern)
         = False
       then
@@ -174,12 +175,12 @@ package body BewegungPassierbarkeitPruefen is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
       if
-        NeuePositionExtern.EAchse = -2
+        NeueKoordinatenExtern.EAchse = -2
         and
           UmgebungExtern /= EinheitStadtDatentypen.Planeteninneres
           and
@@ -188,7 +189,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        NeuePositionExtern.EAchse = -1
+        NeueKoordinatenExtern.EAchse = -1
         and
           UmgebungExtern /= EinheitStadtDatentypen.Unterwasser
           and
@@ -199,7 +200,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        NeuePositionExtern.EAchse = 0
+        NeueKoordinatenExtern.EAchse = 0
         and
           UmgebungExtern /= EinheitStadtDatentypen.Wasser
           and
@@ -212,14 +213,14 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        NeuePositionExtern.EAchse = 1
+        NeueKoordinatenExtern.EAchse = 1
         and
           UmgebungExtern not in Passierbarkeit_Fliegen_Enum'Range
       then
          null;
          
       elsif
-        NeuePositionExtern.EAchse = 2
+        NeueKoordinatenExtern.EAchse = 2
         and
           UmgebungExtern /= EinheitStadtDatentypen.Weltraum
       then
@@ -245,7 +246,7 @@ package body BewegungPassierbarkeitPruefen is
 
    function InStadtEntladbar
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
@@ -264,7 +265,7 @@ package body BewegungPassierbarkeitPruefen is
                               
             when others =>
                if
-                 UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
+                 UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
                                                                     RasseExtern               => TransporterExtern.Rasse,
                                                                     IDExtern                  =>
                                                                       LeseEinheitenGebaut.ID (EinheitRasseNummerExtern =>
@@ -301,15 +302,15 @@ package body BewegungPassierbarkeitPruefen is
          XAchseEinheitenSchleife:
          for XAchseEinheitenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
+                                                                           LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
-                  
+               
             elsif
               YAchseEinheitenSchleifenwert = 0
               and
@@ -318,9 +319,9 @@ package body BewegungPassierbarkeitPruefen is
                null;
                   
             elsif
-              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                     IDExtern           => EinheitenIDExtern,
-                                                                     NeuePositionExtern => KartenWert)
+              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => StadtRasseNummerExtern.Rasse,
+                                                                     IDExtern              => EinheitenIDExtern,
+                                                                     NeueKoordinatenExtern => KartenWert)
               = False
             then
                null;

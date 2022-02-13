@@ -8,7 +8,7 @@ with SchreibeKarten;
 with SchreibeStadtGebaut;
 with LeseKarten;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with GesamtwerteFeld;
 with StadtUmgebungsbereichFestlegen;
 with GebaeudeRichtigeUmgebung;
@@ -52,9 +52,9 @@ package body StadtWerteFestlegen is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -75,16 +75,16 @@ package body StadtWerteFestlegen is
                
                case
                  LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                          YPositionExtern        => YÄnderungSchleifenwert,
-                                                          XPositionExtern        => XÄnderungSchleifenwert)
+                                                          YKoordinateExtern      => YÄnderungSchleifenwert,
+                                                          XKoordinateExtern      => XÄnderungSchleifenwert)
                is
                   when True =>
                      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                             EinwohnerArbeiterExtern => False,
                                                             ÄnderungExtern          => -1);
                      SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                  YPositionExtern        => YÄnderungSchleifenwert,
-                                                                  XPositionExtern        => XÄnderungSchleifenwert,
+                                                                  YKoordinateExtern      => YÄnderungSchleifenwert,
+                                                                  XKoordinateExtern      => XÄnderungSchleifenwert,
                                                                   BelegenEntfernenExtern => False);
                      
                   when False =>
@@ -203,13 +203,13 @@ package body StadtWerteFestlegen is
       Umgebung := (others => (others => (False, EinheitStadtDatentypen.GesamtproduktionStadt'First)));
 
       YAchseSchleife:
-      for YPositionSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
-         for XPositionSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YPositionSchleifenwert, XPositionSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -217,9 +217,9 @@ package body StadtWerteFestlegen is
                null;
                
             elsif
-              YPositionSchleifenwert = 0
+              YAchseSchleifenwert = 0
               and
-                XPositionSchleifenwert = 0
+                XAchseSchleifenwert = 0
             then
                null;
                
@@ -232,16 +232,16 @@ package body StadtWerteFestlegen is
               
             elsif
               LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                       YPositionExtern        => YPositionSchleifenwert,
-                                                       XPositionExtern        => XPositionSchleifenwert)
+                                                       YKoordinateExtern      => YAchseSchleifenwert,
+                                                       XKoordinateExtern      => XAchseSchleifenwert)
               = ZuwachsOderSchwundExtern
             then
-               Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Belegt := ZuwachsOderSchwundExtern;
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Belegt := ZuwachsOderSchwundExtern;
                
             else
-               Umgebung (YPositionSchleifenwert, XPositionSchleifenwert)
+               Umgebung (YAchseSchleifenwert, XAchseSchleifenwert)
                  := (not ZuwachsOderSchwundExtern, FeldBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                 PositionExtern         => KartenWert,
+                                                                 KoordinatenExtern      => KartenWert,
                                                                  BelegenOderEntfernen   => ZuwachsOderSchwundExtern));
             end if;
             
@@ -254,22 +254,22 @@ package body StadtWerteFestlegen is
    
    function FeldBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
       return NahrungBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                               PositionExtern         => PositionExtern,
+                               KoordinatenExtern      => KoordinatenExtern,
                                BelegenOderEntfernen   => BelegenOderEntfernen)
         + ProduktionBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                               PositionExtern         => PositionExtern,
+                               KoordinatenExtern      => KoordinatenExtern,
                                BelegenOderEntfernen   => BelegenOderEntfernen)
         + GeldBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                         PositionExtern         => PositionExtern,
+                         KoordinatenExtern      => KoordinatenExtern,
                          BelegenOderEntfernen   => BelegenOderEntfernen)
         + WissenBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                           PositionExtern         => PositionExtern,
+                           KoordinatenExtern      => KoordinatenExtern,
                            BelegenOderEntfernen   => BelegenOderEntfernen);
       
    end FeldBewerten;
@@ -278,12 +278,12 @@ package body StadtWerteFestlegen is
    
    function NahrungBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
-      NahrungGesamt := GesamtwerteFeld.FeldNahrung (KoordinatenExtern => PositionExtern,
+      NahrungGesamt := GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
                                                     RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
@@ -319,12 +319,12 @@ package body StadtWerteFestlegen is
    
    function ProduktionBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
-      RessourcenGesamt := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => PositionExtern,
+      RessourcenGesamt := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
                                                           RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
@@ -360,12 +360,12 @@ package body StadtWerteFestlegen is
 
    function GeldBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
       
-      GeldGesamt := GesamtwerteFeld.FeldGeld (KoordinatenExtern => PositionExtern,
+      GeldGesamt := GesamtwerteFeld.FeldGeld (KoordinatenExtern => KoordinatenExtern,
                                               RasseExtern       => StadtRasseNummerExtern.Rasse);
 
       if
@@ -401,12 +401,12 @@ package body StadtWerteFestlegen is
    
    function WissenBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt
    is begin
 
-      WissenGesamt := GesamtwerteFeld.FeldWissen (KoordinatenExtern => PositionExtern,
+      WissenGesamt := GesamtwerteFeld.FeldWissen (KoordinatenExtern => KoordinatenExtern,
                                                   RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
@@ -445,19 +445,19 @@ package body StadtWerteFestlegen is
    is begin
       
       YAchseSchleife:
-      for YPositionSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
-         for XPositionSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
             if
-              Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Belegt = True
+              Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Belegt = True
             then
                null;
                
             elsif
-              Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung > WelchesFeld.HöchsterWert
+              Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Gesamtbewertung > WelchesFeld.HöchsterWert
             then
-               WelchesFeld := (Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung, YPositionSchleifenwert, XPositionSchleifenwert);
+               WelchesFeld := (Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Gesamtbewertung, YAchseSchleifenwert, XAchseSchleifenwert);
                
             else
                null;
@@ -479,19 +479,19 @@ package body StadtWerteFestlegen is
    is begin
       
       YAchseSchleife:
-      for YPositionSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+      for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
-         for XPositionSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
+         for XAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
             if
-              Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Belegt = False
+              Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Belegt = False
             then
                null;
                
             elsif
-              Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung < WelchesFeld.HöchsterWert
+              Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Gesamtbewertung < WelchesFeld.HöchsterWert
             then
-               WelchesFeld := (Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Gesamtbewertung, YPositionSchleifenwert, XPositionSchleifenwert);
+               WelchesFeld := (Umgebung (YAchseSchleifenwert, XAchseSchleifenwert).Gesamtbewertung, YAchseSchleifenwert, XAchseSchleifenwert);
                
             else
                null;
@@ -522,8 +522,8 @@ package body StadtWerteFestlegen is
             
          when others =>
             SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                         YPositionExtern        => WelchesFeld.YKoordinate,
-                                                         XPositionExtern        => WelchesFeld.XKoordinate,
+                                                         YKoordinateExtern      => WelchesFeld.YKoordinate,
+                                                         XKoordinateExtern      => WelchesFeld.XKoordinate,
                                                          BelegenEntfernenExtern => BelegenEntfernenExtern);
             SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                    EinwohnerArbeiterExtern => False,

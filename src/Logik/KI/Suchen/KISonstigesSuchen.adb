@@ -6,13 +6,13 @@ with KIKonstanten;
 
 with LeseKarten;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with BewegungPassierbarkeitPruefen;
 
 package body KISonstigesSuchen is
 
    function EigenesFeldSuchen
-     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -23,8 +23,8 @@ package body KISonstigesSuchen is
       FeldSuchenSchleife:
       loop
          
-         Ziel := ZielSuchen (AktuellePositionExtern   => AktuellePositionExtern,
-                             EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         Ziel := ZielSuchen (AktuelleKoordinatenExtern => AktuelleKoordinatenExtern,
+                             EinheitRasseNummerExtern  => EinheitRasseNummerExtern);
          
          exit FeldSuchenSchleife when Ziel.XAchse /= KartenKonstanten.LeerXAchse;
          exit FeldSuchenSchleife when Bereich = KartenDatentypen.Sichtweite'Last;
@@ -41,7 +41,7 @@ package body KISonstigesSuchen is
    
    
    function ZielSuchen
-     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -51,9 +51,9 @@ package body KISonstigesSuchen is
          XAchseSchleife:
          for XAchseSchleifenwert in -Bereich .. Bereich loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuellePositionExtern,
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => AktuelleKoordinatenExtern,
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -66,7 +66,7 @@ package body KISonstigesSuchen is
               = True
               and
                 BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                           NeuePositionExtern       => KartenWert)
+                                                                           NeueKoordinatenExtern    => KartenWert)
               = True
             then
                return KartenWert;

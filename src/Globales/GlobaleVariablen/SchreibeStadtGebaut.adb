@@ -22,14 +22,14 @@ package body SchreibeStadtGebaut is
    
    
    
-   procedure Position
+   procedure Koordinaten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position := PositionExtern;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten := KoordinatenExtern;
       
-   end Position;
+   end Koordinaten;
    
    
    
@@ -458,11 +458,12 @@ package body SchreibeStadtGebaut is
    
    procedure UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YPositionExtern, XPositionExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      YKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      XKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
       BelegenEntfernenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPositionExtern, XPositionExtern) := BelegenEntfernenExtern;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern) := BelegenEntfernenExtern;
       
    end UmgebungBewirtschaftung;
    

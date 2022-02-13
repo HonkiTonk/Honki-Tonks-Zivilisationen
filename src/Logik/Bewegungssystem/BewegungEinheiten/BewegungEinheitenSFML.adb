@@ -13,7 +13,7 @@ with Aufgaben;
 with BewegungEinheiten;
 with GrafikEinstellungenSFML;
 with BerechnungenKarteSFML;
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with BewegungCursor;
 
 -- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr machen als nur die Einheit bewegen.
@@ -207,9 +207,9 @@ package body BewegungEinheitenSFML is
             XÄnderungSchleife:
             for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                                           
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                           ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+               KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                              ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                              LogikGrafikExtern => True);
                
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -217,7 +217,7 @@ package body BewegungEinheitenSFML is
                   null;
                   
                elsif
-                 KartenWert = GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position
+                 KartenWert = GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Koordinaten
                then
                   Änderung := (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert);
                   

@@ -7,7 +7,7 @@ with EinheitenKonstanten;
 with LeseKarten;
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with EinheitSuchen;
 
 package body KIFeindlicheEinheitSuchen is
@@ -23,18 +23,18 @@ package body KIFeindlicheEinheitSuchen is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                        LogikGrafikExtern => True);
-               
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => True);
+            
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
             elsif
-              LeseKarten.Sichtbar (PositionExtern => KartenWert,
-                                   RasseExtern    => EinheitRasseNummerExtern.Rasse)
+              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                   RasseExtern       => EinheitRasseNummerExtern.Rasse)
               = False
             then
                null;
@@ -56,7 +56,7 @@ package body KIFeindlicheEinheitSuchen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return KartenKonstanten.LeerKartenPosition;
+      return KartenKonstanten.LeerKartenKoordinaten;
       
    end FeindlicheEinheitInUmgebungSuchen;
 

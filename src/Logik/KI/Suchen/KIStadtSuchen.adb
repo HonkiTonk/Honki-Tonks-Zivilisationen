@@ -23,10 +23,10 @@ package body KIStadtSuchen is
         GefundeneStadt
       is
          when 0 =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
             
          when others =>
-            return LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, GefundeneStadt));
+            return LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, GefundeneStadt));
       end case;
       
    end NähesteFeindlicheStadtSuchen;
@@ -45,22 +45,22 @@ package body KIStadtSuchen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenDatentypen.Leer_Verbesserung
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenKonstanten.LeerVerbesserung
          then
             null;
             
          elsif
            AktuelleStadt = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
          then
-            AktuelleStadt := StadtSchleifenwert;
-            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Position.EAchse)
-                                    + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Position.YAchse)
-                                    + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Position.XAchse));
+            AktuelleStadt := StadtSchleifenwert; -- ----------------
+            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Koordinaten.EAchse)
+                                    + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Koordinaten.YAchse)
+                                    + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Koordinaten.XAchse));
             
          else
-            EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position.EAchse)
-                                       + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position.YAchse)
-                                       + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position.XAchse));
+            EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Koordinaten.EAchse)
+                                       + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Koordinaten.YAchse)
+                                       + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Koordinaten.XAchse));
             if
               Entfernung > EntfernungNeu
             then
@@ -88,16 +88,16 @@ package body KIStadtSuchen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)) = KartenDatentypen.Leer_Verbesserung
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)) = KartenKonstanten.LeerVerbesserung
          then
             null;
                
          elsif
            EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
-                                                           KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)))
+                                                           KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)))
            = EinheitenKonstanten.LeerNummer
          then
-            return LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
+            return LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
                   
          else
             null;
@@ -105,7 +105,7 @@ package body KIStadtSuchen is
          
       end loop StadtSchleife;
       
-      return KartenKonstanten.LeerKartenPosition;
+      return KartenKonstanten.LeerKartenKoordinaten;
       
    end UnbewachteStadtSuchen;
 

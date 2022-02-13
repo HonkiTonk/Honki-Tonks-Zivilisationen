@@ -5,14 +5,14 @@ with LeseKarten;
 
 with KartenGeneratorBerechnungenAllgemein; use KartenGeneratorBerechnungenAllgemein;
 with ZufallGeneratorenKarten;
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 
 package body KartenGeneratorLandschaft is
 
    procedure GenerierungLandschaft
    is begin
 
-      Karten.GeneratorKarte := (others => (others => KartenDatentypen.Leer_Grund));
+      Karten.GeneratorKarte := (others => (others => KartenKonstanten.LeerGrund));
       Karten.GeneratorGrund := (others => (others => False));
       
       AbstandEisschicht;
@@ -24,7 +24,7 @@ package body KartenGeneratorLandschaft is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             if
-              LeseKarten.Grund (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
+              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
             then
                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) := True;
                
@@ -182,9 +182,9 @@ package body KartenGeneratorLandschaft is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusZweiZuZwei'Range loop
 
-            KartenWertAbstand := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                               ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                               LogikGrafikExtern => True);
+            KartenWertAbstand := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                  LogikGrafikExtern => True);
             
             if
               KartenWertAbstand.XAchse = KartenKonstanten.LeerXAchse
@@ -192,7 +192,7 @@ package body KartenGeneratorLandschaft is
                null;
                
             elsif
-              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= KartenDatentypen.Leer_Grund
+              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= KartenKonstanten.LeerGrund
             then
                null;
                

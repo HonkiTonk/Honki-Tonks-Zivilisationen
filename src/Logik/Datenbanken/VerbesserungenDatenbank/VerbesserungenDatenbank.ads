@@ -18,7 +18,7 @@ private
    VerbesserungListeStandard : constant VerbesserungListeArray :=
      (
       -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-      KartenDatentypen.Leer_Verbesserung => KartenKonstanten.LeerVerbesserungListe,
+      KartenKonstanten.LeerVerbesserung => KartenKonstanten.LeerVerbesserungListe,
       
       
                                                   

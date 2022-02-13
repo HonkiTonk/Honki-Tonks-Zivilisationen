@@ -8,7 +8,7 @@ with LeseEinheitenGebaut;
 with ZufallGeneratorenSpieleinstellungen;
 with ZufallGeneratorenKarten;
 with EinheitSuchen;
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with BewegungPassierbarkeitPruefen;
 with EinheitenErzeugenEntfernen;
 with AuswahlMenue;
@@ -210,9 +210,9 @@ package body SpielEinstellungenRasseSpieler is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           LogikGrafikExtern => True);
                   
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -227,9 +227,9 @@ package body SpielEinstellungenRasseSpieler is
                null;
                      
             elsif
-              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                     IDExtern           => 2,
-                                                                     NeuePositionExtern => KartenWert)
+              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                     IDExtern              => 2,
+                                                                     NeueKoordinatenExtern => KartenWert)
               = False
             then
                null;
@@ -274,8 +274,8 @@ package body SpielEinstellungenRasseSpieler is
                                                   IDExtern               => 2,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, 1));
-      GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, 1));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten;
       
    end StartpunktFestlegen;
 

@@ -280,12 +280,12 @@ package body Handeln is
             for XAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
 
                if
-                 LeseKarten.Sichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                      RasseExtern    => RasseEinsExtern)
+                 LeseKarten.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                                      RasseExtern       => RasseEinsExtern)
                  = False
                  and
-                   LeseKarten.Sichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                        RasseExtern    => RasseZweiExtern)
+                   LeseKarten.Sichtbar (KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                                        RasseExtern       => RasseZweiExtern)
                  = True
                then
                   Sichtbarkeit.SichtbarkeitSetzen (RasseExtern       => RasseEinsExtern,
@@ -316,12 +316,12 @@ package body Handeln is
             for XAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
 
                if
-                 LeseKarten.Sichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                      RasseExtern    => RasseZweiExtern)
+                 LeseKarten.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                                      RasseExtern       => RasseZweiExtern)
                  = False
                  and
-                   LeseKarten.Sichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                        RasseExtern    => RasseEinsExtern)
+                   LeseKarten.Sichtbar (KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                                        RasseExtern       => RasseEinsExtern)
                  = True
                then
                   Sichtbarkeit.SichtbarkeitSetzen (RasseExtern       => RasseZweiExtern,

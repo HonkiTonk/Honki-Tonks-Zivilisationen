@@ -133,9 +133,9 @@ package body BefehleKonsole is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
 
       if
         EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
@@ -233,8 +233,8 @@ package body BefehleKonsole is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse := 1;
-      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse := 1;
+      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse := 1;
+      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse := 1;
       InDerStadt.InDerStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtBetreten;
@@ -270,7 +270,7 @@ package body BefehleKonsole is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       case
         EinheitNummer
       is
@@ -329,7 +329,7 @@ package body BefehleKonsole is
    is begin
                      
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
       then
@@ -359,7 +359,7 @@ package body BefehleKonsole is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       
       if
         StadtNummer = StadtKonstanten.LeerNummer
@@ -390,7 +390,7 @@ package body BefehleKonsole is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       case
         StadtNummer
       is

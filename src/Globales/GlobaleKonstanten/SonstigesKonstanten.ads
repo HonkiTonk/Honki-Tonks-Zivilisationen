@@ -10,14 +10,14 @@ with DatenbankRecords;
 package SonstigesKonstanten is
    
    LeerCursorGrafik : constant Wide_Wide_Character := '©';
-   LeerPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
-   LeerPositionStadt : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
+   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
+   LeerKoordinatenStadt : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
    
    LeerCursor : constant KartenRecords.CursorRecord := (
-                                                        CursorGrafik  => LeerCursorGrafik,
-                                                        Position      => LeerPosition,
-                                                        PositionAlt   => LeerPosition,
-                                                        PositionStadt => LeerPositionStadt
+                                                        CursorGrafik     => LeerCursorGrafik,
+                                                        Koordinaten      => LeerKoordinaten,
+                                                        KoordinatenAlt   => LeerKoordinaten,
+                                                        KoordinatenStadt => LeerKoordinatenStadt
                                                        );
    
    LeerGeldmenge : constant Integer := 100;

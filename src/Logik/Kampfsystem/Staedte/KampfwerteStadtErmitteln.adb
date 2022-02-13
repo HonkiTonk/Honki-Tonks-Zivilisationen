@@ -19,7 +19,7 @@ package body KampfwerteStadtErmitteln is
       VerteidigungWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                                 RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                 WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
-        + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
+        + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
@@ -54,7 +54,7 @@ package body KampfwerteStadtErmitteln is
       AngriffWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                                            RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                            WelcherWertExtern  => KartenKonstanten.KampfAngriff))
-        + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
+        + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:

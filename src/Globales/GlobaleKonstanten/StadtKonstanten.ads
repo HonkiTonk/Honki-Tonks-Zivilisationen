@@ -21,7 +21,7 @@ package StadtKonstanten is
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
    
    LeerID : constant KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenDatentypen.Leer_Verbesserung;
-   LeerPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
+   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    LeerEinwohner : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerArbeiter : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerEinwohnerArbeiter : constant EinheitStadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
@@ -45,7 +45,7 @@ package StadtKonstanten is
    
    LeerStadt : constant EinheitStadtRecords.StadtGebautRecord := (
                                                                   ID                      => LeerID,
-                                                                  Position                => LeerPosition,
+                                                                  Koordinaten             => LeerKoordinaten,
                                                                   EinwohnerArbeiter       => LeerEinwohnerArbeiter,
                                                                   Nahrungsmittel          => LeerNahrungsmittel,
                                                                   Nahrungsproduktion      => LeerNahrungsproduktion,

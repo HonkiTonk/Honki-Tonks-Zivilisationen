@@ -27,7 +27,7 @@ package EinheitStadtRecords is
    type EinheitenGebautRecord is record
       
       ID : EinheitStadtDatentypen.EinheitenIDMitNullWert;
-      Position : KartenRecords.AchsenKartenfeldPositivRecord;
+      Koordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
       Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
       Lebenspunkte : EinheitStadtDatentypen.Lebenspunkte;
@@ -93,7 +93,7 @@ package EinheitStadtRecords is
    type StadtGebautRecord is record
       
       ID : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-      Position : KartenRecords.AchsenKartenfeldPositivRecord;
+      Koordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
       Nahrungsmittel : EinheitStadtDatentypen.GesamtproduktionStadt;

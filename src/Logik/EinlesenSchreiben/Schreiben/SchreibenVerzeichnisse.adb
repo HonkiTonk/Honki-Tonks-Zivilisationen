@@ -2,15 +2,16 @@ pragma SPARK_Mode (On);
 
 with Ada.Directories; use Ada.Directories;
 
+with Fehler;
+
 package body SchreibenVerzeichnisse is
 
    procedure SchreibenVerzeichnisse
    is begin
       
-      -- Überall noch eine Meldung einbauen dass die Verzeichnisse erzeugt wurden, sie sollten ja theoretisch von Anfang an vorhanden sein.
       SchreibeGrafikVerzeichnisse;
       SchreibeAudioVerzeichnisse;
-      SchreibeSonstigesVerzeichnisse;
+      SchreibeSonstigeVerzeichnisse;
       
    end SchreibenVerzeichnisse;
    
@@ -27,6 +28,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik wurde erstellt.");
       end case;
       
       case
@@ -37,6 +39,18 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Kartenfelder");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Kartenfelder wurde erstellt.");
+      end case;
+      
+      case
+        Exists (Name => "Grafik/Verbesserungen")
+      is
+         when True =>
+            null;
+
+         when False =>
+            Create_Directory (New_Directory => "Grafik/Verbesserungen");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Verbesserungen wurde erstellt.");
       end case;
       
       case
@@ -47,6 +61,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Einheiten");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Einheiten wurde erstellt.");
       end case;
       
       case
@@ -57,6 +72,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Bauwerke");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Bauwerke wurde erstellt.");
       end case;
       
       case
@@ -67,6 +83,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Grafik/Hintergrund");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeGrafikVerzeichnisse - Ordner Grafik/Hintergrund wurde erstellt.");
       end case;
       
    end SchreibeGrafikVerzeichnisse;
@@ -84,6 +101,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Audio wurde erstellt.");
       end case;
       
       case
@@ -94,6 +112,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio/Musik");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Audio/Musik wurde erstellt.");
       end case;
       
       case
@@ -104,13 +123,14 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Audio/Sound");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeAudioVerzeichnisse - Ordner Audio/Sound wurde erstellt.");
       end case;
       
    end SchreibeAudioVerzeichnisse;
    
    
    
-   procedure SchreibeSonstigesVerzeichnisse
+   procedure SchreibeSonstigeVerzeichnisse
    is begin
       
       case
@@ -120,8 +140,9 @@ package body SchreibenVerzeichnisse is
             null;
             
          when False =>
-            -- Hier auch eine Fehlermeldung einbauen? Ohne Vorhandene Sprachen kann ja nichts angezeigt werden. Oder deutsch als festgelegten Standard einbauen?
+            -- Hier auch eine Fehlermeldung einbauen? Ohne Vorhandene Sprachen kann ja nichts angezeigt werden. Oder deutsch als festgelegten Standard einbauen? ---------------------
             Create_Directory (New_Directory => "Sprachen");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeSonstigeVerzeichnisse - Ordner Sprachen wurde erstellt.");
       end case;
       
       case
@@ -132,6 +153,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Spielstand");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeSonstigeVerzeichnisse - Ordner Spielstand wurde erstellt.");
       end case;
       
       case
@@ -142,6 +164,7 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Einstellungen");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeSonstigeVerzeichnisse - Ordner Einstellungen wurde erstellt.");
       end case;
       
       case
@@ -152,8 +175,9 @@ package body SchreibenVerzeichnisse is
 
          when False =>
             Create_Directory (New_Directory => "Datenbanken");
+            Fehler.LogikMeldung (FehlermeldungExtern => "SchreibenVerzeichnisse.SchreibeSonstigeVerzeichnisse - Ordner Datenbanken wurde erstellt.");
       end case;
       
-   end SchreibeSonstigesVerzeichnisse;
+   end SchreibeSonstigeVerzeichnisse;
 
 end SchreibenVerzeichnisse;

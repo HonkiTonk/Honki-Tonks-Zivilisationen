@@ -20,7 +20,7 @@ package body KartePositionNormaleKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionNormaleBerechnungen.PositionBestimmenYAchseFest (YAchseExtern         => KoordinatenExtern.YAchse,
@@ -31,7 +31,7 @@ package body KartePositionNormaleKartenformen is
         YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerYAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionNormaleBerechnungen.PositionBestimmenXWechsel (XAchseExtern         => KoordinatenExtern.XAchse,
@@ -61,7 +61,7 @@ package body KartePositionNormaleKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionNormaleBerechnungen.PositionBestimmenXAchseFest (XAchseExtern         => KoordinatenExtern.XAchse,
@@ -72,7 +72,7 @@ package body KartePositionNormaleKartenformen is
         XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerXAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionNormaleBerechnungen.PositionBestimmenYWechsel (YAchseExtern         => KoordinatenExtern.YAchse,
@@ -102,7 +102,7 @@ package body KartePositionNormaleKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             -- Hier ist ein Test unsinnig, da die Achsen durchgängig sind.
@@ -137,7 +137,7 @@ package body KartePositionNormaleKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             -- Hier ist ein Test unsinnig, da die Achsen durchgängig sind.
@@ -174,7 +174,7 @@ package body KartePositionNormaleKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionNormaleBerechnungen.PositionBestimmenYAchseFest (YAchseExtern         => KoordinatenExtern.YAchse,
@@ -185,7 +185,7 @@ package body KartePositionNormaleKartenformen is
         YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerYAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionNormaleBerechnungen.PositionBestimmenXAchseFest (XAchseExtern         => KoordinatenExtern.XAchse,
@@ -196,7 +196,7 @@ package body KartePositionNormaleKartenformen is
         XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerXAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             return (EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), YAchse (LogikGrafikExtern, KoordinatenExtern.EAchse), XAchse (LogikGrafikExtern, KoordinatenExtern.EAchse));
@@ -220,7 +220,7 @@ package body KartePositionNormaleKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             -- Hier ist ein Test unsinnig, da die Achsen durchgängig sind.

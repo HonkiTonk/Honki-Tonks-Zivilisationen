@@ -5,14 +5,14 @@ with KartenKonstanten;
 
 with GrafikEinstellungenSFML;
 with BerechnungenKarteSFML;
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with Karten;
 
 package body CursorPlatzierenSFML is
    
    -- Kann man dieses Paket nicht auch aus Logik heraus aufrufen dank dem neuen System?
-   -- Gibt eventuell Probleme in der grafischen Darstellung wenn die Position in der Logik geändert wird, die Grafik aber noch mit der alten Position angefangen hat zu rechnen.
-   -- Eventuell später auf Logik umbauen? Man könnte im Grafikteil die aktuelle Cursorposition ja immer mitgeben oder kann es dadurch zu Problemen kommen? Möglicherweise.
+   -- Gibt eventuell Probleme in der grafischen Darstellung wenn die Koordinaten in der Logik geändert werden, die Grafik aber noch mit den alten Koordinaten angefangen hat zu rechnen.
+   -- Eventuell später auf Logik umbauen? Man könnte im Grafikteil die aktuellen CursorKoordinaten ja immer mitgeben oder kann es dadurch zu Problemen kommen? Möglicherweise.
    procedure CursorPlatzierenKarteSFML
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -51,9 +51,9 @@ package body CursorPlatzierenSFML is
             in
               Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x + BerechnungenKarteSFML.KartenfelderAbmessung.x)
             then
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                           LogikGrafikExtern => False);
+               KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                              ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                              LogikGrafikExtern => False);
                
                case
                  KartenWert.XAchse
@@ -62,8 +62,8 @@ package body CursorPlatzierenSFML is
                      null;
                      
                   when others =>
-                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse := KartenWert.YAchse;
-                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse := KartenWert.XAchse;
+                     GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.YAchse := KartenWert.YAchse;
+                     GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.XAchse := KartenWert.XAchse;
                end case;
                
                return;
@@ -120,8 +120,8 @@ package body CursorPlatzierenSFML is
             in
               Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x)
             then
-               GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse := YAchseSchleifenwert;
-               GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse := XAchseSchleifenwert;
+               GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse := YAchseSchleifenwert;
+               GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse := XAchseSchleifenwert;
                return;
                
             else

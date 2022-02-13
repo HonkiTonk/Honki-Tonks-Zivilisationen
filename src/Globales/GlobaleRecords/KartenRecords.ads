@@ -33,7 +33,7 @@ package KartenRecords is
    
    
    
-   -- Mal auf Nullwert umbenennen.
+   -- Mal auf Nullwert umbenennen. -- -------------
    type AchsenKartenfeldPositivRecord is tagged record
       
       EAchse : KartenDatentypen.Ebene;
@@ -95,9 +95,9 @@ package KartenRecords is
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
-      Position : AchsenKartenfeldPositivRecord;
-      PositionAlt : AchsenKartenfeldPositivRecord;
-      PositionStadt : AchsenStadtfeldRecord;
+      Koordinaten : AchsenKartenfeldPositivRecord;
+      KoordinatenAlt : AchsenKartenfeldPositivRecord;
+      KoordinatenStadt : AchsenStadtfeldRecord;
       
    end record;
    

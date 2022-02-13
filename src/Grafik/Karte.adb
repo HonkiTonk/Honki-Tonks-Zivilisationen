@@ -11,7 +11,7 @@ package body Karte is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- CursorPositionAltFestlegen braucht eine aktuelle Cursor Position. Kann man aber bestimmt trotzdem optimieren.
+      -- CursorAltPlatzieren braucht aktuelle Cursor Koordinaten. Kann man aber bestimmt trotzdem optimieren.
       CursorPlatzierenSFML.CursorPlatzierenKarteSFML (RasseExtern => RasseExtern);
       CursorAltPlatzieren.CursorAltPlatzieren (RasseExtern => RasseExtern);
       

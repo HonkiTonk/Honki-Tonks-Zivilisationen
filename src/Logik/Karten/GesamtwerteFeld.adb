@@ -13,46 +13,46 @@ package body GesamtwerteFeld is
    is begin
       
       if
-        KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern,
-                                            RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegNahrung (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern,
-                                        RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegNahrung (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
+                                        RasseExtern       => RasseExtern)
         > EinheitStadtDatentypen.ProduktionFeld'Last
       then
          return EinheitStadtDatentypen.ProduktionFeld'Last;
          
       elsif
-        KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern,
-                                            RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegNahrung (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern,
-                                        RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegNahrung (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
+                                        RasseExtern       => RasseExtern)
         < EinheitStadtDatentypen.ProduktionFeld'First
       then
          return EinheitStadtDatentypen.ProduktionFeld'First;
          
       else
-         return KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern,
-                                              RasseExtern    => RasseExtern)
-           + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-           + KartenAllgemein.WegNahrung (PositionExtern => KoordinatenExtern,
-                                         RasseExtern    => RasseExtern)
-           + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern,
-                                                  RasseExtern    => RasseExtern)
-           + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern);
+         return KartenAllgemein.GrundNahrung (KoordinatenExtern => KoordinatenExtern,
+                                              RasseExtern       => RasseExtern)
+           + KartenAllgemein.RessourceNahrung (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+           + KartenAllgemein.WegNahrung (KoordinatenExtern => KoordinatenExtern,
+                                         RasseExtern       => RasseExtern)
+           + KartenAllgemein.VerbesserungNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                  RasseExtern       => RasseExtern)
+           + KartenAllgemein.FlussNahrung (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern);
       end if;
       
    end FeldNahrung;
@@ -66,46 +66,46 @@ package body GesamtwerteFeld is
    is begin
       
       if
-        KartenAllgemein.GrundProduktion (PositionExtern => KoordinatenExtern,
-                                         RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceProduktion (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegProduktion (PositionExtern => KoordinatenExtern,
-                                         RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungProduktion (PositionExtern => KoordinatenExtern,
-                                                  RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussProduktion (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
+                                         RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceProduktion (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegProduktion (KoordinatenExtern => KoordinatenExtern,
+                                         RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                  RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
         > EinheitStadtDatentypen.ProduktionFeld'Last
       then
          return EinheitStadtDatentypen.ProduktionFeld'Last;
          
       elsif
-        KartenAllgemein.GrundProduktion (PositionExtern => KoordinatenExtern,
-                                         RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceProduktion (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegProduktion (PositionExtern => KoordinatenExtern,
-                                         RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungProduktion (PositionExtern => KoordinatenExtern,
-                                                  RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussProduktion (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
+                                         RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceProduktion (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegProduktion (KoordinatenExtern => KoordinatenExtern,
+                                         RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                  RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
         < EinheitStadtDatentypen.ProduktionFeld'First
       then
          return EinheitStadtDatentypen.ProduktionFeld'First;
          
       else
-         return KartenAllgemein.GrundProduktion (PositionExtern => KoordinatenExtern,
-                                                 RasseExtern    => RasseExtern)
-           + KartenAllgemein.RessourceProduktion (PositionExtern => KoordinatenExtern,
-                                                  RasseExtern    => RasseExtern)
-           + KartenAllgemein.WegProduktion (PositionExtern => KoordinatenExtern,
-                                            RasseExtern    => RasseExtern)
-           + KartenAllgemein.VerbesserungProduktion (PositionExtern => KoordinatenExtern,
-                                                     RasseExtern    => RasseExtern)
-           + KartenAllgemein.FlussProduktion (PositionExtern => KoordinatenExtern,
-                                              RasseExtern    => RasseExtern);
+         return KartenAllgemein.GrundProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                 RasseExtern       => RasseExtern)
+           + KartenAllgemein.RessourceProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                  RasseExtern       => RasseExtern)
+           + KartenAllgemein.WegProduktion (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => RasseExtern)
+           + KartenAllgemein.VerbesserungProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                     RasseExtern       => RasseExtern)
+           + KartenAllgemein.FlussProduktion (KoordinatenExtern => KoordinatenExtern,
+                                              RasseExtern       => RasseExtern);
       end if;
       
    end FeldProduktion;
@@ -119,46 +119,46 @@ package body GesamtwerteFeld is
    is begin
       
       if
-        KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern,
-                                   RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern,
-                                         RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegGeld (PositionExtern => KoordinatenExtern,
-                                   RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern,
-                                            RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern,
-                                     RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundGeld (KoordinatenExtern => KoordinatenExtern,
+                                   RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceGeld (KoordinatenExtern => KoordinatenExtern,
+                                         RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegGeld (KoordinatenExtern => KoordinatenExtern,
+                                   RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungGeld (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussGeld (KoordinatenExtern => KoordinatenExtern,
+                                     RasseExtern       => RasseExtern)
         > EinheitStadtDatentypen.ProduktionFeld'Last
       then
          return EinheitStadtDatentypen.ProduktionFeld'Last;
          
       elsif
-        KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern,
-                                   RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern,
-                                         RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegGeld (PositionExtern => KoordinatenExtern,
-                                   RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern,
-                                            RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern,
-                                     RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundGeld (KoordinatenExtern => KoordinatenExtern,
+                                   RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceGeld (KoordinatenExtern => KoordinatenExtern,
+                                         RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegGeld (KoordinatenExtern => KoordinatenExtern,
+                                   RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungGeld (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussGeld (KoordinatenExtern => KoordinatenExtern,
+                                     RasseExtern       => RasseExtern)
         < EinheitStadtDatentypen.ProduktionFeld'First
       then
          return EinheitStadtDatentypen.ProduktionFeld'First;
          
       else
-         return KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
-           + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern,
-                                            RasseExtern    => RasseExtern)
-           + KartenAllgemein.WegGeld (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-           + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-           + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern,
-                                        RasseExtern    => RasseExtern);
+         return KartenAllgemein.GrundGeld (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
+           + KartenAllgemein.RessourceGeld (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => RasseExtern)
+           + KartenAllgemein.WegGeld (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+           + KartenAllgemein.VerbesserungGeld (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+           + KartenAllgemein.FlussGeld (KoordinatenExtern => KoordinatenExtern,
+                                        RasseExtern       => RasseExtern);
       end if;
       
    end FeldGeld;
@@ -172,46 +172,46 @@ package body GesamtwerteFeld is
    is begin
       
       if
-        KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern,
-                                     RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegWissen (PositionExtern => KoordinatenExtern,
-                                     RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern,
-                                              RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern,
-                                       RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundWissen (KoordinatenExtern => KoordinatenExtern,
+                                     RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceWissen (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegWissen (KoordinatenExtern => KoordinatenExtern,
+                                     RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungWissen (KoordinatenExtern => KoordinatenExtern,
+                                              RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussWissen (KoordinatenExtern => KoordinatenExtern,
+                                       RasseExtern       => RasseExtern)
         > EinheitStadtDatentypen.ProduktionFeld'Last
       then
          return EinheitStadtDatentypen.ProduktionFeld'Last;
          
       elsif
-        KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern,
-                                     RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegWissen (PositionExtern => KoordinatenExtern,
-                                     RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern,
-                                              RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern,
-                                       RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundWissen (KoordinatenExtern => KoordinatenExtern,
+                                     RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceWissen (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegWissen (KoordinatenExtern => KoordinatenExtern,
+                                     RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungWissen (KoordinatenExtern => KoordinatenExtern,
+                                              RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussWissen (KoordinatenExtern => KoordinatenExtern,
+                                       RasseExtern       => RasseExtern)
         < EinheitStadtDatentypen.ProduktionFeld'First
       then
          return EinheitStadtDatentypen.ProduktionFeld'First;
          
       else
-         return KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern,
-                                             RasseExtern    => RasseExtern)
-           + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern,
-                                              RasseExtern    => RasseExtern)
-           + KartenAllgemein.WegWissen (PositionExtern => KoordinatenExtern,
-                                        RasseExtern    => RasseExtern)
-           + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern,
-                                                 RasseExtern    => RasseExtern)
-           + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern,
-                                          RasseExtern    => RasseExtern);
+         return KartenAllgemein.GrundWissen (KoordinatenExtern => KoordinatenExtern,
+                                             RasseExtern       => RasseExtern)
+           + KartenAllgemein.RessourceWissen (KoordinatenExtern => KoordinatenExtern,
+                                              RasseExtern       => RasseExtern)
+           + KartenAllgemein.WegWissen (KoordinatenExtern => KoordinatenExtern,
+                                        RasseExtern       => RasseExtern)
+           + KartenAllgemein.VerbesserungWissen (KoordinatenExtern => KoordinatenExtern,
+                                                 RasseExtern       => RasseExtern)
+           + KartenAllgemein.FlussWissen (KoordinatenExtern => KoordinatenExtern,
+                                          RasseExtern       => RasseExtern);
       end if;
       
    end FeldWissen;
@@ -225,46 +225,46 @@ package body GesamtwerteFeld is
    is begin
       
       if
-        KartenAllgemein.GrundVerteidigung (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceVerteidigung (PositionExtern => KoordinatenExtern,
-                                                 RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegVerteidigung (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => KoordinatenExtern,
-                                                    RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenExtern,
-                                             RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                 RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                    RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                             RasseExtern       => RasseExtern)
         > EinheitStadtDatentypen.Kampfwerte'Last
       then
          return EinheitStadtDatentypen.Kampfwerte'Last;
          
       elsif
-        KartenAllgemein.GrundVerteidigung (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceVerteidigung (PositionExtern => KoordinatenExtern,
-                                                 RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegVerteidigung (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => KoordinatenExtern,
-                                                    RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenExtern,
-                                             RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                 RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                    RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                             RasseExtern       => RasseExtern)
         < EinheitStadtDatentypen.Kampfwerte'First
       then
          return EinheitStadtDatentypen.Kampfwerte'First;
          
       else
-         return KartenAllgemein.GrundVerteidigung (PositionExtern => KoordinatenExtern,
-                                                   RasseExtern    => RasseExtern)
-           + KartenAllgemein.RessourceVerteidigung (PositionExtern => KoordinatenExtern,
-                                                    RasseExtern    => RasseExtern)
-           + KartenAllgemein.WegVerteidigung (PositionExtern => KoordinatenExtern,
-                                              RasseExtern    => RasseExtern)
-           + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => KoordinatenExtern,
-                                                       RasseExtern    => RasseExtern)
-           + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenExtern,
-                                                RasseExtern    => RasseExtern);
+         return KartenAllgemein.GrundVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                   RasseExtern       => RasseExtern)
+           + KartenAllgemein.RessourceVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                    RasseExtern       => RasseExtern)
+           + KartenAllgemein.WegVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                              RasseExtern       => RasseExtern)
+           + KartenAllgemein.VerbesserungVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                       RasseExtern       => RasseExtern)
+           + KartenAllgemein.FlussVerteidigung (KoordinatenExtern => KoordinatenExtern,
+                                                RasseExtern       => RasseExtern);
       end if;
       
    end FeldVerteidigung;
@@ -278,46 +278,46 @@ package body GesamtwerteFeld is
    is begin
       
       if
-        KartenAllgemein.GrundAngriff (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceAngriff (PositionExtern => KoordinatenExtern,
-                                            RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegAngriff (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungAngriff (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussAngriff (PositionExtern => KoordinatenExtern,
-                                        RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceAngriff (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegAngriff (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungAngriff (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussAngriff (KoordinatenExtern => KoordinatenExtern,
+                                        RasseExtern       => RasseExtern)
         > EinheitStadtDatentypen.Kampfwerte'Last
       then
          return EinheitStadtDatentypen.Kampfwerte'Last;
          
       elsif
-        KartenAllgemein.GrundAngriff (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-        + KartenAllgemein.RessourceAngriff (PositionExtern => KoordinatenExtern,
-                                            RasseExtern    => RasseExtern)
-        + KartenAllgemein.WegAngriff (PositionExtern => KoordinatenExtern,
-                                      RasseExtern    => RasseExtern)
-        + KartenAllgemein.VerbesserungAngriff (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-        + KartenAllgemein.FlussAngriff (PositionExtern => KoordinatenExtern,
-                                        RasseExtern    => RasseExtern)
+        KartenAllgemein.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+        + KartenAllgemein.RessourceAngriff (KoordinatenExtern => KoordinatenExtern,
+                                            RasseExtern       => RasseExtern)
+        + KartenAllgemein.WegAngriff (KoordinatenExtern => KoordinatenExtern,
+                                      RasseExtern       => RasseExtern)
+        + KartenAllgemein.VerbesserungAngriff (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+        + KartenAllgemein.FlussAngriff (KoordinatenExtern => KoordinatenExtern,
+                                        RasseExtern       => RasseExtern)
         < EinheitStadtDatentypen.Kampfwerte'First
       then
          return EinheitStadtDatentypen.Kampfwerte'First;
          
       else
-         return KartenAllgemein.GrundAngriff (PositionExtern => KoordinatenExtern,
-                                              RasseExtern    => RasseExtern)
-           + KartenAllgemein.RessourceAngriff (PositionExtern => KoordinatenExtern,
-                                               RasseExtern    => RasseExtern)
-           + KartenAllgemein.WegAngriff (PositionExtern => KoordinatenExtern,
-                                         RasseExtern    => RasseExtern)
-           + KartenAllgemein.VerbesserungAngriff (PositionExtern => KoordinatenExtern,
-                                                  RasseExtern    => RasseExtern)
-           + KartenAllgemein.FlussAngriff (PositionExtern => KoordinatenExtern,
-                                           RasseExtern    => RasseExtern);
+         return KartenAllgemein.GrundAngriff (KoordinatenExtern => KoordinatenExtern,
+                                              RasseExtern       => RasseExtern)
+           + KartenAllgemein.RessourceAngriff (KoordinatenExtern => KoordinatenExtern,
+                                               RasseExtern       => RasseExtern)
+           + KartenAllgemein.WegAngriff (KoordinatenExtern => KoordinatenExtern,
+                                         RasseExtern       => RasseExtern)
+           + KartenAllgemein.VerbesserungAngriff (KoordinatenExtern => KoordinatenExtern,
+                                                  RasseExtern       => RasseExtern)
+           + KartenAllgemein.FlussAngriff (KoordinatenExtern => KoordinatenExtern,
+                                           RasseExtern       => RasseExtern);
       end if;
       
    end FeldAngriff;

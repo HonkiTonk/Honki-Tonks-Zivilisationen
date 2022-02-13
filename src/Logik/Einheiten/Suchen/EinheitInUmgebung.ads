@@ -24,7 +24,7 @@ private
    
    
    function EinheitFinden
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean;

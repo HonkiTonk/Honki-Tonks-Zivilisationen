@@ -45,8 +45,8 @@ package body StadtEinheitenBauen is
         and
           GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemKonstanten.SpielerMenschKonstante
       then
-         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position := LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position;
+         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Koordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Koordinaten;
          
       elsif
         EinheitNummer = EinheitenKonstanten.LeerNummer
@@ -66,12 +66,12 @@ package body StadtEinheitenBauen is
    is begin
       
       if
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern)).Platznummer = EinheitenKonstanten.LeerNummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern)).Platznummer = EinheitenKonstanten.LeerNummer
       then
-         KartenWert := LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         KartenWert := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
          
       else
-         KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
+         KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                           RasseExtern               => StadtRasseNummerExtern.Rasse,
                                                                           IDExtern                  => EinheitStadtDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut
                                                                             (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt.Nummer),

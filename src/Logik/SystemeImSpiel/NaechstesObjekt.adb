@@ -58,7 +58,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
       
    end NächsteEinheit;
    
@@ -103,7 +103,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
       
    end NächsteStadt;
    
@@ -161,7 +161,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
       
    end NächsteStadtMeldung;
    
@@ -219,7 +219,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
       
    end NächsteEinheitMeldung;
    

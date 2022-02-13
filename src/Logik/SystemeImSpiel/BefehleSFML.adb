@@ -93,7 +93,7 @@ package body BefehleSFML is
          when SystemKonstanten.GeheZuKonstante =>
             -- Funktioniert in der SFML nicht richtig. Fehler liegt irgendwo im Grafikteil da die Logik nach wie vor weiterläuft.
             -- Möglicherweise in BerechnungenKarteSFML.SichtbereichKarteBerechnen oder weil die Darstellungsermittlung läuft während BewegungCursor.GeheZuCursor die Werte des Cursors ändert.
-            -- Eventuell war es auch die Vermischung der Kartenpositionermittlung in BerechnungenKarteSFML die diesen Fehler ausgelöst hat.
+            -- Eventuell war es auch die Vermischung der Kartenkoordinatenermittlung in BerechnungenKarteSFML die diesen Fehler ausgelöst hat.
             -- Auf jeden Fall nicht mehr hier einbinden, da sonst wieder die Ermittlung von Logik und Grafik gleichzeitig aufgerufen wird. 
             -- BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
             null;
@@ -137,9 +137,9 @@ package body BefehleSFML is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
 
       if
         EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
@@ -280,7 +280,7 @@ package body BefehleSFML is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       case
         EinheitNummer
       is
@@ -310,7 +310,7 @@ package body BefehleSFML is
    is begin
                      
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
       then
@@ -339,7 +339,7 @@ package body BefehleSFML is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       
       if
         StadtNummer = StadtKonstanten.LeerNummer
@@ -370,7 +370,7 @@ package body BefehleSFML is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
       case
         StadtNummer
       is

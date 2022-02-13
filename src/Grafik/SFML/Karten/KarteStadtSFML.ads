@@ -45,8 +45,6 @@ private
    AktuelleFarbe : Sf.Graphics.Color.sfColor;
 
    TextPosition : Sf.System.Vector2.sfVector2f;
-   SkalierungKartenfeld : Sf.System.Vector2.sfVector2f;
-   GrößeTextur : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
@@ -78,17 +76,11 @@ private
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
    procedure DarstellungUmgebungErweitert
-     (KartePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
-
-
-
-   function SkalierungTexturenKartenfelderStadtkarteBerechnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
-      return Sf.System.Vector2.sfVector2f;
 
 end KarteStadtSFML;

@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -15,9 +16,9 @@ package body KIAufgabeUmsetzen is
    is begin
       
       case
-        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserungGebiet =>
             if
               VerbesserungGebiet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
             then
@@ -32,9 +33,9 @@ package body KIAufgabeUmsetzen is
       end case;
       
       case
-        LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserungWeg =>
             return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  BefehlExtern             => SystemKonstanten.StraßeBauenKonstante);
             
@@ -53,7 +54,7 @@ package body KIAufgabeUmsetzen is
       return Boolean
    is begin
       
-      Grund := LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      Grund := LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
          
       if
         (Grund = KartenDatentypen.Hügel
@@ -66,7 +67,7 @@ package body KIAufgabeUmsetzen is
          or
            Grund = KartenDatentypen.Gold
          or
-           LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
+           LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                        BefehlExtern             => SystemKonstanten.MineBauenKonstante)

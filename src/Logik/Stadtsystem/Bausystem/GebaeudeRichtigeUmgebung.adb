@@ -7,7 +7,7 @@ with LeseKarten;
 with LeseStadtGebaut;
 with LeseGebaeudeDatenbank;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 
 package body GebaeudeRichtigeUmgebung is
 
@@ -21,7 +21,7 @@ package body GebaeudeRichtigeUmgebung is
         LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                  IDExtern    => GebäudeIDExtern)
       is
-         when KartenDatentypen.Leer_Grund =>
+         when KartenKonstanten.LeerGrund =>
             return True;
                
          when others =>
@@ -44,9 +44,9 @@ package body GebaeudeRichtigeUmgebung is
          XAchseGebäudeSchleife:
          for XAchseGebäudeSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
                
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseGebäudeSchleifenwert, XAchseGebäudeSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YAchseGebäudeSchleifenwert, XAchseGebäudeSchleifenwert),
+                                                                           LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -62,14 +62,14 @@ package body GebaeudeRichtigeUmgebung is
                   
             elsif
               -- Noch um Umgebungsverbesserung erweitern?
-              LeseKarten.Grund (PositionExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                         IDExtern    => GebäudeIDExtern)
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                            IDExtern    => GebäudeIDExtern)
               or
-                LeseKarten.Fluss (PositionExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                           IDExtern    => GebäudeIDExtern)
+                LeseKarten.Fluss (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                              IDExtern    => GebäudeIDExtern)
               or
-                LeseKarten.Ressource (PositionExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                               IDExtern    => GebäudeIDExtern)
+                LeseKarten.Ressource (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                  IDExtern    => GebäudeIDExtern)
             then
                return True;
                   

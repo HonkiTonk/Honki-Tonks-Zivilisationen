@@ -49,7 +49,7 @@ private
    procedure InformationenSichtbar
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
-   procedure Kartenposition
+   procedure KartenKoordinaten
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure DebugInformationen

@@ -26,6 +26,8 @@ package Fehler is
        Pre =>
          (FehlermeldungExtern'Length > 0);
    
+   -- Bei Meldung den Parameter nicht Fehlermeldung nennen? ---------------
+   -- Oder Meldungen gleich in einen eigenen Bereich ziehen? Ist ja nicht identisch mit einem stoppenden Fehler.
    procedure LogikMeldung
      (FehlermeldungExtern : in Wide_Wide_String)
      with

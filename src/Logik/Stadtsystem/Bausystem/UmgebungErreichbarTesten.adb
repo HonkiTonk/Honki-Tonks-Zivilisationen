@@ -6,7 +6,7 @@ with EinheitenKonstanten;
 
 with LeseKarten;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with BewegungPassierbarkeitPruefen;
 with EinheitSuchen;
 
@@ -31,9 +31,9 @@ package body UmgebungErreichbarTesten is
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
                
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+               KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => AktuelleKoordinatenExtern,
+                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                              LogikGrafikExtern => True);
                
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -41,9 +41,9 @@ package body UmgebungErreichbarTesten is
                   null;
                   
                elsif
-                   (YÄnderungSchleifenwert = 0
-                    and
-                      XÄnderungSchleifenwert = 0)
+                 (YÄnderungSchleifenwert = 0
+                  and
+                    XÄnderungSchleifenwert = 0)
                  or
                    (BereitsGetestet >= abs (YÄnderungSchleifenwert)
                     and
@@ -58,14 +58,14 @@ package body UmgebungErreichbarTesten is
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = EinheitenKonstanten.LeerNummer
                  and
-                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                          IDExtern           => IDExtern,
-                                                                          NeuePositionExtern => KartenWert)
+                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                          IDExtern              => IDExtern,
+                                                                          NeueKoordinatenExtern => KartenWert)
                  = True
                  and
-                   NochErreichbar (AktuellePositionExtern => KartenWert,
-                                   RasseExtern            => RasseExtern,
-                                   IDExtern               => IDExtern)
+                   NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
+                                   RasseExtern               => RasseExtern,
+                                   IDExtern                  => IDExtern)
                  = True
                  and
                    GefundeneFelder < NotwendigeFelderExtern
@@ -79,14 +79,14 @@ package body UmgebungErreichbarTesten is
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = EinheitenKonstanten.LeerNummer
                  and
-                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                          IDExtern           => IDExtern,
-                                                                          NeuePositionExtern => KartenWert)
+                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                          IDExtern              => IDExtern,
+                                                                          NeueKoordinatenExtern => KartenWert)
                  = True
                  and
-                   NochErreichbar (AktuellePositionExtern => KartenWert,
-                                   RasseExtern            => RasseExtern,
-                                   IDExtern               => IDExtern)
+                   NochErreichbar (AktuelleKoordinatenExtern => KartenWert,
+                                   RasseExtern               => RasseExtern,
+                                   IDExtern                  => IDExtern)
                  = True
                then
                   return KartenWert;
@@ -105,14 +105,14 @@ package body UmgebungErreichbarTesten is
                      
       end loop BereichSchleife;
       
-      return KartenKonstanten.LeerKartenPosition;
+      return KartenKonstanten.LeerKartenKoordinaten;
       
    end UmgebungErreichbarTesten;
    
    
    
    function NochErreichbar
-     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.MinimimMaximumID)
       return Boolean
@@ -123,9 +123,9 @@ package body UmgebungErreichbarTesten is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-            KartenWertZwei := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuellePositionExtern,
-                                                                            ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                            LogikGrafikExtern => True);
+            KartenWertZwei := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => AktuelleKoordinatenExtern,
+                                                                               ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                               LogikGrafikExtern => True);
             
             if
               KartenWertZwei.XAchse = KartenKonstanten.LeerXAchse
@@ -144,9 +144,9 @@ package body UmgebungErreichbarTesten is
                                         KoordinatenExtern => KartenWertZwei)
               = True
               and
-                BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                       IDExtern           => IDExtern,
-                                                                       NeuePositionExtern => KartenWertZwei)
+                BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                       IDExtern              => IDExtern,
+                                                                       NeueKoordinatenExtern => KartenWertZwei)
               = True
             then
                return True;

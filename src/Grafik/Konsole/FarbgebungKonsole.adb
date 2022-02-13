@@ -5,6 +5,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with KartenKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseVerbesserungenDatenbank;
@@ -207,12 +208,12 @@ package body FarbgebungKonsole is
          end case;
             
       elsif
-        VerbesserungExtern /= KartenDatentypen.Leer_Verbesserung
+        VerbesserungExtern /= KartenKonstanten.LeerVerbesserung
       then
          Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
 
       elsif
-        RessourceExtern /= KartenDatentypen.Leer_Grund
+        RessourceExtern /= KartenKonstanten.LeerGrund
       then
          Put (Item => LeseKartenDatenbank.KartenGrafikKonsole (GrundExtern => RessourceExtern) & CSI & "0m");
             

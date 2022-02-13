@@ -4,7 +4,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenDatentypen;
 
 with KIDatentypen;
 
@@ -173,12 +172,12 @@ package body KIVorhandeneAufgaben is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenDatentypen.Leer_Verbesserung =>
+            when KartenKonstanten.LeerVerbesserung =>
                null;
                
             when others =>
                EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
+                                                                                KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
          end case;
          
          if
@@ -186,7 +185,7 @@ package body KIVorhandeneAufgaben is
            and
              KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen,
                                                     RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                    ZielKoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)))
+                                                    ZielKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)))
            = False
          then
             return 10;

@@ -10,6 +10,7 @@ with KartenRecords;
 with EinheitStadtDatentypen;
 with SystemRecords;
 with SystemKonstanten;
+with KartenKonstanten;
 
 package StadtBauen is
 
@@ -40,7 +41,7 @@ private
 
    procedure StadtEintragen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -72,6 +73,6 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante),
          Post =>
-           (HauptstadtPrüfen'Result /= KartenDatentypen.Leer_Verbesserung);
+           (HauptstadtPrüfen'Result /= KartenKonstanten.LeerVerbesserung);
 
 end StadtBauen;

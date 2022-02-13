@@ -47,10 +47,12 @@ private
    GrundWert : Karten_Grund_Alle_Felder_Enum;
    
    EAchse : KartenDatentypen.EbeneVorhanden;
+   
    YAchse : KartenDatentypen.KartenfeldPositiv;
    XAchse : KartenDatentypen.KartenfeldPositiv;
    
-
+   YXAchsen : KartenRecords.YXAchsenKartenfeldPositivRecord;
+   
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
    ZufallsPunktKarte : KartenRecords.AchsenKartenfeldPositivRecord;
 
@@ -100,9 +102,10 @@ private
    RessourceGewählt : RessourceWählenChaoskarte.Generator;
    -- Generator für Chaoskarte
    
-   procedure StartPunkteYXFestlegen;
    
    
+   function StartPunkteYXFestlegen
+     return KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    function StartPositionEAchse
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)

@@ -23,7 +23,7 @@ package LeseStadtGebaut is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante);
    
-   function Position
+   function Koordinaten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -165,7 +165,8 @@ package LeseStadtGebaut is
 
    function UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YPositionExtern, XPositionExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
+      YKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      XKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
      with
        Pre =>

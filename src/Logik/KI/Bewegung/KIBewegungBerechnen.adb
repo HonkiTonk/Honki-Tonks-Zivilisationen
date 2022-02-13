@@ -11,7 +11,7 @@ with KIKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with BewegungPassierbarkeitPruefen;
 with EinheitenTransporter;
 
@@ -25,7 +25,7 @@ package body KIBewegungBerechnen is
    is begin
                
       PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                            AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                            AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                             AktuellePlanpositionExtern => 1);
       
       case
@@ -212,9 +212,9 @@ package body KIBewegungBerechnen is
          return KIKonstanten.BewertungBewegungNullwert;
 
       else
-         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                     ÄnderungExtern    => (EÄnderungExtern, YÄnderungExtern, XÄnderungExtern),
-                                                                     LogikGrafikExtern => True);
+         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                        ÄnderungExtern    => (EÄnderungExtern, YÄnderungExtern, XÄnderungExtern),
+                                                                        LogikGrafikExtern => True);
       end if;
             
       case
@@ -239,8 +239,8 @@ package body KIBewegungBerechnen is
       end case;
                   
       case
-        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                   NeuePositionExtern       => KartenWert)
+        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
+                                                                   NeueKoordinatenExtern       => KartenWert)
       is
          when True =>
             null;
@@ -259,7 +259,7 @@ package body KIBewegungBerechnen is
       end case;
       
       case
-        KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => KartenWert,
+        KIBewegungAllgemein.FeldBetreten (FeldKoordinatenExtern    => KartenWert,
                                           EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIKonstanten.BewegungAngriff | KIKonstanten.BewegungNormal =>
@@ -429,10 +429,10 @@ package body KIBewegungBerechnen is
             XAchseSchleife:
             for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
-               KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                 PlanschrittExtern        => ErsterZugExtern),
-                                                                                        ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                        LogikGrafikExtern => True);
+               KartenWertVereinfachung := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                    PlanschrittExtern        => ErsterZugExtern),
+                                                                                           ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                           LogikGrafikExtern => True);
                
                if
                  KartenWertVereinfachung.XAchse = KartenKonstanten.LeerXAchse
@@ -490,8 +490,8 @@ package body KIBewegungBerechnen is
                                                          TransporterExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert))
              = True
            and
-             BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert),
-                                                                        NeuePositionExtern       => KoordinatenExtern)
+             BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert),
+                                                                        NeueKoordinatenExtern       => KoordinatenExtern)
            = True
          then
             -- Hier später True zurückgeben

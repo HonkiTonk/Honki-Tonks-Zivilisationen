@@ -91,24 +91,28 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.0. => 0.0. (15.02.2022):
+   -- Version 0.01.00 => 0.0. (15.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (14.02.2022):
+   -- Version 0.00.9990 => 0.01.00 (14.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.00.9975 => 0.0. (13.02.2022):
+   -- Version 0.00.9975 => 0.00.9990 (13.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einige Vergleiche mit KartenDatentypen auf Vergleiche mit KartenKonstanten umgeschrieben.
+   -- Die Überarbeitung der Benennungen bis auf Kleinigkeiten abgeschlossen.
+   -- Testtexturen für Verbesserungen erstellt und eingebaut.
+   -- Testtexturen für Einheiten und Gebäude erstellt und eingebaut.
+   -- Weitere Warnmeldungen eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

@@ -3,7 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Directories; use Ada.Directories;
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 
-with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.Texture;
 
 with Fehler;
@@ -13,7 +12,7 @@ package body EinlesenTexturen is
    procedure EinlesenTexturen
    is begin
             
-      -- EinlesenHintergrundMenüs;
+      EinlesenHintergrund;
       EinlesenKartenfelder;
       EinlesenVerbesserungen;
       EinlesenEinheiten;
@@ -23,34 +22,12 @@ package body EinlesenTexturen is
    
    
    
-   procedure EinlesenHintergrundMenüs
+   procedure EinlesenHintergrund
    is begin
       
-      HintergrundSchleife:
-      for HintergrundSchleifenwert in EingeleseneTexturenSFML.Hintergrund'Range loop
-         
-         case
-           HintergrundSchleifenwert
-         is
-            when 1 =>
-               EingeleseneTexturenSFML.Hintergrund (HintergrundSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Hintergrund/Hintergrund" & HintergrundSchleifenwert'Image & ".png");
-               
-            when 2 =>
-               EingeleseneTexturenSFML.Hintergrund (HintergrundSchleifenwert) := Sf.Graphics.Texture.createFromFile (filename => "Grafik/Hintergrund/Hintergrund" & HintergrundSchleifenwert'Image & ".png");
-         end case;
-         
-         if
-           EingeleseneTexturenSFML.Hintergrund (HintergrundSchleifenwert) = null
-         then
-            Fehler.GrafikStopp (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrundMenüs - EingeleseneTexturen.Hintergrund (HintergrundSchleifenwert) = null");
-            
-         else
-            null;
-         end if;
-         
-      end loop HintergrundSchleife;
+      null;
       
-   end EinlesenHintergrundMenüs;
+   end EinlesenHintergrund;
    
    
    
@@ -75,11 +52,13 @@ package body EinlesenTexturen is
       for DateipfadeEinlesenSchleifenwert in KartenfelderEinlesenArray'Range loop
          
          case
-           VorzeitigesZeilenende (AktuelleZeileExtern => AktuelleZeile)
+           VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                  AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
                Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - Nicht genug Zeilen in der 0-Datei.");
                Close (File => DateiTextEinlesen);
+               KartenfelderEinlesen (DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
                return;
                
             when False =>
@@ -116,7 +95,59 @@ package body EinlesenTexturen is
    procedure EinlesenVerbesserungen
    is begin
       
-      null;
+      case
+        Exists (Name => "Grafik/Verbesserungen/0")
+      is
+         when False =>
+            return;
+            
+         when True =>
+            AktuelleZeile := 1;
+            
+            Open (File => DateiTextEinlesen,
+                  Mode => In_File,
+                  Name => "Grafik/Verbesserungen/0");
+      end case;
+      
+      DateipfadeEinlesenSchleife:
+      for DateipfadeEinlesenSchleifenwert in VerbesserungenEinlesenArray'Range loop
+         
+         case
+           VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                  AktuelleZeileExtern => AktuelleZeile)
+         is
+            when True =>
+               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - Nicht genug Zeilen in der 0-Datei.");
+               Close (File => DateiTextEinlesen);
+               VerbesserungenEinlesen (DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
+               return;
+               
+            when False =>
+               VerbesserungenEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
+         
+         AktuelleZeile := AktuelleZeile + 1;
+         
+      end loop DateipfadeEinlesenSchleife;
+      
+      Close (File => DateiTextEinlesen);
+      
+      TexturenZuweisenSchleife:
+      for TexturenZuweisenSchleifenwert in EingeleseneTexturenSFML.VerbesserungenAccessArray'Range loop
+         
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert))))
+         is
+            when True =>
+               EingeleseneTexturenSFML.VerbesserungenAccess (TexturenZuweisenSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert))));
+                  
+            when False =>
+               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - " & To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenSFML.VerbesserungenAccess (TexturenZuweisenSchleifenwert) := null;
+         end case;
+         
+      end loop TexturenZuweisenSchleife;
       
    end EinlesenVerbesserungen;
    
@@ -125,7 +156,7 @@ package body EinlesenTexturen is
    procedure EinlesenEinheiten
    is begin
       
-      null;
+      EingeleseneTexturenSFML.EinheitenAccess := (others => Sf.Graphics.Texture.createFromFile (filename => "Grafik/Einheiten/TestEinheit.png"));
       
    end EinlesenEinheiten;
    
@@ -134,7 +165,7 @@ package body EinlesenTexturen is
    procedure EinlesenGebäude
    is begin
       
-      null;
+      EingeleseneTexturenSFML.GebäudeAccess := (others => Sf.Graphics.Texture.createFromFile (filename => "Grafik/Bauwerke/TestBauwerk.png"));
       
    end EinlesenGebäude;
    
@@ -143,18 +174,19 @@ package body EinlesenTexturen is
    -- Allgemeine Einlesenfunktionen und -prozeduren bauen.
    -- DateiTextEinlesen auch über Extern machen.
    function VorzeitigesZeilenende
-     (AktuelleZeileExtern : in Positive)
+     (AktuelleDateiExtern : in File_Type;
+      AktuelleZeileExtern : in Positive)
       return Boolean
    is begin
       
       case
-        End_Of_File (File => DateiTextEinlesen)
+        End_Of_File (File => AktuelleDateiExtern)
       is
          when True =>
             return True;
                
          when False =>
-            Set_Line (File => DateiTextEinlesen,
+            Set_Line (File => AktuelleDateiExtern,
                       To   => Ada.Wide_Wide_Text_IO.Count (AktuelleZeileExtern));
             return False;
       end case;

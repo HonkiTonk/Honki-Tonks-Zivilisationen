@@ -20,8 +20,8 @@ package LeseEinheitenGebaut is
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante);
-   
-   function Position
+
+   function Koordinaten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with

@@ -22,7 +22,7 @@ package body StadtSuchen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          if
-           LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KoordinatenExtern
+           LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KoordinatenExtern
          then
             null;
             

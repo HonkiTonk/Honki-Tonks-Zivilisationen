@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with StadtKonstanten;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
+with KartenKonstanten;
 
 with DatenbankRecords;
 
@@ -20,7 +21,7 @@ package GebaeudeEkropa is
          BonusWirtschaft             => (KartenDatentypen.Nahrung => 10,
                                          others                   => 0),
          BonusKampf                  => (others => 10),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Nahrungslager
@@ -32,7 +33,7 @@ package GebaeudeEkropa is
          Anforderungen               => 2,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Holzpalisade
@@ -44,7 +45,7 @@ package GebaeudeEkropa is
          Anforderungen               => 1,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Schmiede
@@ -56,7 +57,7 @@ package GebaeudeEkropa is
          Anforderungen               => 10,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
       
       -- Bibliothek
@@ -68,7 +69,7 @@ package GebaeudeEkropa is
          Anforderungen               => 9,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Steinmauer
@@ -80,7 +81,7 @@ package GebaeudeEkropa is
          Anforderungen               => 11,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Bücherei
@@ -92,7 +93,7 @@ package GebaeudeEkropa is
          Anforderungen               => 21,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Bewässerungssystem
@@ -104,7 +105,7 @@ package GebaeudeEkropa is
          Anforderungen               => 16,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Kaserne
@@ -116,7 +117,7 @@ package GebaeudeEkropa is
          Anforderungen               => 13,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Wassermühle
@@ -128,7 +129,7 @@ package GebaeudeEkropa is
          Anforderungen               => 15,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Windmühle
@@ -140,7 +141,7 @@ package GebaeudeEkropa is
          Anforderungen               => 15,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Seehafen
@@ -152,7 +153,7 @@ package GebaeudeEkropa is
          Anforderungen               => 14,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Hochofen
@@ -164,7 +165,7 @@ package GebaeudeEkropa is
          Anforderungen               => 33,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Universität
@@ -176,7 +177,7 @@ package GebaeudeEkropa is
          Anforderungen               => 27,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Burg
@@ -188,7 +189,7 @@ package GebaeudeEkropa is
          Anforderungen               => 22,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Schwere Burg
@@ -200,7 +201,7 @@ package GebaeudeEkropa is
          Anforderungen               => 25,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Festungen
@@ -212,7 +213,7 @@ package GebaeudeEkropa is
          Anforderungen               => 34,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Kohlekraftwerk
@@ -224,7 +225,7 @@ package GebaeudeEkropa is
          Anforderungen               => 37,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Fabrik
@@ -236,7 +237,7 @@ package GebaeudeEkropa is
          Anforderungen               => 30,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Krankenhaus
@@ -248,7 +249,7 @@ package GebaeudeEkropa is
          Anforderungen               => 43,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Flughafen
@@ -260,7 +261,7 @@ package GebaeudeEkropa is
          Anforderungen               => 41,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Atomkraftwerk
@@ -272,7 +273,7 @@ package GebaeudeEkropa is
          Anforderungen               => 45,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
@@ -284,7 +285,7 @@ package GebaeudeEkropa is
          Anforderungen               => 53,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Genklinik
@@ -296,7 +297,7 @@ package GebaeudeEkropa is
          Anforderungen               => 56,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Fusionskraftwerk
@@ -308,7 +309,7 @@ package GebaeudeEkropa is
          Anforderungen               => 60,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- NAMR Kraftwerk
@@ -320,7 +321,7 @@ package GebaeudeEkropa is
          Anforderungen               => 63,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenDatentypen.Leer_Grund,
+         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                                               
       others => StadtKonstanten.LeerGebäudeListe

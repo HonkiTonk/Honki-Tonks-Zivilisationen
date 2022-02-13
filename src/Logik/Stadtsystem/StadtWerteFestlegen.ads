@@ -97,31 +97,31 @@ private
    
    function FeldBewerten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function WissenBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function GeldBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function ProduktionBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt;
    
    function NahrungBewertung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
       return EinheitStadtDatentypen.GesamtproduktionStadt;
 

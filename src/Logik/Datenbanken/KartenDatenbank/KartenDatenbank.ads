@@ -21,7 +21,7 @@ private
    KartenListeStandard : constant KartenListeArray :=
      (
       -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-      KartenDatentypen.Leer_Grund => KartenKonstanten.LeerKartenListe,
+      KartenKonstanten.LeerGrund => KartenKonstanten.LeerKartenListe,
                                       
       -- Feld
       -- Normal

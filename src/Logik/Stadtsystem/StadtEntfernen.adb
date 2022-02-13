@@ -13,7 +13,7 @@ with LeseKarten;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with RasseEntfernen;
 with Wachstum;
 
@@ -45,9 +45,9 @@ package body StadtEntfernen is
          XUmgebungFreigebenSchleife:
          for XUmgebungFreigebenSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert),
+                                                                           LogikGrafikExtern => True);
          
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -114,7 +114,7 @@ package body StadtEntfernen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenDatentypen.Leer_Verbesserung
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenKonstanten.LeerVerbesserung
            or
              StadtSchleifenwert = StadtRasseNummerExtern.Platznummer
          then

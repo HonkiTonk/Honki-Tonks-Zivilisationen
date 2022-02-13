@@ -40,11 +40,11 @@ package body BewegungLadenEntladen is
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                      BewegungspunkteExtern    => EinheitenKonstanten.LeerEinheit.Bewegungspunkte,
                                                      RechnenSetzenExtern      => 0);
-            SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                              KoordinatenExtern        => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => TransporterExtern));
+            SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
+                                                 KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern));
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                        TransporterExtern        => TransporterExtern.Platznummer);
-            GlobaleVariablen.CursorImSpiel (TransporterExtern.Rasse).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
+            GlobaleVariablen.CursorImSpiel (TransporterExtern.Rasse).Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
       end case;
       
    end TransporterBeladen;
@@ -116,7 +116,7 @@ package body BewegungLadenEntladen is
    
    procedure TransporterladungVerschieben
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       TransporterUmladenSchleife:
@@ -132,9 +132,9 @@ package body BewegungLadenEntladen is
                null;
                      
             when others =>
-               SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                 PlatzExtern              => TransporterUmladenSchleifenwert)),
-                                                 KoordinatenExtern        => NeuePositionExtern);
+               SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                    PlatzExtern              => TransporterUmladenSchleifenwert)),
+                                                    KoordinatenExtern        => NeueKoordinatenExtern);
          end case;
                
       end loop TransporterUmladenSchleife;
@@ -145,7 +145,7 @@ package body BewegungLadenEntladen is
    
    procedure TransporterStadtEntladen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
             
       BelegterPlatzSchleife:
@@ -159,20 +159,20 @@ package body BewegungLadenEntladen is
          is
             when EinheitenKonstanten.LeerTransportiert =>
                null;
-               
+               -- -----------------
             when others =>
-               SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                 PlatzExtern              => BelegterPlatzSchleifenwert)),
-                                                 KoordinatenExtern        =>
-                                                    UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
-                                                                                                       RasseExtern               => EinheitRasseNummerExtern.Rasse,
-                                                                                                       IDExtern                  =>
-                                                                                                          LeseEinheitenGebaut.ID (EinheitRasseNummerExtern =>
-                                                                                                                                    (EinheitRasseNummerExtern.Rasse,
-                                                                                                                                     LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                                        PlatzExtern              =>
-                                                                                                                                                                           BelegterPlatzSchleifenwert))),
-                                                                                                       NotwendigeFelderExtern    => 1));
+               SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                    PlatzExtern              => BelegterPlatzSchleifenwert)),
+                                                    KoordinatenExtern        =>
+                                                       UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeueKoordinatenExtern,
+                                                                                                          RasseExtern               => EinheitRasseNummerExtern.Rasse,
+                                                                                                          IDExtern                  =>
+                                                                                                             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern =>
+                                                                                                                                       (EinheitRasseNummerExtern.Rasse,
+                                                                                                                                        LeseEinheitenGebaut.Transportiert
+                                                                                                                                          (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                           PlatzExtern              => BelegterPlatzSchleifenwert))),
+                                                                                                          NotwendigeFelderExtern    => 1));
                SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                           PlatzExtern              => BelegterPlatzSchleifenwert)),
                                                           TransporterExtern        => EinheitenKonstanten.LeerWirdTransportiert);

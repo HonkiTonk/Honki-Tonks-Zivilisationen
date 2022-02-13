@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitenKonstanten;
-with KartenDatentypen;
+with KartenKonstanten;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -59,7 +59,7 @@ package body KI is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert))
          is
-            when KartenDatentypen.Leer_Verbesserung =>
+            when KartenKonstanten.LeerVerbesserung =>
                null;
                
             when others =>

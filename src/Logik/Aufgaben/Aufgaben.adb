@@ -4,6 +4,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
+with KartenKonstanten;
 
 with SchreibeKarten;
 with SchreibeEinheitenGebaut;
@@ -156,7 +157,7 @@ package body Aufgaben is
    is begin
       
       AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Grund := LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      Grund := LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case
         BefehlExtern
@@ -206,9 +207,9 @@ package body Aufgaben is
          
          when SystemKonstanten.PlündernKonstante =>
             if
-              LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= KartenDatentypen.Leer_Verbesserung
+              LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= KartenKonstanten.LeerVerbesserungGebiet
               or
-                LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= KartenDatentypen.Leer_Verbesserung
+                LeseKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= KartenKonstanten.LeerVerbesserungWeg
             then
                return VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                              AnlegenTestenExtern      => AnlegenTestenExtern);
@@ -318,9 +319,9 @@ package body Aufgaben is
    is begin
             
       if
-        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Leer_Verbesserung
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenKonstanten.LeerVerbesserungGebiet
         and
-          LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Leer_Verbesserung
+          LeseKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenKonstanten.LeerVerbesserungWeg
       then
          return False;
          
@@ -360,28 +361,28 @@ package body Aufgaben is
    is begin
       
       case
-        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserungGebiet =>
             null;
             
          when others =>
-            SchreibeKarten.VerbesserungGebiet (KoordinatenExtern  => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern => KartenDatentypen.Leer_Verbesserung);
+            SchreibeKarten.VerbesserungGebiet (KoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                               VerbesserungExtern => KartenKonstanten.LeerVerbesserungGebiet);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 10,
                                          RechnenSetzenExtern => True);
       end case;
       
       case
-        LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserungWeg =>
             null;
             
          when others =>
-            SchreibeKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                            WegExtern         => KartenDatentypen.Leer_Verbesserung);
+            SchreibeKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                            WegExtern         => KartenKonstanten.LeerVerbesserungWeg);
             SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                          GeldZugewinnExtern  => 5,
                                          RechnenSetzenExtern => True);
@@ -405,7 +406,7 @@ package body Aufgaben is
         = EinheitStadtDatentypen.EinheitenIDMitNullWert'First
         or
           LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                    KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+                                    KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
             = False
       then
          return False;

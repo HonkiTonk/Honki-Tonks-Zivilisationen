@@ -29,7 +29,7 @@ package body KarteInformationenKonsole is
       
       InformationenWichtigesKonsole.Wichtiges (RasseExtern => RasseExtern);
       InformationenSichtbar (RasseExtern => RasseExtern);
-      Kartenposition (RasseExtern => RasseExtern);
+      KartenKoordinaten (RasseExtern => RasseExtern);
       DebugInformationen (RasseExtern => RasseExtern);
       
    end KarteInformationenKonsole;
@@ -40,14 +40,14 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Sichtbar := LeseKarten.Sichtbar (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                       RasseExtern    => RasseExtern);
+      Sichtbar := LeseKarten.Sichtbar (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
+                                       RasseExtern       => RasseExtern);
       
       case
         Sichtbar
       is
          when True =>
-            EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+            EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
             
             if
               EinheitRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
@@ -67,7 +67,7 @@ package body KarteInformationenKonsole is
         Sichtbar
       is
          when True =>
-            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
 
             if
               StadtRasseNummer.Platznummer = StadtKonstanten.LeerNummer
@@ -127,10 +127,10 @@ package body KarteInformationenKonsole is
    is begin
       
       Hügel (RasseExtern => RasseExtern);
-      Put (Item => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
-      Put_Line (Item => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
-      Put_Line (Item => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
-      Put (Item => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
+      Put (Item => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten)));
+      Put_Line (Item => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten)));
+      Put_Line (Item => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten)));
+      Put (Item => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten)));
       New_Line;
             
       FeldVerteidigung (RasseExtern => RasseExtern);
@@ -149,7 +149,7 @@ package body KarteInformationenKonsole is
    is begin
       
       if
-        LeseKarten.Hügel (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) = True
+        LeseKarten.Hügel (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten) = True
       then
          TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
@@ -164,7 +164,7 @@ package body KarteInformationenKonsole is
          null;
       end if;
          
-      Put (Item => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)));
+      Put (Item => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten)));
       
    end Hügel;
    
@@ -182,7 +182,7 @@ package body KarteInformationenKonsole is
                                                 AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
                                                                                              RasseExtern       => RasseExtern)),
                                          Width => 1);
       
@@ -202,7 +202,7 @@ package body KarteInformationenKonsole is
                                                 AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
                                                                                         RasseExtern       => RasseExtern)),
                                          Width => 1);
       
@@ -222,7 +222,7 @@ package body KarteInformationenKonsole is
                                                 AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
                                                                                         RasseExtern       => RasseExtern)),
                                          Width => 1);
       New_Line;
@@ -243,7 +243,7 @@ package body KarteInformationenKonsole is
                                                 AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldProduktion (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldProduktion (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
                                                                                            RasseExtern       => RasseExtern)),
                                          Width => 1);
       
@@ -263,7 +263,7 @@ package body KarteInformationenKonsole is
                                                 AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
                                                                                      RasseExtern       => RasseExtern)),
                                          Width => 1);
       
@@ -283,7 +283,7 @@ package body KarteInformationenKonsole is
                                                 AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
                                                                                        RasseExtern       => RasseExtern)),
                                          Width => 1);
       New_Line;
@@ -292,7 +292,7 @@ package body KarteInformationenKonsole is
    
    
    
-   procedure Kartenposition
+   procedure KartenKoordinaten
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -305,14 +305,14 @@ package body KarteInformationenKonsole is
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
-      WertOhneTrennzeichen := ZahlAlsStringEbeneVorhanden (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse);
-      YAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse);
-      XAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse);
+      WertOhneTrennzeichen := ZahlAlsStringEbeneVorhanden (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse);
+      YAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.YAchse);
+      XAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.XAchse);
       
       Put_Line (Item => To_Wide_Wide_String (Source => WertOhneTrennzeichen) & ", " & To_Wide_Wide_String (Source => YAchsenWert) & ", " & To_Wide_Wide_String (Source => XAchsenWert));
       New_Line;
       
-   end Kartenposition;
+   end KartenKoordinaten;
    
    
    

@@ -18,7 +18,7 @@ package EinheitenKonstanten is
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
 
    LeerID : constant EinheitStadtDatentypen.EinheitenIDMitNullWert := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
-   LeerPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
+   LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    LeerHeimatstadt : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerLebenspunkte : constant EinheitStadtDatentypen.Lebenspunkte := EinheitStadtDatentypen.Lebenspunkte'First;
    LeerBewegungspunkte : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := EinheitStadtDatentypen.VorhandeneBewegungspunkte'First;
@@ -33,7 +33,7 @@ package EinheitenKonstanten is
    
    LeerEinheit : constant EinheitStadtRecords.EinheitenGebautRecord := (
                                                                         ID                           => LeerID,
-                                                                        Position                     => LeerPosition,
+                                                                        Koordinaten                  => LeerKoordinaten,
                                                                         Heimatstadt                  => LeerHeimatstadt,
                                                                         Lebenspunkte                 => LeerLebenspunkte,
                                                                         Bewegungspunkte              => LeerBewegungspunkte,
@@ -43,9 +43,9 @@ package EinheitenKonstanten is
                                                                         BeschäftigungNachfolger      => LeerBeschäftigung,
                                                                         Beschäftigungszeit           => LeerBeschäftigungszeit,
                                                                         BeschäftigungszeitNachfolger => LeerBeschäftigungszeit,
-                                                                        KIZielKoordinaten            => LeerPosition,
+                                                                        KIZielKoordinaten            => LeerKoordinaten,
                                                                         KIBeschäftigt                => LeerKIBeschäftigt,
-                                                                        KIBewegungPlan               => (others => LeerPosition),
+                                                                        KIBewegungPlan               => (others => LeerKoordinaten),
                                                                         Transportiert                => (others => LeerTransportiert),
                                                                         WirdTransportiert            => LeerWirdTransportiert,
                                                                         Meldungen                    => (others => LeerMeldung)

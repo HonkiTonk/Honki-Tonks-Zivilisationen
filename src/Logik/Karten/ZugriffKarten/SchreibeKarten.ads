@@ -5,6 +5,7 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with SystemKonstanten;
+with KartenKonstanten;
 
 with Karten;
 
@@ -19,7 +20,7 @@ package SchreibeKarten is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GrundExtern /= KartenDatentypen.Leer_Grund);
+            GrundExtern /= KartenKonstanten.LeerGrund);
    
    procedure Hügel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -51,7 +52,7 @@ package SchreibeKarten is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (FlussExtern = KartenDatentypen.Leer_Grund
+            (FlussExtern = KartenKonstanten.LeerGrund
              or
                FlussExtern in KartenDatentypen.Karten_Fluss_Enum));
 
@@ -64,7 +65,7 @@ package SchreibeKarten is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (WegExtern = KartenDatentypen.Leer_Verbesserung
+            (WegExtern = KartenKonstanten.LeerVerbesserungWeg
              or
                WegExtern in KartenDatentypen.Karten_Weg_Enum));
 

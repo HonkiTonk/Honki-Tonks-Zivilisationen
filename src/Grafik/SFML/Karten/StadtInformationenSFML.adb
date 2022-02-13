@@ -7,6 +7,7 @@ with GlobaleTexte;
 with StadtKonstanten;
 with KartenDatentypen;
 with TextKonstanten;
+with KartenKonstanten;
 
 with LeseStadtGebaut;
 
@@ -79,7 +80,7 @@ package body StadtInformationenSFML is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserung =>
             Fehler.GrafikStopp (FehlermeldungExtern => "StadtInformationenSFML.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
          when KartenDatentypen.Eigene_Hauptstadt =>

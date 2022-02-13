@@ -81,13 +81,13 @@ private
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasse
-     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (YKoordinateLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            XKoordinateLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasseFläche
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -111,11 +111,11 @@ private
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv);
    
    procedure LandmasseGenerieren
-     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv);
+     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv);
    
    procedure AbstandGenerieren
-     (YPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XPositionLandmasseExtern : in KartenDatentypen.KartenfeldPositiv);
+     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv);
 
 end KartenGeneratorStandard;

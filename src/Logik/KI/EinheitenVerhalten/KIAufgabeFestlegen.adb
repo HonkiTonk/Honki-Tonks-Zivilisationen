@@ -14,7 +14,7 @@ with LeseStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseKarten;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with BewegungPassierbarkeitPruefen;
 with StadtBauen;
 with EinheitSuchen;
@@ -109,12 +109,12 @@ package body KIAufgabeFestlegen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenDatentypen.Leer_Verbesserung =>
+            when KartenKonstanten.LeerVerbesserung =>
                null;
                
             when others =>
                EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
+                                                                                KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
          end case;
          
          case
@@ -122,7 +122,7 @@ package body KIAufgabeFestlegen is
          is
             when EinheitenKonstanten.LeerNummer =>
                SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          KoordinatenExtern        => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
+                                                          KoordinatenExtern        => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
                SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        AufgabeExtern            => KIDatentypen.Stadt_Bewachen);
                return;
@@ -180,7 +180,7 @@ package body KIAufgabeFestlegen is
       end case;
       
       KoordinatenFeind := KIStadtSuchen.NähesteFeindlicheStadtSuchen (RasseExtern             => WenAngreifen,
-                                                                       AnfangKoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                                                                       AnfangKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case
         KoordinatenFeind.XAchse
@@ -260,9 +260,9 @@ package body KIAufgabeFestlegen is
                   null;
                   
                else
-                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                              LogikGrafikExtern => True);
+                  KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                 LogikGrafikExtern => True);
                   
                   if
                     KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -270,12 +270,12 @@ package body KIAufgabeFestlegen is
                      null;
                         
                   elsif
-                    LeseKarten.Sichtbar (PositionExtern => KartenWert,
-                                         RasseExtern    => EinheitRasseNummerExtern.Rasse)
+                    LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                         RasseExtern       => EinheitRasseNummerExtern.Rasse)
                     = False
                     and
-                      BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                 NeuePositionExtern       => KartenWert)
+                      BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
+                                                                                 NeueKoordinatenExtern       => KartenWert)
                     = True
                     and
                       KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
@@ -338,8 +338,8 @@ package body KIAufgabeFestlegen is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      PlatzGefunden := KISonstigesSuchen.EigenesFeldSuchen (AktuellePositionExtern   => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                            EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      PlatzGefunden := KISonstigesSuchen.EigenesFeldSuchen (AktuelleKoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                            EinheitRasseNummerExtern  => EinheitRasseNummerExtern);
       
       case
         PlatzGefunden.XAchse
@@ -409,9 +409,9 @@ package body KIAufgabeFestlegen is
          XAchseSchleife:
          for XAchseSchleifenwert in -Umgebung .. Umgebung loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -419,14 +419,14 @@ package body KIAufgabeFestlegen is
                null;
                
             elsif
-              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                                                         NeuePositionExtern       => KartenWert)
+              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern    => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                                                         NeueKoordinatenExtern       => KartenWert)
               = False
             then
                null;
                
             elsif
-              KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => KartenWert,
+              KIBewegungAllgemein.FeldBetreten (FeldKoordinatenExtern    => KartenWert,
                                                 EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
                 /= KIKonstanten.BewegungNormal
             then

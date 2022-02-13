@@ -9,7 +9,7 @@ with KIKonstanten;
 
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with StadtSuchen;
 
 package body KIMindestBewertungKartenfeldErmitteln is
@@ -29,9 +29,9 @@ package body KIMindestBewertungKartenfeldErmitteln is
             XAchseSchleife:
             for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                               
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                           ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+               KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                              ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                              LogikGrafikExtern => True);
                      
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse

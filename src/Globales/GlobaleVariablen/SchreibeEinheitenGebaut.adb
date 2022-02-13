@@ -19,14 +19,14 @@ package body SchreibeEinheitenGebaut is
    
    
    
-   procedure Position
+   procedure Koordinaten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := KoordinatenExtern;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KoordinatenExtern;
       
-   end Position;
+   end Koordinaten;
    
    
    

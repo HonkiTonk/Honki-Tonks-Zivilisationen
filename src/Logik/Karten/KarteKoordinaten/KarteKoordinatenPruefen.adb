@@ -3,9 +3,9 @@ pragma SPARK_Mode (On);
 with KartePositionNormaleKartenformen;
 with KartePositionAbstrakteKartenformen;
 
-package body KartePositionPruefen is
+package body KarteKoordinatenPruefen is
    
-   function KartenPositionBestimmen
+   function KarteKoordinatenPrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       LogikGrafikExtern : in Boolean)
@@ -74,6 +74,6 @@ package body KartePositionPruefen is
             -- Abstrakte Kartenformen
       end case;
       
-   end KartenPositionBestimmen;
+   end KarteKoordinatenPrüfen;
    
-end KartePositionPruefen;
+end KarteKoordinatenPruefen;

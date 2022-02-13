@@ -25,18 +25,18 @@ package SchreibeStadtGebaut is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante);
    
-   procedure Position
+   procedure Koordinaten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
           and
-            PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure EinwohnerArbeiter
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -177,7 +177,8 @@ package SchreibeStadtGebaut is
    
    procedure UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YPositionExtern, XPositionExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      YKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      XKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
       BelegenEntfernenExtern : in Boolean)
      with
        Pre =>

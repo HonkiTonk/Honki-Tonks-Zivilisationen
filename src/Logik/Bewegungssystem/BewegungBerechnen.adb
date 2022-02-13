@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitenKonstanten;
+with KartenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -17,7 +18,7 @@ package body BewegungBerechnen is
 
    procedure BewegungEinheitenBerechnung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
 
       -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
@@ -30,27 +31,27 @@ package body BewegungBerechnen is
          
       elsif
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                    KoordinatenExtern => NeuePositionExtern)
+                                                    KoordinatenExtern => NeueKoordinatenExtern)
         = EinheitenKonstanten.LeerNummer
       then
          BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             NeuePositionExtern       => NeuePositionExtern);
+                                                             NeueKoordinatenExtern    => NeueKoordinatenExtern);
 
       else
          case
-           BewegungPassierbarkeitPruefen.InStadtEntladbar (TransporterExtern  => EinheitRasseNummerExtern,
-                                                           NeuePositionExtern => NeuePositionExtern)
+           BewegungPassierbarkeitPruefen.InStadtEntladbar (TransporterExtern     => EinheitRasseNummerExtern,
+                                                           NeueKoordinatenExtern => NeueKoordinatenExtern)
          is
             when False =>
                return;
                
             when True =>
                BewegungLadenEntladen.TransporterStadtEntladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                               NeuePositionExtern       => NeuePositionExtern);
+                                                               NeueKoordinatenExtern    => NeueKoordinatenExtern);
          end case;
       end if;
 
-      BewegungspunkteAbzug := AbzugDurchBewegung (NeuePositionExtern       => NeuePositionExtern,
+      BewegungspunkteAbzug := AbzugDurchBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
                                                   EinheitRasseNummerExtern => EinheitRasseNummerExtern);
         
       if
@@ -86,12 +87,12 @@ package body BewegungBerechnen is
             null;
             
          when others =>
-            GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position := NeuePositionExtern;
+            GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Koordinaten := NeueKoordinatenExtern;
       end case;
       
-      SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                        KoordinatenExtern        => NeuePositionExtern);
-      NachBewegung (NeuePositionExtern       => NeuePositionExtern,
+      SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                           KoordinatenExtern        => NeueKoordinatenExtern);
+      NachBewegung (NeueKoordinatenExtern    => NeueKoordinatenExtern,
                     EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end BewegungEinheitenBerechnung;
@@ -99,7 +100,7 @@ package body BewegungBerechnen is
    
    
    procedure NachBewegung
-     (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
@@ -117,8 +118,8 @@ package body BewegungBerechnen is
             null;
             
          elsif
-           LeseKarten.Sichtbar (PositionExtern => NeuePositionExtern,
-                                RasseExtern    => FremdeSichtbarkeitSchleifenwert)
+           LeseKarten.Sichtbar (KoordinatenExtern => NeueKoordinatenExtern,
+                                RasseExtern       => FremdeSichtbarkeitSchleifenwert)
            = True
          then
             KennenLernen.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -135,16 +136,16 @@ package body BewegungBerechnen is
       
    
    function AbzugDurchBewegung
-     (NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
          return EinheitStadtDatentypen.BewegungFloat
    is begin
       
       Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               NeuePositionExtern       => NeuePositionExtern);
+                                               NeueKoordinatenExtern    => NeueKoordinatenExtern);
 
       case
-        LeseKarten.Grund (PositionExtern => NeuePositionExtern)
+        LeseKarten.Grund (KoordinatenExtern => NeueKoordinatenExtern)
       is
          when KartenDatentypen.Eis | KartenDatentypen.Gebirge | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
             if
@@ -178,7 +179,7 @@ package body BewegungBerechnen is
 
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
          return Bewegungsbonuse_Enum
    is begin
 
@@ -194,7 +195,7 @@ package body BewegungBerechnen is
         = False
       then
          case
-           LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern)
+           LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern)
          is
             when KartenDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
                return Straße_Fluss;
@@ -210,9 +211,9 @@ package body BewegungBerechnen is
          end case;
 
          case
-           LeseKarten.Fluss (PositionExtern => NeuePositionExtern)
+           LeseKarten.Fluss (KoordinatenExtern => NeueKoordinatenExtern)
          is
-            when KartenDatentypen.Leer_Grund =>
+            when KartenKonstanten.LeerGrund =>
                null;
 
             when others =>

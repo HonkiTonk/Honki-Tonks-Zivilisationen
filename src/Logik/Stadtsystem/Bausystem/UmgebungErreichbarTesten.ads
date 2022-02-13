@@ -36,7 +36,7 @@ private
    KartenWertZwei : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function NochErreichbar
-     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.MinimimMaximumID)
       return Boolean;

@@ -28,7 +28,7 @@ package body KIBewegungDurchfuehren is
       loop
          
          if
-           LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          then
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
@@ -72,7 +72,7 @@ package body KIBewegungDurchfuehren is
                                                           PlanschrittExtern        => 1);
       
       case
-        KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => NeuePosition,
+        KIBewegungAllgemein.FeldBetreten (FeldKoordinatenExtern    => NeuePosition,
                                           EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIKonstanten.BewegungNormal =>
@@ -95,7 +95,7 @@ package body KIBewegungDurchfuehren is
    is begin
       
       BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                     NeuePositionExtern       => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                     NeueKoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                      PlanschrittExtern        => 1));
       BewegungPlanVerschiebenSchleife:
       for PositionSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'First + 1 .. EinheitStadtRecords.KIBewegungPlanArray'Last loop

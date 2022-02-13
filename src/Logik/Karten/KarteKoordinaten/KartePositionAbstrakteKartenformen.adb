@@ -21,7 +21,7 @@ package body KartePositionAbstrakteKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             ZwischenPositionEins (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionAbstrakteBerechnungen.PositionBestimmen_Y_X_WechselTugel (KoordinatenExtern => KoordinatenExtern,
@@ -57,7 +57,7 @@ package body KartePositionAbstrakteKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             ZwischenPositionZwei (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionAbstrakteBerechnungen.PositionBestimmen_X_Y_WechselTugel (KoordinatenExtern => KoordinatenExtern,
@@ -93,7 +93,7 @@ package body KartePositionAbstrakteKartenformen is
         EAchse (LogikGrafikExtern, KoordinatenExtern.EAchse)
       is
          when KartenKonstanten.LeerEAchse =>
-            return KartenKonstanten.LeerKartenPosition;
+            return KartenKonstanten.LeerKartenKoordinaten;
 
          when others =>
             ZwischenPositionEins (LogikGrafikExtern, KoordinatenExtern.EAchse) := KartePositionAbstrakteBerechnungen.PositionBestimmen_Y_X_WechselTugel (KoordinatenExtern => KoordinatenExtern,

@@ -7,7 +7,7 @@ with SchreibeKarten;
 with LeseKarten;
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with AufgabenAllgemein;
 
 package body VerbesserungWeg is
@@ -21,7 +21,7 @@ package body VerbesserungWeg is
    is begin
       
       if
-        LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
         KartenDatentypen.Karten_Verbesserung_Weg_Enum'Range
       then
@@ -80,9 +80,9 @@ package body VerbesserungWeg is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -134,9 +134,9 @@ package body VerbesserungWeg is
    is begin
       
       case
-        LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => KartenWert)
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserungWeg =>
             Wegewert := Wegewert - 1_000;
 
          when KartenDatentypen.Straße_Senkrecht =>
@@ -185,9 +185,9 @@ package body VerbesserungWeg is
    is begin
       
       case
-        LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => KartenWert)
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserungWeg =>
             Wegewert := Wegewert - 100;
 
          when KartenDatentypen.Straße_Senkrecht =>
@@ -236,9 +236,9 @@ package body VerbesserungWeg is
    is begin
       
       case
-        LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => KartenWert)
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserungWeg =>
             Wegewert := Wegewert - 10;
                      
          when KartenDatentypen.Straße_Waagrecht =>
@@ -287,9 +287,9 @@ package body VerbesserungWeg is
    is begin
       
       case
-        LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => KartenWert)
       is
-         when KartenDatentypen.Leer_Verbesserung =>
+         when KartenKonstanten.LeerVerbesserungWeg =>
             Wegewert := Wegewert - 1;
                      
          when KartenDatentypen.Straße_Waagrecht =>

@@ -6,7 +6,7 @@ with KartenKonstanten;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with GesamtwerteFeld;
 with Wachstum;
 
@@ -50,7 +50,7 @@ package body StadtProduktion is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
                   is
-                     when KartenDatentypen.Leer_Verbesserung =>
+                     when KartenKonstanten.LeerVerbesserung =>
                         null;
                   
                      when others =>
@@ -119,9 +119,9 @@ package body StadtProduktion is
          XAchseSchleife:
          for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -130,8 +130,8 @@ package body StadtProduktion is
                
             elsif
               LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                       YPositionExtern        => YÄnderungSchleifenwert,
-                                                       XPositionExtern        => XÄnderungSchleifenwert)
+                                                       YKoordinateExtern      => YÄnderungSchleifenwert,
+                                                       XKoordinateExtern      => XÄnderungSchleifenwert)
               = False
             then
                null;

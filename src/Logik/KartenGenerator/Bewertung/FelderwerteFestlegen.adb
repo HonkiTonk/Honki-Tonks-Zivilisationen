@@ -9,7 +9,7 @@ with SystemKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with KartenAllgemein;
 
 package body FelderwerteFestlegen is
@@ -24,9 +24,9 @@ package body FelderwerteFestlegen is
          XAchseÄnderungSchleife:
          for XAchseÄnderungSchleifenwert in LoopRangeMinusDreiZuDrei'Range loop
                   
-            KartenWertEins (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                       ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
-                                                                                                       LogikGrafikExtern => True);
+            KartenWertEins (KoordinatenExtern.EAchse) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                                                          ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
+                                                                                                          LogikGrafikExtern => True);
             
             case
               KartenWertEins (KoordinatenExtern.EAchse).XAchse
@@ -59,9 +59,9 @@ package body FelderwerteFestlegen is
          BewertungXÄnderungSchleife:
          for BewertungXÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWertZwei (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                       ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
-                                                                                                       LogikGrafikExtern => True);
+            KartenWertZwei (KoordinatenExtern.EAchse) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                                                          ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
+                                                                                                          LogikGrafikExtern => True);
 
             case
               KartenWertZwei (KoordinatenExtern.EAchse).XAchse
@@ -123,81 +123,81 @@ package body FelderwerteFestlegen is
             SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
                                       RasseExtern        => RasseSchleifenwert,
                                       BewertungExtern    =>
-                                        LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
-                                                              RasseExtern    => RasseSchleifenwert)
-                                      + KartenAllgemein.GrundBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                                        RasseExtern    => RasseSchleifenwert)
+                                        LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
+                                                              RasseExtern       => RasseSchleifenwert)
+                                      + KartenAllgemein.GrundBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                        RasseExtern       => RasseSchleifenwert)
                                       / KartenDatentypen.BewertungFeld (TeilerExtern)
                                      );
 
             case
-              LeseKarten.Fluss (PositionExtern => KoordinatenUmgebungExtern)
+              LeseKarten.Fluss (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenDatentypen.Leer_Grund =>
+               when KartenKonstanten.LeerGrund =>
                   null;
             
                when others =>
                   SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
                                             RasseExtern        => RasseSchleifenwert,
                                             BewertungExtern    =>
-                                               LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
-                                                                     RasseExtern    => RasseSchleifenwert)
-                                            + KartenAllgemein.FlussBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                                              RasseExtern    => RasseSchleifenwert)
+                                               LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
+                                                                     RasseExtern       => RasseSchleifenwert)
+                                            + KartenAllgemein.FlussBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                              RasseExtern       => RasseSchleifenwert)
                                             / KartenDatentypen.BewertungFeld (TeilerExtern)
                                            );
             end case;
 
             case
-              LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenUmgebungExtern)
+              LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenDatentypen.Leer_Verbesserung =>
+               when KartenKonstanten.LeerVerbesserungWeg =>
                   null;
             
                when others =>
                   SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
                                             RasseExtern        => RasseSchleifenwert,
                                             BewertungExtern    =>
-                                               LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
-                                                                     RasseExtern    => RasseSchleifenwert)
-                                            + KartenAllgemein.WegBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                                            RasseExtern    => RasseSchleifenwert)
+                                               LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
+                                                                     RasseExtern       => RasseSchleifenwert)
+                                            + KartenAllgemein.WegBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                            RasseExtern       => RasseSchleifenwert)
                                             / KartenDatentypen.BewertungFeld (TeilerExtern)
                                            );
             end case;
 
             case
-              LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenUmgebungExtern)
+              LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenDatentypen.Leer_Verbesserung =>
+               when KartenKonstanten.LeerVerbesserungGebiet =>
                   null;
             
                when others =>
                   SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
                                             RasseExtern        => RasseSchleifenwert,
                                             BewertungExtern    =>
-                                               LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
-                                                                     RasseExtern    => RasseSchleifenwert)
-                                            + KartenAllgemein.VerbesserungBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                                                     RasseExtern    => RasseSchleifenwert)
+                                               LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
+                                                                     RasseExtern       => RasseSchleifenwert)
+                                            + KartenAllgemein.VerbesserungBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                                     RasseExtern       => RasseSchleifenwert)
                                             / KartenDatentypen.BewertungFeld (TeilerExtern)
                                            );
             end case;
       
             case
-              LeseKarten.Ressource (PositionExtern => KoordinatenUmgebungExtern)
+              LeseKarten.Ressource (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenDatentypen.Leer_Grund =>
+               when KartenKonstanten.LeerGrund =>
                   null;
             
                when others =>
                   SchreibeKarten.Bewertung (KoordinatenExtern  => KoordinatenFeldExtern,
                                             RasseExtern        => RasseSchleifenwert,
                                             BewertungExtern    =>
-                                               LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
-                                                                     RasseExtern    => RasseSchleifenwert)
-                                            + KartenAllgemein.RessourceBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                                                  RasseExtern    => RasseSchleifenwert)
+                                               LeseKarten.Bewertung (KoordinatenExtern => KoordinatenFeldExtern,
+                                                                     RasseExtern       => RasseSchleifenwert)
+                                            + KartenAllgemein.RessourceBewertung (KoordinatenExtern => KoordinatenUmgebungExtern,
+                                                                                  RasseExtern       => RasseSchleifenwert)
                                             / KartenDatentypen.BewertungFeld (TeilerExtern)
                                            );
             end case;

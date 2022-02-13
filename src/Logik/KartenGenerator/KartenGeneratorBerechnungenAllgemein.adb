@@ -5,7 +5,7 @@ with KartenKonstanten;
 
 with LeseKarten;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 
 package body KartenGeneratorBerechnungenAllgemein is
 
@@ -23,9 +23,9 @@ package body KartenGeneratorBerechnungenAllgemein is
          XAchseSchleife:
          for XAchsenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                        ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                           ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert),
+                                                                           LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -34,7 +34,7 @@ package body KartenGeneratorBerechnungenAllgemein is
                null;
                   
             elsif
-              LeseKarten.Grund (PositionExtern => KartenWert) = GrundExtern
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) = GrundExtern
             then
                AnzahlGleicherGrundBestimmen := AnzahlGleicherGrundBestimmen + 1;
                   

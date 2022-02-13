@@ -3,137 +3,137 @@ pragma SPARK_Mode (On);
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
+with KartenKonstanten;
 
 with Fehler;
 
 package body LeseKarten is
    
-   -- Position auf Koordinaten ändern, damit weniger Probleme mit der Grafikposition auftreten.
    function Grund
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenDatentypen.Karten_Grund_Enum
    is begin
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund;
       
    end Grund;
    
    
    
    function Hügel
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Hügel;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Hügel;
       
    end Hügel;
    
    
    
    function Sichtbar
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Sichtbar (RasseExtern);
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern);
         
    end Sichtbar;
    
    
    
    function Fluss
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       case
-        Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss
       is
-         when KartenDatentypen.Leer_Grund | KartenDatentypen.Karten_Fluss_Enum'Range =>
+         when KartenKonstanten.LeerGrund | KartenDatentypen.Karten_Fluss_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss := KartenDatentypen.Leer_Grund;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := KartenKonstanten.LeerGrund;
       end case;
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
       
    end Fluss;
    
    
    
    function VerbesserungWeg
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenDatentypen.Karten_Verbesserung_Enum
    is begin
       
       case
-        Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg
       is
-         when KartenDatentypen.Leer_Verbesserung | KartenDatentypen.Karten_Weg_Enum'Range =>
+         when KartenKonstanten.LeerVerbesserungWeg | KartenDatentypen.Karten_Weg_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg := KartenDatentypen.Leer_Verbesserung;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := KartenKonstanten.LeerVerbesserungWeg;
       end case;
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg;
       
    end VerbesserungWeg;
    
    
    
    function VerbesserungGebiet
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenDatentypen.Karten_Verbesserung_Enum
    is begin
       
       case
-        Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet
       is
-         when KartenDatentypen.Leer_Verbesserung | KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
+         when KartenKonstanten.LeerVerbesserungGebiet | KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet := KartenDatentypen.Leer_Verbesserung;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := KartenKonstanten.LeerVerbesserungGebiet;
       end case;
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet;
       
    end VerbesserungGebiet;
    
    
    
    function Ressource
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenDatentypen.Karten_Grund_Enum
    is begin
       
       case
-        Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource
       is
-         when KartenDatentypen.Leer_Grund | KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
+         when KartenKonstanten.LeerGrund | KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := KartenDatentypen.Leer_Grund;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := KartenKonstanten.LeerGrund;
       end case;
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;
       
    end Ressource;
    
    
    
    function Bewertung
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.GesamtbewertungFeld
    is begin
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Felderwertung (RasseExtern);
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (RasseExtern);
       
    end Bewertung;
    

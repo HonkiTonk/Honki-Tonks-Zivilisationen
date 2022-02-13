@@ -12,7 +12,7 @@ with Karten;
 package KISonstigesSuchen is
 
    function EigenesFeldSuchen
-     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
@@ -21,9 +21,9 @@ package KISonstigesSuchen is
           and
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            AktuellePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            AktuellePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
 private
    
@@ -34,7 +34,7 @@ private
    Ziel : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function ZielSuchen
-     (AktuellePositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord;
 

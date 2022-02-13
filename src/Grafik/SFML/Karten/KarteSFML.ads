@@ -43,6 +43,7 @@ private
    KartenfeldFluss : KartenDatentypen.Karten_Grund_Enum;
    KartenfeldRessource : KartenDatentypen.Karten_Grund_Enum;
    
+   Stadtfeld : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenDatentypen.Karten_Verbesserung_Enum;
    Verbesserungsfeld : KartenDatentypen.Karten_Verbesserung_Enum;
    
@@ -55,8 +56,6 @@ private
    AktuelleFarbe : Sf.Graphics.Color.sfColor;
    
    Position : Sf.System.Vector2.sfVector2f;
-   SkalierungKartenfeld : Sf.System.Vector2.sfVector2f;
-   GrößeTextur : Sf.System.Vector2.sfVector2f;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWertRahmen : KartenRecords.AchsenKartenfeldPositivRecord;
@@ -85,7 +84,6 @@ private
 
    procedure AnzeigeStadt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
 
    procedure AnzeigeEinheit
@@ -125,11 +123,5 @@ private
    procedure VerbesserungZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
-   
-   
-   
-   function SkalierungTexturenKartenfelderWeltkarteBerechnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
-      return Sf.System.Vector2.sfVector2f;
 
 end KarteSFML;

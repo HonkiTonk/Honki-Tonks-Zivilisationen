@@ -14,21 +14,21 @@ package body ZufallGeneratorenKarten is
    is begin
       
       EAchse := StartPositionEAchse (RasseExtern => RasseExtern);
-
+      
       PositionBestimmenSchleife:
       loop
          
-         StartPunkteYXFestlegen;
+         YXAchsen := StartPunkteYXFestlegen;
          
          if
-           BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                  IDExtern           => 1,
-                                                                  NeuePositionExtern => (EAchse, YAchse, XAchse))
+           BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
+                                                                  IDExtern              => 1,
+                                                                  NeueKoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse))
              = True
            and
-             LeseKarten.Grund (PositionExtern => (EAchse, YAchse, XAchse)) /= KartenDatentypen.Eis 
+             LeseKarten.Grund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartenDatentypen.Eis 
          then
-            return (EAchse, YAchse, XAchse);
+            return (EAchse, YXAchsen.YAchse, YXAchsen.XAchse);
                
          else
             null;
@@ -60,7 +60,8 @@ package body ZufallGeneratorenKarten is
    
    
    
-   procedure StartPunkteYXFestlegen
+   function StartPunkteYXFestlegen
+     return KartenRecords.YXAchsenKartenfeldPositivRecord
    is begin
       
       case
@@ -135,6 +136,8 @@ package body ZufallGeneratorenKarten is
             end loop BenutzerdefinierteAuswahlSchleife;
       end case;
       
+      return (YAchse, XAchse);
+      
    end StartPunkteYXFestlegen;
 
 
@@ -194,7 +197,7 @@ package body ZufallGeneratorenKarten is
             return FlussWert;
                   
          else
-            return KartenDatentypen.Leer_Grund;
+            return KartenKonstanten.LeerGrund;
          end if;
          
       end loop WählenSchleife;
@@ -235,7 +238,7 @@ package body ZufallGeneratorenKarten is
             end if;
       end case;
             
-      return KartenDatentypen.Leer_Grund;
+      return KartenKonstanten.LeerGrund;
       
    end ChaoskarteRessource;
 

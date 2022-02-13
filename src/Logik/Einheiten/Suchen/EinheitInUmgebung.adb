@@ -13,7 +13,7 @@ with LeseKarten;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with KartePositionPruefen;
+with KarteKoordinatenPruefen;
 with EinheitSuchen;
 with DiplomatischerZustand;
 with EinheitenMeldungenSetzen;
@@ -59,9 +59,9 @@ package body EinheitInUmgebung is
                         
             when others =>
                if
-                 EinheitFinden (PositionExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
-                                UmgebungExtern => LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) + 1,
-                                RasseExtern    => RasseExtern)
+                 EinheitFinden (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+                                UmgebungExtern    => LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) + 1,
+                                RasseExtern       => RasseExtern)
                  = True
                then
                   StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
@@ -93,9 +93,9 @@ package body EinheitInUmgebung is
                         
             when others =>
                if
-                 EinheitFinden (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)),
-                                UmgebungExtern => 3,
-                                RasseExtern    => RasseExtern)
+                 EinheitFinden (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)),
+                                UmgebungExtern    => 3,
+                                RasseExtern       => RasseExtern)
                  = True
                then
                   EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
@@ -113,7 +113,7 @@ package body EinheitInUmgebung is
    
    
    function EinheitFinden
-     (PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return Boolean
@@ -124,9 +124,9 @@ package body EinheitInUmgebung is
          XAchseSchleife:
          for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
       
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
-                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                        LogikGrafikExtern => True);
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -134,8 +134,8 @@ package body EinheitInUmgebung is
                null;
                
             elsif
-              LeseKarten.Sichtbar (PositionExtern => KartenWert,
-                                   RasseExtern    => RasseExtern)
+              LeseKarten.Sichtbar (KoordinatenExtern => KartenWert,
+                                   RasseExtern       => RasseExtern)
               = False
             then
                null;

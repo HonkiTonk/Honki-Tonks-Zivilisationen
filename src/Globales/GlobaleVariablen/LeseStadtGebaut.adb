@@ -20,25 +20,25 @@ package body LeseStadtGebaut is
    
    
    
-   function Position
+   function Koordinaten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
         or
-          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position := KartenKonstanten.LeerKartenPosition;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten := KartenKonstanten.LeerKartenKoordinaten;
 
       else
          null;
       end if;
             
-      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position;
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten;
       
-   end Position;
+   end Koordinaten;
    
    
    
@@ -255,11 +255,12 @@ package body LeseStadtGebaut is
    
    function UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YPositionExtern, XPositionExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
+      YKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      XKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
    is begin
       
-      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPositionExtern, XPositionExtern);
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YKoordinateExtern, XKoordinateExtern);
       
    end UmgebungBewirtschaftung;
    

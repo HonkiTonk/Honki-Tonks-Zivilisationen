@@ -63,9 +63,9 @@ package KartenKonstanten is
    LeerYAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
    LeerXAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
 
-   LeerKartenPosition : constant KartenRecords.AchsenKartenfeldPositivRecord := (EAchse => LeerEAchse,
-                                                                                 YAchse => LeerYAchse,
-                                                                                 XAchse => LeerXAchse);
+   LeerKartenKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (EAchse => LeerEAchse,
+                                                                                    YAchse => LeerYAchse,
+                                                                                    XAchse => LeerXAchse);
    
    LeerKartenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
    LeerPassierbarkeit : constant Boolean := False;
@@ -86,6 +86,7 @@ package KartenKonstanten is
    LeerHügel : constant Boolean := False;
    LeerSichtbar : constant Boolean := False;
    LeerFluss : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer_Grund;
+   LeerVerbesserung : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
    LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
    LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
    LeerRessource : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer_Grund;

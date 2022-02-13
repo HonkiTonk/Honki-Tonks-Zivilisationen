@@ -71,7 +71,7 @@ package body StadtBauen is
             
       -- Immer daran denken dass die Stadt bei StadtEintragen auf Leer gesetzt wird und deswegen der Name danach eingetragen werden muss.
       StadtEintragen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                      PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+                      KoordinatenExtern      => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
                                 NameExtern             => StadtName.EingegebenerText);
       EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -99,7 +99,7 @@ package body StadtBauen is
       end case;
       
       if
-        LeseKarten.BelegterGrundLeer (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
+        LeseKarten.BelegterGrundLeer (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
       then
          return True;
          
@@ -129,7 +129,7 @@ package body StadtBauen is
          if
            StadtNummerSchleifenwert = GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
            and
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenDatentypen.Leer_Verbesserung
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenKonstanten.LeerVerbesserung
          then
             case
               GlobaleVariablen.RassenImSpiel (RasseExtern)
@@ -144,7 +144,7 @@ package body StadtBauen is
             end case;
 
          elsif
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenDatentypen.Leer_Verbesserung
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenKonstanten.LeerVerbesserung
          then
             null;
             
@@ -162,14 +162,14 @@ package body StadtBauen is
    
    procedure StadtEintragen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      PositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern,
                               IDExtern               => HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse));
-      SchreibeStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                    PositionExtern         => PositionExtern);
+      SchreibeStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                       KoordinatenExtern      => KoordinatenExtern);
       SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                            UmgebungGrößeExtern    => 1,
                                            ÄndernSetzenExtern     => False);

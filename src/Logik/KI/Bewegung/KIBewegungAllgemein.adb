@@ -15,13 +15,13 @@ with StadtSuchen;
 package body KIBewegungAllgemein is
 
    function FeldBetreten
-     (FeldPositionExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+     (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return KIDatentypen.Bewegung_Enum
    is begin
       
-      BlockierendeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldPositionExtern).Rasse;
-      BlockierendeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => FeldPositionExtern).Rasse;
+      BlockierendeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern).Rasse;
+      BlockierendeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => FeldKoordinatenExtern).Rasse;
       
       if
         BlockierendeEinheit = EinheitenKonstanten.LeerRasse
