@@ -11,7 +11,7 @@ with KartenKonstanten;
 with LeseKarten;
 with LeseStadtGebaut;
 
-with KarteSFML;
+with FarbgebungSFML;
 with BerechnungenKarteSFML;
 with ObjekteZeichnenSFML;
 with Karten;
@@ -20,7 +20,7 @@ with StadtInformationenSFML;
 with GrafikEinstellungenSFML;
 with Fehler;
 with EingeleseneTexturenSFML;
-with SkalierungKartentexturenBerechnenSFML;
+with TexturenSetzenSkalierenSFML;
 with KarteGrafikenZeichnenSFML;
 
 package body KarteStadtSFML is
@@ -28,7 +28,7 @@ package body KarteStadtSFML is
    procedure AnzeigeStadt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
-            
+      
       Stadtumgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       InformationenStadtAufrufen := False;
       YAchsenabstraktion := -Stadtumgebungsgröße;
@@ -113,21 +113,16 @@ package body KarteStadtSFML is
       if
         EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null
       then
-         KarteGrafikenZeichnenSFML.SpriteZeichnen;
-         Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
-                                        texture => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld));
-         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
-                                         position => (0.00, 0.00));
-         Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
-                                      scale  => SkalierungKartentexturenBerechnenSFML.SkalierungTexturenGesamtStadtkarteBerechnen (SpriteAccessExtern => SpriteAccess));
-         
-         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => SpriteAccess);
+         KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                                                   PositionExtern    => (0.00, 0.00),
+                                                   SkalierungExtern  =>
+                                                     TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamteStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                           TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld)));
          
       else
          ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtKarte,
                                                PositionExtern       => (0.00, 0.00),
-                                               FarbeExtern          => KarteSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
+                                               FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
                                                RechteckAccessExtern => RechteckAccess);
       end if;
       
@@ -247,6 +242,10 @@ package body KarteStadtSFML is
             AnzeigeLandschaft (KoordinatenExtern => KarteKoordinatenExtern,
                                PositionExtern    => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y));
             
+            StadtZeichnen (KoordinatenExtern      => KarteKoordinatenExtern,
+                           PositionExtern         => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                           StadtRasseNummerExtern => StadtRasseNummerExtern);
+              
          when False =>
             ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
                                                   PositionExtern       => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
@@ -254,52 +253,6 @@ package body KarteStadtSFML is
                                                   RechteckAccessExtern => RechteckAccess);
             return;
       end case;
-      
-      if
-        LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern) = KarteKoordinatenExtern
-      then
-         -- ---------------- Schöner aufbauen, PositionExtern einbauen (geht nicht so einfach wegen der Zeichnung des Vielecks).
-         if
-           EingeleseneTexturenSFML.VerbesserungenAccess (LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)) /= null
-         then
-            Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
-                                           texture => EingeleseneTexturenSFML.VerbesserungenAccess (LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)));
-            Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
-                                            position => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x,
-                                                         YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y));
-            Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
-                                         scale  => SkalierungKartentexturenBerechnenSFML.SkalierungTexturenKartenfelderStadtkarteBerechnen (SpriteAccessExtern => SpriteAccess));
-            
-            Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                 object       => SpriteAccess);
-            
-         elsif
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern) = KartenDatentypen.Eigene_Hauptstadt
-         then
-            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 5.00,
-                                                 PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.50,
-                                                                         YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y / 3.50),
-                                                 AnzahlEckenExtern   => 5,
-                                                 FarbeExtern         => Sf.Graphics.Color.sfRed,
-                                                 PolygonAccessExtern => PolygonAccess);
-               
-         elsif
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern) = KartenDatentypen.Eigene_Stadt
-         then
-            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 6.00,
-                                                 PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,
-                                                                         YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y / 3.00),
-                                                 AnzahlEckenExtern   => 6,
-                                                 FarbeExtern         => Sf.Graphics.Color.sfRed,
-                                                 PolygonAccessExtern => PolygonAccess);
-               
-         else
-            Fehler.GrafikStopp (FehlermeldungExtern => "KarteStadtSFML.DarstellungUmgebungErweitert - Vorhandene Stadt ist nicht vorhanden.");
-         end if;
-         
-      else
-         null;
-      end if;
       
       case
         LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -331,16 +284,36 @@ package body KarteStadtSFML is
          when False =>
             null;
       end case;
-         
-      
+               
    end DarstellungUmgebungErweitert;
    
    
    
-   -- Die Texturen müssen dann ja auch in der Stadt angezeigt werden.
-   -- Mal Farben für die einzelnen Objekte einbauen.
-   -- Ist sinnvoll, wenn die Texturen nicht geladen werden können sieht man es gleich und das Spiel funktioniert immer noch.
    procedure AnzeigeLandschaft
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      KartenfeldZeichnen (KoordinatenExtern => KoordinatenExtern,
+                          PositionExtern    => PositionExtern);
+      
+      RessourceZeichnen (KoordinatenExtern => KoordinatenExtern,
+                         PositionExtern    => PositionExtern);
+      
+      FlussZeichnen (KoordinatenExtern => KoordinatenExtern,
+                     PositionExtern    => PositionExtern);
+      
+      WegZeichnen (KoordinatenExtern => KoordinatenExtern,
+                   PositionExtern    => PositionExtern);
+      
+      VerbesserungZeichnen (KoordinatenExtern => KoordinatenExtern,
+                            PositionExtern    => PositionExtern);
+      
+   end AnzeigeLandschaft;
+   
+   
+   
+   procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
@@ -350,77 +323,197 @@ package body KarteStadtSFML is
       if
         EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null
       then
-         Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccess,
-                                        texture => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld));
-         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
-                                         position => PositionExtern);
-         Sf.Graphics.Sprite.setScale (sprite => SpriteAccess,
-                                      scale  => SkalierungKartentexturenBerechnenSFML.SkalierungTexturenKartenfelderStadtkarteBerechnen (SpriteAccessExtern => SpriteAccess));
-         
-         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => SpriteAccess);
+         KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                                                   PositionExtern    => PositionExtern,
+                                                   SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                       TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld)));
          
       else
          ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.StadtfelderAbmessung,
                                                PositionExtern       => PositionExtern,
-                                               FarbeExtern          => KarteSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
+                                               FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
                                                RechteckAccessExtern => RechteckAccess);
       end if;
       
-      case
-        LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern)
-      is
-         when KartenKonstanten.LeerGrund =>
-            null;
-            
-         when others =>
-            ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,
-                                               PositionExtern    => PositionExtern,
-                                               FarbeExtern       => Sf.Graphics.Color.sfBlack,
-                                               KreisAccessExtern => KreisAccess);
-      end case;
-      
-      case
-        LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern)
-      is
-         when KartenKonstanten.LeerGrund =>
-            null;
-            
-         when others =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 5.00),
-                                                  PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.StadtfelderAbmessung.y),
-                                                  FarbeExtern          => Sf.Graphics.Color.sfBlue,
-                                                  RechteckAccessExtern => RechteckAccess);
-      end case;
-                  
-      case
-        LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern)
-      is
-         when KartenKonstanten.LeerVerbesserungWeg =>
-            null;
-            
-         when others =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
-                                                  PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.StadtfelderAbmessung.y),
-                                                  FarbeExtern          => Sf.Graphics.Color.sfRed,
-                                                  RechteckAccessExtern => RechteckAccess);
-      end case;
-      
-      case
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern)
-      is
-         when KartenKonstanten.LeerVerbesserungGebiet =>
-            null;
-            
-         when others =>
-            ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
-                                                  PositionExtern       => PositionExtern,
-                                                  FarbeExtern          => Sf.Graphics.Color.sfCyan,
-                                                  RechteckAccessExtern => RechteckAccess);
-      end case;
-      
-   end AnzeigeLandschaft;
+   end KartenfeldZeichnen;
    
+   
+   
+   procedure FlussZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
+      
+      if
+        KartenfeldFluss = KartenKonstanten.LeerGrund
+      then
+         null;
+         
+      elsif
+        EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss) /= null
+      then
+         KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                                                   PositionExtern    => PositionExtern,
+                                                   SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                       TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss)));
+            
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 5.00),
+                                               PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                               FarbeExtern          => Sf.Graphics.Color.sfBlue,
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
+      
+   end FlussZeichnen;
+   
+   
+      
+   procedure RessourceZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
+      
+      if
+        KartenfeldRessource = KartenKonstanten.LeerGrund
+      then
+         null;
+         
+      elsif
+        EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldRessource) /= null
+      then
+         KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                                                   PositionExtern    => PositionExtern,
+                                                   SkalierungExtern  =>
+                                                     TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                    TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldRessource)));
+         
+      else
+         ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,
+                                            PositionExtern    => PositionExtern,
+                                            FarbeExtern       => Sf.Graphics.Color.sfBlack,
+                                            KreisAccessExtern => KreisAccess);
+      end if;
+      
+   end RessourceZeichnen;
+   
+   
+      
+   procedure WegZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Wegfeld := LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern);
+      
+      if
+        Wegfeld = KartenKonstanten.LeerVerbesserungWeg
+      then
+         null;
+         
+      elsif
+        EingeleseneTexturenSFML.VerbesserungenAccess (Wegfeld) /= null
+      then
+         KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                                                   PositionExtern    => PositionExtern,
+                                                   SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                       TextureAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Wegfeld)));
+            
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
+                                               PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.80 * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                               FarbeExtern          => Sf.Graphics.Color.sfRed,
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
+   
+   end WegZeichnen;
+   
+   
+   
+   procedure VerbesserungZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f)
+   is begin
+      
+      Verbesserungsfeld := LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern);
+      
+      if
+        Verbesserungsfeld = KartenKonstanten.LeerVerbesserungGebiet
+      then
+         null;
+         
+      elsif
+        EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld) /= null
+      then
+         KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                                                   PositionExtern    => PositionExtern,
+                                                   SkalierungExtern  =>
+                                                     TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                    TextureAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Verbesserungsfeld)));
+      
+      else
+         ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
+                                               PositionExtern       => PositionExtern,
+                                               FarbeExtern          => Sf.Graphics.Color.sfCyan,
+                                               RechteckAccessExtern => RechteckAccess);
+      end if;
+      
+   end VerbesserungZeichnen;
+   
+   
+   
+   procedure StadtZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+   is begin
+      
+      if
+        LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern) = KoordinatenExtern
+      then
+         Stadtfeld := LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         
+         if
+           EingeleseneTexturenSFML.VerbesserungenAccess (Stadtfeld) /= null
+         then
+            KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                                                      PositionExtern    => PositionExtern,
+                                                      SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                          TextureAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Stadtfeld)));
+            
+         elsif -- -------------------------- Mal was wegen den Positionierungen unternehmen.
+           Stadtfeld = KartenDatentypen.Eigene_Hauptstadt
+         then
+            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 5.00,
+                                                 PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.50,
+                                                                         YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y / 3.50),
+                                                 AnzahlEckenExtern   => 5,
+                                                 FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                                 PolygonAccessExtern => PolygonAccess);
+               
+         elsif
+           Stadtfeld = KartenDatentypen.Eigene_Stadt
+         then
+            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 6.00,
+                                                 PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,
+                                                                         YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y + BerechnungenKarteSFML.StadtfelderAbmessung.y / 3.00),
+                                                 AnzahlEckenExtern   => 6,
+                                                 FarbeExtern         => Sf.Graphics.Color.sfRed,
+                                                 PolygonAccessExtern => PolygonAccess);
+               
+         else
+            Fehler.GrafikStopp (FehlermeldungExtern => "KarteStadtSFML.StadtZeichnen - Vorhandene Stadt ist nicht vorhanden.");
+         end if;
+         
+      else
+         null;
+      end if;
+      
+   end StadtZeichnen;
+      
    
    
    procedure DarstellungGebäude
@@ -459,11 +552,22 @@ package body KarteStadtSFML is
                                            WelchesGebäudeExtern  => GebäudeID)
       is
          when True =>
-            ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
-                                                 PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
-                                                 AnzahlEckenExtern   => 3,
-                                                 FarbeExtern         => Sf.Graphics.Color.sfMagenta,
-                                                 PolygonAccessExtern => PolygonAccess);
+            if
+              EingeleseneTexturenSFML.GebäudeAccess (GebäudeID) /= null
+            then
+               KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
+                                                         -- ---------------
+                                                         PositionExtern    => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                                         SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
+                                                                                                                                             TextureAccessExtern => EingeleseneTexturenSFML.GebäudeAccess (GebäudeID)));
+               
+            else
+               ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
+                                                    PositionExtern      => (XMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.x, YMultiplikator * BerechnungenKarteSFML.StadtfelderAbmessung.y),
+                                                    AnzahlEckenExtern   => 3,
+                                                    FarbeExtern         => Sf.Graphics.Color.sfMagenta,
+                                                    PolygonAccessExtern => PolygonAccess);
+            end if;
             
          when False =>
             null;

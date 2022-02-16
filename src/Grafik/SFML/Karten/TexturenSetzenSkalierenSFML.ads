@@ -3,24 +3,27 @@ pragma SPARK_Mode (On);
 with Sf.Graphics; use Sf.Graphics;
 with Sf.System.Vector2;
 
-package SkalierungKartentexturenBerechnenSFML is
+package TexturenSetzenSkalierenSFML is
 
-   function SkalierungTexturenKartenfelderWeltkarteBerechnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+   function TexturenSetzenSkalierenWeltkarte
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
      with
        Pre =>
          (SpriteAccessExtern /= null);
 
-   function SkalierungTexturenKartenfelderStadtkarteBerechnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+   function TexturenSetzenSkalierenStadtkarte
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
      with
        Pre =>
          (SpriteAccessExtern /= null);
    
-   function SkalierungTexturenGesamtStadtkarteBerechnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+   function TexturenSetzenSkalierenGesamteStadtkarte
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
      with
        Pre =>
@@ -34,4 +37,4 @@ private
    StadtfelderAbmessung : Sf.System.Vector2.sfVector2f;
    StadtAbmessung : Sf.System.Vector2.sfVector2f;
 
-end SkalierungKartentexturenBerechnenSFML;
+end TexturenSetzenSkalierenSFML;

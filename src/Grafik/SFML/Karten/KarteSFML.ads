@@ -22,12 +22,6 @@ package KarteSFML is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
    
-   
-   
-   function FarbeKartenfeldErmitteln
-     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
-      return Sf.Graphics.Color.sfColor;
-   
 private
    
    AktuelleRasse : SystemDatentypen.Rassen_Enum;

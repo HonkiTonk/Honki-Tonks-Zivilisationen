@@ -38,6 +38,12 @@ private
    YAchsenabstraktion : KartenDatentypen.Kartenfeld;
 
    Kartenfeld : KartenDatentypen.Karten_Grund_Enum;
+   KartenfeldRessource : KartenDatentypen.Karten_Grund_Enum;
+   KartenfeldFluss : KartenDatentypen.Karten_Grund_Enum;
+
+   Stadtfeld : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+   Wegfeld : KartenDatentypen.Karten_Verbesserung_Enum;
+   Verbesserungsfeld : KartenDatentypen.Karten_Verbesserung_Enum;
 
    YMultiplikator : Float;
    XMultiplikator : Float;
@@ -82,5 +88,30 @@ private
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
+
+   procedure KartenfeldZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+
+   procedure FlussZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+
+   procedure RessourceZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+
+   procedure WegZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+
+   procedure VerbesserungZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f);
+
+   procedure StadtZeichnen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
 end KarteStadtSFML;

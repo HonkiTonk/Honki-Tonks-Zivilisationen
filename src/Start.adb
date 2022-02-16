@@ -96,8 +96,6 @@ begin
 
    end loop TaskIDsBelegenLassenSchleife;
 
-
-
    SpielLäuftSchleife:
    loop
 

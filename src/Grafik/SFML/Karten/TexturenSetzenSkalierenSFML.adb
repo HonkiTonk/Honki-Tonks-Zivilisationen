@@ -5,12 +5,16 @@ with Sf.Graphics.Sprite;
 with BerechnungenKarteSFML;
 with Fehler;
 
-package body SkalierungKartentexturenBerechnenSFML is
+package body TexturenSetzenSkalierenSFML is
    
-   function SkalierungTexturenKartenfelderWeltkarteBerechnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+   function TexturenSetzenSkalierenWeltkarte
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
    is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccessExtern,
+                                     texture => TextureAccessExtern);
       
       -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden?
       GrößeTextur := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
@@ -47,14 +51,18 @@ package body SkalierungKartentexturenBerechnenSFML is
       
       return SkalierungKartenfeld;
       
-   end SkalierungTexturenKartenfelderWeltkarteBerechnen;
+   end TexturenSetzenSkalierenWeltkarte;
    
    
    
-   function SkalierungTexturenKartenfelderStadtkarteBerechnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+   function TexturenSetzenSkalierenStadtkarte
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
    is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccessExtern,
+                                     texture => TextureAccessExtern);
       
       -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden?
       GrößeTextur := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
@@ -91,14 +99,18 @@ package body SkalierungKartentexturenBerechnenSFML is
       
       return SkalierungKartenfeld;
       
-   end SkalierungTexturenKartenfelderStadtkarteBerechnen;
+   end TexturenSetzenSkalierenStadtkarte;
    
    
    
-   function SkalierungTexturenGesamtStadtkarteBerechnen
-     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr)
+   function TexturenSetzenSkalierenGesamteStadtkarte
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
       return Sf.System.Vector2.sfVector2f
    is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite  => SpriteAccessExtern,
+                                     texture => TextureAccessExtern);
       
       -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden?
       GrößeTextur := (Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getLocalBounds (sprite => SpriteAccessExtern).height);
@@ -135,6 +147,6 @@ package body SkalierungKartentexturenBerechnenSFML is
       
       return SkalierungKartenfeld;
       
-   end SkalierungTexturenGesamtStadtkarteBerechnen;
+   end TexturenSetzenSkalierenGesamteStadtkarte;
 
-end SkalierungKartentexturenBerechnenSFML;
+end TexturenSetzenSkalierenSFML;

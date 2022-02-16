@@ -84,24 +84,24 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.0. => 0.0. (16.02.2022):
+   -- Version 0.01.0000 => 0.0. (16.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.00 => 0.0. (15.02.2022):
+   -- Version 0.00.9991 => 0.01.0000 (15.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Sämtliche Texturen in das Spiel eingebaut.
+   -- Internet Struktur zur Berechnung und Anzeige von Texturen überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.00.9990 => 0.01.00 (14.02.2022):
+   -- Version 0.00.9990 => 0.00.9991 (14.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- gprbuild von 2018-6 auf 2021.0.0.0778b109-5 aktualisiert
    
    
 
