@@ -1,12 +1,15 @@
 pragma SPARK_Mode (On);
 
 with Ada.Task_Identification; use Ada.Task_Identification;
+-- with Ada.Task_Termination; use Ada.Task_Termination;
+-- with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with StartLogik;
 with StartGrafik;
 with StartMusik;
 with StartSound;
+-- with Fehler;
 
 procedure Start
 is
@@ -32,6 +35,9 @@ is
       TasksLaufen (Task_Logik) := True;
       StartLogik.StartLogik;
       TasksLaufen (Task_Logik) := False;
+
+    --  Set_Specific_Handler (T       => TaskID (Task_Logik),
+    --                        Handler => Fehler.A.Test'Access);
 
    end Logik;
 

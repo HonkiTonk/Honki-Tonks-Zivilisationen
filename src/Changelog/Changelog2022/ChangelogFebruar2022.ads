@@ -1,93 +1,92 @@
 package ChangelogFebruar2022 is
 
-   -- Version 0.0. => 0.0. (28.02.2022):
+   -- Version 0.01.0 => 0.01.0 (28.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (27.02.2022):
+   -- Version 0.01.0 => 0.01.0 (27.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (26.02.2022):
+   -- Version 0.01.0 => 0.01.0 (26.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (25.02.2022):
+   -- Version 0.01.0 => 0.01.0 (25.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (24.02.2022):
+   -- Version 0.01.0 => 0.01.0 (24.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (23.02.2022):
+   -- Version 0.01.0 => 0.01.0 (23.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (22.02.2022):
+   -- Version 0.01.0 => 0.01.0 (22.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (21.02.2022):
+   -- Version 0.01.0 => 0.01.0 (21.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (20.02.2022):
+   -- Version 0.01.00 => 0.01.0 (20.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (19.02.2022):
+   -- Version 0.01.0005 => 0.01.00 (19.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (18.02.2022):
+   -- Version 0.01.0000 => 0.01.0005 (18.02.2022):
    
-   -- 
+   -- Codestruktur zur Anzeige der Stadtgrafik verbessert.
+   -- An den Fehlermeldungen bei einem unerwarteten Programmstopp gearbeitet.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (17.02.2022):
+   -- Version 0.01.0000 => 0.01.0000 (17.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.01.0000 => 0.0. (16.02.2022):
+   -- Version 0.01.0000 => 0.01.0000 (16.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
@@ -101,7 +100,7 @@ package ChangelogFebruar2022 is
 
    -- Version 0.00.9990 => 0.00.9991 (14.02.2022):
    
-   -- gprbuild von 2018-6 auf 2021.0.0.0778b109-5 aktualisiert
+   -- gprbuild von 2018-6 auf 2021.0.0.0778b109-5 aktualisiert.
    
    
 

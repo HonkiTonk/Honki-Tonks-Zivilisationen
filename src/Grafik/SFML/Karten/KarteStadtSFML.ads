@@ -50,7 +50,9 @@ private
 
    AktuelleFarbe : Sf.Graphics.Color.sfColor;
 
+   AnfangGrafikPosition : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
    TextPosition : Sf.System.Vector2.sfVector2f;
+   GrafikPosition : Sf.System.Vector2.sfVector2f;
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
@@ -69,20 +71,24 @@ private
    procedure MauszeigerAnzeigen
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
 
    procedure DarstellungGebäude
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
    procedure DarstellungUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
    procedure DarstellungUmgebungErweitert
      (KarteKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
    procedure AnzeigeLandschaft
