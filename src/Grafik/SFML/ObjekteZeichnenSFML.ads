@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+with Sf.Graphics; use Sf.Graphics;
 with Sf;
 with Sf.Graphics.Color;
 with Sf.System.Vector2;
@@ -10,20 +11,37 @@ package ObjekteZeichnenSFML is
      (AbmessungExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       FarbeExtern : in Sf.Graphics.Color.sfColor;
-      RechteckAccessExtern : in Sf.Graphics.sfRectangleShape_Ptr);
+      RechteckAccessExtern : in Sf.Graphics.sfRectangleShape_Ptr)
+     with
+       Pre =>
+         (RechteckAccessExtern /= null
+          and
+            (AbmessungExtern.x /= 0.00
+             or
+               AbmessungExtern.y /= 0.00));
          
-
    procedure KreisZeichnen
      (RadiusExtern : in Float;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       FarbeExtern : in Sf.Graphics.Color.sfColor;
-      KreisAccessExtern : in Sf.Graphics.sfCircleShape_Ptr);
+      KreisAccessExtern : in Sf.Graphics.sfCircleShape_Ptr)
+     with
+       Pre =>
+         (KreisAccessExtern /= null
+          and
+            RadiusExtern /= 0.00);
 
    procedure PolygonZeichnen
      (RadiusExtern : in Float;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       AnzahlEckenExtern : in Sf.sfSize_t;
       FarbeExtern : in Sf.Graphics.Color.sfColor;
-      PolygonAccessExtern : in Sf.Graphics.sfCircleShape_Ptr);
+      PolygonAccessExtern : in Sf.Graphics.sfCircleShape_Ptr)
+     with
+       Pre =>
+         (PolygonAccessExtern /= null
+          and
+            RadiusExtern /= 0.00);
+   -- Hier eventuell noch eine Prüfung für AnzahlEckenExtern einbauen.
 
 end ObjekteZeichnenSFML;

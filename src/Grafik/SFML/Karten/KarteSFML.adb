@@ -175,6 +175,7 @@ package body KarteSFML is
       if
         EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null
       then
+         
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,

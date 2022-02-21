@@ -11,7 +11,9 @@ package TexturenSetzenSkalierenSFML is
       return Sf.System.Vector2.sfVector2f
      with
        Pre =>
-         (SpriteAccessExtern /= null);
+         (SpriteAccessExtern /= null
+          and
+            TextureAccessExtern /= null);
 
    function TexturenSetzenSkalierenStadtkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
@@ -19,7 +21,9 @@ package TexturenSetzenSkalierenSFML is
       return Sf.System.Vector2.sfVector2f
      with
        Pre =>
-         (SpriteAccessExtern /= null);
+         (SpriteAccessExtern /= null
+          and
+            TextureAccessExtern /= null);
    
    function TexturenSetzenSkalierenGesamteStadtkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
@@ -27,7 +31,9 @@ package TexturenSetzenSkalierenSFML is
       return Sf.System.Vector2.sfVector2f
      with
        Pre =>
-         (SpriteAccessExtern /= null);
+         (SpriteAccessExtern /= null
+          and
+            TextureAccessExtern /= null);
    
 private
    

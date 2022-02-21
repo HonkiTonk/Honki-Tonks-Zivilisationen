@@ -1,16 +1,13 @@
 pragma SPARK_Mode (On);
 
-with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RectangleShape;
 with Sf.Graphics.RenderWindow;
 with Sf.Graphics.CircleShape;
 
-with Fehler;
 with GrafikEinstellungenSFML;
 
 package body ObjekteZeichnenSFML is
 
-   -- Für alle eine Accessprüfung auf = null einbauen
    procedure RechteckZeichnen
      (AbmessungExtern : in Sf.System.Vector2.sfVector2f;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
@@ -18,37 +15,15 @@ package body ObjekteZeichnenSFML is
       RechteckAccessExtern : in Sf.Graphics.sfRectangleShape_Ptr)
    is begin
       
-      if
-        AbmessungExtern.y = 0.00
-        or
-          AbmessungExtern.x = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Rechteck ist 0.");
+      Sf.Graphics.RectangleShape.setSize (shape => RechteckAccessExtern,
+                                          size  => AbmessungExtern);
+      Sf.Graphics.RectangleShape.setPosition (shape    => RechteckAccessExtern,
+                                              position => PositionExtern);
+      Sf.Graphics.RectangleShape.setFillColor (shape => RechteckAccessExtern,
+                                               color => FarbeExtern);
          
-         -- Prüfung ob es kleiner als das Fenster ist funktioniert nicht, weil die Textboxen sonst bei langen Texten/kleinen Fenstern aus dem Fenster ragt.
-         -- elsif
-         --   AbmessungExtern.y > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterHöhe)
-         --   or
-         --     AbmessungExtern.x > Float (GrafikEinstellungen.AktuelleFensterEinstellungen.AktuelleFensterBreite)
-         -- then
-         --    Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Rechteck ist größer als das Fenster.");
-         
-      elsif
-        RechteckAccessExtern = null
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.RechteckZeichnen - Access = null");
-         
-      else
-         Sf.Graphics.RectangleShape.setSize (shape => RechteckAccessExtern,
-                                             size  => AbmessungExtern);
-         Sf.Graphics.RectangleShape.setPosition (shape    => RechteckAccessExtern,
-                                                 position => PositionExtern);
-         Sf.Graphics.RectangleShape.setFillColor (shape => RechteckAccessExtern,
-                                                  color => FarbeExtern);
-         
-         Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                      object       => RechteckAccessExtern);
-      end if;
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                   object       => RechteckAccessExtern);
       
    end RechteckZeichnen;
    
@@ -61,27 +36,15 @@ package body ObjekteZeichnenSFML is
       KreisAccessExtern : in Sf.Graphics.sfCircleShape_Ptr)
    is begin
             
-      if
-        RadiusExtern = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.KreisZeichnen - Der Radius ist 0.");
+      Sf.Graphics.CircleShape.setRadius (shape  => KreisAccessExtern,
+                                         radius => RadiusExtern);
+      Sf.Graphics.CircleShape.setPosition (shape    => KreisAccessExtern,
+                                           position => PositionExtern);
+      Sf.Graphics.CircleShape.setFillColor (shape => KreisAccessExtern,
+                                            color => FarbeExtern);
          
-      elsif
-        KreisAccessExtern = null
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.KreisZeichnen - Access = null");
-         
-      else
-         Sf.Graphics.CircleShape.setRadius (shape  => KreisAccessExtern,
-                                            radius => RadiusExtern);
-         Sf.Graphics.CircleShape.setPosition (shape    => KreisAccessExtern,
-                                              position => PositionExtern);
-         Sf.Graphics.CircleShape.setFillColor (shape => KreisAccessExtern,
-                                               color => FarbeExtern);
-         
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                   object       => KreisAccessExtern);
-      end if;
+      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                object       => KreisAccessExtern);
       
    end KreisZeichnen;
    
@@ -95,29 +58,17 @@ package body ObjekteZeichnenSFML is
       PolygonAccessExtern : in Sf.Graphics.sfCircleShape_Ptr)
    is begin
             
-      if
-        RadiusExtern = 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.PolygonZeichnen - Der Radius ist 0.");
+      Sf.Graphics.CircleShape.setRadius (shape  => PolygonAccessExtern,
+                                         radius => RadiusExtern);
+      Sf.Graphics.CircleShape.setPointCount (shape => PolygonAccessExtern,
+                                             count => AnzahlEckenExtern);
+      Sf.Graphics.CircleShape.setPosition (shape    => PolygonAccessExtern,
+                                           position => PositionExtern);
+      Sf.Graphics.CircleShape.setFillColor (shape => PolygonAccessExtern,
+                                            color => FarbeExtern);
          
-      elsif
-        PolygonAccessExtern = null
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "ObjekteZeichnenSFML.PolygonZeichnen - Access = null");
-         
-      else
-         Sf.Graphics.CircleShape.setRadius (shape  => PolygonAccessExtern,
-                                            radius => RadiusExtern);
-         Sf.Graphics.CircleShape.setPointCount (shape => PolygonAccessExtern,
-                                                count => AnzahlEckenExtern);
-         Sf.Graphics.CircleShape.setPosition (shape    => PolygonAccessExtern,
-                                              position => PositionExtern);
-         Sf.Graphics.CircleShape.setFillColor (shape => PolygonAccessExtern,
-                                               color => FarbeExtern);
-         
-         Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                   object       => PolygonAccessExtern);
-      end if;
+      Sf.Graphics.RenderWindow.drawCircleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                object       => PolygonAccessExtern);
       
    end PolygonZeichnen;
 

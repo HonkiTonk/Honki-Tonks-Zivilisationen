@@ -42,31 +42,33 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (22.02.2022):
+   -- Version 0.01.00 => 0.01.0 (22.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (21.02.2022):
+   -- Version 0.01.0020 => 0.01.00 (21.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.00 => 0.01.0 (20.02.2022):
+   -- Version 0.01.0005 => 0.01.0020 (20.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehlermeldung- und Stoppsystem deutlich verbessert, vor allem beim Auftreten eines Standardfehlers von Ada.
+   -- Diverse Fehlerprüfungen in die Contracts ausgelagert.
+   -- Die Kartengrafiken werden jetzt immer und in der richtigen Größe dargestellt, auch wenn die Texturen in unterschiedlichen Größen vorliegen.
+   -- Bessere Flussgrafiken erstellt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.01.0005 => 0.01.00 (19.02.2022):
+   -- Version 0.01.0005 => 0.01.0005 (19.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

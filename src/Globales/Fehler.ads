@@ -1,14 +1,6 @@
 pragma SPARK_Mode (On);
 
--- with Ada.Task_Identification; use Ada.Task_Identification;
--- with Ada.Task_Termination; use Ada.Task_Termination;
--- with Ada.Exceptions; use Ada.Exceptions;
-
 package Fehler is
-   
-  -- protected type A is
-  --    procedure Test (C : Cause_Of_Termination; T : Task_Id; X : Exception_Occurrence);
- --  end A;
    
    procedure LogikStopp
      (FehlermeldungExtern : in Wide_Wide_String)

@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+-- with Ada.Exceptions;
+-- with Ada.Text_IO;
+
 with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;
 
@@ -44,5 +47,5 @@ package body StartLogik is
       Hauptmenue.Hauptmenü;
       
    end StartLogik;
-
+   
 end StartLogik;

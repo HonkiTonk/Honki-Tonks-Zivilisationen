@@ -25,8 +25,6 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerKIKonstante);
 
-
-
    function RasseImSpiel
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return SystemDatentypen.Rückgabe_Werte_Enum;

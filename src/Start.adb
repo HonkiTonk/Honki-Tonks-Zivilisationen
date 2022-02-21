@@ -1,18 +1,18 @@
 pragma SPARK_Mode (On);
 
 with Ada.Task_Identification; use Ada.Task_Identification;
--- with Ada.Task_Termination; use Ada.Task_Termination;
--- with Ada.Exceptions; use Ada.Exceptions;
-with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+with Ada.Exceptions; use Ada.Exceptions;
+with Ada.Text_IO;
 
 with StartLogik;
 with StartGrafik;
 with StartMusik;
 with StartSound;
--- with Fehler;
 
 procedure Start
 is
+
+   UnerwarteterFehler : Boolean := False;
 
    type Tasks_Enum is (Task_Logik, Task_Grafik, Task_Musik, Task_Sound);
 
@@ -36,8 +36,11 @@ is
       StartLogik.StartLogik;
       TasksLaufen (Task_Logik) := False;
 
-    --  Set_Specific_Handler (T       => TaskID (Task_Logik),
-    --                        Handler => Fehler.A.Test'Access);
+   exception
+      when StandardAdaFehler : others =>
+         Ada.Text_IO.Put_Line ("Logiktask wurde abgebrochen.");
+         Ada.Text_IO.Put_Line (Exception_Information (StandardAdaFehler));
+         UnerwarteterFehler := True;
 
    end Logik;
 
@@ -52,6 +55,12 @@ is
       StartGrafik.StartGrafik;
       TasksLaufen (Task_Grafik) := False;
 
+   exception
+      when StandardAdaFehler : others =>
+         Ada.Text_IO.Put_Line ("Grafiktask wurde abgebrochen.");
+         Ada.Text_IO.Put_Line (Exception_Information (StandardAdaFehler));
+         UnerwarteterFehler := True;
+
    end Grafik;
 
 
@@ -65,6 +74,12 @@ is
       StartMusik.StartMusik;
       TasksLaufen (Task_Musik) := False;
 
+   exception
+      when StandardAdaFehler : others =>
+         Ada.Text_IO.Put_Line ("Musiktask wurde abgebrochen.");
+         Ada.Text_IO.Put_Line (Exception_Information (StandardAdaFehler));
+         UnerwarteterFehler := True;
+
    end Musik;
 
 
@@ -77,6 +92,12 @@ is
       TasksLaufen (Task_Sound) := True;
       StartSound.StartSound;
       TasksLaufen (Task_Sound) := False;
+
+   exception
+      when Err : others =>
+         Ada.Text_IO.Put_Line ("Soundtask wurde abgebrochen.");
+         Ada.Text_IO.Put_Line (Exception_Information (Err));
+         UnerwarteterFehler := True;
 
    end Sound;
 
@@ -96,6 +117,11 @@ begin
       then
          exit TaskIDsBelegenLassenSchleife;
 
+      elsif
+        UnerwarteterFehler
+      then
+         exit TaskIDsBelegenLassenSchleife;
+
       else
          delay 0.02;
       end if;
@@ -104,6 +130,20 @@ begin
 
    SpielLäuftSchleife:
    loop
+
+      case
+        UnerwarteterFehler
+      is
+         when True =>
+            Abort_Task (T => TaskID (Task_Logik));
+            Abort_Task (T => TaskID (Task_Grafik));
+            Abort_Task (T => TaskID (Task_Musik));
+            Abort_Task (T => TaskID (Task_Sound));
+            exit SpielLäuftSchleife;
+
+         when False =>
+            null;
+      end case;
 
       if
         TasksLaufen (Task_Logik) = False
@@ -121,44 +161,28 @@ begin
         and
           TasksLaufen (Task_Logik) = True
       then
-         Abort_Task (T => TaskID (Task_Grafik));
-         Abort_Task (T => TaskID (Task_Musik));
-         Abort_Task (T => TaskID (Task_Sound));
-         Put_Line (Item => "Logiktask wurde abgebrochen.");
-         exit SpielLäuftSchleife;
+         UnerwarteterFehler := True;
 
       elsif
         Is_Terminated (T => TaskID (Task_Grafik)) = True
         and
           TasksLaufen (Task_Grafik) = True
       then
-         Abort_Task (T => TaskID (Task_Logik));
-         Abort_Task (T => TaskID (Task_Musik));
-         Abort_Task (T => TaskID (Task_Sound));
-         Put_Line (Item => "Grafiktask wurde abgebrochen.");
-         exit SpielLäuftSchleife;
+         UnerwarteterFehler := True;
 
       elsif
         Is_Terminated (T => TaskID (Task_Musik)) = True
         and
           TasksLaufen (Task_Musik) = True
       then
-         Abort_Task (T => TaskID (Task_Logik));
-         Abort_Task (T => TaskID (Task_Grafik));
-         Abort_Task (T => TaskID (Task_Sound));
-         Put_Line (Item => "Musiktask wurde abgebrochen.");
-         exit SpielLäuftSchleife;
+         UnerwarteterFehler := True;
 
       elsif
         Is_Terminated (T => TaskID (Task_Sound)) = True
         and
           TasksLaufen (Task_Sound) = True
       then
-         Abort_Task (T => TaskID (Task_Logik));
-         Abort_Task (T => TaskID (Task_Grafik));
-         Abort_Task (T => TaskID (Task_Musik));
-         Put_Line (Item => "Soundtask wurde abgebrochen.");
-         exit SpielLäuftSchleife;
+         UnerwarteterFehler := True;
 
       else
          delay 0.20;
