@@ -1,12 +1,9 @@
 pragma SPARK_Mode (On);
 
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-
 with Sf;
 with Sf.Graphics.Sprite;
 
 with BerechnungenKarteSFML;
-with Fehler;
 
 package body TexturenSetzenSkalierenSFML is
    
@@ -20,23 +17,12 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden? -----------------------
+      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
       KartenfelderAbmessung := BerechnungenKarteSFML.KartenfelderAbmessung;
       
       SkalierungKartenfeld.x := KartenfelderAbmessung.x / GrößeTextur.x;
       SkalierungKartenfeld.y := KartenfelderAbmessung.y / GrößeTextur.y;
-      
-      if
-        SkalierungKartenfeld.x <= 0.00
-        or
-          SkalierungKartenfeld.y <= 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "SkalierungKartentexturenBerechnenSFML.SkalierungTexturenKartenfelderWeltkarteBerechnen - Skalierungsfaktor wurde auf <= 0.00 gesetzt.");
-         
-      else
-         null;
-      end if;
       
       return SkalierungKartenfeld;
       
@@ -54,23 +40,12 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden? -----------------------
+      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
       StadtfelderAbmessung := BerechnungenKarteSFML.StadtfelderAbmessung;
       
       SkalierungKartenfeld.x := StadtfelderAbmessung.x / GrößeTextur.x;
       SkalierungKartenfeld.y := StadtfelderAbmessung.y / GrößeTextur.y;
-            
-      if
-        SkalierungKartenfeld.x <= 0.00
-        or
-          SkalierungKartenfeld.y <= 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "SkalierungKartentexturenBerechnenSFML.SkalierungTexturenKartenfelderStadtkarteBerechnen - Skalierungsfaktor wurde auf <= 0.00 gesetzt.");
-         
-      else
-         null;
-      end if;
       
       return SkalierungKartenfeld;
       
@@ -88,23 +63,12 @@ package body TexturenSetzenSkalierenSFML is
                                      texture   => TextureAccessExtern,
                                      resetRect => Sf.sfTrue);
       
-      -- Es wird geprüft ob der Access /= null ist, aber nicht ob die Texturebreite/höhe = 0, sollte das geprüft werden? -------------------------
+      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
       GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
       StadtAbmessung := BerechnungenKarteSFML.StadtKarte;
       
       SkalierungKartenfeld.x := StadtAbmessung.x / GrößeTextur.x;
       SkalierungKartenfeld.y := StadtAbmessung.y / GrößeTextur.y;
-      
-      if
-        SkalierungKartenfeld.x <= 0.00
-        or
-          SkalierungKartenfeld.y <= 0.00
-      then
-         Fehler.GrafikStopp (FehlermeldungExtern => "TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamteStadtkarte - Skalierungsfaktor wurde auf <= 0.00 gesetzt.");
-         
-      else
-         null;
-      end if;
       
       return SkalierungKartenfeld;
       

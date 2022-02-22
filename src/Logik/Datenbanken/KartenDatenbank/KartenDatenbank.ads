@@ -476,7 +476,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Fluss_Einzeln =>
+      KartenDatentypen.See =>
         (KartenGrafik   => '▪',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -610,7 +610,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdischer_Fluss_Einzeln =>
+      KartenDatentypen.Unterirdischer_See =>
         (KartenGrafik   => '▪',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -742,7 +742,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavafluss_Einzeln =>
+      KartenDatentypen.Lavasee =>
         (KartenGrafik   => '▪',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),

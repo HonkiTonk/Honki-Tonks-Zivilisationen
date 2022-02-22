@@ -13,7 +13,11 @@ package TexturenSetzenSkalierenSFML is
        Pre =>
          (SpriteAccessExtern /= null
           and
-            TextureAccessExtern /= null);
+            TextureAccessExtern /= null),
+         Post =>
+           (TexturenSetzenSkalierenWeltkarte'Result.x >= 0.00
+            and
+              TexturenSetzenSkalierenWeltkarte'Result.y >= 0.00);
 
    function TexturenSetzenSkalierenStadtkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
@@ -23,7 +27,11 @@ package TexturenSetzenSkalierenSFML is
        Pre =>
          (SpriteAccessExtern /= null
           and
-            TextureAccessExtern /= null);
+            TextureAccessExtern /= null),
+         Post =>
+           (TexturenSetzenSkalierenStadtkarte'Result.x >= 0.00
+            and
+              TexturenSetzenSkalierenStadtkarte'Result.y >= 0.00);
    
    function TexturenSetzenSkalierenGesamteStadtkarte
      (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
@@ -33,7 +41,11 @@ package TexturenSetzenSkalierenSFML is
        Pre =>
          (SpriteAccessExtern /= null
           and
-            TextureAccessExtern /= null);
+            TextureAccessExtern /= null),
+         Post =>
+           (TexturenSetzenSkalierenGesamteStadtkarte'Result.x >= 0.00
+            and
+              TexturenSetzenSkalierenGesamteStadtkarte'Result.y >= 0.00);
    
 private
    
