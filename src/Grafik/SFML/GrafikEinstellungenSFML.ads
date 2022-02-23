@@ -64,7 +64,7 @@ private
                                                                          );
    
    -- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht.
-   RassenFarbenStandard : constant RassenFarbenArray := (
+   RassenFarbenStandard : constant RassenFarbenArray := [
                                                          SystemKonstanten.MenschenKonstante        => (255, 230, 200, 100),
                                                          SystemKonstanten.KasrodiahKonstante       => (255, 100, 40, 100),
                                                          SystemKonstanten.LasupinKonstante         => (65, 145, 140, 100),
@@ -83,6 +83,6 @@ private
                                                          SystemKonstanten.SenelariKonstante        => (0, 210, 0, 100),
                                                          SystemKonstanten.Aspari2Konstante         => (90, 90, 90, 100),
                                                          SystemKonstanten.EkropaKonstante          => (255, 30, 30, 100)
-                                                        );
+                                                        ];
    
 end GrafikEinstellungenSFML;

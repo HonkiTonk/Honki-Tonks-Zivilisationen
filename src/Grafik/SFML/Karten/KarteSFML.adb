@@ -385,13 +385,13 @@ package body KarteSFML is
          null;
          
       elsif
-        EingeleseneTexturenSFML.EinheitenAccess (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer)) /= null
+        EingeleseneTexturenSFML.EinheitenAccess (1) /= null -- ---------------- (Integer (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer))) /= null -- *
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte
                                                      (SpriteAccessExtern  => SpriteAccess,
-                                                      TextureAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer))));
+                                                      TextureAccessExtern => EingeleseneTexturenSFML.EinheitenAccess (1))); -- *
          
          
       elsif

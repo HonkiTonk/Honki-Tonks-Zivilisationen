@@ -35,17 +35,20 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.01.00 => 0.01.00 (23.02.2022):
+   -- Version 0.01.0040 => 0.01.00 (23.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0030 => 0.01.00 (22.02.2022):
+   -- Version 0.01.0030 => 0.01.0040 (22.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Von Debian GNAT 11.2 auf Debian GNAT 12-20220222-1 gewechselt.
+   -- Warnmeldungen wegen dem Verwenden von () anstelle von [] in Arrays vorübergehend deaktiviert.
+   -- Einlesen der Texturen überarbeitet und für Hintergründe, Einheiten und Gebäude eingebaut.
+   -- Angefangen bessere Texturen für Verbesserungen, Einheiten, Hintergründe und Gebäude zu erstellen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

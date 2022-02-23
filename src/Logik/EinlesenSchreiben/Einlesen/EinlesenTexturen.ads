@@ -17,7 +17,7 @@ private
 
    DateiTextEinlesen : File_Type;
 
-   type HintergrundEinlesenArray is array (EingeleseneTexturenSFML.HintergrundArray'Range) of Unbounded_Wide_Wide_String;
+   type HintergrundEinlesenArray is array (EingeleseneTexturenSFML.HintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
    HintergrundEinlesen : HintergrundEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
 
    type KartenfelderEinlesenArray is array (EingeleseneTexturenSFML.KartenfelderAccessArray'Range) of Unbounded_Wide_Wide_String;
@@ -37,12 +37,5 @@ private
    procedure EinlesenVerbesserungen;
    procedure EinlesenEinheiten;
    procedure EinlesenGebäude;
-
-
-
-   function VorzeitigesZeilenende
-     (AktuelleDateiExtern : in File_Type;
-      AktuelleZeileExtern : in Positive)
-      return Boolean;
 
 end EinlesenTexturen;
