@@ -5,6 +5,7 @@ with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with KartenVerbesserungKonstanten;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -109,7 +110,7 @@ package body KIAufgabeFestlegen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenKonstanten.LeerVerbesserung =>
+            when KartenVerbesserungKonstanten.LeerVerbesserung =>
                null;
                
             when others =>

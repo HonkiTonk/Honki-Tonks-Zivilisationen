@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitenKonstanten;
-with KartenKonstanten;
+with KartenGrundKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -213,7 +213,7 @@ package body BewegungBerechnen is
          case
            LeseKarten.Fluss (KoordinatenExtern => NeueKoordinatenExtern)
          is
-            when KartenKonstanten.LeerGrund =>
+            when KartenGrundKonstanten.LeerGrund =>
                null;
 
             when others =>

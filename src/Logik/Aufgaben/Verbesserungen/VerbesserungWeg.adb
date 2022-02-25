@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenKonstanten;
+with KartenVerbesserungKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeKarten;
@@ -136,7 +137,7 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (KoordinatenExtern => KartenWert)
       is
-         when KartenKonstanten.LeerVerbesserungWeg =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
             Wegewert := Wegewert - 1_000;
 
          when KartenDatentypen.Straße_Senkrecht =>
@@ -187,7 +188,7 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (KoordinatenExtern => KartenWert)
       is
-         when KartenKonstanten.LeerVerbesserungWeg =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
             Wegewert := Wegewert - 100;
 
          when KartenDatentypen.Straße_Senkrecht =>
@@ -238,7 +239,7 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (KoordinatenExtern => KartenWert)
       is
-         when KartenKonstanten.LeerVerbesserungWeg =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
             Wegewert := Wegewert - 10;
                      
          when KartenDatentypen.Straße_Waagrecht =>
@@ -289,7 +290,7 @@ package body VerbesserungWeg is
       case
         LeseKarten.VerbesserungWeg (KoordinatenExtern => KartenWert)
       is
-         when KartenKonstanten.LeerVerbesserungWeg =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
             Wegewert := Wegewert - 1;
                      
          when KartenDatentypen.Straße_Waagrecht =>

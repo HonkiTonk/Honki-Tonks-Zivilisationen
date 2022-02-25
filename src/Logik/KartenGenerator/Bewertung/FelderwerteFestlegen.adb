@@ -5,6 +5,8 @@ with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with SystemKonstanten;
+with KartenGrundKonstanten;
+with KartenVerbesserungKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -133,7 +135,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.Fluss (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenKonstanten.LeerGrund =>
+               when KartenGrundKonstanten.LeerGrund =>
                   null;
             
                when others =>
@@ -151,7 +153,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenKonstanten.LeerVerbesserungWeg =>
+               when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
                   null;
             
                when others =>
@@ -169,7 +171,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenKonstanten.LeerVerbesserungGebiet =>
+               when KartenVerbesserungKonstanten.LeerVerbesserungGebiet =>
                   null;
             
                when others =>
@@ -187,7 +189,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.Ressource (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenKonstanten.LeerGrund =>
+               when KartenGrundKonstanten.LeerGrund =>
                   null;
             
                when others =>

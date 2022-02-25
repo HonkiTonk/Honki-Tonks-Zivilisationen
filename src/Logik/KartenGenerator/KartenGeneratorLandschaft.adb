@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with KartenGrundKonstanten;
+
 with SchreibeKarten;
 with LeseKarten;
 
@@ -12,7 +14,7 @@ package body KartenGeneratorLandschaft is
    procedure GenerierungLandschaft
    is begin
 
-      Karten.GeneratorKarte := (others => (others => KartenKonstanten.LeerGrund));
+      Karten.GeneratorKarte := (others => (others => KartenGrundKonstanten.LeerGrund));
       Karten.GeneratorGrund := (others => (others => False));
       
       AbstandEisschicht;
@@ -192,7 +194,7 @@ package body KartenGeneratorLandschaft is
                null;
                
             elsif
-              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= KartenKonstanten.LeerGrund
+              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= KartenGrundKonstanten.LeerGrund
             then
                null;
                

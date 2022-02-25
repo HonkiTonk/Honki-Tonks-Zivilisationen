@@ -129,7 +129,7 @@ package body StadtBauen is
          if
            StadtNummerSchleifenwert = GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
            and
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenKonstanten.LeerVerbesserung
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungKonstanten.LeerVerbesserung
          then
             case
               GlobaleVariablen.RassenImSpiel (RasseExtern)
@@ -144,7 +144,7 @@ package body StadtBauen is
             end case;
 
          elsif
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenKonstanten.LeerVerbesserung
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungKonstanten.LeerVerbesserung
          then
             null;
             

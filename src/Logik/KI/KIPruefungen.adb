@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with KartenVerbesserungKonstanten;
 
 with KIKonstanten;
 with KIDatentypen;
@@ -33,7 +34,7 @@ package body KIPruefungen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenKonstanten.LeerVerbesserung =>
+            when KartenVerbesserungKonstanten.LeerVerbesserung =>
                null;
                
             when others =>
@@ -124,9 +125,9 @@ package body KIPruefungen is
          return False;
          
       elsif
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern) /= KartenKonstanten.LeerVerbesserungGebiet
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungGebiet
         and
-          LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern) /= KartenKonstanten.LeerVerbesserungWeg
+          LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungWeg
       then
          return False;
          

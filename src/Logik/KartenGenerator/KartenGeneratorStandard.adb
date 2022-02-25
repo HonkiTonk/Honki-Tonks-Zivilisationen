@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with KartenGrundKonstanten;
+
 with SchreibeKarten;
 with LeseKarten;
 
@@ -65,7 +67,7 @@ package body KartenGeneratorStandard is
    is begin
       
       -- Zu beachten, diese Werte sind nur dazu da um belegte Felder zu ermitteln. Nicht später durch die Zuweisungen weiter unten verwirren lassen!
-      Karten.GeneratorKarte := (others => (others => (KartenKonstanten.LeerGrund)));
+      Karten.GeneratorKarte := (others => (others => (KartenGrundKonstanten.LeerGrund)));
       
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
@@ -74,7 +76,7 @@ package body KartenGeneratorStandard is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
             if
-              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) = KartenKonstanten.LeerGrund
+              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) = KartenGrundKonstanten.LeerGrund
             then
                SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => KartenDatentypen.Wasser);
@@ -101,7 +103,7 @@ package body KartenGeneratorStandard is
       case
         Karten.GeneratorKarte (YAchseExtern, XAchseExtern)
       is
-         when KartenKonstanten.LeerGrund =>
+         when KartenGrundKonstanten.LeerGrund =>
             if
               YAchseExtern <= Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisschild (Karten.Kartengröße)
               or
@@ -289,7 +291,7 @@ package body KartenGeneratorStandard is
       if
         BeliebigerLandwert in WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Fläche_Frei).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Fläche_Frei).Endwert
         and
-          Karten.GeneratorKarte (YAchseExtern, XAchseExtern) = KartenKonstanten.LeerGrund
+          Karten.GeneratorKarte (YAchseExtern, XAchseExtern) = KartenGrundKonstanten.LeerGrund
       then
          SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                GrundExtern       => KartenDatentypen.Flachland);

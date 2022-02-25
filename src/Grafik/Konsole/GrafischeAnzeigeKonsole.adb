@@ -4,7 +4,8 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
-with KartenKonstanten;
+with KartenVerbesserungKonstanten;
+with KartenGrundKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -36,9 +37,9 @@ package body GrafischeAnzeigeKonsole is
               KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten
             then
                FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
-                                         VerbesserungExtern       => KartenKonstanten.LeerVerbesserung,
-                                         RessourceExtern          => KartenKonstanten.LeerGrund,
-                                         GrundExtern              => KartenKonstanten.LeerGrund,
+                                         VerbesserungExtern       => KartenVerbesserungKonstanten.LeerVerbesserung,
+                                         RessourceExtern          => KartenGrundKonstanten.LeerGrund,
+                                         GrundExtern              => KartenGrundKonstanten.LeerGrund,
                                          CursorExtern             => True,
                                          EigeneRasseExtern        => RasseExtern,
                                          RasseExtern              => EinheitenKonstanten.LeerRasse);
@@ -119,8 +120,8 @@ package body GrafischeAnzeigeKonsole is
           InDerStadtExtern = False
       then
          FarbgebungKonsole.Farben (EinheitIDExtern          => 0,
-                                   VerbesserungExtern       => KartenKonstanten.LeerVerbesserung,
-                                   RessourceExtern          => KartenKonstanten.LeerGrund,
+                                   VerbesserungExtern       => KartenVerbesserungKonstanten.LeerVerbesserung,
+                                   RessourceExtern          => KartenGrundKonstanten.LeerGrund,
                                    GrundExtern              => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern             => True,
                                    EigeneRasseExtern        => RasseExtern,
@@ -153,8 +154,8 @@ package body GrafischeAnzeigeKonsole is
       then
          FarbgebungKonsole.Farben (EinheitIDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitStadtRasseNummer.Rasse,
                                                                                                               LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer))),
-                                   VerbesserungExtern => KartenKonstanten.LeerVerbesserung,
-                                   RessourceExtern    => KartenKonstanten.LeerGrund,
+                                   VerbesserungExtern => KartenVerbesserungKonstanten.LeerVerbesserung,
+                                   RessourceExtern    => KartenGrundKonstanten.LeerGrund,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
@@ -163,8 +164,8 @@ package body GrafischeAnzeigeKonsole is
             
       else
          FarbgebungKonsole.Farben (EinheitIDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer),
-                                   VerbesserungExtern => KartenKonstanten.LeerVerbesserung,
-                                   RessourceExtern    => KartenKonstanten.LeerGrund,
+                                   VerbesserungExtern => KartenVerbesserungKonstanten.LeerVerbesserung,
+                                   RessourceExtern    => KartenGrundKonstanten.LeerGrund,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
@@ -192,7 +193,7 @@ package body GrafischeAnzeigeKonsole is
       else
          FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern       => LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer),
-                                   RessourceExtern          => KartenKonstanten.LeerGrund,
+                                   RessourceExtern          => KartenGrundKonstanten.LeerGrund,
                                    GrundExtern              => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern             => False,
                                    EigeneRasseExtern        => RasseExtern,
@@ -210,32 +211,32 @@ package body GrafischeAnzeigeKonsole is
    is begin
       
       if
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern) /= KartenKonstanten.LeerVerbesserungGebiet
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungGebiet
       then
          FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern       => LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern),
-                                   RessourceExtern          => KartenKonstanten.LeerGrund,
+                                   RessourceExtern          => KartenGrundKonstanten.LeerGrund,
                                    GrundExtern              => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern             => False,
                                    EigeneRasseExtern        => RasseExtern,
                                    RasseExtern              => EinheitenKonstanten.LeerRasse);
            
       elsif
-        LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern) /= KartenKonstanten.LeerVerbesserungWeg
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungWeg
       then
          FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern       => LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern),
-                                   RessourceExtern          => KartenKonstanten.LeerGrund,
+                                   RessourceExtern          => KartenGrundKonstanten.LeerGrund,
                                    GrundExtern              => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern             => False,
                                    EigeneRasseExtern        => RasseExtern,
                                    RasseExtern              => EinheitenKonstanten.LeerRasse);
             
       elsif
-        LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern) /= KartenKonstanten.LeerGrund
+        LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern) /= KartenGrundKonstanten.LeerGrund
       then
          FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
-                                   VerbesserungExtern       => KartenKonstanten.LeerVerbesserung,
+                                   VerbesserungExtern       => KartenVerbesserungKonstanten.LeerVerbesserung,
                                    RessourceExtern          => LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern),
                                    GrundExtern              => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern             => False,
@@ -243,10 +244,10 @@ package body GrafischeAnzeigeKonsole is
                                    RasseExtern              => EinheitenKonstanten.LeerRasse);
             
       elsif
-        LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern) /= KartenKonstanten.LeerGrund
+        LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern) /= KartenGrundKonstanten.LeerGrund
       then
          FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
-                                   VerbesserungExtern       => KartenKonstanten.LeerVerbesserung,
+                                   VerbesserungExtern       => KartenVerbesserungKonstanten.LeerVerbesserung,
                                    RessourceExtern          => LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern),
                                    GrundExtern              => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern             => False,
@@ -255,8 +256,8 @@ package body GrafischeAnzeigeKonsole is
             
       else
          FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
-                                   VerbesserungExtern       => KartenKonstanten.LeerVerbesserung,
-                                   RessourceExtern          => KartenKonstanten.LeerGrund,
+                                   VerbesserungExtern       => KartenVerbesserungKonstanten.LeerVerbesserung,
+                                   RessourceExtern          => KartenGrundKonstanten.LeerGrund,
                                    GrundExtern              => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern             => False,
                                    EigeneRasseExtern        => RasseExtern,

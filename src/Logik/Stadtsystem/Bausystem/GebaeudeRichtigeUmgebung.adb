@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
+with KartenGrundKonstanten;
 
 with LeseKarten;
 with LeseStadtGebaut;
@@ -21,7 +22,7 @@ package body GebaeudeRichtigeUmgebung is
         LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                  IDExtern    => GebäudeIDExtern)
       is
-         when KartenKonstanten.LeerGrund =>
+         when KartenGrundKonstanten.LeerGrund =>
             return True;
                
          when others =>

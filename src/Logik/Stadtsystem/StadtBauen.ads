@@ -10,7 +10,7 @@ with KartenRecords;
 with EinheitStadtDatentypen;
 with SystemRecords;
 with SystemKonstanten;
-with KartenKonstanten;
+with KartenVerbesserungKonstanten;
 
 package StadtBauen is
 
@@ -73,6 +73,6 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante),
          Post =>
-           (HauptstadtPrüfen'Result /= KartenKonstanten.LeerVerbesserung);
+           (HauptstadtPrüfen'Result /= KartenVerbesserungKonstanten.LeerVerbesserung);
 
 end StadtBauen;

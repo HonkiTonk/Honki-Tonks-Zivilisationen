@@ -11,6 +11,8 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
+with KartenGrundKonstanten;
+with KartenVerbesserungKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -200,7 +202,7 @@ package body KarteSFML is
       KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldFluss = KartenKonstanten.LeerGrund
+        KartenfeldFluss = KartenGrundKonstanten.LeerGrund
       then
          null;
       
@@ -231,7 +233,7 @@ package body KarteSFML is
       KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldRessource = KartenKonstanten.LeerGrund
+        KartenfeldRessource = KartenGrundKonstanten.LeerGrund
       then
          null;
       
@@ -263,7 +265,7 @@ package body KarteSFML is
       Wegfeld := LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Wegfeld = KartenKonstanten.LeerVerbesserungWeg
+        Wegfeld = KartenVerbesserungKonstanten.LeerVerbesserungWeg
       then
          null;
          
@@ -294,7 +296,7 @@ package body KarteSFML is
       Verbesserungsfeld := LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Verbesserungsfeld = KartenKonstanten.LeerVerbesserungGebiet
+        Verbesserungsfeld = KartenVerbesserungKonstanten.LeerVerbesserungGebiet
       then
          null;
          
@@ -363,7 +365,7 @@ package body KarteSFML is
                                                     FarbeExtern         => GrafikEinstellungenSFML.RassenFarben (EinheitStadtRasseNummer.Rasse),
                                                     PolygonAccessExtern => PolygonAccess);
                
-            when KartenKonstanten.LeerVerbesserung =>
+            when KartenVerbesserungKonstanten.LeerVerbesserung =>
                Fehler.GrafikStopp (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene Stadt ist nicht vorhanden.");
          end case;
       end if;

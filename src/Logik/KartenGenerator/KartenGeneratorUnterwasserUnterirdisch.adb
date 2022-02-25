@@ -4,6 +4,7 @@ with Ada.Calendar; use Ada.Calendar;
 
 with KartenKonstanten;
 with SystemDatentypen;
+with KartenGrundKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -28,7 +29,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
             case
               LeseKarten.Grund (KoordinatenExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert))
             is
-               when KartenKonstanten.LeerGrund =>               
+               when KartenGrundKonstanten.LeerGrund =>               
                   GrundErzeugen (YXAchsenExtern => (YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert));
                   
                when others =>
@@ -116,7 +117,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
       case
         LeseKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse))
       is
-         when KartenKonstanten.LeerGrund =>
+         when KartenGrundKonstanten.LeerGrund =>
             SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
                                   GrundExtern       => KartenDatentypen.Unterwasser_Wasser);
             

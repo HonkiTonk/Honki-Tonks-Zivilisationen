@@ -7,38 +7,36 @@ package ChangelogFebruar2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (27.02.2022):
+   -- Version 0.01.00 => 0.01.0 (27.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (26.02.2022):
+   -- Version 0.01.0045 => 0.01.00 (26.02.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (25.02.2022):
+   -- Version 0.01.0040 => 0.01.0045 (25.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.00 => 0.01.0 (24.02.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Konstanten für Kartengrund und Kartenverbesserung angelegt und angefangen einzubauen.
+   -- Kommentare, Contracts und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.01.0040 => 0.01.00 (23.02.2022):
+   -- Version 0.01.0040 => 0.01.0040 (24.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.0040 => 0.01.0040 (23.02.2022):
+   
+   -- null.
    
    
 

@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with KartenKonstanten;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
+with KartenGrundKonstanten;
 
 with DatenbankRecords;
 
@@ -21,7 +22,7 @@ private
    KartenListeStandard : constant KartenListeArray :=
      (
       -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-      KartenKonstanten.LeerGrund => KartenKonstanten.LeerKartenListe,
+      KartenGrundKonstanten.LeerGrund => KartenKonstanten.LeerKartenListe,
                                       
       -- Feld
       -- Normal

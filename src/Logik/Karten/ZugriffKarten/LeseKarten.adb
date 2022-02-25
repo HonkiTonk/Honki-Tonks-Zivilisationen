@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
-with KartenKonstanten;
+with KartenVerbesserungKonstanten;
+with KartenGrundKonstanten;
 
 with Fehler;
 
@@ -51,11 +52,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss
       is
-         when KartenKonstanten.LeerGrund | KartenDatentypen.Karten_Fluss_Enum'Range =>
+         when KartenGrundKonstanten.LeerGrund | KartenDatentypen.Karten_Fluss_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := KartenKonstanten.LeerGrund;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := KartenGrundKonstanten.LeerGrund;
       end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
@@ -72,11 +73,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg
       is
-         when KartenKonstanten.LeerVerbesserungWeg | KartenDatentypen.Karten_Weg_Enum'Range =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungWeg | KartenDatentypen.Karten_Weg_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := KartenKonstanten.LeerVerbesserungWeg;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := KartenVerbesserungKonstanten.LeerVerbesserungWeg;
       end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg;
@@ -93,11 +94,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet
       is
-         when KartenKonstanten.LeerVerbesserungGebiet | KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungGebiet | KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := KartenKonstanten.LeerVerbesserungGebiet;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := KartenVerbesserungKonstanten.LeerVerbesserungGebiet;
       end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet;
@@ -114,11 +115,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource
       is
-         when KartenKonstanten.LeerGrund | KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
+         when KartenGrundKonstanten.LeerGrund | KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := KartenKonstanten.LeerGrund;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := KartenGrundKonstanten.LeerGrund;
       end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;

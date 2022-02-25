@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with KartenKonstanten;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
+with KartenVerbesserungKonstanten;
 
 with DatenbankRecords;
 
@@ -18,7 +19,7 @@ private
    VerbesserungListeStandard : constant VerbesserungListeArray :=
      (
       -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-      KartenKonstanten.LeerVerbesserung => KartenKonstanten.LeerVerbesserungListe,
+      KartenVerbesserungKonstanten.LeerVerbesserung => KartenKonstanten.LeerVerbesserungListe,
       
       
                                                   

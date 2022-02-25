@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with StadtKonstanten;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
-with KartenKonstanten;
+with KartenGrundKonstanten;
 
 with DatenbankRecords;
 
@@ -21,7 +21,7 @@ package GebaeudeManuky is
          BonusWirtschaft             => (KartenDatentypen.Nahrung => 10,
                                          others                   => 0),
          BonusKampf                  => (others => 10),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Nahrungslager
@@ -33,7 +33,7 @@ package GebaeudeManuky is
          Anforderungen               => 2,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Holzpalisade
@@ -45,7 +45,7 @@ package GebaeudeManuky is
          Anforderungen               => 1,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Schmiede
@@ -57,7 +57,7 @@ package GebaeudeManuky is
          Anforderungen               => 10,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
       
       -- Bibliothek
@@ -69,7 +69,7 @@ package GebaeudeManuky is
          Anforderungen               => 9,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Steinmauer
@@ -81,7 +81,7 @@ package GebaeudeManuky is
          Anforderungen               => 11,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Bücherei
@@ -93,7 +93,7 @@ package GebaeudeManuky is
          Anforderungen               => 21,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Bewässerungssystem
@@ -105,7 +105,7 @@ package GebaeudeManuky is
          Anforderungen               => 16,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Kaserne
@@ -117,7 +117,7 @@ package GebaeudeManuky is
          Anforderungen               => 13,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Wassermühle
@@ -129,7 +129,7 @@ package GebaeudeManuky is
          Anforderungen               => 15,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Windmühle
@@ -141,7 +141,7 @@ package GebaeudeManuky is
          Anforderungen               => 15,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Seehafen
@@ -153,7 +153,7 @@ package GebaeudeManuky is
          Anforderungen               => 14,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Hochofen
@@ -165,7 +165,7 @@ package GebaeudeManuky is
          Anforderungen               => 33,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Universität
@@ -177,7 +177,7 @@ package GebaeudeManuky is
          Anforderungen               => 27,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Burg
@@ -189,7 +189,7 @@ package GebaeudeManuky is
          Anforderungen               => 22,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Schwere Burg
@@ -201,7 +201,7 @@ package GebaeudeManuky is
          Anforderungen               => 25,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Festungen
@@ -213,7 +213,7 @@ package GebaeudeManuky is
          Anforderungen               => 34,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Kohlekraftwerk
@@ -225,7 +225,7 @@ package GebaeudeManuky is
          Anforderungen               => 37,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Fabrik
@@ -237,7 +237,7 @@ package GebaeudeManuky is
          Anforderungen               => 30,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Krankenhaus
@@ -249,7 +249,7 @@ package GebaeudeManuky is
          Anforderungen               => 43,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Flughafen
@@ -261,7 +261,7 @@ package GebaeudeManuky is
          Anforderungen               => 41,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Atomkraftwerk
@@ -273,7 +273,7 @@ package GebaeudeManuky is
          Anforderungen               => 45,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
@@ -285,7 +285,7 @@ package GebaeudeManuky is
          Anforderungen               => 53,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Genklinik
@@ -297,7 +297,7 @@ package GebaeudeManuky is
          Anforderungen               => 56,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- Fusionskraftwerk
@@ -309,7 +309,7 @@ package GebaeudeManuky is
          Anforderungen               => 60,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                              
       -- NAMR Kraftwerk
@@ -321,7 +321,7 @@ package GebaeudeManuky is
          Anforderungen               => 63,
          BonusWirtschaft             => (others => 0),
          BonusKampf                  => (others => 0),
-         UmgebungBenötigt            => KartenKonstanten.LeerGrund,
+         UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
          GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
                                                               
       others => StadtKonstanten.LeerGebäudeListe

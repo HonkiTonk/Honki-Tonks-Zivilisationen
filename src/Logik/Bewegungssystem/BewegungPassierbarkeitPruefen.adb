@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with KartenVerbesserungKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -127,7 +128,7 @@ package body BewegungPassierbarkeitPruefen is
       
       -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
       if
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenKonstanten.LeerVerbesserungGebiet
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungGebiet
         and
           KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
@@ -136,7 +137,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenKonstanten.LeerVerbesserungWeg
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungWeg
         and then
           KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
                                          PassierbarkeitExtern => UmgebungExtern)
@@ -146,7 +147,7 @@ package body BewegungPassierbarkeitPruefen is
          
          -- Warum kommt die Prüfung hier noch einmal?
       elsif
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenKonstanten.LeerVerbesserungGebiet
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungGebiet
         and then
           KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)

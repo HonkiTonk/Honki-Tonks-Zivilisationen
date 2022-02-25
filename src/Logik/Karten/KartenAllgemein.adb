@@ -5,6 +5,7 @@ with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;
 with GlobaleTexte;
 with KartenKonstanten;
+with KartenGrundKonstanten;
 
 with LeseKarten;
 with LeseKartenDatenbank;
@@ -21,7 +22,7 @@ package body KartenAllgemein is
       case
         KartenGrundExtern
       is
-         when KartenKonstanten.LeerGrund =>
+         when KartenGrundKonstanten.LeerGrund =>
             -- Darf nicht als Fehler behandelt werden. Wegen nicht aufgedeckter Felder?
             BeschreibungText := SystemKonstanten.LeerUnboundedString;
             

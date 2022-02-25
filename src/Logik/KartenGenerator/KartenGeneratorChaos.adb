@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten;
+with KartenGrundKonstanten;
 
 with SchreibeKarten;
 
@@ -51,7 +51,7 @@ package body KartenGeneratorChaos is
                case
                  RessourceZufall
                is
-                  when KartenKonstanten.LeerGrund =>
+                  when KartenGrundKonstanten.LeerGrund =>
                      null;
                      
                   when others =>

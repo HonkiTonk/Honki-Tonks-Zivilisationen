@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with KartenGrundKonstanten;
+
 with SchreibeKarten;
 with LeseKarten;
 
@@ -76,7 +78,7 @@ package body KartenGeneratorFluss is
             case
               LeseKarten.Fluss (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartenKonstanten.LeerGrund =>
+               when KartenGrundKonstanten.LeerGrund =>
                   null;
                   
                when others =>
@@ -113,7 +115,7 @@ package body KartenGeneratorFluss is
                null;
                
             elsif
-              LeseKarten.Fluss (KoordinatenExtern => KartenWertTesten (EbeneExtern)) /= KartenKonstanten.LeerGrund
+              LeseKarten.Fluss (KoordinatenExtern => KartenWertTesten (EbeneExtern)) /= KartenGrundKonstanten.LeerGrund
               and
                 BeliebigerFlusswert (EbeneExtern) <= WahrscheinlichkeitFluss (Karten.Kartentemperatur) * 1.25
             then
@@ -202,7 +204,7 @@ package body KartenGeneratorFluss is
    is begin
       
       if
-        LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern)) = KartenKonstanten.LeerGrund
+        LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern)) = KartenGrundKonstanten.LeerGrund
       then
          Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 1_000;
                
@@ -285,7 +287,7 @@ package body KartenGeneratorFluss is
    is begin
       
       if
-        LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern)) = KartenKonstanten.LeerGrund
+        LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern)) = KartenGrundKonstanten.LeerGrund
       then
          Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 100;
                
@@ -368,7 +370,7 @@ package body KartenGeneratorFluss is
    is begin
       
       if
-        LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern)) = KartenKonstanten.LeerGrund
+        LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern)) = KartenGrundKonstanten.LeerGrund
       then
          Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 10;
                
@@ -451,7 +453,7 @@ package body KartenGeneratorFluss is
    is begin
       
       if
-        LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern)) = KartenKonstanten.LeerGrund
+        LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern)) = KartenGrundKonstanten.LeerGrund
       then
          Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 1;
                

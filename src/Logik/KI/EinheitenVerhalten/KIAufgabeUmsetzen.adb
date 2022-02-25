@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenKonstanten;
+with KartenVerbesserungKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -18,7 +18,7 @@ package body KIAufgabeUmsetzen is
       case
         LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenKonstanten.LeerVerbesserungGebiet =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungGebiet =>
             if
               VerbesserungGebiet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
             then
@@ -35,7 +35,7 @@ package body KIAufgabeUmsetzen is
       case
         LeseKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenKonstanten.LeerVerbesserungWeg =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
             return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  BefehlExtern             => SystemKonstanten.StraßeBauenKonstante);
             

@@ -7,6 +7,8 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
 with KartenKonstanten;
+with KartenGrundKonstanten;
+with KartenVerbesserungKonstanten;
 
 with LeseKarten;
 with LeseStadtGebaut;
@@ -356,7 +358,7 @@ package body KarteStadtSFML is
       KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldFluss = KartenKonstanten.LeerGrund
+        KartenfeldFluss = KartenGrundKonstanten.LeerGrund
       then
          null;
          
@@ -387,7 +389,7 @@ package body KarteStadtSFML is
       KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldRessource = KartenKonstanten.LeerGrund
+        KartenfeldRessource = KartenGrundKonstanten.LeerGrund
       then
          null;
          
@@ -419,7 +421,7 @@ package body KarteStadtSFML is
       Wegfeld := LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Wegfeld = KartenKonstanten.LeerVerbesserungWeg
+        Wegfeld = KartenVerbesserungKonstanten.LeerVerbesserungWeg
       then
          null;
          
@@ -450,7 +452,7 @@ package body KarteStadtSFML is
       Verbesserungsfeld := LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Verbesserungsfeld = KartenKonstanten.LeerVerbesserungGebiet
+        Verbesserungsfeld = KartenVerbesserungKonstanten.LeerVerbesserungGebiet
       then
          null;
          

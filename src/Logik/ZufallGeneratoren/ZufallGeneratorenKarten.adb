@@ -1,6 +1,7 @@
 pragma SPARK_Mode (Off);
 
 with KartenKonstanten;
+with KartenGrundKonstanten;
 
 with LeseKarten;
 
@@ -197,7 +198,7 @@ package body ZufallGeneratorenKarten is
             return FlussWert;
                   
          else
-            return KartenKonstanten.LeerGrund;
+            return KartenGrundKonstanten.LeerGrund;
          end if;
          
       end loop WählenSchleife;
@@ -238,7 +239,7 @@ package body ZufallGeneratorenKarten is
             end if;
       end case;
             
-      return KartenKonstanten.LeerGrund;
+      return KartenGrundKonstanten.LeerGrund;
       
    end ChaoskarteRessource;
 

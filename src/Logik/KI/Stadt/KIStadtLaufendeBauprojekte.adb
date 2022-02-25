@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with KartenKonstanten;
+with KartenVerbesserungKonstanten;
 
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
@@ -23,7 +23,7 @@ package body KIStadtLaufendeBauprojekte is
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
            or
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenKonstanten.LeerVerbesserung
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenVerbesserungKonstanten.LeerVerbesserung
          then
             null;
             
@@ -60,7 +60,7 @@ package body KIStadtLaufendeBauprojekte is
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
            or
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenKonstanten.LeerVerbesserung
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenVerbesserungKonstanten.LeerVerbesserung
          then
             null;
                

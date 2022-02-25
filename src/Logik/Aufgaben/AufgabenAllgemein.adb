@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte;
 with EinheitenKonstanten;
-with KartenKonstanten;
+with KartenVerbesserungKonstanten;
 
 with SchreibeEinheitenGebaut;
 
@@ -16,7 +16,7 @@ package body AufgabenAllgemein is
       case
         KartenVerbesserungExtern
       is
-         when KartenKonstanten.LeerVerbesserung =>
+         when KartenVerbesserungKonstanten.LeerVerbesserung =>
             BeschreibungText := SystemKonstanten.LeerUnboundedString;
             
          when others =>

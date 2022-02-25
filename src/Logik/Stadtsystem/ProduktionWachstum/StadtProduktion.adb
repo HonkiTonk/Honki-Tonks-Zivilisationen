@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
+with KartenVerbesserungKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -50,7 +51,7 @@ package body StadtProduktion is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
                   is
-                     when KartenKonstanten.LeerVerbesserung =>
+                     when KartenVerbesserungKonstanten.LeerVerbesserung =>
                         null;
                   
                      when others =>

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
-with KartenKonstanten;
+with KartenVerbesserungKonstanten;
 
 with KIDatentypen;
 
@@ -187,7 +187,7 @@ package body VerbesserungFertiggestellt is
         KartenDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
       then
          SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                            VerbesserungExtern    => KartenKonstanten.LeerVerbesserungGebiet);
+                                            VerbesserungExtern    => KartenVerbesserungKonstanten.LeerVerbesserungGebiet);
                   
       else
          null;
