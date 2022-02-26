@@ -3,8 +3,8 @@ pragma SPARK_Mode (Off);
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with GlobaleVariablen;
-with KartenKonstanten;
 with SystemKonstanten;
+with KartenEinstellungenKonstanten;
 
 with Karten;
 
@@ -35,7 +35,7 @@ package body ZufallGeneratorenSpieleinstellungen is
          if
            AuswahlGröße >= 20
          then
-            Karten.Kartengrößen (KartenKonstanten.KartengrößeNutzerKonstante).YAchsenGröße := AuswahlGröße;
+            Karten.Kartengrößen (KartenEinstellungenKonstanten.KartengrößeNutzerKonstante).YAchsenGröße := AuswahlGröße;
             exit YAchseBestimmenSchleife;
 
          else
@@ -52,7 +52,7 @@ package body ZufallGeneratorenSpieleinstellungen is
          if
            AuswahlGröße >= 20
          then
-            Karten.Kartengrößen (KartenKonstanten.KartengrößeNutzerKonstante).XAchsenGröße := AuswahlGröße;
+            Karten.Kartengrößen (KartenEinstellungenKonstanten.KartengrößeNutzerKonstante).XAchsenGröße := AuswahlGröße;
             exit XAchseBestimmenSchleife;
 
          else
@@ -61,7 +61,7 @@ package body ZufallGeneratorenSpieleinstellungen is
 
       end loop XAchseBestimmenSchleife;
       
-      return KartenKonstanten.KartengrößeNutzerKonstante;
+      return KartenEinstellungenKonstanten.KartengrößeNutzerKonstante;
       
    end ZufälligeKartengröße;
    

@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenVerbesserungKonstanten;
+with KartenRecordKonstanten;
 
 with LeseStadtGebaut;
 
@@ -24,7 +24,7 @@ package body KIStadtSuchen is
         GefundeneStadt
       is
          when 0 =>
-            return KartenKonstanten.LeerKartenKoordinaten;
+            return KartenRecordKonstanten.LeerKartenKoordinaten;
             
          when others =>
             return LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, GefundeneStadt));
@@ -106,7 +106,7 @@ package body KIStadtSuchen is
          
       end loop StadtSchleife;
       
-      return KartenKonstanten.LeerKartenKoordinaten;
+      return KartenRecordKonstanten.LeerKartenKoordinaten;
       
    end UnbewachteStadtSuchen;
 

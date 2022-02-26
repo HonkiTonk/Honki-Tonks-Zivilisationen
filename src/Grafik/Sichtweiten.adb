@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten;
+with KartenEinstellungenKonstanten;
 
 with Karten;
 with BerechnungenKarteSFML;
@@ -13,27 +13,27 @@ package body Sichtweiten is
       case
         Karten.Kartengröße
       is
-         when KartenKonstanten.Kartengröße2020Konstante =>
+         when KartenEinstellungenKonstanten.Kartengröße2020Konstante =>
             Sichtweiten.SichtweiteFestlegen := 1;
             Sichtweiten.BewegungsfeldFestlegen := 1;
             
-         when KartenKonstanten.Kartengröße4040Konstante =>
+         when KartenEinstellungenKonstanten.Kartengröße4040Konstante =>
             Sichtweiten.SichtweiteFestlegen := 2;
             Sichtweiten.BewegungsfeldFestlegen := 2;
 
-         when KartenKonstanten.KartengrößeNutzerKonstante =>
+         when KartenEinstellungenKonstanten.KartengrößeNutzerKonstante =>
             if
-              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (KartenKonstanten.Kartengröße2020Konstante).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (KartenEinstellungenKonstanten.Kartengröße2020Konstante).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenKonstanten.Kartengröße2020Konstante).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenEinstellungenKonstanten.Kartengröße2020Konstante).XAchsenGröße
             then
                Sichtweiten.SichtweiteFestlegen := 1;
                Sichtweiten.BewegungsfeldFestlegen := 1;
                
             elsif
-              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (KartenKonstanten.Kartengröße4040Konstante).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (KartenEinstellungenKonstanten.Kartengröße4040Konstante).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenKonstanten.Kartengröße4040Konstante).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenEinstellungenKonstanten.Kartengröße4040Konstante).XAchsenGröße
             then
                Sichtweiten.SichtweiteFestlegen := 2;
                Sichtweiten.BewegungsfeldFestlegen := 2;

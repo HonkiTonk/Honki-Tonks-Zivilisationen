@@ -10,8 +10,8 @@ with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;
 with KartenDatentypen;
-with KartenKonstanten;
 with SystemKonstanten;
+with KartenEinstellungenKonstanten;
 
 with Karten;
 with Ladezeiten;
@@ -125,9 +125,9 @@ package body Laden is
       case
         Karten.Kartengröße
       is
-         when KartenKonstanten.KartengrößeNutzerKonstante =>
+         when KartenEinstellungenKonstanten.KartengrößeNutzerKonstante =>
             Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
-                                              Karten.Kartengrößen (KartenKonstanten.KartengrößeNutzerKonstante));
+                                              Karten.Kartengrößen (KartenEinstellungenKonstanten.KartengrößeNutzerKonstante));
             
          when others =>
             null;

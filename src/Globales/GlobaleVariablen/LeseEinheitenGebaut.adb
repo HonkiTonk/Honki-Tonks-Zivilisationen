@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with LeseEinheitenDatenbank;
 
@@ -30,7 +30,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KartenKonstanten.LeerKartenKoordinaten;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KartenRecordKonstanten.LeerKartenKoordinaten;
 
       else
          null;
@@ -220,7 +220,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KartenKonstanten.LeerKartenKoordinaten;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KartenRecordKonstanten.LeerKartenKoordinaten;
 
       else
          null;
@@ -254,7 +254,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern) := KartenKonstanten.LeerKartenKoordinaten;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern) := KartenRecordKonstanten.LeerKartenKoordinaten;
 
       else
          null;

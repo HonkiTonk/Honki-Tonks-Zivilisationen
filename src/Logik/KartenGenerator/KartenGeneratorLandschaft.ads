@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-with KartenKonstanten;
+with KartenEinstellungenKonstanten;
 
 with KartenGeneratorBerechnungenAllgemein;
 with Karten;
@@ -27,7 +27,7 @@ private
                                                        KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray :=
      (
-      KartenKonstanten.TemperaturKaltKonstante => 
+      KartenEinstellungenKonstanten.TemperaturKaltKonstante => 
         (
          KartenDatentypen.Tundra    => (0 => 0.25, 1 => 0.30, 2 => 0.30, 3 => 0.35, 4 => 0.40, 5 => 0.45, 6 => 0.50, 7 => 0.55, 8 => 0.70),
          KartenDatentypen.Wüste     => (0 => 0.05, 1 => 0.10, 2 => 0.15, 3 => 0.15, 4 => 0.20, 5 => 0.20, 6 => 0.25, 7 => 0.25, 8 => 0.30),
@@ -38,7 +38,7 @@ private
          KartenDatentypen.Sumpf     => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.25, 6 => 0.30, 7 => 0.30, 8 => 0.40)
         ),
                                                                                        
-      KartenKonstanten.TemperaturGemäßigtKonstante =>
+      KartenEinstellungenKonstanten.TemperaturGemäßigtKonstante =>
         (
          KartenDatentypen.Tundra    => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.35, 6 => 0.35, 7 => 0.40, 8 => 0.45),
          KartenDatentypen.Wüste     => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.35, 6 => 0.35, 7 => 0.40, 8 => 0.45),
@@ -49,7 +49,7 @@ private
          KartenDatentypen.Sumpf     => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.30, 6 => 0.35, 7 => 0.35, 8 => 0.40)
         ),
                                                                                        
-      KartenKonstanten.TemperaturHeißKonstante =>
+      KartenEinstellungenKonstanten.TemperaturHeißKonstante =>
         (
          KartenDatentypen.Tundra    => (0 => 0.05, 1 => 0.10, 2 => 0.15, 3 => 0.15, 4 => 0.20, 5 => 0.20, 6 => 0.25, 7 => 0.25, 8 => 0.30),
          KartenDatentypen.Wüste     => (0 => 0.25, 1 => 0.30, 2 => 0.30, 3 => 0.35, 4 => 0.40, 5 => 0.45, 6 => 0.50, 7 => 0.55, 8 => 0.70),
@@ -60,7 +60,7 @@ private
          KartenDatentypen.Sumpf     => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.30, 6 => 0.35, 7 => 0.35, 8 => 0.40)
         ),
                                                                                        
-      KartenKonstanten.TemperaturEiszeitKonstante =>
+      KartenEinstellungenKonstanten.TemperaturEiszeitKonstante =>
         (
          KartenDatentypen.Tundra    => (0 => 0.50, 1 => 0.55, 2 => 0.55, 3 => 0.60, 4 => 0.65, 5 => 0.70, 6 => 0.80, 7 => 0.90, 8 => 0.95),
          KartenDatentypen.Wüste     => (0 => 0.01, 1 => 0.05, 2 => 0.05, 3 => 0.10, 4 => 0.10, 5 => 0.15, 6 => 0.15, 7 => 0.20, 8 => 0.25),
@@ -71,7 +71,7 @@ private
          KartenDatentypen.Sumpf     => (0 => 0.05, 1 => 0.10, 2 => 0.10, 3 => 0.15, 4 => 0.15, 5 => 0.20, 6 => 0.20, 7 => 0.25, 8 => 0.30)
         ),
                                                                                        
-      KartenKonstanten.TemperaturWüsteKonstante =>
+      KartenEinstellungenKonstanten.TemperaturWüsteKonstante =>
         (
          KartenDatentypen.Tundra    => (0 => 0.01, 1 => 0.05, 2 => 0.05, 3 => 0.10, 4 => 0.10, 5 => 0.15, 6 => 0.15, 7 => 0.20, 8 => 0.25),
          KartenDatentypen.Wüste     => (0 => 0.50, 1 => 0.55, 2 => 0.55, 3 => 0.60, 4 => 0.65, 5 => 0.70, 6 => 0.80, 7 => 0.90, 8 => 0.95),

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
 with KartenGrundKonstanten;
+with KartenKonstanten;
+with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -20,8 +22,8 @@ package body KartenGeneratorLandschaft is
       AbstandEisschicht;
             
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
@@ -50,14 +52,14 @@ package body KartenGeneratorLandschaft is
    is begin
       
       ObereEisschichtSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisschild (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisschild (Karten.Kartengröße) loop
          
          XAchseAbstandEisschicht (YAchseExtern => YAchseSchleifenwert);
          
       end loop ObereEisschichtSchleife;
 
       UntereEisschichtSchleife:
-      for YAchseSchleifenwert in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisschild (Karten.Kartengröße) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+      for YAchseSchleifenwert in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisschild (Karten.Kartengröße) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
          
          XAchseAbstandEisschicht (YAchseExtern => YAchseSchleifenwert);
          

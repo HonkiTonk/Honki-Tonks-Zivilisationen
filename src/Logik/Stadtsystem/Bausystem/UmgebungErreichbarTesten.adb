@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with LeseKarten;
 
@@ -105,7 +106,7 @@ package body UmgebungErreichbarTesten is
                      
       end loop BereichSchleife;
       
-      return KartenKonstanten.LeerKartenKoordinaten;
+      return KartenRecordKonstanten.LeerKartenKoordinaten;
       
    end UmgebungErreichbarTesten;
    

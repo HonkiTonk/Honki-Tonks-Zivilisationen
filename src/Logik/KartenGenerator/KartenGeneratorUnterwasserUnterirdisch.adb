@@ -2,9 +2,8 @@ pragma SPARK_Mode (On);
 
 with Ada.Calendar; use Ada.Calendar;
 
-with KartenKonstanten;
 with SystemDatentypen;
-with KartenGrundKonstanten;
+with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -21,8 +20,8 @@ package body KartenGeneratorUnterwasserUnterirdisch is
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch, SystemDatentypen.Anfangswert) := Clock;
          
       YAchseUnterwasserSchleife:
-      for YAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (2) + KartenKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseUnterwasserSchleife:
          for XAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             

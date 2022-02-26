@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen;
 with SystemKonstanten;
-with KartenKonstanten;
+with KartenEinstellungenKonstanten;
 
 with Fehler;
 
@@ -245,52 +245,52 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return KartenKonstanten.Kartengröße2020Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße2020Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return KartenKonstanten.Kartengröße4040Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße4040Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return KartenKonstanten.Kartengröße8080Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße8080Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return KartenKonstanten.Kartengröße12080Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße12080Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return KartenKonstanten.Kartengröße120160Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße120160Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return KartenKonstanten.Kartengröße160160Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße160160Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return KartenKonstanten.Kartengröße240240Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße240240Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return KartenKonstanten.Kartengröße320320Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße320320Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return KartenKonstanten.Kartengröße10001000Konstante;
+         return KartenEinstellungenKonstanten.Kartengröße10001000Konstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return KartenKonstanten.KartengrößeNutzerKonstante;
+         return KartenEinstellungenKonstanten.KartengrößeNutzerKonstante;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 10
@@ -300,7 +300,7 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 11
       then
-         return KartenKonstanten.KartengrößeZufallKonstante;
+         return KartenEinstellungenKonstanten.KartengrößeZufallKonstante;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -321,27 +321,27 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return KartenKonstanten.KartenartInselnKonstante;
+         return KartenEinstellungenKonstanten.KartenartInselnKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return KartenKonstanten.KartenartKontinenteKonstante;
+         return KartenEinstellungenKonstanten.KartenartKontinenteKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return KartenKonstanten.KartenartPangäaKonstante;
+         return KartenEinstellungenKonstanten.KartenartPangäaKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return KartenKonstanten.KartenartLandKonstante;
+         return KartenEinstellungenKonstanten.KartenartLandKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return KartenKonstanten.KartenartChaosKonstante;
+         return KartenEinstellungenKonstanten.KartenartChaosKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
@@ -367,47 +367,47 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return KartenKonstanten.KartenformXZylinderKonstante;
+         return KartenEinstellungenKonstanten.KartenformXZylinderKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return KartenKonstanten.KartenformYZylinderKonstante;
+         return KartenEinstellungenKonstanten.KartenformYZylinderKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return KartenKonstanten.KartenformTorusKonstante;
+         return KartenEinstellungenKonstanten.KartenformTorusKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return KartenKonstanten.KartenformKugelKonstante;
+         return KartenEinstellungenKonstanten.KartenformKugelKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return KartenKonstanten.KartenformViereckKonstante;
+         return KartenEinstellungenKonstanten.KartenformViereckKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return KartenKonstanten.KartenformKugelGedrehtKonstante;
+         return KartenEinstellungenKonstanten.KartenformKugelGedrehtKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return KartenKonstanten.KartenformTugelKonstante;
+         return KartenEinstellungenKonstanten.KartenformTugelKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return KartenKonstanten.KartenformTugelGedrehtKonstante;
+         return KartenEinstellungenKonstanten.KartenformTugelGedrehtKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return KartenKonstanten.KartenformTugelExtremKonstante;
+         return KartenEinstellungenKonstanten.KartenformTugelExtremKonstante;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
@@ -433,27 +433,27 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return KartenKonstanten.TemperaturKaltKonstante;
+         return KartenEinstellungenKonstanten.TemperaturKaltKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return KartenKonstanten.TemperaturGemäßigtKonstante;
+         return KartenEinstellungenKonstanten.TemperaturGemäßigtKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return KartenKonstanten.TemperaturHeißKonstante;
+         return KartenEinstellungenKonstanten.TemperaturHeißKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return KartenKonstanten.TemperaturEiszeitKonstante;
+         return KartenEinstellungenKonstanten.TemperaturEiszeitKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return KartenKonstanten.TemperaturWüsteKonstante;
+         return KartenEinstellungenKonstanten.TemperaturWüsteKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
@@ -479,27 +479,27 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return KartenKonstanten.RessourcenArmKonstante;
+         return KartenEinstellungenKonstanten.RessourcenArmKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return KartenKonstanten.RessourcenWenigKonstante;
+         return KartenEinstellungenKonstanten.RessourcenWenigKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return KartenKonstanten.RessourcenMittelKonstante;
+         return KartenEinstellungenKonstanten.RessourcenMittelKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return KartenKonstanten.RessourcenVielKonstante;
+         return KartenEinstellungenKonstanten.RessourcenVielKonstante;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return KartenKonstanten.RessourcenÜberflussKonstante;
+         return KartenEinstellungenKonstanten.RessourcenÜberflussKonstante;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5

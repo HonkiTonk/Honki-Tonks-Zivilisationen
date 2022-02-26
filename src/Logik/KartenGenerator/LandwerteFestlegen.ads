@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenKonstanten;
+with KartenEinstellungenKonstanten;
 
 with Karten;
 
@@ -17,41 +17,41 @@ private
    XAchse : KartenDatentypen.KartenfeldPositiv;
    
    MinimaleLandgröße : constant Karten.GrößeLandartArray := (
-                                                                 KartenKonstanten.KartenartInselnKonstante     => (2, 2),
-                                                                 KartenKonstanten.KartenartKontinenteKonstante => (6, 6),
-                                                                 KartenKonstanten.KartenartPangäaKonstante     => (1, 1),
+                                                                 KartenEinstellungenKonstanten.KartenartInselnKonstante     => (2, 2),
+                                                                 KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (6, 6),
+                                                                 KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (1, 1),
                                                                  others                      => (1, 1)
                                                                 );
    MaximaleLandgröße : constant Karten.GrößeLandartArray := (
-                                                                 KartenKonstanten.KartenartInselnKonstante     => (3, 3),
-                                                                 KartenKonstanten.KartenartKontinenteKonstante => (8, 8),
-                                                                 KartenKonstanten.KartenartPangäaKonstante     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                                                 KartenEinstellungenKonstanten.KartenartInselnKonstante     => (3, 3),
+                                                                 KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (8, 8),
+                                                                 KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
                                                                  others                      => (1, 1)
                                                                 );
    
    MinimalerAbstand : constant Karten.GrößeLandartArray := (
-                                                              KartenKonstanten.KartenartInselnKonstante     => (8, 8),
-                                                              KartenKonstanten.KartenartKontinenteKonstante => (13, 13),
-                                                              KartenKonstanten.KartenartPangäaKonstante     => (1, 1),
+                                                              KartenEinstellungenKonstanten.KartenartInselnKonstante     => (8, 8),
+                                                              KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (13, 13),
+                                                              KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (1, 1),
                                                               others                      => (1, 1)
                                                              );
    MaximalerAbstand : constant Karten.GrößeLandartArray := (
-                                                              KartenKonstanten.KartenartInselnKonstante     => (15, 15),
-                                                              KartenKonstanten.KartenartKontinenteKonstante => (22, 22),
-                                                              KartenKonstanten.KartenartPangäaKonstante     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                                              KartenEinstellungenKonstanten.KartenartInselnKonstante     => (15, 15),
+                                                              KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (22, 22),
+                                                              KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
                                                               others                      => (1, 1)
                                                              );
    
    TeilerGröße : constant Karten.GrößeLandartArray := (
-                                                           KartenKonstanten.KartenartInselnKonstante     => (7, 7),
-                                                           KartenKonstanten.KartenartKontinenteKonstante => (3, 3),
-                                                           KartenKonstanten.KartenartPangäaKonstante     => (2, 2),
+                                                           KartenEinstellungenKonstanten.KartenartInselnKonstante     => (7, 7),
+                                                           KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (3, 3),
+                                                           KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (2, 2),
                                                            others                      => (1, 1)
                                                           );
    TeilerAbstand : constant Karten.GrößeLandartArray := (
-                                                           KartenKonstanten.KartenartInselnKonstante     => (3, 3),
-                                                           KartenKonstanten.KartenartKontinenteKonstante => (2, 2),
-                                                           KartenKonstanten.KartenartPangäaKonstante     => (1, 1),
+                                                           KartenEinstellungenKonstanten.KartenartInselnKonstante     => (3, 3),
+                                                           KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (2, 2),
+                                                           KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (1, 1),
                                                            others                      => (1, 1)
                                                           );
    

@@ -9,7 +9,7 @@ package body LandwerteFestlegen is
       case
         Karten.Kartenart
       is
-         when KartenKonstanten.KartenartLandKonstante | KartenKonstanten.KartenartChaosKonstante =>
+         when KartenEinstellungenKonstanten.KartenartLandKonstante | KartenEinstellungenKonstanten.KartenartChaosKonstante =>
             null;
             
          when others =>

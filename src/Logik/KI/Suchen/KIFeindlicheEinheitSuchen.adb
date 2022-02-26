@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with KartenRecordKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -56,7 +57,7 @@ package body KIFeindlicheEinheitSuchen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return KartenKonstanten.LeerKartenKoordinaten;
+      return KartenRecordKonstanten.LeerKartenKoordinaten;
       
    end FeindlicheEinheitInUmgebungSuchen;
 

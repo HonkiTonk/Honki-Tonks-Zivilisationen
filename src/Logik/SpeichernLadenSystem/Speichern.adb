@@ -11,7 +11,7 @@ with EinheitStadtRecords;
 with WichtigeRecords;
 with SystemKonstanten;
 with KartenDatentypen;
-with KartenKonstanten;
+with KartenEinstellungenKonstanten;
 
 with Karten;
 with Auswahl;
@@ -111,9 +111,9 @@ package body Speichern is
       case
         Karten.Kartengröße
       is
-         when KartenKonstanten.KartengrößeNutzerKonstante =>
+         when KartenEinstellungenKonstanten.KartengrößeNutzerKonstante =>
             Karten.KartengrößenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                               Karten.Kartengrößen (KartenKonstanten.KartengrößeNutzerKonstante));
+                                               Karten.Kartengrößen (KartenEinstellungenKonstanten.KartengrößeNutzerKonstante));
             
          when others =>
             null;

@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
 with GlobaleVariablen;
-with KartenKonstanten;
 with SonstigesKonstanten;
 with SystemKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with KartenRecordKonstanten;
 
 with Karten;
 with DebugPlatzhalter;
@@ -30,7 +30,7 @@ package body AllesAufAnfangSetzen is
       DebugPlatzhalter.DebugSieg := False;
       DebugPlatzhalter.FeindlicheInformationenSehen := False;
 
-      Karten.Weltkarte := (others => (others => (others => KartenKonstanten.LeerWeltkarte)));
+      Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
       Karten.KartenartGemischt := False;
             
    end AllesAufAnfangSetzen;

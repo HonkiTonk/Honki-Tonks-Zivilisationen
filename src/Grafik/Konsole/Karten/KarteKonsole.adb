@@ -5,6 +5,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
+with KartenEinstellungenKonstanten;
 
 with KarteKoordinatenPruefen;
 with GrafischeAnzeigeKonsole;
@@ -62,28 +63,28 @@ package body KarteKonsole is
         XAchseExtern = Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False)
       then
          if
-           (Karten.Kartenform = KartenKonstanten.KartenformXZylinderKonstante
+           (Karten.Kartenform = KartenEinstellungenKonstanten.KartenformXZylinderKonstante
             or
-              Karten.Kartenform = KartenKonstanten.KartenformTorusKonstante
+              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformTorusKonstante
             or
-              Karten.Kartenform = KartenKonstanten.KartenformKugelKonstante
+              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformKugelKonstante
             or
-              Karten.Kartenform = KartenKonstanten.KartenformKugelGedrehtKonstante
+              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformKugelGedrehtKonstante
             or
-              Karten.Kartenform = KartenKonstanten.KartenformTugelKonstante
+              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformTugelKonstante
             or
-              Karten.Kartenform = KartenKonstanten.KartenformTugelGedrehtKonstante
+              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformTugelGedrehtKonstante
             or
-              Karten.Kartenform = KartenKonstanten.KartenformTugelExtremKonstante)
+              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformTugelExtremKonstante)
            and
              KartenWert.XAchse > KartenKonstanten.LeerXAchse
          then
             New_Line;
                   
          elsif
-           Karten.Kartenform = KartenKonstanten.KartenformYZylinderKonstante
+           Karten.Kartenform = KartenEinstellungenKonstanten.KartenformYZylinderKonstante
            or
-             Karten.Kartenform = KartenKonstanten.KartenformViereckKonstante
+             Karten.Kartenform = KartenEinstellungenKonstanten.KartenformViereckKonstante
          then
             New_Line;
                

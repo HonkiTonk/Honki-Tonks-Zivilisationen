@@ -5,8 +5,8 @@ with KartenDatentypen;
 package KartenVerbesserungKonstanten is
    
    LeerVerbesserung : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
-   LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
-   LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
+   LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := LeerVerbesserung;
+   LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := LeerVerbesserung;
 
    -- Städte
    Eigene_HauptstadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Eigene_Hauptstadt;

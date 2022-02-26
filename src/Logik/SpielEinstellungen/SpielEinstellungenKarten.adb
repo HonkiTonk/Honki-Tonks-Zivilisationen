@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KartenKonstanten;
 with SystemKonstanten;
+with KartenEinstellungenKonstanten;
 
 with Karten;
 with Eingabe;
@@ -27,14 +27,14 @@ package body SpielEinstellungenKarten is
                Karten.Kartengröße := KartengrößeAuswahl;
                return SystemKonstanten.AuswahlKartenartKonstante;
 
-            when KartenKonstanten.KartengrößeNutzerKonstante =>
+            when KartenEinstellungenKonstanten.KartengrößeNutzerKonstante =>
                return GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
             when SystemKonstanten.ZufallKonstante =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
                return SystemKonstanten.AuswahlKartenartKonstante;
                
-            when KartenKonstanten.KartengrößeZufallKonstante =>
+            when KartenEinstellungenKonstanten.KartengrößeZufallKonstante =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
                return SystemKonstanten.AuswahlKartenartKonstante;
 

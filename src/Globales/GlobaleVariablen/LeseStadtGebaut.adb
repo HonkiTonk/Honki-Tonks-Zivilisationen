@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenKonstanten;
 with StadtKonstanten;
+with KartenRecordKonstanten;
 
 with Karten;
 with Fehler;
@@ -30,7 +30,7 @@ package body LeseStadtGebaut is
         or
           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten := KartenKonstanten.LeerKartenKoordinaten;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten := KartenRecordKonstanten.LeerKartenKoordinaten;
 
       else
          null;

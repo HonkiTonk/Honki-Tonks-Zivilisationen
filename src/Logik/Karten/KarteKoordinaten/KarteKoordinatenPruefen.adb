@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartePositionNormaleKartenformen;
 with KartePositionAbstrakteKartenformen;
+with KartenEinstellungenKonstanten;
 
 package body KarteKoordinatenPruefen is
    
@@ -21,32 +22,32 @@ package body KarteKoordinatenPruefen is
         Karten.Kartenform
       is
          -- Normale Kartenformen
-         when KartenKonstanten.KartenformXZylinderKonstante =>
+         when KartenEinstellungenKonstanten.KartenformXZylinderKonstante =>
             return KartePositionNormaleKartenformen.KartenPositionXZylinder (KoordinatenExtern => KoordinatenExtern,
                                                                              ÄnderungExtern    => ÄnderungExtern,
                                                                              LogikGrafikExtern => LogikGrafikExtern);
             
-         when KartenKonstanten.KartenformYZylinderKonstante =>
+         when KartenEinstellungenKonstanten.KartenformYZylinderKonstante =>
             return KartePositionNormaleKartenformen.KartenPositionYZylinder (KoordinatenExtern => KoordinatenExtern,
                                                                              ÄnderungExtern    => ÄnderungExtern,
                                                                              LogikGrafikExtern => LogikGrafikExtern);
             
-         when KartenKonstanten.KartenformTorusKonstante =>
+         when KartenEinstellungenKonstanten.KartenformTorusKonstante =>
             return KartePositionNormaleKartenformen.KartenPositionTorus (KoordinatenExtern => KoordinatenExtern,
                                                                          ÄnderungExtern    => ÄnderungExtern,
                                                                          LogikGrafikExtern => LogikGrafikExtern);
             
-         when KartenKonstanten.KartenformKugelKonstante =>
+         when KartenEinstellungenKonstanten.KartenformKugelKonstante =>
             return KartePositionNormaleKartenformen.KartenPositionKugel (KoordinatenExtern => KoordinatenExtern,
                                                                          ÄnderungExtern    => ÄnderungExtern,
                                                                          LogikGrafikExtern => LogikGrafikExtern);
             
-         when KartenKonstanten.KartenformViereckKonstante =>
+         when KartenEinstellungenKonstanten.KartenformViereckKonstante =>
             return KartePositionNormaleKartenformen.KartenPositionViereck (KoordinatenExtern => KoordinatenExtern,
                                                                            ÄnderungExtern    => ÄnderungExtern,
                                                                            LogikGrafikExtern => LogikGrafikExtern);
 
-         when KartenKonstanten.KartenformKugelGedrehtKonstante =>
+         when KartenEinstellungenKonstanten.KartenformKugelGedrehtKonstante =>
             return KartePositionNormaleKartenformen.KartenPositionKugelGedreht (KoordinatenExtern => KoordinatenExtern,
                                                                                 ÄnderungExtern    => ÄnderungExtern,
                                                                                 LogikGrafikExtern => LogikGrafikExtern);
@@ -55,17 +56,17 @@ package body KarteKoordinatenPruefen is
             
             
             -- Abstrakte Kartenformen
-         when KartenKonstanten.KartenformTugelKonstante =>
+         when KartenEinstellungenKonstanten.KartenformTugelKonstante =>
             return KartePositionAbstrakteKartenformen.KartenPositionTugel (KoordinatenExtern => KoordinatenExtern,
                                                                            ÄnderungExtern    => ÄnderungExtern,
                                                                            LogikGrafikExtern => LogikGrafikExtern);
             
-         when KartenKonstanten.KartenformTugelGedrehtKonstante =>
+         when KartenEinstellungenKonstanten.KartenformTugelGedrehtKonstante =>
             return KartePositionAbstrakteKartenformen.KartenPositionTugelGedreht (KoordinatenExtern => KoordinatenExtern,
                                                                                   ÄnderungExtern    => ÄnderungExtern,
                                                                                   LogikGrafikExtern => LogikGrafikExtern);
             
-         when KartenKonstanten.KartenformTugelExtremKonstante =>
+         when KartenEinstellungenKonstanten.KartenformTugelExtremKonstante =>
             return KartePositionAbstrakteKartenformen.KartenPositionTugelExtrem (KoordinatenExtern => KoordinatenExtern,
                                                                                  ÄnderungExtern    => ÄnderungExtern,
                                                                                  LogikGrafikExtern => LogikGrafikExtern);
