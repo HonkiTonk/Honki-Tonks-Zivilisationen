@@ -29,6 +29,7 @@ package GrafikEinstellungenSFML is
    type RassenFarbenArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
    -- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht.
    RassenFarben : RassenFarbenArray;
+   RassenFarbenRahmen : RassenFarbenArray;
    
    procedure StandardGrafikEinstellungenLaden;
    
@@ -64,10 +65,10 @@ private
                                                                          );
    
    -- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht.
-   RassenFarbenStandard : constant RassenFarbenArray := [
-                                                         SystemKonstanten.MenschenKonstante        => (255, 230, 200, 100),
+   RassenFarbenStandard : constant RassenFarbenArray := (
+                                                         SystemKonstanten.MenschenKonstante        => (255, 230, 200, 0),
                                                          SystemKonstanten.KasrodiahKonstante       => (255, 100, 40, 100),
-                                                         SystemKonstanten.LasupinKonstante         => (65, 145, 140, 100),
+                                                         SystemKonstanten.LasupinKonstante         => (65, 145, 140, 0),
                                                          SystemKonstanten.LamustraKonstante        => (60, 255, 240, 100),
                                                          SystemKonstanten.ManukyKonstante          => (255, 255, 30, 100),
                                                          SystemKonstanten.SurokaKonstante          => (135, 10, 255, 100),
@@ -83,6 +84,27 @@ private
                                                          SystemKonstanten.SenelariKonstante        => (0, 210, 0, 100),
                                                          SystemKonstanten.Aspari2Konstante         => (90, 90, 90, 100),
                                                          SystemKonstanten.EkropaKonstante          => (255, 30, 30, 100)
-                                                        ];
+                                                        );
+   
+   RassenFarbenRahmenStandard : constant RassenFarbenArray := (
+                                                               SystemKonstanten.MenschenKonstante        => (255, 230, 200, 255),
+                                                               SystemKonstanten.KasrodiahKonstante       => (255, 100, 40, 255),
+                                                               SystemKonstanten.LasupinKonstante         => (65, 145, 140, 255),
+                                                               SystemKonstanten.LamustraKonstante        => (60, 255, 240, 255),
+                                                               SystemKonstanten.ManukyKonstante          => (255, 255, 30, 255),
+                                                               SystemKonstanten.SurokaKonstante          => (135, 10, 255, 255),
+                                                               SystemKonstanten.PryolonKonstante         => (65, 50, 15, 255),
+                                                               SystemKonstanten.TalbidahrKonstante       => (255, 20, 255, 255),
+                                                               SystemKonstanten.MoruPhisihlKonstante     => (255, 255, 180, 255),
+                                                               SystemKonstanten.LarinosLotarisKonstante  => (255, 210, 135, 255),
+                                                               SystemKonstanten.CarupexKonstante         => (210, 210, 210, 255),
+                                                               SystemKonstanten.AlaryKonstante           => (165, 105, 0, 255),
+                                                               SystemKonstanten.TesorahnKonstante        => (10, 60, 240, 255),
+                                                               SystemKonstanten.NatriesZermanisKonstante => (170, 120, 130, 255),
+                                                               SystemKonstanten.TridatusKonstante        => (20, 95, 20, 255),
+                                                               SystemKonstanten.SenelariKonstante        => (0, 210, 0, 255),
+                                                               SystemKonstanten.Aspari2Konstante         => (90, 90, 90, 255),
+                                                               SystemKonstanten.EkropaKonstante          => (255, 30, 30, 255)
+                                                              );
    
 end GrafikEinstellungenSFML;

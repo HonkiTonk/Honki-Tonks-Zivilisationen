@@ -4,9 +4,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartenDatentypen; use KartenDatentypen;
 with KartenVerbesserungKonstanten;
-with KartenGrundKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseVerbesserungenDatenbank;
@@ -42,75 +40,10 @@ package body FarbgebungKonsole is
    
    
    procedure FarbenFeld
-     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
+     (GrundExtern : in KartenDatentypen.Karten_Grund_Alle_Felder_Enum)
    is begin
       
-      case
-        GrundExtern
-      is
-         when KartenDatentypen.Eis | KartenDatentypen.Unterwasser_Eis =>
-            Put (Item => CSI & "48;2;255;245;238m");
-            
-         when KartenDatentypen.Wasser | KartenDatentypen.Unterwasser_Wasser =>
-            Put (Item => CSI & "48;2;0;0;205m");
-            
-         when KartenDatentypen.Flachland =>
-            Put (Item => CSI & "48;2;100;160;60m");
-            
-         when KartenDatentypen.Tundra =>
-            Put (Item => CSI & "48;2;205;200;177m");
-            
-         when KartenDatentypen.Wüste | KartenDatentypen.Sand =>
-            Put (Item => CSI & "48;2;238;238;0m");
-            
-         when KartenDatentypen.Hügel =>
-            Put (Item => CSI & "48;2;205;133;63m");
-            
-         when KartenDatentypen.Gebirge =>
-            Put (Item => CSI & "48;2;120;120;120m");
-            
-         when KartenDatentypen.Wald =>
-            Put (Item => CSI & "48;2;30;130;30m");
-            
-         when KartenDatentypen.Dschungel =>
-            Put (Item => CSI & "48;2;0;70;0m");
-            
-         when KartenDatentypen.Küstengewässer | KartenDatentypen.Unterwasser_Küstengewässer =>
-            Put (Item => CSI & "48;2;135;206;250m");
-            
-         when KartenDatentypen.Sumpf =>
-            Put (Item => CSI & "48;2;0;40;0m");
-
-         when KartenDatentypen.Erde =>
-            Put (Item => CSI & "48;2;139;69;19m");
-            
-         when KartenDatentypen.Erdgestein =>
-            Put (Item => CSI & "48;2;120;120;120m");
-            
-         when KartenDatentypen.Lava =>
-            Put (Item => CSI & "48;2;250;39;39m");
-            
-         when KartenDatentypen.Wolken =>
-            Put (Item => CSI & "48;2;236;236;236m");
-            
-         when KartenDatentypen.Weltraum =>
-            Put (Item => CSI & "48;2;127;127;127m");
-            
-         when KartenDatentypen.Gestein =>
-            Put (Item => CSI & "48;2;87;87;87m");   
-            
-         when KartenDatentypen.Planetenkern =>
-            Put (Item => CSI & "48;2;205;0;0m");
-            
-         when KartenDatentypen.Unterwasser_Wald =>
-            Put (Item => CSI & "48;2;127;255;212m");
-            
-         when KartenDatentypen.Korallen =>
-            Put (Item => CSI & "48;2;255;114;86m");
-            
-         when others =>
-            null;
-      end case;
+      Put (Item => CSI & Feldfarbe (GrundExtern));
       
    end FarbenFeld;
    
@@ -124,8 +57,8 @@ package body FarbgebungKonsole is
       case
         GrundExtern
       is
-         when KartenDatentypen.Eis | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Sand | KartenDatentypen.Küstengewässer | KartenDatentypen.Wolken | KartenDatentypen.Unterwasser_Eis
-            | KartenDatentypen.Unterwasser_Küstengewässer =>
+         when KartenGrundKonstanten.EisKonstante | KartenGrundKonstanten.TundraKonstante | KartenGrundKonstanten.WüsteKonstante | KartenGrundKonstanten.SandKonstante | KartenGrundKonstanten.KüstengewässerKonstante
+            | KartenGrundKonstanten.WolkenKonstante | KartenGrundKonstanten.UnterwasserEisKonstante | KartenGrundKonstanten.UnterwasserKüstengewässerKonstante =>
             if
               RessourceExtern in KartenDatentypen.Karten_Grund_Fluss_Enum'Range
               or

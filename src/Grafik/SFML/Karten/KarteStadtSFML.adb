@@ -279,6 +279,7 @@ package body KarteStadtSFML is
                AktuelleFarbe := Sf.Graphics.Color.sfBlack;
             end if;
             
+            -- Den Wert hier nicht an die Ansichtsart der Weltkarte anpassen, damit man besser die vorhandenen und besetzten Kartenfelder erkennt.
             Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
                                                 size  => (BerechnungenKarteSFML.StadtfelderAbmessung.x - 6.00, BerechnungenKarteSFML.StadtfelderAbmessung.y - 6.00));
             Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,

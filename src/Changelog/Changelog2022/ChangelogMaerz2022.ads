@@ -196,23 +196,25 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01. => 0.01. (03.03.2022):
+   -- Version 0.01.00 => 0.01.0 (03.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (02.03.2022):
+   -- Version 0.01.0060 => 0.01.00 (02.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (01.03.2022):
+   -- Version 0.01.0050 => 0.01.0060 (01.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Farbgebung bei fehlenden Texturen in ein Array ausgelagert.
+   -- Diverse Konstanten eingebaut.
+   -- Einfache Logik für die Anzeige der eigenen Granze angelegt, so dass der Rahmen nur noch an den Randgebieten angezeigt wird und nicht bei jedem Feld.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert.
 
 end ChangelogMaerz2022;

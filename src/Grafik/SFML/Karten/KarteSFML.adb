@@ -6,7 +6,6 @@ with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 
 with KartenRecords; use KartenRecords;
-with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
@@ -172,21 +171,21 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Kartenfeld := LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern);
+      Kartengrund := LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern);
       
       if
-        EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld) /= null
+        EingeleseneTexturenSFML.KartenfelderAccess (Kartengrund) /= null
       then
          
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                      TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (Kartenfeld)));
+                                                                                                                                      TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (Kartengrund)));
          
       else
          ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => BerechnungenKarteSFML.KartenfelderAbmessung,
                                                PositionExtern       => PositionExtern,
-                                               FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartenfeld),
+                                               FarbeExtern          => FarbgebungSFML.FarbeKartenfeldErmitteln (GrundExtern => Kartengrund),
                                                RechteckAccessExtern => RechteckAccess);
       end if;
       
@@ -217,7 +216,7 @@ package body KarteSFML is
       else
          ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
                                                PositionExtern       => (PositionExtern.x, PositionExtern.y + 0.40 * BerechnungenKarteSFML.KartenfelderAbmessung.y),
-                                               FarbeExtern          => Sf.Graphics.Color.sfBlue,
+                                               FarbeExtern          => FarbgebungSFML.FarbeFlussErmitteln (FlussExtern => KartenfeldFluss),
                                                RechteckAccessExtern => RechteckAccess);
       end if;
       
@@ -334,22 +333,21 @@ package body KarteSFML is
             return;
          
          when others =>
-            -- Stadtfeld kann niemals Leer sein, da sonst das hier niemals aufgerufen werden sollte.
-            Stadtfeld := LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer);
+            Stadtart := LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer);
       end case;
       -- -----------------
       -- Eventuell kann man diese Sachen doch auslagern, wenn man die Skalierung mit übergibt, dann müsste man aber die Texture vorher festlegen. Und was ist dann mit den untexturierten Felder?
       if
-        EingeleseneTexturenSFML.VerbesserungenAccess (Stadtfeld) /= null
+        EingeleseneTexturenSFML.VerbesserungenAccess (Stadtart) /= null
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                      TextureAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Stadtfeld)));
+                                                                                                                                      TextureAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Stadtart)));
          
       else
          case
-           Stadtfeld
+           Stadtart
          is
             when KartenDatentypen.Eigene_Hauptstadt =>
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
@@ -451,33 +449,56 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
-            
-      -- Für den Rahmen weniger Transparenz benutzen.
-      Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
-                                          size  => (BerechnungenKarteSFML.KartenfelderAbmessung.x - 6.00, BerechnungenKarteSFML.KartenfelderAbmessung.y - 6.00));
-      Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,
-                                              position => (PositionExtern.x + 3.00, PositionExtern.y + 3.00));
-      Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
-                                               color => Sf.Graphics.Color.sfTransparent);
-      Sf.Graphics.RectangleShape.setOutlineColor (shape => RechteckRahmenAccess,
-                                                  color => GrafikEinstellungenSFML.RassenFarben (RasseExtern));
-      Sf.Graphics.RectangleShape.setOutlineThickness (shape     => RechteckRahmenAccess,
-                                                      thickness => 3.00);
-      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                                   object       => RechteckRahmenAccess);
       
-      KartenWertRahmen := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, -1, 0),
-                                                                           LogikGrafikExtern => False);
+      Sf.Graphics.RectangleShape.setSize (shape => RechteckBelegtesFeldAccess,
+                                          size  => BerechnungenKarteSFML.KartenfelderAbmessung);
+      Sf.Graphics.RectangleShape.setPosition (shape    => RechteckBelegtesFeldAccess,
+                                              position => PositionExtern);
+      Sf.Graphics.RectangleShape.setFillColor (shape => RechteckBelegtesFeldAccess,
+                                               color => GrafikEinstellungenSFML.RassenFarben (RasseExtern)); -- Passt da mit der Feldergröße was nicht? Eventuell auf Scale wechseln? Sollte aber doch mit Size gehen?
+      
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                   object       => RechteckBelegtesFeldAccess);
+      
+      UmgebungSchleife:
+      for UmgebungSchleifenwert in UmgebungArray'Range loop
+         
+         KartenWertRahmen := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                              ÄnderungExtern    => Umgebung (UmgebungSchleifenwert),
+                                                                              LogikGrafikExtern => False);
+               
+         if
+           KartenWertRahmen.XAchse = KartenKonstanten.LeerXAchse
+         then
+            RahmenZeichnen (WelcheRichtungExtern => UmgebungSchleifenwert,
+                            PositionExtern       => PositionExtern,
+                            RasseExtern          => RasseExtern);
+                     
+         elsif
+           RasseExtern /= LeseKarten.RasseBelegtGrund (KoordinatenExtern => KartenWertRahmen)
+         then
+            RahmenZeichnen (WelcheRichtungExtern => UmgebungSchleifenwert,
+                            PositionExtern       => PositionExtern,
+                            RasseExtern          => RasseExtern);
+
+         else
+            null;
+         end if;
+            
+      end loop UmgebungSchleife;
+      
+      KartenWertStadtname := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                              ÄnderungExtern    => (0, -1, 0),
+                                                                              LogikGrafikExtern => False);
       
       case
-        KartenWertRahmen.XAchse
+        KartenWertStadtname.XAchse
       is
          when KartenKonstanten.LeerXAchse =>
             return;
             
          when others =>
-            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KartenWertRahmen);
+            StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KartenWertStadtname);
             
             if
               StadtRasseNummer.Platznummer = StadtKonstanten.LeerNummer
@@ -505,6 +526,53 @@ package body KarteSFML is
                                          text         => TextAccess);
       
    end RahmenBesetztesFeld;
+
+
+
+   procedure RahmenZeichnen
+     (WelcheRichtungExtern : in Positive;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      if
+        WelcheRichtungExtern = 1
+      then
+         Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
+                                             size  => (BerechnungenKarteSFML.KartenfelderAbmessung.x, DickeRahmen));
+         Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,
+                                                 position => PositionExtern);
+         
+      elsif
+        WelcheRichtungExtern = 2
+      then
+         Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
+                                             size  => (DickeRahmen, BerechnungenKarteSFML.KartenfelderAbmessung.y));
+         Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,
+                                                 position => PositionExtern);
+         
+      elsif
+        WelcheRichtungExtern = 3
+      then
+         Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
+                                             size  => (DickeRahmen, BerechnungenKarteSFML.KartenfelderAbmessung.y));
+         Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,
+                                                 position => (PositionExtern.x + BerechnungenKarteSFML.KartenfelderAbmessung.x - DickeRahmen, PositionExtern.y));
+         
+      else
+         Sf.Graphics.RectangleShape.setSize (shape => RechteckRahmenAccess,
+                                             size  => (BerechnungenKarteSFML.KartenfelderAbmessung.x, DickeRahmen));
+         Sf.Graphics.RectangleShape.setPosition (shape    => RechteckRahmenAccess,
+                                                 position => (PositionExtern.x, PositionExtern.y + BerechnungenKarteSFML.KartenfelderAbmessung.y - DickeRahmen));
+      end if;
+      
+      Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
+                                               color => GrafikEinstellungenSFML.RassenFarbenRahmen (RasseExtern));
+            
+      Sf.Graphics.RenderWindow.drawRectangleShape (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                                   object       => RechteckRahmenAccess);
+      
+   end RahmenZeichnen;
    
    
    

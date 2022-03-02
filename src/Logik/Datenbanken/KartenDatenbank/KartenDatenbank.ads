@@ -26,7 +26,7 @@ private
                                       
       -- Feld
       -- Normal
-      KartenDatentypen.Eis =>
+      KartenGrundKonstanten.EisKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -36,7 +36,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
      
-      KartenDatentypen.Wasser =>
+      KartenGrundKonstanten.WasserKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Wasser      => True,
                             EinheitStadtDatentypen.Luft        => True,
@@ -46,7 +46,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flachland =>
+      KartenGrundKonstanten.FlachlandKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -56,7 +56,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Tundra =>
+      KartenGrundKonstanten.TundraKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -66,7 +66,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Wüste =>
+      KartenGrundKonstanten.WüsteKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -77,7 +77,7 @@ private
          Kampf          => (others => (others => 1))),
                                       
       -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
-      KartenDatentypen.Hügel =>
+      KartenGrundKonstanten.HügelKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -87,7 +87,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Gebirge =>
+      KartenGrundKonstanten.GebirgeKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -97,7 +97,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Wald =>
+      KartenGrundKonstanten.WaldKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -107,7 +107,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Dschungel =>
+      KartenGrundKonstanten.DschungelKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -117,7 +117,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Küstengewässer =>
+      KartenGrundKonstanten.KüstengewässerKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Wasser       => True,
                             EinheitStadtDatentypen.Luft         => True,
@@ -128,7 +128,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Sumpf =>
+      KartenGrundKonstanten.SumpfKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -139,7 +139,7 @@ private
          Kampf          => (others => (others => 1))),
                                       
       -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
-      KartenDatentypen.Hügel_Mit =>
+      KartenGrundKonstanten.HügelMitKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -153,7 +153,7 @@ private
       
       
       -- Unterwasser/Unterirdisch
-      KartenDatentypen.Unterwasser_Eis =>
+      KartenGrundKonstanten.UnterwasserEisKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -161,7 +161,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Erde =>
+      KartenGrundKonstanten.ErdeKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -169,7 +169,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
       
-      KartenDatentypen.Erdgestein =>
+      KartenGrundKonstanten.ErdgesteinKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -177,7 +177,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
       
-      KartenDatentypen.Sand =>
+      KartenGrundKonstanten.SandKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -185,7 +185,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
       
-      KartenDatentypen.Unterwasser_Wasser =>
+      KartenGrundKonstanten.UnterwasserWasserKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Unterwasser => True,
                             others                             => False),
@@ -193,7 +193,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterwasser_Küstengewässer =>
+      KartenGrundKonstanten.UnterwasserKüstengewässerKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Unterwasser => True,
                             others                             => False),
@@ -201,7 +201,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
       
-      KartenDatentypen.Korallen =>
+      KartenGrundKonstanten.KorallenKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Unterwasser => True,
                             others                             => False),
@@ -209,7 +209,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
       
-      KartenDatentypen.Unterwasser_Wald =>
+      KartenGrundKonstanten.UnterwasserWaldKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Unterwasser => True,
                             others                             => False),
@@ -221,7 +221,7 @@ private
       
                    
       -- Planeteninneres
-      KartenDatentypen.Lava =>
+      KartenGrundKonstanten.LavaKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -229,7 +229,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Gestein =>
+      KartenGrundKonstanten.GesteinKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -237,7 +237,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
       
-      KartenDatentypen.Planetenkern =>
+      KartenGrundKonstanten.PlanetenkernKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -249,7 +249,7 @@ private
       
       
       -- Luft/Weltraum
-      KartenDatentypen.Wolken =>
+      KartenGrundKonstanten.WolkenKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Luft     => True,
                             EinheitStadtDatentypen.Weltraum => True,
@@ -258,7 +258,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Weltraum =>
+      KartenGrundKonstanten.WeltraumKonstante =>
         (KartenGrafik   => ' ',
          Passierbarkeit => (EinheitStadtDatentypen.Weltraum => True,
                             others                          => False),
@@ -272,49 +272,49 @@ private
                                       
       -- Ressourcen
       -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft wird!
-      KartenDatentypen.Kohle =>
+      KartenGrundKonstanten.KohleKonstante =>
         (KartenGrafik   => '♦',
          Passierbarkeit => (others => False),
          Bewertung      => (others => 1),
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Eisen =>
+      KartenGrundKonstanten.EisenKonstante =>
         (KartenGrafik   => '♦',
          Passierbarkeit => (others => False),
          Bewertung      => (others => 1),
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Öl =>
+      KartenGrundKonstanten.ÖlKonstante =>
         (KartenGrafik   => '♦',
          Passierbarkeit => (others => False),
          Bewertung      => (others => 1),
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Fisch =>
+      KartenGrundKonstanten.FischKonstante =>
         (KartenGrafik   => '≈',
          Passierbarkeit => (others => False),
          Bewertung      => (others => 1),
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
       
-      KartenDatentypen.Wal =>
+      KartenGrundKonstanten.WalKonstante =>
         (KartenGrafik   => '≈',
          Passierbarkeit => (others => False),
          Bewertung      => (others => 1),
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Hochwertiger_Boden =>
+      KartenGrundKonstanten.HochwertigerBodenKonstante =>
         (KartenGrafik   => '♦',
          Passierbarkeit => (others => False),
          Bewertung      => (others => 1),
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Gold =>
+      KartenGrundKonstanten.GoldKonstante =>
         (KartenGrafik   => '♦',
          Passierbarkeit => (others => False),
          Bewertung      => (others => 1),
@@ -327,7 +327,7 @@ private
       
       -- Flüsse
       -- Normal
-      KartenDatentypen.Flusskreuzung_Vier =>
+      KartenGrundKonstanten.FlusskreuzungVierKonstante =>
         (KartenGrafik   => '╋',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -337,7 +337,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Fluss_Waagrecht =>
+      KartenGrundKonstanten.FlussWaagrechtKonstante =>
         (KartenGrafik   => '━',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -347,7 +347,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Fluss_Senkrecht =>
+      KartenGrundKonstanten.FlussSenkrechtKonstante =>
         (KartenGrafik   => '┃',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -357,7 +357,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flusskurve_Unten_Rechts =>
+      KartenGrundKonstanten.FlusskurveUntenRechtsKonstante =>
         (KartenGrafik   => '┏',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -367,7 +367,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flusskurve_Unten_Links =>
+      KartenGrundKonstanten.FlusskurveUntenLinksKonstante =>
         (KartenGrafik   => '┓',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -377,7 +377,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flusskurve_Oben_Rechts =>
+      KartenGrundKonstanten.FlusskurveObenRechtsKonstante =>
         (KartenGrafik   => '┗',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -387,7 +387,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flusskurve_Oben_Links =>
+      KartenGrundKonstanten.FlusskurveObenLinksKonstante =>
         (KartenGrafik   => '┛',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -397,7 +397,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flusskreuzung_Drei_Oben =>
+      KartenGrundKonstanten.FlusskreuzungDreiObenKonstante =>
         (KartenGrafik   => '┻',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -407,7 +407,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flusskreuzung_Drei_Unten =>
+      KartenGrundKonstanten.FlusskreuzungDreiUntenKonstante =>
         (KartenGrafik   => '┳',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -417,7 +417,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flusskreuzung_Drei_Rechts =>
+      KartenGrundKonstanten.FlusskreuzungDreiRechtsKonstante =>
         (KartenGrafik   => '┣',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -427,7 +427,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flusskreuzung_Drei_Links =>
+      KartenGrundKonstanten.FlusskreuzungDreiLinksKonstante =>
         (KartenGrafik   => '┫',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -437,7 +437,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flussendstück_Links =>
+      KartenGrundKonstanten.FlussendstückLinksKonstante =>
         (KartenGrafik   => '╺',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -447,7 +447,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flussendstück_Rechts =>
+      KartenGrundKonstanten.FlussendstückRechtsKonstante =>
         (KartenGrafik   => '╸',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -457,7 +457,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flussendstück_Unten =>
+      KartenGrundKonstanten.FlussendstückUntenKonstante =>
         (KartenGrafik   => '╹',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -467,7 +467,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Flussendstück_Oben =>
+      KartenGrundKonstanten.FlussendstückObenKonstante =>
         (KartenGrafik   => '╻',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -477,7 +477,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.See =>
+      KartenGrundKonstanten.SeeKonstante =>
         (KartenGrafik   => '▪',
          Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
                             EinheitStadtDatentypen.Luft     => True,
@@ -491,7 +491,7 @@ private
       
       
       -- Unterirdisch
-      KartenDatentypen.Unterirdische_Flusskreuzung_Vier =>
+      KartenGrundKonstanten.UnterirdischeFlusskreuzungVierKonstante =>
         (KartenGrafik   => '╋',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -499,7 +499,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdischer_Fluss_Waagrecht =>
+      KartenGrundKonstanten.UnterirdischerFlussWaagrechtKonstante =>
         (KartenGrafik   => '━',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -507,7 +507,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdischer_Fluss_Senkrecht =>
+      KartenGrundKonstanten.UnterirdischerFlussSenkrechtKonstante =>
         (KartenGrafik   => '┃',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -515,7 +515,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdische_Flusskurve_Unten_Rechts =>
+      KartenGrundKonstanten.UnterirdischeFlusskurveUntenRechtsKonstante =>
         (KartenGrafik   => '┏',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -523,7 +523,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdische_Flusskurve_Unten_Links =>
+      KartenGrundKonstanten.UnterirdischeFlusskurveUntenLinksKonstante =>
         (KartenGrafik   => '┓',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -531,7 +531,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdische_Flusskurve_Oben_Rechts =>
+      KartenGrundKonstanten.UnterirdischeFlusskurveObenRechtsKonstante =>
         (KartenGrafik   => '┗',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -539,7 +539,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdische_Flusskurve_Oben_Links =>
+      KartenGrundKonstanten.UnterirdischeFlusskurveObenLinksKonstante =>
         (KartenGrafik   => '┛',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -547,7 +547,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Oben =>
+      KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiObenKonstante =>
         (KartenGrafik   => '┻',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -555,7 +555,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Unten =>
+      KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiUntenKonstante =>
         (KartenGrafik   => '┳',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -563,7 +563,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts =>
+      KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiRechtsKonstante =>
         (KartenGrafik   => '┣',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -571,7 +571,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdische_Flusskreuzung_Drei_Links =>
+      KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiLinksKonstante =>
         (KartenGrafik   => '┫',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -579,7 +579,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdisches_Flussendstück_Links =>
+      KartenGrundKonstanten.UnterirdischesFlussendstückLinksKonstante =>
         (KartenGrafik   => '╺',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -587,7 +587,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdisches_Flussendstück_Rechts =>
+      KartenGrundKonstanten.UnterirdischesFlussendstückRechtsKonstante =>
         (KartenGrafik   => '╸',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -595,7 +595,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdisches_Flussendstück_Unten =>
+      KartenGrundKonstanten.UnterirdischesFlussendstückUntenKonstante =>
         (KartenGrafik   => '╹',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -603,7 +603,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdisches_Flussendstück_Oben =>
+      KartenGrundKonstanten.UnterirdischesFlussendstückObenKonstante =>
         (KartenGrafik   => '╻',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -611,7 +611,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Unterirdischer_See =>
+      KartenGrundKonstanten.UnterirdischerSeeKonstante =>
         (KartenGrafik   => '▪',
          Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
                             others                              => False),
@@ -623,7 +623,7 @@ private
       
       
       -- Lava
-      KartenDatentypen.Lavaflusskreuzung_Vier =>
+      KartenGrundKonstanten.LavaflusskreuzungVierKonstante =>
         (KartenGrafik   => '╋',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -631,7 +631,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavafluss_Waagrecht =>
+      KartenGrundKonstanten.LavaflussWaagrechtKonstante =>
         (KartenGrafik   => '━',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -639,7 +639,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavafluss_Senkrecht =>
+      KartenGrundKonstanten.LavaflussSenkrechtKonstante =>
         (KartenGrafik   => '┃',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -647,7 +647,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflusskurve_Unten_Rechts =>
+      KartenGrundKonstanten.LavaflusskurveUntenRechtsKonstante =>
         (KartenGrafik   => '┏',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -655,7 +655,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflusskurve_Unten_Links =>
+      KartenGrundKonstanten.LavaflusskurveUntenLinksKonstante =>
         (KartenGrafik   => '┓',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -663,7 +663,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflusskurve_Oben_Rechts =>
+      KartenGrundKonstanten.LavaflusskurveObenRechtsKonstante =>
         (KartenGrafik   => '┗',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -671,7 +671,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflusskurve_Oben_Links =>
+      KartenGrundKonstanten.LavaflusskurveObenLinksKonstante =>
         (KartenGrafik   => '┛',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -679,7 +679,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflusskreuzung_Drei_Oben =>
+      KartenGrundKonstanten.LavaflusskreuzungDreiObenKonstante =>
         (KartenGrafik   => '┻',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -687,7 +687,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflusskreuzung_Drei_Unten =>
+      KartenGrundKonstanten.LavaflusskreuzungDreiUntenKonstante =>
         (KartenGrafik   => '┳',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -695,7 +695,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflusskreuzung_Drei_Rechts =>
+      KartenGrundKonstanten.LavaflusskreuzungDreiRechtsKonstante =>
         (KartenGrafik   => '┣',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -703,7 +703,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflusskreuzung_Drei_Links =>
+      KartenGrundKonstanten.LavaflusskreuzungDreiLinksKonstante =>
         (KartenGrafik   => '┫',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -711,7 +711,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflussendstück_Links =>
+      KartenGrundKonstanten.LavaflussendstückLinksKonstante =>
         (KartenGrafik   => '╺',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -719,7 +719,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflussendstück_Rechts =>
+      KartenGrundKonstanten.LavaflussendstückRechtsKonstante =>
         (KartenGrafik   => '╸',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -727,7 +727,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflussendstück_Unten =>
+      KartenGrundKonstanten.LavaflussendstückUntenKonstante =>
         (KartenGrafik   => '╹',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -735,7 +735,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavaflussendstück_Oben =>
+      KartenGrundKonstanten.LavaflussendstückObenKonstante =>
         (KartenGrafik   => '╻',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),
@@ -743,7 +743,7 @@ private
          Wirtschaft     => (others => (others => 1)),
          Kampf          => (others => (others => 1))),
                                       
-      KartenDatentypen.Lavasee =>
+      KartenGrundKonstanten.LavaseeKonstante =>
         (KartenGrafik   => '▪',
          Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
                             others                                 => False),

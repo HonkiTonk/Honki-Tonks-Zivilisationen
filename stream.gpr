@@ -17,7 +17,7 @@ project Stream is
    end Compiler;
 
    package Builder is
-      for Switches ("ada") use ("-k", "-s", "-j4", "-C", "-gnatW8");
+      for Switches ("ada") use ("-k", "-s", "-C", "-gnatW8", "-j4");
    end Builder;
 
    package Binder is

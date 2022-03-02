@@ -1,16 +1,14 @@
 package ChangelogFebruar2022 is
 
-   -- Version 0.01.00 => 0.01.00 (28.02.2022):
+   -- Version 0.01.0050 => 0.01.0050 (28.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.01.0050 => 0.01.00 (27.02.2022):
+   -- Version 0.01.0050 => 0.01.0050 (27.02.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

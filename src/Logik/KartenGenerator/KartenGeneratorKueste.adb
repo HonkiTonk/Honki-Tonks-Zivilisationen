@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenKonstanten;
 with KartenRecordKonstanten;
+with KartenGrundKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -22,7 +23,7 @@ package body KartenGeneratorKueste is
             case
               LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartenDatentypen.Wasser =>
+               when KartenGrundKonstanten.WasserKonstante =>
                   GewässerFestlegen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
@@ -55,13 +56,13 @@ package body KartenGeneratorKueste is
                null;
                
             elsif
-              LeseKarten.Grund (KoordinatenExtern => KartenWert) /= KartenDatentypen.Flachland
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) /= KartenGrundKonstanten.FlachlandKonstante
             then
                null;
                
             else
                SchreibeKarten.Grund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => KartenDatentypen.Küstengewässer);
+                                     GrundExtern       => KartenGrundKonstanten.KüstengewässerKonstante);
                return;
             end if;
                         

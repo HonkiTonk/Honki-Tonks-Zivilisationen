@@ -8,7 +8,7 @@ with Sf.Graphics.Text;
 with Sf.Graphics.Sprite;
 
 with SystemDatentypen; use SystemDatentypen;
-with KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
 with EinheitStadtRecords;
@@ -33,14 +33,15 @@ private
    
    SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
-   Kartenfeld : KartenDatentypen.Karten_Grund_Enum;
+   Kartengrund : KartenDatentypen.Karten_Grund_Enum;
    KartenfeldFluss : KartenDatentypen.Karten_Grund_Enum;
    KartenfeldRessource : KartenDatentypen.Karten_Grund_Enum;
    
-   Stadtfeld : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+   Stadtart : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenDatentypen.Karten_Verbesserung_Enum;
    Verbesserungsfeld : KartenDatentypen.Karten_Verbesserung_Enum;
    
+   DickeRahmen : constant Float := 6.00;
    YMultiplikator : Float;
    XMultiplikator : Float;
       
@@ -53,16 +54,26 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWertRahmen : KartenRecords.AchsenKartenfeldPositivRecord;
+   KartenWertStadtname : KartenRecords.AchsenKartenfeldPositivRecord;
    
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
+   RechteckBelegtesFeldAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    RechteckRahmenAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
 
    KreisAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
    PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
+   
+   type UmgebungArray is array (1 .. 4) of KartenRecords.AchsenKartenfeldRecord;
+   Umgebung : constant UmgebungArray := (
+                                         1 => (0, -1, 0),
+                                         2 => (0, 0, -1),
+                                         3 => (0, 0, 1),
+                                         4 => (0, 1, 0)
+                                        );
    
    procedure Sichtbarkeit
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
@@ -95,6 +106,11 @@ private
    
    procedure RahmenBesetztesFeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      PositionExtern : in Sf.System.Vector2.sfVector2f;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure RahmenZeichnen
+     (WelcheRichtungExtern : in Positive;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    

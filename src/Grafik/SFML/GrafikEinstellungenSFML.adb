@@ -8,6 +8,7 @@ package body GrafikEinstellungenSFML is
       FensterEinstellungen := FensterStandardEinstellungen;
       Schriftfarben := SchriftfarbenStandard;
       RassenFarben := RassenFarbenStandard;
+      RassenFarbenRahmen := RassenFarbenRahmenStandard;
       
    end StandardGrafikEinstellungenLaden;
 

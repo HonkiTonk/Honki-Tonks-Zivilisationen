@@ -81,7 +81,7 @@ package body KartenGeneratorStandard is
               LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) = KartenGrundKonstanten.LeerGrund
             then
                SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                     GrundExtern       => KartenDatentypen.Wasser);
+                                     GrundExtern       => KartenGrundKonstanten.WasserKonstante);
 
             else
                null;
@@ -124,7 +124,7 @@ package body KartenGeneratorStandard is
               ZufallGeneratorenKarten.ZufälligerWert in WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Sonstiges).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Sonstiges).Endwert
             then
                SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                     GrundExtern       => KartenDatentypen.Flachland);
+                                     GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
                
             else
                null;
@@ -146,7 +146,7 @@ package body KartenGeneratorStandard is
         BeliebigerLandwert in WahrscheinlichkeitenLand (Karten.Kartenart, Masse_Eisschild).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Masse_Eisschild).Endwert
       then
          SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenDatentypen.Flachland);
+                               GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
          GenerierungLandmasse (YKoordinateLandmasseExtern => YAchseExtern,
                                XKoordinateLandmasseExtern => XAchseExtern);
                   
@@ -154,7 +154,7 @@ package body KartenGeneratorStandard is
         BeliebigerLandwert in WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Eisschild).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Eisschild).Endwert
       then
          SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenDatentypen.Flachland);
+                               GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
                            
       else
          null;
@@ -175,7 +175,7 @@ package body KartenGeneratorStandard is
         BeliebigerLandwert in WahrscheinlichkeitenLand (Karten.Kartenart, Masse_Normal).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Masse_Normal).Endwert
       then
          SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenDatentypen.Flachland);
+                               GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
          GenerierungLandmasse (YKoordinateLandmasseExtern => YAchseExtern,
                                XKoordinateLandmasseExtern => XAchseExtern);
                   
@@ -183,7 +183,7 @@ package body KartenGeneratorStandard is
         BeliebigerLandwert in WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Normal).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Normal).Endwert
       then
          SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenDatentypen.Flachland);
+                               GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
                   
       else
          null;
@@ -296,15 +296,15 @@ package body KartenGeneratorStandard is
           Karten.GeneratorKarte (YAchseExtern, XAchseExtern) = KartenGrundKonstanten.LeerGrund
       then
          SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenDatentypen.Flachland);
-         Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := Eis;
+                               GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
+         Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := KartenGrundKonstanten.EisKonstante;
 
       elsif
         BeliebigerLandwert in WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Fläche_Belegt).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Fläche_Belegt).Endwert
       then
          SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenDatentypen.Flachland);
-         Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := KartenDatentypen.Eis;
+                               GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
+         Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := KartenGrundKonstanten.EisKonstante;
                
       else
          null;
@@ -325,7 +325,7 @@ package body KartenGeneratorStandard is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  GrundExtern       => KartenDatentypen.Flachland);
+                                  GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -343,13 +343,13 @@ package body KartenGeneratorStandard is
          for XAchseEisSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
          
             SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseEisSchleifenwert, XAchseEisSchleifenwert),
-                                  GrundExtern       => KartenDatentypen.Eis);
+                                  GrundExtern       => KartenGrundKonstanten.EisKonstante);
             SchreibeKarten.Grund (KoordinatenExtern => (0, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - YAchseEisSchleifenwert + 1, XAchseEisSchleifenwert),
-                                  GrundExtern       => KartenDatentypen.Eis);
+                                  GrundExtern       => KartenGrundKonstanten.EisKonstante);
             SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseEisSchleifenwert, XAchseEisSchleifenwert),
-                                  GrundExtern       => KartenDatentypen.Unterwasser_Eis);
+                                  GrundExtern       => KartenGrundKonstanten.UnterwasserEisKonstante);
             SchreibeKarten.Grund (KoordinatenExtern => (-1, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - YAchseEisSchleifenwert + 1, XAchseEisSchleifenwert),
-                                  GrundExtern       => KartenDatentypen.Unterwasser_Eis);
+                                  GrundExtern       => KartenGrundKonstanten.UnterwasserEisKonstante);
          
          end loop XAchseEisSchleife;
       end loop YAchseEisSchleife;
