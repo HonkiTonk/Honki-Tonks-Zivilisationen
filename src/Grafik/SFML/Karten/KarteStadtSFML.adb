@@ -566,13 +566,13 @@ package body KarteStadtSFML is
       is
          when True =>
             if
-              EingeleseneTexturenSFML.GebäudeAccess (1) /= null -- -------------- (Integer (GebäudeID)) /= null -- *
+              EingeleseneTexturenSFML.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID) /= null
             then
                KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                          PositionExtern    => PositionExtern,
-                                                         SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                             TextureAccessExtern =>
-                                                                                                                                               EingeleseneTexturenSFML.GebäudeAccess (1))); -- *
+                                                         SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte
+                                                           (SpriteAccessExtern  => SpriteAccess,
+                                                            TextureAccessExtern => EingeleseneTexturenSFML.GebäudeAccess (StadtRasseNummerExtern.Rasse, GebäudeID)));
                
             else
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,

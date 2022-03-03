@@ -111,7 +111,7 @@ package body GebaeudeAllgemein is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
       -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
-      VorzeichenWechselExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
       PermanenteKostenSchleife:

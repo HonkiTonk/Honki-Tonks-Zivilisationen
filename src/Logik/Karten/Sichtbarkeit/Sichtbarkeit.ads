@@ -40,8 +40,8 @@ package Sichtbarkeit is
 
 private
 
-   BereitsGetestet : KartenDatentypen.LoopRangeMinusZweiZuZwei;
-   Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+   BereitsGetestet : KartenDatentypen.UmgebungsbereichZwei;
+   Umgebung : KartenDatentypen.UmgebungsbereichDrei;
 
    SichtweiteObjekt : KartenDatentypen.Sichtweite;
 
@@ -105,9 +105,9 @@ private
 
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern : in KartenDatentypen.LoopRangeMinusZweiZuZwei;
-      XÄnderungExtern : in KartenDatentypen.LoopRangeMinusZweiZuZwei;
-      SichtweiteExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
+      YÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
+      XÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
+      SichtweiteExtern : in KartenDatentypen.UmgebungsbereichDrei)
       return Boolean
      with
        Pre =>

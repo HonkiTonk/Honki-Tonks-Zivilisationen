@@ -94,7 +94,7 @@ package StadtUmgebungsbereichFestlegen is
    
 private
    
-   Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+   Umgebung : KartenDatentypen.UmgebungsbereichDrei;
    
    procedure StadtUmgebungErmitteln
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

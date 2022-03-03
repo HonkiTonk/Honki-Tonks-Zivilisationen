@@ -66,24 +66,24 @@ private
    
    -- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht.
    RassenFarbenStandard : constant RassenFarbenArray := (
-                                                         SystemKonstanten.MenschenKonstante        => (255, 230, 200, 0),
-                                                         SystemKonstanten.KasrodiahKonstante       => (255, 100, 40, 100),
-                                                         SystemKonstanten.LasupinKonstante         => (65, 145, 140, 0),
-                                                         SystemKonstanten.LamustraKonstante        => (60, 255, 240, 100),
-                                                         SystemKonstanten.ManukyKonstante          => (255, 255, 30, 100),
-                                                         SystemKonstanten.SurokaKonstante          => (135, 10, 255, 100),
-                                                         SystemKonstanten.PryolonKonstante         => (65, 50, 15, 100),
-                                                         SystemKonstanten.TalbidahrKonstante       => (255, 20, 255, 100),
-                                                         SystemKonstanten.MoruPhisihlKonstante     => (255, 255, 180, 100),
-                                                         SystemKonstanten.LarinosLotarisKonstante  => (255, 210, 135, 100),
-                                                         SystemKonstanten.CarupexKonstante         => (210, 210, 210, 100),
-                                                         SystemKonstanten.AlaryKonstante           => (165, 105, 0, 100),
-                                                         SystemKonstanten.TesorahnKonstante        => (10, 60, 240, 100),
-                                                         SystemKonstanten.NatriesZermanisKonstante => (170, 120, 130, 100),
-                                                         SystemKonstanten.TridatusKonstante        => (20, 95, 20, 100),
-                                                         SystemKonstanten.SenelariKonstante        => (0, 210, 0, 100),
-                                                         SystemKonstanten.Aspari2Konstante         => (90, 90, 90, 100),
-                                                         SystemKonstanten.EkropaKonstante          => (255, 30, 30, 100)
+                                                         SystemKonstanten.MenschenKonstante        => (255, 230, 200, 75),
+                                                         SystemKonstanten.KasrodiahKonstante       => (255, 100, 40, 75),
+                                                         SystemKonstanten.LasupinKonstante         => (65, 145, 140, 75),
+                                                         SystemKonstanten.LamustraKonstante        => (60, 255, 240, 75),
+                                                         SystemKonstanten.ManukyKonstante          => (255, 255, 30, 75),
+                                                         SystemKonstanten.SurokaKonstante          => (135, 10, 255, 75),
+                                                         SystemKonstanten.PryolonKonstante         => (65, 50, 15, 75),
+                                                         SystemKonstanten.TalbidahrKonstante       => (255, 20, 255, 75),
+                                                         SystemKonstanten.MoruPhisihlKonstante     => (255, 255, 180, 75),
+                                                         SystemKonstanten.LarinosLotarisKonstante  => (255, 210, 135, 75),
+                                                         SystemKonstanten.CarupexKonstante         => (210, 210, 210, 75),
+                                                         SystemKonstanten.AlaryKonstante           => (165, 105, 0, 75),
+                                                         SystemKonstanten.TesorahnKonstante        => (10, 60, 240, 75),
+                                                         SystemKonstanten.NatriesZermanisKonstante => (170, 120, 130, 75),
+                                                         SystemKonstanten.TridatusKonstante        => (20, 95, 20, 75),
+                                                         SystemKonstanten.SenelariKonstante        => (0, 210, 0, 75),
+                                                         SystemKonstanten.Aspari2Konstante         => (90, 90, 90, 75),
+                                                         SystemKonstanten.EkropaKonstante          => (255, 30, 30, 75)
                                                         );
    
    RassenFarbenRahmenStandard : constant RassenFarbenArray := (

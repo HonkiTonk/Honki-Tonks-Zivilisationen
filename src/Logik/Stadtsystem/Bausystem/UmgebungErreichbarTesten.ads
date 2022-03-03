@@ -27,8 +27,8 @@ package UmgebungErreichbarTesten is
    
 private
    
-   BereitsGetestet : KartenDatentypen.LoopRangeMinusZweiZuZwei;
-   Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+   BereitsGetestet : KartenDatentypen.UmgebungsbereichZwei;
+   Umgebung : KartenDatentypen.UmgebungsbereichDrei;
    
    GefundeneFelder : Positive;
    

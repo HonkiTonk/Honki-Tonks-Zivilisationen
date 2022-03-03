@@ -385,9 +385,9 @@ package body KIPruefungen is
    is begin
       
       YAchseUmgebungSchleife:
-      for YAchseUmgebungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for YAchseUmgebungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          XAchseUmgebungSchleife:
-         for XAchseUmgebungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for XAchseUmgebungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
             KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
                                                                            ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),

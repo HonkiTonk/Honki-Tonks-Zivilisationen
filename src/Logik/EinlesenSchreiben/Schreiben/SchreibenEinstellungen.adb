@@ -35,6 +35,8 @@ package body SchreibenEinstellungen is
                                                GrafikEinstellungenSFML.Schriftfarben);
       GrafikEinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
                                                        GrafikEinstellungenSFML.RassenFarben);
+      GrafikEinstellungenSFML.RassenFarbenArray'Write (Stream (File => DateiEinstellungenSchreiben),
+                                                       GrafikEinstellungenSFML.RassenFarbenRahmen);
       
       Close (File => DateiEinstellungenSchreiben);
       

@@ -40,8 +40,8 @@ package StadtWerteFestlegen is
 
 private
    
-   GrößeAlt : KartenDatentypen.LoopRangeMinusDreiZuDrei;
-   GrößeNeu : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+   GrößeAlt : KartenDatentypen.UmgebungsbereichDrei;
+   GrößeNeu : KartenDatentypen.UmgebungsbereichDrei;
    
    NahrungGesamt : EinheitStadtDatentypen.ProduktionFeld;
    RessourcenGesamt : EinheitStadtDatentypen.ProduktionFeld;
@@ -59,14 +59,14 @@ private
       
    end record;
    
-   type UmgebungArray is array (KartenDatentypen.LoopRangeMinusDreiZuDrei'Range, KartenDatentypen.LoopRangeMinusDreiZuDrei'Range) of UmgebungRecord;
+   type UmgebungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of UmgebungRecord;
    Umgebung : UmgebungArray;
    
    type WelchesFeldRecord is record
       
       HöchsterWert : EinheitStadtDatentypen.GesamtproduktionStadt;
-      YKoordinate : KartenDatentypen.LoopRangeMinusDreiZuDrei;
-      XKoordinate : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      YKoordinate : KartenDatentypen.UmgebungsbereichDrei;
+      XKoordinate : KartenDatentypen.UmgebungsbereichDrei;
       
    end record;
    

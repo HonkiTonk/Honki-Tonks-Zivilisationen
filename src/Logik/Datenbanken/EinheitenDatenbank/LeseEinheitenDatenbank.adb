@@ -9,18 +9,6 @@ with EinheitenDatenbank;
 
 package body LeseEinheitenDatenbank is
 
-   function EinheitenGrafik
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return Wide_Wide_Character
-   is begin
-      
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).EinheitenGrafik;
-      
-   end EinheitenGrafik;
-   
-   
-      
    function EinheitArt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)

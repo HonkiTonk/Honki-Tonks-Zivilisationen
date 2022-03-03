@@ -255,8 +255,8 @@ package body LeseStadtGebaut is
    
    function UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
-      XKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
+      YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei)
       return Boolean
    is begin
       
@@ -268,7 +268,7 @@ package body LeseStadtGebaut is
    
    function UmgebungGröße
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return KartenDatentypen.LoopRangeMinusDreiZuDrei
+      return KartenDatentypen.UmgebungsbereichDrei
    is begin
       
       if

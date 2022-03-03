@@ -17,7 +17,6 @@ package KartenRecordKonstanten is
                                                                                     XAchse => KartenKonstanten.LeerXAchse);
    
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
-                                                                     KartenGrafik   => KartenKonstanten.LeerKartenGrafik,
                                                                      Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
                                                                      Bewertung      => (others => KartenKonstanten.LeerBewertung),
                                                                      Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),
@@ -41,7 +40,6 @@ package KartenRecordKonstanten is
                                                                     SystemDatentypen.Karte_X_Achse_Normaler_Übergang);
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
-                                                                                 VerbesserungGrafik => KartenKonstanten.LeerVerbesserungGrafik,
                                                                                  Passierbarkeit     => (others => KartenKonstanten.LeerPassierbarkeit),
                                                                                  Bewertung          => (others => KartenKonstanten.LeerVerbesserungBewertung),
                                                                                  Wirtschaft         => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),

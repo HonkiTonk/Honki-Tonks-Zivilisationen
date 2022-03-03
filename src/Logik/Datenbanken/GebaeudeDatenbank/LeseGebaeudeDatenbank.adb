@@ -4,18 +4,6 @@ with GebaeudeDatenbank;
 
 package body LeseGebaeudeDatenbank is
 
-   function GebäudeGrafik
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return Wide_Wide_Character
-   is begin
-      
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).GebäudeGrafik;
-      
-   end GebäudeGrafik;
-
-
-      
    function PreisGeld
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)

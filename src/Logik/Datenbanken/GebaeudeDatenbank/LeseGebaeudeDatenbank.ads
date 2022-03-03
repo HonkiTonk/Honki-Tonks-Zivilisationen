@@ -10,14 +10,6 @@ with DatenbankRecords;
 
 package LeseGebaeudeDatenbank is
 
-   function GebäudeGrafik
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return Wide_Wide_Character
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
-      
    function PreisGeld
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)

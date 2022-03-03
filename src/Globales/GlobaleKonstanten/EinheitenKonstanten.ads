@@ -73,7 +73,6 @@ package EinheitenKonstanten is
    LeerTransportkapazität : constant EinheitStadtDatentypen.Transportwerte := EinheitStadtDatentypen.Transportwerte'First;
    
    LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
-                                                                         EinheitenGrafik            => LeerEinheitenGrafik,
                                                                          EinheitArt                 => LeerEinheitArt,
                                                                          PreisGeld                  => LeerPreisGeld,
                                                                          PreisRessourcen            => LeerPreisRessourcen,

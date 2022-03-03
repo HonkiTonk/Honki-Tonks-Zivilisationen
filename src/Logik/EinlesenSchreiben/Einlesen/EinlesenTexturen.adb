@@ -223,45 +223,51 @@ package body EinlesenTexturen is
                   Name => "Grafik/Einheiten/0");
       end case;
       
-      DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in EinheitenEinlesenArray'Range loop
-         
-         case
-           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
-                                                    AktuelleZeileExtern => AktuelleZeile)
-         is
-            when True =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten - Nicht genug Zeilen in der 0-Datei.");
-               Close (File => DateiTextEinlesen);
-               EinheitenEinlesen (DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
-               return;
+      RassenEinsSchleife:
+      for RasseSchleifenwert in EinheitenEinlesenArray'Range (1) loop
+         DateipfadeEinlesenSchleife:
+         for DateipfadeEinlesenSchleifenwert in EinheitenEinlesenArray'Range (2) loop
+            
+            case
+              EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                       AktuelleZeileExtern => AktuelleZeile)
+            is
+               when True =>
+                  Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten - Nicht genug Zeilen in der 0-Datei.");
+                  Close (File => DateiTextEinlesen);
+                  EinheitenEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
+                  return;
                
-            when False =>
-               EinheitenEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
-         end case;
+               when False =>
+                  EinheitenEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+            end case;
          
-         AktuelleZeile := AktuelleZeile + 1;
-         
-      end loop DateipfadeEinlesenSchleife;
+            AktuelleZeile := AktuelleZeile + 1;
+            
+         end loop DateipfadeEinlesenSchleife;
+      end loop RassenEinsSchleife;
       
       Close (File => DateiTextEinlesen);
       
-      TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in EingeleseneTexturenSFML.EinheitenAccesArray'Range loop
+      RassenZweiSchleife:
+      for RasseSchleifenwert in EingeleseneTexturenSFML.EinheitenAccesArray'Range (1) loop
+         TexturenZuweisenSchleife:
+         for TexturenZuweisenSchleifenwert in EingeleseneTexturenSFML.EinheitenAccesArray'Range (2) loop
          
-         case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (TexturenZuweisenSchleifenwert))))
-         is
-            when True =>
-               EingeleseneTexturenSFML.EinheitenAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (TexturenZuweisenSchleifenwert))));
+            case
+              Exists (Name => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))))
+            is
+               when True =>
+                  EingeleseneTexturenSFML.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert)
+                    := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))));
                   
-            when False =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten - " & To_Wide_Wide_String (Source => EinheitenEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.EinheitenAccess (TexturenZuweisenSchleifenwert) := null;
-         end case;
+               when False =>
+                  Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten - " & To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
+                  EingeleseneTexturenSFML.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
+            end case;
          
-      end loop TexturenZuweisenSchleife;
+         end loop TexturenZuweisenSchleife;
+      end loop RassenZweiSchleife;
       
    end EinlesenEinheiten;
    
@@ -284,46 +290,52 @@ package body EinlesenTexturen is
                   Name => "Grafik/Bauwerke/0");
       end case;
       
-      DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in GebäudeEinlesenArray'Range loop
+      RassenEinsSchleife:
+      for RasseSchleifenwert in GebäudeEinlesenArray'Range (1) loop
+         DateipfadeEinlesenSchleife:
+         for DateipfadeEinlesenSchleifenwert in GebäudeEinlesenArray'Range (2) loop
          
-         case
-           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
-                                                    AktuelleZeileExtern => AktuelleZeile)
-         is
-            when True =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude - Nicht genug Zeilen in der 0-Datei.");
-               Close (File => DateiTextEinlesen);
-               GebäudeEinlesen (DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
-               return;
+            case
+              EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                       AktuelleZeileExtern => AktuelleZeile)
+            is
+               when True =>
+                  Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude - Nicht genug Zeilen in der 0-Datei.");
+                  Close (File => DateiTextEinlesen);
+                  GebäudeEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
+                  return;
                
-            when False =>
-               GebäudeEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
-         end case;
+               when False =>
+                  GebäudeEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+            end case;
          
-         AktuelleZeile := AktuelleZeile + 1;
+            AktuelleZeile := AktuelleZeile + 1;
          
-      end loop DateipfadeEinlesenSchleife;
+         end loop DateipfadeEinlesenSchleife;
+      end loop RassenEinsSchleife;
       
       Close (File => DateiTextEinlesen);
       
-      TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in EingeleseneTexturenSFML.GebäudeAccessArray'Range loop
+      RassenZweiSchleife:
+      for RasseSchleifenwert in EingeleseneTexturenSFML.GebäudeAccessArray'Range (1) loop
+         TexturenZuweisenSchleife:
+         for TexturenZuweisenSchleifenwert in EingeleseneTexturenSFML.GebäudeAccessArray'Range (2) loop
          
-         case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (TexturenZuweisenSchleifenwert))))
-         is
-            when True =>
-               EingeleseneTexturenSFML.GebäudeAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (TexturenZuweisenSchleifenwert))));
+            case
+              Exists (Name => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))))
+            is
+               when True =>
+                  EingeleseneTexturenSFML.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert)
+                    := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))));
                   
-            when False =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude - " & To_Wide_Wide_String (Source => GebäudeEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.GebäudeAccess (TexturenZuweisenSchleifenwert) := null;
-         end case;
+               when False =>
+                  Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude - " & To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
+                  EingeleseneTexturenSFML.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
+            end case;
          
-      end loop TexturenZuweisenSchleife;
+         end loop TexturenZuweisenSchleife;
+      end loop RassenZweiSchleife;
       
    end EinlesenGebäude;
-      
+   
 end EinlesenTexturen;

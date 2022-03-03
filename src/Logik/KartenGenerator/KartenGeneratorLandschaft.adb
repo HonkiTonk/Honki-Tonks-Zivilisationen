@@ -182,9 +182,9 @@ package body KartenGeneratorLandschaft is
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusZweiZuZwei'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichZwei'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusZweiZuZwei'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichZwei'Range loop
 
             KartenWertAbstand := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
                                                                                   ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),

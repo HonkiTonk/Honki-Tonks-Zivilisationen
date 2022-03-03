@@ -12,8 +12,7 @@ package EinheitenTalbidahr is
      (
       -- Siedler
       1 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 10,
          PreisRessourcen         => 10,
          PermanenteKosten        => (others => 0),
@@ -34,8 +33,7 @@ package EinheitenTalbidahr is
                                                
       -- Steinzeitkämpfer
       2 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -56,8 +54,7 @@ package EinheitenTalbidahr is
                                                
       -- Bogenschütze
       3 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -78,8 +75,7 @@ package EinheitenTalbidahr is
       
       -- Erstes Schiff
       4 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -101,8 +97,7 @@ package EinheitenTalbidahr is
                                                
       -- Bronzekämpfer
       5 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -123,8 +118,7 @@ package EinheitenTalbidahr is
                                                
       -- Eisenkämpfer
       6 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -145,8 +139,7 @@ package EinheitenTalbidahr is
                                                
       -- Streitwagen
       7 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -167,8 +160,7 @@ package EinheitenTalbidahr is
                                                
       -- Katapult
       8 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -189,8 +181,7 @@ package EinheitenTalbidahr is
                                                
       -- Balliste
       9 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -211,8 +202,7 @@ package EinheitenTalbidahr is
                                                
       -- Segelschiff
       10 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -234,8 +224,7 @@ package EinheitenTalbidahr is
                                                
       -- Großes Segelschiff
       11 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -257,8 +246,7 @@ package EinheitenTalbidahr is
                                                
       -- Gewehrkämpfer
       12 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -279,8 +267,7 @@ package EinheitenTalbidahr is
                                                
       -- Kanone
       13 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -301,8 +288,7 @@ package EinheitenTalbidahr is
                                                
       -- Dampfschiff
       14 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -324,8 +310,7 @@ package EinheitenTalbidahr is
                                                
       -- Motorschiff
       15 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -347,8 +332,7 @@ package EinheitenTalbidahr is
                                                
       -- U-Boot
       16 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -372,8 +356,7 @@ package EinheitenTalbidahr is
                                                
       -- Gepanzerter Wagen
       17 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -394,8 +377,7 @@ package EinheitenTalbidahr is
                                                
       -- Panzer
       18 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -416,8 +398,7 @@ package EinheitenTalbidahr is
                                                
       -- Jäger
       19 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -438,8 +419,7 @@ package EinheitenTalbidahr is
                                                
       -- Bomber
       20 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -460,8 +440,7 @@ package EinheitenTalbidahr is
                                                
       -- Rakete
       21 =>
-        (EinheitenGrafik         => 'O',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -483,8 +462,7 @@ package EinheitenTalbidahr is
                                                
       -- Düsenjäger
       22 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -505,8 +483,7 @@ package EinheitenTalbidahr is
                                                
       -- Düsenbomber
       23 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -527,8 +504,7 @@ package EinheitenTalbidahr is
                                                
       -- Atombombe
       24 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -549,8 +525,7 @@ package EinheitenTalbidahr is
                                                
       -- Drohne
       25 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -571,8 +546,7 @@ package EinheitenTalbidahr is
                                                
       -- Gensoldat
       26 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -593,8 +567,7 @@ package EinheitenTalbidahr is
                                                
       -- Wassersiedler
       27 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -617,8 +590,7 @@ package EinheitenTalbidahr is
                                                
       -- Cyborg
       28 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -639,8 +611,7 @@ package EinheitenTalbidahr is
                                                
       -- Unterwasser/Unterirdischer Siedler
       29 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -666,8 +637,7 @@ package EinheitenTalbidahr is
                                                
       -- PZB20
       30 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+        (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -688,8 +658,7 @@ package EinheitenTalbidahr is
                                                
       -- PZB40
       31 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+        (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -710,8 +679,7 @@ package EinheitenTalbidahr is
                                                
       -- PZB100
       32 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+        (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -732,8 +700,7 @@ package EinheitenTalbidahr is
                                                
       -- Gaußkämpfer
       33 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -754,8 +721,7 @@ package EinheitenTalbidahr is
                                                
       -- Magnetkämpfer
       34 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -776,8 +742,7 @@ package EinheitenTalbidahr is
                                                
       -- Schwebepanzer
       35 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -801,8 +766,7 @@ package EinheitenTalbidahr is
                                                
       -- Planetenkernsiedler
       36 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -830,8 +794,7 @@ package EinheitenTalbidahr is
                                                
       -- Himmel/Orbitalsiedler
       37 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -857,8 +820,7 @@ package EinheitenTalbidahr is
                                                
       -- Atmosphärenjäger
       38 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -880,8 +842,7 @@ package EinheitenTalbidahr is
                                                
       -- Atmosphärenbomber
       39 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -903,8 +864,7 @@ package EinheitenTalbidahr is
                                                
       -- Artillerie
       40 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -925,8 +885,7 @@ package EinheitenTalbidahr is
                                                
       -- Stellare Artillerie
       41 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -949,8 +908,7 @@ package EinheitenTalbidahr is
                                                
       -- Gräberschiff
       42 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -976,8 +934,7 @@ package EinheitenTalbidahr is
                                                
       -- Kerngräber
       43 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -1005,8 +962,7 @@ package EinheitenTalbidahr is
                                                
       -- Moderne Infanterie
       44 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -1027,8 +983,7 @@ package EinheitenTalbidahr is
                                                
       -- Alleskönner
       45 =>
-        (EinheitenGrafik         => 'A',
-         EinheitArt              => EinheitStadtDatentypen.Beides,
+        (EinheitArt              => EinheitStadtDatentypen.Beides,
          PreisGeld               => 1,
          PreisRessourcen         => 1,
          PermanenteKosten        => (others => 0),

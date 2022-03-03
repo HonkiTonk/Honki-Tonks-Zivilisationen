@@ -9,14 +9,6 @@ with DatenbankRecords;
 
 package LeseEinheitenDatenbank is
 
-   function EinheitenGrafik
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return Wide_Wide_Character
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
-      
    function EinheitArt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)

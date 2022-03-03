@@ -14,7 +14,6 @@ with KartenVerbesserungKonstanten;
 
 with LeseKarten;
 with LeseStadtGebaut;
-with LeseGebaeudeDatenbank;
 
 with KarteKoordinatenPruefen;
 with Karten;
@@ -24,6 +23,7 @@ with GebaeudeAllgemein;
 with KartenAllgemein;
 with GrafischeAnzeigeKonsole;
 with FarbgebungKonsole;
+with EingeleseneGrafikenKonsole;
 
 package body KarteStadtKonsole is
 
@@ -244,8 +244,7 @@ package body KarteStadtKonsole is
                                            WelchesGebäudeExtern  => IDExtern)
         = True
       then
-         Put (Item => LeseGebaeudeDatenbank.GebäudeGrafik (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                            IDExtern    => IDExtern));
+         Put (Item => EingeleseneGrafikenKonsole.GebäudeGrafik (StadtRasseNummerExtern.Rasse, IDExtern));
 
       else
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
@@ -382,7 +381,7 @@ package body KarteStadtKonsole is
    is begin
       
       UmgebungsSchleife:
-      for UmgebungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for UmgebungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
 
          Cursor := CursorKonstant + UmgebungSchleifenwert;
          if
@@ -427,7 +426,7 @@ package body KarteStadtKonsole is
    
    procedure AnzeigeUmgebungCursor
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
+      UmgebungExtern : in KartenDatentypen.UmgebungsbereichDrei)
    is begin
       
       if

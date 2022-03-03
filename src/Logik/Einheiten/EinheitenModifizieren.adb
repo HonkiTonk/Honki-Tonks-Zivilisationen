@@ -89,7 +89,7 @@ package body EinheitenModifizieren is
    
    procedure PermanenteKostenÄndern
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      VorzeichenWechselExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
       Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

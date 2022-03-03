@@ -81,7 +81,7 @@ private
    
    procedure AnzeigeUmgebungCursor
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      UmgebungExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei);
+      UmgebungExtern : in KartenDatentypen.UmgebungsbereichDrei);
    
    
    

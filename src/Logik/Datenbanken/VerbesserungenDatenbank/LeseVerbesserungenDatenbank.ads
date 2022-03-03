@@ -10,10 +10,6 @@ with DatenbankRecords;
 
 package LeseVerbesserungenDatenbank is
 
-   function VerbesserungGrafik
-     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
-      return Wide_Wide_Character;
-   
    function Passierbarkeit
      (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)

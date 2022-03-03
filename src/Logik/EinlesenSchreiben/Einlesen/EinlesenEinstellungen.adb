@@ -37,6 +37,8 @@ package body EinlesenEinstellungen is
                                               GrafikEinstellungenSFML.Schriftfarben);
       GrafikEinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
                                                       GrafikEinstellungenSFML.RassenFarben);
+      GrafikEinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                      GrafikEinstellungenSFML.RassenFarbenRahmen);
 
       Close (File => DateiEinstellungenEinlesen);
       

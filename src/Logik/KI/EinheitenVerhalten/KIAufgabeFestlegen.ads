@@ -105,7 +105,7 @@ private
    WenAngreifen : SystemDatentypen.Rassen_Enum;
    Ziel : SystemDatentypen.Rassen_Enum;
 
-   Umgebung : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+   Umgebung : KartenDatentypen.UmgebungsbereichDrei;
 
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
 

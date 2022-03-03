@@ -42,9 +42,9 @@ package body KIGefahrErmitteln is
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                
             KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                            ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),

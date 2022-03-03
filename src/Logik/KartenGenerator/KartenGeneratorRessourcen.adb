@@ -125,9 +125,9 @@ package body KartenGeneratorRessourcen is
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
             KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
                                                                            ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),

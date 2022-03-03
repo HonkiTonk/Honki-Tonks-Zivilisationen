@@ -48,7 +48,7 @@ private
    Zahlen : Wide_Wide_Character;
    Taste : Wide_Wide_Character;
 
-   IstZahl : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+   IstZahl : KartenDatentypen.UmgebungsbereichDrei;
    AktuelleZahl : Positive;
 
    ZahlenStringLeer : constant Wide_Wide_String (1 .. 10) := "0000000000";

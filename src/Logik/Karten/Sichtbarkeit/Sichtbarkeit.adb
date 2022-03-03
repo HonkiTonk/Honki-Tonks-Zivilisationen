@@ -688,9 +688,9 @@ package body Sichtbarkeit is
    
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern : in KartenDatentypen.LoopRangeMinusZweiZuZwei;
-      XÄnderungExtern : in KartenDatentypen.LoopRangeMinusZweiZuZwei;
-      SichtweiteExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
+      YÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
+      XÄnderungExtern : in KartenDatentypen.UmgebungsbereichZwei;
+      SichtweiteExtern : in KartenDatentypen.UmgebungsbereichDrei)
       return Boolean
    is begin
       

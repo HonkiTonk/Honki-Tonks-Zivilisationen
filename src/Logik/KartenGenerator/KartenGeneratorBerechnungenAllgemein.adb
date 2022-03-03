@@ -19,9 +19,9 @@ package body KartenGeneratorBerechnungenAllgemein is
       AnzahlGleicherGrundBestimmen := 0;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XAchsenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XAchsenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
             KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
                                                                            ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert),

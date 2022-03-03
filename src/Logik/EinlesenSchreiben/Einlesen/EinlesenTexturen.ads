@@ -26,11 +26,11 @@ private
    type VerbesserungenEinlesenArray is array (EingeleseneTexturenSFML.VerbesserungenAccessArray'Range) of Unbounded_Wide_Wide_String;
    VerbesserungenEinlesen : VerbesserungenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
 
-   type EinheitenEinlesenArray is array (EingeleseneTexturenSFML.EinheitenAccesArray'Range) of Unbounded_Wide_Wide_String;
-   EinheitenEinlesen : EinheitenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+   type EinheitenEinlesenArray is array (EingeleseneTexturenSFML.EinheitenAccesArray'Range (1), EingeleseneTexturenSFML.EinheitenAccesArray'Range (2)) of Unbounded_Wide_Wide_String;
+   EinheitenEinlesen : EinheitenEinlesenArray := (others => (others => SystemKonstanten.LeerUnboundedString));
 
-   type GebäudeEinlesenArray is array (EingeleseneTexturenSFML.GebäudeAccessArray'Range) of Unbounded_Wide_Wide_String;
-   GebäudeEinlesen : GebäudeEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+   type GebäudeEinlesenArray is array (EingeleseneTexturenSFML.GebäudeAccessArray'Range (1), EingeleseneTexturenSFML.GebäudeAccessArray'Range (2)) of Unbounded_Wide_Wide_String;
+   GebäudeEinlesen : GebäudeEinlesenArray := (others => (others => SystemKonstanten.LeerUnboundedString));
 
    procedure EinlesenHintergrund;
    procedure EinlesenKartenfelder;

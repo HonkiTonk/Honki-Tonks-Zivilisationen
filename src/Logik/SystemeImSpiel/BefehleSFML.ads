@@ -18,7 +18,7 @@ private
    AufgabeDurchführen : Boolean;
    StadtErfolgreichGebaut : Boolean;
    
-   Auswahl : KartenDatentypen.LoopRangeMinusEinsZuEins;
+   Auswahl : KartenDatentypen.UmgebungsbereichEins;
    
    Befehl : SystemDatentypen.Tastenbelegung_Enum;
 

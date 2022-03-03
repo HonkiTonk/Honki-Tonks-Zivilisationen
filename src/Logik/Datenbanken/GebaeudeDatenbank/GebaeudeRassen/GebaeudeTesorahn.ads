@@ -13,8 +13,7 @@ package GebaeudeTesorahn is
      (
       -- Häuser
       1 =>
-        (GebäudeGrafik               => 'A',
-         PreisGeld                   => 100,
+        (PreisGeld                   => 100,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 0,
@@ -26,8 +25,7 @@ package GebaeudeTesorahn is
                                              
       -- Nahrungslager
       2 =>
-        (GebäudeGrafik               => 'B',
-         PreisGeld                   => 100,
+        (PreisGeld                   => 100,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 2,
@@ -38,8 +36,7 @@ package GebaeudeTesorahn is
                                              
       -- Holzpalisade
       3 =>
-        (GebäudeGrafik               => 'C',
-         PreisGeld                   => 150,
+        (PreisGeld                   => 150,
          PreisRessourcen             => 50,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 1,
@@ -50,8 +47,7 @@ package GebaeudeTesorahn is
                                              
       -- Schmiede
       4 =>
-        (GebäudeGrafik               => 'D',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 10,
@@ -62,8 +58,7 @@ package GebaeudeTesorahn is
       
       -- Bibliothek
       5 =>
-        (GebäudeGrafik               => 'E',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 9,
@@ -74,8 +69,7 @@ package GebaeudeTesorahn is
                                              
       -- Steinmauer
       6 =>
-        (GebäudeGrafik               => 'F',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 11,
@@ -86,8 +80,7 @@ package GebaeudeTesorahn is
                                              
       -- Bücherei
       7 =>
-        (GebäudeGrafik               => 'G',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 21,
@@ -98,8 +91,7 @@ package GebaeudeTesorahn is
                                              
       -- Bewässerungssystem
       8 =>
-        (GebäudeGrafik               => 'H',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 16,
@@ -110,8 +102,7 @@ package GebaeudeTesorahn is
                                              
       -- Kaserne
       9 =>
-        (GebäudeGrafik               => 'I',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 13,
@@ -122,8 +113,7 @@ package GebaeudeTesorahn is
                                              
       -- Wassermühle
       10 =>
-        (GebäudeGrafik               => 'J',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 15,
@@ -134,8 +124,7 @@ package GebaeudeTesorahn is
                                              
       -- Windmühle
       11 =>
-        (GebäudeGrafik               => 'K',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 15,
@@ -146,8 +135,7 @@ package GebaeudeTesorahn is
                                              
       -- Seehafen
       12 =>
-        (GebäudeGrafik               => 'L',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 14,
@@ -158,8 +146,7 @@ package GebaeudeTesorahn is
                                              
       -- Hochofen
       13 =>
-        (GebäudeGrafik               => 'M',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 33,
@@ -170,8 +157,7 @@ package GebaeudeTesorahn is
                                              
       -- Universität
       14 =>
-        (GebäudeGrafik               => 'N',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 27,
@@ -182,8 +168,7 @@ package GebaeudeTesorahn is
                                              
       -- Burg
       15 =>
-        (GebäudeGrafik               => 'O',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 22,
@@ -194,8 +179,7 @@ package GebaeudeTesorahn is
                                              
       -- Schwere Burg
       16 =>
-        (GebäudeGrafik               => 'P',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 25,
@@ -206,8 +190,7 @@ package GebaeudeTesorahn is
                                              
       -- Festungen
       17 =>
-        (GebäudeGrafik               => 'Q',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 34,
@@ -218,8 +201,7 @@ package GebaeudeTesorahn is
                                              
       -- Kohlekraftwerk
       18 =>
-        (GebäudeGrafik               => 'R',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 37,
@@ -230,8 +212,7 @@ package GebaeudeTesorahn is
                                              
       -- Fabrik
       19 =>
-        (GebäudeGrafik               => 'S',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 30,
@@ -242,8 +223,7 @@ package GebaeudeTesorahn is
                                              
       -- Krankenhaus
       20 =>
-        (GebäudeGrafik               => 'T',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 43,
@@ -254,8 +234,7 @@ package GebaeudeTesorahn is
                                              
       -- Flughafen
       21 =>
-        (GebäudeGrafik               => 'U',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 41,
@@ -266,8 +245,7 @@ package GebaeudeTesorahn is
                                              
       -- Atomkraftwerk
       22 =>
-        (GebäudeGrafik               => 'V',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 45,
@@ -278,8 +256,7 @@ package GebaeudeTesorahn is
                                              
       -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
       23 =>
-        (GebäudeGrafik               => 'W',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 53,
@@ -290,8 +267,7 @@ package GebaeudeTesorahn is
                                              
       -- Genklinik
       24 =>
-        (GebäudeGrafik               => 'X',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 56,
@@ -302,8 +278,7 @@ package GebaeudeTesorahn is
                                              
       -- Fusionskraftwerk
       25 =>
-        (GebäudeGrafik               => 'Y',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 60,
@@ -314,8 +289,7 @@ package GebaeudeTesorahn is
                                              
       -- NAMR Kraftwerk
       26 =>
-        (GebäudeGrafik               => 'Z',
-         PreisGeld                   => 1000,
+        (PreisGeld                   => 1000,
          PreisRessourcen             => 100,
          PermanenteKosten            => (others => 0),
          Anforderungen               => 63,

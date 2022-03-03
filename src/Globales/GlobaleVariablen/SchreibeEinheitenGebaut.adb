@@ -44,7 +44,7 @@ package body SchreibeEinheitenGebaut is
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LebenspunkteExtern : in EinheitStadtDatentypen.Lebenspunkte;
-      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
       case
@@ -101,7 +101,7 @@ package body SchreibeEinheitenGebaut is
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BewegungspunkteExtern : in EinheitStadtDatentypen.BewegungFloat;
-      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
       case
@@ -220,7 +220,7 @@ package body SchreibeEinheitenGebaut is
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ZeitExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
       case
@@ -259,7 +259,7 @@ package body SchreibeEinheitenGebaut is
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ZeitExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
       case

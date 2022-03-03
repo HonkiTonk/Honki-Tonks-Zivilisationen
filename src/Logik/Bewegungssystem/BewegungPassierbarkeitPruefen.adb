@@ -299,9 +299,9 @@ package body BewegungPassierbarkeitPruefen is
       -- Bei Einheiten nur um das direkte StadtumfeldUmfeld loopen. Das ist doch Blödsinn, die Einheiten werden ja auf einem beliebigen Feld innerhalb des Stadtbereiches platziert.
       -- Oder reicht das weil es ja hauptsächlich dazu da ist um z.B. Panzer im Himmel zu verhindern?
       YAchseEinheitenSchleife:
-      for YAchseEinheitenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseEinheitenSchleife:
-         for XAchseEinheitenSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
             KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                            ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),

@@ -39,7 +39,7 @@ package StadtKonstanten is
    LeerGebäude : constant Boolean := False;
    LeerName : constant Unbounded_Wide_Wide_String := SystemKonstanten.LeerUnboundedString;
    LeerUmgebungBewitschaftet : constant Boolean := False;
-   LeerUmgebungGröße : constant KartenDatentypen.LoopRangeMinusDreiZuDrei := 0;
+   LeerUmgebungGröße : constant KartenDatentypen.UmgebungsbereichDrei := 0;
    LeerMeldung : constant EinheitStadtDatentypen.Stadt_Meldung_Enum := EinheitStadtDatentypen.Leer;
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe;
    
@@ -78,7 +78,6 @@ package StadtKonstanten is
    LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (
-                                                                         GebäudeGrafik               => LeerGebäudeGrafik,
                                                                          PreisGeld                   => LeerPreisGeld,
                                                                          PreisRessourcen             => LeerPreisRessourcen,
                                                                          PermanenteKosten            => (others => LeerPermanenteKosten),

@@ -93,11 +93,11 @@ package body KIBewegungBerechnen is
       BewertungPosition := BewertungArray'First;
       
       EAchseÄnderungSchleife:
-      for EAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for EAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          YAchseÄnderungSchleife:
-         for YAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for YAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XAchseÄnderungSchleife:
-            for XAchseÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            for XAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
                FeldBewertung (EAchseÄnderungSchleifenwert, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert) := BewertungFeldposition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                   KoordinatenExtern        => AktuelleKoordinatenExtern,
@@ -196,9 +196,9 @@ package body KIBewegungBerechnen is
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
-      YÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
-      XÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
+      YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
+      XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
       return KIDatentypen.BewegungBewertung
    is begin
             
@@ -423,11 +423,11 @@ package body KIBewegungBerechnen is
    is begin
       
       EAchseSchleife:
-      for EÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          YAchseSchleife:
-         for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XAchseSchleife:
-            for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
                KartenWertVereinfachung := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                     PlanschrittExtern        => ErsterZugExtern),

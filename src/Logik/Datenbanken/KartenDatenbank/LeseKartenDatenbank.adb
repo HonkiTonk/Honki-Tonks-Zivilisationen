@@ -4,17 +4,6 @@ with KartenDatenbank;
 
 package body LeseKartenDatenbank is
 
-   function KartenGrafikKonsole
-     (GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
-      return Wide_Wide_Character
-   is begin
-      
-      return KartenDatenbank.KartenListe (GrundExtern).KartenGrafik;
-      
-   end KartenGrafikKonsole;
-   
-   
-      
    function Passierbarkeit
      (GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)

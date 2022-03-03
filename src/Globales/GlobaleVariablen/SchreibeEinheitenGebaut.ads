@@ -48,7 +48,7 @@ package SchreibeEinheitenGebaut is
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LebenspunkteExtern : in EinheitStadtDatentypen.Lebenspunkte;
-      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -58,7 +58,7 @@ package SchreibeEinheitenGebaut is
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       BewegungspunkteExtern : in EinheitStadtDatentypen.BewegungFloat;
-      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -104,7 +104,7 @@ package SchreibeEinheitenGebaut is
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ZeitExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -114,7 +114,7 @@ package SchreibeEinheitenGebaut is
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       ZeitExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
-      RechnenSetzenExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      RechnenSetzenExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

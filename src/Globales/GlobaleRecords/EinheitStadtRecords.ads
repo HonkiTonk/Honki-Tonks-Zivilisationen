@@ -87,7 +87,7 @@ package EinheitStadtRecords is
    -- Ginge auch bei Einheiten, ist da aber vielleicht nicht so sinnvoll.
    type GebäudeVorhandenArray is array (EinheitStadtDatentypen.GebäudeID'Range) of Boolean;
    type StadtMeldungenArray is array (EinheitStadtDatentypen.Stadt_Meldung_Art_Enum'Range) of EinheitStadtDatentypen.Stadt_Meldung_Enum;
-   type UmgebungBewirtschaftungArray is array (KartenDatentypen.LoopRangeMinusDreiZuDrei'Range, KartenDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
+   type UmgebungBewirtschaftungArray is array (KartenDatentypen.UmgebungsbereichDrei'Range, KartenDatentypen.UmgebungsbereichDrei'Range) of Boolean;
    type PermanenteKostenArray is array (EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of EinheitStadtDatentypen.GesamtePermanenteKosten;
 
    type StadtGebautRecord is record
@@ -113,7 +113,7 @@ package EinheitStadtRecords is
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;
-      UmgebungGröße : KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      UmgebungGröße : KartenDatentypen.UmgebungsbereichDrei;
       
       Meldungen : StadtMeldungenArray;
       

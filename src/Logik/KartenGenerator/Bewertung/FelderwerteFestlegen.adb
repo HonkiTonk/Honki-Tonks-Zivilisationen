@@ -22,9 +22,9 @@ package body FelderwerteFestlegen is
    is begin
             
       YAchseÄnderungSchleife:
-      for YAchseÄnderungSchleifenwert in LoopRangeMinusDreiZuDrei'Range loop
+      for YAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          XAchseÄnderungSchleife:
-         for XAchseÄnderungSchleifenwert in LoopRangeMinusDreiZuDrei'Range loop
+         for XAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                   
             KartenWertEins (KoordinatenExtern.EAchse) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
                                                                                                           ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
@@ -57,9 +57,9 @@ package body FelderwerteFestlegen is
    is begin
       
       BewertungYÄnderungSchleife:
-      for BewertungYÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for BewertungYÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          BewertungXÄnderungSchleife:
-         for BewertungXÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for BewertungXÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
             KartenWertZwei (KoordinatenExtern.EAchse) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
                                                                                                           ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
@@ -109,7 +109,7 @@ package body FelderwerteFestlegen is
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Enum;
-      TeilerExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
+      TeilerExtern : in KartenDatentypen.UmgebungsbereichDrei)
    is begin
       
       RassenSchleife:

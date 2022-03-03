@@ -201,11 +201,11 @@ package body BewegungEinheitenSFML is
    is begin
       
       EÄnderungSchleife:
-      for EÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for EÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          YÄnderungSchleife:
-         for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             XÄnderungSchleife:
-            for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                                           
                KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                               ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),

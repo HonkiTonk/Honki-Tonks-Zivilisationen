@@ -48,9 +48,9 @@ package body StadtWerteFestlegen is
 
       -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
             KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                            ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),

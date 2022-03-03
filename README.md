@@ -5,7 +5,7 @@ Benötigt ASFML und die SFML.
 My turn based strategy game (Civilization clone), written in Ada.
 Requires ASFML and the SFML.
 
-Version: 0.01.0060
+Version: 0.01.0080
 
 Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos kompilieren und funktionieren.
 

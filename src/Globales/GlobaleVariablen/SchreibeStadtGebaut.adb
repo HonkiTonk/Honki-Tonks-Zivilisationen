@@ -458,8 +458,8 @@ package body SchreibeStadtGebaut is
    
    procedure UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
-      XKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
       BelegenEntfernenExtern : in Boolean)
    is begin
       
@@ -471,7 +471,7 @@ package body SchreibeStadtGebaut is
    
    procedure UmgebungGröße
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      UmgebungGrößeExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      UmgebungGrößeExtern : in KartenDatentypen.UmgebungsbereichDrei;
       ÄndernSetzenExtern : in Boolean)
    is begin
       
@@ -480,9 +480,9 @@ package body SchreibeStadtGebaut is
       is
          when True =>
             if
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße + UmgebungGrößeExtern > KartenDatentypen.LoopRangeMinusDreiZuDrei'Last
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße + UmgebungGrößeExtern > KartenDatentypen.UmgebungsbereichDrei'Last
             then
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := KartenDatentypen.LoopRangeMinusDreiZuDrei'Last;
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := KartenDatentypen.UmgebungsbereichDrei'Last;
                
             elsif
               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße + UmgebungGrößeExtern < StadtKonstanten.LeerStadt.UmgebungGröße

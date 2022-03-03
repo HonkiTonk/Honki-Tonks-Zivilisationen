@@ -14,7 +14,7 @@ package KarteKoordinatenPruefen is
       LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
-   -- Die Contracts hier mal überarbeiten, sind unvollständig und vielleicht auch zu lang?
+   -- Die Contracts hier mal überarbeiten, sind unvollständig und vielleicht auch zu lang? --------------------------
      Pre =>
        (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
         and
@@ -47,5 +47,10 @@ package KarteKoordinatenPruefen is
             KarteKoordinatenPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KarteKoordinatenPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+private
+   
+   type NeueKoordinateArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
+   NeueKoordinate : NeueKoordinateArray;
 
 end KarteKoordinatenPruefen;

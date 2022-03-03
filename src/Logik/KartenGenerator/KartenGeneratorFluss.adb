@@ -103,9 +103,9 @@ package body KartenGeneratorFluss is
    is begin
       
       YAchseZweiSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseZweiSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                   
             KartenWertTesten (EbeneExtern) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
                                                                                                ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
@@ -145,9 +145,9 @@ package body KartenGeneratorFluss is
       Flusswert (EbeneExtern) := 10_000;
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
 
             KartenWert (EbeneExtern) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
                                                                                          ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),

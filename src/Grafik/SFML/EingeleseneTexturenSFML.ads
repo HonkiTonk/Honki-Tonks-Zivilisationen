@@ -3,8 +3,8 @@ pragma SPARK_Mode (On);
 with Sf.Graphics;
 
 with KartenDatentypen;
--- with EinheitStadtDatentypen;
--- with SystemDatentypen;
+with EinheitStadtDatentypen;
+with SystemDatentypen;
 
 package EingeleseneTexturenSFML is
 
@@ -17,16 +17,10 @@ package EingeleseneTexturenSFML is
    type VerbesserungenAccessArray is array (KartenDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    VerbesserungenAccess : VerbesserungenAccessArray := (others => null);
 
-   -- Später die vollständigen Einheitentexturen einlesen einbauen. -----------------------
-   -- type EinheitenAccesArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;
-   -- EinheitenAccess : EinheitenAccesArray := (others => (others => null));
-   type EinheitenAccesArray is array (1 .. 1) of Sf.Graphics.sfTexture_Ptr;
-   EinheitenAccess : EinheitenAccesArray := (others => null);
+   type EinheitenAccesArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;
+   EinheitenAccess : EinheitenAccesArray := (others => (others => null));
 
-   -- Später die vollständigen Gebäudetexturen einlesen einbauen. -----------------------
-   -- type GebäudeAccessArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfTexture_Ptr;
-   -- GebäudeAccess : GebäudeAccessArray := (others => (others => null));
-   type GebäudeAccessArray is array (1 .. 1) of Sf.Graphics.sfTexture_Ptr;
-   GebäudeAccess : GebäudeAccessArray := (others => null);
+   type GebäudeAccessArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfTexture_Ptr;
+   GebäudeAccess : GebäudeAccessArray := (others => (others => null));
 
 end EingeleseneTexturenSFML;

@@ -41,7 +41,7 @@ private
    Wegfeld : KartenDatentypen.Karten_Verbesserung_Enum;
    Verbesserungsfeld : KartenDatentypen.Karten_Verbesserung_Enum;
    
-   DickeRahmen : constant Float := 6.00;
+   DickeRahmen : constant Float := 5.00;
    YMultiplikator : Float;
    XMultiplikator : Float;
       
@@ -67,12 +67,14 @@ private
    KreisAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
    PolygonAccess : constant Sf.Graphics.sfCircleShape_Ptr := Sf.Graphics.CircleShape.create;
    
-   type UmgebungArray is array (1 .. 4) of KartenRecords.AchsenKartenfeldRecord;
+   type Umgebung_Enum is (Norden, Westen, Osten, Süden);
+   
+   type UmgebungArray is array (Umgebung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Umgebung : constant UmgebungArray := (
-                                         1 => (0, -1, 0),
-                                         2 => (0, 0, -1),
-                                         3 => (0, 0, 1),
-                                         4 => (0, 1, 0)
+                                         Norden => (0, -1, 0),
+                                         Westen => (0, 0, -1),
+                                         Osten  => (0, 0, 1),
+                                         Süden  => (0, 1, 0)
                                         );
    
    procedure Sichtbarkeit
@@ -93,6 +95,7 @@ private
 
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
 
    procedure AnzeigeCursor
@@ -110,7 +113,7 @@ private
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    
    procedure RahmenZeichnen
-     (WelcheRichtungExtern : in Positive;
+     (WelcheRichtungExtern : in Umgebung_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
    

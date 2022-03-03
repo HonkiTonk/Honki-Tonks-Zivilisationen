@@ -12,8 +12,7 @@ package EinheitenTesorahn is
      (
       -- Siedler
       1 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 10,
          PreisRessourcen         => 10,
          PermanenteKosten        => (others => 0),
@@ -35,8 +34,7 @@ package EinheitenTesorahn is
                                                
       -- Steinzeitkämpfer
       2 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -58,8 +56,7 @@ package EinheitenTesorahn is
                                                
       -- Bogenschütze
       3 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -81,8 +78,7 @@ package EinheitenTesorahn is
       
       -- Erstes Schiff
       4 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -106,8 +102,7 @@ package EinheitenTesorahn is
                                                
       -- Bronzekämpfer
       5 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -129,8 +124,7 @@ package EinheitenTesorahn is
                                                
       -- Eisenkämpfer
       6 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -152,8 +146,7 @@ package EinheitenTesorahn is
                                                
       -- Streitwagen
       7 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -175,8 +168,7 @@ package EinheitenTesorahn is
                                                
       -- Katapult
       8 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -198,8 +190,7 @@ package EinheitenTesorahn is
                                                
       -- Balliste
       9 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -221,8 +212,7 @@ package EinheitenTesorahn is
                                                
       -- Segelschiff
       10 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -246,8 +236,7 @@ package EinheitenTesorahn is
                                                
       -- Großes Segelschiff
       11 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -271,8 +260,7 @@ package EinheitenTesorahn is
                                                
       -- Gewehrkämpfer
       12 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -294,8 +282,7 @@ package EinheitenTesorahn is
                                                
       -- Kanone
       13 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -317,8 +304,7 @@ package EinheitenTesorahn is
                                                
       -- Dampfschiff
       14 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -342,8 +328,7 @@ package EinheitenTesorahn is
                                                
       -- Motorschiff
       15 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -367,8 +352,7 @@ package EinheitenTesorahn is
                                                
       -- U-Boot
       16 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -392,8 +376,7 @@ package EinheitenTesorahn is
                                                
       -- Gepanzerter Wagen
       17 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -415,8 +398,7 @@ package EinheitenTesorahn is
                                                
       -- Panzer
       18 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -438,8 +420,7 @@ package EinheitenTesorahn is
                                                
       -- Jäger
       19 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -460,8 +441,7 @@ package EinheitenTesorahn is
                                                
       -- Bomber
       20 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -482,8 +462,7 @@ package EinheitenTesorahn is
                                                
       -- Rakete
       21 =>
-        (EinheitenGrafik         => 'O',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -505,8 +484,7 @@ package EinheitenTesorahn is
                                                
       -- Düsenjäger
       22 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -527,8 +505,7 @@ package EinheitenTesorahn is
                                                
       -- Düsenbomber
       23 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -549,8 +526,7 @@ package EinheitenTesorahn is
                                                
       -- Atombombe
       24 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -571,8 +547,7 @@ package EinheitenTesorahn is
                                                
       -- Drohne
       25 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -593,8 +568,7 @@ package EinheitenTesorahn is
                                                
       -- Gensoldat
       26 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -616,8 +590,7 @@ package EinheitenTesorahn is
                                                
       -- Wassersiedler
       27 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -642,8 +615,7 @@ package EinheitenTesorahn is
                                                
       -- Cyborg
       28 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -665,8 +637,7 @@ package EinheitenTesorahn is
                                                
       -- Unterwasser/Unterirdischer Siedler
       29 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -692,8 +663,7 @@ package EinheitenTesorahn is
                                                
       -- PZB20
       30 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+        (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -714,8 +684,7 @@ package EinheitenTesorahn is
                                                
       -- PZB40
       31 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+        (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -736,8 +705,7 @@ package EinheitenTesorahn is
                                                
       -- PZB100
       32 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+        (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -758,8 +726,7 @@ package EinheitenTesorahn is
                                                
       -- Gaußkämpfer
       33 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -781,8 +748,7 @@ package EinheitenTesorahn is
                                                
       -- Magnetkämpfer
       34 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -804,8 +770,7 @@ package EinheitenTesorahn is
                                                
       -- Schwebepanzer
       35 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -830,8 +795,7 @@ package EinheitenTesorahn is
                                                
       -- Planetenkernsiedler
       36 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -859,8 +823,7 @@ package EinheitenTesorahn is
                                                
       -- Himmel/Orbitalsiedler
       37 =>
-        (EinheitenGrafik         => 'S',
-         EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+        (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -885,8 +848,7 @@ package EinheitenTesorahn is
                                                
       -- Atmosphärenjäger
       38 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -908,8 +870,7 @@ package EinheitenTesorahn is
                                                
       -- Atmosphärenbomber
       39 =>
-        (EinheitenGrafik         => 'L',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -931,8 +892,7 @@ package EinheitenTesorahn is
                                                
       -- Artillerie
       40 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -954,8 +914,7 @@ package EinheitenTesorahn is
                                                
       -- Stellare Artillerie
       41 =>
-        (EinheitenGrafik         => 'F',
-         EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -978,8 +937,7 @@ package EinheitenTesorahn is
                                                
       -- Gräberschiff
       42 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -1005,8 +963,7 @@ package EinheitenTesorahn is
                                                
       -- Kerngräber
       43 =>
-        (EinheitenGrafik         => 'W',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -1034,8 +991,7 @@ package EinheitenTesorahn is
                                                
       -- Moderne Infanterie
       44 =>
-        (EinheitenGrafik         => 'N',
-         EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+        (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
          PreisGeld               => 25,
          PreisRessourcen         => 20,
          PermanenteKosten        => (others => 0),
@@ -1057,8 +1013,7 @@ package EinheitenTesorahn is
                                                
       -- Alleskönner
       45 =>
-        (EinheitenGrafik         => 'A',
-         EinheitArt              => EinheitStadtDatentypen.Beides,
+        (EinheitArt              => EinheitStadtDatentypen.Beides,
          PreisGeld               => 1,
          PreisRessourcen         => 1,
          PermanenteKosten        => (others => 0),

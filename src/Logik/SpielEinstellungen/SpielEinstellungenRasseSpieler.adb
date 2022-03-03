@@ -206,9 +206,9 @@ package body SpielEinstellungenRasseSpieler is
       StartpositionGefunden := False;
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
 
             KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
                                                                            ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),

@@ -6,9 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenVerbesserungKonstanten;
 
-with LeseEinheitenDatenbank;
-with LeseVerbesserungenDatenbank;
-with LeseKartenDatenbank;
+with EingeleseneGrafikenKonsole;
 
 package body FarbgebungKonsole is
 
@@ -115,15 +113,14 @@ package body FarbgebungKonsole is
       elsif
         EinheitIDExtern > EinheitStadtDatentypen.EinheitenIDMitNullWert'First
       then
-         Put (Item => LeseEinheitenDatenbank.EinheitenGrafik (RasseExtern => EigeneRasseExtern,
-                                                              IDExtern    => EinheitIDExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.EinheitenGrafik (EigeneRasseExtern, EinheitIDExtern) & CSI & "0m");
         
       elsif
         VerbesserungExtern in KartenDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
         and
           RasseExtern = EigeneRasseExtern
       then
-         Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (VerbesserungExtern) & CSI & "0m");
             
       elsif
         VerbesserungExtern in KartenDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
@@ -132,10 +129,10 @@ package body FarbgebungKonsole is
            VerbesserungExtern
          is
             when KartenDatentypen.Eigene_Hauptstadt =>
-               Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => KartenDatentypen.Fremde_Hauptstadt) & CSI & "0m");
+               Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (KartenDatentypen.Fremde_Hauptstadt) & CSI & "0m");
                
             when KartenDatentypen.Eigene_Stadt =>
-               Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => KartenDatentypen.Fremde_Stadt) & CSI & "0m");
+               Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (KartenDatentypen.Fremde_Stadt) & CSI & "0m");
                
             when others =>
                null;
@@ -144,15 +141,15 @@ package body FarbgebungKonsole is
       elsif
         VerbesserungExtern /= KartenVerbesserungKonstanten.LeerVerbesserung
       then
-         Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (VerbesserungExtern) & CSI & "0m");
 
       elsif
         RessourceExtern /= KartenGrundKonstanten.LeerGrund
       then
-         Put (Item => LeseKartenDatenbank.KartenGrafikKonsole (GrundExtern => RessourceExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.KartenGrafik (RessourceExtern) & CSI & "0m");
             
       else
-         Put (Item => LeseKartenDatenbank.KartenGrafikKonsole (GrundExtern => GrundExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.KartenGrafik (GrundExtern) & CSI & "0m");
       end if;
       
    end FarbenCursorEinheitVerbesserung;

@@ -196,17 +196,20 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.00 => 0.01.0 (03.03.2022):
+   -- Version 0.01.0080 => 0.01.0 (03.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0060 => 0.01.00 (02.03.2022):
+   -- Version 0.01.0060 => 0.01.0080 (02.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler in der Anzeige der belegten Kartenfelder und des Rahmens korrigiert.
+   -- Einlesen der Einheiten- und Gebäudetexturen so erweitert dass jetzt jede Einheit/Gebäude jeder Rasse eine eigenen Textur haben kann.
+   -- Die Konsolengrafiken aus den Einheiten-, Gebäude-, Karten- und Verbesserungendatenbanken entfernt und in einen eigenen Bereich ausgelagert.
+   -- Angefangen das Kartenformsystem neu zu schreiben.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

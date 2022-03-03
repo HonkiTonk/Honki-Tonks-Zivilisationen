@@ -9,10 +9,10 @@ package KartenVerbesserungKonstanten is
    LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := LeerVerbesserung;
 
    -- Städte
-   Eigene_HauptstadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Eigene_Hauptstadt;
-   Eigene_StadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Eigene_Stadt;
-   Fremde_HauptstadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Fremde_Hauptstadt;
-   Fremde_StadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Fremde_Stadt;
+   EigeneHauptstadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Eigene_Hauptstadt;
+   EigeneStadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Eigene_Stadt;
+   FremdeHauptstadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Fremde_Hauptstadt;
+   FremdeStadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Fremde_Stadt;
                                      
    -- Gebilde
    FarmKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Farm;

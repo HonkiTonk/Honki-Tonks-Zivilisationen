@@ -12,8 +12,6 @@ package DatenbankRecords is
 
    type EinheitenListeRecord is record
       
-      EinheitenGrafik : Wide_Wide_Character;
-      
       EinheitArt : EinheitStadtDatentypen.Einheit_Art_Enum;
       PreisGeld : EinheitStadtDatentypen.KostenLager;
       PreisRessourcen : EinheitStadtDatentypen.KostenLager;
@@ -62,8 +60,6 @@ package DatenbankRecords is
    
    type GebäudeListeRecord is record
       
-      GebäudeGrafik : Wide_Wide_Character;
-      
       PreisGeld : EinheitStadtDatentypen.KostenLager;
       PreisRessourcen : EinheitStadtDatentypen.KostenLager;
       PermanenteKosten : EinheitStadtRecords.PermanenteKostenArray;
@@ -89,8 +85,6 @@ package DatenbankRecords is
       
    -- KartenDatenbank
    type KartenListeRecord is record
-
-      KartenGrafik : Wide_Wide_Character;
       
       Passierbarkeit : PassierbarkeitArray;
       
@@ -105,8 +99,6 @@ package DatenbankRecords is
 
    -- VerbesserungenDatenbank
    type VerbesserungListeRecord is record
-
-      VerbesserungGrafik : Wide_Wide_Character;
       
       Passierbarkeit : PassierbarkeitArray;
       

@@ -49,7 +49,7 @@ private
    YÄnderung : KIDatentypen.BewegungBewertung;
    XÄnderung : KIDatentypen.BewegungBewertung;
    
-   type FeldBewertungArray is array (KartenDatentypen.LoopRangeMinusEinsZuEins'Range, KartenDatentypen.LoopRangeMinusEinsZuEins'Range, KartenDatentypen.LoopRangeMinusEinsZuEins'Range) of KIDatentypen.BewegungBewertung;
+   type FeldBewertungArray is array (KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range, KartenDatentypen.UmgebungsbereichEins'Range) of KIDatentypen.BewegungBewertung;
    FeldBewertung : FeldBewertungArray;
    
    type BewertungRecord is new KartenRecords.AchsenKartenfeldPositivRecord with record
@@ -107,9 +107,9 @@ private
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
-      YÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins;
-      XÄnderungExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
+      YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
+      XÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins)
       return KIDatentypen.BewegungBewertung
      with
        Pre =>

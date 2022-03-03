@@ -99,7 +99,7 @@ package body UmgebungErreichbarTesten is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
             
-         exit BereichSchleife when Umgebung = KartenDatentypen.LoopRangeMinusDreiZuDrei'Last;
+         exit BereichSchleife when Umgebung = KartenDatentypen.UmgebungsbereichDrei'Last;
          
          Umgebung := Umgebung + 1;
          BereitsGetestet := Umgebung - 1;
@@ -120,9 +120,9 @@ package body UmgebungErreichbarTesten is
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
          XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
             KartenWertZwei := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                                ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),

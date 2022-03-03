@@ -35,7 +35,7 @@ private
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in SystemDatentypen.Rassen_Enum;
-      TeilerExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei)
+      TeilerExtern : in KartenDatentypen.UmgebungsbereichDrei)
      with
        Pre =>
          (KoordinatenFeldExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

@@ -58,7 +58,7 @@ private
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
-      VorzeichenWechselExtern : in KartenDatentypen.LoopRangeMinusEinsZuEins)
+      VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre =>
          (VorzeichenWechselExtern /= 0);

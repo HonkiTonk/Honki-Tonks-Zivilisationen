@@ -10,13 +10,12 @@ package KartenDatentypen is
    subtype Stadtfeld is KartenfeldPositiv range 1 .. 20;
    subtype SichtweiteMitNullwert is KartenfeldPositivMitNullwert range 0 .. 10;
    subtype Sichtweite is SichtweiteMitNullwert range 1 .. 10;
-   -- Die Drei hier mal umbenennen?
-   subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
-   subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
-   subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
+   subtype UmgebungsbereichEins is Kartenfeld range -1 .. 1;
+   subtype UmgebungsbereichZwei is Kartenfeld range -2 .. 2;
+   subtype UmgebungsbereichDrei is Kartenfeld range -3 .. 3;
    
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
-   subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
+   subtype Ebene is UmgebungsbereichDrei range -3 .. 2;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    
    type SichtbereichAnfangEndeArray is array (1 .. 4) of Kartenfeld;

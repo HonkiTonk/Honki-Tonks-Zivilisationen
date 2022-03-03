@@ -177,8 +177,8 @@ package SchreibeStadtGebaut is
    
    procedure UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      YKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
-      XKoordinateExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      YKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
+      XKoordinateExtern : in KartenDatentypen.UmgebungsbereichDrei;
       BelegenEntfernenExtern : in Boolean)
      with
        Pre =>
@@ -188,7 +188,7 @@ package SchreibeStadtGebaut is
    
    procedure UmgebungGröße
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      UmgebungGrößeExtern : in KartenDatentypen.LoopRangeMinusDreiZuDrei;
+      UmgebungGrößeExtern : in KartenDatentypen.UmgebungsbereichDrei;
       ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
