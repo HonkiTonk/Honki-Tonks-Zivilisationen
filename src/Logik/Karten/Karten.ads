@@ -51,13 +51,13 @@ package Karten is
                                             KartenEinstellungenKonstanten.KartenartInselnKonstante     => (3, 3),
                                             KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (7, 7),
                                             KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (1, 1),
-                                            others                                        => (1, 1)
+                                            others                                                     => (1, 1)
                                            );
    FelderVonLandartZuLandart : GrößeLandartArray := (
                                                        KartenEinstellungenKonstanten.KartenartInselnKonstante     => (15, 15),
                                                        KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (22, 22),
                                                        KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (1, 1),
-                                                       others                                        => (1, 1)
+                                                       others                                                     => (1, 1)
                                                       );
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos

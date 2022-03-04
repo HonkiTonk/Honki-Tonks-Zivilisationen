@@ -33,7 +33,7 @@ package KartenRecords is
    
    
    
-   -- Mal auf Nullwert umbenennen. -- -------------
+   -- Mal auf Nullwert umbenennen? -- -------------
    type AchsenKartenfeldPositivRecord is tagged record
       
       EAchse : KartenDatentypen.Ebene;

@@ -182,23 +182,23 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01. => 0.01. (05.03.2022):
+   -- Version 0.01.00 => 0.01. (05.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (04.03.2022):
+   -- Version 0.01.0081 => 0.01.00 (04.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0080 => 0.01.0 (03.03.2022):
+   -- Version 0.01.0080 => 0.01.0081 (03.03.2022):
    
-   -- 
+   -- Codeformatierung leicht überarbeitet.
    -- Kleinigkeiten korrigiert.
    
    
