@@ -4,94 +4,50 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 package body Fehler is
 
-   procedure LogikStopp
+   procedure LogikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
       Put_Line (FehlermeldungExtern);
       
-      raise LogikFehler;
+      raise LogikStopp;
       
-   end LogikStopp;
+   end LogikFehler;
    
    
    
-   procedure GrafikStopp
+   procedure GrafikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
          
       Put_Line (FehlermeldungExtern);
       
-      raise GrafikFehler;
+      raise GrafikStopp;
       
-   end GrafikStopp;
+   end GrafikFehler;
    
    
    
-   procedure MusikStopp
+   procedure MusikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
       Put_Line (FehlermeldungExtern);
       
-      raise MusikFehler;
+      raise MusikStopp;
       
-   end MusikStopp;
+   end MusikFehler;
    
    
    
-   procedure SoundStopp
+   procedure SoundFehler
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
       Put_Line (FehlermeldungExtern);
       
-      raise SoundFehler;
+      raise SoundStopp;
       
-   end SoundStopp;
-   
-   
-   
-   procedure LogikMeldung
-     (FehlermeldungExtern : in Wide_Wide_String)
-   is begin
-      
-      Put_Line ("Fehler.LogikMeldung:");
-      Put_Line (FehlermeldungExtern);
-      
-   end LogikMeldung;
-   
-   
-   
-   procedure GrafikMeldung
-     (FehlermeldungExtern : in Wide_Wide_String)
-   is begin
-      
-      Put_Line ("Fehler.GrafikMeldung:");
-      Put_Line (FehlermeldungExtern);
-      
-   end GrafikMeldung;
-   
-   
-   
-   procedure MusikMeldung
-     (FehlermeldungExtern : in Wide_Wide_String)
-   is begin
-      
-      Put_Line ("Fehler.MusikMeldung:");
-      Put_Line (FehlermeldungExtern);
-      
-   end MusikMeldung;
-   
-   
-   
-   procedure SoundMeldung
-     (FehlermeldungExtern : in Wide_Wide_String)
-   is begin
-      
-      Put_Line ("Fehler.SoundMeldung:");
-      Put_Line (FehlermeldungExtern);
-      
-   end SoundMeldung;
+   end SoundFehler;
 
 end Fehler;

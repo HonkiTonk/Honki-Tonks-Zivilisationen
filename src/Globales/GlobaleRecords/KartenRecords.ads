@@ -94,7 +94,6 @@ package KartenRecords is
    
    type CursorRecord is record
       
-      CursorGrafik : Wide_Wide_Character;
       Koordinaten : AchsenKartenfeldPositivRecord;
       KoordinatenAlt : AchsenKartenfeldPositivRecord;
       KoordinatenStadt : AchsenStadtfeldRecord;
@@ -108,6 +107,8 @@ package KartenRecords is
       EAchseEinstellung : KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum;
       YAchseEinstellung : KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum;
       XAchseEinstellung : KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum;
+      
+      YZuerstBerechnenXZuerstBerechnen : Boolean;
       
    end record;
 

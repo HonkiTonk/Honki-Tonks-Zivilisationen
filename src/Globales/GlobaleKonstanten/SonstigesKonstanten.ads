@@ -14,7 +14,6 @@ package SonstigesKonstanten is
    LeerKoordinatenStadt : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
    
    LeerCursor : constant KartenRecords.CursorRecord := (
-                                                        CursorGrafik     => LeerCursorGrafik,
                                                         Koordinaten      => LeerKoordinaten,
                                                         KoordinatenAlt   => LeerKoordinaten,
                                                         KoordinatenStadt => LeerKoordinatenStadt

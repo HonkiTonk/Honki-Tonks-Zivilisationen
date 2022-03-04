@@ -42,7 +42,7 @@ package body SpielEinstellungenKarten is
                return KartengrößeAuswahl;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartengrößeWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartengrößeWählen - Ungültige Menüauswahl.");
          end case;
          
       end loop KartengrößeSchleife;
@@ -120,7 +120,7 @@ package body SpielEinstellungenKarten is
                return KartenartAuswahl;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartenartWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenartWählen - Ungültige Menüauswahl.");
          end case;
 
       end loop KartenartSchleife;
@@ -157,7 +157,7 @@ package body SpielEinstellungenKarten is
                return KartenformAuswahl;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
          end case;
 
       end loop KartenformSchleife;
@@ -194,7 +194,7 @@ package body SpielEinstellungenKarten is
                return KartentemperaturAuswahl;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartentemperaturWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartentemperaturWählen - Ungültige Menüauswahl.");
          end case;
                   
       end loop KartentemperaturSchleife;
@@ -231,7 +231,7 @@ package body SpielEinstellungenKarten is
                return KartenressourcenAuswahl;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenKarten.KartenressourcenWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenressourcenWählen - Ungültige Menüauswahl.");
          end case;
                   
       end loop KartenressourcenSchleife;

@@ -6,12 +6,16 @@ with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenGrundKonstanten;
 with KartenVerbesserungKonstanten;
+with SonstigesKonstanten;
 
 with DatenbankRecords;
 with KartenDatenbank;
 with VerbesserungenDatenbank;
 
 package EingeleseneGrafikenKonsole is
+   
+   type CursorGrafikArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Wide_Wide_Character;
+   CursorGrafik : CursorGrafikArray := (others => SonstigesKonstanten.LeerCursorGrafik);
 
    type EinheitenGrafikArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.EinheitenListeArray'Range) of Wide_Wide_Character;
    EinheitenGrafik : EinheitenGrafikArray := (

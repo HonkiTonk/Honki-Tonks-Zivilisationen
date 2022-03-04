@@ -323,7 +323,7 @@ package body SchreibeStadtGebaut is
       if
         BauprojektExtern.Nummer = EinheitStadtDatentypen.MinimimMaximumID'First
       then
-         Fehler.LogikStopp (FehlermeldungExtern => "SchreibeStadtGebaut.Bauprojekt - Ungültige Bauprojektnummer.");
+         Fehler.LogikFehler (FehlermeldungExtern => "SchreibeStadtGebaut.Bauprojekt - Ungültige Bauprojektnummer.");
          
       else
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := BauprojektExtern;

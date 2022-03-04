@@ -185,7 +185,7 @@ package body LeseStadtGebaut is
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt.Nummer
       is
          when EinheitStadtDatentypen.MinimimMaximumID'First =>
-            Fehler.LogikStopp (FehlermeldungExtern => "LeseStadtGebaut.Bauprojekt - Aktuelles Bauprojekt ist ungültig.");
+            Fehler.LogikFehler (FehlermeldungExtern => "LeseStadtGebaut.Bauprojekt - Aktuelles Bauprojekt ist ungültig.");
             
          when others =>
             null;

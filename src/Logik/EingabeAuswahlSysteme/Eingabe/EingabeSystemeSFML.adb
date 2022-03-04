@@ -10,7 +10,6 @@ with Sf.Graphics.RenderWindow;
 -- with SystemDatentypen;
 
 with GrafikEinstellungenSFML;
-with Fehler;
 with InteraktionGrafiktask;
 
 package body EingabeSystemeSFML is
@@ -34,7 +33,8 @@ package body EingabeSystemeSFML is
             when Sf.Window.Event.sfEvtClosed =>
                -- Hier noch einen universellen Endebefehl einbauen.
                -- Nur als Zwischenlösung gedacht, später wieder entfernen!
-               Fehler.GrafikStopp (FehlermeldungExtern => "");
+               InteraktionGrafiktask.FensterGeschlossen := True;
+               return;
                   
             when Sf.Window.Event.sfEvtResized =>
                InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert;

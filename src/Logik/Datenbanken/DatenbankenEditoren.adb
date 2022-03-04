@@ -44,7 +44,7 @@ package body DatenbankenEditoren is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "DatenbankenEditoren.DatenbankenEditoren - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "DatenbankenEditoren.DatenbankenEditoren - Ungültige Menüauswahl.");
          end case;
          
       end loop EditorenSchleife;

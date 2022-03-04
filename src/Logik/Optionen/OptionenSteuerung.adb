@@ -47,7 +47,7 @@ package body OptionenSteuerung is
                AlteTasteEntfernen;
                      
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "OptionenSteuerung.SteuerungBelegen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSteuerung.SteuerungBelegen - Ungültige Menüauswahl.");
          end case;
          
       end loop BelegungSchleife;

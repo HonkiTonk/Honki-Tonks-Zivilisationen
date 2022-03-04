@@ -66,7 +66,7 @@ package body StadtBauen is
             end if;
             
          when SystemKonstanten.LeerSpielerKonstante =>
-            Fehler.LogikStopp (FehlermeldungExtern => "StadtBauen.StadtBauen - Eine nicht vorhandene Rasse baut eine Stadt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "StadtBauen.StadtBauen - Eine nicht vorhandene Rasse baut eine Stadt.");
       end case;
             
       -- Immer daran denken dass die Stadt bei StadtEintragen auf Leer gesetzt wird und deswegen der Name danach eingetragen werden muss.

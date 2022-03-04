@@ -6,7 +6,7 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Sf.Graphics.Texture;
 
 with EinlesenAllgemein;
-with Fehler;
+with Warnung;
 
 package body EinlesenTexturen is
    
@@ -48,7 +48,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrund - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - Nicht genug Zeilen in der 0-Datei.");
                Close (File => DateiTextEinlesen);
                HintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
                return;
@@ -74,7 +74,7 @@ package body EinlesenTexturen is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
                EingeleseneTexturenSFML.HintergrundAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
@@ -109,7 +109,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - Nicht genug Zeilen in der 0-Datei.");
                Close (File => DateiTextEinlesen);
                KartenfelderEinlesen (DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
                return;
@@ -135,7 +135,7 @@ package body EinlesenTexturen is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - " & To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenKartenfelder - " & To_Wide_Wide_String (Source => KartenfelderEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
                EingeleseneTexturenSFML.KartenfelderAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
@@ -170,7 +170,7 @@ package body EinlesenTexturen is
                                                     AktuelleZeileExtern => AktuelleZeile)
          is
             when True =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - Nicht genug Zeilen in der 0-Datei.");
                Close (File => DateiTextEinlesen);
                VerbesserungenEinlesen (DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
                return;
@@ -196,7 +196,7 @@ package body EinlesenTexturen is
                  := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
-               Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - " & To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenVerbesserungen - " & To_Wide_Wide_String (Source => VerbesserungenEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
                EingeleseneTexturenSFML.VerbesserungenAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
@@ -233,7 +233,7 @@ package body EinlesenTexturen is
                                                        AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten - Nicht genug Zeilen in der 0-Datei.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - Nicht genug Zeilen in der 0-Datei.");
                   Close (File => DateiTextEinlesen);
                   EinheitenEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
                   return;
@@ -262,7 +262,7 @@ package body EinlesenTexturen is
                     := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))));
                   
                when False =>
-                  Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenEinheiten - " & To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenEinheiten - " & To_Wide_Wide_String (Source => EinheitenEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
                   EingeleseneTexturenSFML.EinheitenAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
             end case;
          
@@ -300,7 +300,7 @@ package body EinlesenTexturen is
                                                        AktuelleZeileExtern => AktuelleZeile)
             is
                when True =>
-                  Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude - Nicht genug Zeilen in der 0-Datei.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - Nicht genug Zeilen in der 0-Datei.");
                   Close (File => DateiTextEinlesen);
                   GebäudeEinlesen (RasseSchleifenwert, DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
                   return;
@@ -329,7 +329,7 @@ package body EinlesenTexturen is
                     := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert))));
                   
                when False =>
-                  Fehler.LogikMeldung (FehlermeldungExtern => "EinlesenTexturen.EinlesenGebäude - " & To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
+                  Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenGebäude - " & To_Wide_Wide_String (Source => GebäudeEinlesen (RasseSchleifenwert, TexturenZuweisenSchleifenwert)) & " fehlt.");
                   EingeleseneTexturenSFML.GebäudeAccess (RasseSchleifenwert, TexturenZuweisenSchleifenwert) := null;
             end case;
          

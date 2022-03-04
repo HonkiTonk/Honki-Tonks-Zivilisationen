@@ -108,7 +108,7 @@ package body FarbgebungKonsole is
       if
         CursorExtern
       then
-         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (EigeneRasseExtern).CursorGrafik & CSI & "0m");
+         Put (Item => CSI & "5m" & EingeleseneGrafikenKonsole.CursorGrafik (EigeneRasseExtern) & CSI & "0m");
          
       elsif
         EinheitIDExtern > EinheitStadtDatentypen.EinheitenIDMitNullWert'First

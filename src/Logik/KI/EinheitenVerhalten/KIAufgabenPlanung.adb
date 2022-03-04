@@ -71,7 +71,7 @@ package body KIAufgabenPlanung is
             null;
             
          when EinheitStadtDatentypen.Leer =>
-            Fehler.LogikStopp (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat keine Einheit ausgewählt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat keine Einheit ausgewählt.");
       end case;
       
    end EinheitSpezifischeAufgabenErmitteln;

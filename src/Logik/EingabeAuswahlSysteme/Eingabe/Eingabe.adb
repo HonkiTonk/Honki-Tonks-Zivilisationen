@@ -80,7 +80,7 @@ package body Eingabe is
             EingabeKonsole.WartenEingabe;
             
          when SystemDatentypen.Grafik_SFML =>
-            Fehler.LogikStopp (FehlermeldungExtern => "Eingabe.WartenEingabe - Nur bei Konsole so nötig.");
+            Fehler.LogikFehler (FehlermeldungExtern => "Eingabe.WartenEingabe - Nur bei Konsole so nötig.");
       end case;
       
    end WartenEingabe;

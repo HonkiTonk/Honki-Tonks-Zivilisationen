@@ -26,12 +26,12 @@ package body EingabeKonsole is
       if
         WelcheFrageExtern > GlobaleTexte.Frage'Last
       then
-         Fehler.LogikStopp (FehlermeldungExtern => "EingabeKonsole.GanzeZahl - Frage ist außerhalb des Fragenbereichs.");
+         Fehler.LogikFehler (FehlermeldungExtern => "EingabeKonsole.GanzeZahl - Frage ist außerhalb des Fragenbereichs.");
          
       elsif
         ZahlenMinimumExtern > ZahlenMaximumExtern
       then
-         Fehler.LogikStopp (FehlermeldungExtern => "EingabeKonsole.GanzeZahl - Zahlenminimum ist größer als Zahlenmaximum.");
+         Fehler.LogikFehler (FehlermeldungExtern => "EingabeKonsole.GanzeZahl - Zahlenminimum ist größer als Zahlenmaximum.");
          
       else
          -- Wegen der grafischen Anzeige festgelegt.

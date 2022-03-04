@@ -98,7 +98,7 @@ package body Hauptmenue is
                exit HauptmenüSchleife;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "Hauptmenue.Hauptmenü - Keine gültige Menüauswahl");
+               Fehler.LogikFehler (FehlermeldungExtern => "Hauptmenue.Hauptmenü - Keine gültige Menüauswahl");
          end case;
          
       end loop HauptmenüSchleife;

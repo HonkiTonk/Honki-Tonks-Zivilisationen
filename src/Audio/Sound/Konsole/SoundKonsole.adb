@@ -21,7 +21,7 @@ package body SoundKonsole is
                delay SystemKonstanten.WartezeitSound;
                
             when SystemDatentypen.Sound_SFML =>
-               Fehler.SoundStopp (FehlermeldungExtern => "SoundKonsole.SoundKonsole - SFML wird bei Konsole aufgerufen.");
+               Fehler.SoundFehler (FehlermeldungExtern => "SoundKonsole.SoundKonsole - SFML wird bei Konsole aufgerufen.");
                
             when SystemDatentypen.Sound_Ende =>
                exit SoundSchleife;

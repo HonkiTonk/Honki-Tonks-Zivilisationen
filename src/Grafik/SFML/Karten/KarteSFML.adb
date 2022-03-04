@@ -364,7 +364,7 @@ package body KarteSFML is
                                                     PolygonAccessExtern => PolygonAccess);
                
             when KartenVerbesserungKonstanten.LeerVerbesserung =>
-               Fehler.GrafikStopp (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene Stadt ist nicht vorhanden.");
+               Fehler.GrafikFehler (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene Stadt ist nicht vorhanden.");
          end case;
       end if;
       

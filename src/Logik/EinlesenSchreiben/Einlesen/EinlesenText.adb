@@ -26,7 +26,7 @@ package body EinlesenText is
                   Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.NutzerEinstellungen.Sprache)) & "/0");
 
          when False =>
-            Fehler.LogikStopp (FehlermeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");
+            Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");
       end case;
       
       EinlesenSchleife:
@@ -36,7 +36,7 @@ package body EinlesenText is
            VorzeitigesZeilenende (AktuelleZeileExtern => WelcheDateienSchleifenwert)
          is
             when True =>
-               Fehler.LogikStopp (FehlermeldungExtern => "EinlesenText.EinlesenDateien - Nicht genug Zeilen in der 0-Datei.");
+               Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenDateien - Nicht genug Zeilen in der 0-Datei.");
                
             when False =>
                TextdateienEinlesen (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
@@ -49,7 +49,7 @@ package body EinlesenText is
                null;
                   
             when False =>
-               Fehler.LogikStopp (FehlermeldungExtern => "EinlesenText.EinlesenDateien - Fehlende Datei:" & To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateienSchleifenwert)));
+               Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenDateien - Fehlende Datei:" & To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateienSchleifenwert)));
          end case;
 
       end loop EinlesenSchleife;

@@ -9,6 +9,8 @@ with StartGrafik;
 with StartMusik;
 with StartSound;
 
+with InteraktionGrafiktask;
+
 procedure Start
 is
 
@@ -131,19 +133,20 @@ begin
    SpielLäuftSchleife:
    loop
 
-      case
+      if
         UnerwarteterFehler
-      is
-         when True =>
-            Abort_Task (T => TaskID (Task_Logik));
-            Abort_Task (T => TaskID (Task_Grafik));
-            Abort_Task (T => TaskID (Task_Musik));
-            Abort_Task (T => TaskID (Task_Sound));
-            exit SpielLäuftSchleife;
+        or
+          InteraktionGrafiktask.FensterGeschlossen
+      then
+         Abort_Task (T => TaskID (Task_Logik));
+         Abort_Task (T => TaskID (Task_Grafik));
+         Abort_Task (T => TaskID (Task_Musik));
+         Abort_Task (T => TaskID (Task_Sound));
+         exit SpielLäuftSchleife;
 
-         when False =>
-            null;
-      end case;
+      else
+         null;
+      end if;
 
       if
         TasksLaufen (Task_Logik) = False

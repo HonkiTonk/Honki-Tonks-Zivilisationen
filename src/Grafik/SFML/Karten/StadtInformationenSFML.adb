@@ -81,7 +81,7 @@ package body StadtInformationenSFML is
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when KartenVerbesserungKonstanten.LeerVerbesserung =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "StadtInformationenSFML.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenSFML.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
          when KartenDatentypen.Eigene_Hauptstadt =>
             if

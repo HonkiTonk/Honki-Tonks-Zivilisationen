@@ -39,7 +39,7 @@ package body Optionen is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "Optionen.Optionen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "Optionen.Optionen - Ungültige Menüauswahl.");
          end case;
 
          case
@@ -52,7 +52,7 @@ package body Optionen is
                null;
                      
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "Optionen.Optionen - Ungültiger Rückgabewert.");
+               Fehler.LogikFehler (FehlermeldungExtern => "Optionen.Optionen - Ungültiger Rückgabewert.");
          end case;
 
       end loop OptionenSchleife;

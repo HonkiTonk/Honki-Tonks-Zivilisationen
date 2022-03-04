@@ -48,7 +48,7 @@ package body ImSpiel is
                   null;
                
                when others =>
-                  Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.ImSpiel - Falsche Rückgabe.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.ImSpiel - Falsche Rückgabe.");
             end case;
             
          end loop RassenSchleife;
@@ -123,7 +123,7 @@ package body ImSpiel is
                KISpieler (RasseExtern => RasseExtern);
                
             when SystemKonstanten.LeerSpielerKonstante =>
-               Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Rasse ist Leer.");
+               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Rasse ist Leer.");
          end case;
 
       else
@@ -203,7 +203,7 @@ package body ImSpiel is
                
             when others =>
                -- Sollte niemals auftreten? Könnte auftreten wenn der Spieler eliminiert wird oder auf KI gesetzt wird? Mal ein besseres System bauen.
-               Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.MenschAmZug - Nicht von Mensch belegt.");
+               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Nicht von Mensch belegt.");
          end case;
          
          case
@@ -237,11 +237,11 @@ package body ImSpiel is
                   null;
                   
                else
-                  Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.MenschAmZug - Keine gültige Menürückgabe.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Keine gültige Menürückgabe.");
                end if;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.MenschAmZug - Kein gültiger Befehl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.MenschAmZug - Kein gültiger Befehl.");
          end case;
                      
       end loop SpielerSchleife;
@@ -298,7 +298,7 @@ package body ImSpiel is
                return AuswahlSpielmenü;
                   
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "ImSpiel.Spielmenü - Keine gültige Menürückgabe.");
+               Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.Spielmenü - Keine gültige Menürückgabe.");
          end case;
       
       end loop SpielmenüSchleife;

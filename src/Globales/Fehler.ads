@@ -2,51 +2,25 @@ pragma SPARK_Mode (On);
 
 package Fehler is
    
-   procedure LogikStopp
+   procedure LogikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
      with
        Pre =>
          (FehlermeldungExtern'Length > 0);
             
-   procedure GrafikStopp
+   procedure GrafikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
      with
        Pre =>
          (FehlermeldungExtern'Length > 0);
    
-   procedure MusikStopp
+   procedure MusikFehler
      (FehlermeldungExtern : in Wide_Wide_String)
      with
        Pre =>
          (FehlermeldungExtern'Length > 0);
    
-   procedure SoundStopp
-     (FehlermeldungExtern : in Wide_Wide_String)
-     with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
-   
-   -- Bei Meldung den Parameter nicht Fehlermeldung nennen? ---------------
-   -- Oder Meldungen gleich in einen eigenen Bereich ziehen? Ist ja nicht identisch mit einem stoppenden Fehler.
-   procedure LogikMeldung
-     (FehlermeldungExtern : in Wide_Wide_String)
-     with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
-   
-   procedure GrafikMeldung
-     (FehlermeldungExtern : in Wide_Wide_String)
-     with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
-   
-   procedure MusikMeldung
-     (FehlermeldungExtern : in Wide_Wide_String)
-     with
-       Pre =>
-         (FehlermeldungExtern'Length > 0);
-   
-   procedure SoundMeldung
+   procedure SoundFehler
      (FehlermeldungExtern : in Wide_Wide_String)
      with
        Pre =>
@@ -54,9 +28,9 @@ package Fehler is
    
 private
 
-   LogikFehler : exception;
-   GrafikFehler : exception;
-   MusikFehler : exception;
-   SoundFehler : exception;
+   LogikStopp : exception;
+   GrafikStopp : exception;
+   MusikStopp : exception;
+   SoundStopp : exception;
 
 end Fehler;

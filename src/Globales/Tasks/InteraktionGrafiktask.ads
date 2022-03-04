@@ -11,6 +11,7 @@ package InteraktionGrafiktask is
    
    TastenEingabe : Boolean := False;
    TextEingabe : Boolean := False;
+   FensterGeschlossen : Boolean := False;
     
    procedure ErzeugeFensterÄndern;
    

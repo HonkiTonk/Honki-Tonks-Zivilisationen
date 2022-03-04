@@ -37,7 +37,7 @@ package body TextAnzeigeKonsole is
                                                    AbstandEndeExtern      => AbstandEndeExtern);
             
          when SystemDatentypen.Grafik_SFML =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "Anzeige.AnzeigeOhneAuswahlNeu - SFML wird in Konsolengrafik aufgerufen.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.AnzeigeOhneAuswahlNeu - SFML wird in Konsolengrafik aufgerufen.");
       end case;
       
    end AnzeigeOhneAuswahlNeu;
@@ -74,7 +74,7 @@ package body TextAnzeigeKonsole is
             end if;
             
          when SystemDatentypen.Grafik_SFML =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "Anzeige.EinzeiligeAnzeigeOhneAuswahl - SFML wird in Konsolengrafik aufgerufen.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.EinzeiligeAnzeigeOhneAuswahl - SFML wird in Konsolengrafik aufgerufen.");
       end case;
       
    end EinzeiligeAnzeigeOhneAuswahl;
@@ -102,7 +102,7 @@ package body TextAnzeigeKonsole is
                                                   AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
             
          when SystemDatentypen.Grafik_SFML =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "Anzeige.AnzeigeMitAuswahlNeu - SFML wird in Konsolengrafik aufgerufen.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.AnzeigeMitAuswahlNeu - SFML wird in Konsolengrafik aufgerufen.");
       end case;
       
    end AnzeigeMitAuswahlNeu;

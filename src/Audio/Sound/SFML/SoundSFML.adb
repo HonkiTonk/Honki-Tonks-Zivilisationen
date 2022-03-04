@@ -22,7 +22,7 @@ package body SoundSFML is
            InteraktionSoundtask.AktuellenSoundAbfragen
          is
             when SystemDatentypen.Sound_Konsole =>
-               Fehler.SoundStopp (FehlermeldungExtern => "SoundSFML.SoundSFML - Konsole wird bei SFML aufgerufen.");
+               Fehler.SoundFehler (FehlermeldungExtern => "SoundSFML.SoundSFML - Konsole wird bei SFML aufgerufen.");
                
             when SystemDatentypen.Sound_SFML =>
                delay SystemKonstanten.WartezeitSound;

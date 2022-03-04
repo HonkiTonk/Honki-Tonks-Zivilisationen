@@ -40,7 +40,7 @@ package body OptionenSonstiges is
                return AuswahlWert;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.Sonstiges - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.Sonstiges - Ungültige Menüauswahl.");
          end case;
          
       end loop SonstigesSchleife;
@@ -91,7 +91,7 @@ package body OptionenSonstiges is
                GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
                
             else
-               Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern - Ungültige Zahl wurd eingegeben.");
+               Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern - Ungültige Zahl wurd eingegeben.");
             end if;
             
          when False =>
@@ -123,7 +123,7 @@ package body OptionenSonstiges is
             end if;
             
          when False =>
-            Fehler.LogikStopp (FehlermeldungExtern => "OptionenSonstiges.SpracheWechseln - Sprachen wurden nicht gefunden.");
+            Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.SpracheWechseln - Sprachen wurden nicht gefunden.");
       end case;
       
    end SpracheWechseln;

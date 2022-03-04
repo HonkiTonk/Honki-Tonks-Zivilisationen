@@ -106,7 +106,7 @@ package body BauAuswahlAnzeigeSFML is
             if
               WelcherTextLang > GlobaleTexte.Gebäude'Last
             then
-               Fehler.GrafikStopp (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.WeiterenTextAnzeigen - Gebäude ist außerhalb der Liste.");
+               Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.WeiterenTextAnzeigen - Gebäude ist außerhalb der Liste.");
                
             else
                Sf.Graphics.Text.setUnicodeString (text => TextAccess,
@@ -117,7 +117,7 @@ package body BauAuswahlAnzeigeSFML is
             if
               WelcherTextLang > GlobaleTexte.Einheiten'Last
             then
-               Fehler.GrafikStopp (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.WeiterenTextAnzeigen - Einheit ist außerhalb der Liste.");
+               Fehler.GrafikFehler (FehlermeldungExtern => "BauAuswahlAnzeigeSFML.WeiterenTextAnzeigen - Einheit ist außerhalb der Liste.");
                
             else
                Sf.Graphics.Text.setUnicodeString (text => TextAccess,

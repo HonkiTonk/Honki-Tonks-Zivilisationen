@@ -19,7 +19,7 @@ package body EinheitenBeschreibungen is
         IDExtern
       is
          when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.BeschreibungKurz - Einheit sollte existieren tut sie aber nicht.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "EinheitenBeschreibungen.BeschreibungKurz - Einheit sollte existieren tut sie aber nicht.");
             
          when others =>
             Textnummer := 2 * Positive (IDExtern) - 1;
@@ -42,7 +42,7 @@ package body EinheitenBeschreibungen is
         IDExtern
       is
          when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.BeschreibungLang - Einheit sollte existieren tut sie aber nicht.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "EinheitenBeschreibungen.BeschreibungLang - Einheit sollte existieren tut sie aber nicht.");
             
          when others =>
             Textnummer := 2 * Positive (IDExtern);
@@ -78,7 +78,7 @@ package body EinheitenBeschreibungen is
             end if;
                
          when others =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "EinheitenBeschreibungen.Beschäftigung - Führt keine gültige Aufgabe durch.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "EinheitenBeschreibungen.Beschäftigung - Führt keine gültige Aufgabe durch.");
       end case;
          
       return To_Wide_Wide_String (Source => BeschäftigungText);

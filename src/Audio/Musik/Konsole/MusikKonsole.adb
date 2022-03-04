@@ -25,7 +25,7 @@ package body MusikKonsole is
                MusikIntroKonsole.Intro;
                
             when SystemDatentypen.Musik_SFML =>
-               Fehler.MusikStopp (FehlermeldungExtern => "MusikKonsole.MusikKonsole - SFML wird bei Konsole aufgerufen.");
+               Fehler.MusikFehler (FehlermeldungExtern => "MusikKonsole.MusikKonsole - SFML wird bei Konsole aufgerufen.");
                
             when SystemDatentypen.Musik_Ende =>
                exit MusikSchleife;

@@ -21,7 +21,7 @@ package body GrafikStartEndeSFML is
         GlobaleVariablen.AnzeigeArt
       is
          when SystemDatentypen.Grafik_Konsole =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
             
          when SystemDatentypen.Grafik_SFML =>
             FensterErzeugenErweitert;
@@ -31,7 +31,7 @@ package body GrafikStartEndeSFML is
       if
         GrafikEinstellungenSFML.FensterAccess = null
       then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - FensterAccess = null.");
+         Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - FensterAccess = null.");
 
       else
          GrafikAllgemeinSFML.MauszeigerFestlegen;
@@ -69,7 +69,7 @@ package body GrafikStartEndeSFML is
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
             
          when others =>
-            Fehler.GrafikStopp (FehlermeldungExtern => "StartEndeSFML.FensterErzeugenErweitert - Unbekannter Fenstermodus ausgewählt.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "StartEndeSFML.FensterErzeugenErweitert - Unbekannter Fenstermodus ausgewählt.");
       end case;
             
    end FensterErzeugenErweitert;

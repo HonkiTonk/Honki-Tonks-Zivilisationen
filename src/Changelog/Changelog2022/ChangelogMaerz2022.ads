@@ -161,38 +161,40 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01. => 0.01. (08.03.2022):
+   -- Version 0.01.01 => 0.01.0 (08.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (07.03.2022):
+   -- Version 0.01.01 => 0.01.01 (07.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (06.03.2022):
+   -- Version 0.01.01 => 0.01.01 (06.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.00 => 0.01. (05.03.2022):
+   -- Version 0.01.0090 => 0.01.01 (05.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0081 => 0.01.00 (04.03.2022):
+   -- Version 0.01.0081 => 0.01.0090 (04.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler- und Warnsystem in ein Fehler- und ein Warnsystem aufgeteilt.
+   -- Meldungen beim manuellen Schließen des Fensters reduziert.
+   -- Kartenformsystem weiter neu geschrieben und um Achsenpriorität erweitert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

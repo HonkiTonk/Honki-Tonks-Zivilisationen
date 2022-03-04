@@ -142,7 +142,7 @@ package body RueckgabeMenues is
          return SystemKonstanten.SpielBeendenKonstante;
                     
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.Hauptmenü - Ungültige Auswahl.");
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Hauptmenü - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
          return SystemKonstanten.SpielBeendenKonstante;
       end if;
@@ -190,7 +190,7 @@ package body RueckgabeMenues is
          return SystemKonstanten.SpielBeendenKonstante;
                     
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.Spielmenü - Ungültige Auswahl.");
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Spielmenü - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
          return SystemKonstanten.SpielBeendenKonstante;
       end if;
@@ -862,7 +862,7 @@ package body RueckgabeMenues is
          return SystemKonstanten.SpielBeendenKonstante;
                     
       else
-         Fehler.LogikStopp (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
          return SystemKonstanten.SpielBeendenKonstante;
       end if;

@@ -42,7 +42,7 @@ package body StartMusik is
             MusikKonsole.MusikKonsole;
             
          when others =>
-            Fehler.MusikStopp (FehlermeldungExtern => "StartMusik.StartMusik - Ungültige Musikwiedergabeart.");
+            Fehler.MusikFehler (FehlermeldungExtern => "StartMusik.StartMusik - Ungültige Musikwiedergabeart.");
       end case;
       
    end StartMusik;

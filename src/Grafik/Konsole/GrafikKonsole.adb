@@ -29,7 +29,7 @@ package body GrafikKonsole is
                InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
             
             when SystemDatentypen.Grafik_SFML =>
-               Fehler.GrafikStopp (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - SFML wird bei Konsole aufgerufen.");
+               Fehler.GrafikFehler (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - SFML wird bei Konsole aufgerufen.");
                
             when SystemDatentypen.Grafik_Sprache =>
                -- AuswahlSpracheAnzeige.AnzeigeSpracheKonsole;

@@ -18,7 +18,7 @@ package body TextAllgemeinSFML is
       if
         TextAccessExtern = null
       then
-         Fehler.GrafikStopp (FehlermeldungExtern => "GrafikTextAllgemein.TextAccessEinstellen - TextAccessExtern = null.");
+         Fehler.GrafikFehler (FehlermeldungExtern => "GrafikTextAllgemein.TextAccessEinstellen - TextAccessExtern = null.");
             
       else
          null;

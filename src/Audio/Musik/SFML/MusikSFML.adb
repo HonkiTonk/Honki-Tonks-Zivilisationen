@@ -24,7 +24,7 @@ package body MusikSFML is
            InteraktionMusiktask.AktuelleMusik
          is
             when SystemDatentypen.Musik_Konsole =>
-               Fehler.MusikStopp (FehlermeldungExtern => "MusikSFML.MusikSFML - Konsole wird bei SFML aufgerufen.");
+               Fehler.MusikFehler (FehlermeldungExtern => "MusikSFML.MusikSFML - Konsole wird bei SFML aufgerufen.");
                
             when SystemDatentypen.Musik_Intro =>
                MusikIntroSFML.Intro;

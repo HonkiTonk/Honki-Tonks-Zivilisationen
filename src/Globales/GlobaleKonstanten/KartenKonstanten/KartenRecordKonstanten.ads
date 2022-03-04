@@ -35,15 +35,18 @@ package KartenRecordKonstanten is
                                                            Felderwertung           => (others => KartenKonstanten.LeerFelderwertung)
                                                           );
 
-   KartenformStandard : constant KartenRecords.KartenformRecord := (SystemDatentypen.Karte_E_Achse_Fest,
-                                                                    SystemDatentypen.Karte_Y_Achse_Fest,
-                                                                    SystemDatentypen.Karte_X_Achse_Normaler_Übergang);
+   KartenformStandard : constant KartenRecords.KartenformRecord := (
+                                                                    EAchseEinstellung                => SystemDatentypen.Karte_E_Achse_Fest,
+                                                                    YAchseEinstellung                => SystemDatentypen.Karte_Y_Achse_Fest,
+                                                                    XAchseEinstellung                => SystemDatentypen.Karte_X_Achse_Normaler_Übergang,
+                                                                    YZuerstBerechnenXZuerstBerechnen => True
+                                                                   );
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
-                                                                                 Passierbarkeit     => (others => KartenKonstanten.LeerPassierbarkeit),
-                                                                                 Bewertung          => (others => KartenKonstanten.LeerVerbesserungBewertung),
-                                                                                 Wirtschaft         => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),
-                                                                                 Kampf              => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
+                                                                                 Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
+                                                                                 Bewertung      => (others => KartenKonstanten.LeerVerbesserungBewertung),
+                                                                                 Wirtschaft     => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),
+                                                                                 Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
                                                                                 );
    
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;

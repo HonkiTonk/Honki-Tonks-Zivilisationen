@@ -138,7 +138,7 @@ package body InDerStadtBauen is
         Ende
       is
          when EinheitStadtDatentypen.MinimimMaximumID'Last =>
-            Fehler.LogikStopp (FehlermeldungExtern => "InDerStadtBauen.EndeErhöhen - Ende ist über dem erlaubten Wert.");
+            Fehler.LogikFehler (FehlermeldungExtern => "InDerStadtBauen.EndeErhöhen - Ende ist über dem erlaubten Wert.");
             
          when others =>
             Ende := Ende + 1;

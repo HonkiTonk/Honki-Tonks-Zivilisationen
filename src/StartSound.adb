@@ -42,7 +42,7 @@ package body StartSound is
             SoundKonsole.SoundKonsole;
             
          when others =>
-            Fehler.SoundStopp (FehlermeldungExtern => "StartSound.StartSound - Ungültige Soundwiedergabeart.");
+            Fehler.SoundFehler (FehlermeldungExtern => "StartSound.StartSound - Ungültige Soundwiedergabeart.");
       end case;
       
    end StartSound;

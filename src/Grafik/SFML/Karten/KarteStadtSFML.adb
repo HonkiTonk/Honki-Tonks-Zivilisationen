@@ -517,7 +517,7 @@ package body KarteStadtSFML is
                                                  PolygonAccessExtern => PolygonAccess);
             
          else
-            Fehler.GrafikStopp (FehlermeldungExtern => "KarteStadtSFML.StadtZeichnen - Vorhandene Stadt ist nicht vorhanden.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "KarteStadtSFML.StadtZeichnen - Vorhandene Stadt ist nicht vorhanden.");
          end if;
          
       else

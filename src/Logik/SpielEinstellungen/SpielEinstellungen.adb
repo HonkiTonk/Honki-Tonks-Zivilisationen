@@ -100,7 +100,7 @@ package body SpielEinstellungen is
             null;
             
          when False =>
-            Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Es konnte keine Rasse platziert werden.");
+            Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Es konnte keine Rasse platziert werden.");
       end case;
          
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren, SystemDatentypen.Endwert) := Clock;

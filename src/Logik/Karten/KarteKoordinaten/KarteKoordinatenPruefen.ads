@@ -14,43 +14,55 @@ package KarteKoordinatenPruefen is
       LogikGrafikExtern : in Boolean)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
-   -- Die Contracts hier mal überarbeiten, sind unvollständig und vielleicht auch zu lang? --------------------------
-     Pre =>
-       (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-        and
-          KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-       Post =>
-         ((if
-                  KarteKoordinatenPrüfen'Result.YAchse = KartenKonstanten.LeerYAchse
-                    then
-            (KarteKoordinatenPrüfen'Result.XAchse = KartenKonstanten.LeerXAchse
-             and
-               KarteKoordinatenPrüfen'Result.EAchse = KartenKonstanten.LeerEAchse)
-         )
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            (if
-                     KarteKoordinatenPrüfen'Result.XAchse = KartenKonstanten.LeerXAchse
-                       then
-               (KarteKoordinatenPrüfen'Result.YAchse = KartenKonstanten.LeerYAchse
-                and
-                  KarteKoordinatenPrüfen'Result.EAchse = KartenKonstanten.LeerEAchse)
-            )
-          and
-            (if
-                     KarteKoordinatenPrüfen'Result.EAchse = KartenKonstanten.LeerEAchse
-                       then
-               (KarteKoordinatenPrüfen'Result.YAchse = KartenKonstanten.LeerYAchse
-                and
-                  KarteKoordinatenPrüfen'Result.XAchse = KartenKonstanten.LeerXAchse)
-            )
-          and
-            KarteKoordinatenPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KarteKoordinatenPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+           
+         Post =>
+           ((if
+                      KarteKoordinatenPrüfen'Result.YAchse = KartenKonstanten.LeerYAchse
+                        then
+              (KarteKoordinatenPrüfen'Result.XAchse = KartenKonstanten.LeerXAchse
+               and
+                 KarteKoordinatenPrüfen'Result.EAchse = KartenKonstanten.LeerEAchse)
+           )
+            and
+              (if
+                         KarteKoordinatenPrüfen'Result.XAchse = KartenKonstanten.LeerXAchse
+                           then
+                 (KarteKoordinatenPrüfen'Result.YAchse = KartenKonstanten.LeerYAchse
+                  and
+                    KarteKoordinatenPrüfen'Result.EAchse = KartenKonstanten.LeerEAchse)
+              )
+            and
+              (if
+                         KarteKoordinatenPrüfen'Result.EAchse = KartenKonstanten.LeerEAchse
+                           then
+                 (KarteKoordinatenPrüfen'Result.YAchse = KartenKonstanten.LeerYAchse
+                  and
+                    KarteKoordinatenPrüfen'Result.XAchse = KartenKonstanten.LeerXAchse)
+              )
+            and
+              KarteKoordinatenPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              KarteKoordinatenPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
 private
    
    type NeueKoordinateArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    NeueKoordinate : NeueKoordinateArray;
+   
+   function YAchsePrüfen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositivMitNullwert;
+   
+   function XAchsePrüfen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositivMitNullwert;
 
 end KarteKoordinatenPruefen;

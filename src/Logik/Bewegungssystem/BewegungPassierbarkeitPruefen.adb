@@ -31,7 +31,7 @@ package body BewegungPassierbarkeitPruefen is
         IDEinheit
       is
          when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
-            Fehler.LogikStopp (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer - Einheit ist vorhanden hat aber keine ID.");
+            Fehler.LogikFehler (FehlermeldungExtern => "BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer - Einheit ist vorhanden hat aber keine ID.");
             return False;
             
          when others =>

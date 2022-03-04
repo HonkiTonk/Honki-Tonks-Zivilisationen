@@ -53,7 +53,7 @@ package body SpielEinstellungenRasseSpieler is
                return RassenAuswahl;
                
             when others =>
-               Fehler.LogikStopp (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen - Ungültige Menüauswahl.");
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen - Ungültige Menüauswahl.");
          end case;
          
       end loop RasseSchleife;
