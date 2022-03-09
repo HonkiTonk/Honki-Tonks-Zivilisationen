@@ -6,6 +6,71 @@ with Karten;
 
 package body KartePositionGeraderUebergangBerechnungen is
    
+   function PositionBestimmenEWechsel
+     (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
+      ÄnderungEAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.EbeneVorhanden
+   is begin
+
+      if
+        EAchseExtern + ÄnderungEAchseExtern < Karten.WeltkarteArray'First (1)
+      then
+         ZwischenwertEAchse (LogikGrafikExtern, ArrayPositionExtern) := abs (Integer (ÄnderungEAchseExtern));
+         ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (EAchseExtern);
+         
+         EAchseKleinerSchleife:
+         while ZwischenwertEAchse (LogikGrafikExtern, ArrayPositionExtern) > 0 loop
+            
+            if
+              ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) - 1 < Integer (Karten.WeltkarteArray'First (1))
+            then
+               ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (Karten.WeltkarteArray'Last (1));
+               
+            else
+               ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) - 1;
+            end if;
+            
+            ZwischenwertEAchse (LogikGrafikExtern, ArrayPositionExtern) := ZwischenwertEAchse (LogikGrafikExtern, ArrayPositionExtern) - 1;
+            
+         end loop EAchseKleinerSchleife;
+         
+         return KartenDatentypen.EbeneVorhanden (ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern));
+               
+      elsif
+        EAchseExtern + ÄnderungEAchseExtern > Karten.WeltkarteArray'Last (1)
+      then
+         ZwischenwertEAchse (LogikGrafikExtern, ArrayPositionExtern) := (Positive (ÄnderungEAchseExtern));
+         ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (EAchseExtern);
+         
+         EAchseGrößerSchleife:
+         while ZwischenwertEAchse (LogikGrafikExtern, ArrayPositionExtern) > 0 loop
+            
+            if
+              ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) + 1 > Positive (Karten.WeltkarteArray'Last (1))
+            then
+               ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (Karten.WeltkarteArray'First (1));
+               
+            else
+               ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern) + 1;
+            end if;
+            
+            ZwischenwertEAchse (LogikGrafikExtern, ArrayPositionExtern) := ZwischenwertEAchse (LogikGrafikExtern, ArrayPositionExtern) - 1;
+            
+         end loop EAchseGrößerSchleife;
+         
+         return KartenDatentypen.EbeneVorhanden (ÜberhangEAchse (LogikGrafikExtern, ArrayPositionExtern));
+               
+      else
+         return EAchseExtern + ÄnderungEAchseExtern;
+      end if;
+
+   end PositionBestimmenEWechsel;
+   
+   
+   
+   -- Für die Y- und XAchse könnte eine Generic funktionieren. --------------------
    function PositionBestimmenYWechsel
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
@@ -26,7 +91,7 @@ package body KartePositionGeraderUebergangBerechnungen is
 
          end loop YAchseKleinerSchleife;
          
-         return KartenDatentypen.Kartenfeld (ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern));
+         return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern));
                
       elsif
         YAchseExtern + ÄnderungYAchseExtern > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -40,7 +105,7 @@ package body KartePositionGeraderUebergangBerechnungen is
             
          end loop YAchseGrößerSchleife;
          
-         return KartenDatentypen.Kartenfeld (ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern));
+         return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern));
                
       else
          return YAchseExtern + ÄnderungYAchseExtern;
@@ -70,7 +135,7 @@ package body KartePositionGeraderUebergangBerechnungen is
 
          end loop XAchseKleinerSchleife;
          
-         return KartenDatentypen.Kartenfeld (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern));
+         return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern));
                
       elsif
         XAchseExtern + ÄnderungXAchseExtern > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
@@ -84,7 +149,7 @@ package body KartePositionGeraderUebergangBerechnungen is
             
          end loop XAchseGrößerSchleife;
          
-         return KartenDatentypen.Kartenfeld (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern));
+         return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern));
                
       else
          return XAchseExtern + ÄnderungXAchseExtern;

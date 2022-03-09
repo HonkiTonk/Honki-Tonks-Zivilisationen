@@ -12,9 +12,11 @@ with DatenbankRecords;
 
 package KartenRecordKonstanten is
 
-   LeerKartenKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (EAchse => KartenKonstanten.LeerEAchse,
+   LeerKartenKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (
+                                                                                    EAchse => KartenKonstanten.LeerEAchse,
                                                                                     YAchse => KartenKonstanten.LeerYAchse,
-                                                                                    XAchse => KartenKonstanten.LeerXAchse);
+                                                                                    XAchse => KartenKonstanten.LeerXAchse
+                                                                                   );
    
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
                                                                      Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),

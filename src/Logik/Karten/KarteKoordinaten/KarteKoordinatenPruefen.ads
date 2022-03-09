@@ -53,6 +53,12 @@ private
    type NeueKoordinateArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    NeueKoordinate : NeueKoordinateArray;
    
+   function EAchsePrüfen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.Ebene;
+   
    function YAchsePrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;

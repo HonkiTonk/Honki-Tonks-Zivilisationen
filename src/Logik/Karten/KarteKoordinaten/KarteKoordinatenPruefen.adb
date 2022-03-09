@@ -20,17 +20,9 @@ package body KarteKoordinatenPruefen is
       -- Die Arrays sind da wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
       -- Eventuell muss in die Unterbereiche nicht immer alles und als kompletter Record übergeben werden, sondern es reichen auch einzelne Werte
       
-      -- Berechnungen anders aufteilen, z. B. in Fest, Übergang, ÜbergangVerschoben, usw.
-      case
-        Karten.KartenformEingestellt.EAchseEinstellung
-      is
-         when KartenEinstellungenKonstanten.KartenformFesteEAchseKonstante =>
-            NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).EAchse := KartePositionFesteBerechnungen.PositionBestimmenEAchseFest (EAchseExtern         => KoordinatenExtern.EAchse,
-                                                                                                                                               ÄnderungEAchseExtern => ÄnderungExtern.EAchse);
-            
-         when KartenEinstellungenKonstanten.KartenformÜbergangEAchseKonstante =>
-            null;
-      end case;
+      NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).EAchse := EAchsePrüfen (KoordinatenExtern => KoordinatenExtern,
+                                                                                            ÄnderungExtern    => ÄnderungExtern,
+                                                                                            LogikGrafikExtern => LogikGrafikExtern);
       
       case
         NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).EAchse
@@ -84,6 +76,31 @@ package body KarteKoordinatenPruefen is
    
    
    
+   function EAchsePrüfen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.Ebene
+   is begin
+      
+      case
+        Karten.KartenformEingestellt.EAchseEinstellung
+      is
+         when KartenEinstellungenKonstanten.KartenformFesteEAchseKonstante =>
+            return KartePositionFesteBerechnungen.PositionBestimmenEAchseFest (EAchseExtern         => KoordinatenExtern.EAchse,
+                                                                               ÄnderungEAchseExtern => ÄnderungExtern.EAchse);
+            
+         when KartenEinstellungenKonstanten.KartenformÜbergangEAchseKonstante =>
+            return KartePositionGeraderUebergangBerechnungen.PositionBestimmenEWechsel (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                                        ÄnderungEAchseExtern  => ÄnderungExtern.EAchse,
+                                                                                        ArrayPositionExtern   => KoordinatenExtern.EAchse,
+                                                                                        LogikGrafikExtern     => LogikGrafikExtern);
+      end case;
+      
+   end EAchsePrüfen;
+   
+   
+   
    function YAchsePrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
@@ -105,10 +122,10 @@ package body KarteKoordinatenPruefen is
                                                                                         LogikGrafikExtern    => LogikGrafikExtern);
             
          when KartenEinstellungenKonstanten.KartenformÜbergangYAchseVerschobenKonstante =>
+            return 0;
             -- return KartePositionVerschobenerUebergangBerechnungen.PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
             --                                                                                      ÄnderungExtern    => ÄnderungExtern,
-            --                                                                                     LogikGrafikExtern => LogikGrafikExtern);
-            return 0;
+            --                                                                                      LogikGrafikExtern => LogikGrafikExtern);
       end case;
       
    end YAchsePrüfen;
@@ -136,10 +153,10 @@ package body KarteKoordinatenPruefen is
                                                                                         LogikGrafikExtern    => LogikGrafikExtern);
             
          when KartenEinstellungenKonstanten.KartenformÜbergangXAchseVerschobenKonstante =>
-          --  return KartePositionVerschobenerUebergangBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
-         --                                                                                        ÄnderungExtern    => ÄnderungExtern,
-         --                                                                                        LogikGrafikExtern => LogikGrafikExtern);
             return 0;
+            -- return KartePositionVerschobenerUebergangBerechnungen.PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
+            --                                                                                      ÄnderungExtern    => ÄnderungExtern,
+            --                                                                                      LogikGrafikExtern => LogikGrafikExtern);
       end case;
       
    end XAchsePrüfen;

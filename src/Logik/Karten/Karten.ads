@@ -20,6 +20,7 @@ package Karten is
 
    end record;
 
+   -- Wenn man das um die EAchse erweitert, dann könnte man auch die Anzahl der Ebenen vom Spieler bestimmen lassen. Mal drüber nachdenken. -------------------
    type KartengrößenArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
    Kartengrößen : KartengrößenArray := (
                                             KartenEinstellungenKonstanten.Kartengröße2020Konstante     => (20, 20),
