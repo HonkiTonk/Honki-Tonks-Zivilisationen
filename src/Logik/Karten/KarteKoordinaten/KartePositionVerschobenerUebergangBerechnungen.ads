@@ -5,22 +5,14 @@ with KartenRecords;
 
 package KartePositionVerschobenerUebergangBerechnungen is
    
-   function PositionBestimmen_Y_X_Wechsel
+   function PositionBestimmenYAchseVerschoben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      LogikGrafikExtern : in Boolean)
-      return KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenDatentypen.KartenfeldPositivMitNullwert;
    
-   function PositionBestimmen_X_Y_Wechsel
+   function PositionBestimmenXAchseVerschoben
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      LogikGrafikExtern : in Boolean)
-      return KartenRecords.AchsenKartenfeldPositivRecord;
-   
-private
-   
-   type PositionFeldArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositivMitNullwert;
-   YAchseZwischenwert : PositionFeldArray;
-   XAchseZwischenwert : PositionFeldArray;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
+      return KartenDatentypen.KartenfeldPositivMitNullwert;
 
 end KartePositionVerschobenerUebergangBerechnungen;

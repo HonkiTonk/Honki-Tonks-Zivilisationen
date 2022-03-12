@@ -112,52 +112,50 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (15.03.2022):
+   -- Version 0.01.01 => 0.01.0 (15.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (14.03.2022):
+   -- Version 0.01.01 => 0.01.01 (14.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (13.03.2022):
+   -- Version 0.01.0110 => 0.01.01 (13.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.01 => 0.01.0 (12.03.2022):
+   -- Version 0.01.0100 => 0.01.0110 (12.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.01 => 0.01.01 (11.03.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Weiter an der neuen Version der Kartenpositionsprüfung gearbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.01 => 0.01.01 (10.03.2022):
+   -- Version 0.01.0100 => 0.01.0100 (11.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.01.0100 => 0.01.01 (09.03.2022):
+   -- Version 0.01.0100 => 0.01.0100 (10.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.0100 => 0.01.0100 (09.03.2022):
+   
+   -- null.
    
    
 

@@ -33,15 +33,15 @@ package KartenEinstellungenKonstanten is
    KartenformTugelGedrehtKonstante : constant KartenDatentypen.Kartenform_Verwendet_Enum := SystemDatentypen.Karte_Form_Tugel_Gedreht;
    KartenformTugelExtremKonstante : constant KartenDatentypen.Kartenform_Verwendet_Enum := SystemDatentypen.Karte_Form_Tugel_Extrem;
    
-   KartenformFesteEAchseKonstante : constant KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum := SystemDatentypen.Karte_E_Achse_Fest;
-   KartenformÜbergangEAchseKonstante : constant KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum := SystemDatentypen.Karte_E_Achse_Normaler_Übergang;
+   KartenformKeinÜbergangEAchseKonstante : constant KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum := SystemDatentypen.Karte_E_Achse_Kein_Übergang;
+   KartenformÜbergangEAchseKonstante : constant KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum := SystemDatentypen.Karte_E_Achse_Übergang;
    
-   KartenformFesteYAchseKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Fest;
-   KartenformÜbergangYAchseKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Normaler_Übergang;
+   KartenformKeinÜbergangYAchseKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Kein_Übergang;
+   KartenformÜbergangYAchseKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Übergang;
    KartenformÜbergangYAchseVerschobenKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Verschobener_Übergang;
    
-   KartenformFesteXAchseKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Fest;
-   KartenformÜbergangXAchseKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Normaler_Übergang;
+   KartenformKeinÜbergangXAchseKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Kein_Übergang;
+   KartenformÜbergangXAchseKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Übergang;
    KartenformÜbergangXAchseVerschobenKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Verschobener_Übergang;
          
    TemperaturKaltKonstante : constant KartenDatentypen.Kartentemperatur_Verwendet_Enum := SystemDatentypen.Karte_Temperatur_Kalt;

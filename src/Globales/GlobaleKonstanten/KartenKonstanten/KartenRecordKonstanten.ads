@@ -38,9 +38,9 @@ package KartenRecordKonstanten is
                                                           );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
-                                                                    EAchseEinstellung                => SystemDatentypen.Karte_E_Achse_Fest,
-                                                                    YAchseEinstellung                => SystemDatentypen.Karte_Y_Achse_Fest,
-                                                                    XAchseEinstellung                => SystemDatentypen.Karte_X_Achse_Normaler_Übergang,
+                                                                    EAchseEinstellung                => SystemDatentypen.Karte_E_Achse_Kein_Übergang,
+                                                                    YAchseEinstellung                => SystemDatentypen.Karte_Y_Achse_Kein_Übergang,
+                                                                    XAchseEinstellung                => SystemDatentypen.Karte_X_Achse_Übergang,
                                                                     YZuerstBerechnenXZuerstBerechnen => True
                                                                    );
 

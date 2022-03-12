@@ -50,6 +50,10 @@ package KarteKoordinatenPruefen is
    
 private
    
+   type PositionFeldArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositivMitNullwert;
+   YAchseZwischenwert : PositionFeldArray;
+   XAchseZwischenwert : PositionFeldArray;
+   
    type NeueKoordinateArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
    NeueKoordinate : NeueKoordinateArray;
    
@@ -65,7 +69,19 @@ private
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
    
+   function YAchsePrüfenEinzelform
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositivMitNullwert;
+   
    function XAchsePrüfen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositivMitNullwert;
+   
+   function XAchsePrüfenEinzelform
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
       LogikGrafikExtern : in Boolean)

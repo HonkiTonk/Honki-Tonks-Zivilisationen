@@ -1,63 +1,69 @@
 
 
-case
-  Karten.Kartenform
-is
-   -- Normale Kartenformen
-   when KartenEinstellungenKonstanten.KartenformXZylinderKonstante =>
-      return KartePositionNormaleKartenformen.KartenPositionXZylinder (KoordinatenExtern => KoordinatenExtern,
-                                                                       ÄnderungExtern    => ÄnderungExtern,
-                                                                       LogikGrafikExtern => LogikGrafikExtern);
 
-   when KartenEinstellungenKonstanten.KartenformYZylinderKonstante =>
-      return KartePositionNormaleKartenformen.KartenPositionYZylinder (KoordinatenExtern => KoordinatenExtern,
-                                                                       ÄnderungExtern    => ÄnderungExtern,
-                                                                       LogikGrafikExtern => LogikGrafikExtern);
+function PositionBestimmen_X_Y_Wechsel
+  (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+   ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+   LogikGrafikExtern : in Boolean)
+      return KartenRecords.AchsenKartenfeldPositivRecord
+is begin
 
-   when KartenEinstellungenKonstanten.KartenformTorusKonstante =>
-      return KartePositionNormaleKartenformen.KartenPositionTorus (KoordinatenExtern => KoordinatenExtern,
-                                                                   ÄnderungExtern    => ÄnderungExtern,
-                                                                   LogikGrafikExtern => LogikGrafikExtern);
+   if
+     KoordinatenExtern.XAchse + ÄnderungExtern.XAchse < Karten.WeltkarteArray'First (3)
+   then
+      if
+        KoordinatenExtern.YAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße)) > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+      then
+         YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse) := KoordinatenExtern.YAchse - KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
 
-   when KartenEinstellungenKonstanten.KartenformKugelKonstante =>
-      return KartePositionNormaleKartenformen.KartenPositionKugel (KoordinatenExtern => KoordinatenExtern,
-                                                                   ÄnderungExtern    => ÄnderungExtern,
-                                                                   LogikGrafikExtern => LogikGrafikExtern);
+      else
+         YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse) := KoordinatenExtern.YAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+      end if;
 
-   when KartenEinstellungenKonstanten.KartenformViereckKonstante =>
-      return KartePositionNormaleKartenformen.KartenPositionViereck (KoordinatenExtern => KoordinatenExtern,
-                                                                     ÄnderungExtern    => ÄnderungExtern,
-                                                                     LogikGrafikExtern => LogikGrafikExtern);
+      if
+        KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = KartenKonstanten.LeerXAchse
+      then
+         return (KoordinatenExtern.EAchse, YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse), 1);
 
-   when KartenEinstellungenKonstanten.KartenformKugelGedrehtKonstante =>
-      return KartePositionNormaleKartenformen.KartenPositionKugelGedreht (KoordinatenExtern => KoordinatenExtern,
-                                                                          ÄnderungExtern    => ÄnderungExtern,
-                                                                          LogikGrafikExtern => LogikGrafikExtern);
-      -- Normale Kartenformen
+      else
+         return (KoordinatenExtern.EAchse, YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse), abs (KoordinatenExtern.XAchse + ÄnderungExtern.XAchse));
+      end if;
 
+   elsif
+     KoordinatenExtern.XAchse + ÄnderungExtern.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+   then
+      if
+        KoordinatenExtern.YAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße)) > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+      then
+         YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse) := KoordinatenExtern.YAchse - KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
 
+      else
+         YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse) := KoordinatenExtern.YAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+      end if;
 
-      -- Abstrakte Kartenformen
-   when KartenEinstellungenKonstanten.KartenformTugelKonstante =>
-      return KartePositionAbstrakteKartenformen.KartenPositionTugel (KoordinatenExtern => KoordinatenExtern,
-                                                                     ÄnderungExtern    => ÄnderungExtern,
-                                                                     LogikGrafikExtern => LogikGrafikExtern);
+      if
+        KoordinatenExtern.XAchse = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+        and
+          ÄnderungExtern.XAchse = 1
+      then
+         return (KoordinatenExtern.EAchse, YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse), Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   when KartenEinstellungenKonstanten.KartenformTugelGedrehtKonstante =>
-      return KartePositionAbstrakteKartenformen.KartenPositionTugelGedreht (KoordinatenExtern => KoordinatenExtern,
-                                                                            ÄnderungExtern    => ÄnderungExtern,
-                                                                            LogikGrafikExtern => LogikGrafikExtern);
+      else
+         return (KoordinatenExtern.EAchse, YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse), abs (KoordinatenExtern.XAchse - ÄnderungExtern.XAchse));
+      end if;
 
-   when KartenEinstellungenKonstanten.KartenformTugelExtremKonstante =>
-      return KartePositionAbstrakteKartenformen.KartenPositionTugelExtrem (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => ÄnderungExtern,
-                                                                           LogikGrafikExtern => LogikGrafikExtern);
+   else
+      null;
+   end if;
 
+   if
+     KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = KartenKonstanten.LeerXAchse
+   then
+      return (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, 1);
 
-      -- Abstrakte Kartenformen
-end case;
-
-
+   else
+      return (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse + ÄnderungExtern.XAchse);
+   end if;
 
 
 

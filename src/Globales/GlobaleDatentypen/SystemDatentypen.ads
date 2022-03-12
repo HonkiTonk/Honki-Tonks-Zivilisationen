@@ -34,9 +34,9 @@ package SystemDatentypen is
                                  Karte_Form_Tugel_Extrem,
                                  
                                  -- Immer eventuelle Anpassungen in den KartenDatentypen berücksichtigen.
-                                 Karte_E_Achse_Fest, Karte_E_Achse_Normaler_Übergang,
-                                 Karte_Y_Achse_Fest, Karte_Y_Achse_Normaler_Übergang, Karte_Y_Achse_Verschobener_Übergang,
-                                 Karte_X_Achse_Fest, Karte_X_Achse_Normaler_Übergang, Karte_X_Achse_Verschobener_Übergang,      
+                                 Karte_E_Achse_Kein_Übergang, Karte_E_Achse_Übergang,
+                                 Karte_Y_Achse_Kein_Übergang, Karte_Y_Achse_Übergang, Karte_Y_Achse_Verschobener_Übergang,
+                                 Karte_X_Achse_Kein_Übergang, Karte_X_Achse_Übergang, Karte_X_Achse_Verschobener_Übergang,      
                                  
                                  -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Karte_Temperatur_Kalt, Karte_Temperatur_Gemäßigt, Karte_Temperatur_Heiß, Karte_Temperatur_Eiszeit, Karte_Temperatur_Wüste,
