@@ -6,7 +6,7 @@ with Karten;
 
 package body KartePositionGeraderUebergangBerechnungen is
    
-   function PositionBestimmenEWechsel
+   function PositionBestimmenEAchse
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
@@ -66,12 +66,11 @@ package body KartePositionGeraderUebergangBerechnungen is
          return EAchseExtern + ÄnderungEAchseExtern;
       end if;
 
-   end PositionBestimmenEWechsel;
+   end PositionBestimmenEAchse;
    
    
    
-   -- Für die Y- und XAchse könnte eine Generic funktionieren. --------------------
-   function PositionBestimmenYWechsel
+   function PositionBestimmenYAchse
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
@@ -111,11 +110,11 @@ package body KartePositionGeraderUebergangBerechnungen is
          return YAchseExtern + ÄnderungYAchseExtern;
       end if;
 
-   end PositionBestimmenYWechsel;
+   end PositionBestimmenYAchse;
    
    
    
-   function PositionBestimmenXWechsel
+   function PositionBestimmenXAchse
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
@@ -155,6 +154,6 @@ package body KartePositionGeraderUebergangBerechnungen is
          return XAchseExtern + ÄnderungXAchseExtern;
       end if;
 
-   end PositionBestimmenXWechsel;
+   end PositionBestimmenXAchse;
 
 end KartePositionGeraderUebergangBerechnungen;

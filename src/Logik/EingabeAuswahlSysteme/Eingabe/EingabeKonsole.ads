@@ -6,7 +6,8 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with SystemDatentypen;
 with KartenDatentypen;
 with SystemRecords;
-with SystemKonstanten;
+with TastenbelegungDatentypen;
+with TastenbelegungKonstanten;
 
 package EingabeKonsole is
 
@@ -16,7 +17,7 @@ package EingabeKonsole is
 
    AktuellerWert : Natural;
 
-   type TastenbelegungArray is array (1 .. 2, SystemDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Wide_Wide_Character;
+   type TastenbelegungArray is array (1 .. 2, TastenbelegungDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Wide_Wide_Character;
    Tastenbelegung : TastenbelegungArray;
 
    procedure WartenEingabe;
@@ -41,7 +42,7 @@ package EingabeKonsole is
      return Wide_Wide_Character;
 
    function Tastenwert
-     return SystemDatentypen.Tastenbelegung_Enum;
+     return TastenbelegungDatentypen.Tastenbelegung_Enum;
 
 private
 
@@ -64,107 +65,107 @@ private
    TastenbelegungStandard : constant TastenbelegungArray := (
                                                              1 =>
                                                                (
-                                                                SystemKonstanten.ObenKonstante                         => 'w',
-                                                                SystemKonstanten.LinksKonstante                        => 'a',
-                                                                SystemKonstanten.UntenKonstante                        => 's',
-                                                                SystemKonstanten.RechtsKonstante                       => 'd',
-                                                                SystemKonstanten.LinksObenKonstante                    => NUL,
-                                                                SystemKonstanten.RechtsObenKonstante                   => NUL,
-                                                                SystemKonstanten.LinksUntenKonstante                   => NUL,
-                                                                SystemKonstanten.RechtsUntenKonstante                  => NUL,
-                                                                SystemKonstanten.EbeneHochKonstante                    => '+',
-                                                                SystemKonstanten.EbeneRunterKonstante                  => '-',
+                                                                TastenbelegungKonstanten.ObenKonstante                         => 'w',
+                                                                TastenbelegungKonstanten.LinksKonstante                        => 'a',
+                                                                TastenbelegungKonstanten.UntenKonstante                        => 's',
+                                                                TastenbelegungKonstanten.RechtsKonstante                       => 'd',
+                                                                TastenbelegungKonstanten.LinksObenKonstante                    => NUL,
+                                                                TastenbelegungKonstanten.RechtsObenKonstante                   => NUL,
+                                                                TastenbelegungKonstanten.LinksUntenKonstante                   => NUL,
+                                                                TastenbelegungKonstanten.RechtsUntenKonstante                  => NUL,
+                                                                TastenbelegungKonstanten.EbeneHochKonstante                    => '+',
+                                                                TastenbelegungKonstanten.EbeneRunterKonstante                  => '-',
 
-                                                                SystemKonstanten.AuswählenKonstante                    => 'e',
-                                                                SystemKonstanten.MenüZurückKonstante                   => 'q',
-                                                                SystemKonstanten.BauenKonstante                        => 'b',
-                                                                SystemKonstanten.ForschungKonstante                    => 't',
-                                                                SystemKonstanten.TechBaumKonstante                     => 'x',
+                                                                TastenbelegungKonstanten.AuswählenKonstante                    => 'e',
+                                                                TastenbelegungKonstanten.MenüZurückKonstante                   => 'q',
+                                                                TastenbelegungKonstanten.BauenKonstante                        => 'b',
+                                                                TastenbelegungKonstanten.ForschungKonstante                    => 't',
+                                                                TastenbelegungKonstanten.TechBaumKonstante                     => 'x',
 
-                                                                SystemKonstanten.NächsteStadtKonstante                 => '/',
-                                                                SystemKonstanten.EinheitMitBewegungspunkteKonstante    => '.',
-                                                                SystemKonstanten.AlleEinheitenKonstante                => '*',
-                                                                SystemKonstanten.EinheitenOhneBewegungspunkteKonstante => ',',
-                                                                SystemKonstanten.NächsteStadtMeldungKonstante          => '0',
-                                                                SystemKonstanten.NächsteEinheitMeldungKonstante        => 'o',
+                                                                TastenbelegungKonstanten.NächsteStadtKonstante                 => '/',
+                                                                TastenbelegungKonstanten.EinheitMitBewegungspunkteKonstante    => '.',
+                                                                TastenbelegungKonstanten.AlleEinheitenKonstante                => '*',
+                                                                TastenbelegungKonstanten.EinheitenOhneBewegungspunkteKonstante => ',',
+                                                                TastenbelegungKonstanten.NächsteStadtMeldungKonstante          => '0',
+                                                                TastenbelegungKonstanten.NächsteEinheitMeldungKonstante        => 'o',
 
-                                                                SystemKonstanten.StraßeBauenKonstante                  => 'l',
-                                                                SystemKonstanten.MineBauenKonstante                    => 'm',
-                                                                SystemKonstanten.FarmBauenKonstante                    => 'f',
-                                                                SystemKonstanten.FestungBauenKonstante                 => 'u',
-                                                                SystemKonstanten.WaldAufforstenKonstante               => 'z',
-                                                                SystemKonstanten.RodenTrockenlegenKonstante            => 'p',
-                                                                SystemKonstanten.HeilenKonstante                       => 'h',
-                                                                SystemKonstanten.VerschanzenKonstante                  => 'v',
-                                                                SystemKonstanten.RundeAussetzenKonstante               => Space,
-                                                                SystemKonstanten.AuflösenKonstante                     => DEL,
-                                                                SystemKonstanten.PlündernKonstante                     => 'j',
-                                                                SystemKonstanten.HeimatstadtÄndernKonstante            => '<',
-                                                                SystemKonstanten.EinheitVerbessernKonstante            => HT,
-                                                                SystemKonstanten.InfosKonstante                        => 'i',
+                                                                TastenbelegungKonstanten.StraßeBauenKonstante                  => 'l',
+                                                                TastenbelegungKonstanten.MineBauenKonstante                    => 'm',
+                                                                TastenbelegungKonstanten.FarmBauenKonstante                    => 'f',
+                                                                TastenbelegungKonstanten.FestungBauenKonstante                 => 'u',
+                                                                TastenbelegungKonstanten.WaldAufforstenKonstante               => 'z',
+                                                                TastenbelegungKonstanten.RodenTrockenlegenKonstante            => 'p',
+                                                                TastenbelegungKonstanten.HeilenKonstante                       => 'h',
+                                                                TastenbelegungKonstanten.VerschanzenKonstante                  => 'v',
+                                                                TastenbelegungKonstanten.RundeAussetzenKonstante               => Space,
+                                                                TastenbelegungKonstanten.AuflösenKonstante                     => DEL,
+                                                                TastenbelegungKonstanten.PlündernKonstante                     => 'j',
+                                                                TastenbelegungKonstanten.HeimatstadtÄndernKonstante            => '<',
+                                                                TastenbelegungKonstanten.EinheitVerbessernKonstante            => HT,
+                                                                TastenbelegungKonstanten.InfosKonstante                        => 'i',
 
-                                                                SystemKonstanten.DiplomatieKonstante                   => '#',
+                                                                TastenbelegungKonstanten.DiplomatieKonstante                   => '#',
 
-                                                                SystemKonstanten.GeheZuKonstante                       => 'g',
+                                                                TastenbelegungKonstanten.GeheZuKonstante                       => 'g',
 
-                                                                SystemKonstanten.StadtUmbenennenKonstante              => 'n',
-                                                                SystemKonstanten.StadtAbreißenKonstante                => 'k',
-                                                                SystemKonstanten.StadtSuchenKonstante                  => 'y',
+                                                                TastenbelegungKonstanten.StadtUmbenennenKonstante              => 'n',
+                                                                TastenbelegungKonstanten.StadtAbreißenKonstante                => 'k',
+                                                                TastenbelegungKonstanten.StadtSuchenKonstante                  => 'y',
 
-                                                                SystemKonstanten.RundeBeendenTastenbelegungKonstante   => 'r',
-                                                                SystemKonstanten.DebugmenüKonstante                    => 'c'),
+                                                                TastenbelegungKonstanten.RundeBeendenTastenbelegungKonstante   => 'r',
+                                                                TastenbelegungKonstanten.DebugmenüKonstante                    => 'c'),
 
                                                              2 =>
                                                                (
-                                                                SystemKonstanten.ObenKonstante                         => '8',
-                                                                SystemKonstanten.LinksKonstante                        => '4',
-                                                                SystemKonstanten.UntenKonstante                        => '2',
-                                                                SystemKonstanten.RechtsKonstante                       => '6',
-                                                                SystemKonstanten.LinksObenKonstante                    => '7',
-                                                                SystemKonstanten.RechtsObenKonstante                   => '9',
-                                                                SystemKonstanten.LinksUntenKonstante                   => '1',
-                                                                SystemKonstanten.RechtsUntenKonstante                  => '3',
-                                                                SystemKonstanten.EbeneHochKonstante                    => NUL,
-                                                                SystemKonstanten.EbeneRunterKonstante                  => NUL,
+                                                                TastenbelegungKonstanten.ObenKonstante                         => '8',
+                                                                TastenbelegungKonstanten.LinksKonstante                        => '4',
+                                                                TastenbelegungKonstanten.UntenKonstante                        => '2',
+                                                                TastenbelegungKonstanten.RechtsKonstante                       => '6',
+                                                                TastenbelegungKonstanten.LinksObenKonstante                    => '7',
+                                                                TastenbelegungKonstanten.RechtsObenKonstante                   => '9',
+                                                                TastenbelegungKonstanten.LinksUntenKonstante                   => '1',
+                                                                TastenbelegungKonstanten.RechtsUntenKonstante                  => '3',
+                                                                TastenbelegungKonstanten.EbeneHochKonstante                    => NUL,
+                                                                TastenbelegungKonstanten.EbeneRunterKonstante                  => NUL,
 
-                                                                SystemKonstanten.AuswählenKonstante                    => LF,
-                                                                SystemKonstanten.MenüZurückKonstante                   => NUL,
-                                                                SystemKonstanten.BauenKonstante                        => NUL,
-                                                                SystemKonstanten.ForschungKonstante                    => NUL,
-                                                                SystemKonstanten.TechBaumKonstante                     => NUL,
+                                                                TastenbelegungKonstanten.AuswählenKonstante                    => LF,
+                                                                TastenbelegungKonstanten.MenüZurückKonstante                   => NUL,
+                                                                TastenbelegungKonstanten.BauenKonstante                        => NUL,
+                                                                TastenbelegungKonstanten.ForschungKonstante                    => NUL,
+                                                                TastenbelegungKonstanten.TechBaumKonstante                     => NUL,
 
-                                                                SystemKonstanten.NächsteStadtKonstante                 => NUL,
-                                                                SystemKonstanten.EinheitMitBewegungspunkteKonstante    => NUL,
-                                                                SystemKonstanten.AlleEinheitenKonstante                => NUL,
-                                                                SystemKonstanten.EinheitenOhneBewegungspunkteKonstante => NUL,
-                                                                SystemKonstanten.NächsteStadtMeldungKonstante          => NUL,
-                                                                SystemKonstanten.NächsteEinheitMeldungKonstante        => NUL,
+                                                                TastenbelegungKonstanten.NächsteStadtKonstante                 => NUL,
+                                                                TastenbelegungKonstanten.EinheitMitBewegungspunkteKonstante    => NUL,
+                                                                TastenbelegungKonstanten.AlleEinheitenKonstante                => NUL,
+                                                                TastenbelegungKonstanten.EinheitenOhneBewegungspunkteKonstante => NUL,
+                                                                TastenbelegungKonstanten.NächsteStadtMeldungKonstante          => NUL,
+                                                                TastenbelegungKonstanten.NächsteEinheitMeldungKonstante        => NUL,
 
-                                                                SystemKonstanten.StraßeBauenKonstante                  => NUL,
-                                                                SystemKonstanten.MineBauenKonstante                    => NUL,
-                                                                SystemKonstanten.FarmBauenKonstante                    => NUL,
-                                                                SystemKonstanten.FestungBauenKonstante                 => NUL,
-                                                                SystemKonstanten.WaldAufforstenKonstante               => NUL,
-                                                                SystemKonstanten.RodenTrockenlegenKonstante            => NUL,
-                                                                SystemKonstanten.HeilenKonstante                       => NUL,
-                                                                SystemKonstanten.VerschanzenKonstante                  => NUL,
-                                                                SystemKonstanten.RundeAussetzenKonstante               => NUL,
-                                                                SystemKonstanten.AuflösenKonstante                     => NUL,
-                                                                SystemKonstanten.PlündernKonstante                     => NUL,
-                                                                SystemKonstanten.HeimatstadtÄndernKonstante            => NUL,
-                                                                SystemKonstanten.EinheitVerbessernKonstante            => NUL,
-                                                                SystemKonstanten.InfosKonstante                        => NUL,
+                                                                TastenbelegungKonstanten.StraßeBauenKonstante                  => NUL,
+                                                                TastenbelegungKonstanten.MineBauenKonstante                    => NUL,
+                                                                TastenbelegungKonstanten.FarmBauenKonstante                    => NUL,
+                                                                TastenbelegungKonstanten.FestungBauenKonstante                 => NUL,
+                                                                TastenbelegungKonstanten.WaldAufforstenKonstante               => NUL,
+                                                                TastenbelegungKonstanten.RodenTrockenlegenKonstante            => NUL,
+                                                                TastenbelegungKonstanten.HeilenKonstante                       => NUL,
+                                                                TastenbelegungKonstanten.VerschanzenKonstante                  => NUL,
+                                                                TastenbelegungKonstanten.RundeAussetzenKonstante               => NUL,
+                                                                TastenbelegungKonstanten.AuflösenKonstante                     => NUL,
+                                                                TastenbelegungKonstanten.PlündernKonstante                     => NUL,
+                                                                TastenbelegungKonstanten.HeimatstadtÄndernKonstante            => NUL,
+                                                                TastenbelegungKonstanten.EinheitVerbessernKonstante            => NUL,
+                                                                TastenbelegungKonstanten.InfosKonstante                        => NUL,
 
-                                                                SystemKonstanten.DiplomatieKonstante                   => NUL,
+                                                                TastenbelegungKonstanten.DiplomatieKonstante                   => NUL,
 
-                                                                SystemKonstanten.GeheZuKonstante                       => NUL,
+                                                                TastenbelegungKonstanten.GeheZuKonstante                       => NUL,
 
-                                                                SystemKonstanten.StadtUmbenennenKonstante              => NUL,
-                                                                SystemKonstanten.StadtAbreißenKonstante                => NUL,
-                                                                SystemKonstanten.StadtSuchenKonstante                  => NUL,
+                                                                TastenbelegungKonstanten.StadtUmbenennenKonstante              => NUL,
+                                                                TastenbelegungKonstanten.StadtAbreißenKonstante                => NUL,
+                                                                TastenbelegungKonstanten.StadtSuchenKonstante                  => NUL,
 
-                                                                SystemKonstanten.RundeBeendenTastenbelegungKonstante   => NUL,
-                                                                SystemKonstanten.DebugmenüKonstante                    => NUL)
+                                                                TastenbelegungKonstanten.RundeBeendenTastenbelegungKonstante   => NUL,
+                                                                TastenbelegungKonstanten.DebugmenüKonstante                    => NUL)
                                                             );
 
    procedure VorzeichenAnpassen

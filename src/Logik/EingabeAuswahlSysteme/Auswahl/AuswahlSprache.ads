@@ -6,7 +6,7 @@ with Sf.Graphics;
 with Sf.Graphics.Text;
 with Sf.System.Vector2;
 
-with SystemDatentypen;
+with TastenbelegungDatentypen;
 
 package AuswahlSprache is
    
@@ -30,7 +30,7 @@ private
    Zeile : Float;
    TextPositionMaus : Float;
    
-   Befehl : SystemDatentypen.Tastenbelegung_Enum;
+   Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
    
    MehrSprachen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "+++++");
    

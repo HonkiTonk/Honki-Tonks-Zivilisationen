@@ -2,21 +2,21 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen;
 
-package KartePositionFesteBerechnungen is
+package KartePositionKeinUebergangBerechnungen is
 
-   function PositionBestimmenEAchseFest
+   function PositionBestimmenEAchse
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.Ebene;
    
-   function PositionBestimmenYAchseFest
+   function PositionBestimmenYAchse
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
    
-   function PositionBestimmenXAchseFest
+   function PositionBestimmenXAchse
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
 
-end KartePositionFesteBerechnungen;
+end KartePositionKeinUebergangBerechnungen;

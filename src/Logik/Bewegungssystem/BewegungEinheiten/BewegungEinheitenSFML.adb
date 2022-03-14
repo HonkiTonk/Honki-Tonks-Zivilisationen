@@ -47,29 +47,29 @@ package body BewegungEinheitenSFML is
    
    function EinheitBefehle
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
       return Boolean
    is begin
             
       case
         BefehlExtern
       is
-         when SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
+         when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             Änderung := Richtung (BefehlExtern);
                
-         when SystemKonstanten.HeimatstadtÄndernKonstante =>
+         when TastenbelegungKonstanten.HeimatstadtÄndernKonstante =>
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
-         when SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | SystemDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
+         when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichen Aufgabenanfang keine Bewegung mehr möglich ist und umgekehrt.
             return not Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      BefehlExtern             => BefehlExtern);
                
-         when SystemKonstanten.BauenKonstante =>
+         when TastenbelegungKonstanten.BauenKonstante =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
             return not StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when SystemKonstanten.LeerTastenbelegungKonstante =>
+         when TastenbelegungKonstanten.LeerTastenbelegungKonstante =>
             -- Statt nur bei Leer nichts machen und in allen anderen Fällen zurück oder nur bei Menü_Zurück zurück und sonst nicht?
             null;
             
@@ -165,23 +165,23 @@ package body BewegungEinheitenSFML is
          case
            BefehlMaus
          is
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                return False;
                
-            when SystemKonstanten.EbeneHochKonstante =>
+            when TastenbelegungKonstanten.EbeneHochKonstante =>
                BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                       RichtungExtern => BefehlMaus,
                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
                
-            when SystemKonstanten.EbeneRunterKonstante =>
+            when TastenbelegungKonstanten.EbeneRunterKonstante =>
                BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                       RichtungExtern => BefehlMaus,
                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
                
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                return EinheitBewegenMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
-            when SystemKonstanten.LeerTastenbelegungKonstante =>
+            when TastenbelegungKonstanten.LeerTastenbelegungKonstante =>
                null;
                
             when others =>

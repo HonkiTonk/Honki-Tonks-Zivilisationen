@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with EinheitStadtDatentypen;
-with SystemDatentypen;
+with TastenbelegungDatentypen;
 
 package EinheitenBeschreibungen is
    
@@ -12,7 +12,7 @@ package EinheitenBeschreibungen is
       return Wide_Wide_String;
    
    function Beschäftigung
-     (ArbeitExtern : in SystemDatentypen.Tastenbelegung_Enum)
+     (ArbeitExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
       return Wide_Wide_String;
    
    function BeschreibungKurz

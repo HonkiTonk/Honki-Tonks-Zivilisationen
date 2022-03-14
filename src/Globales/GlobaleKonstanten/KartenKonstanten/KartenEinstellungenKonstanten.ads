@@ -38,10 +38,12 @@ package KartenEinstellungenKonstanten is
    
    KartenformKeinÜbergangYAchseKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Kein_Übergang;
    KartenformÜbergangYAchseKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Übergang;
+   KartenformRückwärtsVerschobenerÜbergangYAchseKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Rückwärts_Verschobener_Übergang;
    KartenformÜbergangYAchseVerschobenKonstante : constant KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum := SystemDatentypen.Karte_Y_Achse_Verschobener_Übergang;
    
    KartenformKeinÜbergangXAchseKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Kein_Übergang;
    KartenformÜbergangXAchseKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Übergang;
+   KartenformRückwärtsVerschobenerÜbergangXAchseKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Rückwärts_Verschobener_Übergang;
    KartenformÜbergangXAchseVerschobenKonstante : constant KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum := SystemDatentypen.Karte_X_Achse_Verschobener_Übergang;
          
    TemperaturKaltKonstante : constant KartenDatentypen.Kartentemperatur_Verwendet_Enum := SystemDatentypen.Karte_Temperatur_Kalt;

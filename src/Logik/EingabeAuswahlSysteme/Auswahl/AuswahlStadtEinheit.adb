@@ -5,7 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
-with SystemKonstanten;
+with TastenbelegungKonstanten;
 
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
@@ -65,7 +65,7 @@ package body AuswahlStadtEinheit is
          case
            Eingabe.Tastenwert
          is               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                if
                  AktuelleAuswahl >= 0
                then
@@ -75,7 +75,7 @@ package body AuswahlStadtEinheit is
                   null;
                end if;
                
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                AktuelleAuswahl := -1;
                exit AuswahlSchleife;
                

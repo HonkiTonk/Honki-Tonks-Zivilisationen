@@ -6,6 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with SystemDatentypen; use SystemDatentypen;
+with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with SystemKonstanten;
 with GlobaleTexte;
 with GlobaleVariablen;
@@ -85,7 +86,7 @@ package body OptionenSteuerung is
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
+      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
                
       Put_Line (EingabeKonsole.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeKonsole.Tastenbelegung (2, NeueAuswahl));
                
@@ -127,7 +128,7 @@ package body OptionenSteuerung is
    procedure AlteTasteEntfernenSFML
    is begin
                
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (GlobaleVariablen.UmbelegungNummer);
+      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (GlobaleVariablen.UmbelegungNummer);
       -- Das hier später entfernen.
       Put_Line (NeueAuswahl'Wide_Wide_Image);
       
@@ -198,7 +199,7 @@ package body OptionenSteuerung is
    procedure NeueTasteFestlegenKonsole
    is begin
       
-      NeueAuswahl := SystemDatentypen.Tastenbelegung_Enum'Val (1);
+      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
          
       if
         EingabeKonsole.Tastenbelegung (1, NeueAuswahl) = NeueTasteKonsole

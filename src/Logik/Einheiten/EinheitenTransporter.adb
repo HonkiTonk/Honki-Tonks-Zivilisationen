@@ -6,6 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
+with TastenbelegungKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -76,7 +77,7 @@ package body EinheitenTransporter is
          case
            Eingabe.Tastenwert
          is               
-            when SystemKonstanten.ObenKonstante =>
+            when TastenbelegungKonstanten.ObenKonstante =>
                if
                  AktuelleAuswahl = TextAnzeigeKonsole.AllgemeineAnzeigeText'First
                then
@@ -85,7 +86,7 @@ package body EinheitenTransporter is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemKonstanten.UntenKonstante =>
+            when TastenbelegungKonstanten.UntenKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -94,10 +95,10 @@ package body EinheitenTransporter is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                return 0;
                      
             when others =>

@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with EinheitStadtDatentypen;
 with SystemDatentypen;
 with SystemKonstanten;
+with TastenbelegungDatentypen;
+with TastenbelegungKonstanten;
 
 with DatenbankRecords;
 
@@ -17,203 +19,203 @@ package ForschungKonstanten is
                                                                            AnforderungForschung => (others => ForschungUnmöglich)
                                                                           );
    
-   type TechnologieVerbesserungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
                                                                        SystemKonstanten.MenschenKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.KasrodiahKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.LasupinKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.LamustraKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.ManukyKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.SurokaKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.PryolonKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.TalbidahrKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.MoruPhisihlKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.LarinosLotarisKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.CarupexKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.AlaryKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.TesorahnKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.NatriesZermanisKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.TridatusKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.SenelariKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.Aspari2Konstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
                                                                        SystemKonstanten.EkropaKonstante =>
                                                                          (
-                                                                          SystemKonstanten.StraßeBauenKonstante       => 0,
-                                                                          SystemKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          SystemKonstanten.MineBauenKonstante         => 6,
-                                                                          SystemKonstanten.FarmBauenKonstante         => 2,
-                                                                          SystemKonstanten.FestungBauenKonstante      => 11,
-                                                                          SystemKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
+                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
+                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
+                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
+                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
+                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          )
                                                                       );

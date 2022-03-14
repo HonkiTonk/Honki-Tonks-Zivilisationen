@@ -28,14 +28,14 @@ package body BewegungEinheitenKonsole is
          case
            Befehl
          is
-            when SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
+            when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
                Änderung := Richtung (Befehl);
                
-            when SystemKonstanten.HeimatstadtÄndernKonstante =>
+            when TastenbelegungKonstanten.HeimatstadtÄndernKonstante =>
                EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
                
-            when SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | SystemDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
+            when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
                AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                     BefehlExtern             => Befehl);
                
@@ -51,7 +51,7 @@ package body BewegungEinheitenKonsole is
                                                                       TextZeileExtern => 2);
                end case;
                
-            when SystemKonstanten.BauenKonstante =>
+            when TastenbelegungKonstanten.BauenKonstante =>
                NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
             

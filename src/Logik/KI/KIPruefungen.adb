@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with TastenbelegungDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenVerbesserungKonstanten;
@@ -161,7 +162,7 @@ package body KIPruefungen is
    is begin
       
       AufgabenSchleife:
-      for AufgabeSchleifenwert in SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
+      for AufgabeSchleifenwert in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
          
          VerbesserungTesten := Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             BefehlExtern             => AufgabeSchleifenwert);

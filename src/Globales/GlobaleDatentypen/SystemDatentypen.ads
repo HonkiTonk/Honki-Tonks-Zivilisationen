@@ -35,8 +35,8 @@ package SystemDatentypen is
                                  
                                  -- Immer eventuelle Anpassungen in den KartenDatentypen berücksichtigen.
                                  Karte_E_Achse_Kein_Übergang, Karte_E_Achse_Übergang,
-                                 Karte_Y_Achse_Kein_Übergang, Karte_Y_Achse_Übergang, Karte_Y_Achse_Verschobener_Übergang,
-                                 Karte_X_Achse_Kein_Übergang, Karte_X_Achse_Übergang, Karte_X_Achse_Verschobener_Übergang,      
+                                 Karte_Y_Achse_Kein_Übergang, Karte_Y_Achse_Übergang, Karte_Y_Achse_Rückwärts_Verschobener_Übergang, Karte_Y_Achse_Verschobener_Übergang,
+                                 Karte_X_Achse_Kein_Übergang, Karte_X_Achse_Übergang, Karte_X_Achse_Rückwärts_Verschobener_Übergang, Karte_X_Achse_Verschobener_Übergang,      
                                  
                                  -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Karte_Temperatur_Kalt, Karte_Temperatur_Gemäßigt, Karte_Temperatur_Heiß, Karte_Temperatur_Eiszeit, Karte_Temperatur_Wüste,
@@ -96,40 +96,6 @@ package SystemDatentypen is
    type TextZeilen is range 0 .. 93;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
-
-
-
-   -- Für Tastenbelegung
-   -- Raus- und reinzoomen einbauen.
-   type Tastenbelegung_Enum is (Leer_Tastenbelegung,
-                                
-                                -- Bewegung
-                                Oben, Links, Unten, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
-                                
-                                Auswählen, Menü_Zurück, Bauen, Forschung, Tech_Baum,
-                                
-                                Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Nächste_Stadt_Mit_Meldung, Nächste_Einheit_Mit_Meldung,
-                                
-                                -- Einheitenbefehle Verbesserungen
-                                Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen,
-                                
-                                -- Einheitenbefehle allgemein
-                                Heilen, Verschanzen, Runde_Aussetzen, Plündern, Auflösen, Einheit_Verbessern,
-                                Heimatstadt_Ändern,
-                                
-                                -- Sonstiges
-                                Infos, Diplomatie, GeheZu,
-                                Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen,
-                                Runde_Beenden, Debugmenü);
-
-   subtype Tastenbelegung_Verwendet_Enum is Tastenbelegung_Enum range Oben .. Tastenbelegung_Enum'Last;
-   subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Verwendet_Enum range Oben .. Ebene_Runter;
-   subtype Tastenbelegung_Bewegung_Stadt_Enum is Tastenbelegung_Verwendet_Enum range Oben .. Rechts_Unten;
-   subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen .. Einheit_Verbessern;
-   subtype Tastenbelegung_Befehle_Anzeige is Tastenbelegung_Befehle_Enum range Straße_Bauen .. Verschanzen;
-   subtype Tastenbelegung_Verbesserung_Befehle_Enum is Tastenbelegung_Befehle_Enum range Straße_Bauen .. Roden_Trockenlegen;
-   subtype Tastenbelegung_Allgemeine_Befehle_Enum is Tastenbelegung_Befehle_Enum range Heilen .. Tastenbelegung_Befehle_Enum'Last;
-   -- Für Tastenbelegung
    
    
    

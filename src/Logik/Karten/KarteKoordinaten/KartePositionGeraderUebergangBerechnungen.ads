@@ -4,21 +4,21 @@ with KartenDatentypen;
 
 package KartePositionGeraderUebergangBerechnungen is
    
-   function PositionBestimmenEWechsel
+   function PositionBestimmenEAchse
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.EbeneVorhanden;
 
-   function PositionBestimmenYWechsel
+   function PositionBestimmenYAchse
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv;
 
-   function PositionBestimmenXWechsel
+   function PositionBestimmenXAchse
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;

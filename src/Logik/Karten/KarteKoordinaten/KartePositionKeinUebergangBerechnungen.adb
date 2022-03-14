@@ -5,9 +5,9 @@ with KartenKonstanten;
 
 with Karten;
 
-package body KartePositionFesteBerechnungen is
+package body KartePositionKeinUebergangBerechnungen is
 
-   function PositionBestimmenEAchseFest
+   function PositionBestimmenEAchse
      (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in KartenDatentypen.EbeneVorhanden)
       return KartenDatentypen.Ebene
@@ -24,11 +24,11 @@ package body KartePositionFesteBerechnungen is
          return EAchseExtern + ÄnderungEAchseExtern;
       end if;
       
-   end PositionBestimmenEAchseFest;
+   end PositionBestimmenEAchse;
    
    
    
-   function PositionBestimmenYAchseFest
+   function PositionBestimmenYAchse
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
       return KartenDatentypen.KartenfeldPositivMitNullwert
@@ -45,11 +45,11 @@ package body KartePositionFesteBerechnungen is
          return YAchseExtern + ÄnderungYAchseExtern;
       end if;
       
-   end PositionBestimmenYAchseFest;
+   end PositionBestimmenYAchse;
    
    
    
-   function PositionBestimmenXAchseFest
+   function PositionBestimmenXAchse
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
       return KartenDatentypen.KartenfeldPositivMitNullwert
@@ -66,6 +66,6 @@ package body KartePositionFesteBerechnungen is
          return XAchseExtern + ÄnderungXAchseExtern;
       end if;
       
-   end PositionBestimmenXAchseFest;
+   end PositionBestimmenXAchse;
 
-end KartePositionFesteBerechnungen;
+end KartePositionKeinUebergangBerechnungen;

@@ -411,7 +411,7 @@ package body EingabeKonsole is
    
    
    function Tastenwert
-     return SystemDatentypen.Tastenbelegung_Enum
+     return TastenbelegungDatentypen.Tastenbelegung_Enum
    is begin
       
       Taste := TastenEingabe;
@@ -433,7 +433,7 @@ package body EingabeKonsole is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return SystemKonstanten.LeerTastenbelegungKonstante;
+      return TastenbelegungKonstanten.LeerTastenbelegungKonstante;
       
    end Tastenwert;
    

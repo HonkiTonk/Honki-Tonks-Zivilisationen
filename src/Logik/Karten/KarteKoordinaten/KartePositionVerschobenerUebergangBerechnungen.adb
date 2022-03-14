@@ -6,7 +6,7 @@ with Karten;
 
 package body KartePositionVerschobenerUebergangBerechnungen is
    
-   function PositionBestimmenYAchseVerschoben
+   function PositionBestimmenYAchse
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return KartenDatentypen.KartenfeldPositivMitNullwert
@@ -18,23 +18,23 @@ package body KartePositionVerschobenerUebergangBerechnungen is
           KoordinatenExtern.XAchse + ÄnderungExtern.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
          if
-           KoordinatenExtern.YAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße)) > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           KoordinatenExtern.YAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße)) > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
          then
-            return KoordinatenExtern.YAchse - KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+            return KoordinatenExtern.YAchse - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
 
          else
-            return KoordinatenExtern.YAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+            return KoordinatenExtern.YAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
          end if;    
          
       else
-         return 0;
+         return KoordinatenExtern.YAchse;
       end if;
       
-   end PositionBestimmenYAchseVerschoben;
+   end PositionBestimmenYAchse;
    
    
    
-   function PositionBestimmenXAchseVerschoben
+   function PositionBestimmenXAchse
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return KartenDatentypen.KartenfeldPositivMitNullwert
@@ -46,18 +46,18 @@ package body KartePositionVerschobenerUebergangBerechnungen is
           KoordinatenExtern.YAchse + ÄnderungExtern.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
       then
          if
-           KoordinatenExtern.XAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße)) > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+           KoordinatenExtern.XAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße)) > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
          then
-            return KoordinatenExtern.XAchse - KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+            return KoordinatenExtern.XAchse - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
 
          else
-            return KoordinatenExtern.XAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+            return KoordinatenExtern.XAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
          end if;
                
       else
-         return 0;
+         return KoordinatenExtern.XAchse;
       end if;
       
-   end PositionBestimmenXAchseVerschoben;
+   end PositionBestimmenXAchse;
 
 end KartePositionVerschobenerUebergangBerechnungen;

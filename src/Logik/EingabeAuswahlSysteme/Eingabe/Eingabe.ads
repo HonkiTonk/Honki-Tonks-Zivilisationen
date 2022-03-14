@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with SystemDatentypen;
 with SystemRecords;
+with TastenbelegungDatentypen;
 
 package Eingabe is
 
@@ -23,6 +24,6 @@ package Eingabe is
      return SystemRecords.TextEingabeRecord;
 
    function Tastenwert
-     return SystemDatentypen.Tastenbelegung_Enum;
+     return TastenbelegungDatentypen.Tastenbelegung_Enum;
 
 end Eingabe;

@@ -9,6 +9,7 @@ with Sf;
 
 with GlobaleTexte;
 with TextKonstanten;
+with SystemKonstanten;
 
 with EingabeSystemeSFML;
 with Fehler;
@@ -378,7 +379,7 @@ package body EingabeSFML is
    
    
    function Tastenwert
-     return SystemDatentypen.Tastenbelegung_Enum
+     return TastenbelegungDatentypen.Tastenbelegung_Enum
    is begin
             
       EingabeAbwarten;
@@ -387,27 +388,27 @@ package body EingabeSFML is
       if
         EingabeSystemeSFML.MausRad > 0.00
       then
-         return SystemKonstanten.EbeneHochKonstante;
+         return TastenbelegungKonstanten.EbeneHochKonstante;
                
       elsif
         EingabeSystemeSFML.MausRad < 0.00
       then
-         return SystemKonstanten.EbeneRunterKonstante;
+         return TastenbelegungKonstanten.EbeneRunterKonstante;
          
       elsif
         EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseLeft
       then
-         return SystemKonstanten.AuswählenKonstante;
+         return TastenbelegungKonstanten.AuswählenKonstante;
          
       elsif
         EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseRight
       then
-         return SystemKonstanten.MenüZurückKonstante;
+         return TastenbelegungKonstanten.MenüZurückKonstante;
          
       elsif
         EingabeSystemeSFML.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
       then
-         return SystemKonstanten.LeerTastenbelegungKonstante;
+         return TastenbelegungKonstanten.LeerTastenbelegungKonstante;
             
       else
          Taste := EingabeSystemeSFML.TastaturTaste;
@@ -430,7 +431,7 @@ package body EingabeSFML is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return SystemKonstanten.LeerTastenbelegungKonstante;
+      return TastenbelegungKonstanten.LeerTastenbelegungKonstante;
       
    end Tastenwert;
    

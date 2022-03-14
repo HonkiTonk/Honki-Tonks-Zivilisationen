@@ -7,6 +7,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
 with SystemKonstanten;
+with TastenbelegungDatentypen;
 
 with KIDatentypen;
 
@@ -77,7 +78,7 @@ package LeseEinheitenGebaut is
       
    function Beschäftigung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return SystemDatentypen.Tastenbelegung_Enum
+      return TastenbelegungDatentypen.Tastenbelegung_Enum
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -86,7 +87,7 @@ package LeseEinheitenGebaut is
    
    function BeschäftigungNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return SystemDatentypen.Tastenbelegung_Enum
+      return TastenbelegungDatentypen.Tastenbelegung_Enum
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

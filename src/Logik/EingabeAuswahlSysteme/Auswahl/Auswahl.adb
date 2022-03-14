@@ -5,6 +5,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemKonstanten;
+with TastenbelegungKonstanten;
 
 with TextAnzeigeKonsole;
 with Eingabe;
@@ -39,7 +40,7 @@ package body Auswahl is
          case
            Eingabe.Tastenwert
          is
-            when SystemKonstanten.ObenKonstante =>
+            when TastenbelegungKonstanten.ObenKonstante =>
                if
                  AktuelleAuswahl = Anfang
                then
@@ -49,7 +50,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemKonstanten.UntenKonstante =>
+            when TastenbelegungKonstanten.UntenKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -59,7 +60,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                -- Hauptmenü
                if
                  GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleTexte.TexteEinlesen (2, 1)

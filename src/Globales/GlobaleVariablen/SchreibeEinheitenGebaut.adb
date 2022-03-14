@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
+with TastenbelegungKonstanten;
 
 with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
@@ -63,9 +64,9 @@ package body SchreibeEinheitenGebaut is
                case
                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung
                is
-                  when SystemKonstanten.HeilenKonstante =>
+                  when TastenbelegungKonstanten.HeilenKonstante =>
                      Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BeschäftigungExtern     => SystemKonstanten.LeerTastenbelegungKonstante);
+                                     BeschäftigungExtern     => TastenbelegungKonstanten.LeerTastenbelegungKonstante);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                           ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                           RechnenSetzenExtern      => 0);
@@ -197,7 +198,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Beschäftigung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in SystemDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := BeschäftigungExtern;
@@ -208,7 +209,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure BeschäftigungNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in SystemDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := BeschäftigungExtern;

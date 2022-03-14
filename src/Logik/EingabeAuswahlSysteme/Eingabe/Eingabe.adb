@@ -88,7 +88,7 @@ package body Eingabe is
    
    
    function Tastenwert
-     return SystemDatentypen.Tastenbelegung_Enum
+     return TastenbelegungDatentypen.Tastenbelegung_Enum
    is begin
       
       case

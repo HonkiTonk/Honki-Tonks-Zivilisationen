@@ -5,6 +5,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenDatentypen;
 with SystemKonstanten;
+with TastenbelegungDatentypen;
 
 package KIAufgabeUmsetzen is
 
@@ -33,7 +34,7 @@ private
 
    Grund : KartenDatentypen.Karten_Grund_Enum;
 
-   Befehl : SystemDatentypen.Tastenbelegung_Enum;
+   Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 
    function VerbesserungGebiet
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

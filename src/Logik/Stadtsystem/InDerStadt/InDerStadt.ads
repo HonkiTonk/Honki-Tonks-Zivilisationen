@@ -6,6 +6,7 @@ with EinheitStadtDatentypen;
 with GlobaleVariablen;
 with SystemRecords;
 with SystemKonstanten;
+with TastenbelegungDatentypen;
 
 package InDerStadt is
 
@@ -21,7 +22,7 @@ package InDerStadt is
 
 private
 
-   Befehl : SystemDatentypen.Tastenbelegung_Enum;
+   Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 
    NeuerName : SystemRecords.TextEingabeRecord;
 

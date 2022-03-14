@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with Sf.Window.Keyboard;
 
 with SystemDatentypen;
+with TastenbelegungDatentypen;
 
 package OptionenSteuerung is
 
@@ -13,7 +14,7 @@ private
 
    NeueTasteKonsole : Wide_Wide_Character;
 
-   NeueAuswahl : SystemDatentypen.Tastenbelegung_Enum;
+   NeueAuswahl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 
    NeueTasteSFML : Sf.Window.Keyboard.sfKeyCode;
 

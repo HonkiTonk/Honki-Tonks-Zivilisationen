@@ -10,7 +10,7 @@ package body BewegungCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
-      RichtungExtern : in SystemDatentypen.Tastenbelegung_Bewegung_Enum;
+      RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       

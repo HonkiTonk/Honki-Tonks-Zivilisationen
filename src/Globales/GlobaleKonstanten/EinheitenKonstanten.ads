@@ -6,6 +6,8 @@ with KartenRecords;
 with ForschungKonstanten;
 with EinheitStadtDatentypen;
 with SystemDatentypen;
+with TastenbelegungKonstanten;
+with TastenbelegungDatentypen;
 
 with DatenbankRecords;
 
@@ -24,7 +26,8 @@ package EinheitenKonstanten is
    LeerBewegungspunkte : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := EinheitStadtDatentypen.VorhandeneBewegungspunkte'First;
    LeerErfahrungspunkte : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    LeerRang : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerBeschäftigung : constant SystemDatentypen.Tastenbelegung_Enum := SystemKonstanten.LeerTastenbelegungKonstante;
+   ----------------------- Beschäftigung und Tastenbelegung mal trennen?
+   LeerBeschäftigung : constant TastenbelegungDatentypen.Tastenbelegung_Enum := TastenbelegungKonstanten.LeerTastenbelegungKonstante;
    LeerBeschäftigungszeit : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Tut_Nichts;
    LeerTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;

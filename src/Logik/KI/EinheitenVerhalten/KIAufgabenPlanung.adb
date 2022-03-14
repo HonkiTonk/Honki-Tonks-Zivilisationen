@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with TastenbelegungKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -176,7 +177,7 @@ package body KIAufgabenPlanung is
             
          when KIDatentypen.Stadt_Bewachen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => SystemKonstanten.VerschanzenKonstante);
+                                                                 BefehlExtern             => TastenbelegungKonstanten.VerschanzenKonstante);
             
          when KIDatentypen.Verbesserung_Anlegen =>
             AufgabeDurchführen := KIAufgabeUmsetzen.WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -189,11 +190,11 @@ package body KIAufgabenPlanung is
             
          when KIDatentypen.Einheit_Heilen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => SystemKonstanten.HeilenKonstante);
+                                                                 BefehlExtern             => TastenbelegungKonstanten.HeilenKonstante);
             
          when KIDatentypen.Einheit_Festsetzen =>
             AufgabeDurchführen := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BefehlExtern             => SystemKonstanten.VerschanzenKonstante);
+                                                                 BefehlExtern             => TastenbelegungKonstanten.VerschanzenKonstante);
             
          when KIDatentypen.Einheit_Verbessern =>
             AufgabeDurchführen := KIAufgabeUmsetzen.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -221,7 +222,7 @@ package body KIAufgabenPlanung is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => SystemKonstanten.LeerTastenbelegungKonstante);
+                                                    BeschäftigungExtern     => TastenbelegungKonstanten.LeerTastenbelegungKonstante);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
       end case;

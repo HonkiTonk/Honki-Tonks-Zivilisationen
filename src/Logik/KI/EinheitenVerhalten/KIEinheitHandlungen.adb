@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with KartenRecords; use KartenRecords;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with EinheitenKonstanten;
+with TastenbelegungKonstanten;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -57,7 +59,7 @@ package body KIEinheitHandlungen is
          elsif
            LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts
            and
-             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = SystemKonstanten.LeerTastenbelegungKonstante
+             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = TastenbelegungKonstanten.LeerTastenbelegungKonstante
          then
             KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -81,7 +83,7 @@ package body KIEinheitHandlungen is
          KIBewegungDurchfuehren.KIBewegungNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = SystemKonstanten.LeerTastenbelegungKonstante
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = TastenbelegungKonstanten.LeerTastenbelegungKonstante
         and
           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Tut_Nichts
       then
@@ -126,7 +128,7 @@ package body KIEinheitHandlungen is
          elsif
            LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts
            and
-             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = SystemKonstanten.LeerTastenbelegungKonstante
+             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = TastenbelegungKonstanten.LeerTastenbelegungKonstante
          then
             KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          

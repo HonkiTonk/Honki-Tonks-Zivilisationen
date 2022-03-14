@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with StadtKonstanten;
+with TastenbelegungKonstanten;
 
 with SchreibeStadtGebaut;
 
@@ -29,13 +30,13 @@ package body InDerStadt is
          case
            Befehl
          is
-            when SystemDatentypen.Tastenbelegung_Bewegung_Stadt_Enum'Range =>
+            when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Stadt_Enum'Range =>
                BewegungCursor.BewegungCursorRichtung (KarteExtern    => False,
                                                       RichtungExtern => Befehl,
                                                       RasseExtern    => StadtRasseNummerExtern.Rasse);
 
                -- Einwohner von Feld entfernen/zuweisen
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                if
                  WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
                then
@@ -45,14 +46,14 @@ package body InDerStadt is
                   return;
                end if;
                
-            when SystemKonstanten.BauenKonstante =>
+            when TastenbelegungKonstanten.BauenKonstante =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
                -- Gebäude verkaufen
-            when SystemKonstanten.AuflösenKonstante =>
+            when TastenbelegungKonstanten.AuflösenKonstante =>
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-            when SystemKonstanten.StadtUmbenennenKonstante =>
+            when TastenbelegungKonstanten.StadtUmbenennenKonstante =>
                NeuerName := Eingabe.StadtName;
                
                if
@@ -65,7 +66,7 @@ package body InDerStadt is
                   null;
                end if;
 
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                exit StadtSchleife;
                
             when others =>

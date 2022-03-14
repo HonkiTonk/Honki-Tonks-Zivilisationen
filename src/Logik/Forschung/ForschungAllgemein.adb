@@ -5,6 +5,7 @@ with Sf; use Sf;
 with GlobaleTexte;
 with ForschungKonstanten;
 with TextKonstanten;
+with TastenbelegungKonstanten;
 
 with SchreibeWichtiges;
 with LeseForschungsDatenbank;
@@ -145,7 +146,7 @@ package body ForschungAllgemein is
          case
            Eingabe.Tastenwert
          is               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                if
                  AktuelleAuswahl <= 0
                then
@@ -156,7 +157,7 @@ package body ForschungAllgemein is
                   exit AuswahlSchleife;
                end if;
                
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                GewählteForschung := ForschungKonstanten.LeerForschungAnforderung;
                exit AuswahlSchleife;
                
@@ -228,7 +229,7 @@ package body ForschungAllgemein is
          case
            Eingabe.Tastenwert
          is
-            when SystemKonstanten.ObenKonstante =>
+            when TastenbelegungKonstanten.ObenKonstante =>
                if
                  AktuelleAuswahl = TextAnzeigeKonsole.AllgemeineAnzeigeText'First
                then
@@ -237,7 +238,7 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemKonstanten.UntenKonstante =>
+            when TastenbelegungKonstanten.UntenKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -246,10 +247,10 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                return EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
 
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                return 0;
                      
             when others =>

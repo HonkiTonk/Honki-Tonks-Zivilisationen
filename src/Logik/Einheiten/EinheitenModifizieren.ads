@@ -6,6 +6,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with SystemKonstanten;
+with TastenbelegungDatentypen;
 
 package EinheitenModifizieren is
 
@@ -44,7 +45,7 @@ private
    
    AktuelleID : EinheitStadtDatentypen.EinheitenID;
    
-   AktuelleBeschäftigung : SystemDatentypen.Tastenbelegung_Enum;
+   AktuelleBeschäftigung : TastenbelegungDatentypen.Tastenbelegung_Enum;
    
    Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    StadtNummerNeu : EinheitStadtDatentypen.MaximaleStädteMitNullWert;

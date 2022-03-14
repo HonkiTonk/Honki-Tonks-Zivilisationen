@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
+with TastenbelegungKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -51,14 +52,14 @@ package body VerbesserungMine is
          when KartenDatentypen.Eis | KartenDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel
             | KartenDatentypen.Karten_Grund_Fluss_Enum'Range | KartenDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => SystemKonstanten.MineBauenKonstante);
+                                                    BeschäftigungExtern     => TastenbelegungKonstanten.MineBauenKonstante);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
          when KartenDatentypen.Gebirge =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => SystemKonstanten.MineBauenKonstante);
+                                                    BeschäftigungExtern     => TastenbelegungKonstanten.MineBauenKonstante);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 5,
                                                          RechnenSetzenExtern      => 0);
@@ -70,7 +71,7 @@ package body VerbesserungMine is
                                                    AnlegenTestenExtern      => AnlegenTestenExtern) = True
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BeschäftigungExtern     => SystemKonstanten.MineBauenKonstante);
+                                                                 BeschäftigungExtern     => TastenbelegungKonstanten.MineBauenKonstante);
                SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       ZeitExtern               => 3,
                                                                       RechnenSetzenExtern      => 0);

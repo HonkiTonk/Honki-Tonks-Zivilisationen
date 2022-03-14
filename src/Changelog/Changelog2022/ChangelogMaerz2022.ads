@@ -105,31 +105,32 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (16.03.2022):
+   -- Version 0.01.01 => 0.01.0 (16.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.01 => 0.01.0 (15.03.2022):
+   -- Version 0.01.01 => 0.01.01 (15.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.01 => 0.01.01 (14.03.2022):
+   -- Version 0.01.0115 => 0.01.01 (14.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0110 => 0.01.01 (13.03.2022):
+   -- Version 0.01.0110 => 0.01.0115 (13.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der neuen Version der Kartenpositionsprüfung gearbeitet.
+   -- Datentypen für die Tastenbelegung in eine eigene Datei ausgelagert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

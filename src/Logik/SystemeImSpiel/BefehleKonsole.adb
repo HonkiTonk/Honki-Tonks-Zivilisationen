@@ -1,10 +1,12 @@
 pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with GlobaleVariablen;
 with SystemKonstanten;
+with TastenbelegungKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
@@ -43,82 +45,82 @@ package body BefehleKonsole is
       case
         Befehl
       is
-         when SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
+         when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                    RichtungExtern => Befehl,
                                                    RasseExtern    => RasseExtern);
             
-         when SystemKonstanten.AuswählenKonstante =>
+         when TastenbelegungKonstanten.AuswählenKonstante =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
-         when SystemKonstanten.MenüZurückKonstante =>
+         when TastenbelegungKonstanten.MenüZurückKonstante =>
             return SystemKonstanten.SpielmenüKonstante;
 
-         when SystemKonstanten.BauenKonstante =>
+         when TastenbelegungKonstanten.BauenKonstante =>
             BaueStadt (RasseExtern => RasseExtern);
            
-         when SystemKonstanten.ForschungKonstante =>
+         when TastenbelegungKonstanten.ForschungKonstante =>
             Technologie (RasseExtern => RasseExtern);
             
-         when SystemKonstanten.TechBaumKonstante =>
+         when TastenbelegungKonstanten.TechBaumKonstante =>
             -- Kann in der SMFL Version ignoriert werden oder das auch in der Konsolenversion ändern und den Befehl komplett wegwerfen?
             -- Muss bei reiner Anzeige dann auf jeden Fall auch in den Grafikteil.
             ForschungAnzeigeKonsole.ForschungsBaum (RasseExtern => RasseExtern);
             
-         when SystemKonstanten.NächsteStadtKonstante =>
+         when TastenbelegungKonstanten.NächsteStadtKonstante =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
-         when SystemKonstanten.EinheitMitBewegungspunkteKonstante =>
+         when TastenbelegungKonstanten.EinheitMitBewegungspunkteKonstante =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
             
-         when SystemKonstanten.AlleEinheitenKonstante =>
+         when TastenbelegungKonstanten.AlleEinheitenKonstante =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
             
-         when SystemKonstanten.EinheitenOhneBewegungspunkteKonstante =>
+         when TastenbelegungKonstanten.EinheitenOhneBewegungspunkteKonstante =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
-         when SystemDatentypen.Tastenbelegung_Befehle_Enum'Range =>
+         when TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range =>
             EinheitBefehle (RasseExtern  => RasseExtern,
                             BefehlExtern => Befehl);
             
-         when SystemKonstanten.InfosKonstante =>
+         when TastenbelegungKonstanten.InfosKonstante =>
             -- Hier mal was reinbauen.
             null;
 
-         when SystemKonstanten.DiplomatieKonstante =>
+         when TastenbelegungKonstanten.DiplomatieKonstante =>
             Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
 
-         when SystemKonstanten.GeheZuKonstante =>
+         when TastenbelegungKonstanten.GeheZuKonstante =>
             BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
 
-         when SystemKonstanten.StadtUmbenennenKonstante =>
+         when TastenbelegungKonstanten.StadtUmbenennenKonstante =>
             StadtUmbenennen (RasseExtern => RasseExtern);
             
-         when SystemKonstanten.StadtAbreißenKonstante =>
+         when TastenbelegungKonstanten.StadtAbreißenKonstante =>
             StadtAbreißen (RasseExtern => RasseExtern);
             
-         when SystemKonstanten.StadtSuchenKonstante =>
+         when TastenbelegungKonstanten.StadtSuchenKonstante =>
             StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
-         when SystemKonstanten.NächsteStadtMeldungKonstante =>
+         when TastenbelegungKonstanten.NächsteStadtMeldungKonstante =>
             NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);
             
-         when SystemKonstanten.NächsteEinheitMeldungKonstante =>
+         when TastenbelegungKonstanten.NächsteEinheitMeldungKonstante =>
             NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
             
-         when SystemKonstanten.HeimatstadtÄndernKonstante =>
+         when TastenbelegungKonstanten.HeimatstadtÄndernKonstante =>
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
-         when SystemKonstanten.RundeBeendenTastenbelegungKonstante =>
+         when TastenbelegungKonstanten.RundeBeendenTastenbelegungKonstante =>
             return SystemKonstanten.RundeBeendenKonstante;
             
-         when SystemKonstanten.DebugmenüKonstante =>
+         when TastenbelegungKonstanten.DebugmenüKonstante =>
             DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
          
-         when SystemKonstanten.LeerTastenbelegungKonstante =>
+         when TastenbelegungKonstanten.LeerTastenbelegungKonstante =>
             null;
       end case;
 
@@ -246,7 +248,7 @@ package body BefehleKonsole is
    is begin
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= SystemKonstanten.LeerTastenbelegungKonstante
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= TastenbelegungKonstanten.LeerTastenbelegungKonstante
         and then
           EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
@@ -325,7 +327,7 @@ package body BefehleKonsole is
    
    procedure EinheitBefehle
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
    is begin
                      
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,

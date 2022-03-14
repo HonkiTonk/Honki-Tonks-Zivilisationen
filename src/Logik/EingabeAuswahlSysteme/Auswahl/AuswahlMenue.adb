@@ -7,6 +7,7 @@ with Sf;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
+with TastenbelegungKonstanten;
 
 with GrafikEinstellungenSFML;
 with Eingabe;
@@ -99,7 +100,7 @@ package body AuswahlMenue is
          case
            Eingabe.Tastenwert
          is
-            when SystemKonstanten.ObenKonstante | SystemKonstanten.EbeneHochKonstante =>
+            when TastenbelegungKonstanten.ObenKonstante | TastenbelegungKonstanten.EbeneHochKonstante =>
                if
                  AktuelleAuswahl = Anfang
                then
@@ -109,7 +110,7 @@ package body AuswahlMenue is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemKonstanten.UntenKonstante | SystemKonstanten.EbeneRunterKonstante =>
+            when TastenbelegungKonstanten.UntenKonstante | TastenbelegungKonstanten.EbeneRunterKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -120,13 +121,13 @@ package body AuswahlMenue is
                end if;
                
                -- Später noch erweitern?
-            when SystemKonstanten.LinksKonstante =>
+            when TastenbelegungKonstanten.LinksKonstante =>
                null;
                
-            when SystemKonstanten.RechtsKonstante =>
+            when TastenbelegungKonstanten.RechtsKonstante =>
                null;
                               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                return;
             
             when others =>

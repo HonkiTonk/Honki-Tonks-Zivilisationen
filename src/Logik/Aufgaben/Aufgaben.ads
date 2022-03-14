@@ -6,12 +6,13 @@ with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
 with SystemKonstanten;
+with TastenbelegungDatentypen;
 
 package Aufgaben is
    
    function VerbesserungTesten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with
        Pre =>
@@ -21,7 +22,7 @@ package Aufgaben is
    
    function VerbesserungAnlegen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with
        Pre =>
@@ -74,7 +75,7 @@ private
    
    function VerbesserungFestgelegt
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum;
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with
@@ -115,7 +116,7 @@ private
    
    function AllgemeinerAnfangstest
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
      with
        Pre =>

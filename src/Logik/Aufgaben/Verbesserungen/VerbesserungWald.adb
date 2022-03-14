@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
+with TastenbelegungKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -51,7 +52,7 @@ package body VerbesserungWald is
       is
          when KartenDatentypen.Flachland | KartenDatentypen.Hügel | KartenDatentypen.Karten_Grund_Fluss_Enum'Range | KartenDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => SystemKonstanten.WaldAufforstenKonstante);
+                                                    BeschäftigungExtern     => TastenbelegungKonstanten.WaldAufforstenKonstante);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
@@ -63,7 +64,7 @@ package body VerbesserungWald is
                                                    AnlegenTestenExtern      => AnlegenTestenExtern) = True
             then
                SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => SystemKonstanten.WaldAufforstenKonstante);
+                                                       BeschäftigungExtern     => TastenbelegungKonstanten.WaldAufforstenKonstante);
                SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             ZeitExtern               => 3,
                                                             RechnenSetzenExtern      => 0);

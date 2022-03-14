@@ -6,12 +6,14 @@ with SystemRecords;
 with GlobaleVariablen;
 with KartenRecords;
 with SystemKonstanten;
+with TastenbelegungDatentypen;
+with TastenbelegungKonstanten;
 
 package BewegungCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
-      RichtungExtern : in SystemDatentypen.Tastenbelegung_Bewegung_Enum;
+      RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -32,18 +34,18 @@ private
    
    Änderung : KartenRecords.AchsenKartenfeldRecord;
    
-   type RichtungArray is array (SystemDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
+   type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
-                                         SystemKonstanten.ObenKonstante        => (0, -1, 0),
-                                         SystemKonstanten.LinksKonstante       => (0, 0, -1),
-                                         SystemKonstanten.UntenKonstante       => (0, 1, 0),
-                                         SystemKonstanten.RechtsKonstante      => (0, 0, 1),
-                                         SystemKonstanten.LinksObenKonstante   => (0, -1, -1),
-                                         SystemKonstanten.RechtsObenKonstante  => (0, -1, 1),
-                                         SystemKonstanten.LinksUntenKonstante  => (0, 1, -1),
-                                         SystemKonstanten.RechtsUntenKonstante => (0, 1, 1),
-                                         SystemKonstanten.EbeneHochKonstante   => (1, 0, 0),
-                                         SystemKonstanten.EbeneRunterKonstante => (-1, 0, 0)
+                                         TastenbelegungKonstanten.ObenKonstante        => (0, -1, 0),
+                                         TastenbelegungKonstanten.LinksKonstante       => (0, 0, -1),
+                                         TastenbelegungKonstanten.UntenKonstante       => (0, 1, 0),
+                                         TastenbelegungKonstanten.RechtsKonstante      => (0, 0, 1),
+                                         TastenbelegungKonstanten.LinksObenKonstante   => (0, -1, -1),
+                                         TastenbelegungKonstanten.RechtsObenKonstante  => (0, -1, 1),
+                                         TastenbelegungKonstanten.LinksUntenKonstante  => (0, 1, -1),
+                                         TastenbelegungKonstanten.RechtsUntenKonstante => (0, 1, 1),
+                                         TastenbelegungKonstanten.EbeneHochKonstante   => (1, 0, 0),
+                                         TastenbelegungKonstanten.EbeneRunterKonstante => (-1, 0, 0)
                                         );
    
    procedure BewegungCursorBerechnen

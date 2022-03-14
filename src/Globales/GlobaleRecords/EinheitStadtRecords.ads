@@ -6,6 +6,7 @@ with SystemDatentypen;
 with KartenRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
+with TastenbelegungDatentypen;
 
 with KIDatentypen;
 
@@ -35,8 +36,8 @@ package EinheitStadtRecords is
       Erfahrungspunkte : EinheitStadtDatentypen.Kampfwerte;
       Rang : EinheitStadtDatentypen.Kampfwerte;
       
-      Beschäftigung : SystemDatentypen.Tastenbelegung_Enum;
-      BeschäftigungNachfolger : SystemDatentypen.Tastenbelegung_Enum;
+      Beschäftigung : TastenbelegungDatentypen.Tastenbelegung_Enum;
+      BeschäftigungNachfolger : TastenbelegungDatentypen.Tastenbelegung_Enum;
       
       Beschäftigungszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       BeschäftigungszeitNachfolger : EinheitStadtDatentypen.MaximaleStädteMitNullWert;

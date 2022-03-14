@@ -2,9 +2,11 @@ pragma SPARK_Mode (On);
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 with KartenVerbesserungKonstanten;
+with TastenbelegungKonstanten;
 
 with SchreibeKarten;
 with SchreibeEinheitenGebaut;
@@ -29,7 +31,7 @@ package body Aufgaben is
    
    function VerbesserungTesten
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
       
@@ -52,7 +54,7 @@ package body Aufgaben is
    
    function VerbesserungAnlegen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
       
@@ -68,7 +70,7 @@ package body Aufgaben is
       end case;
      
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = SystemKonstanten.LeerTastenbelegungKonstante
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = TastenbelegungKonstanten.LeerTastenbelegungKonstante
         or
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemKonstanten.SpielerKIKonstante
       then
@@ -96,7 +98,7 @@ package body Aufgaben is
    
    function AllgemeinerAnfangstest
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum)
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
       
@@ -122,7 +124,7 @@ package body Aufgaben is
       end if;
       
       if
-        BefehlExtern in SystemDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
+        BefehlExtern in TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
         and
           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
@@ -131,7 +133,7 @@ package body Aufgaben is
          return False;
          
       elsif
-        BefehlExtern = SystemKonstanten.PlündernKonstante
+        BefehlExtern = TastenbelegungKonstanten.PlündernKonstante
         and
           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
@@ -151,7 +153,7 @@ package body Aufgaben is
 
    function VerbesserungFestgelegt
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum;
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -162,50 +164,50 @@ package body Aufgaben is
       case
         BefehlExtern
       is
-         when SystemKonstanten.StraßeBauenKonstante =>
+         when TastenbelegungKonstanten.StraßeBauenKonstante =>
             return VerbesserungWeg.VerbesserungWeg (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     GrundExtern              => Grund,
                                                     AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when SystemKonstanten.MineBauenKonstante =>
+         when TastenbelegungKonstanten.MineBauenKonstante =>
             return VerbesserungMine.VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                       GrundExtern              => Grund,
                                                       AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when SystemKonstanten.FarmBauenKonstante =>
+         when TastenbelegungKonstanten.FarmBauenKonstante =>
             return VerbesserungFarm.VerbesserungFarm (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                       GrundExtern              => Grund,
                                                       AnlegenTestenExtern      => AnlegenTestenExtern);
             
-         when SystemKonstanten.FestungBauenKonstante =>
+         when TastenbelegungKonstanten.FestungBauenKonstante =>
             return VerbesserungFestung.VerbesserungFestung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             GrundExtern              => Grund,
                                                             AnlegenTestenExtern      => AnlegenTestenExtern);
             
-         when SystemKonstanten.WaldAufforstenKonstante =>
+         when TastenbelegungKonstanten.WaldAufforstenKonstante =>
             return VerbesserungWald.VerbesserungWald (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                       GrundExtern              => Grund,
                                                       AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when SystemKonstanten.RodenTrockenlegenKonstante =>
+         when TastenbelegungKonstanten.RodenTrockenlegenKonstante =>
             return VerbesserungRoden.VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                         GrundExtern              => Grund,
                                                         AnlegenTestenExtern      => AnlegenTestenExtern);
          
-         when SystemKonstanten.HeilenKonstante =>
+         when TastenbelegungKonstanten.HeilenKonstante =>
             return EinheitHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                   AnlegenTestenExtern      => AnlegenTestenExtern);
             
-         when SystemKonstanten.VerschanzenKonstante =>
+         when TastenbelegungKonstanten.VerschanzenKonstante =>
             EinheitVerschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when SystemKonstanten.RundeAussetzenKonstante =>
+         when TastenbelegungKonstanten.RundeAussetzenKonstante =>
             RundeAussetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when SystemKonstanten.AuflösenKonstante =>
+         when TastenbelegungKonstanten.AuflösenKonstante =>
             EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-         when SystemKonstanten.PlündernKonstante =>
+         when TastenbelegungKonstanten.PlündernKonstante =>
             if
               LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= KartenVerbesserungKonstanten.LeerVerbesserungGebiet
               or
@@ -218,7 +220,7 @@ package body Aufgaben is
                return False;
             end if;
          
-         when SystemKonstanten.EinheitVerbessernKonstante =>
+         when TastenbelegungKonstanten.EinheitVerbessernKonstante =>
             return VerbesserungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         AnlegenTestenExtern      => AnlegenTestenExtern);
       end case;
@@ -244,7 +246,7 @@ package body Aufgaben is
          
       else
          SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BeschäftigungExtern     => SystemKonstanten.HeilenKonstante);
+                                                 BeschäftigungExtern     => TastenbelegungKonstanten.HeilenKonstante);
       end if;
       
       case
@@ -255,7 +257,7 @@ package body Aufgaben is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => SystemKonstanten.LeerTastenbelegungKonstante);
+                                                    BeschäftigungExtern     => TastenbelegungKonstanten.LeerTastenbelegungKonstante);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -272,7 +274,7 @@ package body Aufgaben is
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern     => SystemKonstanten.VerschanzenKonstante);
+                                              BeschäftigungExtern     => TastenbelegungKonstanten.VerschanzenKonstante);
       
    end EinheitVerschanzen;
    

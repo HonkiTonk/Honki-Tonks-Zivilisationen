@@ -8,6 +8,7 @@ with EinheitStadtRecords; use EinheitStadtRecords;
 with StadtKonstanten;
 with GlobaleTexte;
 with TextKonstanten;
+with TastenbelegungKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -168,7 +169,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                if
                  AktuelleAuswahl < 0
                then
@@ -179,7 +180,7 @@ package body InDerStadtBauen is
                   exit AuswahlSchleife;
                end if;
                
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                GewähltesBauprojekt := StadtKonstanten.LeerBauprojekt;
                exit AuswahlSchleife;
                
@@ -263,7 +264,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is
-            when SystemKonstanten.ObenKonstante =>
+            when TastenbelegungKonstanten.ObenKonstante =>
                if
                  AktuelleAuswahl = Bauliste'First
                then
@@ -273,7 +274,7 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemKonstanten.UntenKonstante =>
+            when TastenbelegungKonstanten.UntenKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -283,11 +284,11 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                GewähltesBauprojekt := Bauliste (AktuelleAuswahl);
                exit AuswahlSchleife;
 
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                if
                  AktuellesBauprojekt.Nummer /= 0
                then

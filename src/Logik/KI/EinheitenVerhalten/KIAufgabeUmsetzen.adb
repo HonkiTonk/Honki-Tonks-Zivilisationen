@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenVerbesserungKonstanten;
+with TastenbelegungKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -37,7 +38,7 @@ package body KIAufgabeUmsetzen is
       is
          when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
             return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BefehlExtern             => SystemKonstanten.StraßeBauenKonstante);
+                                                 BefehlExtern             => TastenbelegungKonstanten.StraßeBauenKonstante);
             
          when others =>
             null;
@@ -70,26 +71,26 @@ package body KIAufgabeUmsetzen is
            LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => SystemKonstanten.MineBauenKonstante)
+                                       BefehlExtern             => TastenbelegungKonstanten.MineBauenKonstante)
         = True
       then
-         Befehl := SystemKonstanten.MineBauenKonstante;
+         Befehl := TastenbelegungKonstanten.MineBauenKonstante;
          
       elsif
         Grund = KartenDatentypen.Eis
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => SystemKonstanten.FestungBauenKonstante)
+                                       BefehlExtern             => TastenbelegungKonstanten.FestungBauenKonstante)
         = True
       then
-         Befehl := SystemKonstanten.FestungBauenKonstante;
+         Befehl := TastenbelegungKonstanten.FestungBauenKonstante;
          
       elsif
         Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => SystemKonstanten.FarmBauenKonstante)
+                                     BefehlExtern             => TastenbelegungKonstanten.FarmBauenKonstante)
         = True
       then
-         Befehl := SystemKonstanten.FarmBauenKonstante;
+         Befehl := TastenbelegungKonstanten.FarmBauenKonstante;
             
       else
          return False;
@@ -108,7 +109,7 @@ package body KIAufgabeUmsetzen is
    is begin
       
       NullWert := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                BefehlExtern             => SystemKonstanten.EinheitVerbessernKonstante);
+                                                BefehlExtern             => TastenbelegungKonstanten.EinheitVerbessernKonstante);
       
       return False;
       

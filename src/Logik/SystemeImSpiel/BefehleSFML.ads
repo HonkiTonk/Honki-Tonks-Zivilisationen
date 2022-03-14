@@ -5,6 +5,7 @@ with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with SystemRecords;
 with KartenDatentypen;
+with TastenbelegungDatentypen;
 
 package BefehleSFML is
    
@@ -20,7 +21,7 @@ private
    
    Auswahl : KartenDatentypen.UmgebungsbereichEins;
    
-   Befehl : SystemDatentypen.Tastenbelegung_Enum;
+   Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    TransporterNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
@@ -46,7 +47,7 @@ private
    
    procedure EinheitBefehle
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      BefehlExtern : in SystemDatentypen.Tastenbelegung_Befehle_Enum);
+      BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum);
    
    procedure StadtUmbenennen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);

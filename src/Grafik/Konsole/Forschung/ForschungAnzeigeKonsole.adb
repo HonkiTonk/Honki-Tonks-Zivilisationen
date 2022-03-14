@@ -6,6 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with ForschungKonstanten;
 with GlobaleTexte;
+with TastenbelegungKonstanten;
 
 with LeseForschungsDatenbank;
 
@@ -179,7 +180,7 @@ package body ForschungAnzeigeKonsole is
          case
            Eingabe.Tastenwert
          is
-            when SystemKonstanten.RechtsKonstante =>
+            when TastenbelegungKonstanten.RechtsKonstante =>
                if
                  AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'Last
                then
@@ -189,7 +190,7 @@ package body ForschungAnzeigeKonsole is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
 
-            when SystemKonstanten.LinksKonstante =>
+            when TastenbelegungKonstanten.LinksKonstante =>
                if
                  AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'First
                then
@@ -199,7 +200,7 @@ package body ForschungAnzeigeKonsole is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
                               
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return;
                      

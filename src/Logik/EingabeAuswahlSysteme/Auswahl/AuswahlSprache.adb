@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with GlobaleVariablen;
 with GlobaleTexte;
 with SystemKonstanten;
+with SystemDatentypen;
+with TastenbelegungKonstanten;
 
 with Eingabe;
 with GrafikEinstellungenSFML;
@@ -134,7 +136,7 @@ package body AuswahlSprache is
          case
            Eingabe.Tastenwert
          is
-            when SystemKonstanten.ObenKonstante | SystemKonstanten.EbeneHochKonstante =>
+            when TastenbelegungKonstanten.ObenKonstante | TastenbelegungKonstanten.EbeneHochKonstante =>
                if
                  AktuelleAuswahl = AktuelleSprachen'First
                then
@@ -144,7 +146,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemKonstanten.UntenKonstante | SystemKonstanten.EbeneRunterKonstante =>
+            when TastenbelegungKonstanten.UntenKonstante | TastenbelegungKonstanten.EbeneRunterKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -154,7 +156,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                if
                  AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
                then
@@ -193,7 +195,7 @@ package body AuswahlSprache is
          case
            Eingabe.Tastenwert
          is
-            when SystemKonstanten.ObenKonstante | SystemKonstanten.EbeneHochKonstante =>
+            when TastenbelegungKonstanten.ObenKonstante | TastenbelegungKonstanten.EbeneHochKonstante =>
                if
                  AktuelleAuswahl = AktuelleSprachen'First
                then
@@ -203,7 +205,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when SystemKonstanten.UntenKonstante | SystemKonstanten.EbeneRunterKonstante =>
+            when TastenbelegungKonstanten.UntenKonstante | TastenbelegungKonstanten.EbeneRunterKonstante =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -213,7 +215,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when SystemKonstanten.AuswählenKonstante =>
+            when TastenbelegungKonstanten.AuswählenKonstante =>
                if
                  AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
                then
@@ -223,7 +225,7 @@ package body AuswahlSprache is
                   return AktuelleSprachen (AktuelleAuswahl);
                end if;
                
-            when SystemKonstanten.MenüZurückKonstante =>
+            when TastenbelegungKonstanten.MenüZurückKonstante =>
                return SystemKonstanten.LeerUnboundedString;
             
             when others =>

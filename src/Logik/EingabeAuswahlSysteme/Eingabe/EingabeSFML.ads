@@ -4,7 +4,8 @@ with Sf.Window.Keyboard;
 
 with SystemDatentypen;
 with SystemRecords;
-with SystemKonstanten;
+with TastenbelegungDatentypen;
+with TastenbelegungKonstanten;
 
 package EingabeSFML is
    
@@ -14,7 +15,7 @@ package EingabeSFML is
    
    AktuellerWert : Natural;
       
-   type TastenbelegungArray is array (1 .. 2, SystemDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
+   type TastenbelegungArray is array (1 .. 2, TastenbelegungDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Sf.Window.Keyboard.sfKeyCode;
    Tastenbelegung : TastenbelegungArray;
    
    procedure StandardTastenbelegungLaden;
@@ -34,7 +35,7 @@ package EingabeSFML is
      return SystemRecords.TextEingabeRecord;
 
    function Tastenwert
-     return SystemDatentypen.Tastenbelegung_Enum;
+     return TastenbelegungDatentypen.Tastenbelegung_Enum;
    
 private
    
@@ -71,108 +72,108 @@ private
    TastenbelegungStandard : constant TastenbelegungArray := (
                                                              1 =>
                                                                (
-                                                                SystemKonstanten.ObenKonstante                         => Sf.Window.Keyboard.sfKeyW,
-                                                                SystemKonstanten.LinksKonstante                        => Sf.Window.Keyboard.sfKeyA,
-                                                                SystemKonstanten.UntenKonstante                        => Sf.Window.Keyboard.sfKeyS,
-                                                                SystemKonstanten.RechtsKonstante                       => Sf.Window.Keyboard.sfKeyD,
-                                                                SystemKonstanten.LinksObenKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.RechtsObenKonstante                   => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.LinksUntenKonstante                   => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.RechtsUntenKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.EbeneHochKonstante                    => Sf.Window.Keyboard.sfKeyAdd,
-                                                                SystemKonstanten.EbeneRunterKonstante                  => Sf.Window.Keyboard.sfKeySubtract,
+                                                                TastenbelegungKonstanten.ObenKonstante                         => Sf.Window.Keyboard.sfKeyW,
+                                                                TastenbelegungKonstanten.LinksKonstante                        => Sf.Window.Keyboard.sfKeyA,
+                                                                TastenbelegungKonstanten.UntenKonstante                        => Sf.Window.Keyboard.sfKeyS,
+                                                                TastenbelegungKonstanten.RechtsKonstante                       => Sf.Window.Keyboard.sfKeyD,
+                                                                TastenbelegungKonstanten.LinksObenKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.RechtsObenKonstante                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.LinksUntenKonstante                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.RechtsUntenKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.EbeneHochKonstante                    => Sf.Window.Keyboard.sfKeyAdd,
+                                                                TastenbelegungKonstanten.EbeneRunterKonstante                  => Sf.Window.Keyboard.sfKeySubtract,
 
-                                                                SystemKonstanten.AuswählenKonstante                    => Sf.Window.Keyboard.sfKeyE,
-                                                                SystemKonstanten.MenüZurückKonstante                   => Sf.Window.Keyboard.sfKeyEscape,
-                                                                SystemKonstanten.BauenKonstante                        => Sf.Window.Keyboard.sfKeyB,
-                                                                SystemKonstanten.ForschungKonstante                    => Sf.Window.Keyboard.sfKeyT,
-                                                                SystemKonstanten.TechBaumKonstante                     => Sf.Window.Keyboard.sfKeyX,
+                                                                TastenbelegungKonstanten.AuswählenKonstante                    => Sf.Window.Keyboard.sfKeyE,
+                                                                TastenbelegungKonstanten.MenüZurückKonstante                   => Sf.Window.Keyboard.sfKeyEscape,
+                                                                TastenbelegungKonstanten.BauenKonstante                        => Sf.Window.Keyboard.sfKeyB,
+                                                                TastenbelegungKonstanten.ForschungKonstante                    => Sf.Window.Keyboard.sfKeyT,
+                                                                TastenbelegungKonstanten.TechBaumKonstante                     => Sf.Window.Keyboard.sfKeyX,
 
-                                                                SystemKonstanten.NächsteStadtKonstante                 => Sf.Window.Keyboard.sfKeySlash,
-                                                                SystemKonstanten.EinheitMitBewegungspunkteKonstante    => Sf.Window.Keyboard.sfKeyPeriod,
-                                                                SystemKonstanten.AlleEinheitenKonstante                => Sf.Window.Keyboard.sfKeyMultiply,
-                                                                SystemKonstanten.EinheitenOhneBewegungspunkteKonstante => Sf.Window.Keyboard.sfKeyComma,
-                                                                SystemKonstanten.NächsteStadtMeldungKonstante          => Sf.Window.Keyboard.sfKeyNum0,
-                                                                SystemKonstanten.NächsteEinheitMeldungKonstante        => Sf.Window.Keyboard.sfKeyO,
+                                                                TastenbelegungKonstanten.NächsteStadtKonstante                 => Sf.Window.Keyboard.sfKeySlash,
+                                                                TastenbelegungKonstanten.EinheitMitBewegungspunkteKonstante    => Sf.Window.Keyboard.sfKeyPeriod,
+                                                                TastenbelegungKonstanten.AlleEinheitenKonstante                => Sf.Window.Keyboard.sfKeyMultiply,
+                                                                TastenbelegungKonstanten.EinheitenOhneBewegungspunkteKonstante => Sf.Window.Keyboard.sfKeyComma,
+                                                                TastenbelegungKonstanten.NächsteStadtMeldungKonstante          => Sf.Window.Keyboard.sfKeyNum0,
+                                                                TastenbelegungKonstanten.NächsteEinheitMeldungKonstante        => Sf.Window.Keyboard.sfKeyO,
 
-                                                                SystemKonstanten.StraßeBauenKonstante                  => Sf.Window.Keyboard.sfKeyL,
-                                                                SystemKonstanten.MineBauenKonstante                    => Sf.Window.Keyboard.sfKeyM,
-                                                                SystemKonstanten.FarmBauenKonstante                    => Sf.Window.Keyboard.sfKeyF,
-                                                                SystemKonstanten.FestungBauenKonstante                 => Sf.Window.Keyboard.sfKeyU,
-                                                                SystemKonstanten.WaldAufforstenKonstante               => Sf.Window.Keyboard.sfKeyZ,
-                                                                SystemKonstanten.RodenTrockenlegenKonstante            => Sf.Window.Keyboard.sfKeyP,
-                                                                SystemKonstanten.HeilenKonstante                       => Sf.Window.Keyboard.sfKeyH,
-                                                                SystemKonstanten.VerschanzenKonstante                  => Sf.Window.Keyboard.sfKeyV,
-                                                                SystemKonstanten.RundeAussetzenKonstante               => Sf.Window.Keyboard.sfKeySpace,
-                                                                SystemKonstanten.AuflösenKonstante                     => Sf.Window.Keyboard.sfKeyDelete,
-                                                                SystemKonstanten.PlündernKonstante                     => Sf.Window.Keyboard.sfKeyJ,
-                                                                SystemKonstanten.HeimatstadtÄndernKonstante            => Sf.Window.Keyboard.sfKeyNum5,
-                                                                SystemKonstanten.EinheitVerbessernKonstante            => Sf.Window.Keyboard.sfKeyTab,
-                                                                SystemKonstanten.InfosKonstante                        => Sf.Window.Keyboard.sfKeyI,
+                                                                TastenbelegungKonstanten.StraßeBauenKonstante                  => Sf.Window.Keyboard.sfKeyL,
+                                                                TastenbelegungKonstanten.MineBauenKonstante                    => Sf.Window.Keyboard.sfKeyM,
+                                                                TastenbelegungKonstanten.FarmBauenKonstante                    => Sf.Window.Keyboard.sfKeyF,
+                                                                TastenbelegungKonstanten.FestungBauenKonstante                 => Sf.Window.Keyboard.sfKeyU,
+                                                                TastenbelegungKonstanten.WaldAufforstenKonstante               => Sf.Window.Keyboard.sfKeyZ,
+                                                                TastenbelegungKonstanten.RodenTrockenlegenKonstante            => Sf.Window.Keyboard.sfKeyP,
+                                                                TastenbelegungKonstanten.HeilenKonstante                       => Sf.Window.Keyboard.sfKeyH,
+                                                                TastenbelegungKonstanten.VerschanzenKonstante                  => Sf.Window.Keyboard.sfKeyV,
+                                                                TastenbelegungKonstanten.RundeAussetzenKonstante               => Sf.Window.Keyboard.sfKeySpace,
+                                                                TastenbelegungKonstanten.AuflösenKonstante                     => Sf.Window.Keyboard.sfKeyDelete,
+                                                                TastenbelegungKonstanten.PlündernKonstante                     => Sf.Window.Keyboard.sfKeyJ,
+                                                                TastenbelegungKonstanten.HeimatstadtÄndernKonstante            => Sf.Window.Keyboard.sfKeyNum5,
+                                                                TastenbelegungKonstanten.EinheitVerbessernKonstante            => Sf.Window.Keyboard.sfKeyTab,
+                                                                TastenbelegungKonstanten.InfosKonstante                        => Sf.Window.Keyboard.sfKeyI,
 
-                                                                SystemKonstanten.DiplomatieKonstante                   => Sf.Window.Keyboard.sfKeyTilde,
+                                                                TastenbelegungKonstanten.DiplomatieKonstante                   => Sf.Window.Keyboard.sfKeyTilde,
 
-                                                                SystemKonstanten.GeheZuKonstante                       => Sf.Window.Keyboard.sfKeyG,
+                                                                TastenbelegungKonstanten.GeheZuKonstante                       => Sf.Window.Keyboard.sfKeyG,
 
-                                                                SystemKonstanten.StadtUmbenennenKonstante              => Sf.Window.Keyboard.sfKeyN,
-                                                                SystemKonstanten.StadtAbreißenKonstante                => Sf.Window.Keyboard.sfKeyK,
-                                                                SystemKonstanten.StadtSuchenKonstante                  => Sf.Window.Keyboard.sfKeyY,
+                                                                TastenbelegungKonstanten.StadtUmbenennenKonstante              => Sf.Window.Keyboard.sfKeyN,
+                                                                TastenbelegungKonstanten.StadtAbreißenKonstante                => Sf.Window.Keyboard.sfKeyK,
+                                                                TastenbelegungKonstanten.StadtSuchenKonstante                  => Sf.Window.Keyboard.sfKeyY,
 
-                                                                SystemKonstanten.RundeBeendenTastenbelegungKonstante   => Sf.Window.Keyboard.sfKeyR,
-                                                                SystemKonstanten.DebugmenüKonstante                    => Sf.Window.Keyboard.sfKeyC
+                                                                TastenbelegungKonstanten.RundeBeendenTastenbelegungKonstante   => Sf.Window.Keyboard.sfKeyR,
+                                                                TastenbelegungKonstanten.DebugmenüKonstante                    => Sf.Window.Keyboard.sfKeyC
                                                                ),
 
                                                              2 =>
                                                                (
-                                                                SystemKonstanten.ObenKonstante                         => Sf.Window.Keyboard.sfKeyNum8,
-                                                                SystemKonstanten.LinksKonstante                        => Sf.Window.Keyboard.sfKeyNum4,
-                                                                SystemKonstanten.UntenKonstante                        => Sf.Window.Keyboard.sfKeyNum2,
-                                                                SystemKonstanten.RechtsKonstante                       => Sf.Window.Keyboard.sfKeyNum6,
-                                                                SystemKonstanten.LinksObenKonstante                    => Sf.Window.Keyboard.sfKeyNum7,
-                                                                SystemKonstanten.RechtsObenKonstante                   => Sf.Window.Keyboard.sfKeyNum9,
-                                                                SystemKonstanten.LinksUntenKonstante                   => Sf.Window.Keyboard.sfKeyNum1,
-                                                                SystemKonstanten.RechtsUntenKonstante                  => Sf.Window.Keyboard.sfKeyNum3,
-                                                                SystemKonstanten.EbeneHochKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.EbeneRunterKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.ObenKonstante                         => Sf.Window.Keyboard.sfKeyNum8,
+                                                                TastenbelegungKonstanten.LinksKonstante                        => Sf.Window.Keyboard.sfKeyNum4,
+                                                                TastenbelegungKonstanten.UntenKonstante                        => Sf.Window.Keyboard.sfKeyNum2,
+                                                                TastenbelegungKonstanten.RechtsKonstante                       => Sf.Window.Keyboard.sfKeyNum6,
+                                                                TastenbelegungKonstanten.LinksObenKonstante                    => Sf.Window.Keyboard.sfKeyNum7,
+                                                                TastenbelegungKonstanten.RechtsObenKonstante                   => Sf.Window.Keyboard.sfKeyNum9,
+                                                                TastenbelegungKonstanten.LinksUntenKonstante                   => Sf.Window.Keyboard.sfKeyNum1,
+                                                                TastenbelegungKonstanten.RechtsUntenKonstante                  => Sf.Window.Keyboard.sfKeyNum3,
+                                                                TastenbelegungKonstanten.EbeneHochKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.EbeneRunterKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                SystemKonstanten.AuswählenKonstante                    => Sf.Window.Keyboard.sfKeyEnter,
-                                                                SystemKonstanten.MenüZurückKonstante                   => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.BauenKonstante                        => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.ForschungKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.TechBaumKonstante                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.AuswählenKonstante                    => Sf.Window.Keyboard.sfKeyEnter,
+                                                                TastenbelegungKonstanten.MenüZurückKonstante                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.BauenKonstante                        => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.ForschungKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.TechBaumKonstante                     => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                SystemKonstanten.NächsteStadtKonstante                 => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.EinheitMitBewegungspunkteKonstante    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.AlleEinheitenKonstante                => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.EinheitenOhneBewegungspunkteKonstante => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.NächsteStadtMeldungKonstante          => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.NächsteEinheitMeldungKonstante        => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.NächsteStadtKonstante                 => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.EinheitMitBewegungspunkteKonstante    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.AlleEinheitenKonstante                => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.EinheitenOhneBewegungspunkteKonstante => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.NächsteStadtMeldungKonstante          => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.NächsteEinheitMeldungKonstante        => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                SystemKonstanten.StraßeBauenKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.MineBauenKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.FarmBauenKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.FestungBauenKonstante                 => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.WaldAufforstenKonstante               => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.RodenTrockenlegenKonstante            => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.HeilenKonstante                       => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.VerschanzenKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.RundeAussetzenKonstante               => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.AuflösenKonstante                     => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.PlündernKonstante                     => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.HeimatstadtÄndernKonstante            => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.EinheitVerbessernKonstante            => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.InfosKonstante                        => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.StraßeBauenKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.MineBauenKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.FarmBauenKonstante                    => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.FestungBauenKonstante                 => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.WaldAufforstenKonstante               => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.RodenTrockenlegenKonstante            => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.HeilenKonstante                       => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.VerschanzenKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.RundeAussetzenKonstante               => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.AuflösenKonstante                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.PlündernKonstante                     => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.HeimatstadtÄndernKonstante            => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.EinheitVerbessernKonstante            => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.InfosKonstante                        => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                SystemKonstanten.DiplomatieKonstante                   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.DiplomatieKonstante                   => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                SystemKonstanten.GeheZuKonstante                       => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.GeheZuKonstante                       => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                SystemKonstanten.StadtUmbenennenKonstante              => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.StadtAbreißenKonstante                => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.StadtSuchenKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.StadtUmbenennenKonstante              => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.StadtAbreißenKonstante                => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.StadtSuchenKonstante                  => Sf.Window.Keyboard.sfKeyUnknown,
 
-                                                                SystemKonstanten.RundeBeendenTastenbelegungKonstante   => Sf.Window.Keyboard.sfKeyUnknown,
-                                                                SystemKonstanten.DebugmenüKonstante                    => Sf.Window.Keyboard.sfKeyUnknown
+                                                                TastenbelegungKonstanten.RundeBeendenTastenbelegungKonstante   => Sf.Window.Keyboard.sfKeyUnknown,
+                                                                TastenbelegungKonstanten.DebugmenüKonstante                    => Sf.Window.Keyboard.sfKeyUnknown
                                                                )
                                                             );
    

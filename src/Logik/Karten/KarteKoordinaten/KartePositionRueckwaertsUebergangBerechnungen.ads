@@ -3,20 +3,21 @@ pragma SPARK_Mode (On);
 with KartenDatentypen;
 with KartenRecords;
 
-package KartePositionVerschobenerUebergangBerechnungen is
-   
+package KartePositionRueckwaertsUebergangBerechnungen is
+
    function PositionBestimmenYAchse
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
-   
+
    function PositionBestimmenXAchse
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
-   
-private
-   
-   HalberWert : constant Float := 0.50;
 
-end KartePositionVerschobenerUebergangBerechnungen;
+private
+
+   YAchseZwischenwert : KartenDatentypen.KartenfeldPositivMitNullwert;
+   XAchseZwischenwert : KartenDatentypen.KartenfeldPositivMitNullwert;
+
+end KartePositionRueckwaertsUebergangBerechnungen;
