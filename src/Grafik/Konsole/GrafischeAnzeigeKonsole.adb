@@ -1,8 +1,11 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenVerbesserungKonstanten;
 with KartenGrundKonstanten;
@@ -34,7 +37,7 @@ package body GrafischeAnzeigeKonsole is
             
          when False =>
             if
-              KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten
+              KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
             then
                FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                                          VerbesserungExtern       => KartenVerbesserungKonstanten.LeerVerbesserung,
@@ -115,7 +118,7 @@ package body GrafischeAnzeigeKonsole is
    is begin
       
       if
-        KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten
+        KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
         and
           InDerStadtExtern = False
       then

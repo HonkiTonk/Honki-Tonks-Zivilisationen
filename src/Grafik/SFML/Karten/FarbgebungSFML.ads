@@ -1,26 +1,27 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.Color;
 
-with KartenDatentypen; use KartenDatentypen;
+with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenGrundKonstanten;
 
 package FarbgebungSFML is
 
    function FarbeKartenfeldErmitteln
-     (GrundExtern : in KartenDatentypen.Karten_Grund_Alle_Felder_Enum)
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum)
       return Sf.Graphics.Color.sfColor
      with
        Pre =>
          (GrundExtern /= KartenGrundKonstanten.HügelMitKonstante);
    
    function FarbeFlussErmitteln
-     (FlussExtern : in KartenDatentypen.Karten_Fluss_Enum)
+     (FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum)
       return Sf.Graphics.Color.sfColor;
    
 private
    
-   type FeldfarbeArray is array (KartenDatentypen.Karten_Grund_Alle_Felder_Enum'Range) of Sf.Graphics.Color.sfColor;
+   type FeldfarbeArray is array (KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Range) of Sf.Graphics.Color.sfColor;
    Feldfarbe : constant FeldfarbeArray := (
                                             KartenGrundKonstanten.EisKonstante | KartenGrundKonstanten.UnterwasserEisKonstante                       => (255, 245, 238, 255),
                                             KartenGrundKonstanten.WasserKonstante | KartenGrundKonstanten.UnterwasserWasserKonstante                 => (0, 0, 205, 255),
@@ -45,10 +46,10 @@ private
                                             KartenGrundKonstanten.HügelMitKonstante                                                                  => (0, 0, 0, 0)
                                            );
    
-   type FlussfarbeArray is array (KartenDatentypen.Karten_Fluss_Enum'Range) of Sf.Graphics.Color.sfColor;
+   type FlussfarbeArray is array (KartenGrundDatentypen.Karten_Fluss_Enum'Range) of Sf.Graphics.Color.sfColor;
    Flussfarbe : constant FlussfarbeArray := (
-                                             KartenDatentypen.Karten_Grund_Fluss_Enum'Range | KartenDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range => (0, 0, 205, 0),
-                                             KartenDatentypen.Karten_Grund_Lavafluss_Enum'Range                                                             => (230, 50, 50, 0)
+                                             KartenGrundDatentypen.Karten_Grund_Fluss_Enum'Range | KartenGrundDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range => (0, 0, 205, 0),
+                                             KartenGrundDatentypen.Karten_Grund_Lavafluss_Enum'Range                                                             => (230, 50, 50, 0)
                                             );
 
 end FarbgebungSFML;

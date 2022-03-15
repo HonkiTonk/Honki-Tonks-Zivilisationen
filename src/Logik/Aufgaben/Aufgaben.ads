@@ -1,12 +1,13 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
-with KartenDatentypen;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
+with KartenGrundDatentypen;
 
 package Aufgaben is
    
@@ -34,7 +35,7 @@ private
    
    IDEinheit : EinheitStadtDatentypen.EinheitenID;
    
-   Grund : KartenDatentypen.Karten_Grund_Enum;
+   Grund : KartenGrundDatentypen.Karten_Grund_Enum;
    
    procedure EinheitVerschanzen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

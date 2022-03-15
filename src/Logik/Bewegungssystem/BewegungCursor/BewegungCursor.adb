@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 
@@ -74,7 +75,7 @@ package body BewegungCursor is
          
          when True =>
             Position.XAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := Position;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := Position;
             GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := Position;
       end case;
       
@@ -90,30 +91,30 @@ package body BewegungCursor is
       if
         ÄnderungExtern.EAchse = 1
         and
-          GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse = Karten.Weltkarte'Last (1)
+          GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse = Karten.Weltkarte'Last (1)
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse := Karten.Weltkarte'First (1);
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := Karten.Weltkarte'First (1);
          return;
          
       elsif
         ÄnderungExtern.EAchse = -1
         and
-          GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse = Karten.Weltkarte'First (1)
+          GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse = Karten.Weltkarte'First (1)
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse := Karten.Weltkarte'Last (1);
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := Karten.Weltkarte'Last (1);
          return;
          
       elsif
         ÄnderungExtern.EAchse /= 0
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse + ÄnderungExtern.EAchse;
+         GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse + ÄnderungExtern.EAchse;
          return;
          
       else
          null;
       end if;
             
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
+      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
                                                                      ÄnderungExtern    => ÄnderungExtern,
                                                                      LogikGrafikExtern => True);
       
@@ -124,7 +125,7 @@ package body BewegungCursor is
             null;
 
          when others =>
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := KartenWert;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := KartenWert;
       end case;
       
    end BewegungCursorBerechnen;

@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar; use Ada.Calendar;
 
+with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartenDatentypen; use KartenDatentypen;
 with SystemDatentypen;
 with KartenRecordKonstanten;
 
@@ -52,7 +55,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
         LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenGrundKonstanten.EisKonstante
       then
          SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
-                               GrundExtern       => KartenDatentypen.Unterwasser_Eis);
+                               GrundExtern       => KartenGrundDatentypen.Unterwasser_Eis);
                      
       elsif
         LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenGrundKonstanten.WasserKonstante
@@ -63,7 +66,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
         LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenGrundKonstanten.KüstengewässerKonstante
       then
          SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
-                               GrundExtern       => KartenDatentypen.Unterwasser_Küstengewässer);
+                               GrundExtern       => KartenGrundDatentypen.Unterwasser_Küstengewässer);
                      
       elsif
         LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenGrundKonstanten.GebirgeKonstante
@@ -95,7 +98,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    is begin
       
       GrundSchleife:
-      for GrundSchleifenwert in KartenDatentypen.Karten_Unterwasser_Generator_Enum'Range loop
+      for GrundSchleifenwert in KartenGrundDatentypen.Karten_Unterwasser_Generator_Enum'Range loop
          
          AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
                                                                                                    GrundExtern       => GrundSchleifenwert,

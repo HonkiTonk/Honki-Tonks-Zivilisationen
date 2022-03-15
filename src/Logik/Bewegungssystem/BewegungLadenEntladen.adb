@@ -1,5 +1,6 @@
 pragma SPARK_Mode (On);
 
+pragma Warnings (Off, "*array aggregate*");
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 
@@ -44,7 +45,7 @@ package body BewegungLadenEntladen is
                                                  KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern));
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                        TransporterExtern        => TransporterExtern.Platznummer);
-            GlobaleVariablen.CursorImSpiel (TransporterExtern.Rasse).Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
+            GlobaleVariablen.CursorImSpiel (TransporterExtern.Rasse).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
       end case;
       
    end TransporterBeladen;

@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
@@ -222,7 +223,7 @@ package body KarteStadtKonsole is
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                    VerbesserungExtern => KartenVerbesserungKonstanten.LeerVerbesserung,
                                    RessourceExtern    => KartenGrundKonstanten.LeerGrund,
-                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Koordinaten),
+                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                    RasseExtern        => StadtKonstanten.LeerRasse);
@@ -250,7 +251,7 @@ package body KarteStadtKonsole is
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                    VerbesserungExtern => KartenVerbesserungKonstanten.LeerVerbesserung,
                                    RessourceExtern    => KartenGrundKonstanten.LeerGrund,
-                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Koordinaten),
+                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                    RasseExtern        => StadtKonstanten.LeerRasse);
@@ -287,7 +288,7 @@ package body KarteStadtKonsole is
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                    VerbesserungExtern => KartenVerbesserungKonstanten.LeerVerbesserung,
                                    RessourceExtern    => KartenGrundKonstanten.LeerGrund,
-                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten),
+                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell),
                                    CursorExtern       => True,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => StadtKonstanten.LeerRasse);
@@ -398,7 +399,7 @@ package body KarteStadtKonsole is
             Put (Item => SystemKonstanten.LeerZeichen);
 
          else            
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Koordinaten,
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
                                                                            ÄnderungExtern    => (0, YAchsenabstraktion, UmgebungSchleifenwert),
                                                                            LogikGrafikExtern => False);
             
@@ -447,7 +448,7 @@ package body KarteStadtKonsole is
          CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse - 4;
          CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse - 17;
                
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
+         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
                                                                         ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
                                                                         LogikGrafikExtern => False);
          case
@@ -484,7 +485,7 @@ package body KarteStadtKonsole is
       CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse - 4;
       CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse - 17;
       
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Koordinaten,
+      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
                                                                      ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
                                                                      LogikGrafikExtern => False);
       

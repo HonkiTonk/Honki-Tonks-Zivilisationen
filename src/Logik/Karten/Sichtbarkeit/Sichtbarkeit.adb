@@ -1,8 +1,11 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
+with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenKonstanten;
 with EinheitStadtDatentypen;
 with StadtKonstanten;
+with KartenGrundKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -45,20 +48,20 @@ package body Sichtbarkeit is
       end if;
       
       if
-        AktuellerGrund = KartenDatentypen.Gebirge
+        AktuellerGrund = KartenGrundKonstanten.GebirgeKonstante
         or
-          AktuellerGrund = KartenDatentypen.Hügel
+          AktuellerGrund = KartenGrundKonstanten.HügelKonstante
           or
             LeseKarten.Hügel (KoordinatenExtern => KoordinatenEinheit) = True
       then
          return 3;
 
       elsif
-        AktuellerGrund = KartenDatentypen.Dschungel
+        AktuellerGrund = KartenGrundKonstanten.DschungelKonstante
         or
-          AktuellerGrund = KartenDatentypen.Sumpf
+          AktuellerGrund = KartenGrundKonstanten.SumpfKonstante
           or
-            AktuellerGrund = KartenDatentypen.Wald
+            AktuellerGrund = KartenGrundKonstanten.WaldKonstante
       then
          return 1;
                
@@ -704,19 +707,19 @@ package body Sichtbarkeit is
          null;
          
       elsif
-        LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenDatentypen.Gebirge
+        LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.GebirgeKonstante
         or
-          LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenDatentypen.Hügel
+          LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.HügelKonstante
         or
           LeseKarten.Hügel (KoordinatenExtern => KartenBlockadeWert) = True
         or
           (SichtweiteExtern /= 3
            and
-             (LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenDatentypen.Dschungel
+             (LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.DschungelKonstante
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenDatentypen.Sumpf
+                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.SumpfKonstante
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenDatentypen.Wald))
+                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.WaldKonstante))
       then
          return False;
          

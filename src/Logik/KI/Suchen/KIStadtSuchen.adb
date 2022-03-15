@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenVerbesserungKonstanten;
 with KartenRecordKonstanten;
@@ -54,14 +56,14 @@ package body KIStadtSuchen is
            AktuelleStadt = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
          then
             AktuelleStadt := StadtSchleifenwert; -- ----------------
-            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Koordinaten.EAchse)
-                                    + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Koordinaten.YAchse)
-                                    + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Koordinaten.XAchse));
+            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.EAchse)
+                                    + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.YAchse)
+                                    + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.XAchse));
             
          else
-            EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Koordinaten.EAchse)
-                                       + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Koordinaten.YAchse)
-                                       + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Koordinaten.XAchse));
+            EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.EAchse)
+                                       + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.YAchse)
+                                       + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.XAchse));
             if
               Entfernung > EntfernungNeu
             then

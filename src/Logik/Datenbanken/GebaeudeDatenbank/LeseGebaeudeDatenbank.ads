@@ -1,10 +1,12 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with SystemKonstanten;
+with KartenGrundDatentypen;
 
 with DatenbankRecords;
 
@@ -64,7 +66,7 @@ package LeseGebaeudeDatenbank is
    function UmgebungBenötigt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return KartenDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Grund_Enum
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);

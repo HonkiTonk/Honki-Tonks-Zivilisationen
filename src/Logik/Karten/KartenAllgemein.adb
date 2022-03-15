@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SystemDatentypen; use SystemDatentypen;
@@ -15,7 +16,7 @@ package body KartenAllgemein is
 
    -- Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann?
    function Beschreibung
-     (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum)
+     (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
       return Wide_Wide_String
    is begin
 
@@ -27,7 +28,7 @@ package body KartenAllgemein is
             BeschreibungText := SystemKonstanten.LeerUnboundedString;
             
          when others =>
-            GrundAktuell := 2 * KartenDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
+            GrundAktuell := 2 * KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
             
             BeschreibungText := GlobaleTexte.Kartenfelder (GrundAktuell);
       end case;
@@ -51,7 +52,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern         => RasseExtern,
                                                    WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
-              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenDatentypen.Hügel_Mit,
+              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenGrundKonstanten.HügelMitKonstante,
                                                 RasseExtern         => RasseExtern,
                                                 WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
               / 2;
@@ -79,7 +80,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern         => RasseExtern,
                                                    WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
-              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenDatentypen.Hügel_Mit,
+              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenGrundKonstanten.HügelMitKonstante,
                                                 RasseExtern         => RasseExtern,
                                                 WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
               / 2;
@@ -107,7 +108,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern         => RasseExtern,
                                                    WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
-              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenDatentypen.Hügel_Mit,
+              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenGrundKonstanten.HügelMitKonstante,
                                                 RasseExtern         => RasseExtern,
                                                 WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
               / 2;
@@ -135,7 +136,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.Wirtschaft (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern         => RasseExtern,
                                                    WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
-              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenDatentypen.Hügel_Mit,
+              + LeseKartenDatenbank.Wirtschaft (GrundExtern         => KartenGrundKonstanten.HügelMitKonstante,
                                                 RasseExtern         => RasseExtern,
                                                 WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
               / 2;
@@ -163,7 +164,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                               RasseExtern    => RasseExtern,
                                               KampfArtExtern => KartenKonstanten.KampfVerteidigung)
-              + LeseKartenDatenbank.Kampf (GrundExtern    => KartenDatentypen.Hügel_Mit,
+              + LeseKartenDatenbank.Kampf (GrundExtern    => KartenGrundKonstanten.HügelMitKonstante,
                                            RasseExtern    => RasseExtern,
                                            KampfArtExtern => KartenKonstanten.KampfVerteidigung)
               / 2;
@@ -191,7 +192,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.Kampf (GrundExtern    => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                               RasseExtern    => RasseExtern,
                                               KampfArtExtern => KartenKonstanten.KampfAngriff)
-              + LeseKartenDatenbank.Kampf (GrundExtern    => KartenDatentypen.Hügel_Mit,
+              + LeseKartenDatenbank.Kampf (GrundExtern    => KartenGrundKonstanten.HügelMitKonstante,
                                            RasseExtern    => RasseExtern,
                                            KampfArtExtern => KartenKonstanten.KampfAngriff)
               / 2;

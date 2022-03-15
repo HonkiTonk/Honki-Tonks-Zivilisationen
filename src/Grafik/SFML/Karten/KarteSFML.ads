@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Sf.System.Vector2;
 with Sf.Graphics.Color;
@@ -13,6 +14,8 @@ with KartenRecords;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with SystemKonstanten;
+with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 
 package KarteSFML is
    
@@ -33,13 +36,13 @@ private
    
    SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
-   Kartengrund : KartenDatentypen.Karten_Grund_Enum;
-   KartenfeldFluss : KartenDatentypen.Karten_Grund_Enum;
-   KartenfeldRessource : KartenDatentypen.Karten_Grund_Enum;
+   Kartengrund : KartenGrundDatentypen.Karten_Grund_Enum;
+   KartenfeldFluss : KartenGrundDatentypen.Karten_Grund_Enum;
+   KartenfeldRessource : KartenGrundDatentypen.Karten_Grund_Enum;
    
-   Stadtart : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Wegfeld : KartenDatentypen.Karten_Verbesserung_Enum;
-   Verbesserungsfeld : KartenDatentypen.Karten_Verbesserung_Enum;
+   Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+   Wegfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
    
    DickeRahmen : constant Float := 5.00;
    YMultiplikator : Float;

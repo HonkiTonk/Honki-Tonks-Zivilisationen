@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
-
--- with Ada.Exceptions;
--- with Ada.Text_IO;
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;

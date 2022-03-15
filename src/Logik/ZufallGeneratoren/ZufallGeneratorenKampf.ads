@@ -1,4 +1,5 @@
 pragma SPARK_Mode (Off);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Numerics.Float_Random;
 

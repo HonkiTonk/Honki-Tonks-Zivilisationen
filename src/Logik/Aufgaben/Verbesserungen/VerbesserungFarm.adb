@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen; use KartenDatentypen;
+with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with TastenbelegungKonstanten;
 
 with SchreibeEinheitenGebaut;
@@ -15,25 +17,25 @@ package body VerbesserungFarm is
 
    function VerbesserungFarm
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
 
       if
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Farm
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenVerbesserungDatentypen.Farm
       then
          return False;
 
       elsif
-        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Eis
+        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenGrundDatentypen.Eis
       then
          return False;
 
       elsif
         LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
-        KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
+        KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemKonstanten.SpielerMenschKonstante
       then
@@ -54,22 +56,22 @@ package body VerbesserungFarm is
       case
         GrundExtern
       is
-         when KartenDatentypen.Flachland | KartenDatentypen.Tundra | KartenDatentypen.Wüste | KartenDatentypen.Hügel
-            | KartenDatentypen.Karten_Grund_Fluss_Enum'Range | KartenDatentypen.Karten_Grund_Ressourcen_Land'Range =>
+         when KartenGrundDatentypen.Flachland | KartenGrundDatentypen.Tundra | KartenGrundDatentypen.Wüste | KartenGrundDatentypen.Hügel
+            | KartenGrundDatentypen.Karten_Grund_Fluss_Enum'Range | KartenGrundDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => TastenbelegungKonstanten.FarmBauenKonstante);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
-         when KartenDatentypen.Gebirge =>
+         when KartenGrundDatentypen.Gebirge =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => TastenbelegungKonstanten.FarmBauenKonstante);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 5,
                                                          RechnenSetzenExtern      => 0);
 
-         when KartenDatentypen.Wald | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
+         when KartenGrundDatentypen.Wald | KartenGrundDatentypen.Dschungel | KartenGrundDatentypen.Sumpf =>
             if
               VerbesserungRoden.VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    GrundExtern              => GrundExtern,

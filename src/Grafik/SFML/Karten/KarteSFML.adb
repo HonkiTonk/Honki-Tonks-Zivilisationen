@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -7,6 +8,8 @@ with Sf.Graphics.RenderWindow;
 
 with KartenRecords; use KartenRecords;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
@@ -349,14 +352,14 @@ package body KarteSFML is
          case
            Stadtart
          is
-            when KartenDatentypen.Eigene_Hauptstadt =>
+            when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
                                                     PositionExtern      => PositionExtern,
                                                     AnzahlEckenExtern   => 5,
                                                     FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitStadtRasseNummer.Rasse),
                                                     PolygonAccessExtern => PolygonAccess);
                
-            when KartenDatentypen.Eigene_Stadt =>
+            when KartenVerbesserungDatentypen.Eigene_Stadt =>
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
                                                     PositionExtern      => PositionExtern,
                                                     AnzahlEckenExtern   => 6,
@@ -576,7 +579,7 @@ package body KarteSFML is
    is begin
       
       if
-        KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten
+        KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
       then
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
                                               PositionExtern      => PositionExtern,

@@ -1,10 +1,11 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SonstigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenDatentypen;
+with KartenVerbesserungDatentypen;
 with KartenVerbesserungKonstanten;
 
 with SchreibeStadtGebaut;
@@ -267,7 +268,7 @@ package body Wachstum is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
-            when KartenDatentypen.Leer_Verbesserung =>
+            when KartenVerbesserungDatentypen.Leer_Verbesserung =>
                null;
                
             when others =>

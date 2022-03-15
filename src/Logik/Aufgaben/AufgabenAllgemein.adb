@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleTexte;
 with EinheitenKonstanten;
@@ -10,7 +11,7 @@ with SchreibeEinheitenGebaut;
 package body AufgabenAllgemein is
 
    function Beschreibung
-     (KartenVerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+     (KartenVerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
       return Wide_Wide_String
    is begin
       
@@ -21,7 +22,7 @@ package body AufgabenAllgemein is
             BeschreibungText := SystemKonstanten.LeerUnboundedString;
             
          when others =>
-            AktuelleVerbesserung := 2 * KartenDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern) - 1;
+            AktuelleVerbesserung := 2 * KartenVerbesserungDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern) - 1;
                
             BeschreibungText := GlobaleTexte.Verbesserungen (AktuelleVerbesserung);
       end case;

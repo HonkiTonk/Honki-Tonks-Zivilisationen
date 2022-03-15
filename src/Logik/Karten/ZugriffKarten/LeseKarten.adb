@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
@@ -12,7 +13,7 @@ package body LeseKarten is
    
    function Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Grund_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund;
@@ -46,13 +47,13 @@ package body LeseKarten is
    
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Grund_Enum
    is begin
       
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss
       is
-         when KartenGrundKonstanten.LeerGrund | KartenDatentypen.Karten_Fluss_Enum'Range =>
+         when KartenGrundKonstanten.LeerGrund | KartenGrundDatentypen.Karten_Fluss_Enum'Range =>
             null;
          
          when others =>
@@ -67,13 +68,13 @@ package body LeseKarten is
    
    function VerbesserungWeg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenDatentypen.Karten_Verbesserung_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
    is begin
       
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg
       is
-         when KartenVerbesserungKonstanten.LeerVerbesserungWeg | KartenDatentypen.Karten_Weg_Enum'Range =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungWeg | KartenVerbesserungDatentypen.Karten_Weg_Enum'Range =>
             null;
          
          when others =>
@@ -88,13 +89,13 @@ package body LeseKarten is
    
    function VerbesserungGebiet
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenDatentypen.Karten_Verbesserung_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
    is begin
       
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet
       is
-         when KartenVerbesserungKonstanten.LeerVerbesserungGebiet | KartenDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
+         when KartenVerbesserungKonstanten.LeerVerbesserungGebiet | KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
             null;
          
          when others =>
@@ -109,13 +110,13 @@ package body LeseKarten is
    
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Grund_Enum
    is begin
       
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource
       is
-         when KartenGrundKonstanten.LeerGrund | KartenDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
+         when KartenGrundKonstanten.LeerGrund | KartenGrundDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
             null;
          
          when others =>

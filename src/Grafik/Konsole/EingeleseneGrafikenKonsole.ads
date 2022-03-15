@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
 with KartenKonstanten;
@@ -246,7 +247,7 @@ package EingeleseneGrafikenKonsole is
                                               )
                                            );
    
-   type KartenGrafikArray is array (KartenDatenbank.KartenListeArray'Range) of Wide_Wide_Character;
+   type KartenGrafikArray is array (KartenDatenbank.KartenFelderListeArray'Range) of Wide_Wide_Character;
    KartenGrafik : KartenGrafikArray := (
                                          KartenGrundKonstanten.LeerGrund => KartenKonstanten.LeerKartenGrafik,
                                          

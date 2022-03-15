@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
@@ -194,7 +195,7 @@ package body StadtBauen is
 
    function HauptstadtPrüfen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
       HauptsstadtSchleife:
@@ -203,8 +204,8 @@ package body StadtBauen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, HauptstadtSchleifenwert))
          is
-            when KartenDatentypen.Eigene_Hauptstadt =>
-               return KartenDatentypen.Eigene_Stadt;
+            when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
+               return KartenVerbesserungDatentypen.Eigene_Stadt;
                
             when others =>
                null;
@@ -212,7 +213,7 @@ package body StadtBauen is
          
       end loop HauptsstadtSchleife;
       
-      return KartenDatentypen.Eigene_Hauptstadt;
+      return KartenVerbesserungDatentypen.Eigene_Hauptstadt;
       
    end HauptstadtPrüfen;
    

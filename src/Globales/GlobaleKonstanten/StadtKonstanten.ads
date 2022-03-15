@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -9,6 +10,8 @@ with KartenRecords;
 with ForschungKonstanten;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
+with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 
 with DatenbankRecords;
 
@@ -20,7 +23,7 @@ package StadtKonstanten is
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
    
-   LeerID : constant KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenDatentypen.Leer_Verbesserung;
+   LeerID : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung;
    LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    LeerEinwohner : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerArbeiter : constant EinheitStadtDatentypen.ProduktionFeld := 0;
@@ -45,7 +48,7 @@ package StadtKonstanten is
    
    LeerStadt : constant EinheitStadtRecords.StadtGebautRecord := (
                                                                   ID                      => LeerID,
-                                                                  Koordinaten             => LeerKoordinaten,
+                                                                  KoordinatenAktuell      => LeerKoordinaten,
                                                                   EinwohnerArbeiter       => LeerEinwohnerArbeiter,
                                                                   Nahrungsmittel          => LeerNahrungsmittel,
                                                                   Nahrungsproduktion      => LeerNahrungsproduktion,
@@ -74,7 +77,7 @@ package StadtKonstanten is
    LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerBonusKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerUmgebungBenötigt : constant KartenDatentypen.Karten_Grund_Enum := KartenDatentypen.Leer_Grund;
+   LeerUmgebungBenötigt : constant KartenGrundDatentypen.Karten_Grund_Enum := KartenGrundDatentypen.Leer_Grund;
    LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (

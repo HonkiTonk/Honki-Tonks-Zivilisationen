@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
+with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenGrundKonstanten;
 with KartenKonstanten;
 with KartenRecordKonstanten;
@@ -28,7 +30,7 @@ package body KartenGeneratorLandschaft is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             if
-              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
+              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
             then
                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) := True;
                
@@ -76,7 +78,7 @@ package body KartenGeneratorLandschaft is
       EisschichtSchleife:
       for XAchseSchleifenwert in Karten.Weltkarte'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-         Karten.GeneratorKarte (YAchseExtern, XAchseSchleifenwert) := KartenDatentypen.Tundra;
+         Karten.GeneratorKarte (YAchseExtern, XAchseSchleifenwert) := KartenGrundDatentypen.Tundra;
             
       end loop EisschichtSchleife;
       
@@ -89,25 +91,25 @@ package body KartenGeneratorLandschaft is
    is begin
       
       GrundSchleife:
-      for GrundSchleifenwert in KartenDatentypen.Karten_Grund_Generator_Enum'Range loop
+      for GrundSchleifenwert in KartenGrundDatentypen.Karten_Grund_Generator_Enum'Range loop
          
          if
-           GrundSchleifenwert = KartenDatentypen.Flachland
+           GrundSchleifenwert = KartenGrundDatentypen.Flachland
          then
             Karten.GeneratorGrund (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) := True;
             return;
             
          elsif
-           GrundSchleifenwert = KartenDatentypen.Wüste
+           GrundSchleifenwert = KartenGrundDatentypen.Wüste
            and
-             Karten.GeneratorKarte (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) = KartenDatentypen.Tundra
+             Karten.GeneratorKarte (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) = KartenGrundDatentypen.Tundra
          then
             null;
             
          elsif
-           GrundSchleifenwert = KartenDatentypen.Tundra
+           GrundSchleifenwert = KartenGrundDatentypen.Tundra
            and
-             Karten.GeneratorKarte (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) = KartenDatentypen.Wüste
+             Karten.GeneratorKarte (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) = KartenGrundDatentypen.Wüste
          then
             null;
             
@@ -130,7 +132,7 @@ package body KartenGeneratorLandschaft is
    
    function GrundFestlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in KartenDatentypen.Karten_Grund_Generator_Enum)
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
       return Boolean
    is begin
       
@@ -148,7 +150,7 @@ package body KartenGeneratorLandschaft is
          case
            GrundExtern
          is
-            when KartenDatentypen.Wüste | KartenDatentypen.Tundra =>
+            when KartenGrundDatentypen.Wüste | KartenGrundDatentypen.Tundra =>
                AbstandTundraWüste (GrundExtern       => GrundExtern,
                                    KoordinatenExtern => KoordinatenExtern);
                      
@@ -159,7 +161,7 @@ package body KartenGeneratorLandschaft is
          case
            GrundExtern
          is
-            when KartenDatentypen.Gebirge | KartenDatentypen.Hügel =>
+            when KartenGrundDatentypen.Gebirge | KartenGrundDatentypen.Hügel =>
                null;
                      
             when others =>
@@ -177,7 +179,7 @@ package body KartenGeneratorLandschaft is
    
    
    procedure AbstandTundraWüste
-     (GrundExtern : in KartenDatentypen.Karten_Grund_Generator_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -216,10 +218,10 @@ package body KartenGeneratorLandschaft is
    is begin
       
       AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                GrundExtern       => KartenDatentypen.Gebirge,
+                                                                                                GrundExtern       => KartenGrundDatentypen.Gebirge,
                                                                                                 EbeneExtern       => 0)
         + KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                             GrundExtern       => KartenDatentypen.Hügel,
+                                                                             GrundExtern       => KartenGrundDatentypen.Hügel,
                                                                              EbeneExtern       => 0);
       
       if

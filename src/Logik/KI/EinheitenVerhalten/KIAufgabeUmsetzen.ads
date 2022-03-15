@@ -1,11 +1,12 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
-with KartenDatentypen;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
+with KartenGrundDatentypen;
 
 package KIAufgabeUmsetzen is
 
@@ -32,7 +33,7 @@ private
    AufgabeDurchführen : Boolean;
    NullWert : Boolean;
 
-   Grund : KartenDatentypen.Karten_Grund_Enum;
+   Grund : KartenGrundDatentypen.Karten_Grund_Enum;
 
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 

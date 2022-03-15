@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with StadtKonstanten;
@@ -11,7 +12,7 @@ package body LeseStadtGebaut is
 
    function ID
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID;
@@ -26,17 +27,17 @@ package body LeseStadtGebaut is
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
         or
-          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten := KartenRecordKonstanten.LeerKartenKoordinaten;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 
       else
          null;
       end if;
             
-      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten;
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell;
       
    end Koordinaten;
    

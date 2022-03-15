@@ -1,9 +1,10 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen; use SystemDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
@@ -68,7 +69,7 @@ private
 
    function HauptstadtPrüfen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante),

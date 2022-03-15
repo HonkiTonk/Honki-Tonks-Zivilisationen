@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
@@ -10,7 +11,7 @@ with Karten;
 
 package body CursorPlatzierenSFML is
    
-   -- Kann man dieses Paket nicht auch aus Logik heraus aufrufen dank dem neuen System?
+   -- Kann man dieses Paket nicht auch aus Logik heraus aufrufen dank dem neuen System? -----------------------
    -- Gibt eventuell Probleme in der grafischen Darstellung wenn die Koordinaten in der Logik geändert werden, die Grafik aber noch mit den alten Koordinaten angefangen hat zu rechnen.
    -- Eventuell später auf Logik umbauen? Man könnte im Grafikteil die aktuellen CursorKoordinaten ja immer mitgeben oder kann es dadurch zu Problemen kommen? Möglicherweise.
    procedure CursorPlatzierenKarteSFML
@@ -62,8 +63,8 @@ package body CursorPlatzierenSFML is
                      null;
                      
                   when others =>
-                     GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.YAchse := KartenWert.YAchse;
-                     GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.XAchse := KartenWert.XAchse;
+                     GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse := KartenWert.YAchse;
+                     GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse := KartenWert.XAchse;
                end case;
                
                return;

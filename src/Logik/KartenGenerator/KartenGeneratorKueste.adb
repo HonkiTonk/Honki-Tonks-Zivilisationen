@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
+with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenKonstanten;
 with KartenRecordKonstanten;
 with KartenGrundKonstanten;

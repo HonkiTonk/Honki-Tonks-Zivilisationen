@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords; use KartenRecords;
 with SystemDatentypen; use SystemDatentypen;

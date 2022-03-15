@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -6,6 +7,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
 with SystemKonstanten;
+with KartenGrundDatentypen;
 
 with Karten;
 
@@ -45,7 +47,7 @@ private
 
    SichtweiteObjekt : KartenDatentypen.Sichtweite;
 
-   AktuellerGrund : KartenDatentypen.Karten_Grund_Alle_Felder_Enum;
+   AktuellerGrund : KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum;
 
    Wert : Integer;
 

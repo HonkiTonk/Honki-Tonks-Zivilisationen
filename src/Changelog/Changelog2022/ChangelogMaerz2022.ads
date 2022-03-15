@@ -98,31 +98,39 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (17.03.2022):
+   -- Version 0.01.01 => 0.01.0 (17.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.01 => 0.01.0 (16.03.2022):
+   -- Version 0.01.01 => 0.01.01 (16.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.01 => 0.01.01 (15.03.2022):
+   -- Version 0.01.0135 => 0.01.01 (15.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0115 => 0.01.01 (14.03.2022):
+   -- Version 0.01.0115 => 0.01.0135 (14.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Neue Version der Kartenpositionsprüfung fertiggestellt.
+   -- Performance der Kartenpositionsprüfung verbessert, indem nur noch die Achsen geprüft werden bei denen es auch eine Veränderung gibt.
+   -- Verschiedene Anpassungen an den Datentypen der Kartenfelder vorgenommen.
+   -- KartenDatentypen in verschiedene Bereiche aufgeteilt.
+   -- Benennung einiger Variablen geändert, für eine bessere Lesbarkeit des Codes.
+   -- Angefangen die Kartendatenbank besser zu gestalten.
+   -- -gnatwj wieder aktiviert und pragma Warnings (Off, *array aggregate*) überall hinzugefügt um weiterhin Arrays mit () anstelle von [] befüllen zu können.
+   -- Debian GNAT 12-20220222-1 auf Debian GNAT 12-20220313-1 aktualisiert.
+   -- Codeformatierung an einigen Stellen überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenKonstanten;
 with KartenGrundKonstanten;
+with KartenVerbesserungDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -87,7 +89,7 @@ package body BewegungBerechnen is
             null;
             
          when others =>
-            GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Koordinaten := NeueKoordinatenExtern;
+            GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell := NeueKoordinatenExtern;
       end case;
       
       SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -147,7 +149,7 @@ package body BewegungBerechnen is
       case
         LeseKarten.Grund (KoordinatenExtern => NeueKoordinatenExtern)
       is
-         when KartenDatentypen.Eis | KartenDatentypen.Gebirge | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
+         when KartenGrundKonstanten.EisKonstante | KartenGrundKonstanten.GebirgeKonstante | KartenGrundKonstanten.DschungelKonstante | KartenGrundKonstanten.SumpfKonstante =>
             if
               LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug
             then
@@ -197,13 +199,13 @@ package body BewegungBerechnen is
          case
            LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern)
          is
-            when KartenDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
+            when KartenVerbesserungDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
                return Straße_Fluss;
                
-            when KartenDatentypen.Karten_Verbesserung_Schiene_Enum'Range =>
+            when KartenVerbesserungDatentypen.Karten_Verbesserung_Schiene_Enum'Range =>
                return Schiene;
                
-            when KartenDatentypen.Karten_Verbesserung_Tunnel_Enum =>
+            when KartenVerbesserungDatentypen.Karten_Verbesserung_Tunnel_Enum =>
                return Straße_Fluss;
                   
             when others =>

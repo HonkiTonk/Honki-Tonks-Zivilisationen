@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
@@ -116,8 +117,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      KartenDatenbank.KartenListeArray'Read (Stream (File => DatenbankEinlesen),
-                                             KartenDatenbank.KartenListe);
+      KartenDatenbank.KartenFelderListeArray'Read (Stream (File => DatenbankEinlesen),
+                                             KartenDatenbank.KartenFelderListe);
       
       Close (File => DatenbankEinlesen);
       

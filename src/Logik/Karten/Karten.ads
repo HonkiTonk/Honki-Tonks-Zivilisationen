@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords;
 with KartenDatentypen;
 with KartenEinstellungenKonstanten;
 with KartenRecordKonstanten;
+with KartenGrundDatentypen;
 
 package Karten is
 
@@ -77,7 +79,7 @@ package Karten is
    -- Arm, Wenig, Mittel, Viel, Überfluss
    Kartenressourcen : KartenDatentypen.Kartenressourcen_Verwendet_Enum := KartenEinstellungenKonstanten.RessourcenMittelKonstante;
 
-   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenDatentypen.Karten_Grund_Enum;
+   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenGrundDatentypen.Karten_Grund_Enum;
    GeneratorKarte : GeneratorKarteArray;
 
    type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;

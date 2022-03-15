@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundKonstanten;
 
@@ -26,7 +27,7 @@ package body KartenGeneratorChaos is
                case
                  GrundZufall
                is
-                  when KartenDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | KartenDatentypen.Lava | KartenDatentypen.Planetenkern =>
+                  when KartenGrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | KartenGrundDatentypen.Lava | KartenGrundDatentypen.Planetenkern =>
                      null;
                      
                   when others =>
@@ -37,10 +38,10 @@ package body KartenGeneratorChaos is
                case
                  GrundZufall
                is
-                  when KartenDatentypen.Karten_Grund_Wasser_Enum'Range =>
+                  when KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range =>
                      RessourceZufall := ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => True);
                      
-                  when KartenDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
+                  when KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
                      RessourceZufall := ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => False);
                      
                      

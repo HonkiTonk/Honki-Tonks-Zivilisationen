@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
@@ -8,6 +9,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
 with KartenVerbesserungKonstanten;
+with KartenVerbesserungDatentypen;
 
 with LeseStadtGebaut;
 
@@ -75,7 +77,7 @@ package body StadtInformationenKonsole is
          when KartenVerbesserungKonstanten.LeerVerbesserung =>
             Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenKonsole.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
-         when KartenDatentypen.Eigene_Hauptstadt =>
+         when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
@@ -85,7 +87,7 @@ package body StadtInformationenKonsole is
                Stadtart := 3;
             end if;
                   
-         when KartenDatentypen.Eigene_Stadt =>
+         when KartenVerbesserungDatentypen.Eigene_Stadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then

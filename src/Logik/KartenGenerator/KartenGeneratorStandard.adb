@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
+with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenGrundKonstanten;
 with KartenKonstanten;
 with KartenRecordKonstanten;
@@ -268,12 +270,12 @@ package body KartenGeneratorStandard is
                null;
                
             elsif
-              Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = KartenDatentypen.Eis
+              Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = KartenGrundDatentypen.Eis
             then
                null;
                   
             else
-               Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := KartenDatentypen.Flachland;  
+               Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := KartenGrundDatentypen.Flachland;  
             end if;
             
          end loop XAchseAbstandFlächenSchleife;

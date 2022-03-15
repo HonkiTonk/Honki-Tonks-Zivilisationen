@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
@@ -187,13 +188,13 @@ package body DebugPlatzhalter is
       
       -- Die Stadtbelegung eventuell in die Konsolenanzeige verschieben? Die Belegung wird ja auch in der SFML angezeigt.
       
-      Put (Item => "Aktuelle GrundID: " & LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten)'Wide_Wide_Image);
-      Put_Line (Item => "    Aktuelle Stadtbelegung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.YAchse,
-                GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.XAchse).DurchStadtBelegterGrund.RasseBelegt'Wide_Wide_Image & ", "
-                & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.YAchse,
-                  GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten.XAchse).DurchStadtBelegterGrund.StadtBelegt'Wide_Wide_Image);
-      Put (Item => "Weg: " & LeseKarten.VerbesserungWeg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten)'Wide_Wide_Image);
-      Put_Line (Item => "    Feldverbesserung: " & LeseKarten.VerbesserungGebiet (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten)'Wide_Wide_Image);
+      Put (Item => "Aktuelle GrundID: " & LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
+      Put_Line (Item => "    Aktuelle Stadtbelegung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,
+                GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.RasseBelegt'Wide_Wide_Image & ", "
+                & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,
+                  GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.StadtBelegt'Wide_Wide_Image);
+      Put (Item => "Weg: " & LeseKarten.VerbesserungWeg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
+      Put_Line (Item => "    Feldverbesserung: " & LeseKarten.VerbesserungGebiet (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
       
       ErsteAnzeige := True;
       
@@ -211,7 +212,7 @@ package body DebugPlatzhalter is
                null;
          end case;
          
-         Put (Item => "    " & RasseSchleifenwert'Wide_Wide_Image & ":" & LeseKarten.Bewertung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten,
+         Put (Item => "    " & RasseSchleifenwert'Wide_Wide_Image & ":" & LeseKarten.Bewertung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
                                                                                                 RasseExtern       => RasseSchleifenwert)'Wide_Wide_Image);
          
          if

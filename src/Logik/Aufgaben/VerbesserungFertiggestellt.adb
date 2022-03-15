@@ -1,10 +1,14 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenVerbesserungKonstanten;
 with TastenbelegungKonstanten;
+with KartenGrundKonstanten;
 
 with KIDatentypen;
 
@@ -130,15 +134,15 @@ package body VerbesserungFertiggestellt is
               
          when TastenbelegungKonstanten.MineBauenKonstante =>
             SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern    => KartenDatentypen.Mine);
+                                               VerbesserungExtern    => KartenVerbesserungDatentypen.Mine);
             
          when TastenbelegungKonstanten.FarmBauenKonstante =>
             SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern    => KartenDatentypen.Farm);
+                                               VerbesserungExtern    => KartenVerbesserungDatentypen.Farm);
             
          when TastenbelegungKonstanten.FestungBauenKonstante =>
             SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern    => KartenDatentypen.Festung);
+                                               VerbesserungExtern    => KartenVerbesserungDatentypen.Festung);
               
          when TastenbelegungKonstanten.WaldAufforstenKonstante =>
             VerbesserungWaldAufforsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -148,11 +152,11 @@ package body VerbesserungFertiggestellt is
               LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
             then
                SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                     GrundExtern       => KartenDatentypen.Hügel);
+                                     GrundExtern       => KartenGrundKonstanten.HügelKonstante);
                   
             else
                SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                     GrundExtern       => KartenDatentypen.Flachland);
+                                     GrundExtern       => KartenGrundKonstanten.FlachlandKonstante);
             end if;
             
          when others =>
@@ -170,7 +174,7 @@ package body VerbesserungFertiggestellt is
    is begin
       
       if
-        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenDatentypen.Hügel
+        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenGrundKonstanten.HügelKonstante
       then
          SchreibeKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                 HügelExtern       => True);
@@ -180,12 +184,12 @@ package body VerbesserungFertiggestellt is
       end if;
             
       SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                            GrundExtern       => KartenDatentypen.Wald);
+                            GrundExtern       => KartenGrundKonstanten.WaldKonstante);
       
       if
         LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
-        KartenDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
+        KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
       then
          SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                             VerbesserungExtern    => KartenVerbesserungKonstanten.LeerVerbesserungGebiet);

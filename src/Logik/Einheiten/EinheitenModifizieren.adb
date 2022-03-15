@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
@@ -144,14 +145,14 @@ package body EinheitenModifizieren is
       is
          when EinheitenKonstanten.LeerNummer =>
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Koordinaten);
+                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
             
          when others =>
             EinheitNummer := EinheitRasseNummerExtern.Platznummer;
       end case;
       
       StadtNummerNeu := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                    KoordinatenExtern => GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Koordinaten);
+                                                                    KoordinatenExtern => GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
       
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer

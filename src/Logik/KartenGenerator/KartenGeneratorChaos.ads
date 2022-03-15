@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen;
+with KartenGrundDatentypen;
 
 package KartenGeneratorChaos is
 
@@ -8,8 +9,8 @@ package KartenGeneratorChaos is
 
 private
 
-   GrundZufall : KartenDatentypen.Karten_Grund_Alle_Felder_Enum;
+   GrundZufall : KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum;
 
-   RessourceZufall : KartenDatentypen.Karten_Grund_Enum;
+   RessourceZufall : KartenGrundDatentypen.Karten_Grund_Enum;
 
 end KartenGeneratorChaos;

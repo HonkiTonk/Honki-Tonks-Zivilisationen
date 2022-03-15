@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
@@ -6,6 +7,8 @@ with Sf.Graphics.RenderWindow;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
+with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with KartenKonstanten;
 with KartenGrundKonstanten;
 with KartenVerbesserungKonstanten;
@@ -497,7 +500,7 @@ package body KarteStadtSFML is
                                                                                                                                           TextureAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Stadtfeld)));
             
          elsif -- -------------------------- Mal was wegen den Positionierungen unternehmen.
-           Stadtfeld = KartenDatentypen.Eigene_Hauptstadt
+           Stadtfeld = KartenVerbesserungDatentypen.Eigene_Hauptstadt
          then
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 5.00,
                                                  PositionExtern      => (PositionExtern.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.50,
@@ -507,7 +510,7 @@ package body KarteStadtSFML is
                                                  PolygonAccessExtern => PolygonAccess);
                
          elsif
-           Stadtfeld = KartenDatentypen.Eigene_Stadt
+           Stadtfeld = KartenVerbesserungDatentypen.Eigene_Stadt
          then
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 6.00,
                                                  PositionExtern      => (PositionExtern.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,

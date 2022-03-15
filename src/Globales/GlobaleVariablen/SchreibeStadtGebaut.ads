@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -9,6 +10,7 @@ with KartenRecords;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
 with SystemKonstanten;
+with KartenVerbesserungDatentypen;
 
 with KIDatentypen;
 
@@ -18,7 +20,7 @@ package SchreibeStadtGebaut is
 
    procedure ID
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
+      IDExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

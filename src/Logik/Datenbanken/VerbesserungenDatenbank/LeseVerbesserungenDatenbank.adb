@@ -1,11 +1,12 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with VerbesserungenDatenbank;
 
 package body LeseVerbesserungenDatenbank is
 
    function Passierbarkeit
-     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
@@ -17,7 +18,7 @@ package body LeseVerbesserungenDatenbank is
    
    
    function Bewertung
-     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
@@ -29,7 +30,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function Wirtschaft
-     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
@@ -42,7 +43,7 @@ package body LeseVerbesserungenDatenbank is
       
    
    function Kampf
-     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum;
+     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.KampfwerteAllgemein
@@ -55,7 +56,7 @@ package body LeseVerbesserungenDatenbank is
    
    
    function GanzerEintrag
-     (VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+     (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
       return DatenbankRecords.VerbesserungListeRecord
    is begin
       

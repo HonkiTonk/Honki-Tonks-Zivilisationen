@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Task_Identification; use Ada.Task_Identification;
 with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Text_IO;
+-- with System;
 
 with StartLogik;
 with StartGrafik;
@@ -10,6 +12,7 @@ with StartMusik;
 with StartSound;
 
 with InteraktionGrafiktask;
+-- with ;
 
 procedure Start
 is
@@ -104,6 +107,8 @@ is
    end Sound;
 
 begin
+
+   -- Ada.Text_IO.Put_Line (Integer ('Size / System.Storage_Unit / 1024 / 1024)'Image);
 
    TaskIDsBelegenLassenSchleife:
    loop

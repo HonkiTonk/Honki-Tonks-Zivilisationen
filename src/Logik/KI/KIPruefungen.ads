@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtRecords; use EinheitStadtRecords;
 with SystemDatentypen; use SystemDatentypen;

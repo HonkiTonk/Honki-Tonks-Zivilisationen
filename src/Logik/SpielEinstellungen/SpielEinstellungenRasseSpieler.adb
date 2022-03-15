@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -274,8 +275,8 @@ package body SpielEinstellungenRasseSpieler is
                                                   IDExtern               => 2,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, 1));
-      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, 1));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
    end StartpunktFestlegen;
 

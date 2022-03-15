@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with TastenbelegungKonstanten;
 
@@ -10,7 +11,7 @@ package body VerbesserungRoden is
 
    function VerbesserungRoden
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -18,7 +19,7 @@ package body VerbesserungRoden is
       case
         GrundExtern
       is
-         when KartenDatentypen.Wald | KartenDatentypen.Dschungel | KartenDatentypen.Sumpf =>
+         when KartenGrundDatentypen.Wald | KartenGrundDatentypen.Dschungel | KartenGrundDatentypen.Sumpf =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => TastenbelegungKonstanten.RodenTrockenlegenKonstante);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

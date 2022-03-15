@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
+with KartenGrundDatentypen;
 
 package DatenbankRecords is
 
@@ -69,7 +71,7 @@ package DatenbankRecords is
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;
       
-      UmgebungBenötigt : KartenDatentypen.Karten_Grund_Enum;
+      UmgebungBenötigt : KartenGrundDatentypen.Karten_Grund_Enum;
       GebäudeSpezielleEigenschaft : EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;
@@ -84,13 +86,19 @@ package DatenbankRecords is
    type KampfArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.KampfwerteAllgemein;
       
    -- KartenDatenbank
-   type KartenListeRecord is record
+   type KartenListeRecord is tagged record
       
       Passierbarkeit : PassierbarkeitArray;
       
       Bewertung : BewertungArray;
       Wirtschaft : WirtschaftArray;
       Kampf : KampfArray;
+      
+   end record;
+   
+   type Test is new KartenListeRecord with record
+      
+      Passierbarkeit2 : PassierbarkeitArray;
       
    end record;
    -- KartenDatenbank

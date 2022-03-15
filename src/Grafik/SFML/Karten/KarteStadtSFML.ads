@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics;
 with Sf.Graphics.RectangleShape;
@@ -14,6 +15,8 @@ with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with KartenRecords;
 with SystemKonstanten;
+with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 
 package KarteStadtSFML is
 
@@ -37,13 +40,13 @@ private
 
    YAchsenabstraktion : KartenDatentypen.Kartenfeld;
 
-   Kartenfeld : KartenDatentypen.Karten_Grund_Enum;
-   KartenfeldRessource : KartenDatentypen.Karten_Grund_Enum;
-   KartenfeldFluss : KartenDatentypen.Karten_Grund_Enum;
+   Kartenfeld : KartenGrundDatentypen.Karten_Grund_Enum;
+   KartenfeldRessource : KartenGrundDatentypen.Karten_Grund_Enum;
+   KartenfeldFluss : KartenGrundDatentypen.Karten_Grund_Enum;
 
-   Stadtfeld : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Wegfeld : KartenDatentypen.Karten_Verbesserung_Enum;
-   Verbesserungsfeld : KartenDatentypen.Karten_Verbesserung_Enum;
+   Stadtfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+   Wegfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
    YMultiplikator : Float;
    XMultiplikator : Float;

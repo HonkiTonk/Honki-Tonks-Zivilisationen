@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -6,11 +7,12 @@ with KartenRecords;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
 with SystemDatentypen;
+with KartenGrundDatentypen;
 
 package KartenAllgemein is
 
    function Beschreibung
-     (KartenGrundExtern : in KartenDatentypen.Karten_Grund_Enum)
+     (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
       return Wide_Wide_String;
 
    function GrundNahrung

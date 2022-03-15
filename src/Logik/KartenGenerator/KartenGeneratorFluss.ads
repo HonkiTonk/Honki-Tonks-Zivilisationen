@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with KartenGrundDatentypen;
 with KartenRecords;
 with KartenEinstellungenKonstanten;
 
@@ -21,19 +23,20 @@ private
                                                                       KartenEinstellungenKonstanten.TemperaturWüsteKonstante    => 0.15
                                                                      );
    
-   type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartenDatentypen.Karten_Fluss_Enum;
+   type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartenGrundDatentypen.Karten_Fluss_Enum;
    StandardFluss : constant StandardFlussArray := (
-                                                   -2 => KartenDatentypen.Lavasee,
-                                                   -1 => KartenDatentypen.Unterirdischer_See,
-                                                   0  => KartenDatentypen.See
+                                                   -2 => KartenGrundDatentypen.Lavasee,
+                                                   -1 => KartenGrundDatentypen.Unterirdischer_See,
+                                                   0  => KartenGrundDatentypen.See
                                                   );
    
    type WelcherFlusstypArray is array (StandardFlussArray'Range) of Natural;
    WelcherFlusstyp : constant WelcherFlusstypArray := (
-                                                       -2 => KartenDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (Lavaflusskreuzung_Vier) - KartenDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (Flusskreuzung_Vier),
+                                                       -2 => KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Lavaflusskreuzung_Vier)
+                                                       - KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier),
                                                        
-                                                       -1 => KartenDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (Unterirdische_Flusskreuzung_Vier)
-                                                       - KartenDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (Flusskreuzung_Vier),
+                                                       -1 => KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier)
+                                                       - KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier),
                                                        
                                                        0 => 0
                                                       );

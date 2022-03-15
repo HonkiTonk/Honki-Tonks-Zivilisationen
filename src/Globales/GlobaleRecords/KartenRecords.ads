@@ -1,8 +1,11 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
+with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 
 package KartenRecords is
 
@@ -33,21 +36,21 @@ package KartenRecords is
    
    
    
+   type YXAchsenKartenfeldRecord is record
+      
+      YAchse : KartenDatentypen.Kartenfeld;
+      XAchse : KartenDatentypen.Kartenfeld;
+      
+   end record;
+   
+   
+   
    -- Mal auf Nullwert umbenennen? ---------------
    type AchsenKartenfeldPositivRecord is tagged record
       
       EAchse : KartenDatentypen.Ebene;
       YAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
       XAchse : KartenDatentypen.KartenfeldPositivMitNullwert;
-      
-   end record;
-   
-   
-   
-   type YXAchsenKartenfeldRecord is record
-      
-      YAchse : KartenDatentypen.Kartenfeld;
-      XAchse : KartenDatentypen.Kartenfeld;
       
    end record;
    
@@ -66,6 +69,7 @@ package KartenRecords is
    -- Die Bewertung rauswerfen und entsprechend die Einheiten beim Bauen einer Stadt alles Bewerten lassen?
    -- Felderbelegung stattdessen einbauen?
    type FelderwertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamtbewertungFeld;
+   type SichtbarkeitArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    
    type BelegterGrundRecord is record
       
@@ -76,14 +80,14 @@ package KartenRecords is
    
    type KartenRecord is record
 
-      Grund : KartenDatentypen.Karten_Grund_Enum;
+      Grund : KartenGrundDatentypen.Karten_Grund_Enum;
       Hügel : Boolean;
-      Sichtbar : KartenDatentypen.SichtbarkeitArray;
+      Sichtbar : SichtbarkeitArray;
       
-      Fluss : KartenDatentypen.Karten_Grund_Enum;
-      VerbesserungWeg : KartenDatentypen.Karten_Verbesserung_Enum;
-      VerbesserungGebiet : KartenDatentypen.Karten_Verbesserung_Enum;
-      Ressource : KartenDatentypen.Karten_Grund_Enum;
+      Fluss : KartenGrundDatentypen.Karten_Grund_Enum;
+      VerbesserungWeg : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+      VerbesserungGebiet : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+      Ressource : KartenGrundDatentypen.Karten_Grund_Enum;
       
       DurchStadtBelegterGrund : BelegterGrundRecord;
       Felderwertung : FelderwertungArray;
@@ -94,7 +98,7 @@ package KartenRecords is
    
    type CursorRecord is record
       
-      Koordinaten : AchsenKartenfeldPositivRecord;
+      KoordinatenAktuell : AchsenKartenfeldPositivRecord;
       KoordinatenAlt : AchsenKartenfeldPositivRecord;
       KoordinatenStadt : AchsenStadtfeldRecord;
       

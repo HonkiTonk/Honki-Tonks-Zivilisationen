@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
@@ -25,7 +26,7 @@ package body SchreibeEinheitenGebaut is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KoordinatenExtern;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell := KoordinatenExtern;
       
    end Koordinaten;
    

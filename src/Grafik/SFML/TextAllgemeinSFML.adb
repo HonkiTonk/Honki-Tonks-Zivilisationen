@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.Text;

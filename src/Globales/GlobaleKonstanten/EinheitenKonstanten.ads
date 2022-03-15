@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtRecords;
 with SystemKonstanten;
@@ -36,7 +37,7 @@ package EinheitenKonstanten is
    
    LeerEinheit : constant EinheitStadtRecords.EinheitenGebautRecord := (
                                                                         ID                           => LeerID,
-                                                                        Koordinaten                  => LeerKoordinaten,
+                                                                        KoordinatenAktuell           => LeerKoordinaten,
                                                                         Heimatstadt                  => LeerHeimatstadt,
                                                                         Lebenspunkte                 => LeerLebenspunkte,
                                                                         Bewegungspunkte              => LeerBewegungspunkte,

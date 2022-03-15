@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -9,6 +10,7 @@ with GlobaleVariablen;
 with KartenRecords;
 with KartenDatentypen;
 with SystemKonstanten;
+with KartenVerbesserungDatentypen;
 
 with KIDatentypen;
 
@@ -16,7 +18,7 @@ package LeseStadtGebaut is
 
    function ID
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with EinheitenKonstanten;
@@ -28,17 +29,17 @@ package body LeseEinheitenGebaut is
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
         or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KartenRecordKonstanten.LeerKartenKoordinaten;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 
       else
          null;
       end if;
       
-      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten;
+      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell;
       
    end Koordinaten;
    
@@ -222,7 +223,7 @@ package body LeseEinheitenGebaut is
         or
           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Koordinaten := KartenRecordKonstanten.LeerKartenKoordinaten;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 
       else
          null;

@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
+with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 with SystemKonstanten;
@@ -14,7 +17,7 @@ package SchreibeKarten is
 
    procedure Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -46,7 +49,7 @@ package SchreibeKarten is
 
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in KartenDatentypen.Karten_Grund_Enum)
+      FlussExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -55,11 +58,11 @@ package SchreibeKarten is
           and
             (FlussExtern = KartenGrundKonstanten.LeerGrund
              or
-               FlussExtern in KartenDatentypen.Karten_Fluss_Enum));
+               FlussExtern in KartenGrundDatentypen.Karten_Fluss_Enum));
 
    procedure VerbesserungWeg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      WegExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+      WegExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -68,29 +71,29 @@ package SchreibeKarten is
           and
             (WegExtern = KartenVerbesserungKonstanten.LeerVerbesserungWeg
              or
-               WegExtern in KartenDatentypen.Karten_Weg_Enum));
+               WegExtern in KartenVerbesserungDatentypen.Karten_Weg_Enum));
 
    procedure VerbesserungGebiet
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            VerbesserungExtern not in KartenDatentypen.Karten_Weg_Enum);
+            VerbesserungExtern not in KartenVerbesserungDatentypen.Karten_Weg_Enum);
 
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RessourceExtern : in KartenDatentypen.Karten_Grund_Enum)
+      RessourceExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            RessourceExtern in KartenDatentypen.Karten_Grund_Ressourcen_Enum);
+            RessourceExtern in KartenGrundDatentypen.Karten_Grund_Ressourcen_Enum);
 
    procedure BelegterGrund
      (KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord;

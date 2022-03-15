@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
@@ -120,8 +121,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/KartenDatenbank");
       end case;
       
-      KartenDatenbank.KartenListeArray'Write (Stream (File => DatenbankSpeichern),
-                                              KartenDatenbank.KartenListe);
+      KartenDatenbank.KartenFelderListeArray'Write (Stream (File => DatenbankSpeichern),
+                                                    KartenDatenbank.KartenFelderListe);
       
       Close (File => DatenbankSpeichern);
       

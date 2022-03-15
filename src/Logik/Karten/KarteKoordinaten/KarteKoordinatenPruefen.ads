@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
@@ -58,32 +59,32 @@ private
    NeueKoordinate : NeueKoordinateArray;
    
    function EAchsePrüfen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+     (EAchseExtern : in KartenDatentypen.EbeneVorhanden;
+      ÄnderungEAchseExtern : in KartenDatentypen.Ebene;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.Ebene;
    
    function YAchsePrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      ÄnderungYXAchseExtern : in KartenRecords.YXAchsenKartenfeldRecord;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
    
    function YAchsePrüfenEinzelform
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
    
    function XAchsePrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      ÄnderungYXAchseExtern : in KartenRecords.YXAchsenKartenfeldRecord;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
    
    function XAchsePrüfenEinzelform
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositivMitNullwert;
 

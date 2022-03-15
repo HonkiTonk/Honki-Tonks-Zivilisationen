@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen;
+with KartenGrundDatentypen;
 
 with SchreibeKarten;
 
@@ -17,7 +18,7 @@ package body KartenGeneratorWeltraum is
          for XAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
             SchreibeKarten.Grund (KoordinatenExtern => (2, YAchseWeltraumSchleifenwert, XAchseWeltraumSchleifenwert),
-                                  GrundExtern       => KartenDatentypen.Weltraum);
+                                  GrundExtern       => KartenGrundDatentypen.Weltraum);
                
          end loop XAchseWeltraumSchleife;
       end loop YAchseWeltraumSchleife;

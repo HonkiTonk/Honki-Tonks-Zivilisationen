@@ -1,16 +1,17 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
-with KartenDatentypen;
 with SystemKonstanten;
+with KartenGrundDatentypen;
 
 package VerbesserungMine is
 
    function VerbesserungMine
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with

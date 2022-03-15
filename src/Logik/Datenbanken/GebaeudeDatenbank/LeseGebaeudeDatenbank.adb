@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with GebaeudeDatenbank;
 
@@ -82,7 +83,7 @@ package body LeseGebaeudeDatenbank is
    function UmgebungBenötigt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return KartenDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Grund_Enum
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).UmgebungBenötigt;

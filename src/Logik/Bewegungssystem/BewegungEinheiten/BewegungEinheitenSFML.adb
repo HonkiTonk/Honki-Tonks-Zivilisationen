@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Sf;
 
@@ -217,7 +218,7 @@ package body BewegungEinheitenSFML is
                   null;
                   
                elsif
-                 KartenWert = GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Koordinaten
+                 KartenWert = GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell
                then
                   Änderung := (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert);
                   

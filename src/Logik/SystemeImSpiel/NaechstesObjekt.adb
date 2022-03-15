@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartenDatentypen; use KartenDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitStadtRecords;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -58,7 +59,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
       
    end NächsteEinheit;
    
@@ -103,7 +104,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
       
    end NächsteStadt;
    
@@ -161,7 +162,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
       
    end NächsteStadtMeldung;
    
@@ -219,7 +220,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
       
    end NächsteEinheitMeldung;
    

@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen; use KartenDatentypen;
+with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenVerbesserungKonstanten;
 with TastenbelegungKonstanten;
+with KartenGrundKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -58,15 +60,15 @@ package body KIAufgabeUmsetzen is
       Grund := LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
          
       if
-        (Grund = KartenDatentypen.Hügel
+        (Grund = KartenGrundKonstanten.HügelKonstante
          or
-           Grund = KartenDatentypen.Gebirge
+           Grund = KartenGrundKonstanten.GebirgeKonstante
          or
-           Grund = KartenDatentypen.Kohle
+           Grund = KartenGrundKonstanten.KohleKonstante
          or
-           Grund = KartenDatentypen.Eisen
+           Grund = KartenGrundKonstanten.EisenKonstante
          or
-           Grund = KartenDatentypen.Gold
+           Grund = KartenGrundKonstanten.GoldKonstante
          or
            LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and
@@ -77,7 +79,7 @@ package body KIAufgabeUmsetzen is
          Befehl := TastenbelegungKonstanten.MineBauenKonstante;
          
       elsif
-        Grund = KartenDatentypen.Eis
+        Grund = KartenGrundKonstanten.EisKonstante
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                        BefehlExtern             => TastenbelegungKonstanten.FestungBauenKonstante)

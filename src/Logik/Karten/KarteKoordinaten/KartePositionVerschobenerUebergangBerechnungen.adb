@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 
@@ -7,9 +8,9 @@ with Karten;
 package body KartePositionVerschobenerUebergangBerechnungen is
    
    function PositionBestimmenYAchse
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+     (KoordinatenExtern : in KartenRecords.YXAchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.YXAchsenKartenfeldRecord)
+      return KartenDatentypen.KartenfeldPositiv
    is begin
       
       if
@@ -35,9 +36,9 @@ package body KartePositionVerschobenerUebergangBerechnungen is
    
    
    function PositionBestimmenXAchse
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+     (KoordinatenExtern : in KartenRecords.YXAchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in KartenRecords.YXAchsenKartenfeldRecord)
+      return KartenDatentypen.KartenfeldPositiv
    is begin
       
       if

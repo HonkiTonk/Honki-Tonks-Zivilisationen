@@ -1,77 +1,78 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen;
+with KartenVerbesserungDatentypen;
 
 package KartenVerbesserungKonstanten is
    
-   LeerVerbesserung : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Leer_Verbesserung;
-   LeerVerbesserungWeg : constant KartenDatentypen.Karten_Verbesserung_Enum := LeerVerbesserung;
-   LeerVerbesserungGebiet : constant KartenDatentypen.Karten_Verbesserung_Enum := LeerVerbesserung;
+   LeerVerbesserung : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung;
+   LeerVerbesserungWeg : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := LeerVerbesserung;
+   LeerVerbesserungGebiet : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := LeerVerbesserung;
 
    -- Städte
-   EigeneHauptstadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Eigene_Hauptstadt;
-   EigeneStadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Eigene_Stadt;
-   FremdeHauptstadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Fremde_Hauptstadt;
-   FremdeStadtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Fremde_Stadt;
+   EigeneHauptstadtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Eigene_Hauptstadt;
+   EigeneStadtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Eigene_Stadt;
+   FremdeHauptstadtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Fremde_Hauptstadt;
+   FremdeStadtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Fremde_Stadt;
                                      
    -- Gebilde
-   FarmKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Farm;
-   MineKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Mine;
-   FestungKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Festung;
-   SperreKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Sperre;
+   FarmKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Farm;
+   MineKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Mine;
+   FestungKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Festung;
+   SperreKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Sperre;
                                      
    -- Wege - Straßen
-   StraßenkreuzungVierKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkreuzung_Vier;
-   StraßeWaagrechtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straße_Waagrecht;
-   StraßeSenkrechtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straße_Senkrecht;
-   StraßenkurveUntenRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkurve_Unten_Rechts;
-   StraßenkurveUntenLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkurve_Unten_Links;
-   StraßenkurveObenRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkurve_Oben_Rechts;
-   StraßenkurveObenLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkurve_Oben_Links;
-   StraßenkreuzungDreiObenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkreuzung_Drei_Oben;
-   StraßenkreuzungDreiUntenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkreuzung_Drei_Unten;
-   StraßenkreuzungDreiRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkreuzung_Drei_Rechts;
-   StraßenkreuzungDreiLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenkreuzung_Drei_Links;
-   StraßenendstückLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenendstück_Links;
-   StraßenendstückRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenendstück_Rechts;
-   StraßenendstückUntenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenendstück_Unten;
-   StraßenendstückObenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straßenendstück_Oben;
-   StraßeEinzelnKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Straße_Einzeln;
+   StraßenkreuzungVierKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkreuzung_Vier;
+   StraßeWaagrechtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straße_Waagrecht;
+   StraßeSenkrechtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straße_Senkrecht;
+   StraßenkurveUntenRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkurve_Unten_Rechts;
+   StraßenkurveUntenLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkurve_Unten_Links;
+   StraßenkurveObenRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkurve_Oben_Rechts;
+   StraßenkurveObenLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkurve_Oben_Links;
+   StraßenkreuzungDreiObenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Oben;
+   StraßenkreuzungDreiUntenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Unten;
+   StraßenkreuzungDreiRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Rechts;
+   StraßenkreuzungDreiLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Links;
+   StraßenendstückLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenendstück_Links;
+   StraßenendstückRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenendstück_Rechts;
+   StraßenendstückUntenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenendstück_Unten;
+   StraßenendstückObenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straßenendstück_Oben;
+   StraßeEinzelnKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Straße_Einzeln;
                                      
    -- Schienen
-   SchienenkreuzungVierKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkreuzung_Vier;
-   SchieneWaagrechtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schiene_Waagrecht;
-   SchieneSenkrechtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schiene_Senkrecht;
-   SchienenkurveUntenRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkurve_Unten_Rechts;
-   SchienenkurveUntenLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkurve_Unten_Links;
-   SchienenkurveObenRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkurve_Oben_Rechts;
-   SchienenkurveObenLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkurve_Oben_Links;
-   SchienenkreuzungDreiObenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkreuzung_Drei_Oben;
-   SchienenkreuzungDreiUntenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkreuzung_Drei_Unten;
-   SchienenkreuzungDreiRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkreuzung_Drei_Rechts;
-   SchienenkreuzungDreiLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenkreuzung_Drei_Links;
-   SchienenendstückLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenendstück_Links;
-   SchienenendstückRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenendstück_Rechts;
-   SchienenendstückUntenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenendstück_Unten;
-   SchienenendstückObenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schienenendstück_Oben;
-   SchieneEinzelnKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Schiene_Einzeln;
+   SchienenkreuzungVierKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkreuzung_Vier;
+   SchieneWaagrechtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schiene_Waagrecht;
+   SchieneSenkrechtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schiene_Senkrecht;
+   SchienenkurveUntenRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkurve_Unten_Rechts;
+   SchienenkurveUntenLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkurve_Unten_Links;
+   SchienenkurveObenRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkurve_Oben_Rechts;
+   SchienenkurveObenLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkurve_Oben_Links;
+   SchienenkreuzungDreiObenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkreuzung_Drei_Oben;
+   SchienenkreuzungDreiUntenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkreuzung_Drei_Unten;
+   SchienenkreuzungDreiRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkreuzung_Drei_Rechts;
+   SchienenkreuzungDreiLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenkreuzung_Drei_Links;
+   SchienenendstückLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenendstück_Links;
+   SchienenendstückRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenendstück_Rechts;
+   SchienenendstückUntenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenendstück_Unten;
+   SchienenendstückObenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schienenendstück_Oben;
+   SchieneEinzelnKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Schiene_Einzeln;
                                      
    -- Tunnel
-   Tunnelkreuzung_VierKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkreuzung_Vier;
-   TunnelWaagrechtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnel_Waagrecht;
-   TunnelSenkrechtKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnel_Senkrecht;
-   TunnelkurveUntenRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkurve_Unten_Rechts;
-   TunnelkurveUntenLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkurve_Unten_Links;
-   TunnelkurveObenRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkurve_Oben_Rechts;
-   TunnelkurveObenLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkurve_Oben_Links;
-   TunnelkreuzungDreiObenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkreuzung_Drei_Oben;
-   TunnelkreuzungDreiUntenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkreuzung_Drei_Unten;
-   TunnelkreuzungDreiRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkreuzung_Drei_Rechts;
-   TunnelkreuzungDreiLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelkreuzung_Drei_Links;
-   TunnelendstückLinksKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelendstück_Links;
-   TunnelendstückRechtsKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelendstück_Rechts;
-   TunnelendstückUntenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelendstück_Unten;
-   TunnelendstückObenKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnelendstück_Oben;
-   TunnelEinzelnKonstante : constant KartenDatentypen.Karten_Verbesserung_Enum := KartenDatentypen.Tunnel_Einzeln;
+   Tunnelkreuzung_VierKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkreuzung_Vier;
+   TunnelWaagrechtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnel_Waagrecht;
+   TunnelSenkrechtKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnel_Senkrecht;
+   TunnelkurveUntenRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkurve_Unten_Rechts;
+   TunnelkurveUntenLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkurve_Unten_Links;
+   TunnelkurveObenRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkurve_Oben_Rechts;
+   TunnelkurveObenLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkurve_Oben_Links;
+   TunnelkreuzungDreiObenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkreuzung_Drei_Oben;
+   TunnelkreuzungDreiUntenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkreuzung_Drei_Unten;
+   TunnelkreuzungDreiRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkreuzung_Drei_Rechts;
+   TunnelkreuzungDreiLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelkreuzung_Drei_Links;
+   TunnelendstückLinksKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelendstück_Links;
+   TunnelendstückRechtsKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelendstück_Rechts;
+   TunnelendstückUntenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelendstück_Unten;
+   TunnelendstückObenKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnelendstück_Oben;
+   TunnelEinzelnKonstante : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Enum := KartenVerbesserungDatentypen.Tunnel_Einzeln;
 
 end KartenVerbesserungKonstanten;

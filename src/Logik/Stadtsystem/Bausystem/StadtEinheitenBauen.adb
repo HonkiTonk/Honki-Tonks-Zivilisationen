@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenKonstanten;
@@ -45,8 +46,8 @@ package body StadtEinheitenBauen is
         and
           GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemKonstanten.SpielerMenschKonstante
       then
-         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Koordinaten := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Koordinaten;
+         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell;
          
       elsif
         EinheitNummer = EinheitenKonstanten.LeerNummer

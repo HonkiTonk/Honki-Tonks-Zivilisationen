@@ -1,23 +1,28 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen;
-with KartenRecords;
 
 package KartePositionRueckwaertsUebergangBerechnungen is
 
    function PositionBestimmenYAchse
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return KartenDatentypen.KartenfeldPositivMitNullwert;
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositiv;
 
    function PositionBestimmenXAchse
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return KartenDatentypen.KartenfeldPositivMitNullwert;
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositiv;
 
 private
 
-   YAchseZwischenwert : KartenDatentypen.KartenfeldPositivMitNullwert;
-   XAchseZwischenwert : KartenDatentypen.KartenfeldPositivMitNullwert;
+   type PositionFeldArray is array (Boolean'Range, KartenDatentypen.EbeneVorhanden'Range) of KartenDatentypen.KartenfeldPositivMitNullwert;
+   YAchseZwischenwert : PositionFeldArray;
+   XAchseZwischenwert : PositionFeldArray;
 
 end KartePositionRueckwaertsUebergangBerechnungen;

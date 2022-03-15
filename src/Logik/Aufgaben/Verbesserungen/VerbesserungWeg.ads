@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -6,6 +7,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
 with SystemKonstanten;
+with KartenGrundDatentypen;
 
 with Karten;
 
@@ -23,7 +25,7 @@ package VerbesserungWeg is
 
    function VerbesserungWeg
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with

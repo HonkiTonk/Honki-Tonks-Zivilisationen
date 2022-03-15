@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with KartenVerbesserungKonstanten;
@@ -104,7 +106,7 @@ package body StadtEntfernen is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when KartenDatentypen.Eigene_Hauptstadt =>
+         when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
             null;
             
          when others =>
@@ -123,7 +125,7 @@ package body StadtEntfernen is
             
          else
             SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert),
-                                    IDExtern               => KartenDatentypen.Eigene_Hauptstadt);
+                                    IDExtern               => KartenVerbesserungDatentypen.Eigene_Hauptstadt);
             return;
          end if;
          

@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
@@ -13,7 +14,7 @@ package body SchreibeStadtGebaut is
 
    procedure ID
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      IDExtern : in KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
+      IDExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum)
    is begin
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID := IDExtern;
@@ -27,7 +28,7 @@ package body SchreibeStadtGebaut is
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Koordinaten := KoordinatenExtern;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell := KoordinatenExtern;
       
    end Koordinaten;
    

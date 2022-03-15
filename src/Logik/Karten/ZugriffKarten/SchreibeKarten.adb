@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with LeseKarten;
 
@@ -6,11 +7,11 @@ package body SchreibeKarten is
 
    procedure Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in KartenDatentypen.Karten_Grund_Enum)
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
    is begin
       
       if
-        GrundExtern = KartenDatentypen.Hügel
+        GrundExtern = KartenGrundDatentypen.Hügel
         and
           LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern) = True
       then
@@ -52,7 +53,7 @@ package body SchreibeKarten is
    
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in KartenDatentypen.Karten_Grund_Enum)
+      FlussExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := FlussExtern;
@@ -63,7 +64,7 @@ package body SchreibeKarten is
    
    procedure VerbesserungWeg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      WegExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+      WegExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := WegExtern;
@@ -74,7 +75,7 @@ package body SchreibeKarten is
    
    procedure VerbesserungGebiet
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      VerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+      VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := VerbesserungExtern;
@@ -85,7 +86,7 @@ package body SchreibeKarten is
    
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RessourceExtern : in KartenDatentypen.Karten_Grund_Enum)
+      RessourceExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;

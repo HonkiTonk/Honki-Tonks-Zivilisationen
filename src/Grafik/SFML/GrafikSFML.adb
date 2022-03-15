@@ -1,6 +1,5 @@
 pragma SPARK_Mode (On);
-
--- with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
+pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;

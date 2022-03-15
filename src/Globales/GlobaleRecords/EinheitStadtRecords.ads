@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -7,6 +8,7 @@ with KartenRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
 with TastenbelegungDatentypen;
+with KartenVerbesserungDatentypen;
 
 with KIDatentypen;
 
@@ -28,7 +30,7 @@ package EinheitStadtRecords is
    type EinheitenGebautRecord is record
       
       ID : EinheitStadtDatentypen.EinheitenIDMitNullWert;
-      Koordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenAktuell : KartenRecords.AchsenKartenfeldPositivRecord;
       Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
       Lebenspunkte : EinheitStadtDatentypen.Lebenspunkte;
@@ -93,8 +95,8 @@ package EinheitStadtRecords is
 
    type StadtGebautRecord is record
       
-      ID : KartenDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-      Koordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
+      ID : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
+      KoordinatenAktuell : KartenRecords.AchsenKartenfeldPositivRecord;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
       Nahrungsmittel : EinheitStadtDatentypen.GesamtproduktionStadt;

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with KartenGrundDatentypen;
 
 with SchreibeKarten;
 
@@ -28,17 +30,17 @@ package body KartenGeneratorPlanetenInneres is
                 XAchseInneresSchleifenwert in XKernanfang .. XKernende
             then
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
-                                     GrundExtern       => KartenDatentypen.Planetenkern);
+                                     GrundExtern       => KartenGrundDatentypen.Planetenkern);
             
             elsif
               ZufallGeneratorenKarten.ZufälligerWert > 0.65
             then
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
-                                     GrundExtern       => KartenDatentypen.Lava);
+                                     GrundExtern       => KartenGrundDatentypen.Lava);
                
             else
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
-                                     GrundExtern       => KartenDatentypen.Gestein);
+                                     GrundExtern       => KartenGrundDatentypen.Gestein);
             end if;
                
          end loop XAchseInneresSchleife;

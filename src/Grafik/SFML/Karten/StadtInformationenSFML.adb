@@ -1,11 +1,12 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.RenderWindow;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
-with KartenDatentypen;
+with KartenVerbesserungDatentypen;
 with TextKonstanten;
 with KartenVerbesserungKonstanten;
 
@@ -83,7 +84,7 @@ package body StadtInformationenSFML is
          when KartenVerbesserungKonstanten.LeerVerbesserung =>
             Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenSFML.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
-         when KartenDatentypen.Eigene_Hauptstadt =>
+         when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
@@ -93,7 +94,7 @@ package body StadtInformationenSFML is
                Stadtart := 3;
             end if;
                   
-         when KartenDatentypen.Eigene_Stadt =>
+         when KartenVerbesserungDatentypen.Eigene_Stadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then

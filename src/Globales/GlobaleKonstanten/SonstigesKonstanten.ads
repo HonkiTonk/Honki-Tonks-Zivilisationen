@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with WichtigeRecords;
 with KartenRecords;
@@ -14,9 +15,9 @@ package SonstigesKonstanten is
    LeerKoordinatenStadt : constant KartenRecords.AchsenStadtfeldRecord := (1, 1);
    
    LeerCursor : constant KartenRecords.CursorRecord := (
-                                                        Koordinaten      => LeerKoordinaten,
-                                                        KoordinatenAlt   => LeerKoordinaten,
-                                                        KoordinatenStadt => LeerKoordinatenStadt
+                                                        KoordinatenAktuell => LeerKoordinaten,
+                                                        KoordinatenAlt     => LeerKoordinaten,
+                                                        KoordinatenStadt   => LeerKoordinatenStadt
                                                        );
    
    LeerGeldmenge : constant Integer := 100;

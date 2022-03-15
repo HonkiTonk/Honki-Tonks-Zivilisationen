@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
@@ -135,9 +136,9 @@ package body BefehleKonsole is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
 
       if
         EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
@@ -272,7 +273,7 @@ package body BefehleKonsole is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       case
         EinheitNummer
       is
@@ -331,7 +332,7 @@ package body BefehleKonsole is
    is begin
                      
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
       then
@@ -361,7 +362,7 @@ package body BefehleKonsole is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
       if
         StadtNummer = StadtKonstanten.LeerNummer
@@ -392,7 +393,7 @@ package body BefehleKonsole is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Koordinaten);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       case
         StadtNummer
       is

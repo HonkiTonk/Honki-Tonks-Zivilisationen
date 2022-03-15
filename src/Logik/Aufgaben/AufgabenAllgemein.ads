@@ -1,17 +1,18 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
-with KartenDatentypen;
 with SystemKonstanten;
+with KartenVerbesserungDatentypen;
 
 package AufgabenAllgemein is
 
    function Beschreibung
-     (KartenVerbesserungExtern : in KartenDatentypen.Karten_Verbesserung_Enum)
+     (KartenVerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
       return Wide_Wide_String;
 
    procedure Nullsetzung

@@ -1,4 +1,5 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
@@ -8,75 +9,77 @@ with KartePositionKeinUebergangBerechnungen;
 package body KartePositionRueckwaertsUebergangBerechnungen is
 
    function PositionBestimmenYAchse
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositiv
    is begin
       
       -- Hier noch Parallelisierung und Grafik mit einbauen.
-      YAchseZwischenwert := KartePositionKeinUebergangBerechnungen.PositionBestimmenYAchse (YAchseExtern         => KoordinatenExtern.YAchse,
-                                                                                            ÄnderungYAchseExtern => ÄnderungExtern.YAchse);
+      YAchseZwischenwert (LogikGrafikExtern, ArrayPositionExtern) := KartePositionKeinUebergangBerechnungen.PositionBestimmenYAchse (YAchseExtern         => YAchseExtern,
+                                                                                                                                     ÄnderungYAchseExtern => ÄnderungYAchseExtern);
       
       case
-        YAchseZwischenwert
+        YAchseZwischenwert (LogikGrafikExtern, ArrayPositionExtern)
       is
          when KartenKonstanten.LeerYAchse =>
             null;
             
          when others =>
-            return YAchseZwischenwert;
+            return YAchseZwischenwert (LogikGrafikExtern, ArrayPositionExtern);
       end case;
       
+      -----------------------
+      -- Hier muss jetzt eine Schleife rein die die Reichweite und Kartengrenzen berücksichtigt.
+      -- Beziehungsweise müsste hier rein, wenn man mehr als ein Feld weit eine Einheit bewegen könnte.
+      
       if
-        ÄnderungExtern.YAchse = 1
-        or
-        ÄnderungExtern.YAchse = -1
+        ÄnderungYAchseExtern >= 1
       then
-         return KoordinatenExtern.YAchse;
+         return YAchseExtern + 1 - ÄnderungYAchseExtern;
          
       else
-         null;
+         return YAchseExtern - 1 + ÄnderungYAchseExtern;
       end if;
-      
-      -- Hier muss jetzt eine Schleife rein die die Reichweite und Kartengrenzen berücksichtigt.
-      
-      return 0;
       
    end PositionBestimmenYAchse;
      
      
 
    function PositionBestimmenXAchse
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
-      return KartenDatentypen.KartenfeldPositivMitNullwert
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
+      ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
+      LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      XAchseZwischenwert := KartePositionKeinUebergangBerechnungen.PositionBestimmenXAchse (XAchseExtern         => KoordinatenExtern.XAchse,
-                                                                                            ÄnderungXAchseExtern => ÄnderungExtern.XAchse);
+      XAchseZwischenwert (LogikGrafikExtern, ArrayPositionExtern) := KartePositionKeinUebergangBerechnungen.PositionBestimmenXAchse (XAchseExtern         => XAchseExtern,
+                                                                                                                                     ÄnderungXAchseExtern => ÄnderungXAchseExtern);
       
       case
-        XAchseZwischenwert
+        XAchseZwischenwert (LogikGrafikExtern, ArrayPositionExtern)
       is
          when KartenKonstanten.LeerXAchse =>
             null;
             
          when others =>
-            return XAchseZwischenwert;
+            return XAchseZwischenwert (LogikGrafikExtern, ArrayPositionExtern);
       end case;
       
+      -----------------------
+      -- Hier muss jetzt eine Schleife rein die die Reichweite und Kartengrenzen berücksichtigt.
+      -- Beziehungsweise müsste hier rein, wenn man mehr als ein Feld weit eine Einheit bewegen könnte.
+      
       if
-        ÄnderungExtern.XAchse = 1
-        or
-          ÄnderungExtern.XAchse = -1
+        ÄnderungXAchseExtern >= 1
       then
-         return KoordinatenExtern.XAchse;
+         return XAchseExtern + 1 - ÄnderungXAchseExtern;
          
       else
-         null;
+         return XAchseExtern - 1 + ÄnderungXAchseExtern;
       end if;
-      
-      return 0;
       
    end PositionBestimmenXAchse;
 

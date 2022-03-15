@@ -1,4 +1,6 @@
 pragma SPARK_Mode (On);
+pragma Warnings (Off, "*array aggregate*");
+
 with GlobaleVariablen;
 
 with LadezeitenKonsole;

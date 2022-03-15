@@ -1,5 +1,7 @@
 pragma SPARK_Mode (Off);
+pragma Warnings (Off, "*array aggregate*");
 
+with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenGrundKonstanten;
 with KartenEinstellungenKonstanten;
 
@@ -27,7 +29,7 @@ package body ZufallGeneratorenKarten is
                                                                   NeueKoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse))
              = True
            and
-             LeseKarten.Grund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartenDatentypen.Eis 
+             LeseKarten.Grund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartenGrundDatentypen.Eis 
          then
             return (EAchse, YXAchsen.YAchse, YXAchsen.XAchse);
                
@@ -155,7 +157,7 @@ package body ZufallGeneratorenKarten is
 
 
    function ChaoskarteGrund
-     return KartenDatentypen.Karten_Grund_Alle_Felder_Enum
+     return KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
@@ -168,7 +170,7 @@ package body ZufallGeneratorenKarten is
          case
            GrundWert
          is
-            when KartenDatentypen.Hügel_Mit =>
+            when KartenGrundDatentypen.Hügel_Mit =>
                null;
                
             when others =>
@@ -182,7 +184,7 @@ package body ZufallGeneratorenKarten is
    
    
    function ChaoskarteFluss
-     return KartenDatentypen.Karten_Grund_Enum
+     return KartenGrundDatentypen.Karten_Grund_Enum
    is begin
       
       FlussWählenChaoskarte.Reset (FlussGewählt);
@@ -193,7 +195,7 @@ package body ZufallGeneratorenKarten is
          FlussWert := FlussWählenChaoskarte.Random (FlussGewählt);
          
          if
-           FlussWert in KartenDatentypen.Karten_Fluss_Enum'Range
+           FlussWert in KartenGrundDatentypen.Karten_Fluss_Enum'Range
          then
             return FlussWert;
                   
@@ -209,7 +211,7 @@ package body ZufallGeneratorenKarten is
    
    function ChaoskarteRessource
      (WasserLandExtern : in Boolean)
-         return KartenDatentypen.Karten_Grund_Enum
+         return KartenGrundDatentypen.Karten_Grund_Enum
    is begin
       
       RessourceWählenChaoskarte.Reset (RessourceGewählt);
@@ -220,7 +222,7 @@ package body ZufallGeneratorenKarten is
       is
          when True =>
             if
-              RessourceWert in KartenDatentypen.Karten_Grund_Ressourcen_Wasser'Range
+              RessourceWert in KartenGrundDatentypen.Karten_Grund_Ressourcen_Wasser'Range
             then
                return RessourceWert;
                   
@@ -230,7 +232,7 @@ package body ZufallGeneratorenKarten is
 
          when False =>
             if
-              RessourceWert in KartenDatentypen.Karten_Grund_Ressourcen_Land'Range
+              RessourceWert in KartenGrundDatentypen.Karten_Grund_Ressourcen_Land'Range
             then
                return RessourceWert;
                   
