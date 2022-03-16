@@ -2,8 +2,6 @@ pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen; use KartenGrundDatentypen;
-with KartenGrundKonstanten;
-with KartenEinstellungenKonstanten;
 
 with LeseKarten;
 
@@ -29,7 +27,7 @@ package body ZufallGeneratorenKarten is
                                                                   NeueKoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse))
              = True
            and
-             LeseKarten.Grund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartenGrundDatentypen.Eis 
+             LeseKarten.Grund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartenGrundDatentypen.Eis_Enum
          then
             return (EAchse, YXAchsen.YAchse, YXAchsen.XAchse);
                
@@ -51,7 +49,7 @@ package body ZufallGeneratorenKarten is
       case
         RasseExtern
       is
-         when SystemKonstanten.TalbidahrKonstante | SystemKonstanten.TesorahnKonstante =>
+         when SystemDatentypen.Talbidahr_Enum | SystemDatentypen.Tesorahn_Enum =>
             -- Nutzen aktuell noch eine modifizierte Menschendatenbank, sollte aber für Testzwecke schon einmal funktionieren.
             return -1;
             
@@ -70,49 +68,49 @@ package body ZufallGeneratorenKarten is
       case
         Karten.Kartengröße
       is
-         when KartenEinstellungenKonstanten.Kartengröße2020Konstante =>
+         when SystemDatentypen.Karte_Größe_20_20_Enum =>
             WerteWählen20.Reset (PositionGewählt20);
             YAchse := WerteWählen20.Random (PositionGewählt20);
             XAchse := WerteWählen20.Random (PositionGewählt20);
 
-         when KartenEinstellungenKonstanten.Kartengröße4040Konstante =>
+         when SystemDatentypen.Karte_Größe_40_40_Enum =>
             WerteWählen40.Reset (PositionGewählt40);
             YAchse := WerteWählen40.Random (PositionGewählt40);
             XAchse := WerteWählen40.Random (PositionGewählt40);
             
-         when KartenEinstellungenKonstanten.Kartengröße8080Konstante =>
+         when SystemDatentypen.Karte_Größe_80_80_Enum =>
             WerteWählen80.Reset (PositionGewählt80);
             YAchse := WerteWählen80.Random (PositionGewählt80);
             XAchse := WerteWählen80.Random (PositionGewählt80);
             
-         when KartenEinstellungenKonstanten.Kartengröße12080Konstante =>
+         when SystemDatentypen.Karte_Größe_120_80_Enum =>
             WerteWählen80.Reset (PositionGewählt80);
             WerteWählen120.Reset (PositionGewählt120);
             YAchse := WerteWählen120.Random (PositionGewählt120);
             XAchse := WerteWählen80.Random (PositionGewählt80);
             
-         when KartenEinstellungenKonstanten.Kartengröße120160Konstante =>
+         when SystemDatentypen.Karte_Größe_120_160_Enum =>
             WerteWählen120.Reset (PositionGewählt120);
             WerteWählen160.Reset (PositionGewählt160);
             YAchse := WerteWählen120.Random (PositionGewählt120);
             XAchse := WerteWählen160.Random (PositionGewählt160);
             
-         when KartenEinstellungenKonstanten.Kartengröße160160Konstante =>
+         when SystemDatentypen.Karte_Größe_160_160_Enum =>
             WerteWählen160.Reset (PositionGewählt160);
             YAchse := WerteWählen160.Random (PositionGewählt160);
             XAchse := WerteWählen160.Random (PositionGewählt160);
             
-         when KartenEinstellungenKonstanten.Kartengröße240240Konstante =>
+         when SystemDatentypen.Karte_Größe_240_240_Enum =>
             WerteWählen240.Reset (PositionGewählt240);
             YAchse := WerteWählen240.Random (PositionGewählt240);
             XAchse := WerteWählen240.Random (PositionGewählt240);
             
-         when KartenEinstellungenKonstanten.Kartengröße320320Konstante =>
+         when SystemDatentypen.Karte_Größe_320_320_Enum =>
             WerteWählen320.Reset (PositionGewählt320);
             YAchse := WerteWählen320.Random (PositionGewählt320);
             XAchse := WerteWählen320.Random (PositionGewählt320);
             
-         when KartenEinstellungenKonstanten.Kartengröße10001000Konstante =>
+         when SystemDatentypen.Karte_Größe_1000_1000_Enum =>
             WerteWählen1000.Reset (PositionGewählt1000);
             YAchse := WerteWählen1000.Random (PositionGewählt1000);
             XAchse := WerteWählen1000.Random (PositionGewählt1000);
@@ -170,7 +168,7 @@ package body ZufallGeneratorenKarten is
          case
            GrundWert
          is
-            when KartenGrundDatentypen.Hügel_Mit =>
+            when KartenGrundDatentypen.Hügel_Mit_Enum =>
                null;
                
             when others =>
@@ -200,7 +198,7 @@ package body ZufallGeneratorenKarten is
             return FlussWert;
                   
          else
-            return KartenGrundKonstanten.LeerGrund;
+            return KartenGrundDatentypen.Leer_Grund_Enum;
          end if;
          
       end loop WählenSchleife;
@@ -241,7 +239,7 @@ package body ZufallGeneratorenKarten is
             end if;
       end case;
             
-      return KartenGrundKonstanten.LeerGrund;
+      return KartenGrundDatentypen.Leer_Grund_Enum;
       
    end ChaoskarteRessource;
 

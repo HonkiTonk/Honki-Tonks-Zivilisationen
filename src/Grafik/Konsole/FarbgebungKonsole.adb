@@ -6,7 +6,6 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with KartenVerbesserungKonstanten;
 
 with EingeleseneGrafikenKonsole;
 
@@ -57,8 +56,8 @@ package body FarbgebungKonsole is
       case
         GrundExtern
       is
-         when KartenGrundKonstanten.EisKonstante | KartenGrundKonstanten.TundraKonstante | KartenGrundKonstanten.WüsteKonstante | KartenGrundKonstanten.SandKonstante | KartenGrundKonstanten.KüstengewässerKonstante
-            | KartenGrundKonstanten.WolkenKonstante | KartenGrundKonstanten.UnterwasserEisKonstante | KartenGrundKonstanten.UnterwasserKüstengewässerKonstante =>
+         when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Sand_Enum | KartenGrundDatentypen.Küstengewässer_Enum
+            | KartenGrundDatentypen.Wolken_Enum | KartenGrundDatentypen.Unterwasser_Eis_Enum | KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum =>
             if
               RessourceExtern in KartenGrundDatentypen.Karten_Grund_Fluss_Enum'Range
               or
@@ -130,23 +129,23 @@ package body FarbgebungKonsole is
          case
            VerbesserungExtern
          is
-            when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
-               Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (KartenVerbesserungDatentypen.Fremde_Hauptstadt) & CSI & "0m");
+            when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
+               Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum) & CSI & "0m");
                
-            when KartenVerbesserungDatentypen.Eigene_Stadt =>
-               Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (KartenVerbesserungDatentypen.Fremde_Stadt) & CSI & "0m");
+            when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
+               Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (KartenVerbesserungDatentypen.Fremde_Stadt_Enum) & CSI & "0m");
                
             when others =>
                null;
          end case;
             
       elsif
-        VerbesserungExtern /= KartenVerbesserungKonstanten.LeerVerbesserung
+        VerbesserungExtern /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
       then
          Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (VerbesserungExtern) & CSI & "0m");
 
       elsif
-        RessourceExtern /= KartenGrundKonstanten.LeerGrund
+        RessourceExtern /= KartenGrundDatentypen.Leer_Grund_Enum
       then
          Put (Item => EingeleseneGrafikenKonsole.KartenGrafik (RessourceExtern) & CSI & "0m");
             

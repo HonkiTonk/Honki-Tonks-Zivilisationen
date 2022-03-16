@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with KartenGrundDatentypen;
 with KartenRecords;
-with KartenEinstellungenKonstanten;
 
 with Karten;
 
@@ -16,27 +16,27 @@ private
    
    type WahscheinlichkeitFlussArray is array (KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range) of Float;
    WahrscheinlichkeitFluss : constant WahscheinlichkeitFlussArray := (
-                                                                      KartenEinstellungenKonstanten.TemperaturKaltKonstante     => 0.25,
-                                                                      KartenEinstellungenKonstanten.TemperaturGemäßigtKonstante => 0.30,
-                                                                      KartenEinstellungenKonstanten.TemperaturHeißKonstante     => 0.25,
-                                                                      KartenEinstellungenKonstanten.TemperaturEiszeitKonstante  => 0.15,
-                                                                      KartenEinstellungenKonstanten.TemperaturWüsteKonstante    => 0.15
+                                                                      SystemDatentypen.Karte_Temperatur_Kalt_Enum     => 0.25,
+                                                                      SystemDatentypen.Karte_Temperatur_Gemäßigt_Enum => 0.30,
+                                                                      SystemDatentypen.Karte_Temperatur_Heiß_Enum     => 0.25,
+                                                                      SystemDatentypen.Karte_Temperatur_Eiszeit_Enum  => 0.15,
+                                                                      SystemDatentypen.Karte_Temperatur_Wüste_Enum    => 0.15
                                                                      );
    
    type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartenGrundDatentypen.Karten_Fluss_Enum;
    StandardFluss : constant StandardFlussArray := (
-                                                   -2 => KartenGrundDatentypen.Lavasee,
-                                                   -1 => KartenGrundDatentypen.Unterirdischer_See,
-                                                   0  => KartenGrundDatentypen.See
+                                                   -2 => KartenGrundDatentypen.Lavasee_Enum,
+                                                   -1 => KartenGrundDatentypen.Unterirdischer_See_Enum,
+                                                   0  => KartenGrundDatentypen.See_Enum
                                                   );
    
    type WelcherFlusstypArray is array (StandardFlussArray'Range) of Natural;
    WelcherFlusstyp : constant WelcherFlusstypArray := (
-                                                       -2 => KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Lavaflusskreuzung_Vier)
-                                                       - KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier),
+                                                       -2 => KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Lavaflusskreuzung_Vier_Enum)
+                                                       - KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum),
                                                        
-                                                       -1 => KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier)
-                                                       - KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier),
+                                                       -1 => KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum)
+                                                       - KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum),
                                                        
                                                        0 => 0
                                                       );

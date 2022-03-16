@@ -5,7 +5,6 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenDatentypen;
 with KartenRecords;
-with SystemKonstanten;
 
 package KarteKonsole is
 
@@ -13,7 +12,7 @@ package KarteKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
    
 private
 

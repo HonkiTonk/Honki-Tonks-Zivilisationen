@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemKonstanten;
-
 with ForschungMenschen;
 with ForschungKasrodiah;
 with ForschungLasupin;
@@ -35,58 +33,58 @@ package body ForschungsDatenbank is
             case
               RasseSchleifenwert
             is
-               when SystemKonstanten.MenschenKonstante =>
+               when SystemDatentypen.Menschen_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungMenschen.ForschungMenschenListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.KasrodiahKonstante =>
+               when SystemDatentypen.Kasrodiah_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungKasrodiah.ForschungKasrodiahListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.LasupinKonstante =>
+               when SystemDatentypen.Lasupin_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungLasupin.ForschungLasupinListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.LamustraKonstante =>
+               when SystemDatentypen.Lamustra_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungLamustra.ForschungLamustraListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.ManukyKonstante =>
+               when SystemDatentypen.Manuky_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungManuky.ForschungManukyListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.SurokaKonstante =>
+               when SystemDatentypen.Suroka_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungSuroka.ForschungSurokaListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.PryolonKonstante =>
+               when SystemDatentypen.Pryolon_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungPryolon.ForschungPryolonListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.TalbidahrKonstante =>
+               when SystemDatentypen.Talbidahr_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungTalbidahr.ForschungTalbidahrListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.MoruPhisihlKonstante =>
+               when SystemDatentypen.Moru_Phisihl_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungMoruPhisihl.ForschungMoruPhisihlListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.LarinosLotarisKonstante =>
+               when SystemDatentypen.Larinos_Lotaris_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungLarinosLotaris.ForschungLarinosLotarisListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.CarupexKonstante =>
+               when SystemDatentypen.Carupex_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungCarupex.ForschungCarupexListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.AlaryKonstante =>
+               when SystemDatentypen.Alary_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungAlary.ForschungAlaryListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.TesorahnKonstante =>
+               when SystemDatentypen.Tesorahn_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungTesorahn.ForschungTesorahnListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.NatriesZermanisKonstante =>
+               when SystemDatentypen.Natries_Zermanis_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungNatriesZermanis.ForschungNatriesZermanisListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.TridatusKonstante =>
+               when SystemDatentypen.Tridatus_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungTridatus.ForschungTridatusListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.SenelariKonstante =>
+               when SystemDatentypen.Senelari_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungSenelari.ForschungSenelariListe (ForschungSchleifenwert);
                   
-               when SystemKonstanten.Aspari2Konstante =>
+               when SystemDatentypen.Aspari_2_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungAspari2.ForschungAspari2Liste (ForschungSchleifenwert);
                   
-               when SystemKonstanten.EkropaKonstante =>
+               when SystemDatentypen.Ekropa_Enum =>
                   ForschungListe (RasseSchleifenwert, ForschungSchleifenwert) := ForschungEkropa.ForschungEkropaListe (ForschungSchleifenwert);
             end case;
             

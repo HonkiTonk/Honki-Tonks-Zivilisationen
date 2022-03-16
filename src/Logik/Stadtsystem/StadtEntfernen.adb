@@ -6,7 +6,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with KartenVerbesserungKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -106,7 +105,7 @@ package body StadtEntfernen is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
+         when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
             null;
             
          when others =>
@@ -117,7 +116,7 @@ package body StadtEntfernen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
          
          if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenVerbesserungKonstanten.LeerVerbesserung
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
            or
              StadtSchleifenwert = StadtRasseNummerExtern.Platznummer
          then
@@ -125,7 +124,7 @@ package body StadtEntfernen is
             
          else
             SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert),
-                                    IDExtern               => KartenVerbesserungDatentypen.Eigene_Hauptstadt);
+                                    IDExtern               => KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum);
             return;
          end if;
          

@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
-with SystemKonstanten;
 
 with LeseWichtiges;
 
@@ -68,7 +67,7 @@ package body SiegBedingungen is
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -114,7 +113,7 @@ package body SiegBedingungen is
       for RassenGeldSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
+           GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
          then
             null;
             

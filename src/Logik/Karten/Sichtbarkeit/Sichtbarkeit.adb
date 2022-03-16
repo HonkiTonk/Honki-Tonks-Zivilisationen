@@ -5,7 +5,6 @@ with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenKonstanten;
 with EinheitStadtDatentypen;
 with StadtKonstanten;
-with KartenGrundKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -31,12 +30,12 @@ package body Sichtbarkeit is
       if
         (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                 IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                WelcheUmgebungExtern => EinheitStadtDatentypen.Luft)
+                                                WelcheUmgebungExtern => EinheitStadtDatentypen.Luft_Enum)
          = True
          or
            LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                   IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                  WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum)
+                                                  WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum_Enum)
          = True)
         and
           KoordinatenEinheit.EAchse >= 0
@@ -48,20 +47,20 @@ package body Sichtbarkeit is
       end if;
       
       if
-        AktuellerGrund = KartenGrundKonstanten.GebirgeKonstante
+        AktuellerGrund = KartenGrundDatentypen.Gebirge_Enum
         or
-          AktuellerGrund = KartenGrundKonstanten.HügelKonstante
+          AktuellerGrund = KartenGrundDatentypen.Hügel_Enum
           or
             LeseKarten.Hügel (KoordinatenExtern => KoordinatenEinheit) = True
       then
          return 3;
 
       elsif
-        AktuellerGrund = KartenGrundKonstanten.DschungelKonstante
+        AktuellerGrund = KartenGrundDatentypen.Dschungel_Enum
         or
-          AktuellerGrund = KartenGrundKonstanten.SumpfKonstante
+          AktuellerGrund = KartenGrundDatentypen.Sumpf_Enum
           or
-            AktuellerGrund = KartenGrundKonstanten.WaldKonstante
+            AktuellerGrund = KartenGrundDatentypen.Wald_Enum
       then
          return 1;
                
@@ -91,12 +90,12 @@ package body Sichtbarkeit is
             if
               (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                       IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                      WelcheUmgebungExtern => EinheitStadtDatentypen.Luft)
+                                                      WelcheUmgebungExtern => EinheitStadtDatentypen.Luft_Enum)
                = True
                or
                  LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                         IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                        WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum)
+                                                        WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum_Enum)
                = True)
               and
                 LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
@@ -707,19 +706,19 @@ package body Sichtbarkeit is
          null;
          
       elsif
-        LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.GebirgeKonstante
+        LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Gebirge_Enum
         or
-          LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.HügelKonstante
+          LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Hügel_Enum
         or
           LeseKarten.Hügel (KoordinatenExtern => KartenBlockadeWert) = True
         or
           (SichtweiteExtern /= 3
            and
-             (LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.DschungelKonstante
+             (LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Dschungel_Enum
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.SumpfKonstante
+                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Sumpf_Enum
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundKonstanten.WaldKonstante))
+                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Wald_Enum))
       then
          return False;
          

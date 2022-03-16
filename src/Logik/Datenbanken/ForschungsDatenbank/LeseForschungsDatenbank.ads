@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
-with SystemKonstanten;
 
 with DatenbankRecords;
 
@@ -16,7 +15,7 @@ package LeseForschungsDatenbank is
       return EinheitStadtDatentypen.KostenLager
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
 
    function AnforderungForschung
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -25,7 +24,7 @@ package LeseForschungsDatenbank is
       return EinheitStadtDatentypen.ForschungIDNichtMöglich
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
    function GanzerEintrag
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
@@ -33,6 +32,6 @@ package LeseForschungsDatenbank is
       return DatenbankRecords.ForschungListeRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
 
 end LeseForschungsDatenbank;

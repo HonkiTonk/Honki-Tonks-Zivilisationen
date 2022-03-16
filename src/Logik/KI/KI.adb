@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenKonstanten;
-with KartenVerbesserungKonstanten;
+with KartenVerbesserungDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -60,7 +60,7 @@ package body KI is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert))
          is
-            when KartenVerbesserungKonstanten.LeerVerbesserung =>
+            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>

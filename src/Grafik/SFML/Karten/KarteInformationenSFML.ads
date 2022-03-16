@@ -15,7 +15,6 @@ with GlobaleVariablen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with SystemKonstanten;
 
 with UmwandlungenAdaNachEigenes;
 
@@ -25,7 +24,7 @@ package KarteInformationenSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
 
 private
 

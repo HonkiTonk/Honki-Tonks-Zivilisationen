@@ -24,10 +24,10 @@ package body StartGrafik is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             GrafikKonsole.GrafikKonsole;
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             GrafikSFML.GrafikSFML;
             
          when others =>

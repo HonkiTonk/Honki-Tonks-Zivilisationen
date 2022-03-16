@@ -17,10 +17,10 @@ package body SchreibenTastatur is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             BelegungKonsole;
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             BelegungSFML;
       end case;
       

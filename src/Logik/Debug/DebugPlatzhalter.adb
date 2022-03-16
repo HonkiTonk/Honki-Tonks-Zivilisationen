@@ -108,7 +108,7 @@ package body DebugPlatzhalter is
          RassenZweiteSchleife:
          for RasseZweiSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SystemDatentypen.Neutral;
+            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SystemDatentypen.Neutral_Enum;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;
@@ -127,7 +127,7 @@ package body DebugPlatzhalter is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemKonstanten.SpielerKIKonstante =>
+         when SystemDatentypen.Spieler_KI_Enum =>
             BewegungPlanSchleife:
             for BewegungGeplantSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
                       

@@ -27,7 +27,7 @@ package body ImSpiel is
    is begin
       
       -- Muss hier einmal auf True gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechnet werden vom Grafiktask.
-      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert;
+      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert_Enum;
       
       SpielSchleife:
       loop
@@ -39,13 +39,13 @@ package body ImSpiel is
             case
               RückgabeRassen
             is
-               when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+               when SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
                   return RückgabeRassen;
                   
-               when SystemKonstanten.SchleifeVerlassenKonstante =>
+               when SystemDatentypen.Schleife_Verlassen_Enum =>
                   exit RassenSchleife;
                   
-               when SystemKonstanten.StartWeiterKonstante =>
+               when SystemDatentypen.Start_Weiter_Enum =>
                   null;
                
                when others =>
@@ -59,12 +59,12 @@ package body ImSpiel is
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
-            return SystemKonstanten.HauptmenüKonstante;
+            return SystemDatentypen.Hauptmenü_Enum;
             
          elsif
            GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
          then
-            return SystemKonstanten.HauptmenüKonstante;
+            return SystemDatentypen.Hauptmenü_Enum;
             
          else
             null;
@@ -82,9 +82,9 @@ package body ImSpiel is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.LeerSpielerKonstante
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer_Spieler_Enum
       then
-         return SystemKonstanten.StartWeiterKonstante;
+         return SystemDatentypen.Start_Weiter_Enum;
       
       elsif
         GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
@@ -92,7 +92,7 @@ package body ImSpiel is
           GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
          RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
-         return SystemKonstanten.StartWeiterKonstante;
+         return SystemDatentypen.Start_Weiter_Enum;
          
       else
          return RasseDurchgehen (RasseExtern => RasseExtern);
@@ -117,13 +117,13 @@ package body ImSpiel is
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
-            when SystemKonstanten.SpielerMenschKonstante =>
+            when SystemDatentypen.Spieler_Mensch_Enum =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
                
-            when SystemKonstanten.SpielerKIKonstante =>
+            when SystemDatentypen.Spieler_KI_Enum =>
                KISpieler (RasseExtern => RasseExtern);
                
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Rasse ist Leer.");
          end case;
 
@@ -131,7 +131,7 @@ package body ImSpiel is
          null;
       end if;
       
-      return SystemKonstanten.StartWeiterKonstante;
+      return SystemDatentypen.Start_Weiter_Enum;
       
    end RasseDurchgehen;
    
@@ -141,9 +141,9 @@ package body ImSpiel is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
             
-      LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert_Enum) := Clock;
       KI.KI (RasseExtern => RasseExtern);
-      LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Endwert) := Clock;
+      LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Endwert_Enum) := Clock;
       
    end KISpieler;
    
@@ -157,20 +157,20 @@ package body ImSpiel is
       RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
       
       if
-        (RückgabeWert = SystemKonstanten.SpielBeendenKonstante
+        (RückgabeWert = SystemDatentypen.Spiel_Beenden_Enum
          or
-           RückgabeWert = SystemKonstanten.HauptmenüKonstante)
+           RückgabeWert = SystemDatentypen.Hauptmenü_Enum)
         and
           NochSpielerVorhanden (RasseExtern => RasseExtern) = True
       then
          RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                         
       elsif
-        RückgabeWert = SystemKonstanten.SpielBeendenKonstante
+        RückgabeWert = SystemDatentypen.Spiel_Beenden_Enum
         or
-          RückgabeWert = SystemKonstanten.HauptmenüKonstante
+          RückgabeWert = SystemDatentypen.Hauptmenü_Enum
           or
-            RückgabeWert = SystemKonstanten.SchleifeVerlassenKonstante
+            RückgabeWert = SystemDatentypen.Schleife_Verlassen_Enum
       then
          return RückgabeWert;
                         
@@ -178,7 +178,7 @@ package body ImSpiel is
          null;
       end if;
       
-      return SystemKonstanten.StartWeiterKonstante;
+      return SystemDatentypen.Start_Weiter_Enum;
       
    end MenschlicherSpieler;
 
@@ -194,12 +194,12 @@ package body ImSpiel is
       SpielerSchleife:
       loop
          
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Weltkarte);
+         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Weltkarte_Enum);
          
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
-            when SystemKonstanten.SpielerMenschKonstante =>
+            when SystemDatentypen.Spieler_Mensch_Enum =>
                AktuellerBefehlSpieler := Befehle (RasseExtern => RasseExtern);
                
             when others =>
@@ -210,20 +210,20 @@ package body ImSpiel is
          case
            AktuellerBefehlSpieler
          is
-            when SystemKonstanten.StartWeiterKonstante =>
+            when SystemDatentypen.Start_Weiter_Enum =>
                null;
                
-            when SystemKonstanten.RundeBeendenKonstante =>
+            when SystemDatentypen.Runde_Beenden_Enum =>
                RückgabeMenschAmZug := AktuellerBefehlSpieler;
                exit SpielerSchleife;
                
-            when SystemKonstanten.SpielmenüKonstante =>
+            when SystemDatentypen.Spielmenü_Enum =>
                RückgabeSpielmenü := Spielmenü (RasseExtern => RasseExtern);
 
                if
-                 RückgabeSpielmenü = SystemKonstanten.LadenKonstante
+                 RückgabeSpielmenü = SystemDatentypen.Laden_Enum
                then
-                  RückgabeMenschAmZug := SystemKonstanten.SchleifeVerlassenKonstante;
+                  RückgabeMenschAmZug := SystemDatentypen.Schleife_Verlassen_Enum;
                   exit SpielerSchleife;
                   
                elsif
@@ -233,7 +233,7 @@ package body ImSpiel is
                   exit SpielerSchleife;
                   
                elsif
-                 RückgabeSpielmenü = SystemKonstanten.StartWeiterKonstante
+                 RückgabeSpielmenü = SystemDatentypen.Start_Weiter_Enum
                then
                   null;
                   
@@ -247,8 +247,8 @@ package body ImSpiel is
                      
       end loop SpielerSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
-      InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemKonstanten.LeerRasse);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+      InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse_Enum);
       
       return RückgabeMenschAmZug;
       
@@ -264,26 +264,26 @@ package body ImSpiel is
       SpielmenüSchleife:
       loop
          
-         AuswahlSpielmenü := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Spiel_Menü);
+         AuswahlSpielmenü := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Spiel_Menü_Enum);
 
          case
            AuswahlSpielmenü
          is
-            when SystemKonstanten.SpeichernKonstante =>
+            when SystemDatentypen.Speichern_Enum =>
                GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
-            when SystemKonstanten.LadenKonstante =>
+            when SystemDatentypen.Laden_Enum =>
                if
                  Laden.LadenNeu = True
                then
-                  return SystemKonstanten.LadenKonstante;
+                  return SystemDatentypen.Laden_Enum;
 
                else
                   null;
                end if;
                
-            when SystemKonstanten.OptionenKonstante =>
+            when SystemDatentypen.Optionen_Enum =>
                RückgabeOptionen := Optionen.Optionen;
                
                if
@@ -295,7 +295,7 @@ package body ImSpiel is
                   null;
                end if;
                
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range | SystemKonstanten.StartWeiterKonstante =>
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range | SystemDatentypen.Start_Weiter_Enum =>
                return AuswahlSpielmenü;
                   
             when others =>
@@ -319,7 +319,7 @@ package body ImSpiel is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemKonstanten.SpielerMenschKonstante
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemDatentypen.Spieler_Mensch_Enum
          then
             null;
             
@@ -343,10 +343,10 @@ package body ImSpiel is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             return BefehleKonsole.BefehleKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             return BefehleSFML.BefehleSFML (RasseExtern => RasseExtern);
       end case;
       

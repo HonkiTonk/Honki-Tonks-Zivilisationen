@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
-with SystemKonstanten;
 
 package DiplomatischerZustandAenderbar is
 
@@ -17,9 +16,9 @@ package DiplomatischerZustandAenderbar is
        Pre =>
          (RasseEinsExtern /= RasseZweiExtern
           and
-            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SystemKonstanten.LeerSpielerKonstante
+            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= SystemDatentypen.Leer_Spieler_Enum
           and
-            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SystemKonstanten.LeerSpielerKonstante);
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
 private
    

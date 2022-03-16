@@ -36,10 +36,10 @@ package body GrafikSFML is
          case
            InteraktionGrafiktask.FensterVerändert
          is
-            when InteraktionGrafiktask.Fenster_Verändert_Enum'Range =>
+            when InteraktionGrafiktask.Fenster_Wurde_Verändert_Enum'Range =>
                GrafikAllgemeinSFML.FensterAnpassen;
                Sichtweiten.SichtweiteBewegungsfeldFestlegen;
-               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung;
+               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
                
             when InteraktionGrafiktask.Fenster_Unverändert_Enum'Range =>
                null;
@@ -48,9 +48,9 @@ package body GrafikSFML is
          case
            InteraktionGrafiktask.FensterVerändert
          is
-            when InteraktionGrafiktask.Bildrate_Ändern =>
+            when InteraktionGrafiktask.Bildrate_Ändern_Enum =>
                GrafikAllgemeinSFML.BildrateÄndern;
-               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung;
+               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
                
             when others =>
                null;
@@ -114,37 +114,37 @@ package body GrafikSFML is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Konsole wird bei SFML aufgerufen.");
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             InteraktionLogiktask.FensterErzeugtÄndern;
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
             
-         when SystemDatentypen.Grafik_Sprache =>
+         when SystemDatentypen.Grafik_Sprache_Enum =>
             AnzeigeSprachauswahlSFML.AnzeigeSprache;
                
-         when SystemDatentypen.Grafik_Intro =>
+         when SystemDatentypen.Grafik_Intro_Enum =>
             GrafikIntroSFML.Intro;
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
                               
-         when SystemDatentypen.Grafik_Pause =>
+         when SystemDatentypen.Grafik_Pause_Enum =>
             delay SystemKonstanten.WartezeitGrafik;
             
-         when SystemDatentypen.Grafik_Laden =>
+         when SystemDatentypen.Grafik_Laden_Enum =>
             null;
          
-         when SystemDatentypen.Grafik_Menüs =>
+         when SystemDatentypen.Grafik_Menüs_Enum =>
             AnzeigeAuswahlMenueSFML.AnzeigeAnfang;
                
          when SystemDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;
                
-         when SystemDatentypen.Grafik_Weltkarte =>
+         when SystemDatentypen.Grafik_Weltkarte_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
-              AktuelleRasse = SystemKonstanten.LeerRasse
+              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
             then
                delay SystemKonstanten.WartezeitGrafik;
                      
@@ -152,12 +152,12 @@ package body GrafikSFML is
                Karte.AnzeigeKarte (RasseExtern => AktuelleRasse);
             end if;
                
-         when SystemDatentypen.Grafik_Stadtkarte =>
+         when SystemDatentypen.Grafik_Stadtkarte_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             AktuelleStadtNummer := InDerStadt.AktuelleStadtNummerGrafik; 
             
             if
-              AktuelleRasse = SystemKonstanten.LeerRasse
+              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
               or
                 AktuelleStadtNummer = StadtKonstanten.LeerNummer
             then
@@ -167,11 +167,11 @@ package body GrafikSFML is
                KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (AktuelleRasse, AktuelleStadtNummer));
             end if;
                
-         when SystemDatentypen.Grafik_Forschung =>
+         when SystemDatentypen.Grafik_Forschung_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
-              AktuelleRasse = SystemKonstanten.LeerRasse
+              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
                Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Forschungsmenü wird ohne Rasse aufgerufen.");
@@ -180,11 +180,11 @@ package body GrafikSFML is
                ForschungAnzeigeSFML.ForschungAnzeige;
             end if;
             
-         when SystemDatentypen.Grafik_Bauen =>
+         when SystemDatentypen.Grafik_Bauen_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
-              AktuelleRasse = SystemKonstanten.LeerRasse
+              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
                Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Baumenü wird ohne Rasse aufgerufen.");
@@ -193,7 +193,7 @@ package body GrafikSFML is
                BauAuswahlAnzeigeSFML.BauAuswahlAnzeige;
             end if;
          
-         when SystemDatentypen.Grafik_Ende =>
+         when SystemDatentypen.Grafik_Ende_Enum =>
             return False;
       end case;
       
@@ -211,17 +211,17 @@ package body GrafikSFML is
       case
         InteraktionGrafiktask.EingabeAbrufen
       is
-         when SystemDatentypen.Text_Eingabe =>
+         when SystemDatentypen.Text_Eingabe_Enum =>
             AnzeigeEingabeSFML.AnzeigeText;
             
-         when SystemDatentypen.Zahlen_Eingabe =>
+         when SystemDatentypen.Zahlen_Eingabe_Enum =>
             AnzeigeEingabeSFML.AnzeigeGanzeZahl;
             
-         when SystemDatentypen.Einheit_Auswahl =>
+         when SystemDatentypen.Einheit_Auswahl_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
-              AktuelleRasse = SystemKonstanten.LeerRasse
+              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
             then
                null;
                      
@@ -229,7 +229,7 @@ package body GrafikSFML is
                AnzeigeEingabeSFML.AnzeigeEinheitenStadt (RasseExtern => AktuelleRasse);
             end if;
                
-         when SystemDatentypen.Keine_Eingabe =>
+         when SystemDatentypen.Keine_Eingabe_Enum =>
             null;
       end case;
       

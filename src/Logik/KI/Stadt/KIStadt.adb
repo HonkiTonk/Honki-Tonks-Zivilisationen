@@ -40,7 +40,7 @@ package body KIStadt is
       case
         LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when KIDatentypen.Keine_Aufgabe =>
+         when KIDatentypen.Keine_Aufgabe_Enum =>
             null;
             
          when others =>
@@ -74,7 +74,7 @@ package body KIStadt is
         EinheitBauenExtern.ID = EinheitenKonstanten.LeerID
       then
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
+                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen_Enum);
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          BauprojektExtern       => (True, GebäudeBauenExtern.ID));
          
@@ -86,11 +86,11 @@ package body KIStadt is
          is
             when True =>
                SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                     BeschäftigungExtern   => KIDatentypen.Gefahr_Einheit_Bauen);
+                                                     BeschäftigungExtern   => KIDatentypen.Gefahr_Einheit_Bauen_Enum);
                
             when False =>
                SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                     BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
+                                                     BeschäftigungExtern   => KIDatentypen.Einheit_Bauen_Enum);
          end case;
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          BauprojektExtern       => (False, EinheitBauenExtern.ID));
@@ -103,18 +103,18 @@ package body KIStadt is
          is
             when True =>
                SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                     BeschäftigungExtern   => KIDatentypen.Gefahr_Einheit_Bauen);
+                                                     BeschäftigungExtern   => KIDatentypen.Gefahr_Einheit_Bauen_Enum);
                
             when False =>
                SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                     BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
+                                                     BeschäftigungExtern   => KIDatentypen.Einheit_Bauen_Enum);
          end case;
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          BauprojektExtern       => (False, EinheitBauenExtern.ID));
 
       else
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
+                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen_Enum);
          SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          BauprojektExtern       => (True, GebäudeBauenExtern.ID));
       end if;
@@ -188,7 +188,7 @@ package body KIStadt is
                   elsif
                     DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
                                                                        FremdeRasseExtern => FremdeEinheit.Rasse)
-                    /= SystemDatentypen.Krieg
+                    /= SystemDatentypen.Krieg_Enum
                   then
                      null;
                      
@@ -197,7 +197,7 @@ package body KIStadt is
                        LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
                      is
-                        when EinheitStadtDatentypen.Leer | EinheitStadtDatentypen.Arbeiter =>
+                        when EinheitStadtDatentypen.Leer_Enum | EinheitStadtDatentypen.Arbeiter_Enum =>
                            null;
             
                         when others =>
@@ -225,11 +225,11 @@ package body KIStadt is
          if
            LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                               IDExtern    => EinheitenSchleifenwert)
-           = EinheitStadtDatentypen.Arbeiter
+           = EinheitStadtDatentypen.Arbeiter_Enum
            or
              LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                 IDExtern    => EinheitenSchleifenwert)
-           = EinheitStadtDatentypen.Leer
+           = EinheitStadtDatentypen.Leer_Enum
          then
             null;
             

@@ -6,7 +6,6 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
-with KartenEinstellungenKonstanten;
 
 with KarteKoordinatenPruefen;
 with GrafischeAnzeigeKonsole;
@@ -64,28 +63,28 @@ package body KarteKonsole is
         XAchseExtern = Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False)
       then
          if
-           (Karten.Kartenform = KartenEinstellungenKonstanten.KartenformXZylinderKonstante
+           (Karten.Kartenform = SystemDatentypen.Karte_Form_X_Zylinder_Enum
             or
-              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformTorusKonstante
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Torus_Enum
             or
-              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformKugelKonstante
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Kugel_Enum
             or
-              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformKugelGedrehtKonstante
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Kugel_Gedreht_Enum
             or
-              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformTugelKonstante
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Enum
             or
-              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformTugelGedrehtKonstante
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Gedreht_Enum
             or
-              Karten.Kartenform = KartenEinstellungenKonstanten.KartenformTugelExtremKonstante)
+              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Extrem_Enum)
            and
              KartenWert.XAchse > KartenKonstanten.LeerXAchse
          then
             New_Line;
                   
          elsif
-           Karten.Kartenform = KartenEinstellungenKonstanten.KartenformYZylinderKonstante
+           Karten.Kartenform = SystemDatentypen.Karte_Form_Y_Zylinder_Enum
            or
-             Karten.Kartenform = KartenEinstellungenKonstanten.KartenformViereckKonstante
+             Karten.Kartenform = SystemDatentypen.Karte_Form_Viereck_Enum
          then
             New_Line;
                

@@ -6,83 +6,82 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with SystemKonstanten;
 
 package StadtUmgebungsbereichFestlegen is
    
    type TechnologieUmgebungsgrößeArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of EinheitStadtDatentypen.ForschungID;
    TechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
-                                                                               SystemKonstanten.MenschenKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Menschen_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
                                                                                              
-                                                                               SystemKonstanten.KasrodiahKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Kasrodiah_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.LasupinKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Lasupin_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
                                                                                
-                                                                               SystemKonstanten.LamustraKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Lamustra_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.ManukyKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Manuky_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.SurokaKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Suroka_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.PryolonKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Pryolon_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.TalbidahrKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Talbidahr_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.MoruPhisihlKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Moru_Phisihl_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.LarinosLotarisKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Larinos_Lotaris_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.CarupexKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Carupex_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.AlaryKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Alary_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.TesorahnKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Tesorahn_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.NatriesZermanisKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Natries_Zermanis_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.TridatusKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Tridatus_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.SenelariKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Senelari_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.Aspari2Konstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43),
+                                                                               SystemDatentypen.Aspari_2_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43),
             
-                                                                               SystemKonstanten.EkropaKonstante =>
-                                                                                 (SystemDatentypen.Anfangswert => 19,
-                                                                                  SystemDatentypen.Endwert     => 43)
+                                                                               SystemDatentypen.Ekropa_Enum =>
+                                                                                 (SystemDatentypen.Anfangswert_Enum => 19,
+                                                                                  SystemDatentypen.Endwert_Enum     => 43)
                                                                               );
 
    procedure StadtUmgebungsbereichFestlegen
@@ -91,7 +90,7 @@ package StadtUmgebungsbereichFestlegen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum);
    
 private
    

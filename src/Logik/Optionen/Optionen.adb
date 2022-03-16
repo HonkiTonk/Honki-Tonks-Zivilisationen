@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemKonstanten;
-
 with OptionenSteuerung;
 with OptionenSound;
 with OptionenGrafik;
@@ -19,24 +17,24 @@ package body Optionen is
       OptionenSchleife:
       loop
          
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Optionen_Menü);
+         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Optionen_Menü_Enum);
 
          case
            AuswahlWert
          is
-            when SystemKonstanten.GrafikKonstante =>
+            when SystemDatentypen.Grafik_Enum =>
                RückgabeWert := OptionenGrafik.OptionenGrafik;
                
-            when SystemKonstanten.SoundKonstante =>
+            when SystemDatentypen.Sound_Enum =>
                RückgabeWert := OptionenSound.OptionenSound;
                
-            when SystemKonstanten.SteuerungKonstante =>
+            when SystemDatentypen.Steuerung_Enum =>
                RückgabeWert := OptionenSteuerung.SteuerungBelegen;
                
-            when SystemKonstanten.SonstigesKonstante =>
+            when SystemDatentypen.Sonstiges_Enum =>
                RückgabeWert := OptionenSonstiges.Sonstiges;
                
-            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Zurück_Enum | SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
                return AuswahlWert;
                
             when others =>
@@ -46,10 +44,10 @@ package body Optionen is
          case
            RückgabeWert
          is
-            when SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
                return RückgabeWert;
                
-            when SystemKonstanten.ZurückKonstante =>
+            when SystemDatentypen.Zurück_Enum =>
                null;
                      
             when others =>

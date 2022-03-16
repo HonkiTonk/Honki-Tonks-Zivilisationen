@@ -141,7 +141,7 @@ package body NaechstesObjekt is
                  LeseStadtGebaut.Meldungen (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)),
                                             WelcheMeldungExtern    => MeldungSchleifenwert)
                is
-                  when EinheitStadtDatentypen.Leer =>
+                  when EinheitStadtDatentypen.Leer_Enum =>
                      null;
                      
                   when others =>
@@ -199,7 +199,7 @@ package body NaechstesObjekt is
                  LeseEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)),
                                                 WelcheMeldungExtern      => MeldungSchleifenwert)
                is
-                  when EinheitStadtDatentypen.Leer =>
+                  when EinheitStadtDatentypen.Leer_Enum =>
                      null;
                      
                   when others =>

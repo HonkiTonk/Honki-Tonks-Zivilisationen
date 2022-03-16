@@ -22,21 +22,21 @@ package body OptionenSonstiges is
       SonstigesSchleife:
       loop
 
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Sonstiges_Menü);
+         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Sonstiges_Menü_Enum);
 
          case
            AuswahlWert
          is
-            when SystemKonstanten.AnzahlSpeicherständeKonstante =>
+            when SystemDatentypen.Anzahl_Speicherstände_Enum =>
                AnzahlAutomatischerSpielstände;
                
-            when SystemKonstanten.RundenBisAutospeichernKonstante =>
+            when SystemDatentypen.Runden_Bis_Autospeichern_Enum =>
                RundenBisAutospeichern;
                
-            when SystemKonstanten.SpracheKonstante =>
+            when SystemDatentypen.Sprache_Enum =>
                SpracheWechseln;
                
-            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Zurück_Enum | SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
                SchreibenEinstellungen.SchreibenEinstellungen;
                return AuswahlWert;
                

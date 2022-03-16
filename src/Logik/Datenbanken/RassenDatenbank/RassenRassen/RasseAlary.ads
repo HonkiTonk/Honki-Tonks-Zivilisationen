@@ -15,11 +15,11 @@ package RasseAlary is
                                                                      Wirtschaft          => 0,
                                                                      Bewirtschaftung     => 0,
                                                                      GültigeStaatsformen => (
-                                                                                              SystemDatentypen.Anarchie,
-                                                                                              SystemDatentypen.Demokratie,
-                                                                                              SystemDatentypen.Anarchie,
-                                                                                              SystemDatentypen.Anarchie,
-                                                                                              SystemDatentypen.Anarchie)
+                                                                                              SystemDatentypen.Anarchie_Enum,
+                                                                                              SystemDatentypen.Demokratie_Enum,
+                                                                                              SystemDatentypen.Anarchie_Enum,
+                                                                                              SystemDatentypen.Anarchie_Enum,
+                                                                                              SystemDatentypen.Anarchie_Enum)
                                                                     );
 
 end RasseAlary;

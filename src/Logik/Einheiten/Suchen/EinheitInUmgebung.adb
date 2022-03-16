@@ -8,7 +8,6 @@ with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with SystemKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -31,7 +30,7 @@ package body EinheitInUmgebung is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemKonstanten.SpielerMenschKonstante =>
+            when SystemDatentypen.Spieler_Mensch_Enum =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);
                UmgebungEinheit (RasseExtern => RasseSchleifenwert);
                
@@ -66,7 +65,7 @@ package body EinheitInUmgebung is
                  = True
                then
                   StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert),
-                                                                   EreignisExtern         => EinheitStadtDatentypen.Fremde_Einheit_Nahe_Stadt);
+                                                                   EreignisExtern         => EinheitStadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum);
                            
                else
                   null;
@@ -100,7 +99,7 @@ package body EinheitInUmgebung is
                  = True
                then
                   EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert),
-                                                                         EreignisExtern           => EinheitStadtDatentypen.Fremde_Einheit_Nahe);
+                                                                         EreignisExtern           => EinheitStadtDatentypen.Fremde_Einheit_Nahe_Enum);
                            
                else
                   null;
@@ -153,7 +152,7 @@ package body EinheitInUmgebung is
                elsif
                  DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                                     FremdeRasseExtern => AndereEinheit.Rasse)
-                 = SystemDatentypen.Nichtangriffspakt
+                 = SystemDatentypen.Nichtangriffspakt_Enum
                then
                   null;
                   

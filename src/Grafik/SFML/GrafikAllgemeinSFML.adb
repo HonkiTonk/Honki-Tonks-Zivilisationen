@@ -18,12 +18,12 @@ package body GrafikAllgemeinSFML is
       case
         InteraktionGrafiktask.FensterVerändert
       is
-         when InteraktionGrafiktask.Auflösung_Verändert | InteraktionGrafiktask.Modus_Verändert =>
+         when InteraktionGrafiktask.Auflösung_Verändert_Enum | InteraktionGrafiktask.Modus_Verändert_Enum =>
             GrafikStartEndeSFML.FensterEntfernen;
             GrafikStartEndeSFML.FensterErzeugen;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.y := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).y;
-            InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung;
+            InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Keine_Änderung_Enum;
             
          when others =>
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := Sf.Graphics.RenderWindow.getSize (renderWindow => GrafikEinstellungenSFML.FensterAccess).x;

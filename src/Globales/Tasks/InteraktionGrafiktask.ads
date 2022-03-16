@@ -5,9 +5,9 @@ with SystemDatentypen;
 
 package InteraktionGrafiktask is
       
-   type Fenster_Ändern_Enum is (Keine_Änderung, Bildrate_Ändern, Fenster_Verändert, Auflösung_Verändert, Modus_Verändert);
-   subtype Fenster_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert .. Modus_Verändert;
-   subtype Fenster_Unverändert_Enum is Fenster_Ändern_Enum range Keine_Änderung .. Bildrate_Ändern;
+   type Fenster_Ändern_Enum is (Keine_Änderung_Enum, Bildrate_Ändern_Enum, Fenster_Verändert_Enum, Auflösung_Verändert_Enum, Modus_Verändert_Enum);
+   subtype Fenster_Wurde_Verändert_Enum is Fenster_Ändern_Enum range Fenster_Verändert_Enum .. Modus_Verändert_Enum;
+   subtype Fenster_Unverändert_Enum is Fenster_Ändern_Enum range Keine_Änderung_Enum .. Bildrate_Ändern_Enum;
    FensterVerändert : Fenster_Ändern_Enum;
    
    TastenEingabe : Boolean := False;
@@ -37,8 +37,8 @@ private
 
    ErzeugeFenster : Boolean := False;
    
-   Eingabe : SystemDatentypen.Welche_Eingabe_Enum := SystemDatentypen.Keine_Eingabe;
+   Eingabe : SystemDatentypen.Welche_Eingabe_Enum := SystemDatentypen.Keine_Eingabe_Enum;
    
-   AktuelleDarstellung : SystemDatentypen.Grafik_Aktuelle_Darstellung_Enum := SystemDatentypen.Grafik_SFML;
+   AktuelleDarstellung : SystemDatentypen.Grafik_Aktuelle_Darstellung_Enum := SystemDatentypen.Grafik_SFML_Enum;
 
 end InteraktionGrafiktask;

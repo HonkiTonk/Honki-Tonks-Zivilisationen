@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with KartenGrundDatentypen;
 with KartenRecords;
-with KartenEinstellungenKonstanten;
 
 package KartenGeneratorRessourcen is
 
@@ -14,59 +14,59 @@ private
    
    type WahrscheinlichkeitRessourceArray is array (KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range, KartenGrundDatentypen.Karten_Grund_Ressourcen_Enum'Range) of Float;
    WahrscheinlichkeitRessourcen : constant WahrscheinlichkeitRessourceArray := (
-                                                                                KartenEinstellungenKonstanten.RessourcenArmKonstante =>
+                                                                                SystemDatentypen.Karte_Ressource_Arm_Enum =>
                                                                                   (
-                                                                                   KartenGrundDatentypen.Fisch              => 0.02,
-                                                                                   KartenGrundDatentypen.Wal                => 0.00,
-                                                                                   KartenGrundDatentypen.Kohle              => 0.02,
-                                                                                   KartenGrundDatentypen.Eisen              => 0.02,
-                                                                                   KartenGrundDatentypen.Öl                 => 0.02,
-                                                                                   KartenGrundDatentypen.Hochwertiger_Boden => 0.02,
-                                                                                   KartenGrundDatentypen.Gold               => 0.00
+                                                                                   KartenGrundDatentypen.Fisch_Enum              => 0.02,
+                                                                                   KartenGrundDatentypen.Wal_Enum                => 0.00,
+                                                                                   KartenGrundDatentypen.Kohle_Enum              => 0.02,
+                                                                                   KartenGrundDatentypen.Eisen_Enum              => 0.02,
+                                                                                   KartenGrundDatentypen.Öl_Enum                 => 0.02,
+                                                                                   KartenGrundDatentypen.Hochwertiger_Boden_Enum => 0.02,
+                                                                                   KartenGrundDatentypen.Gold_Enum               => 0.00
                                                                                   ),
                                                                                 
-                                                                                KartenEinstellungenKonstanten.RessourcenWenigKonstante =>
+                                                                                SystemDatentypen.Karte_Ressource_Wenig_Enum =>
                                                                                   (
-                                                                                   KartenGrundDatentypen.Fisch              => 0.04,
-                                                                                   KartenGrundDatentypen.Wal                => 0.01,
-                                                                                   KartenGrundDatentypen.Kohle              => 0.04,
-                                                                                   KartenGrundDatentypen.Eisen              => 0.04,
-                                                                                   KartenGrundDatentypen.Öl                 => 0.04,
-                                                                                   KartenGrundDatentypen.Hochwertiger_Boden => 0.04,
-                                                                                   KartenGrundDatentypen.Gold               => 0.01
+                                                                                   KartenGrundDatentypen.Fisch_Enum              => 0.04,
+                                                                                   KartenGrundDatentypen.Wal_Enum                => 0.01,
+                                                                                   KartenGrundDatentypen.Kohle_Enum              => 0.04,
+                                                                                   KartenGrundDatentypen.Eisen_Enum              => 0.04,
+                                                                                   KartenGrundDatentypen.Öl_Enum                 => 0.04,
+                                                                                   KartenGrundDatentypen.Hochwertiger_Boden_Enum => 0.04,
+                                                                                   KartenGrundDatentypen.Gold_Enum               => 0.01
                                                                                   ),
                                                                                 
-                                                                                KartenEinstellungenKonstanten.RessourcenMittelKonstante =>
+                                                                                SystemDatentypen.Karte_Ressource_Mittel_Enum =>
                                                                                   (
-                                                                                   KartenGrundDatentypen.Fisch              => 0.08,
-                                                                                   KartenGrundDatentypen.Wal                => 0.02,
-                                                                                   KartenGrundDatentypen.Kohle              => 0.08,
-                                                                                   KartenGrundDatentypen.Eisen              => 0.08,
-                                                                                   KartenGrundDatentypen.Öl                 => 0.08,
-                                                                                   KartenGrundDatentypen.Hochwertiger_Boden => 0.08,
-                                                                                   KartenGrundDatentypen.Gold               => 0.02
+                                                                                   KartenGrundDatentypen.Fisch_Enum              => 0.08,
+                                                                                   KartenGrundDatentypen.Wal_Enum                => 0.02,
+                                                                                   KartenGrundDatentypen.Kohle_Enum              => 0.08,
+                                                                                   KartenGrundDatentypen.Eisen_Enum              => 0.08,
+                                                                                   KartenGrundDatentypen.Öl_Enum                 => 0.08,
+                                                                                   KartenGrundDatentypen.Hochwertiger_Boden_Enum => 0.08,
+                                                                                   KartenGrundDatentypen.Gold_Enum               => 0.02
                                                                                   ),
                                                                                 
-                                                                                KartenEinstellungenKonstanten.RessourcenVielKonstante =>
+                                                                                SystemDatentypen.Karte_Ressource_Viel_Enum =>
                                                                                   (
-                                                                                   KartenGrundDatentypen.Fisch              => 0.16,
-                                                                                   KartenGrundDatentypen.Wal                => 0.04,
-                                                                                   KartenGrundDatentypen.Kohle              => 0.16,
-                                                                                   KartenGrundDatentypen.Eisen              => 0.16,
-                                                                                   KartenGrundDatentypen.Öl                 => 0.16,
-                                                                                   KartenGrundDatentypen.Hochwertiger_Boden => 0.16,
-                                                                                   KartenGrundDatentypen.Gold               => 0.04
+                                                                                   KartenGrundDatentypen.Fisch_Enum              => 0.16,
+                                                                                   KartenGrundDatentypen.Wal_Enum                => 0.04,
+                                                                                   KartenGrundDatentypen.Kohle_Enum              => 0.16,
+                                                                                   KartenGrundDatentypen.Eisen_Enum              => 0.16,
+                                                                                   KartenGrundDatentypen.Öl_Enum                 => 0.16,
+                                                                                   KartenGrundDatentypen.Hochwertiger_Boden_Enum => 0.16,
+                                                                                   KartenGrundDatentypen.Gold_Enum               => 0.04
                                                                                   ),
                                                                                 
-                                                                                KartenEinstellungenKonstanten.RessourcenÜberflussKonstante =>
+                                                                                SystemDatentypen.Karte_Ressource_Überfluss_Enum =>
                                                                                   (
-                                                                                   KartenGrundDatentypen.Fisch              => 0.32,
-                                                                                   KartenGrundDatentypen.Wal                => 0.08,
-                                                                                   KartenGrundDatentypen.Kohle              => 0.32,
-                                                                                   KartenGrundDatentypen.Eisen              => 0.32,
-                                                                                   KartenGrundDatentypen.Öl                 => 0.32,
-                                                                                   KartenGrundDatentypen.Hochwertiger_Boden => 0.32,
-                                                                                   KartenGrundDatentypen.Gold               => 0.08
+                                                                                   KartenGrundDatentypen.Fisch_Enum              => 0.32,
+                                                                                   KartenGrundDatentypen.Wal_Enum                => 0.08,
+                                                                                   KartenGrundDatentypen.Kohle_Enum              => 0.32,
+                                                                                   KartenGrundDatentypen.Eisen_Enum              => 0.32,
+                                                                                   KartenGrundDatentypen.Öl_Enum                 => 0.32,
+                                                                                   KartenGrundDatentypen.Hochwertiger_Boden_Enum => 0.32,
+                                                                                   KartenGrundDatentypen.Gold_Enum               => 0.08
                                                                                   )
                                                                                );
    

@@ -5,7 +5,6 @@ with GlobaleVariablen;
 with GlobaleTexte;
 with SystemKonstanten;
 with SystemDatentypen;
-with TastenbelegungKonstanten;
 
 with Eingabe;
 with GrafikEinstellungenSFML;
@@ -27,10 +26,10 @@ package body AuswahlSprache is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             return AuswahlSpracheKonsole;
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             return AuswahlMausTastatur;
       end case;
       
@@ -132,12 +131,12 @@ package body AuswahlSprache is
       AuswahlKonsoleSchleife:
       loop
                   
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Sprache);
+         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Sprache_Enum);
          
          case
            Eingabe.Tastenwert
          is
-            when TastenbelegungKonstanten.ObenKonstante | TastenbelegungKonstanten.EbeneHochKonstante =>
+            when TastenbelegungDatentypen.Oben_Enum | TastenbelegungDatentypen.Ebene_Hoch_Enum =>
                if
                  AktuelleAuswahl = AktuelleSprachen'First
                then
@@ -147,7 +146,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when TastenbelegungKonstanten.UntenKonstante | TastenbelegungKonstanten.EbeneRunterKonstante =>
+            when TastenbelegungDatentypen.Unten_Enum | TastenbelegungDatentypen.Ebene_Runter_Enum =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -157,7 +156,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
                then
@@ -186,7 +185,7 @@ package body AuswahlSprache is
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Sprache);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Sprache_Enum);
       
       AuswahlSchleife:
       loop
@@ -196,7 +195,7 @@ package body AuswahlSprache is
          case
            Eingabe.Tastenwert
          is
-            when TastenbelegungKonstanten.ObenKonstante | TastenbelegungKonstanten.EbeneHochKonstante =>
+            when TastenbelegungDatentypen.Oben_Enum | TastenbelegungDatentypen.Ebene_Hoch_Enum =>
                if
                  AktuelleAuswahl = AktuelleSprachen'First
                then
@@ -206,7 +205,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when TastenbelegungKonstanten.UntenKonstante | TastenbelegungKonstanten.EbeneRunterKonstante =>
+            when TastenbelegungDatentypen.Unten_Enum | TastenbelegungDatentypen.Ebene_Runter_Enum =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -216,7 +215,7 @@ package body AuswahlSprache is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleSprachen (AktuelleAuswahl) = MehrSprachen
                then
@@ -226,7 +225,7 @@ package body AuswahlSprache is
                   return AktuelleSprachen (AktuelleAuswahl);
                end if;
                
-            when TastenbelegungKonstanten.MenüZurückKonstante =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                return SystemKonstanten.LeerUnboundedString;
             
             when others =>

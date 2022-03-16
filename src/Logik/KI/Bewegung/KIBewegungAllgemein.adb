@@ -49,7 +49,7 @@ package body KIBewegungAllgemein is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when EinheitStadtDatentypen.Leer | EinheitStadtDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Leer_Enum | EinheitStadtDatentypen.Arbeiter_Enum =>
             return KIKonstanten.KeineBewegung;
             
          when others =>
@@ -70,7 +70,7 @@ package body KIBewegungAllgemein is
         and then
           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                              FremdeRasseExtern => BlockierendeStadt)
-        /= SystemDatentypen.Krieg
+        /= SystemDatentypen.Krieg_Enum
       then
          return KIKonstanten.KeineBewegung;
          
@@ -79,7 +79,7 @@ package body KIBewegungAllgemein is
         and then
           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                              FremdeRasseExtern => BlockierendeEinheit)
-        /= SystemDatentypen.Krieg
+        /= SystemDatentypen.Krieg_Enum
       then
          return KIKonstanten.KeineBewegung;
          
@@ -90,7 +90,7 @@ package body KIBewegungAllgemein is
       case
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when KIDatentypen.Angreifen | KIDatentypen.Verbesserung_Zerstören | KIDatentypen.Erkunden | KIDatentypen.Verteidigen =>
+         when KIDatentypen.Angreifen_Enum | KIDatentypen.Verbesserung_Zerstören_Enum | KIDatentypen.Erkunden_Enum | KIDatentypen.Verteidigen_Enum =>
             return KIKonstanten.BewegungAngriff;
             
          when others =>

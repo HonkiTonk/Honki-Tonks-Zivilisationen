@@ -19,14 +19,14 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
          then
             null;
             
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = SystemDatentypen.Krieg
+           = SystemDatentypen.Krieg_Enum
          then
             return True;
                   
@@ -50,7 +50,7 @@ package body KIKriegErmitteln is
       case
         RasseExtern
       is
-         when SystemKonstanten.EkropaKonstante =>
+         when SystemDatentypen.Ekropa_Enum =>
             return EinheitenKonstanten.LeerRasse;
             
          when others =>
@@ -66,7 +66,7 @@ package body KIKriegErmitteln is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
          then
             null;
             

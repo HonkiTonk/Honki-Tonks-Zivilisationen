@@ -51,10 +51,10 @@ package body StadtBauen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemKonstanten.SpielerKIKonstante =>
+         when SystemDatentypen.Spieler_KI_Enum =>
             StadtName.EingegebenerText := StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
-         when SystemKonstanten.SpielerMenschKonstante =>
+         when SystemDatentypen.Spieler_Mensch_Enum =>
             StadtName := Eingabe.StadtName;
             
             if
@@ -66,7 +66,7 @@ package body StadtBauen is
                null;
             end if;
             
-         when SystemKonstanten.LeerSpielerKonstante =>
+         when SystemDatentypen.Leer_Spieler_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "StadtBauen.StadtBauen - Eine nicht vorhandene Rasse baut eine Stadt.");
       end case;
             
@@ -92,7 +92,7 @@ package body StadtBauen is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when EinheitStadtDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Arbeiter_Enum =>
             null;
          
          when others =>
@@ -105,7 +105,7 @@ package body StadtBauen is
          return True;
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemKonstanten.SpielerKIKonstante
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum
       then
          return False;
          
@@ -130,12 +130,12 @@ package body StadtBauen is
          if
            StadtNummerSchleifenwert = GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
            and
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungKonstanten.LeerVerbesserung
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
          then
             case
               GlobaleVariablen.RassenImSpiel (RasseExtern)
             is
-               when SystemKonstanten.SpielerMenschKonstante =>
+               when SystemDatentypen.Spieler_Mensch_Enum =>
                   -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                   --                                       TextZeileExtern => 7);
                   null;
@@ -145,7 +145,7 @@ package body StadtBauen is
             end case;
 
          elsif
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungKonstanten.LeerVerbesserung
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
          then
             null;
             
@@ -204,8 +204,8 @@ package body StadtBauen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, HauptstadtSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
-               return KartenVerbesserungDatentypen.Eigene_Stadt;
+            when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
+               return KartenVerbesserungDatentypen.Eigene_Stadt_Enum;
                
             when others =>
                null;
@@ -213,7 +213,7 @@ package body StadtBauen is
          
       end loop HauptsstadtSchleife;
       
-      return KartenVerbesserungDatentypen.Eigene_Hauptstadt;
+      return KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum;
       
    end HauptstadtPrüfen;
    
@@ -227,7 +227,7 @@ package body StadtBauen is
       -- Standardnamen der KI einfach auf Basis der Stadtnummer festlegen?
       
       if
-        StadtRasseNummerExtern.Rasse = SystemKonstanten.MenschenKonstante
+        StadtRasseNummerExtern.Rasse = SystemDatentypen.Menschen_Enum
       then
          null;
          

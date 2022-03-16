@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
-with TastenbelegungKonstanten;
 
 with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
@@ -65,9 +64,9 @@ package body SchreibeEinheitenGebaut is
                case
                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung
                is
-                  when TastenbelegungKonstanten.HeilenKonstante =>
+                  when TastenbelegungDatentypen.Heilen_Enum =>
                      Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BeschäftigungExtern     => TastenbelegungKonstanten.LeerTastenbelegungKonstante);
+                                     BeschäftigungExtern     => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                           ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                           RechnenSetzenExtern      => 0);
@@ -381,15 +380,15 @@ package body SchreibeEinheitenGebaut is
            LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                               IDExtern    => (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID))
          is
-            when EinheitStadtDatentypen.Arbeiter =>
+            when EinheitStadtDatentypen.Arbeiter_Enum =>
                SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                  PlusMinusExtern => False);
             
-            when EinheitStadtDatentypen.Nahkämpfer | EinheitStadtDatentypen.Fernkämpfer | EinheitStadtDatentypen.Beides =>
+            when EinheitStadtDatentypen.Nahkämpfer_Enum | EinheitStadtDatentypen.Fernkämpfer_Enum | EinheitStadtDatentypen.Beides_Enum =>
                SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                  PlusMinusExtern => False);
             
-            when EinheitStadtDatentypen.Sonstiges =>
+            when EinheitStadtDatentypen.Sonstiges_Enum =>
                SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => EinheitRasseNummerExtern.Rasse,
                                                   PlusMinusExtern => False);
             

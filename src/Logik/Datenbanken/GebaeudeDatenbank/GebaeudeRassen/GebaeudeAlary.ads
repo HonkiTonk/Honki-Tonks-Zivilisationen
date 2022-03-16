@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with StadtKonstanten;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
-with KartenGrundKonstanten;
+with KartenGrundDatentypen;
 
 with DatenbankRecords;
 
@@ -20,8 +20,8 @@ package GebaeudeAlary is
                                                                             BonusWirtschaft             => (KartenDatentypen.Nahrung => 10,
                                                                                                             others                   => 0),
                                                                             BonusKampf                  => (others => 10),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Nahrungslager
                                                                          2 =>
@@ -31,8 +31,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 2,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Holzpalisade
                                                                          3 =>
@@ -42,8 +42,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 1,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Schmiede
                                                                          4 =>
@@ -53,8 +53,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 10,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
       
                                                                          -- Bibliothek
                                                                          5 =>
@@ -64,8 +64,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 9,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Steinmauer
                                                                          6 =>
@@ -75,8 +75,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 11,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Bücherei
                                                                          7 =>
@@ -86,8 +86,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 21,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Bewässerungssystem
                                                                          8 =>
@@ -97,8 +97,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 16,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Kaserne
                                                                          9 =>
@@ -108,8 +108,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 13,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Wassermühle
                                                                          10 =>
@@ -119,8 +119,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 15,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Windmühle
                                                                          11 =>
@@ -130,8 +130,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 15,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Seehafen
                                                                          12 =>
@@ -141,8 +141,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 14,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Hochofen
                                                                          13 =>
@@ -152,8 +152,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 33,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Universität
                                                                          14 =>
@@ -163,8 +163,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 27,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Burg
                                                                          15 =>
@@ -174,8 +174,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 22,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Schwere Burg
                                                                          16 =>
@@ -185,8 +185,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 25,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Festungen
                                                                          17 =>
@@ -196,8 +196,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 34,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Kohlekraftwerk
                                                                          18 =>
@@ -207,8 +207,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 37,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Fabrik
                                                                          19 =>
@@ -218,8 +218,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 30,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Krankenhaus
                                                                          20 =>
@@ -229,8 +229,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 43,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Flughafen
                                                                          21 =>
@@ -240,8 +240,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 41,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Atomkraftwerk
                                                                          22 =>
@@ -251,8 +251,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 45,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
                                                                          23 =>
@@ -262,8 +262,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 53,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Genklinik
                                                                          24 =>
@@ -273,8 +273,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 56,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- Fusionskraftwerk
                                                                          25 =>
@@ -284,8 +284,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 60,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                              
                                                                          -- NAMR Kraftwerk
                                                                          26 =>
@@ -295,8 +295,8 @@ package GebaeudeAlary is
                                                                             Anforderungen               => 63,
                                                                             BonusWirtschaft             => (others => 0),
                                                                             BonusKampf                  => (others => 0),
-                                                                            UmgebungBenötigt            => KartenGrundKonstanten.LeerGrund,
-                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer),
+                                                                            UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                                            GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
                                                               
                                                                          others => StadtKonstanten.LeerGebäudeListe
                                                                         );

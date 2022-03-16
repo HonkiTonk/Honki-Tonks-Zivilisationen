@@ -7,7 +7,6 @@ with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
-with SystemKonstanten;
 
 package BerechnungenKarteSFML is
    
@@ -30,7 +29,7 @@ package BerechnungenKarteSFML is
       return KartenDatentypen.SichtbereichAnfangEndeArray
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
    
 private
    

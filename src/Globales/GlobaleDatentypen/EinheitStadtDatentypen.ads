@@ -16,27 +16,27 @@ package EinheitStadtDatentypen is
    subtype EinheitenIDMitNullWert is MinimimMaximumID range 0 .. 50;
    subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;
 
-   type Passierbarkeit_Enum is (Leer,
-                                Boden,
-                                Wasser, Küstenwasser,
-                                Unterwasser, Unterküstenwasser,
-                                Luft,
-                                Weltraum,
-                                Unterirdisch,
-                                Planeteninneres, Lava);
+   type Passierbarkeit_Enum is (Leer_Enum,
+                                Boden_Enum,
+                                Wasser_Enum, Küstenwasser_Enum,
+                                Unterwasser_Enum, Unterküstenwasser_Enum,
+                                Luft_Enum,
+                                Weltraum_Enum,
+                                Unterirdisch_Enum,
+                                Planeteninneres_Enum, Lava_Enum);
 
-   subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Passierbarkeit_Enum'Last;
-   subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft .. Weltraum;
+   subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden_Enum .. Passierbarkeit_Enum'Last;
+   subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft_Enum .. Weltraum_Enum;
 
-   type Einheit_Art_Enum is (Leer, Arbeiter, Nahkämpfer, Fernkämpfer, Beides, Sonstiges);
-   subtype Einheit_Art_Verwendet_Enum is Einheit_Art_Enum range Arbeiter .. Einheit_Art_Enum'Last;
+   type Einheit_Art_Enum is (Leer_Enum, Arbeiter_Enum, Nahkämpfer_Enum, Fernkämpfer_Enum, Beides_Enum, Sonstiges_Enum);
+   subtype Einheit_Art_Verwendet_Enum is Einheit_Art_Enum range Arbeiter_Enum .. Einheit_Art_Enum'Last;
 
-   type Permanente_Kosten_Enum is (Leer, Nahrung, Geld, Ressourcen, Hier_Spezielle_Ressourcen_Einbauen);
-   subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung .. Permanente_Kosten_Enum'Last;
+   type Permanente_Kosten_Enum is (Leer_Enum, Nahrung_Enum, Geld_Enum, Ressourcen_Enum, Hier_Spezielle_Ressourcen_Einbauen_Enum);
+   subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung_Enum .. Permanente_Kosten_Enum'Last;
 
-   type Einheit_Meldung_Art_Enum is (Aufgabe_Fertig, Einheit_In_Der_Nähe);
-   type Einheit_Meldung_Enum is (Leer, Aufgabe_Abgeschlossen, Fremde_Einheit_Nahe);
-   subtype Einheit_Meldung_Verwendet_Enum is Einheit_Meldung_Enum range Aufgabe_Abgeschlossen .. Einheit_Meldung_Enum'Last;
+   type Einheit_Meldung_Art_Enum is (Aufgabe_Fertig_Enum, Einheit_In_Der_Nähe_Enum);
+   type Einheit_Meldung_Enum is (Leer_Enum, Aufgabe_Abgeschlossen_Enum, Fremde_Einheit_Nahe_Enum);
+   subtype Einheit_Meldung_Verwendet_Enum is Einheit_Meldung_Enum range Aufgabe_Abgeschlossen_Enum .. Einheit_Meldung_Enum'Last;
 
    type BewegungFloat is digits 2 range -100.00 .. 100.00;
    subtype VorhandeneBewegungspunkte is BewegungFloat range 0.00 .. BewegungFloat'Last;
@@ -58,8 +58,8 @@ package EinheitStadtDatentypen is
    subtype GebäudeIDMitNullwert is MinimimMaximumID range 0 .. 27;
    subtype GebäudeID is GebäudeIDMitNullwert range 1 .. GebäudeIDMitNullwert'Last;
 
-   type Gebäude_Spezielle_Eigenschaften_Enum is (Leer, Eigenschaft);
-   subtype Gebäude_Spezielle_Eigenschaften_Verwendet_Enum is Gebäude_Spezielle_Eigenschaften_Enum range Eigenschaft .. Gebäude_Spezielle_Eigenschaften_Enum'Last;
+   type Gebäude_Spezielle_Eigenschaften_Enum is (Leer_Enum, Eigenschaft_Enum);
+   subtype Gebäude_Spezielle_Eigenschaften_Verwendet_Enum is Gebäude_Spezielle_Eigenschaften_Enum range Eigenschaft_Enum .. Gebäude_Spezielle_Eigenschaften_Enum'Last;
    -- Für Gebäude
 
 
@@ -88,9 +88,9 @@ package EinheitStadtDatentypen is
 
    type ProduktionSonstiges is new ProduktionFeld range -1 .. 100;
 
-   type Stadt_Meldung_Art_Enum is (Produktion_Fertig, Hungersnot, Einheit_In_Der_Nähe);
-   type Stadt_Meldung_Enum is (Leer, Produktion_Abgeschlossen, Einheit_Unplatzierbar, Einwohner_Wachstum, Einwohner_Reduktion, Fremde_Einheit_Nahe_Stadt);
-   subtype Stadt_Meldungen_Verwendet_Enum is Stadt_Meldung_Enum range Produktion_Abgeschlossen .. Stadt_Meldung_Enum'Last;
+   type Stadt_Meldung_Art_Enum is (Produktion_Fertig_Enum, Hungersnot_Enum, Einheit_In_Der_Nähe_Enum);
+   type Stadt_Meldung_Enum is (Leer_Enum, Produktion_Abgeschlossen_Enum, Einheit_Unplatzierbar_Enum, Einwohner_Wachstum_Enum, Einwohner_Reduktion_Enum, Fremde_Einheit_Nahe_Stadt_Enum);
+   subtype Stadt_Meldungen_Verwendet_Enum is Stadt_Meldung_Enum range Produktion_Abgeschlossen_Enum .. Stadt_Meldung_Enum'Last;
    -- Für Stadt
 
 end EinheitStadtDatentypen;

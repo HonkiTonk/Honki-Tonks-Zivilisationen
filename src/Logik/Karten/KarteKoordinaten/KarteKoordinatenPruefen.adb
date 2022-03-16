@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with KartenRecordKonstanten;
-with KartenEinstellungenKonstanten;
 
 with KartePositionKeinUebergangBerechnungen;
 with KartePositionGeraderUebergangBerechnungen;
@@ -132,11 +131,11 @@ package body KarteKoordinatenPruefen is
       case
         Karten.KartenformEingestellt.EAchseEinstellung
       is
-         when KartenEinstellungenKonstanten.KartenformKeinÜbergangEAchseKonstante =>
+         when SystemDatentypen.Karte_E_Achse_Kein_Übergang_Enum =>
             return KartePositionKeinUebergangBerechnungen.PositionBestimmenEAchse (EAchseExtern         => EAchseExtern,
                                                                                    ÄnderungEAchseExtern => ÄnderungEAchseExtern);
             
-         when KartenEinstellungenKonstanten.KartenformÜbergangEAchseKonstante =>
+         when SystemDatentypen.Karte_E_Achse_Übergang_Enum =>
             return KartePositionGeraderUebergangBerechnungen.PositionBestimmenEAchse (EAchseExtern          => EAchseExtern,
                                                                                       ÄnderungEAchseExtern  => ÄnderungEAchseExtern,
                                                                                       ArrayPositionExtern   => EAchseExtern,
@@ -155,7 +154,7 @@ package body KarteKoordinatenPruefen is
    is begin
       
       if
-        Karten.KartenformEingestellt.XAchseEinstellung = KartenEinstellungenKonstanten.KartenformÜbergangXAchseVerschobenKonstante
+        Karten.KartenformEingestellt.XAchseEinstellung = SystemDatentypen.Karte_X_Achse_Verschobener_Übergang_Enum
       then
          YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse)
            := KartePositionVerschobenerUebergangBerechnungen.PositionBestimmenYAchse (KoordinatenExtern => (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
@@ -185,18 +184,18 @@ package body KarteKoordinatenPruefen is
       case
         Karten.KartenformEingestellt.YAchseEinstellung
       is
-         when KartenEinstellungenKonstanten.KartenformKeinÜbergangYAchseKonstante =>
+         when SystemDatentypen.Karte_Y_Achse_Kein_Übergang_Enum =>
             return KartePositionKeinUebergangBerechnungen.PositionBestimmenYAchse (YAchseExtern         => KoordinatenExtern.YAchse,
                                                                                    ÄnderungYAchseExtern => ÄnderungYAchseExtern);
          
             ----------------- Kann man das so zusammenfassen oder kommt es da in bestimmten Fällen zu Fehlern?
-         when KartenEinstellungenKonstanten.KartenformÜbergangYAchseKonstante | KartenEinstellungenKonstanten.KartenformÜbergangYAchseVerschobenKonstante =>
+         when SystemDatentypen.Karte_Y_Achse_Übergang_Enum | SystemDatentypen.Karte_Y_Achse_Verschobener_Übergang_Enum =>
             return KartePositionGeraderUebergangBerechnungen.PositionBestimmenYAchse (YAchseExtern         => KoordinatenExtern.YAchse,
                                                                                       ÄnderungYAchseExtern => ÄnderungYAchseExtern,
                                                                                       ArrayPositionExtern  => KoordinatenExtern.EAchse,
                                                                                       LogikGrafikExtern    => LogikGrafikExtern);
             
-         when KartenEinstellungenKonstanten.KartenformRückwärtsVerschobenerÜbergangYAchseKonstante =>
+         when SystemDatentypen.Karte_Y_Achse_Rückwärts_Verschobener_Übergang_Enum =>
             return KartePositionRueckwaertsUebergangBerechnungen.PositionBestimmenYAchse (YAchseExtern         => KoordinatenExtern.YAchse,
                                                                                           ÄnderungYAchseExtern => ÄnderungYAchseExtern,
                                                                                           ArrayPositionExtern  => KoordinatenExtern.EAchse,
@@ -215,7 +214,7 @@ package body KarteKoordinatenPruefen is
    is begin
       
       if
-        Karten.KartenformEingestellt.YAchseEinstellung = KartenEinstellungenKonstanten.KartenformÜbergangYAchseVerschobenKonstante
+        Karten.KartenformEingestellt.YAchseEinstellung = SystemDatentypen.Karte_Y_Achse_Verschobener_Übergang_Enum
       then
          XAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse)
            := KartePositionVerschobenerUebergangBerechnungen.PositionBestimmenXAchse (KoordinatenExtern => (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
@@ -245,18 +244,18 @@ package body KarteKoordinatenPruefen is
       case
         Karten.KartenformEingestellt.XAchseEinstellung
       is
-         when KartenEinstellungenKonstanten.KartenformKeinÜbergangXAchseKonstante =>
+         when SystemDatentypen.Karte_X_Achse_Kein_Übergang_Enum =>
             return KartePositionKeinUebergangBerechnungen.PositionBestimmenXAchse (XAchseExtern         => KoordinatenExtern.XAchse,
                                                                                    ÄnderungXAchseExtern => ÄnderungXAchseExtern);
             
             ----------------- Kann man das so zusammenfassen oder kommt es da in bestimmten Fällen zu Fehlern?
-         when KartenEinstellungenKonstanten.KartenformÜbergangXAchseKonstante | KartenEinstellungenKonstanten.KartenformÜbergangXAchseVerschobenKonstante =>
+         when SystemDatentypen.Karte_X_Achse_Übergang_Enum | SystemDatentypen.Karte_X_Achse_Verschobener_Übergang_Enum =>
             return KartePositionGeraderUebergangBerechnungen.PositionBestimmenXAchse (XAchseExtern         => KoordinatenExtern.XAchse,
                                                                                       ÄnderungXAchseExtern => ÄnderungXAchseExtern,
                                                                                       ArrayPositionExtern  => KoordinatenExtern.EAchse,
                                                                                       LogikGrafikExtern    => LogikGrafikExtern);
             
-         when KartenEinstellungenKonstanten.KartenformRückwärtsVerschobenerÜbergangXAchseKonstante =>
+         when SystemDatentypen.Karte_X_Achse_Rückwärts_Verschobener_Übergang_Enum =>
             return KartePositionRueckwaertsUebergangBerechnungen.PositionBestimmenXAchse (XAchseExtern         => KoordinatenExtern.XAchse,
                                                                                           ÄnderungXAchseExtern => ÄnderungXAchseExtern,
                                                                                           ArrayPositionExtern  => KoordinatenExtern.EAchse,

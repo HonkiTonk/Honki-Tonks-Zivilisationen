@@ -6,7 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
-with TastenbelegungKonstanten;
+with TastenbelegungDatentypen;
 
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
@@ -56,7 +56,7 @@ package body AuswahlStadtEinheit is
       
       AktuelleAuswahl := 0;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Einheit_Auswahl);
+      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Einheit_Auswahl_Enum);
       
       AuswahlSchleife:
       loop
@@ -66,7 +66,7 @@ package body AuswahlStadtEinheit is
          case
            Eingabe.Tastenwert
          is               
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleAuswahl >= 0
                then
@@ -76,7 +76,7 @@ package body AuswahlStadtEinheit is
                   null;
                end if;
                
-            when TastenbelegungKonstanten.MenüZurückKonstante =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                AktuelleAuswahl := -1;
                exit AuswahlSchleife;
                
@@ -86,7 +86,7 @@ package body AuswahlStadtEinheit is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
+      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
       
       return AktuelleAuswahl;
       

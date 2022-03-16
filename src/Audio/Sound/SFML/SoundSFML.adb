@@ -22,13 +22,13 @@ package body SoundSFML is
          case
            InteraktionSoundtask.AktuellenSoundAbfragen
          is
-            when SystemDatentypen.Sound_Konsole =>
+            when SystemDatentypen.Sound_Konsole_Enum =>
                Fehler.SoundFehler (FehlermeldungExtern => "SoundSFML.SoundSFML - Konsole wird bei SFML aufgerufen.");
                
-            when SystemDatentypen.Sound_SFML =>
+            when SystemDatentypen.Sound_SFML_Enum =>
                delay SystemKonstanten.WartezeitSound;
                
-            when SystemDatentypen.Sound_Ende =>
+            when SystemDatentypen.Sound_Ende_Enum =>
                exit SoundSchleife;
          end case;
          

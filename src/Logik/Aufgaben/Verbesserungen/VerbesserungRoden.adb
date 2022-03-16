@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungKonstanten;
+with TastenbelegungDatentypen;
 
 with SchreibeEinheitenGebaut;
   
@@ -19,9 +19,9 @@ package body VerbesserungRoden is
       case
         GrundExtern
       is
-         when KartenGrundDatentypen.Wald | KartenGrundDatentypen.Dschungel | KartenGrundDatentypen.Sumpf =>
+         when KartenGrundDatentypen.Wald_Enum | KartenGrundDatentypen.Dschungel_Enum | KartenGrundDatentypen.Sumpf_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungKonstanten.RodenTrockenlegenKonstante);
+                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Roden_Trockenlegen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);

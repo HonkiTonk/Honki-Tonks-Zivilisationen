@@ -8,7 +8,6 @@ with GlobaleTexte;
 with StadtKonstanten;
 with KartenVerbesserungDatentypen;
 with TextKonstanten;
-with KartenVerbesserungKonstanten;
 
 with LeseStadtGebaut;
 
@@ -81,10 +80,10 @@ package body StadtInformationenSFML is
       case
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when KartenVerbesserungKonstanten.LeerVerbesserung =>
+         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenSFML.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
             
-         when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
+         when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
@@ -94,7 +93,7 @@ package body StadtInformationenSFML is
                Stadtart := 3;
             end if;
                   
-         when KartenVerbesserungDatentypen.Eigene_Stadt =>
+         when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then

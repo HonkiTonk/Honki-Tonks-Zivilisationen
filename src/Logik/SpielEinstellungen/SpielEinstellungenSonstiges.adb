@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
-with SystemKonstanten;
 
 with ZufallGeneratorenSpieleinstellungen;
 with AuswahlMenue;
@@ -17,21 +16,21 @@ package body SpielEinstellungenSonstiges is
       SchwierigkeitsgradSchleife:
       loop
 
-         SchwierigkeitAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Schwierigkeitsgrad_Menü);
+         SchwierigkeitAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Schwierigkeitsgrad_Menü_Enum);
          
          case
            SchwierigkeitAuswahl
          is
             when SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Range =>
                GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
-               return SystemKonstanten.StartWeiterKonstante;
+               return SystemDatentypen.Start_Weiter_Enum;
 
-            when SystemKonstanten.ZufallKonstante =>
+            when SystemDatentypen.Zufall_Enum =>
                GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
-               return SystemKonstanten.StartWeiterKonstante;
+               return SystemDatentypen.Start_Weiter_Enum;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlRassenKonstante;
+            when SystemDatentypen.Zurück_Enum =>
+               return SystemDatentypen.Auswahl_Rassen_Enum;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return SchwierigkeitAuswahl;

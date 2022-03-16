@@ -1,9 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemKonstanten;
-with KartenEinstellungenKonstanten;
-
 with Karten;
 with Eingabe;
 with ZufallGeneratorenSpieleinstellungen;
@@ -19,25 +16,25 @@ package body SpielEinstellungenKarten is
       KartengrößeSchleife:
       loop
          
-         KartengrößeAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartengröße_Menü);
+         KartengrößeAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartengröße_Menü_Enum);
          
          case
            KartengrößeAuswahl
          is
             when KartenDatentypen.Kartengröße_Standard_Enum'Range =>
                Karten.Kartengröße := KartengrößeAuswahl;
-               return SystemKonstanten.AuswahlKartenartKonstante;
+               return SystemDatentypen.Auswahl_Kartenart_Enum;
 
-            when KartenEinstellungenKonstanten.KartengrößeNutzerKonstante =>
+            when SystemDatentypen.Karte_Größe_Nutzer_Enum =>
                return GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
-            when SystemKonstanten.ZufallKonstante =>
+            when SystemDatentypen.Zufall_Enum =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
-               return SystemKonstanten.AuswahlKartenartKonstante;
+               return SystemDatentypen.Auswahl_Kartenart_Enum;
                
-            when KartenEinstellungenKonstanten.KartengrößeZufallKonstante =>
+            when SystemDatentypen.Karte_Größe_Zufall_Enum =>
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
-               return SystemKonstanten.AuswahlKartenartKonstante;
+               return SystemDatentypen.Auswahl_Kartenart_Enum;
 
             when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                return KartengrößeAuswahl;
@@ -66,7 +63,7 @@ package body SpielEinstellungenKarten is
         BenutzerdefinierteGröße.EingabeAbbruch
       is
          when False =>
-            return SystemKonstanten.AuswahlKartengrößeKonstante;
+            return SystemDatentypen.Auswahl_Kartengröße_Enum;
             
          when True =>
             null;
@@ -81,12 +78,12 @@ package body SpielEinstellungenKarten is
         BenutzerdefinierteGröße.EingabeAbbruch
       is
          when False =>
-            return SystemKonstanten.AuswahlKartengrößeKonstante;
+            return SystemDatentypen.Auswahl_Kartengröße_Enum;
             
          when True =>
             Karten.Kartengrößen (KartengrößeExtern).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
             Karten.Kartengröße := KartengrößeExtern;
-            return SystemKonstanten.AuswahlKartenartKonstante;
+            return SystemDatentypen.Auswahl_Kartenart_Enum;
       end case;
       
    end GrößeSelbstBestimmen;
@@ -101,21 +98,21 @@ package body SpielEinstellungenKarten is
       KartenartSchleife:
       loop
 
-         KartenartAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenart_Menü);
+         KartenartAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenart_Menü_Enum);
          
          case
            KartenartAuswahl
          is
             when KartenDatentypen.Kartenart_Verwendet_Enum'Range =>
                Karten.Kartenart := KartenartAuswahl;
-               return SystemKonstanten.AuswahlKartenformKonstante;
+               return SystemDatentypen.Auswahl_Kartenform_Enum;
                
-            when SystemKonstanten.ZufallKonstante =>
+            when SystemDatentypen.Zufall_Enum =>
                Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
-               return SystemKonstanten.AuswahlKartenformKonstante;
+               return SystemDatentypen.Auswahl_Kartenform_Enum;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartengrößeKonstante;
+            when SystemDatentypen.Zurück_Enum =>
+               return SystemDatentypen.Auswahl_Kartengröße_Enum;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenartAuswahl;
@@ -138,21 +135,21 @@ package body SpielEinstellungenKarten is
       KartenformSchleife:
       loop
 
-         KartenformAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenform_Menü);
+         KartenformAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenform_Menü_Enum);
          
          case
            KartenformAuswahl
          is
             when KartenDatentypen.Kartenform_Verwendet_Enum'Range =>
                Karten.Kartenform := KartenformAuswahl;
-               return SystemKonstanten.AuswahlKartentemperaturKonstante;
+               return SystemDatentypen.Auswahl_Kartentemperatur_Enum;
                
-            when SystemKonstanten.ZufallKonstante =>
+            when SystemDatentypen.Zufall_Enum =>
                Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
-               return SystemKonstanten.AuswahlKartentemperaturKonstante;
+               return SystemDatentypen.Auswahl_Kartentemperatur_Enum;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartenartKonstante;
+            when SystemDatentypen.Zurück_Enum =>
+               return SystemDatentypen.Auswahl_Kartenart_Enum;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenformAuswahl;
@@ -175,21 +172,21 @@ package body SpielEinstellungenKarten is
       KartentemperaturSchleife:
       loop
 
-         KartentemperaturAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartentemperatur_Menü);
+         KartentemperaturAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartentemperatur_Menü_Enum);
                   
          case
            KartentemperaturAuswahl
          is
             when KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range =>
                Karten.Kartentemperatur := KartentemperaturAuswahl;
-               return SystemKonstanten.AuswahlKartenressourcenKonstante;
+               return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
                
-            when SystemKonstanten.ZufallKonstante =>
+            when SystemDatentypen.Zufall_Enum =>
                Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
-               return SystemKonstanten.AuswahlKartenressourcenKonstante;
+               return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartenformKonstante;
+            when SystemDatentypen.Zurück_Enum =>
+               return SystemDatentypen.Auswahl_Kartenform_Enum;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartentemperaturAuswahl;
@@ -212,21 +209,21 @@ package body SpielEinstellungenKarten is
       KartenressourcenSchleife:
       loop
 
-         KartenressourcenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenressourcen_Menü);
+         KartenressourcenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenressourcen_Menü_Enum);
          
          case
            KartenressourcenAuswahl
          is
             when KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range =>
                Karten.Kartenressourcen := KartenressourcenAuswahl;
-               return SystemKonstanten.AuswahlRassenKonstante;
+               return SystemDatentypen.Auswahl_Rassen_Enum;
                
-            when SystemKonstanten.ZufallKonstante =>
+            when SystemDatentypen.Zufall_Enum =>
                Karten.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
-               return SystemKonstanten.AuswahlRassenKonstante;
+               return SystemDatentypen.Auswahl_Rassen_Enum;
                
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartentemperaturKonstante;
+            when SystemDatentypen.Zurück_Enum =>
+               return SystemDatentypen.Auswahl_Kartentemperatur_Enum;
 
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return KartenressourcenAuswahl;

@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 package Informationen is
 
-   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.01.0135";
+   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.01.0150";
 
    procedure Informationen;
 

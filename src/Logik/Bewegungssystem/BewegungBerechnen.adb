@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenKonstanten;
-with KartenGrundKonstanten;
+with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
 
 with SchreibeEinheitenGebaut;
@@ -85,7 +85,7 @@ package body BewegungBerechnen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemKonstanten.SpielerKIKonstante =>
+         when SystemDatentypen.Spieler_KI_Enum =>
             null;
             
          when others =>
@@ -115,7 +115,7 @@ package body BewegungBerechnen is
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
+             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
          then
             null;
             
@@ -149,7 +149,7 @@ package body BewegungBerechnen is
       case
         LeseKarten.Grund (KoordinatenExtern => NeueKoordinatenExtern)
       is
-         when KartenGrundKonstanten.EisKonstante | KartenGrundKonstanten.GebirgeKonstante | KartenGrundKonstanten.DschungelKonstante | KartenGrundKonstanten.SumpfKonstante =>
+         when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Gebirge_Enum | KartenGrundDatentypen.Dschungel_Enum | KartenGrundDatentypen.Sumpf_Enum =>
             if
               LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug
             then
@@ -182,31 +182,31 @@ package body BewegungBerechnen is
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-         return Bewegungsbonuse_Enum
+      return Bewegungsbonuse_Enum
    is begin
 
       if
         LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               WelcheUmgebungExtern => EinheitStadtDatentypen.Luft)
+                                               WelcheUmgebungExtern => EinheitStadtDatentypen.Luft_Enum)
         = False
         and
           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                  IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                 WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum)
+                                                 WelcheUmgebungExtern => EinheitStadtDatentypen.Weltraum_Enum)
         = False
       then
          case
            LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern)
          is
             when KartenVerbesserungDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
-               return Straße_Fluss;
+               return Straße_Fluss_Enum;
                
             when KartenVerbesserungDatentypen.Karten_Verbesserung_Schiene_Enum'Range =>
-               return Schiene;
+               return Schiene_Enum;
                
             when KartenVerbesserungDatentypen.Karten_Verbesserung_Tunnel_Enum =>
-               return Straße_Fluss;
+               return Straße_Fluss_Enum;
                   
             when others =>
                null;
@@ -215,18 +215,18 @@ package body BewegungBerechnen is
          case
            LeseKarten.Fluss (KoordinatenExtern => NeueKoordinatenExtern)
          is
-            when KartenGrundKonstanten.LeerGrund =>
+            when KartenGrundDatentypen.Leer_Grund_Enum =>
                null;
 
             when others =>
-               return Straße_Fluss;
+               return Straße_Fluss_Enum;
          end case;
 
       else
          null;
       end if;
       
-      return Leer;
+      return Leer_Enum;
       
    end StraßeUndFlussPrüfen;
 

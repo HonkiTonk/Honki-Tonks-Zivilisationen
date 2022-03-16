@@ -5,7 +5,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with KartenVerbesserungKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -130,7 +129,7 @@ package body BewegungPassierbarkeitPruefen is
       
       -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
       if
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungGebiet
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
         and
           KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
@@ -139,7 +138,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungWeg
+        LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
         and then
           KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
                                          PassierbarkeitExtern => UmgebungExtern)
@@ -149,7 +148,7 @@ package body BewegungPassierbarkeitPruefen is
          
          -- Warum kommt die Prüfung hier noch einmal?
       elsif
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungGebiet
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
         and then
           KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
@@ -185,47 +184,47 @@ package body BewegungPassierbarkeitPruefen is
       if
         NeueKoordinatenExtern.EAchse = -2
         and
-          UmgebungExtern /= EinheitStadtDatentypen.Planeteninneres
+          UmgebungExtern /= EinheitStadtDatentypen.Planeteninneres_Enum
           and
-            UmgebungExtern /= EinheitStadtDatentypen.Lava
+            UmgebungExtern /= EinheitStadtDatentypen.Lava_Enum
       then
          null;
                   
       elsif
         NeueKoordinatenExtern.EAchse = -1
         and
-          UmgebungExtern /= EinheitStadtDatentypen.Unterwasser
+          UmgebungExtern /= EinheitStadtDatentypen.Unterwasser_Enum
           and
-            UmgebungExtern /= EinheitStadtDatentypen.Unterküstenwasser
+            UmgebungExtern /= EinheitStadtDatentypen.Unterküstenwasser_Enum
             and
-              UmgebungExtern /= Unterirdisch
+              UmgebungExtern /= EinheitStadtDatentypen.Unterirdisch_Enum
       then
          null;
                   
       elsif
         NeueKoordinatenExtern.EAchse = 0
         and
-          UmgebungExtern /= EinheitStadtDatentypen.Wasser
+          UmgebungExtern /= EinheitStadtDatentypen.Wasser_Enum
           and
-            UmgebungExtern /= EinheitStadtDatentypen.Küstenwasser
+            UmgebungExtern /= EinheitStadtDatentypen.Küstenwasser_Enum
             and
-              UmgebungExtern /= EinheitStadtDatentypen.Boden
+              UmgebungExtern /= EinheitStadtDatentypen.Boden_Enum
               and
-                UmgebungExtern not in Passierbarkeit_Fliegen_Enum'Range
+                UmgebungExtern not in EinheitStadtDatentypen.Passierbarkeit_Fliegen_Enum'Range
       then
          null;
                   
       elsif
         NeueKoordinatenExtern.EAchse = 1
         and
-          UmgebungExtern not in Passierbarkeit_Fliegen_Enum'Range
+          UmgebungExtern not in EinheitStadtDatentypen.Passierbarkeit_Fliegen_Enum'Range
       then
          null;
          
       elsif
         NeueKoordinatenExtern.EAchse = 2
         and
-          UmgebungExtern /= EinheitStadtDatentypen.Weltraum
+          UmgebungExtern /= EinheitStadtDatentypen.Weltraum_Enum
       then
          null;
             

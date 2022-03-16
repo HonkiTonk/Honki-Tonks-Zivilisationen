@@ -4,8 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
-with KartenVerbesserungKonstanten;
-with KartenGrundKonstanten;
 
 with Fehler;
 
@@ -53,11 +51,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss
       is
-         when KartenGrundKonstanten.LeerGrund | KartenGrundDatentypen.Karten_Fluss_Enum'Range =>
+         when KartenGrundDatentypen.Leer_Grund_Enum | KartenGrundDatentypen.Karten_Fluss_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := KartenGrundKonstanten.LeerGrund;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := KartenGrundDatentypen.Leer_Grund_Enum;
       end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
@@ -74,11 +72,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg
       is
-         when KartenVerbesserungKonstanten.LeerVerbesserungWeg | KartenVerbesserungDatentypen.Karten_Weg_Enum'Range =>
+         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum | KartenVerbesserungDatentypen.Karten_Weg_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := KartenVerbesserungKonstanten.LeerVerbesserungWeg;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
       end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg;
@@ -95,11 +93,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet
       is
-         when KartenVerbesserungKonstanten.LeerVerbesserungGebiet | KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
+         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum | KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := KartenVerbesserungKonstanten.LeerVerbesserungGebiet;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
       end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet;
@@ -116,11 +114,11 @@ package body LeseKarten is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource
       is
-         when KartenGrundKonstanten.LeerGrund | KartenGrundDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
+         when KartenGrundDatentypen.Leer_Grund_Enum | KartenGrundDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
             null;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := KartenGrundKonstanten.LeerGrund;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := KartenGrundDatentypen.Leer_Grund_Enum;
       end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;

@@ -19,7 +19,7 @@ package body StartMusik is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             return;
             
          when others =>
@@ -36,10 +36,10 @@ package body StartMusik is
       case
         InteraktionMusiktask.AktuelleMusik
       is
-         when SystemDatentypen.Musik_SFML =>
+         when SystemDatentypen.Musik_SFML_Enum =>
             MusikSFML.MusikSFML;
             
-         when SystemDatentypen.Musik_Konsole =>
+         when SystemDatentypen.Musik_Konsole_Enum =>
             MusikKonsole.MusikKonsole;
             
          when others =>

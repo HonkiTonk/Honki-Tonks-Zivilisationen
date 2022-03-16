@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with StadtKonstanten;
-with TastenbelegungKonstanten;
+with TastenbelegungDatentypen;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -57,7 +57,7 @@ package body KampfwerteEinheitErmitteln is
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when TastenbelegungKonstanten.VerschanzenKonstante =>
+         when TastenbelegungDatentypen.Verschanzen_Enum =>
             VerteidigungWertFloat := VerteidigungWertFloat * VerschanzungBonus;
                   
          when others =>

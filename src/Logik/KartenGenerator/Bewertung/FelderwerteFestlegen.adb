@@ -5,9 +5,8 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with SystemKonstanten;
-with KartenGrundKonstanten;
-with KartenVerbesserungKonstanten;
+with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -117,7 +116,7 @@ package body FelderwerteFestlegen is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.SpielerKIKonstante
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI_Enum
            and
              (RasseExtern = EinheitenKonstanten.LeerRasse
               or
@@ -136,7 +135,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.Fluss (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenGrundKonstanten.LeerGrund =>
+               when KartenGrundDatentypen.Leer_Grund_Enum =>
                   null;
             
                when others =>
@@ -154,7 +153,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
+               when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                   null;
             
                when others =>
@@ -172,7 +171,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenVerbesserungKonstanten.LeerVerbesserungGebiet =>
+               when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                   null;
             
                when others =>
@@ -190,7 +189,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.Ressource (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenGrundKonstanten.LeerGrund =>
+               when KartenGrundDatentypen.Leer_Grund_Enum =>
                   null;
             
                when others =>

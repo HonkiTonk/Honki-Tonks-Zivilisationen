@@ -14,14 +14,14 @@ package body StadtMeldungenSetzen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                StadtSchleife:
                for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
-                  GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer);
+                  GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer_Enum);
                   
                end loop StadtSchleife;
          end case;
@@ -40,14 +40,14 @@ package body StadtMeldungenSetzen is
       case
         EreignisExtern
       is
-         when EinheitStadtDatentypen.Produktion_Abgeschlossen | EinheitStadtDatentypen.Einheit_Unplatzierbar =>
-            ArtDerMeldung := EinheitStadtDatentypen.Produktion_Fertig;
+         when EinheitStadtDatentypen.Produktion_Abgeschlossen_Enum | EinheitStadtDatentypen.Einheit_Unplatzierbar_Enum =>
+            ArtDerMeldung := EinheitStadtDatentypen.Produktion_Fertig_Enum;
             
-         when EinheitStadtDatentypen.Einwohner_Wachstum | EinheitStadtDatentypen.Einwohner_Reduktion =>
-            ArtDerMeldung := EinheitStadtDatentypen.Hungersnot;
+         when EinheitStadtDatentypen.Einwohner_Wachstum_Enum | EinheitStadtDatentypen.Einwohner_Reduktion_Enum =>
+            ArtDerMeldung := EinheitStadtDatentypen.Hungersnot_Enum;
             
-         when EinheitStadtDatentypen.Fremde_Einheit_Nahe_Stadt =>
-            ArtDerMeldung := EinheitStadtDatentypen.Einheit_In_Der_Nähe;
+         when EinheitStadtDatentypen.Fremde_Einheit_Nahe_Stadt_Enum =>
+            ArtDerMeldung := EinheitStadtDatentypen.Einheit_In_Der_Nähe_Enum;
       end case;
       
       SchreibeStadtGebaut.Meldungen (StadtRasseNummerExtern => StadtRasseNummerExtern,

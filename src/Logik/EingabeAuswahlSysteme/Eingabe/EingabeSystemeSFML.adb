@@ -38,7 +38,7 @@ package body EingabeSystemeSFML is
                return;
                   
             when Sf.Window.Event.sfEvtResized =>
-               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert;
+               InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Fenster_Verändert_Enum;
                   
             when Sf.Window.Event.sfEvtMouseMoved =>
                -- Immer hier die neue Mausposition festlegen, denn es kann/wird bei mehreren gleichzeitigen Mausaufrufen des RenderWindow zu Abstürzen kommen.

@@ -13,7 +13,6 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
 with EinheitStadtRecords;
-with SystemKonstanten;
 with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
 
@@ -23,7 +22,7 @@ package KarteSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
    
 private
    

@@ -3,9 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen;
 with SystemDatentypen;
-with SystemKonstanten;
 with TastenbelegungDatentypen;
-with TastenbelegungKonstanten;
 
 with DatenbankRecords;
 
@@ -22,201 +20,201 @@ package ForschungKonstanten is
    
    type TechnologieVerbesserungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
-                                                                       SystemKonstanten.MenschenKonstante =>
+                                                                       SystemDatentypen.Menschen_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.KasrodiahKonstante =>
+                                                                       SystemDatentypen.Kasrodiah_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.LasupinKonstante =>
+                                                                       SystemDatentypen.Lasupin_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.LamustraKonstante =>
+                                                                       SystemDatentypen.Lamustra_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.ManukyKonstante =>
+                                                                       SystemDatentypen.Manuky_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.SurokaKonstante =>
+                                                                       SystemDatentypen.Suroka_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.PryolonKonstante =>
+                                                                       SystemDatentypen.Pryolon_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.TalbidahrKonstante =>
+                                                                       SystemDatentypen.Talbidahr_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.MoruPhisihlKonstante =>
+                                                                       SystemDatentypen.Moru_Phisihl_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.LarinosLotarisKonstante =>
+                                                                       SystemDatentypen.Larinos_Lotaris_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.CarupexKonstante =>
+                                                                       SystemDatentypen.Carupex_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.AlaryKonstante =>
+                                                                       SystemDatentypen.Alary_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.TesorahnKonstante =>
+                                                                       SystemDatentypen.Tesorahn_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.NatriesZermanisKonstante =>
+                                                                       SystemDatentypen.Natries_Zermanis_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.TridatusKonstante =>
+                                                                       SystemDatentypen.Tridatus_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.SenelariKonstante =>
+                                                                       SystemDatentypen.Senelari_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.Aspari2Konstante =>
+                                                                       SystemDatentypen.Aspari_2_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemKonstanten.EkropaKonstante =>
+                                                                       SystemDatentypen.Ekropa_Enum =>
                                                                          (
-                                                                          TastenbelegungKonstanten.StraßeBauenKonstante       => 0,
-                                                                          TastenbelegungKonstanten.WaldAufforstenKonstante    => 0,
-                                                                          TastenbelegungKonstanten.MineBauenKonstante         => 6,
-                                                                          TastenbelegungKonstanten.FarmBauenKonstante         => 2,
-                                                                          TastenbelegungKonstanten.FestungBauenKonstante      => 11,
-                                                                          TastenbelegungKonstanten.RodenTrockenlegenKonstante => 1,
+                                                                          TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
+                                                                          TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
+                                                                          TastenbelegungDatentypen.Mine_Bauen_Enum         => 6,
+                                                                          TastenbelegungDatentypen.Farm_Bauen_Enum         => 2,
+                                                                          TastenbelegungDatentypen.Festung_Bauen_Enum      => 11,
+                                                                          TastenbelegungDatentypen.Roden_Trockenlegen_Enum => 1,
                                                                           others                                      => LeerForschungAnforderung
                                                                          )
                                                                       );

@@ -7,15 +7,15 @@ with SystemDatentypen;
 
 package LadezeitenDatentypen is
 
-   type Spielwelt_Erstellen_Zeit_Enum is (Leer, Gesamtzeit, Generiere_Normal_Himmel_Weltraum_Planeteninneres, Generiere_Küstengewässer, Generiere_Landschaft_Ebene_Oberfläche, Generiere_Unterwasser_Unterirdisch,
-                                          Generiere_Flüsse, Generiere_Ressourcen, Kartenfelder_Bewerten, Spieler_Platzieren);
-   subtype Spielwelt_Erstellen_Zeit_Verwendet_Enum is Spielwelt_Erstellen_Zeit_Enum range Gesamtzeit .. Spielwelt_Erstellen_Zeit_Enum'Last;
-   subtype Gesamtzeit_Enum is Spielwelt_Erstellen_Zeit_Verwendet_Enum range Generiere_Normal_Himmel_Weltraum_Planeteninneres .. Spielwelt_Erstellen_Zeit_Verwendet_Enum'Last;
+   type Spielwelt_Erstellen_Zeit_Enum is (Leer_Enum, Gesamtzeit_Enum, Generiere_Normal_Himmel_Weltraum_Planeteninneres_Enum, Generiere_Küstengewässer_Enum, Generiere_Landschaft_Ebene_Oberfläche_Enum,
+                                          Generiere_Unterwasser_Unterirdisch_Enum, Generiere_Flüsse_Enum, Generiere_Ressourcen_Enum, Kartenfelder_Bewerten_Enum, Spieler_Platzieren_Enum);
+   subtype Spielwelt_Erstellen_Zeit_Verwendet_Enum is Spielwelt_Erstellen_Zeit_Enum range Gesamtzeit_Enum .. Spielwelt_Erstellen_Zeit_Enum'Last;
+   subtype Gesamtzeit_Erstellen_Enum is Spielwelt_Erstellen_Zeit_Verwendet_Enum range Generiere_Normal_Himmel_Weltraum_Planeteninneres_Enum .. Spielwelt_Erstellen_Zeit_Verwendet_Enum'Last;
    
    type SpielweltErstellenZeitArray is array (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    SpielweltErstellenZeit : SpielweltErstellenZeitArray;
    
-   type Einzelne_Zeiten_Enum is (Startzeit, Zwischen_Runden, Speicherzeit, Ladezeit);
+   type Einzelne_Zeiten_Enum is (Startzeit_Enum, Zwischen_Runden_Enum, Speicherzeit_Enum, Ladezeit_Enum);
    type EinzelneZeitenArray is array (Einzelne_Zeiten_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Time;
    EinzelneZeiten : EinzelneZeitenArray;
    
@@ -25,10 +25,10 @@ package LadezeitenDatentypen is
    -- Für die Textausgabe, irgendwann einmal an das neue Textsystem anpassen.
    type AufschlagArray is array (Einzelne_Zeiten_Enum'Range) of Positive;
    Aufschlag : constant AufschlagArray := (
-                                           Startzeit       => 10,
-                                           Zwischen_Runden => 11,
-                                           Speicherzeit    => 12,
-                                           Ladezeit        => 13
+                                           Startzeit_Enum       => 10,
+                                           Zwischen_Runden_Enum => 11,
+                                           Speicherzeit_Enum    => 12,
+                                           Ladezeit_Enum        => 13
                                           );
    
    type KITextArray is array (SystemDatentypen.Rassen_Enum'Range) of Positive;

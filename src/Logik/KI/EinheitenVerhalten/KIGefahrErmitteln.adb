@@ -26,7 +26,7 @@ package body KIGefahrErmitteln is
       case
         LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when KIDatentypen.Angreifen | KIDatentypen.Verteidigen | KIDatentypen.Verbesserung_Zerstören | KIDatentypen.Flucht =>
+         when KIDatentypen.Angreifen_Enum | KIDatentypen.Verteidigen_Enum | KIDatentypen.Verbesserung_Zerstören_Enum | KIDatentypen.Flucht_Enum =>
             return EinheitenKonstanten.LeerRasseNummer;
             
          when others =>
@@ -108,7 +108,7 @@ package body KIGefahrErmitteln is
         DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                            FremdeRasseExtern => AndereEinheitExtern.Rasse)
       is
-         when SystemDatentypen.Krieg =>
+         when SystemDatentypen.Krieg_Enum =>
             null;
             
          when others =>
@@ -119,7 +119,7 @@ package body KIGefahrErmitteln is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => AndereEinheitExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AndereEinheitExtern))
       is
-         when EinheitStadtDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Arbeiter_Enum =>
             return False;
             
          when others =>

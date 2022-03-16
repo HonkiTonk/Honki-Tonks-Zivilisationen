@@ -8,7 +8,7 @@ with Sf;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
-with TastenbelegungKonstanten;
+with TastenbelegungDatentypen;
 
 with GrafikEinstellungenSFML;
 with Eingabe;
@@ -24,7 +24,7 @@ package body AuswahlMenue is
    is begin
       
       AllgemeinesFestlegen (WelchesMenüExtern => WelchesMenüExtern);
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Menüs);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Menüs_Enum);
       
       Auswahl;
    
@@ -33,7 +33,7 @@ package body AuswahlMenue is
                                                         AktuelleAuswahlExtern => AktuelleAuswahl,
                                                         WelchesMenüExtern     => WelchesMenü);
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
       
       return RückgabeWert;
       
@@ -50,34 +50,34 @@ package body AuswahlMenue is
       Sf.Graphics.Text.setFont (text => TextAccess,
                                 font => GrafikEinstellungenSFML.SchriftartAccess);
             
-      Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
-      Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
+      Anfang := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert_Enum);
+      Ende := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert_Enum);
       ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
       if
         LetztesMenü = WelchesMenüExtern
       then
          if
-           AktuelleAuswahl < AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert)
+           AktuelleAuswahl < AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert_Enum)
          then
-            AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
+            AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert_Enum);
 
          elsif
-           AktuelleAuswahl > AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert)
+           AktuelleAuswahl > AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert_Enum)
          then
-            AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert);
+            AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Endwert_Enum);
 
          else
             null;
          end if;
          
       else
-         AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert);
+         AktuelleAuswahl := AnfangEndeMenü (WelchesMenüExtern, SystemDatentypen.Anfangswert_Enum);
          LetztesMenü := WelchesMenüExtern;
       end if;
       
       case
-        AnfangEndeMenü (WelchesMenü, SystemDatentypen.Anfangswert) mod 2
+        AnfangEndeMenü (WelchesMenü, SystemDatentypen.Anfangswert_Enum) mod 2
       is
          when 0 =>
             AnzeigeStartwert := 0;
@@ -101,7 +101,7 @@ package body AuswahlMenue is
          case
            Eingabe.Tastenwert
          is
-            when TastenbelegungKonstanten.ObenKonstante | TastenbelegungKonstanten.EbeneHochKonstante =>
+            when TastenbelegungDatentypen.Oben_Enum | TastenbelegungDatentypen.Ebene_Hoch_Enum =>
                if
                  AktuelleAuswahl = Anfang
                then
@@ -111,7 +111,7 @@ package body AuswahlMenue is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when TastenbelegungKonstanten.UntenKonstante | TastenbelegungKonstanten.EbeneRunterKonstante =>
+            when TastenbelegungDatentypen.Unten_Enum | TastenbelegungDatentypen.Ebene_Runter_Enum =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -122,13 +122,13 @@ package body AuswahlMenue is
                end if;
                
                -- Später noch erweitern?
-            when TastenbelegungKonstanten.LinksKonstante =>
+            when TastenbelegungDatentypen.Links_Enum =>
                null;
                
-            when TastenbelegungKonstanten.RechtsKonstante =>
+            when TastenbelegungDatentypen.Rechts_Enum =>
                null;
                               
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                return;
             
             when others =>
@@ -214,7 +214,7 @@ package body AuswahlMenue is
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Haupt_Menü =>
+         when SystemDatentypen.Haupt_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Hauptmenü'Last
             then
@@ -224,7 +224,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Hauptmenü (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Spiel_Menü =>
+         when SystemDatentypen.Spiel_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Spielmenü'Last
             then
@@ -234,7 +234,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Spielmenü (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Optionen_Menü =>
+         when SystemDatentypen.Optionen_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Optionsmenü'Last
             then
@@ -244,7 +244,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Optionsmenü (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Kartengröße_Menü =>
+         when SystemDatentypen.Kartengröße_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Kartengröße'Last
             then
@@ -254,7 +254,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Kartengröße (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Kartenart_Menü =>
+         when SystemDatentypen.Kartenart_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Kartenart'Last
             then
@@ -264,7 +264,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Kartenart (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Kartenform_Menü =>
+         when SystemDatentypen.Kartenform_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Kartenform'Last
             then
@@ -274,7 +274,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Kartenform (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Kartentemperatur_Menü =>
+         when SystemDatentypen.Kartentemperatur_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Kartentemperatur'Last
             then
@@ -284,7 +284,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Kartentemperatur (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Kartenressourcen_Menü =>
+         when SystemDatentypen.Kartenressourcen_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Ressourcenmenge'Last
             then
@@ -294,7 +294,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Ressourcenmenge (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Schwierigkeitsgrad_Menü =>
+         when SystemDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Schwierigkeitsgrad'Last
             then
@@ -304,7 +304,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Schwierigkeitsgrad (WelcheZeileExtern));
             end if;
                         
-         when SystemDatentypen.Rassen_Menü =>
+         when SystemDatentypen.Rassen_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Rassenauswahl'Last
             then
@@ -314,7 +314,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Rassenauswahl (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Grafik_Menü =>
+         when SystemDatentypen.Grafik_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Grafikmenü'Last
             then
@@ -324,7 +324,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Grafikmenü (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Sound_Menü =>
+         when SystemDatentypen.Sound_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Soundmenü'Last
             then
@@ -334,7 +334,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Soundmenü (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Sonstiges_Menü =>
+         when SystemDatentypen.Sonstiges_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Sonstigesmenü'Last
             then
@@ -344,7 +344,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Sonstigesmenü (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Steuerung_Menü =>
+         when SystemDatentypen.Steuerung_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Steuerungmenü'Last
             then
@@ -354,7 +354,7 @@ package body AuswahlMenue is
                return To_Wide_Wide_String (Source => GlobaleTexte.Steuerungmenü (WelcheZeileExtern));
             end if;
             
-         when SystemDatentypen.Editoren_Menü =>
+         when SystemDatentypen.Editoren_Menü_Enum =>
             if
               WelcheZeileExtern > GlobaleTexte.Editoren'Last
             then

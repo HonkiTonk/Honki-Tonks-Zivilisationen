@@ -19,11 +19,11 @@ with KIDatentypen;
 
 package StadtKonstanten is
    
-   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemKonstanten.LeerRasse;
+   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse_Enum;
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
    
-   LeerID : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung;
+   LeerID : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    LeerEinwohner : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerArbeiter : constant EinheitStadtDatentypen.ProduktionFeld := 0;
@@ -43,8 +43,8 @@ package StadtKonstanten is
    LeerName : constant Unbounded_Wide_Wide_String := SystemKonstanten.LeerUnboundedString;
    LeerUmgebungBewitschaftet : constant Boolean := False;
    LeerUmgebungGröße : constant KartenDatentypen.UmgebungsbereichDrei := 0;
-   LeerMeldung : constant EinheitStadtDatentypen.Stadt_Meldung_Enum := EinheitStadtDatentypen.Leer;
-   LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe;
+   LeerMeldung : constant EinheitStadtDatentypen.Stadt_Meldung_Enum := EinheitStadtDatentypen.Leer_Enum;
+   LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;
    
    LeerStadt : constant EinheitStadtRecords.StadtGebautRecord := (
                                                                   ID                      => LeerID,
@@ -77,8 +77,8 @@ package StadtKonstanten is
    LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerBonusKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerUmgebungBenötigt : constant KartenGrundDatentypen.Karten_Grund_Enum := KartenGrundDatentypen.Leer_Grund;
-   LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer;
+   LeerUmgebungBenötigt : constant KartenGrundDatentypen.Karten_Grund_Enum := KartenGrundDatentypen.Leer_Grund_Enum;
+   LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer_Enum;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (
                                                                          PreisGeld                   => LeerPreisGeld,
@@ -93,48 +93,48 @@ package StadtKonstanten is
    
    type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, SystemDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
-                                                                   SystemDatentypen.Anfangswert =>
+                                                                   SystemDatentypen.Anfangswert_Enum =>
                                                                      (
-                                                                      SystemKonstanten.MenschenKonstante        => 10,
-                                                                      SystemKonstanten.KasrodiahKonstante       => 10,
-                                                                      SystemKonstanten.LasupinKonstante         => 10,
-                                                                      SystemKonstanten.LamustraKonstante        => 10,
-                                                                      SystemKonstanten.ManukyKonstante          => 10,
-                                                                      SystemKonstanten.SurokaKonstante          => 10,
-                                                                      SystemKonstanten.PryolonKonstante         => 10,
-                                                                      SystemKonstanten.TalbidahrKonstante       => 10,
-                                                                      SystemKonstanten.MoruPhisihlKonstante     => 10,
-                                                                      SystemKonstanten.LarinosLotarisKonstante  => 10,
-                                                                      SystemKonstanten.CarupexKonstante         => 10,
-                                                                      SystemKonstanten.AlaryKonstante           => 10,
-                                                                      SystemKonstanten.TesorahnKonstante        => 10,
-                                                                      SystemKonstanten.NatriesZermanisKonstante => 10,
-                                                                      SystemKonstanten.TridatusKonstante        => 10,
-                                                                      SystemKonstanten.SenelariKonstante        => 10,
-                                                                      SystemKonstanten.Aspari2Konstante         => 10,
-                                                                      SystemKonstanten.EkropaKonstante          => 10
+                                                                      SystemDatentypen.Menschen_Enum        => 10,
+                                                                      SystemDatentypen.Kasrodiah_Enum       => 10,
+                                                                      SystemDatentypen.Lasupin_Enum         => 10,
+                                                                      SystemDatentypen.Lamustra_Enum        => 10,
+                                                                      SystemDatentypen.Manuky_Enum          => 10,
+                                                                      SystemDatentypen.Suroka_Enum          => 10,
+                                                                      SystemDatentypen.Pryolon_Enum         => 10,
+                                                                      SystemDatentypen.Talbidahr_Enum       => 10,
+                                                                      SystemDatentypen.Moru_Phisihl_Enum     => 10,
+                                                                      SystemDatentypen.Larinos_Lotaris_Enum  => 10,
+                                                                      SystemDatentypen.Carupex_Enum         => 10,
+                                                                      SystemDatentypen.Alary_Enum           => 10,
+                                                                      SystemDatentypen.Tesorahn_Enum        => 10,
+                                                                      SystemDatentypen.Natries_Zermanis_Enum => 10,
+                                                                      SystemDatentypen.Tridatus_Enum        => 10,
+                                                                      SystemDatentypen.Senelari_Enum        => 10,
+                                                                      SystemDatentypen.Aspari_2_Enum         => 10,
+                                                                      SystemDatentypen.Ekropa_Enum          => 10
                                                                      ),
 
-                                                                   SystemDatentypen.Endwert =>
+                                                                   SystemDatentypen.Endwert_Enum =>
                                                                      (
-                                                                      SystemKonstanten.MenschenKonstante        => 20,
-                                                                      SystemKonstanten.KasrodiahKonstante       => 20,
-                                                                      SystemKonstanten.LasupinKonstante         => 20,
-                                                                      SystemKonstanten.LamustraKonstante        => 20,
-                                                                      SystemKonstanten.ManukyKonstante          => 20,
-                                                                      SystemKonstanten.SurokaKonstante          => 20,
-                                                                      SystemKonstanten.PryolonKonstante         => 20,
-                                                                      SystemKonstanten.TalbidahrKonstante       => 20,
-                                                                      SystemKonstanten.MoruPhisihlKonstante     => 20,
-                                                                      SystemKonstanten.LarinosLotarisKonstante  => 20,
-                                                                      SystemKonstanten.CarupexKonstante         => 20,
-                                                                      SystemKonstanten.AlaryKonstante           => 20,
-                                                                      SystemKonstanten.TesorahnKonstante        => 20,
-                                                                      SystemKonstanten.NatriesZermanisKonstante => 20,
-                                                                      SystemKonstanten.TridatusKonstante        => 20,
-                                                                      SystemKonstanten.SenelariKonstante        => 20,
-                                                                      SystemKonstanten.Aspari2Konstante         => 20,
-                                                                      SystemKonstanten.EkropaKonstante          => 20
+                                                                      SystemDatentypen.Menschen_Enum        => 20,
+                                                                      SystemDatentypen.Kasrodiah_Enum       => 20,
+                                                                      SystemDatentypen.Lasupin_Enum         => 20,
+                                                                      SystemDatentypen.Lamustra_Enum        => 20,
+                                                                      SystemDatentypen.Manuky_Enum          => 20,
+                                                                      SystemDatentypen.Suroka_Enum          => 20,
+                                                                      SystemDatentypen.Pryolon_Enum         => 20,
+                                                                      SystemDatentypen.Talbidahr_Enum       => 20,
+                                                                      SystemDatentypen.Moru_Phisihl_Enum     => 20,
+                                                                      SystemDatentypen.Larinos_Lotaris_Enum  => 20,
+                                                                      SystemDatentypen.Carupex_Enum         => 20,
+                                                                      SystemDatentypen.Alary_Enum           => 20,
+                                                                      SystemDatentypen.Tesorahn_Enum        => 20,
+                                                                      SystemDatentypen.Natries_Zermanis_Enum => 20,
+                                                                      SystemDatentypen.Tridatus_Enum        => 20,
+                                                                      SystemDatentypen.Senelari_Enum        => 20,
+                                                                      SystemDatentypen.Aspari_2_Enum         => 20,
+                                                                      SystemDatentypen.Ekropa_Enum          => 20
                                                                      )
                                                                   );
 

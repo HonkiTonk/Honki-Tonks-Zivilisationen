@@ -32,7 +32,7 @@ package body HintergrundSFML is
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Haupt_Menü =>
+         when SystemDatentypen.Haupt_Menü_Enum =>
             WelchesBild := 1;
             
          when others =>

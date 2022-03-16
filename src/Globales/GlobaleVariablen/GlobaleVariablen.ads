@@ -28,7 +28,7 @@ package GlobaleVariablen is
                                                                      10
                                                                     );
    
-   AnzeigeArt : SystemDatentypen.Anzeige_Art_Enum := SystemDatentypen.Grafik_SFML;
+   AnzeigeArt : SystemDatentypen.Anzeige_Art_Enum := SystemDatentypen.Grafik_SFML_Enum;
    -- Schreiben/Ausgabe
    
    
@@ -53,7 +53,7 @@ package GlobaleVariablen is
    Rundengrenze : Natural := Natural'First;
 
    -- Nicht belegt, Menschlicher Spieler, KI
-   RassenImSpiel : SystemDatentypen.RassenImSpielArray := (others => SystemKonstanten.LeerSpielerKonstante);
+   RassenImSpiel : SystemDatentypen.RassenImSpielArray := (others => SystemDatentypen.Leer_Spieler_Enum);
    RasseAmZugNachLaden : SystemDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
 
    Schwierigkeitsgrad : SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;

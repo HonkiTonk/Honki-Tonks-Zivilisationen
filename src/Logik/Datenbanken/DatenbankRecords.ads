@@ -87,18 +87,16 @@ package DatenbankRecords is
       
    -- KartenDatenbank
    type KartenListeRecord is tagged record
-      
-      Passierbarkeit : PassierbarkeitArray;
-      
+            
       Bewertung : BewertungArray;
       Wirtschaft : WirtschaftArray;
       Kampf : KampfArray;
       
    end record;
    
-   type Test is new KartenListeRecord with record
+   type KartenGrundListeRecord is new KartenListeRecord with record
       
-      Passierbarkeit2 : PassierbarkeitArray;
+      Passierbarkeit : PassierbarkeitArray;
       
    end record;
    -- KartenDatenbank

@@ -5,7 +5,7 @@ with SystemDatentypen;
 
 package InteraktionMusiktask is
 
-   AktuelleMusik : SystemDatentypen.Musik_Aktuelle_Auswahl_Enum := SystemDatentypen.Musik_SFML;
+   AktuelleMusik : SystemDatentypen.Musik_Aktuelle_Auswahl_Enum := SystemDatentypen.Musik_SFML_Enum;
    
    procedure Leer;
    

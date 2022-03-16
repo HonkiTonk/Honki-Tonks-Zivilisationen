@@ -7,9 +7,6 @@ with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
-with SystemKonstanten;
-with KartenGrundKonstanten;
-with KartenVerbesserungKonstanten;
 
 with Karten;
 
@@ -24,7 +21,7 @@ package SchreibeKarten is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GrundExtern /= KartenGrundKonstanten.LeerGrund);
+            GrundExtern /= KartenGrundDatentypen.Leer_Grund_Enum);
    
    procedure Hügel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -41,7 +38,7 @@ package SchreibeKarten is
       SichtbarExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -56,7 +53,7 @@ package SchreibeKarten is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (FlussExtern = KartenGrundKonstanten.LeerGrund
+            (FlussExtern = KartenGrundDatentypen.Leer_Grund_Enum
              or
                FlussExtern in KartenGrundDatentypen.Karten_Fluss_Enum));
 
@@ -69,7 +66,7 @@ package SchreibeKarten is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (WegExtern = KartenVerbesserungKonstanten.LeerVerbesserungWeg
+            (WegExtern = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
              or
                WegExtern in KartenVerbesserungDatentypen.Karten_Weg_Enum));
 
@@ -110,7 +107,7 @@ package SchreibeKarten is
       BewertungExtern : in KartenDatentypen.GesamtbewertungFeld)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and

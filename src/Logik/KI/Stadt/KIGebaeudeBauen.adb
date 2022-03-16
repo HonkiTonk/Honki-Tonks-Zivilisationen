@@ -126,7 +126,7 @@ package body KIGebaeudeBauen is
         LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcheKostenExtern => EinheitStadtDatentypen.Nahrung)
+                                                  WelcheKostenExtern => EinheitStadtDatentypen.Nahrung_Enum)
         < StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return -20;
@@ -137,7 +137,7 @@ package body KIGebaeudeBauen is
                                                                                     WWirtschaftBonusExtern => KartenKonstanten.WirtschaftNahrung)
                                              - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                        IDExtern           => IDExtern,
-                                                                                       WelcheKostenExtern => EinheitStadtDatentypen.Nahrung));
+                                                                                       WelcheKostenExtern => EinheitStadtDatentypen.Nahrung_Enum));
       end if;
       
    end NahrungsproduktionBewerten;
@@ -185,7 +185,7 @@ package body KIGebaeudeBauen is
         LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcheKostenExtern => EinheitStadtDatentypen.Geld)
+                                                  WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum)
         < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return -20;
@@ -196,7 +196,7 @@ package body KIGebaeudeBauen is
                                                                                     WWirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
                                              - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                        IDExtern           => IDExtern,
-                                                                                       WelcheKostenExtern => EinheitStadtDatentypen.Geld));
+                                                                                       WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum));
       end if;
       
    end GeldproduktionBewerten;
@@ -270,7 +270,7 @@ package body KIGebaeudeBauen is
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
-                                                  WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen)
+                                                  WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen_Enum)
         < StadtKonstanten.LeerStadt.Produktionrate
       then
          return -20;
@@ -281,7 +281,7 @@ package body KIGebaeudeBauen is
                                                                                     WWirtschaftBonusExtern => KartenKonstanten.WirtschaftProduktion)
                                              - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                        IDExtern           => IDExtern,
-                                                                                       WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen));
+                                                                                       WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen_Enum));
       end if;
       
    end RessourcenproduktionBewerten;

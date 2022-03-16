@@ -75,15 +75,15 @@ package body KampfsystemStadt is
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
                                                             StadtRasseNummerExtern   => VerteidigendeStadtRasseNummerExtern);
          StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
-                                                          EreignisExtern         => EinheitStadtDatentypen.Einwohner_Reduktion);
+                                                          EreignisExtern         => EinheitStadtDatentypen.Einwohner_Reduktion_Enum);
          if
            LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                               EinwohnerArbeiterExtern => True)
-           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
+           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
            or
              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                                 EinwohnerArbeiterExtern => True)
-           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
+           = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
          then
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
             
@@ -155,27 +155,27 @@ package body KampfsystemStadt is
       if
         AngriffExtern > 2 * VerteidigungExtern
       then
-         WelcherFall := Extrem_Stärker;
+         WelcherFall := Extrem_Stärker_Enum;
 
       elsif
         AngriffExtern > VerteidigungExtern
       then
-         WelcherFall := Stärker;
+         WelcherFall := Stärker_Enum;
 
       elsif
         AngriffExtern < VerteidigungExtern
         and
           2 * AngriffExtern > VerteidigungExtern
       then
-         WelcherFall := Schwächer;
+         WelcherFall := Schwächer_Enum;
          
       elsif
         2 * AngriffExtern < VerteidigungExtern
       then
-         WelcherFall := Extrem_Schwächer;
+         WelcherFall := Extrem_Schwächer_Enum;
 
       else
-         WelcherFall := Gleich;
+         WelcherFall := Gleich_Enum;
       end if;
       
       Kampfglück := ZufallGeneratorenKampf.KampfErfolg;

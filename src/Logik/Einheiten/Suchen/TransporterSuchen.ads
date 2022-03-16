@@ -7,7 +7,6 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
 with EinheitStadtRecords;
-with SystemKonstanten;
 
 with Karten;
 
@@ -23,7 +22,7 @@ package TransporterSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -31,7 +30,7 @@ package TransporterSuchen is
       return EinheitStadtDatentypen.Transportwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
+         (GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
           and
             TransporterExtern.Platznummer > 0);
 
@@ -40,7 +39,7 @@ package TransporterSuchen is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
           and
             EinheitRasseNummerExtern.Platznummer > 0);
 

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemKonstanten;
-
 with EinheitenMenschen;
 with EinheitenKasrodiah;
 with EinheitenLasupin;
@@ -35,58 +33,58 @@ package body EinheitenDatenbank is
             case
               RasseSchleifenwert
             is
-               when SystemKonstanten.MenschenKonstante =>
+               when SystemDatentypen.Menschen_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenMenschen.EinheitenMenschenListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.KasrodiahKonstante =>
+               when SystemDatentypen.Kasrodiah_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenKasrodiah.EinheitenKasrodiahListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.LasupinKonstante =>
+               when SystemDatentypen.Lasupin_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenLasupin.EinheitenLasupinListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.LamustraKonstante =>
+               when SystemDatentypen.Lamustra_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenLamustra.EinheitenLamustraListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.ManukyKonstante =>
+               when SystemDatentypen.Manuky_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenManuky.EinheitenManukyListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.SurokaKonstante =>
+               when SystemDatentypen.Suroka_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenSuroka.EinheitenSurokaListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.PryolonKonstante =>
+               when SystemDatentypen.Pryolon_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenPryolon.EinheitenPryolonListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.TalbidahrKonstante =>
+               when SystemDatentypen.Talbidahr_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenTalbidahr.EinheitenTalbidahrListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.MoruPhisihlKonstante =>
+               when SystemDatentypen.Moru_Phisihl_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenMoruPhisihl.EinheitenMoruPhisihlListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.LarinosLotarisKonstante =>
+               when SystemDatentypen.Larinos_Lotaris_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenLarinosLotaris.EinheitenLarinosLotarisListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.CarupexKonstante =>
+               when SystemDatentypen.Carupex_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenCarupex.EinheitenCarupexListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.AlaryKonstante =>
+               when SystemDatentypen.Alary_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenAlary.EinheitenAlaryListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.TesorahnKonstante =>
+               when SystemDatentypen.Tesorahn_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenTesorahn.EinheitenTesorahnListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.NatriesZermanisKonstante =>
+               when SystemDatentypen.Natries_Zermanis_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenNatriesZermanis.EinheitenNatriesZermanisListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.TridatusKonstante =>
+               when SystemDatentypen.Tridatus_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenTridatus.EinheitenTridatusListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.SenelariKonstante =>
+               when SystemDatentypen.Senelari_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenSenelari.EinheitenSenelariListe (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.Aspari2Konstante =>
+               when SystemDatentypen.Aspari_2_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenAspari2.EinheitenAspari2Liste (EinheitenSchleifenwert);
                   
-               when SystemKonstanten.EkropaKonstante =>
+               when SystemDatentypen.Ekropa_Enum =>
                   EinheitenListe (RasseSchleifenwert, EinheitenSchleifenwert) := EinheitenEkropa.EinheitenEkropaListe (EinheitenSchleifenwert);
             end case;
             

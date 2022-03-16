@@ -44,7 +44,7 @@ package body StadtEinheitenBauen is
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         and
-          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemKonstanten.SpielerMenschKonstante
+          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum
       then
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell;
@@ -84,7 +84,7 @@ package body StadtEinheitenBauen is
       is
          when KartenKonstanten.LeerXAchse =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => EinheitStadtDatentypen.Einheit_Unplatzierbar);
+                                                             EreignisExtern         => EinheitStadtDatentypen.Einheit_Unplatzierbar_Enum);
             
          when others =>
             EinheitPlatzieren (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -113,13 +113,13 @@ package body StadtEinheitenBauen is
       case
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
-         when SystemKonstanten.SpielerMenschKonstante =>
+         when SystemDatentypen.Spieler_Mensch_Enum =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => EinheitStadtDatentypen.Produktion_Abgeschlossen);
+                                                             EreignisExtern         => EinheitStadtDatentypen.Produktion_Abgeschlossen_Enum);
          
          when others =>
             SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                  BeschäftigungExtern    => KIDatentypen.Keine_Aufgabe);
+                                                  BeschäftigungExtern    => KIDatentypen.Keine_Aufgabe_Enum);
       end case;
       
    end EinheitPlatzieren;

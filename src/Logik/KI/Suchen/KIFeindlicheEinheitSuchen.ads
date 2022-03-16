@@ -6,7 +6,6 @@ with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenRecords;
 with EinheitStadtDatentypen;
-with SystemKonstanten;
 
 package KIFeindlicheEinheitSuchen is
 
@@ -16,11 +15,11 @@ package KIFeindlicheEinheitSuchen is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (FeindExtern) /= SystemKonstanten.LeerSpielerKonstante
+         (GlobaleVariablen.RassenImSpiel (FeindExtern) /= SystemDatentypen.Leer_Spieler_Enum
           and
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemKonstanten.SpielerKIKonstante);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum);
    
 private
    

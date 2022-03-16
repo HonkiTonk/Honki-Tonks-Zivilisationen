@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Calendar; use Ada.Calendar;
 
 with GlobaleVariablen;
-with SystemKonstanten;
 
 with ImSpiel;
 with KartenGenerator;
@@ -21,7 +20,7 @@ package body SpielEinstellungen is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
 
-      Auswahl := SystemKonstanten.AuswahlKartengrößeKonstante;
+      Auswahl := SystemDatentypen.Auswahl_Kartengröße_Enum;
 
       AuswahlSchleife:
       loop
@@ -29,28 +28,28 @@ package body SpielEinstellungen is
          case
            Auswahl
          is
-            when SystemKonstanten.AuswahlKartengrößeKonstante =>
+            when SystemDatentypen.Auswahl_Kartengröße_Enum =>
                Auswahl := SpielEinstellungenKarten.KartengrößeWählen;
 
-            when SystemKonstanten.AuswahlKartenartKonstante =>
+            when SystemDatentypen.Auswahl_Kartenart_Enum =>
                Auswahl := SpielEinstellungenKarten.KartenartWählen;
                
-            when SystemKonstanten.AuswahlKartenformKonstante =>
+            when SystemDatentypen.Auswahl_Kartenform_Enum =>
                Auswahl := SpielEinstellungenKarten.KartenformWählen;
 
-            when SystemKonstanten.AuswahlKartentemperaturKonstante =>
+            when SystemDatentypen.Auswahl_Kartentemperatur_Enum =>
                Auswahl := SpielEinstellungenKarten.KartentemperaturWählen;
                
-            when SystemKonstanten.AuswahlKartenressourcenKonstante =>
+            when SystemDatentypen.Auswahl_Kartenressourcen_Enum =>
                Auswahl := SpielEinstellungenKarten.KartenressourcenWählen;
 
-            when SystemKonstanten.AuswahlRassenKonstante =>
+            when SystemDatentypen.Auswahl_Rassen_Enum =>
                Auswahl := SpielEinstellungenRasseSpieler.RassenWählen;
 
-            when SystemKonstanten.AuswahlSchwierigkeitsgradKonstante =>
+            when SystemDatentypen.Auswahl_Schwierigkeitsgrad_Enum =>
                Auswahl := SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
-            when SystemKonstanten.StartWeiterKonstante =>
+            when SystemDatentypen.Start_Weiter_Enum =>
                exit AuswahlSchleife;
 
             when SystemDatentypen.Zurück_Beenden_Enum'Range =>
@@ -74,7 +73,7 @@ package body SpielEinstellungen is
       
       KartenGenerator.KartenGenerator;
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       SpielEinstellungenRasseSpieler.StartwerteErmitteln;
       RassenVorhanden := False;
       
@@ -84,10 +83,10 @@ package body SpielEinstellungen is
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
-            when SystemKonstanten.SpielerMenschKonstante | SystemKonstanten.SpielerKIKonstante =>
+            when SystemDatentypen.Spieler_Mensch_Enum | SystemDatentypen.Spieler_KI_Enum =>
                RassenVorhanden := True;
                exit SicherheitsSchleife;
          end case;
@@ -104,10 +103,10 @@ package body SpielEinstellungen is
             Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Es konnte keine Rasse platziert werden.");
       end case;
          
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren, SystemDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Spieler_Platzieren);
+      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Spieler_Platzieren_Enum);
 
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Gesamtzeit);
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Gesamtzeit_Enum);
       
       return ImSpiel.ImSpiel;
       

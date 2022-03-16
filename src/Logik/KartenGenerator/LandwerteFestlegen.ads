@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenEinstellungenKonstanten;
+with SystemDatentypen;
 
 with Karten;
 
@@ -18,41 +18,41 @@ private
    XAchse : KartenDatentypen.KartenfeldPositiv;
    
    MinimaleLandgröße : constant Karten.GrößeLandartArray := (
-                                                                 KartenEinstellungenKonstanten.KartenartInselnKonstante     => (2, 2),
-                                                                 KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (6, 6),
-                                                                 KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (1, 1),
+                                                                 SystemDatentypen.Karte_Art_Inseln_Enum     => (2, 2),
+                                                                 SystemDatentypen.Karte_Art_Kontinente_Enum => (6, 6),
+                                                                 SystemDatentypen.Karte_Art_Pangäa_Enum     => (1, 1),
                                                                  others                      => (1, 1)
                                                                 );
    MaximaleLandgröße : constant Karten.GrößeLandartArray := (
-                                                                 KartenEinstellungenKonstanten.KartenartInselnKonstante     => (3, 3),
-                                                                 KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (8, 8),
-                                                                 KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                                                 SystemDatentypen.Karte_Art_Inseln_Enum     => (3, 3),
+                                                                 SystemDatentypen.Karte_Art_Kontinente_Enum => (8, 8),
+                                                                 SystemDatentypen.Karte_Art_Pangäa_Enum     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
                                                                  others                      => (1, 1)
                                                                 );
    
    MinimalerAbstand : constant Karten.GrößeLandartArray := (
-                                                              KartenEinstellungenKonstanten.KartenartInselnKonstante     => (8, 8),
-                                                              KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (13, 13),
-                                                              KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (1, 1),
+                                                              SystemDatentypen.Karte_Art_Inseln_Enum     => (8, 8),
+                                                              SystemDatentypen.Karte_Art_Kontinente_Enum => (13, 13),
+                                                              SystemDatentypen.Karte_Art_Pangäa_Enum     => (1, 1),
                                                               others                      => (1, 1)
                                                              );
    MaximalerAbstand : constant Karten.GrößeLandartArray := (
-                                                              KartenEinstellungenKonstanten.KartenartInselnKonstante     => (15, 15),
-                                                              KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (22, 22),
-                                                              KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                                              SystemDatentypen.Karte_Art_Inseln_Enum     => (15, 15),
+                                                              SystemDatentypen.Karte_Art_Kontinente_Enum => (22, 22),
+                                                              SystemDatentypen.Karte_Art_Pangäa_Enum     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
                                                               others                      => (1, 1)
                                                              );
    
    TeilerGröße : constant Karten.GrößeLandartArray := (
-                                                           KartenEinstellungenKonstanten.KartenartInselnKonstante     => (7, 7),
-                                                           KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (3, 3),
-                                                           KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (2, 2),
+                                                           SystemDatentypen.Karte_Art_Inseln_Enum     => (7, 7),
+                                                           SystemDatentypen.Karte_Art_Kontinente_Enum => (3, 3),
+                                                           SystemDatentypen.Karte_Art_Pangäa_Enum     => (2, 2),
                                                            others                      => (1, 1)
                                                           );
    TeilerAbstand : constant Karten.GrößeLandartArray := (
-                                                           KartenEinstellungenKonstanten.KartenartInselnKonstante     => (3, 3),
-                                                           KartenEinstellungenKonstanten.KartenartKontinenteKonstante => (2, 2),
-                                                           KartenEinstellungenKonstanten.KartenartPangäaKonstante     => (1, 1),
+                                                           SystemDatentypen.Karte_Art_Inseln_Enum     => (3, 3),
+                                                           SystemDatentypen.Karte_Art_Kontinente_Enum => (2, 2),
+                                                           SystemDatentypen.Karte_Art_Pangäa_Enum     => (1, 1),
                                                            others                      => (1, 1)
                                                           );
    

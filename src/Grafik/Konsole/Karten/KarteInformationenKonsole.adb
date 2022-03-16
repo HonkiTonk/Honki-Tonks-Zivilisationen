@@ -156,8 +156,8 @@ package body KarteInformationenKonsole is
          TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
                                                    ÜberschriftZeileExtern => 0,
-                                                   ErsteZeileExtern       => KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundDatentypen.Hügel_Mit),
-                                                   LetzteZeileExtern      => KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundDatentypen.Hügel_Mit),
+                                                   ErsteZeileExtern       => KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundDatentypen.Hügel_Mit_Enum),
+                                                   LetzteZeileExtern      => KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundDatentypen.Hügel_Mit_Enum),
                                                    AbstandAnfangExtern    => GlobaleTexte.Leer,
                                                    AbstandMitteExtern     => GlobaleTexte.Leer,
                                                    AbstandEndeExtern      => GlobaleTexte.Leer);

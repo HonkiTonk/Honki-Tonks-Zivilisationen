@@ -24,16 +24,16 @@ package body MusikSFML is
          case
            InteraktionMusiktask.AktuelleMusik
          is
-            when SystemDatentypen.Musik_Konsole =>
+            when SystemDatentypen.Musik_Konsole_Enum =>
                Fehler.MusikFehler (FehlermeldungExtern => "MusikSFML.MusikSFML - Konsole wird bei SFML aufgerufen.");
                
-            when SystemDatentypen.Musik_Intro =>
+            when SystemDatentypen.Musik_Intro_Enum =>
                MusikIntroSFML.Intro;
                
-            when SystemDatentypen.Musik_SFML =>
+            when SystemDatentypen.Musik_SFML_Enum =>
                delay SystemKonstanten.WartezeitSound;
                
-            when SystemDatentypen.Musik_Ende =>
+            when SystemDatentypen.Musik_Ende_Enum =>
                exit MusikSchleife;
          end case;
          

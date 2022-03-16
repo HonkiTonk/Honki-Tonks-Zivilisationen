@@ -23,7 +23,7 @@ package body DiplomatischerZustand is
       case
         NeuerStatusExtern
       is
-         when SystemDatentypen.Krieg =>
+         when SystemDatentypen.Krieg_Enum =>
             SympathieÄndern (EigeneRasseExtern => RasseEinsExtern,
                               FremdeRasseExtern => RasseZweiExtern,
                               ÄnderungExtern   => -30);
@@ -111,25 +111,25 @@ package body DiplomatischerZustand is
         DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
                                      FremdeRasseExtern => GegnerischeRasseExtern)
       is
-         when SystemDatentypen.Neutral =>
+         when SystemDatentypen.Neutral_Enum =>
             if
               GlobaleVariablen.Diplomatie (EigeneRasseExtern, GegnerischeRasseExtern).ZeitSeitLetzterÄnderung < SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
             then
                return False;
               
             elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = SystemKonstanten.JaKonstante
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = SystemDatentypen.Ja_Enum
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                             RasseZweiExtern   => GegnerischeRasseExtern,
-                                            NeuerStatusExtern => SystemDatentypen.Krieg);
+                                            NeuerStatusExtern => SystemDatentypen.Krieg_Enum);
                return True;
                   
             else
                return False;
             end if;
                   
-         when SystemDatentypen.Krieg =>
+         when SystemDatentypen.Krieg_Enum =>
             return True;
 
          when others =>

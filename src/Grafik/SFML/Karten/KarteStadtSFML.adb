@@ -10,8 +10,6 @@ with KartenRecords; use KartenRecords;
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with KartenKonstanten;
-with KartenGrundKonstanten;
-with KartenVerbesserungKonstanten;
 
 with LeseKarten;
 with LeseStadtGebaut;
@@ -362,7 +360,7 @@ package body KarteStadtSFML is
       KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldFluss = KartenGrundKonstanten.LeerGrund
+        KartenfeldFluss = KartenGrundDatentypen.Leer_Grund_Enum
       then
          null;
          
@@ -393,7 +391,7 @@ package body KarteStadtSFML is
       KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldRessource = KartenGrundKonstanten.LeerGrund
+        KartenfeldRessource = KartenGrundDatentypen.Leer_Grund_Enum
       then
          null;
          
@@ -425,7 +423,7 @@ package body KarteStadtSFML is
       Wegfeld := LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Wegfeld = KartenVerbesserungKonstanten.LeerVerbesserungWeg
+        Wegfeld = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
       then
          null;
          
@@ -456,7 +454,7 @@ package body KarteStadtSFML is
       Verbesserungsfeld := LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Verbesserungsfeld = KartenVerbesserungKonstanten.LeerVerbesserungGebiet
+        Verbesserungsfeld = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
       then
          null;
          
@@ -500,7 +498,7 @@ package body KarteStadtSFML is
                                                                                                                                           TextureAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Stadtfeld)));
             
          elsif -- -------------------------- Mal was wegen den Positionierungen unternehmen.
-           Stadtfeld = KartenVerbesserungDatentypen.Eigene_Hauptstadt
+           Stadtfeld = KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum
          then
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 5.00,
                                                  PositionExtern      => (PositionExtern.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.50,
@@ -510,7 +508,7 @@ package body KarteStadtSFML is
                                                  PolygonAccessExtern => PolygonAccess);
                
          elsif
-           Stadtfeld = KartenVerbesserungDatentypen.Eigene_Stadt
+           Stadtfeld = KartenVerbesserungDatentypen.Eigene_Stadt_Enum
          then
             ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 6.00,
                                                  PositionExtern      => (PositionExtern.x + BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,

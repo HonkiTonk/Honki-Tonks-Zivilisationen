@@ -127,25 +127,25 @@ package body KIEinheitenBauen is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
       is
-         when EinheitStadtDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Arbeiter_Enum =>
             return ArbeiterBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                      EinheitenIDExtern      => IDExtern);
             
-         when EinheitStadtDatentypen.Nahkämpfer =>
+         when EinheitStadtDatentypen.Nahkämpfer_Enum =>
             return Gesamtwertung + NahkämpferBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                         EinheitenIDExtern      => IDExtern);
             
-         when EinheitStadtDatentypen.Fernkämpfer =>
+         when EinheitStadtDatentypen.Fernkämpfer_Enum =>
             return Gesamtwertung + FernkämpferBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                          EinheitenIDExtern      => IDExtern);
             
-         when EinheitStadtDatentypen.Beides =>
+         when EinheitStadtDatentypen.Beides_Enum =>
             null;
             
-         when EinheitStadtDatentypen.Sonstiges =>
+         when EinheitStadtDatentypen.Sonstiges_Enum =>
             null;
             
-         when EinheitStadtDatentypen.Leer =>
+         when EinheitStadtDatentypen.Leer_Enum =>
             null;
       end case;
       
@@ -163,7 +163,7 @@ package body KIEinheitenBauen is
       
       MengeVorhanden := LeseWichtiges.AnzahlArbeiter (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekte.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Nahkämpfer);
+                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Nahkämpfer_Enum);
       
       if
         MengeVorhanden = MinimaleSiedlerMenge
@@ -196,7 +196,7 @@ package body KIEinheitenBauen is
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekte.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Nahkämpfer);
+                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Nahkämpfer_Enum);
         
       case
         KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
@@ -266,7 +266,7 @@ package body KIEinheitenBauen is
       
       MengeVorhanden := LeseWichtiges.AnzahlKämpfer (RasseExtern => StadtRasseNummerExtern.Rasse);
       MengeImBau := KIStadtLaufendeBauprojekte.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Fernkämpfer);
+                                                                             EinheitArtExtern       => EinheitStadtDatentypen.Fernkämpfer_Enum);
         
       case
         KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
@@ -340,7 +340,7 @@ package body KIEinheitenBauen is
       if
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => EinheitStadtDatentypen.Geld)
+                                                 WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum)
         = SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return 5;
@@ -349,7 +349,7 @@ package body KIEinheitenBauen is
         LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => EinheitStadtDatentypen.Geld)
+                                                   WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum)
         < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return -10;
@@ -371,7 +371,7 @@ package body KIEinheitenBauen is
       if
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => EinheitStadtDatentypen.Nahrung)
+                                                 WelcheKostenExtern => EinheitStadtDatentypen.Nahrung_Enum)
         = StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 5;
@@ -380,7 +380,7 @@ package body KIEinheitenBauen is
         LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => EinheitStadtDatentypen.Nahrung)
+                                                   WelcheKostenExtern => EinheitStadtDatentypen.Nahrung_Enum)
         < StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return -20;
@@ -402,7 +402,7 @@ package body KIEinheitenBauen is
       if
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen)
+                                                 WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen_Enum)
         = StadtKonstanten.LeerStadt.Produktionrate
       then
          return 5;
@@ -411,7 +411,7 @@ package body KIEinheitenBauen is
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen)
+                                                   WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen_Enum)
         < StadtKonstanten.LeerStadt.Produktionrate
       then
          return -20;

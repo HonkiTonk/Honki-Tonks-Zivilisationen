@@ -202,7 +202,7 @@ package body KarteInformationenSFML is
         LeseKarten.Hügel (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell) = True
       then      
          Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => KartenAllgemein.Beschreibung (KartenGrundExtern => KartenGrundDatentypen.Hügel_Mit));
+                                            str  => KartenAllgemein.Beschreibung (KartenGrundExtern => KartenGrundDatentypen.Hügel_Mit_Enum));
       
          Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => PositionText);

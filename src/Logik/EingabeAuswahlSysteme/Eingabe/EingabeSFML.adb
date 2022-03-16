@@ -45,7 +45,7 @@ package body EingabeSFML is
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
-         InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Zahlen_Eingabe);
+         InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Zahlen_Eingabe_Enum);
       end if;
                   
       case
@@ -59,7 +59,7 @@ package body EingabeSFML is
             EingegebeneZahl.EingabeAbbruch := False;
       end case;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
+      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
       
       if
         WelchesVorzeichen
@@ -315,7 +315,7 @@ package body EingabeSFML is
       
       EingabeSystemeSFML.EingegebenerText := SystemKonstanten.LeerUnboundedString;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Text_Eingabe);
+      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Text_Eingabe_Enum);
       
       InteraktionGrafiktask.TextEingabe := True;
         
@@ -325,7 +325,7 @@ package body EingabeSFML is
          
       end loop;
       
-      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
+      InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
       
       return (EingabeSystemeSFML.ErfolgreichAbbruch, EingabeSystemeSFML.EingegebenerText);
       
@@ -389,27 +389,27 @@ package body EingabeSFML is
       if
         EingabeSystemeSFML.MausRad > 0.00
       then
-         return TastenbelegungKonstanten.EbeneHochKonstante;
+         return TastenbelegungDatentypen.Ebene_Hoch_Enum;
                
       elsif
         EingabeSystemeSFML.MausRad < 0.00
       then
-         return TastenbelegungKonstanten.EbeneRunterKonstante;
+         return TastenbelegungDatentypen.Ebene_Runter_Enum;
          
       elsif
         EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseLeft
       then
-         return TastenbelegungKonstanten.AuswählenKonstante;
+         return TastenbelegungDatentypen.Auswählen_Enum;
          
       elsif
         EingabeSystemeSFML.MausTaste = Sf.Window.Mouse.sfMouseRight
       then
-         return TastenbelegungKonstanten.MenüZurückKonstante;
+         return TastenbelegungDatentypen.Menü_Zurück_Enum;
          
       elsif
         EingabeSystemeSFML.TastaturTaste = Sf.Window.Keyboard.sfKeyUnknown
       then
-         return TastenbelegungKonstanten.LeerTastenbelegungKonstante;
+         return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
             
       else
          Taste := EingabeSystemeSFML.TastaturTaste;
@@ -432,7 +432,7 @@ package body EingabeSFML is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return TastenbelegungKonstanten.LeerTastenbelegungKonstante;
+      return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
       
    end Tastenwert;
    

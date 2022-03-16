@@ -5,7 +5,6 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
-with SystemKonstanten;
 with KartenGrundDatentypen;
 
 with DatenbankRecords;
@@ -23,7 +22,7 @@ package LeseKartenDatenbank is
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
    function Wirtschaft
      (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
@@ -32,7 +31,7 @@ package LeseKartenDatenbank is
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
    function Kampf
      (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
@@ -41,10 +40,10 @@ package LeseKartenDatenbank is
       return EinheitStadtDatentypen.KampfwerteAllgemein
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
    function GanzerEintrag
      (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
-      return DatenbankRecords.KartenListeRecord;
+      return DatenbankRecords.KartenGrundListeRecord;
 
 end LeseKartenDatenbank;

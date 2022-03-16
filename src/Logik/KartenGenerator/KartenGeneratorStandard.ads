@@ -2,8 +2,8 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 with KartenRecords;
-with KartenEinstellungenKonstanten;
 
 with Karten;
 
@@ -17,9 +17,8 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   type Land_Erzeugung_Enum is (Leer, Feld_Eisschild, Masse_Eisschild, Feld_Normal, Masse_Normal, Feld_Sonstiges, Feld_Fläche_Frei, Feld_Fläche_Belegt);
-   for Land_Erzeugung_Enum use (Leer => 0, Feld_Eisschild => 1, Masse_Eisschild => 2, Feld_Normal => 3, Masse_Normal => 4, Feld_Sonstiges => 5, Feld_Fläche_Frei => 6, Feld_Fläche_Belegt => 7);
-   subtype Land_Erzeugung_Verwendet_Enum is Land_Erzeugung_Enum range Feld_Eisschild .. Land_Erzeugung_Enum'Last;
+   type Land_Erzeugung_Enum is (Leer_Enum, Feld_Eisschild_Enum, Masse_Eisschild_Enum, Feld_Normal_Enum, Masse_Normal_Enum, Feld_Sonstiges_Enum, Feld_Fläche_Frei_Enum, Feld_Fläche_Belegt_Enum);
+   subtype Land_Erzeugung_Verwendet_Enum is Land_Erzeugung_Enum range Feld_Eisschild_Enum .. Land_Erzeugung_Enum'Last;
    
    type WahrscheinlichkeitenRecord is record
       
@@ -31,37 +30,37 @@ private
    -- Dafür noch feste Standardwerte einbauen? Wäre dann später bei weiterführenden Einstellungen wie viel Wasser sinnvoll.
    type WahrscheinlichkeitenLandArray is array (KartenDatentypen.Kartenart_Verwendet_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of WahrscheinlichkeitenRecord;
    WahrscheinlichkeitenLand : constant WahrscheinlichkeitenLandArray := (
-                                                                         KartenEinstellungenKonstanten.KartenartInselnKonstante =>
+                                                                         SystemDatentypen.Karte_Art_Inseln_Enum =>
                                                                            (
-                                                                            Masse_Eisschild    => (0.00, 0.05),
-                                                                            Feld_Eisschild     => (0.05, 0.15),
-                                                                            Masse_Normal       => (0.00, 0.25),
-                                                                            Feld_Normal        => (0.25, 0.55),
-                                                                            Feld_Sonstiges     => (0.00, 0.05),
-                                                                            Feld_Fläche_Frei   => (0.00, 0.85),
-                                                                            Feld_Fläche_Belegt => (0.00, 0.55)
+                                                                            Masse_Eisschild_Enum    => (0.00, 0.05),
+                                                                            Feld_Eisschild_Enum     => (0.05, 0.15),
+                                                                            Masse_Normal_Enum       => (0.00, 0.25),
+                                                                            Feld_Normal_Enum        => (0.25, 0.55),
+                                                                            Feld_Sonstiges_Enum     => (0.00, 0.05),
+                                                                            Feld_Fläche_Frei_Enum   => (0.00, 0.85),
+                                                                            Feld_Fläche_Belegt_Enum => (0.00, 0.55)
                                                                            ),
                                                                                  
-                                                                         KartenEinstellungenKonstanten.KartenartKontinenteKonstante =>
+                                                                         SystemDatentypen.Karte_Art_Kontinente_Enum =>
                                                                            (
-                                                                            Masse_Eisschild    => (0.00, 0.05),
-                                                                            Feld_Eisschild     => (0.05, 0.15),
-                                                                            Masse_Normal       => (0.00, 0.25),
-                                                                            Feld_Normal        => (0.25, 0.55),
-                                                                            Feld_Sonstiges     => (0.00, 0.02),
-                                                                            Feld_Fläche_Frei   => (0.00, 0.95),
-                                                                            Feld_Fläche_Belegt => (0.00, 0.80)
+                                                                            Masse_Eisschild_Enum    => (0.00, 0.05),
+                                                                            Feld_Eisschild_Enum     => (0.05, 0.15),
+                                                                            Masse_Normal_Enum       => (0.00, 0.25),
+                                                                            Feld_Normal_Enum        => (0.25, 0.55),
+                                                                            Feld_Sonstiges_Enum     => (0.00, 0.02),
+                                                                            Feld_Fläche_Frei_Enum   => (0.00, 0.95),
+                                                                            Feld_Fläche_Belegt_Enum => (0.00, 0.80)
                                                                            ),
                                                                                  
-                                                                         KartenEinstellungenKonstanten.KartenartPangäaKonstante =>
+                                                                         SystemDatentypen.Karte_Art_Pangäa_Enum =>
                                                                            (
-                                                                            Masse_Eisschild    => (0.00, 0.05),
-                                                                            Feld_Eisschild     => (0.05, 0.15),
-                                                                            Masse_Normal       => (0.00, 0.25),
-                                                                            Feld_Normal        => (0.25, 0.55),
-                                                                            Feld_Sonstiges     => (0.00, 0.02),
-                                                                            Feld_Fläche_Frei   => (0.00, 0.95),
-                                                                            Feld_Fläche_Belegt => (0.00, 0.00)
+                                                                            Masse_Eisschild_Enum    => (0.00, 0.05),
+                                                                            Feld_Eisschild_Enum     => (0.05, 0.15),
+                                                                            Masse_Normal_Enum       => (0.00, 0.25),
+                                                                            Feld_Normal_Enum        => (0.25, 0.55),
+                                                                            Feld_Sonstiges_Enum     => (0.00, 0.02),
+                                                                            Feld_Fläche_Frei_Enum   => (0.00, 0.95),
+                                                                            Feld_Fläche_Belegt_Enum => (0.00, 0.00)
                                                                            ),
                                                                          
                                                                          others =>

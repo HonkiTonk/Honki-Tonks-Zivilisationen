@@ -5,7 +5,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenVerbesserungKonstanten;
+with KartenVerbesserungDatentypen;
 
 with KIDatentypen;
 
@@ -111,18 +111,18 @@ package body KIVorhandeneAufgaben is
         VorhandeneStädte = EinheitenKonstanten.LeerNummer
       then
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen);
+                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
          return 11;
          
       elsif
         GlobaleVariablen.RundenAnzahl
           > (Positive (VorhandeneStädte)
              + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Stadt_Bauen))
+                                                    AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))
         * 20
       then
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen);
+                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
          return 5;
          
       else
@@ -174,7 +174,7 @@ package body KIVorhandeneAufgaben is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenVerbesserungKonstanten.LeerVerbesserung =>
+            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
@@ -185,7 +185,7 @@ package body KIVorhandeneAufgaben is
          if
            EinheitNummer = EinheitenKonstanten.LeerNummer
            and
-             KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen,
+             KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen_Enum,
                                                     RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                     ZielKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)))
            = False
@@ -223,7 +223,7 @@ package body KIVorhandeneAufgaben is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
            or
              RasseSchleifenwert = EinheitRasseNummerExtern.Rasse
          then
@@ -232,7 +232,7 @@ package body KIVorhandeneAufgaben is
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = SystemDatentypen.Krieg
+           = SystemDatentypen.Krieg_Enum
          then
             return 5;
             

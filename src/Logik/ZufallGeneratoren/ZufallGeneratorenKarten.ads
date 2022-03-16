@@ -9,7 +9,6 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenGrundDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
-with SystemKonstanten;
 
 with Karten;
 
@@ -20,7 +19,7 @@ package ZufallGeneratorenKarten is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemKonstanten.LeerSpielerKonstante),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum),
          Post =>
            (StartPosition'Result.EAchse in -1 .. 0
             and

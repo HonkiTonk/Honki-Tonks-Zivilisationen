@@ -105,17 +105,19 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.01 => 0.01.01 (16.03.2022):
+   -- Version 0.01.0150 => 0.01.01 (16.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0135 => 0.01.01 (15.03.2022):
+   -- Version 0.01.0135 => 0.01.0150 (15.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die unnötig angelegten Konstanten durch besser benannte Datentypen ersetzt.
+   -- Unnötigen Code gelöscht.
+   -- Einige Anpassungen an den Benennungen von verschiedenen Datentypen vorgenommen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

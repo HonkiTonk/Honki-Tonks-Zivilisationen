@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemKonstanten;
 with TextKonstanten;
 
 with InteraktionGrafiktask; use InteraktionGrafiktask;
@@ -20,28 +19,28 @@ package body OptionenGrafik is
       GrafikSchleife:
       loop
          
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Grafik_Menü);
+         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Grafik_Menü_Enum);
          
          case
            AuswahlWert
          is
-            when SystemKonstanten.AuflösungÄndernKonstante =>
+            when SystemDatentypen.Auflösung_Ändern_Enum =>
                AuflösungÄndern;
             
                -- Brauche ich diese Option überhaupt?
-            when SystemKonstanten.VollbildFensterKonstante =>
+            when SystemDatentypen.Vollbild_Fenster_Enum =>
                VollbildFenster;
                
-            when SystemKonstanten.BildrateÄndernKonstante =>
+            when SystemDatentypen.Bildrate_Ändern_Enum =>
                BildrateÄndern;
                
-            when SystemKonstanten.SchriftgrößeKonstante =>
+            when SystemDatentypen.Schriftgröße_Enum =>
                null;
                
-            when SystemKonstanten.SpeichernKonstante =>
+            when SystemDatentypen.Speichern_Enum =>
                EinstellungenSpeichern;
                
-            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Zurück_Enum | SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
                return AuswahlWert;
                
             when others =>
@@ -87,10 +86,10 @@ package body OptionenGrafik is
       GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite := NeueAuflösung.x;
       GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe := NeueAuflösung.y;
       
-      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Auflösung_Verändert;
+      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Auflösung_Verändert_Enum;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Auflösung_Verändert loop
+      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Auflösung_Verändert_Enum loop
          
          delay 0.002;
          
@@ -117,10 +116,10 @@ package body OptionenGrafik is
       end if;
       
       GrafikEinstellungenSFML.FensterEinstellungen.Bildrate := Sf.sfUint32 (EingabeBildrate.EingegebeneZahl);
-      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Bildrate_Ändern;
+      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Bildrate_Ändern_Enum;
       
       NeueBildrateAbwartenSchleife:
-      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Bildrate_Ändern loop
+      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Bildrate_Ändern_Enum loop
          
          delay 0.002;
          
@@ -146,10 +145,10 @@ package body OptionenGrafik is
             Fehler.LogikFehler (FehlermeldungExtern => "OptionenGrafik.VollbildFenster - Unbekannter Fenstermodus ausgewählt.");
       end case;
       
-      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Modus_Verändert;
+      InteraktionGrafiktask.FensterVerändert := InteraktionGrafiktask.Modus_Verändert_Enum;
       
       ErzeugungNeuesFensterAbwartenSchleife:
-      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Modus_Verändert loop
+      while InteraktionGrafiktask.FensterVerändert = InteraktionGrafiktask.Modus_Verändert_Enum loop
          
          delay 0.002;
          

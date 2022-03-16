@@ -19,16 +19,16 @@ package body MusikKonsole is
          case
            InteraktionMusiktask.AktuelleMusik
          is
-            when SystemDatentypen.Musik_Konsole =>
+            when SystemDatentypen.Musik_Konsole_Enum =>
                delay SystemKonstanten.WartezeitMusik;
                
-            when SystemDatentypen.Musik_Intro =>
+            when SystemDatentypen.Musik_Intro_Enum =>
                MusikIntroKonsole.Intro;
                
-            when SystemDatentypen.Musik_SFML =>
+            when SystemDatentypen.Musik_SFML_Enum =>
                Fehler.MusikFehler (FehlermeldungExtern => "MusikKonsole.MusikKonsole - SFML wird bei Konsole aufgerufen.");
                
-            when SystemDatentypen.Musik_Ende =>
+            when SystemDatentypen.Musik_Ende_Enum =>
                exit MusikSchleife;
          end case;
          

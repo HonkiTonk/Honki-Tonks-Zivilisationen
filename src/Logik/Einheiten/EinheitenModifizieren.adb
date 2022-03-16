@@ -5,7 +5,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
-with TastenbelegungKonstanten;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -29,7 +28,7 @@ package body EinheitenModifizieren is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
            
             when others =>
@@ -61,7 +60,7 @@ package body EinheitenModifizieren is
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
-        AktuelleBeschäftigung = TastenbelegungKonstanten.LeerTastenbelegungKonstante
+        AktuelleBeschäftigung = TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -77,7 +76,7 @@ package body EinheitenModifizieren is
       case
         AktuelleBeschäftigung
       is
-         when TastenbelegungKonstanten.HeilenKonstante | TastenbelegungKonstanten.VerschanzenKonstante =>
+         when TastenbelegungDatentypen.Heilen_Enum | TastenbelegungDatentypen.Verschanzen_Enum =>
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   LebenspunkteExtern       => Heilungsrate,
                                                   RechnenSetzenExtern      => 1);

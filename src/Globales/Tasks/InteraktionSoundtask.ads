@@ -15,6 +15,6 @@ package InteraktionSoundtask is
    
 private
 
-   AktuellerSound : SystemDatentypen.Sound_Aktuelle_Auswahl_Enum := SystemDatentypen.Sound_SFML;
+   AktuellerSound : SystemDatentypen.Sound_Aktuelle_Auswahl_Enum := SystemDatentypen.Sound_SFML_Enum;
 
 end InteraktionSoundtask;

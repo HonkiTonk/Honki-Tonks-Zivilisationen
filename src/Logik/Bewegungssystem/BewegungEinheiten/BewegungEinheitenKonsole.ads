@@ -6,9 +6,7 @@ with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
-with SystemKonstanten;
 with TastenbelegungDatentypen;
-with TastenbelegungKonstanten;
 
 package BewegungEinheitenKonsole is
 
@@ -18,7 +16,7 @@ package BewegungEinheitenKonsole is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemKonstanten.SpielerMenschKonstante);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum);
    
 private
    
@@ -35,16 +33,16 @@ private
    
    type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
-                                         TastenbelegungKonstanten.ObenKonstante        => (0, -1, 0),
-                                         TastenbelegungKonstanten.LinksKonstante       => (0, 0, -1),
-                                         TastenbelegungKonstanten.UntenKonstante       => (0, 1, 0),
-                                         TastenbelegungKonstanten.RechtsKonstante      => (0, 0, 1),
-                                         TastenbelegungKonstanten.LinksObenKonstante   => (0, -1, -1),
-                                         TastenbelegungKonstanten.RechtsObenKonstante  => (0, -1, 1),
-                                         TastenbelegungKonstanten.LinksUntenKonstante  => (0, 1, -1),
-                                         TastenbelegungKonstanten.RechtsUntenKonstante => (0, 1, 1),
-                                         TastenbelegungKonstanten.EbeneHochKonstante   => (1, 0, 0),
-                                         TastenbelegungKonstanten.EbeneRunterKonstante => (-1, 0, 0)
+                                         TastenbelegungDatentypen.Oben_Enum        => (0, -1, 0),
+                                         TastenbelegungDatentypen.Links_Enum       => (0, 0, -1),
+                                         TastenbelegungDatentypen.Unten_Enum       => (0, 1, 0),
+                                         TastenbelegungDatentypen.Rechts_Enum      => (0, 0, 1),
+                                         TastenbelegungDatentypen.Links_Oben_Enum   => (0, -1, -1),
+                                         TastenbelegungDatentypen.Rechts_Oben_Enum  => (0, -1, 1),
+                                         TastenbelegungDatentypen.Links_Unten_Enum  => (0, 1, -1),
+                                         TastenbelegungDatentypen.Rechts_Unten_Enum => (0, 1, 1),
+                                         TastenbelegungDatentypen.Ebene_Hoch_Enum   => (1, 0, 0),
+                                         TastenbelegungDatentypen.Ebene_Runter_Enum => (-1, 0, 0)
                                         );
 
 end BewegungEinheitenKonsole;

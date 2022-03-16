@@ -25,56 +25,56 @@ package body GrafikKonsole is
          case
            InteraktionGrafiktask.AktuelleDarstellungAbrufen
          is
-            when SystemDatentypen.Grafik_Konsole =>
+            when SystemDatentypen.Grafik_Konsole_Enum =>
                InteraktionLogiktask.FensterErzeugtÄndern;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
             
-            when SystemDatentypen.Grafik_SFML =>
+            when SystemDatentypen.Grafik_SFML_Enum =>
                Fehler.GrafikFehler (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - SFML wird bei Konsole aufgerufen.");
                
-            when SystemDatentypen.Grafik_Sprache =>
+            when SystemDatentypen.Grafik_Sprache_Enum =>
                -- AuswahlSpracheAnzeige.AnzeigeSpracheKonsole;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
                
-            when SystemDatentypen.Grafik_Intro =>
+            when SystemDatentypen.Grafik_Intro_Enum =>
                GrafikIntroKonsole.Intro;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
                               
-            when SystemDatentypen.Grafik_Pause =>
+            when SystemDatentypen.Grafik_Pause_Enum =>
                delay SystemKonstanten.WartezeitGrafik;
                
-            when SystemDatentypen.Grafik_Laden =>
+            when SystemDatentypen.Grafik_Laden_Enum =>
                null;
          
-            when SystemDatentypen.Grafik_Menüs =>
+            when SystemDatentypen.Grafik_Menüs_Enum =>
                -- AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
                
             when SystemDatentypen.Editoren_Anzeigen_Enum'Range =>
                null;
                
-            when SystemDatentypen.Grafik_Weltkarte =>
+            when SystemDatentypen.Grafik_Weltkarte_Enum =>
                if
-                 InteraktionLogiktask.AktuelleRasseAbrufen = SystemKonstanten.LeerRasse
+                 InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse_Enum
                then
                   delay SystemKonstanten.WartezeitGrafik;
                      
                else
                   Karte.AnzeigeKarte (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
-                  InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+                  InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
                end if;
                
-            when SystemDatentypen.Grafik_Stadtkarte =>
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+            when SystemDatentypen.Grafik_Stadtkarte_Enum =>
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
                
-            when SystemDatentypen.Grafik_Forschung =>
+            when SystemDatentypen.Grafik_Forschung_Enum =>
                ForschungAnzeigeKonsole.ForschungAnzeige;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
                
-            when SystemDatentypen.Grafik_Bauen =>
+            when SystemDatentypen.Grafik_Bauen_Enum =>
                null;
          
-            when SystemDatentypen.Grafik_Ende =>
+            when SystemDatentypen.Grafik_Ende_Enum =>
                exit GrafikSchleife;
          end case;
                

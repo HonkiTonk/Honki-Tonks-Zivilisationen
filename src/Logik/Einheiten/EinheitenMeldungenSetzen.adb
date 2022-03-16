@@ -14,14 +14,14 @@ package body EinheitenMeldungenSetzen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                EinheitenSchleife:
                for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
                   
-                  GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer);
+                  GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer_Enum);
                   
                end loop EinheitenSchleife;
          end case;
@@ -39,11 +39,11 @@ package body EinheitenMeldungenSetzen is
       case
         EreignisExtern
       is
-         when EinheitStadtDatentypen.Aufgabe_Abgeschlossen =>
-            ArtDerMeldung := EinheitStadtDatentypen.Aufgabe_Fertig;
+         when EinheitStadtDatentypen.Aufgabe_Abgeschlossen_Enum =>
+            ArtDerMeldung := EinheitStadtDatentypen.Aufgabe_Fertig_Enum;
             
-         when EinheitStadtDatentypen.Fremde_Einheit_Nahe =>
-            ArtDerMeldung := EinheitStadtDatentypen.Einheit_In_Der_Nähe;
+         when EinheitStadtDatentypen.Fremde_Einheit_Nahe_Enum =>
+            ArtDerMeldung := EinheitStadtDatentypen.Einheit_In_Der_Nähe_Enum;
       end case;
       
       SchreibeEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

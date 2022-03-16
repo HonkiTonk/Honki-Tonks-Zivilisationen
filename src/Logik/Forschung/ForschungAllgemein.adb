@@ -6,7 +6,8 @@ with Sf; use Sf;
 with GlobaleTexte;
 with ForschungKonstanten;
 with TextKonstanten;
-with TastenbelegungKonstanten;
+with TastenbelegungDatentypen;
+with SystemKonstanten;
 
 with SchreibeWichtiges;
 with LeseForschungsDatenbank;
@@ -33,7 +34,7 @@ package body ForschungAllgemein is
       
       -- RasseExtern wird später benötigt wenn es verschiedene Forschungsbäume gibt.
       if
-        RasseExtern = SystemKonstanten.MenschenKonstante
+        RasseExtern = SystemDatentypen.Menschen_Enum
       then
          null;
 
@@ -116,10 +117,10 @@ package body ForschungAllgemein is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             return ForschungAuswahlKonsole;
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             return ForschungAuswahlSFML;
       end case;
 
@@ -137,7 +138,7 @@ package body ForschungAllgemein is
                                               FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Forschung);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Forschung_Enum);
       
       AuswahlSchleife:
       loop
@@ -147,7 +148,7 @@ package body ForschungAllgemein is
          case
            Eingabe.Tastenwert
          is               
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleAuswahl <= 0
                then
@@ -158,7 +159,7 @@ package body ForschungAllgemein is
                   exit AuswahlSchleife;
                end if;
                
-            when TastenbelegungKonstanten.MenüZurückKonstante =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                GewählteForschung := ForschungKonstanten.LeerForschungAnforderung;
                exit AuswahlSchleife;
                
@@ -168,7 +169,7 @@ package body ForschungAllgemein is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
       
       return GewählteForschung;
       
@@ -230,7 +231,7 @@ package body ForschungAllgemein is
          case
            Eingabe.Tastenwert
          is
-            when TastenbelegungKonstanten.ObenKonstante =>
+            when TastenbelegungDatentypen.Oben_Enum =>
                if
                  AktuelleAuswahl = TextAnzeigeKonsole.AllgemeineAnzeigeText'First
                then
@@ -239,7 +240,7 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when TastenbelegungKonstanten.UntenKonstante =>
+            when TastenbelegungDatentypen.Unten_Enum =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -248,10 +249,10 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                return EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
 
-            when TastenbelegungKonstanten.MenüZurückKonstante =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                return 0;
                      
             when others =>
@@ -273,13 +274,13 @@ package body ForschungAllgemein is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
-            when SystemKonstanten.SpielerMenschKonstante =>
+            when SystemDatentypen.Spieler_Mensch_Enum =>
                FortschrittMensch (RasseExtern => RasseSchleifenwert);
                
-            when SystemKonstanten.SpielerKIKonstante =>
+            when SystemDatentypen.Spieler_KI_Enum =>
                FortschrittKI (RasseExtern => RasseSchleifenwert);
          end case;
                
@@ -308,9 +309,9 @@ package body ForschungAllgemein is
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
          if
-           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Anfangswert)
+           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Anfangswert_Enum)
            or
-             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Endwert)
+             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Endwert_Enum)
          then
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
 
@@ -321,7 +322,7 @@ package body ForschungAllgemein is
          InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RasseExtern);
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
                                               ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseExtern));
-         InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemKonstanten.LeerRasse);
+         InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse_Enum);
             
       else
          SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
@@ -349,9 +350,9 @@ package body ForschungAllgemein is
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
          if
-           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Anfangswert)
+           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Anfangswert_Enum)
            or
-             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Endwert)
+             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, SystemDatentypen.Endwert_Enum)
          then
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
 

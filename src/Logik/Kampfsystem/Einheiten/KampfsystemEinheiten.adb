@@ -100,27 +100,27 @@ package body KampfsystemEinheiten is
       if
         AngriffExtern > 2 * VerteidigungExtern
       then
-         WelcherFall := Extrem_Stärker;
+         WelcherFall := Extrem_Stärker_Enum;
 
       elsif
         AngriffExtern > VerteidigungExtern
       then
-         WelcherFall := Stärker;
+         WelcherFall := Stärker_Enum;
 
       elsif
         AngriffExtern < VerteidigungExtern
         and
           2 * AngriffExtern > VerteidigungExtern
       then
-         WelcherFall := Schwächer;
+         WelcherFall := Schwächer_Enum;
          
       elsif
         2 * AngriffExtern < VerteidigungExtern
       then
-         WelcherFall := Extrem_Schwächer;
+         WelcherFall := Extrem_Schwächer_Enum;
 
       else
-         WelcherFall := Gleich;
+         WelcherFall := Gleich_Enum;
       end if;
       
       Kampfglück := ZufallGeneratorenKampf.KampfErfolg;

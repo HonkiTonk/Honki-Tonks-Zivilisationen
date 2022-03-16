@@ -34,21 +34,21 @@ package KartenDatentypen is
    
    type SichtbereichAnfangEndeArray is array (1 .. 4) of Kartenfeld;
 
-   subtype Kartengröße_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_Zufall;
-   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_Nutzer;
-   subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range SystemDatentypen.Karte_Größe_20_20 .. SystemDatentypen.Karte_Größe_1000_1000;
+   subtype Kartengröße_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Größe_20_20_Enum .. SystemDatentypen.Karte_Größe_Zufall_Enum;
+   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range SystemDatentypen.Karte_Größe_20_20_Enum .. SystemDatentypen.Karte_Größe_Nutzer_Enum;
+   subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range SystemDatentypen.Karte_Größe_20_20_Enum .. SystemDatentypen.Karte_Größe_1000_1000_Enum;
 
-   subtype Kartenart_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Art_Inseln .. SystemDatentypen.Karte_Art_Chaos;
+   subtype Kartenart_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Art_Inseln_Enum .. SystemDatentypen.Karte_Art_Chaos_Enum;
 
-   subtype Kartenform_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Form_X_Zylinder .. SystemDatentypen.Karte_Form_Tugel_Extrem;
-   subtype Kartenform_Einstellbar_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_E_Achse_Kein_Übergang .. SystemDatentypen.Karte_X_Achse_Verschobener_Übergang;
-   subtype Kartenform_E_Achse_Einstellbar_Enum is Kartenform_Einstellbar_Enum range SystemDatentypen.Karte_E_Achse_Kein_Übergang .. SystemDatentypen.Karte_E_Achse_Übergang;
-   subtype Kartenform_Y_Achse_Einstellbar_Enum is Kartenform_Einstellbar_Enum range SystemDatentypen.Karte_Y_Achse_Kein_Übergang .. SystemDatentypen.Karte_Y_Achse_Verschobener_Übergang;
-   subtype Kartenform_X_Achse_Einstellbar_Enum is Kartenform_Einstellbar_Enum range SystemDatentypen.Karte_X_Achse_Kein_Übergang .. SystemDatentypen.Karte_X_Achse_Verschobener_Übergang;
+   subtype Kartenform_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Form_X_Zylinder_Enum .. SystemDatentypen.Karte_Form_Tugel_Extrem_Enum;
+   subtype Kartenform_Einstellbar_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_E_Achse_Kein_Übergang_Enum .. SystemDatentypen.Karte_X_Achse_Verschobener_Übergang_Enum;
+   subtype Kartenform_E_Achse_Einstellbar_Enum is Kartenform_Einstellbar_Enum range SystemDatentypen.Karte_E_Achse_Kein_Übergang_Enum .. SystemDatentypen.Karte_E_Achse_Übergang_Enum;
+   subtype Kartenform_Y_Achse_Einstellbar_Enum is Kartenform_Einstellbar_Enum range SystemDatentypen.Karte_Y_Achse_Kein_Übergang_Enum .. SystemDatentypen.Karte_Y_Achse_Verschobener_Übergang_Enum;
+   subtype Kartenform_X_Achse_Einstellbar_Enum is Kartenform_Einstellbar_Enum range SystemDatentypen.Karte_X_Achse_Kein_Übergang_Enum .. SystemDatentypen.Karte_X_Achse_Verschobener_Übergang_Enum;
 
-   subtype Kartentemperatur_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Temperatur_Kalt .. SystemDatentypen.Karte_Temperatur_Wüste;
+   subtype Kartentemperatur_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Temperatur_Kalt_Enum .. SystemDatentypen.Karte_Temperatur_Wüste_Enum;
 
-   subtype Kartenressourcen_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Ressource_Arm .. SystemDatentypen.Karte_Ressource_Überfluss;
+   subtype Kartenressourcen_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Ressource_Arm_Enum .. SystemDatentypen.Karte_Ressource_Überfluss_Enum;
    
    type GesamtbewertungFeld is range -100 .. 100;
    subtype BewertungFeld is GesamtbewertungFeld range -10 .. 10;

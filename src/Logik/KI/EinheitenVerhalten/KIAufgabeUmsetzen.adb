@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen; use KartenGrundDatentypen;
-with KartenVerbesserungKonstanten;
-with TastenbelegungKonstanten;
-with KartenGrundKonstanten;
+with KartenVerbesserungDatentypen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -21,7 +19,7 @@ package body KIAufgabeUmsetzen is
       case
         LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenVerbesserungKonstanten.LeerVerbesserungGebiet =>
+         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
             if
               VerbesserungGebiet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
             then
@@ -38,9 +36,9 @@ package body KIAufgabeUmsetzen is
       case
         LeseKarten.VerbesserungWeg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when KartenVerbesserungKonstanten.LeerVerbesserungWeg =>
+         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
             return Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BefehlExtern             => TastenbelegungKonstanten.StraßeBauenKonstante);
+                                                 BefehlExtern             => TastenbelegungDatentypen.Straße_Bauen_Enum);
             
          when others =>
             null;
@@ -60,39 +58,39 @@ package body KIAufgabeUmsetzen is
       Grund := LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
          
       if
-        (Grund = KartenGrundKonstanten.HügelKonstante
+        (Grund = KartenGrundDatentypen.Hügel_Enum
          or
-           Grund = KartenGrundKonstanten.GebirgeKonstante
+           Grund = KartenGrundDatentypen.Gebirge_Enum
          or
-           Grund = KartenGrundKonstanten.KohleKonstante
+           Grund = KartenGrundDatentypen.Kohle_Enum
          or
-           Grund = KartenGrundKonstanten.EisenKonstante
+           Grund = KartenGrundDatentypen.Eisen_Enum
          or
-           Grund = KartenGrundKonstanten.GoldKonstante
+           Grund = KartenGrundDatentypen.Gold_Enum
          or
            LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => TastenbelegungKonstanten.MineBauenKonstante)
+                                       BefehlExtern             => TastenbelegungDatentypen.Mine_Bauen_Enum)
         = True
       then
-         Befehl := TastenbelegungKonstanten.MineBauenKonstante;
+         Befehl := TastenbelegungDatentypen.Mine_Bauen_Enum;
          
       elsif
-        Grund = KartenGrundKonstanten.EisKonstante
+        Grund = KartenGrundDatentypen.Eis_Enum
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       BefehlExtern             => TastenbelegungKonstanten.FestungBauenKonstante)
+                                       BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum)
         = True
       then
-         Befehl := TastenbelegungKonstanten.FestungBauenKonstante;
+         Befehl := TastenbelegungDatentypen.Festung_Bauen_Enum;
          
       elsif
         Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BefehlExtern             => TastenbelegungKonstanten.FarmBauenKonstante)
+                                     BefehlExtern             => TastenbelegungDatentypen.Farm_Bauen_Enum)
         = True
       then
-         Befehl := TastenbelegungKonstanten.FarmBauenKonstante;
+         Befehl := TastenbelegungDatentypen.Farm_Bauen_Enum;
             
       else
          return False;
@@ -111,7 +109,7 @@ package body KIAufgabeUmsetzen is
    is begin
       
       NullWert := Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                BefehlExtern             => TastenbelegungKonstanten.EinheitVerbessernKonstante);
+                                                BefehlExtern             => TastenbelegungDatentypen.Einheit_Verbessern_Enum);
       
       return False;
       

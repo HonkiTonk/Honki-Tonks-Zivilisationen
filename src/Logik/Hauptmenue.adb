@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
-with SystemKonstanten;
 
 with Optionen;
 with SpielEinstellungen;
@@ -27,20 +26,20 @@ package body Hauptmenue is
       loop
          
          case
-           AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Haupt_Menü)
+           AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Haupt_Menü_Enum)
          is
-            when SystemKonstanten.StartWeiterKonstante =>
+            when SystemDatentypen.Start_Weiter_Enum =>
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungenAuswahl;
 
                if
-                 RückgabeKampagne = SystemKonstanten.HauptmenüKonstante
+                 RückgabeKampagne = SystemDatentypen.Hauptmenü_Enum
                  or
-                   RückgabeKampagne = SystemKonstanten.ZurückKonstante
+                   RückgabeKampagne = SystemDatentypen.Zurück_Enum
                then
                   AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
                elsif
-                 RückgabeKampagne = SystemKonstanten.SpielBeendenKonstante
+                 RückgabeKampagne = SystemDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -48,17 +47,17 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemKonstanten.LadenKonstante =>
+            when SystemDatentypen.Laden_Enum =>
                if
                  Laden.LadenNeu = True
                then
                   case
                     ImSpiel.ImSpiel
                   is
-                     when SystemKonstanten.HauptmenüKonstante =>
+                     when SystemDatentypen.Hauptmenü_Enum =>
                         AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when SystemKonstanten.SpielBeendenKonstante =>
+                     when SystemDatentypen.Spiel_Beenden_Enum =>
                         exit HauptmenüSchleife;
 
                      when others =>
@@ -69,9 +68,9 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemKonstanten.OptionenKonstante =>
+            when SystemDatentypen.Optionen_Enum =>
                if
-                 Optionen.Optionen = SystemKonstanten.SpielBeendenKonstante
+                 Optionen.Optionen = SystemDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -79,9 +78,9 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemKonstanten.EditorenKonstante =>
+            when SystemDatentypen.Editoren_Enum =>
                if
-                 DatenbankenEditoren.DatenbankenEditoren = SystemKonstanten.SpielBeendenKonstante
+                 DatenbankenEditoren.DatenbankenEditoren = SystemDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -89,13 +88,13 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemKonstanten.InformationenKonstante =>
+            when SystemDatentypen.Informationen_Enum =>
                Informationen.Informationen;
                
-            when SystemKonstanten.WürdigungenKonstante =>
+            when SystemDatentypen.Würdigungen_Enum =>
                Wuerdigung.Würdigung;
                
-            when SystemKonstanten.SpielBeendenKonstante =>
+            when SystemDatentypen.Spiel_Beenden_Enum =>
                exit HauptmenüSchleife;
                
             when others =>
@@ -104,9 +103,9 @@ package body Hauptmenue is
          
       end loop HauptmenüSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Ende);
-      InteraktionMusiktask.AktuelleMusik := SystemDatentypen.Musik_Ende;
-      InteraktionSoundtask.AktuellenSoundÄndern (SoundExtern => SystemDatentypen.Sound_Ende);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Ende_Enum);
+      InteraktionMusiktask.AktuelleMusik := SystemDatentypen.Musik_Ende_Enum;
+      InteraktionSoundtask.AktuellenSoundÄndern (SoundExtern => SystemDatentypen.Sound_Ende_Enum);
       
    end Hauptmenü;
 

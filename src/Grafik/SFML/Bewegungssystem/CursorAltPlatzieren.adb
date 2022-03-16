@@ -19,11 +19,11 @@ package body CursorAltPlatzieren is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             AlteYAchseFestlegenKonsole (RasseExtern => RasseExtern);
             AlteXAchseFestlegenKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             AlteYAchseFestlegenSFML (RasseExtern => RasseExtern);
             AlteXAchseFestlegenSFML (RasseExtern => RasseExtern);
       end case;

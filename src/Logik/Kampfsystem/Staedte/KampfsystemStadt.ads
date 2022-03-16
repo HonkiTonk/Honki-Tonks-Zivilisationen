@@ -5,7 +5,6 @@ with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
-with SystemKonstanten;
 
 package KampfsystemStadt is
 
@@ -15,9 +14,9 @@ package KampfsystemStadt is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
+         (GlobaleVariablen.RassenImSpiel (AngreifendeEinheitRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= SystemKonstanten.LeerSpielerKonstante
+            GlobaleVariablen.RassenImSpiel (VerteidigendeStadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
           and
             AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
           and
@@ -35,29 +34,29 @@ private
    KampfwerteVerteidiger : EinheitStadtRecords.KampfwerteRecord;
    KampfwerteAngreifer : EinheitStadtRecords.KampfwerteRecord;
    
-   type Kampf_Unterschiede_Enum is (Gleich, Stärker, Extrem_Stärker, Schwächer, Extrem_Schwächer);
+   type Kampf_Unterschiede_Enum is (Gleich_Enum, Stärker_Enum, Extrem_Stärker_Enum, Schwächer_Enum, Extrem_Schwächer_Enum);
 
    WelcherFall : Kampf_Unterschiede_Enum;
 
    type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, EinheitStadtDatentypen.ProduktionFeld (1) .. 3) of Float;
    SchadenAngerichtet : constant SchadenAngerichtetArray := (
-                                                             Gleich           =>
+                                                             Gleich_Enum           =>
                                                                (1 => 0.40,
                                                                 2 => 0.75,
                                                                 3 => 0.90),
-                                                             Stärker          =>
+                                                             Stärker_Enum          =>
                                                                (1 => 0.30,
                                                                 2 => 0.65,
                                                                 3 => 0.80),
-                                                             Extrem_Stärker   =>
+                                                             Extrem_Stärker_Enum   =>
                                                                (1 => 0.20,
                                                                 2 => 0.50,
                                                                 3 => 0.70),
-                                                             Schwächer        =>
+                                                             Schwächer_Enum        =>
                                                                (1 => 0.55,
                                                                 2 => 0.85,
                                                                 3 => 0.95),
-                                                             Extrem_Schwächer =>
+                                                             Extrem_Schwächer_Enum =>
                                                                (1 => 0.70,
                                                                 2 => 0.90,
                                                                 3 => 0.98)

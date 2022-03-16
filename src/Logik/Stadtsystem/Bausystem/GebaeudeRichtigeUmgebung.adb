@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenKonstanten;
-with KartenGrundKonstanten;
 
 with LeseKarten;
 with LeseStadtGebaut;
@@ -24,7 +23,7 @@ package body GebaeudeRichtigeUmgebung is
         LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                  IDExtern    => GebäudeIDExtern)
       is
-         when KartenGrundKonstanten.LeerGrund =>
+         when KartenGrundDatentypen.Leer_Grund_Enum =>
             return True;
                
          when others =>

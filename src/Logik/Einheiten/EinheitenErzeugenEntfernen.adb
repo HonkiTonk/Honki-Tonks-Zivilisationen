@@ -47,15 +47,15 @@ package body EinheitenErzeugenEntfernen is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
       is
-         when EinheitStadtDatentypen.Arbeiter =>
+         when EinheitStadtDatentypen.Arbeiter_Enum =>
             SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                               PlusMinusExtern => True);
             
-         when EinheitStadtDatentypen.Nahkämpfer | EinheitStadtDatentypen.Fernkämpfer | EinheitStadtDatentypen.Beides =>
+         when EinheitStadtDatentypen.Nahkämpfer_Enum | EinheitStadtDatentypen.Fernkämpfer_Enum | EinheitStadtDatentypen.Beides_Enum =>
             SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                               PlusMinusExtern => True);
             
-         when EinheitStadtDatentypen.Sonstiges =>
+         when EinheitStadtDatentypen.Sonstiges_Enum =>
             SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                                PlusMinusExtern => True);
             

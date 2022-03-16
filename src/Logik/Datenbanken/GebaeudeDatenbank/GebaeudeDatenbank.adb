@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemKonstanten;
-
 with GebaeudeMenschen;
 with GebaeudeKasrodiah;
 with GebaeudeLasupin;
@@ -35,58 +33,58 @@ package body GebaeudeDatenbank is
             case
               RasseSchleifenwert
             is
-               when SystemKonstanten.MenschenKonstante =>
+               when SystemDatentypen.Menschen_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeMenschen.GebäudeMenschenListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.KasrodiahKonstante =>
+               when SystemDatentypen.Kasrodiah_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeKasrodiah.GebäudeKasrodiahListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.LasupinKonstante =>
+               when SystemDatentypen.Lasupin_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLasupin.GebäudeLasupinListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.LamustraKonstante =>
+               when SystemDatentypen.Lamustra_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLamustra.GebäudeLamustraListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.ManukyKonstante =>
+               when SystemDatentypen.Manuky_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeManuky.GebäudeManukyListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.SurokaKonstante =>
+               when SystemDatentypen.Suroka_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeSuroka.GebäudeSurokaListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.PryolonKonstante =>
+               when SystemDatentypen.Pryolon_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudePryolon.GebäudePryolonListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.TalbidahrKonstante =>
+               when SystemDatentypen.Talbidahr_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTalbidahr.GebäudeTalbidahrListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.MoruPhisihlKonstante =>
+               when SystemDatentypen.Moru_Phisihl_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeMoruPhisihl.GebäudeMoruPhisihlListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.LarinosLotarisKonstante =>
+               when SystemDatentypen.Larinos_Lotaris_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLarinosLotaris.GebäudeLarinosLotarisListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.CarupexKonstante =>
+               when SystemDatentypen.Carupex_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeCarupex.GebäudeCarupexListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.AlaryKonstante =>
+               when SystemDatentypen.Alary_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeAlary.GebäudeAlaryListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.TesorahnKonstante =>
+               when SystemDatentypen.Tesorahn_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTesorahn.GebäudeTesorahnListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.NatriesZermanisKonstante =>
+               when SystemDatentypen.Natries_Zermanis_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeNatriesZermanis.GebäudeNatriesZermanisListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.TridatusKonstante =>
+               when SystemDatentypen.Tridatus_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTridatus.GebäudeTridatusListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.SenelariKonstante =>
+               when SystemDatentypen.Senelari_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeSenelari.GebäudeSenelariListe (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.Aspari2Konstante =>
+               when SystemDatentypen.Aspari_2_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeAspari2.GebäudeAspari2Liste (GebäudeSchleifenwert);
                   
-               when SystemKonstanten.EkropaKonstante =>
+               when SystemDatentypen.Ekropa_Enum =>
                   GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeEkropa.GebäudeEkropaListe (GebäudeSchleifenwert);
             end case;
             

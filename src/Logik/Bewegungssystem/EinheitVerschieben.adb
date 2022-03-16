@@ -27,7 +27,7 @@ package body EinheitVerschieben is
       case
         GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
-         when SystemDatentypen.Nichtangriffspakt | SystemDatentypen.Neutral =>
+         when SystemDatentypen.Nichtangriffspakt_Enum | SystemDatentypen.Neutral_Enum =>
             EinheitNummer := 0;
             
          when others =>

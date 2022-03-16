@@ -33,10 +33,10 @@ package body StartLogik is
       Einlesen.EinlesenMitAnzeige;
       
       InteraktionLogiktask.EinlesenAbgeschlossen := True;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Intro);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Intro_Enum);
       
       IntroSchleife:
-      while InteraktionGrafiktask.AktuelleDarstellungAbrufen = SystemDatentypen.Grafik_Intro loop
+      while InteraktionGrafiktask.AktuelleDarstellungAbrufen = SystemDatentypen.Grafik_Intro_Enum loop
          
          delay SystemKonstanten.WartezeitLogik;
          

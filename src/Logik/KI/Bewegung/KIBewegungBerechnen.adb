@@ -5,7 +5,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with TastenbelegungKonstanten;
+with TastenbelegungDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -40,9 +40,9 @@ package body KIBewegungBerechnen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts);
+                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern      => TastenbelegungKonstanten.LeerTastenbelegungKonstante);
+                                                    BeschäftigungExtern      => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
       end case;
       
       return PlanungErfolgreich;

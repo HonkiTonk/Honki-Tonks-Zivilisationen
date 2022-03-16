@@ -39,13 +39,13 @@ package body DiplomatischerZustandAenderbar is
       case
         NeuerStatusExtern
       is
-         when SystemDatentypen.Neutral =>
+         when SystemDatentypen.Neutral_Enum =>
             ÄnderungMöglich := NeutralMöglich;
                         
-         when SystemDatentypen.Nichtangriffspakt =>
+         when SystemDatentypen.Nichtangriffspakt_Enum =>
             ÄnderungMöglich := NichtangriffspaktMöglich;
                         
-         when SystemDatentypen.Krieg =>
+         when SystemDatentypen.Krieg_Enum =>
             ÄnderungMöglich := KriegMöglich;
       end case;
       
@@ -82,14 +82,14 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if
-        AktuellerStatus = SystemDatentypen.Nichtangriffspakt
+        AktuellerStatus = SystemDatentypen.Nichtangriffspakt_Enum
         and
           ZeitSeitÄnderung >= SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
       then
          return True;
          
       elsif
-        AktuellerStatus = SystemDatentypen.Krieg
+        AktuellerStatus = SystemDatentypen.Krieg_Enum
         and
           ZeitSeitÄnderung >= 10
           and
@@ -110,13 +110,13 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if
-        AktuellerStatus = SystemDatentypen.Krieg
+        AktuellerStatus = SystemDatentypen.Krieg_Enum
       then
          EsHerrschtKrieg;
          return False;
          
       elsif
-        AktuellerStatus = SystemDatentypen.Neutral
+        AktuellerStatus = SystemDatentypen.Neutral_Enum
         and
           SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatus) - 10
       then
@@ -135,14 +135,14 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if        
-        AktuellerStatus = SystemDatentypen.Nichtangriffspakt
+        AktuellerStatus = SystemDatentypen.Nichtangriffspakt_Enum
       then
          TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                           TextZeileExtern => 24);
          return False;
          
       elsif
-        AktuellerStatus = SystemDatentypen.Neutral
+        AktuellerStatus = SystemDatentypen.Neutral_Enum
         and
           ZeitSeitÄnderung >= SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
       then

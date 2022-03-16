@@ -11,7 +11,7 @@ package body SchreibeKarten is
    is begin
       
       if
-        GrundExtern = KartenGrundDatentypen.Hügel
+        GrundExtern = KartenGrundDatentypen.Hügel_Enum
         and
           LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern) = True
       then

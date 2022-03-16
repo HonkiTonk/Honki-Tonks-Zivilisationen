@@ -7,8 +7,6 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with TastenbelegungDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with KartenVerbesserungKonstanten;
-with KartenGrundKonstanten;
 
 with KIKonstanten;
 with KIDatentypen;
@@ -39,7 +37,7 @@ package body KIPruefungen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenVerbesserungKonstanten.LeerVerbesserung =>
+            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
@@ -87,7 +85,7 @@ package body KIPruefungen is
                null;
                
             elsif
-              KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen,
+              KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen_Enum,
                                                      RasseExtern           => StadtRasseNummerExtern.Rasse,
                                                      ZielKoordinatenExtern => StadtVerbesserungUmgebungKoordinaten)
               = True
@@ -130,9 +128,9 @@ package body KIPruefungen is
          return False;
          
       elsif
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungGebiet
+        LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
         and
-          LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungKonstanten.LeerVerbesserungWeg
+          LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
       then
          return False;
          
@@ -316,7 +314,7 @@ package body KIPruefungen is
             if
               FeldGutUndFrei
               and
-                (KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen,
+                (KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen_Enum,
                                                         RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                         ZielKoordinatenExtern => StadtBauenUmgebungKoordinaten)
                  = False)
@@ -372,7 +370,7 @@ package body KIPruefungen is
          return False;
          
       elsif
-        LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern) = KartenGrundKonstanten.EisKonstante
+        LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern) = KartenGrundDatentypen.Eis_Enum
       then
          return False;
          

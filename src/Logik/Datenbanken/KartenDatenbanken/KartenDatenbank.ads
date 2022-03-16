@@ -2,15 +2,14 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen;
-with KartenGrundKonstanten;
-with KartenRecordKonstanten;
 with KartenGrundDatentypen;
+with KartenRecordKonstanten;
 
 with DatenbankRecords;
 
 package KartenDatenbank is
    
-   type KartenFelderListeArray is array (KartenGrundDatentypen.Karten_Grund_Enum'Range) of DatenbankRecords.KartenListeRecord;
+   type KartenFelderListeArray is array (KartenGrundDatentypen.Karten_Grund_Enum'Range) of DatenbankRecords.KartenGrundListeRecord;
    KartenFelderListe : KartenFelderListeArray;
    
    procedure StandardKartenDatenbankLaden;
@@ -22,116 +21,116 @@ private
    
    KartenFelderListeStandard : constant KartenFelderListeArray := (
                                                                    -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                                                   KartenGrundKonstanten.LeerGrund => KartenRecordKonstanten.LeerKartenListe,
+                                                                   KartenGrundDatentypen.Leer_Grund_Enum => KartenRecordKonstanten.LeerKartenGrundListe,
                                       
                                                                    -- Feld
                                                                    -- Normal
-                                                                   KartenGrundKonstanten.EisKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Eis_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
      
-                                                                   KartenGrundKonstanten.WasserKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Wasser      => True,
-                                                                                         EinheitStadtDatentypen.Luft        => True,
-                                                                                         EinheitStadtDatentypen.Weltraum    => True,
+                                                                   KartenGrundDatentypen.Wasser_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Wasser_Enum      => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum        => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum    => True,
                                                                                          others                             => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlachlandKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flachland_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.TundraKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Tundra_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.WüsteKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Wüste_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
                                                                    -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
-                                                                   KartenGrundKonstanten.HügelKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Hügel_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.GebirgeKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Gebirge_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.WaldKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Wald_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.DschungelKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Dschungel_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.KüstengewässerKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Wasser       => True,
-                                                                                         EinheitStadtDatentypen.Luft         => True,
-                                                                                         EinheitStadtDatentypen.Weltraum     => True,
-                                                                                         EinheitStadtDatentypen.Küstenwasser => True,
+                                                                   KartenGrundDatentypen.Küstengewässer_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum         => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.SumpfKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Sumpf_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
                                                                    -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
-                                                                   KartenGrundKonstanten.HügelMitKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Hügel_Mit_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
@@ -141,57 +140,57 @@ private
       
       
                                                                    -- Unterwasser/Unterirdisch
-                                                                   KartenGrundKonstanten.UnterwasserEisKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterwasser_Eis_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.ErdeKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Erde_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
       
-                                                                   KartenGrundKonstanten.ErdgesteinKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Erdgestein_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
       
-                                                                   KartenGrundKonstanten.SandKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Sand_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
       
-                                                                   KartenGrundKonstanten.UnterwasserWasserKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterwasser => True,
+                                                                   KartenGrundDatentypen.Unterwasser_Wasser_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                          others                             => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterwasserKüstengewässerKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterwasser => True,
+                                                                   KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                          others                             => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
       
-                                                                   KartenGrundKonstanten.KorallenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterwasser => True,
+                                                                   KartenGrundDatentypen.Korallen_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                          others                             => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
       
-                                                                   KartenGrundKonstanten.UnterwasserWaldKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterwasser => True,
+                                                                   KartenGrundDatentypen.Unterwasser_Wald_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                          others                             => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
@@ -201,22 +200,22 @@ private
       
                    
                                                                    -- Planeteninneres
-                                                                   KartenGrundKonstanten.LavaKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lava_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.GesteinKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Gestein_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
       
-                                                                   KartenGrundKonstanten.PlanetenkernKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Planetenkern_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
@@ -226,16 +225,16 @@ private
       
       
                                                                    -- Luft/Weltraum
-                                                                   KartenGrundKonstanten.WolkenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Wolken_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.WeltraumKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Weltraum_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
@@ -247,43 +246,43 @@ private
                                       
                                                                    -- Ressourcen
                                                                    -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft wird!
-                                                                   KartenGrundKonstanten.KohleKonstante =>
+                                                                   KartenGrundDatentypen.Kohle_Enum =>
                                                                      (Passierbarkeit => (others => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.EisenKonstante =>
+                                                                   KartenGrundDatentypen.Eisen_Enum =>
                                                                      (Passierbarkeit => (others => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.ÖlKonstante =>
+                                                                   KartenGrundDatentypen.Öl_Enum =>
                                                                      (Passierbarkeit => (others => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FischKonstante =>
+                                                                   KartenGrundDatentypen.Fisch_Enum =>
                                                                      (Passierbarkeit => (others => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
       
-                                                                   KartenGrundKonstanten.WalKonstante =>
+                                                                   KartenGrundDatentypen.Wal_Enum =>
                                                                      (Passierbarkeit => (others => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.HochwertigerBodenKonstante =>
+                                                                   KartenGrundDatentypen.Hochwertiger_Boden_Enum =>
                                                                      (Passierbarkeit => (others => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.GoldKonstante =>
+                                                                   KartenGrundDatentypen.Gold_Enum =>
                                                                      (Passierbarkeit => (others => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
@@ -295,145 +294,145 @@ private
       
                                                                    -- Flüsse
                                                                    -- Normal
-                                                                   KartenGrundKonstanten.FlusskreuzungVierKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskreuzung_Vier_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlussWaagrechtKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Fluss_Waagrecht_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlussSenkrechtKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Fluss_Senkrecht_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlusskurveUntenRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskurve_Unten_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlusskurveUntenLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskurve_Unten_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlusskurveObenRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskurve_Oben_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlusskurveObenLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskurve_Oben_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlusskreuzungDreiObenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskreuzung_Drei_Oben_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlusskreuzungDreiUntenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskreuzung_Drei_Unten_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlusskreuzungDreiRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskreuzung_Drei_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlusskreuzungDreiLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flusskreuzung_Drei_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlussendstückLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flussendstück_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlussendstückRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flussendstück_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlussendstückUntenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flussendstück_Unten_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.FlussendstückObenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.Flussendstück_Oben_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.SeeKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden    => True,
-                                                                                         EinheitStadtDatentypen.Luft     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum => True,
+                                                                   KartenGrundDatentypen.See_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
+                                                                                         EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                          others                          => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
@@ -443,113 +442,113 @@ private
       
       
                                                                    -- Unterirdisch
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskreuzungVierKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischerFlussWaagrechtKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdischer_Fluss_Waagrecht_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischerFlussSenkrechtKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdischer_Fluss_Senkrecht_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskurveUntenRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskurve_Unten_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskurveUntenLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskurve_Unten_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskurveObenRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskurve_Oben_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskurveObenLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskurve_Oben_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiObenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Oben_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiUntenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Unten_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischesFlussendstückLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdisches_Flussendstück_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischesFlussendstückRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdisches_Flussendstück_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischesFlussendstückUntenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdisches_Flussendstück_Unten_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischesFlussendstückObenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdisches_Flussendstück_Oben_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.UnterirdischerSeeKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch => True,
+                                                                   KartenGrundDatentypen.Unterirdischer_See_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                          others                              => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
@@ -559,113 +558,113 @@ private
       
       
                                                                    -- Lava
-                                                                   KartenGrundKonstanten.LavaflusskreuzungVierKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskreuzung_Vier_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflussWaagrechtKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavafluss_Waagrecht_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflussSenkrechtKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavafluss_Senkrecht_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflusskurveUntenRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskurve_Unten_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflusskurveUntenLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskurve_Unten_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflusskurveObenRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskurve_Oben_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflusskurveObenLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskurve_Oben_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflusskreuzungDreiObenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskreuzung_Drei_Oben_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflusskreuzungDreiUntenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskreuzung_Drei_Unten_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflusskreuzungDreiRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskreuzung_Drei_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflusskreuzungDreiLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflusskreuzung_Drei_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflussendstückLinksKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflussendstück_Links_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflussendstückRechtsKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflussendstück_Rechts_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflussendstückUntenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflussendstück_Unten_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaflussendstückObenKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavaflussendstück_Oben_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),
                                                                       Kampf          => (others => (others => 1))),
                                       
-                                                                   KartenGrundKonstanten.LavaseeKonstante =>
-                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres => True,
+                                                                   KartenGrundDatentypen.Lavasee_Enum =>
+                                                                     (Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                          others                                 => False),
                                                                       Bewertung      => (others => 1),
                                                                       Wirtschaft     => (others => (others => 1)),

@@ -27,7 +27,7 @@ package body Handeln is
       case
         GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
-         when SystemDatentypen.Krieg =>
+         when SystemDatentypen.Krieg_Enum =>
             return 1;
             
          when others =>
@@ -97,7 +97,7 @@ package body Handeln is
                GeldVerlangen (RasseExtern             => RasseExtern,
                               KontaktierteRasseExtern => KontaktierteRasseExtern);
                
-            when SystemKonstanten.ZurückKonstante =>
+            when SystemDatentypen.Zurück_Enum =>
                return 1;
                
             when others =>
@@ -207,9 +207,9 @@ package body Handeln is
            or
              RasseZweiSchleifenwert = KontaktierteRasseExtern
              or
-               GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt
+               GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
            or
-             GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt_Enum
          then
             null;
                   
@@ -237,9 +237,9 @@ package body Handeln is
            or
              RasseEinsSchleifenwert = KontaktierteRasseExtern
              or
-               GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt
+               GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
            or
-             GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt_Enum
          then
             null;
                   

@@ -9,7 +9,7 @@ with EinheitStadtRecords; use EinheitStadtRecords;
 with StadtKonstanten;
 with GlobaleTexte;
 with TextKonstanten;
-with TastenbelegungKonstanten;
+with TastenbelegungDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -69,7 +69,7 @@ package body InDerStadtBauen is
          return StadtKonstanten.LeerBauprojekt;
          
       elsif
-        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Grafik_SFML
+        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Grafik_SFML_Enum
       then
          return AuswahlBauprojektSFML;
          
@@ -160,7 +160,7 @@ package body InDerStadtBauen is
                                               FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Bauen);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Bauen_Enum);
       
       AuswahlSchleife:
       loop
@@ -170,7 +170,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is               
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleAuswahl < 0
                then
@@ -181,7 +181,7 @@ package body InDerStadtBauen is
                   exit AuswahlSchleife;
                end if;
                
-            when TastenbelegungKonstanten.MenüZurückKonstante =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                GewähltesBauprojekt := StadtKonstanten.LeerBauprojekt;
                exit AuswahlSchleife;
                
@@ -191,7 +191,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
       
       return GewähltesBauprojekt;
       
@@ -257,7 +257,7 @@ package body InDerStadtBauen is
    is begin
       
       AktuelleAuswahl := 1;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Bauen);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Bauen_Enum);
       
       AuswahlSchleife:
       loop
@@ -265,7 +265,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is
-            when TastenbelegungKonstanten.ObenKonstante =>
+            when TastenbelegungDatentypen.Oben_Enum =>
                if
                  AktuelleAuswahl = Bauliste'First
                then
@@ -275,7 +275,7 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when TastenbelegungKonstanten.UntenKonstante =>
+            when TastenbelegungDatentypen.Unten_Enum =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -285,11 +285,11 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                GewähltesBauprojekt := Bauliste (AktuelleAuswahl);
                exit AuswahlSchleife;
 
-            when TastenbelegungKonstanten.MenüZurückKonstante =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                if
                  AktuellesBauprojekt.Nummer /= 0
                then
@@ -307,7 +307,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
       
       return GewähltesBauprojekt;
       

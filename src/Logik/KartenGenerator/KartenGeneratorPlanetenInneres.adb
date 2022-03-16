@@ -30,17 +30,17 @@ package body KartenGeneratorPlanetenInneres is
                 XAchseInneresSchleifenwert in XKernanfang .. XKernende
             then
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
-                                     GrundExtern       => KartenGrundDatentypen.Planetenkern);
+                                     GrundExtern       => KartenGrundDatentypen.Planetenkern_Enum);
             
             elsif
               ZufallGeneratorenKarten.ZufälligerWert > 0.65
             then
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
-                                     GrundExtern       => KartenGrundDatentypen.Lava);
+                                     GrundExtern       => KartenGrundDatentypen.Lava_Enum);
                
             else
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
-                                     GrundExtern       => KartenGrundDatentypen.Gestein);
+                                     GrundExtern       => KartenGrundDatentypen.Gestein_Enum);
             end if;
                
          end loop XAchseInneresSchleife;

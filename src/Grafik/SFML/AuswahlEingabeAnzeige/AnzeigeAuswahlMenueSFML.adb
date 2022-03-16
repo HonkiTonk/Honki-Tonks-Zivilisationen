@@ -22,7 +22,7 @@ package body AnzeigeAuswahlMenueSFML is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when SystemDatentypen.Grafik_Menüs =>
+         when SystemDatentypen.Grafik_Menüs_Enum =>
             ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
             WelchesMenü := AuswahlMenue.WelchesMenü;
             Anfang := AuswahlMenue.Anfang;
@@ -116,7 +116,7 @@ package body AnzeigeAuswahlMenueSFML is
          AktuelleFarbe := Sf.Graphics.Color.sfGreen;
          
       elsif
-        WelchesMenü = SystemDatentypen.Rassen_Menü
+        WelchesMenü = SystemDatentypen.Rassen_Menü_Enum
       then
          RassenBelegt := TextZeileExtern;
          RassenBelegtZähler := Anfang;
@@ -131,13 +131,13 @@ package body AnzeigeAuswahlMenueSFML is
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
                is
-                  when SystemKonstanten.SpielerMenschKonstante =>
+                  when SystemDatentypen.Spieler_Mensch_Enum =>
                      AktuelleFarbe := Sf.Graphics.Color.sfBlue;
                      
-                  when SystemKonstanten.SpielerKIKonstante =>
+                  when SystemDatentypen.Spieler_KI_Enum =>
                      AktuelleFarbe := Sf.Graphics.Color.sfYellow;
                      
-                  when SystemKonstanten.LeerSpielerKonstante =>
+                  when SystemDatentypen.Leer_Spieler_Enum =>
                      null;
                end case;
                

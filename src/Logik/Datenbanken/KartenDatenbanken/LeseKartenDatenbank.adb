@@ -57,7 +57,7 @@ package body LeseKartenDatenbank is
    
    function GanzerEintrag
      (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
-      return DatenbankRecords.KartenListeRecord
+      return DatenbankRecords.KartenGrundListeRecord
    is begin
       
       return KartenDatenbank.KartenFelderListe (GrundExtern);

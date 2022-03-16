@@ -64,7 +64,7 @@ package SonstigesKonstanten is
                                                             RassenRundengrenze    => LeerRassenRundengrenze
                                                            );
    
-   LeerAktuellerZustand : constant SystemDatentypen.Status_Untereinander_Enum := SystemDatentypen.Unbekannt;
+   LeerAktuellerZustand : constant SystemDatentypen.Status_Untereinander_Enum := SystemDatentypen.Unbekannt_Enum;
    LeerAktuelleSympathieBewertung : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerZeitSeitLetzterÄnderung : constant Natural := Natural'First;
 
@@ -84,11 +84,11 @@ package SonstigesKonstanten is
                                                                      Produktion          => 0,
                                                                      Wirtschaft          => 0,
                                                                      Bewirtschaftung     => 0,
-                                                                     GültigeStaatsformen => (SystemDatentypen.Anarchie,
-                                                                                              SystemDatentypen.Anarchie,
-                                                                                              SystemDatentypen.Anarchie,
-                                                                                              SystemDatentypen.Anarchie,
-                                                                                              SystemDatentypen.Anarchie)
+                                                                     GültigeStaatsformen => (SystemDatentypen.Anarchie_Enum,
+                                                                                              SystemDatentypen.Anarchie_Enum,
+                                                                                              SystemDatentypen.Anarchie_Enum,
+                                                                                              SystemDatentypen.Anarchie_Enum,
+                                                                                              SystemDatentypen.Anarchie_Enum)
                                                                     );
 
 end SonstigesKonstanten;

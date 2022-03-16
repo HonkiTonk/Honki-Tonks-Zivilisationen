@@ -12,7 +12,6 @@ with EinheitStadtRecords;
 with WichtigeRecords;
 with SystemKonstanten;
 with KartenDatentypen;
-with KartenEinstellungenKonstanten;
 
 with Karten;
 with Auswahl;
@@ -37,7 +36,7 @@ package body Speichern is
             null;
       end case;
 
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
@@ -54,16 +53,16 @@ package body Speichern is
       
       Close (File => DateiSpeichernNeu);
          
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit, SystemDatentypen.Endwert) := Clock;
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
       case
         AutospeichernExtern
       is
          when True =>
-            Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit);
+            Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit_Enum);
             
          when False =>
-            Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit);
+            Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Speicherzeit_Enum);
       end case;
    
    end SpeichernNeu;
@@ -112,9 +111,9 @@ package body Speichern is
       case
         Karten.Kartengröße
       is
-         when KartenEinstellungenKonstanten.KartengrößeNutzerKonstante =>
+         when SystemDatentypen.Karte_Größe_Nutzer_Enum =>
             Karten.KartengrößenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                               Karten.Kartengrößen (KartenEinstellungenKonstanten.KartengrößeNutzerKonstante));
+                                               Karten.Kartengrößen (SystemDatentypen.Karte_Größe_Nutzer_Enum));
             
          when others =>
             null;
@@ -165,7 +164,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -193,7 +192,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
 
             when others =>
@@ -221,7 +220,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -244,7 +243,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
 
             when others =>
@@ -254,7 +253,7 @@ package body Speichern is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when SystemKonstanten.LeerSpielerKonstante =>
+                     when SystemDatentypen.Leer_Spieler_Enum =>
                         null;
                      
                      when others =>
@@ -280,7 +279,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -330,7 +329,7 @@ package body Speichern is
          is
             when True =>
                if
-                 Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = SystemKonstanten.JaKonstante
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = SystemDatentypen.Ja_Enum
                then
                   null;
                      

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemKonstanten;
-
 with EinheitenDatenbankEditor;
 with ForschungDatenbankEditor;
 with GebaeudeDatenbankEditor;
@@ -21,27 +19,27 @@ package body DatenbankenEditoren is
       EditorenSchleife:
       loop
          
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Editoren_Menü);
+         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Editoren_Menü_Enum);
          
          case
            AuswahlWert
          is
-            when SystemKonstanten.KartenfeldEditorKonstante =>
+            when SystemDatentypen.Kartenfeld_Editor_Enum =>
                KartenDatenbankEditor.KartenDatenbankEditor;
                
-            when SystemKonstanten.EinheitenEditorKonstante =>
+            when SystemDatentypen.Einheiten_Editor_Enum =>
                EinheitenDatenbankEditor.EinheitenDatenbankEditor;
                
-            when SystemKonstanten.GebäudeEditorKonstante =>
+            when SystemDatentypen.Gebäude_Editor_Enum =>
                GebaeudeDatenbankEditor.GebäudeDatenbankEditor;
                
-            when SystemKonstanten.ForschungEditorKonstante =>
+            when SystemDatentypen.Forschung_Editor_Enum =>
                ForschungDatenbankEditor.ForschungDatenbankEditor;
                
-            when SystemKonstanten.VerbesserungenEditorKonstante =>
+            when SystemDatentypen.Verbesserungen_Editor_Enum =>
                VerbesserungenDatenbankEditor.VerbesserungenDatenbankEditor;
                
-            when SystemKonstanten.ZurückKonstante | SystemKonstanten.SpielBeendenKonstante | SystemKonstanten.HauptmenüKonstante =>
+            when SystemDatentypen.Zurück_Enum | SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
                return AuswahlWert;
                
             when others =>

@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
-with SystemKonstanten;
 
 package InteraktionLogiktask is
    
@@ -25,6 +24,6 @@ private
    
    FensterErzeugt : Boolean := False;
       
-   AktuelleRasse : SystemDatentypen.Rassen_Enum := SystemKonstanten.LeerRasse;
+   AktuelleRasse : SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse_Enum;
 
 end InteraktionLogiktask;

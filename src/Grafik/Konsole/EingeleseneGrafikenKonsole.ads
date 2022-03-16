@@ -5,8 +5,8 @@ with SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenGrundKonstanten;
-with KartenVerbesserungKonstanten;
+with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 with SonstigesKonstanten;
 
 with DatenbankRecords;
@@ -249,175 +249,175 @@ package EingeleseneGrafikenKonsole is
    
    type KartenGrafikArray is array (KartenDatenbank.KartenFelderListeArray'Range) of Wide_Wide_Character;
    KartenGrafik : KartenGrafikArray := (
-                                         KartenGrundKonstanten.LeerGrund => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Leer_Grund_Enum => KartenKonstanten.LeerKartenGrafik,
                                          
                                          -- Feld
                                          -- Normal
-                                         KartenGrundKonstanten.EisKonstante       => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.WasserKonstante    => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.FlachlandKonstante => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.TundraKonstante    => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.WüsteKonstante     => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Eis_Enum       => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Wasser_Enum    => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Flachland_Enum => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Tundra_Enum    => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Wüste_Enum     => KartenKonstanten.LeerKartenGrafik,
                                       
                                          -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
-                                         KartenGrundKonstanten.HügelKonstante          => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.GebirgeKonstante        => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.WaldKonstante           => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.DschungelKonstante      => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.KüstengewässerKonstante => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.SumpfKonstante          => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.HügelMitKonstante       => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Hügel_Enum          => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Gebirge_Enum        => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Wald_Enum           => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Dschungel_Enum      => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Küstengewässer_Enum => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Sumpf_Enum          => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Hügel_Mit_Enum       => KartenKonstanten.LeerKartenGrafik,
                                          -- Normal
       
       
       
                                          -- Unterwasser/Unterirdisch
-                                         KartenGrundKonstanten.UnterwasserEisKonstante            => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.ErdeKonstante                      => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.ErdgesteinKonstante                => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.SandKonstante                      => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.UnterwasserWasserKonstante         => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.UnterwasserKüstengewässerKonstante => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.KorallenKonstante                  => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.UnterwasserWaldKonstante           => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Unterwasser_Eis_Enum            => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Erde_Enum                      => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Erdgestein_Enum                => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Sand_Enum                      => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Unterwasser_Wasser_Enum         => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Korallen_Enum                  => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Unterwasser_Wald_Enum           => KartenKonstanten.LeerKartenGrafik,
                                          -- Unterwasser/Unterirdisch
       
       
                    
                                          -- Planeteninneres
-                                         KartenGrundKonstanten.LavaKonstante         => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.GesteinKonstante      => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.PlanetenkernKonstante => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Lava_Enum         => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Gestein_Enum      => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Planetenkern_Enum => KartenKonstanten.LeerKartenGrafik,
                                          -- Planeteninneres
       
       
       
                                          -- Luft/Weltraum
-                                         KartenGrundKonstanten.WolkenKonstante  => KartenKonstanten.LeerKartenGrafik,
-                                         KartenGrundKonstanten.WeltraumKonstante => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Wolken_Enum  => KartenKonstanten.LeerKartenGrafik,
+                                         KartenGrundDatentypen.Weltraum_Enum => KartenKonstanten.LeerKartenGrafik,
                                          -- Luft/Weltraum
                                          -- Feld
                                         
       
                                       
                                          -- Ressourcen
-                                         KartenGrundKonstanten.KohleKonstante             => '♦',
-                                         KartenGrundKonstanten.EisenKonstante             => '♦',
-                                         KartenGrundKonstanten.ÖlKonstante                => '♦',
-                                         KartenGrundKonstanten.FischKonstante             => '≈',
-                                         KartenGrundKonstanten.WalKonstante               => '≈',
-                                         KartenGrundKonstanten.HochwertigerBodenKonstante => '♦',
-                                         KartenGrundKonstanten.GoldKonstante              => '♦',
+                                         KartenGrundDatentypen.Kohle_Enum             => '♦',
+                                         KartenGrundDatentypen.Eisen_Enum             => '♦',
+                                         KartenGrundDatentypen.Öl_Enum                => '♦',
+                                         KartenGrundDatentypen.Fisch_Enum             => '≈',
+                                         KartenGrundDatentypen.Wal_Enum               => '≈',
+                                         KartenGrundDatentypen.Hochwertiger_Boden_Enum => '♦',
+                                         KartenGrundDatentypen.Gold_Enum              => '♦',
                                          -- Ressourcen
       
       
       
                                          -- Flüsse
                                          -- Normal
-                                         KartenGrundKonstanten.FlusskreuzungVierKonstante       => '╋',
-                                         KartenGrundKonstanten.FlussWaagrechtKonstante          => '━',
-                                         KartenGrundKonstanten.FlussSenkrechtKonstante          => '┃',
-                                         KartenGrundKonstanten.FlusskurveUntenRechtsKonstante   => '┏',
-                                         KartenGrundKonstanten.FlusskurveUntenLinksKonstante    => '┓',
-                                         KartenGrundKonstanten.FlusskurveObenRechtsKonstante    => '┗',
-                                         KartenGrundKonstanten.FlusskurveObenLinksKonstante     => '┛',
-                                         KartenGrundKonstanten.FlusskreuzungDreiObenKonstante   => '┻',
-                                         KartenGrundKonstanten.FlusskreuzungDreiUntenKonstante  => '┳',
-                                         KartenGrundKonstanten.FlusskreuzungDreiRechtsKonstante => '┣',
-                                         KartenGrundKonstanten.FlusskreuzungDreiLinksKonstante  => '┫',
-                                         KartenGrundKonstanten.FlussendstückLinksKonstante      => '╺',
-                                         KartenGrundKonstanten.FlussendstückRechtsKonstante     => '╸',
-                                         KartenGrundKonstanten.FlussendstückUntenKonstante      => '╹',
-                                         KartenGrundKonstanten.FlussendstückObenKonstante       => '╻',
-                                         KartenGrundKonstanten.SeeKonstante                     => '▪',
+                                         KartenGrundDatentypen.Flusskreuzung_Vier_Enum       => '╋',
+                                         KartenGrundDatentypen.Fluss_Waagrecht_Enum          => '━',
+                                         KartenGrundDatentypen.Fluss_Senkrecht_Enum          => '┃',
+                                         KartenGrundDatentypen.Flusskurve_Unten_Rechts_Enum   => '┏',
+                                         KartenGrundDatentypen.Flusskurve_Unten_Links_Enum    => '┓',
+                                         KartenGrundDatentypen.Flusskurve_Oben_Rechts_Enum    => '┗',
+                                         KartenGrundDatentypen.Flusskurve_Oben_Links_Enum     => '┛',
+                                         KartenGrundDatentypen.Flusskreuzung_Drei_Oben_Enum   => '┻',
+                                         KartenGrundDatentypen.Flusskreuzung_Drei_Unten_Enum  => '┳',
+                                         KartenGrundDatentypen.Flusskreuzung_Drei_Rechts_Enum => '┣',
+                                         KartenGrundDatentypen.Flusskreuzung_Drei_Links_Enum  => '┫',
+                                         KartenGrundDatentypen.Flussendstück_Links_Enum      => '╺',
+                                         KartenGrundDatentypen.Flussendstück_Rechts_Enum     => '╸',
+                                         KartenGrundDatentypen.Flussendstück_Unten_Enum      => '╹',
+                                         KartenGrundDatentypen.Flussendstück_Oben_Enum       => '╻',
+                                         KartenGrundDatentypen.See_Enum                     => '▪',
                                          -- Normal
       
       
       
                                          -- Unterirdisch
-                                         KartenGrundKonstanten.UnterirdischeFlusskreuzungVierKonstante       => '╋',
-                                         KartenGrundKonstanten.UnterirdischerFlussWaagrechtKonstante         => '━',
-                                         KartenGrundKonstanten.UnterirdischerFlussSenkrechtKonstante         => '┃',
-                                         KartenGrundKonstanten.UnterirdischeFlusskurveUntenRechtsKonstante   => '┏',
-                                         KartenGrundKonstanten.UnterirdischeFlusskurveUntenLinksKonstante    => '┓',
-                                         KartenGrundKonstanten.UnterirdischeFlusskurveObenRechtsKonstante    => '┗',
-                                         KartenGrundKonstanten.UnterirdischeFlusskurveObenLinksKonstante     => '┛',
-                                         KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiObenKonstante   => '┻',
-                                         KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiUntenKonstante  => '┳',
-                                         KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiRechtsKonstante => '┣',
-                                         KartenGrundKonstanten.UnterirdischeFlusskreuzungDreiLinksKonstante  => '┫',
-                                         KartenGrundKonstanten.UnterirdischesFlussendstückLinksKonstante     => '╺',
-                                         KartenGrundKonstanten.UnterirdischesFlussendstückRechtsKonstante    => '╸',
-                                         KartenGrundKonstanten.UnterirdischesFlussendstückUntenKonstante     => '╹',
-                                         KartenGrundKonstanten.UnterirdischesFlussendstückObenKonstante      => '╻',
-                                         KartenGrundKonstanten.UnterirdischerSeeKonstante                    => '▪',
+                                         KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum       => '╋',
+                                         KartenGrundDatentypen.Unterirdischer_Fluss_Waagrecht_Enum         => '━',
+                                         KartenGrundDatentypen.Unterirdischer_Fluss_Senkrecht_Enum         => '┃',
+                                         KartenGrundDatentypen.Unterirdische_Flusskurve_Unten_Rechts_Enum   => '┏',
+                                         KartenGrundDatentypen.Unterirdische_Flusskurve_Unten_Links_Enum    => '┓',
+                                         KartenGrundDatentypen.Unterirdische_Flusskurve_Oben_Rechts_Enum    => '┗',
+                                         KartenGrundDatentypen.Unterirdische_Flusskurve_Oben_Links_Enum     => '┛',
+                                         KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Oben_Enum   => '┻',
+                                         KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Unten_Enum  => '┳',
+                                         KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts_Enum => '┣',
+                                         KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Links_Enum  => '┫',
+                                         KartenGrundDatentypen.Unterirdisches_Flussendstück_Links_Enum     => '╺',
+                                         KartenGrundDatentypen.Unterirdisches_Flussendstück_Rechts_Enum    => '╸',
+                                         KartenGrundDatentypen.Unterirdisches_Flussendstück_Unten_Enum     => '╹',
+                                         KartenGrundDatentypen.Unterirdisches_Flussendstück_Oben_Enum      => '╻',
+                                         KartenGrundDatentypen.Unterirdischer_See_Enum                    => '▪',
                                          -- Unterirdisch
       
       
       
                                          -- Lava
-                                         KartenGrundKonstanten.LavaflusskreuzungVierKonstante       => '╋',
-                                         KartenGrundKonstanten.LavaflussWaagrechtKonstante          => '━',
-                                         KartenGrundKonstanten.LavaflussSenkrechtKonstante          => '┃',
-                                         KartenGrundKonstanten.LavaflusskurveUntenRechtsKonstante   => '┏',
-                                         KartenGrundKonstanten.LavaflusskurveUntenLinksKonstante    => '┓',
-                                         KartenGrundKonstanten.LavaflusskurveObenRechtsKonstante    => '┗',
-                                         KartenGrundKonstanten.LavaflusskurveObenLinksKonstante     => '┛',
-                                         KartenGrundKonstanten.LavaflusskreuzungDreiObenKonstante   => '┻',
-                                         KartenGrundKonstanten.LavaflusskreuzungDreiUntenKonstante  => '┳',
-                                         KartenGrundKonstanten.LavaflusskreuzungDreiRechtsKonstante => '┣',
-                                         KartenGrundKonstanten.LavaflusskreuzungDreiLinksKonstante  => '┫',
-                                         KartenGrundKonstanten.LavaflussendstückLinksKonstante      => '╺',
-                                         KartenGrundKonstanten.LavaflussendstückRechtsKonstante     => '╸',
-                                         KartenGrundKonstanten.LavaflussendstückUntenKonstante      => '╹',
-                                         KartenGrundKonstanten.LavaflussendstückObenKonstante       => '╻',
-                                         KartenGrundKonstanten.LavaseeKonstante                     => '▪'
+                                         KartenGrundDatentypen.Lavaflusskreuzung_Vier_Enum       => '╋',
+                                         KartenGrundDatentypen.Lavafluss_Waagrecht_Enum          => '━',
+                                         KartenGrundDatentypen.Lavafluss_Senkrecht_Enum          => '┃',
+                                         KartenGrundDatentypen.Lavaflusskurve_Unten_Rechts_Enum   => '┏',
+                                         KartenGrundDatentypen.Lavaflusskurve_Unten_Links_Enum    => '┓',
+                                         KartenGrundDatentypen.Lavaflusskurve_Oben_Rechts_Enum    => '┗',
+                                         KartenGrundDatentypen.Lavaflusskurve_Oben_Links_Enum     => '┛',
+                                         KartenGrundDatentypen.Lavaflusskreuzung_Drei_Oben_Enum   => '┻',
+                                         KartenGrundDatentypen.Lavaflusskreuzung_Drei_Unten_Enum  => '┳',
+                                         KartenGrundDatentypen.Lavaflusskreuzung_Drei_Rechts_Enum => '┣',
+                                         KartenGrundDatentypen.Lavaflusskreuzung_Drei_Links_Enum  => '┫',
+                                         KartenGrundDatentypen.Lavaflussendstück_Links_Enum      => '╺',
+                                         KartenGrundDatentypen.Lavaflussendstück_Rechts_Enum     => '╸',
+                                         KartenGrundDatentypen.Lavaflussendstück_Unten_Enum      => '╹',
+                                         KartenGrundDatentypen.Lavaflussendstück_Oben_Enum       => '╻',
+                                         KartenGrundDatentypen.Lavasee_Enum                     => '▪'
                                          -- Lava
                                          -- Flüsse
                                         );
    
    type VerbesserungGrafikArray is array (VerbesserungenDatenbank.VerbesserungListeArray'Range) of Wide_Wide_Character;
    VerbesserungGrafik : VerbesserungGrafikArray := (
-                                                    KartenVerbesserungKonstanten.LeerVerbesserung => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenVerbesserungDatentypen.Leer_Verbesserung_Enum => KartenKonstanten.LeerKartenGrafik,
       
       
                                                     
                                                     -- Städte
-                                                    KartenVerbesserungKonstanten.EigeneHauptstadtKonstante => '♣',
-                                                    KartenVerbesserungKonstanten.EigeneStadtKonstante      => '♠',
-                                                    KartenVerbesserungKonstanten.FremdeHauptstadtKonstante => '⌂',
-                                                    KartenVerbesserungKonstanten.FremdeStadtKonstante      => '¤',
+                                                    KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum => '♣',
+                                                    KartenVerbesserungDatentypen.Eigene_Stadt_Enum      => '♠',
+                                                    KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum => '⌂',
+                                                    KartenVerbesserungDatentypen.Fremde_Stadt_Enum      => '¤',
                                                     -- Städte
       
       
                                                   
                                                     -- Gebilde
-                                                    KartenVerbesserungKonstanten.FarmKonstante    => 'F',
-                                                    KartenVerbesserungKonstanten.MineKonstante    => 'M',
-                                                    KartenVerbesserungKonstanten.FestungKonstante => 'B',
-                                                    KartenVerbesserungKonstanten.SperreKonstante  => 'S',
+                                                    KartenVerbesserungDatentypen.Farm_Enum    => 'F',
+                                                    KartenVerbesserungDatentypen.Mine_Enum    => 'M',
+                                                    KartenVerbesserungDatentypen.Festung_Enum => 'B',
+                                                    KartenVerbesserungDatentypen.Sperre_Enum  => 'S',
                                                     -- Gebilde
       
       
                                                   
                                                     -- Wege
                                                     -- Straßen
-                                                    KartenVerbesserungKonstanten.StraßenkreuzungVierKonstante       => '╬',
-                                                    KartenVerbesserungKonstanten.StraßeWaagrechtKonstante           => '═',
-                                                    KartenVerbesserungKonstanten.StraßeSenkrechtKonstante           => '║',
-                                                    KartenVerbesserungKonstanten.StraßenkurveUntenRechtsKonstante   => '╔',
-                                                    KartenVerbesserungKonstanten.StraßenkurveUntenLinksKonstante    => '╗',
-                                                    KartenVerbesserungKonstanten.StraßenkurveObenRechtsKonstante    => '╚',
-                                                    KartenVerbesserungKonstanten.StraßenkurveObenLinksKonstante     => '╝',
-                                                    KartenVerbesserungKonstanten.StraßenkreuzungDreiObenKonstante   => '╩',
-                                                    KartenVerbesserungKonstanten.StraßenkreuzungDreiUntenKonstante  => '╦',
-                                                    KartenVerbesserungKonstanten.StraßenkreuzungDreiRechtsKonstante => '╠',
-                                                    KartenVerbesserungKonstanten.StraßenkreuzungDreiLinksKonstante  => '╣',
-                                                    KartenVerbesserungKonstanten.StraßenendstückLinksKonstante      => '╞',
-                                                    KartenVerbesserungKonstanten.StraßenendstückRechtsKonstante     => '╡',
-                                                    KartenVerbesserungKonstanten.StraßenendstückUntenKonstante      => '╨',
-                                                    KartenVerbesserungKonstanten.StraßenendstückObenKonstante       => '╥',
-                                                    KartenVerbesserungKonstanten.StraßeEinzelnKonstante             => '▫',
+                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum       => '╬',
+                                                    KartenVerbesserungDatentypen.Straße_Waagrecht_Enum           => '═',
+                                                    KartenVerbesserungDatentypen.Straße_Senkrecht_Enum           => '║',
+                                                    KartenVerbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum   => '╔',
+                                                    KartenVerbesserungDatentypen.Straßenkurve_Unten_Links_Enum    => '╗',
+                                                    KartenVerbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum    => '╚',
+                                                    KartenVerbesserungDatentypen.Straßenkurve_Oben_Links_Enum     => '╝',
+                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum   => '╩',
+                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum  => '╦',
+                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum => '╠',
+                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum  => '╣',
+                                                    KartenVerbesserungDatentypen.Straßenendstück_Links_Enum      => '╞',
+                                                    KartenVerbesserungDatentypen.Straßenendstück_Rechts_Enum     => '╡',
+                                                    KartenVerbesserungDatentypen.Straßenendstück_Unten_Enum      => '╨',
+                                                    KartenVerbesserungDatentypen.Straßenendstück_Oben_Enum       => '╥',
+                                                    KartenVerbesserungDatentypen.Straße_Einzeln_Enum             => '▫',
                                                     -- Straßen
       
       

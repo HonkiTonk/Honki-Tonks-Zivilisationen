@@ -6,7 +6,6 @@ with SonstigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenVerbesserungDatentypen;
-with KartenVerbesserungKonstanten;
 
 with SchreibeStadtGebaut;
 with SchreibeWichtiges;
@@ -32,7 +31,7 @@ package body Wachstum is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -42,7 +41,7 @@ package body Wachstum is
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))
                   is
-                     when KartenVerbesserungKonstanten.LeerVerbesserung =>
+                     when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                         null;
                
                      when others =>
@@ -133,15 +132,15 @@ package body Wachstum is
       is
          when True =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => EinheitStadtDatentypen.Einwohner_Wachstum);
+                                                             EreignisExtern         => EinheitStadtDatentypen.Einwohner_Wachstum_Enum);
             if
               LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                  EinwohnerArbeiterExtern => True)
-              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
+              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse)
               or
                 LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                    EinwohnerArbeiterExtern => True)
-              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
+              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse)
             then
                StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -152,15 +151,15 @@ package body Wachstum is
             
          when False =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                             EreignisExtern         => EinheitStadtDatentypen.Einwohner_Reduktion);
+                                                             EreignisExtern         => EinheitStadtDatentypen.Einwohner_Reduktion_Enum);
             if
               LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                  EinwohnerArbeiterExtern => True)
-              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse) - 1
+              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Anfangswert_Enum, StadtRasseNummerExtern.Rasse) - 1
               or
                 LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                    EinwohnerArbeiterExtern => True)
-              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert, StadtRasseNummerExtern.Rasse) - 1
+              = StadtKonstanten.StadtUmgebungWachstum (SystemDatentypen.Endwert_Enum, StadtRasseNummerExtern.Rasse) - 1
             then
                StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
@@ -234,7 +233,7 @@ package body Wachstum is
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
                is
-                  when SystemKonstanten.LeerSpielerKonstante =>
+                  when SystemDatentypen.Leer_Spieler_Enum =>
                      null;
                      
                   when others =>
@@ -268,7 +267,7 @@ package body Wachstum is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
-            when KartenVerbesserungDatentypen.Leer_Verbesserung =>
+            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>

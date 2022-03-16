@@ -2,10 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
+with SystemDatentypen;
 with GlobaleTexte;
-with SystemKonstanten;
 with EinheitenKonstanten;
-with TastenbelegungKonstanten;
 
 with Auswahl;
 with Fehler;
@@ -66,12 +65,12 @@ package body EinheitenBeschreibungen is
       case
         ArbeitExtern
       is
-         when TastenbelegungKonstanten.LeerTastenbelegungKonstante =>
+         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
             BeschäftigungText := GlobaleTexte.Beschäftigungen (17);
                
          when TastenbelegungDatentypen.Tastenbelegung_Befehle_Anzeige'Range =>
             if
-              ArbeitExtern = TastenbelegungKonstanten.StraßeBauenKonstante
+              ArbeitExtern = TastenbelegungDatentypen.Straße_Bauen_Enum
             then
                BeschäftigungText := GlobaleTexte.Beschäftigungen (1);
                   
@@ -97,7 +96,7 @@ package body EinheitenBeschreibungen is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => WelcheAuswahlExtern)
       is
-         when SystemKonstanten.JaKonstante =>
+         when SystemDatentypen.Ja_Enum =>
             return True;
             
          when others =>

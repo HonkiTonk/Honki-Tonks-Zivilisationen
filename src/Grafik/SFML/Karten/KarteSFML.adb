@@ -13,8 +13,6 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
-with KartenGrundKonstanten;
-with KartenVerbesserungKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -204,7 +202,7 @@ package body KarteSFML is
       KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldFluss = KartenGrundKonstanten.LeerGrund
+        KartenfeldFluss = KartenGrundDatentypen.Leer_Grund_Enum
       then
          null;
       
@@ -235,7 +233,7 @@ package body KarteSFML is
       KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldRessource = KartenGrundKonstanten.LeerGrund
+        KartenfeldRessource = KartenGrundDatentypen.Leer_Grund_Enum
       then
          null;
       
@@ -267,7 +265,7 @@ package body KarteSFML is
       Wegfeld := LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Wegfeld = KartenVerbesserungKonstanten.LeerVerbesserungWeg
+        Wegfeld = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
       then
          null;
          
@@ -298,7 +296,7 @@ package body KarteSFML is
       Verbesserungsfeld := LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Verbesserungsfeld = KartenVerbesserungKonstanten.LeerVerbesserungGebiet
+        Verbesserungsfeld = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
       then
          null;
          
@@ -352,21 +350,21 @@ package body KarteSFML is
          case
            Stadtart
          is
-            when KartenVerbesserungDatentypen.Eigene_Hauptstadt =>
+            when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
                                                     PositionExtern      => PositionExtern,
                                                     AnzahlEckenExtern   => 5,
                                                     FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitStadtRasseNummer.Rasse),
                                                     PolygonAccessExtern => PolygonAccess);
                
-            when KartenVerbesserungDatentypen.Eigene_Stadt =>
+            when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
                ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,
                                                     PositionExtern      => PositionExtern,
                                                     AnzahlEckenExtern   => 6,
                                                     FarbeExtern         => GrafikEinstellungenSFML.RassenFarbenRahmen (EinheitStadtRasseNummer.Rasse),
                                                     PolygonAccessExtern => PolygonAccess);
                
-            when KartenVerbesserungKonstanten.LeerVerbesserung =>
+            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                Fehler.GrafikFehler (FehlermeldungExtern => "KarteSFML.AnzeigeStadt - Vorhandene Stadt ist nicht vorhanden.");
          end case;
       end if;
@@ -429,7 +427,7 @@ package body KarteSFML is
       case
         AktuelleRasse
       is
-         when SystemKonstanten.LeerRasse =>
+         when SystemDatentypen.Keine_Rasse_Enum =>
             null;
             
          when others =>

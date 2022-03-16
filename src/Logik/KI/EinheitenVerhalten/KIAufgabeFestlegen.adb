@@ -6,8 +6,8 @@ with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenVerbesserungKonstanten;
-with TastenbelegungKonstanten;
+with KartenVerbesserungDatentypen;
+with TastenbelegungDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -39,9 +39,9 @@ package body KIAufgabeFestlegen is
       
       -- Hier eventuell die Bewegungspukte auf 0 setzen?
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              AufgabeExtern            => KIDatentypen.Tut_Nichts);
+                                              AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern      => TastenbelegungKonstanten.LeerTastenbelegungKonstante);
+                                              BeschäftigungExtern      => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
       
    end KeineAufgabe;
    
@@ -52,7 +52,7 @@ package body KIAufgabeFestlegen is
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              AufgabeExtern            => KIDatentypen.Einheit_Heilen);
+                                              AufgabeExtern            => KIDatentypen.Einheit_Heilen_Enum);
       
    end Heilen;
    
@@ -77,7 +77,7 @@ package body KIAufgabeFestlegen is
          SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     KoordinatenExtern        => NeueStadtPosition);
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen);
+                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum);
          
       else
          null;
@@ -92,7 +92,7 @@ package body KIAufgabeFestlegen is
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              AufgabeExtern            => KIDatentypen.Verbesserung_Anlegen);
+                                              AufgabeExtern            => KIDatentypen.Verbesserung_Anlegen_Enum);
       SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  KoordinatenExtern        => KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
@@ -112,7 +112,7 @@ package body KIAufgabeFestlegen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
          is
-            when KartenVerbesserungKonstanten.LeerVerbesserung =>
+            when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                null;
                
             when others =>
@@ -127,7 +127,7 @@ package body KIAufgabeFestlegen is
                SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                           KoordinatenExtern        => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
                SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       AufgabeExtern            => KIDatentypen.Stadt_Bewachen);
+                                                       AufgabeExtern            => KIDatentypen.Stadt_Bewachen_Enum);
                return;
                
             when others =>
@@ -164,7 +164,7 @@ package body KIAufgabeFestlegen is
             
          when others =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Angreifen);
+                                                    AufgabeExtern            => KIDatentypen.Angreifen_Enum);
       end case;
       
       KoordinatenFeind := KIFeindlicheEinheitSuchen.FeindlicheEinheitInUmgebungSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -190,7 +190,7 @@ package body KIAufgabeFestlegen is
       is
          when KartenKonstanten.LeerXAchse =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts);
+                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => KIKonstanten.LeerKoordinate);
             
@@ -214,7 +214,7 @@ package body KIAufgabeFestlegen is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemKonstanten.LeerSpielerKonstante
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
            or
              RasseSchleifenwert = RasseExtern
          then
@@ -223,7 +223,7 @@ package body KIAufgabeFestlegen is
          elsif
            DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
                                                               FremdeRasseExtern => RasseSchleifenwert)
-           = SystemDatentypen.Krieg
+           = SystemDatentypen.Krieg_Enum
          then
             -- Hier noch mehr Überprüfungen einbauen?
             Ziel := RasseSchleifenwert;
@@ -288,7 +288,7 @@ package body KIAufgabeFestlegen is
                      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                 KoordinatenExtern        => KartenWert);
                      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             AufgabeExtern            => KIDatentypen.Erkunden);
+                                                             AufgabeExtern            => KIDatentypen.Erkunden_Enum);
                      return;
                      
                   else
@@ -309,7 +309,7 @@ package body KIAufgabeFestlegen is
       SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  KoordinatenExtern        => KIKonstanten.LeerKoordinate);
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              AufgabeExtern            => KIDatentypen.Tut_Nichts);
+                                              AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
       
    end Erkunden;
    
@@ -320,7 +320,7 @@ package body KIAufgabeFestlegen is
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              AufgabeExtern            => KIDatentypen.Flucht);
+                                              AufgabeExtern            => KIDatentypen.Flucht_Enum);
       
    end Fliehen;
    
@@ -331,7 +331,7 @@ package body KIAufgabeFestlegen is
    is begin
       
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              AufgabeExtern            => KIDatentypen.Einheit_Festsetzen);
+                                              AufgabeExtern            => KIDatentypen.Einheit_Festsetzen_Enum);
       
    end Befestigen;
    
@@ -354,7 +354,7 @@ package body KIAufgabeFestlegen is
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => PlatzGefunden);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Einheit_Verbessern);
+                                                    AufgabeExtern            => KIDatentypen.Einheit_Verbessern_Enum);
             return;
       end case;
       
@@ -392,7 +392,7 @@ package body KIAufgabeFestlegen is
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => PlatzGefunden);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Einheit_Verbessern);
+                                                    AufgabeExtern            => KIDatentypen.Einheit_Verbessern_Enum);
       end case;
       
    end EinheitVerbessern;

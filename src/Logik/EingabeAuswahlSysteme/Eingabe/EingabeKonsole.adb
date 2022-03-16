@@ -41,18 +41,18 @@ package body EingabeKonsole is
          VorzeichenAnpassen (ZahlenMinimumExtern => ZahlenMinimumExtern,
                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                              PlusMinusExtern     => True);
-         InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Zahlen_Eingabe);
+         InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Zahlen_Eingabe_Enum);
       end if;
       
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
          -- Brauche ich den Stadtteil wirklich? Eventuell um in der Stadt bestimmte Dinge festzulegen.
-         when SystemDatentypen.Grafik_Weltkarte | SystemDatentypen.Grafik_Stadtkarte =>
+         when SystemDatentypen.Grafik_Weltkarte_Enum | SystemDatentypen.Grafik_Stadtkarte_Enum =>
             null;
             
          when others =>
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Menüs);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Menüs_Enum);
       end case;
                   
       case
@@ -78,9 +78,9 @@ package body EingabeKonsole is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when SystemDatentypen.Grafik_Menüs =>
-            InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe);
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+         when SystemDatentypen.Grafik_Menüs_Enum =>
+            InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
             
          when others =>
             null;
@@ -434,7 +434,7 @@ package body EingabeKonsole is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return TastenbelegungKonstanten.LeerTastenbelegungKonstante;
+      return TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
       
    end Tastenwert;
    

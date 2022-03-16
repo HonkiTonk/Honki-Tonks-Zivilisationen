@@ -58,7 +58,7 @@ package body BewegungEinheitenSFML is
          when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             Änderung := Richtung (BefehlExtern);
                
-         when TastenbelegungKonstanten.HeimatstadtÄndernKonstante =>
+         when TastenbelegungDatentypen.Heimatstadt_Ändern_Enum =>
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
          when TastenbelegungDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | TastenbelegungDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
@@ -66,11 +66,11 @@ package body BewegungEinheitenSFML is
             return not Aufgaben.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                      BefehlExtern             => BefehlExtern);
                
-         when TastenbelegungKonstanten.BauenKonstante =>
+         when TastenbelegungDatentypen.Bauen_Enum =>
             -- Das Umgekehrte zurückgeben da bei erfolgreichem Städtebau keine Bewegung mehr möglich ist und umgekehrt.
             return not StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when TastenbelegungKonstanten.LeerTastenbelegungKonstante =>
+         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
             -- Statt nur bei Leer nichts machen und in allen anderen Fällen zurück oder nur bei Menü_Zurück zurück und sonst nicht?
             null;
             
@@ -166,23 +166,23 @@ package body BewegungEinheitenSFML is
          case
            BefehlMaus
          is
-            when TastenbelegungKonstanten.MenüZurückKonstante =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                return False;
                
-            when TastenbelegungKonstanten.EbeneHochKonstante =>
+            when TastenbelegungDatentypen.Ebene_Hoch_Enum =>
                BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                       RichtungExtern => BefehlMaus,
                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
                
-            when TastenbelegungKonstanten.EbeneRunterKonstante =>
+            when TastenbelegungDatentypen.Ebene_Runter_Enum =>
                BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                       RichtungExtern => BefehlMaus,
                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
                
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                return EinheitBewegenMaus (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
-            when TastenbelegungKonstanten.LeerTastenbelegungKonstante =>
+            when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
                null;
                
             when others =>

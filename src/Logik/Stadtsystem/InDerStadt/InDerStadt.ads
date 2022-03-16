@@ -6,7 +6,6 @@ with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with GlobaleVariablen;
 with SystemRecords;
-with SystemKonstanten;
 with TastenbelegungDatentypen;
 
 package InDerStadt is
@@ -19,7 +18,7 @@ package InDerStadt is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemKonstanten.SpielerMenschKonstante);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum);
 
 private
 

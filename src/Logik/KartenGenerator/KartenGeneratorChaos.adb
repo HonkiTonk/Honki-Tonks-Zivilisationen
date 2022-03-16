@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenGrundKonstanten;
-
 with SchreibeKarten;
 
 with Karten;
@@ -27,7 +25,7 @@ package body KartenGeneratorChaos is
                case
                  GrundZufall
                is
-                  when KartenGrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | KartenGrundDatentypen.Lava | KartenGrundDatentypen.Planetenkern =>
+                  when KartenGrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | KartenGrundDatentypen.Lava_Enum | KartenGrundDatentypen.Planetenkern_Enum =>
                      null;
                      
                   when others =>
@@ -52,7 +50,7 @@ package body KartenGeneratorChaos is
                case
                  RessourceZufall
                is
-                  when KartenGrundKonstanten.LeerGrund =>
+                  when KartenGrundDatentypen.Leer_Grund_Enum =>
                      null;
                      
                   when others =>

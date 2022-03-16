@@ -7,7 +7,6 @@ with KartenRecords;
 with ForschungKonstanten;
 with EinheitStadtDatentypen;
 with SystemDatentypen;
-with TastenbelegungKonstanten;
 with TastenbelegungDatentypen;
 
 with DatenbankRecords;
@@ -16,7 +15,7 @@ with KIDatentypen;
 
 package EinheitenKonstanten is
    
-   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemKonstanten.LeerRasse;
+   LeerRasse : constant SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse_Enum;
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
 
@@ -28,12 +27,12 @@ package EinheitenKonstanten is
    LeerErfahrungspunkte : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    LeerRang : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    ----------------------- Beschäftigung und Tastenbelegung mal trennen?
-   LeerBeschäftigung : constant TastenbelegungDatentypen.Tastenbelegung_Enum := TastenbelegungKonstanten.LeerTastenbelegungKonstante;
+   LeerBeschäftigung : constant TastenbelegungDatentypen.Tastenbelegung_Enum := TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
    LeerBeschäftigungszeit : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Tut_Nichts;
+   LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Tut_Nichts_Enum;
    LeerTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerWirdTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerMeldung : constant EinheitStadtDatentypen.Einheit_Meldung_Enum := EinheitStadtDatentypen.Leer;
+   LeerMeldung : constant EinheitStadtDatentypen.Einheit_Meldung_Enum := EinheitStadtDatentypen.Leer_Enum;
    
    LeerEinheit : constant EinheitStadtRecords.EinheitenGebautRecord := (
                                                                         ID                           => LeerID,
@@ -58,7 +57,7 @@ package EinheitenKonstanten is
    EinheitBefehlAbzug : constant Positive := 22;
       
    LeerEinheitenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
-   LeerEinheitArt : constant EinheitStadtDatentypen.Einheit_Art_Enum := EinheitStadtDatentypen.Leer;
+   LeerEinheitArt : constant EinheitStadtDatentypen.Einheit_Art_Enum := EinheitStadtDatentypen.Leer_Enum;
    LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPermanenteKosten : constant EinheitStadtDatentypen.GesamtePermanenteKosten := 0;

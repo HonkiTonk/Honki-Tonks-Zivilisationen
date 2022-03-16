@@ -21,12 +21,12 @@ package body SpielEinstellungenRasseSpieler is
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => SystemKonstanten.LeerSpielerKonstante);
+      GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer_Spieler_Enum);
 
       RasseSchleife:
       loop
          
-         RassenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Rassen_Menü);
+         RassenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Rassen_Menü_Enum);
 
          case
            RassenAuswahl
@@ -34,21 +34,21 @@ package body SpielEinstellungenRasseSpieler is
             when SystemDatentypen.Rassen_Verwendet_Enum'Range =>
                BelegungÄndern (RasseExtern => RassenAuswahl);
 
-            when SystemKonstanten.ZufallKonstante =>
+            when SystemDatentypen.Zufall_Enum =>
                ZufallGeneratorenSpieleinstellungen.ZufälligeRassen;
                
-            when SystemKonstanten.FertigKonstante =>
+            when SystemDatentypen.Fertig_Enum =>
                if
                  EineRasseBelegt = True
                then
-                  return SystemKonstanten.AuswahlSchwierigkeitsgradKonstante;
+                  return SystemDatentypen.Auswahl_Schwierigkeitsgrad_Enum;
                   
                else
                   null;
                end if;
 
-            when SystemKonstanten.ZurückKonstante =>
-               return SystemKonstanten.AuswahlKartenressourcenKonstante;
+            when SystemDatentypen.Zurück_Enum =>
+               return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
                
             when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return RassenAuswahl;
@@ -68,17 +68,17 @@ package body SpielEinstellungenRasseSpieler is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.LeerSpielerKonstante
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer_Spieler_Enum
       then
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemKonstanten.SpielerMenschKonstante;
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Spieler_Mensch_Enum;
                   
       elsif
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.SpielerMenschKonstante
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum
       then
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemKonstanten.SpielerKIKonstante;
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Spieler_KI_Enum;
                   
       else
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemKonstanten.LeerSpielerKonstante;
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Leer_Spieler_Enum;
       end if;
       
    end BelegungÄndern;
@@ -93,7 +93,7 @@ package body SpielEinstellungenRasseSpieler is
       for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemKonstanten.LeerSpielerKonstante
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemDatentypen.Leer_Spieler_Enum
          then
             return True;
             
@@ -118,7 +118,7 @@ package body SpielEinstellungenRasseSpieler is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -150,7 +150,7 @@ package body SpielEinstellungenRasseSpieler is
                         --                                      TextZeileExtern => SystemDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                         --                                      TextZeileExtern => 17);
-                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := SystemKonstanten.LeerSpielerKonstante;
+                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := SystemDatentypen.Leer_Spieler_Enum;
                         
                      when others =>
                         null;

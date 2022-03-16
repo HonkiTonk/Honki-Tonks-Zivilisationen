@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen;
 with KartenRecords;
-with KartenGrundKonstanten;
 
 with KartenGeneratorBerechnungenAllgemein;
 
@@ -19,7 +18,7 @@ private
 
    type KartengrundWahrscheinlichkeitenArray is array (KartenGrundDatentypen.Karten_Unterwasser_Generator_Enum'Range, KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (
-                                                                                       KartenGrundKonstanten.KorallenKonstante =>
+                                                                                       KartenGrundDatentypen.Korallen_Enum =>
                                                                                          (0 => 0.20,
                                                                                           1 => 0.25,
                                                                                           2 => 0.25,
@@ -30,7 +29,7 @@ private
                                                                                           7 => 0.40,
                                                                                           8 => 0.55),
 
-                                                                                       KartenGrundKonstanten.UnterwasserWaldKonstante =>
+                                                                                       KartenGrundDatentypen.Unterwasser_Wald_Enum =>
                                                                                          (0 => 0.20,
                                                                                           1 => 0.25,
                                                                                           2 => 0.25,

@@ -8,7 +8,6 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
-with SystemKonstanten;
 with GlobaleTexte;
 with GlobaleVariablen;
 
@@ -30,22 +29,22 @@ package body OptionenSteuerung is
       BelegungSchleife:
       loop
                   
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Steuerung_Menü);
+         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Steuerung_Menü_Enum);
          
          case
            AuswahlWert
          is   
-            when SystemKonstanten.SpeichernKonstante =>
+            when SystemDatentypen.Speichern_Enum =>
                SchreibenTastatur.TastenbelegungSchreiben;
                
-            when SystemKonstanten.WiederherstellenKonstante =>
+            when SystemDatentypen.Wiederherstellen_Enum =>
                Eingabe.StandardTastenbelegungLaden;
                SchreibenTastatur.TastenbelegungSchreiben;
             
             when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
                
-            when SystemKonstanten.EingabeKonstante =>
+            when SystemDatentypen.Eingabe_Enum =>
                AlteTasteEntfernen;
                      
             when others =>
@@ -64,10 +63,10 @@ package body OptionenSteuerung is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             AlteTasteEntfernenKonsole;
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             AlteTasteEntfernenSFML;
       end case;
       
@@ -186,10 +185,10 @@ package body OptionenSteuerung is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             AlteTasteEntfernenKonsole;
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             NeueTasteFestlegenSFML;
       end case;
       

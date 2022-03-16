@@ -32,7 +32,7 @@ package body BewegungEinheitenKonsole is
             when TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
                Änderung := Richtung (Befehl);
                
-            when TastenbelegungKonstanten.HeimatstadtÄndernKonstante =>
+            when TastenbelegungDatentypen.Heimatstadt_Ändern_Enum =>
                EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
                
@@ -52,7 +52,7 @@ package body BewegungEinheitenKonsole is
                                                                       TextZeileExtern => 2);
                end case;
                
-            when TastenbelegungKonstanten.BauenKonstante =>
+            when TastenbelegungDatentypen.Bauen_Enum =>
                NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
             

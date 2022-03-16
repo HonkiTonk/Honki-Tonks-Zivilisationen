@@ -4,46 +4,46 @@ pragma Warnings (Off, "*array aggregate*");
 package KartenVerbesserungDatentypen is
 
    -- Immer dran denken, alle Wegearten am Schluss hinzufügen.
-   type Karten_Verbesserung_Enum is (Leer_Verbesserung,
+   type Karten_Verbesserung_Enum is (Leer_Verbesserung_Enum,
                                      
                                      -- Städte
-                                     Eigene_Hauptstadt, Eigene_Stadt,
-                                     Fremde_Hauptstadt, Fremde_Stadt,
+                                     Eigene_Hauptstadt_Enum, Eigene_Stadt_Enum,
+                                     Fremde_Hauptstadt_Enum, Fremde_Stadt_Enum,
                                      
                                      -- Gebilde
-                                     Farm, Mine,
-                                     Festung, Sperre,
+                                     Farm_Enum, Mine_Enum,
+                                     Festung_Enum, Sperre_Enum,
                                      
                                      -- Wege - Straßen
-                                     Straßenkreuzung_Vier, Straße_Waagrecht, Straße_Senkrecht, Straßenkurve_Unten_Rechts, Straßenkurve_Unten_Links, Straßenkurve_Oben_Rechts, Straßenkurve_Oben_Links,
-                                     Straßenkreuzung_Drei_Oben, Straßenkreuzung_Drei_Unten, Straßenkreuzung_Drei_Rechts, Straßenkreuzung_Drei_Links, Straßenendstück_Links, Straßenendstück_Rechts,
-                                     Straßenendstück_Unten, Straßenendstück_Oben, Straße_Einzeln,
+                                     Straßenkreuzung_Vier_Enum, Straße_Waagrecht_Enum, Straße_Senkrecht_Enum, Straßenkurve_Unten_Rechts_Enum, Straßenkurve_Unten_Links_Enum, Straßenkurve_Oben_Rechts_Enum,
+                                     Straßenkurve_Oben_Links_Enum, Straßenkreuzung_Drei_Oben_Enum, Straßenkreuzung_Drei_Unten_Enum, Straßenkreuzung_Drei_Rechts_Enum, Straßenkreuzung_Drei_Links_Enum,
+                                     Straßenendstück_Links_Enum, Straßenendstück_Rechts_Enum, Straßenendstück_Unten_Enum, Straßenendstück_Oben_Enum, Straße_Einzeln_Enum,
                                      
                                      -- Schienen
-                                     Schienenkreuzung_Vier, Schiene_Waagrecht, Schiene_Senkrecht, Schienenkurve_Unten_Rechts, Schienenkurve_Unten_Links, Schienenkurve_Oben_Rechts, Schienenkurve_Oben_Links,
-                                     Schienenkreuzung_Drei_Oben, Schienenkreuzung_Drei_Unten, Schienenkreuzung_Drei_Rechts, Schienenkreuzung_Drei_Links, Schienenendstück_Links, Schienenendstück_Rechts,
-                                     Schienenendstück_Unten, Schienenendstück_Oben, Schiene_Einzeln,
+                                     Schienenkreuzung_Vier_Enum, Schiene_Waagrecht_Enum, Schiene_Senkrecht_Enum, Schienenkurve_Unten_Rechts_Enum, Schienenkurve_Unten_Links_Enum, Schienenkurve_Oben_Rechts_Enum,
+                                     Schienenkurve_Oben_Links_Enum, Schienenkreuzung_Drei_Oben_Enum, Schienenkreuzung_Drei_Unten_Enum, Schienenkreuzung_Drei_Rechts_Enum, Schienenkreuzung_Drei_Links_Enum,
+                                     Schienenendstück_Links_Enum, Schienenendstück_Rechts_Enum, Schienenendstück_Unten_Enum, Schienenendstück_Oben_Enum, Schiene_Einzeln_Enum,
                                      
                                      -- Tunnel
-                                     Tunnelkreuzung_Vier, Tunnel_Waagrecht, Tunnel_Senkrecht, Tunnelkurve_Unten_Rechts, Tunnelkurve_Unten_Links, Tunnelkurve_Oben_Rechts, Tunnelkurve_Oben_Links,
-                                     Tunnelkreuzung_Drei_Oben, Tunnelkreuzung_Drei_Unten, Tunnelkreuzung_Drei_Rechts, Tunnelkreuzung_Drei_Links, Tunnelendstück_Links, Tunnelendstück_Rechts,
-                                     Tunnelendstück_Unten, Tunnelendstück_Oben, Tunnel_Einzeln
+                                     Tunnelkreuzung_Vier_Enum, Tunnel_Waagrecht_Enum, Tunnel_Senkrecht_Enum, Tunnelkurve_Unten_Rechts_Enum, Tunnelkurve_Unten_Links_Enum, Tunnelkurve_Oben_Rechts_Enum,
+                                     Tunnelkurve_Oben_Links_Enum, Tunnelkreuzung_Drei_Oben_Enum, Tunnelkreuzung_Drei_Unten_Enum, Tunnelkreuzung_Drei_Rechts_Enum, Tunnelkreuzung_Drei_Links_Enum,
+                                     Tunnelendstück_Links_Enum, Tunnelendstück_Rechts_Enum, Tunnelendstück_Unten_Enum, Tunnelendstück_Oben_Enum, Tunnel_Einzeln_Enum
                                     );
    
-   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Karten_Verbesserung_Enum'Last;
+   subtype Karten_Verbesserung_Vorhanden_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt_Enum .. Karten_Verbesserung_Enum'Last;
 
-   subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer_Verbesserung .. Eigene_Stadt;
-   subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Vorhanden_Enum range Eigene_Hauptstadt .. Fremde_Stadt;
-   subtype Karten_Verbesserung_Eigene_Städte_Enum is Karten_Verbesserung_Städte_Enum range Eigene_Hauptstadt .. Eigene_Stadt;
-   subtype Karten_Verbesserung_Fremde_Städte_Enum is Karten_Verbesserung_Städte_Enum range Fremde_Hauptstadt .. Fremde_Stadt;
-   subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Vorhanden_Enum range Farm .. Sperre;
-   subtype Karten_Verbesserung_Gebilde_Friedlich_Enum is Karten_Verbesserung_Gebilde_Enum range Farm .. Mine;
-   subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung .. Sperre;
-   subtype Karten_Weg_Enum is Karten_Verbesserung_Vorhanden_Enum range Straßenkreuzung_Vier .. Karten_Verbesserung_Vorhanden_Enum'Last;
-   subtype Karten_Verbesserung_Weg_Enum is Karten_Weg_Enum range Straßenkreuzung_Vier .. Straße_Einzeln;
-   subtype Karten_Verbesserung_Schiene_Enum is Karten_Weg_Enum range Schienenkreuzung_Vier .. Schiene_Einzeln;
-   subtype Karten_Verbesserung_Tunnel_Enum is Karten_Weg_Enum range Tunnelkreuzung_Vier .. Tunnel_Einzeln;
+   subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer_Verbesserung_Enum .. Eigene_Stadt_Enum;
+   subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Vorhanden_Enum range Eigene_Hauptstadt_Enum .. Fremde_Stadt_Enum;
+   subtype Karten_Verbesserung_Eigene_Städte_Enum is Karten_Verbesserung_Städte_Enum range Eigene_Hauptstadt_Enum .. Eigene_Stadt_Enum;
+   subtype Karten_Verbesserung_Fremde_Städte_Enum is Karten_Verbesserung_Städte_Enum range Fremde_Hauptstadt_Enum .. Fremde_Stadt_Enum;
+   subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Vorhanden_Enum range Farm_Enum .. Sperre_Enum;
+   subtype Karten_Verbesserung_Gebilde_Friedlich_Enum is Karten_Verbesserung_Gebilde_Enum range Farm_Enum .. Mine_Enum;
+   subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung_Enum .. Sperre_Enum;
+   subtype Karten_Weg_Enum is Karten_Verbesserung_Vorhanden_Enum range Straßenkreuzung_Vier_Enum .. Karten_Verbesserung_Vorhanden_Enum'Last;
+   subtype Karten_Verbesserung_Weg_Enum is Karten_Weg_Enum range Straßenkreuzung_Vier_Enum .. Straße_Einzeln_Enum;
+   subtype Karten_Verbesserung_Schiene_Enum is Karten_Weg_Enum range Schienenkreuzung_Vier_Enum .. Schiene_Einzeln_Enum;
+   subtype Karten_Verbesserung_Tunnel_Enum is Karten_Weg_Enum range Tunnelkreuzung_Vier_Enum .. Tunnel_Einzeln_Enum;
    
-   -- type Karten_Weg_Enum is (Leer_Weg);
+   -- type Karten_Weg_Enum is (Leer_Weg_Enum);
 
 end KartenVerbesserungDatentypen;

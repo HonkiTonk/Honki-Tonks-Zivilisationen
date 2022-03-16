@@ -37,9 +37,9 @@ package body Diplomatie is
          if
            RassenSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemKonstanten.LeerSpielerKonstante
+             GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer_Spieler_Enum
            or
-             GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt
+             GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
          then
             null;
             
@@ -73,7 +73,7 @@ package body Diplomatie is
            -- case
           --    WelcheRasse
           --  is
-          --     when SystemKonstanten.ZurückKonstante =>
+          --     when SystemDatentypen.Zurück_Enum =>
            --       return;
                   
            --    when others =>
@@ -83,9 +83,9 @@ package body Diplomatie is
             if
               SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
               or
-                GlobaleVariablen.RassenImSpiel (SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SystemKonstanten.LeerSpielerKonstante
+                GlobaleVariablen.RassenImSpiel (SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = SystemDatentypen.Leer_Spieler_Enum
                 or
-                  GlobaleVariablen.Diplomatie (RasseExtern, SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt
+                  GlobaleVariablen.Diplomatie (RasseExtern, SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
             then
                -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                --                                     TextZeileExtern => 21);
@@ -120,7 +120,7 @@ package body Diplomatie is
              --     EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
              --                                              KontaktierteRasseExtern => SystemDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
                   
-             --  when SystemKonstanten.ZurückKonstante =>
+             --  when SystemDatentypen.Zurück_Enum =>
              --     exit DiplomatischeAktionSchleife;
                   
             --   when others =>
@@ -130,7 +130,7 @@ package body Diplomatie is
           --  case
           --    DiplomatischeAktion
           --  is
-          --     when SystemKonstanten.ZurückKonstante =>
+          --     when SystemDatentypen.Zurück_Enum =>
                   return;
                   
           --     when others =>
@@ -164,7 +164,7 @@ package body Diplomatie is
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
                                                                                      NeuerStatusExtern => SystemDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
-            return SystemKonstanten.StartWeiterKonstante;
+            return SystemDatentypen.Start_Weiter_Enum;
             
             -- Ist dazu da um im Kriegsfall sofort das Diplomatiemenü zu schließen.
          when 3 =>
@@ -174,14 +174,14 @@ package body Diplomatie is
             if
               KriegJetzt
             then
-               return SystemKonstanten.ZurückKonstante;
+               return SystemDatentypen.Zurück_Enum;
                
             else
-               return SystemKonstanten.StartWeiterKonstante;
+               return SystemDatentypen.Start_Weiter_Enum;
             end if;
             
          when others =>
-            return SystemKonstanten.LeerRückgabeKonstante;
+            return SystemDatentypen.Leer_Rückgabe_Enum;
       end case;
       
    end DiplomatischenStatusÄndern;

@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
-with TastenbelegungKonstanten;
 
 with SchreibeStadtGebaut;
 
@@ -24,7 +23,7 @@ package body InDerStadt is
       StadtSchleife:
       loop
          
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Stadtkarte);
+         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Stadtkarte_Enum);
          
          Befehl := Eingabe.Tastenwert;
          
@@ -37,7 +36,7 @@ package body InDerStadt is
                                                       RasseExtern    => StadtRasseNummerExtern.Rasse);
 
                -- Einwohner von Feld entfernen/zuweisen
-            when TastenbelegungKonstanten.AuswählenKonstante =>
+            when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  WasIstAusgewählt (StadtRasseNummerExtern => StadtRasseNummerExtern) = True
                then
@@ -47,14 +46,14 @@ package body InDerStadt is
                   return;
                end if;
                
-            when TastenbelegungKonstanten.BauenKonstante =>
+            when TastenbelegungDatentypen.Bauen_Enum =>
                InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
                -- Gebäude verkaufen
-            when TastenbelegungKonstanten.AuflösenKonstante =>
+            when TastenbelegungDatentypen.Auflösen_Enum =>
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-            when TastenbelegungKonstanten.StadtUmbenennenKonstante =>
+            when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
                NeuerName := Eingabe.StadtName;
                
                if
@@ -67,7 +66,7 @@ package body InDerStadt is
                   null;
                end if;
 
-            when TastenbelegungKonstanten.MenüZurückKonstante =>
+            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                exit StadtSchleife;
                
             when others =>
@@ -76,7 +75,7 @@ package body InDerStadt is
          
       end loop StadtSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
       
       -- Theoretisch kann diese Wertzuweisung raus, sicherheitshalber trotzdem drinnen lassen?
       AktuelleStadtNummerGrafik := StadtKonstanten.LeerNummer;

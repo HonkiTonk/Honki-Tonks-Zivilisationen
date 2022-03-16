@@ -27,7 +27,7 @@ package body TextAnzeigeKonsole is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             TextAnzeigeKonsole.AnzeigeOhneAuswahl (ÜberschriftDateiExtern => ÜberschriftDateiExtern,
                                                    TextDateiExtern        => TextDateiExtern,
                                                    ÜberschriftZeileExtern => ÜberschriftZeileExtern,
@@ -37,7 +37,7 @@ package body TextAnzeigeKonsole is
                                                    AbstandMitteExtern     => AbstandMitteExtern,
                                                    AbstandEndeExtern      => AbstandEndeExtern);
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.AnzeigeOhneAuswahlNeu - SFML wird in Konsolengrafik aufgerufen.");
       end case;
       
@@ -53,7 +53,7 @@ package body TextAnzeigeKonsole is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                    TextDateiExtern        => TextDateiExtern,
                                    ÜberschriftZeileExtern => 0,
@@ -74,7 +74,7 @@ package body TextAnzeigeKonsole is
                null;
             end if;
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.EinzeiligeAnzeigeOhneAuswahl - SFML wird in Konsolengrafik aufgerufen.");
       end case;
       
@@ -94,7 +94,7 @@ package body TextAnzeigeKonsole is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole =>
+         when SystemDatentypen.Grafik_Konsole_Enum =>
             TextAnzeigeKonsole.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,
                                                   TextDateiExtern             => TextDateiExtern,
                                                   FrageZeileExtern            => FrageZeileExtern,
@@ -102,7 +102,7 @@ package body TextAnzeigeKonsole is
                                                   LetzteZeileExtern           => LetzteZeileExtern,
                                                   AktuelleAuswahlExtern       => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Grafik_SFML =>
+         when SystemDatentypen.Grafik_SFML_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "Anzeige.AnzeigeMitAuswahlNeu - SFML wird in Konsolengrafik aufgerufen.");
       end case;
       

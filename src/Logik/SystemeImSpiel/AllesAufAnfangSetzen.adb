@@ -7,6 +7,7 @@ with SystemKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenRecordKonstanten;
+with SystemDatentypen;
 
 with Karten;
 with DebugPlatzhalter;
@@ -16,7 +17,7 @@ package body AllesAufAnfangSetzen is
    procedure AllesAufAnfangSetzen
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => SystemKonstanten.LeerSpielerKonstante);
+      GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer_Spieler_Enum);
       GlobaleVariablen.EinheitenGebaut := (others => (others => EinheitenKonstanten.LeerEinheit));
       GlobaleVariablen.StadtGebaut := (others => (others => StadtKonstanten.LeerStadt));
       GlobaleVariablen.Wichtiges := (others => SonstigesKonstanten.LeerWichtigesZeug);

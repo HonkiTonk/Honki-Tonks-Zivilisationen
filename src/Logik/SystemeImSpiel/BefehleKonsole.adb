@@ -6,8 +6,6 @@ with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with GlobaleVariablen;
-with SystemKonstanten;
-with TastenbelegungKonstanten;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
@@ -51,35 +49,35 @@ package body BefehleKonsole is
                                                    RichtungExtern => Befehl,
                                                    RasseExtern    => RasseExtern);
             
-         when TastenbelegungKonstanten.AuswählenKonstante =>
+         when TastenbelegungDatentypen.Auswählen_Enum =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
-         when TastenbelegungKonstanten.MenüZurückKonstante =>
-            return SystemKonstanten.SpielmenüKonstante;
+         when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+            return SystemDatentypen.Spielmenü_Enum;
 
-         when TastenbelegungKonstanten.BauenKonstante =>
+         when TastenbelegungDatentypen.Bauen_Enum =>
             BaueStadt (RasseExtern => RasseExtern);
            
-         when TastenbelegungKonstanten.ForschungKonstante =>
+         when TastenbelegungDatentypen.Forschung_Enum =>
             Technologie (RasseExtern => RasseExtern);
             
-         when TastenbelegungKonstanten.TechBaumKonstante =>
+         when TastenbelegungDatentypen.Tech_Baum_Enum =>
             -- Kann in der SMFL Version ignoriert werden oder das auch in der Konsolenversion ändern und den Befehl komplett wegwerfen?
             -- Muss bei reiner Anzeige dann auf jeden Fall auch in den Grafikteil.
             ForschungAnzeigeKonsole.ForschungsBaum (RasseExtern => RasseExtern);
             
-         when TastenbelegungKonstanten.NächsteStadtKonstante =>
+         when TastenbelegungDatentypen.Nächste_Stadt_Enum =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
-         when TastenbelegungKonstanten.EinheitMitBewegungspunkteKonstante =>
+         when TastenbelegungDatentypen.Einheit_Mit_Bewegungspunkte_Enum =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
             
-         when TastenbelegungKonstanten.AlleEinheitenKonstante =>
+         when TastenbelegungDatentypen.Alle_Einheiten_Enum =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
             
-         when TastenbelegungKonstanten.EinheitenOhneBewegungspunkteKonstante =>
+         when TastenbelegungDatentypen.Einheiten_Ohne_Bewegungspunkte_Enum =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
@@ -87,45 +85,45 @@ package body BefehleKonsole is
             EinheitBefehle (RasseExtern  => RasseExtern,
                             BefehlExtern => Befehl);
             
-         when TastenbelegungKonstanten.InfosKonstante =>
+         when TastenbelegungDatentypen.Infos_Enum =>
             -- Hier mal was reinbauen.
             null;
 
-         when TastenbelegungKonstanten.DiplomatieKonstante =>
+         when TastenbelegungDatentypen.Diplomatie_Enum =>
             Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
 
-         when TastenbelegungKonstanten.GeheZuKonstante =>
+         when TastenbelegungDatentypen.Gehe_Zu_Enum =>
             BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
 
-         when TastenbelegungKonstanten.StadtUmbenennenKonstante =>
+         when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
             StadtUmbenennen (RasseExtern => RasseExtern);
             
-         when TastenbelegungKonstanten.StadtAbreißenKonstante =>
+         when TastenbelegungDatentypen.Stadt_Abreißen_Enum =>
             StadtAbreißen (RasseExtern => RasseExtern);
             
-         when TastenbelegungKonstanten.StadtSuchenKonstante =>
+         when TastenbelegungDatentypen.Stadt_Suchen_Enum =>
             StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
-         when TastenbelegungKonstanten.NächsteStadtMeldungKonstante =>
+         when TastenbelegungDatentypen.Nächste_Stadt_Mit_Meldung_Enum =>
             NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);
             
-         when TastenbelegungKonstanten.NächsteEinheitMeldungKonstante =>
+         when TastenbelegungDatentypen.Nächste_Einheit_Mit_Meldung_Enum =>
             NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
             
-         when TastenbelegungKonstanten.HeimatstadtÄndernKonstante =>
+         when TastenbelegungDatentypen.Heimatstadt_Ändern_Enum =>
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
-         when TastenbelegungKonstanten.RundeBeendenTastenbelegungKonstante =>
-            return SystemKonstanten.RundeBeendenKonstante;
+         when TastenbelegungDatentypen.Runde_Beenden_Enum =>
+            return SystemDatentypen.Runde_Beenden_Enum;
             
-         when TastenbelegungKonstanten.DebugmenüKonstante =>
+         when TastenbelegungDatentypen.Debugmenü_Enum =>
             DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
          
-         when TastenbelegungKonstanten.LeerTastenbelegungKonstante =>
+         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
             null;
       end case;
 
-      return SystemKonstanten.StartWeiterKonstante;
+      return SystemDatentypen.Start_Weiter_Enum;
       
    end BefehleKonsole;
    
@@ -154,7 +152,7 @@ package body BefehleKonsole is
         StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => SystemKonstanten.JaKonstante,
+                           AuswahlExtern       => SystemDatentypen.Ja_Enum,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
@@ -202,7 +200,7 @@ package body BefehleKonsole is
                         
          when others =>
             EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                              AuswahlExtern       => SystemKonstanten.NeinKonstante,
+                              AuswahlExtern       => SystemDatentypen.Nein_Enum,
                               StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
                               EinheitNummerExtern => EinheitTransportNummer);
       end case;
@@ -221,7 +219,7 @@ package body BefehleKonsole is
       case
         AuswahlExtern
       is
-         when SystemKonstanten.JaKonstante =>
+         when SystemDatentypen.Ja_Enum =>
             StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
          when others =>
@@ -249,7 +247,7 @@ package body BefehleKonsole is
    is begin
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= TastenbelegungKonstanten.LeerTastenbelegungKonstante
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
         and then
           EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
@@ -315,7 +313,7 @@ package body BefehleKonsole is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
       is
-         when SystemKonstanten.JaKonstante =>
+         when SystemDatentypen.Ja_Enum =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
                      
          when others =>
@@ -407,7 +405,7 @@ package body BefehleKonsole is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
       is
-         when SystemKonstanten.JaKonstante =>
+         when SystemDatentypen.Ja_Enum =>
             StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
          when others =>

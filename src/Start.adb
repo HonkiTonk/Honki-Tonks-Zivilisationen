@@ -19,7 +19,7 @@ is
 
    UnerwarteterFehler : Boolean := False;
 
-   type Tasks_Enum is (Task_Logik, Task_Grafik, Task_Musik, Task_Sound);
+   type Tasks_Enum is (Task_Logik_Enum, Task_Grafik_Enum, Task_Musik_Enum, Task_Sound_Enum);
 
    type TasksLaufenArray is array (Tasks_Enum'Range) of Boolean;
    TasksLaufen : TasksLaufenArray := (others => False);
@@ -35,11 +35,11 @@ is
    task body Logik
    is begin
 
-      TaskID (Task_Logik) := Current_Task;
+      TaskID (Task_Logik_Enum) := Current_Task;
 
-      TasksLaufen (Task_Logik) := True;
+      TasksLaufen (Task_Logik_Enum) := True;
       StartLogik.StartLogik;
-      TasksLaufen (Task_Logik) := False;
+      TasksLaufen (Task_Logik_Enum) := False;
 
    exception
       when StandardAdaFehler : others =>
@@ -54,11 +54,11 @@ is
    task body Grafik
    is begin
 
-      TaskID (Task_Grafik) := Current_Task;
+      TaskID (Task_Grafik_Enum) := Current_Task;
 
-      TasksLaufen (Task_Grafik) := True;
+      TasksLaufen (Task_Grafik_Enum) := True;
       StartGrafik.StartGrafik;
-      TasksLaufen (Task_Grafik) := False;
+      TasksLaufen (Task_Grafik_Enum) := False;
 
    exception
       when StandardAdaFehler : others =>
@@ -73,11 +73,11 @@ is
    task body Musik
    is begin
 
-      TaskID (Task_Musik) := Current_Task;
+      TaskID (Task_Musik_Enum) := Current_Task;
 
-      TasksLaufen (Task_Musik) := True;
+      TasksLaufen (Task_Musik_Enum) := True;
       StartMusik.StartMusik;
-      TasksLaufen (Task_Musik) := False;
+      TasksLaufen (Task_Musik_Enum) := False;
 
    exception
       when StandardAdaFehler : others =>
@@ -92,11 +92,11 @@ is
    task body Sound
    is begin
 
-      TaskID (Task_Sound) := Current_Task;
+      TaskID (Task_Sound_Enum) := Current_Task;
 
-      TasksLaufen (Task_Sound) := True;
+      TasksLaufen (Task_Sound_Enum) := True;
       StartSound.StartSound;
-      TasksLaufen (Task_Sound) := False;
+      TasksLaufen (Task_Sound_Enum) := False;
 
    exception
       when Err : others =>
@@ -114,13 +114,13 @@ begin
    loop
 
       if
-        TasksLaufen (Task_Logik) = True
+        TasksLaufen (Task_Logik_Enum) = True
         and
-          TasksLaufen (Task_Grafik) = True
+          TasksLaufen (Task_Grafik_Enum) = True
         and
-          TasksLaufen (Task_Musik) = True
+          TasksLaufen (Task_Musik_Enum) = True
         and
-          TasksLaufen (Task_Sound) = True
+          TasksLaufen (Task_Sound_Enum) = True
       then
          exit TaskIDsBelegenLassenSchleife;
 
@@ -143,10 +143,10 @@ begin
         or
           InteraktionGrafiktask.FensterGeschlossen
       then
-         Abort_Task (T => TaskID (Task_Logik));
-         Abort_Task (T => TaskID (Task_Grafik));
-         Abort_Task (T => TaskID (Task_Musik));
-         Abort_Task (T => TaskID (Task_Sound));
+         Abort_Task (T => TaskID (Task_Logik_Enum));
+         Abort_Task (T => TaskID (Task_Grafik_Enum));
+         Abort_Task (T => TaskID (Task_Musik_Enum));
+         Abort_Task (T => TaskID (Task_Sound_Enum));
          exit SpielLäuftSchleife;
 
       else
@@ -154,41 +154,41 @@ begin
       end if;
 
       if
-        TasksLaufen (Task_Logik) = False
+        TasksLaufen (Task_Logik_Enum) = False
         and
-          TasksLaufen (Task_Grafik) = False
+          TasksLaufen (Task_Grafik_Enum) = False
         and
-          TasksLaufen (Task_Musik) = False
+          TasksLaufen (Task_Musik_Enum) = False
         and
-          TasksLaufen (Task_Sound) = False
+          TasksLaufen (Task_Sound_Enum) = False
       then
          exit SpielLäuftSchleife;
 
       elsif
-        Is_Terminated (T => TaskID (Task_Logik)) = True
+        Is_Terminated (T => TaskID (Task_Logik_Enum)) = True
         and
-          TasksLaufen (Task_Logik) = True
+          TasksLaufen (Task_Logik_Enum) = True
       then
          UnerwarteterFehler := True;
 
       elsif
-        Is_Terminated (T => TaskID (Task_Grafik)) = True
+        Is_Terminated (T => TaskID (Task_Grafik_Enum)) = True
         and
-          TasksLaufen (Task_Grafik) = True
+          TasksLaufen (Task_Grafik_Enum) = True
       then
          UnerwarteterFehler := True;
 
       elsif
-        Is_Terminated (T => TaskID (Task_Musik)) = True
+        Is_Terminated (T => TaskID (Task_Musik_Enum)) = True
         and
-          TasksLaufen (Task_Musik) = True
+          TasksLaufen (Task_Musik_Enum) = True
       then
          UnerwarteterFehler := True;
 
       elsif
-        Is_Terminated (T => TaskID (Task_Sound)) = True
+        Is_Terminated (T => TaskID (Task_Sound_Enum)) = True
         and
-          TasksLaufen (Task_Sound) = True
+          TasksLaufen (Task_Sound_Enum) = True
       then
          UnerwarteterFehler := True;
 

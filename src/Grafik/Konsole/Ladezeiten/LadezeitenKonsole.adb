@@ -29,14 +29,14 @@ package body LadezeitenKonsole is
       case
         WelcheZeitExtern
       is
-         when LadezeitenDatentypen.Gesamtzeit =>
+         when LadezeitenDatentypen.Gesamtzeit_Enum =>
             ZeitAuswahlSchleife:
-            for VerschiedeneZeitenSchleifenwert in LadezeitenDatentypen.Gesamtzeit_Enum'Range loop
+            for VerschiedeneZeitenSchleifenwert in LadezeitenDatentypen.Gesamtzeit_Erstellen_Enum'Range loop
                
                GesamtzeitSpielweltErstellen
                  := GesamtzeitSpielweltErstellen
-                   + Float (LadezeitenDatentypen.SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Endwert)
-                            - LadezeitenDatentypen.SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert));
+                   + Float (LadezeitenDatentypen.SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Endwert_Enum)
+                            - LadezeitenDatentypen.SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert_Enum));
                
             end loop ZeitAuswahlSchleife;
             AnzeigeFloat.Put (Item => GesamtzeitSpielweltErstellen,
@@ -45,8 +45,8 @@ package body LadezeitenKonsole is
                               Exp  => 0);
             
          when others =>
-            AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Endwert)
-                              - LadezeitenDatentypen.SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
+            AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Endwert_Enum)
+                              - LadezeitenDatentypen.SpielweltErstellenZeit (WelcheZeitExtern, SystemDatentypen.Anfangswert_Enum)),
                               Fore => 1,
                               Aft  => 6,
                               Exp  => 0);
@@ -81,8 +81,8 @@ package body LadezeitenKonsole is
                                                 AbstandMitteExtern     => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
-      AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Endwert)
-                        - LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
+      AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Endwert_Enum)
+                        - LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert_Enum)),
                         Fore => 1,
                         Aft  => 6,
                         Exp  => 0);
@@ -114,8 +114,8 @@ package body LadezeitenKonsole is
             ZeitAuswahlSchleife:
             for VerschiedeneZeitenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
                
-               GesamtzeitKI := GesamtzeitKI + Float (LadezeitenDatentypen.KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Endwert)
-                                                     - LadezeitenDatentypen.KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert));
+               GesamtzeitKI := GesamtzeitKI + Float (LadezeitenDatentypen.KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Endwert_Enum)
+                                                     - LadezeitenDatentypen.KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert_Enum));
                   
             end loop ZeitAuswahlSchleife;
             
@@ -126,7 +126,7 @@ package body LadezeitenKonsole is
             New_Line;
             
          when others =>
-            AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.KIZeiten (WelcheZeitExtern, SystemDatentypen.Endwert) - LadezeitenDatentypen.KIZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert)),
+            AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.KIZeiten (WelcheZeitExtern, SystemDatentypen.Endwert_Enum) - LadezeitenDatentypen.KIZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert_Enum)),
                               Fore => 1,
                               Aft  => 6,
                               Exp  => 0);

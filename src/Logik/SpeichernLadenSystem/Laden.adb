@@ -11,8 +11,6 @@ with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;
 with KartenDatentypen;
-with SystemKonstanten;
-with KartenEinstellungenKonstanten;
 
 with Karten;
 with Ladezeiten;
@@ -37,7 +35,7 @@ package body Laden is
             return False;
       end case;
       
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit, SystemDatentypen.Anfangswert) := Clock;
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
 
       Open (File => DateiLadenNeu,
             Mode => In_File,
@@ -57,7 +55,7 @@ package body Laden is
          case
            Auswahl.AuswahlJaNein (FrageZeileExtern => 24)
          is
-           -- when SystemKonstanten.JaKonstante =>
+           -- when SystemDatentypen.Ja_Enum =>
            --    null;
                      
             when others =>
@@ -78,8 +76,8 @@ package body Laden is
 
       Close (File => DateiLadenNeu);
 
-      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit, SystemDatentypen.Endwert) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Ladezeit);
+      LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Ladezeit_Enum, SystemDatentypen.Endwert_Enum) := Clock;
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => LadezeitenDatentypen.Ladezeit_Enum);
 
       return True;
       
@@ -126,9 +124,9 @@ package body Laden is
       case
         Karten.Kartengröße
       is
-         when KartenEinstellungenKonstanten.KartengrößeNutzerKonstante =>
+         when SystemDatentypen.Karte_Größe_Nutzer_Enum =>
             Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
-                                              Karten.Kartengrößen (KartenEinstellungenKonstanten.KartengrößeNutzerKonstante));
+                                              Karten.Kartengrößen (SystemDatentypen.Karte_Größe_Nutzer_Enum));
             
          when others =>
             null;
@@ -179,7 +177,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -207,7 +205,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -235,7 +233,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -258,7 +256,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
 
             when others =>
@@ -268,7 +266,7 @@ package body Laden is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when SystemKonstanten.LeerSpielerKonstante =>
+                     when SystemDatentypen.Leer_Spieler_Enum =>
                         null;
                      
                      when others =>
@@ -294,7 +292,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when SystemKonstanten.LeerSpielerKonstante =>
+            when SystemDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>

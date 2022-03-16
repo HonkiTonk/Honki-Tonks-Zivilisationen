@@ -12,12 +12,12 @@ package EinheitenSuroka is
    EinheitenSurokaListe : constant DatenbankRecords.EinheitenListeArray := (
                                                                             -- Siedler
                                                                             1 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                PreisGeld               => 10,
                                                                                PreisRessourcen         => 10,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 0,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 3,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -33,12 +33,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Steinzeitkämpfer
                                                                             2 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 0,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -54,12 +54,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Bogenschütze
                                                                             3 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 1,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -75,13 +75,13 @@ package EinheitenSuroka is
       
                                                                             -- Erstes Schiff
                                                                             4 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 7,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -97,12 +97,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Bronzekämpfer
                                                                             5 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 10,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -118,12 +118,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Eisenkämpfer
                                                                             6 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 13,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -139,12 +139,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Streitwagen
                                                                             7 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 5,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -160,12 +160,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Katapult
                                                                             8 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 11,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -181,12 +181,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Balliste
                                                                             9 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 12,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -202,13 +202,13 @@ package EinheitenSuroka is
                                                
                                                                             -- Segelschiff
                                                                             10 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 14,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -224,13 +224,13 @@ package EinheitenSuroka is
                                                
                                                                             -- Großes Segelschiff
                                                                             11 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 23,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -246,12 +246,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Gewehrkämpfer
                                                                             12 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 28,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -267,12 +267,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Kanone
                                                                             13 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 34,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -288,13 +288,13 @@ package EinheitenSuroka is
                                                
                                                                             -- Dampfschiff
                                                                             14 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 31,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -310,13 +310,13 @@ package EinheitenSuroka is
                                                
                                                                             -- Motorschiff
                                                                             15 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 38,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -332,15 +332,15 @@ package EinheitenSuroka is
                                                
                                                                             -- U-Boot
                                                                             16 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 39,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser            => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser      => True,
-                                                                                                           EinheitStadtDatentypen.Unterwasser       => True,
-                                                                                                           EinheitStadtDatentypen.Unterküstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Wasser_Enum            => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum      => True,
+                                                                                                           EinheitStadtDatentypen.Unterwasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
                                                                                                            others                                   => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -356,12 +356,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Gepanzerter Wagen
                                                                             17 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 40,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -377,12 +377,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Panzer
                                                                             18 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 42,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -398,12 +398,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Jäger
                                                                             19 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 41,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
                                                                                                            others                      => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -419,12 +419,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Bomber
                                                                             20 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 41,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
                                                                                                            others                      => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -440,13 +440,13 @@ package EinheitenSuroka is
                                                
                                                                             -- Rakete
                                                                             21 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 46,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft     => True,
-                                                                                                           EinheitStadtDatentypen.Weltraum => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                                           EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                                            others                          => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -462,12 +462,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Düsenjäger
                                                                             22 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 51,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
                                                                                                            others                      => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -483,12 +483,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Düsenbomber
                                                                             23 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 51,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
                                                                                                            others                      => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -504,12 +504,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Atombombe
                                                                             24 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 45,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -525,12 +525,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Drohne
                                                                             25 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 49,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
                                                                                                            others                      => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -546,12 +546,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Gensoldat
                                                                             26 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 56,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -567,14 +567,14 @@ package EinheitenSuroka is
                                                
                                                                             -- Wassersiedler
                                                                             27 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 58,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden        => True,
-                                                                                                           EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum        => True,
+                                                                                                           EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -590,12 +590,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Cyborg
                                                                             28 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 57,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -611,17 +611,17 @@ package EinheitenSuroka is
                                                
                                                                             -- Unterwasser/Unterirdischer Siedler
                                                                             29 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 62,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden             => True,
-                                                                                                           EinheitStadtDatentypen.Wasser            => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser      => True,
-                                                                                                           EinheitStadtDatentypen.Unterwasser       => True,
-                                                                                                           EinheitStadtDatentypen.Unterküstenwasser => True,
-                                                                                                           EinheitStadtDatentypen.Unterirdisch      => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum             => True,
+                                                                                                           EinheitStadtDatentypen.Wasser_Enum            => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum      => True,
+                                                                                                           EinheitStadtDatentypen.Unterwasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
+                                                                                                           EinheitStadtDatentypen.Unterirdisch_Enum      => True,
                                                                                                            others                                   => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -637,12 +637,12 @@ package EinheitenSuroka is
                                                
                                                                             -- PZB20
                                                                             30 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 63,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -658,12 +658,12 @@ package EinheitenSuroka is
                                                
                                                                             -- PZB40
                                                                             31 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 66,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -679,12 +679,12 @@ package EinheitenSuroka is
                                                
                                                                             -- PZB100
                                                                             32 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Sonstiges,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 66,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -700,12 +700,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Gaußkämpfer
                                                                             33 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 68,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -721,12 +721,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Magnetkämpfer
                                                                             34 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 74,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -742,14 +742,14 @@ package EinheitenSuroka is
                                                
                                                                             -- Schwebepanzer
                                                                             35 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 74,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden        => True,
-                                                                                                           EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum        => True,
+                                                                                                           EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -765,19 +765,19 @@ package EinheitenSuroka is
                                                
                                                                             -- Planetenkernsiedler
                                                                             36 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 65,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden             => True,
-                                                                                                           EinheitStadtDatentypen.Wasser            => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser      => True,
-                                                                                                           EinheitStadtDatentypen.Unterwasser       => True,
-                                                                                                           EinheitStadtDatentypen.Unterküstenwasser => True,
-                                                                                                           EinheitStadtDatentypen.Unterirdisch      => True,
-                                                                                                           EinheitStadtDatentypen.Lava              => True,
-                                                                                                           EinheitStadtDatentypen.Planeteninneres   => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum             => True,
+                                                                                                           EinheitStadtDatentypen.Wasser_Enum            => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum      => True,
+                                                                                                           EinheitStadtDatentypen.Unterwasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
+                                                                                                           EinheitStadtDatentypen.Unterirdisch_Enum      => True,
+                                                                                                           EinheitStadtDatentypen.Lava_Enum              => True,
+                                                                                                           EinheitStadtDatentypen.Planeteninneres_Enum   => True,
                                                                                                            others                                   => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -793,16 +793,16 @@ package EinheitenSuroka is
                                                
                                                                             -- Himmel/Orbitalsiedler
                                                                             37 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 72,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden        => True,
-                                                                                                           EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
-                                                                                                           EinheitStadtDatentypen.Luft         => True,
-                                                                                                           EinheitStadtDatentypen.Weltraum     => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum        => True,
+                                                                                                           EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
+                                                                                                           EinheitStadtDatentypen.Luft_Enum         => True,
+                                                                                                           EinheitStadtDatentypen.Weltraum_Enum     => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -818,13 +818,13 @@ package EinheitenSuroka is
                                                
                                                                             -- Atmosphärenjäger
                                                                             38 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 74,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft     => True,
-                                                                                                           EinheitStadtDatentypen.Weltraum => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                                           EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                                            others                          => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -840,13 +840,13 @@ package EinheitenSuroka is
                                                
                                                                             -- Atmosphärenbomber
                                                                             39 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 74,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft     => True,
-                                                                                                           EinheitStadtDatentypen.Weltraum => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                                           EinheitStadtDatentypen.Weltraum_Enum => True,
                                                                                                            others                          => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -862,12 +862,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Artillerie
                                                                             40 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 42,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -883,14 +883,14 @@ package EinheitenSuroka is
                                                
                                                                             -- Stellare Artillerie
                                                                             41 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 74,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden        => True,
-                                                                                                           EinheitStadtDatentypen.Wasser       => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum        => True,
+                                                                                                           EinheitStadtDatentypen.Wasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                            others                              => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -906,17 +906,17 @@ package EinheitenSuroka is
                                                
                                                                             -- Gräberschiff
                                                                             42 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 62,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden             => True,
-                                                                                                           EinheitStadtDatentypen.Wasser            => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser      => True,
-                                                                                                           EinheitStadtDatentypen.Unterwasser       => True,
-                                                                                                           EinheitStadtDatentypen.Unterküstenwasser => True,
-                                                                                                           EinheitStadtDatentypen.Unterirdisch      => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum             => True,
+                                                                                                           EinheitStadtDatentypen.Wasser_Enum            => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum      => True,
+                                                                                                           EinheitStadtDatentypen.Unterwasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
+                                                                                                           EinheitStadtDatentypen.Unterirdisch_Enum      => True,
                                                                                                            others                                   => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -932,19 +932,19 @@ package EinheitenSuroka is
                                                
                                                                             -- Kerngräber
                                                                             43 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 65,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden             => True,
-                                                                                                           EinheitStadtDatentypen.Wasser            => True,
-                                                                                                           EinheitStadtDatentypen.Küstenwasser      => True,
-                                                                                                           EinheitStadtDatentypen.Unterwasser       => True,
-                                                                                                           EinheitStadtDatentypen.Unterküstenwasser => True,
-                                                                                                           EinheitStadtDatentypen.Unterirdisch      => True,
-                                                                                                           EinheitStadtDatentypen.Lava              => True,
-                                                                                                           EinheitStadtDatentypen.Planeteninneres   => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum             => True,
+                                                                                                           EinheitStadtDatentypen.Wasser_Enum            => True,
+                                                                                                           EinheitStadtDatentypen.Küstenwasser_Enum      => True,
+                                                                                                           EinheitStadtDatentypen.Unterwasser_Enum       => True,
+                                                                                                           EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
+                                                                                                           EinheitStadtDatentypen.Unterirdisch_Enum      => True,
+                                                                                                           EinheitStadtDatentypen.Lava_Enum              => True,
+                                                                                                           EinheitStadtDatentypen.Planeteninneres_Enum   => True,
                                                                                                            others                                   => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -960,12 +960,12 @@ package EinheitenSuroka is
                                                
                                                                             -- Moderne Infanterie
                                                                             44 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                PreisGeld               => 25,
                                                                                PreisRessourcen         => 20,
                                                                                PermanenteKosten        => (others => 0),
                                                                                Anforderungen           => 40,
-                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden => True,
+                                                                               Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
                                                                                                            others                       => False),
                                                                                MaximaleLebenspunkte    => 5,
                                                                                MaximaleBewegungspunkte => 3.00,
@@ -981,7 +981,7 @@ package EinheitenSuroka is
                                                
                                                                             -- Alleskönner
                                                                             45 =>
-                                                                              (EinheitArt              => EinheitStadtDatentypen.Beides,
+                                                                              (EinheitArt              => EinheitStadtDatentypen.Beides_Enum,
                                                                                PreisGeld               => 1,
                                                                                PreisRessourcen         => 1,
                                                                                PermanenteKosten        => (others => 0),
