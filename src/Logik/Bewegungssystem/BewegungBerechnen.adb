@@ -215,7 +215,7 @@ package body BewegungBerechnen is
          case
            LeseKarten.Fluss (KoordinatenExtern => NeueKoordinatenExtern)
          is
-            when KartenGrundDatentypen.Leer_Grund_Enum =>
+            when KartenGrundDatentypen.Leer_Fluss_Enum =>
                null;
 
             when others =>

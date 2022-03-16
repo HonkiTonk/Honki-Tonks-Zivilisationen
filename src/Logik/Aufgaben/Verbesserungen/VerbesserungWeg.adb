@@ -38,7 +38,7 @@ package body VerbesserungWeg is
         GrundExtern
       is
          when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Flachland_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Hügel_Enum
-            | KartenGrundDatentypen.Wald_Enum | KartenGrundDatentypen.Karten_Grund_Ressourcen_Land'Range =>
+            | KartenGrundDatentypen.Wald_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => TastenbelegungDatentypen.Straße_Bauen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

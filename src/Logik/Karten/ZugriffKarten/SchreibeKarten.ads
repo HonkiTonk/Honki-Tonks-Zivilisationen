@@ -46,16 +46,12 @@ package SchreibeKarten is
 
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+      FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            (FlussExtern = KartenGrundDatentypen.Leer_Grund_Enum
-             or
-               FlussExtern in KartenGrundDatentypen.Karten_Fluss_Enum));
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure VerbesserungWeg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -83,14 +79,12 @@ package SchreibeKarten is
 
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            RessourceExtern in KartenGrundDatentypen.Karten_Grund_Ressourcen_Enum);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure BelegterGrund
      (KoordinatenExtern : KartenRecords.AchsenKartenfeldPositivRecord;

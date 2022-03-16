@@ -53,7 +53,7 @@ package body SchreibeKarten is
    
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+      FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := FlussExtern;
@@ -86,7 +86,7 @@ package body SchreibeKarten is
    
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;

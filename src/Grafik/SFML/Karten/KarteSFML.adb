@@ -202,7 +202,7 @@ package body KarteSFML is
       KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldFluss = KartenGrundDatentypen.Leer_Grund_Enum
+        KartenfeldFluss = KartenGrundDatentypen.Leer_Fluss_Enum
       then
          null;
       
@@ -233,7 +233,7 @@ package body KarteSFML is
       KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldRessource = KartenGrundDatentypen.Leer_Grund_Enum
+        KartenfeldRessource = KartenGrundDatentypen.Leer_Ressource_Enum
       then
          null;
       

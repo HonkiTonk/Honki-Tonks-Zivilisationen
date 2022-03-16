@@ -118,7 +118,7 @@ package body EinlesenDatenbanken is
       end case;
       
       KartenDatenbank.KartenFelderListeArray'Read (Stream (File => DatenbankEinlesen),
-                                             KartenDatenbank.KartenFelderListe);
+                                                   KartenDatenbank.KartenFelderListe);
       
       Close (File => DatenbankEinlesen);
       

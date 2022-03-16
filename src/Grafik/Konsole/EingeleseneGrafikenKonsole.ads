@@ -161,6 +161,8 @@ package EingeleseneGrafikenKonsole is
                                                 )
                                              );
    
+   
+   
    type GebäudeGrafikArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.GebäudeListeArray'Range) of Wide_Wide_Character;
    GebäudeGrafik : GebäudeGrafikArray := (
                                             others =>
@@ -247,11 +249,12 @@ package EingeleseneGrafikenKonsole is
                                               )
                                            );
    
+   
+   
    type KartenGrafikArray is array (KartenDatenbank.KartenFelderListeArray'Range) of Wide_Wide_Character;
    KartenGrafik : KartenGrafikArray := (
                                          KartenGrundDatentypen.Leer_Grund_Enum => KartenKonstanten.LeerKartenGrafik,
                                          
-                                         -- Feld
                                          -- Normal
                                          KartenGrundDatentypen.Eis_Enum       => KartenKonstanten.LeerKartenGrafik,
                                          KartenGrundDatentypen.Wasser_Enum    => KartenKonstanten.LeerKartenGrafik,
@@ -375,6 +378,8 @@ package EingeleseneGrafikenKonsole is
                                          -- Lava
                                          -- Flüsse
                                         );
+   
+   
    
    type VerbesserungGrafikArray is array (VerbesserungenDatenbank.VerbesserungListeArray'Range) of Wide_Wide_Character;
    VerbesserungGrafik : VerbesserungGrafikArray := (

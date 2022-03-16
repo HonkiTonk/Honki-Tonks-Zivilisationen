@@ -108,7 +108,7 @@ package ChangelogMaerz2022 is
    -- Version 0.01.0150 => 0.01.0160 (16.03.2022):
    
    -- Kartengrundenum und die Kartendatenbank in Grund, Fluss und Ressource aufgeteilt und angefangen alles entsprechend daran anzupassen.
-   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst.
+   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -45,18 +45,8 @@ package body LeseKarten is
    
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Fluss_Enum
    is begin
-      
-      case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss
-      is
-         when KartenGrundDatentypen.Leer_Grund_Enum | KartenGrundDatentypen.Karten_Fluss_Enum'Range =>
-            null;
-         
-         when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := KartenGrundDatentypen.Leer_Grund_Enum;
-      end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
       
@@ -108,18 +98,8 @@ package body LeseKarten is
    
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Ressourcen_Enum
    is begin
-      
-      case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource
-      is
-         when KartenGrundDatentypen.Leer_Grund_Enum | KartenGrundDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
-            null;
-         
-         when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := KartenGrundDatentypen.Leer_Grund_Enum;
-      end case;
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;
       

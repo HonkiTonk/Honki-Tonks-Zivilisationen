@@ -3,11 +3,29 @@ pragma Warnings (Off, "*array aggregate*");
 
 package body KartenDatenbank is
    
-   procedure StandardKartenDatenbankLaden
+   procedure StandardKartenGrundDatenbankLaden
    is begin
       
-      KartenFelderListe := KartenFelderListeStandard;
+      KartenGrundListe := KartenGrundListeStandard;
       
-   end StandardKartenDatenbankLaden;
+   end StandardKartenGrundDatenbankLaden;
+   
+   
+   
+   procedure StandardKartenFlussDatenbankLaden
+   is begin
+      
+      KartenFlussListe := KartenFlussListeStandard;
+      
+   end StandardKartenFlussDatenbankLaden;
+   
+   
+   
+   procedure StandardKartenRessourcenDatenbankLaden
+   is begin
+      
+      KartenRessourcenListe := KartenRessourcenListeStandard;
+      
+   end StandardKartenRessourcenDatenbankLaden;
 
 end KartenDatenbank;

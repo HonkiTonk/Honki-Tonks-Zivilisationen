@@ -20,9 +20,7 @@ package LeseKarten is
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           (Grund'Result not in KartenGrundDatentypen.Karten_Fluss_Enum'Range);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function Hügel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
@@ -47,7 +45,7 @@ package LeseKarten is
 
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Fluss_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -74,7 +72,7 @@ package LeseKarten is
 
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

@@ -32,11 +32,11 @@ private
    
    type WelcherFlusstypArray is array (StandardFlussArray'Range) of Natural;
    WelcherFlusstyp : constant WelcherFlusstypArray := (
-                                                       -2 => KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Lavaflusskreuzung_Vier_Enum)
-                                                       - KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum),
+                                                       -2 => KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Lavaflusskreuzung_Vier_Enum)
+                                                       - KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum),
                                                        
-                                                       -1 => KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum)
-                                                       - KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum),
+                                                       -1 => KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum)
+                                                       - KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum),
                                                        
                                                        0 => 0
                                                       );

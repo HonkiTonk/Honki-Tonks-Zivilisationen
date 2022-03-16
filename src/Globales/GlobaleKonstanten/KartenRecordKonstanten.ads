@@ -35,10 +35,10 @@ package KartenRecordKonstanten is
                                                            Grund                   => KartenGrundDatentypen.Leer_Grund_Enum,
                                                            Hügel                   => KartenKonstanten.LeerHügel,
                                                            Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
-                                                           Fluss                   => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                           Fluss                   => KartenGrundDatentypen.Leer_Fluss_Enum,
                                                            VerbesserungWeg         => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                                            VerbesserungGebiet      => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                                           Ressource               => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                           Ressource               => KartenGrundDatentypen.Leer_Ressource_Enum,
                                                            DurchStadtBelegterGrund => KartenKonstanten.LeerDurchStadtBelegterGrund,
                                                            Felderwertung           => (others => KartenKonstanten.LeerFelderwertung)
                                                           );

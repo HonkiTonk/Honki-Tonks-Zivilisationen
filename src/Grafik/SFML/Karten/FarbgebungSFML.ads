@@ -45,10 +45,10 @@ private
                                             KartenGrundDatentypen.Hügel_Mit_Enum                                                              => (0, 0, 0, 0)
                                            );
    
-   type FlussfarbeArray is array (KartenGrundDatentypen.Karten_Fluss_Enum'Range) of Sf.Graphics.Color.sfColor;
+   type FlussfarbeArray is array (KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of Sf.Graphics.Color.sfColor;
    Flussfarbe : constant FlussfarbeArray := (
-                                             KartenGrundDatentypen.Karten_Grund_Fluss_Enum'Range | KartenGrundDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range => (0, 0, 205, 0),
-                                             KartenGrundDatentypen.Karten_Grund_Lavafluss_Enum'Range                                                                  => (230, 50, 50, 0)
+                                             KartenGrundDatentypen.Karten_Fluss_Vorhanden_Enum'Range | KartenGrundDatentypen.Karten_Unterirdischer_Fluss_Vorhanden_Enum'Range => (0, 0, 205, 0),
+                                             KartenGrundDatentypen.Karten_Lavafluss_Vorhanden_Enum'Range                                                                      => (230, 50, 50, 0)
                                             );
 
 end FarbgebungSFML;

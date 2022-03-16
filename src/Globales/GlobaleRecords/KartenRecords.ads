@@ -45,6 +45,7 @@ package KartenRecords is
    
    
    
+   --------------------- Auch mal eine Version ohne Nullwert anlegen.
    -- Mal auf Nullwert umbenennen? ---------------
    type AchsenKartenfeldPositivRecord is tagged record
       
@@ -84,10 +85,10 @@ package KartenRecords is
       Hügel : Boolean;
       Sichtbar : SichtbarkeitArray;
       
-      Fluss : KartenGrundDatentypen.Karten_Grund_Enum;
+      Fluss : KartenGrundDatentypen.Karten_Fluss_Enum;
       VerbesserungWeg : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       VerbesserungGebiet : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
-      Ressource : KartenGrundDatentypen.Karten_Grund_Enum;
+      Ressource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
       
       DurchStadtBelegterGrund : BelegterGrundRecord;
       Felderwertung : FelderwertungArray;

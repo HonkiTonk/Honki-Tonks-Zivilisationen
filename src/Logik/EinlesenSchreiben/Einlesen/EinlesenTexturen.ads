@@ -24,6 +24,12 @@ private
    type KartenfelderEinlesenArray is array (EingeleseneTexturenSFML.KartenfelderAccessArray'Range) of Unbounded_Wide_Wide_String;
    KartenfelderEinlesen : KartenfelderEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
 
+   type KartenflüsseEinlesenArray is array (EingeleseneTexturenSFML.KartenflussAccessArray'Range) of Unbounded_Wide_Wide_String;
+   KartenflüsseEinlesen : KartenflüsseEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+
+   type KartenressourcenEinlesenArray is array (EingeleseneTexturenSFML.KartenressourcenAccessArray'Range) of Unbounded_Wide_Wide_String;
+   KartenressourcenEinlesen : KartenressourcenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+
    type VerbesserungenEinlesenArray is array (EingeleseneTexturenSFML.VerbesserungenAccessArray'Range) of Unbounded_Wide_Wide_String;
    VerbesserungenEinlesen : VerbesserungenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
 

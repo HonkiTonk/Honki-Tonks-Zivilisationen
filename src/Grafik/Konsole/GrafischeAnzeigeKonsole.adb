@@ -235,7 +235,7 @@ package body GrafischeAnzeigeKonsole is
                                    RasseExtern              => EinheitenKonstanten.LeerRasse);
             
       elsif
-        LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern) /= KartenGrundDatentypen.Leer_Grund_Enum
+        LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern) /= KartenGrundDatentypen.Leer_Ressource_Enum
       then
          FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern       => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
@@ -246,7 +246,7 @@ package body GrafischeAnzeigeKonsole is
                                    RasseExtern              => EinheitenKonstanten.LeerRasse);
             
       elsif
-        LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern) /= KartenGrundDatentypen.Leer_Grund_Enum
+        LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern) /= KartenGrundDatentypen.Leer_Fluss_Enum
       then
          FarbgebungKonsole.Farben (EinheitIDExtern          => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern       => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,

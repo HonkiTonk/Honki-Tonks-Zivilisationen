@@ -6,6 +6,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with TastenbelegungDatentypen;
 with KartenGrundDatentypen;
+with KartenRecords;
 
 package KIAufgabeUmsetzen is
 
@@ -33,6 +34,9 @@ private
    NullWert : Boolean;
 
    Grund : KartenGrundDatentypen.Karten_Grund_Enum;
+   Ressourcen : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+
+   EinheitKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
 
    Befehl : TastenbelegungDatentypen.Tastenbelegung_Enum;
 

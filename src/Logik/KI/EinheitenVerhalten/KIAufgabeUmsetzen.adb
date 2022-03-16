@@ -55,18 +55,21 @@ package body KIAufgabeUmsetzen is
       return Boolean
    is begin
       
-      Grund := LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      EinheitKoordinaten := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      Grund := LeseKarten.Grund (KoordinatenExtern => EinheitKoordinaten);
+      Ressourcen := LeseKarten.Ressource (KoordinatenExtern => EinheitKoordinaten);
          
       if
         (Grund = KartenGrundDatentypen.Hügel_Enum
          or
            Grund = KartenGrundDatentypen.Gebirge_Enum
          or
-           Grund = KartenGrundDatentypen.Kohle_Enum
+           Ressourcen = KartenGrundDatentypen.Kohle_Enum
          or
-           Grund = KartenGrundDatentypen.Eisen_Enum
+           Ressourcen = KartenGrundDatentypen.Eisen_Enum
          or
-           Grund = KartenGrundDatentypen.Gold_Enum
+           Ressourcen = KartenGrundDatentypen.Gold_Enum
          or
            LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and

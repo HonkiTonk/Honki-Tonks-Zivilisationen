@@ -12,7 +12,7 @@ package KartenGeneratorRessourcen is
 
 private
    
-   type WahrscheinlichkeitRessourceArray is array (KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range, KartenGrundDatentypen.Karten_Grund_Ressourcen_Enum'Range) of Float;
+   type WahrscheinlichkeitRessourceArray is array (KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range, KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum'Range) of Float;
    WahrscheinlichkeitRessourcen : constant WahrscheinlichkeitRessourceArray := (
                                                                                 SystemDatentypen.Karte_Ressource_Arm_Enum =>
                                                                                   (

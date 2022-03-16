@@ -182,26 +182,11 @@ package body ZufallGeneratorenKarten is
    
    
    function ChaoskarteFluss
-     return KartenGrundDatentypen.Karten_Grund_Enum
+     return KartenGrundDatentypen.Karten_Fluss_Enum
    is begin
       
       FlussWählenChaoskarte.Reset (FlussGewählt);
-      
-      WählenSchleife:
-      loop
-         
-         FlussWert := FlussWählenChaoskarte.Random (FlussGewählt);
-         
-         if
-           FlussWert in KartenGrundDatentypen.Karten_Fluss_Enum'Range
-         then
-            return FlussWert;
-                  
-         else
-            return KartenGrundDatentypen.Leer_Grund_Enum;
-         end if;
-         
-      end loop WählenSchleife;
+      return FlussWählenChaoskarte.Random (FlussGewählt);
       
    end ChaoskarteFluss;
    
@@ -209,7 +194,7 @@ package body ZufallGeneratorenKarten is
    
    function ChaoskarteRessource
      (WasserLandExtern : in Boolean)
-         return KartenGrundDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
       RessourceWählenChaoskarte.Reset (RessourceGewählt);
@@ -220,7 +205,7 @@ package body ZufallGeneratorenKarten is
       is
          when True =>
             if
-              RessourceWert in KartenGrundDatentypen.Karten_Grund_Ressourcen_Wasser'Range
+              RessourceWert in KartenGrundDatentypen.Karten_Ressourcen_Wasser'Range
             then
                return RessourceWert;
                   
@@ -230,7 +215,7 @@ package body ZufallGeneratorenKarten is
 
          when False =>
             if
-              RessourceWert in KartenGrundDatentypen.Karten_Grund_Ressourcen_Land'Range
+              RessourceWert in KartenGrundDatentypen.Karten_Ressourcen_Land'Range
             then
                return RessourceWert;
                   
@@ -239,7 +224,7 @@ package body ZufallGeneratorenKarten is
             end if;
       end case;
             
-      return KartenGrundDatentypen.Leer_Grund_Enum;
+      return KartenGrundDatentypen.Leer_Ressource_Enum;
       
    end ChaoskarteRessource;
 

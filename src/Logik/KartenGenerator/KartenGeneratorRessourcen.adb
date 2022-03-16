@@ -76,7 +76,7 @@ package body KartenGeneratorRessourcen is
    is begin
       
       WasserRessourcenSchleife:
-      for WasserRessourceSchleifenwert in KartenGrundDatentypen.Karten_Grund_Ressourcen_Wasser'Range loop
+      for WasserRessourceSchleifenwert in KartenGrundDatentypen.Karten_Ressourcen_Wasser'Range loop
          
          if
            ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, WasserRessourceSchleifenwert)
@@ -101,7 +101,7 @@ package body KartenGeneratorRessourcen is
    is begin
       
       LandRessourcenSchleife:
-      for LandRessourceSchleifenwert in KartenGrundDatentypen.Karten_Grund_Ressourcen_Land'Range loop
+      for LandRessourceSchleifenwert in KartenGrundDatentypen.Karten_Ressourcen_Land'Range loop
                      
          if
            ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, LandRessourceSchleifenwert)

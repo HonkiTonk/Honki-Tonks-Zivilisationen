@@ -135,7 +135,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.Fluss (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenGrundDatentypen.Leer_Grund_Enum =>
+               when KartenGrundDatentypen.Leer_Fluss_Enum =>
                   null;
             
                when others =>
@@ -189,7 +189,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.Ressource (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenGrundDatentypen.Leer_Grund_Enum =>
+               when KartenGrundDatentypen.Leer_Ressource_Enum =>
                   null;
             
                when others =>
