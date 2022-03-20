@@ -71,7 +71,11 @@ package DatenbankRecords is
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;
       
-      UmgebungBenötigt : KartenGrundDatentypen.Karten_Grund_Enum;
+      GrundBenötigt : KartenGrundDatentypen.Karten_Grund_Enum;
+      FlussBenötigt : Boolean;
+      RessourceBenötigt : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+      --------------------- UndOderGrundFlussBenötigt : Boolean;
+      
       GebäudeSpezielleEigenschaft : EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;

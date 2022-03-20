@@ -13,8 +13,9 @@ package FarbgebungKonsole is
    procedure Farben
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
       GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+      FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
+      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Enum)
@@ -62,7 +63,7 @@ private
    
    procedure FarbenRessourcenFluss
      (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Grund_Enum);
+      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum);
    
    procedure FarbenFeld
      (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum)

@@ -148,7 +148,6 @@ package body EinlesenTexturen is
    
    
    
-   
    procedure EinlesenKartenflüsse
    is begin
       
@@ -241,7 +240,7 @@ package body EinlesenTexturen is
                return;
                
             when False =>
-               KartenfelderEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               KartenressourcenEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
          end case;
          
          AktuelleZeile := AktuelleZeile + 1;

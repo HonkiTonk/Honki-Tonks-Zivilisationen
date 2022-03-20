@@ -5,21 +5,24 @@ with Sf.Graphics;
 
 with EinheitStadtDatentypen;
 with SystemDatentypen;
-with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
 
+with KartenDatenbank;
+
 package EingeleseneTexturenSFML is
+
+   ---------------- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird?
 
    type HintergrundAccessArray is array (1 .. 1) of Sf.Graphics.sfTexture_Ptr;
    HintergrundAccess : HintergrundAccessArray := (others => null);
 
-   type KartenfelderAccessArray is array (KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenfelderAccessArray is array (KartenDatenbank.KartenGrundListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenfelderAccess : KartenfelderAccessArray := (others => null);
 
-   type KartenflussAccessArray is array (KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenflussAccessArray is array (KartenDatenbank.KartenFlussListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenflussAccess : KartenflussAccessArray := (others => null);
 
-   type KartenressourcenAccessArray is array (KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenressourcenAccessArray is array (KartenDatenbank.KartenRessourcenListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenressourceAccess : KartenressourcenAccessArray := (others => null);
 
    type VerbesserungenAccessArray is array (KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;

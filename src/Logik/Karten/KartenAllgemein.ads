@@ -11,8 +11,16 @@ with KartenGrundDatentypen;
 
 package KartenAllgemein is
 
-   function Beschreibung
-     (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+   function BeschreibungGrund
+     (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
+      return Wide_Wide_String;
+
+   function BeschreibungFluss
+     (KartenFlussExtern : in KartenGrundDatentypen.Karten_Fluss_Vorhanden_Enum)
+      return Wide_Wide_String;
+
+   function BeschreibungRessource
+     (KartenRessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function GrundNahrung
@@ -208,6 +216,8 @@ package KartenAllgemein is
 private
 
    GrundAktuell : Positive;
+   FlussAktuell : Positive;
+   RessourceAktuell : Positive;
 
    BeschreibungText : Unbounded_Wide_Wide_String;
 

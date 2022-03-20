@@ -63,52 +63,50 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (22.03.2022):
+   -- Version 0.01.01 => 0.01.0 (22.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (21.03.2022):
+   -- Version 0.01.0165 => 0.01.01 (21.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (20.03.2022):
+   -- Version 0.01.0161 => 0.01.0165 (20.03.2022):
    
-   -- 
+   -- Weiter an die Aufteilung der Datenbanken gearbeitet.
+   -- Es ist jetzt möglich die Baubarkeit von Gebäuden von einem bestimmten Grund, Fluss und Ressourcen abhängig zu machen anstatt wie bisher nur von einem der Drei.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (19.03.2022):
+   -- Version 0.01.0160 => 0.01.0161 (19.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.01 => 0.01.0 (18.03.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Debian GNAT 12-20220313-1 auf Debian GNAT 12-20220319-1 aktualisiert.
    
    
 
-   -- Version 0.01.0160 => 0.01.01 (17.03.2022):
+   -- Version 0.01.0160 => 0.01.0160 (18.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.0160 => 0.01.0160 (17.03.2022):
+   
+   -- null.
    
    
 
    -- Version 0.01.0150 => 0.01.0160 (16.03.2022):
    
    -- Kartengrundenum und die Kartendatenbank in Grund, Fluss und Ressource aufgeteilt und angefangen alles entsprechend daran anzupassen.
-   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst.
+   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

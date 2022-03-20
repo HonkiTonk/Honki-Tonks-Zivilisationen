@@ -50,7 +50,7 @@ package body KartenGeneratorChaos is
                case
                  RessourceZufall
                is
-                  when KartenGrundDatentypen.Leer_Grund_Enum =>
+                  when KartenGrundDatentypen.Leer_Ressource_Enum =>
                      null;
                      
                   when others =>

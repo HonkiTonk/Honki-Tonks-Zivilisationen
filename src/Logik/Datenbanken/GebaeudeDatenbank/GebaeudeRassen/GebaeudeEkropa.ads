@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
 with KartenDatentypen;
-with EinheitStadtDatentypen;
-with KartenGrundDatentypen;
 
 with DatenbankRecords;
 
@@ -20,8 +18,10 @@ package GebaeudeEkropa is
                                                                              BonusWirtschaft             => (KartenDatentypen.Nahrung => 10,
                                                                                                              others                   => 0),
                                                                              BonusKampf                  => (others => 10),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Nahrungslager
                                                                           2 =>
@@ -31,8 +31,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 2,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Holzpalisade
                                                                           3 =>
@@ -42,8 +44,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 1,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Schmiede
                                                                           4 =>
@@ -53,8 +57,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 10,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
       
                                                                           -- Bibliothek
                                                                           5 =>
@@ -64,8 +70,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 9,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Steinmauer
                                                                           6 =>
@@ -75,8 +83,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 11,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Bücherei
                                                                           7 =>
@@ -86,8 +96,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 21,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Bewässerungssystem
                                                                           8 =>
@@ -97,8 +109,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 16,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Kaserne
                                                                           9 =>
@@ -108,8 +122,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 13,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Wassermühle
                                                                           10 =>
@@ -119,8 +135,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 15,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Windmühle
                                                                           11 =>
@@ -130,8 +148,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 15,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Seehafen
                                                                           12 =>
@@ -141,8 +161,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 14,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Hochofen
                                                                           13 =>
@@ -152,8 +174,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 33,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Universität
                                                                           14 =>
@@ -163,8 +187,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 27,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Burg
                                                                           15 =>
@@ -174,8 +200,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 22,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Schwere Burg
                                                                           16 =>
@@ -185,8 +213,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 25,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Festungen
                                                                           17 =>
@@ -196,8 +226,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 34,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Kohlekraftwerk
                                                                           18 =>
@@ -207,8 +239,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 37,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Fabrik
                                                                           19 =>
@@ -218,8 +252,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 30,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Krankenhaus
                                                                           20 =>
@@ -229,8 +265,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 43,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Flughafen
                                                                           21 =>
@@ -240,8 +278,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 41,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Atomkraftwerk
                                                                           22 =>
@@ -251,8 +291,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 45,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
                                                                           23 =>
@@ -262,8 +304,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 53,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Genklinik
                                                                           24 =>
@@ -273,8 +317,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 56,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- Fusionskraftwerk
                                                                           25 =>
@@ -284,8 +330,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 60,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                              
                                                                           -- NAMR Kraftwerk
                                                                           26 =>
@@ -295,8 +343,10 @@ package GebaeudeEkropa is
                                                                              Anforderungen               => 63,
                                                                              BonusWirtschaft             => (others => 0),
                                                                              BonusKampf                  => (others => 0),
-                                                                             UmgebungBenötigt            => KartenGrundDatentypen.Leer_Grund_Enum,
-                                                                             GebäudeSpezielleEigenschaft => EinheitStadtDatentypen.Leer_Enum),
+                                                                             GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
+                                                                             FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
+                                                                             RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
                                                               
                                                                           others => StadtKonstanten.LeerGebäudeListe
                                                                          );

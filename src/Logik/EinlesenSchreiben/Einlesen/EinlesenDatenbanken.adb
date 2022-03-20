@@ -105,20 +105,60 @@ package body EinlesenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Datenbanken/KartenDatenbank")
+        Exists (Name => "Datenbanken/KartenGrundDatenbank")
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/KartenDatenbank");
+                  Name => "Datenbanken/KartenGrundDatenbank");
 
          when False =>
-            KartenDatenbank.StandardKartenDatenbankLaden;
+            KartenDatenbank.StandardKartenGrundDatenbankLaden;
             return;
       end case;
       
-      KartenDatenbank.KartenFelderListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                   KartenDatenbank.KartenFelderListe);
+      KartenDatenbank.KartenGrundListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                  KartenDatenbank.KartenGrundListe);
+      
+      Close (File => DatenbankEinlesen);
+      
+      
+      
+      case
+        Exists (Name => "Datenbanken/KartenFlussDatenbank")
+      is
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Datenbanken/KartenFlussDatenbank");
+
+         when False =>
+            KartenDatenbank.StandardKartenFlussDatenbankLaden;
+            return;
+      end case;
+      
+      KartenDatenbank.KartenFlussListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                  KartenDatenbank.KartenFlussListe);
+      
+      Close (File => DatenbankEinlesen);
+      
+      
+      
+      case
+        Exists (Name => "Datenbanken/KartenRessourcenDatenbank")
+      is
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Datenbanken/KartenRessourcenDatenbank");
+
+         when False =>
+            KartenDatenbank.StandardKartenRessourcenDatenbankLaden;
+            return;
+      end case;
+      
+      KartenDatenbank.KartenRessourcenListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                       KartenDatenbank.KartenRessourcenListe);
       
       Close (File => DatenbankEinlesen);
       

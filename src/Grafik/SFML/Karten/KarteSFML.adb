@@ -207,12 +207,12 @@ package body KarteSFML is
          null;
       
       elsif
-        EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss) /= null
+        EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss) /= null
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                      TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss)));
+                                                                                                                                      TextureAccessExtern => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss)));
          
       else
          ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.KartenfelderAbmessung.x, BerechnungenKarteSFML.KartenfelderAbmessung.y / 5.00),
@@ -238,13 +238,13 @@ package body KarteSFML is
          null;
       
       elsif
-        EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldRessource) /= null
+        EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource) /= null
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  =>
                                                      TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenWeltkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                   TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldRessource)));
+                                                                                                                   TextureAccessExtern => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource)));
          
       else
          ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.KartenfelderAbmessung.x / 3.00,

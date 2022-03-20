@@ -41,6 +41,8 @@ private
 
    procedure EinlesenHintergrund;
    procedure EinlesenKartenfelder;
+   procedure EinlesenKartenflüsse;
+   procedure EinlesenKartenressourcen;
    procedure EinlesenVerbesserungen;
    procedure EinlesenEinheiten;
    procedure EinlesenGebäude;

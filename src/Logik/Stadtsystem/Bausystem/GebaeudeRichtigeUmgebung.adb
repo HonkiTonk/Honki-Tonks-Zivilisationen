@@ -18,18 +18,27 @@ package body GebaeudeRichtigeUmgebung is
       GebäudeIDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
    is begin
-      
-      case
-        LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern    => GebäudeIDExtern)
-      is
-         when KartenGrundDatentypen.Leer_Grund_Enum =>
-            return True;
+     
+      -------------------   
+      if
+        LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                              IDExtern    => GebäudeIDExtern)
+        = KartenGrundDatentypen.Leer_Grund_Enum
+        and
+          LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                IDExtern    => GebäudeIDExtern)
+        = False
+        and
+          LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                    IDExtern    => GebäudeIDExtern)
+        = KartenGrundDatentypen.Leer_Ressource_Enum
+      then
+         return True;
                
-         when others =>
-            return UmgebungPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                    GebäudeIDExtern       => GebäudeIDExtern);
-      end case;
+      else
+         return UmgebungPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                 GebäudeIDExtern       => GebäudeIDExtern);
+      end if;
             
    end RichtigeUmgebungVorhanden;
    
@@ -38,7 +47,7 @@ package body GebaeudeRichtigeUmgebung is
    function UmgebungPrüfen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GebäudeIDExtern : in EinheitStadtDatentypen.GebäudeID)
-     return Boolean
+      return Boolean
    is begin
       
       YAchseGebäudeSchleife:
@@ -63,15 +72,19 @@ package body GebaeudeRichtigeUmgebung is
                null;
                   
             elsif
+              --------------------- An neues Mehrfachumgebung möglich anpassen.
               -- Noch um Umgebungsverbesserung erweitern?
-              LeseKarten.Grund (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                            IDExtern    => GebäudeIDExtern)
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                         IDExtern    => GebäudeIDExtern)
               or
-                LeseKarten.Fluss (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                              IDExtern    => GebäudeIDExtern)
+                LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                      IDExtern    => GebäudeIDExtern)
+              = False
+            -- LeseKarten.Fluss (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+            --                                                                                               IDExtern    => GebäudeIDExtern)
               or
-                LeseKarten.Ressource (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                  IDExtern    => GebäudeIDExtern)
+                LeseKarten.Ressource (KoordinatenExtern => KartenWert) = LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                   IDExtern    => GebäudeIDExtern)
             then
                return True;
                   

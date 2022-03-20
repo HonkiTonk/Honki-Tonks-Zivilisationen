@@ -360,17 +360,17 @@ package body KarteStadtSFML is
       KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldFluss = KartenGrundDatentypen.Leer_Grund_Enum
+        KartenfeldFluss = KartenGrundDatentypen.Leer_Fluss_Enum
       then
          null;
          
       elsif
-        EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss) /= null
+        EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss) /= null
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                       TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldFluss)));
+                                                                                                                                       TextureAccessExtern => EingeleseneTexturenSFML.KartenflussAccess (KartenfeldFluss)));
             
       else
          ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 5.00),
@@ -391,18 +391,18 @@ package body KarteStadtSFML is
       KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldRessource = KartenGrundDatentypen.Leer_Grund_Enum
+        KartenfeldRessource = KartenGrundDatentypen.Leer_Ressource_Enum
       then
          null;
          
       elsif
-        EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldRessource) /= null
+        EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource) /= null
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  =>
                                                      TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                    TextureAccessExtern => EingeleseneTexturenSFML.KartenfelderAccess (KartenfeldRessource)));
+                                                                                                                    TextureAccessExtern => EingeleseneTexturenSFML.KartenressourceAccess (KartenfeldRessource)));
          
       else
          ObjekteZeichnenSFML.KreisZeichnen (RadiusExtern      => BerechnungenKarteSFML.StadtfelderAbmessung.x / 3.00,

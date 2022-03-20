@@ -80,15 +80,39 @@ package body LeseGebaeudeDatenbank is
 
 
       
-   function UmgebungBenötigt
+   function GrundBenötigt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return KartenGrundDatentypen.Karten_Grund_Enum
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).UmgebungBenötigt;
+      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).GrundBenötigt;
       
-   end UmgebungBenötigt;
+   end GrundBenötigt;
+
+
+
+   function FlussBenötigt
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return Boolean
+   is begin
+      
+      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).FlussBenötigt;
+      
+   end FlussBenötigt;
+
+
+      
+   function RessourceBenötigt
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in EinheitStadtDatentypen.GebäudeID)
+      return KartenGrundDatentypen.Karten_Ressourcen_Enum
+   is begin
+      
+      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).RessourceBenötigt;
+      
+   end RessourceBenötigt;
 
 
    

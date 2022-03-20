@@ -3,14 +3,15 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen;
 with KartenGrundDatentypen;
-with KartenRecordKonstanten;
 
 with DatenbankRecords;
 
 package KartenDatenbank is
    
+   ----------------- Die ganzen Listen mal in Datenbanken umbenennen? Warum habe ich das nicht von Anfang an so benannt?
+   
    ------------------------ Wird der Nullwert überhaupt noch benötigt? Es sollte ja gar kein Leeres Feld nach der Erstellung mehr geben?
-   type KartenGrundListeArray is array (KartenGrundDatentypen.Karten_Grund_Enum'Range) of DatenbankRecords.KartenGrundListeRecord;
+   type KartenGrundListeArray is array (KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum'Range) of DatenbankRecords.KartenGrundListeRecord;
    KartenGrundListe : KartenGrundListeArray;
    
    type KartenFlussListeArray is array (KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of DatenbankRecords.KartenListeRecord;
@@ -31,7 +32,7 @@ private
    KartenGrundListeStandard : constant KartenGrundListeArray := (
                                                                  -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
                                                                  ------------------------ Wird der Nullwert überhaupt noch benötigt? Es sollte ja gar kein Leeres Feld nach der Erstellung mehr geben?
-                                                                 KartenGrundDatentypen.Leer_Grund_Enum => KartenRecordKonstanten.LeerKartenGrundListe,
+                                                                 -- KartenGrundDatentypen.Leer_Grund_Enum => KartenRecordKonstanten.LeerKartenGrundListe,
                                       
                                                                  -- Normal
                                                                  KartenGrundDatentypen.Eis_Enum =>

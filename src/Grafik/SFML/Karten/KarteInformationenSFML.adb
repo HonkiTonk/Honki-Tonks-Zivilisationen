@@ -202,7 +202,7 @@ package body KarteInformationenSFML is
         LeseKarten.Hügel (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell) = True
       then      
          Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => KartenAllgemein.Beschreibung (KartenGrundExtern => KartenGrundDatentypen.Hügel_Mit_Enum));
+                                            str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartenGrundDatentypen.Hügel_Mit_Enum));
       
          Sf.Graphics.Text.setPosition (text     => TextAccess,
                                        position => PositionText);
@@ -216,7 +216,7 @@ package body KarteInformationenSFML is
       end if;
          
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
+                                         str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
       
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
@@ -229,7 +229,8 @@ package body KarteInformationenSFML is
                   
 
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
+                                         str  =>
+                                           KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => LeseKarten.Ressource (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
@@ -264,7 +265,7 @@ package body KarteInformationenSFML is
       
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
+                                         str  => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => LeseKarten.Fluss (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
       Sf.Graphics.Text.setPosition (text     => TextAccess,
                                     position => PositionText);
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,

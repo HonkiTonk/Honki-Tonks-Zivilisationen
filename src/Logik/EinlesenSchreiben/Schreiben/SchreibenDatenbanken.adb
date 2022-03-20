@@ -108,21 +108,63 @@ package body SchreibenDatenbanken is
    is begin
       
       case
-        Exists (Name => "Einstellungen/KartenDatenbank")
+        Exists (Name => "Einstellungen/KartenGrundDatenbank")
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/KartenDatenbank");
+                  Name => "Datenbanken/KartenGrundDatenbank");
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/KartenDatenbank");
+                    Name => "Datenbanken/KartenGrundDatenbank");
       end case;
       
-      KartenDatenbank.KartenFelderListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                    KartenDatenbank.KartenFelderListe);
+      KartenDatenbank.KartenGrundListeArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartenDatenbank.KartenGrundListe);
+      
+      Close (File => DatenbankSpeichern);
+      
+      
+      
+      case
+        Exists (Name => "Einstellungen/KartenFlussDatenbank")
+      is
+         when True =>
+            Open (File => DatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Datenbanken/KartenFlussDatenbank");
+            
+         when False =>
+            Create (File => DatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Datenbanken/KartenFlussDatenbank");
+      end case;
+      
+      KartenDatenbank.KartenFlussListeArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartenDatenbank.KartenFlussListe);
+      
+      Close (File => DatenbankSpeichern);
+      
+      
+      
+      case
+        Exists (Name => "Einstellungen/KartenRessourcenDatenbank")
+      is
+         when True =>
+            Open (File => DatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Datenbanken/KartenRessourcenDatenbank");
+            
+         when False =>
+            Create (File => DatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Datenbanken/KartenRessourcenDatenbank");
+      end case;
+      
+      KartenDatenbank.KartenRessourcenListeArray'Write (Stream (File => DatenbankSpeichern),
+                                                        KartenDatenbank.KartenRessourcenListe);
       
       Close (File => DatenbankSpeichern);
       

@@ -14,27 +14,58 @@ with LeseVerbesserungenDatenbank;
 package body KartenAllgemein is
 
    -- Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann?
-   function Beschreibung
-     (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+   function BeschreibungGrund
+     (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
 
-      case
-        KartenGrundExtern
-      is
-         when KartenGrundDatentypen.Leer_Grund_Enum =>
-            -- Darf nicht als Fehler behandelt werden. Wegen nicht aufgedeckter Felder?
-            BeschreibungText := SystemKonstanten.LeerUnboundedString;
+      ------------------------ Der auskommentierte Bereich hier kann später weg, aktuell aber noch hier damit ich weiß was hier mal stand.
+      -- case
+      -- KartenGrundExtern
+      -- is
+      --   when KartenGrundDatentypen.Leer_Grund_Enum =>
+      -- Darf nicht als Fehler behandelt werden. Wegen nicht aufgedeckter Felder?
+      --      BeschreibungText := SystemKonstanten.LeerUnboundedString;
             
-         when others =>
-            GrundAktuell := 2 * KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
+      --   when others =>
+      GrundAktuell := 2 * KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
             
-            BeschreibungText := GlobaleTexte.Kartenfelder (GrundAktuell);
-      end case;
+      BeschreibungText := GlobaleTexte.Kartenfelder (GrundAktuell);
+      -- end case;
    
       return To_Wide_Wide_String (Source => BeschreibungText);
       
-   end Beschreibung;
+   end BeschreibungGrund;
+   
+   
+   
+   function BeschreibungFluss
+     (KartenFlussExtern : in KartenGrundDatentypen.Karten_Fluss_Vorhanden_Enum)
+      return Wide_Wide_String
+   is begin
+      
+      FlussAktuell := 2 * KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenFlussExtern) - 1;
+            
+      BeschreibungText := GlobaleTexte.Kartenfelder (FlussAktuell);
+      
+      return To_Wide_Wide_String (Source => BeschreibungText);
+      
+   end BeschreibungFluss;
+   
+   
+   
+   function BeschreibungRessource
+     (KartenRessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+      return Wide_Wide_String
+   is begin
+      
+      RessourceAktuell := 2 * KartenGrundDatentypen.Karten_Ressourcen_Enum'Pos (KartenRessourceExtern) - 1;
+            
+      BeschreibungText := GlobaleTexte.Kartenfelder (RessourceAktuell);
+   
+      return To_Wide_Wide_String (Source => BeschreibungText);
+      
+   end BeschreibungRessource;
    
    
    

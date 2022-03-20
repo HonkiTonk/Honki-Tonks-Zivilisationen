@@ -11,6 +11,6 @@ private
 
    GrundZufall : KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum;
 
-   RessourceZufall : KartenGrundDatentypen.Karten_Grund_Enum;
+   RessourceZufall : KartenGrundDatentypen.Karten_Ressourcen_Enum;
 
 end KartenGeneratorChaos;

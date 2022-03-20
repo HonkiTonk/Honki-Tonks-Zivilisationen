@@ -77,7 +77,9 @@ package StadtKonstanten is
    LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerBonusKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerUmgebungBenötigt : constant KartenGrundDatentypen.Karten_Grund_Enum := KartenGrundDatentypen.Leer_Grund_Enum;
+   LeerGrundBenötigt : constant KartenGrundDatentypen.Karten_Grund_Enum := KartenGrundDatentypen.Leer_Grund_Enum;
+   LeerFlussBenötigt : constant Boolean := False;
+   LeerRessourceBenötigt : constant KartenGrundDatentypen.Karten_Ressourcen_Enum := KartenGrundDatentypen.Leer_Ressource_Enum;
    LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer_Enum;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (
@@ -87,7 +89,9 @@ package StadtKonstanten is
                                                                          Anforderungen               => LeerAnforderungen,
                                                                          BonusWirtschaft             => (others => LeerBonusWirtschaft),
                                                                          BonusKampf                  => (others => LeerBonusKampf),
-                                                                         UmgebungBenötigt            => LeerUmgebungBenötigt,
+                                                                         GrundBenötigt               => LeerGrundBenötigt,
+                                                                         FlussBenötigt               => LeerFlussBenötigt,
+                                                                         RessourceBenötigt           => LeerRessourceBenötigt,
                                                                          GebäudeSpezielleEigenschaft => LeerSpezielleEigenschaft
                                                                         );
    

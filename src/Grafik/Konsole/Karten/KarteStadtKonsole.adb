@@ -223,8 +223,9 @@ package body KarteStadtKonsole is
       else
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Grund_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
+                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                    RasseExtern        => StadtKonstanten.LeerRasse);
@@ -251,7 +252,7 @@ package body KarteStadtKonsole is
       else
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Grund_Enum,
+                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
@@ -279,7 +280,7 @@ package body KarteStadtKonsole is
       then
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Grund_Enum,
+                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                    GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
                                    CursorExtern       => True,
                                    EigeneRasseExtern  => RasseExtern,
@@ -288,7 +289,7 @@ package body KarteStadtKonsole is
       else
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Grund_Enum,
+                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell),
                                    CursorExtern       => True,
                                    EigeneRasseExtern  => RasseExtern,
@@ -358,7 +359,7 @@ package body KarteStadtKonsole is
          then
             FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                       VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                      RessourceExtern    => KartenGrundDatentypen.Leer_Grund_Enum,
+                                      RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                       GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
                                       CursorExtern       => True,
                                       EigeneRasseExtern  => RasseExtern,
@@ -438,7 +439,7 @@ package body KarteStadtKonsole is
       then
          FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Grund_Enum,
+                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                    GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
                                    CursorExtern       => True,
                                    EigeneRasseExtern  => RasseExtern,
@@ -458,7 +459,7 @@ package body KarteStadtKonsole is
             when KartenKonstanten.LeerXAchse =>
                FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                          VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                         RessourceExtern    => KartenGrundDatentypen.Leer_Grund_Enum,
+                                         RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                          GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
                                          CursorExtern       => True,
                                          EigeneRasseExtern  => RasseExtern,
@@ -467,7 +468,7 @@ package body KarteStadtKonsole is
             when others =>
                FarbgebungKonsole.Farben (EinheitIDExtern    => 0,
                                          VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                         RessourceExtern    => KartenGrundDatentypen.Leer_Grund_Enum,
+                                         RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                          GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KartenWert),
                                          CursorExtern       => True,
                                          EigeneRasseExtern  => RasseExtern,
@@ -516,7 +517,7 @@ package body KarteStadtKonsole is
          null;
       end if;
       
-      Put (Item => KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (KoordinatenExtern => KartenWert)));
+      Put (Item => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => LeseKarten.Grund (KoordinatenExtern => KartenWert)));
       StadtInformationenKonsole.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert,
                                                                 RasseExtern       => StadtRasseNummerExtern.Rasse);
       StadtInformationenKonsole.EinzelnesFeldRessourcengewinnung (KoordinatenExtern => KartenWert,
