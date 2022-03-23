@@ -29,6 +29,7 @@ package AufgabenAllgemein is
 private
 
    AktuelleVerbesserung : Positive;
+   AktuellerWeg : Positive;
 
    BeschreibungText : Unbounded_Wide_Wide_String;
 

@@ -26,11 +26,6 @@ package ForschungAllgemein is
    type ForschungTextArray is array (EinheitStadtDatentypen.ForschungID'First .. EinheitStadtDatentypen.ForschungID'Last + 1) of AllgemeineAnzeigeTextRecord;
    ForschungText : ForschungTextArray;
 
-   function Beschreibung
-     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return Wide_Wide_String;
-
    procedure Forschung
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
      with
@@ -45,6 +40,14 @@ package ForschungAllgemein is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       ForschungIDExtern : in EinheitStadtDatentypen.ForschungID)
       return Boolean
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+
+   function Beschreibung
+     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return Wide_Wide_String
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
@@ -70,10 +73,16 @@ private
    TextPositionMaus : Sf.System.Vector2.sfVector2f;
 
    procedure FortschrittMensch
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
 
    procedure FortschrittKI
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
 
    procedure MausAuswahl;
 

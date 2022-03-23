@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleTexte;
 
@@ -13,10 +12,8 @@ package EinlesenText is
 private
    
    LeereZeilenAbzieher : Natural;
-   
-   NichtGenugZeilen : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "!!!!!");
-   
-   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 37);
+      
+   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 40);
 
    DateiTextEinlesen : File_Type;
    
@@ -62,5 +59,8 @@ private
    procedure Frage;
    procedure ZeugSachen;
    procedure Editoren;
+   procedure Wege;
+   procedure Kartenflüsse;
+   procedure Kartenressourcen;
    
 end EinlesenText;

@@ -61,6 +61,10 @@ private
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
      with
        Pre =>
-         (VorzeichenWechselExtern /= 0);
+         (VorzeichenWechselExtern /= 0
+          and
+            StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum);
 
 end GebaeudeAllgemein;

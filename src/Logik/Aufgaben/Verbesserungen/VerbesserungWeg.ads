@@ -24,7 +24,7 @@ package VerbesserungWeg is
 
    function VerbesserungWeg
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with

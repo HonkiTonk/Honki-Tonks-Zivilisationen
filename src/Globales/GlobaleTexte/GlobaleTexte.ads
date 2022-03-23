@@ -25,45 +25,55 @@ package GlobaleTexte is
       
    RassenNamenBeschreibungen : constant Positive := 2 * 18;
    
+   FehlenderText : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => " |ÄÖÜ Hier wurde kein Text eingelesen ÜÖÄ| ");
+   
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
-   Hauptmenü : TexteArray (1 .. 16);
-   Spielmenü : TexteArray (1 .. 13);
-   Optionsmenü : TexteArray (1 .. 15);
-   Grafikmenü : TexteArray (1 .. 15);
-   Soundmenü : TexteArray (1 .. 7);
-   Steuerungmenü : TexteArray (1 .. 91);
-   Sonstigesmenü : TexteArray (1 .. 13);
-   Kartengröße : TexteArray (1 .. 31);
-   Kartenart : TexteArray (1 .. 19);
-   Kartentemperatur : TexteArray (1 .. 19);
-   Rassenauswahl : TexteArray (1 .. 47);
-   Schwierigkeitsgrad : TexteArray (1 .. 15);
-   Kartenform : TexteArray (1 .. 27);
-   Ressourcenmenge : TexteArray (1 .. 19);
-   JaNein : TexteArray (1 .. 2);
-   Rassen : TexteArray (1 .. RassenNamenBeschreibungen);
-   Kartenfelder : TexteArray (1 .. 160);
-   Einheiten : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.EinheitenID'Last));
-   Verbesserungen : TexteArray (1 .. 16);
-   Wege : TexteArray (1 .. 32);
-   Gebäude : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.GebäudeID'Last));
-   Forschungen : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.ForschungID'Last));
-   Beschäftigungen : TexteArray (1 .. 18);
-   StädtenamenKI : TexteArray (1 .. 3);
-   Debugmenü : TexteArray (1 .. 3);
-   AllgemeineInformationen : TexteArray (1 .. 16);
-   Würdigung : TexteArray (1 .. 1);
-   Diplomatiemenü : TexteArray (1 .. 7);
-   DiplomatieKI : TexteArray (1 .. 3);
-   Endmeldungen : TexteArray (1 .. 3);
-   Handelsmenü : TexteArray (1 .. 10);
-   DiplomatieStatus : TexteArray (1 .. 4);
-   Angebot : TexteArray (1 .. 2);
-   Fehlermeldung : TexteArray (1 .. 20);
-   Ladezeit : TexteArray (1 .. 32);
-   Frage : TexteArray (1 .. 35);
-   ZeugSachen : TexteArray (1 .. 67);
-   Editoren : TexteArray (1 .. 17);
+   Hauptmenü : TexteArray (1 .. 16) := (others => FehlenderText);
+   Spielmenü : TexteArray (1 .. 13) := (others => FehlenderText);
+   Optionsmenü : TexteArray (1 .. 15) := (others => FehlenderText);
+   Grafikmenü : TexteArray (1 .. 15) := (others => FehlenderText);
+   Soundmenü : TexteArray (1 .. 7) := (others => FehlenderText);
+   Steuerungmenü : TexteArray (1 .. 91) := (others => FehlenderText);
+   Sonstigesmenü : TexteArray (1 .. 13) := (others => FehlenderText);
+   Kartengröße : TexteArray (1 .. 31) := (others => FehlenderText);
+   Kartenart : TexteArray (1 .. 19) := (others => FehlenderText);
+   Kartentemperatur : TexteArray (1 .. 19) := (others => FehlenderText);
+   Rassenauswahl : TexteArray (1 .. 47) := (others => FehlenderText);
+   Schwierigkeitsgrad : TexteArray (1 .. 15) := (others => FehlenderText);
+   Kartenform : TexteArray (1 .. 27) := (others => FehlenderText);
+   Ressourcenmenge : TexteArray (1 .. 19) := (others => FehlenderText);
+   JaNein : TexteArray (1 .. 2) := (others => FehlenderText);
+   Rassen : TexteArray (1 .. RassenNamenBeschreibungen) := (others => FehlenderText);
+   
+   --------------------- Könnte man hier nicht auch zweimal die Ranges der jeweiligen Enums als Länge angeben?
+   Kartenfelder : TexteArray (1 .. 160) := (others => FehlenderText);
+   Kartenflüsse : TexteArray (1 .. 96) := (others => FehlenderText);
+   Kartenressourcen : TexteArray (1 .. 14) := (others => FehlenderText);
+   
+   Einheiten : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.EinheitenID'Last)) := (others => FehlenderText);
+   
+   --------------------- Hier auch zweimal Enumlänge?
+   Verbesserungen : TexteArray (1 .. 16) := (others => FehlenderText);
+   Wege : TexteArray (1 .. 32) := (others => FehlenderText);
+   
+   Gebäude : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
+   Forschungen : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.ForschungID'Last)) := (others => FehlenderText);
+   Beschäftigungen : TexteArray (1 .. 18) := (others => FehlenderText);
+   StädtenamenKI : TexteArray (1 .. 3) := (others => FehlenderText);
+   Debugmenü : TexteArray (1 .. 3) := (others => FehlenderText);
+   AllgemeineInformationen : TexteArray (1 .. 16) := (others => FehlenderText);
+   Würdigung : TexteArray (1 .. 1) := (others => FehlenderText);
+   Diplomatiemenü : TexteArray (1 .. 7) := (others => FehlenderText);
+   DiplomatieKI : TexteArray (1 .. 3) := (others => FehlenderText);
+   Endmeldungen : TexteArray (1 .. 3) := (others => FehlenderText);
+   Handelsmenü : TexteArray (1 .. 10) := (others => FehlenderText);
+   DiplomatieStatus : TexteArray (1 .. 4) := (others => FehlenderText);
+   Angebot : TexteArray (1 .. 2) := (others => FehlenderText);
+   Fehlermeldung : TexteArray (1 .. 20) := (others => FehlenderText);
+   Ladezeit : TexteArray (1 .. 32) := (others => FehlenderText);
+   Frage : TexteArray (1 .. 35) := (others => FehlenderText);
+   ZeugSachen : TexteArray (1 .. 67) := (others => FehlenderText);
+   Editoren : TexteArray (1 .. 17) := (others => FehlenderText);
    
 end GlobaleTexte;

@@ -17,20 +17,11 @@ package body KartenAllgemein is
      (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
-
-      ------------------------ Der auskommentierte Bereich hier kann später weg, aktuell aber noch hier damit ich weiß was hier mal stand.
-      -- case
-      -- KartenGrundExtern
-      -- is
-      --   when KartenGrundDatentypen.Leer_Grund_Enum =>
-      -- Darf nicht als Fehler behandelt werden. Wegen nicht aufgedeckter Felder?
-      --      BeschreibungText := SystemKonstanten.LeerUnboundedString;
-            
-      --   when others =>
+      
+      -------------------- Das Zwischenspeichern des Textes mal entfernen?
       GrundAktuell := 2 * KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
             
       BeschreibungText := GlobaleTexte.Kartenfelder (GrundAktuell);
-      -- end case;
    
       return To_Wide_Wide_String (Source => BeschreibungText);
       
@@ -45,7 +36,7 @@ package body KartenAllgemein is
       
       FlussAktuell := 2 * KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenFlussExtern) - 1;
             
-      BeschreibungText := GlobaleTexte.Kartenfelder (FlussAktuell);
+      BeschreibungText := GlobaleTexte.Kartenflüsse (FlussAktuell);
       
       return To_Wide_Wide_String (Source => BeschreibungText);
       
@@ -60,7 +51,7 @@ package body KartenAllgemein is
       
       RessourceAktuell := 2 * KartenGrundDatentypen.Karten_Ressourcen_Enum'Pos (KartenRessourceExtern) - 1;
             
-      BeschreibungText := GlobaleTexte.Kartenfelder (RessourceAktuell);
+      BeschreibungText := GlobaleTexte.Kartenressourcen (RessourceAktuell);
    
       return To_Wide_Wide_String (Source => BeschreibungText);
       

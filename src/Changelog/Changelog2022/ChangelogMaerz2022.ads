@@ -56,10 +56,11 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.0185 => 0.01.0 (23.03.2022):
+   -- Version 0.01.0185 => 0.01.0190 (23.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Texte einlesen, speichern und anzeigen an die neue Datenbankaufteilung angepasst.
+   -- Einige Warnungen hinzugefügt, wenn Texte nicht eingelesen wurden oder in der Textdatei nicht vorhanden sind.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/hinzugefügt.
    
    
 

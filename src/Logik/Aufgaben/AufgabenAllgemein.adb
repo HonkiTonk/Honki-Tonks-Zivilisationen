@@ -30,9 +30,9 @@ package body AufgabenAllgemein is
       return Wide_Wide_String
    is begin
       
-      AktuelleVerbesserung := 2 * KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1;
+      AktuellerWeg := 2 * KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1;
                
-      BeschreibungText := GlobaleTexte.Wege (AktuelleVerbesserung);
+      BeschreibungText := GlobaleTexte.Wege (AktuellerWeg);
       
       return To_Wide_Wide_String (Source => BeschreibungText);
       

@@ -18,6 +18,7 @@ with StadtProduktion;
 
 package body GebaeudeAllgemein is
 
+   -------------- Um die Aufrufe der ganzen Beschreibungen mal ein wenig zu reduzieren die Nullprüfung vor den Aufruf verlegen (überall?).
    function BeschreibungKurz
      (IDExtern : in EinheitStadtDatentypen.GebäudeIDMitNullwert)
      return Wide_Wide_String
