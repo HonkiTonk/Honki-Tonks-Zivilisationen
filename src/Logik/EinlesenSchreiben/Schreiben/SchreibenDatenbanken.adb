@@ -189,8 +189,29 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/VerbesserungenDatenbank");
       end case;
       
-      VerbesserungenDatenbank.VerbesserungListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                            VerbesserungenDatenbank.VerbesserungListe);
+      VerbesserungenDatenbank.VerbesserungenListeArray'Write (Stream (File => DatenbankSpeichern),
+                                                              VerbesserungenDatenbank.VerbesserungenListe);
+      
+      Close (File => DatenbankSpeichern);
+      
+      
+      
+      case
+        Exists (Name => "Einstellungen/WegeDatenbank")
+      is
+         when True =>
+            Open (File => DatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Datenbanken/WegeDatenbank");
+            
+         when False =>
+            Create (File => DatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Datenbanken/WegeDatenbank");
+      end case;
+      
+      VerbesserungenDatenbank.WegeListeArray'Write (Stream (File => DatenbankSpeichern),
+                                                    VerbesserungenDatenbank.WegeListe);
       
       Close (File => DatenbankSpeichern);
       

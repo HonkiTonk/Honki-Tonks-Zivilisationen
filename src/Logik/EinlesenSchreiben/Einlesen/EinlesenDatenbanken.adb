@@ -182,8 +182,28 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      VerbesserungenDatenbank.VerbesserungListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                           VerbesserungenDatenbank.VerbesserungListe);
+      VerbesserungenDatenbank.VerbesserungenListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                             VerbesserungenDatenbank.VerbesserungenListe);
+      
+      Close (File => DatenbankEinlesen);
+      
+      
+      
+      case
+        Exists (Name => "Datenbanken/WegeDatenbank")
+      is
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Datenbanken/WegeDatenbank");
+
+         when False =>
+            VerbesserungenDatenbank.StandardWegeDatenbankLaden;
+            return;
+      end case;
+      
+      VerbesserungenDatenbank.WegeListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                   VerbesserungenDatenbank.WegeListe);
       
       Close (File => DatenbankEinlesen);
       

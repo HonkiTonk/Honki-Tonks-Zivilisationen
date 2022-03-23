@@ -53,29 +53,23 @@ package SchreibeKarten is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   procedure VerbesserungWeg
+   procedure Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      WegExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
+      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            (WegExtern = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
-             or
-               WegExtern in KartenVerbesserungDatentypen.Karten_Weg_Enum));
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   procedure VerbesserungGebiet
+   procedure Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            VerbesserungExtern not in KartenVerbesserungDatentypen.Karten_Weg_Enum);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;

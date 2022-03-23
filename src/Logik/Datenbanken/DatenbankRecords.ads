@@ -108,15 +108,21 @@ package DatenbankRecords is
 
 
    -- VerbesserungenDatenbank
-   type VerbesserungListeRecord is record
-      
-      Passierbarkeit : PassierbarkeitArray;
+   type VerbesserungenWegeListeRecord is tagged record
       
       Bewertung : BewertungArray;
       Wirtschaft : WirtschaftArray;
       Kampf : KampfArray;
       
+      Passierbarkeit : PassierbarkeitArray;
+      
    end record;
+   
+   -- type VerbesserungenListeRecord is new WegeListeRecord with record
+                 
+   --    Passierbarkeit : PassierbarkeitArray;
+      
+   -- end record;
    -- VerbesserungenDatenbank
    
    

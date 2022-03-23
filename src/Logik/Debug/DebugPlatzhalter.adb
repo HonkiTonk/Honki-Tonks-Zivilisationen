@@ -193,8 +193,8 @@ package body DebugPlatzhalter is
                 GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.RasseBelegt'Wide_Wide_Image & ", "
                 & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,
                   GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.StadtBelegt'Wide_Wide_Image);
-      Put (Item => "Weg: " & LeseKarten.VerbesserungWeg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
-      Put_Line (Item => "    Feldverbesserung: " & LeseKarten.VerbesserungGebiet (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
+      Put (Item => "Weg: " & LeseKarten.Weg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
+      Put_Line (Item => "    Feldverbesserung: " & LeseKarten.Verbesserung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
       
       ErsteAnzeige := True;
       

@@ -23,7 +23,7 @@ package body VerbesserungFarm is
    is begin
 
       if
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenVerbesserungDatentypen.Farm_Enum
+        LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenVerbesserungDatentypen.Farm_Enum
       then
          return False;
 
@@ -33,7 +33,7 @@ package body VerbesserungFarm is
          return False;
 
       elsif
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
         KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and

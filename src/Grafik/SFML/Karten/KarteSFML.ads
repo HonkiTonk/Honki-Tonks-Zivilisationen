@@ -40,7 +40,7 @@ private
    KartenfeldRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
    
    Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
-   Wegfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    Verbesserungsfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
    
    DickeRahmen : constant Float := 5.00;

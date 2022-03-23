@@ -14,6 +14,7 @@ package body FarbgebungKonsole is
    procedure Farben
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
       FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
       RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
@@ -24,13 +25,34 @@ package body FarbgebungKonsole is
             
       FarbenFeld (GrundExtern => GrundExtern);
       
-      FarbenRessourcenFluss (GrundExtern     => GrundExtern,
-                             RessourceExtern => RessourceExtern);
+      case
+        FlussExtern
+      is
+         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+            null;
+            
+         when others =>
+            FarbenFluss (GrundExtern => GrundExtern,
+                         FlussExtern => FlussExtern);
+      end case;
+      
+      case
+        RessourceExtern
+      is
+         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+            null;
+            
+         when others =>
+            FarbenRessourcen (GrundExtern     => GrundExtern,
+                              RessourceExtern => RessourceExtern);
+      end case;
       
       FarbenCursorEinheitVerbesserung (EinheitIDExtern    => EinheitIDExtern,
                                        VerbesserungExtern => VerbesserungExtern,
-                                       RessourceExtern    => RessourceExtern,
+                                       WegExtern          => WegExtern,
                                        GrundExtern        => GrundExtern,
+                                       FlussExtern        => FlussExtern,
+                                       RessourceExtern    => RessourceExtern,
                                        CursorExtern       => CursorExtern,
                                        EigeneRasseExtern  => EigeneRasseExtern,
                                        RasseExtern        => RasseExtern);
@@ -49,9 +71,9 @@ package body FarbgebungKonsole is
    
    
    
-   procedure FarbenRessourcenFluss
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum)
+   procedure FarbenFluss
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+      FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
    is begin
       
       case
@@ -60,48 +82,74 @@ package body FarbgebungKonsole is
          when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Sand_Enum | KartenGrundDatentypen.Küstengewässer_Enum
             | KartenGrundDatentypen.Wolken_Enum | KartenGrundDatentypen.Unterwasser_Eis_Enum | KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum =>
             if
-              RessourceExtern in KartenGrundDatentypen.Karten_Grund_Fluss_Enum'Range
+              FlussExtern in KartenGrundDatentypen.Karten_Fluss_Vorhanden_Enum'Range
               or
-                RessourceExtern in KartenGrundDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range
+                FlussExtern in KartenGrundDatentypen.Karten_Unterirdischer_Fluss_Vorhanden_Enum'Range
             then
                Put (Item => CSI & "38;2;0;0;205m");
                
-            elsif
-              RessourceExtern in KartenGrundDatentypen.Karten_Grund_Lavafluss_Enum'Range
-            then
-               Put (Item => CSI & "38;2;230;50;50m");
-               
             else
-               Put (Item => CSI & "38;2;0;0;0m");
+               -- Lavafluss
+               Put (Item => CSI & "38;2;230;50;50m");
             end if;
                   
          when others =>
             if
-              RessourceExtern in KartenGrundDatentypen.Karten_Grund_Fluss_Enum'Range
+              FlussExtern in KartenGrundDatentypen.Karten_Fluss_Vorhanden_Enum'Range
               or
-                RessourceExtern in KartenGrundDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range
+                FlussExtern in KartenGrundDatentypen.Karten_Unterirdischer_Fluss_Vorhanden_Enum'Range
             then
                Put (Item => CSI & "38;2;135;206;250m");
                
-            elsif
-              RessourceExtern in KartenGrundDatentypen.Karten_Grund_Lavafluss_Enum'Range
-            then
-               Put (Item => CSI & "38;2;230;50;50m");
-               
             else
-               Put (Item => CSI & "38;2;255;255;255m");
+               -- Lavafluss
+               Put (Item => CSI & "38;2;230;50;50m");
             end if;
       end case;
       
-   end FarbenRessourcenFluss;
+   end FarbenFluss;
+   
+   
+   
+   procedure FarbenRessourcen
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+   is begin
+      
+      case
+        RessourceExtern
+      is
+         when KartenGrundDatentypen.Öl_Enum =>
+            ------------------------
+            -- Eventuell mal verschiedene Farben für die einzelnen Ressourcen einbauen?
+            null;
+            
+         when others =>
+            null;
+      end case;
+      
+      case
+        GrundExtern
+      is
+         when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Sand_Enum | KartenGrundDatentypen.Küstengewässer_Enum
+            | KartenGrundDatentypen.Wolken_Enum | KartenGrundDatentypen.Unterwasser_Eis_Enum | KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum =>
+            Put (Item => CSI & "38;2;0;0;0m");
+                  
+         when others =>
+            Put (Item => CSI & "38;2;255;255;255m");
+      end case;
+      
+   end FarbenRessourcen;
    
    
    
    procedure FarbenCursorEinheitVerbesserung
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+      FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
+      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Enum)
@@ -122,7 +170,7 @@ package body FarbgebungKonsole is
         and
           RasseExtern = EigeneRasseExtern
       then
-         Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (VerbesserungExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.VerbesserungenGrafik (VerbesserungExtern) & CSI & "0m");
             
       elsif
         VerbesserungExtern in KartenVerbesserungDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
@@ -131,10 +179,10 @@ package body FarbgebungKonsole is
            VerbesserungExtern
          is
             when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
-               Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum) & CSI & "0m");
+               Put (Item => EingeleseneGrafikenKonsole.VerbesserungenGrafik (KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum) & CSI & "0m");
                
             when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
-               Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (KartenVerbesserungDatentypen.Fremde_Stadt_Enum) & CSI & "0m");
+               Put (Item => EingeleseneGrafikenKonsole.VerbesserungenGrafik (KartenVerbesserungDatentypen.Fremde_Stadt_Enum) & CSI & "0m");
                
             when others =>
                null;
@@ -143,15 +191,25 @@ package body FarbgebungKonsole is
       elsif
         VerbesserungExtern /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
       then
-         Put (Item => EingeleseneGrafikenKonsole.VerbesserungGrafik (VerbesserungExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.VerbesserungenGrafik (VerbesserungExtern) & CSI & "0m");
+            
+      elsif
+        WegExtern /= KartenVerbesserungDatentypen.Leer_Weg_Enum
+      then
+         Put (Item => EingeleseneGrafikenKonsole.WegeGrafik (WegExtern) & CSI & "0m");
 
       elsif
-        RessourceExtern /= KartenGrundDatentypen.Leer_Grund_Enum
+        RessourceExtern /= KartenGrundDatentypen.Leer_Ressource_Enum
       then
-         Put (Item => EingeleseneGrafikenKonsole.KartenGrafik (RessourceExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.KartenressourcenGrafik (RessourceExtern) & CSI & "0m");
+         
+      elsif
+        FlussExtern /= KartenGrundDatentypen.Leer_Fluss_Enum
+      then
+         Put (Item => EingeleseneGrafikenKonsole.KartenflussGrafik (FlussExtern) & CSI & "0m");
             
       else
-         Put (Item => EingeleseneGrafikenKonsole.KartenGrafik (GrundExtern) & CSI & "0m");
+         Put (Item => EingeleseneGrafikenKonsole.KartenfelderGrafik (GrundExtern) & CSI & "0m");
       end if;
       
    end FarbenCursorEinheitVerbesserung;

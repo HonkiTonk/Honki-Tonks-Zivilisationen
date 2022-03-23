@@ -97,6 +97,7 @@ package body BewegungPassierbarkeitPruefen is
       return Boolean
    is begin
       
+      ------------------ Alles mal ein wenig optimieren.
       if
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                     KoordinatenExtern => NeueKoordinatenExtern)
@@ -105,12 +106,14 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        LeseVerbesserungenDatenbank.Passierbarkeit (VerbesserungExtern   => LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern),
-                                                    WelcheUmgebungExtern => UmgebungExtern)
+        LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
+        and then
+          LeseVerbesserungenDatenbank.PassierbarkeitWeg (WegExtern   => LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern),
+                                                         WelcheUmgebungExtern => UmgebungExtern)
         = False
       then
          null;
-                  
+         
       else
          return True;
       end if;
@@ -129,7 +132,7 @@ package body BewegungPassierbarkeitPruefen is
       
       -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
       if
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseKarten.Verbesserung (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
         and
           KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)
@@ -138,7 +141,7 @@ package body BewegungPassierbarkeitPruefen is
          null;
                   
       elsif
-        LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
         and then
           KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
                                          PassierbarkeitExtern => UmgebungExtern)
@@ -148,7 +151,7 @@ package body BewegungPassierbarkeitPruefen is
          
          -- Warum kommt die Prüfung hier noch einmal?
       elsif
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+        LeseKarten.Verbesserung (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
         and then
           KartenAllgemein.PassierbarVerbesserung (KoordinatenExtern    => NeueKoordinatenExtern,
                                                   PassierbarkeitExtern => UmgebungExtern)

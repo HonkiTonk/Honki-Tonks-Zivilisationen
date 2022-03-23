@@ -52,16 +52,16 @@ package LeseKarten is
           and
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   function VerbesserungWeg
+   function Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
+      return KartenVerbesserungDatentypen.Karten_Weg_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   function VerbesserungGebiet
+   function Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
      with

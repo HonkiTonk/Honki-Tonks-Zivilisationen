@@ -10,8 +10,12 @@ with KartenVerbesserungDatentypen;
 
 package AufgabenAllgemein is
 
-   function Beschreibung
-     (KartenVerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
+   function BeschreibungVerbesserung
+     (KartenVerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)
+      return Wide_Wide_String;
+
+   function BeschreibungWeg
+     (KartenWegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum)
       return Wide_Wide_String;
 
    procedure Nullsetzung

@@ -17,9 +17,9 @@ package body KampfwerteStadtErmitteln is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      VerteidigungWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                                RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
+      VerteidigungWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                            RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                            WelcherWertExtern  => KartenKonstanten.KampfVerteidigung))
         + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
@@ -52,9 +52,9 @@ package body KampfwerteStadtErmitteln is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      AngriffWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.Kampf (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                                           RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                           WelcherWertExtern  => KartenKonstanten.KampfAngriff))
+      AngriffWert := EinheitStadtDatentypen.Kampfwerte (LeseVerbesserungenDatenbank.KampfVerbesserung (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                       RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                       WelcherWertExtern  => KartenKonstanten.KampfAngriff))
         + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       

@@ -15,6 +15,8 @@ with GlobaleVariablen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
+with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 
 with UmwandlungenAdaNachEigenes;
 
@@ -27,6 +29,13 @@ package KarteInformationenSFML is
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
 
 private
+
+   KartenGrund : KartenGrundDatentypen.Karten_Grund_Enum;
+   KartenFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
+   KartenRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+
+   KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
 
    StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;

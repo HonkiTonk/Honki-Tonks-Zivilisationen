@@ -4,32 +4,39 @@ pragma Warnings (Off, "*array aggregate*");
 with GlobaleTexte;
 with EinheitenKonstanten;
 with TastenbelegungDatentypen;
-with SystemKonstanten;
 
 with SchreibeEinheitenGebaut;
 
 package body AufgabenAllgemein is
 
-   function Beschreibung
-     (KartenVerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
+   function BeschreibungVerbesserung
+     (KartenVerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      case
-        KartenVerbesserungExtern
-      is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
-            BeschreibungText := SystemKonstanten.LeerUnboundedString;
-            
-         when others =>
-            AktuelleVerbesserung := 2 * KartenVerbesserungDatentypen.Karten_Verbesserung_Enum'Pos (KartenVerbesserungExtern) - 1;
+      --------------- Text direkt returnen anstelle erst zuzuweisen? Auch bei den anderen Beschreibungen so anpassen?
+      AktuelleVerbesserung := 2 * KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1;
                
-            BeschreibungText := GlobaleTexte.Verbesserungen (AktuelleVerbesserung);
-      end case;
+      BeschreibungText := GlobaleTexte.Verbesserungen (AktuelleVerbesserung);
       
       return To_Wide_Wide_String (Source => BeschreibungText);
       
-   end Beschreibung;
+   end BeschreibungVerbesserung;
+   
+   
+
+   function BeschreibungWeg
+     (KartenWegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum)
+      return Wide_Wide_String
+   is begin
+      
+      AktuelleVerbesserung := 2 * KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Pos (KartenWegExtern) - 1;
+               
+      BeschreibungText := GlobaleTexte.Wege (AktuelleVerbesserung);
+      
+      return To_Wide_Wide_String (Source => BeschreibungText);
+      
+   end BeschreibungWeg;
    
    
    

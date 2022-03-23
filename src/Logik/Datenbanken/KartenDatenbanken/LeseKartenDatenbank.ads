@@ -12,20 +12,36 @@ with DatenbankRecords;
 package LeseKartenDatenbank is
 
    function Passierbarkeit
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean;
    
-   function Bewertung
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+   function BewertungGrund
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
-   function Wirtschaft
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+   function BewertungFluss
+     (FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.BewertungFeld
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+   
+   function BewertungRessource
+     (RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.BewertungFeld
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+   
+   function WirtschaftGrund
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
@@ -33,8 +49,26 @@ package LeseKartenDatenbank is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
-   function Kampf
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+   function WirtschaftFluss
+     (FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      return EinheitStadtDatentypen.ProduktionElement
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+   
+   function WirtschaftRessourcen
+     (RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      return EinheitStadtDatentypen.ProduktionElement
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+   
+   function KampfGrund
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.KampfwerteAllgemein
@@ -42,8 +76,34 @@ package LeseKartenDatenbank is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
    
-   function GanzerEintrag
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+   function KampfFluss
+     (FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.KampfwerteAllgemein
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+   
+   function KampfRessource
+     (RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.KampfwerteAllgemein
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+   
+   function GanzerEintragGrund
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
       return DatenbankRecords.KartenGrundListeRecord;
+         
+   function GanzerEintragFluss
+     (FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
+      return DatenbankRecords.KartenListeRecord;
+         
+   function GanzerEintragRessource
+     (RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+      return DatenbankRecords.KartenListeRecord;
 
 end LeseKartenDatenbank;

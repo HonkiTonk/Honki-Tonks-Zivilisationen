@@ -272,7 +272,7 @@ package EingeleseneGrafikenKonsole is
                                                     KartenGrundDatentypen.Hügel_Mit_Enum       => KartenKonstanten.LeerKartenGrafik,
                                                     -- Normal
       
-      
+                                                    -------------------------
       
                                                     -- Unterwasser/Unterirdisch
                                                     KartenGrundDatentypen.Unterwasser_Eis_Enum            => KartenKonstanten.LeerKartenGrafik,
@@ -369,75 +369,72 @@ package EingeleseneGrafikenKonsole is
    
    
 
-   type KartenressourcenAccessArray is array (KartenDatenbank.KartenRessourcenListeArray'Range) of Wide_Wide_Character;
-   KartenressourceAccess : KartenressourcenAccessArray := (
-                                                           KartenGrundDatentypen.Kohle_Enum              => '♦',
-                                                           KartenGrundDatentypen.Eisen_Enum              => '♦',
-                                                           KartenGrundDatentypen.Öl_Enum                 => '♦',
-                                                           KartenGrundDatentypen.Fisch_Enum              => '≈',
-                                                           KartenGrundDatentypen.Wal_Enum                => '≈',
-                                                           KartenGrundDatentypen.Hochwertiger_Boden_Enum => '♦',
-                                                           KartenGrundDatentypen.Gold_Enum               => '♦'
-                                                          );
+   type KartenressourcenGrafikArray is array (KartenDatenbank.KartenRessourcenListeArray'Range) of Wide_Wide_Character;
+   KartenressourcenGrafik : KartenressourcenGrafikArray := (
+                                                            KartenGrundDatentypen.Kohle_Enum              => '♦',
+                                                            KartenGrundDatentypen.Eisen_Enum              => '♦',
+                                                            KartenGrundDatentypen.Öl_Enum                 => '♦',
+                                                            KartenGrundDatentypen.Fisch_Enum              => '≈',
+                                                            KartenGrundDatentypen.Wal_Enum                => '≈',
+                                                            KartenGrundDatentypen.Hochwertiger_Boden_Enum => '♦',
+                                                            KartenGrundDatentypen.Gold_Enum               => '♦'
+                                                           );
    
    
    
-   type VerbesserungGrafikArray is array (VerbesserungenDatenbank.VerbesserungListeArray'Range) of Wide_Wide_Character;
-   VerbesserungGrafik : VerbesserungGrafikArray := (
-                                                    KartenVerbesserungDatentypen.Leer_Verbesserung_Enum => KartenKonstanten.LeerKartenGrafik,
-      
-      
-                                                    
-                                                    -- Städte
-                                                    KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum => '♣',
-                                                    KartenVerbesserungDatentypen.Eigene_Stadt_Enum      => '♠',
-                                                    KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum => '⌂',
-                                                    KartenVerbesserungDatentypen.Fremde_Stadt_Enum      => '¤',
-                                                    -- Städte
+   type VerbesserungenGrafikArray is array (VerbesserungenDatenbank.VerbesserungenListeArray'Range) of Wide_Wide_Character;
+   VerbesserungenGrafik : VerbesserungenGrafikArray := (
+                                                        -- Städte
+                                                        KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum => '♣',
+                                                        KartenVerbesserungDatentypen.Eigene_Stadt_Enum      => '♠',
+                                                        KartenVerbesserungDatentypen.Fremde_Hauptstadt_Enum => '⌂',
+                                                        KartenVerbesserungDatentypen.Fremde_Stadt_Enum      => '¤',
+                                                        -- Städte
       
       
                                                   
-                                                    -- Gebilde
-                                                    KartenVerbesserungDatentypen.Farm_Enum    => 'F',
-                                                    KartenVerbesserungDatentypen.Mine_Enum    => 'M',
-                                                    KartenVerbesserungDatentypen.Festung_Enum => 'B',
-                                                    KartenVerbesserungDatentypen.Sperre_Enum  => 'S',
-                                                    -- Gebilde
+                                                        -- Gebilde
+                                                        KartenVerbesserungDatentypen.Farm_Enum    => 'F',
+                                                        KartenVerbesserungDatentypen.Mine_Enum    => 'M',
+                                                        KartenVerbesserungDatentypen.Festung_Enum => 'B',
+                                                        KartenVerbesserungDatentypen.Sperre_Enum  => 'S'
+                                                        -- Gebilde
+                                                       );
+   
+   
+   
+   type WegeGrafikArray is array (VerbesserungenDatenbank.WegeListeArray'Range) of Wide_Wide_Character;
+   WegeGrafik : WegeGrafikArray := (
+                                    -- Straßen
+                                    KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum       => '╬',
+                                    KartenVerbesserungDatentypen.Straße_Waagrecht_Enum           => '═',
+                                    KartenVerbesserungDatentypen.Straße_Senkrecht_Enum           => '║',
+                                    KartenVerbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum   => '╔',
+                                    KartenVerbesserungDatentypen.Straßenkurve_Unten_Links_Enum    => '╗',
+                                    KartenVerbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum    => '╚',
+                                    KartenVerbesserungDatentypen.Straßenkurve_Oben_Links_Enum     => '╝',
+                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum   => '╩',
+                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum  => '╦',
+                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum => '╠',
+                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum  => '╣',
+                                    KartenVerbesserungDatentypen.Straßenendstück_Links_Enum      => '╞',
+                                    KartenVerbesserungDatentypen.Straßenendstück_Rechts_Enum     => '╡',
+                                    KartenVerbesserungDatentypen.Straßenendstück_Unten_Enum      => '╨',
+                                    KartenVerbesserungDatentypen.Straßenendstück_Oben_Enum       => '╥',
+                                    KartenVerbesserungDatentypen.Straße_Einzeln_Enum             => '▫',
+                                    -- Straßen
       
       
-                                                  
-                                                    -- Wege
-                                                    -- Straßen
-                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum       => '╬',
-                                                    KartenVerbesserungDatentypen.Straße_Waagrecht_Enum           => '═',
-                                                    KartenVerbesserungDatentypen.Straße_Senkrecht_Enum           => '║',
-                                                    KartenVerbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum   => '╔',
-                                                    KartenVerbesserungDatentypen.Straßenkurve_Unten_Links_Enum    => '╗',
-                                                    KartenVerbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum    => '╚',
-                                                    KartenVerbesserungDatentypen.Straßenkurve_Oben_Links_Enum     => '╝',
-                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Oben_Enum   => '╩',
-                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum  => '╦',
-                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum => '╠',
-                                                    KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum  => '╣',
-                                                    KartenVerbesserungDatentypen.Straßenendstück_Links_Enum      => '╞',
-                                                    KartenVerbesserungDatentypen.Straßenendstück_Rechts_Enum     => '╡',
-                                                    KartenVerbesserungDatentypen.Straßenendstück_Unten_Enum      => '╨',
-                                                    KartenVerbesserungDatentypen.Straßenendstück_Oben_Enum       => '╥',
-                                                    KartenVerbesserungDatentypen.Straße_Einzeln_Enum             => '▫',
-                                                    -- Straßen
       
-      
-      
-                                                    -- Schienen
-                                                    -- Schienen
+                                    -- Schienen
+                                    -- Schienen
       
       
                                                     
-                                                    -- Tunnel
-                                                    -- Tunnel
-                                                    -- Wege
+                                    -- Tunnel
+                                    -- Tunnel
                                                     
-                                                    others => KartenKonstanten.LeerKartenGrafik
-                                                   );
+                                    others => KartenKonstanten.LeerKartenGrafik
+                                   );
    
 end EingeleseneGrafikenKonsole;

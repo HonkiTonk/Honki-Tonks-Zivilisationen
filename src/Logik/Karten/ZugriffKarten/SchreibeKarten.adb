@@ -62,25 +62,25 @@ package body SchreibeKarten is
    
    
    
-   procedure VerbesserungWeg
+   procedure Weg
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      WegExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
+      WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum)
    is begin
       
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := WegExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg := WegExtern;
       
-   end VerbesserungWeg;
+   end Weg;
    
    
    
-   procedure VerbesserungGebiet
+   procedure Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum)
    is begin
       
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := VerbesserungExtern;
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung := VerbesserungExtern;
       
-   end VerbesserungGebiet;
+   end Verbesserung;
    
    
    

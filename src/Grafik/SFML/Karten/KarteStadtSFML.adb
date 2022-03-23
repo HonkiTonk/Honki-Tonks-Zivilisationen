@@ -388,6 +388,7 @@ package body KarteStadtSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
+      ----------------------- Unnötiges doppeltes Aufrufen von EingeleseneTexturenSFML entfernen.
       KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
@@ -420,20 +421,20 @@ package body KarteStadtSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Wegfeld := LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenExtern);
+      Wegfeld := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
       
       if
-        Wegfeld = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
+        Wegfeld = KartenVerbesserungDatentypen.Leer_Weg_Enum
       then
          null;
          
       elsif
-        EingeleseneTexturenSFML.VerbesserungenAccess (Wegfeld) /= null
+        EingeleseneTexturenSFML.WegeAccess (Wegfeld) /= null
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,
                                                    SkalierungExtern  => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenStadtkarte (SpriteAccessExtern  => SpriteAccess,
-                                                                                                                                       TextureAccessExtern => EingeleseneTexturenSFML.VerbesserungenAccess (Wegfeld)));
+                                                                                                                                       TextureAccessExtern => EingeleseneTexturenSFML.WegeAccess (Wegfeld)));
             
       else
          ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (BerechnungenKarteSFML.StadtfelderAbmessung.x, BerechnungenKarteSFML.StadtfelderAbmessung.y / 2.00),
@@ -451,7 +452,7 @@ package body KarteStadtSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
-      Verbesserungsfeld := LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenExtern);
+      Verbesserungsfeld := LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern);
       
       if
         Verbesserungsfeld = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum

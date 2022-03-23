@@ -86,9 +86,10 @@ package KartenRecords is
       Sichtbar : SichtbarkeitArray;
       
       Fluss : KartenGrundDatentypen.Karten_Fluss_Enum;
-      VerbesserungWeg : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
-      VerbesserungGebiet : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       Ressource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+      
+      Weg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
+      Verbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       
       DurchStadtBelegterGrund : BelegterGrundRecord;
       Felderwertung : FelderwertungArray;

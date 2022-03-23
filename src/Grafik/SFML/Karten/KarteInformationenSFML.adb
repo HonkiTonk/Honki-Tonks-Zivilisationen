@@ -7,7 +7,6 @@ with GlobaleTexte;
 with StadtKonstanten;
 with EinheitenKonstanten;
 with TextKonstanten;
-with KartenGrundDatentypen;
 
 with LeseWichtiges;
 with LeseKarten;
@@ -79,6 +78,8 @@ package body KarteInformationenSFML is
    
    
    
+   ------------------------
+   -- Prozeduren hier mal in Funktionen umschreiben um die Textposition auch bei Auslagerung noch zu haben.
    procedure WichtigesInformationen
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
@@ -198,80 +199,130 @@ package body KarteInformationenSFML is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      if
-        LeseKarten.Hügel (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell) = True
-      then      
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartenGrundDatentypen.Hügel_Mit_Enum));
+      case
+        LeseKarten.Hügel (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)
+      is
+         when True =>
+            Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                               str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartenGrundDatentypen.Hügel_Mit_Enum));
       
-         Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                       position => PositionText);
-         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextAccess);
+            Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                          position => PositionText);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                               text         => TextAccess);
          
-         PositionText.x := PositionText.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width + 5.00;
+            PositionText.x := PositionText.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width + 5.00;
          
-      else
-         null;
-      end if;
+         when False =>
+            null;
+      end case;
          
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
+      KartenGrund := LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
+      case
+        KartenGrund
+      is
+         when KartenGrundDatentypen.Leer_Grund_Enum =>
+            -- Ohne Grund sollte dann auch nicht anderes mehr hier sein.
+            return;
+            
+         when others =>
+            Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                               str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartenGrund));
       
-      PositionText.x := StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80;
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+            Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                          position => PositionText);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                               text         => TextAccess);
+      
+            PositionText.x := StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80;
+            PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      end case;
       
                   
-
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  =>
-                                           KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => LeseKarten.Ressource (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      KartenRessource := LeseKarten.Ressource (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
+      case
+        KartenRessource
+      is
+         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+            null;
+            
+         when others =>
+            Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                               str  =>
+                                                  KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
+            Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                          position => PositionText);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                               text         => TextAccess);
       
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  =>
-                                           AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
-      
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+            PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      end case;
       
       
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  =>
-                                           AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
+      KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      case
+        KartenVerbesserung
+      is
+         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+            null;
+            
+         when others =>
+            Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                               str  => AufgabenAllgemein.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
+            Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                          position => PositionText);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                               text         => TextAccess);
+      
+            PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      end case;
       
       
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => LeseKarten.Fluss (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
-                                    position => PositionText);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
+      KartenWeg := LeseKarten.Weg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      case
+        KartenWeg
+      is
+         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+            null;
+            
+         when others =>
+            Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                               str  => AufgabenAllgemein.BeschreibungWeg (KartenWegExtern => KartenWeg));
+            Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                          position => PositionText);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                               text         => TextAccess);
+      
+            PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      end case;
+      
+      
+      
+      KartenFluss := LeseKarten.Fluss (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      
+      case
+        KartenFluss
+      is
+         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+            null;
+            
+         when others =>
+            Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+                                               str  => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => KartenFluss));
+            Sf.Graphics.Text.setPosition (text     => TextAccess,
+                                          position => PositionText);
+            Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                               text         => TextAccess);
+      
+            PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      end case;
 
    end AllgemeineInformationen;
    

@@ -19,6 +19,7 @@ package body EinlesenTexturen is
       EinlesenKartenflüsse;
       EinlesenKartenressourcen;
       EinlesenVerbesserungen;
+      EinlesenWege;
       EinlesenEinheiten;
       EinlesenGebäude;
       
@@ -328,6 +329,67 @@ package body EinlesenTexturen is
       end loop TexturenZuweisenSchleife;
       
    end EinlesenVerbesserungen;
+   
+   
+   
+   procedure EinlesenWege
+   is begin
+      
+      case
+        Exists (Name => "Grafik/Wege/0")
+      is
+         when False =>
+            return;
+            
+         when True =>
+            AktuelleZeile := 1;
+            
+            Open (File => DateiTextEinlesen,
+                  Mode => In_File,
+                  Name => "Grafik/Wege/0");
+      end case;
+      
+      DateipfadeEinlesenSchleife:
+      for DateipfadeEinlesenSchleifenwert in WegeEinlesenArray'Range loop
+         
+         case
+           EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
+                                                    AktuelleZeileExtern => AktuelleZeile)
+         is
+            when True =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - Nicht genug Zeilen in der 0-Datei.");
+               Close (File => DateiTextEinlesen);
+               WegeEinlesen (DateipfadeEinlesenSchleifenwert) := SystemKonstanten.LeerUnboundedString;
+               return;
+               
+            when False =>
+               WegeEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
+         
+         AktuelleZeile := AktuelleZeile + 1;
+         
+      end loop DateipfadeEinlesenSchleife;
+      
+      Close (File => DateiTextEinlesen);
+      
+      TexturenZuweisenSchleife:
+      for TexturenZuweisenSchleifenwert in WegeEinlesenArray'Range loop
+         
+         case
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert))))
+         is
+            when True =>
+               EingeleseneTexturenSFML.WegeAccess (TexturenZuweisenSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert))));
+                  
+            when False =>
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenWege - " & To_Wide_Wide_String (Source => WegeEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenSFML.WegeAccess (TexturenZuweisenSchleifenwert) := null;
+         end case;
+         
+      end loop TexturenZuweisenSchleife;
+      
+   end EinlesenWege;
    
    
    

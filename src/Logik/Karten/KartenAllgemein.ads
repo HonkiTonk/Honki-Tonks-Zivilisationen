@@ -8,9 +8,11 @@ with KartenDatentypen;
 with EinheitStadtDatentypen;
 with SystemDatentypen;
 with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 
 package KartenAllgemein is
 
+   ------------------- Für die Koordinaten mal Contracts einfügen.
    function BeschreibungGrund
      (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
       return Wide_Wide_String;
@@ -214,6 +216,11 @@ package KartenAllgemein is
       return Boolean;
 
 private
+
+   KartenFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
+   KartenRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+   KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
+   KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 
    GrundAktuell : Positive;
    FlussAktuell : Positive;

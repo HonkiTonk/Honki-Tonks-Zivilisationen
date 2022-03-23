@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KartenGrundDatentypen is
 
-   -- Immer dran denken, alle Flussarten am Schluss hinzufügen.
    type Karten_Grund_Enum is (Leer_Grund_Enum,
                               
                               Wasser_Enum, Küstengewässer_Enum, Unterwasser_Wasser_Enum, Unterwasser_Küstengewässer_Enum,

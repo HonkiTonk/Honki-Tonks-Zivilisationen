@@ -151,9 +151,9 @@ package body FelderwerteFestlegen is
             end case;
 
             case
-              LeseKarten.VerbesserungWeg (KoordinatenExtern => KoordinatenUmgebungExtern)
+              LeseKarten.Weg (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+               when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
                   null;
             
                when others =>
@@ -169,7 +169,7 @@ package body FelderwerteFestlegen is
             end case;
 
             case
-              LeseKarten.VerbesserungGebiet (KoordinatenExtern => KoordinatenUmgebungExtern)
+              LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
                when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
                   null;
@@ -203,7 +203,7 @@ package body FelderwerteFestlegen is
                                             / KartenDatentypen.BewertungFeld (TeilerExtern)
                                            );
             end case;
-               
+            
          else
             null;
          end if;

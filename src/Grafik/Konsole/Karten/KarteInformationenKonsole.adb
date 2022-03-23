@@ -8,7 +8,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenGrundDatentypen;
 
 with LeseKarten;
 
@@ -129,10 +128,55 @@ package body KarteInformationenKonsole is
    is begin
       
       Hügel (RasseExtern => RasseExtern);
-      Put (Item => KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => LeseKarten.Ressource (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
-      Put_Line (Item => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
-      Put_Line (Item => AufgabenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
-      Put (Item => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => LeseKarten.Fluss (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
+      
+      KartenRessource := LeseKarten.Ressource (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      
+      case
+        KartenRessource
+      is
+         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+            null;
+            
+         when others =>
+            Put (Item => KartenAllgemein.BeschreibungRessource (KartenRessourceExtern => KartenRessource));
+      end case;
+      
+      KartenVerbesserung := LeseKarten.Verbesserung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      
+      case
+        KartenVerbesserung
+      is
+         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
+            null;
+            
+         when others =>
+            Put_Line (Item => AufgabenAllgemein.BeschreibungVerbesserung (KartenVerbesserungExtern => KartenVerbesserung));
+      end case;
+      
+      KartenWeg := LeseKarten.Weg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      
+      case
+        KartenWeg
+      is
+         when KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+            null;
+            
+         when others =>
+            Put_Line (Item => AufgabenAllgemein.BeschreibungWeg (KartenWegExtern => KartenWeg));
+      end case;
+      
+      KarteFluss := LeseKarten.Fluss (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+      
+      case
+        KarteFluss
+      is
+         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+            null;
+            
+         when others =>
+            Put (Item => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => KarteFluss));
+      end case;
+      
       New_Line;
             
       FeldVerteidigung (RasseExtern => RasseExtern);
@@ -150,22 +194,24 @@ package body KarteInformationenKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      if
-        LeseKarten.Hügel (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell) = True
-      then
-         TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                   TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
-                                                   ÜberschriftZeileExtern => 0,
-                                                   ErsteZeileExtern       => KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundDatentypen.Hügel_Mit_Enum),
-                                                   LetzteZeileExtern      => KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundDatentypen.Hügel_Mit_Enum),
-                                                   AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                   AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                   AbstandEndeExtern      => GlobaleTexte.Leer);
+      case
+        LeseKarten.Hügel (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)
+      is
+         when True =>
+            TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                      TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
+                                                      ÜberschriftZeileExtern => 0,
+                                                      ErsteZeileExtern       => KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundDatentypen.Hügel_Mit_Enum),
+                                                      LetzteZeileExtern      => KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundDatentypen.Hügel_Mit_Enum),
+                                                      AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                                      AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                      AbstandEndeExtern      => GlobaleTexte.Leer);
          
-      else
-         null;
-      end if;
-         
+         when False =>
+            null;
+      end case;
+      
+      -- Grund sollte niemals leer sein, da man in der Konsole das Spielfeld nicht verlassen kann mit dem Zeiger.
       Put (Item => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)));
       
    end Hügel;

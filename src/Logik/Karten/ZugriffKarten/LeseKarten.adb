@@ -54,45 +54,25 @@ package body LeseKarten is
    
    
    
-   function VerbesserungWeg
+   function Weg
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+      return KartenVerbesserungDatentypen.Karten_Weg_Enum
+   is begin
+      
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Weg;
+      
+   end Weg;
+   
+   
+   
+   function Verbesserung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
    is begin
       
-      case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg
-      is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum | KartenVerbesserungDatentypen.Karten_Weg_Enum'Range =>
-            null;
-         
-         when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
-      end case;
+      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Verbesserung;
       
-      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg;
-      
-   end VerbesserungWeg;
-   
-   
-   
-   function VerbesserungGebiet
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenVerbesserungDatentypen.Karten_Verbesserung_Enum
-   is begin
-      
-      case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet
-      is
-         when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum | KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range =>
-            null;
-         
-         when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
-      end case;
-      
-      return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet;
-      
-   end VerbesserungGebiet;
+   end Verbesserung;
    
    
    

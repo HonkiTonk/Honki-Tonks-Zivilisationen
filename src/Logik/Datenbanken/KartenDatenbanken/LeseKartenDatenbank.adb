@@ -6,62 +6,160 @@ with KartenDatenbank;
 package body LeseKartenDatenbank is
 
    function Passierbarkeit
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
       
-      return KartenDatenbank.KartenFelderListe (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
+      return KartenDatenbank.KartenGrundListe (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
       
    end Passierbarkeit;
    
    
    
-   function Bewertung
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+   function BewertungGrund
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
       
-      return KartenDatenbank.KartenFelderListe (GrundExtern).Bewertung (RasseExtern);
+      return KartenDatenbank.KartenGrundListe (GrundExtern).Bewertung (RasseExtern);
       
-   end Bewertung;
+   end BewertungGrund;
    
    
    
-   function Wirtschaft
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+   function BewertungFluss
+     (FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.BewertungFeld
+   is begin
+      
+      return KartenDatenbank.KartenFlussListe (FlussExtern).Bewertung (RasseExtern);
+      
+   end BewertungFluss;
+   
+   
+   
+   function BewertungRessource
+     (RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      return KartenDatentypen.BewertungFeld
+   is begin
+      
+      return KartenDatenbank.KartenRessourcenListe (RessourceExtern).Bewertung (RasseExtern);
+      
+   end BewertungRessource;
+   
+   
+   
+   function WirtschaftGrund
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenFelderListe (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenDatenbank.KartenGrundListe (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
-   end Wirtschaft;
+   end WirtschaftGrund;
    
    
    
-   function Kampf
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+   function WirtschaftFluss
+     (FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      return EinheitStadtDatentypen.ProduktionElement
+   is begin
+      
+      return KartenDatenbank.KartenFlussListe (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      
+   end WirtschaftFluss;
+   
+   
+   
+   function WirtschaftRessourcen
+     (RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
+      return EinheitStadtDatentypen.ProduktionElement
+   is begin
+      
+      return KartenDatenbank.KartenRessourcenListe (RessourceExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      
+   end WirtschaftRessourcen;
+   
+   
+   
+   function KampfGrund
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
       RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenDatenbank.KartenFelderListe (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenDatenbank.KartenGrundListe (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
       
-   end Kampf;
+   end KampfGrund;
    
    
    
-   function GanzerEintrag
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+   function KampfFluss
+     (FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.KampfwerteAllgemein
+   is begin
+      
+      return KartenDatenbank.KartenFlussListe (FlussExtern).Kampf (RasseExtern, KampfArtExtern);
+      
+   end KampfFluss;
+   
+   
+   
+   function KampfRessource
+     (RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
+      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      KampfArtExtern : in KartenDatentypen.Kampf_Enum)
+      return EinheitStadtDatentypen.KampfwerteAllgemein
+   is begin
+      
+      return KartenDatenbank.KartenRessourcenListe (RessourceExtern).Kampf (RasseExtern, KampfArtExtern);
+      
+   end KampfRessource;
+   
+   
+   
+   function GanzerEintragGrund
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
       return DatenbankRecords.KartenGrundListeRecord
    is begin
       
-      return KartenDatenbank.KartenFelderListe (GrundExtern);
+      return KartenDatenbank.KartenGrundListe (GrundExtern);
       
-   end GanzerEintrag;
+   end GanzerEintragGrund;
+   
+   
+   
+   function GanzerEintragFluss
+     (FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
+      return DatenbankRecords.KartenListeRecord
+   is begin
+      
+      return KartenDatenbank.KartenFlussListe (FlussExtern);
+      
+   end GanzerEintragFluss;
+   
+   
+   
+   function GanzerEintragRessource
+     (RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+      return DatenbankRecords.KartenListeRecord
+   is begin
+      
+      return KartenDatenbank.KartenRessourcenListe (RessourceExtern);
+      
+   end GanzerEintragRessource;
 
 end LeseKartenDatenbank;

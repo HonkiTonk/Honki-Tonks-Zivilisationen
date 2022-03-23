@@ -14,6 +14,7 @@ package EinlesenTexturen is
 
 private
 
+   ------------------- Das hier mal in Bereiche aufteilen um die Zeilenanzahl in der adb ein wenig zu verringern.
    AktuelleZeile : Positive;
 
    DateiTextEinlesen : File_Type;
@@ -33,6 +34,9 @@ private
    type VerbesserungenEinlesenArray is array (EingeleseneTexturenSFML.VerbesserungenAccessArray'Range) of Unbounded_Wide_Wide_String;
    VerbesserungenEinlesen : VerbesserungenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
 
+   type WegeEinlesenArray is array (EingeleseneTexturenSFML.WegeAccessArray'Range) of Unbounded_Wide_Wide_String;
+   WegeEinlesen : WegeEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+
    type EinheitenEinlesenArray is array (EingeleseneTexturenSFML.EinheitenAccesArray'Range (1), EingeleseneTexturenSFML.EinheitenAccesArray'Range (2)) of Unbounded_Wide_Wide_String;
    EinheitenEinlesen : EinheitenEinlesenArray := (others => (others => SystemKonstanten.LeerUnboundedString));
 
@@ -44,6 +48,7 @@ private
    procedure EinlesenKartenflüsse;
    procedure EinlesenKartenressourcen;
    procedure EinlesenVerbesserungen;
+   procedure EinlesenWege;
    procedure EinlesenEinheiten;
    procedure EinlesenGebäude;
 

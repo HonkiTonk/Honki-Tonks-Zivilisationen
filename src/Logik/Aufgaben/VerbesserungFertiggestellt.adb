@@ -131,16 +131,16 @@ package body VerbesserungFertiggestellt is
             VerbesserungWeg.WegBerechnen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
               
          when TastenbelegungDatentypen.Mine_Bauen_Enum =>
-            SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern    => KartenVerbesserungDatentypen.Mine_Enum);
+            SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Mine_Enum);
             
          when TastenbelegungDatentypen.Farm_Bauen_Enum =>
-            SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern    => KartenVerbesserungDatentypen.Farm_Enum);
+            SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Farm_Enum);
             
          when TastenbelegungDatentypen.Festung_Bauen_Enum =>
-            SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               VerbesserungExtern    => KartenVerbesserungDatentypen.Festung_Enum);
+            SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Festung_Enum);
               
          when TastenbelegungDatentypen.Wald_Aufforsten_Enum =>
             VerbesserungWaldAufforsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -185,12 +185,12 @@ package body VerbesserungFertiggestellt is
                             GrundExtern       => KartenGrundDatentypen.Wald_Enum);
       
       if
-        LeseKarten.VerbesserungGebiet (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       in
         KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
       then
-         SchreibeKarten.VerbesserungGebiet (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                            VerbesserungExtern    => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
+         SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                      VerbesserungExtern    => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
                   
       else
          null;

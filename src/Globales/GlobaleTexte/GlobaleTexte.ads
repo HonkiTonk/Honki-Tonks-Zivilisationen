@@ -45,7 +45,8 @@ package GlobaleTexte is
    Rassen : TexteArray (1 .. RassenNamenBeschreibungen);
    Kartenfelder : TexteArray (1 .. 160);
    Einheiten : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.EinheitenID'Last));
-   Verbesserungen : TexteArray (1 .. 48);
+   Verbesserungen : TexteArray (1 .. 16);
+   Wege : TexteArray (1 .. 32);
    Gebäude : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.GebäudeID'Last));
    Forschungen : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.ForschungID'Last));
    Beschäftigungen : TexteArray (1 .. 18);

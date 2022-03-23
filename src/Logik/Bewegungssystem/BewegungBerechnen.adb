@@ -197,15 +197,15 @@ package body BewegungBerechnen is
         = False
       then
          case
-           LeseKarten.VerbesserungWeg (KoordinatenExtern => NeueKoordinatenExtern)
+           LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern)
          is
-            when KartenVerbesserungDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
+            when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range =>
                return Straße_Fluss_Enum;
                
-            when KartenVerbesserungDatentypen.Karten_Verbesserung_Schiene_Enum'Range =>
+            when KartenVerbesserungDatentypen.Karten_Schiene_Enum'Range =>
                return Schiene_Enum;
                
-            when KartenVerbesserungDatentypen.Karten_Verbesserung_Tunnel_Enum =>
+            when KartenVerbesserungDatentypen.Karten_Tunnel_Enum =>
                return Straße_Fluss_Enum;
                   
             when others =>

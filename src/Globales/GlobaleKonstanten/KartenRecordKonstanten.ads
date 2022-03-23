@@ -36,9 +36,9 @@ package KartenRecordKonstanten is
                                                            Hügel                   => KartenKonstanten.LeerHügel,
                                                            Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
                                                            Fluss                   => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                                           VerbesserungWeg         => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
-                                                           VerbesserungGebiet      => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                                            Ressource               => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                                           Weg                     => KartenVerbesserungDatentypen.Leer_Weg_Enum,
+                                                           Verbesserung            => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                                            DurchStadtBelegterGrund => KartenKonstanten.LeerDurchStadtBelegterGrund,
                                                            Felderwertung           => (others => KartenKonstanten.LeerFelderwertung)
                                                           );
@@ -50,12 +50,18 @@ package KartenRecordKonstanten is
                                                                     YZuerstBerechnenXZuerstBerechnen => True
                                                                    );
 
-   LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
-                                                                                 Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
-                                                                                 Bewertung      => (others => KartenKonstanten.LeerVerbesserungBewertung),
-                                                                                 Wirtschaft     => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),
-                                                                                 Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
-                                                                                );
+   LeerVerbesserungListe : constant DatenbankRecords.VerbesserungenWegeListeRecord := (
+                                                                                       Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
+                                                                                       Bewertung      => (others => KartenKonstanten.LeerVerbesserungBewertung),
+                                                                                       Wirtschaft     => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),
+                                                                                       Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
+                                                                                      );
+   
+   -- LeerWegeListe : constant DatenbankRecords.WegeListeRecord := (
+   --                                                              Bewertung      => (others => KartenKonstanten.LeerVerbesserungBewertung),
+   --                                                              Wirtschaft     => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),
+   --                                                               Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
+   --                                                             );
    
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
@@ -68,7 +74,7 @@ package KartenRecordKonstanten is
                                          SystemDatentypen.Karte_Größe_240_240_Enum   => 6,
                                          SystemDatentypen.Karte_Größe_320_320_Enum   => 8,
                                          SystemDatentypen.Karte_Größe_1000_1000_Enum => 24,
-                                         SystemDatentypen.Karte_Größe_Nutzer_Enum   => 1
+                                         SystemDatentypen.Karte_Größe_Nutzer_Enum    => 1
                                         );
 
    Eisschild : constant EisgebietArray := (
@@ -81,7 +87,7 @@ package KartenRecordKonstanten is
                                            SystemDatentypen.Karte_Größe_240_240_Enum   => 18,
                                            SystemDatentypen.Karte_Größe_320_320_Enum   => 24,
                                            SystemDatentypen.Karte_Größe_1000_1000_Enum => 72,
-                                           SystemDatentypen.Karte_Größe_Nutzer_Enum   => 1
+                                           SystemDatentypen.Karte_Größe_Nutzer_Enum    => 1
                                           );
 
 end KartenRecordKonstanten;

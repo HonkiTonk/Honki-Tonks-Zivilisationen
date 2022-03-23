@@ -7,6 +7,8 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenDatentypen;
+with KartenGrundDatentypen;
+with KartenVerbesserungDatentypen;
 
 with UmwandlungenAdaNachEigenes;
 
@@ -19,6 +21,11 @@ package KarteInformationenKonsole is
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
    
 private
+   
+   KarteFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
+   KartenRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+   KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
+   KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    
    Sichtbar : Boolean;
    

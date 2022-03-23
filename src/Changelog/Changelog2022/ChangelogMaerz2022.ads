@@ -56,24 +56,24 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (23.03.2022):
+   -- Version 0.01.0185 => 0.01.0 (23.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.01 => 0.01.0 (22.03.2022):
+   -- Version 0.01.0165 => 0.01.0185 (22.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Grund, Fluss und Ressource vollständig aufgeteilt.
+   -- Wege und Verbesserungen vollständig in zwei Datenbanken aufgeteilt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 
-   -- Version 0.01.0165 => 0.01.01 (21.03.2022):
+   -- Version 0.01.0165 => 0.01.0165 (21.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
@@ -81,7 +81,7 @@ package ChangelogMaerz2022 is
    
    -- Weiter an die Aufteilung der Datenbanken gearbeitet.
    -- Es ist jetzt möglich die Baubarkeit von Gebäuden von einem bestimmten Grund, Fluss und Ressourcen abhängig zu machen anstatt wie bisher nur von einem der Drei.
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

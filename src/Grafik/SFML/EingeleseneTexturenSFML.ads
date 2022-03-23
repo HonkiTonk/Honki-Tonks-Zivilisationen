@@ -28,6 +28,9 @@ package EingeleseneTexturenSFML is
    type VerbesserungenAccessArray is array (KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    VerbesserungenAccess : VerbesserungenAccessArray := (others => null);
 
+   type WegeAccessArray is array (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   WegeAccess : WegeAccessArray := (others => null);
+
    type EinheitenAccesArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;
    EinheitenAccess : EinheitenAccesArray := (others => (others => null));
 
