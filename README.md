@@ -6,6 +6,7 @@ The source code of my civilization-style turn-based strategy game, written in Ad
 Requires the ASFML and it is only tested intensively under Linux. But it should compilate and work without any problems under other operating systems.
 
 Mich unterstützen/Support me:
+
 YouTube: https://www.youtube.com/user/tpHonkiTonk
 
 Twitch: https://www.twitch.tv/tphonkitonk
