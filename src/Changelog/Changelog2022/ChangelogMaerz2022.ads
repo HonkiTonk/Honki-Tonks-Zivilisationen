@@ -14,16 +14,16 @@ package ChangelogMaerz2022 is
    
    
 
-   -- Version 0.01.0193 => 0.01.02 (29.03.2022):
+   -- Version 0.01.0194 => 0.01.02 (29.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0192 => 0.01.0193 (28.03.2022):
+   -- Version 0.01.0192 => 0.01.0194 (28.03.2022):
    
-   -- Kleinigkeiten angepasst.
+   -- Kleinigkeiten am Git Repository und dem Readme angepasst.
    
    
 
