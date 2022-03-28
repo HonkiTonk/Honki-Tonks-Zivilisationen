@@ -1,11 +1,11 @@
 # Civ-Klon
-Mein Rundenstrategiespiel (Civilization-Klon), geschrieben in Ada.
-Benötigt ASFML und die SFML.
+Der Sourcecode meines civilizationartigen Rundenstrategiespiels, geschrieben in Ada.
+Benötigt die ASFML.
 
-My turn based strategy game (Civilization clone), written in Ada.
-Requires ASFML and the SFML.
+The source code of my civilization-style turn-based strategy game, written in Ada.
+Requires the ASFML.
 
-Version: 0.01.0190
+Version: 0.01.0193
 
 Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos kompilieren und funktionieren.
 

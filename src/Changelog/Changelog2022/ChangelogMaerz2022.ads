@@ -1,58 +1,54 @@
 package ChangelogMaerz2022 is
 
-   -- Version 0.01.0 => 0.01.0 (31.03.2022):
+   -- Version 0.01.02 => 0.01.02 (31.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (30.03.2022):
+   -- Version 0.01.02 => 0.01.02 (30.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (29.03.2022):
+   -- Version 0.01.0193 => 0.01.02 (29.03.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (28.03.2022):
+   -- Version 0.01.0192 => 0.01.0193 (28.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.0 => 0.01.0 (27.03.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kleinigkeiten angepasst.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (26.03.2022):
+   -- Version 0.01.0192 => 0.01.0192 (27.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.0 => 0.01.0 (25.03.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (24.03.2022):
+   -- Version 0.01.0192 => 0.01.0192 (26.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.0190 => 0.01.0192 (25.03.2022):
+   
+   -- Auf Alire gewechselt.
+   -- Interne Ordnerstruktur überarbeitet.
+   
+   
+
+   -- Version 0.01.0190 => 0.01.0190 (24.03.2022):
+   
+   -- null.
    
    
 
