@@ -161,7 +161,7 @@ package body TextAnzeigeKonsole is
                   LeererPlatzSchleife:
                   for LeererPlatzSchleifenwert in 1 .. LängsterText - To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text)'Length loop
                         
-                     Put (" ");
+                     Put (Item => " ");
                         
                   end loop LeererPlatzSchleife;
                   Put_Line (Item => "║");
@@ -319,7 +319,7 @@ package body TextAnzeigeKonsole is
                   LeererPlatzSchleife:
                   for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert))'Length loop
                      
-                     Put (" ");
+                     Put (Item => " ");
                         
                   end loop LeererPlatzSchleife;
 

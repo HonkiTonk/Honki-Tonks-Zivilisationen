@@ -43,8 +43,8 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Ada.Text_IO.Put_Line ("Logiktask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Exception_Information (StandardAdaFehler));
+         Ada.Text_IO.Put_Line (Item => "Logiktask wurde abgebrochen.");
+         Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Logik;
@@ -62,8 +62,8 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Ada.Text_IO.Put_Line ("Grafiktask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Exception_Information (StandardAdaFehler));
+         Ada.Text_IO.Put_Line (Item => "Grafiktask wurde abgebrochen.");
+         Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Grafik;
@@ -81,8 +81,8 @@ is
 
    exception
       when StandardAdaFehler : others =>
-         Ada.Text_IO.Put_Line ("Musiktask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Exception_Information (StandardAdaFehler));
+         Ada.Text_IO.Put_Line (Item => "Musiktask wurde abgebrochen.");
+         Ada.Text_IO.Put_Line (Item => Exception_Information (StandardAdaFehler));
          UnerwarteterFehler := True;
 
    end Musik;
@@ -100,15 +100,15 @@ is
 
    exception
       when Err : others =>
-         Ada.Text_IO.Put_Line ("Soundtask wurde abgebrochen.");
-         Ada.Text_IO.Put_Line (Exception_Information (Err));
+         Ada.Text_IO.Put_Line (Item => "Soundtask wurde abgebrochen.");
+         Ada.Text_IO.Put_Line (Item => Exception_Information (Err));
          UnerwarteterFehler := True;
 
    end Sound;
 
 begin
 
-   -- Ada.Text_IO.Put_Line (Integer ('Size / System.Storage_Unit / 1024 / 1024)'Image);
+   -- Ada.Text_IO.Put_Line (Item => Integer ('Size / System.Storage_Unit / 1024 / 1024)'Image);
 
    TaskIDsBelegenLassenSchleife:
    loop

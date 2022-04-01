@@ -88,7 +88,7 @@ package body OptionenSteuerung is
                
       NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
                
-      Put_Line (EingabeKonsole.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeKonsole.Tastenbelegung (2, NeueAuswahl));
+      Put_Line (Item => EingabeKonsole.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeKonsole.Tastenbelegung (2, NeueAuswahl));
                
       TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                                 TextDateiExtern        => GlobaleTexte.Fragen,
@@ -130,7 +130,7 @@ package body OptionenSteuerung is
                
       NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (GlobaleVariablen.UmbelegungNummer);
       -- Das hier später entfernen.
-      Put_Line (NeueAuswahl'Wide_Wide_Image);
+      Put_Line (Item => NeueAuswahl'Wide_Wide_Image);
       
       NeueTasteSchleife:
       loop

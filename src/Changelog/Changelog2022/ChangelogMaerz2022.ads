@@ -1,23 +1,21 @@
 package ChangelogMaerz2022 is
 
-   -- Version 0.01.02 => 0.01.02 (31.03.2022):
+   -- Version 0.01.0194 => 0.01.0195 (31.03.2022):
    
-   -- 
+   -- Sinnlos Zeit damit verschwendet mein Test-Rollenspiel zu überarbeiten.
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.02 => 0.01.02 (30.03.2022):
+   -- Version 0.01.0194 => 0.01.0194 (30.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einen Artikel für eine Zeitung zu schreiben ist schwieriger und dauert länger als man denkt, vor allem wenn man keine Ahnung hat wie man das macht.
    
    
 
-   -- Version 0.01.0194 => 0.01.02 (29.03.2022):
+   -- Version 0.01.0194 => 0.01.0194 (29.03.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

@@ -53,7 +53,7 @@ is begin
    --         LeererPlatzSchleife:
    --         for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => AktuelleSprachen (ZeileSchleifenwert))'Length loop
 
-   Put (" ");
+   Put (Item => " ");
 
    --        end loop LeererPlatzSchleife;
 

@@ -9,7 +9,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (FehlermeldungExtern);
+      Put_Line (Item => FehlermeldungExtern);
       
       raise LogikStopp;
       
@@ -21,7 +21,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
          
-      Put_Line (FehlermeldungExtern);
+      Put_Line (Item => FehlermeldungExtern);
       
       raise GrafikStopp;
       
@@ -33,7 +33,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (FehlermeldungExtern);
+      Put_Line (Item => FehlermeldungExtern);
       
       raise MusikStopp;
       
@@ -45,7 +45,7 @@ package body Fehler is
      (FehlermeldungExtern : in Wide_Wide_String)
    is begin
       
-      Put_Line (FehlermeldungExtern);
+      Put_Line (Item => FehlermeldungExtern);
       
       raise SoundStopp;
       
