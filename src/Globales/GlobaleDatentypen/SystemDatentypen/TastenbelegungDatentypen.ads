@@ -4,7 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 package TastenbelegungDatentypen is
 
    ------------------ Raus- und reinzoomen einbauen.
-   type Tastenbelegung_Enum is (Leer_Tastenbelegung_Enum,
+   type Tastenbelegung_Enum is (
+                                Leer_Tastenbelegung_Enum,
                                 
                                 -- Bewegung
                                 Oben_Enum, Links_Enum, Unten_Enum, Rechts_Enum, Links_Oben_Enum, Rechts_Oben_Enum, Links_Unten_Enum, Rechts_Unten_Enum, Ebene_Hoch_Enum, Ebene_Runter_Enum,
@@ -30,5 +31,5 @@ package TastenbelegungDatentypen is
    subtype Tastenbelegung_Befehle_Anzeige is Tastenbelegung_Befehle_Enum range Straße_Bauen_Enum .. Verschanzen_Enum;
    subtype Tastenbelegung_Verbesserung_Befehle_Enum is Tastenbelegung_Befehle_Enum range Straße_Bauen_Enum .. Roden_Trockenlegen_Enum;
    subtype Tastenbelegung_Allgemeine_Befehle_Enum is Tastenbelegung_Befehle_Enum range Heilen_Enum .. Tastenbelegung_Befehle_Enum'Last;
-
+   
 end TastenbelegungDatentypen;

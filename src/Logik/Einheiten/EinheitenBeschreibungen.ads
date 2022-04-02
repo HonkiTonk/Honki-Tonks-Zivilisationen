@@ -4,20 +4,20 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with EinheitStadtDatentypen;
-with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 package EinheitenBeschreibungen is
    
    function BeschreibungLang
-     (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert)
+     (IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Wide_Wide_String;
    
    function Beschäftigung
-     (ArbeitExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
+     (ArbeitExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
       return Wide_Wide_String;
    
    function BeschreibungKurz
-     (IDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert)
+     (IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Wide_Wide_String;
    
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen

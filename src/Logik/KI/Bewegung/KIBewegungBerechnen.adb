@@ -5,7 +5,6 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with TastenbelegungDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -42,7 +41,7 @@ package body KIBewegungBerechnen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern      => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
+                                                    BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
       end case;
       
       return PlanungErfolgreich;

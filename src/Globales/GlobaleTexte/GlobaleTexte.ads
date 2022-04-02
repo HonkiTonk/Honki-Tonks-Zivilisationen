@@ -22,8 +22,9 @@ package GlobaleTexte is
 
    type TexteEinlesenArray is array (1 .. SystemDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
    TexteEinlesen : TexteEinlesenArray := (others => (others => SystemKonstanten.LeerUnboundedString));
-      
-   RassenNamenBeschreibungen : constant Positive := 2 * 18;
+   
+   -------------------- Gibt es einen Weg die Anzahl der Elemente eines Enum subtypes zu erfahren ohne sie selbst zu berechnen?
+   RassenAnzahlDoppelt : constant Positive := 2 * 18;
    
    FehlenderText : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => " |ÄÖÜ Hier wurde kein Text eingelesen ÜÖÄ| ");
    
@@ -44,21 +45,21 @@ package GlobaleTexte is
    Kartenform : TexteArray (1 .. 27) := (others => FehlenderText);
    Ressourcenmenge : TexteArray (1 .. 19) := (others => FehlenderText);
    JaNein : TexteArray (1 .. 2) := (others => FehlenderText);
-   Rassen : TexteArray (1 .. RassenNamenBeschreibungen) := (others => FehlenderText);
+   Rassen : TexteArray (1 .. RassenAnzahlDoppelt) := (others => FehlenderText);
    
    --------------------- Könnte man hier nicht auch zweimal die Ranges der jeweiligen Enums als Länge angeben?
    Kartenfelder : TexteArray (1 .. 160) := (others => FehlenderText);
    Kartenflüsse : TexteArray (1 .. 96) := (others => FehlenderText);
    Kartenressourcen : TexteArray (1 .. 14) := (others => FehlenderText);
    
-   Einheiten : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.EinheitenID'Last)) := (others => FehlenderText);
+   Einheiten : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.EinheitenID'Last)) := (others => FehlenderText);
    
    --------------------- Hier auch zweimal Enumlänge?
    Verbesserungen : TexteArray (1 .. 16) := (others => FehlenderText);
    Wege : TexteArray (1 .. 32) := (others => FehlenderText);
    
-   Gebäude : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
-   Forschungen : TexteArray (1 .. RassenNamenBeschreibungen * Positive (EinheitStadtDatentypen.ForschungID'Last)) := (others => FehlenderText);
+   Gebäude : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
+   Forschungen : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.ForschungID'Last)) := (others => FehlenderText);
    Beschäftigungen : TexteArray (1 .. 18) := (others => FehlenderText);
    StädtenamenKI : TexteArray (1 .. 3) := (others => FehlenderText);
    Debugmenü : TexteArray (1 .. 3) := (others => FehlenderText);

@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
+with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with GlobaleVariablen;
@@ -257,7 +258,7 @@ package body BefehleSFML is
    is begin
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerBeschäftigung
         and then
           EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then

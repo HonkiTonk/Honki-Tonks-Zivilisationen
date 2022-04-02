@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -58,14 +58,14 @@ package body VerbesserungFarm is
       is
          when KartenGrundDatentypen.Flachland_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Hügel_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Farm_Bauen_Enum);
+                                                    BeschäftigungExtern     => AufgabenDatentypen.Farm_Bauen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
          when KartenGrundDatentypen.Gebirge_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Farm_Bauen_Enum);
+                                                    BeschäftigungExtern     => AufgabenDatentypen.Farm_Bauen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 5,
                                                          RechnenSetzenExtern      => 0);
@@ -77,7 +77,7 @@ package body VerbesserungFarm is
                                                    AnlegenTestenExtern      => AnlegenTestenExtern) = True
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BeschäftigungExtern     => TastenbelegungDatentypen.Farm_Bauen_Enum);
+                                                                 BeschäftigungExtern     => AufgabenDatentypen.Farm_Bauen_Enum);
                SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       ZeitExtern               => 3,
                                                                       RechnenSetzenExtern      => 0);

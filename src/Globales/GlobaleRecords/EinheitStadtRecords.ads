@@ -7,8 +7,8 @@ with SystemDatentypen;
 with KartenRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with TastenbelegungDatentypen;
 with KartenVerbesserungDatentypen;
+with AufgabenDatentypen;
 
 with KIDatentypen;
 
@@ -38,9 +38,10 @@ package EinheitStadtRecords is
       Erfahrungspunkte : EinheitStadtDatentypen.Kampfwerte;
       Rang : EinheitStadtDatentypen.Kampfwerte;
       
-      Beschäftigung : TastenbelegungDatentypen.Tastenbelegung_Enum;
-      BeschäftigungNachfolger : TastenbelegungDatentypen.Tastenbelegung_Enum;
+      Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      BeschäftigungNachfolger : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       
+      -- Besseren Datentypen für die Beschäftigungszeit einbauen? Z. B. für Arbeiten die niemals fertig werden?
       Beschäftigungszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       BeschäftigungszeitNachfolger : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       

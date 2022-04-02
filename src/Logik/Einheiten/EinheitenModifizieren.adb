@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with TastenbelegungDatentypen; use TastenbelegungDatentypen;
+with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 
@@ -60,7 +60,7 @@ package body EinheitenModifizieren is
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
-        AktuelleBeschäftigung = TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
+        AktuelleBeschäftigung = EinheitenKonstanten.LeerBeschäftigung
       then
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -76,7 +76,7 @@ package body EinheitenModifizieren is
       case
         AktuelleBeschäftigung
       is
-         when TastenbelegungDatentypen.Heilen_Enum | TastenbelegungDatentypen.Verschanzen_Enum =>
+         when AufgabenDatentypen.Heilen_Enum | AufgabenDatentypen.Verschanzen_Enum =>
             SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   LebenspunkteExtern       => Heilungsrate,
                                                   RechnenSetzenExtern      => 1);

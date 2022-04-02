@@ -5,6 +5,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 
@@ -70,7 +71,7 @@ package body Aufgaben is
       end case;
      
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
         or
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum
       then
@@ -246,7 +247,7 @@ package body Aufgaben is
          
       else
          SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BeschäftigungExtern     => TastenbelegungDatentypen.Heilen_Enum);
+                                                 BeschäftigungExtern     => AufgabenDatentypen.Heilen_Enum);
       end if;
       
       case
@@ -257,7 +258,7 @@ package body Aufgaben is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
+                                                    BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -274,7 +275,7 @@ package body Aufgaben is
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern     => TastenbelegungDatentypen.Verschanzen_Enum);
+                                              BeschäftigungExtern     => AufgabenDatentypen.Verschanzen_Enum);
       
    end EinheitVerschanzen;
    

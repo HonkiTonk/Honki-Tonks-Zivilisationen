@@ -64,9 +64,9 @@ package body SchreibeEinheitenGebaut is
                case
                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung
                is
-                  when TastenbelegungDatentypen.Heilen_Enum =>
+                  when AufgabenDatentypen.Heilen_Enum =>
                      Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BeschäftigungExtern     => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
+                                     BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                           ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                           RechnenSetzenExtern      => 0);
@@ -198,7 +198,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Beschäftigung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := BeschäftigungExtern;
@@ -209,7 +209,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure BeschäftigungNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := BeschäftigungExtern;

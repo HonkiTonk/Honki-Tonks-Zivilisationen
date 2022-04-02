@@ -7,7 +7,6 @@ with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenVerbesserungDatentypen;
-with TastenbelegungDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -41,7 +40,7 @@ package body KIAufgabeFestlegen is
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern      => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
+                                              BeschäftigungExtern      => EinheitenKonstanten.LeerBeschäftigung);
       
    end KeineAufgabe;
    

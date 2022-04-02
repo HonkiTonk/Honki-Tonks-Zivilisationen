@@ -6,7 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
-with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 package EinheitenModifizieren is
 
@@ -45,7 +45,7 @@ private
    
    AktuelleID : EinheitStadtDatentypen.EinheitenID;
    
-   AktuelleBeschäftigung : TastenbelegungDatentypen.Tastenbelegung_Enum;
+   AktuelleBeschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
    
    Heimatstadt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    StadtNummerNeu : EinheitStadtDatentypen.MaximaleStädteMitNullWert;

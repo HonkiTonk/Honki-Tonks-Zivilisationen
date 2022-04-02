@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
 
@@ -148,19 +147,8 @@ package body LeseEinheitenGebaut is
    
    function Beschäftigung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return TastenbelegungDatentypen.Tastenbelegung_Enum
+      return AufgabenDatentypen.Einheiten_Aufgaben_Enum
    is begin
-      
-      if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
-        or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum
-      then
-         null;
-         
-      else
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
-      end if;
 
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung;
       
@@ -170,19 +158,8 @@ package body LeseEinheitenGebaut is
    
    function BeschäftigungNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return TastenbelegungDatentypen.Tastenbelegung_Enum
+      return AufgabenDatentypen.Einheiten_Aufgaben_Enum
    is begin
-      
-      if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger = TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
-        or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum
-      then
-         null;
-         
-      else
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := TastenbelegungDatentypen.Leer_Tastenbelegung_Enum;
-      end if;
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger;
       

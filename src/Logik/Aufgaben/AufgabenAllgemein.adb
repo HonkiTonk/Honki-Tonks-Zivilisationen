@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleTexte;
 with EinheitenKonstanten;
-with TastenbelegungDatentypen;
 
 with SchreibeEinheitenGebaut;
 
@@ -45,12 +44,12 @@ package body AufgabenAllgemein is
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern     => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
+                                              BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    ZeitExtern               => EinheitenKonstanten.LeerEinheit.Beschäftigungszeit,
                                                    RechnenSetzenExtern      => 0);
       SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                        BeschäftigungExtern     => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
+                                                        BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
       SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              ZeitExtern               => EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
                                                              RechnenSetzenExtern      => 0);

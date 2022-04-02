@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with TastenbelegungDatentypen;
+with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -223,7 +224,7 @@ package body KIAufgabenPlanung is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
+                                                    BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
       end case;

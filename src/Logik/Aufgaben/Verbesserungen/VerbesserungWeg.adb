@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenVerbesserungDatentypen;
 with KartenKonstanten;
-with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 with SchreibeEinheitenGebaut;
 with SchreibeKarten;
@@ -40,14 +40,14 @@ package body VerbesserungWeg is
          when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Flachland_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Hügel_Enum
             | KartenGrundDatentypen.Wald_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Straße_Bauen_Enum);
+                                                    BeschäftigungExtern     => AufgabenDatentypen.Straße_Bauen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
          when KartenGrundDatentypen.Gebirge_Enum | KartenGrundDatentypen.Dschungel_Enum | KartenGrundDatentypen.Sumpf_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Straße_Bauen_Enum);
+                                                    BeschäftigungExtern     => AufgabenDatentypen.Straße_Bauen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 6,
                                                          RechnenSetzenExtern      => 0);

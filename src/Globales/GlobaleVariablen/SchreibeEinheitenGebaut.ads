@@ -7,7 +7,7 @@ with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtDatentypen;
-with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 with KIDatentypen;
 
@@ -86,7 +86,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Beschäftigung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -95,7 +95,7 @@ package SchreibeEinheitenGebaut is
    
    procedure BeschäftigungNachfolger
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BeschäftigungExtern : in TastenbelegungDatentypen.Tastenbelegung_Enum)
+      BeschäftigungExtern : in AufgabenDatentypen.Einheiten_Aufgaben_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

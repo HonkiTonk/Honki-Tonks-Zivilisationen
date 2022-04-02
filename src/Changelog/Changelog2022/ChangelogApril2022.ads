@@ -196,16 +196,15 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.02 => 0.01.02 (02.04.2022):
+   -- Version 0.01.0195 => 0.01.0200 (02.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Beschäftigungen von Einheiten von der Tasteneingabe in einen eigenen Datentyp ausgelagert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
-   -- Version 0.01.0195 => 0.01.02 (01.04.2022):
+   -- Version 0.01.0195 => 0.01.0195 (01.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- gprbuild von Debian Version 2021.0.0.0778b109-5 auf Debian Version 2022.0.0-1 aktualisiert.
 
 end ChangelogApril2022;

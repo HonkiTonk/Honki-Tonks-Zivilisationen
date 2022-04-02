@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseKarten;
@@ -52,14 +52,14 @@ package body VerbesserungFestung is
          when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Flachland_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Hügel_Enum
             | KartenGrundDatentypen.Wald_Enum | KartenGrundDatentypen.Dschungel_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Festung_Bauen_Enum);
+                                                    BeschäftigungExtern     => AufgabenDatentypen.Festung_Bauen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
          when KartenGrundDatentypen.Gebirge_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Festung_Bauen_Enum);
+                                                    BeschäftigungExtern     => AufgabenDatentypen.Festung_Bauen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 5,
                                                          RechnenSetzenExtern      => 0);

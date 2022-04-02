@@ -6,7 +6,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
-with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 with KIDatentypen;
 
@@ -64,7 +64,7 @@ package body VerbesserungFertiggestellt is
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum | TastenbelegungDatentypen.Heilen_Enum | TastenbelegungDatentypen.Verschanzen_Enum =>
+         when EinheitenKonstanten.LeerBeschäftigung | AufgabenDatentypen.Heilen_Enum | AufgabenDatentypen.Verschanzen_Enum =>
             return;
                
          when others =>
@@ -98,7 +98,7 @@ package body VerbesserungFertiggestellt is
       case
         LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
+         when EinheitenKonstanten.LeerBeschäftigung =>
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
             AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -110,7 +110,7 @@ package body VerbesserungFertiggestellt is
                                                          ZeitExtern               => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                          RechnenSetzenExtern      => 0);
             SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                              BeschäftigungExtern     => TastenbelegungDatentypen.Leer_Tastenbelegung_Enum);
+                                                              BeschäftigungExtern     => EinheitenKonstanten.LeerBeschäftigung);
             SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                    ZeitExtern               => EinheitenKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
                                                                    RechnenSetzenExtern      => 0);
@@ -127,25 +127,25 @@ package body VerbesserungFertiggestellt is
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when TastenbelegungDatentypen.Straße_Bauen_Enum =>
+         when AufgabenDatentypen.Straße_Bauen_Enum =>
             VerbesserungWeg.WegBerechnen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
               
-         when TastenbelegungDatentypen.Mine_Bauen_Enum =>
+         when AufgabenDatentypen.Mine_Bauen_Enum =>
             SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                          VerbesserungExtern    => KartenVerbesserungDatentypen.Mine_Enum);
             
-         when TastenbelegungDatentypen.Farm_Bauen_Enum =>
+         when AufgabenDatentypen.Farm_Bauen_Enum =>
             SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                          VerbesserungExtern    => KartenVerbesserungDatentypen.Farm_Enum);
             
-         when TastenbelegungDatentypen.Festung_Bauen_Enum =>
+         when AufgabenDatentypen.Festung_Bauen_Enum =>
             SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                          VerbesserungExtern    => KartenVerbesserungDatentypen.Festung_Enum);
               
-         when TastenbelegungDatentypen.Wald_Aufforsten_Enum =>
+         when AufgabenDatentypen.Wald_Aufforsten_Enum =>
             VerbesserungWaldAufforsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
               
-         when TastenbelegungDatentypen.Roden_Trockenlegen_Enum =>
+         when AufgabenDatentypen.Roden_Trockenlegen_Enum =>
             if
               LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
             then

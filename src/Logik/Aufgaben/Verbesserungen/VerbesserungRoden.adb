@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with TastenbelegungDatentypen;
+with AufgabenDatentypen;
 
 with SchreibeEinheitenGebaut;
   
@@ -21,7 +21,7 @@ package body VerbesserungRoden is
       is
          when KartenGrundDatentypen.Wald_Enum | KartenGrundDatentypen.Dschungel_Enum | KartenGrundDatentypen.Sumpf_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => TastenbelegungDatentypen.Roden_Trockenlegen_Enum);
+                                                    BeschäftigungExtern     => AufgabenDatentypen.Roden_Trockenlegen_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);

@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords; use KartenRecords;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with TastenbelegungDatentypen; use TastenbelegungDatentypen;
+with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 
 with KIDatentypen; use KIDatentypen;
@@ -59,7 +59,7 @@ package body KIEinheitHandlungen is
          elsif
            LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts_Enum
            and
-             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
+             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
          then
             KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -83,7 +83,7 @@ package body KIEinheitHandlungen is
          KIBewegungDurchfuehren.KIBewegungNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
         and
           LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Tut_Nichts_Enum
       then
@@ -128,7 +128,7 @@ package body KIEinheitHandlungen is
          elsif
            LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= KIDatentypen.Tut_Nichts_Enum
            and
-             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = TastenbelegungDatentypen.Leer_Tastenbelegung_Enum
+             LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBeschäftigung
          then
             KIAufgabenPlanung.AufgabeUmsetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
