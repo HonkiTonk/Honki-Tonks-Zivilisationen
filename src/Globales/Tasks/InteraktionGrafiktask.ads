@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
+with GrafikTonDatentypen;
 
 package InteraktionGrafiktask is
       
@@ -20,7 +21,7 @@ package InteraktionGrafiktask is
      (EingabeExtern : in SystemDatentypen.Welche_Eingabe_Enum);
    
    procedure AktuelleDarstellungÄndern
-     (DarstellungExtern : in SystemDatentypen.Grafik_Aktuelle_Darstellung_Enum);
+     (DarstellungExtern : in GrafikTonDatentypen.Grafik_Aktuelle_Darstellung_Enum);
    
    
    
@@ -31,7 +32,7 @@ package InteraktionGrafiktask is
      return SystemDatentypen.Welche_Eingabe_Enum;
    
    function AktuelleDarstellungAbrufen
-     return SystemDatentypen.Grafik_Aktuelle_Darstellung_Enum;
+     return GrafikTonDatentypen.Grafik_Aktuelle_Darstellung_Enum;
    
 private
 
@@ -39,6 +40,6 @@ private
    
    Eingabe : SystemDatentypen.Welche_Eingabe_Enum := SystemDatentypen.Keine_Eingabe_Enum;
    
-   AktuelleDarstellung : SystemDatentypen.Grafik_Aktuelle_Darstellung_Enum := SystemDatentypen.Grafik_SFML_Enum;
+   AktuelleDarstellung : GrafikTonDatentypen.Grafik_Aktuelle_Darstellung_Enum := GrafikTonDatentypen.Grafik_SFML_Enum;
 
 end InteraktionGrafiktask;

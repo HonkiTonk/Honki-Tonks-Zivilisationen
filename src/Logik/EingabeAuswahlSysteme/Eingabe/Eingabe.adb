@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
+with GrafikTonDatentypen;
 
 with EingabeKonsole;
 with EingabeSFML;
@@ -20,12 +21,12 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             return EingabeKonsole.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
                                              ZahlenMaximumExtern => ZahlenMaximumExtern,
                                              WelcheFrageExtern   => ZeileExtern);
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             return EingabeSFML.GanzeZahl (ZahlenMinimumExtern => ZahlenMinimumExtern,
                                           ZahlenMaximumExtern => ZahlenMaximumExtern,
                                           WelcheFrageExtern   => ZeileExtern);
@@ -42,10 +43,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             return EingabeKonsole.StadtName;
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             return EingabeSFML.StadtName;
       end case;
       
@@ -60,10 +61,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             return EingabeKonsole.SpielstandName;
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             return EingabeSFML.SpielstandName;
       end case;
       
@@ -77,10 +78,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             EingabeKonsole.WartenEingabe;
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "Eingabe.WartenEingabe - Nur bei Konsole so nötig.");
       end case;
       
@@ -95,10 +96,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             return EingabeKonsole.Tastenwert;
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             return EingabeSFML.Tastenwert;
       end case;
       
@@ -112,10 +113,10 @@ package body Eingabe is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             EingabeKonsole.StandardTastenbelegungLaden;
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             EingabeSFML.StandardTastenbelegungLaden;
       end case;
       

@@ -33,6 +33,7 @@ package body AllesAufAnfangSetzen is
       DebugPlatzhalter.FeindlicheInformationenSehen := False;
 
       Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
+      ------------------------- Karten wird nicht referenziert ohne das hier, warum auch immer.
       Karten.KartenartGemischt := False;
             
    end AllesAufAnfangSetzen;

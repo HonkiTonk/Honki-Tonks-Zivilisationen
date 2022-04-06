@@ -39,10 +39,10 @@ package body KartenGeneratorRessourcen is
    is begin
 
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
                
             if
               (LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range
@@ -79,7 +79,7 @@ package body KartenGeneratorRessourcen is
       for WasserRessourceSchleifenwert in KartenGrundDatentypen.Karten_Ressourcen_Wasser'Range loop
          
          if
-           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, WasserRessourceSchleifenwert)
+           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenparameter.Kartenressourcen, WasserRessourceSchleifenwert)
          then
             SchreibeKarten.Ressource (KoordinatenExtern  => KoordinatenExtern,
                                       RessourceExtern    => WasserRessourceSchleifenwert);
@@ -104,7 +104,7 @@ package body KartenGeneratorRessourcen is
       for LandRessourceSchleifenwert in KartenGrundDatentypen.Karten_Ressourcen_Land'Range loop
                      
          if
-           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, LandRessourceSchleifenwert)
+           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenparameter.Kartenressourcen, LandRessourceSchleifenwert)
          then
             SchreibeKarten.Ressource (KoordinatenExtern  => KoordinatenExtern,
                                       RessourceExtern    => LandRessourceSchleifenwert);

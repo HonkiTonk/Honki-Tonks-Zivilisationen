@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
+with GrafikTonDatentypen;
 
 with Optionen;
 with SpielEinstellungen;
@@ -103,9 +104,9 @@ package body Hauptmenue is
          
       end loop HauptmenüSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Ende_Enum);
-      InteraktionMusiktask.AktuelleMusik := SystemDatentypen.Musik_Ende_Enum;
-      InteraktionSoundtask.AktuellenSoundÄndern (SoundExtern => SystemDatentypen.Sound_Ende_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Ende_Enum);
+      InteraktionMusiktask.AktuelleMusik := GrafikTonDatentypen.Musik_Ende_Enum;
+      InteraktionSoundtask.AktuellenSoundÄndern (SoundExtern => GrafikTonDatentypen.Sound_Ende_Enum);
       
    end Hauptmenü;
 

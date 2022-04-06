@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Calendar; use Ada.Calendar;
 
 with EinheitenKonstanten;
+with GrafikTonDatentypen;
 
 with Optionen;
 with LadezeitenDatentypen;
@@ -194,7 +195,7 @@ package body ImSpiel is
       SpielerSchleife:
       loop
          
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Weltkarte_Enum);
+         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Weltkarte_Enum);
          
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
@@ -247,7 +248,7 @@ package body ImSpiel is
                      
       end loop SpielerSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
       InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse_Enum);
       
       return RückgabeMenschAmZug;
@@ -343,10 +344,10 @@ package body ImSpiel is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             return BefehleKonsole.BefehleKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             return BefehleSFML.BefehleSFML (RasseExtern => RasseExtern);
       end case;
       

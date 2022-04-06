@@ -119,10 +119,10 @@ package body Laden is
       KartenDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
                                                        Karten.Kartenform);
       KartenDatentypen.Kartengröße_Enum'Read (Stream (File => DateiLadenNeu),
-                                                          Karten.Kartengröße);
+                                                          Karten.Kartenparameter.Kartengröße);
       
       case
-        Karten.Kartengröße
+        Karten.Kartenparameter.Kartengröße
       is
          when SystemDatentypen.Karte_Größe_Nutzer_Enum =>
             Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
@@ -135,9 +135,9 @@ package body Laden is
       EAchseBisBodenSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseBisBodenSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße loop
             XAchseBisBodenSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
 
                KartenRecords.KartenRecord'Read (Stream (File => DateiLadenNeu),
                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));

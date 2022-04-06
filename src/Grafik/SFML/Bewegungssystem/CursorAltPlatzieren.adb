@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
+with GrafikTonDatentypen;
 
 with Karten;
 with KarteKoordinatenPruefen;
@@ -19,11 +20,11 @@ package body CursorAltPlatzieren is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             AlteYAchseFestlegenKonsole (RasseExtern => RasseExtern);
             AlteXAchseFestlegenKonsole (RasseExtern => RasseExtern);
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             AlteYAchseFestlegenSFML (RasseExtern => RasseExtern);
             AlteXAchseFestlegenSFML (RasseExtern => RasseExtern);
       end case;
@@ -54,13 +55,13 @@ package body CursorAltPlatzieren is
    is begin
       
       if
-        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
       then
          if
            GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse - Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True)
            and
              GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
-           > GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) - Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           > GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
          then
             GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse;
             
@@ -75,7 +76,7 @@ package body CursorAltPlatzieren is
            GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True)
            and
              GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
-           < GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse - Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) + Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           < GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse - Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
          then
             GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse;
             
@@ -105,13 +106,13 @@ package body CursorAltPlatzieren is
    is begin
       
       if
-        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
       then
          if
            GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse - Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False)
            and
              GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
-           > GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+           > GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
          then
             GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse;
             
@@ -126,7 +127,7 @@ package body CursorAltPlatzieren is
            GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False)
            and
              GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
-           < GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse - Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+           < GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse - Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
          then
             GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse;
             

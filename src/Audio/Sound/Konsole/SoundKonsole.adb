@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with GrafikTonDatentypen;
 with SystemKonstanten;
 
 with Fehler;
@@ -18,13 +18,13 @@ package body SoundKonsole is
          case
            InteraktionSoundtask.AktuellenSoundAbfragen
          is
-            when SystemDatentypen.Sound_Konsole_Enum =>
+            when GrafikTonDatentypen.Sound_Konsole_Enum =>
                delay SystemKonstanten.WartezeitSound;
                
-            when SystemDatentypen.Sound_SFML_Enum =>
+            when GrafikTonDatentypen.Sound_SFML_Enum =>
                Fehler.SoundFehler (FehlermeldungExtern => "SoundKonsole.SoundKonsole - SFML wird bei Konsole aufgerufen.");
                
-            when SystemDatentypen.Sound_Ende_Enum =>
+            when GrafikTonDatentypen.Sound_Ende_Enum =>
                exit SoundSchleife;
          end case;
          

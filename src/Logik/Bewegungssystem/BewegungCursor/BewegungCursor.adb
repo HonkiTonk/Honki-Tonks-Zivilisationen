@@ -51,7 +51,7 @@ package body BewegungCursor is
             Position.EAchse := KartenDatentypen.EbeneVorhanden (KoordinatenPunkt.EingegebeneZahl);
             KoordinatenPunkt := Eingabe.GanzeZahl (ZeileExtern         => 30,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
-                                                   ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+                                                   ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße));
       end case;
       
       case
@@ -64,7 +64,7 @@ package body BewegungCursor is
             Position.YAchse := KartenDatentypen.KartenfeldPositiv (KoordinatenPunkt.EingegebeneZahl);
             KoordinatenPunkt := Eingabe.GanzeZahl (ZeileExtern         => 31,
                                                    ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
-                                                   ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+                                                   ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße));
       end case;
 
       case

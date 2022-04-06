@@ -114,7 +114,22 @@ package KartenRecords is
       YAchseEinstellung : KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum;
       XAchseEinstellung : KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum;
       
+      ------------------------ Brauche ich das noch? Macht die unterschiedliche Berechnung noch einen Unterschied?
       YZuerstBerechnenXZuerstBerechnen : Boolean;
+      
+   end record;
+   
+   
+   
+   type KartenparameterRecord is record
+      
+      Kartengröße : KartenDatentypen.Kartengröße_Enum;
+      Kartenart : KartenDatentypen.Kartenart_Verwendet_Enum;
+      Kartentemperatur : KartenDatentypen.Kartentemperatur_Verwendet_Enum;
+      Kartenressourcen : KartenDatentypen.Kartenressourcen_Verwendet_Enum;
+      Kartenpole : KartenDatentypen.Kartenpole_Verwendet_Enum;
+      
+      Kartenform : KartenformRecord;
       
    end record;
 

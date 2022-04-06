@@ -5,7 +5,9 @@ package SystemDatentypen is
 
    -- Wichtige Werte
    -- Der Leerwert wird vielleicht gar nicht benötigt.
-   type Rückgabe_Werte_Enum is (Leer_Rückgabe_Enum,
+   -- Auf jeden Fall mal in mehrere Teile aufteilen, dafür mehrere Menüsysteme bauen?
+   type Rückgabe_Werte_Enum is (
+                                 Leer_Rückgabe_Enum,
                                  
                                  -- Allgemeines
                                  Start_Weiter_Enum, Zurück_Enum, Hauptmenü_Enum, Spiel_Beenden_Enum, Ja_Enum, Nein_Enum, Speichern_Enum, Laden_Enum, Optionen_Enum, Informationen_Enum, Wiederherstellen_Enum,
@@ -46,6 +48,10 @@ package SystemDatentypen is
                                 
                                  -- Neue Kartenressorucen immer vor Überfluss einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Karte_Ressource_Arm_Enum, Karte_Ressource_Wenig_Enum, Karte_Ressource_Mittel_Enum, Karte_Ressource_Viel_Enum, Karte_Ressource_Überfluss_Enum,
+                                 
+                                 -- Neue Kartenpole immer vor Karten_Pole_Beide einfügen um Anpassungen in KartenDatentypen zu vermeiden.
+                                 ------------------------- Pole auch nur auf einer Seite ermöglichen?
+                                 Karten_Pole_Keine, Karten_Pole_YAchse, Karten_Pole_XAchse, Karten_Pole_Beide,
                                    
                                  -- Neue Schwierigkeitsgrade immer vor Schwer einfügen um Anpassungen weiter unten zu vermeiden. Außer wenn es schwerer als schwer werden soll, dann aber auch unten ändern.
                                  Schwierigkeit_Leicht_Enum, Schwierigkeit_Mittel_Enum, Schwierigkeit_Schwer_Enum,
@@ -70,29 +76,6 @@ package SystemDatentypen is
    
    type Anfang_Ende_Enum is (Anfangswert_Enum, Endwert_Enum);
    
-   
-   
-   type Grafik_Aktuelle_Darstellung_Enum is (Grafik_Konsole_Enum, Grafik_SFML_Enum, Grafik_Intro_Enum,
-                                             Grafik_Pause_Enum, Grafik_Laden_Enum,
-                                             Grafik_Menüs_Enum, Grafik_Sprache_Enum,
-                                             Grafik_Editoren_Enum,
-                                             Grafik_Weltkarte_Enum, Grafik_Stadtkarte_Enum, Grafik_Forschung_Enum, Grafik_Bauen_Enum,
-                                             ---------------------- Grafik_Debug, -- Grafik_Handeln, In die Menüs schieben? Geht so nicht in die Menüs.
-                                             Grafik_Ende_Enum);
-   
-   subtype Anzeige_Art_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Konsole_Enum .. Grafik_SFML_Enum;
-   subtype Editoren_Anzeigen_Enum is Grafik_Aktuelle_Darstellung_Enum range Grafik_Editoren_Enum .. Grafik_Editoren_Enum;
-   
-   type Musik_Aktuelle_Auswahl_Enum is (Musik_Konsole_Enum, Musik_SFML_Enum, Musik_Intro_Enum,
-                                       
-                                        Musik_Ende_Enum);
-   
-   -- Sound in der Konsole drin lassen? Piepsound kann sie ja theoretisch? Als zukünftiges Feature?
-   -- Wahrscheinlich einfach nur sinnlos und wird niemals eingebaut werden.
-   type Sound_Aktuelle_Auswahl_Enum is (Sound_Konsole_Enum, Sound_SFML_Enum,
-                                        
-                                        Sound_Ende_Enum);
-   
    type Welche_Eingabe_Enum is (Keine_Eingabe_Enum, Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum);
    -- Wichtige Werte
 
@@ -100,6 +83,7 @@ package SystemDatentypen is
 
    -- Für Anzeige
    type TextDateien is range 0 .. 31;
+   
    type TextZeilen is range 0 .. 93;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige

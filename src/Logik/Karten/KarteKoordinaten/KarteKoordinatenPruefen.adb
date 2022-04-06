@@ -56,7 +56,7 @@ package body KarteKoordinatenPruefen is
       end if;
          
       case
-        Karten.KartenformEingestellt.YZuerstBerechnenXZuerstBerechnen
+        Karten.Kartenparameter.Kartenform.YZuerstBerechnenXZuerstBerechnen
       is
          when True =>
             if
@@ -129,7 +129,7 @@ package body KarteKoordinatenPruefen is
    is begin
       
       case
-        Karten.KartenformEingestellt.EAchseEinstellung
+        Karten.Kartenparameter.Kartenform.EAchseEinstellung
       is
          when SystemDatentypen.Karte_E_Achse_Kein_Übergang_Enum =>
             return KartePositionKeinUebergangBerechnungen.PositionBestimmenEAchse (EAchseExtern         => EAchseExtern,
@@ -154,7 +154,7 @@ package body KarteKoordinatenPruefen is
    is begin
       
       if
-        Karten.KartenformEingestellt.XAchseEinstellung = SystemDatentypen.Karte_X_Achse_Verschobener_Übergang_Enum
+        Karten.Kartenparameter.Kartenform.XAchseEinstellung = SystemDatentypen.Karte_X_Achse_Verschobener_Übergang_Enum
       then
          YAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse)
            := KartePositionVerschobenerUebergangBerechnungen.PositionBestimmenYAchse (KoordinatenExtern => (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
@@ -182,7 +182,7 @@ package body KarteKoordinatenPruefen is
    is begin
       
       case
-        Karten.KartenformEingestellt.YAchseEinstellung
+        Karten.Kartenparameter.Kartenform.YAchseEinstellung
       is
          when SystemDatentypen.Karte_Y_Achse_Kein_Übergang_Enum =>
             return KartePositionKeinUebergangBerechnungen.PositionBestimmenYAchse (YAchseExtern         => KoordinatenExtern.YAchse,
@@ -214,7 +214,7 @@ package body KarteKoordinatenPruefen is
    is begin
       
       if
-        Karten.KartenformEingestellt.YAchseEinstellung = SystemDatentypen.Karte_Y_Achse_Verschobener_Übergang_Enum
+        Karten.Kartenparameter.Kartenform.YAchseEinstellung = SystemDatentypen.Karte_Y_Achse_Verschobener_Übergang_Enum
       then
          XAchseZwischenwert (LogikGrafikExtern, KoordinatenExtern.EAchse)
            := KartePositionVerschobenerUebergangBerechnungen.PositionBestimmenXAchse (KoordinatenExtern => (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
@@ -242,7 +242,7 @@ package body KarteKoordinatenPruefen is
    is begin
             
       case
-        Karten.KartenformEingestellt.XAchseEinstellung
+        Karten.Kartenparameter.Kartenform.XAchseEinstellung
       is
          when SystemDatentypen.Karte_X_Achse_Kein_Übergang_Enum =>
             return KartePositionKeinUebergangBerechnungen.PositionBestimmenXAchse (XAchseExtern         => KoordinatenExtern.XAchse,

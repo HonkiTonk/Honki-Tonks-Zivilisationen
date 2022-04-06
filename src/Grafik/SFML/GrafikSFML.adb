@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with GrafikTonDatentypen;
 with StadtKonstanten;
 with SystemKonstanten;
 
@@ -114,33 +115,33 @@ package body GrafikSFML is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Konsole wird bei SFML aufgerufen.");
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             InteraktionLogiktask.FensterErzeugtÄndern;
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
             
-         when SystemDatentypen.Grafik_Sprache_Enum =>
+         when GrafikTonDatentypen.Grafik_Sprache_Enum =>
             AnzeigeSprachauswahlSFML.AnzeigeSprache;
                
-         when SystemDatentypen.Grafik_Intro_Enum =>
+         when GrafikTonDatentypen.Grafik_Intro_Enum =>
             GrafikIntroSFML.Intro;
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                               
-         when SystemDatentypen.Grafik_Pause_Enum =>
+         when GrafikTonDatentypen.Grafik_Pause_Enum =>
             delay SystemKonstanten.WartezeitGrafik;
             
-         when SystemDatentypen.Grafik_Laden_Enum =>
+         when GrafikTonDatentypen.Grafik_Laden_Enum =>
             null;
          
-         when SystemDatentypen.Grafik_Menüs_Enum =>
+         when GrafikTonDatentypen.Grafik_Menüs_Enum =>
             AnzeigeAuswahlMenueSFML.AnzeigeAnfang;
                
-         when SystemDatentypen.Editoren_Anzeigen_Enum'Range =>
+         when GrafikTonDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;
                
-         when SystemDatentypen.Grafik_Weltkarte_Enum =>
+         when GrafikTonDatentypen.Grafik_Weltkarte_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
@@ -152,7 +153,7 @@ package body GrafikSFML is
                Karte.AnzeigeKarte (RasseExtern => AktuelleRasse);
             end if;
                
-         when SystemDatentypen.Grafik_Stadtkarte_Enum =>
+         when GrafikTonDatentypen.Grafik_Stadtkarte_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             AktuelleStadtNummer := InDerStadt.AktuelleStadtNummerGrafik; 
             
@@ -167,7 +168,7 @@ package body GrafikSFML is
                KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (AktuelleRasse, AktuelleStadtNummer));
             end if;
                
-         when SystemDatentypen.Grafik_Forschung_Enum =>
+         when GrafikTonDatentypen.Grafik_Forschung_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
@@ -180,7 +181,7 @@ package body GrafikSFML is
                ForschungAnzeigeSFML.ForschungAnzeige;
             end if;
             
-         when SystemDatentypen.Grafik_Bauen_Enum =>
+         when GrafikTonDatentypen.Grafik_Bauen_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
@@ -193,7 +194,7 @@ package body GrafikSFML is
                BauAuswahlAnzeigeSFML.BauAuswahlAnzeige;
             end if;
          
-         when SystemDatentypen.Grafik_Ende_Enum =>
+         when GrafikTonDatentypen.Grafik_Ende_Enum =>
             return False;
       end case;
       

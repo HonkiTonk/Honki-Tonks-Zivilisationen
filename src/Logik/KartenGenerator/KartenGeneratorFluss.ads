@@ -58,9 +58,9 @@ private
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
      with
        Pre =>
-         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
-            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
    
    procedure FlussBerechnung
      (YKoordinateExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -68,9 +68,9 @@ private
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
      with
        Pre =>
-         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
-            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
    
    procedure BerechnungLinks
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden);

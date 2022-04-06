@@ -23,9 +23,9 @@ package ZufallGeneratorenKarten is
          Post =>
            (StartPosition'Result.EAchse in -1 .. 0
             and
-              StartPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+              StartPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
             and
-              StartPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+              StartPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
 
    function ZufälligerWert
      return Float;

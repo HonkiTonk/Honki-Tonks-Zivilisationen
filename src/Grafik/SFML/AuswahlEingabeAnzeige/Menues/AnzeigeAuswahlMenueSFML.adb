@@ -7,6 +7,7 @@ with Sf.Graphics.RenderWindow;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with SystemKonstanten;
+with GrafikTonDatentypen;
 
 with AuswahlMenue;
 with GrafikEinstellungenSFML;
@@ -22,7 +23,7 @@ package body AnzeigeAuswahlMenueSFML is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when SystemDatentypen.Grafik_Menüs_Enum =>
+         when GrafikTonDatentypen.Grafik_Menüs_Enum =>
             ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
             WelchesMenü := AuswahlMenue.WelchesMenü;
             Anfang := AuswahlMenue.Anfang;

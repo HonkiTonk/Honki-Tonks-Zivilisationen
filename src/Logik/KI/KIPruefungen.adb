@@ -240,9 +240,9 @@ package body KIPruefungen is
          end case;
          
          if
-           YAchseKoordinatePrüfen > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2
+           YAchseKoordinatePrüfen > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / 2
            and
-             XAchseKoordinatePrüfen > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2
+             XAchseKoordinatePrüfen > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / 2
          then
             exit KartenfeldSuchenSchleife;
             
@@ -251,7 +251,7 @@ package body KIPruefungen is
          end if;
          
          if
-           YAchseKoordinatePrüfen < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2
+           YAchseKoordinatePrüfen < Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / 2
          then
             YAchseKoordinatePrüfen := YAchseKoordinatePrüfen + 1;
             YAchseKoordinatenSchonGeprüft := YAchseKoordinatePrüfen - 1;
@@ -261,7 +261,7 @@ package body KIPruefungen is
          end if;
             
          if
-           XAchseKoordinatePrüfen <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2
+           XAchseKoordinatePrüfen <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / 2
          then
             XAchseKoordinatePrüfen := XAchseKoordinatePrüfen + 1;
             XAchseKoordinatenSchonGeprüft := XAchseKoordinatePrüfen - 1;

@@ -37,9 +37,6 @@ package Karten is
                                             SystemDatentypen.Karte_Größe_Nutzer_Enum    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
                                            );
 
-   -- Muss einen Startwert haben damit der Grafiktask die Kartenfelder korrekt berechnen kann.
-   Kartengröße : KartenDatentypen.Kartengröße_Enum := SystemDatentypen.Karte_Größe_20_20_Enum;
-
    type LandartenRecord is record
 
       YAchse : KartenDatentypen.KartenfeldPositiv;
@@ -49,6 +46,7 @@ package Karten is
 
    -- Inseln, Kontinente, Pangäa
    -- Alle Größen- und Abstandsangaben sind Radien.
+   -- Später über einen Editor oder direkt im Kartengenerator änderbar machen? Möglicherweise die aktuelle Kartenart durch vorgegebene Werte und Nutzereingaben ersetzen?
    type GrößeLandartArray is array (KartenDatentypen.Kartenart_Verwendet_Enum'Range) of LandartenRecord;
    GrößeLandart : GrößeLandartArray := (
                                             SystemDatentypen.Karte_Art_Inseln_Enum     => (3, 3),
@@ -63,21 +61,30 @@ package Karten is
                                                        others                                     => (1, 1)
                                                       );
 
-   -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
-   Kartenart : KartenDatentypen.Kartenart_Verwendet_Enum := SystemDatentypen.Karte_Art_Inseln_Enum;
-   KartenartGemischt : Boolean := False;
+   Kartenparameter : KartenRecords.KartenparameterRecord := (
+                                                             Kartengröße      => SystemDatentypen.Karte_Größe_20_20_Enum,
 
-   -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-   Kartentemperatur : KartenDatentypen.Kartentemperatur_Verwendet_Enum := SystemDatentypen.Karte_Temperatur_Kalt_Enum;
+                                                             -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
+                                                             Kartenart        => SystemDatentypen.Karte_Art_Inseln_Enum,
+
+                                                             -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
+                                                             Kartentemperatur => SystemDatentypen.Karte_Temperatur_Kalt_Enum,
+
+                                                             -- Arm, Wenig, Mittel, Viel, Überfluss
+                                                             Kartenressourcen => SystemDatentypen.Karte_Ressource_Mittel_Enum,
+
+                                                             Kartenpole       => SystemDatentypen.Karten_Pole_YAchse,
+
+                                                             -- EAchsenübergang, YAchsenübergang, XAchsenübergang
+                                                             Kartenform       => KartenRecordKonstanten.KartenformStandard
+                                                            );
+
+   -- Später mehrere Kartenarten mischbar machen, das aber vielleicht nicht über einen Bool.
+   -- Eventuell mehrere Kartenarten aktivierbar machen wie bei der Kartenform? Eventuell ein kompakteres System bauen.
+   KartenartGemischt : Boolean := False;
 
    -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht
    Kartenform : KartenDatentypen.Kartenform_Verwendet_Enum := SystemDatentypen.Karte_Form_X_Zylinder_Enum;
-
-   -- EAchsenübergang, YAchsenübergang, XAchsenübergang
-   KartenformEingestellt : KartenRecords.KartenformRecord := KartenRecordKonstanten.KartenformStandard;
-
-   -- Arm, Wenig, Mittel, Viel, Überfluss
-   Kartenressourcen : KartenDatentypen.Kartenressourcen_Verwendet_Enum := SystemDatentypen.Karte_Ressource_Mittel_Enum;
 
    type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenGrundDatentypen.Karten_Grund_Enum;
    GeneratorKarte : GeneratorKarteArray;

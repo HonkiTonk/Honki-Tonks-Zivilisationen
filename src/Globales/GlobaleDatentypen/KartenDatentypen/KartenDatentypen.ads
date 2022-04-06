@@ -50,6 +50,8 @@ package KartenDatentypen is
 
    subtype Kartenressourcen_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karte_Ressource_Arm_Enum .. SystemDatentypen.Karte_Ressource_Überfluss_Enum;
    
+   subtype Kartenpole_Verwendet_Enum is SystemDatentypen.Rückgabe_Werte_Enum range SystemDatentypen.Karten_Pole_Keine .. SystemDatentypen.Karten_Pole_Beide;
+   
    type GesamtbewertungFeld is range -100 .. 100;
    subtype BewertungFeld is GesamtbewertungFeld range -10 .. 10;
 

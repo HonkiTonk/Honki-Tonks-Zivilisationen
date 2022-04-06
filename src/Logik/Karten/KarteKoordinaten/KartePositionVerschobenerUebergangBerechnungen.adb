@@ -16,15 +16,15 @@ package body KartePositionVerschobenerUebergangBerechnungen is
       if
         KoordinatenExtern.XAchse + ÄnderungExtern.XAchse < Karten.WeltkarteArray'First (3)
         or
-          KoordinatenExtern.XAchse + ÄnderungExtern.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          KoordinatenExtern.XAchse + ÄnderungExtern.XAchse > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
       then
          if
-           KoordinatenExtern.YAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße)) > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           KoordinatenExtern.YAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße)) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
          then
-            return KoordinatenExtern.YAchse - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+            return KoordinatenExtern.YAchse - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße));
 
          else
-            return KoordinatenExtern.YAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+            return KoordinatenExtern.YAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße));
          end if;    
          
       else
@@ -44,15 +44,15 @@ package body KartePositionVerschobenerUebergangBerechnungen is
       if
         KoordinatenExtern.YAchse + ÄnderungExtern.YAchse < Karten.WeltkarteArray'First (2)
         or
-          KoordinatenExtern.YAchse + ÄnderungExtern.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          KoordinatenExtern.YAchse + ÄnderungExtern.YAchse > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
       then
          if
-           KoordinatenExtern.XAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße)) > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+           KoordinatenExtern.XAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße)) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
          then
-            return KoordinatenExtern.XAchse - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+            return KoordinatenExtern.XAchse - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße));
 
          else
-            return KoordinatenExtern.XAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+            return KoordinatenExtern.XAchse + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße));
          end if;
                
       else

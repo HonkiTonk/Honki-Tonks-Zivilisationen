@@ -47,7 +47,7 @@ package body KartenGenerator is
       LandwerteFestlegen.GrößeFestlegen;
       
       case
-        Karten.Kartenart
+        Karten.Kartenparameter.Kartenart
       is
          when SystemDatentypen.Karte_Art_Chaos_Enum =>
             KartenGeneratorChaos.Chaos;
@@ -69,7 +69,7 @@ package body KartenGenerator is
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       case
-        Karten.Kartenart
+        Karten.Kartenparameter.Kartenart
       is
          when SystemDatentypen.Karte_Art_Chaos_Enum | SystemDatentypen.Karte_Art_Nur_Land_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Endwert_Enum)
@@ -91,7 +91,7 @@ package body KartenGenerator is
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       case
-        Karten.Kartenart
+        Karten.Kartenparameter.Kartenart
       is
          when SystemDatentypen.Karte_Art_Chaos_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Endwert_Enum)
@@ -113,7 +113,7 @@ package body KartenGenerator is
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       case
-        Karten.Kartenart
+        Karten.Kartenparameter.Kartenart
       is
          when SystemDatentypen.Karte_Art_Chaos_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Endwert_Enum)
@@ -135,7 +135,7 @@ package body KartenGenerator is
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       case
-        Karten.Kartenart
+        Karten.Kartenparameter.Kartenart
       is
          when SystemDatentypen.Karte_Art_Chaos_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Endwert_Enum)
@@ -157,7 +157,7 @@ package body KartenGenerator is
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
       case
-        Karten.Kartenart
+        Karten.Kartenparameter.Kartenart
       is
          when SystemDatentypen.Karte_Art_Chaos_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Endwert_Enum)

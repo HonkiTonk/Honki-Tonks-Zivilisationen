@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with StadtKonstanten;
+with GrafikTonDatentypen;
 
 with SchreibeStadtGebaut;
 
@@ -23,7 +24,7 @@ package body InDerStadt is
       StadtSchleife:
       loop
          
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Stadtkarte_Enum);
+         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Stadtkarte_Enum);
          
          Befehl := Eingabe.Tastenwert;
          
@@ -75,7 +76,7 @@ package body InDerStadt is
          
       end loop StadtSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
       
       -- Theoretisch kann diese Wertzuweisung raus, sicherheitshalber trotzdem drinnen lassen?
       AktuelleStadtNummerGrafik := StadtKonstanten.LeerNummer;

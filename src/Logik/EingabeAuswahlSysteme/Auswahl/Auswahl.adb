@@ -12,6 +12,7 @@ with Eingabe;
 
 package body Auswahl is
    
+   -- Das ist noch für die Konsole, wird aktuell gar nicht verwendet? Aber wenn, dann funktioniert das eh nicht mehr.
    function Auswahl
      (FrageDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;

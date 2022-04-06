@@ -6,7 +6,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with GlobaleTexte;
 with GlobaleVariablen;
-with SystemDatentypen;
+with GrafikTonDatentypen;
 
 with Eingabe;
 with TextAnzeigeKonsole;
@@ -20,10 +20,10 @@ package body Informationen is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             InformationenKonsole;
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             InformationenSFML;
       end case;
       

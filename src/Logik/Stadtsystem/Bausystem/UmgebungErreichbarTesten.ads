@@ -18,13 +18,13 @@ package UmgebungErreichbarTesten is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
-            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße),
          Post =>
-           (UmgebungErreichbarTesten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           (UmgebungErreichbarTesten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
             and
-              UmgebungErreichbarTesten'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+              UmgebungErreichbarTesten'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
    
 private
    

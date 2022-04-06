@@ -7,7 +7,7 @@ with Sf.Graphics.Color;
 with Sf.Window.VideoMode;
 
 with GlobaleVariablen;
-with SystemDatentypen;
+with GrafikTonDatentypen;
 
 with GrafikEinstellungenSFML;
 with GrafikAllgemeinSFML;
@@ -21,10 +21,10 @@ package body GrafikStartEndeSFML is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when SystemDatentypen.Grafik_Konsole_Enum =>
+         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
             
-         when SystemDatentypen.Grafik_SFML_Enum =>
+         when GrafikTonDatentypen.Grafik_SFML_Enum =>
             FensterErzeugenErweitert;
             
       end case;

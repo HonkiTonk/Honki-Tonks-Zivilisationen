@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with GrafikTonDatentypen; use GrafikTonDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with SystemKonstanten;
 
@@ -25,56 +26,57 @@ package body GrafikKonsole is
          case
            InteraktionGrafiktask.AktuelleDarstellungAbrufen
          is
-            when SystemDatentypen.Grafik_Konsole_Enum =>
+            when GrafikTonDatentypen.Grafik_Konsole_Enum =>
                InteraktionLogiktask.FensterErzeugtÄndern;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
             
-            when SystemDatentypen.Grafik_SFML_Enum =>
+            when GrafikTonDatentypen.Grafik_SFML_Enum =>
                Fehler.GrafikFehler (FehlermeldungExtern => "SFMLDarstellungAuswahl.SFMLDarstellungAuswahl - SFML wird bei Konsole aufgerufen.");
                
-            when SystemDatentypen.Grafik_Sprache_Enum =>
+            when GrafikTonDatentypen.Grafik_Sprache_Enum =>
                -- AuswahlSpracheAnzeige.AnzeigeSpracheKonsole;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                
-            when SystemDatentypen.Grafik_Intro_Enum =>
+            when GrafikTonDatentypen.Grafik_Intro_Enum =>
                GrafikIntroKonsole.Intro;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                               
-            when SystemDatentypen.Grafik_Pause_Enum =>
+            when GrafikTonDatentypen.Grafik_Pause_Enum =>
                delay SystemKonstanten.WartezeitGrafik;
                
-            when SystemDatentypen.Grafik_Laden_Enum =>
+            when GrafikTonDatentypen.Grafik_Laden_Enum =>
                null;
          
-            when SystemDatentypen.Grafik_Menüs_Enum =>
+            when GrafikTonDatentypen.Grafik_Menüs_Enum =>
                -- AuswahlMenueAnzeige.AnzeigeSFMLAnfang;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                
-            when SystemDatentypen.Editoren_Anzeigen_Enum'Range =>
+            when GrafikTonDatentypen.Editoren_Anzeigen_Enum'Range =>
                null;
                
-            when SystemDatentypen.Grafik_Weltkarte_Enum =>
+            when GrafikTonDatentypen.Grafik_Weltkarte_Enum =>
                if
+                 ---------------------- Leerwert mal auf die leere Konstante umschreiben? Vielleicht generell bei Leerwerten machen?
                  InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse_Enum
                then
                   delay SystemKonstanten.WartezeitGrafik;
                      
                else
                   Karte.AnzeigeKarte (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);
-                  InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+                  InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                end if;
                
-            when SystemDatentypen.Grafik_Stadtkarte_Enum =>
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+            when GrafikTonDatentypen.Grafik_Stadtkarte_Enum =>
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                
-            when SystemDatentypen.Grafik_Forschung_Enum =>
+            when GrafikTonDatentypen.Grafik_Forschung_Enum =>
                ForschungAnzeigeKonsole.ForschungAnzeige;
-               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+               InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                
-            when SystemDatentypen.Grafik_Bauen_Enum =>
+            when GrafikTonDatentypen.Grafik_Bauen_Enum =>
                null;
          
-            when SystemDatentypen.Grafik_Ende_Enum =>
+            when GrafikTonDatentypen.Grafik_Ende_Enum =>
                exit GrafikSchleife;
          end case;
                

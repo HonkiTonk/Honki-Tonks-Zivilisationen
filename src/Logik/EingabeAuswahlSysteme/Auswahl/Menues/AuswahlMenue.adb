@@ -9,6 +9,7 @@ with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
 with SystemKonstanten;
 with TastenbelegungDatentypen;
+with GrafikTonDatentypen;
 
 with GrafikEinstellungenSFML;
 with Eingabe;
@@ -24,7 +25,7 @@ package body AuswahlMenue is
    is begin
       
       AllgemeinesFestlegen (WelchesMenüExtern => WelchesMenüExtern);
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Menüs_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Menüs_Enum);
       
       Auswahl;
    
@@ -33,7 +34,7 @@ package body AuswahlMenue is
                                                         AktuelleAuswahlExtern => AktuelleAuswahl,
                                                         WelchesMenüExtern     => WelchesMenü);
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
       
       return RückgabeWert;
       

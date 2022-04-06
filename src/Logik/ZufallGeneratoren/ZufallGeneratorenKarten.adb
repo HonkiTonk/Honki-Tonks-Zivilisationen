@@ -66,7 +66,7 @@ package body ZufallGeneratorenKarten is
    is begin
       
       case
-        Karten.Kartengröße
+        Karten.Kartenparameter.Kartengröße
       is
          when SystemDatentypen.Karte_Größe_20_20_Enum =>
             WerteWählen20.Reset (PositionGewählt20);
@@ -124,9 +124,9 @@ package body ZufallGeneratorenKarten is
                XAchse := WerteWählen1000.Random (PositionGewählt1000);
 
                if
-                 YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+                 YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
                  and
-                   XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+                   XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
                then
                   exit BenutzerdefinierteAuswahlSchleife;
 

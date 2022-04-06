@@ -27,9 +27,9 @@ package body LeseStadtGebaut is
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell.YAchse > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
         or
-          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell.XAchse > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
       then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 

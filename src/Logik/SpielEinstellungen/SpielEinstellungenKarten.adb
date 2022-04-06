@@ -22,18 +22,18 @@ package body SpielEinstellungenKarten is
            KartengrößeAuswahl
          is
             when KartenDatentypen.Kartengröße_Standard_Enum'Range =>
-               Karten.Kartengröße := KartengrößeAuswahl;
+               Karten.Kartenparameter.Kartengröße := KartengrößeAuswahl;
                return SystemDatentypen.Auswahl_Kartenart_Enum;
 
             when SystemDatentypen.Karte_Größe_Nutzer_Enum =>
                return GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
+               Karten.Kartenparameter.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
                return SystemDatentypen.Auswahl_Kartenart_Enum;
                
             when SystemDatentypen.Karte_Größe_Zufall_Enum =>
-               Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
+               Karten.Kartenparameter.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
                return SystemDatentypen.Auswahl_Kartenart_Enum;
 
             when SystemDatentypen.Zurück_Beenden_Enum'Range =>
@@ -82,7 +82,7 @@ package body SpielEinstellungenKarten is
             
          when True =>
             Karten.Kartengrößen (KartengrößeExtern).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
-            Karten.Kartengröße := KartengrößeExtern;
+            Karten.Kartenparameter.Kartengröße := KartengrößeExtern;
             return SystemDatentypen.Auswahl_Kartenart_Enum;
       end case;
       
@@ -104,11 +104,11 @@ package body SpielEinstellungenKarten is
            KartenartAuswahl
          is
             when KartenDatentypen.Kartenart_Verwendet_Enum'Range =>
-               Karten.Kartenart := KartenartAuswahl;
+               Karten.Kartenparameter.Kartenart := KartenartAuswahl;
                return SystemDatentypen.Auswahl_Kartenform_Enum;
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
+               Karten.Kartenparameter.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
                return SystemDatentypen.Auswahl_Kartenform_Enum;
                
             when SystemDatentypen.Zurück_Enum =>
@@ -178,11 +178,11 @@ package body SpielEinstellungenKarten is
            KartentemperaturAuswahl
          is
             when KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range =>
-               Karten.Kartentemperatur := KartentemperaturAuswahl;
+               Karten.Kartenparameter.Kartentemperatur := KartentemperaturAuswahl;
                return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
+               Karten.Kartenparameter.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
                return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
                
             when SystemDatentypen.Zurück_Enum =>
@@ -215,11 +215,11 @@ package body SpielEinstellungenKarten is
            KartenressourcenAuswahl
          is
             when KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range =>
-               Karten.Kartenressourcen := KartenressourcenAuswahl;
+               Karten.Kartenparameter.Kartenressourcen := KartenressourcenAuswahl;
                return SystemDatentypen.Auswahl_Rassen_Enum;
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
+               Karten.Kartenparameter.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
                return SystemDatentypen.Auswahl_Rassen_Enum;
                
             when SystemDatentypen.Zurück_Enum =>

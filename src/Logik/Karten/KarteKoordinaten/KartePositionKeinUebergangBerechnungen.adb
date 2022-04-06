@@ -38,7 +38,7 @@ package body KartePositionKeinUebergangBerechnungen is
       if
         YAchseExtern + ÄnderungYAchseExtern < Karten.WeltkarteArray'First (2)
         or
-          YAchseExtern + ÄnderungYAchseExtern > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          YAchseExtern + ÄnderungYAchseExtern > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
       then
          return KartenKonstanten.LeerYAchse;
          
@@ -59,7 +59,7 @@ package body KartePositionKeinUebergangBerechnungen is
       if
         XAchseExtern + ÄnderungXAchseExtern < Karten.WeltkarteArray'First (3)
         or
-          XAchseExtern + ÄnderungXAchseExtern > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          XAchseExtern + ÄnderungXAchseExtern > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
       then
          return KartenKonstanten.LeerXAchse;
          

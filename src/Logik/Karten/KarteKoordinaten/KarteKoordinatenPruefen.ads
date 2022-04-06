@@ -16,9 +16,9 @@ package KarteKoordinatenPruefen is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße),
            
          Post =>
            ((if
@@ -45,9 +45,9 @@ package KarteKoordinatenPruefen is
                     KarteKoordinatenPrüfen'Result.XAchse = KartenKonstanten.LeerXAchse)
               )
             and
-              KarteKoordinatenPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+              KarteKoordinatenPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
             and
-              KarteKoordinatenPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+              KarteKoordinatenPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
    
 private
    

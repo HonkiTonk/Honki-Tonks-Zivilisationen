@@ -147,52 +147,51 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (09.04.2022):
+   -- Version 0.01.02 => 0.01.0 (09.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (08.04.2022):
+   -- Version 0.01.02 => 0.01.02 (08.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (07.04.2022):
+   -- Version 0.01.0210 => 0.01.02 (07.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (06.04.2022):
+   -- Version 0.01.0200 => 0.01.0210 (06.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   
-
-   -- Version 0.01.0 => 0.01.0 (05.04.2022):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Datentypen für Grafik, Musik und Sound in eine eigene Datei ausgelagert.
+   -- Variablen für die Karteneinstellungen in einem Record zusammengefasst.
+   -- Angefangen eine Einstellmöglichkeit für die Polregionen einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.02 => 0.01.0 (04.04.2022):
+   -- Version 0.01.0200 => 0.01.0200 (05.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
-   -- Version 0.01.02 => 0.01.02 (03.04.2022):
+   -- Version 0.01.0200 => 0.01.0200 (04.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
+   
+   
+
+   -- Version 0.01.0200 => 0.01.0200 (03.04.2022):
+   
+   -- null.
    
    
 

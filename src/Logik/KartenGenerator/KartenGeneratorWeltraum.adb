@@ -13,9 +13,9 @@ package body KartenGeneratorWeltraum is
    is begin
       
       YAchseWeltraumSchleife:
-      for YAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+      for YAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße loop
          XAchseWeltraumSchleife:
-         for XAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
 
             SchreibeKarten.Grund (KoordinatenExtern => (2, YAchseWeltraumSchleifenwert, XAchseWeltraumSchleifenwert),
                                   GrundExtern       => KartenGrundDatentypen.Weltraum_Enum);

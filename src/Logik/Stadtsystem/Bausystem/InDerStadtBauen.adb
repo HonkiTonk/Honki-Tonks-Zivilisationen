@@ -6,6 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with Sf; use Sf;
 
 with EinheitStadtRecords; use EinheitStadtRecords;
+with GrafikTonDatentypen; use GrafikTonDatentypen;
 with StadtKonstanten;
 with GlobaleTexte;
 with TextKonstanten;
@@ -69,7 +70,7 @@ package body InDerStadtBauen is
          return StadtKonstanten.LeerBauprojekt;
          
       elsif
-        GlobaleVariablen.AnzeigeArt = SystemDatentypen.Grafik_SFML_Enum
+        GlobaleVariablen.AnzeigeArt = GrafikTonDatentypen.Grafik_SFML_Enum
       then
          return AuswahlBauprojektSFML;
          
@@ -160,7 +161,7 @@ package body InDerStadtBauen is
                                               FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Bauen_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Bauen_Enum);
       
       AuswahlSchleife:
       loop
@@ -191,7 +192,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
       
       return GewähltesBauprojekt;
       
@@ -257,7 +258,7 @@ package body InDerStadtBauen is
    is begin
       
       AktuelleAuswahl := 1;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Bauen_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Bauen_Enum);
       
       AuswahlSchleife:
       loop
@@ -307,7 +308,7 @@ package body InDerStadtBauen is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
       
       return GewähltesBauprojekt;
       

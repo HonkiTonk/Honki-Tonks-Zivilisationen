@@ -27,9 +27,9 @@ package body LeseEinheitenGebaut is
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell.YAchse > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
         or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell.XAchse > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 
@@ -195,9 +195,9 @@ package body LeseEinheitenGebaut is
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
         or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KoordinatenAktuell := KartenRecordKonstanten.LeerKartenKoordinaten;
 
@@ -229,9 +229,11 @@ package body LeseEinheitenGebaut is
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern).YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern).YAchse
+        > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
         or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern).XAchse
+        > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PlanschrittExtern) := KartenRecordKonstanten.LeerKartenKoordinaten;
 

@@ -8,7 +8,7 @@ package body LandwerteFestlegen is
    is begin
       
       case
-        Karten.Kartenart
+        Karten.Kartenparameter.Kartenart
       is
          when SystemDatentypen.Karte_Art_Nur_Land_Enum | SystemDatentypen.Karte_Art_Chaos_Enum =>
             null;
@@ -26,34 +26,34 @@ package body LandwerteFestlegen is
    is begin
       
       if
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenart).YAchse > MaximaleLandgröße (Karten.Kartenart).YAchse
+        Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenparameter.Kartenart).YAchse > MaximaleLandgröße (Karten.Kartenparameter.Kartenart).YAchse
       then
-         YAchse := MaximaleLandgröße (Karten.Kartenart).YAchse;
+         YAchse := MaximaleLandgröße (Karten.Kartenparameter.Kartenart).YAchse;
          
       elsif
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenart).YAchse < MinimaleLandgröße (Karten.Kartenart).YAchse
+        Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenparameter.Kartenart).YAchse < MinimaleLandgröße (Karten.Kartenparameter.Kartenart).YAchse
       then
-         YAchse := MinimaleLandgröße (Karten.Kartenart).YAchse;
+         YAchse := MinimaleLandgröße (Karten.Kartenparameter.Kartenart).YAchse;
 
       else
-         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenart).YAchse;
+         YAchse := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenparameter.Kartenart).YAchse;
       end if;
 
       if
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenart).XAchse > MaximaleLandgröße (Karten.Kartenart).XAchse
+        Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenparameter.Kartenart).XAchse > MaximaleLandgröße (Karten.Kartenparameter.Kartenart).XAchse
       then
-         XAchse := MaximaleLandgröße (Karten.Kartenart).XAchse;
+         XAchse := MaximaleLandgröße (Karten.Kartenparameter.Kartenart).XAchse;
          
       elsif
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenart).XAchse < MinimaleLandgröße (Karten.Kartenart).XAchse
+        Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenparameter.Kartenart).XAchse < MinimaleLandgröße (Karten.Kartenparameter.Kartenart).XAchse
       then
-         XAchse := MinimaleLandgröße (Karten.Kartenart).XAchse;
+         XAchse := MinimaleLandgröße (Karten.Kartenparameter.Kartenart).XAchse;
 
       else
-         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenart).XAchse;
+         XAchse := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenparameter.Kartenart).XAchse;
       end if;
 
-      Karten.GrößeLandart (Karten.Kartenart) := (YAchse, XAchse);
+      Karten.GrößeLandart (Karten.Kartenparameter.Kartenart) := (YAchse, XAchse);
       
    end Größe;
    
@@ -63,34 +63,34 @@ package body LandwerteFestlegen is
    is begin
       
       if
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenart).YAchse > MaximalerAbstand (Karten.Kartenart).YAchse
+        Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenparameter.Kartenart).YAchse > MaximalerAbstand (Karten.Kartenparameter.Kartenart).YAchse
       then
-         YAchse := MaximalerAbstand (Karten.Kartenart).YAchse;
+         YAchse := MaximalerAbstand (Karten.Kartenparameter.Kartenart).YAchse;
          
       elsif
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenart).YAchse < MinimalerAbstand (Karten.Kartenart).YAchse
+        Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenparameter.Kartenart).YAchse < MinimalerAbstand (Karten.Kartenparameter.Kartenart).YAchse
       then
-         YAchse := MinimalerAbstand (Karten.Kartenart).YAchse;
+         YAchse := MinimalerAbstand (Karten.Kartenparameter.Kartenart).YAchse;
 
       else
-         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenart).YAchse;
+         YAchse := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenparameter.Kartenart).YAchse;
       end if;
 
       if
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenart).XAchse > MaximalerAbstand (Karten.Kartenart).XAchse
+        Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenparameter.Kartenart).XAchse > MaximalerAbstand (Karten.Kartenparameter.Kartenart).XAchse
       then
-         XAchse := MaximalerAbstand (Karten.Kartenart).XAchse;
+         XAchse := MaximalerAbstand (Karten.Kartenparameter.Kartenart).XAchse;
          
       elsif
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenart).XAchse < MinimalerAbstand (Karten.Kartenart).XAchse
+        Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenparameter.Kartenart).XAchse < MinimalerAbstand (Karten.Kartenparameter.Kartenart).XAchse
       then
-         XAchse := MinimalerAbstand (Karten.Kartenart).XAchse;
+         XAchse := MinimalerAbstand (Karten.Kartenparameter.Kartenart).XAchse;
 
       else
-         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenart).XAchse;
+         XAchse := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenparameter.Kartenart).XAchse;
       end if;
 
-      Karten.FelderVonLandartZuLandart (Karten.Kartenart) := (YAchse, XAchse);
+      Karten.FelderVonLandartZuLandart (Karten.Kartenparameter.Kartenart) := (YAchse, XAchse);
       
    end Abstand;
 

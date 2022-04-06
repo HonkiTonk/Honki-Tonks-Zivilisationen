@@ -76,27 +76,27 @@ private
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasse
      (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
       XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YKoordinateLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (YKoordinateLandmasseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
-            XKoordinateLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            XKoordinateLandmasseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasseFläche
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
    
    procedure GenerierungNurLand;
    procedure EisrandGenerieren;

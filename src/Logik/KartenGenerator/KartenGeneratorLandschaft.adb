@@ -23,10 +23,10 @@ package body KartenGeneratorLandschaft is
       AbstandEisschicht;
             
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
             
             if
               LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
@@ -53,14 +53,15 @@ package body KartenGeneratorLandschaft is
    is begin
       
       ObereEisschichtSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisschild (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisschild (Karten.Kartenparameter.Kartengröße) loop
          
          XAchseAbstandEisschicht (YAchseExtern => YAchseSchleifenwert);
          
       end loop ObereEisschichtSchleife;
 
       UntereEisschichtSchleife:
-      for YAchseSchleifenwert in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisschild (Karten.Kartengröße) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+      for YAchseSchleifenwert in Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisschild (Karten.Kartenparameter.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße loop
          
          XAchseAbstandEisschicht (YAchseExtern => YAchseSchleifenwert);
          
@@ -75,7 +76,7 @@ package body KartenGeneratorLandschaft is
    is begin
       
       EisschichtSchleife:
-      for XAchseSchleifenwert in Karten.Weltkarte'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+      for XAchseSchleifenwert in Karten.Weltkarte'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
             
          Karten.GeneratorKarte (YAchseExtern, XAchseSchleifenwert) := KartenGrundDatentypen.Tundra_Enum;
             
@@ -140,7 +141,7 @@ package body KartenGeneratorLandschaft is
                                                                                                 EbeneExtern       => 0);
       
       if
-        ZufallGeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GrundExtern, AnzahlGleicherGrund)
+        ZufallGeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (Karten.Kartenparameter.Kartentemperatur, GrundExtern, AnzahlGleicherGrund)
       then
          SchreibeKarten.Grund (KoordinatenExtern => KoordinatenExtern,
                                GrundExtern       => GrundExtern);

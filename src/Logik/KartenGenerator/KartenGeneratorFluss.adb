@@ -46,10 +46,10 @@ package body KartenGeneratorFluss is
    is begin
       
       YAchseEinsSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
          XAchseEinsSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
 
             BeliebigerFlusswert (EbeneExtern) := ZufallGeneratorenKarten.ZufälligerWert;
             
@@ -68,7 +68,7 @@ package body KartenGeneratorFluss is
                null;
                
             elsif
-              BeliebigerFlusswert (EbeneExtern) <= WahrscheinlichkeitFluss (Karten.Kartentemperatur)
+              BeliebigerFlusswert (EbeneExtern) <= WahrscheinlichkeitFluss (Karten.Kartenparameter.Kartentemperatur)
             then
                SchreibeKarten.Fluss (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert),
                                      FlussExtern       => StandardFluss (EbeneExtern));
@@ -121,7 +121,7 @@ package body KartenGeneratorFluss is
             elsif
               LeseKarten.Fluss (KoordinatenExtern => KartenWertTesten (EbeneExtern)) /= KartenGrundDatentypen.Leer_Fluss_Enum
               and
-                BeliebigerFlusswert (EbeneExtern) <= WahrscheinlichkeitFluss (Karten.Kartentemperatur) * 1.25
+                BeliebigerFlusswert (EbeneExtern) <= WahrscheinlichkeitFluss (Karten.Kartenparameter.Kartentemperatur) * 1.25
             then
                SchreibeKarten.Fluss (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
                                      FlussExtern       => StandardFluss (EbeneExtern));
