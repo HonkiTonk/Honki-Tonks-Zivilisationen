@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
-with SystemKonstanten;
+with TextKonstanten;
 
 with SchreibenEinstellungen;
 with EinlesenSprache;
@@ -114,7 +114,7 @@ package body OptionenSonstiges is
             GewählteSprache := AuswahlSprache.AuswahlSprache;
             
             if
-              GewählteSprache = SystemKonstanten.LeerUnboundedString
+              GewählteSprache = TextKonstanten.LeerUnboundedString
             then
                null;
                

@@ -23,7 +23,7 @@ package AuswahlMenue is
 
    function StringSetzen
      (WelcheZeileExtern : in Positive;
-      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
+      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
       return Wide_Wide_String;
 
 private
@@ -41,7 +41,7 @@ private
 
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
 
-   type AnfangEndeMenüArray is array (SystemDatentypen.Welches_Menü_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Positive;
+   type AnfangEndeMenüArray is array (SystemDatentypen.Welches_Menü_Vorhanden_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of Positive;
    AnfangEndeMenü : constant AnfangEndeMenüArray := (
                                                        SystemDatentypen.Haupt_Menü_Enum              => (3, 9),
                                                        SystemDatentypen.Spiel_Menü_Enum              => (2, 7),

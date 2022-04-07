@@ -8,7 +8,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 with TastenbelegungDatentypen;
-with SystemKonstanten;
+with TextKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -24,7 +24,7 @@ package body EinheitenTransporter is
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
-      TextAnzeigeKonsole.AllgemeineAnzeigeText := (others => (SystemKonstanten.LeerUnboundedString, 0));
+      TextAnzeigeKonsole.AllgemeineAnzeigeText := (others => (TextKonstanten.LeerUnboundedString, 0));
       TextAnzeigeKonsole.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                                        Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));
       AktuellePosition := 2;

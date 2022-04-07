@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords;
-with SystemKonstanten;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
 with StadtKonstanten;
+with TextKonstanten;
 
 package KartenKonstanten is
    
@@ -13,7 +13,7 @@ package KartenKonstanten is
    LeerYAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
    LeerXAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
    
-   LeerKartenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
+   LeerKartenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerPassierbarkeit : constant Boolean := False;
       
    LeerBewertung : constant KartenDatentypen.BewertungFeld := 0;
@@ -25,7 +25,7 @@ package KartenKonstanten is
    LeerDurchStadtBelegterGrund : constant KartenRecords.BelegterGrundRecord := (StadtKonstanten.LeerRasse, StadtKonstanten.LeerNummer);
    LeerFelderwertung : constant KartenDatentypen.GesamtbewertungFeld := 0;
    
-   LeerVerbesserungGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
+   LeerVerbesserungGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
       
    LeerVerbesserungBewertung : constant KartenDatentypen.BewertungFeld := 0;
    LeerVerbesserungWirtschaft : constant EinheitStadtDatentypen.ProduktionElement := 0;

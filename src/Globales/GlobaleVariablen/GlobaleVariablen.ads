@@ -8,12 +8,12 @@ with EinheitStadtRecords;
 with SystemRecords;
 with KartenRecords;
 with WichtigeRecords;
-with SystemKonstanten;
 with SonstigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with EinheitStadtDatentypen;
 with GrafikTonDatentypen;
+with TextKonstanten;
 
 package GlobaleVariablen is
 
@@ -22,7 +22,7 @@ package GlobaleVariablen is
    type NutzerEinstellungenArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
    NutzerEinstellungen : SystemRecords.NutzerEinstellungenRecord := (
                                                                      -- Sprache
-                                                                     SystemKonstanten.LeerUnboundedString,
+                                                                     TextKonstanten.LeerUnboundedString,
                                                                      -- Anzahl Autosaves
                                                                      10,
                                                                      -- Rundenanzahl bis Autosave
@@ -65,7 +65,7 @@ package GlobaleVariablen is
    type GrenzenArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.GrenzenRecord;
    Grenzen : GrenzenArray := (others => SonstigesKonstanten.LeerGrenzen);
    
-   IronmanName : Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => SystemKonstanten.LeerString);
+   IronmanName : Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
    -- Zeug
    
 

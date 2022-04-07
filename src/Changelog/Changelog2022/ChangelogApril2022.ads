@@ -154,17 +154,19 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.02 => 0.01.02 (08.04.2022):
+   -- Version 0.01.0230 => 0.01.02 (08.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0210 => 0.01.02 (07.04.2022):
+   -- Version 0.01.0210 => 0.01.0230 (07.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen das Menüsystem in verschiedene Varianten aufzuteilen um so unterschiedliche Einstellmöglichkeiten einfacher zu ermöglichen.
+   -- Texte gekürzt und unnötigen Zeilen gelöscht.
+   -- Informationen aufgelöst und den Spielenamen und die Versionsnummer nach SystemKonstanten verschoben.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

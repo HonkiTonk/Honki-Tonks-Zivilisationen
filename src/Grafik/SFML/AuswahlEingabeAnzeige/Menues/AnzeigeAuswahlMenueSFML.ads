@@ -34,6 +34,7 @@ private
    
    AktuellerText : Unbounded_Wide_Wide_String;
    
+   LeerPosition : constant Sf.System.Vector2.sfVector2f := (0.00, 0.00);
    AktuellePosition : Sf.System.Vector2.sfVector2f;
    
    AktuelleFarbe : Sf.Graphics.Color.sfColor;

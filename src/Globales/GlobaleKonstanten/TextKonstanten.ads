@@ -1,7 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
+
 package TextKonstanten is
+   
+   LeerString : constant Wide_Wide_String := "";
+   LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
+   LeerZeichen : constant Wide_Wide_Character := ' ';
    
    ZeugHauptstadt : constant Positive := 1;
    ZeugStadt : constant Positive := 2;

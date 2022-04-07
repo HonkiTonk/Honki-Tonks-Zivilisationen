@@ -10,7 +10,10 @@ package GrafikSFML is
 
 private
 
+   AktuellesMenü : SystemDatentypen.Welches_Menü_Enum;
+
    AktuelleRasse : SystemDatentypen.Rassen_Enum;
+
    AktuelleStadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
 
    -- Wird die irgendwann einmal benötigt?

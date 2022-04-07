@@ -7,7 +7,7 @@ with Sf;
 
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleTexte;
-with SystemKonstanten;
+with TextKonstanten;
 with TastenbelegungDatentypen;
 with GrafikTonDatentypen;
 
@@ -25,6 +25,7 @@ package body AuswahlMenue is
    is begin
       
       AllgemeinesFestlegen (WelchesMenüExtern => WelchesMenüExtern);
+      InteraktionGrafiktask.AktuellesMenü := WelchesMenüExtern;
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Menüs_Enum);
       
       Auswahl;
@@ -207,7 +208,7 @@ package body AuswahlMenue is
    
    function StringSetzen
      (WelcheZeileExtern : in Positive;
-      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
+      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
@@ -366,7 +367,7 @@ package body AuswahlMenue is
             end if;
       end case;
       
-      return SystemKonstanten.LeerString;
+      return TextKonstanten.LeerString;
       
    end StringSetzen;
    

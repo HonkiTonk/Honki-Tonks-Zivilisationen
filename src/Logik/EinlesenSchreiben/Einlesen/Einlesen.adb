@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 -- with Ada.Calendar; use Ada.Calendar;
 
 with GlobaleVariablen;
-with SystemKonstanten;
+with TextKonstanten;
 -- with SystemDatentypen;
 
 -- with Ladezeiten;
@@ -44,7 +44,7 @@ package body Einlesen is
    is begin
       
       if
-        GlobaleVariablen.NutzerEinstellungen.Sprache = SystemKonstanten.LeerUnboundedString
+        GlobaleVariablen.NutzerEinstellungen.Sprache = TextKonstanten.LeerUnboundedString
       then
          case
            EinlesenSprache.EinlesenSprache
@@ -56,7 +56,7 @@ package body Einlesen is
                   GewählteSprache := AuswahlSprache.AuswahlSprache;
                   
                   if
-                    GewählteSprache = SystemKonstanten.LeerUnboundedString
+                    GewählteSprache = TextKonstanten.LeerUnboundedString
                   then
                      null;
                      

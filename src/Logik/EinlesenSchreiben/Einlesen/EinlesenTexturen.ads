@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemKonstanten;
+with TextKonstanten;
 
 with EingeleseneTexturenSFML;
 
@@ -20,28 +20,28 @@ private
    DateiTextEinlesen : File_Type;
 
    type HintergrundEinlesenArray is array (EingeleseneTexturenSFML.HintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
-   HintergrundEinlesen : HintergrundEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+   HintergrundEinlesen : HintergrundEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
    type KartenfelderEinlesenArray is array (EingeleseneTexturenSFML.KartenfelderAccessArray'Range) of Unbounded_Wide_Wide_String;
-   KartenfelderEinlesen : KartenfelderEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+   KartenfelderEinlesen : KartenfelderEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
    type KartenflüsseEinlesenArray is array (EingeleseneTexturenSFML.KartenflussAccessArray'Range) of Unbounded_Wide_Wide_String;
-   KartenflüsseEinlesen : KartenflüsseEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+   KartenflüsseEinlesen : KartenflüsseEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
    type KartenressourcenEinlesenArray is array (EingeleseneTexturenSFML.KartenressourcenAccessArray'Range) of Unbounded_Wide_Wide_String;
-   KartenressourcenEinlesen : KartenressourcenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+   KartenressourcenEinlesen : KartenressourcenEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
    type VerbesserungenEinlesenArray is array (EingeleseneTexturenSFML.VerbesserungenAccessArray'Range) of Unbounded_Wide_Wide_String;
-   VerbesserungenEinlesen : VerbesserungenEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+   VerbesserungenEinlesen : VerbesserungenEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
    type WegeEinlesenArray is array (EingeleseneTexturenSFML.WegeAccessArray'Range) of Unbounded_Wide_Wide_String;
-   WegeEinlesen : WegeEinlesenArray := (others => SystemKonstanten.LeerUnboundedString);
+   WegeEinlesen : WegeEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
    type EinheitenEinlesenArray is array (EingeleseneTexturenSFML.EinheitenAccesArray'Range (1), EingeleseneTexturenSFML.EinheitenAccesArray'Range (2)) of Unbounded_Wide_Wide_String;
-   EinheitenEinlesen : EinheitenEinlesenArray := (others => (others => SystemKonstanten.LeerUnboundedString));
+   EinheitenEinlesen : EinheitenEinlesenArray := (others => (others => TextKonstanten.LeerUnboundedString));
 
    type GebäudeEinlesenArray is array (EingeleseneTexturenSFML.GebäudeAccessArray'Range (1), EingeleseneTexturenSFML.GebäudeAccessArray'Range (2)) of Unbounded_Wide_Wide_String;
-   GebäudeEinlesen : GebäudeEinlesenArray := (others => (others => SystemKonstanten.LeerUnboundedString));
+   GebäudeEinlesen : GebäudeEinlesenArray := (others => (others => TextKonstanten.LeerUnboundedString));
 
    procedure EinlesenHintergrund;
    procedure EinlesenKartenfelder;

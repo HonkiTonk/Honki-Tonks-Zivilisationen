@@ -6,7 +6,7 @@ with Ada.Directories; use Ada.Directories;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen;
-with SystemKonstanten;
+with TextKonstanten;
 
 with Fehler;
 
@@ -17,7 +17,7 @@ package body EinlesenText is
    procedure EinlesenDateien
    is begin
       
-      TextdateienEinlesen := (others => SystemKonstanten.LeerUnboundedString);
+      TextdateienEinlesen := (others => TextKonstanten.LeerUnboundedString);
       
       case
         Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.NutzerEinstellungen.Sprache)) & "/0")

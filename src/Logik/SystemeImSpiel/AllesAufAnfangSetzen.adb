@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
 with SonstigesKonstanten;
-with SystemKonstanten;
+with TextKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenRecordKonstanten;
@@ -26,7 +26,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
       GlobaleVariablen.CursorImSpiel := (others => SonstigesKonstanten.LeerCursor);
       GlobaleVariablen.Gewonnen := False;
-      GlobaleVariablen.IronmanName := SystemKonstanten.LeerUnboundedString;
+      GlobaleVariablen.IronmanName := TextKonstanten.LeerUnboundedString;
       GlobaleVariablen.WeiterSpielen := False;
       
       DebugPlatzhalter.DebugSieg := False;

@@ -10,7 +10,7 @@ with SystemKonstanten;
 with Fehler;
 with GrafikStartEndeSFML;
 with GrafikIntroSFML;
-with AnzeigeAuswahlMenueSFML;
+with AuswahlMenuesSFML;
 with Karte;
 with InteraktionGrafiktask;
 with KarteStadt;
@@ -136,7 +136,17 @@ package body GrafikSFML is
             null;
          
          when GrafikTonDatentypen.Grafik_Menüs_Enum =>
-            AnzeigeAuswahlMenueSFML.AnzeigeAnfang;
+            AktuellesMenü := InteraktionGrafiktask.AktuellesMenü;
+            
+            if
+              AktuellesMenü = SystemDatentypen.Leer_Menü_Enum
+            then
+               null;
+               
+            else
+               AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => AktuellesMenü);
+            end if;
+            -- AnzeigeAuswahlMenueSFML.AnzeigeAnfang;
                
          when GrafikTonDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;

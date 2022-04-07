@@ -5,7 +5,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
 with ForschungKonstanten;
-with SystemKonstanten;
+with TextKonstanten;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;
@@ -29,7 +29,7 @@ package body GebaeudeAllgemein is
       is
          when EinheitStadtDatentypen.GebäudeIDMitNullwert'First =>
             -- Kann hier ein Stopp rein? Wahrscheinlich nicht mit dem aktuellen System, siehe auch den Parametertyp.
-            BeschreibungText := SystemKonstanten.LeerUnboundedString;
+            BeschreibungText := TextKonstanten.LeerUnboundedString;
             
          when others =>
             AktuellerText := 2 * Positive (IDExtern) - 1;
@@ -53,7 +53,7 @@ package body GebaeudeAllgemein is
       is
          when EinheitStadtDatentypen.GebäudeIDMitNullwert'First =>
             -- Kann hier ein Stopp rein? Wahrscheinlich nicht mit dem aktuellen System, siehe auch den Parametertyp.
-            BeschreibungText := SystemKonstanten.LeerUnboundedString;
+            BeschreibungText := TextKonstanten.LeerUnboundedString;
             
          when others =>
             AktuellerText := 2 * Positive (IDExtern);

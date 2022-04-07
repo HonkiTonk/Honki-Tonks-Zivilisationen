@@ -9,7 +9,7 @@ package RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive;
-      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Enum)
+      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
       return SystemDatentypen.Rückgabe_Werte_Enum;
    
 private

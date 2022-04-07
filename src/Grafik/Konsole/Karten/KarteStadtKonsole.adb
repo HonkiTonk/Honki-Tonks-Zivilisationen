@@ -12,7 +12,7 @@ with KartenKonstanten;
 with StadtKonstanten;
 with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
-with SystemKonstanten;
+with TextKonstanten;
 with EinheitenKonstanten;
 
 with LeseKarten;
@@ -188,14 +188,14 @@ package body KarteStadtKonsole is
         and
           XAchseExtern = Karten.Stadtkarte'Last (2) - 7
       then
-         Put (Item => SystemKonstanten.LeerZeichen);
+         Put (Item => TextKonstanten.LeerZeichen);
 
       elsif
         YAchseExtern = Karten.Stadtkarte'First (1) + 7
         and
           XAchseExtern >= Karten.Stadtkarte'Last (2) - 7
       then
-         Put (Item => SystemKonstanten.LeerZeichen);
+         Put (Item => TextKonstanten.LeerZeichen);
 
       elsif
         YAchseExtern = 1
@@ -375,7 +375,7 @@ package body KarteStadtKonsole is
                                        RasseExtern        => StadtKonstanten.LeerRasse);
 
          else
-            Put (Item => SystemKonstanten.LeerZeichen);
+            Put (Item => TextKonstanten.LeerZeichen);
          end if;
                      
       end loop UmgebungSchleife;
@@ -407,7 +407,7 @@ package body KarteStadtKonsole is
            or
              UmgebungSchleifenwert > Stadtumgebungsgröße
          then
-            Put (Item => SystemKonstanten.LeerZeichen);
+            Put (Item => TextKonstanten.LeerZeichen);
 
          else            
             KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
@@ -418,7 +418,7 @@ package body KarteStadtKonsole is
               KartenWert.XAchse
             is
                when KartenKonstanten.LeerXAchse =>
-                  Put (Item => SystemKonstanten.LeerZeichen);
+                  Put (Item => TextKonstanten.LeerZeichen);
 
                when others =>
                   GrafischeAnzeigeKonsole.Sichtbarkeit (InDerStadtExtern  => True,

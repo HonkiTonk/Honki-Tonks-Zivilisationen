@@ -4,8 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen;
-with SystemKonstanten;
 with EinheitStadtDatentypen;
+with TextKonstanten;
 
 package GlobaleTexte is
 
@@ -21,7 +21,7 @@ package GlobaleTexte is
    SprachenEinlesen : SprachenEinlesenArray;
 
    type TexteEinlesenArray is array (1 .. SystemDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
-   TexteEinlesen : TexteEinlesenArray := (others => (others => SystemKonstanten.LeerUnboundedString));
+   TexteEinlesen : TexteEinlesenArray := (others => (others => TextKonstanten.LeerUnboundedString));
    
    -------------------- Gibt es einen Weg die Anzahl der Elemente eines Enum subtypes zu erfahren ohne sie selbst zu berechnen?
    RassenAnzahlDoppelt : constant Positive := 2 * 18;
@@ -30,9 +30,11 @@ package GlobaleTexte is
    
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
-   Hauptmenü : TexteArray (1 .. 16) := (others => FehlenderText);
-   Spielmenü : TexteArray (1 .. 13) := (others => FehlenderText);
-   Optionsmenü : TexteArray (1 .. 15) := (others => FehlenderText);
+   Hauptmenü : TexteArray (1 .. 7) := (others => FehlenderText);
+   Spielmenü : TexteArray (1 .. 7) := (others => FehlenderText);
+   
+   Optionsmenü : TexteArray (1 .. 8) := (others => FehlenderText);
+   
    Grafikmenü : TexteArray (1 .. 15) := (others => FehlenderText);
    Soundmenü : TexteArray (1 .. 7) := (others => FehlenderText);
    Steuerungmenü : TexteArray (1 .. 91) := (others => FehlenderText);

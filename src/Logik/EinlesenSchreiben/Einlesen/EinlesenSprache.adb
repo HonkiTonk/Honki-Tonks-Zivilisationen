@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Characters.Conversions;
 
 with GlobaleTexte;
-with SystemKonstanten;
+with TextKonstanten;
 
 package body EinlesenSprache is
 
@@ -12,7 +12,7 @@ package body EinlesenSprache is
      return Boolean
    is begin
       
-      GlobaleTexte.SprachenEinlesen := (others => SystemKonstanten.LeerUnboundedString);
+      GlobaleTexte.SprachenEinlesen := (others => TextKonstanten.LeerUnboundedString);
       
       Start_Search (Search    => Suche,
                     Directory => "Sprachen",
@@ -37,7 +37,7 @@ package body EinlesenSprache is
             VerzeichnisInnenSchleife:
             for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
                if
-                 GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= SystemKonstanten.LeerUnboundedString
+                 GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= TextKonstanten.LeerUnboundedString
                then
                   null;
             
@@ -53,7 +53,7 @@ package body EinlesenSprache is
       end loop VerzeichnisAußenSchleife;
       
       if
-        GlobaleTexte.SprachenEinlesen (1) = SystemKonstanten.LeerUnboundedString
+        GlobaleTexte.SprachenEinlesen (1) = TextKonstanten.LeerUnboundedString
       then
          return False;
          
@@ -73,7 +73,7 @@ package body EinlesenSprache is
       for PositionSchleifenwert in GlobaleTexte.SprachenEinlesenArray'First + 1 .. GlobaleTexte.SprachenEinlesenArray'Last loop
          
          if
-           GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = SystemKonstanten.LeerUnboundedString
+           GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             exit SortierSchleife;
             

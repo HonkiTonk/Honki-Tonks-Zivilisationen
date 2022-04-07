@@ -12,11 +12,11 @@ with EinheitStadtRecords;
 with WichtigeRecords;
 with SystemKonstanten;
 with KartenDatentypen;
+with TextKonstanten;
 
 with Karten;
 with Auswahl;
 with Ladezeiten;
-with Informationen;
 with SpeichernLadenAllgemein;
 with LadezeitenDatentypen;
 
@@ -73,7 +73,7 @@ package body Speichern is
    is begin
       
       Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
-                              Informationen.Versionsnummer);
+                              SystemKonstanten.Versionsnummer);
       
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
                                         GlobaleVariablen.IronmanName);
@@ -318,7 +318,7 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= SystemKonstanten.LeerString
+        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= TextKonstanten.LeerString
       then
          SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
                
@@ -352,7 +352,7 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= SystemKonstanten.LeerString
+        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= TextKonstanten.LeerString
       then
          SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
                

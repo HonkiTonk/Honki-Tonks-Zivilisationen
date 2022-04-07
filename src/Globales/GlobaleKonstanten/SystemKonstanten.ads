@@ -1,9 +1,15 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 package SystemKonstanten is
+
+   -- Spielenamen und Versionsnummer
+   Spielename : constant Wide_Wide_String (1 .. 25) := "Honki Tonk´s Zivilisation";
+
+   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.01.0230";
+   -- Spielenamen und Versionsnummer
+
+
 
    -- Wird das so überhaupt benötigt?
    -- Wartezeiten
@@ -14,11 +20,5 @@ package SystemKonstanten is
 
    WartezeitMinimal : constant Duration := 0.000000002;
    -- Wartezeiten
-
-
-
-   LeerString : constant Wide_Wide_String := "";
-   LeerUnboundedString : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => LeerString);
-   LeerZeichen : constant Wide_Wide_Character := ' ';
 
 end SystemKonstanten;

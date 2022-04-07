@@ -2,12 +2,12 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtRecords;
-with SystemKonstanten;
 with KartenRecords;
 with ForschungKonstanten;
 with EinheitStadtDatentypen;
 with SystemDatentypen;
 with AufgabenDatentypen;
+with TextKonstanten;
 
 with DatenbankRecords;
 
@@ -56,7 +56,7 @@ package EinheitenKonstanten is
    
    EinheitBefehlAbzug : constant Positive := 22;
       
-   LeerEinheitenGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
+   LeerEinheitenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerEinheitArt : constant EinheitStadtDatentypen.Einheit_Art_Enum := EinheitStadtDatentypen.Leer_Enum;
    LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;

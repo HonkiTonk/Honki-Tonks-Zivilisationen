@@ -10,7 +10,6 @@ with Sf;
 
 with GlobaleTexte;
 with TextKonstanten;
-with SystemKonstanten;
 
 with EingabeSystemeSFML;
 with Fehler;
@@ -313,7 +312,7 @@ package body EingabeSFML is
       
       Frage := WelcheFrageExtern;
       
-      EingabeSystemeSFML.EingegebenerText := SystemKonstanten.LeerUnboundedString;
+      EingabeSystemeSFML.EingegebenerText := TextKonstanten.LeerUnboundedString;
       
       InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Text_Eingabe_Enum);
       

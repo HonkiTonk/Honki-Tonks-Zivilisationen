@@ -5,13 +5,13 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen;
 with EinheitStadtRecords;
-with SystemKonstanten;
 with KartenRecords;
 with ForschungKonstanten;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
 with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
+with TextKonstanten;
 
 with DatenbankRecords;
 
@@ -40,7 +40,7 @@ package StadtKonstanten is
    LeerKorruption : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
    LeerZufriedenheit : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerGebäude : constant Boolean := False;
-   LeerName : constant Unbounded_Wide_Wide_String := SystemKonstanten.LeerUnboundedString;
+   LeerName : constant Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
    LeerUmgebungBewitschaftet : constant Boolean := False;
    LeerUmgebungGröße : constant KartenDatentypen.UmgebungsbereichDrei := 0;
    LeerMeldung : constant EinheitStadtDatentypen.Stadt_Meldung_Enum := EinheitStadtDatentypen.Leer_Enum;
@@ -71,7 +71,7 @@ package StadtKonstanten is
 
    MaximaleBauzeit : constant EinheitStadtDatentypen.KostenLager := EinheitStadtDatentypen.KostenLager'Last;
    
-   LeerGebäudeGrafik : constant Wide_Wide_Character := SystemKonstanten.LeerZeichen;
+   LeerGebäudeGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;

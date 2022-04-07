@@ -7,7 +7,6 @@ with GlobaleTexte;
 with ForschungKonstanten;
 with TextKonstanten;
 with TastenbelegungDatentypen;
-with SystemKonstanten;
 with GrafikTonDatentypen;
 
 with SchreibeWichtiges;
@@ -90,7 +89,7 @@ package body ForschungAllgemein is
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
-      ForschungText := (others => (SystemKonstanten.LeerUnboundedString, 0));
+      ForschungText := (others => (TextKonstanten.LeerUnboundedString, 0));
       Ende := 0;
 
       ForschungSchleife:

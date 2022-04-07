@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
-with SystemKonstanten;
+with TextKonstanten;
 with GlobaleVariablen;
 with GrafikTonDatentypen;
 
@@ -120,7 +120,7 @@ package body TextAnzeigeKonsole is
       for ZeichenSchleifenwert in AlgemeineAnzeigeTextArray'Range loop
          
          if
-           AllgemeineAnzeigeText (ZeichenSchleifenwert).Text = SystemKonstanten.LeerUnboundedString
+           AllgemeineAnzeigeText (ZeichenSchleifenwert).Text = TextKonstanten.LeerUnboundedString
          then
             exit TextlängePrüfenSchleife;
             
@@ -190,7 +190,7 @@ package body TextAnzeigeKonsole is
          
          else
             if
-              AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text = SystemKonstanten.LeerUnboundedString
+              AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text = TextKonstanten.LeerUnboundedString
             then
                exit AnzeigeSchleife;
             

@@ -8,6 +8,7 @@ with Sf.Window.VideoMode;
 
 with GlobaleVariablen;
 with GrafikTonDatentypen;
+with SystemKonstanten;
 
 with GrafikEinstellungenSFML;
 with GrafikAllgemeinSFML;
@@ -22,7 +23,7 @@ package body GrafikStartEndeSFML is
         GlobaleVariablen.AnzeigeArt
       is
          when GrafikTonDatentypen.Grafik_Konsole_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugen - Es soll ein Konsolenfenster erzeugt werden.");
             
          when GrafikTonDatentypen.Grafik_SFML_Enum =>
             FensterErzeugenErweitert;
@@ -32,7 +33,7 @@ package body GrafikStartEndeSFML is
       if
         GrafikEinstellungenSFML.FensterAccess = null
       then
-         Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEnde.FensterErzeugen - FensterAccess = null.");
+         Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugen - FensterAccess = null.");
 
       else
          GrafikAllgemeinSFML.MauszeigerFestlegen;
@@ -54,7 +55,7 @@ package body GrafikStartEndeSFML is
             GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                             title => Name,
+                                                                                             title => SystemKonstanten.Spielename,
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
       
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite;
@@ -66,11 +67,11 @@ package body GrafikStartEndeSFML is
             GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x,
                                                                                                        GrafikEinstellungenSFML.AktuelleFensterAuflösung.y,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                             title => Name,
+                                                                                             title => SystemKonstanten.Spielename,
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
             
          when others =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "StartEndeSFML.FensterErzeugenErweitert - Unbekannter Fenstermodus ausgewählt.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "GrafikStartEndeSFML.FensterErzeugenErweitert - Unbekannter Fenstermodus ausgewählt.");
       end case;
             
    end FensterErzeugenErweitert;

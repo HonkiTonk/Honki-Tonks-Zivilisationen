@@ -7,7 +7,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
-with SystemKonstanten;
+with TextKonstanten;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -49,7 +49,7 @@ package body GrafischeAnzeigeKonsole is
                                          RasseExtern        => EinheitenKonstanten.LeerRasse);
                
             else
-               Put (Item => SystemKonstanten.LeerZeichen);
+               Put (Item => TextKonstanten.LeerZeichen);
             end if;
       end case;
       

@@ -47,7 +47,7 @@ package body AnzeigeAuswahlMenueSFML is
    procedure AnzeigeMenü
    is begin
       
-      AktuellePosition := (0.00, 0.00);
+      AktuellePosition := LeerPosition;
       
       HintergrundSFML.HintergrundMenü (WelchesMenüExtern => WelchesMenü);
       Überschrift;
@@ -189,7 +189,7 @@ package body AnzeigeAuswahlMenueSFML is
                                                                                            WelchesMenüExtern => WelchesMenü));
       
       if
-        AktuellerText = SystemKonstanten.LeerString
+        AktuellerText = TextKonstanten.LeerString
       then
          return;
          

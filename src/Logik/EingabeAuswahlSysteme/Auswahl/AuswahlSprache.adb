@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
 with GlobaleTexte;
-with SystemKonstanten;
+with TextKonstanten;
 with GrafikTonDatentypen;
 
 with Eingabe;
@@ -52,7 +52,7 @@ package body AuswahlSprache is
       end if;
          
       if
-        GlobaleTexte.SprachenEinlesen (ZehnerReihe * 10 - 9) = SystemKonstanten.LeerUnboundedString
+        GlobaleTexte.SprachenEinlesen (ZehnerReihe * 10 - 9) = TextKonstanten.LeerUnboundedString
       then
          ZehnerReihe := 1;
          
@@ -60,7 +60,7 @@ package body AuswahlSprache is
          null;
       end if;
       
-      AktuelleSprachen := (others => SystemKonstanten.LeerUnboundedString);
+      AktuelleSprachen := (others => TextKonstanten.LeerUnboundedString);
       
       EndeBestimmenSchleife:
       for EndeSchleifenwert in ZehnerReihe * 10 - 9 .. ZehnerReihe * 10 loop
@@ -73,7 +73,7 @@ package body AuswahlSprache is
          elsif
            EndeSchleifenwert = GlobaleTexte.SprachenEinlesenArray'First
            and
-             GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = SystemKonstanten.LeerUnboundedString
+             GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             Fehler.LogikFehler (FehlermeldungExtern => "AuswahlSprache.SprachenListeFestlegen - Keine Sprachen vorhanden.");
             
@@ -83,7 +83,7 @@ package body AuswahlSprache is
             exit EndeBestimmenSchleife;
            
          elsif
-           GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = SystemKonstanten.LeerUnboundedString
+           GlobaleTexte.SprachenEinlesen (EndeSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             exit EndeBestimmenSchleife;
             
@@ -101,7 +101,7 @@ package body AuswahlSprache is
          if
            SprachenSchleifenwert <= AktuelleSprachenArray'Last
            and
-             GlobaleTexte.SprachenEinlesen (SprachenSchleifenwert) = SystemKonstanten.LeerUnboundedString
+             GlobaleTexte.SprachenEinlesen (SprachenSchleifenwert) = TextKonstanten.LeerUnboundedString
          then
             return;
             
@@ -226,7 +226,7 @@ package body AuswahlSprache is
                end if;
                
             when TastenbelegungDatentypen.Menü_Zurück_Enum =>
-               return SystemKonstanten.LeerUnboundedString;
+               return TextKonstanten.LeerUnboundedString;
             
             when others =>
                null;

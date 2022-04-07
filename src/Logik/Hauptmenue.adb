@@ -7,7 +7,6 @@ with GrafikTonDatentypen;
 with Optionen;
 with SpielEinstellungen;
 with AllesAufAnfangSetzen;
-with Informationen;
 with ImSpiel;
 with Laden;
 with Wuerdigung;
@@ -89,8 +88,8 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemDatentypen.Informationen_Enum =>
-               Informationen.Informationen;
+            -- when SystemDatentypen.Informationen_Enum =>
+            --   Informationen.Informationen;
                
             when SystemDatentypen.Würdigungen_Enum =>
                Wuerdigung.Würdigung;
