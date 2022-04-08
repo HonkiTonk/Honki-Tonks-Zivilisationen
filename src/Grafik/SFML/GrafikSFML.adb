@@ -146,7 +146,6 @@ package body GrafikSFML is
             else
                AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => AktuellesMenü);
             end if;
-            -- AnzeigeAuswahlMenueSFML.AnzeigeAnfang;
                
          when GrafikTonDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;

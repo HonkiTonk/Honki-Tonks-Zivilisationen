@@ -66,45 +66,45 @@ private
    
    -- Weniger transparente Version für Rahmen bauen. Dann das hier nur leicht transparent machen und den Rahmen dann gar nicht.
    RassenFarbenStandard : constant RassenFarbenArray := (
-                                                         SystemDatentypen.Menschen_Enum        => (255, 230, 200, 75),
-                                                         SystemDatentypen.Kasrodiah_Enum       => (255, 100, 40, 75),
-                                                         SystemDatentypen.Lasupin_Enum         => (65, 145, 140, 75),
-                                                         SystemDatentypen.Lamustra_Enum        => (60, 255, 240, 75),
-                                                         SystemDatentypen.Manuky_Enum          => (255, 255, 30, 75),
-                                                         SystemDatentypen.Suroka_Enum          => (135, 10, 255, 75),
-                                                         SystemDatentypen.Pryolon_Enum         => (65, 50, 15, 75),
-                                                         SystemDatentypen.Talbidahr_Enum       => (255, 20, 255, 75),
+                                                         SystemDatentypen.Menschen_Enum         => (255, 230, 200, 75),
+                                                         SystemDatentypen.Kasrodiah_Enum        => (255, 100, 40, 75),
+                                                         SystemDatentypen.Lasupin_Enum          => (65, 145, 140, 75),
+                                                         SystemDatentypen.Lamustra_Enum         => (60, 255, 240, 75),
+                                                         SystemDatentypen.Manuky_Enum           => (255, 255, 30, 75),
+                                                         SystemDatentypen.Suroka_Enum           => (135, 10, 255, 75),
+                                                         SystemDatentypen.Pryolon_Enum          => (65, 50, 15, 75),
+                                                         SystemDatentypen.Talbidahr_Enum        => (255, 20, 255, 75),
                                                          SystemDatentypen.Moru_Phisihl_Enum     => (255, 255, 180, 75),
                                                          SystemDatentypen.Larinos_Lotaris_Enum  => (255, 210, 135, 75),
-                                                         SystemDatentypen.Carupex_Enum         => (210, 210, 210, 75),
-                                                         SystemDatentypen.Alary_Enum           => (165, 105, 0, 75),
-                                                         SystemDatentypen.Tesorahn_Enum        => (10, 60, 240, 75),
+                                                         SystemDatentypen.Carupex_Enum          => (210, 210, 210, 75),
+                                                         SystemDatentypen.Alary_Enum            => (165, 105, 0, 75),
+                                                         SystemDatentypen.Tesorahn_Enum         => (10, 60, 240, 75),
                                                          SystemDatentypen.Natries_Zermanis_Enum => (170, 120, 130, 75),
-                                                         SystemDatentypen.Tridatus_Enum        => (20, 95, 20, 75),
-                                                         SystemDatentypen.Senelari_Enum        => (0, 210, 0, 75),
+                                                         SystemDatentypen.Tridatus_Enum         => (20, 95, 20, 75),
+                                                         SystemDatentypen.Senelari_Enum         => (0, 210, 0, 75),
                                                          SystemDatentypen.Aspari_2_Enum         => (90, 90, 90, 75),
-                                                         SystemDatentypen.Ekropa_Enum          => (255, 30, 30, 75)
+                                                         SystemDatentypen.Ekropa_Enum           => (255, 30, 30, 75)
                                                         );
    
    RassenFarbenRahmenStandard : constant RassenFarbenArray := (
-                                                               SystemDatentypen.Menschen_Enum        => (255, 230, 200, 255),
-                                                               SystemDatentypen.Kasrodiah_Enum       => (255, 100, 40, 255),
-                                                               SystemDatentypen.Lasupin_Enum         => (65, 145, 140, 255),
-                                                               SystemDatentypen.Lamustra_Enum        => (60, 255, 240, 255),
-                                                               SystemDatentypen.Manuky_Enum          => (255, 255, 30, 255),
-                                                               SystemDatentypen.Suroka_Enum          => (135, 10, 255, 255),
-                                                               SystemDatentypen.Pryolon_Enum         => (65, 50, 15, 255),
-                                                               SystemDatentypen.Talbidahr_Enum       => (255, 20, 255, 255),
+                                                               SystemDatentypen.Menschen_Enum         => (255, 230, 200, 255),
+                                                               SystemDatentypen.Kasrodiah_Enum        => (255, 100, 40, 255),
+                                                               SystemDatentypen.Lasupin_Enum          => (65, 145, 140, 255),
+                                                               SystemDatentypen.Lamustra_Enum         => (60, 255, 240, 255),
+                                                               SystemDatentypen.Manuky_Enum           => (255, 255, 30, 255),
+                                                               SystemDatentypen.Suroka_Enum           => (135, 10, 255, 255),
+                                                               SystemDatentypen.Pryolon_Enum          => (65, 50, 15, 255),
+                                                               SystemDatentypen.Talbidahr_Enum        => (255, 20, 255, 255),
                                                                SystemDatentypen.Moru_Phisihl_Enum     => (255, 255, 180, 255),
                                                                SystemDatentypen.Larinos_Lotaris_Enum  => (255, 210, 135, 255),
-                                                               SystemDatentypen.Carupex_Enum         => (210, 210, 210, 255),
-                                                               SystemDatentypen.Alary_Enum           => (165, 105, 0, 255),
-                                                               SystemDatentypen.Tesorahn_Enum        => (10, 60, 240, 255),
+                                                               SystemDatentypen.Carupex_Enum          => (210, 210, 210, 255),
+                                                               SystemDatentypen.Alary_Enum            => (165, 105, 0, 255),
+                                                               SystemDatentypen.Tesorahn_Enum         => (10, 60, 240, 255),
                                                                SystemDatentypen.Natries_Zermanis_Enum => (170, 120, 130, 255),
-                                                               SystemDatentypen.Tridatus_Enum        => (20, 95, 20, 255),
-                                                               SystemDatentypen.Senelari_Enum        => (0, 210, 0, 255),
+                                                               SystemDatentypen.Tridatus_Enum         => (20, 95, 20, 255),
+                                                               SystemDatentypen.Senelari_Enum         => (0, 210, 0, 255),
                                                                SystemDatentypen.Aspari_2_Enum         => (90, 90, 90, 255),
-                                                               SystemDatentypen.Ekropa_Enum          => (255, 30, 30, 255)
+                                                               SystemDatentypen.Ekropa_Enum           => (255, 30, 30, 255)
                                                               );
    
 end GrafikEinstellungenSFML;

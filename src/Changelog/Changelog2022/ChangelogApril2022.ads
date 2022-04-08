@@ -140,24 +140,25 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (10.04.2022):
+   -- Version 0.01.02 => 0.01.0 (10.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.02 => 0.01.0 (09.04.2022):
+   -- Version 0.01.0240 => 0.01.02 (09.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0230 => 0.01.02 (08.04.2022):
+   -- Version 0.01.0230 => 0.01.0240 (08.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Menüsystem gebastelt.
+   -- Textanzeige bei der einfachsten Variante der Menüs funktioniert korrekt.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

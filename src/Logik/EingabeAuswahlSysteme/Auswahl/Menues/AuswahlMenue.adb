@@ -213,6 +213,7 @@ package body AuswahlMenue is
    is begin
       
       -- Bei zu langem Text keinen leeren String zurückgeben sondern das Programm stoppen?
+      -------------------- Nach Grafik verschieben, sollte mit dem neuen System nicht mehr von Logik benötigt werden.
       case
         WelchesMenüExtern
       is

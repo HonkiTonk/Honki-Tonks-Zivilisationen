@@ -1,12 +1,19 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.System.Vector2;
+with Sf.Graphics.Rect;
+
+with SystemDatentypen;
+with GlobaleTexte;
 
 package InteraktionAuswahl is
 
-   -- Das hier müsste doch einmal reichen, oder?
-   ------------------------ Muss das hier überhaupt sein? Kann ich das nicht lokal bei der Grafik einbauen und dann hier nur die Positionswerte speichern?
-   AuswahlMenüsOhneÜberschrift : Sf.System.Vector2.sfVector2u := (0, 0);
+   Überschrift : constant Positive := 1;
+   Versionsnummer : constant Positive := 1;
+
+   -- Immer das Längste verwenden.
+   -- Wobei ein längeres Array hier auch keine Pobleme machen sollte?
+   type PositionenArray is array (SystemDatentypen.Menü_Ohne_Überschrift_Enum'Range, GlobaleTexte.Hauptmenü'Range) of Sf.Graphics.Rect.sfFloatRect;
+   Positionen : PositionenArray;
 
 end InteraktionAuswahl;
