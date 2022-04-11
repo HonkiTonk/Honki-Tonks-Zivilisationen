@@ -13,7 +13,7 @@ private
    
    LeereZeilenAbzieher : Natural;
       
-   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 40);
+   TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 41);
 
    DateiTextEinlesen : File_Type;
    
@@ -62,5 +62,6 @@ private
    procedure Wege;
    procedure Kartenflüsse;
    procedure Kartenressourcen;
+   procedure Einstellungen;
    
 end EinlesenText;

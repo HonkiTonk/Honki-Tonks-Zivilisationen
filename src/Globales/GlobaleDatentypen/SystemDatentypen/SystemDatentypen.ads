@@ -71,12 +71,12 @@ package SystemDatentypen is
    
    
    
-   type Welches_Menü_Enum is (
+   type Welches_Menü_Enum is ( ------------------ Wird Leer hier überhaupt benötigt?
                                Leer_Menü_Enum,
                                
                                Haupt_Menü_Enum, Spiel_Menü_Enum,
                                
-                               Optionen_Menü_Enum, Editoren_Menü_Enum,
+                               Optionen_Menü_Enum, Einstellungen_Menü_Enum, Editoren_Menü_Enum,
                                
                                Kartengröße_Menü_Enum, Kartenart_Menü_Enum, Kartentemperatur_Menü_Enum, Kartenressourcen_Menü_Enum, Schwierigkeitsgrad_Menü_Enum, Rassen_Menü_Enum, 
                                
@@ -98,7 +98,7 @@ package SystemDatentypen is
    
 
    -- Für Anzeige
-   type TextDateien is range 0 .. 31;
+   type TextDateien is range 0 .. 41;
    
    type TextZeilen is range 0 .. 93;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;

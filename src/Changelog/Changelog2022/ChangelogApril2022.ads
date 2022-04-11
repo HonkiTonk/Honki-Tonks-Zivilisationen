@@ -119,30 +119,33 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (13.04.2022):
+   -- Version 0.01.02 => 0.01.0 (13.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.02 => 0.01.0 (12.04.2022):
+   -- Version 0.01.0260 => 0.01.02 (12.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.02 => 0.01.02 (11.04.2022):
+   -- Version 0.01.0250 => 0.01.0260 (11.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einfaches Menüsystem funktioniert jetzt auch mit beliebiger Überschrift.
+   -- Internet Struktur leicht überarbeitet.
+   -- Angefangen die komplexere Variante des Menüsystems einzubauen.
+   -- Angefangen die Spieleinstellungen zu überarbeiten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 
    -- Version 0.01.0240 => 0.01.0250 (10.04.2022):
    
-   -- Mausauswahl funktioniert jetzt fehlerfrei mit der einfachsten Variante der Menüs;
+   -- Mausauswahl funktioniert jetzt fehlerfrei mit der einfachsten Variante der Menüs.
    -- Unnötigen Code gelöscht.
    -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    

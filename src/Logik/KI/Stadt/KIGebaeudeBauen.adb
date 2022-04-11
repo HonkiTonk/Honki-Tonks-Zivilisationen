@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenKonstanten;
@@ -151,18 +151,18 @@ package body KIGebaeudeBauen is
    is begin
       
       if
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
           LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         + LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftGeld)
-        >= SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        >= WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return 20;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
@@ -172,7 +172,7 @@ package body KIGebaeudeBauen is
          return 10;
          
       elsif
-        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
           LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
@@ -186,7 +186,7 @@ package body KIGebaeudeBauen is
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum)
-        < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return -20;
          
@@ -215,7 +215,7 @@ package body KIGebaeudeBauen is
           LeseGebaeudeDatenbank.WirtschaftBonus (RasseExtern            => StadtRasseNummerExtern.Rasse,
                                                  IDExtern               => IDExtern,
                                                  WWirtschaftBonusExtern => KartenKonstanten.WirtschaftForschung)
-        > SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+        > WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
       then
          return 5;
          

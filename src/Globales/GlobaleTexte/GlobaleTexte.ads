@@ -6,6 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with SystemDatentypen;
 with EinheitStadtDatentypen;
 with TextKonstanten;
+with SystemKonstanten;
 
 package GlobaleTexte is
 
@@ -30,22 +31,28 @@ package GlobaleTexte is
    
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
-   Hauptmenü : TexteArray (1 .. 7) := (others => FehlenderText);
-   Spielmenü : TexteArray (1 .. 7) := (others => FehlenderText);
+   -- Plus eins beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Konsole.
+   Hauptmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Haupt_Menü_Enum) + 1) := (others => FehlenderText);
+   Spielmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Spiel_Menü_Enum)) := (others => FehlenderText);
    
-   Optionsmenü : TexteArray (1 .. 8) := (others => FehlenderText);
    
-   Grafikmenü : TexteArray (1 .. 15) := (others => FehlenderText);
-   Soundmenü : TexteArray (1 .. 7) := (others => FehlenderText);
-   Steuerungmenü : TexteArray (1 .. 91) := (others => FehlenderText);
-   Sonstigesmenü : TexteArray (1 .. 13) := (others => FehlenderText);
-   Kartengröße : TexteArray (1 .. 31) := (others => FehlenderText);
-   Kartenart : TexteArray (1 .. 19) := (others => FehlenderText);
-   Kartentemperatur : TexteArray (1 .. 19) := (others => FehlenderText);
-   Rassenauswahl : TexteArray (1 .. 47) := (others => FehlenderText);
-   Schwierigkeitsgrad : TexteArray (1 .. 15) := (others => FehlenderText);
-   Kartenform : TexteArray (1 .. 27) := (others => FehlenderText);
-   Ressourcenmenge : TexteArray (1 .. 19) := (others => FehlenderText);
+   Optionsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Optionen_Menü_Enum)) := (others => FehlenderText);
+   Einstellungsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Einstellungen_Menü_Enum)) := (others => FehlenderText);
+   Editoren : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Editoren_Menü_Enum)) := (others => FehlenderText);
+   
+   Grafikmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Grafik_Menü_Enum)) := (others => FehlenderText);
+   Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sound_Menü_Enum)) := (others => FehlenderText);
+   Steuerungmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Steuerung_Menü_Enum)) := (others => FehlenderText);
+   Sonstigesmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sonstiges_Menü_Enum)) := (others => FehlenderText);
+   
+   Kartengröße : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartengröße_Menü_Enum)) := (others => FehlenderText);
+   Kartenart : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenart_Menü_Enum)) := (others => FehlenderText);
+   Kartentemperatur : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartentemperatur_Menü_Enum)) := (others => FehlenderText);
+   Rassenauswahl : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Rassen_Menü_Enum)) := (others => FehlenderText);
+   Schwierigkeitsgrad : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Schwierigkeitsgrad_Menü_Enum)) := (others => FehlenderText);
+   Kartenform : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenform_Menü_Enum)) := (others => FehlenderText);
+   Ressourcenmenge : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenressourcen_Menü_Enum)) := (others => FehlenderText);
+
    JaNein : TexteArray (1 .. 2) := (others => FehlenderText);
    Rassen : TexteArray (1 .. RassenAnzahlDoppelt) := (others => FehlenderText);
    
@@ -77,6 +84,5 @@ package GlobaleTexte is
    Ladezeit : TexteArray (1 .. 32) := (others => FehlenderText);
    Frage : TexteArray (1 .. 35) := (others => FehlenderText);
    ZeugSachen : TexteArray (1 .. 67) := (others => FehlenderText);
-   Editoren : TexteArray (1 .. 17) := (others => FehlenderText);
    
 end GlobaleTexte;

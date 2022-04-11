@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 with StadtKonstanten;
 
 with KIDatentypen; use KIDatentypen;
@@ -341,7 +341,7 @@ package body KIEinheitenBauen is
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
                                                  WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum)
-        = SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        = WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return 5;
          
@@ -350,7 +350,7 @@ package body KIEinheitenBauen is
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
                                                    WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum)
-        < SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return -10;
       

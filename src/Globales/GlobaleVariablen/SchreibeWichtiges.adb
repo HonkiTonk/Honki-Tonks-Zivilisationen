@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 
 with LeseForschungsDatenbank;
 
@@ -90,9 +90,9 @@ package body SchreibeWichtiges is
                GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleVariablen.Grenzen (RasseExtern).ForschungGewinngrenze;
                
             elsif
-              GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern < SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+              GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern < WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
+               GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern;
@@ -100,9 +100,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              ForschungsrateZugewinnExtern < SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+              ForschungsrateZugewinnExtern < WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
+               GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := ForschungsrateZugewinnExtern;
@@ -131,9 +131,9 @@ package body SchreibeWichtiges is
                GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleVariablen.Grenzen (RasseExtern).Forschungsgrenze;
                
             elsif
-              GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern < SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge
+              GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern < WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
+               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
             
             else
                GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern;
@@ -141,9 +141,9 @@ package body SchreibeWichtiges is
             
          when False =>
             if
-              ForschungZugewinnExtern < SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge
+              ForschungZugewinnExtern < WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge
             then
-               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
+               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
                
             else
                GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := ForschungZugewinnExtern;
@@ -186,7 +186,7 @@ package body SchreibeWichtiges is
       
       GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := ForschungIDExtern;
       Forschungsmenge (RasseExtern             => RasseExtern,
-                       ForschungZugewinnExtern => SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge,
+                       ForschungZugewinnExtern => WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge,
                        RechnenSetzenExtern     => False);
       
    end Forschungsprojekt;

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikTonDatentypen;
-with SystemKonstanten;
+with SonstigesKonstanten;
 
 with InteraktionMusiktask;
 with Fehler;
@@ -20,7 +20,7 @@ package body MusikKonsole is
            InteraktionMusiktask.AktuelleMusik
          is
             when GrafikTonDatentypen.Musik_Konsole_Enum =>
-               delay SystemKonstanten.WartezeitMusik;
+               delay SonstigesKonstanten.WartezeitMusik;
                
             when GrafikTonDatentypen.Musik_Intro_Enum =>
                MusikIntroKonsole.Intro;

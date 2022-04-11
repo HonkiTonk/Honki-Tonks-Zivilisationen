@@ -6,6 +6,7 @@ with Sf;
 with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen;
 with GrafikTonDatentypen;
+with SystemKonstanten;
 
 with GrafikEinstellungenSFML;
 with Eingabe;
@@ -24,13 +25,28 @@ package body AuswahlMenue is
       InteraktionGrafiktask.AktuellesMenü := WelchesMenüExtern;
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Menüs_Enum);
       
-      Ende := EndeMenü (WelchesMenüExtern);
+      -- Wird benötigt damit das hier ohne und mit Überschrift funktioniert.
+      case
+        WelchesMenüExtern
+      is
+         when SystemDatentypen.Menü_Ohne_Überschrift_Enum =>
+            Anfang := 1;
+            
+         when SystemDatentypen.Menü_Mit_Überschrift_Enum =>
+            Anfang := 2;
+            
+         when others =>
+            ----------------------- Später durch einschränken von WelchesMenüExtern entfernen?
+            Anfang := 2;
+      end case;
       
-      Auswahl (WelchesMenüExtern => WelchesMenüExtern);
+      Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern);
+      
+      Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern);
    
       RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
                                                         EndeExtern            => Ende,
-                                                        AktuelleAuswahlExtern => AktuelleAuswahl,
+                                                        AktuelleAuswahlExtern => Ausgewählt,
                                                         WelchesMenüExtern     => WelchesMenüExtern);
       
       InteraktionGrafiktask.AktuellesMenü := SystemDatentypen.Leer_Menü_Enum;
@@ -42,8 +58,9 @@ package body AuswahlMenue is
 
       
    
-   procedure Auswahl
+   function Auswahl
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+      return Positive
    is begin
       
       -------------------------- Ist das so in der SFML Version überhaupt noch sinnvoll? Oder reicht die Mausauswahl?
@@ -93,7 +110,7 @@ package body AuswahlMenue is
                   null;
                   
                else
-                  return;
+                  return AktuelleAuswahl;
                end if;
             
             when others =>

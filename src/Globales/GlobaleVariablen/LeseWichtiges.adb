@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 
 package body LeseWichtiges is
 
@@ -34,9 +34,9 @@ package body LeseWichtiges is
    is begin
 
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate < SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+        GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate < WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
+         GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
          
       else
          null;
@@ -54,9 +54,9 @@ package body LeseWichtiges is
    is begin
 
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge < SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge
+        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge < WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := SonstigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
+         GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
          
       else
          null;
@@ -74,9 +74,9 @@ package body LeseWichtiges is
    is begin
 
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit > SonstigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit
+        GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit > WichtigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := SonstigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit;
+         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := WichtigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit;
          
       else
          null;

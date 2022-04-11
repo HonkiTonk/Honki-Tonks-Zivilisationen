@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with AuswahlMenuesOhneAllesSFML;
+with AuswahlMenuesOhneMitUeberschriftSFML;
 with AuswahlMenuesMitZusatztextSFML;
 with AuswahlMenuesKomplexSFML;
 
@@ -15,12 +15,10 @@ package body AuswahlMenuesSFML is
         WelchesMenüExtern
       is
          when SystemDatentypen.Menü_Ohne_Überschrift_Enum =>
-            AuswahlMenuesOhneAllesSFML.AuswahlMenüsOhneAlles (WelchesMenüExtern => WelchesMenüExtern,
-                                                               ÜberschriftExtern => False);
+            AuswahlMenuesOhneMitUeberschriftSFML.AuswahlMenüsMitOhneÜberschrift (WelchesMenüExtern => WelchesMenüExtern);
             
          when SystemDatentypen.Menü_Mit_Überschrift_Enum =>
-            AuswahlMenuesOhneAllesSFML.AuswahlMenüsOhneAlles (WelchesMenüExtern => WelchesMenüExtern,
-                                                               ÜberschriftExtern => True);
+            AuswahlMenuesOhneMitUeberschriftSFML.AuswahlMenüsMitOhneÜberschrift (WelchesMenüExtern => WelchesMenüExtern);
             
          when SystemDatentypen.Menü_Zusatztext_Enum =>
             AuswahlMenuesMitZusatztextSFML.AuswahlMenüsMitZusatztext;

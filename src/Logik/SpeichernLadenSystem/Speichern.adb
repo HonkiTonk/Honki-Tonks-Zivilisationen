@@ -10,7 +10,7 @@ with GlobaleVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;
-with SystemKonstanten;
+with SonstigesKonstanten;
 with KartenDatentypen;
 with TextKonstanten;
 
@@ -73,7 +73,7 @@ package body Speichern is
    is begin
       
       Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
-                              SystemKonstanten.Versionsnummer);
+                              SonstigesKonstanten.Versionsnummer);
       
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
                                         GlobaleVariablen.IronmanName);

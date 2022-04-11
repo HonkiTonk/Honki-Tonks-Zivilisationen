@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GrafikTonDatentypen; -- use SystemDatentypen;
-with SystemKonstanten;
+with GrafikTonDatentypen;
+with SonstigesKonstanten;
 
 with InteraktionSoundtask;
 with Fehler;
@@ -26,7 +26,7 @@ package body SoundSFML is
                Fehler.SoundFehler (FehlermeldungExtern => "SoundSFML.SoundSFML - Konsole wird bei SFML aufgerufen.");
                
             when GrafikTonDatentypen.Sound_SFML_Enum =>
-               delay SystemKonstanten.WartezeitSound;
+               delay SonstigesKonstanten.WartezeitSound;
                
             when GrafikTonDatentypen.Sound_Ende_Enum =>
                exit SoundSchleife;

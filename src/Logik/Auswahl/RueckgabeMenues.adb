@@ -91,6 +91,10 @@ package body RueckgabeMenues is
             return EditorenMenü (AnfangExtern          => AnfangExtern,
                                   EndeExtern            => EndeExtern,
                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
+         when SystemDatentypen.Einstellungen_Menü_Enum =>
+            ------------------------- Hier noch das Zeug einbauen.
+            raise Program_Error;
       end case;
       
    end RückgabeMenüs;

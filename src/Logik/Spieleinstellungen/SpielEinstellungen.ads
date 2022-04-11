@@ -5,7 +5,7 @@ with SystemDatentypen;
 
 package SpielEinstellungen is
 
-   function SpielEinstellungenAuswahl
+   function Spieleinstellungen
      return SystemDatentypen.Rückgabe_Werte_Enum;
 
 private

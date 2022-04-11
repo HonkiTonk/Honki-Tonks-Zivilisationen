@@ -7,7 +7,7 @@ with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 
 with DatenbankRecords;
 with KartenDatenbank;
@@ -18,7 +18,7 @@ package EingeleseneGrafikenKonsole is
    ---------------------- Alles hier mal besser aufteilen und übersichtlicher gestalten.
    
    type CursorGrafikArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Wide_Wide_Character;
-   CursorGrafik : CursorGrafikArray := (others => SonstigesKonstanten.LeerCursorGrafik);
+   CursorGrafik : CursorGrafikArray := (others => WichtigesKonstanten.LeerCursorGrafik);
 
    type EinheitenGrafikArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.EinheitenListeArray'Range) of Wide_Wide_Character;
    EinheitenGrafik : EinheitenGrafikArray := (

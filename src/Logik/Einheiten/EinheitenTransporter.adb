@@ -24,6 +24,7 @@ package body EinheitenTransporter is
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
+      ------------------------------- Mal in Logik und Grafik und Konsole und SFML aufteilen.
       TextAnzeigeKonsole.AllgemeineAnzeigeText := (others => (TextKonstanten.LeerUnboundedString, 0));
       TextAnzeigeKonsole.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                                        Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));

@@ -217,6 +217,9 @@ package body EinlesenText is
                
             when 40 =>
                Kartenressourcen;
+               
+            when 41 =>
+               Einstellungen;
          end case;
             
          Close (File => DateiTextEinlesen);
@@ -1105,5 +1108,27 @@ package body EinlesenText is
       end loop WegeSchleife;
       
    end Kartenressourcen;
+   
+   
+   
+   procedure Einstellungen
+   is begin
+      
+      EinstellungenSchleife:
+      for WelcheZeileSchleifenwert in GlobaleTexte.Einstellungsmenü'Range loop
+         
+         case
+           VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
+         is
+            when True =>
+               GlobaleTexte.Einstellungsmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => "EinlesenText.Einstellungen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
+               
+            when False =>
+               GlobaleTexte.Einstellungsmenü (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+         end case;
+         
+      end loop EinstellungenSchleife;
+      
+   end Einstellungen;
 
 end EinlesenText;

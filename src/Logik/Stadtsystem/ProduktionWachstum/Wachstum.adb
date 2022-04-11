@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenVerbesserungDatentypen;
@@ -255,10 +255,10 @@ package body Wachstum is
    is begin
       
       SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
-                                              GeldZugewinnExtern  => SonstigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde,
+                                              GeldZugewinnExtern  => WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde,
                                               RechnenSetzenExtern => False);
       SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
-                                               ForschungsrateZugewinnExtern => SonstigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate,
+                                               ForschungsrateZugewinnExtern => WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate,
                                                RechnenSetzenExtern          => False);
       
       StadtSchleife:

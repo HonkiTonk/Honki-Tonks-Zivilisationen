@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 
 with TextAnzeigeKonsole;
 with DiplomatischerZustand;
@@ -84,7 +84,7 @@ package body DiplomatischerZustandAenderbar is
       if
         AktuellerStatus = SystemDatentypen.Nichtangriffspakt_Enum
         and
-          ZeitSeitÄnderung >= SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
+          ZeitSeitÄnderung >= WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
       then
          return True;
          
@@ -144,7 +144,7 @@ package body DiplomatischerZustandAenderbar is
       elsif
         AktuellerStatus = SystemDatentypen.Neutral_Enum
         and
-          ZeitSeitÄnderung >= SonstigesKonstanten.DiplomatischerStatusÄnderungszeit
+          ZeitSeitÄnderung >= WichtigesKonstanten.DiplomatischerStatusÄnderungszeit
       then
          return True;
          

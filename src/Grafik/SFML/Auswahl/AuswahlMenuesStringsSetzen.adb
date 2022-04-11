@@ -57,7 +57,10 @@ package body AuswahlMenuesStringsSetzen is
                AktuellerText := GlobaleTexte.Steuerungmenü (WelcheZeileExtern);
             
          when SystemDatentypen.Editoren_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Editoren (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Editoren (WelcheZeileExtern);
+            
+         when SystemDatentypen.Einstellungen_Menü_Enum =>
+            AktuellerText := GlobaleTexte.Einstellungsmenü (WelcheZeileExtern);
       end case;
             
       return To_Wide_Wide_String (Source => AktuellerText);

@@ -29,7 +29,7 @@ package body Hauptmenue is
            AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Haupt_Menü_Enum)
          is
             when SystemDatentypen.Start_Weiter_Enum =>
-               RückgabeKampagne := SpielEinstellungen.SpielEinstellungenAuswahl;
+               RückgabeKampagne := SpielEinstellungen.Spieleinstellungen;
 
                if
                  RückgabeKampagne = SystemDatentypen.Hauptmenü_Enum

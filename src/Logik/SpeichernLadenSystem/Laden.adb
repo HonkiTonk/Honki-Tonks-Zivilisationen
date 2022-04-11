@@ -11,7 +11,7 @@ with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;
 with KartenDatentypen;
-with SystemKonstanten;
+with SonstigesKonstanten;
 
 with Karten;
 with Ladezeiten;
@@ -47,7 +47,7 @@ package body Laden is
       -- Versionsnummer laden
 
       if
-        VersionsnummerPrüfung = SystemKonstanten.Versionsnummer
+        VersionsnummerPrüfung = SonstigesKonstanten.Versionsnummer
       then
          null;
          

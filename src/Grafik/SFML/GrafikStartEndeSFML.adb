@@ -8,7 +8,7 @@ with Sf.Window.VideoMode;
 
 with GlobaleVariablen;
 with GrafikTonDatentypen;
-with SystemKonstanten;
+with SonstigesKonstanten;
 
 with GrafikEinstellungenSFML;
 with GrafikAllgemeinSFML;
@@ -55,7 +55,7 @@ package body GrafikStartEndeSFML is
             GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.FensterHöhe,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                             title => SystemKonstanten.Spielename,
+                                                                                             title => SonstigesKonstanten.Spielename,
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
       
             GrafikEinstellungenSFML.AktuelleFensterAuflösung.x := GrafikEinstellungenSFML.FensterEinstellungen.FensterBreite;
@@ -67,7 +67,7 @@ package body GrafikStartEndeSFML is
             GrafikEinstellungenSFML.FensterAccess := Sf.Graphics.RenderWindow.createUnicode (mode  => (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x,
                                                                                                        GrafikEinstellungenSFML.AktuelleFensterAuflösung.y,
                                                                                                        GrafikEinstellungenSFML.FensterEinstellungen.Farbtiefe),
-                                                                                             title => SystemKonstanten.Spielename,
+                                                                                             title => SonstigesKonstanten.Spielename,
                                                                                              style => GrafikEinstellungenSFML.FensterEinstellungen.FensterVollbild);
             
          when others =>

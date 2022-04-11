@@ -13,18 +13,24 @@ with SpielEinstellungenRasseSpieler;
 with SpielEinstellungenSonstiges;
 with Fehler;
 with Ladezeiten;
+-- with AuswahlMenue:
 
 package body SpielEinstellungen is
 
-   function SpielEinstellungenAuswahl
+   function Spieleinstellungen
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
-
+      
+      ----------------------- Später auf Standardwerte für alles außer die Rassenbelegung festsetzen und dann nur prüfen ob eine Rasse belegt ist.
       Auswahl := SystemDatentypen.Auswahl_Kartengröße_Enum;
 
-      AuswahlSchleife:
+      SpielEinstellungenSchleife:
       loop
-
+         
+         -- case
+         --   AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Einstellungen_Menü_Enum)
+         -- is
+            
          case
            Auswahl
          is
@@ -50,7 +56,7 @@ package body SpielEinstellungen is
                Auswahl := SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
             when SystemDatentypen.Start_Weiter_Enum =>
-               exit AuswahlSchleife;
+               exit SpielEinstellungenSchleife;
 
             when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                return Auswahl;
@@ -59,11 +65,11 @@ package body SpielEinstellungen is
                null;
          end case;
 
-      end loop AuswahlSchleife;
+      end loop SpielEinstellungenSchleife;
 
       return AutomatischeEinstellungen;
               
-   end SpielEinstellungenAuswahl;
+   end Spieleinstellungen;
    
    
    

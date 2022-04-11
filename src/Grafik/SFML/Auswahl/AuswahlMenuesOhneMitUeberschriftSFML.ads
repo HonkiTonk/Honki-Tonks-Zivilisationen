@@ -6,14 +6,12 @@ with Sf.Graphics;
 with Sf.Graphics.Text;
 
 with SystemDatentypen;
-with GlobaleTexte;
 with InteraktionAuswahl;
 
-package AuswahlMenuesOhneAllesSFML is
+package AuswahlMenuesOhneMitUeberschriftSFML is
 
-   procedure AuswahlMenüsOhneAlles
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift;
-      ÜberschriftExtern : in Boolean);
+   procedure AuswahlMenüsMitOhneÜberschrift
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift);
 
 private
 
@@ -38,17 +36,6 @@ private
    AktuelleAuflösungFloat : Sf.System.Vector2.sfVector2f;
    AktuelleTextposition : Sf.System.Vector2.sfVector2f;
 
-   type EndeMenüArray is array (SystemDatentypen.Menü_Ohne_Mit_Überschrift'Range) of Positive;
-   EndeMenü : constant EndeMenüArray := (
-                                           -- Minus eins beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Konsole.
-                                           SystemDatentypen.Haupt_Menü_Enum    => GlobaleTexte.Hauptmenü'Last - 1,
-                                           SystemDatentypen.Spiel_Menü_Enum    => GlobaleTexte.Spielmenü'Last,
-
-                                           SystemDatentypen.Optionen_Menü_Enum => GlobaleTexte.Optionsmenü'Last,
-                                           ---------------------------------------------------------
-                                           others => 1
-                                          );
-
    type AuflösungBerechnetArray is array (SystemDatentypen.Menü_Ohne_Mit_Überschrift'Range) of Sf.System.Vector2.sfVector2u;
    AuflösungBerechnet : AuflösungBerechnetArray := (
                                                       others => (0, 0)
@@ -58,17 +45,15 @@ private
    TextAccess : constant TextAccessArray := (others => (others => Sf.Graphics.Text.create));
 
    procedure Positionsberechnung
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift;
-      ÜberschriftExtern : in Boolean);
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift);
 
    procedure Titel
      (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift);
 
    procedure Auswahlmöglichkeiten
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift;
-      ÜberschriftExtern : in Boolean);
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift);
 
    procedure VersionsnummerText
      (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift);
 
-end AuswahlMenuesOhneAllesSFML;
+end AuswahlMenuesOhneMitUeberschriftSFML;

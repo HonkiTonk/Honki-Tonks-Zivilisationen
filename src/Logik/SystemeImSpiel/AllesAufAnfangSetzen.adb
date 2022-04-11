@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 with TextKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -20,11 +20,11 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer_Spieler_Enum);
       GlobaleVariablen.EinheitenGebaut := (others => (others => EinheitenKonstanten.LeerEinheit));
       GlobaleVariablen.StadtGebaut := (others => (others => StadtKonstanten.LeerStadt));
-      GlobaleVariablen.Wichtiges := (others => SonstigesKonstanten.LeerWichtigesZeug);
-      GlobaleVariablen.Diplomatie := (others => (others => SonstigesKonstanten.LeerDiplomatie));
+      GlobaleVariablen.Wichtiges := (others => WichtigesKonstanten.LeerWichtigesZeug);
+      GlobaleVariablen.Diplomatie := (others => (others => WichtigesKonstanten.LeerDiplomatie));
       GlobaleVariablen.RundenAnzahl := Positive'First;
       GlobaleVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
-      GlobaleVariablen.CursorImSpiel := (others => SonstigesKonstanten.LeerCursor);
+      GlobaleVariablen.CursorImSpiel := (others => WichtigesKonstanten.LeerCursor);
       GlobaleVariablen.Gewonnen := False;
       GlobaleVariablen.IronmanName := TextKonstanten.LeerUnboundedString;
       GlobaleVariablen.WeiterSpielen := False;

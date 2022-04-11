@@ -8,7 +8,7 @@ with EinheitStadtRecords;
 with SystemRecords;
 with KartenRecords;
 with WichtigeRecords;
-with SonstigesKonstanten;
+with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with EinheitStadtDatentypen;
@@ -42,7 +42,7 @@ package GlobaleVariablen is
 
    -- Cursor
    type CursorImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
-   CursorImSpiel : CursorImSpielArray := (others => SonstigesKonstanten.LeerCursor);
+   CursorImSpiel : CursorImSpielArray := (others => WichtigesKonstanten.LeerCursor);
    -- Cursor
    
    
@@ -63,7 +63,7 @@ package GlobaleVariablen is
    
    -- Später über Nutzereingaben neu belegbar machen.
    type GrenzenArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.GrenzenRecord;
-   Grenzen : GrenzenArray := (others => SonstigesKonstanten.LeerGrenzen);
+   Grenzen : GrenzenArray := (others => WichtigesKonstanten.LeerGrenzen);
    
    IronmanName : Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
    -- Zeug
@@ -86,10 +86,10 @@ package GlobaleVariablen is
 
    -- Wichtiges Zeug
    type WichtigesArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.WichtigesRecord;
-   Wichtiges : WichtigesArray := (others => SonstigesKonstanten.LeerWichtigesZeug);
+   Wichtiges : WichtigesArray := (others => WichtigesKonstanten.LeerWichtigesZeug);
    
    type DiplomatieArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.DiplomatieRecord;
-   Diplomatie : DiplomatieArray := (others => (others => SonstigesKonstanten.LeerDiplomatie));
+   Diplomatie : DiplomatieArray := (others => (others => WichtigesKonstanten.LeerDiplomatie));
    -- Wichtiges Zeug
                                                
 end GlobaleVariablen;
