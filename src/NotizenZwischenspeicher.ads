@@ -1,7 +1,5 @@
 
 
-
-
 procedure AnzeigeSpracheKonsole;
 -- (AktuelleAuswahlExtern : in Positive;
 --  LetzteZeileExtern : in Positive);

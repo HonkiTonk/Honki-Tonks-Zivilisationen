@@ -5,12 +5,12 @@ package SystemDatentypen is
 
    -- Wichtige Werte
    -- Der Leerwert wird vielleicht gar nicht benötigt.
-   -- Auf jeden Fall mal in mehrere Teile aufteilen, dafür mehrere Menüsysteme bauen?
+   -------------------------- Auf jeden Fall mal in mehrere Teile aufteilen, dafür mehrere Menüsysteme bauen?
    type Rückgabe_Werte_Enum is (
                                  Leer_Rückgabe_Enum,
                                  
                                  -- Allgemeines
-                                 Start_Weiter_Enum, Zurück_Enum, Hauptmenü_Enum, Spiel_Beenden_Enum, Ja_Enum, Nein_Enum, Speichern_Enum, Laden_Enum, Optionen_Enum, Informationen_Enum, Wiederherstellen_Enum,
+                                 Start_Weiter_Enum, Zurück_Enum, Hauptmenü_Enum, Spiel_Beenden_Enum, Ja_Enum, Nein_Enum, Speichern_Enum, Laden_Enum, Optionen_Enum, Wiederherstellen_Enum,
                                  Würdigungen_Enum, Runde_Beenden_Enum, Sieg_Enum, Vernichtung_Enum, Zufall_Enum, Eingabe_Enum, Grafik_Enum, Sound_Enum, Steuerung_Enum, Sonstiges_Enum, Fertig_Enum, Schleife_Verlassen_Enum,
                                  Anzahl_Speicherstände_Enum, Runden_Bis_Autospeichern_Enum, Sprache_Enum, Spielmenü_Enum,
                                  
@@ -84,8 +84,9 @@ package SystemDatentypen is
                               );
    
    subtype Welches_Menü_Vorhanden_Enum is Welches_Menü_Enum range Haupt_Menü_Enum .. Welches_Menü_Enum'Last;
-   subtype Menü_Ohne_Überschrift_Enum is Welches_Menü_Enum range Haupt_Menü_Enum .. Spiel_Menü_Enum;
-   subtype Menü_Mit_Überschrift_Enum is Welches_Menü_Enum range Optionen_Menü_Enum .. Editoren_Menü_Enum;
+   subtype Menü_Ohne_Mit_Überschrift is Welches_Menü_Vorhanden_Enum range Haupt_Menü_Enum .. Editoren_Menü_Enum;
+   subtype Menü_Ohne_Überschrift_Enum is Menü_Ohne_Mit_Überschrift range Haupt_Menü_Enum .. Spiel_Menü_Enum;
+   subtype Menü_Mit_Überschrift_Enum is Menü_Ohne_Mit_Überschrift range Optionen_Menü_Enum .. Editoren_Menü_Enum;
    subtype Menü_Zusatztext_Enum is Welches_Menü_Enum range Kartengröße_Menü_Enum .. Rassen_Menü_Enum;
    subtype Menü_Komplex_Enum is Welches_Menü_Enum range Kartenform_Menü_Enum .. Sonstiges_Menü_Enum;
    
@@ -94,7 +95,7 @@ package SystemDatentypen is
    type Welche_Eingabe_Enum is (Keine_Eingabe_Enum, Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum);
    -- Wichtige Werte
 
-
+   
 
    -- Für Anzeige
    type TextDateien is range 0 .. 31;

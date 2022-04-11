@@ -8,13 +8,14 @@ with SystemKonstanten;
 
 with GrafikEinstellungenSFML;
 with AllgemeineTextBerechnungenSFML;
-with AuswahlMenue;
+with AuswahlMenuesStringsSetzen;
 
-package body AuswahlMenuesOhneUeberschriftSFML is
+package body AuswahlMenuesOhneAllesSFML is
 
    ------------------ In AuswahlMenüsOhneAlles umbenennen, ich brauche ja auch noch mit Überschrift ohne Zusatztext und mit Überschrift mit Zusatztext.
-   procedure AuswahlMenüsOhneÜberschrift
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Überschrift_Enum)
+   procedure AuswahlMenüsOhneAlles
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift;
+      ÜberschriftExtern : in Boolean)
    is begin
             
       TextBereich := Überschrift + EndeMenü (WelchesMenüExtern) + Versionsnummer;
@@ -22,6 +23,7 @@ package body AuswahlMenuesOhneUeberschriftSFML is
       AktuelleAuflösung := GrafikEinstellungenSFML.AktuelleFensterAuflösung;
       
       ----------------------- Muss auch bei Änderung der Schriftart, Schriftfarbe und Schriftgröße neu berechnet werden. Später was besseres bauen.
+      -- Eventuell in einzelne Bereiche aufteilen und nur den Geänderten dann neu berechnen?
       if
         AktuelleAuflösung.x /= AuflösungBerechnet (WelchesMenüExtern).x
         or
@@ -38,7 +40,8 @@ package body AuswahlMenuesOhneUeberschriftSFML is
             
          end loop FontSchleife;
                   
-         Positionsberechnung (WelchesMenüExtern => WelchesMenüExtern);
+         Positionsberechnung (WelchesMenüExtern => WelchesMenüExtern,
+                              ÜberschriftExtern => ÜberschriftExtern);
          AuflösungBerechnet (WelchesMenüExtern) := AktuelleAuflösung;
          
       else
@@ -63,17 +66,19 @@ package body AuswahlMenuesOhneUeberschriftSFML is
       TextSchleife:
       for TextSchleifenwert in Überschrift .. TextBereich loop
          
+         -- Da der Textbereich bei jedem Aufruf weiter oben neu ermittelt wird, sollte niemals ein Zugriff außerhalbt des gültigen Bereichs erfolgen.
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
                                             text         => TextAccess (WelchesMenüExtern, TextSchleifenwert));
          
       end loop TextSchleife;
       
-   end AuswahlMenüsOhneÜberschrift;
+   end AuswahlMenüsOhneAlles;
    
    
    
    procedure Positionsberechnung
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Überschrift_Enum)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift;
+      ÜberschriftExtern : in Boolean)
    is begin
       
       Rechenwert.y := Float (AktuelleAuflösung.y / 100);
@@ -87,8 +92,9 @@ package body AuswahlMenuesOhneUeberschriftSFML is
          null;
       end if;
       
-      Spielenamen (WelchesMenüExtern => WelchesMenüExtern);
-      Auswahlmöglichkeiten (WelchesMenüExtern => WelchesMenüExtern);
+      Titel (WelchesMenüExtern => WelchesMenüExtern);
+      Auswahlmöglichkeiten (WelchesMenüExtern => WelchesMenüExtern,
+                             ÜberschriftExtern => ÜberschriftExtern);
       
       Rechenwert.y := Float (AktuelleAuflösung.y) - Float (AktuelleAuflösung.y / 50);
       
@@ -98,13 +104,13 @@ package body AuswahlMenuesOhneUeberschriftSFML is
    
    
    
-   procedure Spielenamen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Überschrift_Enum)
+   procedure Titel
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift)
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift),
                                          str  => SystemKonstanten.Spielename);
-      
+            
       ------------------- Könnte Probleme beim Ändern der Schriftgröße durch den Spieler führen, später was besseres bauen.
       Sf.Graphics.Text.setCharacterSize (text => TextAccess (WelchesMenüExtern, Überschrift),
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
@@ -120,20 +126,31 @@ package body AuswahlMenuesOhneUeberschriftSFML is
       
       Rechenwert.y := Rechenwert.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess (WelchesMenüExtern, Überschrift)).height + ZeilenAbstand;
       
-   end Spielenamen;
+   end Titel;
    
    
    
    procedure Auswahlmöglichkeiten
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Überschrift_Enum)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift;
+      ÜberschriftExtern : in Boolean)
    is begin
+      
+      case
+        ÜberschriftExtern
+      is
+         when True =>
+            ÜberschriftAufschlag := 1;
+            
+         when False =>
+            ÜberschriftAufschlag := 0;
+      end case;
             
       AnzeigeSchleife:
-      for TextSchleifenwert in 1 .. EndeMenü (WelchesMenüExtern) loop
+      for TextSchleifenwert in Überschrift + ÜberschriftAufschlag .. EndeMenü (WelchesMenüExtern) loop
       
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert),
-                                            str  => AuswahlMenue.StringSetzen (WelcheZeileExtern => TextSchleifenwert,
-                                                                               WelchesMenüExtern => WelchesMenüExtern));
+                                            str  => AuswahlMenuesStringsSetzen.StringSetzen (WelcheZeileExtern => TextSchleifenwert,
+                                                                                             WelchesMenüExtern => WelchesMenüExtern));
          
          ------------------- Könnte Probleme beim Ändern der Schriftgröße durch den Spieler führen, später was besseres bauen.
          Sf.Graphics.Text.setCharacterSize (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert),
@@ -168,7 +185,7 @@ package body AuswahlMenuesOhneUeberschriftSFML is
                null;
          end case;
          
-         InteraktionAuswahl.Positionen (WelchesMenüExtern, TextSchleifenwert) := Sf.Graphics.Text.getLocalBounds (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert));
+         InteraktionAuswahl.Positionen (WelchesMenüExtern, TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert));
          
       end loop AnzeigeSchleife;
       
@@ -177,7 +194,7 @@ package body AuswahlMenuesOhneUeberschriftSFML is
    
    
    procedure VersionsnummerText
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Überschrift_Enum)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift)
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, TextBereich),
@@ -198,4 +215,4 @@ package body AuswahlMenuesOhneUeberschriftSFML is
       
    end VersionsnummerText;
 
-end AuswahlMenuesOhneUeberschriftSFML;
+end AuswahlMenuesOhneAllesSFML;

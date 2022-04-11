@@ -62,39 +62,6 @@ package body AllgemeineTextBerechnungenSFML is
    
    
    
-   function TextViertelPositionErmittelnLogik
-     (TextAccessExtern : in Sf.Graphics.sfText_Ptr;
-      LinksRechtsExtern : in Boolean)
-      return Float
-   is begin
-      
-      PositionLogik := Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 4.00;
-      TextHalbeBreiteLogik := TextHalbeBreiteErmitteln (TextAccessExtern => TextAccessExtern);
-      
-      case
-        LinksRechtsExtern
-      is
-         when False =>
-            PositionLogik := PositionLogik - TextHalbeBreiteLogik;
-            
-         when True =>
-            PositionLogik := PositionLogik * 3.00 - TextHalbeBreiteLogik;
-      end case;
-      
-      if
-        PositionLogik in 0.00 .. Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x)
-      then
-         return PositionLogik;
-         
-      else
-         -- Hier später ein Fehler.GrafikStopp einbauen?
-         return PositionLogik;
-      end if;
-      
-   end TextViertelPositionErmittelnLogik;
-   
-   
-   
    function TextHalbeBreiteErmitteln
      (TextAccessExtern : in Sf.Graphics.sfText_Ptr)
       return Float

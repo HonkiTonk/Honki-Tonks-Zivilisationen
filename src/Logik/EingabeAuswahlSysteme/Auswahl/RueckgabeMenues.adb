@@ -128,11 +128,6 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Informationen_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
-      then
          return SystemDatentypen.Würdigungen_Enum;
                     
       elsif

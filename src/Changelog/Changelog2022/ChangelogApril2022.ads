@@ -126,31 +126,31 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (12.04.2022):
+   -- Version 0.01.02 => 0.01.0 (12.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (11.04.2022):
+   -- Version 0.01.02 => 0.01.02 (11.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.02 => 0.01.0 (10.04.2022):
+   -- Version 0.01.0240 => 0.01.0250 (10.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mausauswahl funktioniert jetzt fehlerfrei mit der einfachsten Variante der Menüs;
+   -- Unnötigen Code gelöscht.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 
-   -- Version 0.01.0240 => 0.01.02 (09.04.2022):
+   -- Version 0.01.0240 => 0.01.0240 (09.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 
