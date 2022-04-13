@@ -5,7 +5,7 @@ with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GrafikTonDatentypen;
 with StadtKonstanten;
-with SonstigesKonstanten;
+with ZeitKonstanten;
 
 with Fehler;
 with GrafikStartEndeSFML;
@@ -130,7 +130,7 @@ package body GrafikSFML is
             InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                               
          when GrafikTonDatentypen.Grafik_Pause_Enum =>
-            delay SonstigesKonstanten.WartezeitGrafik;
+            delay ZeitKonstanten.WartezeitGrafik;
             
          when GrafikTonDatentypen.Grafik_Laden_Enum =>
             null;
@@ -156,7 +156,7 @@ package body GrafikSFML is
             if
               AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
             then
-               delay SonstigesKonstanten.WartezeitGrafik;
+               delay ZeitKonstanten.WartezeitGrafik;
                      
             else
                Karte.AnzeigeKarte (RasseExtern => AktuelleRasse);
@@ -171,7 +171,7 @@ package body GrafikSFML is
               or
                 AktuelleStadtNummer = StadtKonstanten.LeerNummer
             then
-               delay SonstigesKonstanten.WartezeitGrafik;
+               delay ZeitKonstanten.WartezeitGrafik;
                   
             else
                KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (AktuelleRasse, AktuelleStadtNummer));

@@ -7,8 +7,6 @@ with Sf.Window.Event;
 with Sf.Window.Keyboard;
 with Sf.Window.Mouse;
 
--- with SystemRecords;
-
 package EingabeSystemeSFML is
 
    ErfolgreichAbbruch : Boolean;
@@ -26,7 +24,6 @@ package EingabeSystemeSFML is
 
 
    procedure TextEingeben;
-     -- return SystemRecords.TextEingabeRecord;
 
 private
 

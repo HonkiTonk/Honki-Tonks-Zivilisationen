@@ -345,10 +345,10 @@ package body ImSpiel is
         GlobaleVariablen.AnzeigeArt
       is
          when GrafikTonDatentypen.Grafik_Konsole_Enum =>
-            return BefehleKonsole.BefehleKonsole (RasseExtern => RasseExtern);
+            return BefehleKonsole.Befehle (RasseExtern => RasseExtern);
             
          when GrafikTonDatentypen.Grafik_SFML_Enum =>
-            return BefehleSFML.BefehleSFML (RasseExtern => RasseExtern);
+            return BefehleSFML.Befehle (RasseExtern => RasseExtern);
       end case;
       
    end Befehle;

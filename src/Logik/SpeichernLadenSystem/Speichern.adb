@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+-- with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -17,11 +17,12 @@ with TextKonstanten;
 with Karten;
 with Auswahl;
 with Ladezeiten;
-with SpeichernLadenAllgemein;
+-- with SpeichernLadenAllgemein;
 with LadezeitenDatentypen;
 
 package body Speichern is
 
+   ------------------------ Funktioniert durch die Anpassung der Namenseingabe nicht mehr. Korrigieren!
    procedure SpeichernNeu
      (AutospeichernExtern : in Boolean)
    is begin
@@ -38,9 +39,9 @@ package body Speichern is
 
       LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      Create (File => DateiSpeichernNeu,
-              Mode => Out_File,
-              Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName.EingegebenerText))));
+    --  Create (File => DateiSpeichernNeu,
+    --          Mode => Out_File,
+    --          Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName.EingegebenerText))));
       
       SonstigesSpeichern;
       KarteSpeichern;
@@ -320,14 +321,15 @@ package body Speichern is
       if
         To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= TextKonstanten.LeerString
       then
-         SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
+         null;
+         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
                
       else
          -- Anzeige der vorhandenen Spielstände einbauen
-         case
-           SpeichernLadenAllgemein.SpielstandNameErmitteln
-         is
-            when True =>
+       --  case
+       --    SpeichernLadenAllgemein.SpielstandNameErmitteln
+       --  is
+       --     when True =>
                if
                  Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = SystemDatentypen.Ja_Enum
                then
@@ -337,9 +339,9 @@ package body Speichern is
                   return False;
                end if;
 
-            when False =>
-               null;
-         end case;
+         --   when False =>
+        --       null;
+       --  end case;
       end if;
       
       return True;
@@ -354,11 +356,12 @@ package body Speichern is
       if
         To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= TextKonstanten.LeerString
       then
-         SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
+         null;
+         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
                
       else
          -- Hier kann Wide_Wide_Image bleiben weil die Zahl ja nur als Namensbestandteil für den Spielstand fungiert.
-         SpeichernLadenAllgemein.SpielstandName.EingegebenerText := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
          if
            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
          then

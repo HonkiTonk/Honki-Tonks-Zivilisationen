@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikTonDatentypen;
-with SonstigesKonstanten;
+with ZeitKonstanten;
 
 with InteraktionGrafiktask;
 with GrafikKonsole;
@@ -17,7 +17,7 @@ package body StartGrafik is
       GrafikStartenSchleife:
       while InteraktionGrafiktask.ErzeugeFensterAbrufen = False loop
 
-         delay SonstigesKonstanten.WartezeitGrafik;
+         delay ZeitKonstanten.WartezeitGrafik;
          
       end loop GrafikStartenSchleife;
             

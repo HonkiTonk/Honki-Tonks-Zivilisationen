@@ -178,20 +178,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Optionen_Enum;
                     
-      elsif
-        AktuelleAuswahlExtern = EndeExtern - 1
-      then
-         return SystemDatentypen.Hauptmenü_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = EndeExtern
-      then
-         return SystemDatentypen.Spiel_Beenden_Enum;
-                    
       else
-         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Spielmenü - Ungültige Auswahl.");
-         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return HauptmenüEnde (EndeExtern            => EndeExtern,
+                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end Spielmenü;
@@ -226,8 +215,8 @@ package body RueckgabeMenues is
          return SystemDatentypen.Sonstiges_Enum;
                     
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+         return HauptmenüEnde (EndeExtern            => EndeExtern,
+                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end Optionsmenü;
@@ -919,16 +908,41 @@ package body RueckgabeMenues is
       end if;
       
    end Fertig;
-     
    
    
    
-   function ZurückHauptmenüEnde
+   function HauptmenüEnde
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
+      if
+        AktuelleAuswahlExtern = EndeExtern - 1
+      then
+         return SystemDatentypen.Hauptmenü_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern
+      then
+         return SystemDatentypen.Spiel_Beenden_Enum;
+                    
+      else
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden_Enum;
+      end if;
+      
+   end HauptmenüEnde;
+        
+   
+   
+   function ZurückHauptmenüEnde
+     (EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+         return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+         
       if
         AktuelleAuswahlExtern = EndeExtern - 2
       then

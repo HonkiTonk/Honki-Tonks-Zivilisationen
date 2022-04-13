@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GrafikTonDatentypen; use GrafikTonDatentypen;
 with SystemDatentypen; use SystemDatentypen;
-with SonstigesKonstanten;
+with ZeitKonstanten;
 
 with InteraktionLogiktask;
 with GrafikIntroKonsole;
@@ -42,7 +42,7 @@ package body GrafikKonsole is
                InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
                               
             when GrafikTonDatentypen.Grafik_Pause_Enum =>
-               delay SonstigesKonstanten.WartezeitGrafik;
+               delay ZeitKonstanten.WartezeitGrafik;
                
             when GrafikTonDatentypen.Grafik_Laden_Enum =>
                null;
@@ -59,7 +59,7 @@ package body GrafikKonsole is
                  ---------------------- Leerwert mal auf die leere Konstante umschreiben? Vielleicht generell bei Leerwerten machen?
                  InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse_Enum
                then
-                  delay SonstigesKonstanten.WartezeitGrafik;
+                  delay ZeitKonstanten.WartezeitGrafik;
                      
                else
                   Karte.AnzeigeKarte (RasseExtern => InteraktionLogiktask.AktuelleRasseAbrufen);

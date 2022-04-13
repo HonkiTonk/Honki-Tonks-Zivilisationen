@@ -352,7 +352,6 @@ package body EingabeSFML is
         To_Wide_Wide_String (Source => Name.EingegebenerText)'Length
       is
          when 0 =>
-            -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist?
             return (True, To_Unbounded_Wide_Wide_String (Source => "Kein Name"));
               
          when others =>

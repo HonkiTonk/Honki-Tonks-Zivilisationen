@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikTonDatentypen;
-with SonstigesKonstanten;
+with ZeitKonstanten;
 
 with InteraktionMusiktask;
 with Fehler;
@@ -31,7 +31,7 @@ package body MusikSFML is
                MusikIntroSFML.Intro;
                
             when GrafikTonDatentypen.Musik_SFML_Enum =>
-               delay SonstigesKonstanten.WartezeitSound;
+               delay ZeitKonstanten.WartezeitSound;
                
             when GrafikTonDatentypen.Musik_Ende_Enum =>
                exit MusikSchleife;

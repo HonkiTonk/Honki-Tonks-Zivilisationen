@@ -91,38 +91,43 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (17.04.2022):
+   -- Version 0.01.03 => 0.01.0 (17.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (16.04.2022):
+   -- Version 0.01.03 => 0.01.03 (16.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (15.04.2022):
+   -- Version 0.01.03 => 0.01.03 (15.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.02 => 0.01.0 (14.04.2022):
+   -- Version 0.01.0290 => 0.01.03 (14.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0270 => 0.01.02 (13.04.2022):
+   -- Version 0.01.0270 => 0.01.0290 (13.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Absturzfehler im einfachem Menüsystem behoben.
+   -- Anzeige des einfachen Menüsystems überabeitet, so dass jetzt nur noch bei entsprechenden Nutzeränderungen an den Texteinstellungen der jeweilig geänderte Bereich neu berechent/zugewiesen wird.
+   -- Codeformatierung überarbeitet.
+   -- Wenn die Texteingabe abgebrochen wird, dann wird der Text jetzt auf LeerUnboundedString um nicht unnötig viel zurück zu übergeben.
+   -- Prüfung eingebaut um zu verhindern dass der Name eines Spielstandes länger als 256 Zeichen ist und damit zu lang für aktuelle Dateisysteme ist.
+   -- Angefangen die Logik genau wie die Grafik in Allgemeines, Konsole und SFML aufzuteilen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt.
    
    
 
@@ -130,7 +135,7 @@ package ChangelogApril2022 is
    
    -- Inzwischen größtenteils funktionslose Konsolencode ausgeklammert und veralteten Code gelöscht.
    -- Weiter an den neuen Menüsystem gebaut.
-   -- Kommentare und Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikTonDatentypen;
-with SonstigesKonstanten;
+with ZeitKonstanten;
 with GlobaleVariablen;
 
 with InteraktionLogiktask;
@@ -29,7 +29,7 @@ package body StartMusik is
       EinlesenAbwartenSchleife:
       while InteraktionLogiktask.EinlesenAbgeschlossen = False loop
          
-         delay SonstigesKonstanten.WartezeitMusik;
+         delay ZeitKonstanten.WartezeitMusik;
          
       end loop EinlesenAbwartenSchleife;
       

@@ -10,9 +10,12 @@ with GlobaleVariablen;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
+with LeseWichtiges;
 
 with InDerStadt;
+with BewegungEinheitenKonsole;
 with BewegungCursor;
+with Auswahl;
 with NaechstesObjekt;
 with Aufgaben;
 with Diplomatie;
@@ -23,16 +26,16 @@ with StadtSuchen;
 with Eingabe;
 with ForschungAllgemein;
 with StadtEntfernen;
+with EinheitenTransporter;
 with TransporterSuchen;
 with EinheitenBeschreibungen;
 with EinheitenModifizieren;
 with AufgabenAllgemein;
-with BewegungEinheitenSFML;
-with AuswahlStadtEinheit;
+with ForschungAnzeigeKonsole;
 
-package body BefehleSFML is
-   
-   function BefehleSFML
+package body BefehleKonsole is
+
+   function Befehle
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
@@ -57,15 +60,13 @@ package body BefehleSFML is
             BaueStadt (RasseExtern => RasseExtern);
            
          when TastenbelegungDatentypen.Forschung_Enum =>
-            ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
+            Technologie (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Tech_Baum_Enum =>
             -- Kann in der SMFL Version ignoriert werden oder das auch in der Konsolenversion ändern und den Befehl komplett wegwerfen?
-            -- ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
-            null;
+            -- Muss bei reiner Anzeige dann auf jeden Fall auch in den Grafikteil.
+            ForschungAnzeigeKonsole.ForschungsBaum (RasseExtern => RasseExtern);
             
-            -- Die folgenden vier Befehle scheinen gar nicht mehr zu funktionieren.
-            -- genau wie bei GeheZu könnte es eventuell helfen nicht den Cursor zu platzieren sondern den Rendermittelpunkt dahin zu verschieben.
          when TastenbelegungDatentypen.Nächste_Stadt_Enum =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
@@ -93,12 +94,7 @@ package body BefehleSFML is
             Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
 
          when TastenbelegungDatentypen.Gehe_Zu_Enum =>
-            -- Funktioniert in der SFML nicht richtig. Fehler liegt irgendwo im Grafikteil da die Logik nach wie vor weiterläuft.
-            -- Möglicherweise in BerechnungenKarteSFML.SichtbereichKarteBerechnen oder weil die Darstellungsermittlung läuft während BewegungCursor.GeheZuCursor die Werte des Cursors ändert.
-            -- Eventuell war es auch die Vermischung der Kartenkoordinatenermittlung in BerechnungenKarteSFML die diesen Fehler ausgelöst hat.
-            -- Auf jeden Fall nicht mehr hier einbinden, da sonst wieder die Ermittlung von Logik und Grafik gleichzeitig aufgerufen wird. 
-            -- BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
-            null;
+            BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
 
          when TastenbelegungDatentypen.Stadt_Umbenennen_Enum =>
             StadtUmbenennen (RasseExtern => RasseExtern);
@@ -123,14 +119,14 @@ package body BefehleSFML is
             
          when TastenbelegungDatentypen.Debugmenü_Enum =>
             DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
-            
+         
          when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
             null;
       end case;
-      
+
       return SystemDatentypen.Start_Weiter_Enum;
       
-   end BefehleSFML;
+   end Befehle;
    
    
    
@@ -148,15 +144,18 @@ package body BefehleSFML is
         and
           StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         -- Transporter sollten in der Stadt nicht beladen sein, deswegen es hier keine Prüfung auf Transporter braucht.
          EinheitOderStadt (RasseExtern         => RasseExtern,
+                           AuswahlExtern       => Auswahl.AuswahlJaNein (FrageZeileExtern => 15),
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
       elsif
         StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
-         StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+         EinheitOderStadt (RasseExtern         => RasseExtern,
+                           AuswahlExtern       => SystemDatentypen.Ja_Enum,
+                           StadtNummerExtern   => StadtNummer,
+                           EinheitNummerExtern => EinheitNummer);
          
       elsif
         EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
@@ -182,36 +181,29 @@ package body BefehleSFML is
         and
           Transportiert = False
       then
-         TransporterNummer := EinheitRasseNummerExtern.Platznummer;
-         AusgewählteEinheit := 0;
+         EinheitTransportNummer := EinheitRasseNummerExtern.Platznummer;
 
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
       then
-         TransporterNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         AusgewählteEinheit := AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                                                                         StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
-                                                                         EinheitNummerExtern => TransporterNummer);
+         EinheitTransportNummer:= EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern =>
+                                                                                       (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
 
       else
-         TransporterNummer := EinheitRasseNummerExtern.Platznummer;
-         AusgewählteEinheit := AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                                                                         StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
-                                                                         EinheitNummerExtern => TransporterNummer);
+         EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
       case
-        AusgewählteEinheit
+        EinheitTransportNummer
       is
-         when 0 =>
-            EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer));
-            
-         when Positive (EinheitStadtRecords.TransporterArray'First) .. Positive (EinheitStadtRecords.TransporterArray'Last) =>
-            EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer),
-                                                                                                                            PlatzExtern              => EinheitStadtDatentypen.Transportplätze (AusgewählteEinheit))));
-            
-         when others =>
+         when EinheitenKonstanten.LeerNummer =>
             null;
+                        
+         when others =>
+            EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                              AuswahlExtern       => SystemDatentypen.Nein_Enum,
+                              StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
+                              EinheitNummerExtern => EinheitTransportNummer);
       end case;
       
    end AuswahlEinheitTransporter;
@@ -220,23 +212,19 @@ package body BefehleSFML is
 
    procedure EinheitOderStadt
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      AuswahlExtern : in SystemDatentypen.Rückgabe_Werte_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
    is begin
       
       case
-        AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => RasseExtern,
-                                                 StadtNummerExtern   => StadtNummerExtern,
-                                                 EinheitNummerExtern => EinheitNummerExtern)
+        AuswahlExtern
       is
-         when 0 =>
+         when SystemDatentypen.Ja_Enum =>
             StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
-         when 1 =>
-            EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
-               
          when others =>
-            null;
+            EinheitSteuern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
       end case;
       
    end EinheitOderStadt;
@@ -247,6 +235,8 @@ package body BefehleSFML is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse := 1;
+      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse := 1;
       InDerStadt.InDerStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtBetreten;
@@ -265,12 +255,12 @@ package body BefehleSFML is
          AufgabenAllgemein.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   
       elsif
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerBewegungspunkte
       then
          null;
                      
       else
-         BewegungEinheitenSFML.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         BewegungEinheitenKonsole.BewegungEinheitenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end if;
       
    end EinheitSteuern;
@@ -294,15 +284,44 @@ package body BefehleSFML is
       end case;
       
       if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) > EinheitenKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) > EinheitenKonstanten.LeerBewegungspunkte
       then
-         StadtErfolgreichGebaut := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+         NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
       else
          null;
       end if;
       
    end BaueStadt;
+   
+   
+   
+   procedure Technologie
+     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      case
+        LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
+      is
+         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
+            ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
+            return;
+            
+         when others =>
+            null;
+      end case;
+                    
+      case
+        Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
+      is
+         when SystemDatentypen.Ja_Enum =>
+            ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
+                     
+         when others =>
+            null;
+      end case;
+      
+   end Technologie;
    
    
    
@@ -323,8 +342,9 @@ package body BefehleSFML is
       end if;
             
       if
-        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = EinheitenKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = EinheitenKonstanten.LeerBewegungspunkte
       then
+         
          AufgabeDurchführen := False;
                      
       else
@@ -347,7 +367,7 @@ package body BefehleSFML is
         StadtNummer = StadtKonstanten.LeerNummer
       then
          null;
-         
+                  
       else
          NeuerName := Eingabe.StadtName;
          
@@ -383,16 +403,16 @@ package body BefehleSFML is
             null;
       end case;
          
-      -- case
-      --    Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
-      --  is
-      --     when SystemDatentypen.Ja_Enum =>
-      StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
+      case
+        Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
+      is
+         when SystemDatentypen.Ja_Enum =>
+            StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
-      --   when others =>
-      --      null;
-      --  end case;
+         when others =>
+            null;
+      end case;
       
    end StadtAbreißen;
 
-end BefehleSFML;
+end BefehleKonsole;

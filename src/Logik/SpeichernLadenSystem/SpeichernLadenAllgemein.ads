@@ -5,9 +5,13 @@ with SystemRecords;
 
 package SpeichernLadenAllgemein is
 
-   SpielstandName : SystemRecords.TextEingabeRecord;
-   
    function SpielstandNameErmitteln
-     return Boolean;
+     return SystemRecords.TextEingabeRecord;
+   
+private
+   
+   MaximaleZeichenlängeDateisystem : constant Positive := 256;
+   
+   SpielstandName : SystemRecords.TextEingabeRecord;
 
 end SpeichernLadenAllgemein;

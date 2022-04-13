@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Streams.Stream_IO; use Ada.Streams.Stream_IO;
 
+with SystemRecords;
+
 package Speichern is
 
    procedure SpeichernNeu
@@ -15,6 +17,8 @@ private
    AutospeichernWert : Positive := 1;
 
    DateiSpeichernNeu : File_Type;
+
+   NameSpielstand : SystemRecords.TextEingabeRecord;
 
    procedure SonstigesSpeichern;
    procedure KarteSpeichern;

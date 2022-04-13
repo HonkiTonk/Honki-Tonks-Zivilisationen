@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikTonDatentypen; use GrafikTonDatentypen;
-with SonstigesKonstanten;
+with ZeitKonstanten;
 
 with SchreibenVerzeichnisse;
 with EinlesenEinstellungen;
@@ -26,7 +26,7 @@ package body StartLogik is
       FensterVorhandenSchleife:
       while InteraktionLogiktask.FensterErzeugtAbrufen = False loop
          
-         delay SonstigesKonstanten.WartezeitLogik;
+         delay ZeitKonstanten.WartezeitLogik;
          
       end loop FensterVorhandenSchleife;
       
@@ -38,7 +38,7 @@ package body StartLogik is
       IntroSchleife:
       while InteraktionGrafiktask.AktuelleDarstellungAbrufen = GrafikTonDatentypen.Grafik_Intro_Enum loop
          
-         delay SonstigesKonstanten.WartezeitLogik;
+         delay ZeitKonstanten.WartezeitLogik;
          
       end loop IntroSchleife;
       

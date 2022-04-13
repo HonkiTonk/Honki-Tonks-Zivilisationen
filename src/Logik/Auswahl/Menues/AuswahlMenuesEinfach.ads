@@ -18,6 +18,8 @@ private
    Ausgewählt : Positive;
 
    AktuelleAuswahl : Natural := 1;
+   AnfangAbzug : Natural;
+   EndeAbzug : Natural;
 
    RückgabeWert : SystemDatentypen.Rückgabe_Werte_Enum;
 

@@ -7,8 +7,7 @@ with Sf; use Sf;
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with Sf.Graphics.RenderWindow;
 
--- with SystemKonstanten;
--- with SystemDatentypen;
+with TextKonstanten;
 
 with GrafikEinstellungenSFML;
 with InteraktionGrafiktask;
@@ -97,6 +96,7 @@ package body EingabeSystemeSFML is
                  TextEingegeben.key.code = Sf.Window.Keyboard.sfKeyEscape
                then
                   ErfolgreichAbbruch := False;
+                  EingegebenerText := TextKonstanten.LeerUnboundedString;
                   InteraktionGrafiktask.TextEingabe := False;
                   
                else

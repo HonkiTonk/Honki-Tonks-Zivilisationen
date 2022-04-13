@@ -31,17 +31,21 @@ package body AuswahlMenuesEinfach is
       is
          when SystemDatentypen.Menü_Ohne_Überschrift_Enum =>
             Anfang := 1;
+            AnfangAbzug := 0;
+            EndeAbzug := 0;
             
          when SystemDatentypen.Menü_Mit_Überschrift_Enum =>
             Anfang := 2;
+            AnfangAbzug := 1;
+            EndeAbzug := 1;
       end case;
       
       Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern);
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern);
    
-      RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
-                                                        EndeExtern            => Ende,
+      RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang - AnfangAbzug,
+                                                        EndeExtern            => Ende - EndeAbzug,
                                                         AktuelleAuswahlExtern => Ausgewählt,
                                                         WelchesMenüExtern     => WelchesMenüExtern);
       
@@ -92,7 +96,7 @@ package body AuswahlMenuesEinfach is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                
-               -- Später noch erweitern?
+               -- Später noch erweitern oder entfernen?
             when TastenbelegungDatentypen.Links_Enum =>
                null;
                

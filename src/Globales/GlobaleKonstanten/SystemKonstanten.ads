@@ -10,7 +10,7 @@ package SystemKonstanten is
                                            SystemDatentypen.Haupt_Menü_Enum              => 6,
                                            SystemDatentypen.Spiel_Menü_Enum              => 7,
 
-                                           SystemDatentypen.Optionen_Menü_Enum           => 8,
+                                           SystemDatentypen.Optionen_Menü_Enum           => 7,
                                            SystemDatentypen.Einstellungen_Menü_Enum      => 11,
                                            SystemDatentypen.Editoren_Menü_Enum           => 17,
 
