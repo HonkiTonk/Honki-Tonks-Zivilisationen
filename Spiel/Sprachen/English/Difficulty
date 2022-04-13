@@ -3,13 +3,9 @@ Easy
 Medium
 Hard
 Random
-Return
-Main menu
-Exit game
+Finished
 Start the game on easy (currently there is only one level of difficulty).
 Start the game on medium (currently there is only one level of difficulty).
 Start the game on hard (currently there is only one level of difficulty).
 Select a random level of difficulty (currently there is only one level of difficulty).
-Back to the selection of races.
-Back to main menu.
-Quit the game.
+Finish selection and continue.

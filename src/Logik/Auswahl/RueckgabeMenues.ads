@@ -31,6 +31,12 @@ private
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum;
+   
+   function SpieleinstellungenMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function KartengrößeAuswählen
      (AnfangExtern : in Positive;
@@ -94,6 +100,11 @@ private
    function SonstigesMenü
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum;
+   
+   function Fertig
+     (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return SystemDatentypen.Rückgabe_Werte_Enum;
    

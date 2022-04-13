@@ -5,10 +5,10 @@ with Sf.System.Vector2;
 
 with SystemDatentypen;
 
-package AuswahlMenue is
+package AuswahlMenuesEinfach is
 
-   function AuswahlMenü
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+   function AuswahlMenüsEinfach
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
       return SystemDatentypen.Rückgabe_Werte_Enum;
 
 private
@@ -24,11 +24,11 @@ private
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
    function Auswahl
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
       return Positive;
 
    function MausAuswahl
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
       return Natural;
 
-end AuswahlMenue;
+end AuswahlMenuesEinfach;

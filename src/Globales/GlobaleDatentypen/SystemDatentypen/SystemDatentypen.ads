@@ -72,42 +72,43 @@ package SystemDatentypen is
    
    
    type Welches_Menü_Enum is ( ------------------ Wird Leer hier überhaupt benötigt?
-                               Leer_Menü_Enum,
+                                Leer_Menü_Enum,
                                
-                               Haupt_Menü_Enum, Spiel_Menü_Enum,
+                                Haupt_Menü_Enum, Spiel_Menü_Enum,
                                
-                               Optionen_Menü_Enum, Einstellungen_Menü_Enum, Editoren_Menü_Enum,
+                                Optionen_Menü_Enum, Einstellungen_Menü_Enum, Editoren_Menü_Enum,
                                
-                               Kartengröße_Menü_Enum, Kartenart_Menü_Enum, Kartentemperatur_Menü_Enum, Kartenressourcen_Menü_Enum, Schwierigkeitsgrad_Menü_Enum, Rassen_Menü_Enum, 
-                               
-                               Kartenform_Menü_Enum, Grafik_Menü_Enum, Sound_Menü_Enum, Steuerung_Menü_Enum, Sonstiges_Menü_Enum
-                              );
+                                Kartengröße_Menü_Enum, Kartenart_Menü_Enum, Kartentemperatur_Menü_Enum, Kartenressourcen_Menü_Enum, Schwierigkeitsgrad_Menü_Enum, Rassen_Menü_Enum,
+                                
+                                Kartenform_Menü_Enum, Grafik_Menü_Enum, Sound_Menü_Enum, Steuerung_Menü_Enum, Sonstiges_Menü_Enum
+                               );
    
    subtype Welches_Menü_Vorhanden_Enum is Welches_Menü_Enum range Haupt_Menü_Enum .. Welches_Menü_Enum'Last;
-   subtype Menü_Ohne_Mit_Überschrift is Welches_Menü_Vorhanden_Enum range Haupt_Menü_Enum .. Editoren_Menü_Enum;
-   subtype Menü_Ohne_Überschrift_Enum is Menü_Ohne_Mit_Überschrift range Haupt_Menü_Enum .. Spiel_Menü_Enum;
-   subtype Menü_Mit_Überschrift_Enum is Menü_Ohne_Mit_Überschrift range Optionen_Menü_Enum .. Editoren_Menü_Enum;
+   subtype Menü_Einfach_Enum is Welches_Menü_Vorhanden_Enum range Haupt_Menü_Enum .. Editoren_Menü_Enum;
+   subtype Menü_Ohne_Überschrift_Enum is Menü_Einfach_Enum range Haupt_Menü_Enum .. Spiel_Menü_Enum;
+   subtype Menü_Mit_Überschrift_Enum is Menü_Einfach_Enum range Optionen_Menü_Enum .. Editoren_Menü_Enum;
    subtype Menü_Zusatztext_Enum is Welches_Menü_Enum range Kartengröße_Menü_Enum .. Rassen_Menü_Enum;
    subtype Menü_Komplex_Enum is Welches_Menü_Enum range Kartenform_Menü_Enum .. Sonstiges_Menü_Enum;
    
-   type Anfang_Ende_Enum is (Anfangswert_Enum, Endwert_Enum);
+   type Anfang_Ende_Enum is (
+                             Anfangswert_Enum, Endwert_Enum
+                            );
    
-   type Welche_Eingabe_Enum is (Keine_Eingabe_Enum, Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum);
+   type Welche_Eingabe_Enum is (
+                                Keine_Eingabe_Enum,
+                                
+                                Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum
+                               );
    -- Wichtige Werte
-
-   
-
-   -- Für Anzeige
-   type TextDateien is range 0 .. 41;
-   
-   type TextZeilen is range 0 .. 93;
-   subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
-   -- Für Anzeige
    
    
    
    -- Sonstiges
-   type Spieler_Enum is (Leer_Spieler_Enum, Spieler_Mensch_Enum, Spieler_KI_Enum);
+   type Spieler_Enum is (
+                         Leer_Spieler_Enum,
+                         
+                         Spieler_Mensch_Enum, Spieler_KI_Enum
+                        );
    pragma Ordered (Spieler_Enum);
    
    type RassenImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Spieler_Enum;
@@ -123,7 +124,9 @@ package SystemDatentypen is
 
 
    -- Für Diplomatie
-   type Status_Untereinander_Enum is (Unbekannt_Enum, Neutral_Enum, Nichtangriffspakt_Enum, Krieg_Enum);
+   type Status_Untereinander_Enum is (
+                                      Unbekannt_Enum, Neutral_Enum, Nichtangriffspakt_Enum, Krieg_Enum
+                                     );
    subtype Status_Untereinander_Bekannt_Enum is Status_Untereinander_Enum range Neutral_Enum .. Status_Untereinander_Enum'Last;
    -- Für Diplomatie
 

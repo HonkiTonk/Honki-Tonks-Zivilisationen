@@ -1,14 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleTexte;
+-- with GlobaleTexte;
 
 with Karte;
 with Eingabe;
 with EinheitenModifizieren;
 with StadtBauen;
 with Aufgaben;
-with TextAnzeigeKonsole;
+-- with TextAnzeigeKonsole;
 with BewegungEinheiten;
 
 package body BewegungEinheitenKonsole is
@@ -48,8 +48,8 @@ package body BewegungEinheitenKonsole is
                
                   when False =>
                      Änderung := KeineÄnderung;
-                     TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                                      TextZeileExtern => 2);
+                     -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                     --                                                 TextZeileExtern => 2);
                end case;
                
             when TastenbelegungDatentypen.Bauen_Enum =>

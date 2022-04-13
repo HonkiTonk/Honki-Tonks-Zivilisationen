@@ -112,31 +112,32 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (14.04.2022):
+   -- Version 0.01.02 => 0.01.0 (14.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.02 => 0.01.0 (13.04.2022):
+   -- Version 0.01.0270 => 0.01.02 (13.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0260 => 0.01.02 (12.04.2022):
+   -- Version 0.01.0260 => 0.01.0270 (12.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Inzwischen größtenteils funktionslose Konsolencode ausgeklammert und veralteten Code gelöscht.
+   -- Weiter an den neuen Menüsystem gebaut.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
    -- Version 0.01.0250 => 0.01.0260 (11.04.2022):
    
    -- Einfaches Menüsystem funktioniert jetzt auch mit beliebiger Überschrift.
-   -- Internet Struktur leicht überarbeitet.
+   -- Interne Struktur leicht überarbeitet.
    -- Angefangen die komplexere Variante des Menüsystems einzubauen.
    -- Angefangen die Spieleinstellungen zu überarbeiten.
    -- Kommentare und Kleinigkeiten korrigiert/angepasst.

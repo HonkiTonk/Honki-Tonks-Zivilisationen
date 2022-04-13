@@ -95,9 +95,6 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
 
-   function ForschungAuswahlKonsole
-     return EinheitStadtDatentypen.ForschungIDMitNullWert;
-
    function ForschungAuswahlSFML
      return EinheitStadtDatentypen.ForschungIDMitNullWert;
 

@@ -10,7 +10,7 @@ with EinlesenText;
 
 with AuswahlSprache;
 with Eingabe;
-with AuswahlMenue;
+with AuswahlMenues;
 with Fehler;
 
 package body OptionenSonstiges is
@@ -22,7 +22,7 @@ package body OptionenSonstiges is
       SonstigesSchleife:
       loop
 
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Sonstiges_Menü_Enum);
+         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Sonstiges_Menü_Enum);
 
          case
            AuswahlWert

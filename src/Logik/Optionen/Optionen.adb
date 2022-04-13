@@ -5,7 +5,7 @@ with OptionenSteuerung;
 with OptionenSound;
 with OptionenGrafik;
 with OptionenSonstiges;
-with AuswahlMenue;
+with AuswahlMenues;
 with Fehler;
 
 package body Optionen is
@@ -17,7 +17,7 @@ package body Optionen is
       OptionenSchleife:
       loop
          
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Optionen_Menü_Enum);
+         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Optionen_Menü_Enum);
 
          case
            AuswahlWert

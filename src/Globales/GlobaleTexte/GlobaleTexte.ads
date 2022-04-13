@@ -5,24 +5,14 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with SystemDatentypen;
 with EinheitStadtDatentypen;
-with TextKonstanten;
 with SystemKonstanten;
 
 package GlobaleTexte is
-
-   ------------------- Die foglenden zwei Enums werden später eh gelöscht/ersetzt, also kann ich mir das Hinzufügen von _Enum hier sparen.
-   type Welche_Datei_Enum is (Leer, Start, Feste_Abfragen, Spiel_Einstellungen, Rassen_Beschreibung_Lang, Menü_Auswahl, Beschreibungen_Kartenfelder_Kurz, Beschreibungen_Kartenfelder_Lang, Fehlermeldungen, Zeug,
-                              Fragen, Ladezeiten, Beschreibungen_Einheiten_Kurz, Beschreibungen_Einheiten_Lang, Beschreibungen_Verbesserungen_Kurz, Beschreibungen_Verbesserungen_Lang, Beschreibungen_Gebäude_Kurz,
-                              Beschreibungen_Gebäude_Lang, Beschreibungen_Forschung_Kurz, Beschreibungen_Forschung_Lang, Beschreibungen_Beschäftigung_Kurz, Beschreibungen_Beschäftigung_Lang, Städtenamen_KI, Cheat_Menü,
-                              Rassen_Beschreibung_Kurz, Beschreibung_Forschung_Ermöglicht, Allgemeine_Informationen, Würdigungen, Diplomatie, Diplomatie_KI, Gewonnen, Handeln);
-   
-   type Welcher_Abstand_Enum is (Leer, Kleiner_Abstand, Großer_Abstand, Neue_Zeile);
+      
+   -- type Welcher_Abstand_Enum is (Leer, Kleiner_Abstand, Großer_Abstand, Neue_Zeile);
    
    type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
    SprachenEinlesen : SprachenEinlesenArray;
-
-   type TexteEinlesenArray is array (1 .. SystemDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
-   TexteEinlesen : TexteEinlesenArray := (others => (others => TextKonstanten.LeerUnboundedString));
    
    -------------------- Gibt es einen Weg die Anzahl der Elemente eines Enum subtypes zu erfahren ohne sie selbst zu berechnen?
    RassenAnzahlDoppelt : constant Positive := 2 * 18;

@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleTexte;
+-- with GlobaleTexte;
 
-with Auswahl;
+-- with Auswahl;
 with DiplomatischerZustandAenderbar;
 
 package body Diplomatie is
@@ -64,11 +64,11 @@ package body Diplomatie is
          WelcheRasseSchleife:
          loop
          
-            WelcheRasse := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
-                                            TextDateiExtern   => GlobaleTexte.Rassen_Beschreibung_Kurz,
-                                            FrageZeileExtern  => 2,
-                                            ErsteZeileExtern  => 1,
-                                            LetzteZeileExtern => 19);
+            -- WelcheRasse := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
+            --                                TextDateiExtern   => GlobaleTexte.Rassen_Beschreibung_Kurz,
+            --                                FrageZeileExtern  => 2,
+             --                               ErsteZeileExtern  => 1,
+            --                                LetzteZeileExtern => 19);
             
            -- case
           --    WelcheRasse
@@ -99,11 +99,11 @@ package body Diplomatie is
             
          DiplomatischeAktionSchleife:
          loop
-            DiplomatischeAktion := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
-                                                    TextDateiExtern   => GlobaleTexte.Diplomatie,
-                                                    FrageZeileExtern  => 1,
-                                                    ErsteZeileExtern  => 3,
-                                                    LetzteZeileExtern => 7);
+            -- DiplomatischeAktion := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
+            --                                        TextDateiExtern   => GlobaleTexte.Diplomatie,
+            --                                        FrageZeileExtern  => 1,
+            --                                        ErsteZeileExtern  => 3,
+            --                                        LetzteZeileExtern => 7);
             
          --   case
          --     DiplomatischeAktion
@@ -151,11 +151,11 @@ package body Diplomatie is
       return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      StatusAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
-                                        TextDateiExtern   => GlobaleTexte.Diplomatie,
-                                        FrageZeileExtern  => 3,
-                                        ErsteZeileExtern  => 9,
-                                        LetzteZeileExtern => 12);
+      -- StatusAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
+      --                                  TextDateiExtern   => GlobaleTexte.Diplomatie,
+      --                                  FrageZeileExtern  => 3,
+      --                                  ErsteZeileExtern  => 9,
+      --                                  LetzteZeileExtern => 12);
             
       case
         StatusAuswahl

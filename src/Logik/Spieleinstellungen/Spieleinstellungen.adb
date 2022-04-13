@@ -8,57 +8,61 @@ with GlobaleVariablen;
 with ImSpiel;
 with KartenGenerator;
 with LadezeitenDatentypen;
-with SpielEinstellungenKarten;
-with SpielEinstellungenRasseSpieler;
-with SpielEinstellungenSonstiges;
+with SpieleinstellungenKarten;
+with SpieleinstellungenRasseSpieler;
+with SpieleinstellungenSonstiges;
 with Fehler;
 with Ladezeiten;
--- with AuswahlMenue:
+with AuswahlMenues;
 
-package body SpielEinstellungen is
+package body Spieleinstellungen is
 
    function Spieleinstellungen
      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       ----------------------- Später auf Standardwerte für alles außer die Rassenbelegung festsetzen und dann nur prüfen ob eine Rasse belegt ist.
-      Auswahl := SystemDatentypen.Auswahl_Kartengröße_Enum;
-
       SpielEinstellungenSchleife:
       loop
          
-         -- case
-         --   AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Einstellungen_Menü_Enum)
-         -- is
-            
+         Auswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Einstellungen_Menü_Enum);
+         
          case
            Auswahl
          is
             when SystemDatentypen.Auswahl_Kartengröße_Enum =>
-               Auswahl := SpielEinstellungenKarten.KartengrößeWählen;
+               SpieleinstellungenKarten.KartengrößeWählen;
 
             when SystemDatentypen.Auswahl_Kartenart_Enum =>
-               Auswahl := SpielEinstellungenKarten.KartenartWählen;
+               SpieleinstellungenKarten.KartenartWählen;
                
             when SystemDatentypen.Auswahl_Kartenform_Enum =>
-               Auswahl := SpielEinstellungenKarten.KartenformWählen;
+               SpieleinstellungenKarten.KartenformWählen;
 
             when SystemDatentypen.Auswahl_Kartentemperatur_Enum =>
-               Auswahl := SpielEinstellungenKarten.KartentemperaturWählen;
+               SpieleinstellungenKarten.KartentemperaturWählen;
                
             when SystemDatentypen.Auswahl_Kartenressourcen_Enum =>
-               Auswahl := SpielEinstellungenKarten.KartenressourcenWählen;
+               SpieleinstellungenKarten.KartenressourcenWählen;
 
             when SystemDatentypen.Auswahl_Rassen_Enum =>
-               Auswahl := SpielEinstellungenRasseSpieler.RassenWählen;
+               SpieleinstellungenRasseSpieler.RassenWählen;
 
             when SystemDatentypen.Auswahl_Schwierigkeitsgrad_Enum =>
-               Auswahl := SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen;
+               SpieleinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
             when SystemDatentypen.Start_Weiter_Enum =>
-               exit SpielEinstellungenSchleife;
+               -- Oder eine Rasse zufällig belegen lassen?
+               if
+                 SpieleinstellungenRasseSpieler.EineRasseBelegt = True
+               then
+                  exit SpielEinstellungenSchleife;
+                  
+               else
+                  null;
+               end if;
 
-            when SystemDatentypen.Zurück_Beenden_Enum'Range =>
+            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return Auswahl;
 
             when others =>
@@ -80,7 +84,7 @@ package body SpielEinstellungen is
       KartenGenerator.KartenGenerator;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
-      SpielEinstellungenRasseSpieler.StartwerteErmitteln;
+      SpieleinstellungenRasseSpieler.StartwerteErmitteln;
       RassenVorhanden := False;
       
       SicherheitsSchleife:
@@ -118,4 +122,4 @@ package body SpielEinstellungen is
       
    end AutomatischeEinstellungen;
 
-end SpielEinstellungen;
+end Spieleinstellungen;

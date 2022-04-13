@@ -5,12 +5,12 @@ with SystemDatentypen; use SystemDatentypen;
 with GrafikTonDatentypen;
 
 with Optionen;
-with SpielEinstellungen;
+with Spieleinstellungen;
 with AllesAufAnfangSetzen;
 with ImSpiel;
 with Laden;
 with Wuerdigung;
-with AuswahlMenue;
+with AuswahlMenues;
 with Fehler;
 with InteraktionSoundtask;
 with InteraktionGrafiktask;
@@ -26,10 +26,10 @@ package body Hauptmenue is
       loop
          
          case
-           AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Haupt_Menü_Enum)
+           AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Haupt_Menü_Enum)
          is
             when SystemDatentypen.Start_Weiter_Enum =>
-               RückgabeKampagne := SpielEinstellungen.Spieleinstellungen;
+               RückgabeKampagne := Spieleinstellungen.Spieleinstellungen;
 
                if
                  RückgabeKampagne = SystemDatentypen.Hauptmenü_Enum

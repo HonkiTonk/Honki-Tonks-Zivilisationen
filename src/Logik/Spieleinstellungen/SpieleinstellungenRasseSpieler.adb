@@ -12,13 +12,12 @@ with EinheitSuchen;
 with KarteKoordinatenPruefen;
 with BewegungPassierbarkeitPruefen;
 with EinheitenErzeugenEntfernen;
-with AuswahlMenue;
+with AuswahlMenues;
 with Fehler;
 
-package body SpielEinstellungenRasseSpieler is
+package body SpieleinstellungenRasseSpieler is
    
-   function RassenWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+   procedure RassenWählen
    is begin
       
       GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer_Spieler_Enum);
@@ -26,7 +25,7 @@ package body SpielEinstellungenRasseSpieler is
       RasseSchleife:
       loop
          
-         RassenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Rassen_Menü_Enum);
+         RassenAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Rassen_Menü_Enum);
 
          case
            RassenAuswahl
@@ -41,17 +40,11 @@ package body SpielEinstellungenRasseSpieler is
                if
                  EineRasseBelegt = True
                then
-                  return SystemDatentypen.Auswahl_Schwierigkeitsgrad_Enum;
+                  return;
                   
                else
                   null;
                end if;
-
-            when SystemDatentypen.Zurück_Enum =>
-               return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
-               
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
-               return RassenAuswahl;
                
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenRasseSpieler.RassenWählen - Ungültige Menüauswahl.");
@@ -280,4 +273,4 @@ package body SpielEinstellungenRasseSpieler is
       
    end StartpunktFestlegen;
 
-end SpielEinstellungenRasseSpieler;
+end SpieleinstellungenRasseSpieler;

@@ -8,7 +8,7 @@ with Ada.Strings.Wide_Wide_Fixed;
 with GlobaleTexte;
 with GrafikTonDatentypen;
 
-with TextAnzeigeKonsole;
+-- with TextAnzeigeKonsole;
 with Fehler;
 with InteraktionGrafiktask;
 
@@ -311,8 +311,8 @@ package body EingabeKonsole is
      return SystemRecords.TextEingabeRecord
    is begin
       
-      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                                       TextZeileExtern => 32);
+      -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+      --                                                 TextZeileExtern => 32);
       
       return (True, To_Unbounded_Wide_Wide_String (Source => Get_Line));
       
@@ -324,8 +324,8 @@ package body EingabeKonsole is
      return SystemRecords.TextEingabeRecord
    is begin
       
-      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
-                                                       TextZeileExtern => 22);
+      -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
+      --                                                 TextZeileExtern => 22);
 
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
 
@@ -404,8 +404,8 @@ package body EingabeKonsole is
    is begin
       
       New_Line;
-      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                                       TextZeileExtern => 47);
+      -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+      --                                                 TextZeileExtern => 47);
       Get_Immediate (Taste);
       
    end WartenEingabe;

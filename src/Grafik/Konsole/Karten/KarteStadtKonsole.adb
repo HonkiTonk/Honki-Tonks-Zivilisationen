@@ -7,7 +7,7 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
-with GlobaleTexte;
+-- with GlobaleTexte;
 with KartenKonstanten;
 with StadtKonstanten;
 with KartenGrundDatentypen;
@@ -21,7 +21,7 @@ with LeseStadtGebaut;
 with KarteKoordinatenPruefen;
 with Karten;
 with StadtInformationenKonsole;
-with TextAnzeigeKonsole;
+-- with TextAnzeigeKonsole;
 with GebaeudeAllgemein;
 with KartenAllgemein;
 with GrafischeAnzeigeKonsole;
@@ -520,14 +520,15 @@ package body KarteStadtKonsole is
         LeseKarten.Hügel (KoordinatenExtern => KartenWert)
       is
          when True =>
-            TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                      TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
-                                                      ÜberschriftZeileExtern => 0,
-                                                      ErsteZeileExtern       => 34,
-                                                      LetzteZeileExtern      => 34,
-                                                      AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                      AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                      AbstandEndeExtern      => GlobaleTexte.Leer);
+           -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+           --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
+           --                                           ÜberschriftZeileExtern => 0,
+           --                                           ErsteZeileExtern       => 34,
+           --                                           LetzteZeileExtern      => 34,
+           --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+           --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+           --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+           null;
          
          when False =>
             null;

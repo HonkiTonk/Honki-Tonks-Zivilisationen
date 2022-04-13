@@ -11,16 +11,17 @@ package SystemKonstanten is
                                            SystemDatentypen.Spiel_Menü_Enum              => 7,
 
                                            SystemDatentypen.Optionen_Menü_Enum           => 8,
-                                           SystemDatentypen.Einstellungen_Menü_Enum      => 12,
+                                           SystemDatentypen.Einstellungen_Menü_Enum      => 11,
                                            SystemDatentypen.Editoren_Menü_Enum           => 17,
 
-                                           SystemDatentypen.Kartengröße_Menü_Enum        => 31,
-                                           SystemDatentypen.Kartenart_Menü_Enum          => 19,
-                                           SystemDatentypen.Kartentemperatur_Menü_Enum   => 19,
-                                           SystemDatentypen.Kartenressourcen_Menü_Enum   => 14,
-                                           SystemDatentypen.Schwierigkeitsgrad_Menü_Enum => 15,
-                                           SystemDatentypen.Rassen_Menü_Enum             => 47,
-                                           SystemDatentypen.Kartenform_Menü_Enum         => 27,
+                                           SystemDatentypen.Kartengröße_Menü_Enum        => 27,
+                                           SystemDatentypen.Kartenart_Menü_Enum          => 8,
+                                           SystemDatentypen.Kartentemperatur_Menü_Enum   => 7,
+                                           SystemDatentypen.Kartenressourcen_Menü_Enum   => 8,
+                                           SystemDatentypen.Schwierigkeitsgrad_Menü_Enum => 6,
+                                           SystemDatentypen.Rassen_Menü_Enum             => 41,
+
+                                           SystemDatentypen.Kartenform_Menü_Enum         => 23,
 
                                            SystemDatentypen.Grafik_Menü_Enum             => 15,
                                            SystemDatentypen.Sound_Menü_Enum              => 7,

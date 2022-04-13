@@ -11,9 +11,7 @@ Absurd
 Custom
 Random predefined size
 Random size
-Return
-Main menu
-Exit game
+Finished
 5x20x20 fields
 5x40x40 fields
 5x80x80 fields
@@ -26,6 +24,4 @@ Exit game
 Select your own map size.
 Randomly selects one of the predefined card sizes.
 Chooses a random map size.
-Back to main menu.
-Back to main menu.
-Quit the game.
+Finish selection and continue.

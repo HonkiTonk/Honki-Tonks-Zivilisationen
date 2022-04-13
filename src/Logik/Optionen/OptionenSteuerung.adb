@@ -9,12 +9,12 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with GrafikTonDatentypen;
-with GlobaleTexte;
+-- with GlobaleTexte;
 with GlobaleVariablen;
 
 with Eingabe;
-with AuswahlMenue;
-with TextAnzeigeKonsole;
+with AuswahlMenues;
+-- with TextAnzeigeKonsole;
 with SchreibenTastatur;
 with EingabeSystemeSFML;
 with EingabeKonsole;
@@ -30,7 +30,7 @@ package body OptionenSteuerung is
       BelegungSchleife:
       loop
                   
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Steuerung_Menü_Enum);
+         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Steuerung_Menü_Enum);
          
          case
            AuswahlWert
@@ -78,27 +78,27 @@ package body OptionenSteuerung is
    procedure AlteTasteEntfernenKonsole
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Zeug,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 46,
-                                                LetzteZeileExtern      => 46,
-                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                          TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                          ÜberschriftZeileExtern => 0,
+      --                                          ErsteZeileExtern       => 46,
+      --                                          LetzteZeileExtern      => 46,
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+       --                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
       NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
                
       Put_Line (Item => EingabeKonsole.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeKonsole.Tastenbelegung (2, NeueAuswahl));
                
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Fragen,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 29,
-                                                LetzteZeileExtern      => 29,
-                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                          TextDateiExtern        => GlobaleTexte.Fragen,
+      --                                          ÜberschriftZeileExtern => 0,
+      --                                          ErsteZeileExtern       => 29,
+      --                                          LetzteZeileExtern      => 29,
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                          AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       
       NeueTasteKonsole := EingabeKonsole.TastenEingabe;
       

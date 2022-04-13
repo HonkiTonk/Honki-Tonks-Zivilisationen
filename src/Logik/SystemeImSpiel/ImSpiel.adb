@@ -12,7 +12,7 @@ with Speichern;
 with Laden;
 with RasseEntfernen;
 with ZwischenDenRunden;
-with AuswahlMenue;
+with AuswahlMenues;
 with InteraktionLogiktask;
 with Fehler;
 with InteraktionGrafiktask;
@@ -40,7 +40,7 @@ package body ImSpiel is
             case
               RückgabeRassen
             is
-               when SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
+               when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
                   return RückgabeRassen;
                   
                when SystemDatentypen.Schleife_Verlassen_Enum =>
@@ -265,7 +265,7 @@ package body ImSpiel is
       SpielmenüSchleife:
       loop
          
-         AuswahlSpielmenü := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Spiel_Menü_Enum);
+         AuswahlSpielmenü := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Spiel_Menü_Enum);
 
          case
            AuswahlSpielmenü

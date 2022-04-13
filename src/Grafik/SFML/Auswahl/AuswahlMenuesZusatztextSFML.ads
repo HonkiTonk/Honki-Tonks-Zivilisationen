@@ -3,9 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
 
-package AuswahlMenuesSFML is
+package AuswahlMenuesZusatztextSFML is
 
-   procedure AuswahlMenüsAufteilung
+   procedure AuswahlMenüsZusatztext
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum);
 
-end AuswahlMenuesSFML;
+end AuswahlMenuesZusatztextSFML;

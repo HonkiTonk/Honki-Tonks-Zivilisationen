@@ -5,16 +5,16 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with GlobaleTexte;
+-- with GlobaleTexte;
 with EinheitenKonstanten;
-with TastenbelegungDatentypen;
-with TextKonstanten;
+-- with TastenbelegungDatentypen;
+-- with TextKonstanten;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
-with TextAnzeigeKonsole;
-with Eingabe;
+-- with TextAnzeigeKonsole;
+-- with Eingabe;
 
 -- Wird für die Konsole benötigt, msus aber noch in Logik und Grafik aufgeteilt werden.
 package body EinheitenTransporter is
@@ -25,9 +25,9 @@ package body EinheitenTransporter is
    is begin
 
       ------------------------------- Mal in Logik und Grafik und Konsole und SFML aufteilen.
-      TextAnzeigeKonsole.AllgemeineAnzeigeText := (others => (TextKonstanten.LeerUnboundedString, 0));
-      TextAnzeigeKonsole.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                                       Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));
+      -- TextAnzeigeKonsole.AllgemeineAnzeigeText := (others => (TextKonstanten.LeerUnboundedString, 0));
+      -- TextAnzeigeKonsole.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
+      --                                                 Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));
       AktuellePosition := 2;
       Ende := 1;
 
@@ -45,10 +45,10 @@ package body EinheitenTransporter is
             null;
             
          else
-            TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuellePosition)
-              := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),                  
-                  Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Transportiert)))),
-                  Positive (Transportiert));
+            -- TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuellePosition)
+            --  := (GlobaleTexte.TexteEinlesen (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),                  
+            --      Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Transportiert)))),
+            --      Positive (Transportiert));
 
             AktuellePosition := AktuellePosition + 1;
             Ende := Ende + 1;
@@ -73,40 +73,40 @@ package body EinheitenTransporter is
          
          Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
 
-         TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
-                                                          TextZeileExtern => 27);
-         TextAnzeigeKonsole.AllgemeineAnzeige (AktuelleAuswahlExtern => EinheitStadtDatentypen.MinimimMaximumID (AktuelleAuswahl));
+         -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
+         --                                                 TextZeileExtern => 27);
+         -- TextAnzeigeKonsole.AllgemeineAnzeige (AktuelleAuswahlExtern => EinheitStadtDatentypen.MinimimMaximumID (AktuelleAuswahl));
                   
-         case
-           Eingabe.Tastenwert
-         is               
-            when TastenbelegungDatentypen.Oben_Enum =>
-               if
-                 AktuelleAuswahl = TextAnzeigeKonsole.AllgemeineAnzeigeText'First
-               then
-                  AktuelleAuswahl := Ende;
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
+       --  case
+       --    Eingabe.Tastenwert
+       --  is               
+       --     when TastenbelegungDatentypen.Oben_Enum =>
+       --        if
+       --          AktuelleAuswahl = TextAnzeigeKonsole.AllgemeineAnzeigeText'First
+       --        then
+       --           AktuelleAuswahl := Ende;
+       --        else
+       --           AktuelleAuswahl := AktuelleAuswahl - 1;
+       --        end if;
 
-            when TastenbelegungDatentypen.Unten_Enum =>
-               if
-                 AktuelleAuswahl = Ende
-               then
-                  AktuelleAuswahl := TextAnzeigeKonsole.AllgemeineAnzeigeText'First;
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
+       --     when TastenbelegungDatentypen.Unten_Enum =>
+      --         if
+       --          AktuelleAuswahl = Ende
+      --         then
+      --            AktuelleAuswahl := TextAnzeigeKonsole.AllgemeineAnzeigeText'First;
+      --         else
+      --            AktuelleAuswahl := AktuelleAuswahl + 1;
+      --         end if;
                               
-            when TastenbelegungDatentypen.Auswählen_Enum =>
-               return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
+      --      when TastenbelegungDatentypen.Auswählen_Enum =>
+      --         return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert (TextAnzeigeKonsole.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
+       --     when TastenbelegungDatentypen.Menü_Zurück_Enum =>
                return 0;
                      
-            when others =>
-               null;
-         end case;
+      --      when others =>
+      --         null;
+      --   end case;
          
       end loop EinheitAuswählenSchleife;
       

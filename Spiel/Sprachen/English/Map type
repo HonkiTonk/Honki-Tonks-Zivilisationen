@@ -5,15 +5,11 @@ Pangea
 Land only
 Chaos
 Random
-Return
-Main menu
-Exit game
+Finished
 Generate a map with small islands.
 Generate a map with continents.
 Generate a map with one large land mass.
 Generate a map that consists exclusively of land.
 Generate a map with very little logic.
 Pick a random card type.
-Back to the selection of the map size.
-Back to main menu.
-Quit the game. 
+Finish selection and continue.

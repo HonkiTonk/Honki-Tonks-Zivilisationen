@@ -4,11 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Integer_Wide_Wide_Text_IO;
 
-with GlobaleTexte;
+-- with GlobaleTexte;
 
 with LeseWichtiges;
 
-with TextAnzeigeKonsole;
+-- with TextAnzeigeKonsole;
 with ForschungAllgemein;
 
 package body InformationenWichtigesKonsole is
@@ -33,14 +33,14 @@ package body InformationenWichtigesKonsole is
    procedure Rundenanzahl
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Zeug,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 33,
-                                                LetzteZeileExtern      => 33,
-                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+     --                                           ÜberschriftZeileExtern => 0,
+     --                                           ErsteZeileExtern       => 33,
+     --                                           LetzteZeileExtern      => 33,
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
+     --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => GlobaleVariablen.RundenAnzahl,
                                          Width => 1);
       
@@ -52,14 +52,14 @@ package body InformationenWichtigesKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Zeug,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 34,
-                                                LetzteZeileExtern      => 34,
-                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+     --                                           ÜberschriftZeileExtern => 0,
+     --                                           ErsteZeileExtern       => 34,
+     --                                           LetzteZeileExtern      => 34,
+     --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+     --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+     --                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern),
                                          Width => 1);
       
@@ -71,14 +71,14 @@ package body InformationenWichtigesKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Zeug,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 35,
-                                                LetzteZeileExtern      => 35,
-                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+     -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+     --                                           ÜberschriftZeileExtern => 0,
+     --                                           ErsteZeileExtern       => 35,
+     --                                           LetzteZeileExtern      => 35,
+     --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+     --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+     --                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern)),
                                          Width => 1);
       New_Line;
@@ -92,14 +92,14 @@ package body InformationenWichtigesKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Zeug,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 38,
-                                                LetzteZeileExtern      => 38,
-                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+    --                                            TextDateiExtern        => GlobaleTexte.Zeug,
+     --                                           ÜberschriftZeileExtern => 0,
+     --                                           ErsteZeileExtern       => 38,
+     --                                           LetzteZeileExtern      => 38,
+    --                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+     --                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Put_Line (Item => ForschungAllgemein.Beschreibung (IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern),
                                                          RasseExtern => RasseExtern));
                 
@@ -111,14 +111,14 @@ package body InformationenWichtigesKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Zeug,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 36,
-                                                LetzteZeileExtern      => 36,
-                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+     --                                           TextDateiExtern        => GlobaleTexte.Zeug,
+     --                                           ÜberschriftZeileExtern => 0,
+      --                                          ErsteZeileExtern       => 36,
+      --                                          LetzteZeileExtern      => 36,
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)),
                                          Width => 1);
       New_Line;
@@ -131,14 +131,14 @@ package body InformationenWichtigesKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Zeug,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 39,
-                                                LetzteZeileExtern      => 39,
-                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+   --                                             TextDateiExtern        => GlobaleTexte.Zeug,
+    --                                            ÜberschriftZeileExtern => 0,
+    --                                            ErsteZeileExtern       => 39,
+    --                                            LetzteZeileExtern      => 39,
+    --                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+    --                                            AbstandMitteExtern     => GlobaleTexte.Leer,
+    --                                            AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)),
                                          Width => 1);
       
@@ -150,14 +150,14 @@ package body InformationenWichtigesKonsole is
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Zeug,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => 37,
-                                                LetzteZeileExtern      => 37,
-                                                AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+    --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+    --                                            TextDateiExtern        => GlobaleTexte.Zeug,
+     --                                           ÜberschriftZeileExtern => 0,
+    --                                            ErsteZeileExtern       => 37,
+     --                                           LetzteZeileExtern      => 37,
+     --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+     --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+     --                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer (LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)),
                                          Width => 1);
       New_Line (Spacing => 2);

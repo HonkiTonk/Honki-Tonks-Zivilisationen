@@ -2,10 +2,10 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with GlobaleTexte;
+-- with GlobaleTexte;
 with WichtigesKonstanten;
 
-with TextAnzeigeKonsole;
+-- with TextAnzeigeKonsole;
 with DiplomatischerZustand;
 
 package body DiplomatischerZustandAenderbar is
@@ -20,8 +20,8 @@ package body DiplomatischerZustandAenderbar is
       if
         NeuerStatusExtern = GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
       then
-         TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                          TextZeileExtern => 22);
+         -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+         --                                                  TextZeileExtern => 22);
          return False;
          
       else
@@ -70,8 +70,10 @@ package body DiplomatischerZustandAenderbar is
    procedure EsHerrschtKrieg
    is begin
       
-      TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                       TextZeileExtern => 23);
+      -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+      --                                                  TextZeileExtern => 23);
+      
+      null;
       
    end EsHerrschtKrieg;
    
@@ -137,8 +139,8 @@ package body DiplomatischerZustandAenderbar is
       if        
         AktuellerStatus = SystemDatentypen.Nichtangriffspakt_Enum
       then
-         TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                          TextZeileExtern => 24);
+         -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+         --                                                  TextZeileExtern => 24);
          return False;
          
       elsif

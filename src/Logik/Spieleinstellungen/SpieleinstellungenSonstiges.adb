@@ -4,36 +4,30 @@ pragma Warnings (Off, "*array aggregate*");
 with GlobaleVariablen;
 
 with ZufallGeneratorenSpieleinstellungen;
-with AuswahlMenue;
+with AuswahlMenues;
 with Fehler;
 
-package body SpielEinstellungenSonstiges is
+package body SpieleinstellungenSonstiges is
 
-   function SchwierigkeitsgradFestlegen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+   procedure SchwierigkeitsgradFestlegen
    is begin
       
       SchwierigkeitsgradSchleife:
       loop
 
-         SchwierigkeitAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Schwierigkeitsgrad_Menü_Enum);
+         SchwierigkeitAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Schwierigkeitsgrad_Menü_Enum);
          
          case
            SchwierigkeitAuswahl
          is
             when SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Range =>
                GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
-               return SystemDatentypen.Start_Weiter_Enum;
 
             when SystemDatentypen.Zufall_Enum =>
                GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
-               return SystemDatentypen.Start_Weiter_Enum;
                
-            when SystemDatentypen.Zurück_Enum =>
-               return SystemDatentypen.Auswahl_Rassen_Enum;
-
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
-               return SchwierigkeitAuswahl;
+            when SystemDatentypen.Fertig_Enum =>
+               return;
                
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenSonstiges.SchwierigkeitsgradFestlegen - Ungültige Menüasuwahl.");
@@ -43,4 +37,4 @@ package body SpielEinstellungenSonstiges is
       
    end SchwierigkeitsgradFestlegen;
 
-end SpielEinstellungenSonstiges;
+end SpieleinstellungenSonstiges;

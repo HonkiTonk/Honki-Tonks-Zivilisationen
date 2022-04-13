@@ -11,11 +11,11 @@ with GrafikEinstellungenSFML;
 with AllgemeineTextBerechnungenSFML;
 with AuswahlMenuesStringsSetzen;
 
-package body AuswahlMenuesOhneMitUeberschriftSFML is
+package body AuswahlMenuesEinfachSFML is
 
    ------------------ In AuswahlMenüsOhneAlles umbenennen, ich brauche ja auch noch mit Überschrift ohne Zusatztext und mit Überschrift mit Zusatztext.
-   procedure AuswahlMenüsMitOhneÜberschrift
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift)
+   procedure AuswahlMenüsEinfach
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
    is begin
             
       TextBereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) + Versionsnummer;
@@ -71,12 +71,12 @@ package body AuswahlMenuesOhneMitUeberschriftSFML is
          
       end loop TextSchleife;
       
-   end AuswahlMenüsMitOhneÜberschrift;
+   end AuswahlMenüsEinfach;
    
    
    
    procedure Positionsberechnung
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
    is begin
       
       Rechenwert.y := Float (AktuelleAuflösung.y / 100);
@@ -99,7 +99,7 @@ package body AuswahlMenuesOhneMitUeberschriftSFML is
    
    
    procedure Titel
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
    is begin
       
       case
@@ -135,13 +135,22 @@ package body AuswahlMenuesOhneMitUeberschriftSFML is
    
    
    procedure Auswahlmöglichkeiten
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
    is begin
+      
+      case
+        WelchesMenüExtern
+      is
+         when SystemDatentypen.Haupt_Menü_Enum =>
+            HauptmenüAbzug := 1;
+            
+         when others =>
+            HauptmenüAbzug := 0;
+      end case;
             
       AnzeigeSchleife:
-      -- EndeMenü hat ja keinen Anfang, fängt aber immer bei 1 an.
       for TextSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) loop
-         
+                  
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert),
                                             str  => AuswahlMenuesStringsSetzen.StringSetzen (WelcheZeileExtern => TextSchleifenwert,
                                                                                              WelchesMenüExtern => WelchesMenüExtern));
@@ -180,7 +189,7 @@ package body AuswahlMenuesOhneMitUeberschriftSFML is
                null;
          end case;
          
-         InteraktionAuswahl.Positionen (WelchesMenüExtern, TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert));
+         InteraktionAuswahl.PositionenEinfach (WelchesMenüExtern, TextSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert));
          
       end loop AnzeigeSchleife;
       
@@ -189,7 +198,7 @@ package body AuswahlMenuesOhneMitUeberschriftSFML is
    
    
    procedure VersionsnummerText
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Ohne_Mit_Überschrift)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, TextBereich),
@@ -211,4 +220,4 @@ package body AuswahlMenuesOhneMitUeberschriftSFML is
       
    end VersionsnummerText;
 
-end AuswahlMenuesOhneMitUeberschriftSFML;
+end AuswahlMenuesEinfachSFML;

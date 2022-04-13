@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with AuswahlMenue;
+with AuswahlMenues;
 with Fehler;
 
 package body OptionenSound is
@@ -13,7 +13,7 @@ package body OptionenSound is
       SoundSchleife:
       loop
          
-         AuswahlWert := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Sound_Menü_Enum);
+         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Sound_Menü_Enum);
          
          case
            AuswahlWert

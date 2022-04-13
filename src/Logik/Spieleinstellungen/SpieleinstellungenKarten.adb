@@ -4,40 +4,37 @@ pragma Warnings (Off, "*array aggregate*");
 with Karten;
 with Eingabe;
 with ZufallGeneratorenSpieleinstellungen;
-with AuswahlMenue;
+with AuswahlMenues;
 with Fehler;
 
-package body SpielEinstellungenKarten is
+package body SpieleinstellungenKarten is
 
-   function KartengrößeWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+   ----------------------- Bei Zufall auch zurück?
+   procedure KartengrößeWählen
    is begin
       
       KartengrößeSchleife:
       loop
          
-         KartengrößeAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartengröße_Menü_Enum);
+         KartengrößeAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartengröße_Menü_Enum);
          
          case
            KartengrößeAuswahl
          is
             when KartenDatentypen.Kartengröße_Standard_Enum'Range =>
                Karten.Kartenparameter.Kartengröße := KartengrößeAuswahl;
-               return SystemDatentypen.Auswahl_Kartenart_Enum;
 
             when SystemDatentypen.Karte_Größe_Nutzer_Enum =>
-               return GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
+               GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
             when SystemDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
-               return SystemDatentypen.Auswahl_Kartenart_Enum;
                
             when SystemDatentypen.Karte_Größe_Zufall_Enum =>
                Karten.Kartenparameter.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
-               return SystemDatentypen.Auswahl_Kartenart_Enum;
-
-            when SystemDatentypen.Zurück_Beenden_Enum'Range =>
-               return KartengrößeAuswahl;
+               
+            when SystemDatentypen.Fertig_Enum =>
+               return;
                
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartengrößeWählen - Ungültige Menüauswahl.");
@@ -49,9 +46,8 @@ package body SpielEinstellungenKarten is
    
    
    
-   function GrößeSelbstBestimmen
+   procedure GrößeSelbstBestimmen
      (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
    is begin
       
       -- In eine Schleife umbauen?
@@ -63,7 +59,7 @@ package body SpielEinstellungenKarten is
         BenutzerdefinierteGröße.EingabeAbbruch
       is
          when False =>
-            return SystemDatentypen.Auswahl_Kartengröße_Enum;
+            return;
             
          when True =>
             null;
@@ -78,12 +74,11 @@ package body SpielEinstellungenKarten is
         BenutzerdefinierteGröße.EingabeAbbruch
       is
          when False =>
-            return SystemDatentypen.Auswahl_Kartengröße_Enum;
+            null;
             
          when True =>
             Karten.Kartengrößen (KartengrößeExtern).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
             Karten.Kartenparameter.Kartengröße := KartengrößeExtern;
-            return SystemDatentypen.Auswahl_Kartenart_Enum;
       end case;
       
    end GrößeSelbstBestimmen;
@@ -91,31 +86,25 @@ package body SpielEinstellungenKarten is
 
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
-   function KartenartWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+   procedure KartenartWählen
    is begin
             
       KartenartSchleife:
       loop
 
-         KartenartAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenart_Menü_Enum);
+         KartenartAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartenart_Menü_Enum);
          
          case
            KartenartAuswahl
          is
             when KartenDatentypen.Kartenart_Verwendet_Enum'Range =>
                Karten.Kartenparameter.Kartenart := KartenartAuswahl;
-               return SystemDatentypen.Auswahl_Kartenform_Enum;
                
             when SystemDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
-               return SystemDatentypen.Auswahl_Kartenform_Enum;
                
-            when SystemDatentypen.Zurück_Enum =>
-               return SystemDatentypen.Auswahl_Kartengröße_Enum;
-
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
-               return KartenartAuswahl;
+            when SystemDatentypen.Fertig_Enum =>
+               return;
                
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenartWählen - Ungültige Menüauswahl.");
@@ -127,32 +116,25 @@ package body SpielEinstellungenKarten is
    
    
    
-   -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel gedreht, Tugel, Tugel gedreht, Tugel extrem
-   function KartenformWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+   procedure KartenformWählen
    is begin
       
       KartenformSchleife:
       loop
 
-         KartenformAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenform_Menü_Enum);
+         KartenformAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartenform_Menü_Enum);
          
          case
            KartenformAuswahl
          is
             when KartenDatentypen.Kartenform_Verwendet_Enum'Range =>
                Karten.Kartenform := KartenformAuswahl;
-               return SystemDatentypen.Auswahl_Kartentemperatur_Enum;
                
             when SystemDatentypen.Zufall_Enum =>
                Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
-               return SystemDatentypen.Auswahl_Kartentemperatur_Enum;
                
-            when SystemDatentypen.Zurück_Enum =>
-               return SystemDatentypen.Auswahl_Kartenart_Enum;
-
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
-               return KartenformAuswahl;
+            when SystemDatentypen.Fertig_Enum =>
+               return;
                
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
@@ -165,36 +147,30 @@ package body SpielEinstellungenKarten is
 
 
    -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-   function KartentemperaturWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+   procedure KartentemperaturWählen
    is begin
             
       KartentemperaturSchleife:
       loop
 
-         KartentemperaturAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartentemperatur_Menü_Enum);
+         KartentemperaturAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartentemperatur_Menü_Enum);
                   
          case
            KartentemperaturAuswahl
          is
             when KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range =>
                Karten.Kartenparameter.Kartentemperatur := KartentemperaturAuswahl;
-               return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
                
             when SystemDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
-               return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
                
-            when SystemDatentypen.Zurück_Enum =>
-               return SystemDatentypen.Auswahl_Kartenform_Enum;
-
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
-               return KartentemperaturAuswahl;
+            when SystemDatentypen.Fertig_Enum =>
+               return;
                
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartentemperaturWählen - Ungültige Menüauswahl.");
          end case;
-                  
+         
       end loop KartentemperaturSchleife;
       
    end KartentemperaturWählen;
@@ -202,31 +178,25 @@ package body SpielEinstellungenKarten is
    
    
    -- Arm, Wenig, Mittel, Viel, Überfluss
-   function KartenressourcenWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+   procedure KartenressourcenWählen
    is begin
       
       KartenressourcenSchleife:
       loop
 
-         KartenressourcenAuswahl := AuswahlMenue.AuswahlMenü (WelchesMenüExtern => SystemDatentypen.Kartenressourcen_Menü_Enum);
+         KartenressourcenAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartenressourcen_Menü_Enum);
          
          case
            KartenressourcenAuswahl
          is
             when KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range =>
                Karten.Kartenparameter.Kartenressourcen := KartenressourcenAuswahl;
-               return SystemDatentypen.Auswahl_Rassen_Enum;
                
             when SystemDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
-               return SystemDatentypen.Auswahl_Rassen_Enum;
                
-            when SystemDatentypen.Zurück_Enum =>
-               return SystemDatentypen.Auswahl_Kartentemperatur_Enum;
-
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
-               return KartenressourcenAuswahl;
+            when SystemDatentypen.Fertig_Enum =>
+               return;
                
             when others =>
                Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenressourcenWählen - Ungültige Menüauswahl.");
@@ -236,4 +206,4 @@ package body SpielEinstellungenKarten is
       
    end KartenressourcenWählen;
 
-end SpielEinstellungenKarten;
+end SpieleinstellungenKarten;

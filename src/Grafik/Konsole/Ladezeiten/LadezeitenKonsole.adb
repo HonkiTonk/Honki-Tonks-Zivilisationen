@@ -4,10 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Calendar; use Ada.Calendar;
 
-with GlobaleTexte;
+-- with GlobaleTexte;
 with EinheitenKonstanten;
 
-with TextAnzeigeKonsole;
+-- with TextAnzeigeKonsole;
 
 package body LadezeitenKonsole is
 
@@ -17,14 +17,14 @@ package body LadezeitenKonsole is
 
       GesamtzeitSpielweltErstellen := 0.00;
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Ladezeiten,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern),
-                                                LetzteZeileExtern      => LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern),
-                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                          TextDateiExtern        => GlobaleTexte.Ladezeiten,
+      --                                          ÜberschriftZeileExtern => 0,
+      --                                          ErsteZeileExtern       => LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern),
+      --                                          LetzteZeileExtern      => LadezeitenDatentypen.Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern),
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       case
         WelcheZeitExtern
@@ -72,14 +72,14 @@ package body LadezeitenKonsole is
      (WelcheZeitExtern : in LadezeitenDatentypen.Einzelne_Zeiten_Enum)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Ladezeiten,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => LadezeitenDatentypen.Aufschlag (WelcheZeitExtern),
-                                                LetzteZeileExtern      => LadezeitenDatentypen.Aufschlag (WelcheZeitExtern),
-                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                          TextDateiExtern        => GlobaleTexte.Ladezeiten,
+      --                                          ÜberschriftZeileExtern => 0,
+      --                                          ErsteZeileExtern       => LadezeitenDatentypen.Aufschlag (WelcheZeitExtern),
+      --                                          LetzteZeileExtern      => LadezeitenDatentypen.Aufschlag (WelcheZeitExtern),
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       AnzeigeFloat.Put (Item => Float (LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Endwert_Enum)
                         - LadezeitenDatentypen.EinzelneZeiten (WelcheZeitExtern, SystemDatentypen.Anfangswert_Enum)),
@@ -96,14 +96,14 @@ package body LadezeitenKonsole is
      (WelcheZeitExtern : in SystemDatentypen.Rassen_Enum)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                TextDateiExtern        => GlobaleTexte.Ladezeiten,
-                                                ÜberschriftZeileExtern => 0,
-                                                ErsteZeileExtern       => LadezeitenDatentypen.KIText (WelcheZeitExtern),
-                                                LetzteZeileExtern      => LadezeitenDatentypen.KIText (WelcheZeitExtern),
-                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                          TextDateiExtern        => GlobaleTexte.Ladezeiten,
+      --                                          ÜberschriftZeileExtern => 0,
+      --                                          ErsteZeileExtern       => LadezeitenDatentypen.KIText (WelcheZeitExtern),
+      --                                          LetzteZeileExtern      => LadezeitenDatentypen.KIText (WelcheZeitExtern),
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       case
         WelcheZeitExtern

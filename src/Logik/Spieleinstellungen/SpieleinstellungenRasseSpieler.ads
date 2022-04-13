@@ -8,7 +8,7 @@ with KartenRecords;
 
 with Karten;
 
-package SpielEinstellungenRasseSpieler is
+package SpieleinstellungenRasseSpieler is
 
    procedure StartwerteErmitteln;
 
@@ -17,11 +17,10 @@ package SpielEinstellungenRasseSpieler is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
-
+   
+   procedure RassenWählen;
    
    
-   function RassenWählen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
 
    function UmgebungPrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -34,6 +33,9 @@ package SpielEinstellungenRasseSpieler is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+   
+   function EineRasseBelegt
+     return Boolean;
    
 private
    
@@ -59,10 +61,5 @@ private
    
    procedure BelegungÄndern
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
-   
-   
-   
-   function EineRasseBelegt
-     return Boolean;
 
-end SpielEinstellungenRasseSpieler;
+end SpieleinstellungenRasseSpieler;

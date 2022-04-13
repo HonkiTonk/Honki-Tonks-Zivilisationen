@@ -3,13 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
 
-package SpielEinstellungenSonstiges is
+package SpieleinstellungenSonstiges is
 
-   function SchwierigkeitsgradFestlegen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
+   procedure SchwierigkeitsgradFestlegen;
    
 private
    
    SchwierigkeitAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
 
-end SpielEinstellungenSonstiges;
+end SpieleinstellungenSonstiges;

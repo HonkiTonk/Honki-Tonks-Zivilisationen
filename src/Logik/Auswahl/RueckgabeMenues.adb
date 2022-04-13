@@ -93,8 +93,9 @@ package body RueckgabeMenues is
                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
          when SystemDatentypen.Einstellungen_Menü_Enum =>
-            ------------------------- Hier noch das Zeug einbauen.
-            raise Program_Error;
+            return SpieleinstellungenMenü (AnfangExtern          => AnfangExtern,
+                                            EndeExtern            => EndeExtern,
+                                            AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
    end RückgabeMenüs;
@@ -232,6 +233,73 @@ package body RueckgabeMenues is
    end Optionsmenü;
    
    
+   
+   function SpieleinstellungenMenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return SystemDatentypen.Auswahl_Kartengröße_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return SystemDatentypen.Auswahl_Kartenart_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return SystemDatentypen.Auswahl_Kartenform_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return SystemDatentypen.Auswahl_Kartentemperatur_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 5
+      then
+         return SystemDatentypen.Auswahl_Rassen_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 6
+      then
+         return SystemDatentypen.Auswahl_Schwierigkeitsgrad_Enum;
+         
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 7
+      then
+         return SystemDatentypen.Fertig_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern - 1
+      then
+         return SystemDatentypen.Hauptmenü_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = EndeExtern
+      then
+         return SystemDatentypen.Spiel_Beenden_Enum;
+                    
+      else
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.SpieleinstellungenMenü - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden_Enum;
+      end if;
+      
+   end SpieleinstellungenMenü;
+   
+   
       
    function KartengrößeAuswählen
      (AnfangExtern : in Positive;
@@ -301,8 +369,8 @@ package body RueckgabeMenues is
          return SystemDatentypen.Karte_Größe_Zufall_Enum;
                     
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartengrößeAuswählen;
@@ -347,8 +415,8 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall_Enum;
                     
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartenartAuswählen;
@@ -413,8 +481,8 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall_Enum;
                     
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartenformAuswählen;
@@ -459,8 +527,8 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall_Enum;
                     
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartentemperaturAuswählen;
@@ -505,8 +573,8 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall_Enum;
                     
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end KartenRessourcenAuswählen;
@@ -541,8 +609,8 @@ package body RueckgabeMenues is
          return SystemDatentypen.Zufall_Enum;
                     
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end SchwierigkeitsgradAuswählen;
@@ -651,14 +719,9 @@ package body RueckgabeMenues is
       then
          return SystemDatentypen.Zufall_Enum;
                     
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 19
-      then
-         return SystemDatentypen.Fertig_Enum;
-                    
       else
-         return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
-                                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
    end RasseAuswählen;
@@ -835,6 +898,28 @@ package body RueckgabeMenues is
       -- return SystemDatentypen.Editoren_Enum;
       
    end EditorenMenü;
+   
+   
+   
+   function Fertig
+     (EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return SystemDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = EndeExtern
+      then
+         return SystemDatentypen.Fertig_Enum;
+                    
+      else
+         Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Fertig - Ungültige Auswahl.");
+         -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
+         return SystemDatentypen.Spiel_Beenden_Enum;
+      end if;
+      
+   end Fertig;
+     
    
    
    

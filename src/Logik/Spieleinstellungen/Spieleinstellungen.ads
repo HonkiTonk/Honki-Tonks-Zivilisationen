@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
 
-package SpielEinstellungen is
+package Spieleinstellungen is
 
    function Spieleinstellungen
      return SystemDatentypen.Rückgabe_Werte_Enum;
@@ -17,4 +17,4 @@ private
    function AutomatischeEinstellungen
      return SystemDatentypen.Rückgabe_Werte_Enum;
 
-end SpielEinstellungen;
+end Spieleinstellungen;

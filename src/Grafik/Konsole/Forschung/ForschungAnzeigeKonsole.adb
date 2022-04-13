@@ -6,12 +6,12 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with ForschungKonstanten;
-with GlobaleTexte;
+-- with GlobaleTexte;
 with TastenbelegungDatentypen;
 
 with LeseForschungsDatenbank;
 
-with TextAnzeigeKonsole;
+-- with TextAnzeigeKonsole;
 with Eingabe;
 
 package body ForschungAnzeigeKonsole is
@@ -33,12 +33,12 @@ package body ForschungAnzeigeKonsole is
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
    is begin
       
-      TextAnzeigeKonsole.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                               TextDateiExtern        => GlobaleTexte.Beschreibung_Forschung_Ermöglicht,
-                                               ÜberschriftZeileExtern => 43,
-                                               ErsteZeileExtern       => Positive (ForschungNummerExtern),
-                                               AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                               AbstandEndeExtern      => GlobaleTexte.Leer);
+      -- TextAnzeigeKonsole.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
+      --                                         TextDateiExtern        => GlobaleTexte.Beschreibung_Forschung_Ermöglicht,
+     --                                          ÜberschriftZeileExtern => 43,
+     --                                          ErsteZeileExtern       => Positive (ForschungNummerExtern),
+      --                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+      --                                         AbstandEndeExtern      => GlobaleTexte.Leer);
       
       TechnologienSchleife:
       for TechnologieSchleifenwert in EinheitStadtDatentypen.ForschungID'Range loop
@@ -59,14 +59,14 @@ package body ForschungAnzeigeKonsole is
                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)
               = ForschungNummerExtern
             then
-               TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                         TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                                         ÜberschriftZeileExtern => 0,
-                                                         ErsteZeileExtern       => Positive (TechnologieSchleifenwert),
-                                                         LetzteZeileExtern      => Positive (TechnologieSchleifenwert),
-                                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                         AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
-                                                         AbstandEndeExtern      => GlobaleTexte.Leer);
+             --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+             --                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
+             --                                            ÜberschriftZeileExtern => 0,
+             --                                            ErsteZeileExtern       => Positive (TechnologieSchleifenwert),
+             --                                            LetzteZeileExtern      => Positive (TechnologieSchleifenwert),
+             --                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+             --                                            AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
+             --                                            AbstandEndeExtern      => GlobaleTexte.Leer);
                exit ErmöglichtSchleife;
                
             else
@@ -105,33 +105,34 @@ package body ForschungAnzeigeKonsole is
               ErsterDurchlauf
             is
                when True =>
-                  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                                            ÜberschriftZeileExtern => 44,
-                                                            ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                                              IDExtern                => ForschungNummerExtern,
-                                                                                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                                                            LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                                              IDExtern                => ForschungNummerExtern,
-                                                                                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                            AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
-                                                            AbstandEndeExtern      => GlobaleTexte.Leer);
+                --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
+                 --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
+                --                                            ÜberschriftZeileExtern => 44,
+                --                                            ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                --                                                                                                                              IDExtern                => ForschungNummerExtern,
+                --                                                                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert)),
+                --                                            LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                --                                                                                                                              IDExtern                => ForschungNummerExtern,
+                --                                                                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert)),
+                --                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                 --                                           AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
+                 --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
                   ErsterDurchlauf := False;
                   
                when False =>
-                  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                                            ÜberschriftZeileExtern => 0,
-                                                            ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                                              IDExtern                => ForschungNummerExtern,
-                                                                                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                                                            LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
-                                                                                                                                              IDExtern                => ForschungNummerExtern,
-                                                                                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                            AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
-                                                            AbstandEndeExtern      => GlobaleTexte.Leer);
+                 -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                 --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
+                 --                                           ÜberschriftZeileExtern => 0,
+                 --                                           ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                 --                                                                                                                             IDExtern                => ForschungNummerExtern,
+                 --                                                                                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)),
+                 --                                           LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                 --                                                                                                                             IDExtern                => ForschungNummerExtern,
+                 --                                                                                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)),
+                 --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                 --                                           AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
+                 --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+                 null;
             end case;
          end if;
          
@@ -154,22 +155,22 @@ package body ForschungAnzeigeKonsole is
          
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
-         TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
-                                                   TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
-                                                   ÜberschriftZeileExtern => 45,
-                                                   ErsteZeileExtern       => Positive (AktuelleAuswahl),
-                                                   LetzteZeileExtern      => Positive (AktuelleAuswahl),
-                                                   AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                                   AbstandMitteExtern     => GlobaleTexte.Leer,
-                                                   AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
+         -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
+         --                                          TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
+         --                                          ÜberschriftZeileExtern => 45,
+         --                                          ErsteZeileExtern       => Positive (AktuelleAuswahl),
+         --                                          LetzteZeileExtern      => Positive (AktuelleAuswahl),
+         --                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+         --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+         --                                          AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
          New_Line;
          
-         TextAnzeigeKonsole.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                                  TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
-                                                  ÜberschriftZeileExtern => 0,
-                                                  ErsteZeileExtern       => Positive (AktuelleAuswahl),
-                                                  AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                                  AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
+         -- TextAnzeigeKonsole.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+         --                                         TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
+         --                                         ÜberschriftZeileExtern => 0,
+         --                                         ErsteZeileExtern       => Positive (AktuelleAuswahl),
+         --                                         AbstandAnfangExtern    => GlobaleTexte.Leer,
+         --                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
          New_Line;
       
          Benötigt (RasseExtern           => RasseExtern,

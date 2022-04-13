@@ -13,7 +13,7 @@ with SchreibeWichtiges;
 with LeseForschungsDatenbank;
 with LeseWichtiges;
 
-with TextAnzeigeKonsole;
+-- with TextAnzeigeKonsole;
 with Eingabe;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
@@ -118,7 +118,8 @@ package body ForschungAllgemein is
         GlobaleVariablen.AnzeigeArt
       is
          when GrafikTonDatentypen.Grafik_Konsole_Enum =>
-            return ForschungAuswahlKonsole;
+            return 0;
+            -- return ForschungAuswahlKonsole;
             
          when GrafikTonDatentypen.Grafik_SFML_Enum =>
             return ForschungAuswahlSFML;
@@ -218,50 +219,6 @@ package body ForschungAllgemein is
       AktuelleAuswahl := -1;
       
    end MausAuswahl;
-   
-   
-   
-   function ForschungAuswahlKonsole
-     return EinheitStadtDatentypen.ForschungIDMitNullWert
-   is begin
-            
-      AuswahlSchleife:
-      loop
-         
-         case
-           Eingabe.Tastenwert
-         is
-            when TastenbelegungDatentypen.Oben_Enum =>
-               if
-                 AktuelleAuswahl = TextAnzeigeKonsole.AllgemeineAnzeigeText'First
-               then
-                  AktuelleAuswahl := Ende;
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
-
-            when TastenbelegungDatentypen.Unten_Enum =>
-               if
-                 AktuelleAuswahl = Ende
-               then
-                  AktuelleAuswahl := TextAnzeigeKonsole.AllgemeineAnzeigeText'First;
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
-               
-            when TastenbelegungDatentypen.Auswählen_Enum =>
-               return EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
-
-            when TastenbelegungDatentypen.Menü_Zurück_Enum =>
-               return 0;
-                     
-            when others =>
-               null;
-         end case;
-         
-      end loop AuswahlSchleife;
-            
-   end ForschungAuswahlKonsole;
 
 
 
