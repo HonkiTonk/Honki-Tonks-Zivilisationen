@@ -7,7 +7,7 @@ with GlobaleVariablen;
 
 with Karten;
 
-package body ZufallGeneratorenSpieleinstellungen is
+package body ZufallsgeneratorenSpieleinstellungen is
    
    function ZufälligeVordefinierteKartengröße
      return KartenDatentypen.Kartengröße_Verwendet_Enum
@@ -180,4 +180,4 @@ package body ZufallGeneratorenSpieleinstellungen is
       
    end ZufälligerSchwiewrigkeitsgrad;
 
-end ZufallGeneratorenSpieleinstellungen;
+end ZufallsgeneratorenSpieleinstellungen;

@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Karten;
 with Eingabe;
-with ZufallGeneratorenSpieleinstellungen;
+with ZufallsgeneratorenSpieleinstellungen;
 with AuswahlMenues;
 with Fehler;
 
@@ -28,10 +28,10 @@ package body SpieleinstellungenKarten is
                GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartenparameter.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
+               Karten.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
                
             when SystemDatentypen.Karte_Größe_Zufall_Enum =>
-               Karten.Kartenparameter.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
+               Karten.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartengröße;
                
             when SystemDatentypen.Fertig_Enum =>
                return;
@@ -101,7 +101,7 @@ package body SpieleinstellungenKarten is
                Karten.Kartenparameter.Kartenart := KartenartAuswahl;
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartenparameter.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
+               Karten.Kartenparameter.Kartenart := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenart;
                
             when SystemDatentypen.Fertig_Enum =>
                return;
@@ -131,7 +131,7 @@ package body SpieleinstellungenKarten is
                Karten.Kartenform := KartenformAuswahl;
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
+               Karten.Kartenform := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
                
             when SystemDatentypen.Fertig_Enum =>
                return;
@@ -162,7 +162,7 @@ package body SpieleinstellungenKarten is
                Karten.Kartenparameter.Kartentemperatur := KartentemperaturAuswahl;
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartenparameter.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
+               Karten.Kartenparameter.Kartentemperatur := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
                
             when SystemDatentypen.Fertig_Enum =>
                return;
@@ -193,7 +193,7 @@ package body SpieleinstellungenKarten is
                Karten.Kartenparameter.Kartenressourcen := KartenressourcenAuswahl;
                
             when SystemDatentypen.Zufall_Enum =>
-               Karten.Kartenparameter.Kartenressourcen := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
+               Karten.Kartenparameter.Kartenressourcen := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
                
             when SystemDatentypen.Fertig_Enum =>
                return;

@@ -8,7 +8,7 @@ with SchreibeKarten;
 with LeseKarten;
 
 with Karten;
-with ZufallGeneratorenKarten;
+with ZufallsgeneratorenKarten;
 with KarteKoordinatenPruefen;
 
 package body KartenGeneratorRessourcen is
@@ -79,7 +79,7 @@ package body KartenGeneratorRessourcen is
       for WasserRessourceSchleifenwert in KartenGrundDatentypen.Karten_Ressourcen_Wasser'Range loop
          
          if
-           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenparameter.Kartenressourcen, WasserRessourceSchleifenwert)
+           ZufallsgeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenparameter.Kartenressourcen, WasserRessourceSchleifenwert)
          then
             SchreibeKarten.Ressource (KoordinatenExtern  => KoordinatenExtern,
                                       RessourceExtern    => WasserRessourceSchleifenwert);
@@ -104,7 +104,7 @@ package body KartenGeneratorRessourcen is
       for LandRessourceSchleifenwert in KartenGrundDatentypen.Karten_Ressourcen_Land'Range loop
                      
          if
-           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenparameter.Kartenressourcen, LandRessourceSchleifenwert)
+           ZufallsgeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenparameter.Kartenressourcen, LandRessourceSchleifenwert)
          then
             SchreibeKarten.Ressource (KoordinatenExtern  => KoordinatenExtern,
                                       RessourceExtern    => LandRessourceSchleifenwert);

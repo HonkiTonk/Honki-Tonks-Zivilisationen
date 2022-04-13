@@ -15,7 +15,7 @@ with StadtEntfernen;
 with KampfwerteStadtErmitteln;
 with KampfwerteEinheitErmitteln;
 with KampfsystemEinheiten;
-with ZufallGeneratorenKampf;
+with ZufallsgeneratorenKampf;
 with StadtWerteFestlegen;
 with StadtMeldungenSetzen;
 with EinheitenErzeugenEntfernen;
@@ -178,7 +178,7 @@ package body KampfsystemStadt is
          WelcherFall := Gleich_Enum;
       end if;
       
-      Kampfglück := ZufallGeneratorenKampf.KampfErfolg;
+      Kampfglück := ZufallsgeneratorenKampf.KampfErfolg;
       AngerichteterSchaden := 0;
       
       AngerichteterSchadenSchleife:

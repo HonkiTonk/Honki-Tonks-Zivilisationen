@@ -9,7 +9,7 @@ with SchreibeKarten;
 with LeseKarten;
 
 with KarteKoordinatenPruefen;
-with ZufallGeneratorenKarten;
+with ZufallsgeneratorenKarten;
 
 package body KartenGeneratorFluss is
 
@@ -51,7 +51,7 @@ package body KartenGeneratorFluss is
          XAchseEinsSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
 
-            BeliebigerFlusswert (EbeneExtern) := ZufallGeneratorenKarten.ZufälligerWert;
+            BeliebigerFlusswert (EbeneExtern) := ZufallsgeneratorenKarten.ZufälligerWert;
             
             -----------------------
             if

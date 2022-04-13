@@ -29,7 +29,7 @@ project Stream is
    end Pretty_Printer;
 
    package Prove is
-      for Proof_Switches ("ada") use ("-j4");
+      for Proof_Switches ("ada") use ("-j4", "--proof-warnings");
    end Prove;
 
 end Stream;

@@ -19,10 +19,14 @@ is
 
    UnerwarteterFehler : Boolean := False;
 
-   type Tasks_Enum is (Task_Logik_Enum, Task_Grafik_Enum, Task_Musik_Enum, Task_Sound_Enum);
+   type Tasks_Enum is (
+                       Task_Logik_Enum, Task_Grafik_Enum, Task_Musik_Enum, Task_Sound_Enum
+                      );
 
    type TasksLaufenArray is array (Tasks_Enum'Range) of Boolean;
-   TasksLaufen : TasksLaufenArray := (others => False);
+   TasksLaufen : TasksLaufenArray := (
+                                      others => False
+                                     );
 
    type TaskIDArray is array (Tasks_Enum'Range) of Task_Id;
    TaskID : TaskIDArray;

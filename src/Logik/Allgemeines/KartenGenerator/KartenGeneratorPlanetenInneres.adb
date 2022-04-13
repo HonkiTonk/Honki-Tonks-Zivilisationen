@@ -7,7 +7,7 @@ with KartenGrundDatentypen;
 with SchreibeKarten;
 
 with Karten;
-with ZufallGeneratorenKarten;
+with ZufallsgeneratorenKarten;
 
 package body KartenGeneratorPlanetenInneres is
 
@@ -33,7 +33,7 @@ package body KartenGeneratorPlanetenInneres is
                                      GrundExtern       => KartenGrundDatentypen.Planetenkern_Enum);
             
             elsif
-              ZufallGeneratorenKarten.ZufälligerWert > 0.65
+              ZufallsgeneratorenKarten.ZufälligerWert > 0.65
             then
                SchreibeKarten.Grund (KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
                                      GrundExtern       => KartenGrundDatentypen.Lava_Enum);

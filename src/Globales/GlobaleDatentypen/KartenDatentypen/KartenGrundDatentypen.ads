@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KartenGrundDatentypen is
 
-   type Karten_Grund_Enum is (Leer_Grund_Enum,
+   type Karten_Grund_Enum is (
+                              Leer_Grund_Enum,
                               
                               Wasser_Enum, Küstengewässer_Enum, Unterwasser_Wasser_Enum, Unterwasser_Küstengewässer_Enum,
                               Eis_Enum, Unterwasser_Eis_Enum,
@@ -30,7 +31,8 @@ package KartenGrundDatentypen is
    
    
    -- Hier gibt eine Einteilung nur mäßig Sinn denke ich, oder?
-   type Karten_Ressourcen_Enum is (Leer_Ressource_Enum,
+   type Karten_Ressourcen_Enum is (
+                                   Leer_Ressource_Enum,
                                    
                                    -- Wasserressourcen
                                    Fisch_Enum, Wal_Enum,
@@ -46,7 +48,8 @@ package KartenGrundDatentypen is
    
    
    
-   type Karten_Fluss_Enum is (Leer_Fluss_Enum,
+   type Karten_Fluss_Enum is (
+                              Leer_Fluss_Enum,
                               
                               -- Fluss
                               Flusskreuzung_Vier_Enum, Fluss_Waagrecht_Enum, Fluss_Senkrecht_Enum, Flusskurve_Unten_Rechts_Enum, Flusskurve_Unten_Links_Enum, Flusskurve_Oben_Rechts_Enum, Flusskurve_Oben_Links_Enum,

@@ -6,7 +6,11 @@ with Ada.Numerics.Discrete_Random;
 with SystemDatentypen;
 with KartenDatentypen;
 
-package ZufallGeneratorenSpieleinstellungen is
+package ZufallsgeneratorenSpieleinstellungen is
+     
+   procedure ZufälligeRassen;
+   
+   
 
    function ZufälligeVordefinierteKartengröße
      return KartenDatentypen.Kartengröße_Verwendet_Enum;
@@ -25,8 +29,6 @@ package ZufallGeneratorenSpieleinstellungen is
    
    function ZufälligeKartenressourcen
      return KartenDatentypen.Kartenressourcen_Verwendet_Enum;
-     
-   procedure ZufälligeRassen;
    
    function ZufälligerSchwiewrigkeitsgrad
      return SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
@@ -61,4 +63,4 @@ private
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
    -- Generatoren für zufällige Spieleinstellungen
 
-end ZufallGeneratorenSpieleinstellungen;
+end ZufallsgeneratorenSpieleinstellungen;

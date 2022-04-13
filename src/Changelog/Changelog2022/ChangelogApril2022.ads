@@ -112,14 +112,14 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0290 => 0.01.03 (14.04.2022):
+   -- Version 0.01.0291 => 0.01.03 (14.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0270 => 0.01.0290 (13.04.2022):
+   -- Version 0.01.0270 => 0.01.0291 (13.04.2022):
    
    -- Absturzfehler im einfachem Menüsystem behoben.
    -- Anzeige des einfachen Menüsystems überabeitet, so dass jetzt nur noch bei entsprechenden Nutzeränderungen an den Texteinstellungen der jeweilig geänderte Bereich neu berechent/zugewiesen wird.

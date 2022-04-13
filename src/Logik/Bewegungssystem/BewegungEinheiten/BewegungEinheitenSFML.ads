@@ -36,10 +36,10 @@ private
    
    type RichtungArray is array (TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum'Range) of KartenRecords.AchsenKartenfeldRecord;
    Richtung : constant RichtungArray := (
-                                         TastenbelegungDatentypen.Oben_Enum        => (0, -1, 0),
-                                         TastenbelegungDatentypen.Links_Enum       => (0, 0, -1),
-                                         TastenbelegungDatentypen.Unten_Enum       => (0, 1, 0),
-                                         TastenbelegungDatentypen.Rechts_Enum      => (0, 0, 1),
+                                         TastenbelegungDatentypen.Oben_Enum         => (0, -1, 0),
+                                         TastenbelegungDatentypen.Links_Enum        => (0, 0, -1),
+                                         TastenbelegungDatentypen.Unten_Enum        => (0, 1, 0),
+                                         TastenbelegungDatentypen.Rechts_Enum       => (0, 0, 1),
                                          TastenbelegungDatentypen.Links_Oben_Enum   => (0, -1, -1),
                                          TastenbelegungDatentypen.Rechts_Oben_Enum  => (0, -1, 1),
                                          TastenbelegungDatentypen.Links_Unten_Enum  => (0, 1, -1),

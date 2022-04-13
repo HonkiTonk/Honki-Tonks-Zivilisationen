@@ -8,7 +8,7 @@ with KartenRecordKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with ZufallGeneratorenKarten;
+with ZufallsgeneratorenKarten;
 with KarteKoordinatenPruefen;
 with KartenGeneratorHimmel;
 with KartenGeneratorWeltraum;
@@ -122,7 +122,7 @@ package body KartenGeneratorStandard is
 
          when others =>
             if
-              ZufallGeneratorenKarten.ZufälligerWert
+              ZufallsgeneratorenKarten.ZufälligerWert
             in
               WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Sonstiges_Enum).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Sonstiges_Enum).Endwert
             then
@@ -143,7 +143,7 @@ package body KartenGeneratorStandard is
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
-      BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
+      BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
       
       if
         BeliebigerLandwert
@@ -176,7 +176,7 @@ package body KartenGeneratorStandard is
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
-      BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
+      BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
 
       if
         BeliebigerLandwert
@@ -299,7 +299,7 @@ package body KartenGeneratorStandard is
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
    
-      BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
+      BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
       
       if
         BeliebigerLandwert

@@ -11,7 +11,8 @@ package GebaeudeSuroka is
    GebäudeSurokaListe : constant DatenbankRecords.GebäudeListeArray := (
                                                                           -- Häuser
                                                                           1 =>
-                                                                            (PreisGeld                   => 100,
+                                                                            (
+                                                                             PreisGeld                   => 100,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 0,
@@ -21,11 +22,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Nahrungslager
+                                                                            -- Nahrungslager
                                                                           2 =>
-                                                                            (PreisGeld                   => 100,
+                                                                            (
+                                                                             PreisGeld                   => 100,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 2,
@@ -34,11 +37,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Holzpalisade
+                                                                            -- Holzpalisade
                                                                           3 =>
-                                                                            (PreisGeld                   => 150,
+                                                                            (
+                                                                             PreisGeld                   => 150,
                                                                              PreisRessourcen             => 50,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 1,
@@ -47,11 +52,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Schmiede
+                                                                            -- Schmiede
                                                                           4 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 10,
@@ -60,11 +67,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
       
-                                                                          -- Bibliothek
+                                                                            -- Bibliothek
                                                                           5 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 9,
@@ -73,11 +82,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Steinmauer
+                                                                            -- Steinmauer
                                                                           6 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 11,
@@ -86,11 +97,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Bücherei
+                                                                            -- Bücherei
                                                                           7 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 21,
@@ -99,11 +112,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Bewässerungssystem
+                                                                            -- Bewässerungssystem
                                                                           8 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 16,
@@ -112,11 +127,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Kaserne
+                                                                            -- Kaserne
                                                                           9 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 13,
@@ -125,11 +142,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Wassermühle
+                                                                            -- Wassermühle
                                                                           10 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 15,
@@ -138,11 +157,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Windmühle
+                                                                            -- Windmühle
                                                                           11 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 15,
@@ -151,11 +172,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Seehafen
+                                                                            -- Seehafen
                                                                           12 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 14,
@@ -164,11 +187,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Hochofen
+                                                                            -- Hochofen
                                                                           13 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 33,
@@ -177,11 +202,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Universität
+                                                                            -- Universität
                                                                           14 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 27,
@@ -190,11 +217,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Burg
+                                                                            -- Burg
                                                                           15 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 22,
@@ -203,11 +232,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Schwere Burg
+                                                                            -- Schwere Burg
                                                                           16 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 25,
@@ -216,11 +247,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Festungen
+                                                                            -- Festungen
                                                                           17 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 34,
@@ -229,11 +262,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Kohlekraftwerk
+                                                                            -- Kohlekraftwerk
                                                                           18 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 37,
@@ -242,11 +277,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Fabrik
+                                                                            -- Fabrik
                                                                           19 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 30,
@@ -255,11 +292,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Krankenhaus
+                                                                            -- Krankenhaus
                                                                           20 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 43,
@@ -268,11 +307,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Flughafen
+                                                                            -- Flughafen
                                                                           21 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 41,
@@ -281,11 +322,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Atomkraftwerk
+                                                                            -- Atomkraftwerk
                                                                           22 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 45,
@@ -294,11 +337,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
+                                                                            -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
                                                                           23 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 53,
@@ -307,11 +352,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Genklinik
+                                                                            -- Genklinik
                                                                           24 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 56,
@@ -320,11 +367,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- Fusionskraftwerk
+                                                                            -- Fusionskraftwerk
                                                                           25 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 60,
@@ -333,11 +382,13 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                              
-                                                                          -- NAMR Kraftwerk
+                                                                            -- NAMR Kraftwerk
                                                                           26 =>
-                                                                            (PreisGeld                   => 1000,
+                                                                            (
+                                                                             PreisGeld                   => 1000,
                                                                              PreisRessourcen             => 100,
                                                                              PermanenteKosten            => (others => 0),
                                                                              Anforderungen               => 63,
@@ -346,7 +397,8 @@ package GebaeudeSuroka is
                                                                              GrundBenötigt               => StadtKonstanten.LeerGrundBenötigt,
                                                                              FlussBenötigt               => StadtKonstanten.LeerFlussBenötigt,
                                                                              RessourceBenötigt           => StadtKonstanten.LeerRessourceBenötigt,
-                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft),
+                                                                             GebäudeSpezielleEigenschaft => StadtKonstanten.LeerSpezielleEigenschaft
+                                                                            ),
                                                               
                                                                           others => StadtKonstanten.LeerGebäudeListe
                                                                          );

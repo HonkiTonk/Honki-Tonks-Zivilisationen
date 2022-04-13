@@ -269,19 +269,19 @@ package EingeleseneGrafikenKonsole is
                                                     KartenGrundDatentypen.Dschungel_Enum      => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Küstengewässer_Enum => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Sumpf_Enum          => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Hügel_Mit_Enum       => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Hügel_Mit_Enum      => KartenKonstanten.LeerKartenGrafik,
                                                     -- Normal
       
-                                                    -------------------------
+                                                    
       
                                                     -- Unterwasser/Unterirdisch
                                                     KartenGrundDatentypen.Unterwasser_Eis_Enum            => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Erde_Enum                      => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Erdgestein_Enum                => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Sand_Enum                      => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Erde_Enum                       => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Erdgestein_Enum                 => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Sand_Enum                       => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Unterwasser_Wasser_Enum         => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Korallen_Enum                  => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Korallen_Enum                   => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Unterwasser_Wald_Enum           => KartenKonstanten.LeerKartenGrafik,
                                                     -- Unterwasser/Unterirdisch
       
@@ -296,7 +296,7 @@ package EingeleseneGrafikenKonsole is
       
       
                                                     -- Luft/Weltraum
-                                                    KartenGrundDatentypen.Wolken_Enum  => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Wolken_Enum   => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Weltraum_Enum => KartenKonstanten.LeerKartenGrafik
                                                     -- Luft/Weltraum
                                                    );
@@ -306,9 +306,9 @@ package EingeleseneGrafikenKonsole is
    type KartenflussGrafikArray is array (KartenDatenbank.KartenFlussListeArray'Range) of Wide_Wide_Character;
    KartenflussGrafik : KartenflussGrafikArray := (
                                                   -- Normal
-                                                  KartenGrundDatentypen.Flusskreuzung_Vier_Enum       => '╋',
-                                                  KartenGrundDatentypen.Fluss_Waagrecht_Enum          => '━',
-                                                  KartenGrundDatentypen.Fluss_Senkrecht_Enum          => '┃',
+                                                  KartenGrundDatentypen.Flusskreuzung_Vier_Enum        => '╋',
+                                                  KartenGrundDatentypen.Fluss_Waagrecht_Enum           => '━',
+                                                  KartenGrundDatentypen.Fluss_Senkrecht_Enum           => '┃',
                                                   KartenGrundDatentypen.Flusskurve_Unten_Rechts_Enum   => '┏',
                                                   KartenGrundDatentypen.Flusskurve_Unten_Links_Enum    => '┓',
                                                   KartenGrundDatentypen.Flusskurve_Oben_Rechts_Enum    => '┗',
@@ -317,19 +317,19 @@ package EingeleseneGrafikenKonsole is
                                                   KartenGrundDatentypen.Flusskreuzung_Drei_Unten_Enum  => '┳',
                                                   KartenGrundDatentypen.Flusskreuzung_Drei_Rechts_Enum => '┣',
                                                   KartenGrundDatentypen.Flusskreuzung_Drei_Links_Enum  => '┫',
-                                                  KartenGrundDatentypen.Flussendstück_Links_Enum      => '╺',
-                                                  KartenGrundDatentypen.Flussendstück_Rechts_Enum     => '╸',
-                                                  KartenGrundDatentypen.Flussendstück_Unten_Enum      => '╹',
-                                                  KartenGrundDatentypen.Flussendstück_Oben_Enum       => '╻',
-                                                  KartenGrundDatentypen.See_Enum                     => '▪',
+                                                  KartenGrundDatentypen.Flussendstück_Links_Enum       => '╺',
+                                                  KartenGrundDatentypen.Flussendstück_Rechts_Enum      => '╸',
+                                                  KartenGrundDatentypen.Flussendstück_Unten_Enum       => '╹',
+                                                  KartenGrundDatentypen.Flussendstück_Oben_Enum        => '╻',
+                                                  KartenGrundDatentypen.See_Enum                       => '▪',
                                                   -- Normal
       
       
       
                                                   -- Unterirdisch
-                                                  KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum       => '╋',
-                                                  KartenGrundDatentypen.Unterirdischer_Fluss_Waagrecht_Enum         => '━',
-                                                  KartenGrundDatentypen.Unterirdischer_Fluss_Senkrecht_Enum         => '┃',
+                                                  KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum        => '╋',
+                                                  KartenGrundDatentypen.Unterirdischer_Fluss_Waagrecht_Enum          => '━',
+                                                  KartenGrundDatentypen.Unterirdischer_Fluss_Senkrecht_Enum          => '┃',
                                                   KartenGrundDatentypen.Unterirdische_Flusskurve_Unten_Rechts_Enum   => '┏',
                                                   KartenGrundDatentypen.Unterirdische_Flusskurve_Unten_Links_Enum    => '┓',
                                                   KartenGrundDatentypen.Unterirdische_Flusskurve_Oben_Rechts_Enum    => '┗',
@@ -338,19 +338,19 @@ package EingeleseneGrafikenKonsole is
                                                   KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Unten_Enum  => '┳',
                                                   KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts_Enum => '┣',
                                                   KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Links_Enum  => '┫',
-                                                  KartenGrundDatentypen.Unterirdisches_Flussendstück_Links_Enum     => '╺',
-                                                  KartenGrundDatentypen.Unterirdisches_Flussendstück_Rechts_Enum    => '╸',
-                                                  KartenGrundDatentypen.Unterirdisches_Flussendstück_Unten_Enum     => '╹',
-                                                  KartenGrundDatentypen.Unterirdisches_Flussendstück_Oben_Enum      => '╻',
-                                                  KartenGrundDatentypen.Unterirdischer_See_Enum                    => '▪',
+                                                  KartenGrundDatentypen.Unterirdisches_Flussendstück_Links_Enum      => '╺',
+                                                  KartenGrundDatentypen.Unterirdisches_Flussendstück_Rechts_Enum     => '╸',
+                                                  KartenGrundDatentypen.Unterirdisches_Flussendstück_Unten_Enum      => '╹',
+                                                  KartenGrundDatentypen.Unterirdisches_Flussendstück_Oben_Enum       => '╻',
+                                                  KartenGrundDatentypen.Unterirdischer_See_Enum                      => '▪',
                                                   -- Unterirdisch
       
       
       
                                                   -- Lava
-                                                  KartenGrundDatentypen.Lavaflusskreuzung_Vier_Enum       => '╋',
-                                                  KartenGrundDatentypen.Lavafluss_Waagrecht_Enum          => '━',
-                                                  KartenGrundDatentypen.Lavafluss_Senkrecht_Enum          => '┃',
+                                                  KartenGrundDatentypen.Lavaflusskreuzung_Vier_Enum        => '╋',
+                                                  KartenGrundDatentypen.Lavafluss_Waagrecht_Enum           => '━',
+                                                  KartenGrundDatentypen.Lavafluss_Senkrecht_Enum           => '┃',
                                                   KartenGrundDatentypen.Lavaflusskurve_Unten_Rechts_Enum   => '┏',
                                                   KartenGrundDatentypen.Lavaflusskurve_Unten_Links_Enum    => '┓',
                                                   KartenGrundDatentypen.Lavaflusskurve_Oben_Rechts_Enum    => '┗',
@@ -359,11 +359,11 @@ package EingeleseneGrafikenKonsole is
                                                   KartenGrundDatentypen.Lavaflusskreuzung_Drei_Unten_Enum  => '┳',
                                                   KartenGrundDatentypen.Lavaflusskreuzung_Drei_Rechts_Enum => '┣',
                                                   KartenGrundDatentypen.Lavaflusskreuzung_Drei_Links_Enum  => '┫',
-                                                  KartenGrundDatentypen.Lavaflussendstück_Links_Enum      => '╺',
-                                                  KartenGrundDatentypen.Lavaflussendstück_Rechts_Enum     => '╸',
-                                                  KartenGrundDatentypen.Lavaflussendstück_Unten_Enum      => '╹',
-                                                  KartenGrundDatentypen.Lavaflussendstück_Oben_Enum       => '╻',
-                                                  KartenGrundDatentypen.Lavasee_Enum                     => '▪'
+                                                  KartenGrundDatentypen.Lavaflussendstück_Links_Enum       => '╺',
+                                                  KartenGrundDatentypen.Lavaflussendstück_Rechts_Enum      => '╸',
+                                                  KartenGrundDatentypen.Lavaflussendstück_Unten_Enum       => '╹',
+                                                  KartenGrundDatentypen.Lavaflussendstück_Oben_Enum        => '╻',
+                                                  KartenGrundDatentypen.Lavasee_Enum                       => '▪'
                                                   -- Lava
                                                  );
    
@@ -406,9 +406,9 @@ package EingeleseneGrafikenKonsole is
    type WegeGrafikArray is array (VerbesserungenDatenbank.WegeListeArray'Range) of Wide_Wide_Character;
    WegeGrafik : WegeGrafikArray := (
                                     -- Straßen
-                                    KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum       => '╬',
-                                    KartenVerbesserungDatentypen.Straße_Waagrecht_Enum           => '═',
-                                    KartenVerbesserungDatentypen.Straße_Senkrecht_Enum           => '║',
+                                    KartenVerbesserungDatentypen.Straßenkreuzung_Vier_Enum        => '╬',
+                                    KartenVerbesserungDatentypen.Straße_Waagrecht_Enum            => '═',
+                                    KartenVerbesserungDatentypen.Straße_Senkrecht_Enum            => '║',
                                     KartenVerbesserungDatentypen.Straßenkurve_Unten_Rechts_Enum   => '╔',
                                     KartenVerbesserungDatentypen.Straßenkurve_Unten_Links_Enum    => '╗',
                                     KartenVerbesserungDatentypen.Straßenkurve_Oben_Rechts_Enum    => '╚',
@@ -417,21 +417,23 @@ package EingeleseneGrafikenKonsole is
                                     KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Unten_Enum  => '╦',
                                     KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Rechts_Enum => '╠',
                                     KartenVerbesserungDatentypen.Straßenkreuzung_Drei_Links_Enum  => '╣',
-                                    KartenVerbesserungDatentypen.Straßenendstück_Links_Enum      => '╞',
-                                    KartenVerbesserungDatentypen.Straßenendstück_Rechts_Enum     => '╡',
-                                    KartenVerbesserungDatentypen.Straßenendstück_Unten_Enum      => '╨',
-                                    KartenVerbesserungDatentypen.Straßenendstück_Oben_Enum       => '╥',
-                                    KartenVerbesserungDatentypen.Straße_Einzeln_Enum             => '▫',
+                                    KartenVerbesserungDatentypen.Straßenendstück_Links_Enum       => '╞',
+                                    KartenVerbesserungDatentypen.Straßenendstück_Rechts_Enum      => '╡',
+                                    KartenVerbesserungDatentypen.Straßenendstück_Unten_Enum       => '╨',
+                                    KartenVerbesserungDatentypen.Straßenendstück_Oben_Enum        => '╥',
+                                    KartenVerbesserungDatentypen.Straße_Einzeln_Enum              => '▫',
                                     -- Straßen
       
       
       
                                     -- Schienen
+                                    
                                     -- Schienen
       
       
                                                     
                                     -- Tunnel
+                                    
                                     -- Tunnel
                                                     
                                     others => KartenKonstanten.LeerKartenGrafik

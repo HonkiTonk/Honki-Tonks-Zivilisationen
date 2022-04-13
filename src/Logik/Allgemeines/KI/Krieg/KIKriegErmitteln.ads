@@ -30,24 +30,24 @@ private
    Bewertungen : BewertungenArray;
 
    NotwendigeBewertung : constant BewertungenArray := (
-                                                       SystemDatentypen.Menschen_Enum        => 10,
-                                                       SystemDatentypen.Kasrodiah_Enum       => 10,
-                                                       SystemDatentypen.Lasupin_Enum         => 10,
-                                                       SystemDatentypen.Lamustra_Enum        => 10,
-                                                       SystemDatentypen.Manuky_Enum          => 10,
-                                                       SystemDatentypen.Suroka_Enum          => 10,
-                                                       SystemDatentypen.Pryolon_Enum         => 10,
-                                                       SystemDatentypen.Talbidahr_Enum       => 10,
+                                                       SystemDatentypen.Menschen_Enum         => 10,
+                                                       SystemDatentypen.Kasrodiah_Enum        => 10,
+                                                       SystemDatentypen.Lasupin_Enum          => 10,
+                                                       SystemDatentypen.Lamustra_Enum         => 10,
+                                                       SystemDatentypen.Manuky_Enum           => 10,
+                                                       SystemDatentypen.Suroka_Enum           => 10,
+                                                       SystemDatentypen.Pryolon_Enum          => 10,
+                                                       SystemDatentypen.Talbidahr_Enum        => 10,
                                                        SystemDatentypen.Moru_Phisihl_Enum     => 10,
                                                        SystemDatentypen.Larinos_Lotaris_Enum  => 10,
-                                                       SystemDatentypen.Carupex_Enum         => 10,
-                                                       SystemDatentypen.Alary_Enum           => 10,
-                                                       SystemDatentypen.Tesorahn_Enum        => 10,
+                                                       SystemDatentypen.Carupex_Enum          => 10,
+                                                       SystemDatentypen.Alary_Enum            => 10,
+                                                       SystemDatentypen.Tesorahn_Enum         => 10,
                                                        SystemDatentypen.Natries_Zermanis_Enum => 10,
-                                                       SystemDatentypen.Tridatus_Enum        => 10,
-                                                       SystemDatentypen.Senelari_Enum        => 10,
+                                                       SystemDatentypen.Tridatus_Enum         => 10,
+                                                       SystemDatentypen.Senelari_Enum         => 10,
                                                        SystemDatentypen.Aspari_2_Enum         => 10,
-                                                       SystemDatentypen.Ekropa_Enum          => 0
+                                                       SystemDatentypen.Ekropa_Enum           => 0
                                                       );
 
    function StärkeVerhältnisErmitteln

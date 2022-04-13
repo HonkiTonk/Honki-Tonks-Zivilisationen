@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KartenVerbesserungDatentypen is
 
-   type Karten_Verbesserung_Enum is (Leer_Verbesserung_Enum,
+   type Karten_Verbesserung_Enum is (
+                                     Leer_Verbesserung_Enum,
                                      
                                      -- Städte
                                      Eigene_Hauptstadt_Enum, Eigene_Stadt_Enum,
@@ -26,7 +27,8 @@ package KartenVerbesserungDatentypen is
    
    
    
-   type Karten_Weg_Enum is (Leer_Weg_Enum,
+   type Karten_Weg_Enum is (
+                            Leer_Weg_Enum,
                             
                             -- Wege - Straßen
                             Straßenkreuzung_Vier_Enum, Straße_Waagrecht_Enum, Straße_Senkrecht_Enum, Straßenkurve_Unten_Rechts_Enum, Straßenkurve_Unten_Links_Enum, Straßenkurve_Oben_Rechts_Enum,

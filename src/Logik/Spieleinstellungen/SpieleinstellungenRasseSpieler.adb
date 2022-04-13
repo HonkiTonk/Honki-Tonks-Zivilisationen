@@ -6,8 +6,8 @@ with EinheitenKonstanten;
 
 with LeseEinheitenGebaut;
 
-with ZufallGeneratorenSpieleinstellungen;
-with ZufallGeneratorenKarten;
+with ZufallsgeneratorenSpieleinstellungen;
+with ZufallsgeneratorenKarten;
 with EinheitSuchen;
 with KarteKoordinatenPruefen;
 with BewegungPassierbarkeitPruefen;
@@ -34,7 +34,7 @@ package body SpieleinstellungenRasseSpieler is
                BelegungÄndern (RasseExtern => RassenAuswahl);
 
             when SystemDatentypen.Zufall_Enum =>
-               ZufallGeneratorenSpieleinstellungen.ZufälligeRassen;
+               ZufallsgeneratorenSpieleinstellungen.ZufälligeRassen;
                
             when SystemDatentypen.Fertig_Enum =>
                if
@@ -119,7 +119,7 @@ package body SpieleinstellungenRasseSpieler is
                for NotAusSchleifenwert in NotAus'Range loop
                   
                   StartKoordinaten := ((0, 0, 0), (0, 0, 0));
-                  GezogeneWerte := ZufallGeneratorenKarten.StartPosition (RasseSchleifenwert);
+                  GezogeneWerte := ZufallsgeneratorenKarten.StartPosition (RasseSchleifenwert);
                   
                   case
                     UmgebungPrüfen (KoordinatenExtern => GezogeneWerte,

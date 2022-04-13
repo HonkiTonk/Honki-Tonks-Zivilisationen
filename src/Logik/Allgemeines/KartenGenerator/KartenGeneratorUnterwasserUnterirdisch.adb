@@ -12,7 +12,7 @@ with SchreibeKarten;
 with LeseKarten;
 
 with Karten;
-with ZufallGeneratorenKarten;
+with ZufallsgeneratorenKarten;
 with LadezeitenDatentypen;
 
 package body KartenGeneratorUnterwasserUnterirdisch is
@@ -105,7 +105,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
                                                                                                    EbeneExtern       => -1);
          
          if
-           ZufallGeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (GrundSchleifenwert, AnzahlGleicherGrund)
+           ZufallsgeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (GrundSchleifenwert, AnzahlGleicherGrund)
          then
             SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
                                   GrundExtern       => GrundSchleifenwert);

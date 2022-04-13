@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
 
-with ZufallGeneratorenSpieleinstellungen;
+with ZufallsgeneratorenSpieleinstellungen;
 with AuswahlMenues;
 with Fehler;
 
@@ -24,7 +24,7 @@ package body SpieleinstellungenSonstiges is
                GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
 
             when SystemDatentypen.Zufall_Enum =>
-               GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
+               GlobaleVariablen.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
                
             when SystemDatentypen.Fertig_Enum =>
                return;

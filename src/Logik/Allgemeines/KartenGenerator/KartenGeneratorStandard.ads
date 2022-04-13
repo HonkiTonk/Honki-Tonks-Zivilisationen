@@ -17,7 +17,11 @@ private
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   type Land_Erzeugung_Enum is (Leer_Enum, Feld_Eisschild_Enum, Masse_Eisschild_Enum, Feld_Normal_Enum, Masse_Normal_Enum, Feld_Sonstiges_Enum, Feld_Fläche_Frei_Enum, Feld_Fläche_Belegt_Enum);
+   type Land_Erzeugung_Enum is (
+                                Leer_Enum,
+                                
+                                Feld_Eisschild_Enum, Masse_Eisschild_Enum, Feld_Normal_Enum, Masse_Normal_Enum, Feld_Sonstiges_Enum, Feld_Fläche_Frei_Enum, Feld_Fläche_Belegt_Enum
+                               );
    subtype Land_Erzeugung_Verwendet_Enum is Land_Erzeugung_Enum range Feld_Eisschild_Enum .. Land_Erzeugung_Enum'Last;
    
    type WahrscheinlichkeitenRecord is record

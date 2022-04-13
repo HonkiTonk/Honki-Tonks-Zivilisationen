@@ -1,7 +1,7 @@
 pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
-package body ZufallGeneratorenKampf is
+package body ZufallsgeneratorenKampf is
 
    function KampfErfolg
      return Float
@@ -12,4 +12,4 @@ package body ZufallGeneratorenKampf is
       
    end KampfErfolg;
 
-end ZufallGeneratorenKampf;
+end ZufallsgeneratorenKampf;

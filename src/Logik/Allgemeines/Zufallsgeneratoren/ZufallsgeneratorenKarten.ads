@@ -12,7 +12,7 @@ with KartenRecords;
 
 with Karten;
 
-package ZufallGeneratorenKarten is
+package ZufallsgeneratorenKarten is
      
    function StartPosition
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
@@ -111,4 +111,4 @@ private
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.EbeneVorhanden;
 
-end ZufallGeneratorenKarten;
+end ZufallsgeneratorenKarten;

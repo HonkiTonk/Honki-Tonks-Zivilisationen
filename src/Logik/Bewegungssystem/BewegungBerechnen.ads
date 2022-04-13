@@ -40,9 +40,11 @@ private
    Welchen_Bonus : Bewegungsbonuse_Enum;
    
    type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of EinheitStadtDatentypen.VorhandeneBewegungspunkte;
-   Bewegungsmodifikator : constant BewegungsmodifikatorArray := (Leer_Enum         => 0.00,
+   Bewegungsmodifikator : constant BewegungsmodifikatorArray := (
+                                                                 Leer_Enum         => 0.00,
                                                                  Straße_Fluss_Enum => 0.50,
-                                                                 Schiene_Enum      => 1.00);
+                                                                 Schiene_Enum      => 1.00
+                                                                );
    
    procedure NachBewegung
      (NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;

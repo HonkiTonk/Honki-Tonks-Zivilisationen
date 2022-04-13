@@ -12,14 +12,15 @@ package EinheitenTesorahn is
    EinheitenTesorahnListe : constant DatenbankRecords.EinheitenListeArray := (
                                                                               -- Siedler
                                                                               1 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 10,
                                                                                  PreisRessourcen         => 10,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 0,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 3,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -30,18 +31,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Steinzeitkämpfer
+                                                                                -- Steinzeitkämpfer
                                                                               2 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 0,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 5,
@@ -52,18 +55,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Bogenschütze
+                                                                                -- Bogenschütze
                                                                               3 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 1,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 8,
@@ -74,11 +79,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
       
-                                                                              -- Erstes Schiff
+                                                                                -- Erstes Schiff
                                                                               4 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -87,7 +94,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 10,
@@ -98,18 +105,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Bronzekämpfer
+                                                                                -- Bronzekämpfer
                                                                               5 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 10,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 6,
@@ -120,18 +129,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Eisenkämpfer
+                                                                                -- Eisenkämpfer
                                                                               6 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 13,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 12,
@@ -142,18 +153,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Streitwagen
+                                                                                -- Streitwagen
                                                                               7 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 5,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 17,
@@ -164,18 +177,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Katapult
+                                                                                -- Katapult
                                                                               8 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 11,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 9,
@@ -186,18 +201,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Balliste
+                                                                                -- Balliste
                                                                               9 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 12,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 13,
@@ -208,11 +225,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Segelschiff
+                                                                                -- Segelschiff
                                                                               10 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -221,7 +240,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 11,
@@ -232,11 +251,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Großes Segelschiff
+                                                                                -- Großes Segelschiff
                                                                               11 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -245,7 +266,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 14,
@@ -256,18 +277,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Gewehrkämpfer
+                                                                                -- Gewehrkämpfer
                                                                               12 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 28,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 44,
@@ -278,18 +301,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Kanone
+                                                                                -- Kanone
                                                                               13 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 34,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 40,
@@ -300,11 +325,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Dampfschiff
+                                                                                -- Dampfschiff
                                                                               14 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -313,7 +340,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 15,
@@ -324,11 +351,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Motorschiff
+                                                                                -- Motorschiff
                                                                               15 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -337,7 +366,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 42,
@@ -348,11 +377,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- U-Boot
+                                                                                -- U-Boot
                                                                               16 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -361,7 +392,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 42,
@@ -372,18 +403,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Gepanzerter Wagen
+                                                                                -- Gepanzerter Wagen
                                                                               17 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 40,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 18,
@@ -394,18 +427,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Panzer
+                                                                                -- Panzer
                                                                               18 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 42,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 35,
@@ -416,17 +451,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Jäger
+                                                                                -- Jäger
                                                                               19 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 41,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
-                                                                                                             others                      => False),
+                                                                                                             others                           => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 22,
@@ -437,17 +474,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Bomber
+                                                                                -- Bomber
                                                                               20 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 41,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
-                                                                                                             others                      => False),
+                                                                                                             others                           => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 23,
@@ -458,18 +497,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Rakete
+                                                                                -- Rakete
                                                                               21 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 46,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum     => True,
                                                                                                              EinheitStadtDatentypen.Weltraum_Enum => True,
-                                                                                                             others                          => False),
+                                                                                                             others                               => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -480,17 +521,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Düsenjäger
+                                                                                -- Düsenjäger
                                                                               22 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 51,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
-                                                                                                             others                      => False),
+                                                                                                             others                           => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 38,
@@ -501,17 +544,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Düsenbomber
+                                                                                -- Düsenbomber
                                                                               23 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 51,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
-                                                                                                             others                      => False),
+                                                                                                             others                           => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 39,
@@ -522,17 +567,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Atombombe
+                                                                                -- Atombombe
                                                                               24 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 45,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
-                                                                                                             others                       => False),
+                                                                                                             others                            => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -543,17 +590,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Drohne
+                                                                                -- Drohne
                                                                               25 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 49,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum => True,
-                                                                                                             others                      => False),
+                                                                                                             others                           => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -564,18 +613,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Gensoldat
+                                                                                -- Gensoldat
                                                                               26 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 56,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 28,
@@ -586,11 +637,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Wassersiedler
+                                                                                -- Wassersiedler
                                                                               27 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -600,7 +653,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -611,18 +664,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Cyborg
+                                                                                -- Cyborg
                                                                               28 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 57,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 33,
@@ -633,11 +688,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Unterwasser/Unterirdischer Siedler
+                                                                                -- Unterwasser/Unterirdischer Siedler
                                                                               29 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -648,7 +705,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
                                                                                                              EinheitStadtDatentypen.Unterirdisch_Enum      => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -659,17 +716,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- PZB20
+                                                                                -- PZB20
                                                                               30 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 63,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
-                                                                                                             others                       => False),
+                                                                                                             others                            => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -680,17 +739,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- PZB40
+                                                                                -- PZB40
                                                                               31 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 66,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
-                                                                                                             others                       => False),
+                                                                                                             others                            => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -701,17 +762,19 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- PZB100
+                                                                                -- PZB100
                                                                               32 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 66,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum => True,
-                                                                                                             others                       => False),
+                                                                                                             others                            => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -722,18 +785,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Gaußkämpfer
+                                                                                -- Gaußkämpfer
                                                                               33 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 68,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 34,
@@ -744,18 +809,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Magnetkämpfer
+                                                                                -- Magnetkämpfer
                                                                               34 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 74,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -766,11 +833,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Schwebepanzer
+                                                                                -- Schwebepanzer
                                                                               35 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -780,7 +849,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -791,11 +860,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Planetenkernsiedler
+                                                                                -- Planetenkernsiedler
                                                                               36 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -808,7 +879,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Unterirdisch_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Lava_Enum              => True,
                                                                                                              EinheitStadtDatentypen.Planeteninneres_Enum   => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -819,11 +890,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Himmel/Orbitalsiedler
+                                                                                -- Himmel/Orbitalsiedler
                                                                               37 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -833,7 +906,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum => True,
                                                                                                              EinheitStadtDatentypen.Luft_Enum         => True,
                                                                                                              EinheitStadtDatentypen.Weltraum_Enum     => True,
-                                                                                                             others                              => False),
+                                                                                                             others                                   => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -844,18 +917,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Atmosphärenjäger
+                                                                                -- Atmosphärenjäger
                                                                               38 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 74,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum     => True,
                                                                                                              EinheitStadtDatentypen.Weltraum_Enum => True,
-                                                                                                             others                          => False),
+                                                                                                             others                               => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -866,18 +941,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Atmosphärenbomber
+                                                                                -- Atmosphärenbomber
                                                                               39 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 74,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Luft_Enum     => True,
                                                                                                              EinheitStadtDatentypen.Weltraum_Enum => True,
-                                                                                                             others                          => False),
+                                                                                                             others                               => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -888,18 +965,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Artillerie
+                                                                                -- Artillerie
                                                                               40 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 42,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 41,
@@ -910,11 +989,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Stellare Artillerie
+                                                                                -- Stellare Artillerie
                                                                               41 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -922,7 +1003,7 @@ package EinheitenTesorahn is
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Boden_Enum        => True,
                                                                                                              EinheitStadtDatentypen.Wasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Küstenwasser_Enum => True,
-                                                                                                             others                              => False),
+                                                                                                             others                                   => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -933,11 +1014,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Gräberschiff
+                                                                                -- Gräberschiff
                                                                               42 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -948,7 +1031,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
                                                                                                              EinheitStadtDatentypen.Unterirdisch_Enum      => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 43,
@@ -959,11 +1042,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Kerngräber
+                                                                                -- Kerngräber
                                                                               43 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
@@ -976,7 +1061,7 @@ package EinheitenTesorahn is
                                                                                                              EinheitStadtDatentypen.Unterirdisch_Enum      => True,
                                                                                                              EinheitStadtDatentypen.Lava_Enum              => True,
                                                                                                              EinheitStadtDatentypen.Planeteninneres_Enum   => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 0,
@@ -987,18 +1072,20 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Moderne Infanterie
+                                                                                -- Moderne Infanterie
                                                                               44 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
                                                                                  PreisGeld               => 25,
                                                                                  PreisRessourcen         => 20,
                                                                                  PermanenteKosten        => (others => 0),
                                                                                  Anforderungen           => 40,
                                                                                  Passierbarkeit          => (EinheitStadtDatentypen.Unterwasser_Enum       => True,
                                                                                                              EinheitStadtDatentypen.Unterküstenwasser_Enum => True,
-                                                                                                             others                                   => False),
+                                                                                                             others                                        => False),
                                                                                  MaximaleLebenspunkte    => 5,
                                                                                  MaximaleBewegungspunkte => 3.00,
                                                                                  WirdVerbessertZu        => 26,
@@ -1009,11 +1096,13 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 1,
                                                                                  KannTransportieren      => 0,
                                                                                  KannTransportiertWerden => 1,
-                                                                                 Transportkapazität      => 0),
+                                                                                 Transportkapazität      => 0
+                                                                                ),
                                                
-                                                                              -- Alleskönner
+                                                                                -- Alleskönner
                                                                               45 =>
-                                                                                (EinheitArt              => EinheitStadtDatentypen.Beides_Enum,
+                                                                                (
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Beides_Enum,
                                                                                  PreisGeld               => 1,
                                                                                  PreisRessourcen         => 1,
                                                                                  PermanenteKosten        => (others => 0),
@@ -1029,7 +1118,8 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 100,
                                                                                  KannTransportieren      => 10,
                                                                                  KannTransportiertWerden => 0,
-                                                                                 Transportkapazität      => EinheitStadtRecords.TransporterArray'Last),
+                                                                                 Transportkapazität      => EinheitStadtRecords.TransporterArray'Last
+                                                                                ),
                                                                
                                                                               others => EinheitenKonstanten.LeerEinheitListe
                                                                              );

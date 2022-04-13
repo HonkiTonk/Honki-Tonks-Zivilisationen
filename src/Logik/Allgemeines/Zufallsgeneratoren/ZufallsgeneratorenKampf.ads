@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Numerics.Float_Random;
 
-package ZufallGeneratorenKampf is
+package ZufallsgeneratorenKampf is
 
    function KampfErfolg
      return Float;
@@ -14,4 +14,4 @@ private
    ZufälligerFloatWert : Ada.Numerics.Float_Random.Generator;
    -- Generatoren für KampfErfolg
 
-end ZufallGeneratorenKampf;
+end ZufallsgeneratorenKampf;

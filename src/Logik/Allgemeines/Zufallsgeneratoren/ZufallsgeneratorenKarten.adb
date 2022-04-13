@@ -7,7 +7,7 @@ with LeseKarten;
 
 with BewegungPassierbarkeitPruefen;
 
-package body ZufallGeneratorenKarten is
+package body ZufallsgeneratorenKarten is
 
    function StartPosition
      (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
@@ -228,4 +228,4 @@ package body ZufallGeneratorenKarten is
       
    end ChaoskarteRessource;
 
-end ZufallGeneratorenKarten;
+end ZufallsgeneratorenKarten;

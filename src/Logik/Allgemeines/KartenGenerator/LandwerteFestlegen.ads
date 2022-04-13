@@ -21,39 +21,39 @@ private
                                                                  SystemDatentypen.Karte_Art_Inseln_Enum     => (2, 2),
                                                                  SystemDatentypen.Karte_Art_Kontinente_Enum => (6, 6),
                                                                  SystemDatentypen.Karte_Art_Pangäa_Enum     => (1, 1),
-                                                                 others                      => (1, 1)
+                                                                 others                                     => (1, 1)
                                                                 );
    MaximaleLandgröße : constant Karten.GrößeLandartArray := (
                                                                  SystemDatentypen.Karte_Art_Inseln_Enum     => (3, 3),
                                                                  SystemDatentypen.Karte_Art_Kontinente_Enum => (8, 8),
                                                                  SystemDatentypen.Karte_Art_Pangäa_Enum     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
-                                                                 others                      => (1, 1)
+                                                                 others                                     => (1, 1)
                                                                 );
    
    MinimalerAbstand : constant Karten.GrößeLandartArray := (
                                                               SystemDatentypen.Karte_Art_Inseln_Enum     => (8, 8),
                                                               SystemDatentypen.Karte_Art_Kontinente_Enum => (13, 13),
                                                               SystemDatentypen.Karte_Art_Pangäa_Enum     => (1, 1),
-                                                              others                      => (1, 1)
+                                                              others                                     => (1, 1)
                                                              );
    MaximalerAbstand : constant Karten.GrößeLandartArray := (
                                                               SystemDatentypen.Karte_Art_Inseln_Enum     => (15, 15),
                                                               SystemDatentypen.Karte_Art_Kontinente_Enum => (22, 22),
                                                               SystemDatentypen.Karte_Art_Pangäa_Enum     => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
-                                                              others                      => (1, 1)
+                                                              others                                     => (1, 1)
                                                              );
    
    TeilerGröße : constant Karten.GrößeLandartArray := (
                                                            SystemDatentypen.Karte_Art_Inseln_Enum     => (7, 7),
                                                            SystemDatentypen.Karte_Art_Kontinente_Enum => (3, 3),
                                                            SystemDatentypen.Karte_Art_Pangäa_Enum     => (2, 2),
-                                                           others                      => (1, 1)
+                                                           others                                     => (1, 1)
                                                           );
    TeilerAbstand : constant Karten.GrößeLandartArray := (
                                                            SystemDatentypen.Karte_Art_Inseln_Enum     => (3, 3),
                                                            SystemDatentypen.Karte_Art_Kontinente_Enum => (2, 2),
                                                            SystemDatentypen.Karte_Art_Pangäa_Enum     => (1, 1),
-                                                           others                      => (1, 1)
+                                                           others                                     => (1, 1)
                                                           );
    
    procedure Größe;

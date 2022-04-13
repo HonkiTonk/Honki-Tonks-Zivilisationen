@@ -9,7 +9,7 @@ with SchreibeKarten;
 with LeseKarten;
 
 with KartenGeneratorBerechnungenAllgemein; use KartenGeneratorBerechnungenAllgemein;
-with ZufallGeneratorenKarten;
+with ZufallsgeneratorenKarten;
 with KarteKoordinatenPruefen;
 
 package body KartenGeneratorLandschaft is
@@ -141,7 +141,7 @@ package body KartenGeneratorLandschaft is
                                                                                                 EbeneExtern       => 0);
       
       if
-        ZufallGeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (Karten.Kartenparameter.Kartentemperatur, GrundExtern, AnzahlGleicherGrund)
+        ZufallsgeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (Karten.Kartenparameter.Kartentemperatur, GrundExtern, AnzahlGleicherGrund)
       then
          SchreibeKarten.Grund (KoordinatenExtern => KoordinatenExtern,
                                GrundExtern       => GrundExtern);
@@ -225,7 +225,7 @@ package body KartenGeneratorLandschaft is
                                                                              EbeneExtern       => 0);
       
       if
-        ZufallGeneratorenKarten.ZufälligerWert <= ZusatzHügel (AnzahlGleicherGrund)
+        ZufallsgeneratorenKarten.ZufälligerWert <= ZusatzHügel (AnzahlGleicherGrund)
       then
          SchreibeKarten.Hügel (KoordinatenExtern => KoordinatenExtern,
                                 HügelExtern       => True);

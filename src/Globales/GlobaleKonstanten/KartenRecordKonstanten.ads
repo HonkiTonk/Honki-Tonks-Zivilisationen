@@ -57,12 +57,6 @@ package KartenRecordKonstanten is
                                                                                        Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
                                                                                       );
    
-   -- LeerWegeListe : constant DatenbankRecords.WegeListeRecord := (
-   --                                                              Bewertung      => (others => KartenKonstanten.LeerVerbesserungBewertung),
-   --                                                              Wirtschaft     => (others => (others => KartenKonstanten.LeerVerbesserungWirtschaft)),
-   --                                                               Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
-   --                                                             );
-   
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
                                          SystemDatentypen.Karte_Größe_20_20_Enum     => 1,
