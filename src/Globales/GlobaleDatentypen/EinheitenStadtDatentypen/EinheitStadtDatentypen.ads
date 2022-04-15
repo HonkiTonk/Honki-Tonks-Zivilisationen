@@ -35,7 +35,7 @@ package EinheitStadtDatentypen is
    type Einheit_Art_Enum is (
                              Leer_Enum,
                              
-                             Arbeiter_Enum, Nahkämpfer_Enum, Fernkämpfer_Enum, Beides_Enum, Sonstiges_Enum
+                             Arbeiter_Enum, Nahkämpfer_Enum, Fernkämpfer_Enum, Beides_Enum, Sonstiges_Enum, Cheat_Enum
                             );
    subtype Einheit_Art_Verwendet_Enum is Einheit_Art_Enum range Arbeiter_Enum .. Einheit_Art_Enum'Last;
 

@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body AuswahlMenuesZusatztextSFML is
 
    procedure AuswahlMenüsZusatztext
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum)
    is begin
       
       null;

@@ -33,7 +33,7 @@ package body KartenAllgemein is
      (KartenFlussExtern : in KartenGrundDatentypen.Karten_Fluss_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
-      
+            
       FlussAktuell := 2 * KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenFlussExtern) - 1;
             
       BeschreibungText := GlobaleTexte.Kartenflüsse (FlussAktuell);

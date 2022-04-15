@@ -262,6 +262,7 @@ package body KarteSFML is
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
+      ------------------------- Hier mal ein bisschen Übersichtlicher gestalten.
       Wegfeld := LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern);
       
       if
@@ -336,8 +337,8 @@ package body KarteSFML is
          when others =>
             Stadtart := LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer);
       end case;
-      -- -----------------
-      -- Eventuell kann man diese Sachen doch auslagern, wenn man die Skalierung mit übergibt, dann müsste man aber die Texture vorher festlegen. Und was ist dann mit den untexturierten Felder?
+      
+      ------------------- Eventuell kann man diese Sachen doch auslagern, wenn man die Skalierung mit übergibt, dann müsste man aber die Texture vorher festlegen. Und was ist dann mit den untexturierten Felder?
       if
         EingeleseneTexturenSFML.VerbesserungenAccess (Stadtart) /= null
       then
@@ -387,7 +388,7 @@ package body KarteSFML is
          null;
          
       elsif
-        EingeleseneTexturenSFML.EinheitenAccess (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer)) /= null -- *
+        EingeleseneTexturenSFML.EinheitenAccess (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer)) /= null
       then
          KarteGrafikenZeichnenSFML.SpriteZeichnen (SpriteAccesExtern => SpriteAccess,
                                                    PositionExtern    => PositionExtern,

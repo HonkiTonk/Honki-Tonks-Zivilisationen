@@ -6,7 +6,6 @@ with Sf;
 with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen;
 with GrafikTonDatentypen;
-with SystemKonstanten;
 
 with GrafikEinstellungenSFML;
 with Eingabe;
@@ -25,27 +24,26 @@ package body AuswahlMenuesEinfach is
       InteraktionGrafiktask.AktuellesMenü := WelchesMenüExtern;
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Menüs_Enum);
       
-      -- Wird benötigt damit das hier ohne und mit Überschrift funktioniert.
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Menü_Ohne_Überschrift_Enum =>
-            Anfang := 1;
-            AnfangAbzug := 0;
-            EndeAbzug := 0;
+         when SystemDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
+            Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern);
             
-         when SystemDatentypen.Menü_Mit_Überschrift_Enum =>
-            Anfang := 2;
-            AnfangAbzug := 1;
-            EndeAbzug := 1;
+         when SystemDatentypen.Menü_Mit_Überschrift_Enum'Range =>
+            Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern) - 1;
+            
+         when SystemDatentypen.Menü_Zusatztext_Enum'Range =>
+            -- Hier wird korrekt aufgerundet.
+            Ende := Integer (Float'Floor (0.50 * Float (SystemKonstanten.EndeMenü (WelchesMenüExtern))));
       end case;
       
-      Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern);
-      
-      Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern);
+      Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
+                             AnfangExtern      => Anfang,
+                             EndeExtern        => Ende);
    
-      RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang - AnfangAbzug,
-                                                        EndeExtern            => Ende - EndeAbzug,
+      RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
+                                                        EndeExtern            => Ende,
                                                         AktuelleAuswahlExtern => Ausgewählt,
                                                         WelchesMenüExtern     => WelchesMenüExtern);
       
@@ -59,53 +57,25 @@ package body AuswahlMenuesEinfach is
       
    
    function Auswahl
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+      AnfangExtern : in Positive;
+      EndeExtern : in Positive)
       return Positive
    is begin
       
-      -------------------------- Ist das so in der SFML Version überhaupt noch sinnvoll? Oder reicht die Mausauswahl?
       AuswahlSchleife:
       loop
       
-         AktuelleAuswahl := MausAuswahl (WelchesMenüExtern => WelchesMenüExtern);
+         AktuelleAuswahl := MausAuswahl (WelchesMenüExtern => WelchesMenüExtern,
+                                         AnfangExtern      => AnfangExtern,
+                                         EndeExtern        => EndeExtern);
       
          case
            Eingabe.Tastenwert
          is
-            when TastenbelegungDatentypen.Oben_Enum | TastenbelegungDatentypen.Ebene_Hoch_Enum =>
-               if
-                 AktuelleAuswahl = Anfang
-                 or
-                   AktuelleAuswahl = 0
-               then
-                  AktuelleAuswahl := Ende;
-
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
-
-            when TastenbelegungDatentypen.Unten_Enum | TastenbelegungDatentypen.Ebene_Runter_Enum =>
-               if
-                 AktuelleAuswahl = Ende
-                 or
-                   AktuelleAuswahl = 0
-               then
-                  AktuelleAuswahl := Anfang;
-
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
-               
-               -- Später noch erweitern oder entfernen?
-            when TastenbelegungDatentypen.Links_Enum =>
-               null;
-               
-            when TastenbelegungDatentypen.Rechts_Enum =>
-               null;
-                              
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl = 0
+                 AktuelleAuswahl = SystemKonstanten.LeerAuswahl
                then
                   null;
                   
@@ -124,7 +94,9 @@ package body AuswahlMenuesEinfach is
          
    
    function MausAuswahl
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+      AnfangExtern : in Positive;
+      EndeExtern : in Positive)
       return Natural
    is begin
       
@@ -132,7 +104,7 @@ package body AuswahlMenuesEinfach is
       MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
       
       PositionSchleife:
-      for PositionSchleifenwert in Anfang .. Ende loop
+      for PositionSchleifenwert in AnfangExtern .. EndeExtern loop
          
          if
            MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenEinfach (WelchesMenüExtern, PositionSchleifenwert).top)
@@ -149,7 +121,7 @@ package body AuswahlMenuesEinfach is
          
       end loop PositionSchleife;
       
-      return 0;
+      return SystemKonstanten.LeerAuswahl;
       
    end MausAuswahl;
    

@@ -51,7 +51,7 @@ package body Spieleinstellungen is
             when SystemDatentypen.Auswahl_Schwierigkeitsgrad_Enum =>
                SpieleinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
-            when SystemDatentypen.Start_Weiter_Enum =>
+            when SystemDatentypen.Fertig_Enum =>
                -- Oder eine Rasse zufällig belegen lassen?
                if
                  SpieleinstellungenRasseSpieler.EineRasseBelegt = True

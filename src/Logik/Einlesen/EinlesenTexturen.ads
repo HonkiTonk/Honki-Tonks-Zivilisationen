@@ -14,13 +14,15 @@ package EinlesenTexturen is
 
 private
 
-   ------------------- Das hier mal in Bereiche aufteilen um die Zeilenanzahl in der adb ein wenig zu verringern.
+   ------------------- Das hier mal in Bereiche aufteilen um die Zeilenanzahl in der adb ein wenig zu verringern?
+   ------------------- Wenn dann in die gleichen Bereiche wie in EingeleseneTexturenSFML.
+
    AktuelleZeile : Positive;
 
    DateiTextEinlesen : File_Type;
 
-   type HintergrundEinlesenArray is array (EingeleseneTexturenSFML.HintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
-   HintergrundEinlesen : HintergrundEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
+   type MenüHintergrundEinlesenArray is array (EingeleseneTexturenSFML.MenüHintergrundAccessArray'Range) of Unbounded_Wide_Wide_String;
+   MenüHintergrundEinlesen : MenüHintergrundEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
 
    type KartenfelderEinlesenArray is array (EingeleseneTexturenSFML.KartenfelderAccessArray'Range) of Unbounded_Wide_Wide_String;
    KartenfelderEinlesen : KartenfelderEinlesenArray := (others => TextKonstanten.LeerUnboundedString);
@@ -43,7 +45,7 @@ private
    type GebäudeEinlesenArray is array (EingeleseneTexturenSFML.GebäudeAccessArray'Range (1), EingeleseneTexturenSFML.GebäudeAccessArray'Range (2)) of Unbounded_Wide_Wide_String;
    GebäudeEinlesen : GebäudeEinlesenArray := (others => (others => TextKonstanten.LeerUnboundedString));
 
-   procedure EinlesenHintergrund;
+   procedure EinlesenMenüHintergrund;
    procedure EinlesenKartenfelder;
    procedure EinlesenKartenflüsse;
    procedure EinlesenKartenressourcen;

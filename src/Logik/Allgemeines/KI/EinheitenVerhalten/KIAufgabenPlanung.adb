@@ -73,6 +73,9 @@ package body KIAufgabenPlanung is
          when EinheitStadtDatentypen.Sonstiges_Enum =>
             null;
             
+         when EinheitStadtDatentypen.Cheat_Enum =>
+            Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat Cheateinheit ausgewählt.");
+            
          when EinheitStadtDatentypen.Leer_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat keine Einheit ausgewählt.");
       end case;

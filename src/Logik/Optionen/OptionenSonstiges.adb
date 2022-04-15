@@ -12,6 +12,7 @@ with AuswahlSprache;
 with Eingabe;
 with AuswahlMenues;
 with Fehler;
+with AuswahlMenuesEinfachSFML;
 
 package body OptionenSonstiges is
 
@@ -36,7 +37,7 @@ package body OptionenSonstiges is
             when SystemDatentypen.Sprache_Enum =>
                SpracheWechseln;
                
-            when SystemDatentypen.Zurück_Enum | SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
+            when SystemDatentypen.Zurück_Beenden_Enum'Range =>
                SchreibenEinstellungen.SchreibenEinstellungen;
                return AuswahlWert;
                
@@ -121,6 +122,7 @@ package body OptionenSonstiges is
             else
                GlobaleVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
                EinlesenText.EinlesenDateien;
+               AuswahlMenuesEinfachSFML.TextZurücksetzen;
             end if;
             
          when False =>
@@ -128,5 +130,9 @@ package body OptionenSonstiges is
       end case;
       
    end SpracheWechseln;
+   
+   
+   
+   -------------------- Hier später noch eine Option für den Wechsel der Schriftart einbauen.
 
 end OptionenSonstiges;

@@ -1102,7 +1102,7 @@ package EinheitenTesorahn is
                                                                                 -- Alleskönner
                                                                               45 =>
                                                                                 (
-                                                                                 EinheitArt              => EinheitStadtDatentypen.Beides_Enum,
+                                                                                 EinheitArt              => EinheitStadtDatentypen.Cheat_Enum,
                                                                                  PreisGeld               => 1,
                                                                                  PreisRessourcen         => 1,
                                                                                  PermanenteKosten        => (others => 0),

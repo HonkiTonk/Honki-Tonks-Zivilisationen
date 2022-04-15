@@ -14,7 +14,7 @@ package body EinlesenTexturen is
    procedure EinlesenTexturen
    is begin
             
-      EinlesenHintergrund;
+      EinlesenMenüHintergrund;
       EinlesenKartenfelder;
       EinlesenKartenflüsse;
       EinlesenKartenressourcen;
@@ -27,7 +27,7 @@ package body EinlesenTexturen is
    
    
    
-   procedure EinlesenHintergrund
+   procedure EinlesenMenüHintergrund
    is begin
       
       case
@@ -45,7 +45,7 @@ package body EinlesenTexturen is
       end case;
       
       DateipfadeEinlesenSchleife:
-      for DateipfadeEinlesenSchleifenwert in HintergrundEinlesenArray'Range loop
+      for DateipfadeEinlesenSchleifenwert in MenüHintergrundEinlesenArray'Range loop
          
          case
            EinlesenAllgemein.VorzeitigesZeilenende (AktuelleDateiExtern => DateiTextEinlesen,
@@ -54,11 +54,11 @@ package body EinlesenTexturen is
             when True =>
                Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - Nicht genug Zeilen in der 0-Datei.");
                Close (File => DateiTextEinlesen);
-               HintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
+               MenüHintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := TextKonstanten.LeerUnboundedString;
                return;
                
             when False =>
-               HintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               MenüHintergrundEinlesen (DateipfadeEinlesenSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
          end case;
          
          AktuelleZeile := AktuelleZeile + 1;
@@ -68,23 +68,23 @@ package body EinlesenTexturen is
       Close (File => DateiTextEinlesen);
       
       TexturenZuweisenSchleife:
-      for TexturenZuweisenSchleifenwert in HintergrundEinlesenArray'Range loop
+      for TexturenZuweisenSchleifenwert in MenüHintergrundEinlesenArray'Range loop
          
          case
-           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert))))
+           Exists (Name => Encode (Item => To_Wide_Wide_String (Source => MenüHintergrundEinlesen (TexturenZuweisenSchleifenwert))))
          is
             when True =>
-               EingeleseneTexturenSFML.HintergrundAccess (TexturenZuweisenSchleifenwert)
-                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert))));
+               EingeleseneTexturenSFML.MenüHintergrundAccess (TexturenZuweisenSchleifenwert)
+                 := Sf.Graphics.Texture.createFromFile (filename => Encode (Item => To_Wide_Wide_String (Source => MenüHintergrundEinlesen (TexturenZuweisenSchleifenwert))));
                   
             when False =>
-               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => HintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
-               EingeleseneTexturenSFML.HintergrundAccess (TexturenZuweisenSchleifenwert) := null;
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenTexturen.EinlesenHintergrund - " & To_Wide_Wide_String (Source => MenüHintergrundEinlesen (TexturenZuweisenSchleifenwert)) & " fehlt.");
+               EingeleseneTexturenSFML.MenüHintergrundAccess (TexturenZuweisenSchleifenwert) := null;
          end case;
          
       end loop TexturenZuweisenSchleife;
       
-   end EinlesenHintergrund;
+   end EinlesenMenüHintergrund;
    
    
    

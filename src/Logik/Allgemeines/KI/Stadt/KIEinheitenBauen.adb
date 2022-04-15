@@ -51,17 +51,6 @@ package body KIEinheitenBauen is
       for EinheitenSchleifenwert in EinheitStadtDatentypen.EinheitenID'Range loop
          
          case
-           EinheitenSchleifenwert
-         is
-            when 45 =>
-               -- Ist dazu da dass die KI den Alleskönner nicht baut, später anpassen/entfernen.
-               exit EinheitenSchleife;
-               
-            when others =>
-               null;
-         end case;
-         
-         case
            EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                IDExtern               => EinheitenSchleifenwert)
          is
@@ -144,6 +133,9 @@ package body KIEinheitenBauen is
             
          when EinheitStadtDatentypen.Sonstiges_Enum =>
             null;
+            
+         when EinheitStadtDatentypen.Cheat_Enum =>
+            return KIDatentypen.BauenBewertung'First;
             
          when EinheitStadtDatentypen.Leer_Enum =>
             null;

@@ -57,7 +57,7 @@ package GlobaleVariablen is
    RassenImSpiel : SystemDatentypen.RassenImSpielArray := (others => SystemDatentypen.Leer_Spieler_Enum);
    RasseAmZugNachLaden : SystemDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
 
-   Schwierigkeitsgrad : SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
+   Schwierigkeitsgrad : SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum := SystemDatentypen.Schwierigkeit_Mittel_Enum;
    Gewonnen : Boolean := False;
    WeiterSpielen : Boolean := False;
    

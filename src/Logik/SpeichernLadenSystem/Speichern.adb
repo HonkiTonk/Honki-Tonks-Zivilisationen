@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
 with Ada.Calendar; use Ada.Calendar;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
@@ -17,18 +17,19 @@ with TextKonstanten;
 with Karten;
 with Auswahl;
 with Ladezeiten;
--- with SpeichernLadenAllgemein;
+with SpeichernLadenAllgemein;
 with LadezeitenDatentypen;
 
 package body Speichern is
 
-   ------------------------ Funktioniert durch die Anpassung der Namenseingabe nicht mehr. Korrigieren!
    procedure SpeichernNeu
      (AutospeichernExtern : in Boolean)
    is begin
 
+      NameSpielstand := SpielstandNameFestlegen (AutospeichernExtern => AutospeichernExtern);
+      
       case
-        SpielstandNameFestlegen (AutospeichernExtern => AutospeichernExtern)
+        NameSpielstand.ErfolgreichAbbruch
       is
          when False =>
             return;
@@ -39,9 +40,9 @@ package body Speichern is
 
       LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Speicherzeit_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-    --  Create (File => DateiSpeichernNeu,
-    --          Mode => Out_File,
-    --          Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpeichernLadenAllgemein.SpielstandName.EingegebenerText))));
+      Create (File => DateiSpeichernNeu,
+              Mode => Out_File,
+              Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => NameSpielstand.EingegebenerText))));
       
       SonstigesSpeichern;
       KarteSpeichern;
@@ -86,10 +87,10 @@ package body Speichern is
                      GlobaleVariablen.Rundengrenze);
       
       SystemDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                           GlobaleVariablen.RasseAmZugNachLaden);
+                                          GlobaleVariablen.RasseAmZugNachLaden);
       
       SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                                                 GlobaleVariablen.Schwierigkeitsgrad);
+                                                                GlobaleVariablen.Schwierigkeitsgrad);
       
       Boolean'Write (Stream (File => DateiSpeichernNeu),
                      GlobaleVariablen.Gewonnen);
@@ -105,9 +106,9 @@ package body Speichern is
    is begin
       
       KartenDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                                         Karten.Kartenform);
+                                                        Karten.Kartenform);
       KartenDatentypen.Kartengröße_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                                            Karten.Kartenparameter.Kartengröße);
+                                                 Karten.Kartenparameter.Kartengröße);
       
       case
         Karten.Kartenparameter.Kartengröße
@@ -142,7 +143,7 @@ package body Speichern is
    is begin
       
       SystemDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
-                                                  GlobaleVariablen.RassenImSpiel);
+                                                 GlobaleVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
       for GrenzenRassenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -296,7 +297,7 @@ package body Speichern is
    
    function SpielstandNameFestlegen
      (AutospeichernExtern : in Boolean)
-        return Boolean
+      return SystemRecords.TextEingabeRecord
    is begin
       
       case
@@ -307,7 +308,7 @@ package body Speichern is
 
          when True =>
             NameAutoSpeichern;
-            return True;
+            return NameSpielstand;
       end case;
       
    end SpielstandNameFestlegen;
@@ -315,7 +316,7 @@ package body Speichern is
    
    
    function NameNutzer
-     return Boolean
+     return SystemRecords.TextEingabeRecord
    is begin
       
       if
@@ -326,25 +327,26 @@ package body Speichern is
                
       else
          -- Anzeige der vorhandenen Spielstände einbauen
-       --  case
-       --    SpeichernLadenAllgemein.SpielstandNameErmitteln
-       --  is
-       --     when True =>
-               if
-                 Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = SystemDatentypen.Ja_Enum
-               then
-                  null;
+         --  case
+         --    SpeichernLadenAllgemein.SpielstandNameErmitteln
+         --  is
+         --     when True =>
+         if
+           Auswahl.AuswahlJaNein (FrageZeileExtern => 18) = SystemDatentypen.Ja_Enum
+         then
+            null;
                      
-               else
-                  return False;
-               end if;
+         else
+            null;
+            --      return False;
+         end if;
 
          --   when False =>
-        --       null;
-       --  end case;
+         --       null;
+         --  end case;
       end if;
       
-      return True;
+      return SpeichernLadenAllgemein.SpielstandNameErmitteln;
       
    end NameNutzer;
    
@@ -360,8 +362,8 @@ package body Speichern is
          -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
                
       else
-         -- Hier kann Wide_Wide_Image bleiben weil die Zahl ja nur als Namensbestandteil für den Spielstand fungiert.
-         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+         NameSpielstand := (True, To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image));
+         
          if
            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
          then

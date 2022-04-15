@@ -34,9 +34,9 @@ private
 
    function SpielstandNameFestlegen
      (AutospeichernExtern : in Boolean)
-      return Boolean;
+      return SystemRecords.TextEingabeRecord;
 
    function NameNutzer
-     return Boolean;
+     return SystemRecords.TextEingabeRecord;
 
 end Speichern;

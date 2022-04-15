@@ -3,28 +3,44 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf; use Sf;
 with Sf.Graphics.Color; use Sf.Graphics.Color;
+with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 
+with SystemDatentypen; use SystemDatentypen;
 with SonstigesKonstanten;
-with SystemKonstanten;
 
 with GrafikEinstellungenSFML;
 with AllgemeineTextBerechnungenSFML;
 with AuswahlMenuesStringsSetzen;
+with AuswahlMenuesEinfach;
+with AuswahlMenuesZusatztextSFML;
+with EingeleseneTexturenSFML;
+with TexturenSetzenSkalierenSFML;
 
 package body AuswahlMenuesEinfachSFML is
 
    procedure AuswahlMenüsEinfach
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
    is begin
+      
+      MenüHintergrund (WelchesMenüExtern => WelchesMenüExtern);
             
       --------------------- SystemKonstanten.EndeMenü (WelchesMenüExtern) durch internes Ende ersetzen und das dann immer mitübergeben?
-      Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) + Versionsnummer;
+      case
+        WelchesMenüExtern
+      is
+         when SystemDatentypen.Menü_Zusatztext_Enum'Range =>
+            -- 'Floor sorgt dafür das Ada das Ergebnis abrundet. Alternativ würde HIER IN DIESEM FALL (NICHT ALLGEMEIN) auch - 1 funktionieren.
+            Textbereich := Überschrift + Integer (Float'Floor (0.50 * Float (SystemKonstanten.EndeMenü (WelchesMenüExtern)))) + Versionsnummer;
+            
+         when others => 
+            Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) + Versionsnummer;
+      end case;
       
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Haupt_Menü_Enum =>
+         when SystemDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
             HauptmenüAbzug := 1;
             SchleifenAbzug := 0;
             
@@ -33,8 +49,8 @@ package body AuswahlMenuesEinfachSFML is
             SchleifenAbzug := 1;
       end case;
       
-      Textberechnungen (WelchesMenüExtern => WelchesMenüExtern,
-                        TextbereichExtern  => Textbereich);
+      Textbearbeitung (WelchesMenüExtern => WelchesMenüExtern,
+                       TextbereichExtern  => Textbereich);
       
       TextSchleife:
       for TextSchleifenwert in Überschrift .. Textbereich loop
@@ -45,11 +61,46 @@ package body AuswahlMenuesEinfachSFML is
          
       end loop TextSchleife;
       
+      case
+        WelchesMenüExtern
+      is
+         when SystemDatentypen.Menü_Zusatztext_Enum'Range =>
+            -- Aktuelle Auswahl gleich mitübergeben?
+            AuswahlMenuesZusatztextSFML.AuswahlMenüsZusatztext (WelchesMenüExtern => WelchesMenüExtern);
+            
+         when others =>
+            null;
+      end case;
+      
    end AuswahlMenüsEinfach;
    
    
    
-   procedure Textberechnungen
+   procedure MenüHintergrund
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
+   is begin
+      
+      if
+        EingeleseneTexturenSFML.MenüHintergrundAccess (WelchesMenüExtern) /= null
+      then
+         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
+                                         position => (0.00, 0.00));
+         Sf.Graphics.Sprite.scale (sprite  => SpriteAccess,
+                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => SpriteAccess,
+                                                                                                               TextureAccessExtern => EingeleseneTexturenSFML.MenüHintergrundAccess (WelchesMenüExtern)));
+         
+         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                              object       => SpriteAccess);
+         
+      else
+         null;
+      end if;
+      
+   end MenüHintergrund;
+   
+   
+   
+   procedure Textbearbeitung
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive)
    is begin
@@ -101,7 +152,7 @@ package body AuswahlMenuesEinfachSFML is
             null;
       end case;
       
-      -------------------- Noch was bauen für die aktuelle Auswahl, wird hier aktuell nicht berücksichtigt.
+      ------------------- Bessere Lösung für die Zurücksetzung der ausgewählten Menüoption einbauen, als alles zurückzusetzen. 
       if
         AktuelleSchriftfarben.FarbeÜberschrift /= SchriftfarbenFestgelegt (WelchesMenüExtern).FarbeÜberschrift
         or
@@ -114,11 +165,29 @@ package body AuswahlMenuesEinfachSFML is
           AktuelleSchriftfarben.FarbeKIText /= SchriftfarbenFestgelegt (WelchesMenüExtern).FarbeKIText
         or
           AktuelleSchriftfarben.FarbeSonstigerText /= SchriftfarbenFestgelegt (WelchesMenüExtern).FarbeSonstigerText
+        or
+          LetztesMenü /= WelchesMenüExtern
       then
          SchriftfarbenFestlegen (WelchesMenüExtern => WelchesMenüExtern,
                                  TextbereichExtern => TextbereichExtern);
          
          SchriftfarbenFestgelegt (WelchesMenüExtern) := AktuelleSchriftfarben;
+         LetztesMenü := WelchesMenüExtern;
+         
+      else
+         null;
+      end if;
+      
+      AktuelleAuswahl := AuswahlMenuesEinfach.AktuelleAuswahl;
+              
+      if
+        AktuelleAuswahl /= LetzteAuswahl
+      then
+         FarbeAktuelleAuswahlFestlegen (WelchesMenüExtern     => WelchesMenüExtern,
+                                        AktuelleAuswahlExtern => AktuelleAuswahl,
+                                        LetzteAuswahlExtern   => LetzteAuswahl);
+         
+         LetzteAuswahl := AktuelleAuswahl;
          
       else
          null;
@@ -139,7 +208,7 @@ package body AuswahlMenuesEinfachSFML is
          null;
       end if;
       
-   end Textberechnungen;
+   end Textbearbeitung;
 
 
 
@@ -189,6 +258,38 @@ package body AuswahlMenuesEinfachSFML is
    
    
    
+   procedure FarbeAktuelleAuswahlFestlegen
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+      AktuelleAuswahlExtern : in Natural;
+      LetzteAuswahlExtern : in Natural)
+   is begin
+                
+      case
+        LetzteAuswahlExtern
+      is
+         when SystemKonstanten.LeerAuswahl =>
+            null;
+            
+         when others =>
+            Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, LetzteAuswahlExtern + Überschrift),
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+      end case;
+      
+      case
+        AktuelleAuswahlExtern
+      is
+         when SystemKonstanten.LeerAuswahl =>
+            null;
+            
+         when others =>
+            Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, AktuelleAuswahlExtern + Überschrift),
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
+      end case;
+      
+   end FarbeAktuelleAuswahlFestlegen;
+   
+   
+   
    procedure TextFestlegen
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive)
@@ -197,11 +298,11 @@ package body AuswahlMenuesEinfachSFML is
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Menü_Ohne_Überschrift_Enum =>
+         when SystemDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
             Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift),
                                                str  => SonstigesKonstanten.Spielename);
             
-         when SystemDatentypen.Menü_Mit_Überschrift_Enum =>
+         when SystemDatentypen.Menü_Mit_Überschrift_Enum'Range | SystemDatentypen.Menü_Zusatztext_Enum'Range =>
             Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift),
                                                str  => AuswahlMenuesStringsSetzen.StringSetzen (WelcheZeileExtern => Überschrift,
                                                                                                 WelchesMenüExtern => WelchesMenüExtern));
@@ -290,5 +391,35 @@ package body AuswahlMenuesEinfachSFML is
                                     position => Rechenwert);
       
    end SchriftpositionFestlegen;
+   
+   
+   
+   procedure SchriftartZurücksetzen
+   is begin
+      
+      SchriftartFestgelegt := (others => LeerSchriftartFestgelegt);
+      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
+      
+   end SchriftartZurücksetzen;
+   
+   
+   
+   procedure TextZurücksetzen
+   is begin
+      
+      TextFestgelegt := (others => False);
+      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
+      
+   end TextZurücksetzen;
+   
+   
+   
+   procedure SchriftgrößeZurücksetzen
+   is begin
+      
+      SchriftgrößeFestgelegt := (others => LeerSchriftgrößeFestgelegt);
+      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
+      
+   end SchriftgrößeZurücksetzen;
 
 end AuswahlMenuesEinfachSFML;

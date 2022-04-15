@@ -6,6 +6,10 @@ with SystemDatentypen;
 package AuswahlMenuesZusatztextSFML is
 
    procedure AuswahlMenüsZusatztext
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum);
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum);
+
+private
+
+
 
 end AuswahlMenuesZusatztextSFML;

@@ -105,17 +105,21 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.03 => 0.01.03 (15.04.2022):
+   -- Version 0.01.0310 => 0.01.03 (15.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0291 => 0.01.03 (14.04.2022):
+   -- Version 0.01.0291 => 0.01.0310 (14.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler im Menüsystem korrigiert, welcher zu fehlerhaften Auswahlen führte.
+   -- Farbliche Anpassung des aktuell ausgewählten Textes hinzugefügt.
+   -- Angefangen das einfache Menüsystem um eine Zusatztextanzeige zu erweitern.
+   -- Angefangen eine Hintergrundtextur für das einfache Menüsystem einzubauen.
+   -- Beim Ändern der Sprache wird die Textposition jetzt korrekt neu berechnet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

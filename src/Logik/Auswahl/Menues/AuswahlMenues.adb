@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with AuswahlMenuesEinfach;
-with AuswahlMenuesZusatztext;
 with AuswahlMenuesKomplex;
 
 package body AuswahlMenues is
@@ -17,9 +16,6 @@ package body AuswahlMenues is
       is
          when SystemDatentypen.Menü_Einfach_Enum =>
             return AuswahlMenuesEinfach.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern);
-            
-         when SystemDatentypen.Menü_Zusatztext_Enum =>
-            return AuswahlMenuesZusatztext.AuswahlMenüsZusatztext (WelchesMenüExtern => WelchesMenüExtern);
             
          when SystemDatentypen.Menü_Komplex_Enum =>
             return AuswahlMenuesKomplex.AuswahlMenüsKomplex (WelchesMenüExtern => WelchesMenüExtern);

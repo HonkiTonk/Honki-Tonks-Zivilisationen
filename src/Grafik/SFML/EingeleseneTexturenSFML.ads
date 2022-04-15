@@ -12,9 +12,10 @@ with KartenDatenbank;
 package EingeleseneTexturenSFML is
 
    ---------------- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird?
+   ---------------- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen.
 
-   type HintergrundAccessArray is array (1 .. 1) of Sf.Graphics.sfTexture_Ptr;
-   HintergrundAccess : HintergrundAccessArray := (others => null);
+   type MenüHintergrundAccessArray is array (SystemDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   MenüHintergrundAccess : MenüHintergrundAccessArray := (others => null);
 
    type KartenfelderAccessArray is array (KartenDatenbank.KartenGrundListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenfelderAccess : KartenfelderAccessArray := (others => null);

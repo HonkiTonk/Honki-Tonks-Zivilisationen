@@ -5,6 +5,7 @@ with Sf;
 with Sf.Graphics.Sprite;
 
 with BerechnungenKarteSFML;
+with GrafikEinstellungenSFML;
 
 package body TexturenSetzenSkalierenSFML is
    
@@ -74,5 +75,28 @@ package body TexturenSetzenSkalierenSFML is
       return SkalierungKartenfeld;
       
    end TexturenSetzenSkalierenGesamteStadtkarte;
+   
+   
+   
+   function TexturenSetzenSkalierenGesamtesBild
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
+                                     texture   => TextureAccessExtern,
+                                     resetRect => Sf.sfTrue);
+      
+      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
+      GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      GrößeGesamtbild := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
+      
+      SkalierungBild.x := GrößeGesamtbild.x / GrößeTextur.x;
+      SkalierungBild.y := GrößeGesamtbild.y / GrößeTextur.y;
+      
+      return SkalierungBild;
+      
+   end TexturenSetzenSkalierenGesamtesBild;
 
 end TexturenSetzenSkalierenSFML;
