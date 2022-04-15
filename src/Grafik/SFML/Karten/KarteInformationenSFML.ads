@@ -10,7 +10,7 @@ with Sf.Graphics.RectangleShape;
 with Sf.Graphics.Rect;
 with Sf.Graphics.View;
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
@@ -23,10 +23,10 @@ with UmwandlungenAdaNachEigenes;
 package KarteInformationenSFML is
 
    procedure KarteInformationenSFML
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
 private
 
@@ -61,16 +61,16 @@ private
    InformationenViewAcces : constant Sf.Graphics.sfView_Ptr := Sf.Graphics.View.createFromRect (rectangle => InformationenViewGröße);
 
    procedure WichtigesInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure StadtInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure EinheitInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure AllgemeineInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure DebugInformationen;
 

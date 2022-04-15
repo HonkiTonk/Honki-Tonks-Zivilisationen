@@ -20,8 +20,8 @@ with BewegungPassierbarkeitPruefen;
 package body EinheitVerschieben is
    
    procedure VonEigenemLandWerfen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -56,7 +56,7 @@ package body EinheitVerschieben is
    
    procedure EinheitenErmitteln
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       YAchseSchleife:
@@ -103,7 +103,7 @@ package body EinheitVerschieben is
    
 
    procedure EinheitVerschieben
-     (RasseLandExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseLandExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       

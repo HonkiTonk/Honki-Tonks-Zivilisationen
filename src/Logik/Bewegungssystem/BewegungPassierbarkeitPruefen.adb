@@ -47,7 +47,7 @@ package body BewegungPassierbarkeitPruefen is
    
    -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft werden muss.
    function PassierbarkeitPrüfenID
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
@@ -91,7 +91,7 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function IstNichtPassierbar
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
@@ -177,7 +177,7 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function PassierbarTesten
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)

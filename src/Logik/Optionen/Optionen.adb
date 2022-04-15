@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with SystemDatentypen;
+
 with OptionenSteuerung;
 with OptionenSound;
 with OptionenGrafik;
@@ -11,7 +13,7 @@ with Fehler;
 package body Optionen is
 
    function Optionen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
 
       OptionenSchleife:
@@ -22,19 +24,19 @@ package body Optionen is
          case
            AuswahlWert
          is
-            when SystemDatentypen.Grafik_Enum =>
+            when RueckgabeDatentypen.Grafik_Enum =>
                RückgabeWert := OptionenGrafik.OptionenGrafik;
                
-            when SystemDatentypen.Sound_Enum =>
+            when RueckgabeDatentypen.Sound_Enum =>
                RückgabeWert := OptionenSound.OptionenSound;
                
-            when SystemDatentypen.Steuerung_Enum =>
+            when RueckgabeDatentypen.Steuerung_Enum =>
                RückgabeWert := OptionenSteuerung.SteuerungBelegen;
                
-            when SystemDatentypen.Sonstiges_Enum =>
+            when RueckgabeDatentypen.Sonstiges_Enum =>
                RückgabeWert := OptionenSonstiges.Sonstiges;
                
-            when SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
                return AuswahlWert;
                
             when others =>
@@ -44,10 +46,10 @@ package body Optionen is
          case
            RückgabeWert
          is
-            when SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
                return RückgabeWert;
                
-            when SystemDatentypen.Zurück_Enum =>
+            when RueckgabeDatentypen.Zurück_Enum =>
                null;
                      
             when others =>

@@ -5,6 +5,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with KartenDatentypen; use KartenDatentypen;
+with RueckgabeDatentypen; use RueckgabeDatentypen;
 with KartenKonstanten;
 
 with KarteKoordinatenPruefen;
@@ -16,7 +17,7 @@ with KarteInformationenKonsole;
 package body KarteKonsole is
    
    procedure AnzeigeKarteKonsole
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -63,28 +64,28 @@ package body KarteKonsole is
         XAchseExtern = Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False)
       then
          if
-           (Karten.Kartenform = SystemDatentypen.Karte_Form_X_Zylinder_Enum
+           (Karten.Kartenform = RueckgabeDatentypen.Karte_Form_X_Zylinder_Enum
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Torus_Enum
+              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Torus_Enum
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Kugel_Enum
+              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Kugel_Enum
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Kugel_Gedreht_Enum
+              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Kugel_Gedreht_Enum
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Enum
+              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Enum
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Gedreht_Enum
+              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Gedreht_Enum
             or
-              Karten.Kartenform = SystemDatentypen.Karte_Form_Tugel_Extrem_Enum)
+              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Extrem_Enum)
            and
              KartenWert.XAchse > KartenKonstanten.LeerXAchse
          then
             New_Line;
                   
          elsif
-           Karten.Kartenform = SystemDatentypen.Karte_Form_Y_Zylinder_Enum
+           Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Y_Zylinder_Enum
            or
-             Karten.Kartenform = SystemDatentypen.Karte_Form_Viereck_Enum
+             Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Viereck_Enum
          then
             New_Line;
                

@@ -94,7 +94,7 @@ package body KarteStadtKonsole is
    
    
    function AufschlagGebäude
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtweiteMitNullwert
    is begin
       
@@ -270,7 +270,7 @@ package body KarteStadtKonsole is
    procedure CursorDarstellung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -354,7 +354,7 @@ package body KarteStadtKonsole is
    procedure SchleifeAnsichtUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 1 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
@@ -437,7 +437,7 @@ package body KarteStadtKonsole is
    
    
    procedure AnzeigeUmgebungCursor
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in KartenDatentypen.UmgebungsbereichDrei)
    is begin
       

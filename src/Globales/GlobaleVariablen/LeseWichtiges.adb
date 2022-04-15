@@ -7,7 +7,7 @@ with WichtigesKonstanten;
 package body LeseWichtiges is
 
    function Geldmenge
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
 
@@ -18,7 +18,7 @@ package body LeseWichtiges is
 
 
    function GeldZugewinnProRunde
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.KostenLager
    is begin
 
@@ -29,7 +29,7 @@ package body LeseWichtiges is
    
 
    function GesamteForschungsrate
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.KostenLager
    is begin
 
@@ -49,7 +49,7 @@ package body LeseWichtiges is
    
    
    function Forschungsmenge
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.KostenLager
    is begin
 
@@ -69,7 +69,7 @@ package body LeseWichtiges is
    
    
    function VerbleibendeForschungszeit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.KostenLager
    is begin
 
@@ -89,7 +89,7 @@ package body LeseWichtiges is
    
    
    function Forschungsprojekt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
 
@@ -100,7 +100,7 @@ package body LeseWichtiges is
    
 
    function Erforscht
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcheTechnologieExtern : in EinheitStadtDatentypen.ForschungID)
       return Boolean
    is begin
@@ -112,7 +112,7 @@ package body LeseWichtiges is
    
    
    function AnzahlStädte
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -123,7 +123,7 @@ package body LeseWichtiges is
    
    
    function AnzahlEinheiten
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -134,7 +134,7 @@ package body LeseWichtiges is
    
      
    function AnzahlArbeiter
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -145,7 +145,7 @@ package body LeseWichtiges is
    
      
    function AnzahlKämpfer
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -156,7 +156,7 @@ package body LeseWichtiges is
    
      
    function AnzahlSonstiges
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       

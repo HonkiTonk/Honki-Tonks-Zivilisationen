@@ -35,7 +35,7 @@ with FarbgebungSFML;
 package body KarteSFML is
    
    procedure KarteAnzeigen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Sichtbarkeit (RasseExtern => RasseExtern);
@@ -47,7 +47,7 @@ package body KarteSFML is
    
 
    procedure Sichtbarkeit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
         
       SichtbereichAnfangEnde := BerechnungenKarteSFML.SichtbereichKarteBerechnen (RasseExtern => RasseExtern);
@@ -104,7 +104,7 @@ package body KarteSFML is
    
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -376,7 +376,7 @@ package body KarteSFML is
    
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       
@@ -428,7 +428,7 @@ package body KarteSFML is
       case
         AktuelleRasse
       is
-         when SystemDatentypen.Keine_Rasse_Enum =>
+         when RassenDatentypen.Keine_Rasse_Enum =>
             null;
             
          when others =>
@@ -444,7 +444,7 @@ package body KarteSFML is
    procedure RahmenBesetztesFeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Sf.Graphics.RectangleShape.setSize (shape => RechteckBelegtesFeldAccess,
@@ -530,7 +530,7 @@ package body KarteSFML is
    procedure RahmenZeichnen
      (WelcheRichtungExtern : in Umgebung_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Sf.Graphics.RectangleShape.setFillColor (shape => RechteckRahmenAccess,
@@ -573,7 +573,7 @@ package body KarteSFML is
    
    procedure AnzeigeCursor
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f)
    is begin
       

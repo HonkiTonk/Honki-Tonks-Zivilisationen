@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
+with RassenDatentypen;
 with EinheitStadtDatentypen;
 
 package GrafikSFML is
@@ -12,7 +13,7 @@ private
 
    AktuellesMenü : SystemDatentypen.Welches_Menü_Enum;
 
-   AktuelleRasse : SystemDatentypen.Rassen_Enum;
+   AktuelleRasse : RassenDatentypen.Rassen_Enum;
 
    AktuelleStadtNummer : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
 

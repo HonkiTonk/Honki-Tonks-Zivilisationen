@@ -16,7 +16,7 @@ package body KIFeindlicheEinheitSuchen is
 
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FeindExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      FeindExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       

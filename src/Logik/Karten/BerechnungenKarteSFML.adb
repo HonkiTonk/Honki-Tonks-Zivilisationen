@@ -37,7 +37,7 @@ package body BerechnungenKarteSFML is
    
    
    function SichtbereichKarteBerechnen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtbereichAnfangEndeArray
    is begin
       

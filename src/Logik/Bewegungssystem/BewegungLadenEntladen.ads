@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
@@ -19,7 +19,7 @@ package BewegungLadenEntladen is
        Pre =>
          (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum);
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure EinheitAusTransporterEntfernen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -28,7 +28,7 @@ package BewegungLadenEntladen is
        Pre =>
          (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum);
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure TransporterladungVerschieben
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -37,7 +37,7 @@ package BewegungLadenEntladen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
             NeueKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
@@ -50,7 +50,7 @@ package BewegungLadenEntladen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
             NeueKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
@@ -73,6 +73,6 @@ private
        Pre =>
          (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum);
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end BewegungLadenEntladen;

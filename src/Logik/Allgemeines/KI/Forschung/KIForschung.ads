@@ -1,20 +1,20 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with GlobaleVariablen;
 
 package KIForschung is
 
    procedure Forschung
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_KI_Enum);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
    
 private
       
    procedure NeuesForschungsprojekt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
 end KIForschung;

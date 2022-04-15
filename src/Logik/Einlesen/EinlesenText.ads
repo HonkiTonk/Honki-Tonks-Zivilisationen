@@ -11,6 +11,8 @@ package EinlesenText is
    
 private
    
+   EinlesenMöglich : Boolean;
+   
    LeereZeilenAbzieher : Natural;
       
    TextdateienEinlesen : GlobaleTexte.TexteArray (1 .. 41);

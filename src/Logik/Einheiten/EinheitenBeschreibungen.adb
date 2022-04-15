@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
 with GlobaleTexte;
+with RueckgabeDatentypen;
 
 with Auswahl;
 
@@ -60,7 +60,7 @@ package body EinheitenBeschreibungen is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => WelcheAuswahlExtern)
       is
-         when SystemDatentypen.Ja_Enum =>
+         when RueckgabeDatentypen.Ja_Enum =>
             return True;
             
          when others =>

@@ -8,7 +8,7 @@ with Sf.System.Vector2;
 with Sf.Graphics.Color;
 with Sf.Graphics.Sprite;
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
@@ -25,7 +25,7 @@ package KarteStadtSFML is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
 private
 
@@ -74,7 +74,7 @@ private
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure DarstellungGebäude
      (YAchseExtern : in KartenDatentypen.Stadtfeld;

@@ -33,7 +33,7 @@ package body LeseKarten is
    
    function Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -89,7 +89,7 @@ package body LeseKarten is
    
    function Bewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.GesamtbewertungFeld
    is begin
       
@@ -100,7 +100,7 @@ package body LeseKarten is
    
    
    function BelegterGrund
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -172,7 +172,7 @@ package body LeseKarten is
    
    function RasseBelegtGrund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return SystemDatentypen.Rassen_Enum
+      return RassenDatentypen.Rassen_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund.RasseBelegt;

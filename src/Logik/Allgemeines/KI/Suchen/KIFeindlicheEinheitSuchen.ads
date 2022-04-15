@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenRecords;
@@ -11,15 +11,15 @@ package KIFeindlicheEinheitSuchen is
 
    function FeindlicheEinheitInUmgebungSuchen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FeindExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      FeindExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (FeindExtern) /= SystemDatentypen.Leer_Spieler_Enum
+         (GlobaleVariablen.RassenImSpiel (FeindExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
             EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
 private
    

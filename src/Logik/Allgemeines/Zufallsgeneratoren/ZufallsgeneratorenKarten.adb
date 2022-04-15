@@ -2,6 +2,7 @@ pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen; use KartenGrundDatentypen;
+with RueckgabeDatentypen;
 
 with LeseKarten;
 
@@ -10,7 +11,7 @@ with BewegungPassierbarkeitPruefen;
 package body ZufallsgeneratorenKarten is
 
    function StartPosition
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -42,14 +43,14 @@ package body ZufallsgeneratorenKarten is
    
    
    function StartPositionEAchse
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.EbeneVorhanden
    is begin
       
       case
         RasseExtern
       is
-         when SystemDatentypen.Talbidahr_Enum | SystemDatentypen.Tesorahn_Enum =>
+         when RassenDatentypen.Talbidahr_Enum | RassenDatentypen.Tesorahn_Enum =>
             -- Nutzen aktuell noch eine modifizierte Menschendatenbank, sollte aber für Testzwecke schon einmal funktionieren.
             return -1;
             
@@ -68,49 +69,49 @@ package body ZufallsgeneratorenKarten is
       case
         Karten.Kartenparameter.Kartengröße
       is
-         when SystemDatentypen.Karte_Größe_20_20_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_20_20_Enum =>
             WerteWählen20.Reset (PositionGewählt20);
             YAchse := WerteWählen20.Random (PositionGewählt20);
             XAchse := WerteWählen20.Random (PositionGewählt20);
 
-         when SystemDatentypen.Karte_Größe_40_40_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_40_40_Enum =>
             WerteWählen40.Reset (PositionGewählt40);
             YAchse := WerteWählen40.Random (PositionGewählt40);
             XAchse := WerteWählen40.Random (PositionGewählt40);
             
-         when SystemDatentypen.Karte_Größe_80_80_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_80_80_Enum =>
             WerteWählen80.Reset (PositionGewählt80);
             YAchse := WerteWählen80.Random (PositionGewählt80);
             XAchse := WerteWählen80.Random (PositionGewählt80);
             
-         when SystemDatentypen.Karte_Größe_120_80_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_120_80_Enum =>
             WerteWählen80.Reset (PositionGewählt80);
             WerteWählen120.Reset (PositionGewählt120);
             YAchse := WerteWählen120.Random (PositionGewählt120);
             XAchse := WerteWählen80.Random (PositionGewählt80);
             
-         when SystemDatentypen.Karte_Größe_120_160_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_120_160_Enum =>
             WerteWählen120.Reset (PositionGewählt120);
             WerteWählen160.Reset (PositionGewählt160);
             YAchse := WerteWählen120.Random (PositionGewählt120);
             XAchse := WerteWählen160.Random (PositionGewählt160);
             
-         when SystemDatentypen.Karte_Größe_160_160_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_160_160_Enum =>
             WerteWählen160.Reset (PositionGewählt160);
             YAchse := WerteWählen160.Random (PositionGewählt160);
             XAchse := WerteWählen160.Random (PositionGewählt160);
             
-         when SystemDatentypen.Karte_Größe_240_240_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_240_240_Enum =>
             WerteWählen240.Reset (PositionGewählt240);
             YAchse := WerteWählen240.Random (PositionGewählt240);
             XAchse := WerteWählen240.Random (PositionGewählt240);
             
-         when SystemDatentypen.Karte_Größe_320_320_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_320_320_Enum =>
             WerteWählen320.Reset (PositionGewählt320);
             YAchse := WerteWählen320.Random (PositionGewählt320);
             XAchse := WerteWählen320.Random (PositionGewählt320);
             
-         when SystemDatentypen.Karte_Größe_1000_1000_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_1000_1000_Enum =>
             WerteWählen1000.Reset (PositionGewählt1000);
             YAchse := WerteWählen1000.Random (PositionGewählt1000);
             XAchse := WerteWählen1000.Random (PositionGewählt1000);

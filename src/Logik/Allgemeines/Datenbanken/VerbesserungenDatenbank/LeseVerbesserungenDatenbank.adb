@@ -31,7 +31,7 @@ package body LeseVerbesserungenDatenbank is
    
    function BewertungVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
       
@@ -43,7 +43,7 @@ package body LeseVerbesserungenDatenbank is
    
    function BewertungWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
       
@@ -55,7 +55,7 @@ package body LeseVerbesserungenDatenbank is
    
    function WirtschaftVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
    is begin
@@ -68,7 +68,7 @@ package body LeseVerbesserungenDatenbank is
    
    function WirtschaftWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
    is begin
@@ -81,7 +81,7 @@ package body LeseVerbesserungenDatenbank is
    
    function KampfVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.KampfwerteAllgemein
    is begin
@@ -94,7 +94,7 @@ package body LeseVerbesserungenDatenbank is
    
    function KampfWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.KampfwerteAllgemein
    is begin

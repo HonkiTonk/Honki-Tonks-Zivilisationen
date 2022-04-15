@@ -51,10 +51,10 @@ package body StadtBauen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemDatentypen.Spieler_KI_Enum =>
+         when RassenDatentypen.Spieler_KI_Enum =>
             StadtName.EingegebenerText := StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
-         when SystemDatentypen.Spieler_Mensch_Enum =>
+         when RassenDatentypen.Spieler_Mensch_Enum =>
             StadtName := Eingabe.StadtName;
             
             if
@@ -66,7 +66,7 @@ package body StadtBauen is
                null;
             end if;
             
-         when SystemDatentypen.Leer_Spieler_Enum =>
+         when RassenDatentypen.Leer_Spieler_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "StadtBauen.StadtBauen - Eine nicht vorhandene Rasse baut eine Stadt.");
       end case;
             
@@ -105,7 +105,7 @@ package body StadtBauen is
          return True;
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum
       then
          return False;
          
@@ -120,7 +120,7 @@ package body StadtBauen is
    
    
    function StadtnummerErmitteln
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -135,7 +135,7 @@ package body StadtBauen is
             case
               GlobaleVariablen.RassenImSpiel (RasseExtern)
             is
-               when SystemDatentypen.Spieler_Mensch_Enum =>
+               when RassenDatentypen.Spieler_Mensch_Enum =>
                   -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                   --                                       TextZeileExtern => 7);
                   null;
@@ -194,7 +194,7 @@ package body StadtBauen is
 
 
    function HauptstadtPrüfen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
@@ -227,7 +227,7 @@ package body StadtBauen is
       -- Standardnamen der KI einfach auf Basis der Stadtnummer festlegen?
       
       if
-        StadtRasseNummerExtern.Rasse = SystemDatentypen.Menschen_Enum
+        StadtRasseNummerExtern.Rasse = RassenDatentypen.Menschen_Enum
       then
          null;
          

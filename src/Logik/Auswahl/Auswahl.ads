@@ -1,14 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
--- with GlobaleTexte; use GlobaleTexte;
-with SystemDatentypen;
+with RueckgabeDatentypen;
 
 package Auswahl is
 
    function AuswahlJaNein
      (FrageZeileExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum;
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
 private
 

@@ -64,7 +64,7 @@ package body Ladezeiten is
    
    
    procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in SystemDatentypen.Rassen_Enum)
+     (WelcheZeitExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
       case

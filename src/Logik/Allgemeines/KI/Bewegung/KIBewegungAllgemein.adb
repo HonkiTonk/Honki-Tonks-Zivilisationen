@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen;
 with EinheitenKonstanten;
+with SystemDatentypen; use SystemDatentypen;
 
 with KIKonstanten;
 

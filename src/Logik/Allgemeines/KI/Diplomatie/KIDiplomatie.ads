@@ -1,33 +1,33 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with GlobaleVariablen;
 
 package KIDiplomatie is
 
    procedure Diplomatie
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_KI_Enum);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure DiplomatieKIMensch
-     (RasseMenschExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      RasseKIExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseMenschExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseMenschExtern) = SystemDatentypen.Spieler_Mensch_Enum
+         (GlobaleVariablen.RassenImSpiel (RasseMenschExtern) = RassenDatentypen.Spieler_Mensch_Enum
           and
-            GlobaleVariablen.RassenImSpiel (RasseKIExtern) = SystemDatentypen.Spieler_KI_Enum);
+            GlobaleVariablen.RassenImSpiel (RasseKIExtern) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure DiplomatieKIKI
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseKIExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_KI_Enum
+         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_KI_Enum
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseKIExtern) = SystemDatentypen.Spieler_KI_Enum);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseKIExtern) = RassenDatentypen.Spieler_KI_Enum);
 
 end KIDiplomatie;

@@ -15,7 +15,7 @@ package body CursorPlatzierenSFML is
    -- Gibt eventuell Probleme in der grafischen Darstellung wenn die Koordinaten in der Logik geändert werden, die Grafik aber noch mit den alten Koordinaten angefangen hat zu rechnen.
    -- Eventuell später auf Logik umbauen? Man könnte im Grafikteil die aktuellen CursorKoordinaten ja immer mitgeben oder kann es dadurch zu Problemen kommen? Möglicherweise.
    procedure CursorPlatzierenKarteSFML
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte vom Grafiktask ermitteln lassen. Sonst kann es aufgrund von Mehrfachnutzung des FensterAccess zu Abstürzen kommen.
@@ -84,7 +84,7 @@ package body CursorPlatzierenSFML is
    
    
    procedure CursorPlatzierenStadtSFML
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kommt es zu einem Absturz.

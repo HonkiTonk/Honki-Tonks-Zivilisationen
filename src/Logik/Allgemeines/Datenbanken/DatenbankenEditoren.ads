@@ -1,15 +1,15 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 
 package DatenbankenEditoren is
 
    function DatenbankenEditoren
-     return SystemDatentypen.Rückgabe_Werte_Enum;
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
 
-   AuswahlWert : SystemDatentypen.Rückgabe_Werte_Enum;
+   AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 end DatenbankenEditoren;

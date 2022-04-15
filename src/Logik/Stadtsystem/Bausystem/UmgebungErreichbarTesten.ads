@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
 with KartenRecords;
 with EinheitStadtDatentypen;
+with RassenDatentypen;
 
 with Karten;
 
@@ -12,7 +12,7 @@ package UmgebungErreichbarTesten is
    
    function UmgebungErreichbarTesten
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.MinimimMaximumID;
       NotwendigeFelderExtern : in Positive)
       return KartenRecords.AchsenKartenfeldPositivRecord
@@ -38,7 +38,7 @@ private
    
    function NochErreichbar
      (AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.MinimimMaximumID)
       return Boolean;
 

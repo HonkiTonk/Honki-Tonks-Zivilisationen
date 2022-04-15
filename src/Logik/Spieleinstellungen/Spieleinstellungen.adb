@@ -4,6 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Calendar; use Ada.Calendar;
 
 with GlobaleVariablen;
+with RassenDatentypen;
+with SystemDatentypen;
 
 with ImSpiel;
 with KartenGenerator;
@@ -18,7 +20,7 @@ with AuswahlMenues;
 package body Spieleinstellungen is
 
    function Spieleinstellungen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       ----------------------- Später auf Standardwerte für alles außer die Rassenbelegung festsetzen und dann nur prüfen ob eine Rasse belegt ist.
@@ -30,28 +32,28 @@ package body Spieleinstellungen is
          case
            Auswahl
          is
-            when SystemDatentypen.Auswahl_Kartengröße_Enum =>
+            when RueckgabeDatentypen.Auswahl_Kartengröße_Enum =>
                SpieleinstellungenKarten.KartengrößeWählen;
 
-            when SystemDatentypen.Auswahl_Kartenart_Enum =>
+            when RueckgabeDatentypen.Auswahl_Kartenart_Enum =>
                SpieleinstellungenKarten.KartenartWählen;
                
-            when SystemDatentypen.Auswahl_Kartenform_Enum =>
+            when RueckgabeDatentypen.Auswahl_Kartenform_Enum =>
                SpieleinstellungenKarten.KartenformWählen;
 
-            when SystemDatentypen.Auswahl_Kartentemperatur_Enum =>
+            when RueckgabeDatentypen.Auswahl_Kartentemperatur_Enum =>
                SpieleinstellungenKarten.KartentemperaturWählen;
                
-            when SystemDatentypen.Auswahl_Kartenressourcen_Enum =>
+            when RueckgabeDatentypen.Auswahl_Kartenressourcen_Enum =>
                SpieleinstellungenKarten.KartenressourcenWählen;
 
-            when SystemDatentypen.Auswahl_Rassen_Enum =>
+            when RueckgabeDatentypen.Auswahl_Rassen_Enum =>
                SpieleinstellungenRasseSpieler.RassenWählen;
 
-            when SystemDatentypen.Auswahl_Schwierigkeitsgrad_Enum =>
+            when RueckgabeDatentypen.Auswahl_Schwierigkeitsgrad_Enum =>
                SpieleinstellungenSonstiges.SchwierigkeitsgradFestlegen;
                
-            when SystemDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum =>
                -- Oder eine Rasse zufällig belegen lassen?
                if
                  SpieleinstellungenRasseSpieler.EineRasseBelegt = True
@@ -62,7 +64,7 @@ package body Spieleinstellungen is
                   null;
                end if;
 
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
+            when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
                return Auswahl;
 
             when others =>
@@ -78,7 +80,7 @@ package body Spieleinstellungen is
    
    
    function AutomatischeEinstellungen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       KartenGenerator.KartenGenerator;
@@ -88,15 +90,15 @@ package body Spieleinstellungen is
       RassenVorhanden := False;
       
       SicherheitsSchleife:
-      for RassenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
-            when SystemDatentypen.Spieler_Mensch_Enum | SystemDatentypen.Spieler_KI_Enum =>
+            when RassenDatentypen.Spieler_Mensch_Enum | RassenDatentypen.Spieler_KI_Enum =>
                RassenVorhanden := True;
                exit SicherheitsSchleife;
          end case;

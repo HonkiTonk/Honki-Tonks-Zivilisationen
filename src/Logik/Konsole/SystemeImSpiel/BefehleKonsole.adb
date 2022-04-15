@@ -36,8 +36,8 @@ with ForschungAnzeigeKonsole;
 package body BefehleKonsole is
 
    function Befehle
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       Befehl := Eingabe.Tastenwert;
@@ -54,7 +54,7 @@ package body BefehleKonsole is
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when TastenbelegungDatentypen.Menü_Zurück_Enum =>
-            return SystemDatentypen.Spielmenü_Enum;
+            return RueckgabeDatentypen.Spielmenü_Enum;
 
          when TastenbelegungDatentypen.Bauen_Enum =>
             BaueStadt (RasseExtern => RasseExtern);
@@ -115,7 +115,7 @@ package body BefehleKonsole is
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
          when TastenbelegungDatentypen.Runde_Beenden_Enum =>
-            return SystemDatentypen.Runde_Beenden_Enum;
+            return RueckgabeDatentypen.Runde_Beenden_Enum;
             
          when TastenbelegungDatentypen.Debugmenü_Enum =>
             DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
@@ -124,14 +124,14 @@ package body BefehleKonsole is
             null;
       end case;
 
-      return SystemDatentypen.Start_Weiter_Enum;
+      return RueckgabeDatentypen.Start_Weiter_Enum;
       
    end Befehle;
    
    
    
    procedure AuswahlEinheitStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -153,7 +153,7 @@ package body BefehleKonsole is
         StadtNummer /= EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
       then
          EinheitOderStadt (RasseExtern         => RasseExtern,
-                           AuswahlExtern       => SystemDatentypen.Ja_Enum,
+                           AuswahlExtern       => RueckgabeDatentypen.Ja_Enum,
                            StadtNummerExtern   => StadtNummer,
                            EinheitNummerExtern => EinheitNummer);
          
@@ -201,7 +201,7 @@ package body BefehleKonsole is
                         
          when others =>
             EinheitOderStadt (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                              AuswahlExtern       => SystemDatentypen.Nein_Enum,
+                              AuswahlExtern       => RueckgabeDatentypen.Nein_Enum,
                               StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
                               EinheitNummerExtern => EinheitTransportNummer);
       end case;
@@ -211,8 +211,8 @@ package body BefehleKonsole is
 
 
    procedure EinheitOderStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      AuswahlExtern : in SystemDatentypen.Rückgabe_Werte_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      AuswahlExtern : in RueckgabeDatentypen.Rückgabe_Werte_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
    is begin
@@ -220,7 +220,7 @@ package body BefehleKonsole is
       case
         AuswahlExtern
       is
-         when SystemDatentypen.Ja_Enum =>
+         when RueckgabeDatentypen.Ja_Enum =>
             StadtBetreten (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
          when others =>
@@ -268,7 +268,7 @@ package body BefehleKonsole is
    
    
    procedure BaueStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -297,7 +297,7 @@ package body BefehleKonsole is
    
    
    procedure Technologie
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -314,7 +314,7 @@ package body BefehleKonsole is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
       is
-         when SystemDatentypen.Ja_Enum =>
+         when RueckgabeDatentypen.Ja_Enum =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
                      
          when others =>
@@ -326,7 +326,7 @@ package body BefehleKonsole is
    
    
    procedure EinheitBefehle
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
    is begin
                      
@@ -357,7 +357,7 @@ package body BefehleKonsole is
    
    
    procedure StadtUmbenennen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -388,7 +388,7 @@ package body BefehleKonsole is
    
    
    procedure StadtAbreißen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -406,7 +406,7 @@ package body BefehleKonsole is
       case
         Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
       is
-         when SystemDatentypen.Ja_Enum =>
+         when RueckgabeDatentypen.Ja_Enum =>
             StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
          when others =>

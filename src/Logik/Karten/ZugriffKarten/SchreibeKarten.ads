@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen; use SystemDatentypen;
 with KartenGrundDatentypen; use KartenGrundDatentypen;
-with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with RassenDatentypen; use RassenDatentypen;
+with KartenVerbesserungDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
 
@@ -34,11 +34,11 @@ package SchreibeKarten is
    
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
@@ -91,11 +91,11 @@ package SchreibeKarten is
 
    procedure Bewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       BewertungExtern : in KartenDatentypen.GesamtbewertungFeld)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and

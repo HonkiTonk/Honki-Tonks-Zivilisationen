@@ -19,8 +19,8 @@ package body FarbgebungKonsole is
       FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
       RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Enum)
+      EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
             
       FarbenFeld (GrundExtern => GrundExtern);
@@ -151,8 +151,8 @@ package body FarbgebungKonsole is
       FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
       RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Enum)
+      EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
       if

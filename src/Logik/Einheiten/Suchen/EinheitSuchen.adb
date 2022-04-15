@@ -11,7 +11,7 @@ package body EinheitSuchen is
 
    -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitMitRasseSuchen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
@@ -48,12 +48,12 @@ package body EinheitSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -80,18 +80,18 @@ package body EinheitSuchen is
    -- Sucht ohne die Rasse die hineingegeben wird.
    -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitOhneSpezielleRasseSuchen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtRecords.RassePlatznummerRecord
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseExtern = RasseSchleifenwert
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
            

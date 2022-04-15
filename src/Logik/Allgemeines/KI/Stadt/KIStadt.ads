@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with GlobaleVariablen;
 with EinheitStadtRecords;
 with KartenRecords;
@@ -17,7 +17,7 @@ package KIStadt is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
 private
 
@@ -36,7 +36,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure NotfallEinheitBauen
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -45,7 +45,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    procedure WelcheEinheitArt
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
@@ -59,7 +59,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in EinheitStadtDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_KI_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function FeindNahe
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

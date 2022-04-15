@@ -22,7 +22,7 @@ package body GrafischeAnzeigeKonsole is
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
              
       case
@@ -60,7 +60,7 @@ package body GrafischeAnzeigeKonsole is
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Über den Kartenfeldern kommen die Kartenflüssen.
@@ -115,7 +115,7 @@ package body GrafischeAnzeigeKonsole is
    function AnzeigeCursor
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -145,7 +145,7 @@ package body GrafischeAnzeigeKonsole is
    
    function AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -190,7 +190,7 @@ package body GrafischeAnzeigeKonsole is
    
    function AnzeigeStadt
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -220,7 +220,7 @@ package body GrafischeAnzeigeKonsole is
    
    procedure AnzeigeLandschaft
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -------------------------- Mal hier aufteilen damit die Abfragen hier nicht doppelt stattfinden.

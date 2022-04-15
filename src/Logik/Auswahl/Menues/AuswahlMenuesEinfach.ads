@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.System.Vector2;
 
 with SystemDatentypen;
+with RueckgabeDatentypen;
 with SystemKonstanten;
 
 package AuswahlMenuesEinfach is
@@ -14,7 +15,7 @@ package AuswahlMenuesEinfach is
 
    function AuswahlMenüsEinfach
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum;
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
 
@@ -22,7 +23,7 @@ private
    Ende : Positive;
    Ausgewählt : Positive;
 
-   RückgabeWert : SystemDatentypen.Rückgabe_Werte_Enum;
+   RückgabeWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RassenDatentypen;
 
 with LadezeitenDatentypen;
 
@@ -14,7 +14,7 @@ package LadezeitenSFML is
      (WelcheZeitExtern : in LadezeitenDatentypen.Einzelne_Zeiten_Enum);
    
    procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in SystemDatentypen.Rassen_Enum);
+     (WelcheZeitExtern : in RassenDatentypen.Rassen_Enum);
    
    procedure AnzeigeEinzelneZeitOhneWarten
      (WelcheZeitExtern : in LadezeitenDatentypen.Einzelne_Zeiten_Enum);

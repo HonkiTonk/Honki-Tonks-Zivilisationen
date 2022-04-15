@@ -1,20 +1,20 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 
 package Spieleinstellungen is
 
    function Spieleinstellungen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
 
    RassenVorhanden : Boolean;
 
-   Auswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   Auswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    function AutomatischeEinstellungen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 end Spieleinstellungen;

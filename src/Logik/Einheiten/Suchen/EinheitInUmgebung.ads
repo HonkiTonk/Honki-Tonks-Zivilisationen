@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitStadtRecords;
 with KartenRecords;
 with KartenDatentypen;
-with SystemDatentypen;
+with RassenDatentypen;
 
 package EinheitInUmgebung is
 
@@ -17,17 +17,17 @@ private
    AndereEinheit : EinheitStadtRecords.RassePlatznummerRecord;
    
    procedure UmgebungStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure UmgebungEinheit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    
    
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean;
 
 end EinheitInUmgebung;

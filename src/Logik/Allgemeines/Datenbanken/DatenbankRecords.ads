@@ -6,6 +6,7 @@ with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
 with KartenGrundDatentypen;
+with RassenDatentypen;
 
 package DatenbankRecords is
 
@@ -85,9 +86,9 @@ package DatenbankRecords is
 
 
 
-   type BewertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.BewertungFeld;
-   type WirtschaftArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Wirtschaft_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
-   type KampfArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.KampfwerteAllgemein;
+   type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.BewertungFeld;
+   type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Wirtschaft_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
+   type KampfArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.KampfwerteAllgemein;
       
    -- KartenDatenbank
    type KartenListeRecord is tagged record

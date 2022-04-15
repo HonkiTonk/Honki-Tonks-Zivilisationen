@@ -12,7 +12,7 @@ package body BewegungCursor is
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
       RichtungExtern : in TastenbelegungDatentypen.Tastenbelegung_Bewegung_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Änderung := Richtung (RichtungExtern);
@@ -34,7 +34,7 @@ package body BewegungCursor is
 
 
    procedure GeheZuCursor
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       KoordinatenPunkt := Eingabe.GanzeZahl (ZeileExtern         => 29,
@@ -85,7 +85,7 @@ package body BewegungCursor is
 
    procedure BewegungCursorBerechnen
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -134,7 +134,7 @@ package body BewegungCursor is
 
    procedure BewegungCursorBerechnenStadt
      (ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       if

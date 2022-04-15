@@ -25,7 +25,7 @@ with InformationenEinheitenKonsole;
 package body KarteInformationenKonsole is
 
    procedure KarteInformationenKonsole
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       InformationenWichtigesKonsole.Wichtiges (RasseExtern => RasseExtern);
@@ -38,7 +38,7 @@ package body KarteInformationenKonsole is
    
    
    procedure InformationenSichtbar
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Sichtbar := LeseKarten.Sichtbar (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
@@ -101,7 +101,7 @@ package body KarteInformationenKonsole is
          
    
    procedure InformationenStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
@@ -124,7 +124,7 @@ package body KarteInformationenKonsole is
    
    
    procedure InformationenAllgemein
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Hügel (RasseExtern => RasseExtern);
@@ -191,7 +191,7 @@ package body KarteInformationenKonsole is
    
    
    procedure Hügel
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -220,7 +220,7 @@ package body KarteInformationenKonsole is
    
    
    procedure FeldVerteidigung
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -240,7 +240,7 @@ package body KarteInformationenKonsole is
    
    
    procedure FeldAngriff
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -260,7 +260,7 @@ package body KarteInformationenKonsole is
    
    
    procedure FeldNahrung
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
     --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -281,7 +281,7 @@ package body KarteInformationenKonsole is
    
    
    procedure FeldProduktion
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
     --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -301,7 +301,7 @@ package body KarteInformationenKonsole is
    
    
    procedure FeldGeld
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -321,7 +321,7 @@ package body KarteInformationenKonsole is
    
    
    procedure FeldWissen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -342,7 +342,7 @@ package body KarteInformationenKonsole is
    
    
    procedure KartenKoordinaten
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
      -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -366,7 +366,7 @@ package body KarteInformationenKonsole is
    
    
    procedure DebugInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case

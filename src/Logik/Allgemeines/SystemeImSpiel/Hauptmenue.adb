@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RueckgabeDatentypen; use RueckgabeDatentypen;
+with SystemDatentypen;
 with GrafikTonDatentypen;
 
 with Optionen;
@@ -28,18 +29,18 @@ package body Hauptmenue is
          case
            AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Haupt_Menü_Enum)
          is
-            when SystemDatentypen.Start_Weiter_Enum =>
+            when RueckgabeDatentypen.Start_Weiter_Enum =>
                RückgabeKampagne := Spieleinstellungen.Spieleinstellungen;
 
                if
-                 RückgabeKampagne = SystemDatentypen.Hauptmenü_Enum
+                 RückgabeKampagne = RueckgabeDatentypen.Hauptmenü_Enum
                  or
-                   RückgabeKampagne = SystemDatentypen.Zurück_Enum
+                   RückgabeKampagne = RueckgabeDatentypen.Zurück_Enum
                then
                   AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
                elsif
-                 RückgabeKampagne = SystemDatentypen.Spiel_Beenden_Enum
+                 RückgabeKampagne = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -47,17 +48,17 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemDatentypen.Laden_Enum =>
+            when RueckgabeDatentypen.Laden_Enum =>
                if
                  Laden.LadenNeu = True
                then
                   case
                     ImSpiel.ImSpiel
                   is
-                     when SystemDatentypen.Hauptmenü_Enum =>
+                     when RueckgabeDatentypen.Hauptmenü_Enum =>
                         AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when SystemDatentypen.Spiel_Beenden_Enum =>
+                     when RueckgabeDatentypen.Spiel_Beenden_Enum =>
                         exit HauptmenüSchleife;
 
                      when others =>
@@ -68,9 +69,9 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemDatentypen.Optionen_Enum =>
+            when RueckgabeDatentypen.Optionen_Enum =>
                if
-                 Optionen.Optionen = SystemDatentypen.Spiel_Beenden_Enum
+                 Optionen.Optionen = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -78,9 +79,9 @@ package body Hauptmenue is
                   null;
                end if;
                
-            when SystemDatentypen.Editoren_Enum =>
+            when RueckgabeDatentypen.Editoren_Enum =>
                if
-                 DatenbankenEditoren.DatenbankenEditoren = SystemDatentypen.Spiel_Beenden_Enum
+                 DatenbankenEditoren.DatenbankenEditoren = RueckgabeDatentypen.Spiel_Beenden_Enum
                then
                   exit HauptmenüSchleife;
 
@@ -91,10 +92,10 @@ package body Hauptmenue is
             -- when SystemDatentypen.Informationen_Enum =>
             --   Informationen.Informationen;
                
-            when SystemDatentypen.Würdigungen_Enum =>
+            when RueckgabeDatentypen.Würdigungen_Enum =>
                Wuerdigung.Würdigung;
                
-            when SystemDatentypen.Spiel_Beenden_Enum =>
+            when RueckgabeDatentypen.Spiel_Beenden_Enum =>
                exit HauptmenüSchleife;
                
             when others =>

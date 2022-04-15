@@ -6,6 +6,7 @@ with Ada.Calendar; use Ada.Calendar;
 
 -- with GlobaleTexte;
 with EinheitenKonstanten;
+with SystemDatentypen;
 
 -- with TextAnzeigeKonsole;
 
@@ -93,7 +94,7 @@ package body LadezeitenKonsole is
    
    
    procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in SystemDatentypen.Rassen_Enum)
+     (WelcheZeitExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
       -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -112,7 +113,7 @@ package body LadezeitenKonsole is
             GesamtzeitKI := 0.00;
             
             ZeitAuswahlSchleife:
-            for VerschiedeneZeitenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+            for VerschiedeneZeitenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
                GesamtzeitKI := GesamtzeitKI + Float (LadezeitenDatentypen.KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Endwert_Enum)
                                                      - LadezeitenDatentypen.KIZeiten (VerschiedeneZeitenSchleifenwert, SystemDatentypen.Anfangswert_Enum));

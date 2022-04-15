@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 with EinheitStadtRecords;
 with SystemRecords;
 with KartenRecords;
@@ -14,6 +14,7 @@ with StadtKonstanten;
 with EinheitStadtDatentypen;
 with GrafikTonDatentypen;
 with TextKonstanten;
+with RassenDatentypen;
 
 package GlobaleVariablen is
 
@@ -41,7 +42,7 @@ package GlobaleVariablen is
    
 
    -- Cursor
-   type CursorImSpielArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
+   type CursorImSpielArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenRecords.CursorRecord;
    CursorImSpiel : CursorImSpielArray := (others => WichtigesKonstanten.LeerCursor);
    -- Cursor
    
@@ -54,15 +55,15 @@ package GlobaleVariablen is
    Rundengrenze : Natural := Natural'First;
 
    -- Nicht belegt, Menschlicher Spieler, KI
-   RassenImSpiel : SystemDatentypen.RassenImSpielArray := (others => SystemDatentypen.Leer_Spieler_Enum);
-   RasseAmZugNachLaden : SystemDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
+   RassenImSpiel : RassenDatentypen.RassenImSpielArray := (others => RassenDatentypen.Leer_Spieler_Enum);
+   RasseAmZugNachLaden : RassenDatentypen.Rassen_Enum := EinheitenKonstanten.LeerRasse;
 
-   Schwierigkeitsgrad : SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum := SystemDatentypen.Schwierigkeit_Mittel_Enum;
+   Schwierigkeitsgrad : RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum := RueckgabeDatentypen.Schwierigkeit_Mittel_Enum;
    Gewonnen : Boolean := False;
    WeiterSpielen : Boolean := False;
    
    -- Später über Nutzereingaben neu belegbar machen.
-   type GrenzenArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.GrenzenRecord;
+   type GrenzenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.GrenzenRecord;
    Grenzen : GrenzenArray := (others => WichtigesKonstanten.LeerGrenzen);
    
    IronmanName : Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
@@ -71,24 +72,24 @@ package GlobaleVariablen is
 
    
    -- Einheiten
-   type EinheitenGebautArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleEinheiten'Range) of EinheitStadtRecords.EinheitenGebautRecord;
+   type EinheitenGebautArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleEinheiten'Range) of EinheitStadtRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => EinheitenKonstanten.LeerEinheit));
    -- Einheiten
    
    
 
    -- Städte
-   type StadtGebautArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleStädte'Range) of EinheitStadtRecords.StadtGebautRecord;
+   type StadtGebautArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.MaximaleStädte'Range) of EinheitStadtRecords.StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others => (others => StadtKonstanten.LeerStadt));
    -- Städte
    
    
 
    -- Wichtiges Zeug
-   type WichtigesArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.WichtigesRecord;
+   type WichtigesArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.WichtigesRecord;
    Wichtiges : WichtigesArray := (others => WichtigesKonstanten.LeerWichtigesZeug);
    
-   type DiplomatieArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.DiplomatieRecord;
+   type DiplomatieArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of WichtigeRecords.DiplomatieRecord;
    Diplomatie : DiplomatieArray := (others => (others => WichtigesKonstanten.LeerDiplomatie));
    -- Wichtiges Zeug
                                                

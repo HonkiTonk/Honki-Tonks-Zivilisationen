@@ -20,7 +20,7 @@ package body StadtGebaeudeBauen is
                                                    IDExtern               => EinheitStadtDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer));
             
       if
-        GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Spieler_Mensch_Enum
+        GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Spieler_Mensch_Enum
       then
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                BeschäftigungExtern   => KIDatentypen.Keine_Aufgabe_Enum);

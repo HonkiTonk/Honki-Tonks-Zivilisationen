@@ -3,12 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemDatentypen;
 with KartenRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
 with KartenVerbesserungDatentypen;
 with AufgabenDatentypen;
+with RassenDatentypen;
 
 with KIDatentypen;
 
@@ -16,7 +16,7 @@ package EinheitStadtRecords is
 
    type RassePlatznummerRecord is tagged record
       
-      Rasse : SystemDatentypen.Rassen_Enum;
+      Rasse : RassenDatentypen.Rassen_Enum;
       Platznummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;

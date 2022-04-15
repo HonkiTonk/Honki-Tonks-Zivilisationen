@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 
 package Hauptmenue is
 
@@ -9,6 +9,6 @@ package Hauptmenue is
    
 private
   
-   RückgabeKampagne : SystemDatentypen.Rückgabe_Werte_Enum;
+   RückgabeKampagne : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 end Hauptmenue;

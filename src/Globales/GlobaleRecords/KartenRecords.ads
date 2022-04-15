@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
 with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
+with RassenDatentypen;
 
 package KartenRecords is
 
@@ -69,12 +69,12 @@ package KartenRecords is
    
    -- Die Bewertung rauswerfen und entsprechend die Einheiten beim Bauen einer Stadt alles Bewerten lassen?
    -- Felderbelegung stattdessen einbauen?
-   type FelderwertungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamtbewertungFeld;
-   type SichtbarkeitArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
+   type FelderwertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamtbewertungFeld;
+   type SichtbarkeitArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    
    type BelegterGrundRecord is record
       
-      RasseBelegt : SystemDatentypen.Rassen_Enum;
+      RasseBelegt : RassenDatentypen.Rassen_Enum;
       StadtBelegt : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
    end record;

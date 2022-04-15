@@ -7,6 +7,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 with TastenbelegungDatentypen;
+with SystemDatentypen;
 
 with LeseStadtGebaut;
 with LeseEinheitenGebaut;
@@ -19,7 +20,7 @@ with EinheitenBeschreibungen;
 package body AuswahlStadtEinheit is
 
    function AuswahlStadtEinheit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       -- Wenn die StadtNummerExtern = 0 ist, dann wird von einem beladenen Transporter ausgegangen.
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
@@ -95,7 +96,7 @@ package body AuswahlStadtEinheit is
    
    
    procedure MausAuswahl
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.

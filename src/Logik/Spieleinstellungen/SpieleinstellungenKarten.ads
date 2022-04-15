@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 with KartenDatentypen;
 with SystemRecords;
 
@@ -15,11 +15,11 @@ package SpieleinstellungenKarten is
    
 private
          
-   KartengrößeAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
-   KartenartAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
-   KartenformAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
-   KartentemperaturAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
-   KartenressourcenAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   KartengrößeAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   KartenartAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   KartenformAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   KartentemperaturAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   KartenressourcenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
    BenutzerdefinierteGröße : SystemRecords.ZahlenEingabeRecord;
    

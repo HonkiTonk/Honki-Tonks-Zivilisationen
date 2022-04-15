@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with KartenKonstanten;
@@ -44,9 +44,9 @@ package KartenRecordKonstanten is
                                                           );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
-                                                                    EAchseEinstellung                => SystemDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
-                                                                    YAchseEinstellung                => SystemDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
-                                                                    XAchseEinstellung                => SystemDatentypen.Karte_X_Achse_Übergang_Enum,
+                                                                    EAchseEinstellung                => RueckgabeDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
+                                                                    YAchseEinstellung                => RueckgabeDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
+                                                                    XAchseEinstellung                => RueckgabeDatentypen.Karte_X_Achse_Übergang_Enum,
                                                                     YZuerstBerechnenXZuerstBerechnen => True
                                                                    );
 
@@ -59,29 +59,29 @@ package KartenRecordKonstanten is
    
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
-                                         SystemDatentypen.Karte_Größe_20_20_Enum     => 1,
-                                         SystemDatentypen.Karte_Größe_40_40_Enum     => 1,
-                                         SystemDatentypen.Karte_Größe_80_80_Enum     => 2,
-                                         SystemDatentypen.Karte_Größe_120_80_Enum    => 3,
-                                         SystemDatentypen.Karte_Größe_120_160_Enum   => 3,
-                                         SystemDatentypen.Karte_Größe_160_160_Enum   => 4,
-                                         SystemDatentypen.Karte_Größe_240_240_Enum   => 6,
-                                         SystemDatentypen.Karte_Größe_320_320_Enum   => 8,
-                                         SystemDatentypen.Karte_Größe_1000_1000_Enum => 24,
-                                         SystemDatentypen.Karte_Größe_Nutzer_Enum    => 1
+                                         RueckgabeDatentypen.Karte_Größe_20_20_Enum     => 1,
+                                         RueckgabeDatentypen.Karte_Größe_40_40_Enum     => 1,
+                                         RueckgabeDatentypen.Karte_Größe_80_80_Enum     => 2,
+                                         RueckgabeDatentypen.Karte_Größe_120_80_Enum    => 3,
+                                         RueckgabeDatentypen.Karte_Größe_120_160_Enum   => 3,
+                                         RueckgabeDatentypen.Karte_Größe_160_160_Enum   => 4,
+                                         RueckgabeDatentypen.Karte_Größe_240_240_Enum   => 6,
+                                         RueckgabeDatentypen.Karte_Größe_320_320_Enum   => 8,
+                                         RueckgabeDatentypen.Karte_Größe_1000_1000_Enum => 24,
+                                         RueckgabeDatentypen.Karte_Größe_Nutzer_Enum    => 1
                                         );
 
    Eisschild : constant EisgebietArray := (
-                                           SystemDatentypen.Karte_Größe_20_20_Enum     => 3,
-                                           SystemDatentypen.Karte_Größe_40_40_Enum     => 3,
-                                           SystemDatentypen.Karte_Größe_80_80_Enum     => 6,
-                                           SystemDatentypen.Karte_Größe_120_80_Enum    => 9,
-                                           SystemDatentypen.Karte_Größe_120_160_Enum   => 9,
-                                           SystemDatentypen.Karte_Größe_160_160_Enum   => 12,
-                                           SystemDatentypen.Karte_Größe_240_240_Enum   => 18,
-                                           SystemDatentypen.Karte_Größe_320_320_Enum   => 24,
-                                           SystemDatentypen.Karte_Größe_1000_1000_Enum => 72,
-                                           SystemDatentypen.Karte_Größe_Nutzer_Enum    => 1
+                                           RueckgabeDatentypen.Karte_Größe_20_20_Enum     => 3,
+                                           RueckgabeDatentypen.Karte_Größe_40_40_Enum     => 3,
+                                           RueckgabeDatentypen.Karte_Größe_80_80_Enum     => 6,
+                                           RueckgabeDatentypen.Karte_Größe_120_80_Enum    => 9,
+                                           RueckgabeDatentypen.Karte_Größe_120_160_Enum   => 9,
+                                           RueckgabeDatentypen.Karte_Größe_160_160_Enum   => 12,
+                                           RueckgabeDatentypen.Karte_Größe_240_240_Enum   => 18,
+                                           RueckgabeDatentypen.Karte_Größe_320_320_Enum   => 24,
+                                           RueckgabeDatentypen.Karte_Größe_1000_1000_Enum => 72,
+                                           RueckgabeDatentypen.Karte_Größe_Nutzer_Enum    => 1
                                           );
 
 end KartenRecordKonstanten;

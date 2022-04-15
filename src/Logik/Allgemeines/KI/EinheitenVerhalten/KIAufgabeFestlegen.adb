@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords; use KartenRecords;
+with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -203,17 +204,17 @@ package body KIAufgabeFestlegen is
    
    
    function ZielErmitteln
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rassen_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RassenDatentypen.Rassen_Enum
    is begin
       
       Ziel := EinheitenKonstanten.LeerRasse;
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
            or
              RasseSchleifenwert = RasseExtern
          then

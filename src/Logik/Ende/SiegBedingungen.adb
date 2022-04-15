@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with GlobaleVariablen;
 
 with LeseWichtiges;
@@ -62,12 +62,12 @@ package body SiegBedingungen is
       VorhandeneRassen := 0;
       
       RassenSchleife:
-      for RassenSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -110,10 +110,10 @@ package body SiegBedingungen is
    is begin
       
       RassenGeldSchleife:
-      for RassenGeldSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RassenGeldSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+           GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             

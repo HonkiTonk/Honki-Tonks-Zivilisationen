@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
@@ -13,7 +13,7 @@ with Karten;
 package TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
      with
@@ -22,7 +22,7 @@ package TransporterSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -30,7 +30,7 @@ package TransporterSuchen is
       return EinheitStadtDatentypen.Transportwerte
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
+         (GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
             TransporterExtern.Platznummer > 0);
 
@@ -39,7 +39,7 @@ package TransporterSuchen is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
             EinheitRasseNummerExtern.Platznummer > 0);
 

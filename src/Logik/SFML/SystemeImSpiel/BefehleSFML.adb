@@ -33,8 +33,8 @@ with AuswahlStadtEinheit;
 package body BefehleSFML is
    
    function Befehle
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       Befehl := Eingabe.Tastenwert;
@@ -51,7 +51,7 @@ package body BefehleSFML is
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when TastenbelegungDatentypen.Menü_Zurück_Enum =>
-            return SystemDatentypen.Spielmenü_Enum;
+            return RueckgabeDatentypen.Spielmenü_Enum;
 
          when TastenbelegungDatentypen.Bauen_Enum =>
             BaueStadt (RasseExtern => RasseExtern);
@@ -119,7 +119,7 @@ package body BefehleSFML is
             EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
          when TastenbelegungDatentypen.Runde_Beenden_Enum =>
-            return SystemDatentypen.Runde_Beenden_Enum;
+            return RueckgabeDatentypen.Runde_Beenden_Enum;
             
          when TastenbelegungDatentypen.Debugmenü_Enum =>
             DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
@@ -128,14 +128,14 @@ package body BefehleSFML is
             null;
       end case;
       
-      return SystemDatentypen.Start_Weiter_Enum;
+      return RueckgabeDatentypen.Start_Weiter_Enum;
       
    end Befehle;
    
    
    
    procedure AuswahlEinheitStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -219,7 +219,7 @@ package body BefehleSFML is
 
 
    procedure EinheitOderStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
    is begin
@@ -278,7 +278,7 @@ package body BefehleSFML is
    
    
    procedure BaueStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -307,7 +307,7 @@ package body BefehleSFML is
    
    
    procedure EinheitBefehle
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
    is begin
                      
@@ -337,7 +337,7 @@ package body BefehleSFML is
    
    
    procedure StadtUmbenennen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -368,7 +368,7 @@ package body BefehleSFML is
    
    
    procedure StadtAbreißen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -386,7 +386,7 @@ package body BefehleSFML is
       -- case
       --    Auswahl.AuswahlJaNein (FrageZeileExtern => 30)
       --  is
-      --     when SystemDatentypen.Ja_Enum =>
+      --     when RueckgabeDatentypen.Ja_Enum =>
       StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
       --   when others =>

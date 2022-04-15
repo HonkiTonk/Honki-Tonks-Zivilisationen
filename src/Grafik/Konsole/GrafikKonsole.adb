@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikTonDatentypen; use GrafikTonDatentypen;
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with ZeitKonstanten;
 
 with InteraktionLogiktask;
@@ -57,7 +57,7 @@ package body GrafikKonsole is
             when GrafikTonDatentypen.Grafik_Weltkarte_Enum =>
                if
                  ---------------------- Leerwert mal auf die leere Konstante umschreiben? Vielleicht generell bei Leerwerten machen?
-                 InteraktionLogiktask.AktuelleRasseAbrufen = SystemDatentypen.Keine_Rasse_Enum
+                 InteraktionLogiktask.AktuelleRasseAbrufen = RassenDatentypen.Keine_Rasse_Enum
                then
                   delay ZeitKonstanten.WartezeitGrafik;
                      

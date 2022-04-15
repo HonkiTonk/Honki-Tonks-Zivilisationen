@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 
 package SpieleinstellungenSonstiges is
 
@@ -9,6 +9,6 @@ package SpieleinstellungenSonstiges is
    
 private
    
-   SchwierigkeitAuswahl : SystemDatentypen.Rückgabe_Werte_Enum;
+   SchwierigkeitAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 end SpieleinstellungenSonstiges;

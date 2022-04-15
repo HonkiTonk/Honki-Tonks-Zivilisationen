@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
@@ -9,111 +10,111 @@ with KartenDatentypen;
 
 package StadtUmgebungsbereichFestlegen is
    
-   type TechnologieUmgebungsgrößeArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of EinheitStadtDatentypen.ForschungID;
+   type TechnologieUmgebungsgrößeArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of EinheitStadtDatentypen.ForschungID;
    TechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
-                                                                               SystemDatentypen.Menschen_Enum =>
+                                                                               RassenDatentypen.Menschen_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
                                                                                              
-                                                                               SystemDatentypen.Kasrodiah_Enum =>
+                                                                               RassenDatentypen.Kasrodiah_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Lasupin_Enum =>
+                                                                               RassenDatentypen.Lasupin_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
                                                                                
-                                                                               SystemDatentypen.Lamustra_Enum =>
+                                                                               RassenDatentypen.Lamustra_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Manuky_Enum =>
+                                                                               RassenDatentypen.Manuky_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Suroka_Enum =>
+                                                                               RassenDatentypen.Suroka_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Pryolon_Enum =>
+                                                                               RassenDatentypen.Pryolon_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Talbidahr_Enum =>
+                                                                               RassenDatentypen.Talbidahr_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Moru_Phisihl_Enum =>
+                                                                               RassenDatentypen.Moru_Phisihl_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Larinos_Lotaris_Enum =>
+                                                                               RassenDatentypen.Larinos_Lotaris_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Carupex_Enum =>
+                                                                               RassenDatentypen.Carupex_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Alary_Enum =>
+                                                                               RassenDatentypen.Alary_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Tesorahn_Enum =>
+                                                                               RassenDatentypen.Tesorahn_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Natries_Zermanis_Enum =>
+                                                                               RassenDatentypen.Natries_Zermanis_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Tridatus_Enum =>
+                                                                               RassenDatentypen.Tridatus_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Senelari_Enum =>
+                                                                               RassenDatentypen.Senelari_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Aspari_2_Enum =>
+                                                                               RassenDatentypen.Aspari_2_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
                                                                                  ),
             
-                                                                               SystemDatentypen.Ekropa_Enum =>
+                                                                               RassenDatentypen.Ekropa_Enum =>
                                                                                  (
                                                                                   SystemDatentypen.Anfangswert_Enum => 19,
                                                                                   SystemDatentypen.Endwert_Enum     => 43
@@ -126,7 +127,7 @@ package StadtUmgebungsbereichFestlegen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
 private
    

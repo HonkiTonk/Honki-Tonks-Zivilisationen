@@ -3,8 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Numerics.Discrete_Random;
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 with KartenDatentypen;
+with RassenDatentypen;
 
 package ZufallsgeneratorenSpieleinstellungen is
      
@@ -31,17 +32,17 @@ package ZufallsgeneratorenSpieleinstellungen is
      return KartenDatentypen.Kartenressourcen_Verwendet_Enum;
    
    function ZufälligerSchwiewrigkeitsgrad
-     return SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
+     return RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
 
 private
    
    SpielerVorhanden : Boolean;
    
-   RasseImSpiel : SystemDatentypen.Spieler_Enum;
+   RasseImSpiel : RassenDatentypen.Spieler_Enum;
    
    AuswahlGröße : KartenDatentypen.KartenfeldPositiv;
    
-   -- RasseGewählt : SystemDatentypen.Rassen_Verwendet_Enum;
+   -- RasseGewählt : RueckgabeDatentypen.Rassen_Verwendet_Enum;
    
    -- Generatoren für zufällige Spieleinstellungen
    package ZufälligeVordefinierteKartengrößeWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartengröße_Standard_Enum);
@@ -50,8 +51,8 @@ private
    package ZufälligeKartenformWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_Verwendet_Enum);
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartentemperatur_Verwendet_Enum);
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenressourcen_Verwendet_Enum);
-   package ZufälligeRassenWählen is new Ada.Numerics.Discrete_Random (SystemDatentypen.Spieler_Enum);
-   package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (SystemDatentypen.Schwierigkeitsgrad_Verwendet_Enum);
+   package ZufälligeRassenWählen is new Ada.Numerics.Discrete_Random (RassenDatentypen.Spieler_Enum);
+   package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum);
 
    ZufälligeVordefinierteKartengrößeGewählt : ZufälligeVordefinierteKartengrößeWählen.Generator;
    ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;

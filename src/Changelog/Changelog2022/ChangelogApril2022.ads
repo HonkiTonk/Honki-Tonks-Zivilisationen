@@ -84,31 +84,33 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (18.04.2022):
+   -- Version 0.01.03 => 0.01.0 (18.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.03 => 0.01.0 (17.04.2022):
+   -- Version 0.01.03 => 0.01.03 (17.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.03 => 0.01.03 (16.04.2022):
+   -- Version 0.01.0333 => 0.01.03 (16.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0310 => 0.01.03 (15.04.2022):
+   -- Version 0.01.0310 => 0.01.0333 (15.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einige Fehlermeldungen in Warnmeldungen umgebaut.
+   -- Angefangen das Rückgabe_Werte_Enum von den nicht Rückgabewerten zu entkoppeln.
+   -- Angefangen die SystemDatentypen in kleinere Datentypen aufzuteilen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

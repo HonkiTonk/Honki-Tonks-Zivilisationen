@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RassenDatentypen;
 
 package KartenfelderBewerten is
 
    procedure KartenfelderBewerten
-     (RasseExtern : in SystemDatentypen.Rassen_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Enum);
 
 end KartenfelderBewerten;

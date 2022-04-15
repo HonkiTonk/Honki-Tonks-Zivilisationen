@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar; use Ada.Calendar;
 
+with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 with GlobaleVariablen;
 with StadtKonstanten;
@@ -41,7 +42,7 @@ package body ZwischenDenRunden is
             return False;
       end case;
       
-      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Enum_Laden);
+      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => RueckgabeDatentypen.Grafik_Enum_Laden);
       -- Das Umschalten der Darstellung der Ladezeiten in die Prozeduren der jeweiligen Ladezeiten einbauen?
       
       LadezeitenDatentypen.EinzelneZeiten (LadezeitenDatentypen.Zwischen_Runden_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
@@ -76,7 +77,7 @@ package body ZwischenDenRunden is
             
       GesamteZeitenAnzeigen;
       
-      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => SystemDatentypen.Grafik_Enum_Pause);
+      -- InteraktionTasks.AktuelleDarstellungÄndern (DarstellungExtern => RueckgabeDatentypen.Grafik_Enum_Pause);
       
       return False;
       
@@ -99,7 +100,7 @@ package body ZwischenDenRunden is
                null;
             
                -- elsif
-               --   Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = SystemDatentypen.Ja_Enum
+               --   Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = RueckgabeDatentypen.Ja_Enum
                --  then
                --    GlobaleVariablen.WeiterSpielen := True;
                                  
@@ -141,10 +142,10 @@ package body ZwischenDenRunden is
       KIVorhanden := False;
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI_Enum
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Spieler_KI_Enum
          then
             KIVorhanden := True;
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
@@ -164,18 +165,18 @@ package body ZwischenDenRunden is
    is begin
       
       RassenEinsSchleife:
-      for RasseEinsSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          RassenZweiSchleife:
-         for RasseZweiSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+         for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
             if
               GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
               or
                 RasseEinsSchleifenwert = RasseZweiSchleifenwert
                 or
-                  GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+                  GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
               or
-                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
             then
                null;
                   
@@ -199,12 +200,12 @@ package body ZwischenDenRunden is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                null;
             
             when others =>

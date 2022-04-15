@@ -13,17 +13,17 @@ package GebaeudeBauen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
 private
    
    PermanenteGebäudeWerte : Boolean;
    
    procedure PermanenteKostenGebäude
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure PreisGebäude
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure BauzeitGebäude
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

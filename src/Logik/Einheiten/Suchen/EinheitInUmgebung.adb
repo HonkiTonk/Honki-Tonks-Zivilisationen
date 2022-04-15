@@ -25,12 +25,12 @@ package body EinheitInUmgebung is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Spieler_Mensch_Enum =>
+            when RassenDatentypen.Spieler_Mensch_Enum =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);
                UmgebungEinheit (RasseExtern => RasseSchleifenwert);
                
@@ -45,7 +45,7 @@ package body EinheitInUmgebung is
    
    
    procedure UmgebungStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtSchleife:
@@ -79,7 +79,7 @@ package body EinheitInUmgebung is
    
    
    procedure UmgebungEinheit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenSchleife:
@@ -115,7 +115,7 @@ package body EinheitInUmgebung is
    function EinheitFinden
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       UmgebungExtern : in KartenDatentypen.Sichtweite;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       

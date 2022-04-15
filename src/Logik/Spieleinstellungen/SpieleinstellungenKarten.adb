@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with SystemDatentypen;
+
 with Karten;
 with Eingabe;
 with ZufallsgeneratorenSpieleinstellungen;
@@ -24,16 +26,16 @@ package body SpieleinstellungenKarten is
             when KartenDatentypen.Kartengröße_Standard_Enum'Range =>
                Karten.Kartenparameter.Kartengröße := KartengrößeAuswahl;
 
-            when SystemDatentypen.Karte_Größe_Nutzer_Enum =>
+            when RueckgabeDatentypen.Karte_Größe_Nutzer_Enum =>
                GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
                
-            when SystemDatentypen.Zufall_Enum =>
+            when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
                
-            when SystemDatentypen.Karte_Größe_Zufall_Enum =>
+            when RueckgabeDatentypen.Karte_Größe_Zufall_Enum =>
                Karten.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartengröße;
                
-            when SystemDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum =>
                return;
                
             when others =>
@@ -100,10 +102,10 @@ package body SpieleinstellungenKarten is
             when KartenDatentypen.Kartenart_Verwendet_Enum'Range =>
                Karten.Kartenparameter.Kartenart := KartenartAuswahl;
                
-            when SystemDatentypen.Zufall_Enum =>
+            when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartenart := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenart;
                
-            when SystemDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum =>
                return;
                
             when others =>
@@ -130,10 +132,10 @@ package body SpieleinstellungenKarten is
             when KartenDatentypen.Kartenform_Verwendet_Enum'Range =>
                Karten.Kartenform := KartenformAuswahl;
                
-            when SystemDatentypen.Zufall_Enum =>
+            when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenform := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
                
-            when SystemDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum =>
                return;
                
             when others =>
@@ -161,10 +163,10 @@ package body SpieleinstellungenKarten is
             when KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range =>
                Karten.Kartenparameter.Kartentemperatur := KartentemperaturAuswahl;
                
-            when SystemDatentypen.Zufall_Enum =>
+            when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartentemperatur := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
                
-            when SystemDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum =>
                return;
                
             when others =>
@@ -192,10 +194,10 @@ package body SpieleinstellungenKarten is
             when KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range =>
                Karten.Kartenparameter.Kartenressourcen := KartenressourcenAuswahl;
                
-            when SystemDatentypen.Zufall_Enum =>
+            when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartenressourcen := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenressourcen;
                
-            when SystemDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum =>
                return;
                
             when others =>

@@ -13,29 +13,29 @@ package EinheitBauen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
 private
    
    PermanenteEinheitenWerte : Boolean;
    
    procedure PermanenteKostenEinheiten
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure MaximaleBewegungspunkte
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure MaximaleLebenspunkte
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure Verteidigung
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure Angriff
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
    procedure Preis
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure BauzeitEinheit
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);

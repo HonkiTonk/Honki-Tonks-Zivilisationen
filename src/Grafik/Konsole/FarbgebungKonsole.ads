@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
 with KartenGrundDatentypen; use KartenGrundDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
@@ -18,13 +18,13 @@ package FarbgebungKonsole is
       FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
       RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Enum)
+      EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre =>
-         ((if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch_Enum)
+         ((if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum)
           and
-            (if RasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum));
+            (if RasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum));
    
 private
    
@@ -62,8 +62,8 @@ private
       FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
       RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern : in SystemDatentypen.Rassen_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Enum);
+      EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Enum);
    
    procedure FarbenFluss
      (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;

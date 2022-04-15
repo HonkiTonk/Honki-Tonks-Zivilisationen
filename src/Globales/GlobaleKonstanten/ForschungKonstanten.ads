@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen;
-with SystemDatentypen;
+with RassenDatentypen;
 with TastenbelegungDatentypen;
 
 with DatenbankRecords;
@@ -18,9 +18,9 @@ package ForschungKonstanten is
                                                                            AnforderungForschung => (others => ForschungUnmöglich)
                                                                           );
    
-   type TechnologieVerbesserungArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
-                                                                       SystemDatentypen.Menschen_Enum =>
+                                                                       RassenDatentypen.Menschen_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -31,7 +31,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Kasrodiah_Enum =>
+                                                                       RassenDatentypen.Kasrodiah_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -42,7 +42,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Lasupin_Enum =>
+                                                                       RassenDatentypen.Lasupin_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -53,7 +53,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Lamustra_Enum =>
+                                                                       RassenDatentypen.Lamustra_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -64,7 +64,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Manuky_Enum =>
+                                                                       RassenDatentypen.Manuky_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -75,7 +75,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Suroka_Enum =>
+                                                                       RassenDatentypen.Suroka_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -86,7 +86,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Pryolon_Enum =>
+                                                                       RassenDatentypen.Pryolon_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -97,7 +97,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Talbidahr_Enum =>
+                                                                       RassenDatentypen.Talbidahr_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -108,7 +108,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Moru_Phisihl_Enum =>
+                                                                       RassenDatentypen.Moru_Phisihl_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -119,7 +119,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Larinos_Lotaris_Enum =>
+                                                                       RassenDatentypen.Larinos_Lotaris_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -130,7 +130,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Carupex_Enum =>
+                                                                       RassenDatentypen.Carupex_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -141,7 +141,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Alary_Enum =>
+                                                                       RassenDatentypen.Alary_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -152,7 +152,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Tesorahn_Enum =>
+                                                                       RassenDatentypen.Tesorahn_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -163,7 +163,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Natries_Zermanis_Enum =>
+                                                                       RassenDatentypen.Natries_Zermanis_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -174,7 +174,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Tridatus_Enum =>
+                                                                       RassenDatentypen.Tridatus_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -185,7 +185,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Senelari_Enum =>
+                                                                       RassenDatentypen.Senelari_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -196,7 +196,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Aspari_2_Enum =>
+                                                                       RassenDatentypen.Aspari_2_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,
@@ -207,7 +207,7 @@ package ForschungKonstanten is
                                                                           others                                           => LeerForschungAnforderung
                                                                          ),
 
-                                                                       SystemDatentypen.Ekropa_Enum =>
+                                                                       RassenDatentypen.Ekropa_Enum =>
                                                                          (
                                                                           TastenbelegungDatentypen.Straße_Bauen_Enum       => 0,
                                                                           TastenbelegungDatentypen.Wald_Aufforsten_Enum    => 0,

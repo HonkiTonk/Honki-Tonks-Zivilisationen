@@ -13,7 +13,7 @@ package body InteraktionLogiktask is
      
    
    procedure AktuelleRasseÄndern
-     (RasseExtern : in SystemDatentypen.Rassen_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
       AktuelleRasse := RasseExtern;
@@ -33,7 +33,7 @@ package body InteraktionLogiktask is
    
    
    function AktuelleRasseAbrufen
-     return SystemDatentypen.Rassen_Enum
+     return RassenDatentypen.Rassen_Enum
    is begin
       
       return AktuelleRasse;

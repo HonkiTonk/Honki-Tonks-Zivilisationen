@@ -20,7 +20,7 @@ with DebugPlatzhalter;
 package body InformationenEinheitenKonsole is
 
    procedure Einheiten
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       

@@ -41,7 +41,7 @@ package body SchreibeKarten is
    
    procedure Sichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       SichtbarExtern : in Boolean)
    is begin
       
@@ -108,7 +108,7 @@ package body SchreibeKarten is
    
    procedure Bewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       BewertungExtern : in KartenDatentypen.GesamtbewertungFeld)
    is begin
       

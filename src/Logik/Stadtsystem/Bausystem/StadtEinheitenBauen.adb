@@ -44,7 +44,7 @@ package body StadtEinheitenBauen is
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         and
-          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum
+          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
       then
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell;
@@ -113,7 +113,7 @@ package body StadtEinheitenBauen is
       case
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
-         when SystemDatentypen.Spieler_Mensch_Enum =>
+         when RassenDatentypen.Spieler_Mensch_Enum =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                              EreignisExtern         => EinheitStadtDatentypen.Produktion_Abgeschlossen_Enum);
          

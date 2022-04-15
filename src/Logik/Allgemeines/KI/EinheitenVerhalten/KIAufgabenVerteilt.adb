@@ -47,7 +47,7 @@ package body KIAufgabenVerteilt is
    -- Gibt es bereits eine Einheit die diese Aufgabe auf diesem Ziel ausführen will?
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -76,7 +76,7 @@ package body KIAufgabenVerteilt is
    
    -- Gibt es bereits eine Einheit mit diesem Ziel?
    function EinheitZiel
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ZielKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with GlobaleVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
@@ -53,7 +53,7 @@ package body FelderwerteFestlegen is
 
    procedure KartenfelderBewertenKleineSchleife
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Enum)
    is begin
       
       BewertungYÄnderungSchleife:
@@ -108,15 +108,15 @@ package body FelderwerteFestlegen is
    procedure BewertungSelbst
      (KoordinatenFeldExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       KoordinatenUmgebungExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Enum;
       TeilerExtern : in KartenDatentypen.UmgebungsbereichDrei)
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Spieler_KI_Enum
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Spieler_KI_Enum
            and
              (RasseExtern = EinheitenKonstanten.LeerRasse
               or

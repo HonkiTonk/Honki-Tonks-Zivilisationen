@@ -8,6 +8,7 @@ with ForschungKonstanten;
 with TextKonstanten;
 with TastenbelegungDatentypen;
 with GrafikTonDatentypen;
+with SystemDatentypen;
 
 with SchreibeWichtiges;
 with LeseForschungsDatenbank;
@@ -28,13 +29,13 @@ package body ForschungAllgemein is
 
    function Beschreibung
      (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
    is begin
       
       -- RasseExtern wird später benötigt wenn es verschiedene Forschungsbäume gibt.
       if
-        RasseExtern = SystemDatentypen.Menschen_Enum
+        RasseExtern = RassenDatentypen.Menschen_Enum
       then
          null;
 
@@ -62,7 +63,7 @@ package body ForschungAllgemein is
 
    -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
    procedure Forschung
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
          
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
@@ -85,7 +86,7 @@ package body ForschungAllgemein is
 
 
    function AuswahlForschungNeu
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
@@ -226,18 +227,18 @@ package body ForschungAllgemein is
    is begin
       
       RasseSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
-            when SystemDatentypen.Spieler_Mensch_Enum =>
+            when RassenDatentypen.Spieler_Mensch_Enum =>
                FortschrittMensch (RasseExtern => RasseSchleifenwert);
                
-            when SystemDatentypen.Spieler_KI_Enum =>
+            when RassenDatentypen.Spieler_KI_Enum =>
                FortschrittKI (RasseExtern => RasseSchleifenwert);
          end case;
                
@@ -249,7 +250,7 @@ package body ForschungAllgemein is
    
    -- Die beiden Forschrittprozeduren zusammenführen? Sinnvoll oder könnte es bei Erweiterungen kompliziert werden?
    procedure FortschrittMensch
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
@@ -279,7 +280,7 @@ package body ForschungAllgemein is
          InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RasseExtern);
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
                                               ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseExtern));
-         InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse_Enum);
+         InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RassenDatentypen.Keine_Rasse_Enum);
             
       else
          SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
@@ -290,7 +291,7 @@ package body ForschungAllgemein is
    
    
    procedure FortschrittKI
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
@@ -330,7 +331,7 @@ package body ForschungAllgemein is
    
    
    function ForschungAnforderungErfüllt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungIDExtern : in EinheitStadtDatentypen.ForschungID)
       return Boolean
    is begin

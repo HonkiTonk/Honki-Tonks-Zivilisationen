@@ -11,7 +11,7 @@ with EinheitenDatenbank;
 package body LeseEinheitenDatenbank is
 
    function EinheitArt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Einheit_Art_Enum
    is begin
@@ -23,7 +23,7 @@ package body LeseEinheitenDatenbank is
    
    
    function PreisGeld
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.KostenLager
    is begin
@@ -35,7 +35,7 @@ package body LeseEinheitenDatenbank is
    
    
    function PreisRessourcen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.KostenLager
    is begin
@@ -47,7 +47,7 @@ package body LeseEinheitenDatenbank is
    
    
    function PermanenteKosten
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
       WelcheKostenExtern : in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum)
       return EinheitStadtDatentypen.GesamtePermanenteKosten
@@ -67,7 +67,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Anforderungen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.ForschungIDNichtMöglich
    is begin
@@ -79,7 +79,7 @@ package body LeseEinheitenDatenbank is
    
 
    function Passierbarkeit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
@@ -92,7 +92,7 @@ package body LeseEinheitenDatenbank is
    
          
    function MaximaleLebenspunkte
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.LebenspunkteVorhanden
    is begin
@@ -104,7 +104,7 @@ package body LeseEinheitenDatenbank is
    
    
    function MaximaleBewegungspunkte
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.VorhandeneBewegungspunkte
    is begin
@@ -124,7 +124,7 @@ package body LeseEinheitenDatenbank is
    
    
    function WirdVerbessertZu
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.EinheitenIDMitNullWert
    is begin
@@ -136,7 +136,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Beförderungsgrenze
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Kampfwerte
    is begin
@@ -148,7 +148,7 @@ package body LeseEinheitenDatenbank is
    
    
    function MaximalerRang
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Kampfwerte
    is begin
@@ -160,7 +160,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Reichweite
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Kampfwerte
    is begin
@@ -172,7 +172,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Angriff
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Kampfwerte
    is begin
@@ -184,7 +184,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Verteidigung
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Kampfwerte
    is begin
@@ -197,7 +197,7 @@ package body LeseEinheitenDatenbank is
    
    
    function KannTransportieren
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Transportwerte
    is begin
@@ -209,7 +209,7 @@ package body LeseEinheitenDatenbank is
    
    
    function KannTransportiertWerden
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Transportwerte
    is begin
@@ -221,7 +221,7 @@ package body LeseEinheitenDatenbank is
    
    
    function Transportkapazität
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return EinheitStadtDatentypen.Transportwerte
    is begin
@@ -247,7 +247,7 @@ package body LeseEinheitenDatenbank is
    
    
    function GanzerEintrag
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return DatenbankRecords.EinheitenListeRecord
    is begin

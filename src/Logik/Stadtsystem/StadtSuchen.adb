@@ -14,7 +14,7 @@ with Eingabe;
 package body StadtSuchen is
 
    function KoordinatenStadtMitRasseSuchen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
@@ -45,12 +45,12 @@ package body StadtSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -76,18 +76,18 @@ package body StadtSuchen is
    
    
    function KoordinatenStadtOhneSpezielleRasseSuchen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtRecords.RassePlatznummerRecord
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseExtern = RasseSchleifenwert
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             
@@ -131,12 +131,12 @@ package body StadtSuchen is
       end case;
       
       RasseSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>

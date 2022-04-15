@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RassenDatentypen;
 
 package InteraktionLogiktask is
    
@@ -10,7 +10,7 @@ package InteraktionLogiktask is
    procedure FensterErzeugtÄndern;
    
    procedure AktuelleRasseÄndern
-     (RasseExtern : in SystemDatentypen.Rassen_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Enum);
    
    
    
@@ -18,12 +18,12 @@ package InteraktionLogiktask is
      return Boolean;
    
    function AktuelleRasseAbrufen
-     return SystemDatentypen.Rassen_Enum;
+     return RassenDatentypen.Rassen_Enum;
 
 private
    
    FensterErzeugt : Boolean := False;
       
-   AktuelleRasse : SystemDatentypen.Rassen_Enum := SystemDatentypen.Keine_Rasse_Enum;
+   AktuelleRasse : RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
 
 end InteraktionLogiktask;

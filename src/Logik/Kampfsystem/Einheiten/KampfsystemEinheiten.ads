@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with EinheitStadtDatentypen;
@@ -16,9 +16,9 @@ package KampfsystemEinheiten is
        Pre =>
          (AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
+            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
             VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and
@@ -32,7 +32,7 @@ package KampfsystemEinheiten is
        Pre =>
          (VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum);
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
 private
 
@@ -97,9 +97,9 @@ private
        Pre =>
          (AngreiferExtern.Rasse /= VerteidigerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
+            GlobaleVariablen.RassenImSpiel (AngreiferExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= SystemDatentypen.Leer_Spieler_Enum
+            GlobaleVariablen.RassenImSpiel (VerteidigerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
             VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
           and

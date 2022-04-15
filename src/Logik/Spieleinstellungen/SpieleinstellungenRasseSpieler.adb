@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 with EinheitenKonstanten;
+with SystemDatentypen;
 
 with LeseEinheitenGebaut;
 
@@ -20,7 +21,7 @@ package body SpieleinstellungenRasseSpieler is
    procedure RassenWählen
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => SystemDatentypen.Leer_Spieler_Enum);
+      GlobaleVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
 
       RasseSchleife:
       loop
@@ -30,13 +31,13 @@ package body SpieleinstellungenRasseSpieler is
          case
            RassenAuswahl
          is
-            when SystemDatentypen.Rassen_Verwendet_Enum'Range =>
-               BelegungÄndern (RasseExtern => RassenAuswahl);
+            when RueckgabeDatentypen.Rassen_Verwendet_Enum'Range =>
+               BelegungÄndern (RasseExtern => RückgabeZuRasse (RassenAuswahl));
 
-            when SystemDatentypen.Zufall_Enum =>
+            when RueckgabeDatentypen.Zufall_Enum =>
                ZufallsgeneratorenSpieleinstellungen.ZufälligeRassen;
                
-            when SystemDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum =>
                if
                  EineRasseBelegt = True
                then
@@ -57,21 +58,21 @@ package body SpieleinstellungenRasseSpieler is
    
    
    procedure BelegungÄndern
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer_Spieler_Enum
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
       then
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Spieler_Mensch_Enum;
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_Mensch_Enum;
                   
       elsif
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
       then
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Spieler_KI_Enum;
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
                   
       else
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Leer_Spieler_Enum;
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
       end if;
       
    end BelegungÄndern;
@@ -83,10 +84,10 @@ package body SpieleinstellungenRasseSpieler is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemDatentypen.Leer_Spieler_Enum
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Leer_Spieler_Enum
          then
             return True;
             
@@ -106,12 +107,12 @@ package body SpieleinstellungenRasseSpieler is
    is begin
       
       SpieleranzahlWerteFestlegen:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
         
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
@@ -140,10 +141,10 @@ package body SpieleinstellungenRasseSpieler is
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                         --                                      TextZeileExtern => 16);
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
-                        --                                      TextZeileExtern => SystemDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
+                        --                                      TextZeileExtern => RueckgabeDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                         --                                      TextZeileExtern => 17);
-                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := SystemDatentypen.Leer_Spieler_Enum;
+                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RassenDatentypen.Leer_Spieler_Enum;
                         
                      when others =>
                         null;
@@ -160,7 +161,7 @@ package body SpieleinstellungenRasseSpieler is
 
    function UmgebungPrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
 
@@ -194,7 +195,7 @@ package body SpieleinstellungenRasseSpieler is
    
    procedure FelderBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
             
       StartpositionGefunden := False;
@@ -255,7 +256,7 @@ package body SpieleinstellungenRasseSpieler is
 
 
    procedure StartpunktFestlegen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (1),

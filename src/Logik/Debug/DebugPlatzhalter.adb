@@ -6,6 +6,7 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Sf.Window.Keyboard;
 
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen;
 
 with SchreibeWichtiges;
 with SchreibeKarten;
@@ -22,7 +23,7 @@ package body DebugPlatzhalter is
 
    -- Die Umwandlung von Wide_Wide_Image im Debugmenü einfach ignorieren, weil die Anzeige hier sowieso nicht wichtig ist?
    procedure Menü
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       MenüSchleife:
@@ -76,7 +77,7 @@ package body DebugPlatzhalter is
 
 
    procedure Sichtbarkeit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EbeneSchleife:
@@ -104,9 +105,9 @@ package body DebugPlatzhalter is
    is begin
       
       RassenErsteSchleife:
-      for RasseEinsSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseEinsSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          RassenZweiteSchleife:
-         for RasseZweiSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+         for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
             GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SystemDatentypen.Neutral_Enum;
             
@@ -127,7 +128,7 @@ package body DebugPlatzhalter is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemDatentypen.Spieler_KI_Enum =>
+         when RassenDatentypen.Spieler_KI_Enum =>
             BewegungPlanSchleife:
             for BewegungGeplantSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
                       
@@ -183,7 +184,7 @@ package body DebugPlatzhalter is
    
    
    procedure KarteInfosFeld
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Die Stadtbelegung eventuell in die Konsolenanzeige verschieben? Die Belegung wird ja auch in der SFML angezeigt.
@@ -199,7 +200,7 @@ package body DebugPlatzhalter is
       ErsteAnzeige := True;
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            ErsteAnzeige
@@ -216,7 +217,7 @@ package body DebugPlatzhalter is
                                                                                                 RasseExtern       => RasseSchleifenwert)'Wide_Wide_Image);
          
          if
-           SystemDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert) mod 6 = 0
+           RassenDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert) mod 6 = 0
          then
             New_Line;
             

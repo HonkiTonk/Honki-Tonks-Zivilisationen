@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen;
+with RueckgabeDatentypen;
 with EinheitenKonstanten;
 
 with Ladezeiten;
@@ -49,7 +50,7 @@ package body KartenGenerator is
       case
         Karten.Kartenparameter.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos_Enum =>
+         when RueckgabeDatentypen.Karte_Art_Chaos_Enum =>
             KartenGeneratorChaos.Chaos;
             
          when others =>
@@ -71,7 +72,7 @@ package body KartenGenerator is
       case
         Karten.Kartenparameter.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos_Enum | SystemDatentypen.Karte_Art_Nur_Land_Enum =>
+         when RueckgabeDatentypen.Karte_Art_Chaos_Enum | RueckgabeDatentypen.Karte_Art_Nur_Land_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Endwert_Enum)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Anfangswert_Enum);
             
@@ -93,7 +94,7 @@ package body KartenGenerator is
       case
         Karten.Kartenparameter.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos_Enum =>
+         when RueckgabeDatentypen.Karte_Art_Chaos_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Endwert_Enum)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Anfangswert_Enum);
             
@@ -115,7 +116,7 @@ package body KartenGenerator is
       case
         Karten.Kartenparameter.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos_Enum =>
+         when RueckgabeDatentypen.Karte_Art_Chaos_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Endwert_Enum)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Anfangswert_Enum);
             
@@ -137,7 +138,7 @@ package body KartenGenerator is
       case
         Karten.Kartenparameter.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos_Enum =>
+         when RueckgabeDatentypen.Karte_Art_Chaos_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Endwert_Enum)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Anfangswert_Enum);
             
@@ -159,7 +160,7 @@ package body KartenGenerator is
       case
         Karten.Kartenparameter.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Chaos_Enum =>
+         when RueckgabeDatentypen.Karte_Art_Chaos_Enum =>
             LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Endwert_Enum)
               := LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Anfangswert_Enum);
             

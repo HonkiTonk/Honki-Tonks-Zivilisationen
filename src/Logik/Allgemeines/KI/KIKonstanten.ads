@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords;
-with SystemDatentypen;
+with RassenDatentypen;
 with KartenDatentypen;
 
 with KIDatentypen;
@@ -17,26 +17,26 @@ package KIKonstanten is
    LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
    LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
 
-   type KartenfeldBewertungStadtBauenMinimumArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamtbewertungFeld;
+   type KartenfeldBewertungStadtBauenMinimumArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.GesamtbewertungFeld;
    KartenfeldBewertungStadtBauenMinimum : constant KartenfeldBewertungStadtBauenMinimumArray := (
-                                                                                                 SystemDatentypen.Menschen_Enum         => 10,
-                                                                                                 SystemDatentypen.Kasrodiah_Enum        => 10,
-                                                                                                 SystemDatentypen.Lasupin_Enum          => 10,
-                                                                                                 SystemDatentypen.Lamustra_Enum         => 10,
-                                                                                                 SystemDatentypen.Manuky_Enum           => 10,
-                                                                                                 SystemDatentypen.Suroka_Enum           => 10,
-                                                                                                 SystemDatentypen.Pryolon_Enum          => 10,
-                                                                                                 SystemDatentypen.Talbidahr_Enum        => 10,
-                                                                                                 SystemDatentypen.Moru_Phisihl_Enum     => 10,
-                                                                                                 SystemDatentypen.Larinos_Lotaris_Enum  => 10,
-                                                                                                 SystemDatentypen.Carupex_Enum          => 10,
-                                                                                                 SystemDatentypen.Alary_Enum            => 10,
-                                                                                                 SystemDatentypen.Tesorahn_Enum         => 10,
-                                                                                                 SystemDatentypen.Natries_Zermanis_Enum => 10,
-                                                                                                 SystemDatentypen.Tridatus_Enum         => 10,
-                                                                                                 SystemDatentypen.Senelari_Enum         => 10,
-                                                                                                 SystemDatentypen.Aspari_2_Enum         => 10,
-                                                                                                 SystemDatentypen.Ekropa_Enum           => 10
+                                                                                                 RassenDatentypen.Menschen_Enum         => 10,
+                                                                                                 RassenDatentypen.Kasrodiah_Enum        => 10,
+                                                                                                 RassenDatentypen.Lasupin_Enum          => 10,
+                                                                                                 RassenDatentypen.Lamustra_Enum         => 10,
+                                                                                                 RassenDatentypen.Manuky_Enum           => 10,
+                                                                                                 RassenDatentypen.Suroka_Enum           => 10,
+                                                                                                 RassenDatentypen.Pryolon_Enum          => 10,
+                                                                                                 RassenDatentypen.Talbidahr_Enum        => 10,
+                                                                                                 RassenDatentypen.Moru_Phisihl_Enum     => 10,
+                                                                                                 RassenDatentypen.Larinos_Lotaris_Enum  => 10,
+                                                                                                 RassenDatentypen.Carupex_Enum          => 10,
+                                                                                                 RassenDatentypen.Alary_Enum            => 10,
+                                                                                                 RassenDatentypen.Tesorahn_Enum         => 10,
+                                                                                                 RassenDatentypen.Natries_Zermanis_Enum => 10,
+                                                                                                 RassenDatentypen.Tridatus_Enum         => 10,
+                                                                                                 RassenDatentypen.Senelari_Enum         => 10,
+                                                                                                 RassenDatentypen.Aspari_2_Enum         => 10,
+                                                                                                 RassenDatentypen.Ekropa_Enum           => 10
                                                                                                 );
 
    BewertungBewegungNullwert : constant KIDatentypen.BewegungBewertung := KIDatentypen.BewegungBewertung'First;

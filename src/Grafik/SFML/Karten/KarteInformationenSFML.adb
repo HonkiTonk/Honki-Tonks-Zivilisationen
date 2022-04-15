@@ -27,7 +27,7 @@ package body KarteInformationenSFML is
    -- Den gesamten Text auf einem eigenen View schreiben und dann anzeigen. Damit sollte dann die Skalierung des Textes einfach? funktionieren.
    -- Das dann überall so machen und die Views in einer Datei schreiben um sie von der Grafik jederzeit in beliebiger Mischung anzeigen zu können?
    procedure KarteInformationenSFML
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
@@ -81,7 +81,7 @@ package body KarteInformationenSFML is
    ------------------------
    -- Prozeduren hier mal in Funktionen umschreiben um die Textposition auch bei Auslagerung noch zu haben.
    procedure WichtigesInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringEbeneVorhanden (ZahlExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse);
@@ -196,7 +196,7 @@ package body KarteInformationenSFML is
 
 
    procedure AllgemeineInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -329,7 +329,7 @@ package body KarteInformationenSFML is
    
    
    procedure StadtInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
@@ -351,7 +351,7 @@ package body KarteInformationenSFML is
    
    
    procedure EinheitInformationen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);

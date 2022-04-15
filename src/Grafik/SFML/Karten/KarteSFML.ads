@@ -8,8 +8,8 @@ with Sf.Graphics.CircleShape;
 with Sf.Graphics.Text;
 with Sf.Graphics.Sprite;
 
-with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
 with EinheitStadtRecords;
@@ -19,14 +19,14 @@ with KartenVerbesserungDatentypen;
 package KarteSFML is
    
    procedure KarteAnzeigen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
    
 private
    
-   AktuelleRasse : SystemDatentypen.Rassen_Enum;
+   AktuelleRasse : RassenDatentypen.Rassen_Enum;
    
    YSichtAnfang : KartenDatentypen.Kartenfeld;
    YSichtEnde : KartenDatentypen.Kartenfeld;
@@ -80,11 +80,11 @@ private
                                         );
    
    procedure Sichtbarkeit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure IstSichtbar
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
 
    procedure AnzeigeLandschaft
@@ -97,12 +97,12 @@ private
 
    procedure AnzeigeEinheit
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
 
    procedure AnzeigeCursor
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f);
    
    procedure AnzeigeFeldbesitzer
@@ -112,12 +112,12 @@ private
    procedure RahmenBesetztesFeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure RahmenZeichnen
      (WelcheRichtungExtern : in Umgebung_Enum;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure KartenfeldZeichnen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;

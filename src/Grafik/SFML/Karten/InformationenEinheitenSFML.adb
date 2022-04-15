@@ -21,7 +21,7 @@ with StadtInformationenSFML;
 package body InformationenEinheitenSFML is
 
    function Einheiten
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       PositionTextExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f

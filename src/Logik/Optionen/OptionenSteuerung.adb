@@ -24,7 +24,7 @@ with Fehler;
 package body OptionenSteuerung is
 
    function SteuerungBelegen
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       BelegungSchleife:
@@ -35,17 +35,17 @@ package body OptionenSteuerung is
          case
            AuswahlWert
          is   
-            when SystemDatentypen.Speichern_Enum =>
+            when RueckgabeDatentypen.Speichern_Enum =>
                SchreibenTastatur.TastenbelegungSchreiben;
                
-            when SystemDatentypen.Wiederherstellen_Enum =>
+            when RueckgabeDatentypen.Wiederherstellen_Enum =>
                Eingabe.StandardTastenbelegungLaden;
                SchreibenTastatur.TastenbelegungSchreiben;
             
-            when SystemDatentypen.Zurück_Beenden_Enum'Range =>
+            when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                return AuswahlWert;
                
-            when SystemDatentypen.Eingabe_Enum =>
+            when RueckgabeDatentypen.Eingabe_Enum =>
                AlteTasteEntfernen;
                      
             when others =>

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with RueckgabeDatentypen; use RueckgabeDatentypen;
 with WichtigesKonstanten;
 
 with Auswahl;
@@ -9,8 +10,8 @@ with Auswahl;
 package body DiplomatischerZustand is
 
    procedure DiplomatischenStatusÄndern
-     (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Enum)
    is begin
       
@@ -40,8 +41,8 @@ package body DiplomatischerZustand is
 
 
    function DiplomatischenStatusPrüfen
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return SystemDatentypen.Status_Untereinander_Enum
    is begin
       
@@ -52,8 +53,8 @@ package body DiplomatischerZustand is
    
    
    function DiplomatischerStatusLetzteÄnderung
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Natural
    is begin
       
@@ -64,8 +65,8 @@ package body DiplomatischerZustand is
    
    
    function AktuelleSympathie
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
@@ -76,8 +77,8 @@ package body DiplomatischerZustand is
    
    
    procedure SympathieÄndern
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ÄnderungExtern : in EinheitStadtDatentypen.ProduktionFeld)
    is begin
       
@@ -102,8 +103,8 @@ package body DiplomatischerZustand is
 
 
    function GegnerAngreifen
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      GegnerischeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      GegnerischeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -118,7 +119,7 @@ package body DiplomatischerZustand is
                return False;
               
             elsif
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = SystemDatentypen.Ja_Enum
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = RueckgabeDatentypen.Ja_Enum
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
                                             RasseZweiExtern   => GegnerischeRasseExtern,
@@ -141,8 +142,8 @@ package body DiplomatischerZustand is
    
    
    procedure VergangeneZeitÄndern
-     (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case

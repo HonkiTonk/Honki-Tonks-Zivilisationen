@@ -31,7 +31,7 @@ package body VerbesserungMine is
       in
         KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
       then
          case
            EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)

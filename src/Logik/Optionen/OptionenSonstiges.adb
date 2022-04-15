@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
 with TextKonstanten;
+with SystemDatentypen;
 
 with SchreibenEinstellungen;
 with EinlesenSprache;
@@ -17,7 +18,7 @@ with AuswahlMenuesEinfachSFML;
 package body OptionenSonstiges is
 
    function Sonstiges
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       SonstigesSchleife:
@@ -28,16 +29,16 @@ package body OptionenSonstiges is
          case
            AuswahlWert
          is
-            when SystemDatentypen.Anzahl_Speicherstände_Enum =>
+            when RueckgabeDatentypen.Anzahl_Speicherstände_Enum =>
                AnzahlAutomatischerSpielstände;
                
-            when SystemDatentypen.Runden_Bis_Autospeichern_Enum =>
+            when RueckgabeDatentypen.Runden_Bis_Autospeichern_Enum =>
                RundenBisAutospeichern;
                
-            when SystemDatentypen.Sprache_Enum =>
+            when RueckgabeDatentypen.Sprache_Enum =>
                SpracheWechseln;
                
-            when SystemDatentypen.Zurück_Beenden_Enum'Range =>
+            when RueckgabeDatentypen.Zurück_Beenden_Enum'Range =>
                SchreibenEinstellungen.SchreibenEinstellungen;
                return AuswahlWert;
                

@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with GrafikTonDatentypen;
 with StadtKonstanten;
 with ZeitKonstanten;
@@ -154,7 +155,7 @@ package body GrafikSFML is
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
-              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
+              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
             then
                delay ZeitKonstanten.WartezeitGrafik;
                      
@@ -167,7 +168,7 @@ package body GrafikSFML is
             AktuelleStadtNummer := InDerStadt.AktuelleStadtNummerGrafik; 
             
             if
-              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
+              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
               or
                 AktuelleStadtNummer = StadtKonstanten.LeerNummer
             then
@@ -181,7 +182,7 @@ package body GrafikSFML is
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
-              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
+              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
                Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Forschungsmenü wird ohne Rasse aufgerufen.");
@@ -194,7 +195,7 @@ package body GrafikSFML is
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
-              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
+              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
             then
                -- Da die Rasse schon auf der Weltkarte festgelegt wird, sollte dieser Fall niemals eintreten können. Beachten dass die Rasse zwischen den Zügen notwendig aber nicht festgelegt ist.
                Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Baumenü wird ohne Rasse aufgerufen.");
@@ -231,7 +232,7 @@ package body GrafikSFML is
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
-              AktuelleRasse = SystemDatentypen.Keine_Rasse_Enum
+              AktuelleRasse = RassenDatentypen.Keine_Rasse_Enum
             then
                null;
                      

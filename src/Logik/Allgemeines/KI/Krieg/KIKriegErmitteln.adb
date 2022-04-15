@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with EinheitenKonstanten;
 
 with DiplomatischerZustand;
@@ -9,17 +10,17 @@ with DiplomatischerZustand;
 package body KIKriegErmitteln is
 
    function IstImKrieg
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             
@@ -43,14 +44,14 @@ package body KIKriegErmitteln is
    
    
    function KriegAnfangen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rassen_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RassenDatentypen.Rassen_Enum
    is begin
       
       case
         RasseExtern
       is
-         when SystemDatentypen.Ekropa_Enum =>
+         when RassenDatentypen.Ekropa_Enum =>
             return EinheitenKonstanten.LeerRasse;
             
          when others =>
@@ -61,12 +62,12 @@ package body KIKriegErmitteln is
       Bewertungen := (others => 0);
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             
@@ -84,9 +85,9 @@ package body KIKriegErmitteln is
    
    
    function StärkeVerhältnisErmitteln
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rassen_Enum
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RassenDatentypen.Rassen_Enum
    is begin
       
       Bewertung := 0;

@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
 with WichtigesKonstanten;
+with RassenDatentypen;
 
 with DatenbankRecords;
 with KartenDatenbank;
@@ -17,10 +17,10 @@ package EingeleseneGrafikenKonsole is
    
    ---------------------- Alles hier mal besser aufteilen und übersichtlicher gestalten.
    
-   type CursorGrafikArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of Wide_Wide_Character;
+   type CursorGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Wide_Wide_Character;
    CursorGrafik : CursorGrafikArray := (others => WichtigesKonstanten.LeerCursorGrafik);
 
-   type EinheitenGrafikArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.EinheitenListeArray'Range) of Wide_Wide_Character;
+   type EinheitenGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.EinheitenListeArray'Range) of Wide_Wide_Character;
    EinheitenGrafik : EinheitenGrafikArray := (
                                               others =>
                                                 (
@@ -165,7 +165,7 @@ package EingeleseneGrafikenKonsole is
    
    
    
-   type GebäudeGrafikArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.GebäudeListeArray'Range) of Wide_Wide_Character;
+   type GebäudeGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.GebäudeListeArray'Range) of Wide_Wide_Character;
    GebäudeGrafik : GebäudeGrafikArray := (
                                             others =>
                                               (

@@ -10,7 +10,7 @@ with LeseEinheitenGebaut;
 package body TransporterSuchen is
 
    function KoordinatenTransporterMitRasseSuchen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin

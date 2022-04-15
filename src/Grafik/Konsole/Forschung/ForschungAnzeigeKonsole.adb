@@ -29,7 +29,7 @@ package body ForschungAnzeigeKonsole is
    
    
    procedure Ermöglicht
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
    is begin
       
@@ -83,7 +83,7 @@ package body ForschungAnzeigeKonsole is
    
    
    procedure Benötigt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
    is begin
       
@@ -145,7 +145,7 @@ package body ForschungAnzeigeKonsole is
    
    
    procedure ForschungsBaum
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuelleAuswahl := 1;

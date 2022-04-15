@@ -17,7 +17,7 @@ with GebaeudeRichtigeUmgebung;
 package body StadtWerteFestlegen is
    
    procedure StadtUmgebungGrößeFestlegenTechnologie
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtSchleife:

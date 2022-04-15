@@ -12,7 +12,7 @@ package body RueckgabeMenues is
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive;
       WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case
@@ -107,43 +107,43 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
             
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Start_Weiter_Enum;
+         return RueckgabeDatentypen.Start_Weiter_Enum;
                   
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Laden_Enum;
+         return RueckgabeDatentypen.Laden_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Optionen_Enum;
+         return RueckgabeDatentypen.Optionen_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Editoren_Enum;
+         return RueckgabeDatentypen.Editoren_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Würdigungen_Enum;
+         return RueckgabeDatentypen.Würdigungen_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
          Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Hauptmenü - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
    end Hauptmenü;
@@ -155,28 +155,28 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Start_Weiter_Enum;
+         return RueckgabeDatentypen.Start_Weiter_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Speichern_Enum;
+         return RueckgabeDatentypen.Speichern_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Laden_Enum;
+         return RueckgabeDatentypen.Laden_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Optionen_Enum;
+         return RueckgabeDatentypen.Optionen_Enum;
                     
       else
          return HauptmenüEnde (EndeExtern            => EndeExtern,
@@ -191,28 +191,28 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Grafik_Enum;
+         return RueckgabeDatentypen.Grafik_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Sound_Enum;
+         return RueckgabeDatentypen.Sound_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Steuerung_Enum;
+         return RueckgabeDatentypen.Steuerung_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Sonstiges_Enum;
+         return RueckgabeDatentypen.Sonstiges_Enum;
                     
       else
          return HauptmenüEnde (EndeExtern            => EndeExtern,
@@ -227,63 +227,63 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Auswahl_Kartengröße_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartengröße_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Auswahl_Kartenart_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartenart_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Auswahl_Kartenform_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartenform_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Auswahl_Kartentemperatur_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartentemperatur_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Auswahl_Kartenressourcen_Enum;
+         return RueckgabeDatentypen.Auswahl_Kartenressourcen_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Auswahl_Rassen_Enum;
+         return RueckgabeDatentypen.Auswahl_Rassen_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return SystemDatentypen.Auswahl_Schwierigkeitsgrad_Enum;
+         return RueckgabeDatentypen.Auswahl_Schwierigkeitsgrad_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return SystemDatentypen.Fertig_Enum;
+         return RueckgabeDatentypen.Fertig_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 1
       then
-         return SystemDatentypen.Hauptmenü_Enum;
+         return RueckgabeDatentypen.Hauptmenü_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
          Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.SpieleinstellungenMenü - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
    end SpieleinstellungenMenü;
@@ -294,68 +294,68 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Größe_20_20_Enum;
+         return RueckgabeDatentypen.Karte_Größe_20_20_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Größe_40_40_Enum;
+         return RueckgabeDatentypen.Karte_Größe_40_40_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Größe_80_80_Enum;
+         return RueckgabeDatentypen.Karte_Größe_80_80_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Größe_120_80_Enum;
+         return RueckgabeDatentypen.Karte_Größe_120_80_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Größe_120_160_Enum;
+         return RueckgabeDatentypen.Karte_Größe_120_160_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Karte_Größe_160_160_Enum;
+         return RueckgabeDatentypen.Karte_Größe_160_160_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return SystemDatentypen.Karte_Größe_240_240_Enum;
+         return RueckgabeDatentypen.Karte_Größe_240_240_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return SystemDatentypen.Karte_Größe_320_320_Enum;
+         return RueckgabeDatentypen.Karte_Größe_320_320_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return SystemDatentypen.Karte_Größe_1000_1000_Enum;
+         return RueckgabeDatentypen.Karte_Größe_1000_1000_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return SystemDatentypen.Karte_Größe_Nutzer_Enum;
+         return RueckgabeDatentypen.Karte_Größe_Nutzer_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 10
       then
-         return SystemDatentypen.Zufall_Enum;
+         return RueckgabeDatentypen.Zufall_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 11
       then
-         return SystemDatentypen.Karte_Größe_Zufall_Enum;
+         return RueckgabeDatentypen.Karte_Größe_Zufall_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -370,38 +370,38 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Art_Inseln_Enum;
+         return RueckgabeDatentypen.Karte_Art_Inseln_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Art_Kontinente_Enum;
+         return RueckgabeDatentypen.Karte_Art_Kontinente_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Art_Pangäa_Enum;
+         return RueckgabeDatentypen.Karte_Art_Pangäa_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Art_Nur_Land_Enum;
+         return RueckgabeDatentypen.Karte_Art_Nur_Land_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Art_Chaos_Enum;
+         return RueckgabeDatentypen.Karte_Art_Chaos_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Zufall_Enum;
+         return RueckgabeDatentypen.Zufall_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -416,58 +416,58 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Form_X_Zylinder_Enum;
+         return RueckgabeDatentypen.Karte_Form_X_Zylinder_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Form_Y_Zylinder_Enum;
+         return RueckgabeDatentypen.Karte_Form_Y_Zylinder_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Form_Torus_Enum;
+         return RueckgabeDatentypen.Karte_Form_Torus_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Form_Kugel_Enum;
+         return RueckgabeDatentypen.Karte_Form_Kugel_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Form_Viereck_Enum;
+         return RueckgabeDatentypen.Karte_Form_Viereck_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Karte_Form_Kugel_Gedreht_Enum;
+         return RueckgabeDatentypen.Karte_Form_Kugel_Gedreht_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return SystemDatentypen.Karte_Form_Tugel_Enum;
+         return RueckgabeDatentypen.Karte_Form_Tugel_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return SystemDatentypen.Karte_Form_Tugel_Gedreht_Enum;
+         return RueckgabeDatentypen.Karte_Form_Tugel_Gedreht_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return SystemDatentypen.Karte_Form_Tugel_Extrem_Enum;
+         return RueckgabeDatentypen.Karte_Form_Tugel_Extrem_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return SystemDatentypen.Zufall_Enum;
+         return RueckgabeDatentypen.Zufall_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -482,38 +482,38 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Temperatur_Kalt_Enum;
+         return RueckgabeDatentypen.Karte_Temperatur_Kalt_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Temperatur_Gemäßigt_Enum;
+         return RueckgabeDatentypen.Karte_Temperatur_Gemäßigt_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Temperatur_Heiß_Enum;
+         return RueckgabeDatentypen.Karte_Temperatur_Heiß_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Temperatur_Eiszeit_Enum;
+         return RueckgabeDatentypen.Karte_Temperatur_Eiszeit_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Temperatur_Wüste_Enum;
+         return RueckgabeDatentypen.Karte_Temperatur_Wüste_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Zufall_Enum;
+         return RueckgabeDatentypen.Zufall_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -528,38 +528,38 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Karte_Ressource_Arm_Enum;
+         return RueckgabeDatentypen.Karte_Ressource_Arm_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Karte_Ressource_Wenig_Enum;
+         return RueckgabeDatentypen.Karte_Ressource_Wenig_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Karte_Ressource_Mittel_Enum;
+         return RueckgabeDatentypen.Karte_Ressource_Mittel_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Karte_Ressource_Viel_Enum;
+         return RueckgabeDatentypen.Karte_Ressource_Viel_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Karte_Ressource_Überfluss_Enum;
+         return RueckgabeDatentypen.Karte_Ressource_Überfluss_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Zufall_Enum;
+         return RueckgabeDatentypen.Zufall_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -574,28 +574,28 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Schwierigkeit_Leicht_Enum;
+         return RueckgabeDatentypen.Schwierigkeit_Leicht_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Schwierigkeit_Mittel_Enum;
+         return RueckgabeDatentypen.Schwierigkeit_Mittel_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Schwierigkeit_Schwer_Enum;
+         return RueckgabeDatentypen.Schwierigkeit_Schwer_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Zufall_Enum;
+         return RueckgabeDatentypen.Zufall_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -610,103 +610,103 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Menschen_Enum;
+         return RueckgabeDatentypen.Menschen_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Kasrodiah_Enum;
+         return RueckgabeDatentypen.Kasrodiah_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Lasupin_Enum;
+         return RueckgabeDatentypen.Lasupin_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Lamustra_Enum;
+         return RueckgabeDatentypen.Lamustra_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Manuky_Enum;
+         return RueckgabeDatentypen.Manuky_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return SystemDatentypen.Suroka_Enum;
+         return RueckgabeDatentypen.Suroka_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return SystemDatentypen.Pryolon_Enum;
+         return RueckgabeDatentypen.Pryolon_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return SystemDatentypen.Talbidahr_Enum;
+         return RueckgabeDatentypen.Talbidahr_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return SystemDatentypen.Moru_Phisihl_Enum;
+         return RueckgabeDatentypen.Moru_Phisihl_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return SystemDatentypen.Larinos_Lotaris_Enum;
+         return RueckgabeDatentypen.Larinos_Lotaris_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 10
       then
-         return SystemDatentypen.Carupex_Enum;
+         return RueckgabeDatentypen.Carupex_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 11
       then
-         return SystemDatentypen.Alary_Enum;
+         return RueckgabeDatentypen.Alary_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 12
       then
-         return SystemDatentypen.Tesorahn_Enum;
+         return RueckgabeDatentypen.Tesorahn_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 13
       then
-         return SystemDatentypen.Natries_Zermanis_Enum;
+         return RueckgabeDatentypen.Natries_Zermanis_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 14
       then
-         return SystemDatentypen.Tridatus_Enum;
+         return RueckgabeDatentypen.Tridatus_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 15
       then
-         return SystemDatentypen.Senelari_Enum;
+         return RueckgabeDatentypen.Senelari_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 16
       then
-         return SystemDatentypen.Aspari_2_Enum;
+         return RueckgabeDatentypen.Aspari_2_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 17
       then
-         return SystemDatentypen.Ekropa_Enum;
+         return RueckgabeDatentypen.Ekropa_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 18
       then
-         return SystemDatentypen.Zufall_Enum;
+         return RueckgabeDatentypen.Zufall_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -721,28 +721,28 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Auflösung_Ändern_Enum;
+         return RueckgabeDatentypen.Auflösung_Ändern_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Vollbild_Fenster_Enum;
+         return RueckgabeDatentypen.Vollbild_Fenster_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Bildrate_Ändern_Enum;
+         return RueckgabeDatentypen.Bildrate_Ändern_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Speichern_Enum;
+         return RueckgabeDatentypen.Speichern_Enum;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -757,7 +757,7 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
@@ -779,37 +779,37 @@ package body RueckgabeMenues is
    function SteuerungMenü
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = EndeExtern - 4
       then
-         return SystemDatentypen.Speichern_Enum;
+         return RueckgabeDatentypen.Speichern_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 3
       then
-         return SystemDatentypen.Wiederherstellen_Enum;
+         return RueckgabeDatentypen.Wiederherstellen_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 2
       then
-         return SystemDatentypen.Zurück_Enum;
+         return RueckgabeDatentypen.Zurück_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 1
       then
-         return SystemDatentypen.Hauptmenü_Enum;
+         return RueckgabeDatentypen.Hauptmenü_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
          GlobaleVariablen.UmbelegungNummer := AktuelleAuswahlExtern;
-         return SystemDatentypen.Eingabe_Enum;
+         return RueckgabeDatentypen.Eingabe_Enum;
       end if;
       
    end SteuerungMenü;
@@ -820,23 +820,23 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Anzahl_Speicherstände_Enum;
+         return RueckgabeDatentypen.Anzahl_Speicherstände_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Runden_Bis_Autospeichern_Enum;
+         return RueckgabeDatentypen.Runden_Bis_Autospeichern_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Sprache_Enum;
+         return RueckgabeDatentypen.Sprache_Enum;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
@@ -851,40 +851,40 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return SystemDatentypen.Kartenfeld_Editor_Enum;
+         return RueckgabeDatentypen.Kartenfeld_Editor_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return SystemDatentypen.Einheiten_Editor_Enum;
+         return RueckgabeDatentypen.Einheiten_Editor_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return SystemDatentypen.Gebäude_Editor_Enum;
+         return RueckgabeDatentypen.Gebäude_Editor_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return SystemDatentypen.Forschung_Editor_Enum;
+         return RueckgabeDatentypen.Forschung_Editor_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return SystemDatentypen.Verbesserungen_Editor_Enum;
+         return RueckgabeDatentypen.Verbesserungen_Editor_Enum;
                     
       else
          return ZurückHauptmenüEnde (EndeExtern            => EndeExtern,
                                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end if;
       
-      -- return SystemDatentypen.Editoren_Enum;
+      -- return RueckgabeDatentypen.Editoren_Enum;
       
    end EditorenMenü;
    
@@ -893,18 +893,18 @@ package body RueckgabeMenues is
    function Fertig
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Fertig_Enum;
+         return RueckgabeDatentypen.Fertig_Enum;
                     
       else
          Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.Fertig - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
    end Fertig;
@@ -914,23 +914,23 @@ package body RueckgabeMenues is
    function HauptmenüEnde
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
         AktuelleAuswahlExtern = EndeExtern - 1
       then
-         return SystemDatentypen.Hauptmenü_Enum;
+         return RueckgabeDatentypen.Hauptmenü_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
          Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
    end HauptmenüEnde;
@@ -940,28 +940,28 @@ package body RueckgabeMenues is
    function ZurückHauptmenüEnde
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-         return SystemDatentypen.Rückgabe_Werte_Enum
+         return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
          
       if
         AktuelleAuswahlExtern = EndeExtern - 2
       then
-         return SystemDatentypen.Zurück_Enum;
+         return RueckgabeDatentypen.Zurück_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern - 1
       then
-         return SystemDatentypen.Hauptmenü_Enum;
+         return RueckgabeDatentypen.Hauptmenü_Enum;
                     
       elsif
         AktuelleAuswahlExtern = EndeExtern
       then
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
          Fehler.LogikFehler (FehlermeldungExtern => "RueckgabeMenues.ZurückHauptmenüEnde - Ungültige Auswahl.");
          -- return muss hier sein, weil der Kompiler nicht weiß dass der Prozeduraufruf das Programm stoppt.
-         return SystemDatentypen.Spiel_Beenden_Enum;
+         return RueckgabeDatentypen.Spiel_Beenden_Enum;
       end if;
       
    end ZurückHauptmenüEnde;

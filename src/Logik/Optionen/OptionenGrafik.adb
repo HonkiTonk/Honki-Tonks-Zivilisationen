@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with TextKonstanten;
+with SystemDatentypen;
 
 with InteraktionGrafiktask; use InteraktionGrafiktask;
 with AuswahlMenues;
@@ -13,7 +14,7 @@ with Fehler;
 package body OptionenGrafik is
 
    function OptionenGrafik
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
             
       GrafikSchleife:
@@ -24,23 +25,23 @@ package body OptionenGrafik is
          case
            AuswahlWert
          is
-            when SystemDatentypen.Auflösung_Ändern_Enum =>
+            when RueckgabeDatentypen.Auflösung_Ändern_Enum =>
                AuflösungÄndern;
             
                -- Brauche ich diese Option überhaupt?
-            when SystemDatentypen.Vollbild_Fenster_Enum =>
+            when RueckgabeDatentypen.Vollbild_Fenster_Enum =>
                VollbildFenster;
                
-            when SystemDatentypen.Bildrate_Ändern_Enum =>
+            when RueckgabeDatentypen.Bildrate_Ändern_Enum =>
                BildrateÄndern;
                
-            when SystemDatentypen.Schriftgröße_Enum =>
+            when RueckgabeDatentypen.Schriftgröße_Enum =>
                null;
                
-            when SystemDatentypen.Speichern_Enum =>
+            when RueckgabeDatentypen.Speichern_Enum =>
                EinstellungenSpeichern;
                
-            when SystemDatentypen.Zurück_Enum | SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Zurück_Enum | RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
                return AuswahlWert;
                
             when others =>

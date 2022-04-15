@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 
 with Karten;
 with BerechnungenKarteSFML;
@@ -14,27 +14,27 @@ package body Sichtweiten is
       case
         Karten.Kartenparameter.Kartengröße
       is
-         when SystemDatentypen.Karte_Größe_20_20_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_20_20_Enum =>
             Sichtweiten.SichtweiteFestlegen := 1;
             Sichtweiten.BewegungsfeldFestlegen := 1;
             
-         when SystemDatentypen.Karte_Größe_40_40_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_40_40_Enum =>
             Sichtweiten.SichtweiteFestlegen := 2;
             Sichtweiten.BewegungsfeldFestlegen := 2;
 
-         when SystemDatentypen.Karte_Größe_Nutzer_Enum =>
+         when RueckgabeDatentypen.Karte_Größe_Nutzer_Enum =>
             if
-              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_Größe_20_20_Enum).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (RueckgabeDatentypen.Karte_Größe_20_20_Enum).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_Größe_20_20_Enum).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (RueckgabeDatentypen.Karte_Größe_20_20_Enum).XAchsenGröße
             then
                Sichtweiten.SichtweiteFestlegen := 1;
                Sichtweiten.BewegungsfeldFestlegen := 1;
                
             elsif
-              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_Größe_40_40_Enum).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (RueckgabeDatentypen.Karte_Größe_40_40_Enum).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (SystemDatentypen.Karte_Größe_40_40_Enum).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (RueckgabeDatentypen.Karte_Größe_40_40_Enum).XAchsenGröße
             then
                Sichtweiten.SichtweiteFestlegen := 2;
                Sichtweiten.BewegungsfeldFestlegen := 2;

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
+with RueckgabeDatentypen;
 with KartenGrundDatentypen;
 with KartenRecords;
 
@@ -40,7 +40,7 @@ private
                                                        KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray :=
      (
-      SystemDatentypen.Karte_Temperatur_Kalt_Enum => 
+      RueckgabeDatentypen.Karte_Temperatur_Kalt_Enum => 
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (0 => 0.25,
@@ -131,7 +131,7 @@ private
            )
         ),
                                                                                        
-      SystemDatentypen.Karte_Temperatur_Gemäßigt_Enum =>
+      RueckgabeDatentypen.Karte_Temperatur_Gemäßigt_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -225,7 +225,7 @@ private
            )
         ),
                                                                                        
-      SystemDatentypen.Karte_Temperatur_Heiß_Enum =>
+      RueckgabeDatentypen.Karte_Temperatur_Heiß_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -319,7 +319,7 @@ private
            )
         ),
                                                                                        
-      SystemDatentypen.Karte_Temperatur_Eiszeit_Enum =>
+      RueckgabeDatentypen.Karte_Temperatur_Eiszeit_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -413,7 +413,7 @@ private
            )
         ),
                                                                                        
-      SystemDatentypen.Karte_Temperatur_Wüste_Enum =>
+      RueckgabeDatentypen.Karte_Temperatur_Wüste_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (

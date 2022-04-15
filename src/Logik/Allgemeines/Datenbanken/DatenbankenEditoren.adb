@@ -6,6 +6,7 @@ with ForschungDatenbankEditor;
 with GebaeudeDatenbankEditor;
 with KartenDatenbankEditor;
 with VerbesserungenDatenbankEditor;
+with SystemDatentypen;
 
 with AuswahlMenues;
 with Fehler;
@@ -13,7 +14,7 @@ with Fehler;
 package body DatenbankenEditoren is
 
    function DatenbankenEditoren
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       EditorenSchleife:
@@ -24,22 +25,22 @@ package body DatenbankenEditoren is
          case
            AuswahlWert
          is
-            when SystemDatentypen.Kartenfeld_Editor_Enum =>
+            when RueckgabeDatentypen.Kartenfeld_Editor_Enum =>
                KartenDatenbankEditor.KartenDatenbankEditor;
                
-            when SystemDatentypen.Einheiten_Editor_Enum =>
+            when RueckgabeDatentypen.Einheiten_Editor_Enum =>
                EinheitenDatenbankEditor.EinheitenDatenbankEditor;
                
-            when SystemDatentypen.Gebäude_Editor_Enum =>
+            when RueckgabeDatentypen.Gebäude_Editor_Enum =>
                GebaeudeDatenbankEditor.GebäudeDatenbankEditor;
                
-            when SystemDatentypen.Forschung_Editor_Enum =>
+            when RueckgabeDatentypen.Forschung_Editor_Enum =>
                ForschungDatenbankEditor.ForschungDatenbankEditor;
                
-            when SystemDatentypen.Verbesserungen_Editor_Enum =>
+            when RueckgabeDatentypen.Verbesserungen_Editor_Enum =>
                VerbesserungenDatenbankEditor.VerbesserungenDatenbankEditor;
                
-            when SystemDatentypen.Zurück_Enum | SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Zurück_Enum | RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
                return AuswahlWert;
                
             when others =>

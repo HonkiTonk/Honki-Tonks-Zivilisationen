@@ -14,7 +14,7 @@ package body Auswahl is
    
    function AuswahlJaNein
      (FrageZeileExtern : in Positive)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case
@@ -27,7 +27,7 @@ package body Auswahl is
             null;
       end case;
       
-      return SystemDatentypen.Ja_Enum;
+      return RueckgabeDatentypen.Ja_Enum;
       
    end AuswahlJaNein;
 

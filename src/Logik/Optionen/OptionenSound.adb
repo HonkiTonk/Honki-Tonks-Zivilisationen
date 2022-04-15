@@ -1,13 +1,15 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with SystemDatentypen;
+
 with AuswahlMenues;
 with Fehler;
 
 package body OptionenSound is
 
    function OptionenSound
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       SoundSchleife:
@@ -18,7 +20,7 @@ package body OptionenSound is
          case
            AuswahlWert
          is  
-            when SystemDatentypen.Zurück_Enum | SystemDatentypen.Spiel_Beenden_Enum | SystemDatentypen.Hauptmenü_Enum =>
+            when RueckgabeDatentypen.Zurück_Enum | RueckgabeDatentypen.Spiel_Beenden_Enum | RueckgabeDatentypen.Hauptmenü_Enum =>
                return AuswahlWert;
                
             when others =>

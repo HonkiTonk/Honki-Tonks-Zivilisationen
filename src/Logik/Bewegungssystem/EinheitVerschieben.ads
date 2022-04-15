@@ -10,11 +10,11 @@ with EinheitStadtDatentypen;
 package EinheitVerschieben is
 
    procedure VonEigenemLandWerfen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure EinheitVerschieben
-     (RasseLandExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseLandExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
 private
@@ -29,6 +29,6 @@ private
    
    procedure EinheitenErmitteln
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      KontaktierteRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+      KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
 end EinheitVerschieben;

@@ -3,6 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Calendar; use Ada.Calendar;
 
+with RueckgabeDatentypen; use RueckgabeDatentypen;
+with SystemDatentypen;
 with EinheitenKonstanten;
 with GrafikTonDatentypen;
 
@@ -24,7 +26,7 @@ with KI;
 package body ImSpiel is
 
    function ImSpiel
-     return SystemDatentypen.Rückgabe_Werte_Enum
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       -- Muss hier einmal auf True gesetzt werden, damit die eventuell geänderten Kartenfeldergrößen neu/korrekt berechnet werden vom Grafiktask.
@@ -33,20 +35,20 @@ package body ImSpiel is
       SpielSchleife:
       loop
          RassenSchleife:
-         for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+         for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
             RückgabeRassen := RasseImSpiel (RasseExtern => RasseSchleifenwert);
             
             case
               RückgabeRassen
             is
-               when SystemDatentypen.Hauptmenü_Beenden_Enum'Range =>
+               when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range =>
                   return RückgabeRassen;
                   
-               when SystemDatentypen.Schleife_Verlassen_Enum =>
+               when RueckgabeDatentypen.Schleife_Verlassen_Enum =>
                   exit RassenSchleife;
                   
-               when SystemDatentypen.Start_Weiter_Enum =>
+               when RueckgabeDatentypen.Start_Weiter_Enum =>
                   null;
                
                when others =>
@@ -60,12 +62,12 @@ package body ImSpiel is
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
-            return SystemDatentypen.Hauptmenü_Enum;
+            return RueckgabeDatentypen.Hauptmenü_Enum;
             
          elsif
            GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
          then
-            return SystemDatentypen.Hauptmenü_Enum;
+            return RueckgabeDatentypen.Hauptmenü_Enum;
             
          else
             null;
@@ -78,14 +80,14 @@ package body ImSpiel is
    
    
    function RasseImSpiel
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Leer_Spieler_Enum
+        GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
       then
-         return SystemDatentypen.Start_Weiter_Enum;
+         return RueckgabeDatentypen.Start_Weiter_Enum;
       
       elsif
         GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
@@ -93,7 +95,7 @@ package body ImSpiel is
           GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
          RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
-         return SystemDatentypen.Start_Weiter_Enum;
+         return RueckgabeDatentypen.Start_Weiter_Enum;
          
       else
          return RasseDurchgehen (RasseExtern => RasseExtern);
@@ -104,8 +106,8 @@ package body ImSpiel is
    
    
    function RasseDurchgehen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
             
       if
@@ -118,13 +120,13 @@ package body ImSpiel is
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
-            when SystemDatentypen.Spieler_Mensch_Enum =>
+            when RassenDatentypen.Spieler_Mensch_Enum =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
                
-            when SystemDatentypen.Spieler_KI_Enum =>
+            when RassenDatentypen.Spieler_KI_Enum =>
                KISpieler (RasseExtern => RasseExtern);
                
-            when SystemDatentypen.Leer_Spieler_Enum =>
+            when RassenDatentypen.Leer_Spieler_Enum =>
                Fehler.LogikFehler (FehlermeldungExtern => "ImSpiel.RasseDurchgehen - Rasse ist Leer.");
          end case;
 
@@ -132,14 +134,14 @@ package body ImSpiel is
          null;
       end if;
       
-      return SystemDatentypen.Start_Weiter_Enum;
+      return RueckgabeDatentypen.Start_Weiter_Enum;
       
    end RasseDurchgehen;
    
    
    
    procedure KISpieler
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
             
       LadezeitenDatentypen.KIZeiten (RasseExtern, SystemDatentypen.Anfangswert_Enum) := Clock;
@@ -151,27 +153,27 @@ package body ImSpiel is
    
    
    function MenschlicherSpieler
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
                            
       RückgabeWert := MenschAmZug (RasseExtern => RasseExtern);
       
       if
-        (RückgabeWert = SystemDatentypen.Spiel_Beenden_Enum
+        (RückgabeWert = RueckgabeDatentypen.Spiel_Beenden_Enum
          or
-           RückgabeWert = SystemDatentypen.Hauptmenü_Enum)
+           RückgabeWert = RueckgabeDatentypen.Hauptmenü_Enum)
         and
           NochSpielerVorhanden (RasseExtern => RasseExtern) = True
       then
          RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
                         
       elsif
-        RückgabeWert = SystemDatentypen.Spiel_Beenden_Enum
+        RückgabeWert = RueckgabeDatentypen.Spiel_Beenden_Enum
         or
-          RückgabeWert = SystemDatentypen.Hauptmenü_Enum
+          RückgabeWert = RueckgabeDatentypen.Hauptmenü_Enum
           or
-            RückgabeWert = SystemDatentypen.Schleife_Verlassen_Enum
+            RückgabeWert = RueckgabeDatentypen.Schleife_Verlassen_Enum
       then
          return RückgabeWert;
                         
@@ -179,15 +181,15 @@ package body ImSpiel is
          null;
       end if;
       
-      return SystemDatentypen.Start_Weiter_Enum;
+      return RueckgabeDatentypen.Start_Weiter_Enum;
       
    end MenschlicherSpieler;
 
 
 
    function MenschAmZug
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RasseExtern);
@@ -200,7 +202,7 @@ package body ImSpiel is
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
          is
-            when SystemDatentypen.Spieler_Mensch_Enum =>
+            when RassenDatentypen.Spieler_Mensch_Enum =>
                AktuellerBefehlSpieler := Befehle (RasseExtern => RasseExtern);
                
             when others =>
@@ -211,30 +213,30 @@ package body ImSpiel is
          case
            AktuellerBefehlSpieler
          is
-            when SystemDatentypen.Start_Weiter_Enum =>
+            when RueckgabeDatentypen.Start_Weiter_Enum =>
                null;
                
-            when SystemDatentypen.Runde_Beenden_Enum =>
+            when RueckgabeDatentypen.Runde_Beenden_Enum =>
                RückgabeMenschAmZug := AktuellerBefehlSpieler;
                exit SpielerSchleife;
                
-            when SystemDatentypen.Spielmenü_Enum =>
+            when RueckgabeDatentypen.Spielmenü_Enum =>
                RückgabeSpielmenü := Spielmenü (RasseExtern => RasseExtern);
 
                if
-                 RückgabeSpielmenü = SystemDatentypen.Laden_Enum
+                 RückgabeSpielmenü = RueckgabeDatentypen.Laden_Enum
                then
-                  RückgabeMenschAmZug := SystemDatentypen.Schleife_Verlassen_Enum;
+                  RückgabeMenschAmZug := RueckgabeDatentypen.Schleife_Verlassen_Enum;
                   exit SpielerSchleife;
                   
                elsif
-                 RückgabeSpielmenü in SystemDatentypen.Hauptmenü_Beenden_Enum'Range
+                 RückgabeSpielmenü in RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range
                then
                   RückgabeMenschAmZug := RückgabeSpielmenü;
                   exit SpielerSchleife;
                   
                elsif
-                 RückgabeSpielmenü = SystemDatentypen.Start_Weiter_Enum
+                 RückgabeSpielmenü = RueckgabeDatentypen.Start_Weiter_Enum
                then
                   null;
                   
@@ -249,7 +251,7 @@ package body ImSpiel is
       end loop SpielerSchleife;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
-      InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => SystemDatentypen.Keine_Rasse_Enum);
+      InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RassenDatentypen.Keine_Rasse_Enum);
       
       return RückgabeMenschAmZug;
       
@@ -258,8 +260,8 @@ package body ImSpiel is
 
 
    function Spielmenü
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       SpielmenüSchleife:
@@ -270,25 +272,25 @@ package body ImSpiel is
          case
            AuswahlSpielmenü
          is
-            when SystemDatentypen.Speichern_Enum =>
+            when RueckgabeDatentypen.Speichern_Enum =>
                GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
-            when SystemDatentypen.Laden_Enum =>
+            when RueckgabeDatentypen.Laden_Enum =>
                if
                  Laden.LadenNeu = True
                then
-                  return SystemDatentypen.Laden_Enum;
+                  return RueckgabeDatentypen.Laden_Enum;
 
                else
                   null;
                end if;
                
-            when SystemDatentypen.Optionen_Enum =>
+            when RueckgabeDatentypen.Optionen_Enum =>
                RückgabeOptionen := Optionen.Optionen;
                
                if
-                 RückgabeOptionen in SystemDatentypen.Hauptmenü_Beenden_Enum'Range
+                 RückgabeOptionen in RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range
                then
                   return RückgabeOptionen;
                   
@@ -296,7 +298,7 @@ package body ImSpiel is
                   null;
                end if;
                
-            when SystemDatentypen.Hauptmenü_Beenden_Enum'Range | SystemDatentypen.Start_Weiter_Enum =>
+            when RueckgabeDatentypen.Hauptmenü_Beenden_Enum'Range | RueckgabeDatentypen.Start_Weiter_Enum =>
                return AuswahlSpielmenü;
                   
             when others =>
@@ -310,17 +312,17 @@ package body ImSpiel is
    
    
    function NochSpielerVorhanden
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= SystemDatentypen.Spieler_Mensch_Enum
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Spieler_Mensch_Enum
          then
             null;
             
@@ -337,8 +339,8 @@ package body ImSpiel is
    
    
    function Befehle
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case

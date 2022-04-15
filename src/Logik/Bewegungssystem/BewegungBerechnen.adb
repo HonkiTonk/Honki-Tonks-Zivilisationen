@@ -85,7 +85,7 @@ package body BewegungBerechnen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when SystemDatentypen.Spieler_KI_Enum =>
+         when RassenDatentypen.Spieler_KI_Enum =>
             null;
             
          when others =>
@@ -110,12 +110,12 @@ package body BewegungBerechnen is
       
       -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedeckt wurde und stellt entsprechend Kontakt her.
       KontaktSchleife:
-      for FremdeSichtbarkeitSchleifenwert in SystemDatentypen.RassenImSpielArray'Range loop
+      for FremdeSichtbarkeitSchleifenwert in RassenDatentypen.RassenImSpielArray'Range loop
          
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = SystemDatentypen.Leer_Spieler_Enum
+             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             

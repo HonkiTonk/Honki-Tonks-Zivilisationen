@@ -4,8 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 package body KIKriegBeenden is
    
    function KriegBeenden
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FeindlicheRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FeindlicheRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       

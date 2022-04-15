@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Wide_Wide_Text_IO;
 
-with SystemDatentypen;
+with RassenDatentypen;
 
 with LadezeitenDatentypen;
 
@@ -16,7 +16,7 @@ package LadezeitenKonsole is
      (WelcheZeitExtern : in LadezeitenDatentypen.Einzelne_Zeiten_Enum);
    
    procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in SystemDatentypen.Rassen_Enum);
+     (WelcheZeitExtern : in RassenDatentypen.Rassen_Enum);
    
    procedure AnzeigeEinzelneZeitOhneWarten
      (WelcheZeitExtern : in LadezeitenDatentypen.Einzelne_Zeiten_Enum);

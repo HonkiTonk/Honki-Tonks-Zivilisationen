@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body KIDiplomatie is
    
    procedure Diplomatie
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -14,7 +14,8 @@ package body KIDiplomatie is
    
 
    procedure DiplomatieKIMensch
-     (RasseMenschExtern, RasseKIExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseMenschExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -24,7 +25,8 @@ package body KIDiplomatie is
    
    
    procedure DiplomatieKIKI
-     (EigeneRasseExtern, FremdeRasseKIExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseKIExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;

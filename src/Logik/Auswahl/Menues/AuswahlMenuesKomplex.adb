@@ -5,7 +5,7 @@ package body AuswahlMenuesKomplex is
 
    function AuswahlMenüsKomplex
      (WelchesMenüExtern : in SystemDatentypen.Menü_Komplex_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case
@@ -18,7 +18,8 @@ package body AuswahlMenuesKomplex is
             null;
       end case;
       
-      return SystemDatentypen.Leer_Rückgabe_Enum;
+      -- Start_Weiter_Enum ist hier nur weil ich das Leer_Enum aus den Rückgabe_Werte_Enum entfernt habe.
+      return RueckgabeDatentypen.Start_Weiter_Enum;
       
    end AuswahlMenüsKomplex;
 

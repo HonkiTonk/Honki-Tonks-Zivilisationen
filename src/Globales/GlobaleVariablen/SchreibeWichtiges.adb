@@ -11,7 +11,7 @@ with Fehler;
 package body SchreibeWichtiges is
 
    procedure Geldmenge
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       GeldZugewinnExtern : in Integer;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -43,7 +43,7 @@ package body SchreibeWichtiges is
    
    
    procedure GeldZugewinnProRunde
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       GeldZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -75,7 +75,7 @@ package body SchreibeWichtiges is
    
    
    procedure GesamteForschungsrate
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungsrateZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -116,7 +116,7 @@ package body SchreibeWichtiges is
    
    
    procedure Forschungsmenge
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungZugewinnExtern : in EinheitStadtDatentypen.KostenLager;
       RechnenSetzenExtern : in Boolean)
    is begin
@@ -157,7 +157,7 @@ package body SchreibeWichtiges is
    
    
    procedure VerbleibendeForschungszeit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -180,7 +180,7 @@ package body SchreibeWichtiges is
    
    
    procedure Forschungsprojekt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungIDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert)
    is begin
       
@@ -194,7 +194,7 @@ package body SchreibeWichtiges is
    
 
    procedure Erforscht
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -212,7 +212,7 @@ package body SchreibeWichtiges is
    
    
    procedure AnzahlStädte
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is begin
       
@@ -245,7 +245,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlArbeiter
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is begin
       
@@ -279,7 +279,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlKämpfer
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is begin
       
@@ -313,7 +313,7 @@ package body SchreibeWichtiges is
    
      
    procedure AnzahlSonstiges
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       PlusMinusExtern : in Boolean)
    is begin
       

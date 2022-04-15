@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 with KartenRecords;
@@ -16,7 +16,7 @@ package KarteStadtKonsole is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
 private
 
@@ -39,15 +39,15 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure SchleifeAnsichtUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    procedure AnzeigeStadtUmgebung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -57,7 +57,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = SystemDatentypen.Spieler_Mensch_Enum);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    procedure GrafischeDarstellung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
@@ -73,14 +73,14 @@ private
    procedure CursorDarstellung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure GebäudeDarstellung
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID);
    
    procedure AnzeigeUmgebungCursor
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       UmgebungExtern : in KartenDatentypen.UmgebungsbereichDrei);
    
    
@@ -92,7 +92,7 @@ private
       return Boolean;
    
    function AufschlagGebäude
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtweiteMitNullwert;
 
 end KarteStadtKonsole;

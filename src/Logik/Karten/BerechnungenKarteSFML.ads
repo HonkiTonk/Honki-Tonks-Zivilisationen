@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.System.Vector2;
 
-with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with GlobaleVariablen;
@@ -25,11 +25,11 @@ package BerechnungenKarteSFML is
    
    
    function SichtbereichKarteBerechnen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtbereichAnfangEndeArray
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = SystemDatentypen.Spieler_Mensch_Enum);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
    
 private
    

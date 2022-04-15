@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 -- with GlobaleTexte;
 with WichtigesKonstanten;
 
@@ -11,8 +12,8 @@ with DiplomatischerZustand;
 package body DiplomatischerZustandAenderbar is
 
    function StatusÄnderbarkeitPrüfen
-     (RasseEinsExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      RasseZweiExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseEinsExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      RasseZweiExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in SystemDatentypen.Status_Untereinander_Bekannt_Enum)
       return Boolean
    is begin

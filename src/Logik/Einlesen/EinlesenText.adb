@@ -8,12 +8,10 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with GlobaleVariablen;
 with TextKonstanten;
 
-with Fehler;
+with Warnung;
 
 package body EinlesenText is
 
-   -- Beim Überarbeiten von Einlesen einbauen dass die Dateien geschlossen werden bevor das Programm angehalten wird.
-   -- Vermutlich nicht notwendig, aber sicher ist sicher.
    procedure EinlesenDateien
    is begin
       
@@ -27,10 +25,12 @@ package body EinlesenText is
                   Mode => In_File,
                   Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.NutzerEinstellungen.Sprache)) & "/0");
 
-            ----------------------- Die ganzen Fehler durch Warnungen ersetzen? Und dann return?
          when False =>
-            Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");
+            return;
       end case;
+      
+      EinlesenMöglich := True;
       
       EinlesenSchleife:
       for WelcheDateienSchleifenwert in TextdateienEinlesen'Range loop
@@ -39,7 +39,9 @@ package body EinlesenText is
            VorzeitigesZeilenende (AktuelleZeileExtern => WelcheDateienSchleifenwert)
          is
             when True =>
-               Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenDateien - Nicht genug Zeilen in der 0-Datei.");
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - Nicht genug Zeilen in der 0-Datei.");
+               EinlesenMöglich := False;
+               exit EinlesenSchleife;
                
             when False =>
                TextdateienEinlesen (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
@@ -52,14 +54,24 @@ package body EinlesenText is
                null;
                   
             when False =>
-               Fehler.LogikFehler (FehlermeldungExtern => "EinlesenText.EinlesenDateien - Fehlende Datei:" & To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateienSchleifenwert)));
+               Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - Fehlende Datei:" & To_Wide_Wide_String (Source => TextdateienEinlesen (WelcheDateienSchleifenwert)));
+               EinlesenMöglich := False;
+               exit EinlesenSchleife;
          end case;
 
       end loop EinlesenSchleife;
 
       Close (File => DateiTextEinlesen);
       
-      EinlesenTexte;
+      case
+        EinlesenMöglich
+      is
+         when False =>
+            null;
+            
+         when True =>
+            EinlesenTexte;
+      end case;
       
    end EinlesenDateien;
    

@@ -8,7 +8,7 @@ package body AuswahlMenues is
 
    function AuswahlMenüsAufteilung
      (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case

@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with SystemDatentypen; use SystemDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 

@@ -55,7 +55,7 @@ package body KartenGeneratorStandard is
       case
         Karten.Kartenparameter.Kartenart
       is
-         when SystemDatentypen.Karte_Art_Nur_Land_Enum =>
+         when RueckgabeDatentypen.Karte_Art_Nur_Land_Enum =>
             GenerierungNurLand;
             
          when others =>

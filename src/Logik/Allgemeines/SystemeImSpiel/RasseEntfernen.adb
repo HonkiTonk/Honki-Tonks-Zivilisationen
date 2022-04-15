@@ -15,7 +15,7 @@ with KartenfelderBewerten;
 package body RasseEntfernen is
 
    procedure RasseEntfernen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenSchleife:
@@ -33,7 +33,7 @@ package body RasseEntfernen is
       end loop StadtSchleife;
             
       DiplomatieSchleife:
-      for DiplomatieSchleifenwert in SystemDatentypen.Rassen_Verwendet_Enum'Range loop
+      for DiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          GlobaleVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := WichtigesKonstanten.LeerDiplomatie;
          GlobaleVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := WichtigesKonstanten.LeerDiplomatie;
@@ -43,14 +43,14 @@ package body RasseEntfernen is
       GlobaleVariablen.CursorImSpiel (RasseExtern) := WichtigesKonstanten.LeerCursor;
       GlobaleVariablen.Wichtiges (RasseExtern) := WichtigesKonstanten.LeerWichtigesZeug;
       
-      GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Leer_Spieler_Enum;
+      GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
       
    end RasseEntfernen;
    
    
    
    procedure RasseExistenzPrüfen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
             
       EinheitenSchleife:
@@ -90,10 +90,10 @@ package body RasseEntfernen is
    
    
    procedure RasseAufKISetzen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      GlobaleVariablen.RassenImSpiel (RasseExtern) := SystemDatentypen.Spieler_KI_Enum;
+      GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
       KartenfelderBewerten.KartenfelderBewerten (RasseExtern => RasseExtern);
       
    end RasseAufKISetzen;

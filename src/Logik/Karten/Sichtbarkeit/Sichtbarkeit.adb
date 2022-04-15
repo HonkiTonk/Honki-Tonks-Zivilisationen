@@ -798,7 +798,7 @@ package body Sichtbarkeit is
    
    
    procedure SichtbarkeitSetzen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       

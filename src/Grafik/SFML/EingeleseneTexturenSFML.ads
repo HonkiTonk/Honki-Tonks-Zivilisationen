@@ -6,6 +6,7 @@ with Sf.Graphics;
 with EinheitStadtDatentypen;
 with SystemDatentypen;
 with KartenVerbesserungDatentypen;
+with RassenDatentypen;
 
 with KartenDatenbank;
 
@@ -32,10 +33,10 @@ package EingeleseneTexturenSFML is
    type WegeAccessArray is array (KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    WegeAccess : WegeAccessArray := (others => null);
 
-   type EinheitenAccesArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;
+   type EinheitenAccesArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.EinheitenID'Range) of Sf.Graphics.sfTexture_Ptr;
    EinheitenAccess : EinheitenAccesArray := (others => (others => null));
 
-   type GebäudeAccessArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfTexture_Ptr;
+   type GebäudeAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.GebäudeID'Range) of Sf.Graphics.sfTexture_Ptr;
    GebäudeAccess : GebäudeAccessArray := (others => (others => null));
 
 end EingeleseneTexturenSFML;

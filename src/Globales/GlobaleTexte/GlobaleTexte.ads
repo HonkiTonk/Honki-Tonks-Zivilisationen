@@ -21,33 +21,44 @@ package GlobaleTexte is
    
    type TexteArray is array (Positive range <>) of Unbounded_Wide_Wide_String;
    
-   -- Plus eins beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Konsole.
+   -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
+   -- + 1 beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Konsole.
    Hauptmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Haupt_Menü_Enum) + 1) := (others => FehlenderText);
    Spielmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Spiel_Menü_Enum)) := (others => FehlenderText);
-   
-   
+                               
+   -- Einfache Auswahl und kein Zusatztext.
    Optionsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Optionen_Menü_Enum)) := (others => FehlenderText);
    Einstellungsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Einstellungen_Menü_Enum)) := (others => FehlenderText);
    Editoren : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Editoren_Menü_Enum)) := (others => FehlenderText);
-   
-   Grafikmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Grafik_Menü_Enum)) := (others => FehlenderText);
-   Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sound_Menü_Enum)) := (others => FehlenderText);
-   Steuerungmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Steuerung_Menü_Enum)) := (others => FehlenderText);
+                               
+   -- Einfache Auswahl.
    Sonstigesmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sonstiges_Menü_Enum)) := (others => FehlenderText);
-   
    Kartengröße : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartengröße_Menü_Enum)) := (others => FehlenderText);
    Kartenart : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenart_Menü_Enum)) := (others => FehlenderText);
    Kartentemperatur : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartentemperatur_Menü_Enum)) := (others => FehlenderText);
    Rassenauswahl : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Rassen_Menü_Enum)) := (others => FehlenderText);
    Schwierigkeitsgrad : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Schwierigkeitsgrad_Menü_Enum)) := (others => FehlenderText);
-   Kartenform : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenform_Menü_Enum)) := (others => FehlenderText);
    Ressourcenmenge : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenressourcen_Menü_Enum)) := (others => FehlenderText);
+                                
+   -- Komplexe Auswahl.
+   Kartenform : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenform_Menü_Enum)) := (others => FehlenderText);
+   
+   
+   
+   -- Unsortiert.
+   Grafikmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Grafik_Menü_Enum)) := (others => FehlenderText);
+   Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sound_Menü_Enum)) := (others => FehlenderText);
+   Steuerungmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Steuerung_Menü_Enum)) := (others => FehlenderText);
+   
+   
 
    JaNein : TexteArray (1 .. 2) := (others => FehlenderText);
+   
+   -- Text im Spiel.
    Rassen : TexteArray (1 .. RassenAnzahlDoppelt) := (others => FehlenderText);
    
    --------------------- Könnte man hier nicht auch zweimal die Ranges der jeweiligen Enums als Länge angeben?
-   Kartenfelder : TexteArray (1 .. 160) := (others => FehlenderText);
+   Kartenfelder : TexteArray (1 .. 50) := (others => FehlenderText);
    Kartenflüsse : TexteArray (1 .. 96) := (others => FehlenderText);
    Kartenressourcen : TexteArray (1 .. 14) := (others => FehlenderText);
    

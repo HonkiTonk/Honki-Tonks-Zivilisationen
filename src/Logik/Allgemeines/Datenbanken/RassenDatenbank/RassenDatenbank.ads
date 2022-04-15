@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with RassenDatentypen;
 
 with DatenbankRecords;
 
 package RassenDatenbank is
 
-   type RassenListeArray is array (SystemDatentypen.Rassen_Verwendet_Enum'Range) of DatenbankRecords.RassenListeRecord;
+   type RassenListeArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of DatenbankRecords.RassenListeRecord;
    RassenListe : RassenListeArray;
    
    procedure StandardRassenDatenbankLaden;

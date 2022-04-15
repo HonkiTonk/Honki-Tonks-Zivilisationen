@@ -3,13 +3,13 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Window.Keyboard;
 
-with SystemDatentypen;
+with RueckgabeDatentypen;
 with TastenbelegungDatentypen;
 
 package OptionenSteuerung is
 
    function SteuerungBelegen
-     return SystemDatentypen.Rückgabe_Werte_Enum;
+     return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
 
@@ -19,7 +19,7 @@ private
 
    NeueTasteSFML : Sf.Window.Keyboard.sfKeyCode;
 
-   AuswahlWert : SystemDatentypen.Rückgabe_Werte_Enum;
+   AuswahlWert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    procedure AlteTasteEntfernen;
    procedure NeueTasteFestlegen;

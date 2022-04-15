@@ -1,12 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
-
 with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen;
 with KartenRecords;
 with EinheitStadtDatentypen;
-with SystemDatentypen;
 with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
 
@@ -14,6 +12,7 @@ with Karten;
 
 package KartenAllgemein is
 
+   ------------------- Contracts einbauen.
    function BeschreibungGrund
      (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
       return Wide_Wide_String;
@@ -28,7 +27,7 @@ package KartenAllgemein is
 
    function GrundNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -38,7 +37,7 @@ package KartenAllgemein is
 
    function GrundProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -48,7 +47,7 @@ package KartenAllgemein is
 
    function GrundGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -58,7 +57,7 @@ package KartenAllgemein is
 
    function GrundWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -68,7 +67,7 @@ package KartenAllgemein is
 
    function GrundVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -78,7 +77,7 @@ package KartenAllgemein is
 
    function GrundAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -88,7 +87,7 @@ package KartenAllgemein is
 
    function GrundBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
@@ -98,7 +97,7 @@ package KartenAllgemein is
 
    function FlussNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -108,7 +107,7 @@ package KartenAllgemein is
 
    function FlussProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -118,7 +117,7 @@ package KartenAllgemein is
 
    function FlussGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -128,7 +127,7 @@ package KartenAllgemein is
 
    function FlussWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -138,7 +137,7 @@ package KartenAllgemein is
 
    function FlussVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -148,7 +147,7 @@ package KartenAllgemein is
 
    function FlussAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -158,7 +157,7 @@ package KartenAllgemein is
 
    function FlussBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
@@ -168,7 +167,7 @@ package KartenAllgemein is
 
    function WegNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
@@ -178,7 +177,7 @@ package KartenAllgemein is
 
    function WegProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
@@ -188,7 +187,7 @@ package KartenAllgemein is
 
    function WegGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
@@ -198,7 +197,7 @@ package KartenAllgemein is
 
    function WegWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
@@ -208,7 +207,7 @@ package KartenAllgemein is
 
    function WegVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -218,7 +217,7 @@ package KartenAllgemein is
 
    function WegAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -228,7 +227,7 @@ package KartenAllgemein is
 
    function WegBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
@@ -238,7 +237,7 @@ package KartenAllgemein is
 
    function VerbesserungNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
@@ -248,7 +247,7 @@ package KartenAllgemein is
 
    function VerbesserungProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
@@ -258,7 +257,7 @@ package KartenAllgemein is
 
    function VerbesserungGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
@@ -268,7 +267,7 @@ package KartenAllgemein is
 
    function VerbesserungWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
      with
        Pre =>
@@ -278,7 +277,7 @@ package KartenAllgemein is
 
    function VerbesserungVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -288,7 +287,7 @@ package KartenAllgemein is
 
    function VerbesserungAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -298,7 +297,7 @@ package KartenAllgemein is
 
    function VerbesserungBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
@@ -308,7 +307,7 @@ package KartenAllgemein is
 
    function RessourceNahrung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -318,7 +317,7 @@ package KartenAllgemein is
 
    function RessourceProduktion
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -328,7 +327,7 @@ package KartenAllgemein is
 
    function RessourceGeld
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -338,7 +337,7 @@ package KartenAllgemein is
 
    function RessourceWissen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
@@ -348,7 +347,7 @@ package KartenAllgemein is
 
    function RessourceVerteidigung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -358,7 +357,7 @@ package KartenAllgemein is
 
    function RessourceAngriff
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.Kampfwerte
      with
        Pre =>
@@ -368,7 +367,7 @@ package KartenAllgemein is
 
    function RessourceBewertung
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
@@ -416,7 +415,5 @@ private
    GrundAktuell : Positive;
    FlussAktuell : Positive;
    RessourceAktuell : Positive;
-
-   BeschreibungText : Unbounded_Wide_Wide_String;
 
 end KartenAllgemein;

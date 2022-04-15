@@ -18,7 +18,7 @@ package body AuswahlMenuesEinfach is
    --------------------------- Das ganze noch einmal unabhängiger schreiben, damit man es zu Not auch auslagern kann und Überschreibungen nicht vorkommen können.
    function AuswahlMenüsEinfach
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
-      return SystemDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       InteraktionGrafiktask.AktuellesMenü := WelchesMenüExtern;

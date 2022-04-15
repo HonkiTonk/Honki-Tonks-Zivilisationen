@@ -8,8 +8,8 @@ with Sf.Graphics;
 with Sf.Graphics.RectangleShape;
 with Sf.System.Vector2;
 
+with RassenDatentypen;
 with EinheitStadtRecords;
-with SystemDatentypen;
 
 with AuswahlStadtEinheit;
 with UmwandlungenAdaNachEigenes;
@@ -19,8 +19,9 @@ package AnzeigeEingabeSFML is
    procedure AnzeigeGanzeZahl;
    procedure AnzeigeText;
    
+   -------------------- Contracts hinzufügen.
    procedure AnzeigeEinheitenStadt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
 private
    

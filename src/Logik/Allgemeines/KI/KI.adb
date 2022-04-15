@@ -15,7 +15,7 @@ with KIEinheitHandlungen;
 package body KI is
 
    procedure KI
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenDurchgehen (RasseExtern => RasseExtern);
@@ -28,7 +28,7 @@ package body KI is
    
    
    procedure EinheitenDurchgehen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenSchleife:
@@ -51,7 +51,7 @@ package body KI is
    
    
    procedure StädteDurchgehen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtSchleife:

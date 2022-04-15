@@ -12,7 +12,7 @@ with Sichtweiten;
 package body CursorAltPlatzieren is
 
    procedure CursorAltPlatzieren
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AlteEAchseFestlegen (RasseExtern => RasseExtern);
@@ -34,7 +34,7 @@ package body CursorAltPlatzieren is
    
    
    procedure AlteEAchseFestlegen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -51,7 +51,7 @@ package body CursorAltPlatzieren is
    
    
    procedure AlteYAchseFestlegenKonsole
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -102,7 +102,7 @@ package body CursorAltPlatzieren is
    
    
    procedure AlteXAchseFestlegenKonsole
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -153,7 +153,7 @@ package body CursorAltPlatzieren is
    
    
    procedure AlteYAchseFestlegenSFML
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -218,7 +218,7 @@ package body CursorAltPlatzieren is
    
    
    procedure AlteXAchseFestlegenSFML
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if

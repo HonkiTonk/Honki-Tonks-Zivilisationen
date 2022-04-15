@@ -147,7 +147,7 @@ package body KarteStadtSFML is
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
       PositionExtern : in Sf.System.Vector2.sfVector2f;
-      RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
             
       if

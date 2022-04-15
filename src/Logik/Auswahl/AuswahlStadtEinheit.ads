@@ -5,7 +5,7 @@ with Sf.System.Vector2;
 with Sf.Graphics;
 with Sf.Graphics.Text;
 
-with SystemDatentypen;
+with RassenDatentypen;
 with EinheitStadtDatentypen;
 with EinheitStadtRecords;
 
@@ -24,8 +24,9 @@ package AuswahlStadtEinheit is
    
    WelcheAuswahl : AuswahlRecord;
 
+   --------------------- Contracts hinzufügen.
    function AuswahlStadtEinheit
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       StadtNummerExtern : in EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheitenMitNullWert)
       return Integer;
@@ -41,6 +42,6 @@ private
    TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
    
    procedure MausAuswahl
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
 end AuswahlStadtEinheit;

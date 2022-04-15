@@ -6,7 +6,7 @@ with GebaeudeDatenbank;
 package body LeseGebaeudeDatenbank is
 
    function PreisGeld
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return EinheitStadtDatentypen.KostenLager
    is begin
@@ -18,7 +18,7 @@ package body LeseGebaeudeDatenbank is
 
    
    function PreisRessourcen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return EinheitStadtDatentypen.KostenLager
    is begin
@@ -30,7 +30,7 @@ package body LeseGebaeudeDatenbank is
 
    
    function PermanenteKosten
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
       WelcheKostenExtern : in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum)
       return EinheitStadtDatentypen.GesamtePermanenteKosten
@@ -43,7 +43,7 @@ package body LeseGebaeudeDatenbank is
 
       
    function Anforderungen
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return EinheitStadtDatentypen.ForschungIDNichtMöglich
    is begin
@@ -55,7 +55,7 @@ package body LeseGebaeudeDatenbank is
    
    
    function WirtschaftBonus
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
       WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionFeld
@@ -68,7 +68,7 @@ package body LeseGebaeudeDatenbank is
    
    
    function KampfBonus
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
       KampfBonusExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.Kampfwerte
@@ -81,7 +81,7 @@ package body LeseGebaeudeDatenbank is
 
       
    function GrundBenötigt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return KartenGrundDatentypen.Karten_Grund_Enum
    is begin
@@ -93,7 +93,7 @@ package body LeseGebaeudeDatenbank is
 
 
    function FlussBenötigt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
    is begin
@@ -105,7 +105,7 @@ package body LeseGebaeudeDatenbank is
 
       
    function RessourceBenötigt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return KartenGrundDatentypen.Karten_Ressourcen_Enum
    is begin
@@ -117,7 +117,7 @@ package body LeseGebaeudeDatenbank is
 
    
    function GebäudeSpezielleEigenschaft
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
    is begin
@@ -129,7 +129,7 @@ package body LeseGebaeudeDatenbank is
 
 
    function GanzerEintrag
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return DatenbankRecords.GebäudeListeRecord
    is begin

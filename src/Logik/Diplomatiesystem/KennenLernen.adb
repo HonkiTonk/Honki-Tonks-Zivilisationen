@@ -2,14 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with DiplomatischerZustand;
+with SystemDatentypen;
 
 with KIDiplomatie;
 
 package body KennenLernen is
 
    procedure Erstkontakt
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -26,17 +27,17 @@ package body KennenLernen is
       end case;
       
       if
-        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch_Enum
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
         and
-          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SystemDatentypen.Spieler_Mensch_Enum
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
       then
          ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
                                   FremdeRasseExtern => FremdeRasseExtern);
       
       elsif
-        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = SystemDatentypen.Spieler_Mensch_Enum
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
         or
-          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = SystemDatentypen.Spieler_Mensch_Enum
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
       then
          ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
                               FremdeRasseExtern => FremdeRasseExtern);
@@ -51,8 +52,8 @@ package body KennenLernen is
    
    
    procedure ErstkontaktMenschMensch
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -62,8 +63,8 @@ package body KennenLernen is
    
    
    procedure ErstkontaktMenschKI
-     (EigeneRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum;
-      FremdeRasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;

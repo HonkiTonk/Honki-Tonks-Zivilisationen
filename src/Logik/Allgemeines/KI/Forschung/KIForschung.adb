@@ -13,7 +13,7 @@ with ForschungAllgemein;
 package body KIForschung is
 
    procedure Forschung
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -31,7 +31,7 @@ package body KIForschung is
    
    
    procedure NeuesForschungsprojekt
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       ForschungSchleife:

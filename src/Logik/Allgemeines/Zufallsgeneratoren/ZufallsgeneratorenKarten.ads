@@ -4,8 +4,8 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Numerics.Discrete_Random;
 with Ada.Numerics.Float_Random;
 
-with SystemDatentypen; use SystemDatentypen;
 with KartenDatentypen; use KartenDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with KartenGrundDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
@@ -15,11 +15,11 @@ with Karten;
 package ZufallsgeneratorenKarten is
      
    function StartPosition
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer_Spieler_Enum),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
          Post =>
            (StartPosition'Result.EAchse in -1 .. 0
             and
@@ -108,7 +108,7 @@ private
      return KartenRecords.YXAchsenKartenfeldPositivRecord;
    
    function StartPositionEAchse
-     (RasseExtern : in SystemDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.EbeneVorhanden;
 
 end ZufallsgeneratorenKarten;
