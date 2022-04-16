@@ -22,19 +22,19 @@ package Karten is
 
    end record;
 
-   -- Wenn man das um die EAchse erweitert, dann könnte man auch die Anzahl der Ebenen vom Spieler bestimmen lassen. Mal drüber nachdenken. -------------------
+   ------------------- Wenn man das um die EAchse erweitert, dann könnte man auch die Anzahl der Ebenen vom Spieler bestimmen lassen. Mal drüber nachdenken.
    type KartengrößenArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
    Kartengrößen : KartengrößenArray := (
-                                            RueckgabeDatentypen.Karte_Größe_20_20_Enum     => (20, 20),
-                                            RueckgabeDatentypen.Karte_Größe_40_40_Enum     => (40, 40),
-                                            RueckgabeDatentypen.Karte_Größe_80_80_Enum     => (80, 80),
-                                            RueckgabeDatentypen.Karte_Größe_120_80_Enum    => (120, 80),
-                                            RueckgabeDatentypen.Karte_Größe_120_160_Enum   => (120, 160),
-                                            RueckgabeDatentypen.Karte_Größe_160_160_Enum   => (160, 160),
-                                            RueckgabeDatentypen.Karte_Größe_240_240_Enum   => (240, 240),
-                                            RueckgabeDatentypen.Karte_Größe_320_320_Enum   => (320, 320),
-                                            RueckgabeDatentypen.Karte_Größe_1000_1000_Enum => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
-                                            RueckgabeDatentypen.Karte_Größe_Nutzer_Enum    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
+                                            KartenDatentypen.Kartengröße_20_20_Enum     => (20, 20),
+                                            KartenDatentypen.Kartengröße_40_40_Enum     => (40, 40),
+                                            KartenDatentypen.Kartengröße_80_80_Enum     => (80, 80),
+                                            KartenDatentypen.Kartengröße_120_80_Enum    => (120, 80),
+                                            KartenDatentypen.Kartengröße_120_160_Enum   => (120, 160),
+                                            KartenDatentypen.Kartengröße_160_160_Enum   => (160, 160),
+                                            KartenDatentypen.Kartengröße_240_240_Enum   => (240, 240),
+                                            KartenDatentypen.Kartengröße_320_320_Enum   => (320, 320),
+                                            KartenDatentypen.Kartengröße_1000_1000_Enum => (KartenDatentypen.KartenfeldPositiv'Last, KartenDatentypen.KartenfeldPositiv'Last),
+                                            KartenDatentypen.Kartengröße_Nutzer_Enum    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
                                            );
 
    type LandartenRecord is record
@@ -47,31 +47,31 @@ package Karten is
    -- Inseln, Kontinente, Pangäa
    -- Alle Größen- und Abstandsangaben sind Radien.
    -- Später über einen Editor oder direkt im Kartengenerator änderbar machen? Möglicherweise die aktuelle Kartenart durch vorgegebene Werte und Nutzereingaben ersetzen?
-   type GrößeLandartArray is array (KartenDatentypen.Kartenart_Verwendet_Enum'Range) of LandartenRecord;
+   type GrößeLandartArray is array (KartenDatentypen.Kartenart_Enum'Range) of LandartenRecord;
    GrößeLandart : GrößeLandartArray := (
-                                            RueckgabeDatentypen.Karte_Art_Inseln_Enum     => (3, 3),
-                                            RueckgabeDatentypen.Karte_Art_Kontinente_Enum => (7, 7),
-                                            RueckgabeDatentypen.Karte_Art_Pangäa_Enum     => (1, 1),
-                                            others                                     => (1, 1)
+                                            KartenDatentypen.Kartenart_Inseln_Enum     => (3, 3),
+                                            KartenDatentypen.Kartenart_Kontinente_Enum => (7, 7),
+                                            KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
+                                            others                                        => (1, 1)
                                            );
    FelderVonLandartZuLandart : GrößeLandartArray := (
-                                                       RueckgabeDatentypen.Karte_Art_Inseln_Enum     => (15, 15),
-                                                       RueckgabeDatentypen.Karte_Art_Kontinente_Enum => (22, 22),
-                                                       RueckgabeDatentypen.Karte_Art_Pangäa_Enum     => (1, 1),
-                                                       others                                     => (1, 1)
+                                                       KartenDatentypen.Kartenart_Inseln_Enum     => (15, 15),
+                                                       KartenDatentypen.Kartenart_Kontinente_Enum => (22, 22),
+                                                       KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
+                                                       others                                        => (1, 1)
                                                       );
 
    Kartenparameter : KartenRecords.KartenparameterRecord := (
-                                                             Kartengröße      => RueckgabeDatentypen.Karte_Größe_20_20_Enum,
+                                                             Kartengröße      => KartenDatentypen.Kartengröße_20_20_Enum,
 
                                                              -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
-                                                             Kartenart        => RueckgabeDatentypen.Karte_Art_Inseln_Enum,
+                                                             Kartenart        => KartenDatentypen.Kartenart_Inseln_Enum,
 
                                                              -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-                                                             Kartentemperatur => RueckgabeDatentypen.Karte_Temperatur_Kalt_Enum,
+                                                             Kartentemperatur => RueckgabeDatentypen.Kartentemperatur_Kalt_Enum,
 
                                                              -- Arm, Wenig, Mittel, Viel, Überfluss
-                                                             Kartenressourcen => RueckgabeDatentypen.Karte_Ressource_Mittel_Enum,
+                                                             Kartenressourcen => RueckgabeDatentypen.Kartenressourcen_Mittel_Enum,
 
                                                              Kartenpole       => RueckgabeDatentypen.Karten_Pole_YAchse,
 

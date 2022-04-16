@@ -1,9 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GrafikTonDatentypen;
+with TonDatentypen;
 with ZeitKonstanten;
 with GlobaleVariablen;
+with GrafikDatentypen;
 
 with InteraktionLogiktask;
 with InteraktionMusiktask;
@@ -19,7 +20,7 @@ package body StartMusik is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             return;
             
          when others =>
@@ -36,10 +37,10 @@ package body StartMusik is
       case
         InteraktionMusiktask.AktuelleMusik
       is
-         when GrafikTonDatentypen.Musik_SFML_Enum =>
+         when TonDatentypen.Musik_SFML_Enum =>
             MusikSFML.MusikSFML;
             
-         when GrafikTonDatentypen.Musik_Konsole_Enum =>
+         when TonDatentypen.Musik_Konsole_Enum =>
             MusikKonsole.MusikKonsole;
             
          when others =>

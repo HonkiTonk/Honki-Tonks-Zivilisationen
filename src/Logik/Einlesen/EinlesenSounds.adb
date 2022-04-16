@@ -5,7 +5,7 @@ with Ada.Directories; use Ada.Directories;
 
 with Sf.Audio.SoundBuffer;
 
-with RueckgabeDatentypen;
+with RassenDatentypen;
 
 with EingeleseneSounds;
 
@@ -23,7 +23,7 @@ package body EinlesenSounds is
          when True =>
             -- Textdatei mit den Liedernamen einbauen, dann diese einlesen und darauf die Lieder aus der Liste?
             -- Ähnlich der Textdateien.
-            EingeleseneSounds.Sound (RueckgabeDatentypen.Keine_Rasse_Enum, 1) := Sf.Audio.SoundBuffer.createFromFile (filename => "Audio/Sound/Test.flac");
+            EingeleseneSounds.Sound (RassenDatentypen.Keine_Rasse_Enum, 1) := Sf.Audio.SoundBuffer.createFromFile (filename => "Audio/Sound/Test.flac");
       end case;
       
    end EinlesenSounds;

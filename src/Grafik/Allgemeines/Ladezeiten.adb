@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GlobaleVariablen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 with LadezeitenKonsole;
 with LadezeitenSFML;
@@ -16,10 +16,10 @@ package body Ladezeiten is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             LadezeitenKonsole.LadezeitenSpielweltErstellen (WelcheZeitExtern => WelcheZeitExtern);
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             LadezeitenSFML.LadezeitenSpielweltErstellen (WelcheZeitExtern => WelcheZeitExtern);
       end case;
                         
@@ -34,10 +34,10 @@ package body Ladezeiten is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             LadezeitenKonsole.AnzeigeEinzelneZeit (WelcheZeitExtern => WelcheZeitExtern);
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             LadezeitenSFML.AnzeigeEinzelneZeit (WelcheZeitExtern => WelcheZeitExtern);
       end case;
       
@@ -52,10 +52,10 @@ package body Ladezeiten is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             LadezeitenKonsole.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => WelcheZeitExtern);
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             LadezeitenSFML.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => WelcheZeitExtern);
       end case;
       
@@ -70,10 +70,10 @@ package body Ladezeiten is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             LadezeitenKonsole.AnzeigeKIZeit (WelcheZeitExtern => WelcheZeitExtern);
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             LadezeitenSFML.AnzeigeKIZeit (WelcheZeitExtern => WelcheZeitExtern);
       end case;
       

@@ -121,6 +121,12 @@ private
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive);
 
+   procedure SchriftfarbenAuswahlmöglichkeitenFestlegen
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum);
+
+   procedure FarbeAktuelleEinstellungenFestlegen
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einstellung_Anzeigen_Enum);
+
    procedure FarbeAktuelleAuswahlFestlegen
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
       AktuelleAuswahlExtern : in Natural;

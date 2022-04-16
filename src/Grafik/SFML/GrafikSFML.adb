@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 with StadtKonstanten;
 with ZeitKonstanten;
 
@@ -116,27 +116,27 @@ package body GrafikSFML is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             Fehler.GrafikFehler (FehlermeldungExtern => "GrafikSFML.AnzeigeAuswahl - Konsole wird bei SFML aufgerufen.");
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             InteraktionLogiktask.FensterErzeugtÄndern;
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
             
-         when GrafikTonDatentypen.Grafik_Sprache_Enum =>
+         when GrafikDatentypen.Grafik_Sprache_Enum =>
             AnzeigeSprachauswahlSFML.AnzeigeSprache;
                
-         when GrafikTonDatentypen.Grafik_Intro_Enum =>
+         when GrafikDatentypen.Grafik_Intro_Enum =>
             GrafikIntroSFML.Intro;
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
                               
-         when GrafikTonDatentypen.Grafik_Pause_Enum =>
+         when GrafikDatentypen.Grafik_Pause_Enum =>
             delay ZeitKonstanten.WartezeitGrafik;
             
-         when GrafikTonDatentypen.Grafik_Laden_Enum =>
+         when GrafikDatentypen.Grafik_Laden_Enum =>
             null;
          
-         when GrafikTonDatentypen.Grafik_Menüs_Enum =>
+         when GrafikDatentypen.Grafik_Menüs_Enum =>
             AktuellesMenü := InteraktionGrafiktask.AktuellesMenü;
             
             if
@@ -148,10 +148,10 @@ package body GrafikSFML is
                AuswahlMenuesSFML.AuswahlMenüsAufteilung (WelchesMenüExtern => AktuellesMenü);
             end if;
                
-         when GrafikTonDatentypen.Editoren_Anzeigen_Enum'Range =>
+         when GrafikDatentypen.Editoren_Anzeigen_Enum'Range =>
             AnzeigeEditoren;
                
-         when GrafikTonDatentypen.Grafik_Weltkarte_Enum =>
+         when GrafikDatentypen.Grafik_Weltkarte_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
@@ -163,7 +163,7 @@ package body GrafikSFML is
                Karte.AnzeigeKarte (RasseExtern => AktuelleRasse);
             end if;
                
-         when GrafikTonDatentypen.Grafik_Stadtkarte_Enum =>
+         when GrafikDatentypen.Grafik_Stadtkarte_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             AktuelleStadtNummer := InDerStadt.AktuelleStadtNummerGrafik; 
             
@@ -178,7 +178,7 @@ package body GrafikSFML is
                KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => (AktuelleRasse, AktuelleStadtNummer));
             end if;
                
-         when GrafikTonDatentypen.Grafik_Forschung_Enum =>
+         when GrafikDatentypen.Grafik_Forschung_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
@@ -191,7 +191,7 @@ package body GrafikSFML is
                ForschungAnzeigeSFML.ForschungAnzeige;
             end if;
             
-         when GrafikTonDatentypen.Grafik_Bauen_Enum =>
+         when GrafikDatentypen.Grafik_Bauen_Enum =>
             AktuelleRasse := InteraktionLogiktask.AktuelleRasseAbrufen;
             
             if
@@ -204,7 +204,7 @@ package body GrafikSFML is
                BauAuswahlAnzeigeSFML.BauAuswahlAnzeige;
             end if;
          
-         when GrafikTonDatentypen.Grafik_Ende_Enum =>
+         when GrafikDatentypen.Grafik_Ende_Enum =>
             return False;
       end case;
       

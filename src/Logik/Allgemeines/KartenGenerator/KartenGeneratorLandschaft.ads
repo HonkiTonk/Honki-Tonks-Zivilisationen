@@ -40,7 +40,7 @@ private
                                                        KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray :=
      (
-      RueckgabeDatentypen.Karte_Temperatur_Kalt_Enum => 
+      RueckgabeDatentypen.Kartentemperatur_Kalt_Enum => 
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (0 => 0.25,
@@ -131,7 +131,7 @@ private
            )
         ),
                                                                                        
-      RueckgabeDatentypen.Karte_Temperatur_Gemäßigt_Enum =>
+      RueckgabeDatentypen.Kartentemperatur_Gemäßigt_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -225,7 +225,7 @@ private
            )
         ),
                                                                                        
-      RueckgabeDatentypen.Karte_Temperatur_Heiß_Enum =>
+      RueckgabeDatentypen.Kartentemperatur_Heiß_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -319,7 +319,7 @@ private
            )
         ),
                                                                                        
-      RueckgabeDatentypen.Karte_Temperatur_Eiszeit_Enum =>
+      RueckgabeDatentypen.Kartentemperatur_Eiszeit_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -413,7 +413,7 @@ private
            )
         ),
                                                                                        
-      RueckgabeDatentypen.Karte_Temperatur_Wüste_Enum =>
+      RueckgabeDatentypen.Kartentemperatur_Wüste_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (

@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GrafikTonDatentypen;
+with TonDatentypen;
 
 package InteraktionMusiktask is
 
-   AktuelleMusik : GrafikTonDatentypen.Musik_Aktuelle_Auswahl_Enum := GrafikTonDatentypen.Musik_SFML_Enum;
+   AktuelleMusik : TonDatentypen.Musik_Aktuelle_Auswahl_Enum := TonDatentypen.Musik_SFML_Enum;
    
    procedure Leer;
    

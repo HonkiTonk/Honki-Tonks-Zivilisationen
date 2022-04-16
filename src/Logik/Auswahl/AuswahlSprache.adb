@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with GlobaleVariablen;
 with GlobaleTexte;
 with TextKonstanten;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 with Eingabe;
 with GrafikEinstellungenSFML;
@@ -26,10 +26,10 @@ package body AuswahlSprache is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             return AuswahlSpracheKonsole;
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             return AuswahlMausTastatur;
       end case;
       
@@ -131,7 +131,7 @@ package body AuswahlSprache is
       AuswahlKonsoleSchleife:
       loop
                   
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Sprache_Enum);
+         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Sprache_Enum);
          
          case
            Eingabe.Tastenwert
@@ -185,7 +185,7 @@ package body AuswahlSprache is
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Sprache_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Sprache_Enum);
       
       AuswahlSchleife:
       loop

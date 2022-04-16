@@ -1,20 +1,20 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GrafikTonDatentypen;
+with TonDatentypen;
 
 package InteraktionSoundtask is
    
    procedure AktuellenSoundÄndern
-     (SoundExtern : in GrafikTonDatentypen.Sound_Aktuelle_Auswahl_Enum);
+     (SoundExtern : in TonDatentypen.Sound_Aktuelle_Auswahl_Enum);
    
    
    
    function AktuellenSoundAbfragen
-     return GrafikTonDatentypen.Sound_Aktuelle_Auswahl_Enum;
+     return TonDatentypen.Sound_Aktuelle_Auswahl_Enum;
    
 private
 
-   AktuellerSound : GrafikTonDatentypen.Sound_Aktuelle_Auswahl_Enum := GrafikTonDatentypen.Sound_SFML_Enum;
+   AktuellerSound : TonDatentypen.Sound_Aktuelle_Auswahl_Enum := TonDatentypen.Sound_SFML_Enum;
 
 end InteraktionSoundtask;

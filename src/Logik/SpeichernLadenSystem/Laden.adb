@@ -128,9 +128,9 @@ package body Laden is
       case
         Karten.Kartenparameter.Kartengröße
       is
-         when RueckgabeDatentypen.Karte_Größe_Nutzer_Enum =>
+         when KartenDatentypen.Kartengröße_Nutzer_Enum =>
             Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
-                                              Karten.Kartengrößen (RueckgabeDatentypen.Karte_Größe_Nutzer_Enum));
+                                              Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum));
             
          when others =>
             null;

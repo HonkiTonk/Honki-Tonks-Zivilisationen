@@ -5,7 +5,7 @@ with Sf;
 
 with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 with GrafikEinstellungenSFML;
 with Eingabe;
@@ -22,7 +22,7 @@ package body AuswahlMenuesEinfach is
    is begin
       
       InteraktionGrafiktask.AktuellesMenü := WelchesMenüExtern;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Menüs_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Menüs_Enum);
       
       case
         WelchesMenüExtern
@@ -48,7 +48,7 @@ package body AuswahlMenuesEinfach is
                                                         WelchesMenüExtern     => WelchesMenüExtern);
       
       InteraktionGrafiktask.AktuellesMenü := SystemDatentypen.Leer_Menü_Enum;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
       
       return RückgabeWert;
       

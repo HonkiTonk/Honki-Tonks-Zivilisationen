@@ -34,7 +34,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          if
            AuswahlGröße >= 20
          then
-            Karten.Kartengrößen (RueckgabeDatentypen.Karte_Größe_Nutzer_Enum).YAchsenGröße := AuswahlGröße;
+            Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum).YAchsenGröße := AuswahlGröße;
             exit YAchseBestimmenSchleife;
 
          else
@@ -51,7 +51,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          if
            AuswahlGröße >= 20
          then
-            Karten.Kartengrößen (RueckgabeDatentypen.Karte_Größe_Nutzer_Enum).XAchsenGröße := AuswahlGröße;
+            Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum).XAchsenGröße := AuswahlGröße;
             exit XAchseBestimmenSchleife;
 
          else
@@ -60,14 +60,14 @@ package body ZufallsgeneratorenSpieleinstellungen is
 
       end loop XAchseBestimmenSchleife;
       
-      return RueckgabeDatentypen.Karte_Größe_Nutzer_Enum;
+      return KartenDatentypen.Kartengröße_Nutzer_Enum;
       
    end ZufälligeKartengröße;
    
    
    
    function ZufälligeKartenart
-     return KartenDatentypen.Kartenart_Verwendet_Enum
+     return KartenDatentypen.Kartenart_Enum
    is begin
       
       ZufälligeKartenartWählen.Reset (ZufälligeKartenartGewählt);

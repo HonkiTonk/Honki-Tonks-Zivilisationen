@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 with ZeitKonstanten;
 
 with InteraktionGrafiktask;
@@ -24,10 +24,10 @@ package body StartGrafik is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             GrafikKonsole.GrafikKonsole;
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             GrafikSFML.GrafikSFML;
             
          when others =>

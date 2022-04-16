@@ -124,7 +124,7 @@ package KartenRecords is
    type KartenparameterRecord is record
       
       Kartengröße : KartenDatentypen.Kartengröße_Enum;
-      Kartenart : KartenDatentypen.Kartenart_Verwendet_Enum;
+      Kartenart : KartenDatentypen.Kartenart_Enum;
       Kartentemperatur : KartenDatentypen.Kartentemperatur_Verwendet_Enum;
       Kartenressourcen : KartenDatentypen.Kartenressourcen_Verwendet_Enum;
       Kartenpole : KartenDatentypen.Kartenpole_Verwendet_Enum;

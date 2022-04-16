@@ -59,29 +59,29 @@ package KartenRecordKonstanten is
    
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
-                                         RueckgabeDatentypen.Karte_Größe_20_20_Enum     => 1,
-                                         RueckgabeDatentypen.Karte_Größe_40_40_Enum     => 1,
-                                         RueckgabeDatentypen.Karte_Größe_80_80_Enum     => 2,
-                                         RueckgabeDatentypen.Karte_Größe_120_80_Enum    => 3,
-                                         RueckgabeDatentypen.Karte_Größe_120_160_Enum   => 3,
-                                         RueckgabeDatentypen.Karte_Größe_160_160_Enum   => 4,
-                                         RueckgabeDatentypen.Karte_Größe_240_240_Enum   => 6,
-                                         RueckgabeDatentypen.Karte_Größe_320_320_Enum   => 8,
-                                         RueckgabeDatentypen.Karte_Größe_1000_1000_Enum => 24,
-                                         RueckgabeDatentypen.Karte_Größe_Nutzer_Enum    => 1
+                                         KartenDatentypen.Kartengröße_20_20_Enum     => 1,
+                                         KartenDatentypen.Kartengröße_40_40_Enum     => 1,
+                                         KartenDatentypen.Kartengröße_80_80_Enum     => 2,
+                                         KartenDatentypen.Kartengröße_120_80_Enum    => 3,
+                                         KartenDatentypen.Kartengröße_120_160_Enum   => 3,
+                                         KartenDatentypen.Kartengröße_160_160_Enum   => 4,
+                                         KartenDatentypen.Kartengröße_240_240_Enum   => 6,
+                                         KartenDatentypen.Kartengröße_320_320_Enum   => 8,
+                                         KartenDatentypen.Kartengröße_1000_1000_Enum => 24,
+                                         KartenDatentypen.Kartengröße_Nutzer_Enum    => 1
                                         );
 
    Eisschild : constant EisgebietArray := (
-                                           RueckgabeDatentypen.Karte_Größe_20_20_Enum     => 3,
-                                           RueckgabeDatentypen.Karte_Größe_40_40_Enum     => 3,
-                                           RueckgabeDatentypen.Karte_Größe_80_80_Enum     => 6,
-                                           RueckgabeDatentypen.Karte_Größe_120_80_Enum    => 9,
-                                           RueckgabeDatentypen.Karte_Größe_120_160_Enum   => 9,
-                                           RueckgabeDatentypen.Karte_Größe_160_160_Enum   => 12,
-                                           RueckgabeDatentypen.Karte_Größe_240_240_Enum   => 18,
-                                           RueckgabeDatentypen.Karte_Größe_320_320_Enum   => 24,
-                                           RueckgabeDatentypen.Karte_Größe_1000_1000_Enum => 72,
-                                           RueckgabeDatentypen.Karte_Größe_Nutzer_Enum    => 1
+                                           KartenDatentypen.Kartengröße_20_20_Enum     => 3,
+                                           KartenDatentypen.Kartengröße_40_40_Enum     => 3,
+                                           KartenDatentypen.Kartengröße_80_80_Enum     => 6,
+                                           KartenDatentypen.Kartengröße_120_80_Enum    => 9,
+                                           KartenDatentypen.Kartengröße_120_160_Enum   => 9,
+                                           KartenDatentypen.Kartengröße_160_160_Enum   => 12,
+                                           KartenDatentypen.Kartengröße_240_240_Enum   => 18,
+                                           KartenDatentypen.Kartengröße_320_320_Enum   => 24,
+                                           KartenDatentypen.Kartengröße_1000_1000_Enum => 72,
+                                           KartenDatentypen.Kartengröße_Nutzer_Enum    => 1
                                           );
 
 end KartenRecordKonstanten;

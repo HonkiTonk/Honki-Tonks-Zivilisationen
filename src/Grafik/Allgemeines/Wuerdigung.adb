@@ -6,7 +6,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 -- with GlobaleTexte;
 with GlobaleVariablen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 -- with Eingabe;
 -- with TextAnzeigeKonsole;
@@ -20,10 +20,10 @@ package body Wuerdigung is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             WürdigungKonsole;
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             WürdigungSFML;
       end case;
       

@@ -3,11 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Audio;
 
-with RueckgabeDatentypen;
+with RassenDatentypen;
+with TonDatentypen;
 
 package EingeleseneMusik is
 
-   type MusikArray is array (RueckgabeDatentypen.Rassen_Enum'Range, 1 .. 5) of Sf.Audio.sfMusic_Ptr;
+   type MusikArray is array (RassenDatentypen.Rassen_Enum'Range, TonDatentypen.AnzahlLieder'Range) of Sf.Audio.sfMusic_Ptr;
    Musik : MusikArray := (others => (others => null));
 
 end EingeleseneMusik;

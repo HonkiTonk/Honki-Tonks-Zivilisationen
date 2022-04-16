@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 with Karten;
 with KarteKoordinatenPruefen;
@@ -20,11 +20,11 @@ package body CursorAltPlatzieren is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             AlteYAchseFestlegenKonsole (RasseExtern => RasseExtern);
             AlteXAchseFestlegenKonsole (RasseExtern => RasseExtern);
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             AlteYAchseFestlegenSFML (RasseExtern => RasseExtern);
             AlteXAchseFestlegenSFML (RasseExtern => RasseExtern);
       end case;

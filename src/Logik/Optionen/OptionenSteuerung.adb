@@ -8,7 +8,7 @@ with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
 with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 -- with GlobaleTexte;
 with GlobaleVariablen;
 
@@ -64,10 +64,10 @@ package body OptionenSteuerung is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             AlteTasteEntfernenKonsole;
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             AlteTasteEntfernenSFML;
       end case;
       
@@ -186,10 +186,10 @@ package body OptionenSteuerung is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             AlteTasteEntfernenKonsole;
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             NeueTasteFestlegenSFML;
       end case;
       

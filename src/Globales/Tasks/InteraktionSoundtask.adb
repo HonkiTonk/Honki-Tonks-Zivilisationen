@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body InteraktionSoundtask is
 
    procedure AktuellenSoundÄndern
-     (SoundExtern : in GrafikTonDatentypen.Sound_Aktuelle_Auswahl_Enum)
+     (SoundExtern : in TonDatentypen.Sound_Aktuelle_Auswahl_Enum)
    is begin
       
       AktuellerSound := SoundExtern;
@@ -14,7 +14,7 @@ package body InteraktionSoundtask is
    
    
    function AktuellenSoundAbfragen
-     return GrafikTonDatentypen.Sound_Aktuelle_Auswahl_Enum
+     return TonDatentypen.Sound_Aktuelle_Auswahl_Enum
    is begin
       
       return AktuellerSound;

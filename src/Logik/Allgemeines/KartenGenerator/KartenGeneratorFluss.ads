@@ -16,11 +16,11 @@ private
    
    type WahscheinlichkeitFlussArray is array (KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range) of Float;
    WahrscheinlichkeitFluss : constant WahscheinlichkeitFlussArray := (
-                                                                      RueckgabeDatentypen.Karte_Temperatur_Kalt_Enum     => 0.25,
-                                                                      RueckgabeDatentypen.Karte_Temperatur_Gemäßigt_Enum => 0.30,
-                                                                      RueckgabeDatentypen.Karte_Temperatur_Heiß_Enum     => 0.25,
-                                                                      RueckgabeDatentypen.Karte_Temperatur_Eiszeit_Enum  => 0.15,
-                                                                      RueckgabeDatentypen.Karte_Temperatur_Wüste_Enum    => 0.15
+                                                                      RueckgabeDatentypen.Kartentemperatur_Kalt_Enum     => 0.25,
+                                                                      RueckgabeDatentypen.Kartentemperatur_Gemäßigt_Enum => 0.30,
+                                                                      RueckgabeDatentypen.Kartentemperatur_Heiß_Enum     => 0.25,
+                                                                      RueckgabeDatentypen.Kartentemperatur_Eiszeit_Enum  => 0.15,
+                                                                      RueckgabeDatentypen.Kartentemperatur_Wüste_Enum    => 0.15
                                                                      );
    
    type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartenGrundDatentypen.Karten_Fluss_Enum;

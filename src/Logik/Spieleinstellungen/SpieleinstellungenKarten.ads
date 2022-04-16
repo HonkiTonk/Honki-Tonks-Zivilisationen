@@ -14,7 +14,7 @@ package SpieleinstellungenKarten is
    procedure KartenressourcenWählen;
    
 private
-         
+   
    KartengrößeAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenartAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    KartenformAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
@@ -22,6 +22,31 @@ private
    KartenressourcenAuswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
    BenutzerdefinierteGröße : SystemRecords.ZahlenEingabeRecord;
+   
+   type KartengrößeRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartengröße_Verwendet_Enum) of KartenDatentypen.Kartengröße_Verwendet_Enum;
+   KartengrößeRückgabeZuKarten : constant KartengrößeRückgabeZuKartenArray := (
+                                                                                     RueckgabeDatentypen.Kartengröße_20_20_Enum     => KartenDatentypen.Kartengröße_20_20_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_40_40_Enum     => KartenDatentypen.Kartengröße_40_40_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_80_80_Enum     => KartenDatentypen.Kartengröße_80_80_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_120_80_Enum    => KartenDatentypen.Kartengröße_120_80_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_120_160_Enum   => KartenDatentypen.Kartengröße_120_160_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_160_160_Enum   => KartenDatentypen.Kartengröße_160_160_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_240_240_Enum   => KartenDatentypen.Kartengröße_240_240_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_320_320_Enum   => KartenDatentypen.Kartengröße_320_320_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_1000_1000_Enum => KartenDatentypen.Kartengröße_1000_1000_Enum,
+                                                                                     RueckgabeDatentypen.Kartengröße_Nutzer_Enum    => KartenDatentypen.Kartengröße_Nutzer_Enum
+                                                                                    );
+   
+   type KartenartRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartenart_Enum) of KartenDatentypen.Kartenart_Enum;
+   KartenartRückgabeZuKarten : constant KartenartRückgabeZuKartenArray := (
+                                                                             RueckgabeDatentypen.Kartenart_Inseln_Enum     => KartenDatentypen.Kartenart_Inseln_Enum,
+                                                                             RueckgabeDatentypen.Kartenart_Kontinente_Enum => KartenDatentypen.Kartenart_Kontinente_Enum,
+                                                                             RueckgabeDatentypen.Kartenart_Pangäa_Enum     => KartenDatentypen.Kartenart_Pangäa_Enum,
+                                                                             RueckgabeDatentypen.Kartenart_Nur_Land_Enum   => KartenDatentypen.Kartenart_Nur_Land_Enum,
+                                                                             RueckgabeDatentypen.Kartenart_Chaos_Enum      => KartenDatentypen.Kartenart_Chaos_Enum
+                                                                            );
+   
+   
    
    procedure GrößeSelbstBestimmen
      (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum);

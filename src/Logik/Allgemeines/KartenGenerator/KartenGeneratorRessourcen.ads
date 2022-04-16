@@ -14,7 +14,7 @@ private
    
    type WahrscheinlichkeitRessourceArray is array (KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range, KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum'Range) of Float;
    WahrscheinlichkeitRessourcen : constant WahrscheinlichkeitRessourceArray := (
-                                                                                RueckgabeDatentypen.Karte_Ressource_Arm_Enum =>
+                                                                                RueckgabeDatentypen.Kartenressourcen_Arm_Enum =>
                                                                                   (
                                                                                    KartenGrundDatentypen.Fisch_Enum              => 0.02,
                                                                                    KartenGrundDatentypen.Wal_Enum                => 0.00,
@@ -25,7 +25,7 @@ private
                                                                                    KartenGrundDatentypen.Gold_Enum               => 0.00
                                                                                   ),
                                                                                 
-                                                                                RueckgabeDatentypen.Karte_Ressource_Wenig_Enum =>
+                                                                                RueckgabeDatentypen.Kartenressourcen_Wenig_Enum =>
                                                                                   (
                                                                                    KartenGrundDatentypen.Fisch_Enum              => 0.04,
                                                                                    KartenGrundDatentypen.Wal_Enum                => 0.01,
@@ -36,7 +36,7 @@ private
                                                                                    KartenGrundDatentypen.Gold_Enum               => 0.01
                                                                                   ),
                                                                                 
-                                                                                RueckgabeDatentypen.Karte_Ressource_Mittel_Enum =>
+                                                                                RueckgabeDatentypen.Kartenressourcen_Mittel_Enum =>
                                                                                   (
                                                                                    KartenGrundDatentypen.Fisch_Enum              => 0.08,
                                                                                    KartenGrundDatentypen.Wal_Enum                => 0.02,
@@ -47,7 +47,7 @@ private
                                                                                    KartenGrundDatentypen.Gold_Enum               => 0.02
                                                                                   ),
                                                                                 
-                                                                                RueckgabeDatentypen.Karte_Ressource_Viel_Enum =>
+                                                                                RueckgabeDatentypen.Kartenressourcen_Viel_Enum =>
                                                                                   (
                                                                                    KartenGrundDatentypen.Fisch_Enum              => 0.16,
                                                                                    KartenGrundDatentypen.Wal_Enum                => 0.04,
@@ -58,7 +58,7 @@ private
                                                                                    KartenGrundDatentypen.Gold_Enum               => 0.04
                                                                                   ),
                                                                                 
-                                                                                RueckgabeDatentypen.Karte_Ressource_Überfluss_Enum =>
+                                                                                RueckgabeDatentypen.Kartenressourcen_Überfluss_Enum =>
                                                                                   (
                                                                                    KartenGrundDatentypen.Fisch_Enum              => 0.32,
                                                                                    KartenGrundDatentypen.Wal_Enum                => 0.08,

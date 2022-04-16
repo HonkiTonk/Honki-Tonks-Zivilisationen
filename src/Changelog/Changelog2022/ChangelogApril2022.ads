@@ -91,17 +91,19 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.03 => 0.01.03 (17.04.2022):
+   -- Version 0.01.0340 => 0.01.03 (17.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0333 => 0.01.03 (16.04.2022):
+   -- Version 0.01.0333 => 0.01.0340 (16.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der Aufteilung des Rückgabe_Enum gearbeitet.
+   -- Angefangen eine Farbgebung für die aktuelle Einstellung in der Spieleeinstellungen einzubauen.
+   -- Einige interne Benennungen überarbeitet.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

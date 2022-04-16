@@ -12,7 +12,7 @@ with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with EinheitStadtDatentypen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 with TextKonstanten;
 with RassenDatentypen;
 
@@ -30,7 +30,7 @@ package GlobaleVariablen is
                                                                      10
                                                                     );
    
-   AnzeigeArt : GrafikTonDatentypen.Anzeige_Art_Enum := GrafikTonDatentypen.Grafik_SFML_Enum;
+   AnzeigeArt : GrafikDatentypen.Anzeige_Art_Enum := GrafikDatentypen.Grafik_SFML_Enum;
    -- Schreiben/Ausgabe
    
    

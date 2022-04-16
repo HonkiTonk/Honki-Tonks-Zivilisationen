@@ -20,7 +20,7 @@ package ZufallsgeneratorenSpieleinstellungen is
      return KartenDatentypen.Kartengröße_Verwendet_Enum;
    
    function ZufälligeKartenart
-     return KartenDatentypen.Kartenart_Verwendet_Enum;
+     return KartenDatentypen.Kartenart_Enum;
    
    function ZufälligeKartenform
      return KartenDatentypen.Kartenform_Verwendet_Enum;
@@ -47,7 +47,7 @@ private
    -- Generatoren für zufällige Spieleinstellungen
    package ZufälligeVordefinierteKartengrößeWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartengröße_Standard_Enum);
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.KartenfeldPositiv);
-   package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenart_Verwendet_Enum);
+   package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenart_Enum);
    package ZufälligeKartenformWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_Verwendet_Enum);
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartentemperatur_Verwendet_Enum);
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenressourcen_Verwendet_Enum);

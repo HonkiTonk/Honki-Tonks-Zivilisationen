@@ -23,16 +23,16 @@ package body SpieleinstellungenKarten is
          case
            KartengrößeAuswahl
          is
-            when KartenDatentypen.Kartengröße_Standard_Enum'Range =>
-               Karten.Kartenparameter.Kartengröße := KartengrößeAuswahl;
+            when RueckgabeDatentypen.Kartengröße_Standard_Enum'Range =>
+               Karten.Kartenparameter.Kartengröße := KartengrößeRückgabeZuKarten (KartengrößeAuswahl);
 
-            when RueckgabeDatentypen.Karte_Größe_Nutzer_Enum =>
-               GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeAuswahl);
+            when RueckgabeDatentypen.Kartengröße_Nutzer_Enum =>
+               GrößeSelbstBestimmen (KartengrößeExtern => KartengrößeRückgabeZuKarten (KartengrößeAuswahl));
                
             when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeVordefinierteKartengröße;
                
-            when RueckgabeDatentypen.Karte_Größe_Zufall_Enum =>
+            when RueckgabeDatentypen.Kartengröße_Zufall_Enum =>
                Karten.Kartenparameter.Kartengröße := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartengröße;
                
             when RueckgabeDatentypen.Fertig_Enum =>
@@ -99,8 +99,8 @@ package body SpieleinstellungenKarten is
          case
            KartenartAuswahl
          is
-            when KartenDatentypen.Kartenart_Verwendet_Enum'Range =>
-               Karten.Kartenparameter.Kartenart := KartenartAuswahl;
+            when RueckgabeDatentypen.Kartenart_Enum'Range =>
+               Karten.Kartenparameter.Kartenart := KartenartRückgabeZuKarten (KartenartAuswahl);
                
             when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartenart := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenart;

@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Directories; use Ada.Directories;
 
 with GlobaleVariablen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 with EingabeKonsole;
 with EingabeSFML;
@@ -17,10 +17,10 @@ package body SchreibenTastatur is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             BelegungKonsole;
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             BelegungSFML;
       end case;
       

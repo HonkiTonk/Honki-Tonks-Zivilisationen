@@ -6,7 +6,7 @@ with Ada.Calendar; use Ada.Calendar;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with SystemDatentypen;
 with EinheitenKonstanten;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 with Optionen;
 with LadezeitenDatentypen;
@@ -197,7 +197,7 @@ package body ImSpiel is
       SpielerSchleife:
       loop
          
-         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Weltkarte_Enum);
+         InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Weltkarte_Enum);
          
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
@@ -250,7 +250,7 @@ package body ImSpiel is
                      
       end loop SpielerSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
       InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RassenDatentypen.Keine_Rasse_Enum);
       
       return RückgabeMenschAmZug;
@@ -346,10 +346,10 @@ package body ImSpiel is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             return BefehleKonsole.Befehle (RasseExtern => RasseExtern);
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             return BefehleSFML.Befehle (RasseExtern => RasseExtern);
       end case;
       

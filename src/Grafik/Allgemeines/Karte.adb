@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 with KarteSFML;
 with KarteKonsole;
@@ -21,10 +21,10 @@ package body Karte is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             KarteSFML.KarteAnzeigen (RasseExtern => RasseExtern);
       end case;
 

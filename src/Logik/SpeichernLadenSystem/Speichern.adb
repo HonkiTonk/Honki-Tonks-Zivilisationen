@@ -115,9 +115,9 @@ package body Speichern is
       case
         Karten.Kartenparameter.Kartengröße
       is
-         when RueckgabeDatentypen.Karte_Größe_Nutzer_Enum =>
+         when KartenDatentypen.Kartengröße_Nutzer_Enum =>
             Karten.KartengrößenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                               Karten.Kartengrößen (RueckgabeDatentypen.Karte_Größe_Nutzer_Enum));
+                                               Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum));
             
          when others =>
             null;

@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with RueckgabeDatentypen;
 with KartenRecords;
 
 with Karten;
@@ -32,9 +31,9 @@ private
    end record;
    
    -- Dafür noch feste Standardwerte einbauen? Wäre dann später bei weiterführenden Einstellungen wie viel Wasser sinnvoll.
-   type WahrscheinlichkeitenLandArray is array (KartenDatentypen.Kartenart_Verwendet_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of WahrscheinlichkeitenRecord;
+   type WahrscheinlichkeitenLandArray is array (KartenDatentypen.Kartenart_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of WahrscheinlichkeitenRecord;
    WahrscheinlichkeitenLand : constant WahrscheinlichkeitenLandArray := (
-                                                                         RueckgabeDatentypen.Karte_Art_Inseln_Enum =>
+                                                                         KartenDatentypen.Kartenart_Inseln_Enum =>
                                                                            (
                                                                             Masse_Eisschild_Enum    => (0.00, 0.05),
                                                                             Feld_Eisschild_Enum     => (0.05, 0.15),
@@ -45,7 +44,7 @@ private
                                                                             Feld_Fläche_Belegt_Enum => (0.00, 0.55)
                                                                            ),
                                                                                  
-                                                                         RueckgabeDatentypen.Karte_Art_Kontinente_Enum =>
+                                                                         KartenDatentypen.Kartenart_Kontinente_Enum =>
                                                                            (
                                                                             Masse_Eisschild_Enum    => (0.00, 0.05),
                                                                             Feld_Eisschild_Enum     => (0.05, 0.15),
@@ -56,7 +55,7 @@ private
                                                                             Feld_Fläche_Belegt_Enum => (0.00, 0.80)
                                                                            ),
                                                                                  
-                                                                         RueckgabeDatentypen.Karte_Art_Pangäa_Enum =>
+                                                                         KartenDatentypen.Kartenart_Pangäa_Enum =>
                                                                            (
                                                                             Masse_Eisschild_Enum    => (0.00, 0.05),
                                                                             Feld_Eisschild_Enum     => (0.05, 0.15),

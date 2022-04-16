@@ -23,7 +23,7 @@ package body InteraktionGrafiktask is
    
       
    procedure AktuelleDarstellungÄndern
-     (DarstellungExtern : in GrafikTonDatentypen.Grafik_Aktuelle_Darstellung_Enum)
+     (DarstellungExtern : in GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum)
    is begin
       
       AktuelleDarstellung := DarstellungExtern;
@@ -53,7 +53,7 @@ package body InteraktionGrafiktask is
    
    
    function AktuelleDarstellungAbrufen
-     return GrafikTonDatentypen.Grafik_Aktuelle_Darstellung_Enum
+     return GrafikDatentypen.Grafik_Aktuelle_Darstellung_Enum
    is begin
       
       return AktuelleDarstellung;

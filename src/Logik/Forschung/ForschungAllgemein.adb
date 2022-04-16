@@ -7,7 +7,7 @@ with GlobaleTexte;
 with ForschungKonstanten;
 with TextKonstanten;
 with TastenbelegungDatentypen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 with SystemDatentypen;
 
 with SchreibeWichtiges;
@@ -118,11 +118,11 @@ package body ForschungAllgemein is
       case
         GlobaleVariablen.AnzeigeArt
       is
-         when GrafikTonDatentypen.Grafik_Konsole_Enum =>
+         when GrafikDatentypen.Grafik_Konsole_Enum =>
             return 0;
             -- return ForschungAuswahlKonsole;
             
-         when GrafikTonDatentypen.Grafik_SFML_Enum =>
+         when GrafikDatentypen.Grafik_SFML_Enum =>
             return ForschungAuswahlSFML;
       end case;
 
@@ -140,7 +140,7 @@ package body ForschungAllgemein is
                                               FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Forschung_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Forschung_Enum);
       
       AuswahlSchleife:
       loop
@@ -171,7 +171,7 @@ package body ForschungAllgemein is
          
       end loop AuswahlSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
       
       return GewählteForschung;
       

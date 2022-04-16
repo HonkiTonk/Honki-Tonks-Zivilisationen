@@ -178,8 +178,18 @@ package body AuswahlMenuesEinfachSFML is
          null;
       end if;
       
+      case
+        WelchesMenüExtern
+      is
+         when SystemDatentypen.Menü_Einstellung_Anzeigen_Enum'Range =>
+            FarbeAktuelleEinstellungenFestlegen (WelchesMenüExtern => WelchesMenüExtern);
+            
+         when others =>
+            null;
+      end case;
+      
       AktuelleAuswahl := AuswahlMenuesEinfach.AktuelleAuswahl;
-              
+      
       if
         AktuelleAuswahl /= LetzteAuswahl
       then
@@ -243,6 +253,19 @@ package body AuswahlMenuesEinfachSFML is
       Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, Überschrift),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
+      SchriftfarbenAuswahlmöglichkeitenFestlegen (WelchesMenüExtern => WelchesMenüExtern);
+      
+      Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, TextbereichExtern),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
+
+   end SchriftfarbenFestlegen;
+   
+   
+   
+   procedure SchriftfarbenAuswahlmöglichkeitenFestlegen
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
+   is begin
+      
       SchriftfarbeSchleife:
       for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
          
@@ -251,10 +274,19 @@ package body AuswahlMenuesEinfachSFML is
          
       end loop SchriftfarbeSchleife;
       
-      Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, TextbereichExtern),
-                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
-
-   end SchriftfarbenFestlegen;
+   end SchriftfarbenAuswahlmöglichkeitenFestlegen;
+   
+   
+   
+   procedure FarbeAktuelleEinstellungenFestlegen
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Einstellung_Anzeigen_Enum)
+   is begin
+      
+      SchriftfarbenAuswahlmöglichkeitenFestlegen (WelchesMenüExtern => WelchesMenüExtern);
+      
+      
+      
+   end FarbeAktuelleEinstellungenFestlegen;
    
    
    

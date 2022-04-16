@@ -300,52 +300,52 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Karte_Größe_20_20_Enum;
+         return RueckgabeDatentypen.Kartengröße_20_20_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return RueckgabeDatentypen.Karte_Größe_40_40_Enum;
+         return RueckgabeDatentypen.Kartengröße_40_40_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return RueckgabeDatentypen.Karte_Größe_80_80_Enum;
+         return RueckgabeDatentypen.Kartengröße_80_80_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return RueckgabeDatentypen.Karte_Größe_120_80_Enum;
+         return RueckgabeDatentypen.Kartengröße_120_80_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return RueckgabeDatentypen.Karte_Größe_120_160_Enum;
+         return RueckgabeDatentypen.Kartengröße_120_160_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
-         return RueckgabeDatentypen.Karte_Größe_160_160_Enum;
+         return RueckgabeDatentypen.Kartengröße_160_160_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 6
       then
-         return RueckgabeDatentypen.Karte_Größe_240_240_Enum;
+         return RueckgabeDatentypen.Kartengröße_240_240_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return RueckgabeDatentypen.Karte_Größe_320_320_Enum;
+         return RueckgabeDatentypen.Kartengröße_320_320_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return RueckgabeDatentypen.Karte_Größe_1000_1000_Enum;
+         return RueckgabeDatentypen.Kartengröße_1000_1000_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return RueckgabeDatentypen.Karte_Größe_Nutzer_Enum;
+         return RueckgabeDatentypen.Kartengröße_Nutzer_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 10
@@ -355,7 +355,7 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 11
       then
-         return RueckgabeDatentypen.Karte_Größe_Zufall_Enum;
+         return RueckgabeDatentypen.Kartengröße_Zufall_Enum;
                     
       else
          return Fertig (EndeExtern            => EndeExtern,
@@ -376,27 +376,27 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Karte_Art_Inseln_Enum;
+         return RueckgabeDatentypen.Kartenart_Inseln_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return RueckgabeDatentypen.Karte_Art_Kontinente_Enum;
+         return RueckgabeDatentypen.Kartenart_Kontinente_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return RueckgabeDatentypen.Karte_Art_Pangäa_Enum;
+         return RueckgabeDatentypen.Kartenart_Pangäa_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return RueckgabeDatentypen.Karte_Art_Nur_Land_Enum;
+         return RueckgabeDatentypen.Kartenart_Nur_Land_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return RueckgabeDatentypen.Karte_Art_Chaos_Enum;
+         return RueckgabeDatentypen.Kartenart_Chaos_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
@@ -488,27 +488,27 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Karte_Temperatur_Kalt_Enum;
+         return RueckgabeDatentypen.Kartentemperatur_Kalt_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return RueckgabeDatentypen.Karte_Temperatur_Gemäßigt_Enum;
+         return RueckgabeDatentypen.Kartentemperatur_Gemäßigt_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return RueckgabeDatentypen.Karte_Temperatur_Heiß_Enum;
+         return RueckgabeDatentypen.Kartentemperatur_Heiß_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return RueckgabeDatentypen.Karte_Temperatur_Eiszeit_Enum;
+         return RueckgabeDatentypen.Kartentemperatur_Eiszeit_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return RueckgabeDatentypen.Karte_Temperatur_Wüste_Enum;
+         return RueckgabeDatentypen.Kartentemperatur_Wüste_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
@@ -534,27 +534,27 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Karte_Ressource_Arm_Enum;
+         return RueckgabeDatentypen.Kartenressourcen_Arm_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return RueckgabeDatentypen.Karte_Ressource_Wenig_Enum;
+         return RueckgabeDatentypen.Kartenressourcen_Wenig_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return RueckgabeDatentypen.Karte_Ressource_Mittel_Enum;
+         return RueckgabeDatentypen.Kartenressourcen_Mittel_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
       then
-         return RueckgabeDatentypen.Karte_Ressource_Viel_Enum;
+         return RueckgabeDatentypen.Kartenressourcen_Viel_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 4
       then
-         return RueckgabeDatentypen.Karte_Ressource_Überfluss_Enum;
+         return RueckgabeDatentypen.Kartenressourcen_Überfluss_Enum;
          
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5

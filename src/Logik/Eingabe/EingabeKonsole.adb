@@ -6,7 +6,7 @@ with Ada.Wide_Wide_Characters.Handling; use Ada.Wide_Wide_Characters.Handling;
 with Ada.Strings.Wide_Wide_Fixed;
 
 with GlobaleTexte;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
 
 -- with TextAnzeigeKonsole;
 with Fehler;
@@ -49,11 +49,11 @@ package body EingabeKonsole is
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
          -- Brauche ich den Stadtteil wirklich? Eventuell um in der Stadt bestimmte Dinge festzulegen.
-         when GrafikTonDatentypen.Grafik_Weltkarte_Enum | GrafikTonDatentypen.Grafik_Stadtkarte_Enum =>
+         when GrafikDatentypen.Grafik_Weltkarte_Enum | GrafikDatentypen.Grafik_Stadtkarte_Enum =>
             null;
             
          when others =>
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Menüs_Enum);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Menüs_Enum);
       end case;
                   
       case
@@ -79,9 +79,9 @@ package body EingabeKonsole is
       case
         InteraktionGrafiktask.AktuelleDarstellungAbrufen
       is
-         when GrafikTonDatentypen.Grafik_Menüs_Enum =>
+         when GrafikDatentypen.Grafik_Menüs_Enum =>
             InteraktionGrafiktask.EingabeÄndern (EingabeExtern => SystemDatentypen.Keine_Eingabe_Enum);
-            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Pause_Enum);
+            InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
             
          when others =>
             null;

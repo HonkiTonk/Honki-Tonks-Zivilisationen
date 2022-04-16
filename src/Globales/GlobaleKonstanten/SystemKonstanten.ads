@@ -9,6 +9,7 @@ package SystemKonstanten is
 
    LängstesMenü : constant Positive := 41;
 
+   ------------------------- Diese Konstanten nicht nur für die Menüarrays anlegen sondern für alle?
    type EndeMenüArray is array (SystemDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
    EndeMenü : constant EndeMenüArray := (
                                            -- Einfache Auswahl, keine Überschrift und kein Zusatztext.

@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GrafikTonDatentypen; use GrafikTonDatentypen;
+with GrafikDatentypen; use GrafikDatentypen;
 with ZeitKonstanten;
 
 with SchreibenVerzeichnisse;
@@ -33,10 +33,10 @@ package body StartLogik is
       Einlesen.EinlesenMitAnzeige;
       
       InteraktionLogiktask.EinlesenAbgeschlossen := True;
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Intro_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Intro_Enum);
       
       IntroSchleife:
-      while InteraktionGrafiktask.AktuelleDarstellungAbrufen = GrafikTonDatentypen.Grafik_Intro_Enum loop
+      while InteraktionGrafiktask.AktuelleDarstellungAbrufen = GrafikDatentypen.Grafik_Intro_Enum loop
          
          delay ZeitKonstanten.WartezeitLogik;
          

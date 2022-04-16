@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GrafikTonDatentypen;
+with TonDatentypen;
 with ZeitKonstanten;
 
 with InteraktionMusiktask;
@@ -19,16 +19,16 @@ package body MusikKonsole is
          case
            InteraktionMusiktask.AktuelleMusik
          is
-            when GrafikTonDatentypen.Musik_Konsole_Enum =>
+            when TonDatentypen.Musik_Konsole_Enum =>
                delay ZeitKonstanten.WartezeitMusik;
                
-            when GrafikTonDatentypen.Musik_Intro_Enum =>
+            when TonDatentypen.Musik_Intro_Enum =>
                MusikIntroKonsole.Intro;
                
-            when GrafikTonDatentypen.Musik_SFML_Enum =>
+            when TonDatentypen.Musik_SFML_Enum =>
                Fehler.MusikFehler (FehlermeldungExtern => "MusikKonsole.MusikKonsole - SFML wird bei Konsole aufgerufen.");
                
-            when GrafikTonDatentypen.Musik_Ende_Enum =>
+            when TonDatentypen.Musik_Ende_Enum =>
                exit MusikSchleife;
          end case;
          

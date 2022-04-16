@@ -3,7 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with SystemDatentypen;
-with GrafikTonDatentypen;
+with GrafikDatentypen;
+with TonDatentypen;
 
 with Optionen;
 with Spieleinstellungen;
@@ -104,9 +105,9 @@ package body Hauptmenue is
          
       end loop HauptmenüSchleife;
       
-      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikTonDatentypen.Grafik_Ende_Enum);
-      InteraktionMusiktask.AktuelleMusik := GrafikTonDatentypen.Musik_Ende_Enum;
-      InteraktionSoundtask.AktuellenSoundÄndern (SoundExtern => GrafikTonDatentypen.Sound_Ende_Enum);
+      InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Ende_Enum);
+      InteraktionMusiktask.AktuelleMusik := TonDatentypen.Musik_Ende_Enum;
+      InteraktionSoundtask.AktuellenSoundÄndern (SoundExtern => TonDatentypen.Sound_Ende_Enum);
       
    end Hauptmenü;
 
