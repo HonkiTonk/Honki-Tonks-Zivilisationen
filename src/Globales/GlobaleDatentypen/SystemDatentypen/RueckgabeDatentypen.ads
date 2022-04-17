@@ -60,8 +60,15 @@ package RueckgabeDatentypen is
    
    subtype Kartengröße_Verwendet_Enum is Rückgabe_Werte_Enum range Kartengröße_20_20_Enum .. Kartengröße_Nutzer_Enum;
    subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range Kartengröße_20_20_Enum .. Kartengröße_1000_1000_Enum;
-   
    subtype Kartenart_Enum is Rückgabe_Werte_Enum range Kartenart_Inseln_Enum .. Kartenart_Chaos_Enum;
+   subtype Kartentemperatur_Enum is Rückgabe_Werte_Enum range Kartentemperatur_Kalt_Enum .. Kartentemperatur_Wüste_Enum;
+   subtype Kartenressourcen_Enum is Rückgabe_Werte_Enum range Kartenressourcen_Arm_Enum .. Kartenressourcen_Überfluss_Enum;
+   subtype Kartenpole_Enum is Rückgabe_Werte_Enum range Karten_Pole_Keine .. Karten_Pole_Beide;
+   
+   subtype Kartenform_Enum is Rückgabe_Werte_Enum range Karte_E_Achse_Kein_Übergang_Enum .. Karte_X_Achse_Verschobener_Übergang_Enum;
+   subtype Kartenform_E_Achse_Einstellbar_Enum is Rückgabe_Werte_Enum range Karte_E_Achse_Kein_Übergang_Enum .. Karte_E_Achse_Übergang_Enum;
+   subtype Kartenform_Y_Achse_Einstellbar_Enum is Rückgabe_Werte_Enum range Karte_Y_Achse_Kein_Übergang_Enum .. Karte_Y_Achse_Verschobener_Übergang_Enum;
+   subtype Kartenform_X_Achse_Einstellbar_Enum is Rückgabe_Werte_Enum range Karte_X_Achse_Kein_Übergang_Enum .. Karte_X_Achse_Verschobener_Übergang_Enum;
    
    subtype Schwierigkeitsgrad_Verwendet_Enum is Rückgabe_Werte_Enum range Schwierigkeit_Leicht_Enum .. Schwierigkeit_Schwer_Enum;
    

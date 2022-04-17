@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with RueckgabeDatentypen;
 with KartenGrundDatentypen;
 with KartenRecords;
 
@@ -14,13 +13,13 @@ package KartenGeneratorFluss is
 
 private
    
-   type WahscheinlichkeitFlussArray is array (KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range) of Float;
+   type WahscheinlichkeitFlussArray is array (KartenDatentypen.Kartentemperatur_Enum'Range) of Float;
    WahrscheinlichkeitFluss : constant WahscheinlichkeitFlussArray := (
-                                                                      RueckgabeDatentypen.Kartentemperatur_Kalt_Enum     => 0.25,
-                                                                      RueckgabeDatentypen.Kartentemperatur_Gemäßigt_Enum => 0.30,
-                                                                      RueckgabeDatentypen.Kartentemperatur_Heiß_Enum     => 0.25,
-                                                                      RueckgabeDatentypen.Kartentemperatur_Eiszeit_Enum  => 0.15,
-                                                                      RueckgabeDatentypen.Kartentemperatur_Wüste_Enum    => 0.15
+                                                                      KartenDatentypen.Kartentemperatur_Kalt_Enum     => 0.25,
+                                                                      KartenDatentypen.Kartentemperatur_Gemäßigt_Enum => 0.30,
+                                                                      KartenDatentypen.Kartentemperatur_Heiß_Enum     => 0.25,
+                                                                      KartenDatentypen.Kartentemperatur_Eiszeit_Enum  => 0.15,
+                                                                      KartenDatentypen.Kartentemperatur_Wüste_Enum    => 0.15
                                                                      );
    
    type StandardFlussArray is array (KartenDatentypen.EbeneVorhanden'First .. 0) of KartenGrundDatentypen.Karten_Fluss_Enum;

@@ -120,8 +120,8 @@ package body Laden is
    procedure KarteLaden
    is begin
       
-      KartenDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
-                                                       Karten.Kartenform);
+      -- KartenDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
+      --                                                 Karten.Kartenform);
       KartenDatentypen.Kartengröße_Enum'Read (Stream (File => DateiLadenNeu),
                                                 Karten.Kartenparameter.Kartengröße);
       

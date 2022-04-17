@@ -125,9 +125,9 @@ package KartenRecords is
       
       Kartengröße : KartenDatentypen.Kartengröße_Enum;
       Kartenart : KartenDatentypen.Kartenart_Enum;
-      Kartentemperatur : KartenDatentypen.Kartentemperatur_Verwendet_Enum;
-      Kartenressourcen : KartenDatentypen.Kartenressourcen_Verwendet_Enum;
-      Kartenpole : KartenDatentypen.Kartenpole_Verwendet_Enum;
+      Kartentemperatur : KartenDatentypen.Kartentemperatur_Enum;
+      Kartenressourcen : KartenDatentypen.Kartenressourcen_Enum;
+      Kartenpole : KartenDatentypen.Kartenpole_Enum;
       
       Kartenform : KartenformRecord;
       

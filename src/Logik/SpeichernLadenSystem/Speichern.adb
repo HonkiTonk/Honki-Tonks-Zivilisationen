@@ -107,8 +107,8 @@ package body Speichern is
    procedure KarteSpeichern
    is begin
       
-      KartenDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                                        Karten.Kartenform);
+      --  KartenDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+      --                                                  Karten.Kartenform);
       KartenDatentypen.Kartengröße_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                  Karten.Kartenparameter.Kartengröße);
       

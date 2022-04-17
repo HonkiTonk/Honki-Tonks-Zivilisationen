@@ -41,9 +41,11 @@ private
    HauptmenüAbzug : Natural;
    SchleifenAbzug : Natural;
    AktuelleAuswahl : Natural;
+   AktuelleAuswahlRückgabewert : Natural;
    LetzteAuswahl : Natural := SystemKonstanten.LeerAuswahl;
    AktuellAusgewählt : Natural;
    ZuletztAusgewählt : Natural;
+   AktuelleEinstellung : Positive;
 
    ZeilenAbstand : Float;
 
@@ -51,6 +53,8 @@ private
    AbstandAnfang : Sf.sfUint32;
    AbstandÜberschrift : Sf.sfUint32;
    AbstandEnde : Sf.sfUint32;
+
+   Farbe : Sf.Graphics.Color.sfColor;
 
    AbstandTexte : Sf.System.Vector2.sfVector2u;
 
@@ -109,9 +113,10 @@ private
    procedure MenüHintergrund
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum);
 
-   procedure Textbearbeitung
+   function Textbearbeitung
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
-      TextbereichExtern : in Positive);
+      TextbereichExtern : in Positive)
+      return Natural;
 
    procedure SchriftgrößenFestlegen
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
@@ -121,11 +126,10 @@ private
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive);
 
-   procedure SchriftfarbenAuswahlmöglichkeitenFestlegen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum);
-
    procedure FarbeAktuelleEinstellungenFestlegen
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einstellung_Anzeigen_Enum);
+
+   procedure FarbeAusgewählteRassenFestlegen;
 
    procedure FarbeAktuelleAuswahlFestlegen
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;

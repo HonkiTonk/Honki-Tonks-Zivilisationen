@@ -7,7 +7,11 @@ with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
 
 with SystemDatentypen; use SystemDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with SonstigesKonstanten;
+with KartenDatentypen;
+with RueckgabeDatentypen;
+with GlobaleVariablen;
 
 with GrafikEinstellungenSFML;
 with AllgemeineTextBerechnungenSFML;
@@ -16,6 +20,7 @@ with AuswahlMenuesEinfach;
 with AuswahlMenuesZusatztextSFML;
 with EingeleseneTexturenSFML;
 with TexturenSetzenSkalierenSFML;
+with Karten;
 
 package body AuswahlMenuesEinfachSFML is
 
@@ -49,8 +54,8 @@ package body AuswahlMenuesEinfachSFML is
             SchleifenAbzug := 1;
       end case;
       
-      Textbearbeitung (WelchesMenüExtern => WelchesMenüExtern,
-                       TextbereichExtern  => Textbereich);
+      AktuelleAuswahlRückgabewert := Textbearbeitung (WelchesMenüExtern => WelchesMenüExtern,
+                                                       TextbereichExtern  => Textbereich);
       
       TextSchleife:
       for TextSchleifenwert in Überschrift .. Textbereich loop
@@ -61,16 +66,17 @@ package body AuswahlMenuesEinfachSFML is
          
       end loop TextSchleife;
       
-      case
-        WelchesMenüExtern
-      is
-         when SystemDatentypen.Menü_Zusatztext_Enum'Range =>
-            -- Aktuelle Auswahl gleich mitübergeben?
-            AuswahlMenuesZusatztextSFML.AuswahlMenüsZusatztext (WelchesMenüExtern => WelchesMenüExtern);
-            
-         when others =>
-            null;
-      end case;
+      if
+        WelchesMenüExtern in SystemDatentypen.Menü_Zusatztext_Enum'Range
+        and
+          AktuelleAuswahlRückgabewert /= SystemKonstanten.LeerAuswahl
+      then
+         AuswahlMenuesZusatztextSFML.AuswahlMenüsZusatztext (WelchesMenüExtern     => WelchesMenüExtern,
+                                                              AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert);
+         
+      else
+         null;
+      end if;
       
    end AuswahlMenüsEinfach;
    
@@ -100,9 +106,10 @@ package body AuswahlMenuesEinfachSFML is
    
    
    
-   procedure Textbearbeitung
+   function Textbearbeitung
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive)
+      return Natural
    is begin
       
       AktuelleAuflösung := GrafikEinstellungenSFML.AktuelleFensterAuflösung;
@@ -218,6 +225,8 @@ package body AuswahlMenuesEinfachSFML is
          null;
       end if;
       
+      return AktuelleAuswahl;
+      
    end Textbearbeitung;
 
 
@@ -253,19 +262,6 @@ package body AuswahlMenuesEinfachSFML is
       Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, Überschrift),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
-      SchriftfarbenAuswahlmöglichkeitenFestlegen (WelchesMenüExtern => WelchesMenüExtern);
-      
-      Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, TextbereichExtern),
-                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
-
-   end SchriftfarbenFestlegen;
-   
-   
-   
-   procedure SchriftfarbenAuswahlmöglichkeitenFestlegen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
-   is begin
-      
       SchriftfarbeSchleife:
       for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
          
@@ -274,7 +270,10 @@ package body AuswahlMenuesEinfachSFML is
          
       end loop SchriftfarbeSchleife;
       
-   end SchriftfarbenAuswahlmöglichkeitenFestlegen;
+      Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, TextbereichExtern),
+                                 color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
+
+   end SchriftfarbenFestlegen;
    
    
    
@@ -282,11 +281,117 @@ package body AuswahlMenuesEinfachSFML is
      (WelchesMenüExtern : in SystemDatentypen.Menü_Einstellung_Anzeigen_Enum)
    is begin
       
-      SchriftfarbenAuswahlmöglichkeitenFestlegen (WelchesMenüExtern => WelchesMenüExtern);
+      -- Das + 1 kommt daher dass die Enums in Ada immer bei 0 anfangen.
+      AktuelleEinstellung := Überschrift + 1;
       
+      case
+        WelchesMenüExtern
+      is
+         when SystemDatentypen.Kartengröße_Menü_Enum =>
+            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartengröße_Enum'Pos (Karten.Kartenparameter.Kartengröße);
+            
+         when SystemDatentypen.Kartenart_Menü_Enum =>
+            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartenart_Enum'Pos (Karten.Kartenparameter.Kartenart);
+            
+         when SystemDatentypen.Kartentemperatur_Menü_Enum =>
+            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartentemperatur_Enum'Pos (Karten.Kartenparameter.Kartentemperatur);
+            
+         when SystemDatentypen.Kartenressourcen_Menü_Enum =>
+            AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartenressourcen_Enum'Pos (Karten.Kartenparameter.Kartenressourcen);
+            
+         when SystemDatentypen.Schwierigkeitsgrad_Menü_Enum =>
+            AktuelleEinstellung := AktuelleEinstellung + RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Pos (GlobaleVariablen.Schwierigkeitsgrad);
+            
+         when SystemDatentypen.Rassen_Menü_Enum =>
+            -- Hier geht die einfache Auswahl nicht, weil ja mehrere Dinge unterschiedlich ausgewählt sein können.
+            FarbeAusgewählteRassenFestlegen;
+            return;
+      end case;
       
+      SchriftfarbeSchleife:
+      for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
+         
+         if
+           Sf.Graphics.Text.getColor (text => TextAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert)) = GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText
+         then
+            Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert),
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+            exit SchriftfarbeSchleife;
+            
+         else
+            null;
+         end if;
+                  
+      end loop SchriftfarbeSchleife;
+      
+      if
+        Sf.Graphics.Text.getColor (text => TextAccess (WelchesMenüExtern, AktuelleEinstellung)) = GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText
+      then
+         null;
+                                   
+      else
+         Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, AktuelleEinstellung),
+                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
+      end if;
       
    end FarbeAktuelleEinstellungenFestlegen;
+   
+   
+   
+   procedure FarbeAusgewählteRassenFestlegen
+   is begin
+      
+      SchriftfarbeSchleife:
+      for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (SystemDatentypen.Rassen_Menü_Enum) - SchleifenAbzug loop
+         
+         Farbe := Sf.Graphics.Text.getColor (text => TextAccess (SystemDatentypen.Rassen_Menü_Enum, Überschrift + SchriftfarbeSchleifenwert));
+         
+         if
+           Farbe = GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText
+           or
+             Farbe = GrafikEinstellungenSFML.Schriftfarben.FarbeKIText
+         then
+            Sf.Graphics.Text.setColor (text  => TextAccess (SystemDatentypen.Rassen_Menü_Enum, Überschrift + SchriftfarbeSchleifenwert),
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+            
+         else
+            null;
+         end if;
+                  
+      end loop SchriftfarbeSchleife;
+      
+      FarbenFestlegenSchleife:
+      for FarbenFestlegenSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (SystemDatentypen.Rassen_Menü_Enum) - SchleifenAbzug loop
+         
+         if
+           Sf.Graphics.Text.getColor (text => TextAccess (SystemDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert)) = GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText
+         then
+            null;
+            
+         elsif
+           RassenDatentypen.Rassen_Verwendet_Enum'Pos (RassenDatentypen.Rassen_Verwendet_Enum'Last) < FarbenFestlegenSchleifenwert
+         then
+            exit FarbenFestlegenSchleife;
+            
+         elsif
+           GlobaleVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Spieler_Mensch_Enum
+         then
+            Sf.Graphics.Text.setColor (text  => TextAccess (SystemDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
+            
+         elsif
+           GlobaleVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Spieler_KI_Enum
+         then
+            Sf.Graphics.Text.setColor (text  => TextAccess (SystemDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeKIText);
+            
+         else
+            null;
+         end if;
+         
+      end loop FarbenFestlegenSchleife;
+      
+   end FarbeAusgewählteRassenFestlegen;
    
    
    

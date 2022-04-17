@@ -23,7 +23,7 @@ private
    
    BenutzerdefinierteGröße : SystemRecords.ZahlenEingabeRecord;
    
-   type KartengrößeRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartengröße_Verwendet_Enum) of KartenDatentypen.Kartengröße_Verwendet_Enum;
+   type KartengrößeRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.Kartengröße_Verwendet_Enum;
    KartengrößeRückgabeZuKarten : constant KartengrößeRückgabeZuKartenArray := (
                                                                                      RueckgabeDatentypen.Kartengröße_20_20_Enum     => KartenDatentypen.Kartengröße_20_20_Enum,
                                                                                      RueckgabeDatentypen.Kartengröße_40_40_Enum     => KartenDatentypen.Kartengröße_40_40_Enum,
@@ -37,7 +37,7 @@ private
                                                                                      RueckgabeDatentypen.Kartengröße_Nutzer_Enum    => KartenDatentypen.Kartengröße_Nutzer_Enum
                                                                                     );
    
-   type KartenartRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartenart_Enum) of KartenDatentypen.Kartenart_Enum;
+   type KartenartRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartenart_Enum'Range) of KartenDatentypen.Kartenart_Enum;
    KartenartRückgabeZuKarten : constant KartenartRückgabeZuKartenArray := (
                                                                              RueckgabeDatentypen.Kartenart_Inseln_Enum     => KartenDatentypen.Kartenart_Inseln_Enum,
                                                                              RueckgabeDatentypen.Kartenart_Kontinente_Enum => KartenDatentypen.Kartenart_Kontinente_Enum,
@@ -46,7 +46,23 @@ private
                                                                              RueckgabeDatentypen.Kartenart_Chaos_Enum      => KartenDatentypen.Kartenart_Chaos_Enum
                                                                             );
    
+   type KartentemperaturRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartentemperatur_Enum'Range) of KartenDatentypen.Kartentemperatur_Enum;
+   KartentemperaturRückgabeZuKarten : constant KartentemperaturRückgabeZuKartenArray := (
+                                                                                           RueckgabeDatentypen.Kartentemperatur_Kalt_Enum     => KartenDatentypen.Kartentemperatur_Kalt_Enum,
+                                                                                           RueckgabeDatentypen.Kartentemperatur_Gemäßigt_Enum => KartenDatentypen.Kartentemperatur_Gemäßigt_Enum,
+                                                                                           RueckgabeDatentypen.Kartentemperatur_Heiß_Enum     => KartenDatentypen.Kartentemperatur_Heiß_Enum,
+                                                                                           RueckgabeDatentypen.Kartentemperatur_Eiszeit_Enum  => KartenDatentypen.Kartentemperatur_Eiszeit_Enum,
+                                                                                           RueckgabeDatentypen.Kartentemperatur_Wüste_Enum    => KartenDatentypen.Kartentemperatur_Wüste_Enum
+                                                                                          );
    
+   type KartenressourcenRückgabeZuKartenArray is array (RueckgabeDatentypen.Kartenressourcen_Enum'Range) of KartenDatentypen.Kartenressourcen_Enum;
+   KartenressourcenRückgabeZuKarten : constant KartenressourcenRückgabeZuKartenArray := (
+                                                                                           RueckgabeDatentypen.Kartenressourcen_Arm_Enum       => KartenDatentypen.Kartenressourcen_Arm_Enum,
+                                                                                           RueckgabeDatentypen.Kartenressourcen_Wenig_Enum     => KartenDatentypen.Kartenressourcen_Wenig_Enum,
+                                                                                           RueckgabeDatentypen.Kartenressourcen_Mittel_Enum    => KartenDatentypen.Kartenressourcen_Mittel_Enum,
+                                                                                           RueckgabeDatentypen.Kartenressourcen_Viel_Enum      => KartenDatentypen.Kartenressourcen_Viel_Enum,
+                                                                                           RueckgabeDatentypen.Kartenressourcen_Überfluss_Enum => KartenDatentypen.Kartenressourcen_Überfluss_Enum
+                                                                                          );
    
    procedure GrößeSelbstBestimmen
      (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum);

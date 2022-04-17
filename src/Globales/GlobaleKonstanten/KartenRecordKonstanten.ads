@@ -1,7 +1,6 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with RueckgabeDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with KartenKonstanten;
@@ -44,9 +43,9 @@ package KartenRecordKonstanten is
                                                           );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
-                                                                    EAchseEinstellung                => RueckgabeDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
-                                                                    YAchseEinstellung                => RueckgabeDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
-                                                                    XAchseEinstellung                => RueckgabeDatentypen.Karte_X_Achse_Übergang_Enum,
+                                                                    EAchseEinstellung                => KartenDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
+                                                                    YAchseEinstellung                => KartenDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
+                                                                    XAchseEinstellung                => KartenDatentypen.Karte_X_Achse_Übergang_Enum,
                                                                     YZuerstBerechnenXZuerstBerechnen => True
                                                                    );
 

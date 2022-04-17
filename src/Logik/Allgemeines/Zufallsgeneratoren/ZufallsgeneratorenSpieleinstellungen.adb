@@ -77,19 +77,19 @@ package body ZufallsgeneratorenSpieleinstellungen is
    
    
    
-   function ZufälligeKartenform
-     return KartenDatentypen.Kartenform_Verwendet_Enum
-   is begin
+   -- function ZufälligeKartenform
+   --   return KartenDatentypen.Kartenform_Verwendet_Enum
+   -- is begin
       
-      ZufälligeKartenformWählen.Reset (ZufälligeKartenformGewählt);
-      return ZufälligeKartenformWählen.Random (ZufälligeKartenformGewählt);
+   --    ZufälligeKartenformWählen.Reset (ZufälligeKartenformGewählt);
+   --    return ZufälligeKartenformWählen.Random (ZufälligeKartenformGewählt);
       
-   end ZufälligeKartenform;
+   -- end ZufälligeKartenform;
 
    
    
    function ZufälligeKartentemperatur
-     return KartenDatentypen.Kartentemperatur_Verwendet_Enum
+     return KartenDatentypen.Kartentemperatur_Enum
    is begin
       
       ZufälligeKartentemperaturWählen.Reset (ZufälligeKartentemperaturGewählt);
@@ -100,7 +100,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
    
    
    function ZufälligeKartenressourcen
-     return KartenDatentypen.Kartenressourcen_Verwendet_Enum
+     return KartenDatentypen.Kartenressourcen_Enum
    is begin
       
       ZufälligeKartenressourcenWählen.Reset (ZufälligeKartenressourcenGewählt);

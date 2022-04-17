@@ -5,7 +5,6 @@ with KartenRecords;
 with KartenDatentypen;
 with KartenRecordKonstanten;
 with KartenGrundDatentypen;
-with RueckgabeDatentypen;
 
 package Karten is
 
@@ -52,13 +51,13 @@ package Karten is
                                             KartenDatentypen.Kartenart_Inseln_Enum     => (3, 3),
                                             KartenDatentypen.Kartenart_Kontinente_Enum => (7, 7),
                                             KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
-                                            others                                        => (1, 1)
+                                            others                                     => (1, 1)
                                            );
    FelderVonLandartZuLandart : GrößeLandartArray := (
                                                        KartenDatentypen.Kartenart_Inseln_Enum     => (15, 15),
                                                        KartenDatentypen.Kartenart_Kontinente_Enum => (22, 22),
                                                        KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
-                                                       others                                        => (1, 1)
+                                                       others                                     => (1, 1)
                                                       );
 
    Kartenparameter : KartenRecords.KartenparameterRecord := (
@@ -68,12 +67,12 @@ package Karten is
                                                              Kartenart        => KartenDatentypen.Kartenart_Inseln_Enum,
 
                                                              -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-                                                             Kartentemperatur => RueckgabeDatentypen.Kartentemperatur_Kalt_Enum,
+                                                             Kartentemperatur => KartenDatentypen.Kartentemperatur_Kalt_Enum,
 
                                                              -- Arm, Wenig, Mittel, Viel, Überfluss
-                                                             Kartenressourcen => RueckgabeDatentypen.Kartenressourcen_Mittel_Enum,
+                                                             Kartenressourcen => KartenDatentypen.Kartenressourcen_Mittel_Enum,
 
-                                                             Kartenpole       => RueckgabeDatentypen.Karten_Pole_YAchse,
+                                                             Kartenpole       => KartenDatentypen.Karten_Pole_YAchse,
 
                                                              -- EAchsenübergang, YAchsenübergang, XAchsenübergang
                                                              Kartenform       => KartenRecordKonstanten.KartenformStandard
@@ -82,9 +81,6 @@ package Karten is
    -- Später mehrere Kartenarten mischbar machen, das aber vielleicht nicht über einen Bool.
    -- Eventuell mehrere Kartenarten aktivierbar machen wie bei der Kartenform? Eventuell ein kompakteres System bauen.
    KartenartGemischt : Boolean := False;
-
-   -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht
-   Kartenform : KartenDatentypen.Kartenform_Verwendet_Enum := RueckgabeDatentypen.Karte_Form_X_Zylinder_Enum;
 
    type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenGrundDatentypen.Karten_Grund_Enum;
    GeneratorKarte : GeneratorKarteArray;

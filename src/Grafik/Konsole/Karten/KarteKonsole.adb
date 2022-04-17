@@ -5,13 +5,11 @@ with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with KartenDatentypen; use KartenDatentypen;
-with RueckgabeDatentypen; use RueckgabeDatentypen;
 with KartenKonstanten;
 
 with KarteKoordinatenPruefen;
 with GrafischeAnzeigeKonsole;
 with Sichtweiten;
-with Karten;
 with KarteInformationenKonsole;
 
 package body KarteKonsole is
@@ -64,30 +62,30 @@ package body KarteKonsole is
         XAchseExtern = Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False)
       then
          if
-           (Karten.Kartenform = RueckgabeDatentypen.Karte_Form_X_Zylinder_Enum
-            or
-              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Torus_Enum
-            or
-              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Kugel_Enum
-            or
-              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Kugel_Gedreht_Enum
-            or
-              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Enum
-            or
-              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Gedreht_Enum
-            or
-              Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Extrem_Enum)
-           and
+       --    (Karten.Kartenform = RueckgabeDatentypen.Karte_Form_X_Zylinder_Enum
+       --     or
+        --      Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Torus_Enum
+        --    or
+        --      Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Kugel_Enum
+       --     or
+       --       Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Kugel_Gedreht_Enum
+       --     or
+       --       Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Enum
+       --     or
+       --       Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Gedreht_Enum
+       --     or
+      --        Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Tugel_Extrem_Enum)
+       --    and
              KartenWert.XAchse > KartenKonstanten.LeerXAchse
          then
             New_Line;
                   
-         elsif
-           Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Y_Zylinder_Enum
-           or
-             Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Viereck_Enum
-         then
-            New_Line;
+      --   elsif
+      --     Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Y_Zylinder_Enum
+       --    or
+      --       Karten.Kartenform = RueckgabeDatentypen.Karte_Form_Viereck_Enum
+      --   then
+      --      New_Line;
                
          else
             null;

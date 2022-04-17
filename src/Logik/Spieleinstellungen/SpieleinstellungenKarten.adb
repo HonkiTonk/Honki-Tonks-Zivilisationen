@@ -126,21 +126,21 @@ package body SpieleinstellungenKarten is
 
          KartenformAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartenform_Menü_Enum);
          
-         case
-           KartenformAuswahl
-         is
-            when KartenDatentypen.Kartenform_Verwendet_Enum'Range =>
-               Karten.Kartenform := KartenformAuswahl;
+         -- case
+         --  KartenformAuswahl
+         -- is
+          --  when KartenDatentypen.Kartenform_Verwendet_Enum'Range =>
+          --     Karten.Kartenform := KartenformAuswahl;
                
-            when RueckgabeDatentypen.Zufall_Enum =>
-               Karten.Kartenform := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
+          --  when RueckgabeDatentypen.Zufall_Enum =>
+          --     Karten.Kartenform := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
                
-            when RueckgabeDatentypen.Fertig_Enum =>
+         --   when RueckgabeDatentypen.Fertig_Enum =>
                return;
                
-            when others =>
-               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
-         end case;
+         --   when others =>
+          --     Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
+        -- end case;
 
       end loop KartenformSchleife;
       
@@ -160,8 +160,8 @@ package body SpieleinstellungenKarten is
          case
            KartentemperaturAuswahl
          is
-            when KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range =>
-               Karten.Kartenparameter.Kartentemperatur := KartentemperaturAuswahl;
+            when RueckgabeDatentypen.Kartentemperatur_Enum'Range =>
+               Karten.Kartenparameter.Kartentemperatur := KartentemperaturRückgabeZuKarten (KartentemperaturAuswahl);
                
             when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartentemperatur := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
@@ -191,8 +191,8 @@ package body SpieleinstellungenKarten is
          case
            KartenressourcenAuswahl
          is
-            when KartenDatentypen.Kartenressourcen_Verwendet_Enum'Range =>
-               Karten.Kartenparameter.Kartenressourcen := KartenressourcenAuswahl;
+            when RueckgabeDatentypen.Kartenressourcen_Enum'Range =>
+               Karten.Kartenparameter.Kartenressourcen := KartenressourcenRückgabeZuKarten (KartenressourcenAuswahl);
                
             when RueckgabeDatentypen.Zufall_Enum =>
                Karten.Kartenparameter.Kartenressourcen := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenressourcen;

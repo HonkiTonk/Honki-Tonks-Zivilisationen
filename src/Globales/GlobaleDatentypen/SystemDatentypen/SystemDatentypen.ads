@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package SystemDatentypen is
 
    -- Wichtige Werte
-   --------------------------Auch in die RueckgabeDatentypen verschieben und zu MenueDatentypen machen? Oder in eigene Datentypen?
+   -------------------------- Auch in die RueckgabeDatentypen verschieben und zu MenueDatentypen machen? Oder in eigene Datentypen?
    type Welches_Menü_Enum is (
                                Leer_Menü_Enum,
                                
@@ -44,6 +44,8 @@ package SystemDatentypen is
                                 
                                 Zahlen_Eingabe_Enum, Text_Eingabe_Enum, Einheit_Auswahl_Enum
                                );
+   
+   --------------------- Hier den Schwierigkeitsgrad_Enum einbauen.
    -- Wichtige Werte
    
     

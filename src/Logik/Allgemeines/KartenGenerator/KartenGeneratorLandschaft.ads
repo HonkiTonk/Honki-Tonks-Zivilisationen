@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with RueckgabeDatentypen;
 with KartenGrundDatentypen;
 with KartenRecords;
 
@@ -35,12 +34,12 @@ private
                                                 );
    
    --------------------------- Mal besser gestalten.
-   type KartengrundWahrscheinlichkeitenArray is array (KartenDatentypen.Kartentemperatur_Verwendet_Enum'Range,
+   type KartengrundWahrscheinlichkeitenArray is array (KartenDatentypen.Kartentemperatur_Enum'Range,
                                                        KartenGrundDatentypen.Landschaft_Wahrscheinlichkeit_Enum'Range,
                                                        KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray :=
      (
-      RueckgabeDatentypen.Kartentemperatur_Kalt_Enum => 
+      KartenDatentypen.Kartentemperatur_Kalt_Enum => 
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (0 => 0.25,
@@ -131,7 +130,7 @@ private
            )
         ),
                                                                                        
-      RueckgabeDatentypen.Kartentemperatur_Gemäßigt_Enum =>
+      KartenDatentypen.Kartentemperatur_Gemäßigt_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -225,7 +224,7 @@ private
            )
         ),
                                                                                        
-      RueckgabeDatentypen.Kartentemperatur_Heiß_Enum =>
+      KartenDatentypen.Kartentemperatur_Heiß_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -319,7 +318,7 @@ private
            )
         ),
                                                                                        
-      RueckgabeDatentypen.Kartentemperatur_Eiszeit_Enum =>
+      KartenDatentypen.Kartentemperatur_Eiszeit_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
@@ -413,7 +412,7 @@ private
            )
         ),
                                                                                        
-      RueckgabeDatentypen.Kartentemperatur_Wüste_Enum =>
+      KartenDatentypen.Kartentemperatur_Wüste_Enum =>
         (
          KartenGrundDatentypen.Tundra_Enum =>
            (
