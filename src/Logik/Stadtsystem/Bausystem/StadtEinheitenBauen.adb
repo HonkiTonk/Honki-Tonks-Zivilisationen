@@ -26,7 +26,7 @@ package body StadtEinheitenBauen is
       EinheitNummer := 0;
             
       EinheitenSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze loop
+      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze loop
             
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert))
@@ -44,10 +44,10 @@ package body StadtEinheitenBauen is
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
         and
-          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+          SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
       then
-         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell;
+         SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAlt := SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell;
          
       elsif
         EinheitNummer = EinheitenKonstanten.LeerNummer
@@ -74,7 +74,7 @@ package body StadtEinheitenBauen is
       else
          KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                           RasseExtern               => StadtRasseNummerExtern.Rasse,
-                                                                          IDExtern                  => EinheitStadtDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut
+                                                                          IDExtern                  => EinheitStadtDatentypen.EinheitenID (SpielVariablen.StadtGebaut
                                                                             (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt.Nummer),
                                                                           NotwendigeFelderExtern    => 1);
       end if;
@@ -111,7 +111,7 @@ package body StadtEinheitenBauen is
                                       BauprojektExtern       => StadtKonstanten.LeerStadt.Bauprojekt);
             
       case
-        GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
+        SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.Spieler_Mensch_Enum =>
             StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,

@@ -77,10 +77,10 @@ package body KarteStadtKonsole is
             Aufschlag := Aufschlag - 1;
             if
               LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 WelchesGebäudeExtern  => EinheitStadtDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12))
+                                                 WelchesGebäudeExtern  => EinheitStadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12))
               = True
             then
-               Put_Line (Item => GebaeudeAllgemein.BeschreibungKurz (IDExtern => EinheitStadtDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12)));
+               Put_Line (Item => GebaeudeAllgemein.BeschreibungKurz (IDExtern => EinheitStadtDatentypen.GebäudeID (SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse + Aufschlag * 12)));
             
             else
                null;
@@ -99,17 +99,17 @@ package body KarteStadtKonsole is
    is begin
       
       if
-        ((GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = 1
+        ((SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = 1
           or
-            GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = 2)
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = 2)
          and
-           GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse <= 12)
+           SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse <= 12)
         or
-          (GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = 3
+          (SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = 3
            and
-             GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse <= 2)
+             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse <= 2)
       then
-         return GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse;
+         return SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse;
          
       else
          return KartenDatentypen.SichtweiteMitNullwert'First;
@@ -177,7 +177,7 @@ package body KarteStadtKonsole is
          return True;
                
       elsif
-        GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt = (YAchseExtern, XAchseExtern)
+        SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt = (YAchseExtern, XAchseExtern)
       then
          CursorDarstellung (YAchseExtern => YAchseExtern,
                             XAchseExtern => XAchseExtern,
@@ -225,7 +225,7 @@ package body KarteStadtKonsole is
          FarbgebungKonsole.Farben (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
+                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
                                    FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
                                    RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
@@ -255,7 +255,7 @@ package body KarteStadtKonsole is
          FarbgebungKonsole.Farben (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
+                                   GrundExtern        => LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
                                    FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
                                    RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
@@ -296,7 +296,7 @@ package body KarteStadtKonsole is
          FarbgebungKonsole.Farben  (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                     VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                     WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell),
+                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell),
                                     FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
                                     RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
                                     CursorExtern       => True,
@@ -362,7 +362,7 @@ package body KarteStadtKonsole is
       for UmgebungSchleifenwert in KartenDatentypen.Stadtfeld (1) .. 7 loop
                      
          if
-           GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt = (YAchseExtern, XAchseExtern + UmgebungSchleifenwert - 1)
+           SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt = (YAchseExtern, XAchseExtern + UmgebungSchleifenwert - 1)
          then
             FarbgebungKonsole.Farben  (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                        VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
@@ -397,7 +397,7 @@ package body KarteStadtKonsole is
 
          Cursor := CursorKonstant + UmgebungSchleifenwert;
          if
-           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt = (YAchseExtern, XAchseExtern + Cursor)
+           SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt = (YAchseExtern, XAchseExtern + Cursor)
          then
             AnzeigeUmgebungCursor (RasseExtern    => StadtRasseNummerExtern.Rasse,
                                    UmgebungExtern => UmgebungSchleifenwert);
@@ -410,7 +410,7 @@ package body KarteStadtKonsole is
             Put (Item => TextKonstanten.LeerZeichen);
 
          else            
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
                                                                            ÄnderungExtern    => (0, YAchsenabstraktion, UmgebungSchleifenwert),
                                                                            LogikGrafikExtern => False);
             
@@ -458,10 +458,10 @@ package body KarteStadtKonsole is
 
       else
          InformationenStadtAufrufen := True;
-         CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse - 4;
-         CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse - 17;
+         CursorYAchseabstraktion := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse - 4;
+         CursorXAchseabstraktion := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse - 17;
                
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
                                                                         ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
                                                                         LogikGrafikExtern => False);
          case
@@ -499,10 +499,10 @@ package body KarteStadtKonsole is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
 
-      CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse - 4;
-      CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse - 17;
+      CursorYAchseabstraktion := SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse - 4;
+      CursorXAchseabstraktion := SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse - 17;
       
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
+      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
                                                                      ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
                                                                      LogikGrafikExtern => False);
       

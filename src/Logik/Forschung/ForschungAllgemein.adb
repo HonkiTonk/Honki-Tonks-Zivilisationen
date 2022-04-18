@@ -9,6 +9,7 @@ with TextKonstanten;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
 with SystemDatentypen;
+with OptionenVariablen;
 
 with SchreibeWichtiges;
 with LeseForschungsDatenbank;
@@ -116,7 +117,7 @@ package body ForschungAllgemein is
       AktuelleAuswahl := 1;
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             return 0;
@@ -230,7 +231,7 @@ package body ForschungAllgemein is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;

@@ -6,6 +6,7 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitStadtRecords;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with SpielVariablen;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -23,9 +24,9 @@ package body NaechstesObjekt is
       loop
 
          if
-           AktuelleEinheit (RasseExtern) >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
+           AktuelleEinheit (RasseExtern) >= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
          then
-            AktuelleEinheit (RasseExtern) := GlobaleVariablen.EinheitenGebautArray'First (2);
+            AktuelleEinheit (RasseExtern) := SpielVariablen.EinheitenGebautArray'First (2);
                
          else
             AktuelleEinheit (RasseExtern) := AktuelleEinheit (RasseExtern) + 1;
@@ -49,7 +50,7 @@ package body NaechstesObjekt is
          end if;
          
          if
-           SchleifenBegrenzung < GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
+           SchleifenBegrenzung < SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
          then
             SchleifenBegrenzung := SchleifenBegrenzung + 1;
             
@@ -59,7 +60,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
       
    end NächsteEinheit;
    
@@ -75,9 +76,9 @@ package body NaechstesObjekt is
       loop
 
          if
-           AktuelleStadt (RasseExtern) >= GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
+           AktuelleStadt (RasseExtern) >= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
          then
-            AktuelleStadt (RasseExtern) := GlobaleVariablen.StadtGebautArray'First (2);
+            AktuelleStadt (RasseExtern) := SpielVariablen.StadtGebautArray'First (2);
                
          else
             AktuelleStadt (RasseExtern) := AktuelleStadt (RasseExtern) + 1;
@@ -94,7 +95,7 @@ package body NaechstesObjekt is
          end case;
          
          if
-           SchleifenBegrenzung < GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
+           SchleifenBegrenzung < SpielVariablen.Grenzen (RasseExtern).Städtegrenze
          then
             SchleifenBegrenzung := SchleifenBegrenzung + 1;
             
@@ -104,7 +105,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
       
    end NächsteStadt;
    
@@ -120,9 +121,9 @@ package body NaechstesObjekt is
       loop
 
          if
-           AktuelleStadtMeldung (RasseExtern) >= GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
+           AktuelleStadtMeldung (RasseExtern) >= SpielVariablen.Grenzen (RasseExtern).Städtegrenze
          then
-            AktuelleStadtMeldung (RasseExtern) := GlobaleVariablen.StadtGebautArray'First (2);
+            AktuelleStadtMeldung (RasseExtern) := SpielVariablen.StadtGebautArray'First (2);
                
          else
             AktuelleStadtMeldung (RasseExtern) := AktuelleStadtMeldung (RasseExtern) + 1;
@@ -152,7 +153,7 @@ package body NaechstesObjekt is
          end if;
          
          if
-           SchleifenBegrenzung < GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
+           SchleifenBegrenzung < SpielVariablen.Grenzen (RasseExtern).Städtegrenze
          then
             SchleifenBegrenzung := SchleifenBegrenzung + 1;
             
@@ -162,7 +163,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
       
    end NächsteStadtMeldung;
    
@@ -178,9 +179,9 @@ package body NaechstesObjekt is
       loop
 
          if
-           AktuelleEinheitMeldung (RasseExtern) >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
+           AktuelleEinheitMeldung (RasseExtern) >= SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
          then
-            AktuelleEinheitMeldung (RasseExtern) := GlobaleVariablen.EinheitenGebautArray'First (2);
+            AktuelleEinheitMeldung (RasseExtern) := SpielVariablen.EinheitenGebautArray'First (2);
                
          else
             AktuelleEinheitMeldung (RasseExtern) := AktuelleEinheitMeldung (RasseExtern) + 1;
@@ -210,7 +211,7 @@ package body NaechstesObjekt is
          end if;
          
          if
-           SchleifenBegrenzung < GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
+           SchleifenBegrenzung < SpielVariablen.Grenzen (RasseExtern).Einheitengrenze
          then
             SchleifenBegrenzung := SchleifenBegrenzung + 1;
             
@@ -220,7 +221,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
       
    end NächsteEinheitMeldung;
    

@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
-with GlobaleVariablen;
+with OptionenVariablen;
 with SystemRecords;
 
 with GrafikEinstellungenSFML;
@@ -28,7 +28,7 @@ package body SchreibenEinstellungen is
       end case;
          
       SystemRecords.NutzerEinstellungenRecord'Write (Stream (File => DateiEinstellungenSchreiben),
-                                                     GlobaleVariablen.NutzerEinstellungen);
+                                                     OptionenVariablen.NutzerEinstellungen);
       
       SystemRecords.FensterRecord'Write (Stream (File => DateiEinstellungenSchreiben),
                                          GrafikEinstellungenSFML.FensterEinstellungen);

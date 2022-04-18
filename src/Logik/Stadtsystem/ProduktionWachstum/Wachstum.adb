@@ -30,14 +30,14 @@ package body Wachstum is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                StadtSchleife:
-               for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
+               for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
                   case
                     LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))
@@ -232,7 +232,7 @@ package body Wachstum is
             for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
                
                case
-                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+                 SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
                is
                   when RassenDatentypen.Leer_Spieler_Enum =>
                      null;
@@ -263,7 +263,7 @@ package body Wachstum is
                                                RechnenSetzenExtern          => False);
       
       StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))

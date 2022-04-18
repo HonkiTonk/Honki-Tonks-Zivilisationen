@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
+with SpielVariablen;
 
 with LeseStadtGebaut;
 with LeseEinheitenDatenbank;
@@ -18,7 +19,7 @@ package body KIStadtLaufendeBauprojekte is
       GleichesBauprojekt := 0;
      
       StadtSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
+      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
             
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
@@ -55,7 +56,7 @@ package body KIStadtLaufendeBauprojekte is
       GleichesBauprojekt := 0;
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
+      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
             
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer

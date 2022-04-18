@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleVariablen;
 with GrafikDatentypen;
+with OptionenVariablen;
 
 with LadezeitenKonsole;
 with LadezeitenSFML;
@@ -14,7 +14,7 @@ package body Ladezeiten is
    is begin
 
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             LadezeitenKonsole.LadezeitenSpielweltErstellen (WelcheZeitExtern => WelcheZeitExtern);
@@ -32,7 +32,7 @@ package body Ladezeiten is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             LadezeitenKonsole.AnzeigeEinzelneZeit (WelcheZeitExtern => WelcheZeitExtern);
@@ -50,7 +50,7 @@ package body Ladezeiten is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             LadezeitenKonsole.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => WelcheZeitExtern);
@@ -68,7 +68,7 @@ package body Ladezeiten is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             LadezeitenKonsole.AnzeigeKIZeit (WelcheZeitExtern => WelcheZeitExtern);

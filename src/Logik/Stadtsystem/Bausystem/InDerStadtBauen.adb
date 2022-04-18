@@ -11,6 +11,7 @@ with StadtKonstanten;
 with GlobaleTexte;
 with TextKonstanten;
 with TastenbelegungDatentypen;
+with OptionenVariablen;
 
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
@@ -70,7 +71,7 @@ package body InDerStadtBauen is
          return StadtKonstanten.LeerBauprojekt;
          
       elsif
-        GlobaleVariablen.AnzeigeArt = GrafikDatentypen.Grafik_SFML_Enum
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart = GrafikDatentypen.Grafik_SFML_Enum
       then
          return AuswahlBauprojektSFML;
          

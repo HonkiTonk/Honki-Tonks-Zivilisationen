@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TonDatentypen;
 with ZeitKonstanten;
-with GlobaleVariablen;
+with OptionenVariablen;
 with GrafikDatentypen;
 
 with SoundSFML;
@@ -18,7 +18,7 @@ package body StartSound is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             return;

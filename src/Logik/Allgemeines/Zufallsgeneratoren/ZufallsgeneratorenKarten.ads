@@ -7,7 +7,7 @@ with Ada.Numerics.Float_Random;
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenGrundDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 with KartenRecords;
 
 with Karten;
@@ -19,7 +19,7 @@ package ZufallsgeneratorenKarten is
       return KartenRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum),
          Post =>
            (StartPosition'Result.EAchse in -1 .. 0
             and

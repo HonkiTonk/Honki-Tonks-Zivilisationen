@@ -10,7 +10,8 @@ with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with GrafikDatentypen;
 -- with GlobaleTexte;
-with GlobaleVariablen;
+with SonstigeVariablen;
+with OptionenVariablen;
 
 with Eingabe;
 with AuswahlMenues;
@@ -62,7 +63,7 @@ package body OptionenSteuerung is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             AlteTasteEntfernenKonsole;
@@ -129,7 +130,7 @@ package body OptionenSteuerung is
    procedure AlteTasteEntfernenSFML
    is begin
                
-      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (GlobaleVariablen.UmbelegungNummer);
+      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (SonstigeVariablen.UmbelegungNummer);
       -- Das hier später entfernen.
       Put_Line (Item => NeueAuswahl'Wide_Wide_Image);
       
@@ -184,7 +185,7 @@ package body OptionenSteuerung is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             AlteTasteEntfernenKonsole;

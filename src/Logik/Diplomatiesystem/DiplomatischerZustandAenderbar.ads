@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 with EinheitStadtDatentypen;
 
 package DiplomatischerZustandAenderbar is
@@ -17,9 +17,9 @@ package DiplomatischerZustandAenderbar is
        Pre =>
          (RasseEinsExtern /= RasseZweiExtern
           and
-            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
+            SonstigeVariablen.RassenImSpiel (RasseEinsExtern) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+            SonstigeVariablen.RassenImSpiel (RasseZweiExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
 private
    

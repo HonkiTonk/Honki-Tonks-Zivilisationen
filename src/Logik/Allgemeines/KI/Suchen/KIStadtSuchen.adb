@@ -5,6 +5,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenRecordKonstanten;
+with SpielVariablen;
 
 with LeseStadtGebaut;
 
@@ -44,7 +45,7 @@ package body KIStadtSuchen is
       AktuelleStadt := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
       
       StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          if
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
@@ -55,14 +56,14 @@ package body KIStadtSuchen is
            AktuelleStadt = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
          then
             AktuelleStadt := StadtSchleifenwert; -- ----------------
-            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.EAchse)
-                                    + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.YAchse)
-                                    + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.XAchse));
+            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.EAchse)
+                                    + abs (AnfangKoordinatenExtern.YAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.YAchse)
+                                    + abs (AnfangKoordinatenExtern.XAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.XAchse));
             
          else
-            EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.EAchse)
-                                       + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.YAchse)
-                                       + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.XAchse));
+            EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.EAchse)
+                                       + abs (AnfangKoordinatenExtern.YAchse - SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.YAchse)
+                                       + abs (AnfangKoordinatenExtern.XAchse - SpielVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).KoordinatenAktuell.XAchse));
             if
               Entfernung > EntfernungNeu
             then
@@ -87,7 +88,7 @@ package body KIStadtSuchen is
    is begin
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop
+      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop
          
          if
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum

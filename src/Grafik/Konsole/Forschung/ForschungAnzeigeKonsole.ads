@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 
 package ForschungAnzeigeKonsole is
 
@@ -13,7 +13,7 @@ package ForschungAnzeigeKonsole is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
 private
 
@@ -26,13 +26,13 @@ private
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    procedure Benötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end ForschungAnzeigeKonsole;

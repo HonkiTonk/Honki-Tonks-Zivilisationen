@@ -61,7 +61,7 @@ package body KarteStadtSFML is
                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
             
             case
-              GlobaleVariablen.Debug
+              SonstigeVariablen.Debug
             is
                when True =>
                   MauszeigerAnzeigen (YAchseExtern   => YAchseSchleifenwert,
@@ -151,9 +151,9 @@ package body KarteStadtSFML is
    is begin
             
       if
-        GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = YAchseExtern
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse = YAchseExtern
         and
-          GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse = XAchseExtern
+          SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse = XAchseExtern
       then
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.StadtfelderAbmessung.x / 2.00,
                                               PositionExtern      => PositionExtern,

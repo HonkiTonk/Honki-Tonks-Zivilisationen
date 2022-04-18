@@ -6,7 +6,7 @@ with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with GlobaleVariablen;
+with SpielVariablen;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
@@ -135,9 +135,9 @@ package body BefehleKonsole is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                 KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
 
       if
         EinheitNummer /= EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First
@@ -235,8 +235,8 @@ package body BefehleKonsole is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse := 1;
-      GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse := 1;
+      SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse := 1;
+      SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse := 1;
       InDerStadt.InDerStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtBetreten;
@@ -272,7 +272,7 @@ package body BefehleKonsole is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       case
         EinheitNummer
       is
@@ -331,7 +331,7 @@ package body BefehleKonsole is
    is begin
                      
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                       KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       if
         EinheitNummer = EinheitenKonstanten.LeerNummer
       then
@@ -361,7 +361,7 @@ package body BefehleKonsole is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                 KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
       if
         StadtNummer = StadtKonstanten.LeerNummer
@@ -392,7 +392,7 @@ package body BefehleKonsole is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
+                                                                 KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       case
         StadtNummer
       is

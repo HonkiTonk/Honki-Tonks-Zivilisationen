@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
-with GlobaleVariablen;
 with SystemRecords;
+with OptionenVariablen;
 
 with SchreibenEinstellungen;
 with GrafikEinstellungenSFML;
@@ -30,7 +30,7 @@ package body EinlesenEinstellungen is
       end case;
          
       SystemRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
-                                                    GlobaleVariablen.NutzerEinstellungen);
+                                                    OptionenVariablen.NutzerEinstellungen);
       
       SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                         GrafikEinstellungenSFML.FensterEinstellungen);

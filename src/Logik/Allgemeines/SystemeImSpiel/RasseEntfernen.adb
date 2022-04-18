@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with WichtigesKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with SpielVariablen;
 
 with SchreibeStadtGebaut;
 with SchreibeEinheitenGebaut;
@@ -19,14 +20,14 @@ package body RasseEntfernen is
    is begin
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert));
          
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
          
@@ -35,15 +36,15 @@ package body RasseEntfernen is
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         GlobaleVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := WichtigesKonstanten.LeerDiplomatie;
-         GlobaleVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := WichtigesKonstanten.LeerDiplomatie;
+         SpielVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := WichtigesKonstanten.LeerDiplomatie;
+         SpielVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := WichtigesKonstanten.LeerDiplomatie;
          
       end loop DiplomatieSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern) := WichtigesKonstanten.LeerCursor;
-      GlobaleVariablen.Wichtiges (RasseExtern) := WichtigesKonstanten.LeerWichtigesZeug;
+      SpielVariablen.CursorImSpiel (RasseExtern) := WichtigesKonstanten.LeerCursor;
+      SpielVariablen.Wichtiges (RasseExtern) := WichtigesKonstanten.LeerWichtigesZeug;
       
-      GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
+      SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
       
    end RasseEntfernen;
    
@@ -54,7 +55,7 @@ package body RasseEntfernen is
    is begin
             
       EinheitenSchleife:
-      for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))
@@ -69,7 +70,7 @@ package body RasseEntfernen is
       end loop EinheitenSchleife;
       
       StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
@@ -93,7 +94,7 @@ package body RasseEntfernen is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
+      SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
       KartenfelderBewerten.KartenfelderBewerten (RasseExtern => RasseExtern);
       
    end RasseAufKISetzen;

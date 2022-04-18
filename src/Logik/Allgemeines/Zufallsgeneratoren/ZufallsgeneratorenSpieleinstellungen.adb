@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 
 with Karten;
 
@@ -77,14 +77,12 @@ package body ZufallsgeneratorenSpieleinstellungen is
    
    
    
-   -- function ZufälligeKartenform
-   --   return KartenDatentypen.Kartenform_Verwendet_Enum
-   -- is begin
+    procedure ZufälligeKartenform
+    is begin
       
-   --    ZufälligeKartenformWählen.Reset (ZufälligeKartenformGewählt);
-   --    return ZufälligeKartenformWählen.Random (ZufälligeKartenformGewählt);
+       null;
       
-   -- end ZufälligeKartenform;
+    end ZufälligeKartenform;
 
    
    
@@ -114,7 +112,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
    is begin
       
       SpielerVorhanden := False;
-      GlobaleVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
+      SonstigeVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
       ZufälligeRassenWählen.Reset (ZufälligeRassenGewählt);
       
       SpielerSchleife:
@@ -127,7 +125,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
             if
               RasseImSpiel = RassenDatentypen.Spieler_KI_Enum
             then
-               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
+               SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) := RasseImSpiel;
                SpielerVorhanden := True;
             
             else
@@ -145,7 +143,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          for MenschlicheRasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
 
             if
-              GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.Spieler_KI_Enum
+              SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) = RassenDatentypen.Spieler_KI_Enum
             then
                RasseImSpiel := ZufälligeRassenWählen.Random (ZufälligeRassenGewählt);
                
@@ -153,7 +151,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
                  RasseImSpiel
                is
                   when RassenDatentypen.Spieler_Mensch_Enum =>
-                     GlobaleVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := RassenDatentypen.Spieler_Mensch_Enum;
+                     SonstigeVariablen.RassenImSpiel (MenschlicheRasseSchleifenwert) := RassenDatentypen.Spieler_Mensch_Enum;
                      return;
                      
                   when others =>
@@ -172,7 +170,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
    
    
    function ZufälligerSchwiewrigkeitsgrad
-     return RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum
+     return SpielDatentypen.Schwierigkeitsgrad_Enum
    is begin
       
       ZufälligenSchwierigkeitsgradWählen.Reset (ZufälligerSchwierigkeitsgradGewählt);

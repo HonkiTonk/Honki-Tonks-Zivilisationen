@@ -5,7 +5,7 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings; use Ada.Strings.UTF_Encoding.Wi
 with Ada.Directories; use Ada.Directories;
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen;
+with OptionenVariablen;
 with TextKonstanten;
 
 with Warnung;
@@ -18,12 +18,12 @@ package body EinlesenText is
       TextdateienEinlesen := (others => TextKonstanten.LeerUnboundedString);
       
       case
-        Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.NutzerEinstellungen.Sprache)) & "/0")
+        Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & "/0")
       is
          when True =>
             Open (File => DateiTextEinlesen,
                   Mode => In_File,
-                  Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.NutzerEinstellungen.Sprache)) & "/0");
+                  Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => OptionenVariablen.NutzerEinstellungen.Sprache)) & "/0");
 
          when False =>
             Warnung.LogikWarnung (WarnmeldungExtern => "EinlesenText.EinlesenDateien - 0-Datei fehlt.");

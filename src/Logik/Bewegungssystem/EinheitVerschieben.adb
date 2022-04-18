@@ -25,7 +25,7 @@ package body EinheitVerschieben is
    is begin
       
       case
-        GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
+        SpielVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
          when SystemDatentypen.Nichtangriffspakt_Enum | SystemDatentypen.Neutral_Enum =>
             EinheitNummer := 0;
@@ -35,7 +35,7 @@ package body EinheitVerschieben is
       end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))

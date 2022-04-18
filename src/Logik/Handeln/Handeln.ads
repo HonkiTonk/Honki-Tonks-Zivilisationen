@@ -12,9 +12,9 @@ package Handeln is
       return Integer
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= SystemDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
+            SonstigeVariablen.RassenImSpiel (KontaktierteRasseExtern) /= SystemDatentypen.Leer);
    
 private
    

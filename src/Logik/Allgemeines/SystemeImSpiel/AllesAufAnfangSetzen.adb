@@ -1,13 +1,14 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleVariablen;
+with SonstigeVariablen;
 with WichtigesKonstanten;
 with TextKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with KartenRecordKonstanten;
 with RassenDatentypen;
+with SpielVariablen;
 
 with Karten;
 with DebugPlatzhalter;
@@ -17,17 +18,17 @@ package body AllesAufAnfangSetzen is
    procedure AllesAufAnfangSetzen
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
-      GlobaleVariablen.EinheitenGebaut := (others => (others => EinheitenKonstanten.LeerEinheit));
-      GlobaleVariablen.StadtGebaut := (others => (others => StadtKonstanten.LeerStadt));
-      GlobaleVariablen.Wichtiges := (others => WichtigesKonstanten.LeerWichtigesZeug);
-      GlobaleVariablen.Diplomatie := (others => (others => WichtigesKonstanten.LeerDiplomatie));
-      GlobaleVariablen.RundenAnzahl := Positive'First;
-      GlobaleVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
-      GlobaleVariablen.CursorImSpiel := (others => WichtigesKonstanten.LeerCursor);
-      GlobaleVariablen.Gewonnen := False;
-      GlobaleVariablen.IronmanName := TextKonstanten.LeerUnboundedString;
-      GlobaleVariablen.WeiterSpielen := False;
+      SonstigeVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
+      SpielVariablen.EinheitenGebaut := (others => (others => EinheitenKonstanten.LeerEinheit));
+      SpielVariablen.StadtGebaut := (others => (others => StadtKonstanten.LeerStadt));
+      SpielVariablen.Wichtiges := (others => WichtigesKonstanten.LeerWichtigesZeug);
+      SpielVariablen.Diplomatie := (others => (others => WichtigesKonstanten.LeerDiplomatie));
+      SpielVariablen.RundenAnzahl := Positive'First;
+      SonstigeVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
+      SpielVariablen.CursorImSpiel := (others => WichtigesKonstanten.LeerCursor);
+      SonstigeVariablen.Gewonnen := False;
+      SpielVariablen.IronmanName := TextKonstanten.LeerUnboundedString;
+      SonstigeVariablen.WeiterSpielen := False;
       
       DebugPlatzhalter.DebugSieg := False;
       DebugPlatzhalter.FeindlicheInformationenSehen := False;

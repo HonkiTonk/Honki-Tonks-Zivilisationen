@@ -109,7 +109,7 @@ package body DebugPlatzhalter is
          RassenZweiteSchleife:
          for RasseZweiSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SystemDatentypen.Neutral_Enum;
+            SpielVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := SystemDatentypen.Neutral_Enum;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;
@@ -126,7 +126,7 @@ package body DebugPlatzhalter is
       ErsteAnzeige := True;
       
       case
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+        SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when RassenDatentypen.Spieler_KI_Enum =>
             BewegungPlanSchleife:
@@ -189,13 +189,13 @@ package body DebugPlatzhalter is
       
       -- Die Stadtbelegung eventuell in die Konsolenanzeige verschieben? Die Belegung wird ja auch in der SFML angezeigt.
       
-      Put (Item => "Aktuelle GrundID: " & LeseKarten.Grund (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
-      Put_Line (Item => "    Aktuelle Stadtbelegung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,
-                GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.RasseBelegt'Wide_Wide_Image & ", "
-                & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,
-                  GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.StadtBelegt'Wide_Wide_Image);
-      Put (Item => "Weg: " & LeseKarten.Weg (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
-      Put_Line (Item => "    Feldverbesserung: " & LeseKarten.Verbesserung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
+      Put (Item => "Aktuelle GrundID: " & LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
+      Put_Line (Item => "    Aktuelle Stadtbelegung:" & Karten.Weltkarte (SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,
+                SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.RasseBelegt'Wide_Wide_Image & ", "
+                & Karten.Weltkarte (SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.EAchse, SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse,
+                  SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse).DurchStadtBelegterGrund.StadtBelegt'Wide_Wide_Image);
+      Put (Item => "Weg: " & LeseKarten.Weg (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
+      Put_Line (Item => "    Feldverbesserung: " & LeseKarten.Verbesserung (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell)'Wide_Wide_Image);
       
       ErsteAnzeige := True;
       
@@ -213,7 +213,7 @@ package body DebugPlatzhalter is
                null;
          end case;
          
-         Put (Item => "    " & RasseSchleifenwert'Wide_Wide_Image & ":" & LeseKarten.Bewertung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+         Put (Item => "    " & RasseSchleifenwert'Wide_Wide_Image & ":" & LeseKarten.Bewertung (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
                                                                                                 RasseExtern       => RasseSchleifenwert)'Wide_Wide_Image);
          
          if

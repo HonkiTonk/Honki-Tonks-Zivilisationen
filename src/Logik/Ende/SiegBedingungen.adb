@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 
 with LeseWichtiges;
 
@@ -65,7 +65,7 @@ package body SiegBedingungen is
       for RassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RassenSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -94,7 +94,7 @@ package body SiegBedingungen is
             return True;
             
          when 1 =>
-            GlobaleVariablen.Gewonnen := True;
+            SonstigeVariablen.Gewonnen := True;
             return True;
             
          when others =>
@@ -113,14 +113,14 @@ package body SiegBedingungen is
       for RassenGeldSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           SonstigeVariablen.RassenImSpiel (RassenGeldSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
          then
             null;
             
          elsif
            LeseWichtiges.Geldmenge (RasseExtern => RassenGeldSchleifenwert) = Integer'Last
          then
-            GlobaleVariablen.Gewonnen := True;
+            SonstigeVariablen.Gewonnen := True;
             return True;
             
          else
@@ -146,7 +146,7 @@ package body SiegBedingungen is
             return False;
             
          when True =>
-            GlobaleVariablen.Gewonnen := True;
+            SonstigeVariablen.Gewonnen := True;
             return True;
       end case;
          

@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
+with SpielVariablen;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -16,7 +17,7 @@ package body TransporterSuchen is
    is begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
            LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) /= KoordinatenExtern

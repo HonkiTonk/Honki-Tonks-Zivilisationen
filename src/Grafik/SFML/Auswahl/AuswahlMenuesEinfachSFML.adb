@@ -10,8 +10,9 @@ with SystemDatentypen; use SystemDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with SonstigesKonstanten;
 with KartenDatentypen;
-with RueckgabeDatentypen;
-with GlobaleVariablen;
+with SpielVariablen;
+with SpielDatentypen;
+with SonstigeVariablen;
 
 with GrafikEinstellungenSFML;
 with AllgemeineTextBerechnungenSFML;
@@ -300,7 +301,7 @@ package body AuswahlMenuesEinfachSFML is
             AktuelleEinstellung := AktuelleEinstellung + KartenDatentypen.Kartenressourcen_Enum'Pos (Karten.Kartenparameter.Kartenressourcen);
             
          when SystemDatentypen.Schwierigkeitsgrad_Menü_Enum =>
-            AktuelleEinstellung := AktuelleEinstellung + RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Pos (GlobaleVariablen.Schwierigkeitsgrad);
+            AktuelleEinstellung := AktuelleEinstellung + SpielDatentypen.Schwierigkeitsgrad_Enum'Pos (SpielVariablen.Schwierigkeitsgrad);
             
          when SystemDatentypen.Rassen_Menü_Enum =>
             -- Hier geht die einfache Auswahl nicht, weil ja mehrere Dinge unterschiedlich ausgewählt sein können.
@@ -374,13 +375,13 @@ package body AuswahlMenuesEinfachSFML is
             exit FarbenFestlegenSchleife;
             
          elsif
-           GlobaleVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Spieler_Mensch_Enum
+           SonstigeVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Spieler_Mensch_Enum
          then
             Sf.Graphics.Text.setColor (text  => TextAccess (SystemDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
                                        color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
             
          elsif
-           GlobaleVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Spieler_KI_Enum
+           SonstigeVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Spieler_KI_Enum
          then
             Sf.Graphics.Text.setColor (text  => TextAccess (SystemDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
                                        color => GrafikEinstellungenSFML.Schriftfarben.FarbeKIText);

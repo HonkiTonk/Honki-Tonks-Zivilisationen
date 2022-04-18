@@ -13,6 +13,7 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
+with SpielVariablen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -62,7 +63,7 @@ package body KarteSFML is
          XAchseSchleife:
          for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
                                                                            ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                            LogikGrafikExtern => False);
             
@@ -129,7 +130,7 @@ package body KarteSFML is
                            PositionExtern    => PositionExtern);
             
       case
-        GlobaleVariablen.Debug
+        SonstigeVariablen.Debug
       is
          when True =>
             AnzeigeCursor (KoordinatenExtern => KoordinatenExtern,
@@ -578,7 +579,7 @@ package body KarteSFML is
    is begin
       
       if
-        KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
+        KoordinatenExtern = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
       then
          ObjekteZeichnenSFML.PolygonZeichnen (RadiusExtern        => BerechnungenKarteSFML.KartenfelderAbmessung.x / 2.00,
                                               PositionExtern      => PositionExtern,

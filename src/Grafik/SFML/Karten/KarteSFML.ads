@@ -11,7 +11,7 @@ with Sf.Graphics.Sprite;
 with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
-with GlobaleVariablen;
+with SonstigeVariablen;
 with EinheitStadtRecords;
 with KartenGrundDatentypen;
 with KartenVerbesserungDatentypen;
@@ -22,7 +22,7 @@ package KarteSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
    
 private
    

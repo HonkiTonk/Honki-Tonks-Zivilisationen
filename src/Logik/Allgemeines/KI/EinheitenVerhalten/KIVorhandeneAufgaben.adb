@@ -116,7 +116,7 @@ package body KIVorhandeneAufgaben is
          return 11;
          
       elsif
-        GlobaleVariablen.RundenAnzahl
+        SpielVariablen.RundenAnzahl
           > (Positive (VorhandeneStädte)
              + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Stadt_Bauen_Enum))
@@ -170,7 +170,7 @@ package body KIVorhandeneAufgaben is
       EinheitNummer := 1;
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
+      for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
          
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
@@ -224,7 +224,7 @@ package body KIVorhandeneAufgaben is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) = RassenDatentypen.Leer_Spieler_Enum
            or
              RasseSchleifenwert = EinheitRasseNummerExtern.Rasse
          then

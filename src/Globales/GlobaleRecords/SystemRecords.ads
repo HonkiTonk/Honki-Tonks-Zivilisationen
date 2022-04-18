@@ -9,13 +9,18 @@ with Sf.Window.Cursor;
 with Sf.Window.Window;
 with Sf.Graphics.Color;
 
+with GrafikDatentypen;
+
 package SystemRecords is
 
    type NutzerEinstellungenRecord is record
       
       Sprache : Unbounded_Wide_Wide_String;
+      
       AnzahlAutosave : Natural;
       RundenBisAutosave : Positive;
+      
+      Anzeigeart : GrafikDatentypen.Anzeige_Art_Enum;
       
    end record;
    

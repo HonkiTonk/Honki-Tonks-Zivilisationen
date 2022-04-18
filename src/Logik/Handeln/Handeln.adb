@@ -25,7 +25,7 @@ package body Handeln is
    is begin
       
       case
-        GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
+        SpielVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
          when SystemDatentypen.Krieg_Enum =>
             return 1;
@@ -207,9 +207,9 @@ package body Handeln is
            or
              RasseZweiSchleifenwert = KontaktierteRasseExtern
              or
-               GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
+               SpielVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
            or
-             GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt_Enum
+             SpielVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt_Enum
          then
             null;
                   
@@ -237,9 +237,9 @@ package body Handeln is
            or
              RasseEinsSchleifenwert = KontaktierteRasseExtern
              or
-               GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
+               SpielVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
            or
-             GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt_Enum
+             SpielVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= SystemDatentypen.Unbekannt_Enum
          then
             null;
                   

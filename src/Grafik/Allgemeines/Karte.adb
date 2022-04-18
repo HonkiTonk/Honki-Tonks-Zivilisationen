@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with GrafikDatentypen;
+with OptionenVariablen;
 
 with KarteSFML;
 with KarteKonsole;
@@ -19,7 +20,7 @@ package body Karte is
       CursorAltPlatzieren.CursorAltPlatzieren (RasseExtern => RasseExtern);
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             KarteKonsole.AnzeigeKarteKonsole (RasseExtern => RasseExtern);

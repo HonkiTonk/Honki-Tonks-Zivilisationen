@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleVariablen;
+with SpielVariablen;
 with SystemDatentypen;
 
 with ZufallsgeneratorenSpieleinstellungen;
@@ -21,11 +21,11 @@ package body SpieleinstellungenSonstiges is
          case
            SchwierigkeitAuswahl
          is
-            when RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Range =>
-               GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
+            when RueckgabeDatentypen.Schwierigkeitsgrad_Enum'Range =>
+               SpielVariablen.Schwierigkeitsgrad := RückgabeZuSchwierigkeitsgrad (SchwierigkeitAuswahl);
 
             when RueckgabeDatentypen.Zufall_Enum =>
-               GlobaleVariablen.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
+               SpielVariablen.Schwierigkeitsgrad := ZufallsgeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
                
             when RueckgabeDatentypen.Fertig_Enum =>
                return;

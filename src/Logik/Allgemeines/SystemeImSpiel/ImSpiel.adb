@@ -7,6 +7,8 @@ with RueckgabeDatentypen; use RueckgabeDatentypen;
 with SystemDatentypen;
 with EinheitenKonstanten;
 with GrafikDatentypen;
+with OptionenVariablen;
+with SpielVariablen;
 
 with Optionen;
 with LadezeitenDatentypen;
@@ -58,14 +60,14 @@ package body ImSpiel is
          end loop RassenSchleife;
                
          if
-           GlobaleVariablen.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
+           SonstigeVariablen.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
            and
              ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
          then
             return RueckgabeDatentypen.Hauptmenü_Enum;
             
          elsif
-           GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
+           SpielVariablen.Rundengrenze > SpielVariablen.RundenAnzahl
          then
             return RueckgabeDatentypen.Hauptmenü_Enum;
             
@@ -85,14 +87,14 @@ package body ImSpiel is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+        SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
       then
          return RueckgabeDatentypen.Start_Weiter_Enum;
       
       elsif
-        GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
+        SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze < SpielVariablen.RundenAnzahl
         and
-          GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
+          SpielVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
          RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
          return RueckgabeDatentypen.Start_Weiter_Enum;
@@ -111,14 +113,14 @@ package body ImSpiel is
    is begin
             
       if
-        GlobaleVariablen.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
+        SonstigeVariablen.RasseAmZugNachLaden = EinheitenKonstanten.LeerRasse
         or
-          RasseExtern = GlobaleVariablen.RasseAmZugNachLaden
+          RasseExtern = SonstigeVariablen.RasseAmZugNachLaden
       then
-         GlobaleVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
+         SonstigeVariablen.RasseAmZugNachLaden := EinheitenKonstanten.LeerRasse;
             
          case
-           GlobaleVariablen.RassenImSpiel (RasseExtern)
+           SonstigeVariablen.RassenImSpiel (RasseExtern)
          is
             when RassenDatentypen.Spieler_Mensch_Enum =>
                return MenschlicherSpieler (RasseExtern => RasseExtern);
@@ -200,7 +202,7 @@ package body ImSpiel is
          InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Weltkarte_Enum);
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseExtern)
+           SonstigeVariablen.RassenImSpiel (RasseExtern)
          is
             when RassenDatentypen.Spieler_Mensch_Enum =>
                AktuellerBefehlSpieler := Befehle (RasseExtern => RasseExtern);
@@ -273,7 +275,7 @@ package body ImSpiel is
            AuswahlSpielmenü
          is
             when RueckgabeDatentypen.Speichern_Enum =>
-               GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
+               SonstigeVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
             when RueckgabeDatentypen.Laden_Enum =>
@@ -322,7 +324,7 @@ package body ImSpiel is
          if
            RasseSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Spieler_Mensch_Enum
+             SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Spieler_Mensch_Enum
          then
             null;
             
@@ -344,7 +346,7 @@ package body ImSpiel is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             return BefehleKonsole.Befehle (RasseExtern => RasseExtern);

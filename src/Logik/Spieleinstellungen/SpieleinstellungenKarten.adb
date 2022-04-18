@@ -133,7 +133,7 @@ package body SpieleinstellungenKarten is
           --     Karten.Kartenform := KartenformAuswahl;
                
           --  when RueckgabeDatentypen.Zufall_Enum =>
-          --     Karten.Kartenform := ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
+          --     ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
                
          --   when RueckgabeDatentypen.Fertig_Enum =>
                return;

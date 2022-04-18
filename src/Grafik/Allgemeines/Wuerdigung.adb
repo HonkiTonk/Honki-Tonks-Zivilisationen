@@ -5,8 +5,8 @@ pragma Warnings (Off, "*array aggregate*");
 -- with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 -- with GlobaleTexte;
-with GlobaleVariablen;
 with GrafikDatentypen;
+with OptionenVariablen;
 
 -- with Eingabe;
 -- with TextAnzeigeKonsole;
@@ -18,7 +18,7 @@ package body Wuerdigung is
       
       -- Genau wie Informationen muss das hier eh geändert werden um mit den seperaten Tasks zu funktionieren!
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             WürdigungKonsole;

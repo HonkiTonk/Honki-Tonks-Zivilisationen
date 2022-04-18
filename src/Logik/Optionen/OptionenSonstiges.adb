@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleVariablen;
 with TextKonstanten;
 with SystemDatentypen;
+with OptionenVariablen;
 
 with SchreibenEinstellungen;
 with EinlesenSprache;
@@ -62,7 +62,7 @@ package body OptionenSonstiges is
         EingegebeneZahl.EingabeAbbruch
       is
          when True =>
-            GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
+            OptionenVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
             
          when False =>
             null;
@@ -86,12 +86,12 @@ package body OptionenSonstiges is
             if
               EingegebeneZahl.EingegebeneZahl in 1 .. 999_999_999
             then
-               GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl.EingegebeneZahl;
+               OptionenVariablen.NutzerEinstellungen.RundenBisAutosave := EingegebeneZahl.EingegebeneZahl;
                
             elsif
               EingegebeneZahl.EingegebeneZahl = 0
             then
-               GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
+               OptionenVariablen.NutzerEinstellungen.AnzahlAutosave := EingegebeneZahl.EingegebeneZahl;
                
             else
                Fehler.LogikFehler (FehlermeldungExtern => "OptionenSonstiges.RundenBisAutospeichern - Ungültige Zahl wurd eingegeben.");
@@ -121,7 +121,7 @@ package body OptionenSonstiges is
                null;
                
             else
-               GlobaleVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
+               OptionenVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
                EinlesenText.EinlesenDateien;
                AuswahlMenuesEinfachSFML.TextZurücksetzen;
             end if;

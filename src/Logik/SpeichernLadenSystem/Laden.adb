@@ -13,7 +13,9 @@ with WichtigeRecords;
 with KartenDatentypen;
 with SonstigesKonstanten;
 with RassenDatentypen;
-with RueckgabeDatentypen;
+with SpielDatentypen;
+with SpielVariablen;
+with SonstigeVariablen;
 
 with Karten;
 with Ladezeiten;
@@ -93,25 +95,25 @@ package body Laden is
    is begin
       
       Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenNeu),
-                                       GlobaleVariablen.IronmanName);
+                                       SpielVariablen.IronmanName);
 
       Positive'Read (Stream (File => DateiLadenNeu),
-                     GlobaleVariablen.RundenAnzahl);
+                     SpielVariablen.RundenAnzahl);
       
       Natural'Read (Stream (File => DateiLadenNeu),
-                    GlobaleVariablen.Rundengrenze);
+                    SpielVariablen.Rundengrenze);
       
       RassenDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
-                                         GlobaleVariablen.RasseAmZugNachLaden);
+                                         SonstigeVariablen.RasseAmZugNachLaden);
       
-      RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
-                                                                  GlobaleVariablen.Schwierigkeitsgrad);
-      
-      Boolean'Read (Stream (File => DateiLadenNeu),
-                    GlobaleVariablen.Gewonnen);
+      SpielDatentypen.Schwierigkeitsgrad_Enum'Read (Stream (File => DateiLadenNeu),
+                                                    SpielVariablen.Schwierigkeitsgrad);
       
       Boolean'Read (Stream (File => DateiLadenNeu),
-                    GlobaleVariablen.WeiterSpielen);
+                    SonstigeVariablen.Gewonnen);
+      
+      Boolean'Read (Stream (File => DateiLadenNeu),
+                    SonstigeVariablen.WeiterSpielen);
       
    end SonstigesLaden;
    
@@ -158,13 +160,13 @@ package body Laden is
    is begin
       
       RassenDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
-                                                GlobaleVariablen.RassenImSpiel);
+                                                SonstigeVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
       for GrenzenRassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          WichtigeRecords.GrenzenRecord'Read (Stream (File => DateiLadenNeu),
-                                             GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
+                                             SpielVariablen.Grenzen (GrenzenRassenSchleifenwert));
          
       end loop GrenzenRassenSchleife;
       
@@ -176,20 +178,20 @@ package body Laden is
    is begin
       
       EinheitenRassenSchleife:
-      for RasseEinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+      for RasseEinheitenSchleifenwert in SpielVariablen.EinheitenGebautArray'Range (1) loop
 
          case
-           GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
+               for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
             
                   EinheitStadtRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                                  GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
+                                                                  SpielVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
             
                end loop EinheitenSchleife;
          end case;
@@ -204,20 +206,20 @@ package body Laden is
    is begin
       
       StadtRassenSchleife:
-      for RasseStadtSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
+      for RasseStadtSchleifenwert in SpielVariablen.StadtGebautArray'Range (1) loop
 
          case
-           GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
+               for StadtNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
                   EinheitStadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                              GlobaleVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
+                                                              SpielVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
             
                end loop StadtSchleife;
          end case;
@@ -232,17 +234,17 @@ package body Laden is
    is begin
       
       WichtigesSchleife:
-      for RasseWichtigesSchleifenwert in GlobaleVariablen.WichtigesArray'Range loop
+      for RasseWichtigesSchleifenwert in SpielVariablen.WichtigesArray'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                WichtigeRecords.WichtigesRecord'Read (Stream (File => DateiLadenNeu),
-                                                     GlobaleVariablen.Wichtiges (RasseWichtigesSchleifenwert));
+                                                     SpielVariablen.Wichtiges (RasseWichtigesSchleifenwert));
          end case;
          
       end loop WichtigesSchleife;
@@ -255,27 +257,27 @@ package body Laden is
    is begin
       
       DiplomatieSchleifeAußen:
-      for RasseDiplomatieEinsSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (1) loop
+      for RasseDiplomatieEinsSchleifenwert in SpielVariablen.DiplomatieArray'Range (1) loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
 
             when others =>
                DiplomatieSchleifeInnen:
-               for RasseDiplomatieZweiSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (2) loop
+               for RasseDiplomatieZweiSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
 
                   case
-                    GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
+                    SonstigeVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
                      when RassenDatentypen.Leer_Spieler_Enum =>
                         null;
                      
                      when others =>
                         WichtigeRecords.DiplomatieRecord'Read (Stream (File => DateiLadenNeu),
-                                                               GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                                                               SpielVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;
@@ -291,17 +293,17 @@ package body Laden is
    is begin
       
       CursorSchleife:
-      for RasseCursorSchleifenwert in GlobaleVariablen.CursorImSpielArray'Range loop
+      for RasseCursorSchleifenwert in SpielVariablen.CursorImSpielArray'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                KartenRecords.CursorRecord'Read (Stream (File => DateiLadenNeu),
-                                                GlobaleVariablen.CursorImSpiel (RasseCursorSchleifenwert));
+                                                SpielVariablen.CursorImSpiel (RasseCursorSchleifenwert));
          end case;
          
       end loop CursorSchleife;

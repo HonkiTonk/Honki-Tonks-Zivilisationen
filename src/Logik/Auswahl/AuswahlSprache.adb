@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleVariablen;
 with GlobaleTexte;
 with TextKonstanten;
 with GrafikDatentypen;
+with OptionenVariablen;
 
 with Eingabe;
 with GrafikEinstellungenSFML;
@@ -24,7 +24,7 @@ package body AuswahlSprache is
       SprachenListeFestlegen;
             
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             return AuswahlSpracheKonsole;

@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenKonstanten;
 with EinheitenKonstanten;
 with SystemDatentypen;
+with SpielVariablen;
 
 with LeseEinheitenGebaut;
 
@@ -21,7 +22,7 @@ package body SpieleinstellungenRasseSpieler is
    procedure RassenWählen
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
+      SonstigeVariablen.RassenImSpiel := (others => RassenDatentypen.Leer_Spieler_Enum);
 
       RasseSchleife:
       loop
@@ -62,17 +63,17 @@ package body SpieleinstellungenRasseSpieler is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+        SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
       then
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_Mensch_Enum;
+         SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_Mensch_Enum;
                   
       elsif
-        GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
+        SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
       then
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
+         SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
                   
       else
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
+         SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
       end if;
       
    end BelegungÄndern;
@@ -87,7 +88,7 @@ package body SpieleinstellungenRasseSpieler is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Leer_Spieler_Enum
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Leer_Spieler_Enum
          then
             return True;
             
@@ -110,7 +111,7 @@ package body SpieleinstellungenRasseSpieler is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
         
          case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
@@ -144,7 +145,7 @@ package body SpieleinstellungenRasseSpieler is
                         --                                      TextZeileExtern => RueckgabeDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                         --                                      TextZeileExtern => 17);
-                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := RassenDatentypen.Leer_Spieler_Enum;
+                        SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) := RassenDatentypen.Leer_Spieler_Enum;
                         
                      when others =>
                         null;
@@ -269,8 +270,8 @@ package body SpieleinstellungenRasseSpieler is
                                                   IDExtern               => 2,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, 1));
-      GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, 1));
+      SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
    end StartpunktFestlegen;
 

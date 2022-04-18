@@ -50,7 +50,7 @@ package RueckgabeDatentypen is
                                  Karten_Pole_Keine, Karten_Pole_YAchse, Karten_Pole_XAchse, Karten_Pole_Beide,
                                    
                                  -- Neue Schwierigkeitsgrade immer vor Schwer einfügen um Anpassungen weiter unten zu vermeiden. Außer wenn es schwerer als schwer werden soll, dann aber auch unten ändern.
-                                 Schwierigkeit_Leicht_Enum, Schwierigkeit_Mittel_Enum, Schwierigkeit_Schwer_Enum,
+                                 Schwierigkeitsgrad_Leicht_Enum, Schwierigkeitsgrad_Mittel_Enum, Schwierigkeitsgrad_Schwer_Enum,
                                  
                                  Keine_Rasse_Enum, Menschen_Enum, Kasrodiah_Enum, Lasupin_Enum, Lamustra_Enum, Manuky_Enum, Suroka_Enum, Pryolon_Enum, Talbidahr_Enum, Moru_Phisihl_Enum, Larinos_Lotaris_Enum, Carupex_Enum,
                                  Alary_Enum, Tesorahn_Enum, Natries_Zermanis_Enum, Tridatus_Enum, Senelari_Enum, Aspari_2_Enum, Ekropa_Enum
@@ -70,7 +70,7 @@ package RueckgabeDatentypen is
    subtype Kartenform_Y_Achse_Einstellbar_Enum is Rückgabe_Werte_Enum range Karte_Y_Achse_Kein_Übergang_Enum .. Karte_Y_Achse_Verschobener_Übergang_Enum;
    subtype Kartenform_X_Achse_Einstellbar_Enum is Rückgabe_Werte_Enum range Karte_X_Achse_Kein_Übergang_Enum .. Karte_X_Achse_Verschobener_Übergang_Enum;
    
-   subtype Schwierigkeitsgrad_Verwendet_Enum is Rückgabe_Werte_Enum range Schwierigkeit_Leicht_Enum .. Schwierigkeit_Schwer_Enum;
+   subtype Schwierigkeitsgrad_Enum is Rückgabe_Werte_Enum range Schwierigkeitsgrad_Leicht_Enum .. Schwierigkeitsgrad_Schwer_Enum;
    
    subtype Zurück_Beenden_Enum is Rückgabe_Werte_Enum range Zurück_Enum .. Spiel_Beenden_Enum;
    subtype Hauptmenü_Beenden_Enum is Zurück_Beenden_Enum range Hauptmenü_Enum .. Spiel_Beenden_Enum;

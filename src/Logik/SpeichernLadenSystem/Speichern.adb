@@ -8,13 +8,16 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with SystemDatentypen; use SystemDatentypen;
 with RueckgabeDatentypen; use RueckgabeDatentypen;
 with RassenDatentypen;
-with GlobaleVariablen;
+with SpielVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
 with WichtigeRecords;
 with SonstigesKonstanten;
 with KartenDatentypen;
 with TextKonstanten;
+with SpielDatentypen;
+with OptionenVariablen;
+with SonstigeVariablen;
 
 with Karten;
 with Auswahl;
@@ -80,25 +83,25 @@ package body Speichern is
                               SonstigesKonstanten.Versionsnummer);
       
       Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
-                                        GlobaleVariablen.IronmanName);
+                                        SpielVariablen.IronmanName);
       
       Positive'Write (Stream (File => DateiSpeichernNeu),
-                      GlobaleVariablen.RundenAnzahl);
+                      SpielVariablen.RundenAnzahl);
       
       Natural'Write (Stream (File => DateiSpeichernNeu),
-                     GlobaleVariablen.Rundengrenze);
+                     SpielVariablen.Rundengrenze);
       
       RassenDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                          GlobaleVariablen.RasseAmZugNachLaden);
+                                          SonstigeVariablen.RasseAmZugNachLaden);
       
-      RueckgabeDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                                                GlobaleVariablen.Schwierigkeitsgrad);
-      
-      Boolean'Write (Stream (File => DateiSpeichernNeu),
-                     GlobaleVariablen.Gewonnen);
+      SpielDatentypen.Schwierigkeitsgrad_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                                     SpielVariablen.Schwierigkeitsgrad);
       
       Boolean'Write (Stream (File => DateiSpeichernNeu),
-                     GlobaleVariablen.WeiterSpielen);
+                     SonstigeVariablen.Gewonnen);
+      
+      Boolean'Write (Stream (File => DateiSpeichernNeu),
+                     SonstigeVariablen.WeiterSpielen);
       
    end SonstigesSpeichern;
    
@@ -145,13 +148,13 @@ package body Speichern is
    is begin
       
       RassenDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
-                                                 GlobaleVariablen.RassenImSpiel);
+                                                 SonstigeVariablen.RassenImSpiel);
       
       GrenzenRassenSchleife:
       for GrenzenRassenSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          WichtigeRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                              GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
+                                              SpielVariablen.Grenzen (GrenzenRassenSchleifenwert));
          
       end loop GrenzenRassenSchleife;
       
@@ -163,20 +166,20 @@ package body Speichern is
    is begin
       
       EinheitenRassenSchleife:
-      for RasseEinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+      for RasseEinheitenSchleifenwert in SpielVariablen.EinheitenGebautArray'Range (1) loop
 
          case
-           GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
+               for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
                   
                   EinheitStadtRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                                   GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
+                                                                   SpielVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
             
                end loop EinheitenSchleife;
          end case;
@@ -191,20 +194,20 @@ package body Speichern is
    is begin
       
       StadtRassenSchleife:
-      for RasseStadtSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+      for RasseStadtSchleifenwert in SpielVariablen.EinheitenGebautArray'Range (1) loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
 
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
+               for StadtNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
                   EinheitStadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                               GlobaleVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
+                                                               SpielVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
             
                end loop StadtSchleife;
          end case;
@@ -219,17 +222,17 @@ package body Speichern is
    is begin
       
       WichtigesSchleife:
-      for RasseWichtigesSchleifenwert in GlobaleVariablen.WichtigesArray'Range loop
+      for RasseWichtigesSchleifenwert in SpielVariablen.WichtigesArray'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                WichtigeRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                      GlobaleVariablen.Wichtiges (RasseWichtigesSchleifenwert));
+                                                      SpielVariablen.Wichtiges (RasseWichtigesSchleifenwert));
          end case;
          
       end loop WichtigesSchleife;
@@ -242,27 +245,27 @@ package body Speichern is
    is begin
       
       DiplomatieSchleifeAußen:
-      for RasseDiplomatieEinsSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (1) loop
+      for RasseDiplomatieEinsSchleifenwert in SpielVariablen.DiplomatieArray'Range (1) loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
 
             when others =>
                DiplomatieSchleifeInnen:
-               for RasseDiplomatieZweiSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (2) loop
+               for RasseDiplomatieZweiSchleifenwert in SpielVariablen.DiplomatieArray'Range (2) loop
 
                   case
-                    GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
+                    SonstigeVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
                      when RassenDatentypen.Leer_Spieler_Enum =>
                         null;
                      
                      when others =>
                         WichtigeRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                                GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                                                                SpielVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;
@@ -278,17 +281,17 @@ package body Speichern is
    is begin
       
       CursorSchleife:
-      for RasseCursorSchleifenwert in GlobaleVariablen.CursorImSpielArray'Range loop
+      for RasseCursorSchleifenwert in SpielVariablen.CursorImSpielArray'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                KartenRecords.CursorRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                 GlobaleVariablen.CursorImSpiel (RasseCursorSchleifenwert));
+                                                 SpielVariablen.CursorImSpiel (RasseCursorSchleifenwert));
          end case;
          
       end loop CursorSchleife;
@@ -322,10 +325,10 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= TextKonstanten.LeerString
+        To_Wide_Wide_String (Source => SpielVariablen.IronmanName) /= TextKonstanten.LeerString
       then
          null;
-         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
+         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := SpielVariablen.IronmanName;
                
       else
          -- Anzeige der vorhandenen Spielstände einbauen
@@ -358,21 +361,21 @@ package body Speichern is
    is begin
       
       if
-        To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= TextKonstanten.LeerString
+        To_Wide_Wide_String (Source => SpielVariablen.IronmanName) /= TextKonstanten.LeerString
       then
          null;
-         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := GlobaleVariablen.IronmanName;
+         -- SpeichernLadenAllgemein.SpielstandName.EingegebenerText := SpielVariablen.IronmanName;
                
       else
          NameSpielstand := (True, To_Unbounded_Wide_Wide_String (Source => "Auto" & AutospeichernWert'Wide_Wide_Image));
          
          if
-           GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
+           OptionenVariablen.NutzerEinstellungen.AnzahlAutosave = 1
          then
             null;
 
          elsif
-           AutospeichernWert <= GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave - 1
+           AutospeichernWert <= OptionenVariablen.NutzerEinstellungen.AnzahlAutosave - 1
          then
             AutospeichernWert := AutospeichernWert + 1;
                   
@@ -389,7 +392,7 @@ package body Speichern is
    is begin
       
       case
-        GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave
+        OptionenVariablen.NutzerEinstellungen.AnzahlAutosave
       is
          when Natural'First =>
             return;
@@ -399,7 +402,7 @@ package body Speichern is
       end case;
       
       case
-        GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave
+        SpielVariablen.RundenAnzahl mod OptionenVariablen.NutzerEinstellungen.RundenBisAutosave
       is
          when 0 =>
             SpeichernNeu (AutospeichernExtern => True);

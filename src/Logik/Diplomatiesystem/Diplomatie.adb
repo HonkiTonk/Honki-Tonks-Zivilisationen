@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 -- with GlobaleTexte;
 with SystemDatentypen; use SystemDatentypen;
+with SpielVariablen;
 
 -- with Auswahl;
 with DiplomatischerZustandAenderbar;
@@ -38,9 +39,9 @@ package body Diplomatie is
          if
            RassenSchleifenwert = RasseExtern
            or
-             GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
+             SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
            or
-             GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
+             SpielVariablen.Diplomatie (RasseExtern, RassenSchleifenwert).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
          then
             null;
             
@@ -84,9 +85,9 @@ package body Diplomatie is
             if
               RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
               or
-                GlobaleVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = RassenDatentypen.Leer_Spieler_Enum
+                SonstigeVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = RassenDatentypen.Leer_Spieler_Enum
                 or
-                  GlobaleVariablen.Diplomatie (RasseExtern, RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
+                  SpielVariablen.Diplomatie (RasseExtern, RassenDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = SystemDatentypen.Unbekannt_Enum
             then
                -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                --                                     TextZeileExtern => 21);

@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TonDatentypen;
 with ZeitKonstanten;
-with GlobaleVariablen;
 with GrafikDatentypen;
+with OptionenVariablen;
 
 with InteraktionLogiktask;
 with InteraktionMusiktask;
@@ -18,7 +18,7 @@ package body StartMusik is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             return;

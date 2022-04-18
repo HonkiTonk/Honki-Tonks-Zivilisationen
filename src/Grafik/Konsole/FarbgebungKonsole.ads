@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 with EinheitStadtDatentypen;
 with EinheitenKonstanten;
 
@@ -22,9 +22,9 @@ package FarbgebungKonsole is
       RasseExtern : in RassenDatentypen.Rassen_Enum)
      with
        Pre =>
-         ((if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum)
+         ((if EigeneRasseExtern /= EinheitenKonstanten.LeerRasse then SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_Mensch_Enum)
           and
-            (if RasseExtern /= EinheitenKonstanten.LeerRasse then GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum));
+            (if RasseExtern /= EinheitenKonstanten.LeerRasse then SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum));
    
 private
    

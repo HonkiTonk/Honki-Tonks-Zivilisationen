@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with WichtigesKonstanten;
+with SpielVariablen;
 
 package body LeseWichtiges is
 
@@ -11,7 +12,7 @@ package body LeseWichtiges is
       return Integer
    is begin
 
-      return GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge;
+      return SpielVariablen.Wichtiges (RasseExtern).Geldmenge;
 
    end Geldmenge;
    
@@ -22,7 +23,7 @@ package body LeseWichtiges is
       return EinheitStadtDatentypen.KostenLager
    is begin
 
-      return GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde;
+      return SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde;
 
    end GeldZugewinnProRunde;
    
@@ -34,15 +35,15 @@ package body LeseWichtiges is
    is begin
 
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate < WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+        SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate < WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
+         SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := WichtigesKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
          
       else
          null;
       end if;
       
-      return GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
+      return SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
 
    end GesamteForschungsrate;
    
@@ -54,15 +55,15 @@ package body LeseWichtiges is
    is begin
 
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge < WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge
+        SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge < WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
+         SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge := WichtigesKonstanten.LeerWichtigesZeug.Forschungsmenge;
          
       else
          null;
       end if;
 
-      return GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge;
+      return SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge;
 
    end Forschungsmenge;
    
@@ -74,15 +75,15 @@ package body LeseWichtiges is
    is begin
 
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit > WichtigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit
+        SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit > WichtigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := WichtigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit;
+         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := WichtigesKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit;
          
       else
          null;
       end if;
 
-      return GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit;
+      return SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit;
 
    end VerbleibendeForschungszeit;
    
@@ -93,7 +94,7 @@ package body LeseWichtiges is
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
 
-      return GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt;
+      return SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt;
 
    end Forschungsprojekt;
    
@@ -105,7 +106,7 @@ package body LeseWichtiges is
       return Boolean
    is begin
 
-      return GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (WelcheTechnologieExtern);
+      return SpielVariablen.Wichtiges (RasseExtern).Erforscht (WelcheTechnologieExtern);
 
    end Erforscht;
    
@@ -116,7 +117,7 @@ package body LeseWichtiges is
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
-      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte;
+      return SpielVariablen.Wichtiges (RasseExtern).AnzahlStädte;
       
    end AnzahlStädte;
    
@@ -127,7 +128,7 @@ package body LeseWichtiges is
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
-      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
+      return SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
       
    end AnzahlEinheiten;
      
@@ -138,7 +139,7 @@ package body LeseWichtiges is
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
-      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter;
+      return SpielVariablen.Wichtiges (RasseExtern).AnzahlArbeiter;
       
    end AnzahlArbeiter;
    
@@ -149,7 +150,7 @@ package body LeseWichtiges is
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
-      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer;
+      return SpielVariablen.Wichtiges (RasseExtern).AnzahlKämpfer;
       
    end AnzahlKämpfer;
    
@@ -160,7 +161,7 @@ package body LeseWichtiges is
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
-      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
+      return SpielVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
       
    end AnzahlSonstiges;
 

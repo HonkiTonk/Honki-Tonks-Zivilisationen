@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with RueckgabeDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 
 package ImSpiel is
 
@@ -24,7 +24,7 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_KI_Enum);
 
    function RasseImSpiel
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -39,7 +39,7 @@ private
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    function MenschAmZug
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -58,6 +58,6 @@ private
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
 end ImSpiel;

@@ -30,9 +30,9 @@ package GlobaleTexte is
    Optionsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Optionen_Menü_Enum)) := (others => FehlenderText);
    Einstellungsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Einstellungen_Menü_Enum)) := (others => FehlenderText);
    Editoren : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Editoren_Menü_Enum)) := (others => FehlenderText);
+   Sonstigesmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sonstiges_Menü_Enum)) := (others => FehlenderText);
                                
    -- Einfache Auswahl.
-   Sonstigesmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sonstiges_Menü_Enum)) := (others => FehlenderText);
    Kartengröße : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartengröße_Menü_Enum)) := (others => FehlenderText);
    Kartenart : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenart_Menü_Enum)) := (others => FehlenderText);
    Kartentemperatur : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartentemperatur_Menü_Enum)) := (others => FehlenderText);

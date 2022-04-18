@@ -8,6 +8,7 @@ with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with TextKonstanten;
+with SpielVariablen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -36,7 +37,7 @@ package body GrafischeAnzeigeKonsole is
             
          when False =>
             if
-              KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
+              KoordinatenExtern = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
             then
                FarbgebungKonsole.Farben (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                          VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
@@ -120,7 +121,7 @@ package body GrafischeAnzeigeKonsole is
    is begin
       
       if
-        KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
+        KoordinatenExtern = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell
         and
           InDerStadtExtern = False
       then

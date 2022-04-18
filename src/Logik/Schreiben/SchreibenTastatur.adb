@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Directories; use Ada.Directories;
 
-with GlobaleVariablen;
+with OptionenVariablen;
 with GrafikDatentypen;
 
 with EingabeKonsole;
@@ -15,7 +15,7 @@ package body SchreibenTastatur is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        OptionenVariablen.NutzerEinstellungen.Anzeigeart
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             BelegungKonsole;

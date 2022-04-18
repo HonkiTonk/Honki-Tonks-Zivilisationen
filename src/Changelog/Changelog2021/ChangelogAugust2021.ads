@@ -121,7 +121,7 @@ package ChangelogAugust2021 is
    
    -- Version 0.00.8400 => 0.00.8410 (20.08.2021):
    
-   -- LeseEinheitenGebaut und SchreibeEinheitenGebaut wird jetzt fast überall verwendet um die Werte in GlobaleVariablen.EinheitenGebaut zu Lesen/Schreiben und dabei die entsprechenden Prüfungen durchzuführen.
+   -- LeseEinheitenGebaut und SchreibeEinheitenGebaut wird jetzt fast überall verwendet um die Werte in SpielVariablen.EinheitenGebaut zu Lesen/Schreiben und dabei die entsprechenden Prüfungen durchzuführen.
    -- Kleinigkeiten korrigiert/angepasst.
    
    
@@ -148,7 +148,7 @@ package ChangelogAugust2021 is
    -- Alle lesenden Zugriffe auf Karten.Weltkarte erfolgen jetzt über LeseKarten.
    -- SchreibeKarten erstellt und alle schreibenden Zugriffe auf Karten.Weltkarten darauf umgelegt.
    -- Die Grundänderung von irgendeinem Grund auf Hügel sollte jetzt immer Hügel auf False setzen.
-   -- Angefangen alle lesenden Zugriff auf GlobaleVariablen.EinheitenGebaut über LeseEinheitenGebaut umzuleiten.
+   -- Angefangen alle lesenden Zugriff auf SpielVariablen.EinheitenGebaut über LeseEinheitenGebaut umzuleiten.
    -- Contracts und Kleinigkeiten korrigiert/angepasst/hinzugefügt.
    
    

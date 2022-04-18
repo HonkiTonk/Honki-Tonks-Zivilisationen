@@ -12,16 +12,16 @@ package body StadtMeldungenSetzen is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
             when others =>
                StadtSchleife:
-               for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
+               for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
-                  GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer_Enum);
+                  SpielVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer_Enum);
                   
                end loop StadtSchleife;
          end case;

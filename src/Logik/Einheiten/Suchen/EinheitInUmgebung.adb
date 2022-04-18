@@ -4,10 +4,11 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SystemDatentypen; use SystemDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
+with SpielVariablen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -28,7 +29,7 @@ package body EinheitInUmgebung is
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when RassenDatentypen.Spieler_Mensch_Enum =>
                UmgebungStadt (RasseExtern => RasseSchleifenwert);
@@ -49,7 +50,7 @@ package body EinheitInUmgebung is
    is begin
       
       StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Städtegrenze loop
                   
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
@@ -83,7 +84,7 @@ package body EinheitInUmgebung is
    is begin
       
       EinheitenSchleife:
-      for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
+      for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseExtern).Einheitengrenze loop
                   
          case
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))

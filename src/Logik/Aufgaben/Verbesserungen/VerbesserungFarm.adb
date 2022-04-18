@@ -37,7 +37,7 @@ package body VerbesserungFarm is
       in
         KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
+          SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum
       then
          case
            EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)

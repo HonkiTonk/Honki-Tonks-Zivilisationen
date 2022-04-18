@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
+with SpielVariablen;
 
 with Sichtweiten;
 with GrafikEinstellungenSFML;
@@ -49,7 +50,7 @@ package body BerechnungenKarteSFML is
       YBereichSchleife:
       for YBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop
          
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
                                                                         ÄnderungExtern    => (0, YBereichSchleifenwert, 1),
                                                                         LogikGrafikExtern => False);
          
@@ -77,7 +78,7 @@ package body BerechnungenKarteSFML is
       XBereichSchleife:
       for XBereichSchleifenwert in XSichtAnfang .. XSichtEnde loop
          
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
                                                                         ÄnderungExtern    => (0, 1, XBereichSchleifenwert),
                                                                         LogikGrafikExtern => False);
          

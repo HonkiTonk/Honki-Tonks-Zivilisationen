@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with WichtigesKonstanten;
 with StadtKonstanten;
+with SpielVariablen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -30,7 +31,7 @@ package body KIEinheitenBauen is
       if
         LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse) > 3 * AnzahlStädte
         or
-          LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse) = GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
+          LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse) = SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
       then
          return EinheitBewertet;
          

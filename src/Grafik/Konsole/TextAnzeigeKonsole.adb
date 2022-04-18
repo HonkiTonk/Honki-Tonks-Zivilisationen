@@ -25,7 +25,7 @@ package body TextAnzeigeKonsole is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        NutzerEinstellungenVariablen.AnzeigeArt
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             TextAnzeigeKonsole.AnzeigeOhneAuswahl (ÜberschriftDateiExtern => ÜberschriftDateiExtern,
@@ -51,7 +51,7 @@ package body TextAnzeigeKonsole is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        NutzerEinstellungenVariablen.AnzeigeArt
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -92,7 +92,7 @@ package body TextAnzeigeKonsole is
    is begin
       
       case
-        GlobaleVariablen.AnzeigeArt
+        NutzerEinstellungenVariablen.AnzeigeArt
       is
          when GrafikDatentypen.Grafik_Konsole_Enum =>
             TextAnzeigeKonsole.AnzeigeMitAuswahl (FrageDateiExtern            => FrageDateiExtern,

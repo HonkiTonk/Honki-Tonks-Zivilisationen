@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
-with GlobaleVariablen;
+with SonstigeVariablen;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen;
@@ -27,7 +27,7 @@ package LeseVerbesserungenDatenbank is
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function BewertungWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
@@ -35,7 +35,7 @@ package LeseVerbesserungenDatenbank is
       return KartenDatentypen.BewertungFeld
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function WirtschaftVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
@@ -44,7 +44,7 @@ package LeseVerbesserungenDatenbank is
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function WirtschaftWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
@@ -53,7 +53,7 @@ package LeseVerbesserungenDatenbank is
       return EinheitStadtDatentypen.ProduktionElement
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function KampfVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
@@ -62,7 +62,7 @@ package LeseVerbesserungenDatenbank is
       return EinheitStadtDatentypen.KampfwerteAllgemein
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function KampfWeg
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
@@ -71,7 +71,7 @@ package LeseVerbesserungenDatenbank is
       return EinheitStadtDatentypen.KampfwerteAllgemein
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function GanzerEintragVerbesserung
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum)

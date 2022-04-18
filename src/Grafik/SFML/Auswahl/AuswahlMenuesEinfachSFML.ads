@@ -29,10 +29,6 @@ private
 
    LetztesMenü : SystemDatentypen.Welches_Menü_Enum := SystemDatentypen.Leer_Menü_Enum;
 
-   LeerSchriftgrößeFestgelegt : constant Sf.sfUint32 := 0;
-
-   LeerAuflösungBerechnet : constant Sf.System.Vector2.sfVector2u := (0, 0);
-
    Überschrift : constant Positive := 1;
    Versionsnummer : constant Positive := 1;
 
@@ -49,6 +45,8 @@ private
 
    ZeilenAbstand : Float;
 
+   LeerSchriftgrößeFestgelegt : constant Sf.sfUint32 := 0;
+
    AktuelleSchriftgröße : Sf.sfUint32;
    AbstandAnfang : Sf.sfUint32;
    AbstandÜberschrift : Sf.sfUint32;
@@ -56,15 +54,16 @@ private
 
    Farbe : Sf.Graphics.Color.sfColor;
 
-   AbstandTexte : Sf.System.Vector2.sfVector2u;
+   AktuelleSchriftfarben : SystemRecords.SchriftfarbenRecord;
 
+   LeerAuflösungBerechnet : constant Sf.System.Vector2.sfVector2u := (0, 0);
+
+   AbstandTexte : Sf.System.Vector2.sfVector2u;
    AktuelleAuflösung : Sf.System.Vector2.sfVector2u;
 
    Rechenwert : Sf.System.Vector2.sfVector2f;
    AktuelleAuflösungFloat : Sf.System.Vector2.sfVector2f;
    AktuelleTextposition : Sf.System.Vector2.sfVector2f;
-
-   AktuelleSchriftfarben : SystemRecords.SchriftfarbenRecord;
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
@@ -102,7 +101,7 @@ private
                                                                 )
                                                              );
 
-   type TextAccessArray is array (SystemDatentypen.Menü_Einfach_Enum'Range, Überschrift .. Überschrift + InteraktionAuswahl.PositionenEinfachArray'Last (2) + Versionsnummer) of Sf.Graphics.sfText_Ptr;
+   type TextAccessArray is array (InteraktionAuswahl.PositionenEinfachArray'Range (1), Überschrift .. Überschrift + InteraktionAuswahl.PositionenEinfachArray'Last (2) + Versionsnummer) of Sf.Graphics.sfText_Ptr;
    TextAccess : constant TextAccessArray := (
                                              others =>
                                                (

@@ -70,24 +70,25 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (20.04.2022):
+   -- Version 0.01.03 => 0.01.0 (20.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.03 => 0.01.0 (19.04.2022):
+   -- Version 0.01.0360 => 0.01.03 (19.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0350 => 0.01.03 (18.04.2022):
+   -- Version 0.01.0350 => 0.01.0360 (18.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- GlobaleVariablen aufgeteilt.
+   -- Weiter an der Anzeige für zusätzlichen Text in den Menüs gearbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

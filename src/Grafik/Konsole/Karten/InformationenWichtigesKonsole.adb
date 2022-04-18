@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Integer_Wide_Wide_Text_IO;
 
+with SpielVariablen;
 -- with GlobaleTexte;
 
 with LeseWichtiges;
@@ -41,7 +42,7 @@ package body InformationenWichtigesKonsole is
       --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
      --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
       --                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => GlobaleVariablen.RundenAnzahl,
+      Ada.Integer_Wide_Wide_Text_IO.Put (Item  => SpielVariablen.RundenAnzahl,
                                          Width => 1);
       
    end Rundenanzahl;

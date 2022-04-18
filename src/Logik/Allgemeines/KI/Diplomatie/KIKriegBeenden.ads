@@ -9,9 +9,9 @@ package KIKriegBeenden is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_KI_Enum
+         (SonstigeVariablen.RassenImSpiel (EigeneRasseExtern) = RassenDatentypen.Spieler_KI_Enum
           and
-            GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) /= GlobaleDatentypen.Leer
+            SonstigeVariablen.RassenImSpiel (FeindlicheRasseExtern) /= GlobaleDatentypen.Leer
           and
             EigeneRasseExtern /= FeindlicheRasseExtern);
 

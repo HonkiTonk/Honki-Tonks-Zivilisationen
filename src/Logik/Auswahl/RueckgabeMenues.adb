@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with GlobaleVariablen;
+with SonstigeVariablen;
 
 with Fehler;
 
@@ -580,17 +580,17 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Schwierigkeit_Leicht_Enum;
+         return RueckgabeDatentypen.Schwierigkeitsgrad_Leicht_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return RueckgabeDatentypen.Schwierigkeit_Mittel_Enum;
+         return RueckgabeDatentypen.Schwierigkeitsgrad_Mittel_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return RueckgabeDatentypen.Schwierigkeit_Schwer_Enum;
+         return RueckgabeDatentypen.Schwierigkeitsgrad_Schwer_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
@@ -808,7 +808,7 @@ package body RueckgabeMenues is
          return RueckgabeDatentypen.Spiel_Beenden_Enum;
                     
       else
-         GlobaleVariablen.UmbelegungNummer := AktuelleAuswahlExtern;
+         SonstigeVariablen.UmbelegungNummer := AktuelleAuswahlExtern;
          return RueckgabeDatentypen.Eingabe_Enum;
       end if;
       

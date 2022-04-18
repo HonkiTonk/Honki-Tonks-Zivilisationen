@@ -5,6 +5,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SystemDatentypen; use SystemDatentypen;
 -- with GlobaleTexte;
 with WichtigesKonstanten;
+with SpielVariablen;
 
 -- with TextAnzeigeKonsole;
 with DiplomatischerZustand;
@@ -19,7 +20,7 @@ package body DiplomatischerZustandAenderbar is
    is begin
       
       if
-        NeuerStatusExtern = GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
+        NeuerStatusExtern = SpielVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand
       then
          -- TextAnzeigeKonsole.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
          --                                                  TextZeileExtern => 22);
