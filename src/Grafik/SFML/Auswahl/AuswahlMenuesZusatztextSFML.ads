@@ -7,11 +7,13 @@ with Sf.System.Vector2;
 with Sf.Graphics.Text;
 
 with RassenDatentypen;
+with SystemDatentypen;
 
 package AuswahlMenuesZusatztextSFML is
 
    procedure AuswahlMenüsZusatztext
-     (AktuelleAuswahlExtern : in Positive);
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
+      AktuelleAuswahlExtern : in Positive);
 
    procedure SchriftartZurücksetzen;
    procedure TextZurücksetzen;
@@ -62,18 +64,20 @@ private
    --                                                             )
    --                                                          );
 
-   type TextAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 2) of Sf.Graphics.sfText_Ptr;
+   type TextAccessArray is array (SystemDatentypen.Menü_Zusatztext_Enum'Range, 1 .. 2) of Sf.Graphics.sfText_Ptr;
    TextAccess : constant TextAccessArray := (
                                              (others => (others => Sf.Graphics.Text.create))
                                             );
 
    procedure TextHintergrund
-     (AktuelleAuswahlExtern : in Positive);
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum);
 
    procedure Textbearbeitung
-     (AktuelleAuswahlExtern : in Positive);
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
+      AktuelleAuswahlExtern : in Positive);
 
    procedure TextFestlegen
-     (AktuelleAuswahlExtern : in Positive);
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
+      AktuelleAuswahlExtern : in Positive);
 
 end AuswahlMenuesZusatztextSFML;

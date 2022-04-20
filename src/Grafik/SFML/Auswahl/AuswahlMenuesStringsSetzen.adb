@@ -5,7 +5,7 @@ with GlobaleTexte;
 
 package body AuswahlMenuesStringsSetzen is
    
-   function StringSetzen
+   function AuswahlMenüEinfachStringSetzen
      (WelcheZeileExtern : in Positive;
       WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
       return Wide_Wide_String
@@ -65,17 +65,28 @@ package body AuswahlMenuesStringsSetzen is
             
       return To_Wide_Wide_String (Source => AktuellerText);
       
-   end StringSetzen;
+   end AuswahlMenüEinfachStringSetzen;
    
    
    
-   function RassenbeschreibungSetzen
-     (WelcheZeileExtern : in Positive)
+   function AuswahlMenüZusatztextStringSetzen
+     (WelcheZeileExtern : in Positive;
+      WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum)
       return Wide_Wide_String
    is begin
       
-      return To_Wide_Wide_String (Source => GlobaleTexte.Rassen (WelcheZeileExtern));
+      case
+        WelchesMenüExtern
+      is
+         when SystemDatentypen.Kartengröße_Menü_Enum =>
+            AktuellerText := GlobaleTexte.Kartengröße (GlobaleTexte.Kartengröße'Last);
+
+         when SystemDatentypen.Rassen_Menü_Enum =>
+            AktuellerText := GlobaleTexte.Rassen (WelcheZeileExtern);
+      end case;
       
-   end RassenbeschreibungSetzen;
+      return To_Wide_Wide_String (Source => AktuellerText);
+      
+   end AuswahlMenüZusatztextStringSetzen;
 
 end AuswahlMenuesStringsSetzen;

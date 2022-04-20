@@ -63,17 +63,17 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0365 => 0.01.0 (21.04.2022):
+   -- Version 0.01.0370 => 0.01.0 (21.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0360 => 0.01.0365 (20.04.2022):
+   -- Version 0.01.0360 => 0.01.0370 (20.04.2022):
    
    -- Weiter am neuen Menüsystem gebaut.
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

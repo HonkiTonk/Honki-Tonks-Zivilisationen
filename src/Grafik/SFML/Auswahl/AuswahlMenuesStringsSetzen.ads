@@ -7,13 +7,14 @@ with SystemDatentypen;
 
 package AuswahlMenuesStringsSetzen is
 
-   function StringSetzen
+   function AuswahlMenüEinfachStringSetzen
      (WelcheZeileExtern : in Positive;
       WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
       return Wide_Wide_String;
    
-   function RassenbeschreibungSetzen
-     (WelcheZeileExtern : in Positive)
+   function AuswahlMenüZusatztextStringSetzen
+     (WelcheZeileExtern : in Positive;
+      WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum)
       return Wide_Wide_String;
    
 private

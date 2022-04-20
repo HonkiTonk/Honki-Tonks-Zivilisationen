@@ -8,7 +8,8 @@ with GrafikEinstellungenSFML;
 package body AuswahlMenuesZusatztextSFML is
 
    procedure AuswahlMenüsZusatztext
-     (AktuelleAuswahlExtern : in Positive)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
+      AktuelleAuswahlExtern : in Positive)
    is begin
             
       if
@@ -20,9 +21,11 @@ package body AuswahlMenuesZusatztextSFML is
          LinksRechts := False;
       end if;
       
-      TextHintergrund (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      Textbearbeitung (WelchesMenüExtern     => WelchesMenüExtern,
+                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       
-      Textbearbeitung (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      -- Die Größe des Hintergrundes kann erst nach der Festlegung des Textes der auf diesem Hintergrund gezeichnet werden soll festgelegt werden.
+      TextHintergrund (WelchesMenüExtern => WelchesMenüExtern);
       
       -- Hier braucht es keine Schleife, weil nur ein Text angezeigt werden soll.
       -- Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
@@ -33,30 +36,23 @@ package body AuswahlMenuesZusatztextSFML is
    
    
    procedure TextHintergrund
-     (AktuelleAuswahlExtern : in Positive)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum)
    is begin
-      
-      if
-        AktuelleAuswahlExtern mod 2 = 0
-      then
-         null;
-         
-      else
-         null;
-      end if;
+            
+      null;
             
    end TextHintergrund;
    
    
    
    procedure Textbearbeitung
-     (AktuelleAuswahlExtern : in Positive)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
+      AktuelleAuswahlExtern : in Positive)
    is begin
       
       AktuelleAuflösung := GrafikEinstellungenSFML.AktuelleFensterAuflösung;
       AktuelleSchriftgröße := GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße;
-      RasseAnzeigen := RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuelleAuswahlExtern - 1);
-      -------------------- Hier gibt es nur eine Farbe, aber diese soll später vom Nutzer anpassbar sein.
+      -- RasseAnzeigen := RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuelleAuswahlExtern);
       -- AktuelleSchriftfarben := GrafikEinstellungenSFML.Schriftfarben;
 
       case
@@ -66,7 +62,7 @@ package body AuswahlMenuesZusatztextSFML is
             FontSchleife:
             for FontSchleifenwert in TextAccessArray'Range (2) loop
             
-               Sf.Graphics.Text.setFont (text => TextAccess (RasseAnzeigen, FontSchleifenwert),
+               Sf.Graphics.Text.setFont (text => TextAccess (WelchesMenüExtern, FontSchleifenwert),
                                          font => GrafikEinstellungenSFML.SchriftartAccess);
             
             end loop FontSchleife;
@@ -81,7 +77,8 @@ package body AuswahlMenuesZusatztextSFML is
         TextFestgelegt (RasseAnzeigen, AktuelleAuswahlExtern)
       is
          when False =>
-            TextFestlegen (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            TextFestlegen (WelchesMenüExtern     => WelchesMenüExtern,
+                           AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
             TextFestgelegt (RasseAnzeigen, AktuelleAuswahlExtern) := True;
             
@@ -94,7 +91,8 @@ package body AuswahlMenuesZusatztextSFML is
    
    
    procedure TextFestlegen
-     (AktuelleAuswahlExtern : in Positive)
+     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
+      AktuelleAuswahlExtern : in Positive)
    is begin
       
       null;

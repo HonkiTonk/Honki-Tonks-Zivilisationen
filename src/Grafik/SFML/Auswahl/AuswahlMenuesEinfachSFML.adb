@@ -30,9 +30,16 @@ package body AuswahlMenuesEinfachSFML is
    is begin
       
       MenüHintergrund (WelchesMenüExtern => WelchesMenüExtern);
+      
+      case
+        WelchesMenüExtern
+      is
+         when SystemDatentypen.Haupt_Menü_Enum | SystemDatentypen.Kartengröße_Menü_Enum =>
+            Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) - 1 + Versionsnummer;
             
-      --------------------- SystemKonstanten.EndeMenü (WelchesMenüExtern) durch internes Ende ersetzen und das dann immer mitübergeben?
-      Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) + Versionsnummer;
+         when others =>
+            Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) + Versionsnummer;
+      end case;
       
       case
         WelchesMenüExtern
@@ -63,7 +70,8 @@ package body AuswahlMenuesEinfachSFML is
         and
           AktuelleAuswahlRückgabewert /= SystemKonstanten.LeerAuswahl
       then
-         AuswahlMenuesZusatztextSFML.AuswahlMenüsZusatztext  (AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert);
+         AuswahlMenuesZusatztextSFML.AuswahlMenüsZusatztext (WelchesMenüExtern     => WelchesMenüExtern,
+                                                              AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert);
          
       else
          null;
@@ -432,16 +440,16 @@ package body AuswahlMenuesEinfachSFML is
             
          when SystemDatentypen.Menü_Mit_Überschrift_Enum'Range | SystemDatentypen.Menü_Zusatztext_Enum'Range =>
             Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift),
-                                               str  => AuswahlMenuesStringsSetzen.StringSetzen (WelcheZeileExtern => Überschrift,
-                                                                                                WelchesMenüExtern => WelchesMenüExtern));
+                                               str  => AuswahlMenuesStringsSetzen.AuswahlMenüEinfachStringSetzen (WelcheZeileExtern => Überschrift,
+                                                                                                                   WelchesMenüExtern => WelchesMenüExtern));
       end case;
       
       TextSchleife:
       for TextSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
                   
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert),
-                                            str  => AuswahlMenuesStringsSetzen.StringSetzen (WelcheZeileExtern => Überschrift + TextSchleifenwert - HauptmenüAbzug,
-                                                                                             WelchesMenüExtern => WelchesMenüExtern));
+                                            str  => AuswahlMenuesStringsSetzen.AuswahlMenüEinfachStringSetzen (WelcheZeileExtern => Überschrift + TextSchleifenwert - HauptmenüAbzug,
+                                                                                                                WelchesMenüExtern => WelchesMenüExtern));
          
       end loop TextSchleife;
       
@@ -512,6 +520,7 @@ package body AuswahlMenuesEinfachSFML is
          
       end loop PositionenSchleife;
       
+      --------------------- Scheint noch nicht hoch genug zu sein.
       Rechenwert.y := Float (AktuelleAuflösung.y) - Sf.Graphics.Text.getLocalBounds (text => TextAccess (WelchesMenüExtern, TextbereichExtern)).height - Float (AktuelleAuflösung.y / 100);
       Rechenwert.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess (WelchesMenüExtern, TextbereichExtern));
       

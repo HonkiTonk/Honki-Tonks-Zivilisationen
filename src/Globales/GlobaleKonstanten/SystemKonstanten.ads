@@ -13,7 +13,7 @@ package SystemKonstanten is
    type EndeMenüArray is array (SystemDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
    EndeMenü : constant EndeMenüArray := (
                                            -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-                                           SystemDatentypen.Haupt_Menü_Enum              => 6,
+                                           SystemDatentypen.Haupt_Menü_Enum              => 7,
                                            SystemDatentypen.Spiel_Menü_Enum              => 6,
 
                                            -- Einfache Auswahl und kein Zusatztext.
@@ -28,7 +28,7 @@ package SystemKonstanten is
                                            SystemDatentypen.Schwierigkeitsgrad_Menü_Enum => 6,
 
                                            -- Einfache Auswahl.
-                                           SystemDatentypen.Kartengröße_Menü_Enum        => 27,
+                                           SystemDatentypen.Kartengröße_Menü_Enum        => 15,
                                            SystemDatentypen.Rassen_Menü_Enum             => 21,
 
                                            -- Komplexe Auswahl.

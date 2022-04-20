@@ -23,7 +23,7 @@ package GlobaleTexte is
    
    -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
    -- + 1 beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Konsole.
-   Hauptmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Haupt_Menü_Enum) + 1) := (others => FehlenderText);
+   Hauptmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Haupt_Menü_Enum)) := (others => FehlenderText);
    Spielmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Spiel_Menü_Enum)) := (others => FehlenderText);
                                
    -- Einfache Auswahl und kein Zusatztext.
