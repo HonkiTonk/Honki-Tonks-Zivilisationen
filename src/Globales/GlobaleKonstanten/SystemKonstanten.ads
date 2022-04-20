@@ -7,8 +7,7 @@ package SystemKonstanten is
 
    LeerAuswahl : constant Natural := 0;
 
-   LängstesMenü : constant Positive := 41;
-   HalbesLängstesMenü : constant Positive := Positive (Float'Floor (0.50 * Float (LängstesMenü)));
+   LängstesMenü : constant Positive := 27;
 
    ------------------------- Diese Konstanten nicht nur für die Menüarrays anlegen sondern für alle?
    type EndeMenüArray is array (SystemDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
@@ -23,13 +22,14 @@ package SystemKonstanten is
                                            SystemDatentypen.Editoren_Menü_Enum           => 17,
                                            SystemDatentypen.Sonstiges_Menü_Enum          => 7,
 
-                                           -- Einfache Auswahl.
-                                           SystemDatentypen.Kartengröße_Menü_Enum        => 27,
-                                           SystemDatentypen.Kartenart_Menü_Enum          => 15,
-                                           SystemDatentypen.Kartentemperatur_Menü_Enum   => 7,
+                                           SystemDatentypen.Kartenart_Menü_Enum          => 8,
+                                           SystemDatentypen.Kartentemperatur_Menü_Enum   => 8,
                                            SystemDatentypen.Kartenressourcen_Menü_Enum   => 8,
                                            SystemDatentypen.Schwierigkeitsgrad_Menü_Enum => 6,
-                                           SystemDatentypen.Rassen_Menü_Enum             => LängstesMenü,
+
+                                           -- Einfache Auswahl.
+                                           SystemDatentypen.Kartengröße_Menü_Enum        => 27,
+                                           SystemDatentypen.Rassen_Menü_Enum             => 21,
 
                                            -- Komplexe Auswahl.
                                            SystemDatentypen.Kartenform_Menü_Enum         => 23,

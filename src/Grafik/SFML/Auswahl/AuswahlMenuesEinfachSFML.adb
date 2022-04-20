@@ -32,16 +32,7 @@ package body AuswahlMenuesEinfachSFML is
       MenüHintergrund (WelchesMenüExtern => WelchesMenüExtern);
             
       --------------------- SystemKonstanten.EndeMenü (WelchesMenüExtern) durch internes Ende ersetzen und das dann immer mitübergeben?
-      case
-        WelchesMenüExtern
-      is
-         when SystemDatentypen.Menü_Zusatztext_Enum'Range =>
-            -- 'Floor sorgt dafür das Ada das Ergebnis abrundet. Alternativ würde HIER IN DIESEM FALL (NICHT ALLGEMEIN) auch - 1 funktionieren.
-            Textbereich := Überschrift + Integer (Float'Floor (0.50 * Float (SystemKonstanten.EndeMenü (WelchesMenüExtern)))) + Versionsnummer;
-            
-         when others => 
-            Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) + Versionsnummer;
-      end case;
+      Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) + Versionsnummer;
       
       case
         WelchesMenüExtern
@@ -72,8 +63,7 @@ package body AuswahlMenuesEinfachSFML is
         and
           AktuelleAuswahlRückgabewert /= SystemKonstanten.LeerAuswahl
       then
-         AuswahlMenuesZusatztextSFML.AuswahlMenüsZusatztext (WelchesMenüExtern     => WelchesMenüExtern,
-                                                              AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert);
+         AuswahlMenuesZusatztextSFML.AuswahlMenüsZusatztext  (AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert);
          
       else
          null;

@@ -1,33 +1,39 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf.Graphics.RenderWindow;
+-- with Sf.Graphics.RenderWindow;
 
 with GrafikEinstellungenSFML;
 
 package body AuswahlMenuesZusatztextSFML is
 
    procedure AuswahlMenüsZusatztext
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
-      AktuelleAuswahlExtern : in Positive)
+     (AktuelleAuswahlExtern : in Positive)
    is begin
+            
+      if
+        AktuelleAuswahlExtern mod 2 = 0
+      then
+         LinksRechts := True;
+         
+      else
+         LinksRechts := False;
+      end if;
       
-      TextHintergrund (WelchesMenüExtern     => WelchesMenüExtern,
-                       AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      TextHintergrund (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       
-      Textbearbeitung (WelchesMenüExtern => WelchesMenüExtern);
+      Textbearbeitung (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       
       -- Hier braucht es keine Schleife, weil nur ein Text angezeigt werden soll.
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess (WelchesMenüExtern, AktuelleAuswahlExtern));
+      -- Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+      --                                   text         => TextAccess (WelchesMenüExtern, AktuelleAuswahlExtern));
       
    end AuswahlMenüsZusatztext;
    
    
    
    procedure TextHintergrund
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
-      AktuelleAuswahlExtern : in Positive)
+     (AktuelleAuswahlExtern : in Positive)
    is begin
       
       if
@@ -38,56 +44,70 @@ package body AuswahlMenuesZusatztextSFML is
       else
          null;
       end if;
-      
-      case
-        WelchesMenüExtern
-      is
-         when others =>
-            null;
-      end case;
-      
+            
    end TextHintergrund;
    
    
    
    procedure Textbearbeitung
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum)
+     (AktuelleAuswahlExtern : in Positive)
    is begin
       
       AktuelleAuflösung := GrafikEinstellungenSFML.AktuelleFensterAuflösung;
       AktuelleSchriftgröße := GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße;
+      RasseAnzeigen := RassenDatentypen.Rassen_Verwendet_Enum'Val (AktuelleAuswahlExtern - 1);
       -------------------- Hier gibt es nur eine Farbe, aber diese soll später vom Nutzer anpassbar sein.
       -- AktuelleSchriftfarben := GrafikEinstellungenSFML.Schriftfarben;
 
       case
-        SchriftartFestgelegt (WelchesMenüExtern)
+        SchriftartFestgelegt
       is
          when False =>
             FontSchleife:
             for FontSchleifenwert in TextAccessArray'Range (2) loop
             
-               Sf.Graphics.Text.setFont (text => TextAccess (WelchesMenüExtern, FontSchleifenwert),
+               Sf.Graphics.Text.setFont (text => TextAccess (RasseAnzeigen, FontSchleifenwert),
                                          font => GrafikEinstellungenSFML.SchriftartAccess);
             
             end loop FontSchleife;
             
-            SchriftartFestgelegt (WelchesMenüExtern) := True;
+            SchriftartFestgelegt := True;
             
          when True =>
             null;
       end case;
       
-      
+      case
+        TextFestgelegt (RasseAnzeigen, AktuelleAuswahlExtern)
+      is
+         when False =>
+            TextFestlegen (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
+            TextFestgelegt (RasseAnzeigen, AktuelleAuswahlExtern) := True;
+            
+         when True =>
+            null;
+      end case;
       
    end Textbearbeitung;
+   
+   
+   
+   procedure TextFestlegen
+     (AktuelleAuswahlExtern : in Positive)
+   is begin
+      
+      null;
+      
+   end TextFestlegen;
    
    
    
    procedure SchriftartZurücksetzen
    is begin
       
-      SchriftartFestgelegt := (others => LeerSchriftartFestgelegt);
-      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
+      SchriftartFestgelegt := False;
+      AuflösungBerechnet := (others => (others => LeerAuflösungBerechnet));
       
       AuswahlMenuesZusatztextSFML.SchriftartZurücksetzen;
       
@@ -98,8 +118,8 @@ package body AuswahlMenuesZusatztextSFML is
    procedure TextZurücksetzen
    is begin
       
-      TextFestgelegt := (others => False);
-      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
+      TextFestgelegt := (others => (others => False));
+      AuflösungBerechnet := (others => (others => LeerAuflösungBerechnet));
       
       AuswahlMenuesZusatztextSFML.TextZurücksetzen;
       
@@ -110,8 +130,8 @@ package body AuswahlMenuesZusatztextSFML is
    procedure SchriftgrößeZurücksetzen
    is begin
       
-      SchriftgrößeFestgelegt := (others => LeerSchriftgrößeFestgelegt);
-      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
+      SchriftgrößeFestgelegt := (others => (others => LeerSchriftgrößeFestgelegt));
+      AuflösungBerechnet := (others => (others => LeerAuflösungBerechnet));
       
       AuswahlMenuesZusatztextSFML.SchriftgrößeZurücksetzen;
       

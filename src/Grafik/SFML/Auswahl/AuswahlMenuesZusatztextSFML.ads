@@ -6,14 +6,12 @@ with Sf;
 with Sf.System.Vector2;
 with Sf.Graphics.Text;
 
-with SystemDatentypen;
-with SystemKonstanten;
+with RassenDatentypen;
 
 package AuswahlMenuesZusatztextSFML is
 
    procedure AuswahlMenüsZusatztext
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
-      AktuelleAuswahlExtern : in Positive);
+     (AktuelleAuswahlExtern : in Positive);
 
    procedure SchriftartZurücksetzen;
    procedure TextZurücksetzen;
@@ -21,8 +19,11 @@ package AuswahlMenuesZusatztextSFML is
 
 private
 
-   LeerSchriftartFestgelegt : constant Boolean := False;
    LeerTextFestgelegt : constant Boolean := False;
+   LinksRechts : Boolean;
+   SchriftartFestgelegt : Boolean := False;
+
+   RasseAnzeigen : RassenDatentypen.Rassen_Verwendet_Enum;
 
    LeerSchriftgrößeFestgelegt : constant Sf.sfUint32 := 0;
    AktuelleSchriftgröße : Sf.sfUint32;
@@ -31,25 +32,20 @@ private
    LeerAuflösungBerechnet : constant Sf.System.Vector2.sfVector2u := (0, 0);
    AktuelleAuflösung : Sf.System.Vector2.sfVector2u;
 
-   type SchriftartFestgelegtArray is array (SystemDatentypen.Menü_Zusatztext_Enum'Range) of Boolean;
-   SchriftartFestgelegt : SchriftartFestgelegtArray := (
-                                                        others => LeerSchriftartFestgelegt
-                                                       );
-
-   type TextFestgelegtArray is array (SystemDatentypen.Menü_Zusatztext_Enum'Range) of Boolean;
+   type TextFestgelegtArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 2) of Boolean;
    TextFestgelegt : TextFestgelegtArray := (
-                                            others => LeerTextFestgelegt
+                                            (others => (others => LeerTextFestgelegt))
                                            );
 
-   type SchriftgrößeFestgelegtArray is array (SystemDatentypen.Menü_Zusatztext_Enum'Range) of Sf.sfUint32;
+   type SchriftgrößeFestgelegtArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 2) of Sf.sfUint32;
    SchriftgrößeFestgelegt : SchriftgrößeFestgelegtArray := (
-                                                                others => LeerSchriftgrößeFestgelegt
+                                                                (others => (others => LeerSchriftgrößeFestgelegt))
                                                                );
 
    -------------------------- Mal anders benennen.
-   type AuflösungBerechnetArray is array (SystemDatentypen.Menü_Zusatztext_Enum'Range) of Sf.System.Vector2.sfVector2u;
+   type AuflösungBerechnetArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 2) of Sf.System.Vector2.sfVector2u;
    AuflösungBerechnet : AuflösungBerechnetArray := (
-                                                      others => LeerAuflösungBerechnet
+                                                      (others => (others => LeerAuflösungBerechnet))
                                                      );
 
    --------------------------- Wird hier so nicht benötigt.
@@ -66,19 +62,18 @@ private
    --                                                             )
    --                                                          );
 
-   type TextAccessArray is array (SystemDatentypen.Menü_Zusatztext_Enum'Range, 1 .. SystemKonstanten.HalbesLängstesMenü) of Sf.Graphics.sfText_Ptr;
+   type TextAccessArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 2) of Sf.Graphics.sfText_Ptr;
    TextAccess : constant TextAccessArray := (
-                                             others =>
-                                               (
-                                                others => Sf.Graphics.Text.create
-                                               )
+                                             (others => (others => Sf.Graphics.Text.create))
                                             );
 
    procedure TextHintergrund
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum;
-      AktuelleAuswahlExtern : in Positive);
+     (AktuelleAuswahlExtern : in Positive);
 
    procedure Textbearbeitung
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Zusatztext_Enum);
+     (AktuelleAuswahlExtern : in Positive);
+
+   procedure TextFestlegen
+     (AktuelleAuswahlExtern : in Positive);
 
 end AuswahlMenuesZusatztextSFML;

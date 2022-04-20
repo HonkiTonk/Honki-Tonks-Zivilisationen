@@ -12,6 +12,10 @@ package AuswahlMenuesStringsSetzen is
       WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
       return Wide_Wide_String;
    
+   function RassenbeschreibungSetzen
+     (WelcheZeileExtern : in Positive)
+      return Wide_Wide_String;
+   
 private
    
    AktuellerText : Unbounded_Wide_Wide_String;

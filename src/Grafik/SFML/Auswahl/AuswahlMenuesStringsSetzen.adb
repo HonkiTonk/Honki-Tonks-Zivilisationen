@@ -66,5 +66,16 @@ package body AuswahlMenuesStringsSetzen is
       return To_Wide_Wide_String (Source => AktuellerText);
       
    end StringSetzen;
+   
+   
+   
+   function RassenbeschreibungSetzen
+     (WelcheZeileExtern : in Positive)
+      return Wide_Wide_String
+   is begin
+      
+      return To_Wide_Wide_String (Source => GlobaleTexte.Rassen (WelcheZeileExtern));
+      
+   end RassenbeschreibungSetzen;
 
 end AuswahlMenuesStringsSetzen;

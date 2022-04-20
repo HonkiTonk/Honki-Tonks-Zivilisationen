@@ -30,12 +30,8 @@ package body AuswahlMenuesEinfach is
          when SystemDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
             Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern);
             
-         when SystemDatentypen.Menü_Mit_Überschrift_Enum'Range =>
+         when SystemDatentypen.Menü_Mit_Überschrift_Enum'Range | SystemDatentypen.Menü_Zusatztext_Enum'Range =>
             Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern) - 1;
-            
-         when SystemDatentypen.Menü_Zusatztext_Enum'Range =>
-            -- Hier wird korrekt aufgerundet.
-            Ende := Integer (Float'Floor (0.50 * Float (SystemKonstanten.EndeMenü (WelchesMenüExtern))));
       end case;
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
