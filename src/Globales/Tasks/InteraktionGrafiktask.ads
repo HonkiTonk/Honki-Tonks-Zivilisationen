@@ -3,10 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
 with GrafikDatentypen;
+with MenueDatentypen;
 
 package InteraktionGrafiktask is
    
-   AktuellesMenü : SystemDatentypen.Welches_Menü_Enum := SystemDatentypen.Leer_Menü_Enum;
+   AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
       
    type Fenster_Ändern_Enum is (
                                  Keine_Änderung_Enum,

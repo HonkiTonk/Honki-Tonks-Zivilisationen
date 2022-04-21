@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with MenueDatentypen;
 with RassenDatentypen;
 with EinheitStadtDatentypen;
 
@@ -11,7 +11,7 @@ package GrafikSFML is
 
 private
 
-   AktuellesMenü : SystemDatentypen.Welches_Menü_Enum;
+   AktuellesMenü : MenueDatentypen.Welches_Menü_Enum;
 
    AktuelleRasse : RassenDatentypen.Rassen_Enum;
 

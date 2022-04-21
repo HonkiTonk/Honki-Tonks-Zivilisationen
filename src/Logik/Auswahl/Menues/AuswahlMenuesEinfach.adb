@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf;
 
-with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
 
@@ -17,33 +16,25 @@ package body AuswahlMenuesEinfach is
 
    --------------------------- Das ganze noch einmal unabhängiger schreiben, damit man es zu Not auch auslagern kann und Überschreibungen nicht vorkommen können.
    function AuswahlMenüsEinfach
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       InteraktionGrafiktask.AktuellesMenü := WelchesMenüExtern;
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Menüs_Enum);
-      
-      case
-        WelchesMenüExtern
-      is
-         when SystemDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
-            Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern);
-            
-         when SystemDatentypen.Menü_Mit_Überschrift_Enum'Range | SystemDatentypen.Menü_Zusatztext_Enum'Range =>
-            Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern) - 1;
-      end case;
+                 
+      Ende := SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugLogik (WelchesMenüExtern);
       
       Ausgewählt := Auswahl (WelchesMenüExtern => WelchesMenüExtern,
-                             AnfangExtern      => Anfang,
-                             EndeExtern        => Ende);
+                              AnfangExtern      => Anfang,
+                              EndeExtern        => Ende);
    
       RückgabeWert := RueckgabeMenues.RückgabeMenüs (AnfangExtern          => Anfang,
                                                         EndeExtern            => Ende,
                                                         AktuelleAuswahlExtern => Ausgewählt,
                                                         WelchesMenüExtern     => WelchesMenüExtern);
       
-      InteraktionGrafiktask.AktuellesMenü := SystemDatentypen.Leer_Menü_Enum;
+      InteraktionGrafiktask.AktuellesMenü := MenueDatentypen.Leer_Menü_Enum;
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
       
       return RückgabeWert;
@@ -53,7 +44,7 @@ package body AuswahlMenuesEinfach is
       
    
    function Auswahl
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Positive
@@ -90,7 +81,7 @@ package body AuswahlMenuesEinfach is
          
    
    function MausAuswahl
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Natural

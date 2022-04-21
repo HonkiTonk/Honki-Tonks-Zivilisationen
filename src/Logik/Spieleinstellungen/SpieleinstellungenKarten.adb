@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with MenueDatentypen;
 
 with Karten;
 with Eingabe;
@@ -18,7 +18,7 @@ package body SpieleinstellungenKarten is
       KartengrößeSchleife:
       loop
          
-         KartengrößeAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartengröße_Menü_Enum);
+         KartengrößeAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum);
          
          case
            KartengrößeAuswahl
@@ -94,7 +94,7 @@ package body SpieleinstellungenKarten is
       KartenartSchleife:
       loop
 
-         KartenartAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartenart_Menü_Enum);
+         KartenartAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenart_Menü_Enum);
          
          case
            KartenartAuswahl
@@ -124,7 +124,7 @@ package body SpieleinstellungenKarten is
       KartenformSchleife:
       loop
 
-         KartenformAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartenform_Menü_Enum);
+         KartenformAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum);
          
          -- case
          --  KartenformAuswahl
@@ -155,7 +155,7 @@ package body SpieleinstellungenKarten is
       KartentemperaturSchleife:
       loop
 
-         KartentemperaturAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartentemperatur_Menü_Enum);
+         KartentemperaturAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartentemperatur_Menü_Enum);
                   
          case
            KartentemperaturAuswahl
@@ -186,7 +186,7 @@ package body SpieleinstellungenKarten is
       KartenressourcenSchleife:
       loop
 
-         KartenressourcenAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Kartenressourcen_Menü_Enum);
+         KartenressourcenAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenressourcen_Menü_Enum);
          
          case
            KartenressourcenAuswahl

@@ -4,16 +4,13 @@ pragma Warnings (Off, "*array aggregate*");
 package body AuswahlMenuesKomplex is
 
    function AuswahlMenüsKomplex
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Komplex_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Komplex_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Kartenform_Menü_Enum =>
-            null;
-            
          when others =>
             null;
       end case;

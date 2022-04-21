@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with RassenDatentypen; use RassenDatentypen;
+with MenueDatentypen; use MenueDatentypen;
 with GrafikDatentypen;
 with StadtKonstanten;
 with ZeitKonstanten;
@@ -140,7 +141,7 @@ package body GrafikSFML is
             AktuellesMenü := InteraktionGrafiktask.AktuellesMenü;
             
             if
-              AktuellesMenü = SystemDatentypen.Leer_Menü_Enum
+              AktuellesMenü = MenueDatentypen.Leer_Menü_Enum
             then
                null;
                

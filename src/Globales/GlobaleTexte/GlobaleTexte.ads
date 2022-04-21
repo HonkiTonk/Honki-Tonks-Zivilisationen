@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with SystemDatentypen;
+with MenueDatentypen;
 with EinheitStadtDatentypen;
 with SystemKonstanten;
 
@@ -23,32 +23,32 @@ package GlobaleTexte is
    
    -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
    -- + 1 beim Hauptmenü, da dort noch auf Wiedersehen eingebaut ist wegen der Konsole.
-   Hauptmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Haupt_Menü_Enum)) := (others => FehlenderText);
-   Spielmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Spiel_Menü_Enum)) := (others => FehlenderText);
+   Hauptmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Haupt_Menü_Enum)) := (others => FehlenderText);
+   Spielmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Spiel_Menü_Enum)) := (others => FehlenderText);
                                
    -- Einfache Auswahl und kein Zusatztext.
-   Optionsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Optionen_Menü_Enum)) := (others => FehlenderText);
-   Einstellungsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Einstellungen_Menü_Enum)) := (others => FehlenderText);
-   Editoren : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Editoren_Menü_Enum)) := (others => FehlenderText);
-   Sonstigesmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sonstiges_Menü_Enum)) := (others => FehlenderText);
+   Optionsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Optionen_Menü_Enum)) := (others => FehlenderText);
+   Einstellungsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Einstellungen_Menü_Enum)) := (others => FehlenderText);
+   Editoren : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Editoren_Menü_Enum)) := (others => FehlenderText);
+   Sonstigesmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Sonstiges_Menü_Enum)) := (others => FehlenderText);
                                
    -- Einfache Auswahl.
-   Kartengröße : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartengröße_Menü_Enum)) := (others => FehlenderText);
-   Kartenart : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenart_Menü_Enum)) := (others => FehlenderText);
-   Kartentemperatur : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartentemperatur_Menü_Enum)) := (others => FehlenderText);
-   Rassenauswahl : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Rassen_Menü_Enum)) := (others => FehlenderText);
-   Schwierigkeitsgrad : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Schwierigkeitsgrad_Menü_Enum)) := (others => FehlenderText);
-   Ressourcenmenge : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenressourcen_Menü_Enum)) := (others => FehlenderText);
+   Kartengröße : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum)) := (others => FehlenderText);
+   Kartenart : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenart_Menü_Enum)) := (others => FehlenderText);
+   Kartentemperatur : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartentemperatur_Menü_Enum)) := (others => FehlenderText);
+   Rassenauswahl : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Rassen_Menü_Enum)) := (others => FehlenderText);
+   Schwierigkeitsgrad : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Schwierigkeitsgrad_Menü_Enum)) := (others => FehlenderText);
+   Ressourcenmenge : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenressourcen_Menü_Enum)) := (others => FehlenderText);
                                 
    -- Komplexe Auswahl.
-   Kartenform : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Kartenform_Menü_Enum)) := (others => FehlenderText);
+   Kartenform : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum)) := (others => FehlenderText);
    
    
    
    -- Unsortiert.
-   Grafikmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Grafik_Menü_Enum)) := (others => FehlenderText);
-   Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Sound_Menü_Enum)) := (others => FehlenderText);
-   Steuerungmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (SystemDatentypen.Steuerung_Menü_Enum)) := (others => FehlenderText);
+   Grafikmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Grafik_Menü_Enum)) := (others => FehlenderText);
+   Soundmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Sound_Menü_Enum)) := (others => FehlenderText);
+   Steuerungmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Steuerung_Menü_Enum)) := (others => FehlenderText);
    
    
 

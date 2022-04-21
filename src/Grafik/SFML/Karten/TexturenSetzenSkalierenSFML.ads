@@ -62,6 +62,21 @@ package TexturenSetzenSkalierenSFML is
             and
               TexturenSetzenSkalierenGesamtesBild'Result.y >= 0.00);
    
+   function TexturenSetzenSkalierenTeilBild
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+     with
+       Pre =>
+         (SpriteAccessExtern /= null
+          and
+            TextureAccessExtern /= null),
+         Post =>
+           (TexturenSetzenSkalierenTeilBild'Result.x >= 0.00
+            and
+              TexturenSetzenSkalierenTeilBild'Result.y >= 0.00);
+   
 private
    
    SkalierungKartenfeld : Sf.System.Vector2.sfVector2f;

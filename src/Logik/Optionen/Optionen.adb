@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with MenueDatentypen;
 
 with OptionenSteuerung;
 with OptionenSound;
@@ -19,7 +19,7 @@ package body Optionen is
       OptionenSchleife:
       loop
          
-         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Optionen_Menü_Enum);
+         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Optionen_Menü_Enum);
 
          case
            AuswahlWert

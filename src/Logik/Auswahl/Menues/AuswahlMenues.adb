@@ -7,17 +7,17 @@ with AuswahlMenuesKomplex;
 package body AuswahlMenues is
 
    function AuswahlMenüsAufteilung
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Menü_Einfach_Enum =>
+         when MenueDatentypen.Menü_Einfach_Enum =>
             return AuswahlMenuesEinfach.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern);
             
-         when SystemDatentypen.Menü_Komplex_Enum =>
+         when MenueDatentypen.Menü_Komplex_Enum =>
             return AuswahlMenuesKomplex.AuswahlMenüsKomplex (WelchesMenüExtern => WelchesMenüExtern);
       end case;
       

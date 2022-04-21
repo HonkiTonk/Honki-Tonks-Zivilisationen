@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SpielVariablen;
-with SystemDatentypen;
+with MenueDatentypen;
 
 with ZufallsgeneratorenSpieleinstellungen;
 with AuswahlMenues;
@@ -16,7 +16,7 @@ package body SpieleinstellungenSonstiges is
       SchwierigkeitsgradSchleife:
       loop
 
-         SchwierigkeitAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Schwierigkeitsgrad_Menü_Enum);
+         SchwierigkeitAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Schwierigkeitsgrad_Menü_Enum);
          
          case
            SchwierigkeitAuswahl

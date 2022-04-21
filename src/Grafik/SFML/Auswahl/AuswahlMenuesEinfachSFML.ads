@@ -7,7 +7,7 @@ with Sf.Graphics.Text;
 with Sf.Graphics.Color;
 with Sf.Graphics.Sprite;
 
-with SystemDatentypen;
+with MenueDatentypen;
 with SystemRecords;
 with SystemKonstanten;
 
@@ -16,7 +16,7 @@ with InteraktionAuswahl;
 package AuswahlMenuesEinfachSFML is
 
    procedure AuswahlMenüsEinfach
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum);
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum);
 
    procedure SchriftartZurücksetzen;
    procedure TextZurücksetzen;
@@ -26,8 +26,9 @@ private
 
    LeerSchriftartFestgelegt : constant Boolean := False;
    LeerTextFestgelegt : constant Boolean := False;
+   SchriftartFestgelegt : Boolean := False;
 
-   LetztesMenü : SystemDatentypen.Welches_Menü_Enum := SystemDatentypen.Leer_Menü_Enum;
+   LetztesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
 
    Überschrift : constant Positive := 1;
    Versionsnummer : constant Positive := 1;
@@ -67,28 +68,23 @@ private
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
-   type SchriftartFestgelegtArray is array (SystemDatentypen.Menü_Einfach_Enum'Range) of Boolean;
-   SchriftartFestgelegt : SchriftartFestgelegtArray := (
-                                                        others => LeerSchriftartFestgelegt
-                                                       );
-
-   type TextFestgelegtArray is array (SystemDatentypen.Menü_Einfach_Enum'Range) of Boolean;
+   type TextFestgelegtArray is array (MenueDatentypen.Menü_Einfach_Enum'Range) of Boolean;
    TextFestgelegt : TextFestgelegtArray := (
                                             others => LeerTextFestgelegt
                                            );
 
-   type SchriftgrößeFestgelegtArray is array (SystemDatentypen.Menü_Einfach_Enum'Range) of Sf.sfUint32;
+   type SchriftgrößeFestgelegtArray is array (MenueDatentypen.Menü_Einfach_Enum'Range) of Sf.sfUint32;
    SchriftgrößeFestgelegt : SchriftgrößeFestgelegtArray := (
                                                                 others => LeerSchriftgrößeFestgelegt
                                                                );
 
    -------------------------- Mal anders benennen.
-   type AuflösungBerechnetArray is array (SystemDatentypen.Menü_Einfach_Enum'Range) of Sf.System.Vector2.sfVector2u;
+   type AuflösungBerechnetArray is array (MenueDatentypen.Menü_Einfach_Enum'Range) of Sf.System.Vector2.sfVector2u;
    AuflösungBerechnet : AuflösungBerechnetArray := (
                                                       others => LeerAuflösungBerechnet
                                                      );
 
-   type SchriftfarbenFestgelegtArray is array (SystemDatentypen.Menü_Einfach_Enum'Range) of SystemRecords.SchriftfarbenRecord;
+   type SchriftfarbenFestgelegtArray is array (MenueDatentypen.Menü_Einfach_Enum'Range) of SystemRecords.SchriftfarbenRecord;
    SchriftfarbenFestgelegt : SchriftfarbenFestgelegtArray := (
                                                               others =>
                                                                 (
@@ -110,37 +106,43 @@ private
                                             );
 
    procedure MenüHintergrund
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum);
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum);
 
    function Textbearbeitung
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive)
       return Natural;
 
    procedure SchriftgrößenFestlegen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive);
 
    procedure SchriftfarbenFestlegen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive);
 
    procedure FarbeAktuelleEinstellungenFestlegen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einstellung_Anzeigen_Enum);
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einstellung_Anzeigen_Enum);
 
    procedure FarbeAusgewählteRassenFestlegen;
+   procedure FarbeAusgewähltKartenformFestlegen;
 
    procedure FarbeAktuelleAuswahlFestlegen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       AktuelleAuswahlExtern : in Natural;
       LetzteAuswahlExtern : in Natural);
 
    procedure SchriftpositionFestlegen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive);
 
    procedure TextFestlegen
-     (WelchesMenüExtern : in SystemDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
       TextbereichExtern : in Positive);
+
+
+
+   function SchriftartFestlegen
+     return Boolean;
 
 end AuswahlMenuesEinfachSFML;

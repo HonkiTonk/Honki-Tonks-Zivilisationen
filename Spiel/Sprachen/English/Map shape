@@ -1,23 +1,13 @@
-Choose map shape:
-X-cylinder
-Y-cylinder
-Torus
-Sphere
-Square
-Sphere rotated
-Tugel
-Tugel turned
-Tugel extreme
+Change map shape:
+e
+e
+y
+y
+y
+y
+x
+x
+x
+x
 Random
 Finished
-Generate a map with a transition in the X direction. (Roller-like)
-Generate a map with a transition in the Y direction. (Roller-like)
-Generate a map with transition in Y and X directions. (Donut-like)
-Generate a map with transition in Y and X directions. (Earth-like)
-Generate a map with no transitions.
-Generate a map with transition in Y and X directions. (Earth-like)
-Strange stuff that should work.
-Strange stuff that should work.
-Strange stuff that maybe work.
-Pick a random card shape.
-Finish selection and continue.

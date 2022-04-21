@@ -13,16 +13,4 @@ Random predefined size
 Random not predefined size
 Finished
 Current size:
-5x20x20 fields
-5x40x40 fields
-5x80x80 fields
-5x120x80 fields
-5x120x160 fields
-5x160x160 fields
-5x240x240 fields
-5x320x320 fields
-5x1000x1000 fields
-Select your own map size.
-Randomly selects one of the predefined card sizes.
-Chooses a random map size.
-Finish selection and continue.
+New size:

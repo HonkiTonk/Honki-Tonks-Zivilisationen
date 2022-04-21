@@ -11,88 +11,88 @@ package body RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive;
-      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+      WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Haupt_Menü_Enum =>
+         when MenueDatentypen.Haupt_Menü_Enum =>
             return Hauptmenü (AnfangExtern          => AnfangExtern,
                                EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Spiel_Menü_Enum =>
+         when MenueDatentypen.Spiel_Menü_Enum =>
             return Spielmenü (AnfangExtern          => AnfangExtern,
                                EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Optionen_Menü_Enum =>
+         when MenueDatentypen.Optionen_Menü_Enum =>
             return Optionsmenü (AnfangExtern          => AnfangExtern,
                                  EndeExtern            => EndeExtern,
                                  AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Kartengröße_Menü_Enum =>
+         when MenueDatentypen.Kartengröße_Menü_Enum =>
             return KartengrößeAuswählen (AnfangExtern          => AnfangExtern,
                                             EndeExtern            => EndeExtern,
                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Kartenart_Menü_Enum =>
+         when MenueDatentypen.Kartenart_Menü_Enum =>
             return KartenartAuswählen (AnfangExtern          => AnfangExtern,
                                         EndeExtern            => EndeExtern,
                                         AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Kartenform_Menü_Enum =>
+         when MenueDatentypen.Kartenform_Menü_Enum =>
             return KartenformAuswählen (AnfangExtern          => AnfangExtern,
                                          EndeExtern            => EndeExtern,
                                          AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Kartentemperatur_Menü_Enum =>
+         when MenueDatentypen.Kartentemperatur_Menü_Enum =>
             return KartentemperaturAuswählen (AnfangExtern          => AnfangExtern,
                                                EndeExtern            => EndeExtern,
                                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Kartenressourcen_Menü_Enum =>
+         when MenueDatentypen.Kartenressourcen_Menü_Enum =>
             return KartenRessourcenAuswählen (AnfangExtern          => AnfangExtern,
                                                EndeExtern            => EndeExtern,
                                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Schwierigkeitsgrad_Menü_Enum =>
+         when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
             return SchwierigkeitsgradAuswählen (AnfangExtern          => AnfangExtern,
                                                  EndeExtern            => EndeExtern,
                                                  AktuelleAuswahlExtern => AktuelleAuswahlExtern);
                         
-         when SystemDatentypen.Rassen_Menü_Enum =>
+         when MenueDatentypen.Rassen_Menü_Enum =>
             return RasseAuswählen (AnfangExtern          => AnfangExtern,
                                     EndeExtern            => EndeExtern,
                                     AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Grafik_Menü_Enum =>
+         when MenueDatentypen.Grafik_Menü_Enum =>
             return GrafikMenü (AnfangExtern          => AnfangExtern,
                                 EndeExtern            => EndeExtern,
                                 AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Sound_Menü_Enum =>
+         when MenueDatentypen.Sound_Menü_Enum =>
             return SoundMenü (AnfangExtern          => AnfangExtern,
                                EndeExtern            => EndeExtern,
                                AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Steuerung_Menü_Enum =>
+         when MenueDatentypen.Steuerung_Menü_Enum =>
             return SteuerungMenü (EndeExtern            => EndeExtern,
                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Sonstiges_Menü_Enum =>
+         when MenueDatentypen.Sonstiges_Menü_Enum =>
             return SonstigesMenü (AnfangExtern          => AnfangExtern,
                                    EndeExtern            => EndeExtern,
                                    AktuelleAuswahlExtern => AktuelleAuswahlExtern);
                
-         when SystemDatentypen.Editoren_Menü_Enum =>
+         when MenueDatentypen.Editoren_Menü_Enum =>
             return EditorenMenü (AnfangExtern          => AnfangExtern,
                                   EndeExtern            => EndeExtern,
                                   AktuelleAuswahlExtern => AktuelleAuswahlExtern);
             
-         when SystemDatentypen.Einstellungen_Menü_Enum =>
+         when MenueDatentypen.Einstellungen_Menü_Enum =>
             return SpieleinstellungenMenü (AnfangExtern          => AnfangExtern,
                                             EndeExtern            => EndeExtern,
                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern);

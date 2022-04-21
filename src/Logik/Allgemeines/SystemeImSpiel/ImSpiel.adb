@@ -9,6 +9,7 @@ with EinheitenKonstanten;
 with GrafikDatentypen;
 with OptionenVariablen;
 with SpielVariablen;
+with MenueDatentypen;
 
 with Optionen;
 with LadezeitenDatentypen;
@@ -269,7 +270,7 @@ package body ImSpiel is
       SpielmenüSchleife:
       loop
          
-         AuswahlSpielmenü := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Spiel_Menü_Enum);
+         AuswahlSpielmenü := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Spiel_Menü_Enum);
 
          case
            AuswahlSpielmenü

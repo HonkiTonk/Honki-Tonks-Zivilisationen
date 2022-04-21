@@ -1,43 +1,104 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with MenueDatentypen;
 
 package SystemKonstanten is
 
    LeerAuswahl : constant Natural := 0;
 
-   LängstesMenü : constant Positive := 27;
+   LängstesMenü : constant Positive := 21;
 
    ------------------------- Diese Konstanten nicht nur für die Menüarrays anlegen sondern für alle?
-   type EndeMenüArray is array (SystemDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
+   type EndeMenüArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Positive;
+   -- Beim Ändern dieser Werte auch immer auf verwendete Variablen/Konstanten in anderen Dateien achten.
+   -- Wenn möglich für Sonderfälle rückwärts zählen, wie z. B. beim Rückgabesystem oder beim Zusatztext für das Kartengrößenmenü.
    EndeMenü : constant EndeMenüArray := (
                                            -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
-                                           SystemDatentypen.Haupt_Menü_Enum              => 7,
-                                           SystemDatentypen.Spiel_Menü_Enum              => 6,
+                                           MenueDatentypen.Haupt_Menü_Enum              => 7,
+                                           MenueDatentypen.Spiel_Menü_Enum              => 6,
 
                                            -- Einfache Auswahl und kein Zusatztext.
-                                           SystemDatentypen.Optionen_Menü_Enum           => 7,
-                                           SystemDatentypen.Einstellungen_Menü_Enum      => 11,
-                                           SystemDatentypen.Editoren_Menü_Enum           => 17,
-                                           SystemDatentypen.Sonstiges_Menü_Enum          => 7,
+                                           MenueDatentypen.Optionen_Menü_Enum           => 7,
+                                           MenueDatentypen.Einstellungen_Menü_Enum      => 11,
+                                           MenueDatentypen.Editoren_Menü_Enum           => 17,
+                                           MenueDatentypen.Sonstiges_Menü_Enum          => 7,
+                                           MenueDatentypen.Grafik_Menü_Enum             => 8,
+                                           MenueDatentypen.Sound_Menü_Enum              => 7,
 
-                                           SystemDatentypen.Kartenart_Menü_Enum          => 8,
-                                           SystemDatentypen.Kartentemperatur_Menü_Enum   => 8,
-                                           SystemDatentypen.Kartenressourcen_Menü_Enum   => 8,
-                                           SystemDatentypen.Schwierigkeitsgrad_Menü_Enum => 6,
+                                           MenueDatentypen.Kartenart_Menü_Enum          => 8,
+                                           MenueDatentypen.Kartentemperatur_Menü_Enum   => 8,
+                                           MenueDatentypen.Kartenressourcen_Menü_Enum   => 8,
+                                           MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => 6,
 
                                            -- Einfache Auswahl.
-                                           SystemDatentypen.Kartengröße_Menü_Enum        => 15,
-                                           SystemDatentypen.Rassen_Menü_Enum             => 21,
+                                           MenueDatentypen.Kartengröße_Menü_Enum        => 16,
+                                           MenueDatentypen.Rassen_Menü_Enum             => 21,
+                                           MenueDatentypen.Kartenform_Menü_Enum         => 6,
 
                                            -- Komplexe Auswahl.
-                                           SystemDatentypen.Kartenform_Menü_Enum         => 23,
 
                                            -- Unsortiert.
-                                           SystemDatentypen.Grafik_Menü_Enum             => 15,
-                                           SystemDatentypen.Sound_Menü_Enum              => 7,
-                                           SystemDatentypen.Steuerung_Menü_Enum          => 91
+                                           MenueDatentypen.Steuerung_Menü_Enum          => 91
                                           );
+
+   type EndeAbzugArray is array (EndeMenüArray'Range) of Natural;
+   EndeAbzugGrafik : constant EndeAbzugArray := (
+                                                 -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
+                                                 MenueDatentypen.Haupt_Menü_Enum              => 1,
+                                                 MenueDatentypen.Spiel_Menü_Enum              => 0,
+
+                                                 -- Einfache Auswahl und kein Zusatztext.
+                                                 MenueDatentypen.Optionen_Menü_Enum           => 0,
+                                                 MenueDatentypen.Einstellungen_Menü_Enum      => 0,
+                                                 MenueDatentypen.Editoren_Menü_Enum           => 0,
+                                                 MenueDatentypen.Sonstiges_Menü_Enum          => 0,
+                                                 MenueDatentypen.Grafik_Menü_Enum             => 0,
+                                                 MenueDatentypen.Sound_Menü_Enum              => 0,
+
+                                                 MenueDatentypen.Kartenart_Menü_Enum          => 0,
+                                                 MenueDatentypen.Kartentemperatur_Menü_Enum   => 0,
+                                                 MenueDatentypen.Kartenressourcen_Menü_Enum   => 0,
+                                                 MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => 0,
+
+                                                 -- Einfache Auswahl.
+                                                 MenueDatentypen.Kartengröße_Menü_Enum        => 3,
+                                                 MenueDatentypen.Rassen_Menü_Enum             => 0,
+
+                                                 -- Komplexe Auswahl.
+                                                 MenueDatentypen.Kartenform_Menü_Enum         => 0,
+
+                                                 -- Unsortiert.
+                                                 MenueDatentypen.Steuerung_Menü_Enum          => 0
+                                                );
+
+   EndeAbzugLogik : constant EndeAbzugArray := (
+                                                -- Einfache Auswahl, keine Überschrift und kein Zusatztext.
+                                                MenueDatentypen.Haupt_Menü_Enum              => 1,
+                                                MenueDatentypen.Spiel_Menü_Enum              => 0,
+
+                                                -- Einfache Auswahl und kein Zusatztext.
+                                                MenueDatentypen.Optionen_Menü_Enum           => 1,
+                                                MenueDatentypen.Einstellungen_Menü_Enum      => 1,
+                                                MenueDatentypen.Editoren_Menü_Enum           => 1,
+                                                MenueDatentypen.Sonstiges_Menü_Enum          => 1,
+                                                MenueDatentypen.Grafik_Menü_Enum             => 1,
+                                                MenueDatentypen.Sound_Menü_Enum              => 1,
+
+                                                MenueDatentypen.Kartenart_Menü_Enum          => 1,
+                                                MenueDatentypen.Kartentemperatur_Menü_Enum   => 1,
+                                                MenueDatentypen.Kartenressourcen_Menü_Enum   => 1,
+                                                MenueDatentypen.Schwierigkeitsgrad_Menü_Enum => 1,
+
+                                                -- Einfache Auswahl.
+                                                MenueDatentypen.Kartengröße_Menü_Enum        => 3,
+                                                MenueDatentypen.Rassen_Menü_Enum             => 1,
+
+                                                -- Komplexe Auswahl.
+                                                MenueDatentypen.Kartenform_Menü_Enum         => 1,
+
+                                                -- Unsortiert.
+                                                MenueDatentypen.Steuerung_Menü_Enum          => 1
+                                               );
 
 end SystemKonstanten;

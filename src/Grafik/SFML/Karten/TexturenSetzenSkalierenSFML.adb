@@ -98,5 +98,29 @@ package body TexturenSetzenSkalierenSFML is
       return SkalierungBild;
       
    end TexturenSetzenSkalierenGesamtesBild;
+   
+   
+   
+   function TexturenSetzenSkalierenTeilBild
+     (SpriteAccessExtern : in Sf.Graphics.sfSprite_Ptr;
+      TextureAccessExtern : in Sf.Graphics.sfTexture_Ptr;
+      VerhältnisExtern : in Sf.System.Vector2.sfVector2f)
+      return Sf.System.Vector2.sfVector2f
+   is begin
+      
+      Sf.Graphics.Sprite.setTexture (sprite    => SpriteAccessExtern,
+                                     texture   => TextureAccessExtern,
+                                     resetRect => Sf.sfTrue);
+      
+      -- Sollte geprüft werden ob die Texturebreite/höhe /= 0 ist? -----------------------
+      GrößeTextur := (Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).width, Sf.Graphics.Sprite.getGlobalBounds (sprite => SpriteAccessExtern).height);
+      GrößeGesamtbild := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y));
+      
+      SkalierungBild.x := GrößeGesamtbild.x * VerhältnisExtern.x / GrößeTextur.x;
+      SkalierungBild.y := GrößeGesamtbild.y * VerhältnisExtern.y / GrößeTextur.y;
+      
+      return SkalierungBild;
+      
+   end TexturenSetzenSkalierenTeilBild;
 
 end TexturenSetzenSkalierenSFML;

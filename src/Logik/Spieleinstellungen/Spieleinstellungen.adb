@@ -6,6 +6,7 @@ with Ada.Calendar; use Ada.Calendar;
 with SonstigeVariablen;
 with RassenDatentypen;
 with SystemDatentypen;
+with MenueDatentypen;
 
 with ImSpiel;
 with KartenGenerator;
@@ -27,7 +28,7 @@ package body Spieleinstellungen is
       SpielEinstellungenSchleife:
       loop
          
-         Auswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Einstellungen_Menü_Enum);
+         Auswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Einstellungen_Menü_Enum);
          
          case
            Auswahl

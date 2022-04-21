@@ -6,12 +6,12 @@ with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
 with Sf.Window.Keyboard; use Sf.Window.Keyboard;
 
-with SystemDatentypen; use SystemDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with GrafikDatentypen;
 -- with GlobaleTexte;
 with SonstigeVariablen;
 with OptionenVariablen;
+with MenueDatentypen;
 
 with Eingabe;
 with AuswahlMenues;
@@ -31,7 +31,7 @@ package body OptionenSteuerung is
       BelegungSchleife:
       loop
                   
-         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Steuerung_Menü_Enum);
+         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Steuerung_Menü_Enum);
          
          case
            AuswahlWert

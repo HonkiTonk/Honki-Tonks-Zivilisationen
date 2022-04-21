@@ -6,7 +6,7 @@ with ForschungDatenbankEditor;
 with GebaeudeDatenbankEditor;
 with KartenDatenbankEditor;
 with VerbesserungenDatenbankEditor;
-with SystemDatentypen;
+with MenueDatentypen;
 
 with AuswahlMenues;
 with Fehler;
@@ -20,7 +20,7 @@ package body DatenbankenEditoren is
       EditorenSchleife:
       loop
          
-         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Editoren_Menü_Enum);
+         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Editoren_Menü_Enum);
          
          case
            AuswahlWert

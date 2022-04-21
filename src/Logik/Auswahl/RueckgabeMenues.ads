@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with MenueDatentypen;
 with RueckgabeDatentypen;
 
 package RueckgabeMenues is
@@ -10,7 +10,7 @@ package RueckgabeMenues is
      (AnfangExtern : in Positive;
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive;
-      WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+      WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum;
    
 private

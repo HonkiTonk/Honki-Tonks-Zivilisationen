@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
 with EinheitenKonstanten;
-with SystemDatentypen;
+with MenueDatentypen;
 with SpielVariablen;
 
 with LeseEinheitenGebaut;
@@ -27,7 +27,7 @@ package body SpieleinstellungenRasseSpieler is
       RasseSchleife:
       loop
          
-         RassenAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Rassen_Menü_Enum);
+         RassenAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Rassen_Menü_Enum);
 
          case
            RassenAuswahl

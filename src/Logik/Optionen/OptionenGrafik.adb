@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with TextKonstanten;
 with SystemDatentypen;
+with MenueDatentypen;
 
 with InteraktionGrafiktask; use InteraktionGrafiktask;
 with AuswahlMenues;
@@ -20,7 +21,7 @@ package body OptionenGrafik is
       GrafikSchleife:
       loop
          
-         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Grafik_Menü_Enum);
+         AuswahlWert := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Grafik_Menü_Enum);
          
          case
            AuswahlWert

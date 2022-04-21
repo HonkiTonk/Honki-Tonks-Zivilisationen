@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics;
 
 with EinheitStadtDatentypen;
-with SystemDatentypen;
+with MenueDatentypen;
 with KartenVerbesserungDatentypen;
 with RassenDatentypen;
 
@@ -15,7 +15,7 @@ package EingeleseneTexturenSFML is
    ---------------- Eventuell nach Bereiche aufteilen, damit dass hier nicht zu unübersichtlich wird?
    ---------------- Wenn dann in die gleichen Bereiche wie in EinlesenTexturen.
 
-   type MenüHintergrundAccessArray is array (SystemDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
+   type MenüHintergrundAccessArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    MenüHintergrundAccess : MenüHintergrundAccessArray := (others => null);
 
    type KartenfelderAccessArray is array (KartenDatenbank.KartenGrundListeArray'Range) of Sf.Graphics.sfTexture_Ptr;

@@ -23,6 +23,7 @@ package body UmwandlungenAdaNachEigenes is
    
    
    
+   ------------------------- Wieso Unbounded_Wide_Wide_String? Müsste Wide_Wide_String nicht auch gehen? Wenn nicht dann mal eine Wide_Wide_String Variante bauen.
    function ZahlAlsStringLeerzeichenEntfernen
      (ZahlExtern : in GanzeZahl)
       return Unbounded_Wide_Wide_String

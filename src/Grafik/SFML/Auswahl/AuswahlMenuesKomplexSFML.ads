@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with SystemDatentypen;
+with MenueDatentypen;
 
 package AuswahlMenuesKomplexSFML is
 
    procedure AuswahlMenüsKomplex
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum);
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum);
 
 end AuswahlMenuesKomplexSFML;

@@ -6,10 +6,3 @@ Save
 Return
 Main menu
 Exit game
-Change the resolution of the game. The new resolution must be at least 1x1.
-Toggle between window and fullscreen mode.
-Set the maximum frame rate. 0 removes any limit.
-Save settings permanently.
-Back to the options menu.
-Back to main menu.
-Quit the game.

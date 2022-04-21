@@ -7,16 +7,16 @@ with AuswahlMenuesKomplexSFML;
 package body AuswahlMenuesSFML is
 
    procedure AuswahlMenüsAufteilung
-     (WelchesMenüExtern : in SystemDatentypen.Welches_Menü_Vorhanden_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
    is begin
       
       case
         WelchesMenüExtern
       is
-         when SystemDatentypen.Menü_Einfach_Enum =>
+         when MenueDatentypen.Menü_Einfach_Enum =>
             AuswahlMenuesEinfachSFML.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern);
             
-         when SystemDatentypen.Menü_Komplex_Enum =>
+         when MenueDatentypen.Menü_Komplex_Enum =>
             AuswahlMenuesKomplexSFML.AuswahlMenüsKomplex (WelchesMenüExtern => WelchesMenüExtern);
       end case;
       

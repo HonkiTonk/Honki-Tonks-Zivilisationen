@@ -1,23 +1,13 @@
-Kartenform wählen:
-X-Zylinder
-Y-Zylinder
-Torus
-Kugel
-Viereck
-Kugel gedreht
-Tugel
-Tugel gedreht
-Tugel extrem
+Kartenform ändern:
+e
+e
+y
+y
+y
+y
+x
+x
+x
+x
 Zufall
 Fertig
-Eine Karte mit Übergang in X-Richtung generieren. (Walzenartig)
-Eine Karte mit Übergang in Y-Richtung generieren. (Walzenartig)
-Eine Karte mit Übergang in Y- und X-Richtung generieren. (Donutartig)
-Eine Karte mit Übergang in Y- und X-Richtung generieren. (Erdänhlich)
-Eine Karte ohne Übergänge generieren.
-Eine Karte mit Übergang in Y- und X-Richtung generieren. (Erdänhlich)
-Komisches Zeug das funktionieren sollte.
-Komisches Zeug das funktionieren sollte.
-Komisches Zeug das vielleicht funktioniert.
-Eine zufällige Kartenform auswählen.
-Fertig.

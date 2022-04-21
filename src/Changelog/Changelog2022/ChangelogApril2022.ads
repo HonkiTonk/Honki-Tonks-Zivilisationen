@@ -35,38 +35,41 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (25.04.2022):
+   -- Version 0.01.04 => 0.01.0 (25.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (24.04.2022):
+   -- Version 0.01.04 => 0.01.04 (24.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (23.04.2022):
+   -- Version 0.01.04 => 0.01.04 (23.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (22.04.2022):
+   -- Version 0.01.0390 => 0.01.04 (22.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0370 => 0.01.0 (21.04.2022):
+   -- Version 0.01.0370 => 0.01.0390 (21.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter am neuen Menüsystem gebaut.
+   -- Zusatzanzeige für die Rassenauswahl eingebaut.
+   -- Zusatzanzeige für Kartengröße eingebaut.
+   -- Angefangen das neue Kartenformsystem einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

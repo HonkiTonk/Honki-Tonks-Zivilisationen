@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with RueckgabeDatentypen; use RueckgabeDatentypen;
-with SystemDatentypen;
 with GrafikDatentypen;
 with TonDatentypen;
+with MenueDatentypen;
 
 with Optionen;
 with Spieleinstellungen;
@@ -28,7 +28,7 @@ package body Hauptmenue is
       loop
          
          case
-           AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => SystemDatentypen.Haupt_Menü_Enum)
+           AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Haupt_Menü_Enum)
          is
             when RueckgabeDatentypen.Start_Weiter_Enum =>
                RückgabeKampagne := Spieleinstellungen.Spieleinstellungen;
