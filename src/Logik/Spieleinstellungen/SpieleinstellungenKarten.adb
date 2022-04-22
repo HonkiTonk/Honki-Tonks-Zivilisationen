@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartenDatentypen; use KartenDatentypen;
 with MenueDatentypen;
 
 with Karten;
@@ -126,25 +127,70 @@ package body SpieleinstellungenKarten is
 
          KartenformAuswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Kartenform_Menü_Enum);
          
-         -- case
-         --  KartenformAuswahl
-         -- is
-          --  when KartenDatentypen.Kartenform_Verwendet_Enum'Range =>
-          --     Karten.Kartenform := KartenformAuswahl;
+         case
+           KartenformAuswahl
+         is
+            when RueckgabeDatentypen.Kartenform_Enum'Range =>
+               KartenformZuweisen (WelcheAchseExtern => KartenformAuswahl);
                
-          --  when RueckgabeDatentypen.Zufall_Enum =>
-          --     ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
+            when RueckgabeDatentypen.Zufall_Enum =>
+               ZufallsgeneratorenSpieleinstellungen.ZufälligeKartenform;
                
-         --   when RueckgabeDatentypen.Fertig_Enum =>
+            when RueckgabeDatentypen.Fertig_Enum =>
                return;
                
-         --   when others =>
-          --     Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
-        -- end case;
+            when others =>
+               Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungenKarten.KartenformWählen - Ungültige Menüauswahl.");
+         end case;
 
       end loop KartenformSchleife;
       
    end KartenformWählen;
+   
+   
+   
+   procedure KartenformZuweisen
+     (WelcheAchseExtern : in RueckgabeDatentypen.Kartenform_Enum)
+   is begin
+      
+      case
+        WelcheAchseExtern
+      is
+         when RueckgabeDatentypen.Kartenübergang_E_Achse_Enum =>
+            if
+              Karten.Kartenparameter.Kartenform.EAchseEinstellung = KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Last
+            then
+               Karten.Kartenparameter.Kartenform.EAchseEinstellung := KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'First;
+               
+            else
+               Karten.Kartenparameter.Kartenform.EAchseEinstellung
+                 := KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.EAchseEinstellung) + 1);
+            end if;
+            
+         when RueckgabeDatentypen.Kartenübergang_Y_Achse_Enum =>
+            if
+              Karten.Kartenparameter.Kartenform.YAchseEinstellung = KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Last
+            then
+               Karten.Kartenparameter.Kartenform.YAchseEinstellung := KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'First;
+               
+            else
+               Karten.Kartenparameter.Kartenform.YAchseEinstellung
+                 := KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.YAchseEinstellung) + 1);
+            end if;
+            
+         when RueckgabeDatentypen.Kartenübergang_X_Achse_Enum =>
+            if
+              Karten.Kartenparameter.Kartenform.XAchseEinstellung = KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Last
+            then
+               Karten.Kartenparameter.Kartenform.XAchseEinstellung := KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'First;
+               
+            else
+               Karten.Kartenparameter.Kartenform.XAchseEinstellung
+                 := KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.XAchseEinstellung) + 1);
+            end if;
+      end case;
+      
+   end KartenformZuweisen;
 
 
 

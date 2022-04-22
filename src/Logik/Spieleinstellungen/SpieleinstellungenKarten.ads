@@ -66,5 +66,8 @@ private
    
    procedure GrößeSelbstBestimmen
      (KartengrößeExtern : in KartenDatentypen.Kartengröße_Enum);
+   
+   procedure KartenformZuweisen
+     (WelcheAchseExtern : in RueckgabeDatentypen.Kartenform_Enum);
 
 end SpieleinstellungenKarten;

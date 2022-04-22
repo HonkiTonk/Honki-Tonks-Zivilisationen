@@ -5,7 +5,7 @@ with GlobaleTexte;
 
 package body AuswahlMenuesStringsSetzen is
    
-   function AuswahlMenüEinfachStringSetzen
+   function AuswahlMenüStringSetzen
      (WelcheZeileExtern : in Positive;
       WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return Wide_Wide_String
@@ -18,43 +18,43 @@ package body AuswahlMenuesStringsSetzen is
             AktuellerText := GlobaleTexte.Hauptmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Spiel_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Spielmenü (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Spielmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Optionen_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Optionsmenü (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Optionsmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Kartengröße_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Kartengröße (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Kartengröße (WelcheZeileExtern);
             
          when MenueDatentypen.Kartenart_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Kartenart (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Kartenart (WelcheZeileExtern);
             
          when MenueDatentypen.Kartenform_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Kartenform (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Kartenform (WelcheZeileExtern);
             
          when MenueDatentypen.Kartentemperatur_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Kartentemperatur (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Kartentemperatur (WelcheZeileExtern);
             
          when MenueDatentypen.Kartenressourcen_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Ressourcenmenge (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Ressourcenmenge (WelcheZeileExtern);
             
          when MenueDatentypen.Schwierigkeitsgrad_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Schwierigkeitsgrad (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Schwierigkeitsgrad (WelcheZeileExtern);
                         
          when MenueDatentypen.Rassen_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Rassenauswahl (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Rassenauswahl (WelcheZeileExtern);
             
          when MenueDatentypen.Grafik_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Grafikmenü (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Grafikmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Sound_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Soundmenü (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Soundmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Sonstiges_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Sonstigesmenü (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Sonstigesmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Steuerung_Menü_Enum =>
-               AktuellerText := GlobaleTexte.Steuerungmenü (WelcheZeileExtern);
+            AktuellerText := GlobaleTexte.Steuerungmenü (WelcheZeileExtern);
             
          when MenueDatentypen.Editoren_Menü_Enum =>
             AktuellerText := GlobaleTexte.Editoren (WelcheZeileExtern);
@@ -65,10 +65,11 @@ package body AuswahlMenuesStringsSetzen is
             
       return To_Wide_Wide_String (Source => AktuellerText);
       
-   end AuswahlMenüEinfachStringSetzen;
+   end AuswahlMenüStringSetzen;
    
    
    
+   -- Wird benötigt da der Zusatztext der Rassen nicht in der gleichen Datei wie die Rassenauswahl ist.
    function AuswahlMenüZusatztextStringSetzen
      (WelcheZeileExtern : in Positive;
       WelchesMenüExtern : in MenueDatentypen.Menü_Zusatztext_Enum)
@@ -78,16 +79,13 @@ package body AuswahlMenuesStringsSetzen is
       case
         WelchesMenüExtern
       is
-         when MenueDatentypen.Kartengröße_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Kartengröße (WelcheZeileExtern);
-
          when MenueDatentypen.Rassen_Menü_Enum =>
             AktuellerText := GlobaleTexte.Rassen (WelcheZeileExtern);
             
-         when MenueDatentypen.Kartenform_Menü_Enum =>
-            AktuellerText := GlobaleTexte.Kartenform (WelcheZeileExtern);
+         when others =>
+            null;
       end case;
-      
+            
       return To_Wide_Wide_String (Source => AktuellerText);
       
    end AuswahlMenüZusatztextStringSetzen;

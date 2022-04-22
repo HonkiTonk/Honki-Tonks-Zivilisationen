@@ -10,6 +10,7 @@ with KartePositionRueckwaertsUebergangBerechnungen;
 
 package body KarteKoordinatenPruefen is
    
+   ---------------------- Die neue Version hier gleich mal überarbeiten. Dabei auch die Post => Anforderungen beachten.
    function KarteKoordinatenPrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord;
@@ -17,9 +18,9 @@ package body KarteKoordinatenPruefen is
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      -- Die Prüfung wird ständig aufgerufen, müssten die Renderer und die Mausbewegung sein. Kann man diese Aufrufe reduzieren? --------------------
+      -------------------- Die Prüfung wird ständig aufgerufen, müssten die Renderer und die Mausbewegung sein. Kann man diese Aufrufe reduzieren?
       -- Die Arrays sind da wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
-      -- Ist folgende Prüfung sinnvoll/bringt die bessere Performance? --------------------
+      -------------------- Ist folgende Prüfung sinnvoll/bringt die bessere Performance?
       -- if
       --  ÄnderungExtern.EAchse = 0
       --  and
@@ -114,7 +115,19 @@ package body KarteKoordinatenPruefen is
             end if;
       end case;
       
-      return NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse);
+      if
+        NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse = KartenKonstanten.LeerXAchse
+      then
+         return KartenRecordKonstanten.LeerKartenKoordinaten;
+         
+      elsif
+        NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse = KartenKonstanten.LeerYAchse
+      then
+         return KartenRecordKonstanten.LeerKartenKoordinaten;
+         
+      else
+         return NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse);
+      end if;
       
    end KarteKoordinatenPrüfen;
    

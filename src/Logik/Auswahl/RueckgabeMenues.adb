@@ -422,50 +422,20 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Karte_Form_X_Zylinder_Enum;
+         return RueckgabeDatentypen.Kartenübergang_E_Achse_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return RueckgabeDatentypen.Karte_Form_Y_Zylinder_Enum;
+         return RueckgabeDatentypen.Kartenübergang_Y_Achse_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return RueckgabeDatentypen.Karte_Form_Torus_Enum;
+         return RueckgabeDatentypen.Kartenübergang_X_Achse_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
-      then
-         return RueckgabeDatentypen.Karte_Form_Kugel_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 4
-      then
-         return RueckgabeDatentypen.Karte_Form_Viereck_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 5
-      then
-         return RueckgabeDatentypen.Karte_Form_Kugel_Gedreht_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 6
-      then
-         return RueckgabeDatentypen.Karte_Form_Tugel_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 7
-      then
-         return RueckgabeDatentypen.Karte_Form_Tugel_Gedreht_Enum;
-                    
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 8
-      then
-         return RueckgabeDatentypen.Karte_Form_Tugel_Extrem_Enum;
-         
-      elsif
-        AktuelleAuswahlExtern = AnfangExtern + 9
       then
          return RueckgabeDatentypen.Zufall_Enum;
                     

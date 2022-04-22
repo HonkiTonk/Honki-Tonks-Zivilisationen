@@ -14,7 +14,7 @@ package AuswahlMenuesEinfach is
 
 
    function AuswahlMenüsEinfach
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 private
@@ -28,13 +28,13 @@ private
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
    function Auswahl
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Positive;
 
    function MausAuswahl
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Natural;

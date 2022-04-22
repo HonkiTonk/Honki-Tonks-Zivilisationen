@@ -17,8 +17,17 @@ package body AnzeigeZusatztextKartenformSFML is
      (AktuelleAuswahlExtern : in Positive)
    is begin
       
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess (AktuelleAuswahlExtern));
+      if
+        AktuelleAuswahlExtern = 1
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      -- Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+      --                                   text         => TextAccess (AktuelleAuswahlExtern));
       
    end AnzeigeZusatztextKartenform;
    

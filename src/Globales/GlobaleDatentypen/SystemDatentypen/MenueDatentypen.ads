@@ -14,9 +14,10 @@ package MenueDatentypen is
                                Kartenart_Menü_Enum, Kartenressourcen_Menü_Enum, Schwierigkeitsgrad_Menü_Enum, Kartentemperatur_Menü_Enum,
                                
                                -- Einfache Auswahl.
-                               Kartengröße_Menü_Enum, Kartenform_Menü_Enum, Rassen_Menü_Enum,
+                               Kartengröße_Menü_Enum, Rassen_Menü_Enum,
                                 
                                -- Komplexe Auswahl.
+                               Kartenform_Menü_Enum,
                                
                                -- Unsortiert.
                                Steuerung_Menü_Enum
@@ -33,6 +34,6 @@ package MenueDatentypen is
    
    subtype Menü_Zusatztext_Enum is Menü_Einfach_Enum range Kartengröße_Menü_Enum .. Rassen_Menü_Enum;
    
-   subtype Menü_Komplex_Enum is Welches_Menü_Enum range Steuerung_Menü_Enum .. Steuerung_Menü_Enum;
+   subtype Menü_Komplex_Enum is Welches_Menü_Enum range Kartenform_Menü_Enum .. Steuerung_Menü_Enum;
 
 end MenueDatentypen;

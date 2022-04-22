@@ -47,6 +47,9 @@ private
    package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenressourcen_Enum);
    package ZufälligeRassenWählen is new Ada.Numerics.Discrete_Random (RassenDatentypen.Spieler_Enum);
    package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (SpielDatentypen.Schwierigkeitsgrad_Enum);
+   package ZufälligerEAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum);
+   package ZufälligerYAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum);
+   package ZufälligerXAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum);
 
    ZufälligeVordefinierteKartengrößeGewählt : ZufälligeVordefinierteKartengrößeWählen.Generator;
    ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;
@@ -55,5 +58,8 @@ private
    ZufälligeKartenressourcenGewählt : ZufälligeKartenressourcenWählen.Generator;
    ZufälligeRassenGewählt : ZufälligeRassenWählen.Generator;
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
+   ZufälligerEAchsenÜbergangGewählt : ZufälligerEAchsenÜbergangWählen.Generator;
+   ZufälligerYAchsenÜbergangGewählt : ZufälligerYAchsenÜbergangWählen.Generator;
+   ZufälligerXAchsenÜbergangGewählt : ZufälligerXAchsenÜbergangWählen.Generator;
 
 end ZufallsgeneratorenSpieleinstellungen;

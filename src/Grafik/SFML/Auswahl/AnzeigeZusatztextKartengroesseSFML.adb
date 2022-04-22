@@ -142,8 +142,8 @@ package body AnzeigeZusatztextKartengroesseSFML is
     
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (1),
                                          str  =>
-                                           AuswahlMenuesStringsSetzen.AuswahlMenüZusatztextStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
-                                                                                                          WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
+                                           AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
+                                                                                                WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
                                          & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße)) & "x"
                                          & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße)));
       
@@ -156,8 +156,8 @@ package body AnzeigeZusatztextKartengroesseSFML is
          when others =>
             Sf.Graphics.Text.setUnicodeString (text => TextAccess (2),
                                                str  =>
-                                                  AuswahlMenuesStringsSetzen.AuswahlMenüZusatztextStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
-                                                                                                                 WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
+                                                  AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
+                                                                                                       WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
                                                & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv
                                                                       (ZahlExtern => Karten.Kartengrößen (KartenDatentypen.Kartengröße_Standard_Enum'Val (AktuelleAuswahlExtern - 1)).YAchsenGröße))
                                                & "x"

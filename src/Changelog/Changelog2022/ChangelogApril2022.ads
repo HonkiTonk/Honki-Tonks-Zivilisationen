@@ -28,14 +28,14 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (26.04.2022):
+   -- Version 0.01.04 => 0.01.0 (26.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.04 => 0.01.0 (25.04.2022):
+   -- Version 0.01.04 => 0.01.04 (25.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -49,17 +49,18 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.04 => 0.01.04 (23.04.2022):
+   -- Version 0.01.0400 => 0.01.04 (23.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0390 => 0.01.04 (22.04.2022):
+   -- Version 0.01.0390 => 0.01.0400 (22.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Menü für das neue Kartenformsystem eingebaut.
+   -- Es ist jetzt wieder möglich die Kartenform zu ändern.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

@@ -97,7 +97,8 @@ private
                                                                 )
                                                              );
 
-   type TextAccessArray is array (InteraktionAuswahl.PositionenEinfachArray'Range (1), Überschrift .. Überschrift + InteraktionAuswahl.PositionenEinfachArray'Last (2) + Versionsnummer) of Sf.Graphics.sfText_Ptr;
+   type TextAccessArray is array (InteraktionAuswahl.PositionenMenüeinträgeArray'Range (1),
+                                  Überschrift .. Überschrift + InteraktionAuswahl.PositionenMenüeinträgeArray'Last (2) + Versionsnummer) of Sf.Graphics.sfText_Ptr;
    TextAccess : constant TextAccessArray := (
                                              others =>
                                                (
@@ -125,7 +126,6 @@ private
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einstellung_Anzeigen_Enum);
 
    procedure FarbeAusgewählteRassenFestlegen;
-   procedure FarbeAusgewähltKartenformFestlegen;
 
    procedure FarbeAktuelleAuswahlFestlegen
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;

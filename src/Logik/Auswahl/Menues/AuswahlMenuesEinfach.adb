@@ -16,7 +16,7 @@ package body AuswahlMenuesEinfach is
 
    --------------------------- Das ganze noch einmal unabhängiger schreiben, damit man es zu Not auch auslagern kann und Überschreibungen nicht vorkommen können.
    function AuswahlMenüsEinfach
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
@@ -44,7 +44,7 @@ package body AuswahlMenuesEinfach is
       
    
    function Auswahl
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Positive
@@ -81,7 +81,7 @@ package body AuswahlMenuesEinfach is
          
    
    function MausAuswahl
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;
+     (WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum;
       AnfangExtern : in Positive;
       EndeExtern : in Positive)
       return Natural
@@ -94,11 +94,11 @@ package body AuswahlMenuesEinfach is
       for PositionSchleifenwert in AnfangExtern .. EndeExtern loop
          
          if
-           MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenEinfach (WelchesMenüExtern, PositionSchleifenwert).top)
-             .. Sf.sfInt32 (InteraktionAuswahl.PositionenEinfach (WelchesMenüExtern, PositionSchleifenwert).top + InteraktionAuswahl.PositionenEinfach (WelchesMenüExtern, PositionSchleifenwert).height)
+           MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).top)
+             .. Sf.sfInt32 (InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).top + InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).height)
              and
-               MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenEinfach (WelchesMenüExtern, PositionSchleifenwert).left)
-                 .. Sf.sfInt32 (InteraktionAuswahl.PositionenEinfach (WelchesMenüExtern, PositionSchleifenwert).left + InteraktionAuswahl.PositionenEinfach (WelchesMenüExtern, PositionSchleifenwert).width)
+               MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).left)
+                 .. Sf.sfInt32 (InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).left + InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert).width)
          then
             return PositionSchleifenwert;
             

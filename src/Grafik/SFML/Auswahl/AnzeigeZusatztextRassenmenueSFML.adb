@@ -76,11 +76,11 @@ package body AnzeigeZusatztextRassenmenueSFML is
            AktuelleAuswahlExtern mod 2
          is
             when 0 =>
-               PositionHintergrund := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00, InteraktionAuswahl.PositionenEinfach (MenueDatentypen.Rassen_Menü_Enum, 1).top);
+               PositionHintergrund := (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00, InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
                
             when others =>
                PositionHintergrund := ((Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) / 100.00) / 2.00,
-                                       InteraktionAuswahl.PositionenEinfach (MenueDatentypen.Rassen_Menü_Enum, 1).top);
+                                       InteraktionAuswahl.PositionenMenüeinträge (MenueDatentypen.Rassen_Menü_Enum, 1).top);
          end case;
          
          Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,

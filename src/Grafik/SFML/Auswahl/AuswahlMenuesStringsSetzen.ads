@@ -7,7 +7,7 @@ with MenueDatentypen;
 
 package AuswahlMenuesStringsSetzen is
 
-   function AuswahlMenüEinfachStringSetzen
+   function AuswahlMenüStringSetzen
      (WelcheZeileExtern : in Positive;
       WelchesMenüExtern : in MenueDatentypen.Welches_Menü_Vorhanden_Enum)
       return Wide_Wide_String;

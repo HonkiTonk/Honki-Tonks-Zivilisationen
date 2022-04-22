@@ -80,7 +80,14 @@ package body ZufallsgeneratorenSpieleinstellungen is
     procedure ZufälligeKartenform
     is begin
       
-       null;
+      --------------------------- In drei Teile aufteilen damit man jede Achsen einzeln zufällig zuweisen kann?
+      ZufälligerEAchsenÜbergangWählen.Reset (ZufälligerEAchsenÜbergangGewählt);
+      ZufälligerYAchsenÜbergangWählen.Reset (ZufälligerYAchsenÜbergangGewählt);
+      ZufälligerXAchsenÜbergangWählen.Reset (ZufälligerXAchsenÜbergangGewählt);
+            
+      Karten.Kartenparameter.Kartenform.EAchseEinstellung := ZufälligerEAchsenÜbergangWählen.Random (ZufälligerEAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.YAchseEinstellung := ZufälligerYAchsenÜbergangWählen.Random (ZufälligerYAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.XAchseEinstellung := ZufälligerXAchsenÜbergangWählen.Random (ZufälligerXAchsenÜbergangGewählt);
       
     end ZufälligeKartenform;
 

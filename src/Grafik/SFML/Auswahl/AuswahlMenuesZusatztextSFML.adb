@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with AnzeigeZusatztextRassenmenueSFML;
 with AnzeigeZusatztextKartengroesseSFML;
-with AnzeigeZusatztextKartenformSFML;
 
 package body AuswahlMenuesZusatztextSFML is
 
@@ -34,16 +33,6 @@ package body AuswahlMenuesZusatztextSFML is
                
             else
                AnzeigeZusatztextKartengroesseSFML.AnzeigeZusatztextKartengröße (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
-            end if;
-            
-         when MenueDatentypen.Kartenform_Menü_Enum =>
-            if
-              AktuelleAuswahlExtern in 1 .. MaximaleKartenformen
-            then
-               AnzeigeZusatztextKartenformSFML.AnzeigeZusatztextKartenform (AktuelleAuswahlExtern => AktuelleAuswahlExtern);
-               
-            else
-               null;
             end if;
       end case;
       

@@ -29,15 +29,9 @@ package RueckgabeDatentypen is
                                 
                                  -- Neue Kartenarten immer vor Chaos einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum, Kartenart_Nur_Land_Enum, Kartenart_Chaos_Enum,
-                                
-                                 -- Neue Kartenformen immer vor Tugel Extrem einfügen um Anpassungen in KartenDatentypen zu vermeiden.
-                                 Karte_Form_X_Zylinder_Enum, Karte_Form_Y_Zylinder_Enum, Karte_Form_Torus_Enum, Karte_Form_Kugel_Enum, Karte_Form_Viereck_Enum, Karte_Form_Kugel_Gedreht_Enum, Karte_Form_Tugel_Enum,
-                                 Karte_Form_Tugel_Gedreht_Enum, Karte_Form_Tugel_Extrem_Enum,
                                  
                                  -- Immer eventuelle Anpassungen in den KartenDatentypen berücksichtigen.
-                                 Karte_E_Achse_Kein_Übergang_Enum, Karte_E_Achse_Übergang_Enum,
-                                 Karte_Y_Achse_Kein_Übergang_Enum, Karte_Y_Achse_Übergang_Enum, Karte_Y_Achse_Rückwärts_Verschobener_Übergang_Enum, Karte_Y_Achse_Verschobener_Übergang_Enum,
-                                 Karte_X_Achse_Kein_Übergang_Enum, Karte_X_Achse_Übergang_Enum, Karte_X_Achse_Rückwärts_Verschobener_Übergang_Enum, Karte_X_Achse_Verschobener_Übergang_Enum,      
+                                 Kartenübergang_E_Achse_Enum, Kartenübergang_Y_Achse_Enum, Kartenübergang_X_Achse_Enum,    
                                  
                                  -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
                                  Kartentemperatur_Kalt_Enum, Kartentemperatur_Gemäßigt_Enum, Kartentemperatur_Heiß_Enum, Kartentemperatur_Eiszeit_Enum, Kartentemperatur_Wüste_Enum,
@@ -65,10 +59,7 @@ package RueckgabeDatentypen is
    subtype Kartenressourcen_Enum is Rückgabe_Werte_Enum range Kartenressourcen_Arm_Enum .. Kartenressourcen_Überfluss_Enum;
    subtype Kartenpole_Enum is Rückgabe_Werte_Enum range Karten_Pole_Keine .. Karten_Pole_Beide;
    
-   subtype Kartenform_Enum is Rückgabe_Werte_Enum range Karte_E_Achse_Kein_Übergang_Enum .. Karte_X_Achse_Verschobener_Übergang_Enum;
-   subtype Kartenform_E_Achse_Einstellbar_Enum is Rückgabe_Werte_Enum range Karte_E_Achse_Kein_Übergang_Enum .. Karte_E_Achse_Übergang_Enum;
-   subtype Kartenform_Y_Achse_Einstellbar_Enum is Rückgabe_Werte_Enum range Karte_Y_Achse_Kein_Übergang_Enum .. Karte_Y_Achse_Verschobener_Übergang_Enum;
-   subtype Kartenform_X_Achse_Einstellbar_Enum is Rückgabe_Werte_Enum range Karte_X_Achse_Kein_Übergang_Enum .. Karte_X_Achse_Verschobener_Übergang_Enum;
+   subtype Kartenform_Enum is Rückgabe_Werte_Enum range Kartenübergang_E_Achse_Enum .. Kartenübergang_X_Achse_Enum;
    
    subtype Schwierigkeitsgrad_Enum is Rückgabe_Werte_Enum range Schwierigkeitsgrad_Leicht_Enum .. Schwierigkeitsgrad_Schwer_Enum;
    
