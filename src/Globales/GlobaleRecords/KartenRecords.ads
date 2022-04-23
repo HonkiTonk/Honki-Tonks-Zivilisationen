@@ -110,14 +110,25 @@ package KartenRecords is
    
    type KartenformRecord is record
       
-      EAchseEinstellung : KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum;
-      YAchseEinstellung : KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum;
-      XAchseEinstellung : KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum;
+      EAchseOben : KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum;
+      EAchseUnten : KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum;
+      YAchseNorden : KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum;
+      YAchseSüden : KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum;
+      XAchseWesten : KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum;
+      XAchseOsten : KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum;
       
-      ------------------------ Brauche ich das noch? Macht die unterschiedliche Berechnung noch einen Unterschied?
+      -- Müsste benötigt werden wenn sowohl Y-Achse, als auch X.Achse gleichzeitig verschoben werden.
       YZuerstBerechnenXZuerstBerechnen : Boolean;
       
    end record;
+   
+   
+   
+   -- type KartenpoleRecord is record
+      
+      
+      
+   -- end record;
    
    
    

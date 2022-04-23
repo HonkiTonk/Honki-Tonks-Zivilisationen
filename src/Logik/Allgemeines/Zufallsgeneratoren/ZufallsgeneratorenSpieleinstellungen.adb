@@ -77,19 +77,24 @@ package body ZufallsgeneratorenSpieleinstellungen is
    
    
    
-    procedure ZufälligeKartenform
-    is begin
+   procedure ZufälligeKartenform
+   is begin
       
       --------------------------- In drei Teile aufteilen damit man jede Achsen einzeln zufällig zuweisen kann?
       ZufälligerEAchsenÜbergangWählen.Reset (ZufälligerEAchsenÜbergangGewählt);
       ZufälligerYAchsenÜbergangWählen.Reset (ZufälligerYAchsenÜbergangGewählt);
       ZufälligerXAchsenÜbergangWählen.Reset (ZufälligerXAchsenÜbergangGewählt);
+      ZufälligeAchseWählen.Reset (ZufälligeAchseGewählt);
             
-      Karten.Kartenparameter.Kartenform.EAchseEinstellung := ZufälligerEAchsenÜbergangWählen.Random (ZufälligerEAchsenÜbergangGewählt);
-      Karten.Kartenparameter.Kartenform.YAchseEinstellung := ZufälligerYAchsenÜbergangWählen.Random (ZufälligerYAchsenÜbergangGewählt);
-      Karten.Kartenparameter.Kartenform.XAchseEinstellung := ZufälligerXAchsenÜbergangWählen.Random (ZufälligerXAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.EAchseOben := ZufälligerEAchsenÜbergangWählen.Random (ZufälligerEAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.EAchseUnten := ZufälligerEAchsenÜbergangWählen.Random (ZufälligerEAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.YAchseNorden := ZufälligerYAchsenÜbergangWählen.Random (ZufälligerYAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.YAchseSüden := ZufälligerYAchsenÜbergangWählen.Random (ZufälligerYAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.XAchseWesten := ZufälligerXAchsenÜbergangWählen.Random (ZufälligerXAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.XAchseOsten := ZufälligerXAchsenÜbergangWählen.Random (ZufälligerXAchsenÜbergangGewählt);
+      Karten.Kartenparameter.Kartenform.YZuerstBerechnenXZuerstBerechnen := ZufälligeAchseWählen.Random (ZufälligeAchseGewählt);
       
-    end ZufälligeKartenform;
+   end ZufälligeKartenform;
 
    
    

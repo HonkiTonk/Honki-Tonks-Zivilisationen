@@ -11,6 +11,7 @@ package body AuswahlMenues is
    is begin
       
       ------------------------ Wird diese Aufteilungdatei noch benötigt? Theoretisch kann ich ja alles Positionen egal wie das Menü oder die Auswahl aussieht so gestalten.
+      ------------------------ Bei Verwendung anderer Menüarten könnte es aber eine weitere Version benötigt werden, beispielsweise bei einem Leistenmenü, oder?
       return AuswahlMenuesEinfach.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern);
       
    end AuswahlMenüsAufteilung;

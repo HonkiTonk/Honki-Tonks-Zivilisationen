@@ -19,9 +19,8 @@ with AllgemeineTextBerechnungenSFML;
 with AuswahlMenuesStringsSetzen;
 with AuswahlMenuesEinfach;
 with AuswahlMenuesZusatztextSFML;
-with EingeleseneTexturenSFML;
-with TexturenSetzenSkalierenSFML;
 with Karten;
+with MenueHintergrundSFML;
 
 package body AuswahlMenuesEinfachSFML is
 
@@ -29,7 +28,8 @@ package body AuswahlMenuesEinfachSFML is
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
    is begin
       
-      MenüHintergrund (WelchesMenüExtern => WelchesMenüExtern);
+      MenueHintergrundSFML.MenüHintergrund (WelchesMenüExtern  => WelchesMenüExtern,
+                                            SpriteAccessExtern => SpriteAccess);
       
       Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) + Versionsnummer;
       
@@ -60,7 +60,7 @@ package body AuswahlMenuesEinfachSFML is
       case
         WelchesMenüExtern
       is
-         when MenueDatentypen.Menü_Zusatztext_Enum'Range =>
+         when MenueDatentypen.Menü_Zusatztext_Einfach_Enum'Range =>
             AuswahlMenuesZusatztextSFML.MenüsZusatztextAufteilung (WelchesMenüExtern     => WelchesMenüExtern,
                                                                     AktuelleAuswahlExtern => AktuelleAuswahlRückgabewert);
             
@@ -69,33 +69,6 @@ package body AuswahlMenuesEinfachSFML is
       end case;
       
    end AuswahlMenüsEinfach;
-   
-   
-   
-   ------------------------- Später auslagern.
-   ------------------------- Ein SpriteAccess für jedes Menübild?
-   procedure MenüHintergrund
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum)
-   is begin
-      
-      if
-        EingeleseneTexturenSFML.MenüHintergrundAccess (WelchesMenüExtern) /= null
-      then
-         Sf.Graphics.Sprite.setPosition (sprite   => SpriteAccess,
-                                         position => (0.00, 0.00));
-         Sf.Graphics.Sprite.scale (sprite  => SpriteAccess,
-                                   factors => TexturenSetzenSkalierenSFML.TexturenSetzenSkalierenGesamtesBild (SpriteAccessExtern  => SpriteAccess,
-                                                                                                               TextureAccessExtern => EingeleseneTexturenSFML.MenüHintergrundAccess (WelchesMenüExtern)));
-         
-         Sf.Graphics.RenderWindow.drawSprite (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                              object       => SpriteAccess);
-         
-      else
-         -- Hier wird kein einfarbiger Hintergrund wie bei den Kartenfeldern benötigt, da es ja immer auf schwarz gesetzt wird.
-         null;
-      end if;
-      
-   end MenüHintergrund;
    
    
    
@@ -445,7 +418,7 @@ package body AuswahlMenuesEinfachSFML is
             Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift),
                                                str  => SonstigesKonstanten.Spielename);
             
-         when MenueDatentypen.Menü_Mit_Überschrift_Enum'Range | MenueDatentypen.Menü_Zusatztext_Enum'Range =>
+         when MenueDatentypen.Menü_Mit_Überschrift_Enum'Range | MenueDatentypen.Menü_Zusatztext_Einfach_Enum'Range =>
             Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift),
                                                str  => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => Überschrift,
                                                                                                             WelchesMenüExtern => WelchesMenüExtern));

@@ -95,7 +95,7 @@ package SystemKonstanten is
                                                 MenueDatentypen.Rassen_Menü_Enum             => 1,
 
                                                 -- Komplexe Auswahl.
-                                                MenueDatentypen.Kartenform_Menü_Enum         => 11,
+                                                MenueDatentypen.Kartenform_Menü_Enum         => 7,
 
                                                 -- Unsortiert.
                                                 MenueDatentypen.Steuerung_Menü_Enum          => 1

@@ -43,9 +43,12 @@ package KartenRecordKonstanten is
                                                           );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
-                                                                    EAchseEinstellung                => KartenDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
-                                                                    YAchseEinstellung                => KartenDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
-                                                                    XAchseEinstellung                => KartenDatentypen.Karte_X_Achse_Übergang_Enum,
+                                                                    EAchseOben                       => KartenDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
+                                                                    EAchseUnten                      => KartenDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
+                                                                    YAchseNorden                     => KartenDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
+                                                                    YAchseSüden                      => KartenDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
+                                                                    XAchseWesten                     => KartenDatentypen.Karte_X_Achse_Übergang_Enum,
+                                                                    XAchseOsten                      => KartenDatentypen.Karte_X_Achse_Übergang_Enum,
                                                                     YZuerstBerechnenXZuerstBerechnen => True
                                                                    );
 

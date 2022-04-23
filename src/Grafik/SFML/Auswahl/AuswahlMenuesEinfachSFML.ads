@@ -66,6 +66,7 @@ private
    AktuelleAuflösungFloat : Sf.System.Vector2.sfVector2f;
    AktuelleTextposition : Sf.System.Vector2.sfVector2f;
 
+   ------------------------- Ein SpriteAccess für jedes Menübild?
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 
    type TextFestgelegtArray is array (MenueDatentypen.Menü_Einfach_Enum'Range) of Boolean;
@@ -105,9 +106,6 @@ private
                                                 others => Sf.Graphics.Text.create
                                                )
                                             );
-
-   procedure MenüHintergrund
-     (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum);
 
    function Textbearbeitung
      (WelchesMenüExtern : in MenueDatentypen.Menü_Einfach_Enum;

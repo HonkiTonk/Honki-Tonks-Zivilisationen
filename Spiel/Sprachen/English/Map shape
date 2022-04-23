@@ -1,16 +1,16 @@
 Change map shape:
-Ebene:
-YAchse:
-XAchse:
+Level above:
+Level below:
+Y axis north:
+Y axis south:
+X axis west:
+X axis east:
+Which axis to calculate first:
 Random
 Finished
-Kein Übergang
-Übergang
-Kein Übergang
-Übergang
-Verschobener rückwärts Übergang
-Verschobener Übergang
-Kein Übergang
-Übergang
-Verschobener rückwärts Übergang
-Verschobener Übergang
+No Transition
+Transition
+Shifted reverse transition
+Reverese transition
+Y axis
+X axis

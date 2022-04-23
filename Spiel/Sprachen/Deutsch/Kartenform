@@ -1,16 +1,16 @@
 Kartenform ändern:
-Ebene:
-YAchse:
-XAchse:
+Ebene oben:
+Ebene unten:
+YAchse Norden:
+YAchse Süden:
+XAchse Westen:
+XAchse Osten:
+Welche Achse zuerst berechnen:
 Zufall
 Fertig
 Kein Übergang
 Übergang
-Kein Übergang
-Übergang
 Verschobener rückwärts Übergang
 Verschobener Übergang
-Kein Übergang
-Übergang
-Verschobener rückwärts Übergang
-Verschobener Übergang
+YAchse
+XAchse

@@ -42,17 +42,18 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.04 => 0.01.04 (24.04.2022):
+   -- Version 0.01.0420 => 0.01.04 (24.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0400 => 0.01.04 (23.04.2022):
+   -- Version 0.01.0400 => 0.01.0420 (23.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen das Koordinatenberechnungssystem erneut zu verbessern/überarbeiten.
+   -- Menü für das Kartenformsystem erweitert, damit es mit dem neuen Koordinatenberechnungssystem kompatibel ist.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet.
    
    
 

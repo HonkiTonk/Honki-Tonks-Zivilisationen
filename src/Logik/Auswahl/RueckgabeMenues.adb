@@ -422,20 +422,40 @@ package body RueckgabeMenues is
       if
         AktuelleAuswahlExtern = AnfangExtern
       then
-         return RueckgabeDatentypen.Kartenübergang_E_Achse_Enum;
+         return RueckgabeDatentypen.Kartenübergang_E_Achse_Oben_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 1
       then
-         return RueckgabeDatentypen.Kartenübergang_Y_Achse_Enum;
+         return RueckgabeDatentypen.Kartenübergang_E_Achse_Unten_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 2
       then
-         return RueckgabeDatentypen.Kartenübergang_X_Achse_Enum;
+         return RueckgabeDatentypen.Kartenübergang_Y_Achse_Norden_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return RueckgabeDatentypen.Kartenübergang_Y_Achse_Süden_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 4
+      then
+         return RueckgabeDatentypen.Kartenübergang_X_Achse_Westen_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 5
+      then
+         return RueckgabeDatentypen.Kartenübergang_X_Achse_Osten_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 6
+      then
+         return RueckgabeDatentypen.Kartenübergang_Welche_Achse_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 7
       then
          return RueckgabeDatentypen.Zufall_Enum;
                     

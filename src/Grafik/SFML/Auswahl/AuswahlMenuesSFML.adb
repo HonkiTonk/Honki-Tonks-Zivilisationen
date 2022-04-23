@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with AuswahlMenuesEinfachSFML;
-with AuswahlMenuesKomplexSFML;
+with AuswahlMenueKartenformSFML;
+with AuswahlMenueSteuerungSFML;
 
 package body AuswahlMenuesSFML is
 
@@ -16,8 +17,11 @@ package body AuswahlMenuesSFML is
          when MenueDatentypen.Menü_Einfach_Enum =>
             AuswahlMenuesEinfachSFML.AuswahlMenüsEinfach (WelchesMenüExtern => WelchesMenüExtern);
             
-         when MenueDatentypen.Menü_Komplex_Enum =>
-            AuswahlMenuesKomplexSFML.AuswahlMenüsKomplex (WelchesMenüExtern => WelchesMenüExtern);
+         when MenueDatentypen.Kartenform_Menü_Enum =>
+            AuswahlMenueKartenformSFML.AuswahlMenüKartenform;
+            
+         when MenueDatentypen.Steuerung_Menü_Enum =>
+            AuswahlMenueSteuerungSFML.AuswahlMenüSteuerung;
       end case;
       
    end AuswahlMenüsAufteilung;

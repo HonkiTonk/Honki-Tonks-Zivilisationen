@@ -32,7 +32,9 @@ package MenueDatentypen is
    subtype Menü_Mit_Überschrift_Enum is Menü_Einfach_Enum range Optionen_Menü_Enum .. Kartentemperatur_Menü_Enum;
    subtype Menü_Einstellung_Anzeigen_Enum is Menü_Einfach_Enum range Kartenart_Menü_Enum .. Rassen_Menü_Enum;
    
-   subtype Menü_Zusatztext_Enum is Menü_Einfach_Enum range Kartengröße_Menü_Enum .. Rassen_Menü_Enum;
+   subtype Menü_Zusatztext_Enum is Welches_Menü_Vorhanden_Enum range Kartengröße_Menü_Enum .. Kartenform_Menü_Enum;
+   subtype Menü_Zusatztext_Einfach_Enum is Menü_Zusatztext_Enum range Kartengröße_Menü_Enum .. Rassen_Menü_Enum;
+   subtype Menü_Zusatztext_Komplex_Enum is Menü_Zusatztext_Enum range Kartenform_Menü_Enum .. Kartenform_Menü_Enum;
    
    subtype Menü_Komplex_Enum is Welches_Menü_Enum range Kartenform_Menü_Enum .. Steuerung_Menü_Enum;
 

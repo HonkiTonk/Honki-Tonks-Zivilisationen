@@ -7,6 +7,7 @@ with KartenKonstanten;
 
 with Karten; use Karten;
 
+-- Die Arrays sind da wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
 package KarteKoordinatenPruefen is
    
    function KarteKoordinatenPrüfen
