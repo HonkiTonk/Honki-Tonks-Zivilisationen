@@ -161,68 +161,68 @@ package body SpieleinstellungenKarten is
       is
          when RueckgabeDatentypen.Kartenübergang_E_Achse_Oben_Enum =>
             if
-              Karten.Kartenparameter.Kartenform.EAchseOben = KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Last
+              Karten.Kartenparameter.Kartenform.EAchseOben = KartenDatentypen.Kartenform_E_Einstellbar_Enum'Last
             then
-               Karten.Kartenparameter.Kartenform.EAchseOben := KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'First;
+               Karten.Kartenparameter.Kartenform.EAchseOben := KartenDatentypen.Kartenform_E_Einstellbar_Enum'First;
                
             else
                Karten.Kartenparameter.Kartenform.EAchseOben
-                 := KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.EAchseOben) + 1);
+                 := KartenDatentypen.Kartenform_E_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.EAchseOben) + 1);
             end if;
             
          when RueckgabeDatentypen.Kartenübergang_E_Achse_Unten_Enum =>
             if
-              Karten.Kartenparameter.Kartenform.EAchseUnten = KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Last
+              Karten.Kartenparameter.Kartenform.EAchseUnten = KartenDatentypen.Kartenform_E_Einstellbar_Enum'Last
             then
-               Karten.Kartenparameter.Kartenform.EAchseUnten := KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'First;
+               Karten.Kartenparameter.Kartenform.EAchseUnten := KartenDatentypen.Kartenform_E_Einstellbar_Enum'First;
                
             else
                Karten.Kartenparameter.Kartenform.EAchseUnten
-                 := KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.EAchseUnten) + 1);
+                 := KartenDatentypen.Kartenform_E_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_E_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.EAchseUnten) + 1);
             end if;
             
          when RueckgabeDatentypen.Kartenübergang_Y_Achse_Norden_Enum =>
             if
-              Karten.Kartenparameter.Kartenform.YAchseNorden = KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Last
+              Karten.Kartenparameter.Kartenform.YAchseNorden = KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Last
             then
-               Karten.Kartenparameter.Kartenform.YAchseNorden := KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'First;
+               Karten.Kartenparameter.Kartenform.YAchseNorden := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'First;
                
             else
                Karten.Kartenparameter.Kartenform.YAchseNorden
-                 := KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.YAchseNorden) + 1);
+                 := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.YAchseNorden) + 1);
             end if;
             
          when RueckgabeDatentypen.Kartenübergang_Y_Achse_Süden_Enum =>
             if
-              Karten.Kartenparameter.Kartenform.YAchseSüden = KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Last
+              Karten.Kartenparameter.Kartenform.YAchseSüden = KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Last
             then
-               Karten.Kartenparameter.Kartenform.YAchseSüden := KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'First;
+               Karten.Kartenparameter.Kartenform.YAchseSüden := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'First;
                
             else
                Karten.Kartenparameter.Kartenform.YAchseSüden
-                 := KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.YAchseSüden) + 1);
+                 := KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_Y_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.YAchseSüden) + 1);
             end if;
             
          when RueckgabeDatentypen.Kartenübergang_X_Achse_Westen_Enum =>
             if
-              Karten.Kartenparameter.Kartenform.XAchseWesten = KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Last
+              Karten.Kartenparameter.Kartenform.XAchseWesten = KartenDatentypen.Kartenform_X_Einstellbar_Enum'Last
             then
-               Karten.Kartenparameter.Kartenform.XAchseWesten := KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'First;
+               Karten.Kartenparameter.Kartenform.XAchseWesten := KartenDatentypen.Kartenform_X_Einstellbar_Enum'First;
                
             else
                Karten.Kartenparameter.Kartenform.XAchseWesten
-                 := KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.XAchseWesten) + 1);
+                 := KartenDatentypen.Kartenform_X_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.XAchseWesten) + 1);
             end if;
             
          when RueckgabeDatentypen.Kartenübergang_X_Achse_Osten_Enum =>
             if
-              Karten.Kartenparameter.Kartenform.XAchseOsten = KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Last
+              Karten.Kartenparameter.Kartenform.XAchseOsten = KartenDatentypen.Kartenform_X_Einstellbar_Enum'Last
             then
-               Karten.Kartenparameter.Kartenform.XAchseOsten := KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'First;
+               Karten.Kartenparameter.Kartenform.XAchseOsten := KartenDatentypen.Kartenform_X_Einstellbar_Enum'First;
                
             else
                Karten.Kartenparameter.Kartenform.XAchseOsten
-                 := KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.XAchseOsten) + 1);
+                 := KartenDatentypen.Kartenform_X_Einstellbar_Enum'Val (KartenDatentypen.Kartenform_X_Einstellbar_Enum'Pos (Karten.Kartenparameter.Kartenform.XAchseOsten) + 1);
             end if;
       end case;
       

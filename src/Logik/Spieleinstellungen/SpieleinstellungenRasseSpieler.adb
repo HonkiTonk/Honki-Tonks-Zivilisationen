@@ -11,7 +11,7 @@ with LeseEinheitenGebaut;
 with ZufallsgeneratorenSpieleinstellungen;
 with ZufallsgeneratorenKarten;
 with EinheitSuchen;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with BewegungPassierbarkeitPruefen;
 with EinheitenErzeugenEntfernen;
 with AuswahlMenues;
@@ -206,9 +206,9 @@ package body SpieleinstellungenRasseSpieler is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
 
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
                   
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

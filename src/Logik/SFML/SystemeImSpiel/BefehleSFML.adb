@@ -16,7 +16,7 @@ with BewegungCursor;
 with NaechstesObjekt;
 with Aufgaben;
 with Diplomatie;
-with DebugPlatzhalter;
+with DebugmenueSFML;
 with StadtBauen;
 with EinheitSuchen;
 with StadtSuchen;
@@ -122,7 +122,7 @@ package body BefehleSFML is
             return RueckgabeDatentypen.Runde_Beenden_Enum;
             
          when TastenbelegungDatentypen.Debugmenü_Enum =>
-            DebugPlatzhalter.Menü (RasseExtern => RasseExtern);
+            DebugmenueSFML.Debugmenü (RasseExtern => RasseExtern);
             
          when TastenbelegungDatentypen.Leer_Tastenbelegung_Enum =>
             null;

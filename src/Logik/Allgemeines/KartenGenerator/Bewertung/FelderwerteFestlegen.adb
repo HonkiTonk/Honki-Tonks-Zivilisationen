@@ -11,7 +11,7 @@ with KartenVerbesserungDatentypen;
 with SchreibeKarten;
 with LeseKarten;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with KartenAllgemein;
 
 package body FelderwerteFestlegen is
@@ -26,9 +26,9 @@ package body FelderwerteFestlegen is
          XAchseÄnderungSchleife:
          for XAchseÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                   
-            KartenWertEins (KoordinatenExtern.EAchse) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                          ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
-                                                                                                          LogikGrafikExtern => True);
+            KartenWertEins (KoordinatenExtern.EAchse) := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
+                                                                                                                                LogikGrafikExtern => True);
             
             case
               KartenWertEins (KoordinatenExtern.EAchse).XAchse
@@ -61,9 +61,9 @@ package body FelderwerteFestlegen is
          BewertungXÄnderungSchleife:
          for BewertungXÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
-            KartenWertZwei (KoordinatenExtern.EAchse) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                          ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
-                                                                                                          LogikGrafikExtern => True);
+            KartenWertZwei (KoordinatenExtern.EAchse) := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                                                ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
+                                                                                                                                LogikGrafikExtern => True);
 
             case
               KartenWertZwei (KoordinatenExtern.EAchse).XAchse

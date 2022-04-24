@@ -10,7 +10,7 @@ with SchreibeKarten;
 with LeseKarten;
 with LeseEinheitenGebaut;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with AufgabenAllgemein;
 
 package body VerbesserungWeg is
@@ -83,9 +83,9 @@ package body VerbesserungWeg is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

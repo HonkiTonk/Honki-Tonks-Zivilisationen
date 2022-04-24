@@ -1,3 +1,31 @@
+NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse
+:= KartenkoordinateYAchseBerechnen.KartenkoordinateYAchseBerechnen (KoordinatenExtern   => (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                                                    ÄnderungExtern      => (ÄnderungExtern.YAchse, ÄnderungExtern.XAchse),
+                                                                    ArrayPositionExtern => KoordinatenExtern.EAchse,
+                                                                    LogikGrafikExtern   => LogikGrafikExtern);
+
+if
+  NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).YAchse = KartenKonstanten.LeerYAchse
+then
+   return KartenRecordKonstanten.LeerKartenKoordinaten;
+else
+   null;
+end if;
+
+
+NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse
+:= KartenkoordinateXAchseBerechnen.KartenkoordinateXAchseBerechnen (KoordinatenExtern   => (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse),
+                                                                    ÄnderungExtern      => (ÄnderungExtern.YAchse, ÄnderungExtern.XAchse),
+                                                                    ArrayPositionExtern => KoordinatenExtern.EAchse,
+                                                                    LogikGrafikExtern   => LogikGrafikExtern);
+
+if
+  NeueKoordinate (LogikGrafikExtern, KoordinatenExtern.EAchse).XAchse = KartenKonstanten.LeerXAchse
+then
+   return KartenRecordKonstanten.LeerKartenKoordinaten;
+else
+   null;
+end if;
 
 
 

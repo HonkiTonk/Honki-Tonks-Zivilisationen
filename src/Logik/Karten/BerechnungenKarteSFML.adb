@@ -7,7 +7,7 @@ with SpielVariablen;
 
 with Sichtweiten;
 with GrafikEinstellungenSFML;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body BerechnungenKarteSFML is
    
@@ -37,6 +37,7 @@ package body BerechnungenKarteSFML is
    
    
    
+   ----------------------- An das neue Kartenberechnungssystem anpassen.
    function SichtbereichKarteBerechnen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.SichtbereichAnfangEndeArray
@@ -50,9 +51,9 @@ package body BerechnungenKarteSFML is
       YBereichSchleife:
       for YBereichSchleifenwert in YSichtAnfang .. YSichtEnde loop
          
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                        ÄnderungExtern    => (0, YBereichSchleifenwert, 1),
-                                                                        LogikGrafikExtern => False);
+         KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                              ÄnderungExtern    => (0, YBereichSchleifenwert, 1),
+                                                                                              LogikGrafikExtern => False);
          
          case
            KartenWert.YAchse
@@ -78,9 +79,9 @@ package body BerechnungenKarteSFML is
       XBereichSchleife:
       for XBereichSchleifenwert in XSichtAnfang .. XSichtEnde loop
          
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                        ÄnderungExtern    => (0, 1, XBereichSchleifenwert),
-                                                                        LogikGrafikExtern => False);
+         KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                              ÄnderungExtern    => (0, 1, XBereichSchleifenwert),
+                                                                                              LogikGrafikExtern => False);
          
          case
            KartenWert.XAchse

@@ -15,7 +15,7 @@ with LeseKarten;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 with BewegungPassierbarkeitPruefen;
 with Aufgaben;
@@ -75,9 +75,9 @@ package body KIPruefungen is
          for XÄnderungSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
             
             StadtVerbesserungUmgebungKoordinaten
-              := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                  ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                  LogikGrafikExtern => True);
+              := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                        LogikGrafikExtern => True);
             
             if
               StadtVerbesserungUmgebungKoordinaten.XAchse = KartenKonstanten.LeerXAchse
@@ -292,9 +292,10 @@ package body KIPruefungen is
          XAchseKartenfeldSuchenSchleife:
          for XAchseSchleifenwert in -XUmgebungExtern .. XUmgebungExtern loop
                
-            StadtBauenUmgebungKoordinaten := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                              ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                              LogikGrafikExtern => True);
+            StadtBauenUmgebungKoordinaten
+              := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                        LogikGrafikExtern => True);
                
             if
               (YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
@@ -392,7 +393,7 @@ package body KIPruefungen is
          XAchseUmgebungSchleife:
          for XAchseUmgebungSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
                                                                            ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),
                                                                            LogikGrafikExtern => True);
             

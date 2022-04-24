@@ -31,6 +31,7 @@ package GlobaleTexte is
    Einstellungsmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Einstellungen_Menü_Enum)) := (others => FehlenderText);
    Editoren : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Editoren_Menü_Enum)) := (others => FehlenderText);
    Sonstigesmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Sonstiges_Menü_Enum)) := (others => FehlenderText);
+   Debugmenü : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Debug_Menü_Enum)) := (others => FehlenderText);
                                
    -- Einfache Auswahl.
    Kartengröße : TexteArray (1 .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum)) := (others => FehlenderText);
@@ -72,7 +73,6 @@ package GlobaleTexte is
    Forschungen : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.ForschungID'Last)) := (others => FehlenderText);
    Beschäftigungen : TexteArray (1 .. 18) := (others => FehlenderText);
    StädtenamenKI : TexteArray (1 .. 3) := (others => FehlenderText);
-   Debugmenü : TexteArray (1 .. 3) := (others => FehlenderText);
    AllgemeineInformationen : TexteArray (1 .. 16) := (others => FehlenderText);
    Würdigung : TexteArray (1 .. 1) := (others => FehlenderText);
    Diplomatiemenü : TexteArray (1 .. 7) := (others => FehlenderText);

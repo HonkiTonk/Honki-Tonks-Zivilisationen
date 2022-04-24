@@ -12,7 +12,7 @@ with KIKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with BewegungPassierbarkeitPruefen;
 with EinheitenTransporter;
 
@@ -213,9 +213,9 @@ package body KIBewegungBerechnen is
          return KIKonstanten.BewertungBewegungNullwert;
 
       else
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                        ÄnderungExtern    => (EÄnderungExtern, YÄnderungExtern, XÄnderungExtern),
-                                                                        LogikGrafikExtern => True);
+         KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                              ÄnderungExtern    => (EÄnderungExtern, YÄnderungExtern, XÄnderungExtern),
+                                                                                              LogikGrafikExtern => True);
       end if;
             
       case
@@ -430,7 +430,8 @@ package body KIBewegungBerechnen is
             XAchseSchleife:
             for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
-               KartenWertVereinfachung := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+               KartenWertVereinfachung
+                 := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                     PlanschrittExtern        => ErsterZugExtern),
                                                                                            ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                            LogikGrafikExtern => True);

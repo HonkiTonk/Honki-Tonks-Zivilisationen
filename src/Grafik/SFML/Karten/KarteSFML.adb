@@ -19,7 +19,7 @@ with LeseKarten;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 with StadtSuchen;
 with KarteInformationenSFML;
@@ -63,9 +63,9 @@ package body KarteSFML is
          XAchseSchleife:
          for XAchseSchleifenwert in SichtbereichAnfangEnde (3) .. SichtbereichAnfangEnde (4) loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                           LogikGrafikExtern => False);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => False);
             
             -- Die Position durchzureichen bedeutet auch gleichzeitig den aktuellen Multiplikator mit durchzureichen!
             Position.x := XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x;
@@ -461,9 +461,9 @@ package body KarteSFML is
       UmgebungSchleife:
       for UmgebungSchleifenwert in UmgebungArray'Range loop
          
-         KartenWertRahmen := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                              ÄnderungExtern    => Umgebung (UmgebungSchleifenwert),
-                                                                              LogikGrafikExtern => False);
+         KartenWertRahmen := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                    ÄnderungExtern    => Umgebung (UmgebungSchleifenwert),
+                                                                                                    LogikGrafikExtern => False);
                
          if
            KartenWertRahmen.XAchse = KartenKonstanten.LeerXAchse
@@ -485,9 +485,9 @@ package body KarteSFML is
             
       end loop UmgebungSchleife;
       
-      KartenWertStadtname := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                              ÄnderungExtern    => (0, -1, 0),
-                                                                              LogikGrafikExtern => False);
+      KartenWertStadtname := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                    ÄnderungExtern    => (0, -1, 0),
+                                                                                                    LogikGrafikExtern => False);
       
       case
         KartenWertStadtname.XAchse

@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen;
 with KartenGrundDatentypen;
 
@@ -294,8 +295,22 @@ private
                                                                     Bewertung      => (others => 1),
                                                                     Wirtschaft     => (others => (others => 1)),
                                                                     Kampf          => (others => (others => 1))
-                                                                   )
-                                                                 -- Luft/Weltraum
+                                                                   ),
+                                                                   -- Luft/Weltraum
+                                                                 
+                                                                 
+                                                                 
+                                                                 -- Sonstiges
+                                                                   KartenGrundDatentypen.Vernichtet_Enum =>
+                                                                     (
+                                                                      Passierbarkeit => (EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                                                         others                               => False),
+                                                                      Bewertung      => (others => -10),
+                                                                      Wirtschaft     => (others => (others => 0)),
+                                                                      Kampf          => (others => (others => 0))
+                                                                     )
+                                                                 -- Sonstiges
                                                                 );
    
    

@@ -54,16 +54,25 @@ package KartenDatentypen is
    
    
    
+   -------------------------- Später umschreiben auf 
+   -- type Kartenform_Enum is (
+   --                         Kartenform_Kein_Übergang_Enum, Kartenform_Übergang_Enum, Kartenform_Rückwärts_Verschobener_Übergang_Enum, Kartenform_Verschobener_Übergang_Enum
+   --                        ); 
+   -- pragma Ordered (Kartenform_Enum);
+   
+   -- subtype Kartenform_Ebene_Enum is Kartenform_Enum range Kartenform_Kein_Übergang_Enum .. Kartenform_Übergang_Enum;
+   -- Geht aktuell nicht weil dann größere Anpassungen im Kartenformmenü notwendig sind.
+   
    type Kartenform_Enum is (
-                            Karte_E_Achse_Kein_Übergang_Enum, Karte_E_Achse_Übergang_Enum,
-                            Karte_Y_Achse_Kein_Übergang_Enum, Karte_Y_Achse_Übergang_Enum, Karte_Y_Achse_Rückwärts_Verschobener_Übergang_Enum, Karte_Y_Achse_Verschobener_Übergang_Enum,
-                            Karte_X_Achse_Kein_Übergang_Enum, Karte_X_Achse_Übergang_Enum, Karte_X_Achse_Rückwärts_Verschobener_Übergang_Enum, Karte_X_Achse_Verschobener_Übergang_Enum
+                            Karte_E_Kein_Übergang_Enum, Karte_E_Übergang_Enum,
+                            Karte_Y_Kein_Übergang_Enum, Karte_Y_Übergang_Enum, Karte_Y_Rückwärts_Verschobener_Übergang_Enum, Karte_Y_Verschobener_Übergang_Enum,
+                            Karte_X_Kein_Übergang_Enum, Karte_X_Übergang_Enum, Karte_X_Rückwärts_Verschobener_Übergang_Enum, Karte_X_Verschobener_Übergang_Enum
                            ); 
    pragma Ordered (Kartenform_Enum);
    
-   subtype Kartenform_E_Achse_Einstellbar_Enum is Kartenform_Enum range Karte_E_Achse_Kein_Übergang_Enum .. Karte_E_Achse_Übergang_Enum;
-   subtype Kartenform_Y_Achse_Einstellbar_Enum is Kartenform_Enum range Karte_Y_Achse_Kein_Übergang_Enum .. Karte_Y_Achse_Verschobener_Übergang_Enum;
-   subtype Kartenform_X_Achse_Einstellbar_Enum is Kartenform_Enum range Karte_X_Achse_Kein_Übergang_Enum .. Karte_X_Achse_Verschobener_Übergang_Enum;
+   subtype Kartenform_E_Einstellbar_Enum is Kartenform_Enum range Karte_E_Kein_Übergang_Enum .. Karte_E_Übergang_Enum;
+   subtype Kartenform_Y_Einstellbar_Enum is Kartenform_Enum range Karte_Y_Kein_Übergang_Enum .. Karte_Y_Verschobener_Übergang_Enum;
+   subtype Kartenform_X_Einstellbar_Enum is Kartenform_Enum range Karte_X_Kein_Übergang_Enum .. Karte_X_Verschobener_Übergang_Enum;
                   
    
    
@@ -87,7 +96,7 @@ package KartenDatentypen is
    -- Neue Kartenpole immer vor Karten_Pole_Beide einfügen um Anpassungen in KartenDatentypen zu vermeiden.
    ------------------------- Pole auch nur auf einer Seite ermöglichen?
    type Kartenpole_Enum is (
-                            Karten_Pole_Keine, Karten_Pole_YAchse, Karten_Pole_XAchse, Karten_Pole_Beide
+                            Kartenpol_Vorhanden_Enum, Kartenpol_Nicht_Vorhanden_Enum
                            );
    pragma Ordered (Kartenpole_Enum);
    

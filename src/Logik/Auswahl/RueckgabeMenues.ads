@@ -124,5 +124,11 @@ private
       EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
       return RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   
+   function Debugmenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
 end RueckgabeMenues;

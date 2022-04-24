@@ -17,7 +17,7 @@ with LeseStadtGebaut;
 with LeseEinheitenGebaut;
 with LeseKarten;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with BewegungPassierbarkeitPruefen;
 with StadtBauen;
 with EinheitSuchen;
@@ -263,9 +263,9 @@ package body KIAufgabeFestlegen is
                   null;
                   
                else
-                  KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                 LogikGrafikExtern => True);
+                  KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                       ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                       LogikGrafikExtern => True);
                   
                   if
                     KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -412,9 +412,9 @@ package body KIAufgabeFestlegen is
          XAchseSchleife:
          for XAchseSchleifenwert in -Umgebung .. Umgebung loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

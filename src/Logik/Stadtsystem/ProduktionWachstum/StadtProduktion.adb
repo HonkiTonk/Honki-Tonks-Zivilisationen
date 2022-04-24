@@ -8,7 +8,7 @@ with KartenVerbesserungDatentypen;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with GesamtwerteFeld;
 with Wachstum;
 
@@ -121,9 +121,9 @@ package body StadtProduktion is
          XAchseSchleife:
          for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

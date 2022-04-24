@@ -10,7 +10,7 @@ with KIKonstanten;
 
 with LeseEinheitenGebaut;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with StadtSuchen;
 
 package body KIMindestBewertungKartenfeldErmitteln is
@@ -30,9 +30,9 @@ package body KIMindestBewertungKartenfeldErmitteln is
             XAchseSchleife:
             for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichDrei'Range loop
                               
-               KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                              ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                              LogikGrafikExtern => True);
+               KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                    ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                    LogikGrafikExtern => True);
                      
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse

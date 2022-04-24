@@ -10,7 +10,7 @@ with LeseStadtGebaut;
 with SchreibeStadtGebaut;
 
 with Karten;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body EinwohnerZuweisenEntfernen is
 
@@ -93,9 +93,9 @@ package body EinwohnerZuweisenEntfernen is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                     ÄnderungExtern    => (0, RelativeCursorPositionY, RelativeCursorPositionX),
-                                                                     LogikGrafikExtern => True);
+      KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                           ÄnderungExtern    => (0, RelativeCursorPositionY, RelativeCursorPositionX),
+                                                                                           LogikGrafikExtern => True);
          
       if
         KartenWert.XAchse = KartenKonstanten.LeerXAchse

@@ -35,17 +35,20 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.04 => 0.01.04 (25.04.2022):
+   -- Version 0.01.0450 => 0.01.04 (25.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0420 => 0.01.04 (24.04.2022):
+   -- Version 0.01.0420 => 0.01.0450 (24.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Grundlagen für verschiedene Polpositionen eingebaut.
+   -- Das neue Kartenkoordinatenberechnungssystem weiter geschrieben.
+   -- Vernichtetes Kartenfeld hinzugefügt.
+   -- Einfache SFML-Version des Debugmenüs eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

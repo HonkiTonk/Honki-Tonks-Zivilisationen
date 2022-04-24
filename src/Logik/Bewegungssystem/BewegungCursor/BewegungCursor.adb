@@ -6,7 +6,7 @@ with SpielVariablen;
 
 with Karten;
 with Eingabe;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body BewegungCursor is
 
@@ -115,9 +115,9 @@ package body BewegungCursor is
          null;
       end if;
             
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
-                                                                     ÄnderungExtern    => ÄnderungExtern,
-                                                                     LogikGrafikExtern => True);
+      KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                                           ÄnderungExtern    => ÄnderungExtern,
+                                                                                           LogikGrafikExtern => True);
       
       case
         KartenWert.XAchse

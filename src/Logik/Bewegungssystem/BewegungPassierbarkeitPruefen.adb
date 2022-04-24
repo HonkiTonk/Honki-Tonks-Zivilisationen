@@ -14,7 +14,7 @@ with LeseStadtGebaut;
 
 with StadtSuchen;
 with UmgebungErreichbarTesten;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with KartenAllgemein;
 with Fehler;
 
@@ -307,9 +307,9 @@ package body BewegungPassierbarkeitPruefen is
          XAchseEinheitenSchleife:
          for XAchseEinheitenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                           ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                 ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

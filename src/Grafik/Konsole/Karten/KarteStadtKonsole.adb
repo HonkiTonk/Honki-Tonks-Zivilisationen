@@ -18,7 +18,7 @@ with EinheitenKonstanten;
 with LeseKarten;
 with LeseStadtGebaut;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with Karten;
 with StadtInformationenKonsole;
 -- with TextAnzeigeKonsole;
@@ -410,9 +410,9 @@ package body KarteStadtKonsole is
             Put (Item => TextKonstanten.LeerZeichen);
 
          else            
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
-                                                                           ÄnderungExtern    => (0, YAchsenabstraktion, UmgebungSchleifenwert),
-                                                                           LogikGrafikExtern => False);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
+                                                                                                 ÄnderungExtern    => (0, YAchsenabstraktion, UmgebungSchleifenwert),
+                                                                                                 LogikGrafikExtern => False);
             
             case
               KartenWert.XAchse
@@ -461,9 +461,9 @@ package body KarteStadtKonsole is
          CursorYAchseabstraktion := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.YAchse - 4;
          CursorXAchseabstraktion := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenStadt.XAchse - 17;
                
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
-                                                                        ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
-                                                                        LogikGrafikExtern => False);
+         KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell,
+                                                                                              ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
+                                                                                              LogikGrafikExtern => False);
          case
            KartenWert.XAchse
          is
@@ -502,9 +502,9 @@ package body KarteStadtKonsole is
       CursorYAchseabstraktion := SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse - 4;
       CursorXAchseabstraktion := SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.XAchse - 17;
       
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
-                                                                     ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
-                                                                     LogikGrafikExtern => False);
+      KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell,
+                                                                                           ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
+                                                                                           LogikGrafikExtern => False);
       
       case
         KartenWert.XAchse
@@ -520,15 +520,15 @@ package body KarteStadtKonsole is
         LeseKarten.Hügel (KoordinatenExtern => KartenWert)
       is
          when True =>
-           -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-           --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
-           --                                           ÜberschriftZeileExtern => 0,
-           --                                           ErsteZeileExtern       => 34,
-           --                                           LetzteZeileExtern      => 34,
-           --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
-           --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
-           --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
-           null;
+            -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+            --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
+            --                                           ÜberschriftZeileExtern => 0,
+            --                                           ErsteZeileExtern       => 34,
+            --                                           LetzteZeileExtern      => 34,
+            --                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+            --                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+            --                                           AbstandEndeExtern      => GlobaleTexte.Leer);
+            null;
          
          when False =>
             null;

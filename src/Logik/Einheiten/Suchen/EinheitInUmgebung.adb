@@ -14,7 +14,7 @@ with LeseKarten;
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 with DiplomatischerZustand;
 with EinheitenMeldungenSetzen;
@@ -125,9 +125,9 @@ package body EinheitInUmgebung is
          XAchseSchleife:
          for XAchseSchleifenwert in -UmgebungExtern .. UmgebungExtern loop
       
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

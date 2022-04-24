@@ -96,6 +96,11 @@ package body RueckgabeMenues is
             return SpieleinstellungenMenü (AnfangExtern          => AnfangExtern,
                                             EndeExtern            => EndeExtern,
                                             AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+            
+         when MenueDatentypen.Debug_Menü_Enum =>
+            return Debugmenü (AnfangExtern          => AnfangExtern,
+                               EndeExtern            => EndeExtern,
+                               AktuelleAuswahlExtern => AktuelleAuswahlExtern);
       end case;
       
    end RückgabeMenüs;
@@ -880,6 +885,42 @@ package body RueckgabeMenues is
    
    
    
+   function Debugmenü
+     (AnfangExtern : in Positive;
+      EndeExtern : in Positive;
+      AktuelleAuswahlExtern : in Positive)
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
+   is begin
+      
+      if
+        AktuelleAuswahlExtern = AnfangExtern
+      then
+         return RueckgabeDatentypen.Menschen_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 1
+      then
+         return RueckgabeDatentypen.Kasrodiah_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 2
+      then
+         return RueckgabeDatentypen.Lasupin_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 3
+      then
+         return RueckgabeDatentypen.Lamustra_Enum;
+         
+      else
+         return Fertig (EndeExtern            => EndeExtern,
+                        AktuelleAuswahlExtern => AktuelleAuswahlExtern);
+      end if;
+      
+   end Debugmenü;
+   
+   
+   
    function Fertig
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
@@ -930,7 +971,7 @@ package body RueckgabeMenues is
    function ZurückHauptmenüEnde
      (EndeExtern : in Positive;
       AktuelleAuswahlExtern : in Positive)
-         return RueckgabeDatentypen.Rückgabe_Werte_Enum
+      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
          
       if

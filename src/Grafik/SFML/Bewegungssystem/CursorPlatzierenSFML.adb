@@ -7,7 +7,7 @@ with SpielVariablen;
 
 with GrafikEinstellungenSFML;
 with BerechnungenKarteSFML;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with Karten;
 
 package body CursorPlatzierenSFML is
@@ -53,9 +53,9 @@ package body CursorPlatzierenSFML is
             in
               Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x) .. Sf.sfInt32 (XMultiplikator * BerechnungenKarteSFML.KartenfelderAbmessung.x + BerechnungenKarteSFML.KartenfelderAbmessung.x)
             then
-               KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                              ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                              LogikGrafikExtern => False);
+               KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                                    ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                    LogikGrafikExtern => False);
                
                case
                  KartenWert.XAchse

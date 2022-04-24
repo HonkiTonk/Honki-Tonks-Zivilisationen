@@ -13,6 +13,10 @@ package KartenKonstanten is
    LeerYAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
    LeerXAchse : constant KartenDatentypen.KartenfeldPositivMitNullwert := KartenDatentypen.KartenfeldPositivMitNullwert'First;
    
+   LeerEAchseÄnderung : constant KartenDatentypen.EbeneVorhanden := 0;
+   LeerYAchseÄnderung : constant KartenDatentypen.KartenfeldPositivMitNullwert := LeerYAchse;
+   LeerXAchseÄnderung : constant KartenDatentypen.KartenfeldPositivMitNullwert := LeerXAchse;
+   
    LeerKartenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerPassierbarkeit : constant Boolean := False;
       

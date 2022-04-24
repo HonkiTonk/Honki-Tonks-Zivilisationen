@@ -110,12 +110,12 @@ package KartenRecords is
    
    type KartenformRecord is record
       
-      EAchseOben : KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum;
-      EAchseUnten : KartenDatentypen.Kartenform_E_Achse_Einstellbar_Enum;
-      YAchseNorden : KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum;
-      YAchseSüden : KartenDatentypen.Kartenform_Y_Achse_Einstellbar_Enum;
-      XAchseWesten : KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum;
-      XAchseOsten : KartenDatentypen.Kartenform_X_Achse_Einstellbar_Enum;
+      EAchseOben : KartenDatentypen.Kartenform_E_Einstellbar_Enum;
+      EAchseUnten : KartenDatentypen.Kartenform_E_Einstellbar_Enum;
+      YAchseNorden : KartenDatentypen.Kartenform_Y_Einstellbar_Enum;
+      YAchseSüden : KartenDatentypen.Kartenform_Y_Einstellbar_Enum;
+      XAchseWesten : KartenDatentypen.Kartenform_X_Einstellbar_Enum;
+      XAchseOsten : KartenDatentypen.Kartenform_X_Einstellbar_Enum;
       
       -- Müsste benötigt werden wenn sowohl Y-Achse, als auch X.Achse gleichzeitig verschoben werden.
       YZuerstBerechnenXZuerstBerechnen : Boolean;
@@ -124,11 +124,14 @@ package KartenRecords is
    
    
    
-   -- type KartenpoleRecord is record
+   type KartenpoleRecord is record
       
+      YAchseNorden : KartenDatentypen.Kartenpole_Enum;
+      YAchseSüden : KartenDatentypen.Kartenpole_Enum;
+      XAchseWesten : KartenDatentypen.Kartenpole_Enum;
+      XAchseOsten : KartenDatentypen.Kartenpole_Enum;
       
-      
-   -- end record;
+   end record;
    
    
    
@@ -138,7 +141,7 @@ package KartenRecords is
       Kartenart : KartenDatentypen.Kartenart_Enum;
       Kartentemperatur : KartenDatentypen.Kartentemperatur_Enum;
       Kartenressourcen : KartenDatentypen.Kartenressourcen_Enum;
-      Kartenpole : KartenDatentypen.Kartenpole_Enum;
+      Kartenpole : KartenpoleRecord;
       
       Kartenform : KartenformRecord;
       

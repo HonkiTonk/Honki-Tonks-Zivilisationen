@@ -9,7 +9,7 @@ with SchreibeKarten;
 with LeseKarten;
 
 with ZufallsgeneratorenKarten;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with KartenGeneratorHimmel;
 with KartenGeneratorWeltraum;
 with KartenGeneratorPlanetenInneres;
@@ -230,9 +230,9 @@ package body KartenGeneratorStandard is
          XAchseLandflächeErzeugenSchleife:
          for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenparameter.Kartenart).XAchse .. Karten.GrößeLandart (Karten.Kartenparameter.Kartenart).XAchse loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => (0, YKoordinateLandmasseExtern, XKoordinateLandmasseExtern),
-                                                                           ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YKoordinateLandmasseExtern, XKoordinateLandmasseExtern),
+                                                                                                 ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             -- Theoretisch sollte die erste Prüfung nicht nötig sein, da die Zweite nei einer LeerAchse auch nicht erfüllt sein dürfte.
             if
@@ -269,9 +269,9 @@ package body KartenGeneratorStandard is
          XAchseAbstandFlächenSchleife:
          for XÄnderungZweiSchleifenwert in -Karten.FelderVonLandartZuLandart (Karten.Kartenparameter.Kartenart).XAchse .. Karten.FelderVonLandartZuLandart (Karten.Kartenparameter.Kartenart).XAchse loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => (0, YKoordinateLandmasseExtern, XKoordinateLandmasseExtern),
-                                                                           ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YKoordinateLandmasseExtern, XKoordinateLandmasseExtern),
+                                                                                                 ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

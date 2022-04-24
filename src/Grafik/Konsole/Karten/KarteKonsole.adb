@@ -8,7 +8,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with SpielVariablen;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with GrafischeAnzeigeKonsole;
 with Sichtweiten;
 with KarteInformationenKonsole;
@@ -26,9 +26,9 @@ package body KarteKonsole is
          XAchseSchleife:
          for XAchseSchleifenwert in -Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) .. Sichtweiten.SichtweiteLesen (YAchseXAchseExtern => False) loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                           LogikGrafikExtern => False);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => False);
             
             case
               KartenWert.XAchse

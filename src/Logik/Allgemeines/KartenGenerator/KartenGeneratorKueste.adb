@@ -8,7 +8,7 @@ with KartenRecordKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body KartenGeneratorKueste is
 
@@ -47,9 +47,9 @@ package body KartenGeneratorKueste is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                      
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
                         
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

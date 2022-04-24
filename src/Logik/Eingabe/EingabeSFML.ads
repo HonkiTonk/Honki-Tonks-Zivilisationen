@@ -120,7 +120,7 @@ private
                                                                 TastenbelegungDatentypen.Stadt_Suchen_Enum                   => Sf.Window.Keyboard.sfKeyY,
 
                                                                 TastenbelegungDatentypen.Runde_Beenden_Enum                  => Sf.Window.Keyboard.sfKeyR,
-                                                                TastenbelegungDatentypen.Debugmenü_Enum                      => Sf.Window.Keyboard.sfKeyC
+                                                                TastenbelegungDatentypen.Debugmenü_Enum                      => Sf.Window.Keyboard.sfKeyPause
                                                                ),
 
                                                              2 =>

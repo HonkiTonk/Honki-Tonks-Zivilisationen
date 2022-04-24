@@ -14,7 +14,7 @@ with Aufgaben;
 with BewegungEinheiten;
 with GrafikEinstellungenSFML;
 with BerechnungenKarteSFML;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with BewegungCursor;
 
 -- Das hier mal umbenennen, man kann hier ja inzwischen wesentlich mehr machen als nur die Einheit bewegen.
@@ -88,7 +88,7 @@ package body BewegungEinheitenSFML is
       end if;
       
       return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                             ÄnderungExtern           => Änderung);
+                              ÄnderungExtern           => Änderung);
       
    end EinheitBefehle;
    
@@ -208,9 +208,9 @@ package body BewegungEinheitenSFML is
             XÄnderungSchleife:
             for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                                           
-               KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                              ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                              LogikGrafikExtern => True);
+               KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                    ÄnderungExtern    => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                    LogikGrafikExtern => True);
                
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -223,7 +223,7 @@ package body BewegungEinheitenSFML is
                   Änderung := (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert);
                   
                   return PositionÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         ÄnderungExtern           => Änderung);
+                                          ÄnderungExtern           => Änderung);
                         
                else
                   null;

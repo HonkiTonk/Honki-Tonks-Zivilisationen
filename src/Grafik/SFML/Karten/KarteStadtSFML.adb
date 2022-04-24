@@ -18,7 +18,7 @@ with FarbgebungSFML;
 with BerechnungenKarteSFML;
 with ObjekteZeichnenSFML;
 with Karten;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with StadtInformationenSFML;
 with GrafikEinstellungenSFML;
 with Fehler;
@@ -193,9 +193,9 @@ package body KarteStadtSFML is
                FeldBewirtschaftet := False;
          end case;
          
-         KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YAchseExtern - 4, XAchseExtern - 17),
-                                                                        LogikGrafikExtern => False);
+         KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                              ÄnderungExtern    => (0, YAchseExtern - 4, XAchseExtern - 17),
+                                                                                              LogikGrafikExtern => False);
          
          case
            KartenWert.XAchse

@@ -17,6 +17,11 @@ package KartenRecordKonstanten is
                                                                                     XAchse => KartenKonstanten.LeerXAchse
                                                                                    );
    
+   LeerKartenYXKoordinate : constant KartenRecords.YXAchsenKartenfeldMitNullwertRecord := (
+                                                                                           YAchse => KartenKonstanten.LeerYAchse,
+                                                                                           XAchse => KartenKonstanten.LeerXAchse
+                                                                                          );
+   
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
                                                                      Bewertung      => (others => KartenKonstanten.LeerBewertung),
                                                                      Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),
@@ -43,13 +48,20 @@ package KartenRecordKonstanten is
                                                           );
 
    KartenformStandard : constant KartenRecords.KartenformRecord := (
-                                                                    EAchseOben                       => KartenDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
-                                                                    EAchseUnten                      => KartenDatentypen.Karte_E_Achse_Kein_Übergang_Enum,
-                                                                    YAchseNorden                     => KartenDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
-                                                                    YAchseSüden                      => KartenDatentypen.Karte_Y_Achse_Kein_Übergang_Enum,
-                                                                    XAchseWesten                     => KartenDatentypen.Karte_X_Achse_Übergang_Enum,
-                                                                    XAchseOsten                      => KartenDatentypen.Karte_X_Achse_Übergang_Enum,
+                                                                    EAchseOben                       => KartenDatentypen.Karte_E_Kein_Übergang_Enum,
+                                                                    EAchseUnten                      => KartenDatentypen.Karte_E_Kein_Übergang_Enum,
+                                                                    YAchseNorden                     => KartenDatentypen.Karte_Y_Kein_Übergang_Enum,
+                                                                    YAchseSüden                      => KartenDatentypen.Karte_Y_Kein_Übergang_Enum,
+                                                                    XAchseWesten                     => KartenDatentypen.Karte_X_Übergang_Enum,
+                                                                    XAchseOsten                      => KartenDatentypen.Karte_X_Übergang_Enum,
                                                                     YZuerstBerechnenXZuerstBerechnen => True
+                                                                   );
+   
+   KartenpoleStandard : constant KartenRecords.KartenpoleRecord := (
+                                                                    YAchseNorden => KartenDatentypen.Kartenpol_Vorhanden_Enum,
+                                                                    YAchseSüden  => KartenDatentypen.Kartenpol_Vorhanden_Enum,
+                                                                    XAchseWesten => KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum,
+                                                                    XAchseOsten  => KartenDatentypen.Kartenpol_Nicht_Vorhanden_Enum
                                                                    );
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungenWegeListeRecord := (
@@ -59,6 +71,25 @@ package KartenRecordKonstanten is
                                                                                        Kampf          => (others => (others => KartenKonstanten.LeerVerbesserungKampf))
                                                                                       );
    
+   KartenparameterStandard : constant KartenRecords.KartenparameterRecord := (
+                                                                              Kartengröße      => KartenDatentypen.Kartengröße_20_20_Enum,
+
+                                                                              -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
+                                                                              Kartenart        => KartenDatentypen.Kartenart_Inseln_Enum,
+
+                                                                              -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
+                                                                              Kartentemperatur => KartenDatentypen.Kartentemperatur_Kalt_Enum,
+
+                                                                              -- Arm, Wenig, Mittel, Viel, Überfluss
+                                                                              Kartenressourcen => KartenDatentypen.Kartenressourcen_Mittel_Enum,
+
+                                                                              Kartenpole       => KartenpoleStandard,
+
+                                                                              -- EAchsenübergang, YAchsenübergang, XAchsenübergang
+                                                                              Kartenform       => KartenformStandard
+                                                                             );
+   
+   ---------------------------- Das hier sollte woanders hin.
    type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
    Eisrand : constant EisgebietArray := (
                                          KartenDatentypen.Kartengröße_20_20_Enum     => 1,

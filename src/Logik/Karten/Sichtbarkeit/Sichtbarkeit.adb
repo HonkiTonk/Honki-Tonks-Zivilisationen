@@ -12,7 +12,7 @@ with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
 with LeseStadtGebaut;
   
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with EinheitSuchen;
 with StadtSuchen;
 with KennenLernen;
@@ -187,9 +187,9 @@ package body Sichtbarkeit is
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
               
-      KartenQuadrantWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                             ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
-                                                                             LogikGrafikExtern => True);
+      KartenQuadrantWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                   ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
+                                                                                                   LogikGrafikExtern => True);
             
       if
         KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
@@ -314,9 +314,9 @@ package body Sichtbarkeit is
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
-      KartenQuadrantWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                             ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
-                                                                             LogikGrafikExtern => True);
+      KartenQuadrantWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                   ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern),
+                                                                                                   LogikGrafikExtern => True);
             
       if
         KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
@@ -441,9 +441,9 @@ package body Sichtbarkeit is
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
-      KartenQuadrantWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                             ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
-                                                                             LogikGrafikExtern => True);
+      KartenQuadrantWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                   ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
+                                                                                                   LogikGrafikExtern => True);
             
       if
         KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
@@ -568,9 +568,9 @@ package body Sichtbarkeit is
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
    is begin
                     
-      KartenQuadrantWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                             ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
-                                                                             LogikGrafikExtern => True);
+      KartenQuadrantWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                   ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern),
+                                                                                                   LogikGrafikExtern => True);
             
       if
         KartenQuadrantWert.XAchse = KartenKonstanten.LeerXAchse
@@ -696,9 +696,9 @@ package body Sichtbarkeit is
       return Boolean
    is begin
       
-      KartenBlockadeWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                             ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern),
-                                                                             LogikGrafikExtern => True);
+      KartenBlockadeWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                   ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern),
+                                                                                                   LogikGrafikExtern => True);
       
       if
         KartenBlockadeWert.XAchse = KartenKonstanten.LeerXAchse
@@ -742,9 +742,9 @@ package body Sichtbarkeit is
          XÄnderungEinheitenSchleife:
          for XÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             case
               KartenWert.XAchse
@@ -775,9 +775,9 @@ package body Sichtbarkeit is
          XÄnderungStadtSchleife:
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                           ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             case
               KartenWert.XAchse

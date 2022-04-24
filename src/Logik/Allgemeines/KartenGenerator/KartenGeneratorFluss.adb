@@ -8,7 +8,7 @@ with KartenRecordKonstanten;
 with SchreibeKarten;
 with LeseKarten;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with ZufallsgeneratorenKarten;
 
 package body KartenGeneratorFluss is
@@ -109,9 +109,9 @@ package body KartenGeneratorFluss is
          XAchseZweiSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                   
-            KartenWertTesten (EbeneExtern) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
-                                                                                               ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                               LogikGrafikExtern => True);
+            KartenWertTesten (EbeneExtern) := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                                                                                                     ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                                     LogikGrafikExtern => True);
                      
             if
               KartenWertTesten (EbeneExtern).XAchse = KartenKonstanten.LeerXAchse
@@ -151,9 +151,9 @@ package body KartenGeneratorFluss is
          XAchseSchleife:
          for XÄnderungSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
 
-            KartenWert (EbeneExtern) := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
-                                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                         LogikGrafikExtern => True);
+            KartenWert (EbeneExtern) := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                                                                                               ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                               LogikGrafikExtern => True);
 
             if
               KartenWert (EbeneExtern).XAchse = KartenKonstanten.LeerXAchse
@@ -218,7 +218,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Rechts_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -234,7 +234,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Oben_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -242,7 +242,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -250,7 +250,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Fluss_Waagrecht_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -258,7 +258,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskurve_Oben_Rechts_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -266,7 +266,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskurve_Unten_Rechts_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -274,7 +274,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flussendstück_Links_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                                                    
       else
          null;
@@ -301,7 +301,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Links_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -309,7 +309,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Unten_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -317,7 +317,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Oben_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -325,7 +325,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -333,7 +333,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Fluss_Waagrecht_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -341,7 +341,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskurve_Oben_Links_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -349,7 +349,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskurve_Unten_Links_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -357,7 +357,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flussendstück_Rechts_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                      
       else
          null;
@@ -384,7 +384,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Unten_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -392,7 +392,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Rechts_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -400,7 +400,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Links_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -408,7 +408,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -416,7 +416,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskurve_Unten_Rechts_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -424,7 +424,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskurve_Unten_Links_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -432,7 +432,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Fluss_Senkrecht_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -440,7 +440,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flussendstück_Oben_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                
       else
          null;
@@ -467,7 +467,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Oben_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -475,7 +475,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Rechts_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -483,7 +483,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Drei_Links_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -491,7 +491,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskreuzung_Vier_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -499,7 +499,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskurve_Oben_Rechts_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -507,7 +507,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flusskurve_Oben_Links_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -515,7 +515,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Fluss_Senkrecht_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                
       elsif
         LeseKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern))
@@ -523,7 +523,7 @@ package body KartenGeneratorFluss is
       then
          SchreibeKarten.Fluss (KoordinatenExtern => KartenWert (EbeneExtern),
                                FlussExtern       => KartenGrundDatentypen.Karten_Fluss_Enum'Val (KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenGrundDatentypen.Flussendstück_Unten_Enum)
-                                   + WelcherFlusstyp (EbeneExtern)));
+                                 + WelcherFlusstyp (EbeneExtern)));
                   
       end if;
       

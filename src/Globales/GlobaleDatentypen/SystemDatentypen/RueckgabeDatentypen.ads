@@ -52,8 +52,6 @@ package RueckgabeDatentypen is
                                  Keine_Rasse_Enum, Menschen_Enum, Kasrodiah_Enum, Lasupin_Enum, Lamustra_Enum, Manuky_Enum, Suroka_Enum, Pryolon_Enum, Talbidahr_Enum, Moru_Phisihl_Enum, Larinos_Lotaris_Enum, Carupex_Enum,
                                  Alary_Enum, Tesorahn_Enum, Natries_Zermanis_Enum, Tridatus_Enum, Senelari_Enum, Aspari_2_Enum, Ekropa_Enum
                                 );
-   -- Ordered müsste am Schluss entfernbar sein.
-   pragma Ordered (Rückgabe_Werte_Enum);
    
    subtype Kartengröße_Verwendet_Enum is Rückgabe_Werte_Enum range Kartengröße_20_20_Enum .. Kartengröße_Nutzer_Enum;
    subtype Kartengröße_Standard_Enum is Kartengröße_Verwendet_Enum range Kartengröße_20_20_Enum .. Kartengröße_1000_1000_Enum;

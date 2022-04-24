@@ -297,8 +297,14 @@ package EingeleseneGrafikenKonsole is
       
                                                     -- Luft/Weltraum
                                                     KartenGrundDatentypen.Wolken_Enum   => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Weltraum_Enum => KartenKonstanten.LeerKartenGrafik
+                                                    KartenGrundDatentypen.Weltraum_Enum => KartenKonstanten.LeerKartenGrafik,
                                                     -- Luft/Weltraum
+                                                    
+                                                    
+                                                    
+                                                    -- Sonstiges
+                                                    KartenGrundDatentypen.Vernichtet_Enum => KartenKonstanten.LeerKartenGrafik
+                                                    -- Sonstiges
                                                    );
    
    

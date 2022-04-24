@@ -9,7 +9,7 @@ with LeseKarten;
 
 with Karten;
 with ZufallsgeneratorenKarten;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body KartenGeneratorRessourcen is
 
@@ -130,9 +130,9 @@ package body KartenGeneratorRessourcen is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             case
               KartenWert.XAchse

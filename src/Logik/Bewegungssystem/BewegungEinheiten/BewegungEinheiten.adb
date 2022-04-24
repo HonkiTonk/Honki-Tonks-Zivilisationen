@@ -16,7 +16,7 @@ with KampfsystemEinheiten;
 with StadtSuchen;
 with KampfsystemStadt;
 with EinheitenTransporter;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body BewegungEinheiten is
    
@@ -27,9 +27,9 @@ package body BewegungEinheiten is
       return Boolean
    is begin
       
-      NeuePosition := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                       ÄnderungExtern    => PositionÄnderungExtern,
-                                                                       LogikGrafikExtern => True);
+      NeuePosition := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                             ÄnderungExtern    => PositionÄnderungExtern,
+                                                                                             LogikGrafikExtern => True);
       
       case
         NeuePosition.XAchse

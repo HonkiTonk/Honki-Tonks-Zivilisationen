@@ -15,7 +15,7 @@ with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
 
 with EinheitSuchen;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with DiplomatischerZustand;
 with EinheitenModifizieren;
 
@@ -160,7 +160,7 @@ package body KIStadt is
    
    function FeindNahe
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-     return Boolean
+      return Boolean
    is begin
       
       YAchseSchleife:
@@ -168,9 +168,9 @@ package body KIStadt is
          XAchseSchleife:
          for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
             
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
             
             case
               KartenWert.XAchse

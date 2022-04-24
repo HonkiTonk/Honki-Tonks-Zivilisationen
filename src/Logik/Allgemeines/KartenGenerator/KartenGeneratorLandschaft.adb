@@ -10,7 +10,7 @@ with LeseKarten;
 
 with KartenGeneratorBerechnungenAllgemein; use KartenGeneratorBerechnungenAllgemein;
 with ZufallsgeneratorenKarten;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body KartenGeneratorLandschaft is
 
@@ -152,7 +152,7 @@ package body KartenGeneratorLandschaft is
          is
             when KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Tundra_Enum =>
                AbstandTundraWüste (GrundExtern       => GrundExtern,
-                                   KoordinatenExtern => KoordinatenExtern);
+                                    KoordinatenExtern => KoordinatenExtern);
                      
             when others =>
                null;
@@ -188,9 +188,9 @@ package body KartenGeneratorLandschaft is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichZwei'Range loop
 
-            KartenWertAbstand := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                                  ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                  LogikGrafikExtern => True);
+            KartenWertAbstand := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                        LogikGrafikExtern => True);
             
             if
               KartenWertAbstand.XAchse = KartenKonstanten.LeerXAchse

@@ -7,7 +7,7 @@ with KartenKonstanten;
 
 with LeseKarten;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 
 package body KartenGeneratorBerechnungenAllgemein is
 
@@ -25,9 +25,9 @@ package body KartenGeneratorBerechnungenAllgemein is
          XAchseSchleife:
          for XAchsenSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
                
-            KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => KoordinatenExtern,
-                                                                           ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert),
-                                                                           LogikGrafikExtern => True);
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
+                                                                                                 ÄnderungExtern    => (EbeneExtern, YAchseSchleifenwert, XAchsenSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
                
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse

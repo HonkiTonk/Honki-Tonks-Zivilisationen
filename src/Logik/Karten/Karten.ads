@@ -8,6 +8,7 @@ with KartenGrundDatentypen;
 
 package Karten is
 
+   ----------------------- Später die Anzahl der Ebenen auch vom Nutzer einstellbar machen.
    type WeltkarteArray is array (KartenDatentypen.EbeneVorhanden'Range, KartenDatentypen.KartenfeldPositiv'Range, KartenDatentypen.KartenfeldPositiv'Range) of KartenRecords.KartenRecord;
    Weltkarte : WeltkarteArray := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
 
@@ -21,7 +22,8 @@ package Karten is
 
    end record;
 
-   ------------------- Wenn man das um die EAchse erweitert, dann könnte man auch die Anzahl der Ebenen vom Spieler bestimmen lassen. Mal drüber nachdenken.
+   ------------------- Wenn man das um die EAchse erweitert, dann könnte man auch die Anzahl der Ebenen vom Spieler bestimmen lassen.
+   ------------------- Besser aber nicht hier einbauen, sonst ergibt das zu viele Fälle. Wobei es ja nur den Fall Nutzer und Zufall (was ja auch wieder Nutzer ist) gibt. Alle anderen wären dann einfach fünf.
    type KartengrößenArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
    Kartengrößen : KartengrößenArray := (
                                             KartenDatentypen.Kartengröße_20_20_Enum     => (20, 20),
@@ -60,23 +62,7 @@ package Karten is
                                                        others                                     => (1, 1)
                                                       );
 
-   Kartenparameter : KartenRecords.KartenparameterRecord := (
-                                                             Kartengröße      => KartenDatentypen.Kartengröße_20_20_Enum,
-
-                                                             -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
-                                                             Kartenart        => KartenDatentypen.Kartenart_Inseln_Enum,
-
-                                                             -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
-                                                             Kartentemperatur => KartenDatentypen.Kartentemperatur_Kalt_Enum,
-
-                                                             -- Arm, Wenig, Mittel, Viel, Überfluss
-                                                             Kartenressourcen => KartenDatentypen.Kartenressourcen_Mittel_Enum,
-
-                                                             Kartenpole       => KartenDatentypen.Karten_Pole_YAchse,
-
-                                                             -- EAchsenübergang, YAchsenübergang, XAchsenübergang
-                                                             Kartenform       => KartenRecordKonstanten.KartenformStandard
-                                                            );
+   Kartenparameter : KartenRecords.KartenparameterRecord := KartenRecordKonstanten.KartenparameterStandard;
 
    -- Später mehrere Kartenarten mischbar machen, das aber vielleicht nicht über einen Bool.
    -- Eventuell mehrere Kartenarten aktivierbar machen wie bei der Kartenform? Eventuell ein kompakteres System bauen.

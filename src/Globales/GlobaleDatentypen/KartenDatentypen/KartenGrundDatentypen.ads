@@ -11,7 +11,9 @@ package KartenGrundDatentypen is
                               Lava_Enum, Planetenkern_Enum,
                               Tundra_Enum, Wüste_Enum, Hügel_Enum, Gebirge_Enum, Wald_Enum, Dschungel_Enum, Sumpf_Enum, Flachland_Enum, Hügel_Mit_Enum, Wolken_Enum, Weltraum_Enum, Erde_Enum, Erdgestein_Enum, Sand_Enum,
                               Gestein_Enum,
-                              Korallen_Enum, Unterwasser_Wald_Enum
+                              Korallen_Enum, Unterwasser_Wald_Enum,
+                              
+                              Vernichtet_Enum
                              );
    pragma Ordered (Karten_Grund_Enum);
    

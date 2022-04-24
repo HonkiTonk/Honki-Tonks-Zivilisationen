@@ -8,7 +8,7 @@ with KartenRecordKonstanten;
 
 with LeseKarten;
 
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with BewegungPassierbarkeitPruefen;
 with EinheitSuchen;
 
@@ -33,9 +33,9 @@ package body UmgebungErreichbarTesten is
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
                
-               KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                              LogikGrafikExtern => True);
+               KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
+                                                                                                    ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                    LogikGrafikExtern => True);
                
                if
                  KartenWert.XAchse = KartenKonstanten.LeerXAchse
@@ -125,9 +125,9 @@ package body UmgebungErreichbarTesten is
          XAchseSchleife:
          for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
             
-            KartenWertZwei := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                               ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                               LogikGrafikExtern => True);
+            KartenWertZwei := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => AktuelleKoordinatenExtern,
+                                                                                                     ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                     LogikGrafikExtern => True);
             
             if
               KartenWertZwei.XAchse = KartenKonstanten.LeerXAchse

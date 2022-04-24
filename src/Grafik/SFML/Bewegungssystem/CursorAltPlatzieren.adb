@@ -8,7 +8,7 @@ with OptionenVariablen;
 with SpielVariablen;
 
 with Karten;
-with KarteKoordinatenPruefen;
+with Kartenkoordinatenberechnungssystem;
 with Sichtweiten;
 
 package body CursorAltPlatzieren is
@@ -167,9 +167,9 @@ package body CursorAltPlatzieren is
          null;
       end if;
       
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                     ÄnderungExtern    => (0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) + 1, 0),
-                                                                     LogikGrafikExtern => False);
+      KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                           ÄnderungExtern    => (0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) + 1, 0),
+                                                                                           LogikGrafikExtern => False);
       
       case
         KartenWert.YAchse
@@ -181,9 +181,10 @@ package body CursorAltPlatzieren is
             if
               KartenWert.YAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
             then
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                                                                      ÄnderungExtern    => (0, 1, 0),
-                                                                                                                                      LogikGrafikExtern => False).YAchse;
+               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse
+                 := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                           ÄnderungExtern    => (0, 1, 0),
+                                                                                           LogikGrafikExtern => False).YAchse;
                return;
                
             else
@@ -191,9 +192,9 @@ package body CursorAltPlatzieren is
             end if;
       end case;
       
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                     ÄnderungExtern    => (0, -Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) - 1, 0),
-                                                                     LogikGrafikExtern => False);
+      KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                           ÄnderungExtern    => (0, -Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => True) - 1, 0),
+                                                                                           LogikGrafikExtern => False);
       
       case
         KartenWert.YAchse
@@ -205,9 +206,10 @@ package body CursorAltPlatzieren is
             if
               KartenWert.YAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
             then
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                                                                      ÄnderungExtern    => (0, -1, 0),
-                                                                                                                                      LogikGrafikExtern => False).YAchse;
+               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse
+                 := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                           ÄnderungExtern    => (0, -1, 0),
+                                                                                           LogikGrafikExtern => False).YAchse;
                return;
                
             else
@@ -232,9 +234,9 @@ package body CursorAltPlatzieren is
          null;
       end if;
       
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                     ÄnderungExtern    => (0, 0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) + 1),
-                                                                     LogikGrafikExtern => False);
+      KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                           ÄnderungExtern    => (0, 0, Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) + 1),
+                                                                                           LogikGrafikExtern => False);
                                                                   
       case
         KartenWert.XAchse
@@ -246,9 +248,10 @@ package body CursorAltPlatzieren is
             if
               KartenWert.XAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
             then
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                                                                      ÄnderungExtern    => (0, 0, 1),
-                                                                                                                                      LogikGrafikExtern => False).XAchse;
+               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse
+                 := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                           ÄnderungExtern    => (0, 0, 1),
+                                                                                           LogikGrafikExtern => False).XAchse;
                return;
                
             else
@@ -256,9 +259,9 @@ package body CursorAltPlatzieren is
             end if;
       end case;
       
-      KartenWert := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                     ÄnderungExtern    => (0, 0, -Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) - 1),
-                                                                     LogikGrafikExtern => False);
+      KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                           ÄnderungExtern    => (0, 0, -Sichtweiten.BewegungsfeldLesen (YAchseXAchseExtern => False) - 1),
+                                                                                           LogikGrafikExtern => False);
       
       case
         KartenWert.XAchse
@@ -270,9 +273,10 @@ package body CursorAltPlatzieren is
             if
               KartenWert.XAchse = SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
             then
-               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := KarteKoordinatenPruefen.KarteKoordinatenPrüfen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
-                                                                                                                                      ÄnderungExtern    => (0, 0, -1),
-                                                                                                                                      LogikGrafikExtern => False).XAchse;
+               SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse
+                 := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt,
+                                                                                           ÄnderungExtern    => (0, 0, -1),
+                                                                                           LogikGrafikExtern => False).XAchse;
                return;
                
             else
