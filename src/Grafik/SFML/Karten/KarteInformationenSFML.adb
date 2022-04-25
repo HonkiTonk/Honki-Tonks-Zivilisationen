@@ -315,7 +315,6 @@ package body KarteInformationenSFML is
             null;
             
          when others =>
-            ---------------------- Irgendwas stimmt hier noch nicht, beim überarbeiten mal nachprüfen.
             Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                                str  => KartenAllgemein.BeschreibungFluss (KartenFlussExtern => KartenFluss));
             Sf.Graphics.Text.setPosition (text     => TextAccess,

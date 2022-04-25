@@ -47,12 +47,22 @@ package KartenDatentypen is
    
    
    -- Neue Kartenarten immer vor Chaos einfügen um Anpassungen in KartenDatentypen zu vermeiden.
+   -------------------- Hier mal über sinnvolle subtype nachdenken.
    type Kartenart_Enum is (
-                           Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum, Kartenart_Nur_Land_Enum, Kartenart_Chaos_Enum
+                           -- Normal
+                           Kartenart_Inseln_Enum, Kartenart_Kontinente_Enum, Kartenart_Pangäa_Enum,
+                           
+                           -- Sonstiges
+                           Kartenart_Nur_Land_Enum,
+                           
+                           -- Chaos
+                           Kartenart_Chaos_Enum, Kartenart_Totales_Chaos_Enum
                           );
    pragma Ordered (Kartenart_Enum);
    
-   
+   subtype Kartenart_Normal_Enum is Kartenart_Enum range Kartenart_Inseln_Enum .. Kartenart_Pangäa_Enum;
+   subtype Kartenart_Sonstiges_Enum is Kartenart_Enum range Kartenart_Nur_Land_Enum .. Kartenart_Nur_Land_Enum;
+   subtype Kartenart_Chaotisch_Enum is Kartenart_Enum range Kartenart_Chaos_Enum .. Kartenart_Totales_Chaos_Enum;
    
    -------------------------- Später umschreiben auf 
    -- type Kartenform_Enum is (
@@ -73,7 +83,7 @@ package KartenDatentypen is
    subtype Kartenform_E_Einstellbar_Enum is Kartenform_Enum range Karte_E_Kein_Übergang_Enum .. Karte_E_Übergang_Enum;
    subtype Kartenform_Y_Einstellbar_Enum is Kartenform_Enum range Karte_Y_Kein_Übergang_Enum .. Karte_Y_Verschobener_Übergang_Enum;
    subtype Kartenform_X_Einstellbar_Enum is Kartenform_Enum range Karte_X_Kein_Übergang_Enum .. Karte_X_Verschobener_Übergang_Enum;
-                  
+                     
    
    
    -- Neue Kartentemperaturen immer vor Wüste einfügen um Anpassungen in KartenDatentypen zu vermeiden.
@@ -94,7 +104,6 @@ package KartenDatentypen is
    
    
    -- Neue Kartenpole immer vor Karten_Pole_Beide einfügen um Anpassungen in KartenDatentypen zu vermeiden.
-   ------------------------- Pole auch nur auf einer Seite ermöglichen?
    type Kartenpole_Enum is (
                             Kartenpol_Vorhanden_Enum, Kartenpol_Nicht_Vorhanden_Enum
                            );

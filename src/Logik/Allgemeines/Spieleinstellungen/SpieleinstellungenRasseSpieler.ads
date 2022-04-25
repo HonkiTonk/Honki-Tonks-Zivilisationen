@@ -6,34 +6,16 @@ with RassenDatentypen; use RassenDatentypen;
 with RueckgabeDatentypen;
 with SonstigeVariablen;
 with KartenRecords;
+with ZahlenDatentypen;
 
 with Karten;
 
 package SpieleinstellungenRasseSpieler is
-
-   procedure StartwerteErmitteln;
-
-   procedure StartpunktFestlegen
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
+   procedure StartwerteErmitteln;
    procedure RassenWählen;
    
    
-
-   function UmgebungPrüfen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
-          and
-            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function EineRasseBelegt
      return Boolean;
@@ -50,9 +32,7 @@ private
    
    GezogeneWerte : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   
-   type NotAus is range 1 .. 100;
-   
+      
    type RückgabeZuRasseArray is array (RueckgabeDatentypen.Rassen_Verwendet_Enum'Range) of RassenDatentypen.Rassen_Verwendet_Enum;
    RückgabeZuRasse : constant RückgabeZuRasseArray := (
                                                          RueckgabeDatentypen.Menschen_Enum         => RassenDatentypen.Menschen_Enum,
@@ -84,5 +64,26 @@ private
    
    procedure BelegungÄndern
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+
+   procedure StartpunktFestlegen
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
+   
+   
+
+   function UmgebungPrüfen
+     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      NotAusExtern : in ZahlenDatentypen.NotAus)
+      return Boolean
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
+          and
+            SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
 end SpieleinstellungenRasseSpieler;

@@ -24,7 +24,8 @@ package body ZufallsgeneratorenSpieleinstellungen is
      return KartenDatentypen.Kartengröße_Verwendet_Enum
    is begin
       
-      ZufälligeKartengrößeWählen.Reset (ZufälligeKartengrößeGewählt);
+      ------------------------ Überall mal Gen => hinzufügen, z. B. während P&P.
+      ZufälligeKartengrößeWählen.Reset (Gen => ZufälligeKartengrößeGewählt);
       
       YAchseBestimmenSchleife:
       loop
@@ -84,7 +85,6 @@ package body ZufallsgeneratorenSpieleinstellungen is
       ZufälligerEAchsenÜbergangWählen.Reset (ZufälligerEAchsenÜbergangGewählt);
       ZufälligerYAchsenÜbergangWählen.Reset (ZufälligerYAchsenÜbergangGewählt);
       ZufälligerXAchsenÜbergangWählen.Reset (ZufälligerXAchsenÜbergangGewählt);
-      ZufälligeAchseWählen.Reset (ZufälligeAchseGewählt);
             
       Karten.Kartenparameter.Kartenform.EAchseOben := ZufälligerEAchsenÜbergangWählen.Random (ZufälligerEAchsenÜbergangGewählt);
       Karten.Kartenparameter.Kartenform.EAchseUnten := ZufälligerEAchsenÜbergangWählen.Random (ZufälligerEAchsenÜbergangGewählt);
@@ -92,7 +92,6 @@ package body ZufallsgeneratorenSpieleinstellungen is
       Karten.Kartenparameter.Kartenform.YAchseSüden := ZufälligerYAchsenÜbergangWählen.Random (ZufälligerYAchsenÜbergangGewählt);
       Karten.Kartenparameter.Kartenform.XAchseWesten := ZufälligerXAchsenÜbergangWählen.Random (ZufälligerXAchsenÜbergangGewählt);
       Karten.Kartenparameter.Kartenform.XAchseOsten := ZufälligerXAchsenÜbergangWählen.Random (ZufälligerXAchsenÜbergangGewählt);
-      Karten.Kartenparameter.Kartenform.YZuerstBerechnenXZuerstBerechnen := ZufälligeAchseWählen.Random (ZufälligeAchseGewählt);
       
    end ZufälligeKartenform;
 

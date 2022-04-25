@@ -18,6 +18,8 @@ package body Kartenkoordinatenberechnungssystem is
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
+      ------------------------ Wenn man das in einen Grafik- und einen Logikteil aufteilt, könnte man dann Zufallsübergänge berechnen?
+      
       if
         ÄnderungExtern.EAchse = KartenKonstanten.LeerEAchseÄnderung
         and

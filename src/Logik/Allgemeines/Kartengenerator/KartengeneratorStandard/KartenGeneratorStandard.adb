@@ -10,73 +10,22 @@ with LeseKarten;
 
 with ZufallsgeneratorenKarten;
 with Kartenkoordinatenberechnungssystem;
-with KartenGeneratorHimmel;
-with KartenGeneratorWeltraum;
-with KartenGeneratorPlanetenInneres;
+with KartenpoleKorrigieren;
 
 package body KartenGeneratorStandard is
-
-   procedure StandardKarte
-   is
    
-      task Himmel;
-      task Weltraum;
-      task PlanetenInneres;
-      
-      task body Himmel
-      is begin
-         
-         KartenGeneratorHimmel.Himmel;
-         
-      end Himmel;
-      
-      
-      
-      task body Weltraum
-      is begin
-
-         KartenGeneratorWeltraum.Weltraum;
-         
-      end Weltraum;
-      
-      
-      
-      task body PlanetenInneres
-      is begin
-         
-         KartenGeneratorPlanetenInneres.PlanetenInneres;
-         
-      end PlanetenInneres;
-   
-   begin
-      
-      EisrandGenerieren;
-      
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Nur_Land_Enum =>
-            GenerierungNurLand;
-            
-         when others =>
-            StandardKarteGenerieren;
-      end case;
-      
-   end StandardKarte;
-   
-   
-   
-   procedure StandardKarteGenerieren
+   procedure KarteGenerieren
    is begin
+      
+      Polkorrektur := KartenpoleKorrigieren.KartenpoleKorrigieren;
       
       -- Zu beachten, diese Werte sind nur dazu da um belegte Felder zu ermitteln. Nicht später durch die Zuweisungen weiter unten verwirren lassen!
       Karten.GeneratorKarte := (others => (others => (KartenGrundDatentypen.Leer_Grund_Enum)));
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + Polkorrektur.Norden .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - Polkorrektur.Süden loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) + Polkorrektur.Westen .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße - Polkorrektur.Osten loop
                
             if
               LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) = KartenGrundDatentypen.Leer_Grund_Enum
@@ -94,7 +43,7 @@ package body KartenGeneratorStandard is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-   end StandardKarteGenerieren;
+   end KarteGenerieren;
 
 
 
@@ -325,50 +274,6 @@ package body KartenGeneratorStandard is
          null;
       end if;
          
-      
    end GenerierungLandmasseFläche;
-   
-   
-   
-   procedure GenerierungNurLand
-   is begin
-      
-      YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
-            
-            SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
-            
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-      
-   end GenerierungNurLand;
-   
-   
-   
-   procedure EisrandGenerieren
-   is begin
-      
-      YAchseEisSchleife:
-      for YAchseEisSchleifenwert in Karten.WeltkarteArray'First (2) .. KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
-         XAchseEisSchleife:
-         for XAchseEisSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
-         
-            SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseEisSchleifenwert, XAchseEisSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Eis_Enum);
-            SchreibeKarten.Grund (KoordinatenExtern => (0, Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - YAchseEisSchleifenwert + 1, XAchseEisSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Eis_Enum);
-            SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseEisSchleifenwert, XAchseEisSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Unterwasser_Eis_Enum);
-            SchreibeKarten.Grund (KoordinatenExtern => (-1, Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - YAchseEisSchleifenwert + 1, XAchseEisSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Unterwasser_Eis_Enum);
-         
-         end loop XAchseEisSchleife;
-      end loop YAchseEisSchleife;
-      
-   end EisrandGenerieren;
 
 end KartenGeneratorStandard;

@@ -50,7 +50,6 @@ private
    package ZufälligerEAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_E_Einstellbar_Enum);
    package ZufälligerYAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_Y_Einstellbar_Enum);
    package ZufälligerXAchsenÜbergangWählen is new Ada.Numerics.Discrete_Random (KartenDatentypen.Kartenform_X_Einstellbar_Enum);
-   package ZufälligeAchseWählen is new Ada.Numerics.Discrete_Random (Boolean);
 
    ZufälligeVordefinierteKartengrößeGewählt : ZufälligeVordefinierteKartengrößeWählen.Generator;
    ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;
@@ -62,6 +61,5 @@ private
    ZufälligerEAchsenÜbergangGewählt : ZufälligerEAchsenÜbergangWählen.Generator;
    ZufälligerYAchsenÜbergangGewählt : ZufälligerYAchsenÜbergangWählen.Generator;
    ZufälligerXAchsenÜbergangGewählt : ZufälligerXAchsenÜbergangWählen.Generator;
-   ZufälligeAchseGewählt : ZufälligeAchseWählen.Generator;
 
 end ZufallsgeneratorenSpieleinstellungen;

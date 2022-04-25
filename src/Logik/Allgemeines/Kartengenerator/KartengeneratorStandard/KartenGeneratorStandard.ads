@@ -8,13 +8,15 @@ with Karten;
 
 package KartenGeneratorStandard is
 
-   procedure StandardKarte;
+   procedure KarteGenerieren;
 
 private
 
    BeliebigerLandwert : Float;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   
+   Polkorrektur : KartenRecords.KartenpoleKorrekturRecord;
    
    type Land_Erzeugung_Enum is (
                                 Leer_Enum,
@@ -100,11 +102,7 @@ private
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
           and
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
-   
-   procedure GenerierungNurLand;
-   procedure EisrandGenerieren;
-   procedure StandardKarteGenerieren;
-   
+      
    procedure LandFeldMasseEisschild
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv);

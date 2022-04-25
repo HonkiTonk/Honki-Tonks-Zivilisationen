@@ -61,7 +61,8 @@ package body KartenkoordinateYAchseBerechnen is
          when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
             WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Karten.Kartenparameter.Kartenform.YAchseNorden;
             
-            return KartenKonstanten.LeerYAchse;
+            return ÜbergangNordenRückwärts (YAchseExtern         => YAchseExtern,
+                                               ÄnderungYAchseExtern => ÄnderungYAchseExtern);
                         
          when KartenDatentypen.Karte_Y_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
             WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Karten.Kartenparameter.Kartenform.YAchseNorden;
@@ -99,6 +100,19 @@ package body KartenkoordinateYAchseBerechnen is
    
    
    
+   ------------------------- In die Rückwärtsverschiebung später eine Schleife einbauen, damit es nicht zu eine herausbewegen auf der anderen Seite kommt?
+   function ÜbergangNordenRückwärts
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositiv
+   is begin
+      
+      return YAchseExtern - (ÄnderungYAchseExtern + 1);
+      
+   end ÜbergangNordenRückwärts;
+   
+   
+   
    function ÜbergangSüden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
@@ -116,7 +130,8 @@ package body KartenkoordinateYAchseBerechnen is
          when KartenDatentypen.Karte_Y_Rückwärts_Verschobener_Übergang_Enum =>
             WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Karten.Kartenparameter.Kartenform.YAchseSüden;
             
-            return KartenKonstanten.LeerYAchse;
+            return ÜbergangNordenRückwärts (YAchseExtern         => YAchseExtern,
+                                               ÄnderungYAchseExtern => ÄnderungYAchseExtern);
             
          when KartenDatentypen.Karte_Y_Übergang_Enum | KartenDatentypen.Karte_Y_Verschobener_Übergang_Enum =>
             WelcheVerschiebungYAchse (LogikGrafikExtern, ArrayPositionExtern) := Karten.Kartenparameter.Kartenform.YAchseSüden;
@@ -151,6 +166,19 @@ package body KartenkoordinateYAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv (ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern));
       
    end ÜbergangSüdenNormal;
+   
+   
+   
+   ------------------------- In die Rückwärtsverschiebung später eine Schleife einbauen, damit es nicht zu eine herausbewegen auf der anderen Seite kommt?
+   function ÜbergangSüdenRückwärts
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+      return KartenDatentypen.KartenfeldPositiv
+   is begin
+      
+      return YAchseExtern - (ÄnderungYAchseExtern - 1);
+      
+   end ÜbergangSüdenRückwärts;
    
    
    

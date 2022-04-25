@@ -89,8 +89,10 @@ package KartenRecordKonstanten is
                                                                               Kartenform       => KartenformStandard
                                                                              );
    
-   ---------------------------- Das hier sollte woanders hin.
-   type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositiv;
+   ---------------------------- Das hier sollte woanders hin, oder? Auch vom Nutzer konfigurierbar machen? Positionsabhängige Dicke ermöglichen?
+   ---------------------------- Polgrund auch definierbar machen, so dass die Pole nicht nur aus Eis bestehen?
+   ---------------------------- Bei der Nutzereinstellung darauf achten dass die maximale Größe pro Polregion auf die halbe Kartengröße beschränkt ist.
+   type EisgebietArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenDatentypen.KartenfeldPositivMitNullwert;
    Eisrand : constant EisgebietArray := (
                                          KartenDatentypen.Kartengröße_20_20_Enum     => 1,
                                          KartenDatentypen.Kartengröße_40_40_Enum     => 1,

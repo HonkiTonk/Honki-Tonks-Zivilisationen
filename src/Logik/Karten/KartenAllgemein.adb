@@ -29,7 +29,7 @@ package body KartenAllgemein is
    
    
    function BeschreibungFluss
-     (KartenFlussExtern : in KartenGrundDatentypen.Karten_Fluss_Vorhanden_Enum)
+     (KartenFlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
             

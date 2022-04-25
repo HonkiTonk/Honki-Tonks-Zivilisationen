@@ -117,7 +117,6 @@ package KartenRecords is
       XAchseWesten : KartenDatentypen.Kartenform_X_Einstellbar_Enum;
       XAchseOsten : KartenDatentypen.Kartenform_X_Einstellbar_Enum;
       
-      -- Müsste benötigt werden wenn sowohl Y-Achse, als auch X.Achse gleichzeitig verschoben werden.
       YZuerstBerechnenXZuerstBerechnen : Boolean;
       
    end record;
@@ -130,6 +129,17 @@ package KartenRecords is
       YAchseSüden : KartenDatentypen.Kartenpole_Enum;
       XAchseWesten : KartenDatentypen.Kartenpole_Enum;
       XAchseOsten : KartenDatentypen.Kartenpole_Enum;
+      
+   end record;
+   
+   
+   
+   type KartenpoleKorrekturRecord is record 
+      
+      Norden : KartenDatentypen.KartenfeldPositivMitNullwert;
+      Süden : KartenDatentypen.KartenfeldPositivMitNullwert;
+      Westen : KartenDatentypen.KartenfeldPositivMitNullwert;
+      Osten : KartenDatentypen.KartenfeldPositivMitNullwert;
       
    end record;
    

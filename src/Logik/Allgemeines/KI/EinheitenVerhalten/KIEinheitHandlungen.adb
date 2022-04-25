@@ -5,6 +5,7 @@ with KartenRecords; use KartenRecords;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
+with ZahlenDatentypen;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -43,7 +44,7 @@ package body KIEinheitHandlungen is
    is begin
       
       AktivitätSchleife:
-      for Schleifenwert in KIDatentypen.NotAusKlein'Range loop
+      for Schleifenwert in ZahlenDatentypen.NotAusKlein'Range loop
          
          exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
          
@@ -112,7 +113,7 @@ package body KIEinheitHandlungen is
       end if;
       
       AktivitätSchleife:
-      for Schleifenwert in KIDatentypen.NotAusKlein'Range loop
+      for Schleifenwert in ZahlenDatentypen.NotAusKlein'Range loop
          
          exit AktivitätSchleife when HandlungBeendet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True;
          

@@ -99,7 +99,7 @@ package body Spieleinstellungen is
             when RassenDatentypen.Leer_Spieler_Enum =>
                null;
                
-            when RassenDatentypen.Spieler_Mensch_Enum | RassenDatentypen.Spieler_KI_Enum =>
+            when RassenDatentypen.Spieler_Belegt_Enum'Range =>
                RassenVorhanden := True;
                exit SicherheitsSchleife;
          end case;

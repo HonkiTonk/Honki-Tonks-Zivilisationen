@@ -406,6 +406,11 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 5
       then
+         return RueckgabeDatentypen.Kartenart_Totales_Chaos_Enum;
+                    
+      elsif
+        AktuelleAuswahlExtern = AnfangExtern + 6
+      then
          return RueckgabeDatentypen.Zufall_Enum;
                     
       else

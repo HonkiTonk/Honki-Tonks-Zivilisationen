@@ -3,14 +3,14 @@ pragma Warnings (Off, "*array aggregate*");
 
 package body LandwerteFestlegen is
 
-   -- Alle Größen- und Abstandsangaben sind Radien.
+   -- Beim Erweitern von KartenDatentypen.Kartenart_Sonstiges_Enum'Range müssen eventuell einzelne Bereiche hier angepasst werden. Beachte auch Kartengenerator.
    procedure GrößeFestlegen
    is begin
       
       case
         Karten.Kartenparameter.Kartenart
       is
-         when KartenDatentypen.Kartenart_Nur_Land_Enum | KartenDatentypen.Kartenart_Chaos_Enum =>
+         when KartenDatentypen.Kartenart_Sonstiges_Enum'Range | KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
             null;
             
          when others =>
@@ -22,6 +22,7 @@ package body LandwerteFestlegen is
    
    
    
+   -- Alle Größen- und Abstandsangaben sind Radien.
    procedure Größe
    is begin
       

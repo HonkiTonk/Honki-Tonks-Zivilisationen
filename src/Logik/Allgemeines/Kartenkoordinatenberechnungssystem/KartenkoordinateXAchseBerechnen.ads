@@ -41,6 +41,11 @@ private
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv;
    
+   function ÜbergangWestenRückwärts
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositiv;
+   
    function ÜbergangOsten
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
@@ -53,6 +58,11 @@ private
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositiv;
+   
+   function ÜbergangOstenRückwärts
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
       return KartenDatentypen.KartenfeldPositiv;
 
 end KartenkoordinateXAchseBerechnen;

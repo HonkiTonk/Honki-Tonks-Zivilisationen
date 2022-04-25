@@ -61,7 +61,8 @@ package body KartenkoordinateXAchseBerechnen is
          when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
             WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Karten.Kartenparameter.Kartenform.XAchseWesten;
       
-            return KartenKonstanten.LeerXAchse;
+            return ÜbergangWestenRückwärts (XAchseExtern         => XAchseExtern,
+                                            ÄnderungXAchseExtern => ÄnderungXAchseExtern);
             
          when KartenDatentypen.Karte_X_Übergang_Enum | KartenDatentypen.Karte_X_Verschobener_Übergang_Enum =>
             WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Karten.Kartenparameter.Kartenform.XAchseWesten;
@@ -99,6 +100,19 @@ package body KartenkoordinateXAchseBerechnen is
    
    
    
+   ------------------------- In die Rückwärtsverschiebung später eine Schleife einbauen, damit es nicht zu eine herausbewegen auf der anderen Seite kommt?
+   function ÜbergangWestenRückwärts
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositiv
+   is begin
+      
+      return XAchseExtern - (ÄnderungXAchseExtern + 1);
+      
+   end ÜbergangWestenRückwärts;
+   
+   
+   
    function ÜbergangOsten
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld;
@@ -116,7 +130,8 @@ package body KartenkoordinateXAchseBerechnen is
          when KartenDatentypen.Karte_X_Rückwärts_Verschobener_Übergang_Enum =>
             WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Karten.Kartenparameter.Kartenform.XAchseOsten;
       
-            return KartenKonstanten.LeerXAchse;
+            return ÜbergangOstenRückwärts (XAchseExtern         => XAchseExtern,
+                                           ÄnderungXAchseExtern => ÄnderungXAchseExtern);
             
          when KartenDatentypen.Karte_X_Übergang_Enum | KartenDatentypen.Karte_X_Verschobener_Übergang_Enum =>
             WelcheVerschiebungXAchse (LogikGrafikExtern, ArrayPositionExtern) := Karten.Kartenparameter.Kartenform.XAchseOsten;
@@ -151,6 +166,19 @@ package body KartenkoordinateXAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv (ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern));
       
    end ÜbergangOstenNormal;
+   
+   
+   
+   ------------------------- In die Rückwärtsverschiebung später eine Schleife einbauen, damit es nicht zu eine herausbewegen auf der anderen Seite kommt?
+   function ÜbergangOstenRückwärts
+     (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositiv
+   is begin
+      
+      return XAchseExtern - (ÄnderungXAchseExtern - 1);
+      
+   end ÜbergangOstenRückwärts;
    
       
    

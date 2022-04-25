@@ -28,17 +28,23 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.04 => 0.01.0 (26.04.2022):
+   -- Version 0.01.0470 => 0.01.0 (26.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0450 => 0.01.04 (25.04.2022):
+   -- Version 0.01.0450 => 0.01.0470 (25.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Entwicklung des neuen Kartenkoordinatenberechnungssystems abgeschlossen.
+   -- Fehler in der Anzeige der Flussbeschreibungen korrigiert.
+   -- Kartenart 'Totales Chaos' eingebaut.
+   -- Angefangen den Kartengenerator zu überarbeiten.
+   -- Der Kartengenerator kann jetzt auf allen vier Seiten Pole erzeugen.
+   -- 'Nur Land' an das neue Polsystem angepasst.
+   -- Alle vorhandenen Kartenarten sind jetzt mit dem neuen Polsystem kompatibel.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

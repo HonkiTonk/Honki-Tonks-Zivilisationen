@@ -47,7 +47,7 @@ package Karten is
 
    -- Inseln, Kontinente, Pangäa
    -- Alle Größen- und Abstandsangaben sind Radien.
-   -- Später über einen Editor oder direkt im Kartengenerator änderbar machen? Möglicherweise die aktuelle Kartenart durch vorgegebene Werte und Nutzereingaben ersetzen?
+   ------------------------ Später über einen Editor oder direkt im Kartengenerator änderbar machen? Möglicherweise die aktuelle Kartenart durch vorgegebene Werte und Nutzereingaben ersetzen?
    type GrößeLandartArray is array (KartenDatentypen.Kartenart_Enum'Range) of LandartenRecord;
    GrößeLandart : GrößeLandartArray := (
                                             KartenDatentypen.Kartenart_Inseln_Enum     => (3, 3),

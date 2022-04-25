@@ -41,6 +41,11 @@ private
       LogikGrafikExtern : in Boolean)
       return KartenDatentypen.KartenfeldPositiv;
    
+   function ÜbergangNordenRückwärts
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
+      return KartenDatentypen.KartenfeldPositiv;
+   
    function ÜbergangSüden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
@@ -53,6 +58,11 @@ private
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
+      return KartenDatentypen.KartenfeldPositiv;
+   
+   function ÜbergangSüdenRückwärts
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in KartenDatentypen.KartenfeldPositiv)
       return KartenDatentypen.KartenfeldPositiv;
 
 end KartenkoordinateYAchseBerechnen;

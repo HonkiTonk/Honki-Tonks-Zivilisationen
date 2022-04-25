@@ -5,6 +5,7 @@ with LeseKarten;
 
 package body SchreibeKarten is
 
+   ----------------------- Eventuell mehr Prüfungen hier einbauen? Z. B. ob das Unterwasserzeug auch Unterwasser platziert wird? Dabei Chaos berücksichtigen.
    procedure Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)

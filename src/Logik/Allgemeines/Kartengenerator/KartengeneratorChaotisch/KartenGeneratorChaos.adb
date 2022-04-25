@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with SchreibeKarten;
 
 with Karten;
-with ZufallsgeneratorenKarten;
+with ZufallsgeneratorenChaos;
 
 package body KartenGeneratorChaos is
 
@@ -18,7 +18,7 @@ package body KartenGeneratorChaos is
             XAchseSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
                
-               GrundZufall := ZufallsgeneratorenKarten.ChaoskarteGrund;
+               GrundZufall := ZufallsgeneratorenChaos.ChaoskarteGrund;
                SchreibeKarten.Grund (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
                                      GrundExtern       => GrundZufall);
                
@@ -30,17 +30,17 @@ package body KartenGeneratorChaos is
                      
                   when others =>
                      SchreibeKarten.Fluss (KoordinatenExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
-                                           FlussExtern       => ZufallsgeneratorenKarten.ChaoskarteFluss);
+                                           FlussExtern       => ZufallsgeneratorenChaos.ChaoskarteFluss);
                end case;
                
                case
                  GrundZufall
                is
                   when KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range =>
-                     RessourceZufall := ZufallsgeneratorenKarten.ChaoskarteRessource (WasserLandExtern => True);
+                     RessourceZufall := ZufallsgeneratorenChaos.ChaoskarteRessource (WasserLandExtern => True);
                      
                   when KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
-                     RessourceZufall := ZufallsgeneratorenKarten.ChaoskarteRessource (WasserLandExtern => False);
+                     RessourceZufall := ZufallsgeneratorenChaos.ChaoskarteRessource (WasserLandExtern => False);
                      
                      
                   when others =>

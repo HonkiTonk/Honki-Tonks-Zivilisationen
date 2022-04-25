@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with ZahlenDatentypen; use ZahlenDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with MenueDatentypen;
@@ -9,7 +10,7 @@ with SpielVariablen;
 with LeseEinheitenGebaut;
 
 with ZufallsgeneratorenSpieleinstellungen;
-with ZufallsgeneratorenKarten;
+with ZufallsgeneratorenStartkoordinaten;
 with EinheitSuchen;
 with Kartenkoordinatenberechnungssystem;
 with BewegungPassierbarkeitPruefen;
@@ -62,19 +63,18 @@ package body SpieleinstellungenRasseSpieler is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      if
-        SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Leer_Spieler_Enum
-      then
-         SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_Mensch_Enum;
+      case
+        SonstigeVariablen.RassenImSpiel (RasseExtern)
+      is
+         when RassenDatentypen.Leer_Spieler_Enum =>
+            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_Mensch_Enum;
                   
-      elsif
-        SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum
-      then
-         SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
+         when RassenDatentypen.Spieler_Mensch_Enum =>
+            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Spieler_KI_Enum;
                   
-      else
-         SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
-      end if;
+         when RassenDatentypen.Spieler_KI_Enum =>
+            SonstigeVariablen.RassenImSpiel (RasseExtern) := RassenDatentypen.Leer_Spieler_Enum;
+      end case;
       
    end BelegungÄndern;
    
@@ -87,14 +87,15 @@ package body SpieleinstellungenRasseSpieler is
       RassenSchleife:
       for RasseSchleifenwert in RassenDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         if
-           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert) /= RassenDatentypen.Leer_Spieler_Enum
-         then
-            return True;
-            
-         else
-            null;
-         end if;
+         case
+           SonstigeVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
+            when RassenDatentypen.Leer_Spieler_Enum =>
+               null;
+               
+            when RassenDatentypen.Spieler_Belegt_Enum =>
+               return True;
+         end case;
          
       end loop RassenSchleife;
       
@@ -118,14 +119,15 @@ package body SpieleinstellungenRasseSpieler is
                
             when others =>
                StartwerteFestlegenSchleife:
-               for NotAusSchleifenwert in NotAus'Range loop
+               for NotAusSchleifenwert in ZahlenDatentypen.NotAus'Range loop
                   
                   StartKoordinaten := ((0, 0, 0), (0, 0, 0));
-                  GezogeneWerte := ZufallsgeneratorenKarten.StartPosition (RasseSchleifenwert);
+                  GezogeneWerte := ZufallsgeneratorenStartkoordinaten.Startkoordinaten (RasseExtern => RasseSchleifenwert);
                   
                   case
                     UmgebungPrüfen (KoordinatenExtern => GezogeneWerte,
-                                     RasseExtern       => RasseSchleifenwert)
+                                    RasseExtern       => RasseSchleifenwert,
+                                    NotAusExtern      => NotAusSchleifenwert)
                   is
                      when True =>
                         exit StartwerteFestlegenSchleife;
@@ -137,7 +139,7 @@ package body SpieleinstellungenRasseSpieler is
                   case
                     NotAusSchleifenwert
                   is
-                     when NotAus'Last =>
+                     when ZahlenDatentypen.NotAus'Last =>
                         -- Neue Meldung durch den Grafiktask anzeigen lassen.
                         -- Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                         --                                      TextZeileExtern => 16);
@@ -162,7 +164,8 @@ package body SpieleinstellungenRasseSpieler is
 
    function UmgebungPrüfen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+      RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
+      NotAusExtern : in ZahlenDatentypen.NotAus)
       return Boolean
    is begin
 
@@ -182,6 +185,14 @@ package body SpieleinstellungenRasseSpieler is
          
       if
         FreieFelder >= 3
+      then
+         StartpunktFestlegen (RasseExtern => RasseExtern);
+         return True;
+         
+      elsif
+        NotAusExtern > ZahlenDatentypen.NotAus'Last - 10
+        and
+          FreieFelder >= 2
       then
          StartpunktFestlegen (RasseExtern => RasseExtern);
          return True;
@@ -270,6 +281,7 @@ package body SpieleinstellungenRasseSpieler is
                                                   IDExtern               => 2,
                                                   StadtRasseNummerExtern => (RasseExtern, 0));
       
+      ------------------------- Das hier auch noch nach Grafik verschieben?
       SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (RasseExtern, 1));
       SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
