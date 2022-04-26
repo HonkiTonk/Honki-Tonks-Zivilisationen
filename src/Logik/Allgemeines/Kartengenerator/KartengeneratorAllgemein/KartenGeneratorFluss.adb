@@ -3,15 +3,32 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenKonstanten;
-with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
 with ZufallsgeneratorenKarten;
+with KartengeneratorVariablen;
 
 package body KartenGeneratorFluss is
+   
+   procedure AufteilungFlussgenerierung
+   is begin
+      
+      case
+        Karten.Kartenparameter.Kartenart
+      is
+         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
+            return;
+            
+         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
+            GenerierungFlüsse;
+      end case;
+      
+   end AufteilungFlussgenerierung;
+   
+   
 
    procedure GenerierungFlüsse
    is
@@ -46,10 +63,9 @@ package body KartenGeneratorFluss is
    is begin
       
       YAchseEinsSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
+      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
          XAchseEinsSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
 
             BeliebigerFlusswert (EbeneExtern) := ZufallsgeneratorenKarten.ZufälligerWert;
             

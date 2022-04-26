@@ -13,6 +13,7 @@ private
    RassenVorhanden : Boolean;
 
    Auswahl : RueckgabeDatentypen.Rückgabe_Werte_Enum;
+   Rückgabewert : RueckgabeDatentypen.Rückgabe_Werte_Enum;
 
    function AutomatischeEinstellungen
      return RueckgabeDatentypen.Rückgabe_Werte_Enum;

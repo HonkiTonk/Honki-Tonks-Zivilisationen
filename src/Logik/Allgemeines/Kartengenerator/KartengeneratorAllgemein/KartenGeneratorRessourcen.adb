@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenKonstanten;
-with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -10,14 +9,32 @@ with LeseKarten;
 with Karten;
 with ZufallsgeneratorenKarten;
 with Kartenkoordinatenberechnungssystem;
+with KartengeneratorVariablen;
 
 package body KartenGeneratorRessourcen is
+   
+   procedure AufteilungRessourcengenerierung
+   is begin
+      
+      case
+        Karten.Kartenparameter.Kartenart
+      is
+         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
+            return;
+            
+         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
+            GenerierungRessourcen;
+      end case;
+            
+   end AufteilungRessourcengenerierung;
+   
+   
 
    procedure GenerierungRessourcen
    is
    
       task RessourcenUnterwasserUnterirdisch;
-      -- Später noch Ressourcen für weitere Ebenen einbauen?
+      ----------------------- Später noch Ressourcen für weitere Ebenen einbauen?
       
       task body RessourcenUnterwasserUnterirdisch
       is begin
@@ -39,24 +56,23 @@ package body KartenGeneratorRessourcen is
    is begin
 
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
+      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
                
             if
-              (LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range
+              LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range
                or
-                 LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Unterwasser_Generator_Enum'Range)
-              and
-                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
+                 LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Unterwasser_Generator_Enum'Range
+            --  and
+             --   KartengeneratorVariablen.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
             then
                RessourcenWasser (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                
             elsif
               LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
-              and
-                (Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False)
+             -- and
+             --   (KartengeneratorVariablen.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False)
             then
                RessourcenLand (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                   
@@ -141,7 +157,8 @@ package body KartenGeneratorRessourcen is
                   null;
                   
                when others =>
-                  Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                  -- KartengeneratorVariablen.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                  null;
             end case;
             
          end loop XAchseSchleife;

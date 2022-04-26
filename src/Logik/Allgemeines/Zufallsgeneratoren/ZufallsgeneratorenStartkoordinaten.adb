@@ -114,9 +114,9 @@ package body ZufallsgeneratorenStartkoordinaten is
                XAchse := WerteWählen1000.Random (PositionGewählt1000);
 
                if
-                 YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
+                 YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
                  and
-                   XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
+                   XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
                then
                   exit BenutzerdefinierteAuswahlSchleife;
 

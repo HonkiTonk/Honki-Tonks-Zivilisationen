@@ -7,7 +7,7 @@ with KartenRecords;
 
 package KartenGeneratorRessourcen is
 
-   procedure GenerierungRessourcen;
+   procedure AufteilungRessourcengenerierung;
 
 private
    
@@ -70,6 +70,8 @@ private
                                                                                );
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
+   
+   procedure GenerierungRessourcen;
    
    procedure RessourcenGenerierung
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden);

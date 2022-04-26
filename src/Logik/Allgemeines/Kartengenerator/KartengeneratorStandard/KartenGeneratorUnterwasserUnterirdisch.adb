@@ -1,32 +1,35 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Ada.Calendar; use Ada.Calendar;
-
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenDatentypen; use KartenDatentypen;
-with SystemDatentypen;
-with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
 
 with Karten;
 with ZufallsgeneratorenKarten;
-with LadezeitenDatentypen;
+with KartengeneratorVariablen;
 
 package body KartenGeneratorUnterwasserUnterirdisch is
 
    procedure UnterwasserUnterirdisch
    is begin
       
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
-         
+      case
+        Karten.Kartenparameter.Kartenart
+      is
+         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
+            return;
+            
+         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
+            null;
+      end case;
+               
       YAchseUnterwasserSchleife:
-      for YAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
+      for YAchseUnterwasserSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
          XAchseUnterwasserSchleife:
-         for XAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+         for XAchseUnterwasserSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
             case
               LeseKarten.Grund (KoordinatenExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert))
@@ -40,8 +43,6 @@ package body KartenGeneratorUnterwasserUnterirdisch is
                
          end loop XAchseUnterwasserSchleife;
       end loop YAchseUnterwasserSchleife;
-         
-      LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       
    end UnterwasserUnterirdisch;
    
@@ -52,12 +53,6 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    is begin
       
       if
-        LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenGrundDatentypen.Eis_Enum
-      then
-         SchreibeKarten.Grund (KoordinatenExtern => (-1, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse),
-                               GrundExtern       => KartenGrundDatentypen.Unterwasser_Eis_Enum);
-                     
-      elsif
         LeseKarten.Grund (KoordinatenExtern => (0, YXAchsenExtern.YAchse, YXAchsenExtern.XAchse)) = KartenGrundDatentypen.Wasser_Enum
       then
          WasserweltErzeugen (YXAchsenExtern => YXAchsenExtern);

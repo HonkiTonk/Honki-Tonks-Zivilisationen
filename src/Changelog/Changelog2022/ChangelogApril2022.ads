@@ -1,37 +1,42 @@
 package ChangelogApril2022 is
 
-   -- Version 0.01.0 => 0.01.0 (30.04.2022):
+   -- Version 0.01.05 => 0.01.0 (30.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (29.04.2022):
+   -- Version 0.01.05 => 0.01.05 (29.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (28.04.2022):
+   -- Version 0.01.05 => 0.01.05 (28.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (27.04.2022):
+   -- Version 0.01.0490 => 0.01.05 (27.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0470 => 0.01.0 (26.04.2022):
+   -- Version 0.01.0470 => 0.01.0490 (26.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der neuen Version des Kartengenerators gearbeitet.
+   -- Polsystem an die verschiedene Polgrößen und -abständen angepasst.
+   -- Wenn bei der Kartenerstellung keine Rasse platziert werden konnte, dann wird jetzt nicht mehr das Spiel angehalten sondern man kommt zurück ins Spieleinstellungsmenü.
+   -- KartengeneratorOberfläche fürs Erste fertig überarbeitet.
+   -- Küste wird jetzt auch an Eis erzeugt.
+   -- KartengeneratorLandschaft für Erste fertig überarbeitet.
+   -- Contarcts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

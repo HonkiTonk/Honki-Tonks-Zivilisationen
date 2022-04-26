@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Calendar; use Ada.Calendar;
 
 with SystemDatentypen;
-with KartenDatentypen;
 with EinheitenKonstanten;
 
 with KartenfelderBewerten;
@@ -13,7 +12,6 @@ with KartenGeneratorLandschaft;
 with KartenGeneratorFluss;
 with KartenGeneratorRessourcen;
 with KartenGeneratorUnterwasserUnterirdisch;
-with Karten;
 with LadezeitenDatentypen;
 with KartengeneratorEisWasserLand;
 
@@ -21,7 +19,7 @@ package body KartenGenerator is
 
    procedure KartenGenerator
    is begin
-      
+            
       EisWasserLandGenerieren;
       KüstenwasserGenerieren;
       LandschaftGenerieren;
@@ -30,7 +28,9 @@ package body KartenGenerator is
       RessourcenGenerieren;
 
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Kartenfelder_Bewerten_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
+      
       KartenfelderBewerten.KartenfelderBewerten (RasseExtern => EinheitenKonstanten.LeerRasse);
+      
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Kartenfelder_Bewerten_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
       -- Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Kartenfelder_Bewerten_Enum);
@@ -59,15 +59,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            null;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range =>
-            KartenGeneratorKueste.GenerierungKüstenSeeGewässer;
-      end case;
+      KartenGeneratorKueste.GenerierungKüstenSeeGewässer;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -82,15 +74,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            null;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            KartenGeneratorLandschaft.GenerierungLandschaft;
-      end case;
+      KartenGeneratorLandschaft.GenerierungLandschaft;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -105,15 +89,8 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            null;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            KartenGeneratorUnterwasserUnterirdisch.UnterwasserUnterirdisch;
-      end case;
+      ----------------- Auch in Oberfläche und Landschaft aufteilen?
+      KartenGeneratorUnterwasserUnterirdisch.UnterwasserUnterirdisch;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -128,15 +105,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            null;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            KartenGeneratorFluss.GenerierungFlüsse;
-      end case;
+      KartenGeneratorFluss.AufteilungFlussgenerierung;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -151,17 +120,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      case
-        Karten.Kartenparameter.Kartenart
-      is
-         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
-            null;
-            
-         when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            -- Warum wird hier der Karten.GeneratorGrund auf False gesetzt?
-            Karten.GeneratorGrund := (others => (others => False));
-            KartenGeneratorRessourcen.GenerierungRessourcen;
-      end case;
+      KartenGeneratorRessourcen.AufteilungRessourcengenerierung;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML

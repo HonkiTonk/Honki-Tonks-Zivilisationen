@@ -14,15 +14,15 @@ package body KartenGeneratorPlanetenInneres is
    procedure PlanetenInneres
    is begin
       
-      YKernanfang := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / 2 - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / 10;
-      XKernanfang := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / 2 - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / 10;
-      YKernende := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / 2 + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße / 10;
-      XKernende := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / 2 + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße / 10;
+      YKernanfang := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2 - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 10;
+      XKernanfang := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2 - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 10;
+      YKernende := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 2 + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse / 10;
+      XKernende := Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 2 + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse / 10;
                
       YAchseInneresSchleife:
-      for YAchseInneresSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße loop
+      for YAchseInneresSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
          XAchseInneresSchleife:
-         for XAchseInneresSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+         for XAchseInneresSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
                
             if
               YAchseInneresSchleifenwert in YKernanfang .. YKernende

@@ -68,7 +68,7 @@ package body SpieleinstellungenKarten is
             null;
       end case;
       
-      Karten.Kartengrößen (KartengrößeExtern).YAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
+      Karten.Kartengrößen (KartengrößeExtern).YAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
       BenutzerdefinierteGröße := Eingabe.GanzeZahl (ZeileExtern         => 21,
                                                       ZahlenMinimumExtern => 20,
                                                       ZahlenMaximumExtern => 1_000);
@@ -80,7 +80,7 @@ package body SpieleinstellungenKarten is
             null;
             
          when True =>
-            Karten.Kartengrößen (KartengrößeExtern).XAchsenGröße := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
+            Karten.Kartengrößen (KartengrößeExtern).XAchse := KartenDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße.EingegebeneZahl);
             Karten.Kartenparameter.Kartengröße := KartengrößeExtern;
       end case;
       

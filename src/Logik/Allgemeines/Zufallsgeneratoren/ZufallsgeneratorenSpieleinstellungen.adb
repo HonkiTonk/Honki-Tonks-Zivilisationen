@@ -35,7 +35,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          if
            AuswahlGröße >= 20
          then
-            Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum).YAchsenGröße := AuswahlGröße;
+            Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum).YAchse := AuswahlGröße;
             exit YAchseBestimmenSchleife;
 
          else
@@ -52,7 +52,7 @@ package body ZufallsgeneratorenSpieleinstellungen is
          if
            AuswahlGröße >= 20
          then
-            Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum).XAchsenGröße := AuswahlGröße;
+            Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum).XAchse := AuswahlGröße;
             exit XAchseBestimmenSchleife;
 
          else

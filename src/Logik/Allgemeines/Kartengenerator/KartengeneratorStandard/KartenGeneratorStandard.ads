@@ -8,22 +8,13 @@ with Karten;
 
 package KartenGeneratorStandard is
 
-   procedure KarteGenerieren;
+   procedure OberflächeGenerieren;
 
 private
-
+   
    BeliebigerLandwert : Float;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
-   
-   Polkorrektur : KartenRecords.KartenpoleKorrekturRecord;
-   
-   type Land_Erzeugung_Enum is (
-                                Leer_Enum,
-                                
-                                Feld_Eisschild_Enum, Masse_Eisschild_Enum, Feld_Normal_Enum, Masse_Normal_Enum, Feld_Sonstiges_Enum, Feld_Fläche_Frei_Enum, Feld_Fläche_Belegt_Enum
-                               );
-   subtype Land_Erzeugung_Verwendet_Enum is Land_Erzeugung_Enum range Feld_Eisschild_Enum .. Land_Erzeugung_Enum'Last;
    
    type WahrscheinlichkeitenRecord is record
       
@@ -32,91 +23,46 @@ private
       
    end record;
    
-   -- Dafür noch feste Standardwerte einbauen? Wäre dann später bei weiterführenden Einstellungen wie viel Wasser sinnvoll.
-   type WahrscheinlichkeitenLandArray is array (KartenDatentypen.Kartenart_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of WahrscheinlichkeitenRecord;
-   WahrscheinlichkeitenLand : constant WahrscheinlichkeitenLandArray := (
-                                                                         KartenDatentypen.Kartenart_Inseln_Enum =>
-                                                                           (
-                                                                            Masse_Eisschild_Enum    => (0.00, 0.05),
-                                                                            Feld_Eisschild_Enum     => (0.05, 0.15),
-                                                                            Masse_Normal_Enum       => (0.00, 0.25),
-                                                                            Feld_Normal_Enum        => (0.25, 0.55),
-                                                                            Feld_Sonstiges_Enum     => (0.00, 0.05),
-                                                                            Feld_Fläche_Frei_Enum   => (0.00, 0.85),
-                                                                            Feld_Fläche_Belegt_Enum => (0.00, 0.55)
-                                                                           ),
-                                                                                 
-                                                                         KartenDatentypen.Kartenart_Kontinente_Enum =>
-                                                                           (
-                                                                            Masse_Eisschild_Enum    => (0.00, 0.05),
-                                                                            Feld_Eisschild_Enum     => (0.05, 0.15),
-                                                                            Masse_Normal_Enum       => (0.00, 0.25),
-                                                                            Feld_Normal_Enum        => (0.25, 0.55),
-                                                                            Feld_Sonstiges_Enum     => (0.00, 0.02),
-                                                                            Feld_Fläche_Frei_Enum   => (0.00, 0.95),
-                                                                            Feld_Fläche_Belegt_Enum => (0.00, 0.80)
-                                                                           ),
-                                                                                 
-                                                                         KartenDatentypen.Kartenart_Pangäa_Enum =>
-                                                                           (
-                                                                            Masse_Eisschild_Enum    => (0.00, 0.05),
-                                                                            Feld_Eisschild_Enum     => (0.05, 0.15),
-                                                                            Masse_Normal_Enum       => (0.00, 0.25),
-                                                                            Feld_Normal_Enum        => (0.25, 0.55),
-                                                                            Feld_Sonstiges_Enum     => (0.00, 0.02),
-                                                                            Feld_Fläche_Frei_Enum   => (0.00, 0.95),
-                                                                            Feld_Fläche_Belegt_Enum => (0.00, 0.00)
-                                                                           ),
-                                                                         
-                                                                         others =>
-                                                                           (
-                                                                            others => (0.00, 0.00)
-                                                                           )
-                                                                        );
+   ---------------------------- Später Nutzereinstellbar machen.
+   WahrscheinlichkeitLandmasse : constant WahrscheinlichkeitenRecord := (0.25, 0.80);
+   WahrscheinlichkeitLandInLandmasse : constant WahrscheinlichkeitenRecord := (0.00, 0.85);
+   WahrscheinlichkeitWasser : constant WahrscheinlichkeitenRecord := (0.00, 0.95);
 
-   
-   
-   procedure GenerierungKartenart
+   procedure LandVorhanden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
-
-   procedure GenerierungLandmasse
-     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre =>
-         (YKoordinateLandmasseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
-          and
-            XKoordinateLandmasseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
-
-   procedure GenerierungLandmasseFläche
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-     with
-       Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
-          and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
-      
-   procedure LandFeldMasseEisschild
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv);
-   
-   procedure LandFeldMasseNormal
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv);
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure LandmasseGenerieren
-     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv);
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure AbstandGenerieren
-     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv);
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
+
+   procedure GrundSchreiben
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      MasseAbstandExtern : in Boolean)
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
+          and
+            XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 end KartenGeneratorStandard;

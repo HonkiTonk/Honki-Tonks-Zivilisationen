@@ -6,11 +6,9 @@ with WichtigesKonstanten;
 with TextKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
-with KartenRecordKonstanten;
 with RassenDatentypen;
 with SpielVariablen;
 
-with Karten;
 with DebugPlatzhalter;
 
 package body AllesAufAnfangSetzen is
@@ -32,10 +30,6 @@ package body AllesAufAnfangSetzen is
       
       DebugPlatzhalter.DebugSieg := False;
       DebugPlatzhalter.FeindlicheInformationenSehen := False;
-
-      Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
-      ------------------------- Karten wird nicht referenziert ohne das hier, warum auch immer.
-      Karten.KartenartGemischt := False;
             
    end AllesAufAnfangSetzen;
 

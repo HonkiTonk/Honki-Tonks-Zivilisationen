@@ -14,7 +14,7 @@ with LadezeitenDatentypen;
 with SpieleinstellungenKarten;
 with SpieleinstellungenRasseSpieler;
 with SpieleinstellungenSonstiges;
-with Fehler;
+with Warnung;
 with Ladezeiten;
 with AuswahlMenues;
 
@@ -24,15 +24,17 @@ package body Spieleinstellungen is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      ----------------------- Später auf Standardwerte für alles außer die Rassenbelegung festsetzen und dann nur prüfen ob eine Rasse belegt ist.
-      SpielEinstellungenSchleife:
+      SpielGespieltSchleife:
       loop
+         ----------------------- Später auf Standardwerte für alles außer die Rassenbelegung festsetzen und dann nur prüfen ob eine Rasse belegt ist.
+         SpielEinstellungenSchleife:
+         loop
          
-         Auswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Einstellungen_Menü_Enum);
+            Auswahl := AuswahlMenues.AuswahlMenüsAufteilung (WelchesMenüExtern => MenueDatentypen.Einstellungen_Menü_Enum);
          
-         case
-           Auswahl
-         is
+            case
+              Auswahl
+            is
             when RueckgabeDatentypen.Auswahl_Kartengröße_Enum =>
                SpieleinstellungenKarten.KartengrößeWählen;
 
@@ -70,11 +72,21 @@ package body Spieleinstellungen is
 
             when others =>
                null;
+            end case;
+
+         end loop SpielEinstellungenSchleife;
+         
+         Rückgabewert := AutomatischeEinstellungen;
+         case
+           Rückgabewert
+         is
+            when RueckgabeDatentypen.Spielmenü_Enum =>
+               null;
+               
+            when others =>
+               return Rückgabewert;
          end case;
-
-      end loop SpielEinstellungenSchleife;
-
-      return AutomatischeEinstellungen;
+      end loop SpielGespieltSchleife;
               
    end Spieleinstellungen;
    
@@ -113,7 +125,8 @@ package body Spieleinstellungen is
             null;
             
          when False =>
-            Fehler.LogikFehler (FehlermeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Es konnte keine Rasse platziert werden.");
+            Warnung.LogikWarnung (WarnmeldungExtern => "SpielEinstellungen.AutomatischeEinstellungen - Es konnte keine Rasse platziert werden.");
+            return RueckgabeDatentypen.Spielmenü_Enum;
       end case;
          
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren_Enum, SystemDatentypen.Endwert_Enum) := Clock;

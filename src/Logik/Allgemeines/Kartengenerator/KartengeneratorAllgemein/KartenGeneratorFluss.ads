@@ -9,7 +9,7 @@ with Karten;
 
 package KartenGeneratorFluss is
 
-   procedure GenerierungFlüsse;
+   procedure AufteilungFlussgenerierung;
 
 private
    
@@ -48,6 +48,8 @@ private
    KartenWert : KartenWertArray;
    KartenWertTesten : KartenWertArray;
    
+   procedure GenerierungFlüsse;
+   
    procedure FlussGenerierung
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden);
    
@@ -57,9 +59,9 @@ private
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
      with
        Pre =>
-         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
+         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
+            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure FlussBerechnung
      (YKoordinateExtern : in KartenDatentypen.KartenfeldPositiv;
@@ -67,9 +69,9 @@ private
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
      with
        Pre =>
-         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
+         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
-            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
+            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
    
    procedure BerechnungLinks
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden);

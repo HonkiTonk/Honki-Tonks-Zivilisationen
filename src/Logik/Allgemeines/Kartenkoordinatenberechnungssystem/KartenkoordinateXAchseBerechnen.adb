@@ -8,6 +8,7 @@ with Karten;
 
 -- Die zweidimensionalen Arrays existieren wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
 -- Die Überhangschleifen in den Berechnungen sind nötig, da zwar eine Einheitenbewegung nicht so groß sein kann, aber der Spieler eventuell soweit rauszoomt.
+-- Die Überhangsschleifen werden auch für den Kartengenerator benötigt.
 package body KartenkoordinateXAchseBerechnen is
 
    function KartenkoordinateXAchseBerechnen
@@ -29,7 +30,7 @@ package body KartenkoordinateXAchseBerechnen is
                                  LogikGrafikExtern    => LogikGrafikExtern);
         
       elsif
-        XAchseExtern + ÄnderungXAchseExtern > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
+        XAchseExtern + ÄnderungXAchseExtern > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
       then
          return ÜbergangOsten (XAchseExtern         => XAchseExtern,
                                 ÄnderungXAchseExtern => ÄnderungXAchseExtern,
@@ -85,12 +86,12 @@ package body KartenkoordinateXAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (XAchseExtern + ÄnderungXAchseExtern + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
+      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (XAchseExtern + ÄnderungXAchseExtern + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
          
       XAchseKleinerSchleife:
       while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) < Positive (Karten.WeltkarteArray'First (3)) loop
             
-         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
+         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
       end loop XAchseKleinerSchleife;
          
@@ -100,7 +101,7 @@ package body KartenkoordinateXAchseBerechnen is
    
    
    
-   ------------------------- In die Rückwärtsverschiebung später eine Schleife einbauen, damit es nicht zu eine herausbewegen auf der anderen Seite kommt?
+   ------------------------- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden.
    function ÜbergangWestenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
@@ -154,12 +155,12 @@ package body KartenkoordinateXAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (XAchseExtern + ÄnderungXAchseExtern - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
+      ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (XAchseExtern + ÄnderungXAchseExtern - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
          
       XAchseGrößerSchleife:
-      while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße) loop
+      while ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse) loop
             
-         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
+         ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangXAchse (LogikGrafikExtern, ArrayPositionExtern) - Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
             
       end loop XAchseGrößerSchleife;
          
@@ -169,7 +170,7 @@ package body KartenkoordinateXAchseBerechnen is
    
    
    
-   ------------------------- In die Rückwärtsverschiebung später eine Schleife einbauen, damit es nicht zu eine herausbewegen auf der anderen Seite kommt?
+   ------------------------- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden.
    function ÜbergangOstenRückwärts
      (XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungXAchseExtern : in KartenDatentypen.Kartenfeld)
@@ -188,12 +189,12 @@ package body KartenkoordinateXAchseBerechnen is
    is begin
       
       if
-        XAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße)) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße
+        XAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse)) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
       then
-         return XAchseExtern - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße));
+         return XAchseExtern - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse));
 
       else
-         return XAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße));
+         return XAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse));
       end if;
       
    end XAchseVerschieben;

@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenKonstanten;
-with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -15,11 +14,20 @@ package body KartenGeneratorKueste is
    procedure GenerierungKüstenSeeGewässer
    is begin
       
+      case
+        Karten.Kartenparameter.Kartenart
+      is
+         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
+            return;
+            
+         when KartenDatentypen.Kartenart_Normal_Enum'Range =>
+            null;
+      end case;
+      
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
                               
             case
               LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
@@ -57,14 +65,16 @@ package body KartenGeneratorKueste is
                null;
                
             elsif
-              LeseKarten.Grund (KoordinatenExtern => KartenWert) /= KartenGrundDatentypen.Flachland_Enum
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartenGrundDatentypen.Flachland_Enum
+              or
+                LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartenGrundDatentypen.Eis_Enum
             then
-               null;
-               
-            else
                SchreibeKarten.Grund (KoordinatenExtern => KoordinatenExtern,
                                      GrundExtern       => KartenGrundDatentypen.Küstengewässer_Enum);
                return;
+               
+            else
+               null;
             end if;
                         
          end loop XAchseSchleife;

@@ -3,14 +3,23 @@ pragma Warnings (Off, "*array aggregate*");
 
 package KartenGrundDatentypen is
 
+   -------------------- Das hier muss mal neu sortiert und anschließend alles angepasst werden.
    type Karten_Grund_Enum is (
                               Leer_Grund_Enum,
                               
                               Wasser_Enum, Küstengewässer_Enum, Unterwasser_Wasser_Enum, Unterwasser_Küstengewässer_Enum,
                               Eis_Enum, Unterwasser_Eis_Enum,
+                              
                               Lava_Enum, Planetenkern_Enum,
-                              Tundra_Enum, Wüste_Enum, Hügel_Enum, Gebirge_Enum, Wald_Enum, Dschungel_Enum, Sumpf_Enum, Flachland_Enum, Hügel_Mit_Enum, Wolken_Enum, Weltraum_Enum, Erde_Enum, Erdgestein_Enum, Sand_Enum,
-                              Gestein_Enum,
+                              
+                              Tundra_Enum, Wüste_Enum, Hügel_Enum, Gebirge_Enum, Wald_Enum, Dschungel_Enum, Sumpf_Enum, Flachland_Enum, Hügel_Mit_Enum,
+                              
+                              Wolken_Enum,
+                              
+                              Weltraum_Enum,
+                              
+                              Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
+                              
                               Korallen_Enum, Unterwasser_Wald_Enum,
                               
                               Vernichtet_Enum
@@ -24,15 +33,12 @@ package KartenGrundDatentypen is
    subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser_Enum .. Unterwasser_Küstengewässer_Enum;
    subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis_Enum .. Gestein_Enum;
    subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Tundra_Enum .. Gestein_Enum;
-   subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra_Enum .. Sumpf_Enum;
    
-   -- Flachland muss hier immer am Schluss kommen, sonst geht der Kartengenerator kaputt? Auf jeden Fall mal in der neuen Version des Kartengenerators ändern?
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra_Enum .. Flachland_Enum;
    subtype Karten_Unterwasser_Generator_Enum is Karten_Grund_Alle_Felder_Enum range Korallen_Enum .. Unterwasser_Wald_Enum;
    
    
    
-   -- Hier gibt eine Einteilung nur mäßig Sinn denke ich, oder?
    type Karten_Ressourcen_Enum is (
                                    Leer_Ressource_Enum,
                                    

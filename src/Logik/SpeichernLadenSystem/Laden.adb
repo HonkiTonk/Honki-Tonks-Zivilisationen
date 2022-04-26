@@ -24,6 +24,8 @@ with Auswahl;
 with SpeichernLadenAllgemein;
 
 package body Laden is
+   
+   ------------------------ Beim Neubauen auch alle neuen Nutzereinstellmöglichkeiten mit laden und eventuelle berechneten Werte die jetzt notwendig sind mitnehmen.
 
    function LadenNeu
      return Boolean
@@ -131,8 +133,8 @@ package body Laden is
         Karten.Kartenparameter.Kartengröße
       is
          when KartenDatentypen.Kartengröße_Nutzer_Enum =>
-            Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
-                                              Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum));
+            KartenRecords.YXAchsenKartenfeldPositivRecord'Read (Stream (File => DateiLadenNeu),
+                                                                Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum));
             
          when others =>
             null;
@@ -141,9 +143,9 @@ package body Laden is
       EAchseBisBodenSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseBisBodenSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße loop
+         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
             XAchseBisBodenSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
 
                KartenRecords.KartenRecord'Read (Stream (File => DateiLadenNeu),
                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));

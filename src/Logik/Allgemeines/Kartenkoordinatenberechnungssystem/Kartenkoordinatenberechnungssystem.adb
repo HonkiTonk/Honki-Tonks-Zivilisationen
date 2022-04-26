@@ -19,6 +19,8 @@ package body Kartenkoordinatenberechnungssystem is
    is begin
       
       ------------------------ Wenn man das in einen Grafik- und einen Logikteil aufteilt, könnte man dann Zufallsübergänge berechnen?
+      ------------------------ Nein, da auch der Kartengenerator Teil der Logik ist, wenn dann bräuchte man drei Teile, eventuell auch mehr.
+      ------------------------ Wobei, man könnte auch beim Kartengenerator dann einfach False statt True übergeben. Die Grafik sollte zu diesem Zeitpunkt ja nicht auf die Berechnungen zugreifen.
       
       if
         ÄnderungExtern.EAchse = KartenKonstanten.LeerEAchseÄnderung

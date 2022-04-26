@@ -144,8 +144,8 @@ package body AnzeigeZusatztextKartengroesseSFML is
                                          str  =>
                                            AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum) - 1,
                                                                                                 WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße)) & "x"
-                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße)));
+                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse)) & "x"
+                                         & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv (ZahlExtern => Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse)));
       
       case
         AktuelleAuswahlExtern
@@ -159,10 +159,10 @@ package body AnzeigeZusatztextKartengroesseSFML is
                                                   AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => SystemKonstanten.EndeMenü (MenueDatentypen.Kartengröße_Menü_Enum),
                                                                                                        WelchesMenüExtern => MenueDatentypen.Kartengröße_Menü_Enum) & "    " & "5x"
                                                & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv
-                                                                      (ZahlExtern => Karten.Kartengrößen (KartenDatentypen.Kartengröße_Standard_Enum'Val (AktuelleAuswahlExtern - 1)).YAchsenGröße))
+                                                                      (ZahlExtern => Karten.Kartengrößen (KartenDatentypen.Kartengröße_Standard_Enum'Val (AktuelleAuswahlExtern - 1)).YAchse))
                                                & "x"
                                                & To_Wide_Wide_String (Source => ZahlAlsStringKartenfeldPositiv
-                                                                      (ZahlExtern => Karten.Kartengrößen (KartenDatentypen.Kartengröße_Standard_Enum'Val (AktuelleAuswahlExtern - 1)).XAchsenGröße)));
+                                                                      (ZahlExtern => Karten.Kartengrößen (KartenDatentypen.Kartengröße_Standard_Enum'Val (AktuelleAuswahlExtern - 1)).XAchse)));
       end case;
       
    end TextFestlegen;

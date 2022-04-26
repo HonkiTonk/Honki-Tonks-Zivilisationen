@@ -27,6 +27,8 @@ with LadezeitenDatentypen;
 
 package body Speichern is
 
+   ------------------------ Beim Neubauen auch alles neuen Nutzereinstellmöglichkeiten mit speichern und eventuelle berechneten Werte die jetzt notwendig sind mitnehmen.
+   
    procedure SpeichernNeu
      (AutospeichernExtern : in Boolean)
    is begin
@@ -119,8 +121,8 @@ package body Speichern is
         Karten.Kartenparameter.Kartengröße
       is
          when KartenDatentypen.Kartengröße_Nutzer_Enum =>
-            Karten.KartengrößenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                               Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum));
+            KartenRecords.YXAchsenKartenfeldPositivRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                                 Karten.Kartengrößen (KartenDatentypen.Kartengröße_Nutzer_Enum));
             
          when others =>
             null;
@@ -129,9 +131,9 @@ package body Speichern is
       EAchseBisBodenSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseBisBodenSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße loop
+         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse loop
             XAchseBisBodenSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse loop
 
                KartenRecords.KartenRecord'Write (Stream (File => DateiSpeichernNeu),
                                                  Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));

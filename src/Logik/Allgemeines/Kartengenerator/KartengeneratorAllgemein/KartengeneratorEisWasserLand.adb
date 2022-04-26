@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen;
+with KartenRecordKonstanten;
 
 with KartenGeneratorHimmel;
 with KartenGeneratorWeltraum;
@@ -14,6 +15,7 @@ with KartengeneratorNurLand;
 with KartengeneratorTotalesChaos;
 with KartenGeneratorChaos;
 with LandwerteFestlegen;
+with PolbereicheBerechnen;
 
 package body KartengeneratorEisWasserLand is
    
@@ -24,7 +26,7 @@ package body KartengeneratorEisWasserLand is
         Karten.Kartenparameter.Kartenart
       is
          when KartenDatentypen.Kartenart_Normal_Enum'Range | KartenDatentypen.Kartenart_Sonstiges_Enum'Range =>
-            LandwerteFestlegen.GrößeFestlegen;
+            AllgemeineWerteFestlegen;
             KartengeneratorStandardSonstiges;
             
          when KartenDatentypen.Kartenart_Chaos_Enum =>
@@ -37,7 +39,37 @@ package body KartengeneratorEisWasserLand is
    end AufteilungEisWasserLand;
    
    
-
+   
+   procedure AllgemeineWerteFestlegen
+   is
+      
+      task GrößeAbstand;
+      task Pole;
+      
+      task body GrößeAbstand
+      is begin
+         
+         LandwerteFestlegen.GrößeFestlegen;
+         
+      end GrößeAbstand;
+      
+      
+      
+      task body Pole
+      is begin
+         
+         PolbereicheBerechnen.PolbereicheBerechnen;
+         
+      end Pole;
+      
+   begin
+      
+      Karten.Weltkarte := (others => (others => (others => KartenRecordKonstanten.LeerWeltkarte)));
+      
+   end AllgemeineWerteFestlegen;
+      
+   
+  
    procedure KartengeneratorStandardSonstiges
    is
    
@@ -81,7 +113,7 @@ package body KartengeneratorEisWasserLand is
             KartengeneratorNurLand.NurLandGenerieren;
             
          when KartenDatentypen.Kartenart_Normal_Enum'Range =>
-            KartenGeneratorStandard.KarteGenerieren;
+            KartenGeneratorStandard.OberflächeGenerieren;
             
          when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
             Fehler.LogikFehler (FehlermeldungExtern => "KartenGeneratorStandard.StandardKarte - Kartenart ist chaotisch.");

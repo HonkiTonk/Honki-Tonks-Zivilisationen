@@ -3,237 +3,153 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenKonstanten;
-with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
 
 with ZufallsgeneratorenKarten;
 with Kartenkoordinatenberechnungssystem;
-with KartenpoleKorrigieren;
+with KartengeneratorVariablen;
 
 package body KartenGeneratorStandard is
    
-   procedure KarteGenerieren
+   procedure OberflächeGenerieren
    is begin
-      
-      Polkorrektur := KartenpoleKorrigieren.KartenpoleKorrigieren;
-      
-      -- Zu beachten, diese Werte sind nur dazu da um belegte Felder zu ermitteln. Nicht später durch die Zuweisungen weiter unten verwirren lassen!
-      Karten.GeneratorKarte := (others => (others => (KartenGrundDatentypen.Leer_Grund_Enum)));
-      
+            
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + Polkorrektur.Norden .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - Polkorrektur.Süden loop
+      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) + Polkorrektur.Westen .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße - Polkorrektur.Osten loop
+         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
                
-            if
-              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) = KartenGrundDatentypen.Leer_Grund_Enum
-            then
-               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                     GrundExtern       => KartenGrundDatentypen.Wasser_Enum);
-
-            else
-               null;
-            end if;
-                   
-            GenerierungKartenart (YAchseExtern => YAchseSchleifenwert,
-                                  XAchseExtern => XAchseSchleifenwert);
+            LandVorhanden (YAchseExtern => YAchseSchleifenwert,
+                           XAchseExtern => XAchseSchleifenwert);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-   end KarteGenerieren;
-
-
-
-   procedure GenerierungKartenart
+   end OberflächeGenerieren;
+   
+   
+   
+   procedure LandVorhanden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
-
+      
       case
-        Karten.GeneratorKarte (YAchseExtern, XAchseExtern)
+        LeseKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern))
       is
          when KartenGrundDatentypen.Leer_Grund_Enum =>
+            BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
+            
             if
-              YAchseExtern <= Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisschild (Karten.Kartenparameter.Kartengröße)
-              or
-                YAchseExtern >= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisschild (Karten.Kartenparameter.Kartengröße)
+              BeliebigerLandwert < WahrscheinlichkeitLandmasse.Anfangswert
             then
-               LandFeldMasseEisschild (YAchseExtern => YAchseExtern,
-                                       XAchseExtern => XAchseExtern);
-                              
-            else
-               LandFeldMasseNormal (YAchseExtern => YAchseExtern,
-                                    XAchseExtern => XAchseExtern);
-            end if;
-
-         when others =>
-            if
-              ZufallsgeneratorenKarten.ZufälligerWert
-            in
-              WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Sonstiges_Enum).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Sonstiges_Enum).Endwert
+               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                     GrundExtern       => KartenGrundDatentypen.Wasser_Enum);
+         
+            elsif
+              BeliebigerLandwert > WahrscheinlichkeitLandmasse.Endwert
             then
                SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                      GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
                
             else
-               null;
+               LandmasseGenerieren (YAchseExtern => YAchseExtern,
+                                    XAchseExtern => XAchseExtern);
+               AbstandGenerieren (YAchseExtern => YAchseExtern,
+                                  XAchseExtern => XAchseExtern);
             end if;
+            
+         when others =>
+            null;
       end case;
       
-   end GenerierungKartenart;
-   
-   
-   
-   procedure LandFeldMasseEisschild
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-   is begin
-      
-      BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
-      
-      if
-        BeliebigerLandwert
-      in
-        WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Masse_Eisschild_Enum).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Masse_Eisschild_Enum).Endwert
-      then
-         SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
-         GenerierungLandmasse (YKoordinateLandmasseExtern => YAchseExtern,
-                               XKoordinateLandmasseExtern => XAchseExtern);
-                  
-      elsif
-        BeliebigerLandwert
-      in
-        WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Eisschild_Enum).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Eisschild_Enum).Endwert
-      then
-         SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
-                           
-      else
-         null;
-      end if;
-      
-   end LandFeldMasseEisschild;
-   
-   
-   
-   procedure LandFeldMasseNormal
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-   is begin
-      
-      BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
-
-      if
-        BeliebigerLandwert
-      in
-        WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Masse_Normal_Enum).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Masse_Normal_Enum).Endwert
-      then
-         SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
-         GenerierungLandmasse (YKoordinateLandmasseExtern => YAchseExtern,
-                               XKoordinateLandmasseExtern => XAchseExtern);
-                  
-      elsif
-        BeliebigerLandwert
-      in
-        WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Normal_Enum).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Normal_Enum).Endwert
-      then
-         SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
-                  
-      else
-         null;
-      end if;
-      
-   end LandFeldMasseNormal;
+   end LandVorhanden;
    
    
    
    -- Alle Größen- und Abstandsangaben sind Radien.
-   procedure GenerierungLandmasse
-     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
-   is begin
-      
-      LandmasseGenerieren (YKoordinateLandmasseExtern => YKoordinateLandmasseExtern,
-                           XKoordinateLandmasseExtern => XKoordinateLandmasseExtern);
-      AbstandGenerieren (YKoordinateLandmasseExtern => YKoordinateLandmasseExtern,
-                         XKoordinateLandmasseExtern => XKoordinateLandmasseExtern);
-            
-   end GenerierungLandmasse;
-   
-   
-   
-   -- Hier eventuell noch einmal drüber gehen, wenn die Sachen gedreht sind werden eventuell falsche Werte gesetzt.
    procedure LandmasseGenerieren
-     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
-      YAchseLandflächeErzeugenSchleife:
-      for YÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenparameter.Kartenart).YAchse .. Karten.GrößeLandart (Karten.Kartenparameter.Kartenart).YAchse loop
-         XAchseLandflächeErzeugenSchleife:
-         for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenparameter.Kartenart).XAchse .. Karten.GrößeLandart (Karten.Kartenparameter.Kartenart).XAchse loop
+      YAchseLandErzeugenSchleife:
+      for YÄnderungSchleifenwert in -Karten.GrößeLandfläche (Karten.Kartenparameter.Kartenart).YAchse .. Karten.GrößeLandfläche (Karten.Kartenparameter.Kartenart).YAchse loop
+         XAchseLandErzeugenSchleife:
+         for XÄnderungSchleifenwert in -Karten.GrößeLandfläche (Karten.Kartenparameter.Kartenart).XAchse .. Karten.GrößeLandfläche (Karten.Kartenparameter.Kartenart).XAchse loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YKoordinateLandmasseExtern, XKoordinateLandmasseExtern),
-                                                                                                 ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                                                                                 ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                                  LogikGrafikExtern => True);
             
-            -- Theoretisch sollte die erste Prüfung nicht nötig sein, da die Zweite nei einer LeerAchse auch nicht erfüllt sein dürfte.
             if
               KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
             elsif
-              KartenWert.YAchse <= Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisschild (Karten.Kartenparameter.Kartengröße)
-              or
-                KartenWert.YAchse >= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisschild (Karten.Kartenparameter.Kartengröße)
+              KartenWert.YAchse in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse
+              and
+                KartenWert.XAchse in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse
             then
-               null;
+               GrundSchreiben (YAchseExtern       => KartenWert.YAchse,
+                               XAchseExtern       => KartenWert.XAchse,
+                               MasseAbstandExtern => True);
                
             else
-               GenerierungLandmasseFläche (YAchseExtern  => KartenWert.YAchse,
-                                            XAchseExtern  => KartenWert.XAchse);
+               null;
             end if;
             
-         end loop XAchseLandflächeErzeugenSchleife;
-      end loop YAchseLandflächeErzeugenSchleife;
+         end loop XAchseLandErzeugenSchleife;
+      end loop YAchseLandErzeugenSchleife;
       
    end LandmasseGenerieren;
    
    
    
+   -- Alle Größen- und Abstandsangaben sind Radien.
    procedure AbstandGenerieren
-     (YKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XKoordinateLandmasseExtern : in KartenDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
       YAchseAbstandFlächenSchleife:
-      for YÄnderungZweiSchleifenwert in -Karten.FelderVonLandartZuLandart (Karten.Kartenparameter.Kartenart).YAchse .. Karten.FelderVonLandartZuLandart (Karten.Kartenparameter.Kartenart).YAchse loop
+      for YÄnderungSchleifenwert in -Karten.AbstandLandflächen (Karten.Kartenparameter.Kartenart).YAchse .. Karten.AbstandLandflächen (Karten.Kartenparameter.Kartenart).YAchse loop
          XAchseAbstandFlächenSchleife:
-         for XÄnderungZweiSchleifenwert in -Karten.FelderVonLandartZuLandart (Karten.Kartenparameter.Kartenart).XAchse .. Karten.FelderVonLandartZuLandart (Karten.Kartenparameter.Kartenart).XAchse loop
+         for XÄnderungSchleifenwert in -Karten.AbstandLandflächen (Karten.Kartenparameter.Kartenart).XAchse .. Karten.AbstandLandflächen (Karten.Kartenparameter.Kartenart).XAchse loop
             
-            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YKoordinateLandmasseExtern, XKoordinateLandmasseExtern),
-                                                                                                 ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
-                                                                                                 LogikGrafikExtern => True);
-            
+            ----------------------- Später die Abstandsschleifen anpassen damit diese Prüfung raus kann und nur noch der tatsächliche Abstand geloopt wird und nicht auch die Landmasse.
             if
-              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+              YÄnderungSchleifenwert in -Karten.GrößeLandfläche (Karten.Kartenparameter.Kartenart).YAchse .. Karten.GrößeLandfläche (Karten.Kartenparameter.Kartenart).YAchse
+              and
+                XÄnderungSchleifenwert in -Karten.GrößeLandfläche (Karten.Kartenparameter.Kartenart).XAchse .. Karten.GrößeLandfläche (Karten.Kartenparameter.Kartenart).XAchse
             then
                null;
                
-            elsif
-              Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = KartenGrundDatentypen.Eis_Enum
-            then
-               null;
-                  
             else
-               Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := KartenGrundDatentypen.Flachland_Enum;  
+               KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                                                                                    ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                                    LogikGrafikExtern => True);
+            
+               if
+                 KartenWert.XAchse = KartenKonstanten.LeerXAchse
+               then
+                  null;
+               
+               elsif
+                 KartenWert.YAchse in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse
+                 and
+                   KartenWert.XAchse in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse
+               then
+                  GrundSchreiben (YAchseExtern       => KartenWert.YAchse,
+                                  XAchseExtern       => KartenWert.XAchse,
+                                  MasseAbstandExtern => False);
+                  
+               else
+                  null;
+               end if;
             end if;
             
          end loop XAchseAbstandFlächenSchleife;
@@ -243,37 +159,42 @@ package body KartenGeneratorStandard is
    
    
    
-   procedure GenerierungLandmasseFläche
+   procedure GrundSchreiben
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      MasseAbstandExtern : in Boolean)
    is begin
-   
+      
       BeliebigerLandwert := ZufallsgeneratorenKarten.ZufälligerWert;
       
-      if
-        BeliebigerLandwert
-      in
-        WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Fläche_Frei_Enum).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Fläche_Frei_Enum).Endwert
-        and
-          Karten.GeneratorKarte (YAchseExtern, XAchseExtern) = KartenGrundDatentypen.Leer_Grund_Enum
-      then
-         SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
-         Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := KartenGrundDatentypen.Eis_Enum;
-
-      elsif
-        BeliebigerLandwert
-      in
-        WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Fläche_Belegt_Enum).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenparameter.Kartenart, Feld_Fläche_Belegt_Enum).Endwert
-      then
-         SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
-         Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := KartenGrundDatentypen.Eis_Enum;
+      case
+        MasseAbstandExtern
+      is
+         when True =>
+            if
+              BeliebigerLandwert in WahrscheinlichkeitLandInLandmasse.Anfangswert .. WahrscheinlichkeitLandInLandmasse.Endwert
+            then
+               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                     GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
                
-      else
-         null;
-      end if;
+            else
+               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                     GrundExtern       => KartenGrundDatentypen.Wasser_Enum);
+            end if;
+            
+         when False =>
+            if
+              BeliebigerLandwert in WahrscheinlichkeitWasser.Anfangswert .. WahrscheinlichkeitWasser.Endwert
+            then
+               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                     GrundExtern       => KartenGrundDatentypen.Wasser_Enum);
+               
+            else
+               SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                     GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
+            end if;
+      end case;
          
-   end GenerierungLandmasseFläche;
+   end GrundSchreiben;
 
 end KartenGeneratorStandard;

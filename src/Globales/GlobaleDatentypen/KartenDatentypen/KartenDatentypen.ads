@@ -103,6 +103,12 @@ package KartenDatentypen is
    
    
    
+   type Himmelsrichtungen_Enum is (
+                                   Norden_Enum, Süden_Enum, Westen_Enum, Osten_Enum
+                                  );
+   
+   
+   
    -- Neue Kartenpole immer vor Karten_Pole_Beide einfügen um Anpassungen in KartenDatentypen zu vermeiden.
    type Kartenpole_Enum is (
                             Kartenpol_Vorhanden_Enum, Kartenpol_Nicht_Vorhanden_Enum

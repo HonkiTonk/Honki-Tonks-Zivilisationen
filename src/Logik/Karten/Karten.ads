@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenRecords;
 with KartenDatentypen;
 with KartenRecordKonstanten;
-with KartenGrundDatentypen;
 
 package Karten is
 
@@ -15,16 +14,9 @@ package Karten is
    type StadtkarteArray is array (KartenDatentypen.Stadtfeld'Range, KartenDatentypen.Stadtfeld'Range) of Integer;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));
 
-   type KartengrößenRecord is record
-
-      YAchsenGröße : KartenDatentypen.KartenfeldPositiv;
-      XAchsenGröße : KartenDatentypen.KartenfeldPositiv;
-
-   end record;
-
    ------------------- Wenn man das um die EAchse erweitert, dann könnte man auch die Anzahl der Ebenen vom Spieler bestimmen lassen.
    ------------------- Besser aber nicht hier einbauen, sonst ergibt das zu viele Fälle. Wobei es ja nur den Fall Nutzer und Zufall (was ja auch wieder Nutzer ist) gibt. Alle anderen wären dann einfach fünf.
-   type KartengrößenArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
+   type KartengrößenArray is array (KartenDatentypen.Kartengröße_Verwendet_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
    Kartengrößen : KartengrößenArray := (
                                             KartenDatentypen.Kartengröße_20_20_Enum     => (20, 20),
                                             KartenDatentypen.Kartengröße_40_40_Enum     => (40, 40),
@@ -38,40 +30,26 @@ package Karten is
                                             KartenDatentypen.Kartengröße_Nutzer_Enum    => (KartenDatentypen.KartenfeldPositiv'First, KartenDatentypen.KartenfeldPositiv'First)
                                            );
 
-   type LandartenRecord is record
-
-      YAchse : KartenDatentypen.KartenfeldPositiv;
-      XAchse : KartenDatentypen.KartenfeldPositiv;
-
-   end record;
-
-   -- Inseln, Kontinente, Pangäa
    -- Alle Größen- und Abstandsangaben sind Radien.
    ------------------------ Später über einen Editor oder direkt im Kartengenerator änderbar machen? Möglicherweise die aktuelle Kartenart durch vorgegebene Werte und Nutzereingaben ersetzen?
-   type GrößeLandartArray is array (KartenDatentypen.Kartenart_Enum'Range) of LandartenRecord;
-   GrößeLandart : GrößeLandartArray := (
-                                            KartenDatentypen.Kartenart_Inseln_Enum     => (3, 3),
-                                            KartenDatentypen.Kartenart_Kontinente_Enum => (7, 7),
-                                            KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
-                                            others                                     => (1, 1)
-                                           );
-   FelderVonLandartZuLandart : GrößeLandartArray := (
-                                                       KartenDatentypen.Kartenart_Inseln_Enum     => (15, 15),
-                                                       KartenDatentypen.Kartenart_Kontinente_Enum => (22, 22),
-                                                       KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
-                                                       others                                     => (1, 1)
-                                                      );
+   type LandflächenArray is array (KartenDatentypen.Kartenart_Enum'Range) of KartenRecords.YXAchsenKartenfeldPositivRecord;
+   GrößeLandfläche : LandflächenArray := (
+                                              KartenDatentypen.Kartenart_Inseln_Enum     => (3, 3),
+                                              KartenDatentypen.Kartenart_Kontinente_Enum => (7, 7),
+                                              KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
+                                              others                                     => (1, 1)
+                                             );
+   AbstandLandflächen : LandflächenArray := (
+                                               KartenDatentypen.Kartenart_Inseln_Enum     => (15, 15),
+                                               KartenDatentypen.Kartenart_Kontinente_Enum => (22, 22),
+                                               KartenDatentypen.Kartenart_Pangäa_Enum     => (1, 1),
+                                               others                                     => (1, 1)
+                                              );
 
    Kartenparameter : KartenRecords.KartenparameterRecord := KartenRecordKonstanten.KartenparameterStandard;
 
-   -- Später mehrere Kartenarten mischbar machen, das aber vielleicht nicht über einen Bool.
-   -- Eventuell mehrere Kartenarten aktivierbar machen wie bei der Kartenform? Eventuell ein kompakteres System bauen.
-   KartenartGemischt : Boolean := False;
-
-   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenGrundDatentypen.Karten_Grund_Enum;
-   GeneratorKarte : GeneratorKarteArray;
-
-   type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;
-   GeneratorGrund : GeneratorGrundArray;
+   ---------------------- Später mehrere Kartenarten mischbar machen, das aber vielleicht nicht über einen Bool.
+   ---------------------- Eventuell mehrere Kartenarten aktivierbar machen wie bei der Kartenform? Eventuell ein kompakteres System bauen.
+   ---------------------- Vielleicht verschiedene Werte einstellbar machen und dann daraus zufällig einen ziehen?
 
 end Karten;

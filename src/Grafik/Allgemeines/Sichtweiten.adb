@@ -22,17 +22,17 @@ package body Sichtweiten is
 
          when KartenDatentypen.Kartengröße_Nutzer_Enum =>
             if
-              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_20_20_Enum).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_20_20_Enum).YAchse
               or
-                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_20_20_Enum).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_20_20_Enum).XAchse
             then
                Sichtweiten.SichtweiteFestlegen := 1;
                Sichtweiten.BewegungsfeldFestlegen := 1;
                
             elsif
-              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_40_40_Enum).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_40_40_Enum).YAchse
               or
-                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_40_40_Enum).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse <= Karten.Kartengrößen (KartenDatentypen.Kartengröße_40_40_Enum).XAchse
             then
                Sichtweiten.SichtweiteFestlegen := 2;
                Sichtweiten.BewegungsfeldFestlegen := 2;

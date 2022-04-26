@@ -22,9 +22,9 @@ package ZufallsgeneratorenStartkoordinaten is
          Post =>
            (Startkoordinaten'Result.EAchse in -1 .. 0
             and
-              Startkoordinaten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
+              Startkoordinaten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
             and
-              Startkoordinaten'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße);
+              Startkoordinaten'Result.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
 private
    

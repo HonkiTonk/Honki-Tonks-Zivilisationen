@@ -8,6 +8,7 @@ with Karten;
 
 -- Die zweidimensionalen Arrays existieren wegen der Parallelisierung der Kartenfelderbewertung und weil das hier von Logik und Grafik benötigt wird.
 -- Die Überhangschleifen in den Berechnungen sind nötig, da zwar eine Einheitenbewegung nicht so groß sein kann, aber der Spieler eventuell soweit rauszoomt.
+-- Die Überhangsschleifen werden auch für den Kartengenerator benötigt.
 package body KartenkoordinateYAchseBerechnen is
 
    function KartenkoordinateYAchseBerechnen
@@ -29,7 +30,7 @@ package body KartenkoordinateYAchseBerechnen is
                                  LogikGrafikExtern    => LogikGrafikExtern);
         
       elsif
-        YAchseExtern + ÄnderungYAchseExtern > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
+        YAchseExtern + ÄnderungYAchseExtern > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
       then
          return ÜbergangSüden (YAchseExtern         => YAchseExtern,
                                  ÄnderungYAchseExtern => ÄnderungYAchseExtern,
@@ -85,12 +86,12 @@ package body KartenkoordinateYAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (YAchseExtern + ÄnderungYAchseExtern + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße);
+      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Integer (YAchseExtern + ÄnderungYAchseExtern + Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
          
       YAchseKleinerSchleife:
       while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) < Positive (Karten.WeltkarteArray'First (2)) loop
             
-         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße);
+         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
 
       end loop YAchseKleinerSchleife;
          
@@ -100,7 +101,7 @@ package body KartenkoordinateYAchseBerechnen is
    
    
    
-   ------------------------- In die Rückwärtsverschiebung später eine Schleife einbauen, damit es nicht zu eine herausbewegen auf der anderen Seite kommt?
+   ------------------------- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden.
    function ÜbergangNordenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
@@ -154,12 +155,12 @@ package body KartenkoordinateYAchseBerechnen is
       return KartenDatentypen.KartenfeldPositiv
    is begin
       
-      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (YAchseExtern + ÄnderungYAchseExtern - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße);
+      ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := Positive (YAchseExtern + ÄnderungYAchseExtern - Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
          
       YAchseGrößerSchleife:
-      while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße) loop
+      while ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) > Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse) loop
             
-         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße);
+         ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) := ÜberhangYAchse (LogikGrafikExtern, ArrayPositionExtern) - Positive (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
             
       end loop YAchseGrößerSchleife;
          
@@ -169,7 +170,7 @@ package body KartenkoordinateYAchseBerechnen is
    
    
    
-   ------------------------- In die Rückwärtsverschiebung später eine Schleife einbauen, damit es nicht zu eine herausbewegen auf der anderen Seite kommt?
+   ------------------------- Die Überhangsschleife wird auch für den Kartengenerator benötigt, also muss sie hier auf jeden Fall noch eingebaut werden.
    function ÜbergangSüdenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.KartenfeldPositiv)
@@ -188,12 +189,12 @@ package body KartenkoordinateYAchseBerechnen is
    is begin
       
       if
-        YAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße)) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße
+        YAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse)) > Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
       then
-         return YAchseExtern - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße));
+         return YAchseExtern - KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse));
 
       else
-         return YAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße));
+         return YAchseExtern + KartenfeldPositiv (HalberWert * Float (Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse));
       end if;
       
    end YAchseVerschieben;

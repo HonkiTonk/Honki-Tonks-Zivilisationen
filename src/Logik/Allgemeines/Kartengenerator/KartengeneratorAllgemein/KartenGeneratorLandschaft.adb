@@ -3,7 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenGrundDatentypen; use KartenGrundDatentypen;
 with KartenKonstanten;
-with KartenRecordKonstanten;
 
 with SchreibeKarten;
 with LeseKarten;
@@ -11,223 +10,450 @@ with LeseKarten;
 with KartenGeneratorBerechnungenAllgemein; use KartenGeneratorBerechnungenAllgemein;
 with ZufallsgeneratorenKarten;
 with Kartenkoordinatenberechnungssystem;
+with KartengeneratorVariablen;
 
 package body KartenGeneratorLandschaft is
 
    procedure GenerierungLandschaft
    is begin
-
-      Karten.GeneratorKarte := (others => (others => KartenGrundDatentypen.Leer_Grund_Enum));
-      Karten.GeneratorGrund := (others => (others => False));
       
-      AbstandEisschicht;
+      case
+        Karten.Kartenparameter.Kartenart
+      is
+         when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
+            return;
             
+         when others =>
+            null;
+      end case;
+                  
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisrand (Karten.Kartenparameter.Kartengröße) loop
+      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
+         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
-            if
-              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
-            then
-               Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) := True;
-               
-            elsif
-              Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = True
-            then
-               null;
+            case
+              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
+            is
+               when KartenGrundDatentypen.Flachland_Enum =>
+                  GrundBestimmen (YAchseExtern => YAchseSchleifenwert,
+                                  XAchseExtern => XAchseSchleifenwert);
 
-            else
-               LandschaftBestimmen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
-            end if;
+               when others =>
+                  null;
+            end case;
                         
          end loop XAchseSchleife;
       end loop YAchseSchleife;
-         
+      
    end GenerierungLandschaft;
    
    
    
-   procedure AbstandEisschicht
+   procedure GrundBestimmen
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
-      ObereEisschichtSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.WeltkarteArray'First (2) + KartenRecordKonstanten.Eisschild (Karten.Kartenparameter.Kartengröße) loop
+      ZufallszahlenSchleife:
+      for ZufallszahlSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
          
-         XAchseAbstandEisschicht (YAchseExtern => YAchseSchleifenwert);
+         GezogeneZahlen (ZufallszahlSchleifenwert) := ZufallsgeneratorenKarten.ZufälligerWert;
          
-      end loop ObereEisschichtSchleife;
-
-      UntereEisschichtSchleife:
-      for YAchseSchleifenwert in Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - KartenRecordKonstanten.Eisschild (Karten.Kartenparameter.Kartengröße)
-        .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße loop
-         
-         XAchseAbstandEisschicht (YAchseExtern => YAchseSchleifenwert);
-         
-      end loop UntereEisschichtSchleife;
+      end loop ZufallszahlenSchleife;
       
-   end AbstandEisschicht;
-   
-   
-   
-   procedure XAchseAbstandEisschicht
-     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-   is begin
+      WelcherGrund := KartenGrundDatentypen.Leer_Grund_Enum;
+      WelcheMöglichkeiten := (others => False);
       
-      EisschichtSchleife:
-      for XAchseSchleifenwert in Karten.Weltkarte'First (3) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße loop
-            
-         Karten.GeneratorKarte (YAchseExtern, XAchseSchleifenwert) := KartenGrundDatentypen.Tundra_Enum;
-            
-      end loop EisschichtSchleife;
-      
-   end XAchseAbstandEisschicht;
-   
-   
-   
-   procedure LandschaftBestimmen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-   is begin
-      
-      GrundSchleife:
-      for GrundSchleifenwert in KartenGrundDatentypen.Karten_Grund_Generator_Enum'Range loop
+      AuswahlSchleife:
+      for AuswahlSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
          
          if
-           GrundSchleifenwert = KartenGrundDatentypen.Flachland_Enum
+           GezogeneZahlen (AuswahlSchleifenwert) < KartengrundWahrscheinlichkeit (AuswahlSchleifenwert)
          then
-            Karten.GeneratorGrund (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) := True;
-            return;
+            WelcheMöglichkeiten (AuswahlSchleifenwert) := True;
             
-         elsif
-           GrundSchleifenwert = KartenGrundDatentypen.Wüste_Enum
-           and
-             Karten.GeneratorKarte (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) = KartenGrundDatentypen.Tundra_Enum
-         then
-            null;
-            
-         elsif
-           GrundSchleifenwert = KartenGrundDatentypen.Tundra_Enum
-           and
-             Karten.GeneratorKarte (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) = KartenGrundDatentypen.Wüste_Enum
-         then
-            null;
-            
-         elsif
-           GrundFestlegen (KoordinatenExtern => KoordinatenExtern,
-                           GrundExtern       => GrundSchleifenwert)
-           = True
-         then
-            return;
-                  
          else
             null;
          end if;
          
-      end loop GrundSchleife;
+      end loop AuswahlSchleife;
       
-   end LandschaftBestimmen;
-   
-   
-   
-   function GrundFestlegen
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
-      return Boolean
-   is begin
-      
-      AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                                                GrundExtern       => GrundExtern,
-                                                                                                EbeneExtern       => 0);
-      
-      if
-        ZufallsgeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (Karten.Kartenparameter.Kartentemperatur, GrundExtern, AnzahlGleicherGrund)
-      then
-         SchreibeKarten.Grund (KoordinatenExtern => KoordinatenExtern,
-                               GrundExtern       => GrundExtern);
-         Karten.GeneratorGrund (KoordinatenExtern.YAchse, KoordinatenExtern.XAchse) := True;
-               
-         case
-           GrundExtern
-         is
-            when KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Tundra_Enum =>
-               AbstandTundraWüste (GrundExtern       => GrundExtern,
-                                    KoordinatenExtern => KoordinatenExtern);
-                     
-            when others =>
-               null;
-         end case;
-               
-         case
-           GrundExtern
-         is
-            when KartenGrundDatentypen.Gebirge_Enum | KartenGrundDatentypen.Hügel_Enum =>
-               null;
-                     
-            when others =>
-               WeitereHügel (KoordinatenExtern => KoordinatenExtern);
-         end case;
-               
-         return True;
-               
-      else
-         return False;
-      end if;
-      
-   end GrundFestlegen;
-   
-   
-   
-   procedure AbstandTundraWüste
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum;
-      KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-   is begin
-      
-      YAchseSchleife:
-      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichZwei'Range loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichZwei'Range loop
-
-            KartenWertAbstand := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => KoordinatenExtern,
-                                                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                                        LogikGrafikExtern => True);
+      ------------------- Braucht noch ein wenig Feinabstimmung.
+      ErsteSchleife:
+      for ErsterSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
+         ZweiteSchleife:
+         for ZweiterSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
             
             if
-              KartenWertAbstand.XAchse = KartenKonstanten.LeerXAchse
+              WelcheMöglichkeiten (ErsterSchleifenwert) = False
+              or
+                WelcheMöglichkeiten (ZweiterSchleifenwert) = False
             then
                null;
                
             elsif
-              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= KartenGrundDatentypen.Leer_Grund_Enum
+              GezogeneZahlen (ErsterSchleifenwert) >= GezogeneZahlen (ZweiterSchleifenwert)
+            then
+               WelcherGrund := ErsterSchleifenwert;
+               
+            else
+               WelcherGrund := ZweiterSchleifenwert;
+            end if;
+            
+         end loop ZweiteSchleife;
+      end loop ErsteSchleife;
+      
+      WelcherGrund := GrundErneutBestimmen (GrundExtern => WelcherGrund);
+      
+      WelcherGrund := GrundZusatzberechnungen (YAchseExtern => YAchseExtern,
+                                               XAchseExtern => XAchseExtern,
+                                               GrundExtern  => WelcherGrund);
+      
+      SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                            GrundExtern       => WelcherGrund);
+      
+      WeitereHügel (YAchseExtern => YAchseExtern,
+                     XAchseExtern => XAchseExtern);
+      
+   end GrundBestimmen;
+   
+   
+   
+   function GrundErneutBestimmen
+     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      case
+        GrundExtern
+      is
+         when KartenGrundDatentypen.Leer_Grund_Enum =>
+            null;
+            
+         when others =>
+            return GrundExtern;
+      end case;
+      
+      ------------------- Braucht noch ein wenig Feinabstimmung.
+      ErsteSchleife:
+      for ErsterSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
+         ZweiteSchleife:
+         for ZweiterSchleifenwert in KartengrundWahrscheinlichkeitArray'Range loop
+            
+            if
+              GezogeneZahlen (ErsterSchleifenwert) >= GezogeneZahlen (ZweiterSchleifenwert)
+            then
+               NeuerGrund := ErsterSchleifenwert;
+               
+            else
+               NeuerGrund := ZweiterSchleifenwert;
+            end if;
+            
+         end loop ZweiteSchleife;
+      end loop ErsteSchleife;
+      
+      return NeuerGrund;
+      
+   end GrundErneutBestimmen;
+   
+   
+   
+   function GrundZusatzberechnungen
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      if
+        YAchseExtern = XAchseExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      -------------------------- Bei allen Berechnungen das Eis berücksichtigen?
+      case
+        GrundExtern
+      is
+         when KartenGrundDatentypen.Tundra_Enum =>
+            ZusatzberechnungenGrund := ZusatzberechnungTundra (YAchseExtern => YAchseExtern,
+                                                               XAchseExtern => XAchseExtern,
+                                                               GrundExtern  => GrundExtern);
+            
+         when KartenGrundDatentypen.Wüste_Enum =>
+            ZusatzberechnungenGrund := ZusatzberechnungWüste (YAchseExtern => YAchseExtern,
+                                                               XAchseExtern => XAchseExtern,
+                                                               GrundExtern  => GrundExtern);
+            
+         when KartenGrundDatentypen.Hügel_Enum =>
+            ZusatzberechnungenGrund := ZusatzberechnungHügel (YAchseExtern => YAchseExtern,
+                                                               XAchseExtern => XAchseExtern,
+                                                               GrundExtern  => GrundExtern);
+            
+         when KartenGrundDatentypen.Gebirge_Enum =>
+            ZusatzberechnungenGrund := ZusatzberechnungGebirge (YAchseExtern => YAchseExtern,
+                                                                XAchseExtern => XAchseExtern,
+                                                                GrundExtern  => GrundExtern);
+            
+         when KartenGrundDatentypen.Wald_Enum =>
+            ZusatzberechnungenGrund := ZusatzberechnungWald (YAchseExtern => YAchseExtern,
+                                                             XAchseExtern => XAchseExtern,
+                                                             GrundExtern  => GrundExtern);
+            
+         when KartenGrundDatentypen.Dschungel_Enum =>
+            ZusatzberechnungenGrund := ZusatzberechnungDschungel (YAchseExtern => YAchseExtern,
+                                                                  XAchseExtern => XAchseExtern,
+                                                                  GrundExtern  => GrundExtern);
+            
+         when KartenGrundDatentypen.Sumpf_Enum =>
+            ZusatzberechnungenGrund := ZusatzberechnungSumpf (YAchseExtern => YAchseExtern,
+                                                              XAchseExtern => XAchseExtern,
+                                                              GrundExtern  => GrundExtern);
+            
+         when KartenGrundDatentypen.Flachland_Enum =>
+            ZusatzberechnungenGrund := ZusatzberechnungFlachland (YAchseExtern => YAchseExtern,
+                                                                  XAchseExtern => XAchseExtern,
+                                                                  GrundExtern  => GrundExtern);
+      end case;
+      
+      return ZusatzberechnungenGrund;
+      
+   end GrundZusatzberechnungen;
+   
+   
+   
+   function ZusatzberechnungTundra
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
+            
+            if
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
             then
                null;
                
+            elsif
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartenGrundDatentypen.Wüste_Enum
+            then
+               return KartenGrundDatentypen.Wüste_Enum;
+                  
             else
-               Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) := GrundExtern;
+               null;
             end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-   end AbstandTundraWüste;
+      return GrundExtern;
+      
+   end ZusatzberechnungTundra;
+   
+   
+   
+   function ZusatzberechnungWüste
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in KartenDatentypen.UmgebungsbereichEins'Range loop
+            
+            KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
+                                                                                                 ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                                 LogikGrafikExtern => True);
+            
+            if
+              KartenWert.XAchse = KartenKonstanten.LeerXAchse
+            then
+               null;
+               
+            elsif
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartenGrundDatentypen.Eis_Enum
+              or
+                LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartenGrundDatentypen.Tundra_Enum
+            then
+               return KartenGrundDatentypen.Tundra_Enum;
+                  
+            else
+               null;
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+      return GrundExtern;
+      
+   end ZusatzberechnungWüste;
+   
+   
+   
+   function ZusatzberechnungHügel
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      if
+        YAchseExtern = XAchseExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return GrundExtern;
+      
+   end ZusatzberechnungHügel;
+   
+   
+   
+   function ZusatzberechnungGebirge
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      if
+        YAchseExtern = XAchseExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return GrundExtern;
+      
+   end ZusatzberechnungGebirge;
+   
+   
+   
+   function ZusatzberechnungWald
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      if
+        YAchseExtern = XAchseExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return GrundExtern;
+      
+   end ZusatzberechnungWald;
+   
+   
+   
+   function ZusatzberechnungDschungel
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      if
+        YAchseExtern = XAchseExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return GrundExtern;
+      
+   end ZusatzberechnungDschungel;
+   
+   
+   
+   function ZusatzberechnungSumpf
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      if
+        YAchseExtern = XAchseExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return GrundExtern;
+      
+   end ZusatzberechnungSumpf;
+   
+   
+   
+   function ZusatzberechnungFlachland
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Generator_Enum)
+      return KartenGrundDatentypen.Karten_Grund_Generator_Enum
+   is begin
+      
+      if
+        YAchseExtern = XAchseExtern
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return GrundExtern;
+      
+   end ZusatzberechnungFlachland;
    
    
    
    procedure WeitereHügel
-     (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
+     (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
+      XAchseExtern : in KartenDatentypen.KartenfeldPositiv)
    is begin
       
-      AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => KoordinatenExtern,
+      AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                                                                                 GrundExtern       => KartenGrundDatentypen.Gebirge_Enum,
                                                                                                 EbeneExtern       => 0)
-        + KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => KoordinatenExtern,
+        + KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                                                              GrundExtern       => KartenGrundDatentypen.Hügel_Enum,
                                                                              EbeneExtern       => 0);
       
       if
         ZufallsgeneratorenKarten.ZufälligerWert <= ZusatzHügel (AnzahlGleicherGrund)
       then
-         SchreibeKarten.Hügel (KoordinatenExtern => KoordinatenExtern,
+         SchreibeKarten.Hügel (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                                 HügelExtern       => True);
          
       else

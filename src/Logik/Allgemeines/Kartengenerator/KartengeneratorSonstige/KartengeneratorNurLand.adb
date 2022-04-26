@@ -6,20 +6,17 @@ with KartenGrundDatentypen;
 
 with SchreibeKarten;
 
-with Karten;
-with KartenpoleKorrigieren;
+with KartengeneratorVariablen;
 
 package body KartengeneratorNurLand is
       
    procedure NurLandGenerieren
    is begin
       
-      Polkorrektur := KartenpoleKorrigieren.KartenpoleKorrigieren;
-      
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + Polkorrektur.Norden .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchsenGröße - Polkorrektur.Süden loop
+      for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) + Polkorrektur.Westen .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchsenGröße - Polkorrektur.Osten loop
+         for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
             SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                   GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
