@@ -14,7 +14,7 @@ package SchreibeKarten is
 
    procedure Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+      GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

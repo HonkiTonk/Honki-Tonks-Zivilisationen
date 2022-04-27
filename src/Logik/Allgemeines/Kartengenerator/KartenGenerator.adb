@@ -14,6 +14,7 @@ with KartenGeneratorRessourcen;
 with KartenGeneratorUnterwasserUnterirdisch;
 with LadezeitenDatentypen;
 with KartengeneratorEisWasserLand;
+with KartengeneratorUnterflaeche;
 
 package body KartenGenerator is
 
@@ -23,6 +24,7 @@ package body KartenGenerator is
       EisWasserLandGenerieren;
       KüstenwasserGenerieren;
       LandschaftGenerieren;
+      UnterflächeGenerieren;
       UnterwasserUnterirdischGenerieren;
       FlüsseGenerieren;
       RessourcenGenerieren;
@@ -84,13 +86,25 @@ package body KartenGenerator is
    
    
    
+   procedure UnterflächeGenerieren
+   is begin
+      
+      ----------------------- Ladezeiten hier einbauen.
+      
+      KartengeneratorUnterflaeche.KartengeneratorUnterfläche;
+      
+      ----------------------- Ladezeiten hier einbauen.
+      
+   end UnterflächeGenerieren;
+   
+   
+   
    procedure UnterwasserUnterirdischGenerieren
    is begin
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      ----------------- Auch in Oberfläche und Landschaft aufteilen?
-      KartenGeneratorUnterwasserUnterirdisch.UnterwasserUnterirdisch;
+      KartenGeneratorUnterwasserUnterirdisch.GenerierungLandschaft;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML

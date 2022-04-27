@@ -35,7 +35,7 @@ private
    
    SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
-   Kartengrund : KartenGrundDatentypen.Karten_Grund_Enum;
+   Kartengrund : KartenGrundDatentypen.Kartengrund_Enum;
    KartenfeldFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
    KartenfeldRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
    

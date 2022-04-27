@@ -126,7 +126,7 @@ package LeseEinheitenDatenbank is
    function KannTransportieren
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.Transportwerte
+      return EinheitStadtDatentypen.Transport_Enum
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -134,7 +134,7 @@ package LeseEinheitenDatenbank is
    function KannTransportiertWerden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.Transportwerte
+      return EinheitStadtDatentypen.Transport_Enum
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -142,7 +142,7 @@ package LeseEinheitenDatenbank is
    function Transportkapazität
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.Transportwerte
+      return EinheitStadtDatentypen.Transportplätze
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

@@ -33,19 +33,19 @@ package body KartenGeneratorChaos is
                                            FlussExtern       => ZufallsgeneratorenChaos.ChaoskarteFluss);
                end case;
                
-               case
-                 GrundZufall
-               is
-                  when KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range =>
-                     RessourceZufall := ZufallsgeneratorenChaos.ChaoskarteRessource (WasserLandExtern => True);
+            --   case
+           --      GrundZufall
+            --   is
+            --      when KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range =>
+             --        RessourceZufall := ZufallsgeneratorenChaos.ChaoskarteRessource (WasserLandExtern => True);
                      
-                  when KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
-                     RessourceZufall := ZufallsgeneratorenChaos.ChaoskarteRessource (WasserLandExtern => False);
+             --     when KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
+            --         RessourceZufall := ZufallsgeneratorenChaos.ChaoskarteRessource (WasserLandExtern => False);
                      
                      
-                  when others =>
+             --     when others =>
                      null;
-               end case;
+            --   end case;
                
                case
                  RessourceZufall

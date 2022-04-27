@@ -24,7 +24,7 @@ package EinheitStadtRecords is
    
    
    type KIBewegungPlanArray is array (KartenDatentypen.Stadtfeld'Range) of KartenRecords.AchsenKartenfeldPositivRecord;
-   type TransporterArray is array (EinheitStadtDatentypen.Transportplätze'First .. 5) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   type TransporterArray is array (EinheitStadtDatentypen.TransportplätzeVorhanden'Range) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (EinheitStadtDatentypen.Einheit_Meldung_Art_Enum'Range) of EinheitStadtDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record

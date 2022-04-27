@@ -11,7 +11,7 @@ package KartenDatenbank is
    
    ----------------- Die ganzen Listen mal in Datenbanken umbenennen? Warum habe ich das nicht von Anfang an so benannt?
    
-   type KartenGrundListeArray is array (KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum'Range) of DatenbankRecords.KartenGrundListeRecord;
+   type KartenGrundListeArray is array (KartenGrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of DatenbankRecords.KartenGrundListeRecord;
    KartenGrundListe : KartenGrundListeArray;
    
    type KartenFlussListeArray is array (KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of DatenbankRecords.KartenListeRecord;
@@ -86,7 +86,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
+                                                                   -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
                                                                  KartenGrundDatentypen.Hügel_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
@@ -154,7 +154,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
+                                                                   -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
                                                                  KartenGrundDatentypen.Hügel_Mit_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
@@ -165,12 +165,12 @@ private
                                                                     Wirtschaft     => (others => (others => 1)),
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
-                                                                 -- Normal
+                                                                   -- Normal
       
       
       
                                                                  -- Unterwasser/Unterirdisch
-                                                                 KartenGrundDatentypen.Unterwasser_Eis_Enum =>
+                                                                 KartenGrundDatentypen.Untereis_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                        others                                   => False),
@@ -206,7 +206,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartenGrundDatentypen.Unterwasser_Wasser_Enum =>
+                                                                 KartenGrundDatentypen.Unterwasser_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),
@@ -215,7 +215,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum =>
+                                                                 KartenGrundDatentypen.Unterküstengewässer_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),
@@ -233,7 +233,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartenGrundDatentypen.Unterwasser_Wald_Enum =>
+                                                                 KartenGrundDatentypen.Unterwald_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),
@@ -241,7 +241,7 @@ private
                                                                     Wirtschaft     => (others => (others => 1)),
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
-                                                                 -- Unterwasser/Unterirdisch
+                                                                   -- Unterwasser/Unterirdisch
       
       
                    
@@ -272,7 +272,7 @@ private
                                                                     Wirtschaft     => (others => (others => 1)),
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
-                                                                 -- Planeteninneres
+                                                                   -- Planeteninneres
       
       
       
@@ -301,16 +301,16 @@ private
                                                                  
                                                                  
                                                                  -- Sonstiges
-                                                                   KartenGrundDatentypen.Vernichtet_Enum =>
-                                                                     (
-                                                                      Passierbarkeit => (EinheitStadtDatentypen.Luft_Enum     => True,
-                                                                                         EinheitStadtDatentypen.Weltraum_Enum => True,
-                                                                                         others                               => False),
-                                                                      Bewertung      => (others => -10),
-                                                                      Wirtschaft     => (others => (others => 0)),
-                                                                      Kampf          => (others => (others => 0))
-                                                                     )
-                                                                 -- Sonstiges
+                                                                 KartenGrundDatentypen.Vernichtet_Enum =>
+                                                                   (
+                                                                    Passierbarkeit => (EinheitStadtDatentypen.Luft_Enum     => True,
+                                                                                       EinheitStadtDatentypen.Weltraum_Enum => True,
+                                                                                       others                               => False),
+                                                                    Bewertung      => (others => -10),
+                                                                    Wirtschaft     => (others => (others => 0)),
+                                                                    Kampf          => (others => (others => 0))
+                                                                   )
+                                                                   -- Sonstiges
                                                                 );
    
    
@@ -428,7 +428,7 @@ private
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
-                                                                 -- Normal
+                                                                   -- Normal
       
       
       
@@ -544,7 +544,7 @@ private
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
-                                                                 -- Unterirdisch
+                                                                   -- Unterirdisch
       
       
       
@@ -660,7 +660,7 @@ private
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    )
-                                                                 -- Lava
+                                                                   -- Lava
                                                                 );
      
      

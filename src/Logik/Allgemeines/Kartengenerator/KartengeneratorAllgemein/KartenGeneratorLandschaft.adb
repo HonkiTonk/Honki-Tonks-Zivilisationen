@@ -121,7 +121,7 @@ package body KartenGeneratorLandschaft is
    
    
    function GrundErneutBestimmen
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum)
       return KartenGrundDatentypen.Karten_Grund_Generator_Enum
    is begin
       

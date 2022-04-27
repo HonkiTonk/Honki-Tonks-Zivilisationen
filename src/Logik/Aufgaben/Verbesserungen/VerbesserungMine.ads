@@ -11,7 +11,7 @@ package VerbesserungMine is
 
    function VerbesserungMine
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+      GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with

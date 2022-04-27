@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body FarbgebungSFML is
 
    function FarbeKartenfeldErmitteln
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum)
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Sf.Graphics.Color.sfColor
    is begin
       

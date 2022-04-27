@@ -12,12 +12,12 @@ with DatenbankRecords;
 package LeseKartenDatenbank is
 
    function Passierbarkeit
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean;
    
    function BewertungGrund
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
      with
@@ -41,7 +41,7 @@ package LeseKartenDatenbank is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function WirtschaftGrund
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
@@ -68,7 +68,7 @@ package LeseKartenDatenbank is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function KampfGrund
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.KampfwerteAllgemein
@@ -95,7 +95,7 @@ package LeseKartenDatenbank is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function GanzerEintragGrund
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
       return DatenbankRecords.KartenGrundListeRecord;
          
    function GanzerEintragFluss

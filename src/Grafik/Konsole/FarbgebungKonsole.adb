@@ -15,7 +15,7 @@ package body FarbgebungKonsole is
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
-      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum;
       FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
       RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
@@ -62,7 +62,7 @@ package body FarbgebungKonsole is
    
    
    procedure FarbenFeld
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum)
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
    is begin
       
       Put (Item => CSI & Feldfarbe (GrundExtern));
@@ -72,7 +72,7 @@ package body FarbgebungKonsole is
    
    
    procedure FarbenFluss
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
    is begin
       
@@ -80,7 +80,7 @@ package body FarbgebungKonsole is
         GrundExtern
       is
          when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Sand_Enum | KartenGrundDatentypen.Küstengewässer_Enum
-            | KartenGrundDatentypen.Wolken_Enum | KartenGrundDatentypen.Unterwasser_Eis_Enum | KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum =>
+            | KartenGrundDatentypen.Wolken_Enum | KartenGrundDatentypen.Untereis_Enum | KartenGrundDatentypen.Unterküstengewässer_Enum =>
             if
               FlussExtern in KartenGrundDatentypen.Karten_Fluss_Vorhanden_Enum'Range
               or
@@ -112,7 +112,7 @@ package body FarbgebungKonsole is
    
    
    procedure FarbenRessourcen
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
    is begin
       
@@ -132,7 +132,7 @@ package body FarbgebungKonsole is
         GrundExtern
       is
          when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Tundra_Enum | KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Sand_Enum | KartenGrundDatentypen.Küstengewässer_Enum
-            | KartenGrundDatentypen.Wolken_Enum | KartenGrundDatentypen.Unterwasser_Eis_Enum | KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum =>
+            | KartenGrundDatentypen.Wolken_Enum | KartenGrundDatentypen.Untereis_Enum | KartenGrundDatentypen.Unterküstengewässer_Enum =>
             Put (Item => CSI & "38;2;0;0;0m");
                   
          when others =>
@@ -147,7 +147,7 @@ package body FarbgebungKonsole is
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
-      GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum;
+      GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum;
       FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
       RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;

@@ -23,7 +23,7 @@ private
    NeuerGrund : KartenGrundDatentypen.Karten_Grund_Generator_Enum;
    ZusatzberechnungenGrund : KartenGrundDatentypen.Karten_Grund_Generator_Enum;
    
-   WelcherGrund : KartenGrundDatentypen.Karten_Grund_Enum;
+   WelcherGrund : KartenGrundDatentypen.Kartengrund_Enum;
    
    type KartengrundWahrscheinlichkeitArray is array (KartenGrundDatentypen.Karten_Grund_Generator_Enum'Range) of Float;
    KartengrundWahrscheinlichkeit : KartengrundWahrscheinlichkeitArray := (
@@ -75,7 +75,7 @@ private
    
    
    function GrundErneutBestimmen
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Enum)
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum)
       return KartenGrundDatentypen.Karten_Grund_Generator_Enum;
    
    function GrundZusatzberechnungen

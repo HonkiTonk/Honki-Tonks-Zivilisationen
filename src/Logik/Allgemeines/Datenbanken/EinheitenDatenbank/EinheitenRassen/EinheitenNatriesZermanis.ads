@@ -28,8 +28,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 1,
                                                                                         Angriff                 => 0,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -51,8 +51,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 1,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -74,8 +74,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
       
@@ -98,8 +98,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -121,8 +121,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -144,8 +144,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -167,8 +167,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -190,8 +190,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -213,8 +213,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -237,8 +237,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -261,8 +261,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -284,8 +284,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -307,8 +307,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -331,8 +331,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -355,8 +355,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -381,8 +381,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -404,8 +404,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -427,8 +427,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -450,8 +450,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -473,8 +473,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -497,8 +497,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -520,8 +520,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -543,8 +543,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -566,8 +566,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -589,8 +589,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -612,8 +612,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -637,8 +637,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -660,8 +660,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -688,8 +688,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -711,8 +711,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -734,8 +734,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -757,8 +757,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -780,8 +780,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -803,8 +803,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -828,8 +828,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -858,8 +858,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -885,8 +885,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -909,8 +909,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -933,8 +933,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -956,8 +956,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -981,8 +981,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -1009,8 +1009,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -1039,8 +1039,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -1062,8 +1062,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 2,
                                                                                         Angriff                 => 3,
                                                                                         Verteidigung            => 1,
-                                                                                        KannTransportieren      => 0,
-                                                                                        KannTransportiertWerden => 1,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Kein_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => 0
                                                                                        ),
                                                
@@ -1084,8 +1084,8 @@ package EinheitenNatriesZermanis is
                                                                                         Reichweite              => 100,
                                                                                         Angriff                 => 100,
                                                                                         Verteidigung            => 100,
-                                                                                        KannTransportieren      => 10,
-                                                                                        KannTransportiertWerden => 0,
+                                                                                        KannTransportieren      => EinheitStadtDatentypen.Gigantisch_Transport_Enum,
+                                                                                        KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
                                                                                         Transportkapazität      => EinheitStadtRecords.TransporterArray'Last
                                                                                        ),
                                                                

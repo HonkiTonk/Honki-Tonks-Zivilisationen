@@ -275,14 +275,14 @@ package EingeleseneGrafikenKonsole is
                                                     
       
                                                     -- Unterwasser/Unterirdisch
-                                                    KartenGrundDatentypen.Unterwasser_Eis_Enum            => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Untereis_Enum            => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Erde_Enum                       => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Erdgestein_Enum                 => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Sand_Enum                       => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Unterwasser_Wasser_Enum         => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Unterwasser_Küstengewässer_Enum => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Unterwasser_Enum         => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Unterküstengewässer_Enum => KartenKonstanten.LeerKartenGrafik,
                                                     KartenGrundDatentypen.Korallen_Enum                   => KartenKonstanten.LeerKartenGrafik,
-                                                    KartenGrundDatentypen.Unterwasser_Wald_Enum           => KartenKonstanten.LeerKartenGrafik,
+                                                    KartenGrundDatentypen.Unterwald_Enum           => KartenKonstanten.LeerKartenGrafik,
                                                     -- Unterwasser/Unterirdisch
       
       

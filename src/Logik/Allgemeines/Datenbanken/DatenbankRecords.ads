@@ -33,9 +33,9 @@ package DatenbankRecords is
       Angriff : EinheitStadtDatentypen.Kampfwerte;
       Verteidigung : EinheitStadtDatentypen.Kampfwerte;
 
-      KannTransportieren : EinheitStadtDatentypen.Transportwerte;
-      KannTransportiertWerden : EinheitStadtDatentypen.Transportwerte;
-      Transportkapazität : EinheitStadtDatentypen.Transportwerte;
+      KannTransportieren : EinheitStadtDatentypen.Transport_Enum;
+      KannTransportiertWerden : EinheitStadtDatentypen.Transport_Enum;
+      Transportkapazität : EinheitStadtDatentypen.Transportplätze;
       
    end record;
    
@@ -72,7 +72,7 @@ package DatenbankRecords is
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;
       
-      GrundBenötigt : KartenGrundDatentypen.Karten_Grund_Enum;
+      GrundBenötigt : KartenGrundDatentypen.Kartengrund_Enum;
       FlussBenötigt : Boolean;
       RessourceBenötigt : KartenGrundDatentypen.Karten_Ressourcen_Enum;
       --------------------- UndOderGrundFlussBenötigt : Boolean;

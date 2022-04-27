@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body ZufallsgeneratorenChaos is
 
    function ChaoskarteGrund
-     return KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum
+     return KartenGrundDatentypen.Kartengrund_Vorhanden_Enum
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
@@ -80,7 +80,7 @@ package body ZufallsgeneratorenChaos is
    
    
    function TotaleChaoskarteGrund
-     return KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum
+     return KartenGrundDatentypen.Kartengrund_Vorhanden_Enum
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);

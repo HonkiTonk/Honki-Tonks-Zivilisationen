@@ -40,7 +40,7 @@ private
 
    YAchsenabstraktion : KartenDatentypen.Kartenfeld;
 
-   Kartenfeld : KartenGrundDatentypen.Karten_Grund_Enum;
+   Kartenfeld : KartenGrundDatentypen.Kartengrund_Enum;
    KartenfeldRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
    KartenfeldFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
 

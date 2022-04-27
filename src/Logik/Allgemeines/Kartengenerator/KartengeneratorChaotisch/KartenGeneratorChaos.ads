@@ -9,7 +9,7 @@ package KartenGeneratorChaos is
 
 private
 
-   GrundZufall : KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum;
+   GrundZufall : KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
 
    RessourceZufall : KartenGrundDatentypen.Karten_Ressourcen_Enum;
 

@@ -35,7 +35,7 @@ private
    
    IDEinheit : EinheitStadtDatentypen.EinheitenID;
    
-   Grund : KartenGrundDatentypen.Karten_Grund_Enum;
+   Grund : KartenGrundDatentypen.Kartengrund_Enum;
    
    procedure EinheitVerschanzen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

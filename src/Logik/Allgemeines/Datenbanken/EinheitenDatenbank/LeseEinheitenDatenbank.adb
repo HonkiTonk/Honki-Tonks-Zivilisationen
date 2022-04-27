@@ -2,7 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with EinheitStadtRecords;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
@@ -199,7 +198,7 @@ package body LeseEinheitenDatenbank is
    function KannTransportieren
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.Transportwerte
+      return EinheitStadtDatentypen.Transport_Enum
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportieren;
@@ -211,7 +210,7 @@ package body LeseEinheitenDatenbank is
    function KannTransportiertWerden
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.Transportwerte
+      return EinheitStadtDatentypen.Transport_Enum
    is begin
       
       return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportiertWerden;
@@ -223,23 +222,19 @@ package body LeseEinheitenDatenbank is
    function Transportkapazität
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.Transportwerte
+      return EinheitStadtDatentypen.Transportplätze
    is begin
       
+      ----------------------- Hier mal noch Konstanten einbauen.
       if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportieren > 0
-        and
+        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportieren = EinheitStadtDatentypen.Kein_Transport_Enum
+        or
           EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität = 0
       then
-         return 1;
-         
-      elsif
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität <= EinheitStadtRecords.TransporterArray'Last
-      then
-         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität;
+         return 0;
          
       else
-         return EinheitStadtRecords.TransporterArray'Last;
+         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität;
       end if;
       
    end Transportkapazität;

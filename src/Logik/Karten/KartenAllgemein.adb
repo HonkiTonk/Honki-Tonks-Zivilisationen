@@ -15,12 +15,12 @@ package body KartenAllgemein is
 
    ------------------------ Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann?
    function BeschreibungGrund
-     (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
+     (KartenGrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
       -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
-      GrundAktuell := 2 * KartenGrundDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern) - 1;
+      GrundAktuell := 2 * KartenGrundDatentypen.Kartengrund_Enum'Pos (KartenGrundExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
       

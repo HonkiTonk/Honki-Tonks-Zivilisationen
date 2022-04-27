@@ -66,10 +66,20 @@ package EinheitStadtDatentypen is
    type KampfwerteAllgemein is range -100 .. 100;
    subtype Kampfwerte is KampfwerteAllgemein range 0 .. 100;
    
-   type Transportwerte is range 0 .. 10;
-   subtype Transportplätze is Transportwerte range 1 .. Transportwerte'Last;
+   type Transport_Enum is (
+                           Kein_Transport_Enum,
+                           
+                           Klein_Transport_Enum, Mittel_Transport_Enum, Groß_Transport_Enum, Riesig_Transport_Enum, Gigantisch_Transport_Enum
+                          );
+   pragma Ordered (Transport_Enum);
+   
+   subtype Transport_Vorhanden_Enum is Transport_Enum range Klein_Transport_Enum .. Gigantisch_Transport_Enum;
+     
+   -- Hier den Minimalwert bei 0 lassen, wenn ausversehen ein Transport zugewiesen wird, dann kann die Einheit trotzdem nich transportieren.
+   type Transportplätze is range 0 .. 10;
+   subtype TransportplätzeVorhanden is Transportplätze range 1 .. Transportplätze'Last;
    -- Für Einheiten
-
+   
 
 
    -- Für Gebäude
@@ -101,7 +111,7 @@ package EinheitStadtDatentypen is
    subtype MaximaleStädteMitNullWert is MaximaleEinheitenMitNullWert range 0 .. 100;
    subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. 100;
 
-   -- Das hier mal an die neuen Produktionsidee anpassen.
+   ---------------------- Das hier mal an die neuen Produktionsidee anpassen.
    type KostenLager is range -10_000 .. 10_000;
    subtype GesamtePermanenteKosten is KostenLager range -500 .. 5_000;
    subtype GesamtproduktionStadt is GesamtePermanenteKosten range -500 .. 500;

@@ -81,7 +81,7 @@ package KartenRecords is
    
    type KartenRecord is record
 
-      Grund : KartenGrundDatentypen.Karten_Grund_Enum;
+      Grund : KartenGrundDatentypen.Kartengrund_Enum;
       Hügel : Boolean;
       Sichtbar : SichtbarkeitArray;
       

@@ -47,7 +47,7 @@ private
 
    SichtweiteObjekt : KartenDatentypen.Sichtweite;
 
-   AktuellerGrund : KartenGrundDatentypen.Karten_Grund_Alle_Felder_Enum;
+   AktuellerGrund : KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
 
    Wert : Integer;
 

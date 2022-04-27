@@ -4,38 +4,63 @@ pragma Warnings (Off, "*array aggregate*");
 package KartenGrundDatentypen is
 
    -------------------- Das hier muss mal neu sortiert und anschließend alles angepasst werden.
-   type Karten_Grund_Enum is (
-                              Leer_Grund_Enum,
+   type Kartengrund_Enum is (
+                             Leer_Grund_Enum,
+                             
+                             -- Weltraum
+                             Weltraum_Enum,
                               
-                              Wasser_Enum, Küstengewässer_Enum, Unterwasser_Wasser_Enum, Unterwasser_Küstengewässer_Enum,
-                              Eis_Enum, Unterwasser_Eis_Enum,
+                             -- Himmel
+                             Wolken_Enum,
                               
-                              Lava_Enum, Planetenkern_Enum,
+                             -- Oberfläche
+                             Eis_Enum,
+                             Wasser_Enum, Küstengewässer_Enum,
+                             Tundra_Enum, Wüste_Enum, Hügel_Enum, Gebirge_Enum, Wald_Enum, Dschungel_Enum, Sumpf_Enum, Flachland_Enum, Hügel_Mit_Enum,
+                             
+                             -- Unterfläche
+                             Untereis_Enum,
+                             Unterwasser_Enum, Unterküstengewässer_Enum,
+                             Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
+                             Korallen_Enum, Unterwald_Enum,
                               
-                              Tundra_Enum, Wüste_Enum, Hügel_Enum, Gebirge_Enum, Wald_Enum, Dschungel_Enum, Sumpf_Enum, Flachland_Enum, Hügel_Mit_Enum,
+                             -- Planeteninneres
+                             Lava_Enum, Planetenkern_Enum,
                               
-                              Wolken_Enum,
-                              
-                              Weltraum_Enum,
-                              
-                              Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
-                              
-                              Korallen_Enum, Unterwasser_Wald_Enum,
-                              
-                              Vernichtet_Enum
-                             );
-   pragma Ordered (Karten_Grund_Enum);
+                             -- Sonstiges
+                             Vernichtet_Enum
+                            );
+   pragma Ordered (Kartengrund_Enum);
    
-   subtype Karten_Grund_Vorhanden_Enum is Karten_Grund_Enum range Wasser_Enum .. Karten_Grund_Enum'Last;
+   subtype Kartengrund_Vorhanden_Enum is Kartengrund_Enum range Weltraum_Enum .. Kartengrund_Enum'Last;
+   
+   -- Weltraum
+   subtype Kartengrund_Weltraum_Enum is Kartengrund_Vorhanden_Enum range Weltraum_Enum .. Weltraum_Enum;
+   
+   -- Himmel
+   subtype Kartengrund_Himmel_Enum is Kartengrund_Vorhanden_Enum range Wolken_Enum .. Wolken_Enum;
+   
+   -- Oberfläche
+   subtype Kartengrund_Oberfläche_Enum is Kartengrund_Vorhanden_Enum range Eis_Enum .. Hügel_Mit_Enum;
+   
+   -- Unterfläche
+   subtype Kartengrund_Unterfläche_Enum is Kartengrund_Vorhanden_Enum range Untereis_Enum .. Unterwald_Enum;
+   
+   -- Planeteinneres
+   subtype Kartengrund_Planeteninneres_Enum is Kartengrund_Vorhanden_Enum range Lava_Enum .. Planetenkern_Enum;
+   
+   -- Sonstiges
+   subtype Kartengrund_Sonstiges_Enum is Kartengrund_Vorhanden_Enum range Vernichtet_Enum .. Vernichtet_Enum;
 
-   subtype Karten_Grund_Alle_Felder_Enum is Karten_Grund_Vorhanden_Enum range Wasser_Enum .. Unterwasser_Wald_Enum;
-   subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser_Enum .. Unterwasser_Eis_Enum;
-   subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser_Enum .. Unterwasser_Küstengewässer_Enum;
+   subtype Karten_Grund_Alle_Felder_Enum is Kartengrund_Vorhanden_Enum range Weltraum_Enum .. Unterwald_Enum;
+   subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser_Enum .. Untereis_Enum;
+   -- subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser_Enum .. Unterküstengewässer_Enum;
    subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis_Enum .. Gestein_Enum;
    subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Tundra_Enum .. Gestein_Enum;
    
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra_Enum .. Flachland_Enum;
-   subtype Karten_Unterwasser_Generator_Enum is Karten_Grund_Alle_Felder_Enum range Korallen_Enum .. Unterwasser_Wald_Enum;
+   subtype Kartengrund_Unterirdisch_Generator_Enum is Karten_Grund_Alle_Felder_Enum range Erde_Enum .. Gestein_Enum;
+   subtype Kartengrund_Unterwasser_Generator_Enum is Karten_Grund_Alle_Felder_Enum range Korallen_Enum .. Unterwald_Enum;
    
    
    

@@ -83,7 +83,7 @@ package body LeseGebaeudeDatenbank is
    function GrundBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return KartenGrundDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Kartengrund_Enum
    is begin
       
       return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).GrundBenötigt;

@@ -63,13 +63,13 @@ private
    
    EinheitAusladen : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    
-   FreierPlatzNummer : EinheitStadtDatentypen.Transportwerte;
+   FreierPlatzNummer : EinheitStadtDatentypen.Transportplätze;
    
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function FreienPlatzErmitteln
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.Transportwerte
+      return EinheitStadtDatentypen.Transportplätze
      with
        Pre =>
          (TransporterExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze

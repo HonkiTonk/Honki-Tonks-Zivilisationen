@@ -11,7 +11,7 @@ package body LeseKarten is
    
    function Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Grund_Enum
+      return KartenGrundDatentypen.Kartengrund_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund;

@@ -79,7 +79,7 @@ package body KartenGeneratorFluss is
                   or
                     LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = KartenGrundDatentypen.Korallen_Enum
                     or
-                      LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = KartenGrundDatentypen.Unterwasser_Wald_Enum
+                      LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = KartenGrundDatentypen.Unterwald_Enum
             then
                null;
                

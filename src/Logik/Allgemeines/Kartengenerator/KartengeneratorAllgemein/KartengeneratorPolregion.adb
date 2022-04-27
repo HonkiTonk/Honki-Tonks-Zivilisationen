@@ -83,7 +83,7 @@ package body KartengeneratorPolregion is
                                   GrundExtern       => KartenGrundDatentypen.Eis_Enum);
             
             SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Unterwasser_Eis_Enum);
+                                  GrundExtern       => KartenGrundDatentypen.Untereis_Enum);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -128,7 +128,7 @@ package body KartengeneratorPolregion is
                                   GrundExtern       => KartenGrundDatentypen.Eis_Enum);
             
             SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Unterwasser_Eis_Enum);
+                                  GrundExtern       => KartenGrundDatentypen.Untereis_Enum);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -159,7 +159,7 @@ package body KartengeneratorPolregion is
                                   GrundExtern       => KartenGrundDatentypen.Eis_Enum);
             
             SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Unterwasser_Eis_Enum);
+                                  GrundExtern       => KartenGrundDatentypen.Untereis_Enum);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -204,7 +204,7 @@ package body KartengeneratorPolregion is
                                   GrundExtern       => KartenGrundDatentypen.Eis_Enum);
             
             SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Unterwasser_Eis_Enum);
+                                  GrundExtern       => KartenGrundDatentypen.Untereis_Enum);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

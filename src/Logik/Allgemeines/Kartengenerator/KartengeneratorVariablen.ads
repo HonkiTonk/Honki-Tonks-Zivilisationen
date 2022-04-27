@@ -12,7 +12,7 @@ package KartengeneratorVariablen is
 
    Polbereiche : KartenRecords.KartenpoleKorrekturRecord;
 
-   -- type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenGrundDatentypen.Karten_Grund_Enum;
+   -- type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of KartenGrundDatentypen.Kartengrund_Enum;
    -- GeneratorKarte : GeneratorKarteArray;
 
    -- type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;

@@ -27,7 +27,7 @@ package TransporterSuchen is
    function EinheitAufTransporterSuchen
      (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
-      return EinheitStadtDatentypen.Transportwerte
+      return EinheitStadtDatentypen.Transportplätze
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum

@@ -14,7 +14,7 @@ package KartenAllgemein is
 
    ------------------- Contracts einbauen.
    function BeschreibungGrund
-     (KartenGrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
+     (KartenGrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function BeschreibungFluss

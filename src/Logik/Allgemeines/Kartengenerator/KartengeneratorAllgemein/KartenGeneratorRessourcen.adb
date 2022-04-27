@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenKonstanten;
 
 with SchreibeKarten;
-with LeseKarten;
+-- with LeseKarten;
 
 with Karten;
 with ZufallsgeneratorenKarten;
@@ -54,31 +54,40 @@ package body KartenGeneratorRessourcen is
    procedure RessourcenGenerierung
      (EbeneExtern : in KartenDatentypen.EbeneVorhanden)
    is begin
+      
+      if
+        EbeneExtern = 0
+      then
+         null;
+         
+      else
+         null;
+      end if;
 
       YAchseSchleife:
       for YAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.YAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.YAchse loop
          XAchseSchleife:
          for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
                
-            if
-              LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range
-               or
-                 LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Unterwasser_Generator_Enum'Range
+       --     if
+       --       LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range
+       --        or
+       --          LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Kartengrund_Unterwasser_Generator_Enum'Range
             --  and
              --   KartengeneratorVariablen.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
-            then
-               RessourcenWasser (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+      --      then
+       --        RessourcenWasser (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                
-            elsif
-              LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
+       --     elsif
+       --       LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
              -- and
              --   (KartengeneratorVariablen.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False)
-            then
-               RessourcenLand (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
+       --     then
+       --        RessourcenLand (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                   
-            else
+       --     else
                null;
-            end if;
+       --     end if;
                            
          end loop XAchseSchleife;
       end loop YAchseSchleife;

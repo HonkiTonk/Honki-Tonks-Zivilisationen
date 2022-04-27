@@ -71,9 +71,9 @@ package EinheitenKonstanten is
    LeerReichweite : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    LeerAngriff : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    LeerVerteidigung : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerKannTransportieren : constant EinheitStadtDatentypen.Transportwerte := EinheitStadtDatentypen.Transportwerte'First;
-   LeerKannTransportiertWerden : constant EinheitStadtDatentypen.Transportwerte := EinheitStadtDatentypen.Transportwerte'First;
-   LeerTransportkapazität : constant EinheitStadtDatentypen.Transportwerte := EinheitStadtDatentypen.Transportwerte'First;
+   LeerKannTransportieren : constant EinheitStadtDatentypen.Transport_Enum := EinheitStadtDatentypen.Kein_Transport_Enum;
+   LeerKannTransportiertWerden : constant EinheitStadtDatentypen.Transport_Enum := EinheitStadtDatentypen.Kein_Transport_Enum;
+   LeerTransportkapazität : constant EinheitStadtDatentypen.Transportplätze := EinheitStadtDatentypen.Transportplätze'First;
    
    LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
                                                                          EinheitArt                 => LeerEinheitArt,

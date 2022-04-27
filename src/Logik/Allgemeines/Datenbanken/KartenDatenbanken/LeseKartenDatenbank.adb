@@ -6,7 +6,7 @@ with KartenDatenbank;
 package body LeseKartenDatenbank is
 
    function Passierbarkeit
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       WelcheUmgebungExtern : in EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum)
       return Boolean
    is begin
@@ -18,7 +18,7 @@ package body LeseKartenDatenbank is
    
    
    function BewertungGrund
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
@@ -54,7 +54,7 @@ package body LeseKartenDatenbank is
    
    
    function WirtschaftGrund
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
@@ -93,7 +93,7 @@ package body LeseKartenDatenbank is
    
    
    function KampfGrund
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum;
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.KampfwerteAllgemein
@@ -132,7 +132,7 @@ package body LeseKartenDatenbank is
    
    
    function GanzerEintragGrund
-     (GrundExtern : in KartenGrundDatentypen.Karten_Grund_Vorhanden_Enum)
+     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
       return DatenbankRecords.KartenGrundListeRecord
    is begin
       
