@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-package KartenGeneratorHimmel is
+package KartengeneratorHimmel is
 
    procedure Himmel;
 
-end KartenGeneratorHimmel;
+end KartengeneratorHimmel;

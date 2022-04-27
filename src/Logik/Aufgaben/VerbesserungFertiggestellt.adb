@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with AufgabenDatentypen;
@@ -150,11 +150,11 @@ package body VerbesserungFertiggestellt is
               LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
             then
                SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                     GrundExtern       => KartenGrundDatentypen.Hügel_Enum);
+                                     GrundExtern       => KartengrundDatentypen.Hügel_Enum);
                   
             else
                SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                     GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
+                                     GrundExtern       => KartengrundDatentypen.Flachland_Enum);
             end if;
             
          when others =>
@@ -172,7 +172,7 @@ package body VerbesserungFertiggestellt is
    is begin
       
       if
-        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartenGrundDatentypen.Hügel_Enum
+        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartengrundDatentypen.Hügel_Enum
       then
          SchreibeKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                 HügelExtern       => True);
@@ -182,7 +182,7 @@ package body VerbesserungFertiggestellt is
       end if;
             
       SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                            GrundExtern       => KartenGrundDatentypen.Wald_Enum);
+                            GrundExtern       => KartengrundDatentypen.Wald_Enum);
       
       if
         LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))

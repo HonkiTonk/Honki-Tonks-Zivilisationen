@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
 
 with SchreibeKarten;
@@ -9,7 +9,7 @@ with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
 
-package body KartenGeneratorKueste is
+package body KartengeneratorKueste is
 
    procedure GenerierungKüstenSeeGewässer
    is begin
@@ -32,7 +32,7 @@ package body KartenGeneratorKueste is
             case
               LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartenGrundDatentypen.Wasser_Enum =>
+               when KartengrundDatentypen.Wasser_Enum =>
                   GewässerFestlegen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
@@ -65,12 +65,12 @@ package body KartenGeneratorKueste is
                null;
                
             elsif
-              LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartenGrundDatentypen.Flachland_Enum
+              LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Flachland_Enum
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartenGrundDatentypen.Eis_Enum
+                LeseKarten.Grund (KoordinatenExtern => KartenWert) = KartengrundDatentypen.Eis_Enum
             then
                SchreibeKarten.Grund (KoordinatenExtern => KoordinatenExtern,
-                                     GrundExtern       => KartenGrundDatentypen.Küstengewässer_Enum);
+                                     GrundExtern       => KartengrundDatentypen.Küstengewässer_Enum);
                return;
                
             else
@@ -82,4 +82,4 @@ package body KartenGeneratorKueste is
       
    end GewässerFestlegen;
 
-end KartenGeneratorKueste;
+end KartengeneratorKueste;

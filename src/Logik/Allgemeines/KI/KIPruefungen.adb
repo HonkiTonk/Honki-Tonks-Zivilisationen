@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with TastenbelegungDatentypen;
 with KartenKonstanten;
@@ -371,7 +371,7 @@ package body KIPruefungen is
          return False;
          
       elsif
-        LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern) = KartenGrundDatentypen.Eis_Enum
+        LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern) = KartengrundDatentypen.Eis_Enum
       then
          return False;
          

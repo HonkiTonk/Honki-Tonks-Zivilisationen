@@ -8,11 +8,11 @@ package body SchreibeKarten is
    ----------------------- Eventuell mehr Prüfungen hier einbauen? Z. B. ob das Unterwasserzeug auch Unterwasser platziert wird? Dabei Chaos berücksichtigen.
    procedure Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum)
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
    is begin
       
       if
-        GrundExtern = KartenGrundDatentypen.Hügel_Enum
+        GrundExtern = KartengrundDatentypen.Hügel_Enum
         and
           LeseKarten.Hügel (KoordinatenExtern => KoordinatenExtern) = True
       then
@@ -54,7 +54,7 @@ package body SchreibeKarten is
    
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum)
+      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss := FlussExtern;
@@ -87,7 +87,7 @@ package body SchreibeKarten is
    
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum)
+      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
    is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource := RessourceExtern;

@@ -9,7 +9,7 @@ with KartenRecords;
 with ForschungKonstanten;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with TextKonstanten;
 with RassenDatentypen;
@@ -78,9 +78,9 @@ package StadtKonstanten is
    LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerBonusWirtschaft : constant EinheitStadtDatentypen.ProduktionFeld := 0;
    LeerBonusKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
-   LeerGrundBenötigt : constant KartenGrundDatentypen.Kartengrund_Enum := KartenGrundDatentypen.Leer_Grund_Enum;
+   LeerGrundBenötigt : constant KartengrundDatentypen.Kartengrund_Enum := KartengrundDatentypen.Leer_Grund_Enum;
    LeerFlussBenötigt : constant Boolean := False;
-   LeerRessourceBenötigt : constant KartenGrundDatentypen.Karten_Ressourcen_Enum := KartenGrundDatentypen.Leer_Ressource_Enum;
+   LeerRessourceBenötigt : constant KartengrundDatentypen.Karten_Ressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
    LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer_Enum;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (

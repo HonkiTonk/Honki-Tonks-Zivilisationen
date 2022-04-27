@@ -6,7 +6,7 @@ with SchreibeKarten;
 with Karten;
 with ZufallsgeneratorenChaos;
 
-package body KartenGeneratorChaos is
+package body KartengeneratorChaos is
 
    procedure Chaos
    is begin
@@ -25,7 +25,7 @@ package body KartenGeneratorChaos is
                case
                  GrundZufall
                is
-                  when KartenGrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | KartenGrundDatentypen.Lava_Enum | KartenGrundDatentypen.Planetenkern_Enum =>
+                  when KartengrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | KartengrundDatentypen.Lava_Enum | KartengrundDatentypen.Planetenkern_Enum =>
                      null;
                      
                   when others =>
@@ -36,10 +36,10 @@ package body KartenGeneratorChaos is
             --   case
            --      GrundZufall
             --   is
-            --      when KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range =>
+            --      when KartengrundDatentypen.Karten_Grund_Wasser_Enum'Range =>
              --        RessourceZufall := ZufallsgeneratorenChaos.ChaoskarteRessource (WasserLandExtern => True);
                      
-             --     when KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
+             --     when KartengrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
             --         RessourceZufall := ZufallsgeneratorenChaos.ChaoskarteRessource (WasserLandExtern => False);
                      
                      
@@ -50,7 +50,7 @@ package body KartenGeneratorChaos is
                case
                  RessourceZufall
                is
-                  when KartenGrundDatentypen.Leer_Ressource_Enum =>
+                  when KartengrundDatentypen.Leer_Ressource_Enum =>
                      null;
                      
                   when others =>
@@ -64,4 +64,4 @@ package body KartenGeneratorChaos is
       
    end Chaos;
 
-end KartenGeneratorChaos;
+end KartengeneratorChaos;

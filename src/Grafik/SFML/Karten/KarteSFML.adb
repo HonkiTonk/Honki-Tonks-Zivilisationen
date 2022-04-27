@@ -8,7 +8,7 @@ with Sf.Graphics.RenderWindow;
 
 with KartenRecords; use KartenRecords;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with KartenKonstanten;
@@ -203,7 +203,7 @@ package body KarteSFML is
       KartenfeldFluss := LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldFluss = KartenGrundDatentypen.Leer_Fluss_Enum
+        KartenfeldFluss = KartengrundDatentypen.Leer_Fluss_Enum
       then
          null;
       
@@ -234,7 +234,7 @@ package body KarteSFML is
       KartenfeldRessource := LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern);
       
       if
-        KartenfeldRessource = KartenGrundDatentypen.Leer_Ressource_Enum
+        KartenfeldRessource = KartengrundDatentypen.Leer_Ressource_Enum
       then
          null;
       

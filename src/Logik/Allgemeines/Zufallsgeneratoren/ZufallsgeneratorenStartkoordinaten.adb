@@ -1,7 +1,7 @@
 pragma SPARK_Mode (Off);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 
 with LeseKarten;
 
@@ -36,7 +36,7 @@ package body ZufallsgeneratorenStartkoordinaten is
                                                                   NeueKoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse))
              = True
            and
-             LeseKarten.Grund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartenGrundDatentypen.Eis_Enum
+             LeseKarten.Grund (KoordinatenExtern => (EAchse, YXAchsen.YAchse, YXAchsen.XAchse)) /= KartengrundDatentypen.Eis_Enum
          then
             return (EAchse, YXAchsen.YAchse, YXAchsen.XAchse);
                

@@ -7,7 +7,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with EinheitStadtRecords;
 with KartenDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with SpielVariablen;
 
@@ -23,8 +23,8 @@ package KarteInformationenKonsole is
    
 private
    
-   KarteFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
-   KartenRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+   KarteFluss : KartengrundDatentypen.Karten_Fluss_Enum;
+   KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    

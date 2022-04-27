@@ -4,14 +4,14 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtRecords;
 with SpielVariablen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with SonstigeVariablen;
 
 package VerbesserungWald is
 
    function VerbesserungWald
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with

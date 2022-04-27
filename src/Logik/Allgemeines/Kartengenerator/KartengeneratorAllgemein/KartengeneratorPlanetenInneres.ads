@@ -3,9 +3,9 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen;
 
-package KartenGeneratorPlanetenInneres is
+package KartengeneratorPlaneteninneres is
 
-   procedure PlanetenInneres;
+   procedure Planeteninneres;
 
 private
 
@@ -14,4 +14,4 @@ private
    YKernende : KartenDatentypen.KartenfeldPositiv;
    XKernende : KartenDatentypen.KartenfeldPositiv;
 
-end KartenGeneratorPlanetenInneres;
+end KartengeneratorPlaneteninneres;

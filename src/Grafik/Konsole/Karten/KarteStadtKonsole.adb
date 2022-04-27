@@ -10,7 +10,7 @@ with KartenRecords; use KartenRecords;
 -- with GlobaleTexte;
 with KartenKonstanten;
 with StadtKonstanten;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with TextKonstanten;
 with EinheitenKonstanten;
@@ -226,8 +226,8 @@ package body KarteStadtKonsole is
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                    RasseExtern        => StadtKonstanten.LeerRasse);
@@ -256,8 +256,8 @@ package body KarteStadtKonsole is
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenAktuell),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                    RasseExtern        => StadtKonstanten.LeerRasse);
@@ -285,9 +285,9 @@ package body KarteStadtKonsole is
          FarbgebungKonsole.Farben  (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                     VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                     WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                    GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
-                                    FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                    RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                    GrundExtern        => KartengrundDatentypen.Leer_Grund_Enum,
+                                    FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                    RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                     CursorExtern       => True,
                                     EigeneRasseExtern  => RasseExtern,
                                     RasseExtern        => StadtKonstanten.LeerRasse);
@@ -297,8 +297,8 @@ package body KarteStadtKonsole is
                                     VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                     WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                     GrundExtern        => LeseKarten.Grund (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell),
-                                    FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                    RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                    FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                    RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                     CursorExtern       => True,
                                     EigeneRasseExtern  => RasseExtern,
                                     RasseExtern        => StadtKonstanten.LeerRasse);
@@ -367,9 +367,9 @@ package body KarteStadtKonsole is
             FarbgebungKonsole.Farben  (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                        VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                        WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                       GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
-                                       FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                       RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                       GrundExtern        => KartengrundDatentypen.Leer_Grund_Enum,
+                                       FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                       RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                        CursorExtern       => True,
                                        EigeneRasseExtern  => RasseExtern,
                                        RasseExtern        => StadtKonstanten.LeerRasse);
@@ -449,9 +449,9 @@ package body KarteStadtKonsole is
          FarbgebungKonsole.Farben  (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                     VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                     WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                    GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
-                                    FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                    RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                    GrundExtern        => KartengrundDatentypen.Leer_Grund_Enum,
+                                    FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                    RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                     CursorExtern       => True,
                                     EigeneRasseExtern  => RasseExtern,
                                     RasseExtern        => StadtKonstanten.LeerRasse);
@@ -471,9 +471,9 @@ package body KarteStadtKonsole is
                FarbgebungKonsole.Farben  (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                           VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                           WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                          GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
-                                          FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                          RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                          GrundExtern        => KartengrundDatentypen.Leer_Grund_Enum,
+                                          FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                          RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                           CursorExtern       => True,
                                           EigeneRasseExtern  => RasseExtern,
                                           RasseExtern        => StadtKonstanten.LeerRasse);
@@ -483,8 +483,8 @@ package body KarteStadtKonsole is
                                           VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                           WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                           GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KartenWert),
-                                          FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                          RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                          FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                          RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                           CursorExtern       => True,
                                           EigeneRasseExtern  => RasseExtern,
                                           RasseExtern        => StadtKonstanten.LeerRasse);

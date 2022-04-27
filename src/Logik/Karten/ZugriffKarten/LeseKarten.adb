@@ -11,7 +11,7 @@ package body LeseKarten is
    
    function Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Kartengrund_Enum
+      return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund;
@@ -45,7 +45,7 @@ package body LeseKarten is
    
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Fluss_Enum
+      return KartengrundDatentypen.Karten_Fluss_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;
@@ -78,7 +78,7 @@ package body LeseKarten is
    
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource;

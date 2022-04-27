@@ -5,7 +5,7 @@ with SystemDatentypen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with RassenDatentypen;
 
 package DatenbankRecords is
@@ -72,9 +72,9 @@ package DatenbankRecords is
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;
       
-      GrundBenötigt : KartenGrundDatentypen.Kartengrund_Enum;
+      GrundBenötigt : KartengrundDatentypen.Kartengrund_Enum;
       FlussBenötigt : Boolean;
-      RessourceBenötigt : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+      RessourceBenötigt : KartengrundDatentypen.Karten_Ressourcen_Enum;
       --------------------- UndOderGrundFlussBenötigt : Boolean;
       
       GebäudeSpezielleEigenschaft : EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;

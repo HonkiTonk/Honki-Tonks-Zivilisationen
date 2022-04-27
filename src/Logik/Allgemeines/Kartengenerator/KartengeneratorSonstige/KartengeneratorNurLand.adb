@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 
 with SchreibeKarten;
 
@@ -19,7 +19,7 @@ package body KartengeneratorNurLand is
          for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
             SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                  GrundExtern       => KartenGrundDatentypen.Flachland_Enum);
+                                  GrundExtern       => KartengrundDatentypen.Flachland_Enum);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

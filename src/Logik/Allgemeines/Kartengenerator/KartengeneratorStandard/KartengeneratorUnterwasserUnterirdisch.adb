@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 
 with LeseKarten;
 
@@ -12,7 +12,7 @@ with KartengeneratorErdwelt;
 with KartengeneratorWasserwelt;
 with Fehler;
 
-package body KartenGeneratorUnterwasserUnterirdisch is
+package body KartengeneratorUnterwasserUnterirdisch is
 
    procedure GenerierungLandschaft
    is begin
@@ -35,11 +35,11 @@ package body KartenGeneratorUnterwasserUnterirdisch is
             case
               LeseKarten.Grund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartenGrundDatentypen.Erde_Enum =>               
+               when KartengrundDatentypen.Erde_Enum =>               
                   KartengeneratorErdwelt.KartengeneratorErdwelt (YAchseExtern => YAchseSchleifenwert,
                                                                  XAchseExtern => XAchseSchleifenwert);
                   
-               when KartenGrundDatentypen.Unterwasser_Enum | KartenGrundDatentypen.Unterküstengewässer_Enum =>
+               when KartengrundDatentypen.Unterwasser_Enum | KartengrundDatentypen.Unterküstengewässer_Enum =>
                   KartengeneratorWasserwelt.KartengeneratorWasserwelt (YAchseExtern => YAchseSchleifenwert,
                                                                        XAchseExtern => XAchseSchleifenwert);
                   
@@ -52,4 +52,4 @@ package body KartenGeneratorUnterwasserUnterirdisch is
       
    end GenerierungLandschaft;
 
-end KartenGeneratorUnterwasserUnterirdisch;
+end KartengeneratorUnterwasserUnterirdisch;

@@ -6,7 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtRecords;
 with SpielVariablen;
 with KartenRecords;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with SonstigeVariablen;
 
 with Karten;
@@ -47,7 +47,7 @@ private
 
    SichtweiteObjekt : KartenDatentypen.Sichtweite;
 
-   AktuellerGrund : KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
+   AktuellerGrund : KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
 
    Wert : Integer;
 

@@ -15,7 +15,7 @@ with SonstigeVariablen;
 with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 
 with UmwandlungenAdaNachEigenes;
@@ -30,9 +30,9 @@ package KarteInformationenSFML is
 
 private
 
-   KartenGrund : KartenGrundDatentypen.Kartengrund_Enum;
-   KartenFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
-   KartenRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+   KartenGrund : KartengrundDatentypen.Kartengrund_Enum;
+   KartenFluss : KartengrundDatentypen.Karten_Fluss_Enum;
+   KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;

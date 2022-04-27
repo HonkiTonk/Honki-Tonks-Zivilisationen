@@ -9,7 +9,7 @@ with SystemDatentypen;
 with MenueDatentypen;
 
 with ImSpiel;
-with KartenGenerator;
+with Kartengenerator;
 with LadezeitenDatentypen;
 with SpieleinstellungenKarten;
 with SpieleinstellungenRasseSpieler;
@@ -96,7 +96,7 @@ package body Spieleinstellungen is
      return RueckgabeDatentypen.Rückgabe_Werte_Enum
    is begin
       
-      KartenGenerator.KartenGenerator;
+      Kartengenerator.Kartengenerator;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Spieler_Platzieren_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       SpieleinstellungenRasseSpieler.StartwerteErmitteln;

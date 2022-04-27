@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body ZufallsgeneratorenChaos is
 
    function ChaoskarteGrund
-     return KartenGrundDatentypen.Kartengrund_Vorhanden_Enum
+     return KartengrundDatentypen.Kartengrund_Vorhanden_Enum
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
@@ -17,7 +17,7 @@ package body ZufallsgeneratorenChaos is
          case
            GrundWert
          is
-            when KartenGrundDatentypen.Hügel_Mit_Enum =>
+            when KartengrundDatentypen.Hügel_Mit_Enum =>
                null;
                
             when others =>
@@ -31,7 +31,7 @@ package body ZufallsgeneratorenChaos is
    
    
    function ChaoskarteFluss
-     return KartenGrundDatentypen.Karten_Fluss_Enum
+     return KartengrundDatentypen.Karten_Fluss_Enum
    is begin
       
       FlussWählenChaoskarte.Reset (FlussGewählt);
@@ -43,7 +43,7 @@ package body ZufallsgeneratorenChaos is
    
    function ChaoskarteRessource
      (WasserLandExtern : in Boolean)
-      return KartenGrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
       RessourceWählenChaoskarte.Reset (RessourceGewählt);
@@ -54,7 +54,7 @@ package body ZufallsgeneratorenChaos is
       is
          when True =>
             if
-              RessourceWert in KartenGrundDatentypen.Karten_Ressourcen_Wasser'Range
+              RessourceWert in KartengrundDatentypen.Karten_Ressourcen_Wasser'Range
             then
                return RessourceWert;
                   
@@ -64,7 +64,7 @@ package body ZufallsgeneratorenChaos is
 
          when False =>
             if
-              RessourceWert in KartenGrundDatentypen.Karten_Ressourcen_Land'Range
+              RessourceWert in KartengrundDatentypen.Karten_Ressourcen_Land'Range
             then
                return RessourceWert;
                   
@@ -73,14 +73,14 @@ package body ZufallsgeneratorenChaos is
             end if;
       end case;
             
-      return KartenGrundDatentypen.Leer_Ressource_Enum;
+      return KartengrundDatentypen.Leer_Ressource_Enum;
       
    end ChaoskarteRessource;
 
    
    
    function TotaleChaoskarteGrund
-     return KartenGrundDatentypen.Kartengrund_Vorhanden_Enum
+     return KartengrundDatentypen.Kartengrund_Vorhanden_Enum
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
@@ -93,7 +93,7 @@ package body ZufallsgeneratorenChaos is
          case
            GrundWert
          is
-            when KartenGrundDatentypen.Hügel_Mit_Enum =>
+            when KartengrundDatentypen.Hügel_Mit_Enum =>
                null;
                
             when others =>
@@ -107,7 +107,7 @@ package body ZufallsgeneratorenChaos is
    
    
    function TotaleChaoskarteFluss
-     return KartenGrundDatentypen.Karten_Fluss_Enum
+     return KartengrundDatentypen.Karten_Fluss_Enum
    is begin
       
       FlussWählenChaoskarte.Reset (FlussGewählt);
@@ -118,7 +118,7 @@ package body ZufallsgeneratorenChaos is
    
    
    function TotaleChaoskarteRessource
-      return KartenGrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
       RessourceWählenChaoskarte.Reset (RessourceGewählt);

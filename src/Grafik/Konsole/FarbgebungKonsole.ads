@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen;
 with SonstigeVariablen;
@@ -14,9 +14,9 @@ package FarbgebungKonsole is
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum;
-      FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
+      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum;
+      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Enum)
@@ -29,55 +29,55 @@ package FarbgebungKonsole is
 private
    
    ------------------------
-   type FeldfarbeArray is array (KartenGrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Wide_Wide_String (1 .. 17);
+   type FeldfarbeArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Wide_Wide_String (1 .. 17);
    Feldfarbe : FeldfarbeArray := (
-                                  KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Untereis_Enum                       => "48;2;255;245;238m",
-                                  KartenGrundDatentypen.Wasser_Enum | KartenGrundDatentypen.Unterwasser_Enum                 => "48;2;000;000;205m",
-                                  KartenGrundDatentypen.Flachland_Enum                                                              => "48;2;100;160;060m",
-                                  KartenGrundDatentypen.Tundra_Enum                                                                 => "48;2;205;200;177m",
-                                  KartenGrundDatentypen.Wüste_Enum | KartenGrundDatentypen.Sand_Enum                                => "48;2;238;238;000m",
-                                  KartenGrundDatentypen.Hügel_Enum                                                                  => "48;2;205;133;063m",
-                                  KartenGrundDatentypen.Gebirge_Enum                                                                => "48;2;120;120;120m",
-                                  KartenGrundDatentypen.Wald_Enum                                                                   => "48;2;030;130;030m",
-                                  KartenGrundDatentypen.Dschungel_Enum                                                              => "48;2;000;070;000m",
-                                  KartenGrundDatentypen.Küstengewässer_Enum | KartenGrundDatentypen.Unterküstengewässer_Enum => "48;2;135;206;250m",
-                                  KartenGrundDatentypen.Sumpf_Enum                                                                  => "48;2;000;040;000m",
-                                  KartenGrundDatentypen.Erde_Enum                                                                   => "48;2;139;069;019m",
-                                  KartenGrundDatentypen.Erdgestein_Enum                                                             => "48;2;120;120;120m",
-                                  KartenGrundDatentypen.Lava_Enum                                                                   => "48;2;250;039;039m",
-                                  KartenGrundDatentypen.Wolken_Enum                                                                 => "48;2;236;236;236m",
-                                  KartenGrundDatentypen.Weltraum_Enum                                                               => "48;2;127;127;127m",
-                                  KartenGrundDatentypen.Gestein_Enum                                                                => "48;2;087;087;087m",
-                                  KartenGrundDatentypen.Planetenkern_Enum                                                           => "48;2;205;000;000m",
-                                  KartenGrundDatentypen.Unterwald_Enum                                                       => "48;2;127;255;212m",
-                                  KartenGrundDatentypen.Korallen_Enum                                                               => "48;2;255;114;086m",
-                                  KartenGrundDatentypen.Hügel_Mit_Enum                                                              => "48;2;000;000;000m",
-                                  KartenGrundDatentypen.Vernichtet_Enum                                                              => "48;2;000;000;000m"
+                                  KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum                       => "48;2;255;245;238m",
+                                  KartengrundDatentypen.Wasser_Enum | KartengrundDatentypen.Unterwasser_Enum                 => "48;2;000;000;205m",
+                                  KartengrundDatentypen.Flachland_Enum                                                       => "48;2;100;160;060m",
+                                  KartengrundDatentypen.Tundra_Enum                                                          => "48;2;205;200;177m",
+                                  KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Sand_Enum                         => "48;2;238;238;000m",
+                                  KartengrundDatentypen.Hügel_Enum                                                           => "48;2;205;133;063m",
+                                  KartengrundDatentypen.Gebirge_Enum                                                         => "48;2;120;120;120m",
+                                  KartengrundDatentypen.Wald_Enum                                                            => "48;2;030;130;030m",
+                                  KartengrundDatentypen.Dschungel_Enum                                                       => "48;2;000;070;000m",
+                                  KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Unterküstengewässer_Enum => "48;2;135;206;250m",
+                                  KartengrundDatentypen.Sumpf_Enum                                                           => "48;2;000;040;000m",
+                                  KartengrundDatentypen.Erde_Enum                                                            => "48;2;139;069;019m",
+                                  KartengrundDatentypen.Erdgestein_Enum                                                      => "48;2;120;120;120m",
+                                  KartengrundDatentypen.Lava_Enum                                                            => "48;2;250;039;039m",
+                                  KartengrundDatentypen.Wolken_Enum                                                          => "48;2;236;236;236m",
+                                  KartengrundDatentypen.Weltraum_Enum                                                        => "48;2;127;127;127m",
+                                  KartengrundDatentypen.Gestein_Enum                                                         => "48;2;087;087;087m",
+                                  KartengrundDatentypen.Planetenkern_Enum                                                    => "48;2;205;000;000m",
+                                  KartengrundDatentypen.Unterwald_Enum                                                       => "48;2;127;255;212m",
+                                  KartengrundDatentypen.Korallen_Enum                                                        => "48;2;255;114;086m",
+                                  KartengrundDatentypen.Hügel_Mit_Enum                                                       => "48;2;000;000;000m",
+                                  KartengrundDatentypen.Vernichtet_Enum                                                      => "48;2;000;000;000m"
                                  );
    
    procedure FarbenCursorEinheitVerbesserung
      (EinheitIDExtern : in EinheitStadtDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum;
-      FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
+      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum;
+      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Enum);
    
    procedure FarbenFluss
-     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
-      FlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum);
+     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+      FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum);
    
    procedure FarbenRessourcen
-     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum);
+     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
+      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum);
    
    procedure FarbenFeld
-     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
+     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
      with
        Pre =>
-         (GrundExtern /= KartenGrundDatentypen.Hügel_Mit_Enum);
+         (GrundExtern /= KartengrundDatentypen.Hügel_Mit_Enum);
 
 end FarbgebungKonsole;

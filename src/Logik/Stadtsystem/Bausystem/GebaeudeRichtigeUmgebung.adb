@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
 
 with LeseKarten;
@@ -23,7 +23,7 @@ package body GebaeudeRichtigeUmgebung is
       if
         LeseGebaeudeDatenbank.GrundBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                               IDExtern    => GebäudeIDExtern)
-        = KartenGrundDatentypen.Leer_Grund_Enum
+        = KartengrundDatentypen.Leer_Grund_Enum
         and
           LeseGebaeudeDatenbank.FlussBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                 IDExtern    => GebäudeIDExtern)
@@ -31,7 +31,7 @@ package body GebaeudeRichtigeUmgebung is
         and
           LeseGebaeudeDatenbank.RessourceBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                     IDExtern    => GebäudeIDExtern)
-        = KartenGrundDatentypen.Leer_Ressource_Enum
+        = KartengrundDatentypen.Leer_Ressource_Enum
       then
          return True;
                

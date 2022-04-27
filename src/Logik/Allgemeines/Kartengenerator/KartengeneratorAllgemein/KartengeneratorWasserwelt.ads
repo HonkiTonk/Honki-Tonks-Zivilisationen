@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenDatentypen;
 
 package KartengeneratorWasserwelt is
@@ -12,12 +12,12 @@ package KartengeneratorWasserwelt is
    
 private
    
-   WelcherGrund : KartenGrundDatentypen.Kartengrund_Enum;
+   WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    
-   type KartengrundWahrscheinlichkeitArray is array (KartenGrundDatentypen.Kartengrund_Unterwasser_Generator_Enum'Range) of Float;
+   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Unterwasser_Generator_Enum'Range) of Float;
    KartengrundWahrscheinlichkeit : KartengrundWahrscheinlichkeitArray := (
-                                                                          KartenGrundDatentypen.Korallen_Enum         => 0.30,
-                                                                          KartenGrundDatentypen.Unterwald_Enum => 0.30
+                                                                          KartengrundDatentypen.Korallen_Enum         => 0.30,
+                                                                          KartengrundDatentypen.Unterwald_Enum => 0.30
                                                                          );
    GezogeneZahlen : KartengrundWahrscheinlichkeitArray;
    

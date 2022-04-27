@@ -7,18 +7,18 @@ with SystemDatentypen;
 with EinheitenKonstanten;
 
 with KartenfelderBewerten;
-with KartenGeneratorKueste;
-with KartenGeneratorLandschaft;
-with KartenGeneratorFluss;
-with KartenGeneratorRessourcen;
-with KartenGeneratorUnterwasserUnterirdisch;
+with KartengeneratorKueste;
+with KartengeneratorLandschaft;
+with KartengeneratorFluss;
+with KartengeneratorRessourcen;
+with KartengeneratorUnterwasserUnterirdisch;
 with LadezeitenDatentypen;
 with KartengeneratorEisWasserLand;
 with KartengeneratorUnterflaeche;
 
-package body KartenGenerator is
+package body Kartengenerator is
 
-   procedure KartenGenerator
+   procedure Kartengenerator
    is begin
             
       EisWasserLandGenerieren;
@@ -37,7 +37,7 @@ package body KartenGenerator is
       --------------------- Gehört jetzt zur SFML
       -- Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Kartenfelder_Bewerten_Enum);
       
-   end KartenGenerator;
+   end Kartengenerator;
    
    
    
@@ -61,7 +61,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      KartenGeneratorKueste.GenerierungKüstenSeeGewässer;
+      KartengeneratorKueste.GenerierungKüstenSeeGewässer;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Küstengewässer_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -76,7 +76,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      KartenGeneratorLandschaft.GenerierungLandschaft;
+      KartengeneratorLandschaft.GenerierungLandschaft;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -104,7 +104,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      KartenGeneratorUnterwasserUnterirdisch.GenerierungLandschaft;
+      KartengeneratorUnterwasserUnterirdisch.GenerierungLandschaft;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Unterwasser_Unterirdisch_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -119,7 +119,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      KartenGeneratorFluss.AufteilungFlussgenerierung;
+      KartengeneratorFluss.AufteilungFlussgenerierung;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Flüsse_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -134,7 +134,7 @@ package body KartenGenerator is
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Anfangswert_Enum) := Clock;
       
-      KartenGeneratorRessourcen.AufteilungRessourcengenerierung;
+      KartengeneratorRessourcen.AufteilungRessourcengenerierung;
       
       LadezeitenDatentypen.SpielweltErstellenZeit (LadezeitenDatentypen.Generiere_Ressourcen_Enum, SystemDatentypen.Endwert_Enum) := Clock;
       --------------------- Gehört jetzt zur SFML
@@ -142,4 +142,4 @@ package body KartenGenerator is
       
    end RessourcenGenerieren;
 
-end KartenGenerator;
+end Kartengenerator;

@@ -5,7 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with RassenDatentypen;
 with KartenRecords;
 with EinheitStadtDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 
 with Karten;
@@ -14,15 +14,15 @@ package KartenAllgemein is
 
    ------------------- Contracts einbauen.
    function BeschreibungGrund
-     (KartenGrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
+     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function BeschreibungFluss
-     (KartenFlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
+     (KartenFlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function BeschreibungRessource
-     (KartenRessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
       return Wide_Wide_String;
 
    function GrundNahrung
@@ -407,8 +407,8 @@ package KartenAllgemein is
 
 private
 
-   KartenFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
-   KartenRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+   KartenFluss : KartengrundDatentypen.Karten_Fluss_Enum;
+   KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
 

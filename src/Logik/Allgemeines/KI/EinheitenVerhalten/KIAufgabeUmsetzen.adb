@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 
 with LeseKarten;
@@ -61,15 +61,15 @@ package body KIAufgabeUmsetzen is
       Ressourcen := LeseKarten.Ressource (KoordinatenExtern => EinheitKoordinaten);
          
       if
-        (Grund = KartenGrundDatentypen.Hügel_Enum
+        (Grund = KartengrundDatentypen.Hügel_Enum
          or
-           Grund = KartenGrundDatentypen.Gebirge_Enum
+           Grund = KartengrundDatentypen.Gebirge_Enum
          or
-           Ressourcen = KartenGrundDatentypen.Kohle_Enum
+           Ressourcen = KartengrundDatentypen.Kohle_Enum
          or
-           Ressourcen = KartenGrundDatentypen.Eisen_Enum
+           Ressourcen = KartengrundDatentypen.Eisen_Enum
          or
-           Ressourcen = KartenGrundDatentypen.Gold_Enum
+           Ressourcen = KartengrundDatentypen.Gold_Enum
          or
            LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
         and
@@ -80,7 +80,7 @@ package body KIAufgabeUmsetzen is
          Befehl := TastenbelegungDatentypen.Mine_Bauen_Enum;
          
       elsif
-        Grund = KartenGrundDatentypen.Eis_Enum
+        Grund = KartengrundDatentypen.Eis_Enum
         and
           Aufgaben.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                        BefehlExtern             => TastenbelegungDatentypen.Festung_Bauen_Enum)

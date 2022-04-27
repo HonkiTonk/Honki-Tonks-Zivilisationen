@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen;
 with KartenRecords;
 with KartenKonstanten;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 
 with DatenbankRecords;
@@ -36,11 +36,11 @@ package KartenRecordKonstanten is
                                                                               );
 
    LeerWeltkarte : constant KartenRecords.KartenRecord := (
-                                                           Grund                   => KartenGrundDatentypen.Leer_Grund_Enum,
+                                                           Grund                   => KartengrundDatentypen.Leer_Grund_Enum,
                                                            Hügel                   => KartenKonstanten.LeerHügel,
                                                            Sichtbar                => (others => KartenKonstanten.LeerSichtbar),
-                                                           Fluss                   => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                                           Ressource               => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                                           Fluss                   => KartengrundDatentypen.Leer_Fluss_Enum,
+                                                           Ressource               => KartengrundDatentypen.Leer_Ressource_Enum,
                                                            Weg                     => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                                            Verbesserung            => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                                            DurchStadtBelegterGrund => KartenKonstanten.LeerDurchStadtBelegterGrund,

@@ -13,7 +13,7 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenRecords;
 with SonstigeVariablen;
 with EinheitStadtRecords;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 
 package KarteSFML is
@@ -35,9 +35,9 @@ private
    
    SichtbereichAnfangEnde : KartenDatentypen.SichtbereichAnfangEndeArray;
    
-   Kartengrund : KartenGrundDatentypen.Kartengrund_Enum;
-   KartenfeldFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
-   KartenfeldRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+   Kartengrund : KartengrundDatentypen.Kartengrund_Enum;
+   KartenfeldFluss : KartengrundDatentypen.Karten_Fluss_Enum;
+   KartenfeldRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    
    Stadtart : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;

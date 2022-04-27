@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen;
 with KartenDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with RassenDatentypen;
 
@@ -81,12 +81,12 @@ package KartenRecords is
    
    type KartenRecord is record
 
-      Grund : KartenGrundDatentypen.Kartengrund_Enum;
+      Grund : KartengrundDatentypen.Kartengrund_Enum;
       Hügel : Boolean;
       Sichtbar : SichtbarkeitArray;
       
-      Fluss : KartenGrundDatentypen.Karten_Fluss_Enum;
-      Ressource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+      Fluss : KartengrundDatentypen.Karten_Fluss_Enum;
+      Ressource : KartengrundDatentypen.Karten_Ressourcen_Enum;
       
       Weg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
       Verbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;

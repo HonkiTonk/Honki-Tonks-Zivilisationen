@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body FarbgebungSFML is
 
    function FarbeKartenfeldErmitteln
-     (GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
+     (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Sf.Graphics.Color.sfColor
    is begin
       
@@ -15,7 +15,7 @@ package body FarbgebungSFML is
    
    
    function FarbeFlussErmitteln
-     (FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum)
+     (FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum)
       return Sf.Graphics.Color.sfColor
    is begin
       

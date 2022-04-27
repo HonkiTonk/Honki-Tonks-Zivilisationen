@@ -11,7 +11,7 @@ with ZufallsgeneratorenKarten;
 with Kartenkoordinatenberechnungssystem;
 with KartengeneratorVariablen;
 
-package body KartenGeneratorRessourcen is
+package body KartengeneratorRessourcen is
    
    procedure AufteilungRessourcengenerierung
    is begin
@@ -70,16 +70,16 @@ package body KartenGeneratorRessourcen is
          for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
                
        --     if
-       --       LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Wasser_Enum'Range
+       --       LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartengrundDatentypen.Karten_Grund_Wasser_Enum'Range
        --        or
-       --          LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Kartengrund_Unterwasser_Generator_Enum'Range
+       --          LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartengrundDatentypen.Kartengrund_Unterwasser_Generator_Enum'Range
             --  and
              --   KartengeneratorVariablen.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
       --      then
        --        RessourcenWasser (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                
        --     elsif
-       --       LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartenGrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
+       --       LeseKarten.Grund (KoordinatenExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in KartengrundDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
              -- and
              --   (KartengeneratorVariablen.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False)
        --     then
@@ -101,7 +101,7 @@ package body KartenGeneratorRessourcen is
    is begin
       
       WasserRessourcenSchleife:
-      for WasserRessourceSchleifenwert in KartenGrundDatentypen.Karten_Ressourcen_Wasser'Range loop
+      for WasserRessourceSchleifenwert in KartengrundDatentypen.Karten_Ressourcen_Wasser'Range loop
          
          if
            ZufallsgeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenparameter.Kartenressourcen, WasserRessourceSchleifenwert)
@@ -126,7 +126,7 @@ package body KartenGeneratorRessourcen is
    is begin
       
       LandRessourcenSchleife:
-      for LandRessourceSchleifenwert in KartenGrundDatentypen.Karten_Ressourcen_Land'Range loop
+      for LandRessourceSchleifenwert in KartengrundDatentypen.Karten_Ressourcen_Land'Range loop
                      
          if
            ZufallsgeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenparameter.Kartenressourcen, LandRessourceSchleifenwert)
@@ -175,4 +175,4 @@ package body KartenGeneratorRessourcen is
       
    end RessourcenUmgebungBelegen;
 
-end KartenGeneratorRessourcen;
+end KartengeneratorRessourcen;

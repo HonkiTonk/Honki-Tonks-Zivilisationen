@@ -6,7 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtRecords;
 with SonstigeVariablen;
 with KartenRecords;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with SpielVariablen;
 
 with Karten;
@@ -25,7 +25,7 @@ package VerbesserungWeg is
 
    function VerbesserungWeg
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with

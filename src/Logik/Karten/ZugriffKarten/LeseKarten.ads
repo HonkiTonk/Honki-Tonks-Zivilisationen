@@ -6,7 +6,7 @@ with SonstigeVariablen;
 with KartenRecords;
 with EinheitStadtRecords;
 with KartenDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with SpielVariablen;
 
@@ -16,7 +16,7 @@ package LeseKarten is
 
    function Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Kartengrund_Enum
+      return KartengrundDatentypen.Kartengrund_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -46,7 +46,7 @@ package LeseKarten is
 
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Fluss_Enum
+      return KartengrundDatentypen.Karten_Fluss_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -73,7 +73,7 @@ package LeseKarten is
 
    function Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartenGrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

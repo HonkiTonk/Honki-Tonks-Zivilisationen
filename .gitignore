@@ -1,7 +1,8 @@
 obj/
-Spiel/Audio
-Spiel/Datenbanken
-Spiel/Einstellungen
-Spiel/Grafik
-Spiel/Spielstand
+Spiel/Audio/
+Spiel/Datenbanken/
+Spiel/Einstellungen/
+Spiel/Grafik/
+Spiel/Spielstand/
 Spiel/Start
+Notizen/

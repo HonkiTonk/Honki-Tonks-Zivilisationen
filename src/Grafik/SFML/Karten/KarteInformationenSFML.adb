@@ -205,7 +205,7 @@ package body KarteInformationenSFML is
       is
          when True =>
             Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                               str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartenGrundDatentypen.Hügel_Mit_Enum));
+                                               str  => KartenAllgemein.BeschreibungGrund (KartenGrundExtern => KartengrundDatentypen.Hügel_Mit_Enum));
       
             Sf.Graphics.Text.setPosition (text     => TextAccess,
                                           position => PositionText);
@@ -223,7 +223,7 @@ package body KarteInformationenSFML is
       case
         KartenGrund
       is
-         when KartenGrundDatentypen.Leer_Grund_Enum =>
+         when KartengrundDatentypen.Leer_Grund_Enum =>
             -- Ohne Grund sollte dann auch nicht anderes mehr hier sein.
             return;
             
@@ -247,7 +247,7 @@ package body KarteInformationenSFML is
       case
         KartenRessource
       is
-         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
             null;
             
          when others =>
@@ -311,7 +311,7 @@ package body KarteInformationenSFML is
       case
         KartenFluss
       is
-         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
             null;
             
          when others =>

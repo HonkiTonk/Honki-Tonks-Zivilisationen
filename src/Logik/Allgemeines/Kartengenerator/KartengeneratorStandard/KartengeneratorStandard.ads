@@ -6,7 +6,7 @@ with KartenRecords;
 
 with Karten;
 
-package KartenGeneratorStandard is
+package KartengeneratorStandard is
 
    procedure OberflächeGenerieren;
 
@@ -65,4 +65,4 @@ private
           and
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
-end KartenGeneratorStandard;
+end KartengeneratorStandard;

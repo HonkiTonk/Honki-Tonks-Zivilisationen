@@ -4,16 +4,16 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen;
 with KartenRecordKonstanten;
 
-with KartenGeneratorHimmel;
-with KartenGeneratorWeltraum;
-with KartenGeneratorPlanetenInneres;
+with KartengeneratorHimmel;
+with KartengeneratorWeltraum;
+with KartengeneratorPlaneteninneres;
 with Karten;
 with KartengeneratorPolregion;
-with KartenGeneratorStandard;
+with KartengeneratorStandard;
 with Fehler;
 with KartengeneratorNurLand;
 with KartengeneratorTotalesChaos;
-with KartenGeneratorChaos;
+with KartengeneratorChaos;
 with LandwerteFestlegen;
 with PolbereicheBerechnen;
 
@@ -30,7 +30,7 @@ package body KartengeneratorEisWasserLand is
             KartengeneratorStandardSonstiges;
             
          when KartenDatentypen.Kartenart_Chaos_Enum =>
-            KartenGeneratorChaos.Chaos;
+            KartengeneratorChaos.Chaos;
             
          when KartenDatentypen.Kartenart_Totales_Chaos_Enum =>
             KartengeneratorTotalesChaos.TotalesChaos;
@@ -75,12 +75,12 @@ package body KartengeneratorEisWasserLand is
    
       task Himmel;
       task Weltraum;
-      task PlanetenInneres;
+      task Planeteninneres;
       
       task body Himmel
       is begin
          
-         KartenGeneratorHimmel.Himmel;
+         KartengeneratorHimmel.Himmel;
          
       end Himmel;
       
@@ -89,18 +89,18 @@ package body KartengeneratorEisWasserLand is
       task body Weltraum
       is begin
 
-         KartenGeneratorWeltraum.Weltraum;
+         KartengeneratorWeltraum.Weltraum;
          
       end Weltraum;
       
       
       
-      task body PlanetenInneres
+      task body Planeteninneres
       is begin
          
-         KartenGeneratorPlanetenInneres.PlanetenInneres;
+         KartengeneratorPlaneteninneres.Planeteninneres;
          
-      end PlanetenInneres;
+      end Planeteninneres;
    
    begin
       
@@ -113,7 +113,7 @@ package body KartengeneratorEisWasserLand is
             KartengeneratorNurLand.NurLandGenerieren;
             
          when KartenDatentypen.Kartenart_Normal_Enum'Range =>
-            KartenGeneratorStandard.OberflächeGenerieren;
+            KartengeneratorStandard.OberflächeGenerieren;
             
          when KartenDatentypen.Kartenart_Chaotisch_Enum'Range =>
             Fehler.LogikFehler (FehlermeldungExtern => "KartenGeneratorStandard.StandardKarte - Kartenart ist chaotisch.");

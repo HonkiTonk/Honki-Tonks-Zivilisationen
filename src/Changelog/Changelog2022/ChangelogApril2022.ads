@@ -14,18 +14,19 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0500 => 0.01.05 (28.04.2022):
+   -- Version 0.01.0505 => 0.01.05 (28.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0490 => 0.01.0500 (27.04.2022):
+   -- Version 0.01.0490 => 0.01.0505 (27.04.2022):
    
    -- Bestimmung ob etwas transportieren oder transportiert werden kann auf Enum umgeschrieben.
    -- Weiter an der neuen Version des Kartengenerators gearbeitet.
    -- KartengeneratorUnterfläche fürs Erste fertig überarbeitet.
+   -- Internet Benennung und Formatierung überarbeitet.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    

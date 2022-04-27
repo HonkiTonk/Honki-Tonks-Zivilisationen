@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-package KartenGeneratorUnterwasserUnterirdisch is
+package KartengeneratorUnterwasserUnterirdisch is
 
    procedure GenerierungLandschaft;
 
-end KartenGeneratorUnterwasserUnterirdisch;
+end KartengeneratorUnterwasserUnterirdisch;

@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-package KartenGenerator is
+package Kartengenerator is
 
-   procedure KartenGenerator;
+   procedure Kartengenerator;
 
 private
 
@@ -15,4 +15,4 @@ private
    procedure FlüsseGenerieren;
    procedure RessourcenGenerieren;
 
-end KartenGenerator;
+end Kartengenerator;

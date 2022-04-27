@@ -14,7 +14,7 @@ with EinheitStadtRecords;
 with SpielVariablen;
 with EinheitStadtDatentypen;
 with KartenRecords;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 with SonstigeVariablen;
 
@@ -40,9 +40,9 @@ private
 
    YAchsenabstraktion : KartenDatentypen.Kartenfeld;
 
-   Kartenfeld : KartenGrundDatentypen.Kartengrund_Enum;
-   KartenfeldRessource : KartenGrundDatentypen.Karten_Ressourcen_Enum;
-   KartenfeldFluss : KartenGrundDatentypen.Karten_Fluss_Enum;
+   Kartenfeld : KartengrundDatentypen.Kartengrund_Enum;
+   KartenfeldRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
+   KartenfeldFluss : KartengrundDatentypen.Karten_Fluss_Enum;
 
    Stadtfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;

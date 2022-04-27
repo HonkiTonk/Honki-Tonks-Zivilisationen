@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with RassenDatentypen; use RassenDatentypen;
 with KartenVerbesserungDatentypen;
 with SonstigeVariablen;
@@ -14,14 +14,14 @@ package SchreibeKarten is
 
    procedure Grund
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Enum)
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse
           and
-            GrundExtern /= KartenGrundDatentypen.Leer_Grund_Enum);
+            GrundExtern /= KartengrundDatentypen.Leer_Grund_Enum);
    
    procedure Hügel
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
@@ -46,7 +46,7 @@ package SchreibeKarten is
 
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in KartenGrundDatentypen.Karten_Fluss_Enum)
+      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -73,7 +73,7 @@ package SchreibeKarten is
 
    procedure Ressource
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      RessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Enum)
+      RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

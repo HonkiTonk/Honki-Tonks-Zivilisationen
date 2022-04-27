@@ -4,14 +4,14 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtRecords;
 with SonstigeVariablen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with SpielVariablen;
 
 package VerbesserungFestung is
 
    function VerbesserungFestung
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
      with

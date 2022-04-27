@@ -15,12 +15,12 @@ package body KartenAllgemein is
 
    ------------------------ Später die Beschreibungen noch um RasseExtern erweitern damit jede Rasse ihren eigenen Text haben kann?
    function BeschreibungGrund
-     (KartenGrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum)
+     (KartenGrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
       -- Die Zwischenrechnungen mal drin lassen, für den Fall dass ich die Beschreibungen rassenspezifisch machen will. Könnte dann eine komplexere Rechnung werden.
-      GrundAktuell := 2 * KartenGrundDatentypen.Kartengrund_Enum'Pos (KartenGrundExtern) - 1;
+      GrundAktuell := 2 * KartengrundDatentypen.Kartengrund_Enum'Pos (KartenGrundExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenfelder (GrundAktuell));
       
@@ -29,11 +29,11 @@ package body KartenAllgemein is
    
    
    function BeschreibungFluss
-     (KartenFlussExtern : in KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
+     (KartenFlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
             
-      FlussAktuell := 2 * KartenGrundDatentypen.Karten_Fluss_Enum'Pos (KartenFlussExtern) - 1;
+      FlussAktuell := 2 * KartengrundDatentypen.Karten_Fluss_Enum'Pos (KartenFlussExtern) - 1;
       
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenflüsse (FlussAktuell));
       
@@ -42,11 +42,11 @@ package body KartenAllgemein is
    
    
    function BeschreibungRessource
-     (KartenRessourceExtern : in KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
+     (KartenRessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
       
-      RessourceAktuell := 2 * KartenGrundDatentypen.Karten_Ressourcen_Enum'Pos (KartenRessourceExtern) - 1;
+      RessourceAktuell := 2 * KartengrundDatentypen.Karten_Ressourcen_Enum'Pos (KartenRessourceExtern) - 1;
    
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenressourcen (RessourceAktuell));
       
@@ -67,7 +67,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
-              + LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => KartenGrundDatentypen.Hügel_Mit_Enum,
+              + LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
                                                      RasseExtern         => RasseExtern,
                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftNahrung)
               / 2;
@@ -95,7 +95,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
-              + LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => KartenGrundDatentypen.Hügel_Mit_Enum,
+              + LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
                                                      RasseExtern         => RasseExtern,
                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftProduktion)
               / 2;
@@ -123,7 +123,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
-              + LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => KartenGrundDatentypen.Hügel_Mit_Enum,
+              + LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
                                                      RasseExtern         => RasseExtern,
                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftGeld)
               / 2;
@@ -151,7 +151,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                         RasseExtern         => RasseExtern,
                                                         WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
-              + LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => KartenGrundDatentypen.Hügel_Mit_Enum,
+              + LeseKartenDatenbank.WirtschaftGrund (GrundExtern         => KartengrundDatentypen.Hügel_Mit_Enum,
                                                      RasseExtern         => RasseExtern,
                                                      WirtschaftArtExtern => KartenKonstanten.WirtschaftForschung)
               / 2;
@@ -179,7 +179,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.KampfGrund (GrundExtern    => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern    => RasseExtern,
                                                    KampfArtExtern => KartenKonstanten.KampfVerteidigung)
-              + LeseKartenDatenbank.KampfGrund (GrundExtern    => KartenGrundDatentypen.Hügel_Mit_Enum,
+              + LeseKartenDatenbank.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
                                                 RasseExtern    => RasseExtern,
                                                 KampfArtExtern => KartenKonstanten.KampfVerteidigung)
               / 2;
@@ -207,7 +207,7 @@ package body KartenAllgemein is
             return LeseKartenDatenbank.KampfGrund (GrundExtern    => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                                    RasseExtern    => RasseExtern,
                                                    KampfArtExtern => KartenKonstanten.KampfAngriff)
-              + LeseKartenDatenbank.KampfGrund (GrundExtern    => KartenGrundDatentypen.Hügel_Mit_Enum,
+              + LeseKartenDatenbank.KampfGrund (GrundExtern    => KartengrundDatentypen.Hügel_Mit_Enum,
                                                 RasseExtern    => RasseExtern,
                                                 KampfArtExtern => KartenKonstanten.KampfAngriff)
               / 2;
@@ -246,7 +246,7 @@ package body KartenAllgemein is
       case
         KartenFluss
       is
-         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -270,7 +270,7 @@ package body KartenAllgemein is
       case
         KartenFluss
       is
-         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -294,7 +294,7 @@ package body KartenAllgemein is
       case
         KartenFluss
       is
-         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -318,7 +318,7 @@ package body KartenAllgemein is
       case
         KartenFluss
       is
-         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -342,7 +342,7 @@ package body KartenAllgemein is
       case
         KartenFluss
       is
-         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -366,7 +366,7 @@ package body KartenAllgemein is
       case
         KartenFluss
       is
-         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -390,7 +390,7 @@ package body KartenAllgemein is
       case
         KartenFluss
       is
-         when KartenGrundDatentypen.Leer_Fluss_Enum =>
+         when KartengrundDatentypen.Leer_Fluss_Enum =>
             return 0;
             
          when others =>
@@ -748,7 +748,7 @@ package body KartenAllgemein is
       case
         KartenRessource
       is
-         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -772,7 +772,7 @@ package body KartenAllgemein is
       case
         KartenRessource
       is
-         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -796,7 +796,7 @@ package body KartenAllgemein is
       case
         KartenRessource
       is
-         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -820,7 +820,7 @@ package body KartenAllgemein is
       case
         KartenRessource
       is
-         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -844,7 +844,7 @@ package body KartenAllgemein is
       case
         KartenRessource
       is
-         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -868,7 +868,7 @@ package body KartenAllgemein is
       case
         KartenRessource
       is
-         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>
@@ -892,7 +892,7 @@ package body KartenAllgemein is
       case
         KartenRessource
       is
-         when KartenGrundDatentypen.Leer_Ressource_Enum =>
+         when KartengrundDatentypen.Leer_Ressource_Enum =>
             return 0;
             
          when others =>

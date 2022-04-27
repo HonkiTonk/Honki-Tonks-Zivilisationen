@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-package KartenGrundDatentypen is
+package KartengrundDatentypen is
 
    -------------------- Das hier muss mal neu sortiert und anschließend alles angepasst werden.
    type Kartengrund_Enum is (
@@ -107,4 +107,4 @@ package KartenGrundDatentypen is
    subtype Karten_Unterirdischer_Fluss_Vorhanden_Enum is Karten_Alle_Flüsse_Vorhanden_Enum range Unterirdische_Flusskreuzung_Vier_Enum .. Unterirdischer_See_Enum;
    subtype Karten_Lavafluss_Vorhanden_Enum is Karten_Alle_Flüsse_Vorhanden_Enum range Lavaflusskreuzung_Vier_Enum .. Lavasee_Enum;
 
-end KartenGrundDatentypen;
+end KartengrundDatentypen;

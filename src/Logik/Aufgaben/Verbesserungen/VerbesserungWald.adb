@@ -16,7 +16,7 @@ package body VerbesserungWald is
 
    function VerbesserungWald
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -51,14 +51,14 @@ package body VerbesserungWald is
       case
         GrundExtern
       is
-         when KartenGrundDatentypen.Flachland_Enum | KartenGrundDatentypen.Hügel_Enum =>
+         when KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Hügel_Enum =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern     => AufgabenDatentypen.Wald_Aufforsten_Enum);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => 3,
                                                          RechnenSetzenExtern      => 0);
 
-         when KartenGrundDatentypen.Dschungel_Enum | KartenGrundDatentypen.Sumpf_Enum =>
+         when KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
             if
               VerbesserungRoden.VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    GrundExtern              => GrundExtern,

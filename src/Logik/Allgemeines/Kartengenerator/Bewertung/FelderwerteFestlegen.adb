@@ -5,7 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with KartenKonstanten;
 with EinheitenKonstanten;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 
 with SchreibeKarten;
@@ -135,7 +135,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.Fluss (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenGrundDatentypen.Leer_Fluss_Enum =>
+               when KartengrundDatentypen.Leer_Fluss_Enum =>
                   null;
             
                when others =>
@@ -189,7 +189,7 @@ package body FelderwerteFestlegen is
             case
               LeseKarten.Ressource (KoordinatenExtern => KoordinatenUmgebungExtern)
             is
-               when KartenGrundDatentypen.Leer_Ressource_Enum =>
+               when KartengrundDatentypen.Leer_Ressource_Enum =>
                   null;
             
                when others =>

@@ -5,7 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtRecords;
 with SpielVariablen;
 with TastenbelegungDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenRecords;
 with SonstigeVariablen;
 
@@ -34,8 +34,8 @@ private
    AufgabeDurchführen : Boolean;
    NullWert : Boolean;
 
-   Grund : KartenGrundDatentypen.Kartengrund_Enum;
-   Ressourcen : KartenGrundDatentypen.Karten_Ressourcen_Enum;
+   Grund : KartengrundDatentypen.Kartengrund_Enum;
+   Ressourcen : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
    EinheitKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
 

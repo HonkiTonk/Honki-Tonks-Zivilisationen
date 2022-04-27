@@ -6,7 +6,7 @@ with EinheitStadtRecords;
 with SpielVariablen;
 with EinheitStadtDatentypen;
 with TastenbelegungDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with SonstigeVariablen;
 
 package Aufgaben is
@@ -35,7 +35,7 @@ private
    
    IDEinheit : EinheitStadtDatentypen.EinheitenID;
    
-   Grund : KartenGrundDatentypen.Kartengrund_Enum;
+   Grund : KartengrundDatentypen.Kartengrund_Enum;
    
    procedure EinheitVerschanzen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)

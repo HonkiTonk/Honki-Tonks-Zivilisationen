@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
 with EinheitStadtDatentypen;
 with StadtKonstanten;
@@ -47,20 +47,20 @@ package body Sichtbarkeit is
       end if;
       
       if
-        AktuellerGrund = KartenGrundDatentypen.Gebirge_Enum
+        AktuellerGrund = KartengrundDatentypen.Gebirge_Enum
         or
-          AktuellerGrund = KartenGrundDatentypen.Hügel_Enum
+          AktuellerGrund = KartengrundDatentypen.Hügel_Enum
           or
             LeseKarten.Hügel (KoordinatenExtern => KoordinatenEinheit) = True
       then
          return 3;
 
       elsif
-        AktuellerGrund = KartenGrundDatentypen.Dschungel_Enum
+        AktuellerGrund = KartengrundDatentypen.Dschungel_Enum
         or
-          AktuellerGrund = KartenGrundDatentypen.Sumpf_Enum
+          AktuellerGrund = KartengrundDatentypen.Sumpf_Enum
           or
-            AktuellerGrund = KartenGrundDatentypen.Wald_Enum
+            AktuellerGrund = KartengrundDatentypen.Wald_Enum
       then
          return 1;
                
@@ -706,19 +706,19 @@ package body Sichtbarkeit is
          null;
          
       elsif
-        LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Gebirge_Enum
+        LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Gebirge_Enum
         or
-          LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Hügel_Enum
+          LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Hügel_Enum
         or
           LeseKarten.Hügel (KoordinatenExtern => KartenBlockadeWert) = True
         or
           (SichtweiteExtern /= 3
            and
-             (LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Dschungel_Enum
+             (LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Dschungel_Enum
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Sumpf_Enum
+                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Sumpf_Enum
               or
-                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartenGrundDatentypen.Wald_Enum))
+                LeseKarten.Grund (KoordinatenExtern => KartenBlockadeWert) = KartengrundDatentypen.Wald_Enum))
       then
          return False;
          

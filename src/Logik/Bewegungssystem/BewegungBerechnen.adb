@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenKonstanten;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
 
 with SchreibeEinheitenGebaut;
@@ -149,7 +149,7 @@ package body BewegungBerechnen is
       case
         LeseKarten.Grund (KoordinatenExtern => NeueKoordinatenExtern)
       is
-         when KartenGrundDatentypen.Eis_Enum | KartenGrundDatentypen.Gebirge_Enum | KartenGrundDatentypen.Dschungel_Enum | KartenGrundDatentypen.Sumpf_Enum =>
+         when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Gebirge_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
             if
               LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug
             then
@@ -215,7 +215,7 @@ package body BewegungBerechnen is
          case
            LeseKarten.Fluss (KoordinatenExtern => NeueKoordinatenExtern)
          is
-            when KartenGrundDatentypen.Leer_Fluss_Enum =>
+            when KartengrundDatentypen.Leer_Fluss_Enum =>
                null;
 
             when others =>

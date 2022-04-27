@@ -2,9 +2,9 @@ AnzahlGleicherGrund : KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder;
 
 KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
 
-type KartengrundWahrscheinlichkeitenArray is array (KartenGrundDatentypen.Karten_Unterwasser_Generator_Enum'Range, KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
+type KartengrundWahrscheinlichkeitenArray is array (KartengrundDatentypen.Karten_Unterwasser_Generator_Enum'Range, KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
 KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (
-                                                                                    KartenGrundDatentypen.Korallen_Enum =>
+                                                                                    KartengrundDatentypen.Korallen_Enum =>
                                                                                       (
                                                                                        0 => 0.20,
                                                                                        1 => 0.25,
@@ -17,7 +17,7 @@ KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray 
                                                                                        8 => 0.55
                                                                                       ),
 
-                                                                                    KartenGrundDatentypen.Unterwald_Enum =>
+                                                                                    KartengrundDatentypen.Unterwald_Enum =>
                                                                                       (
                                                                                        0 => 0.20,
                                                                                        1 => 0.25,
@@ -38,7 +38,7 @@ procedure WasserweltErzeugen
 is begin
 
    GrundSchleife:
-   for GrundSchleifenwert in KartenGrundDatentypen.Karten_Unterwasser_Generator_Enum'Range loop
+   for GrundSchleifenwert in KartengrundDatentypen.Karten_Unterwasser_Generator_Enum'Range loop
 
       AnzahlGleicherGrund := KartenGeneratorBerechnungenAllgemein.GleicherGrundAnzahlBestimmen (KoordinatenExtern => (-1, YAchseExtern, XAchseExtern),
                                                                                                 GrundExtern       => GrundSchleifenwert,
@@ -59,9 +59,9 @@ is begin
    case
      LeseKarten.Grund (KoordinatenExtern => (-1, YAchseExtern, XAchseExtern))
    is
-      when KartenGrundDatentypen.Leer_Grund_Enum =>
+      when KartengrundDatentypen.Leer_Grund_Enum =>
          SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseExtern, XAchseExtern),
-                               GrundExtern       => KartenGrundDatentypen.Unterwasser_Enum);
+                               GrundExtern       => KartengrundDatentypen.Unterwasser_Enum);
 
       when others =>
          null;

@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
 with TextKonstanten;
@@ -42,9 +42,9 @@ package body GrafischeAnzeigeKonsole is
                FarbgebungKonsole.Farben (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                          VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                          WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
-                                         GrundExtern        => KartenGrundDatentypen.Leer_Grund_Enum,
-                                         FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                         RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                         GrundExtern        => KartengrundDatentypen.Leer_Grund_Enum,
+                                         FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                         RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                          CursorExtern       => True,
                                          EigeneRasseExtern  => RasseExtern,
                                          RasseExtern        => EinheitenKonstanten.LeerRasse);
@@ -129,8 +129,8 @@ package body GrafischeAnzeigeKonsole is
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => True,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitenKonstanten.LeerRasse);
@@ -165,8 +165,8 @@ package body GrafischeAnzeigeKonsole is
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitStadtRasseNummer.Rasse);
@@ -176,8 +176,8 @@ package body GrafischeAnzeigeKonsole is
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitStadtRasseNummer.Rasse);
@@ -207,8 +207,8 @@ package body GrafischeAnzeigeKonsole is
                                    VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer),
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitStadtRasseNummer.Rasse);
@@ -232,8 +232,8 @@ package body GrafischeAnzeigeKonsole is
                                    VerbesserungExtern => LeseKarten.Verbesserung (KoordinatenExtern => KoordinatenExtern),
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitenKonstanten.LeerRasse);
@@ -245,34 +245,34 @@ package body GrafischeAnzeigeKonsole is
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => LeseKarten.Weg (KoordinatenExtern => KoordinatenExtern),
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitenKonstanten.LeerRasse);
             
       elsif
-        LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern) /= KartenGrundDatentypen.Leer_Ressource_Enum
+        LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern) /= KartengrundDatentypen.Leer_Ressource_Enum
       then
          FarbgebungKonsole.Farben (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
                                    RessourceExtern    => LeseKarten.Ressource (KoordinatenExtern => KoordinatenExtern),
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitenKonstanten.LeerRasse);
             
       elsif
-        LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern) /= KartenGrundDatentypen.Leer_Fluss_Enum
+        LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern) /= KartengrundDatentypen.Leer_Fluss_Enum
       then
          FarbgebungKonsole.Farben (EinheitIDExtern    => EinheitenKonstanten.LeerID,
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
                                    FlussExtern        => LeseKarten.Fluss (KoordinatenExtern => KoordinatenExtern),
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitenKonstanten.LeerRasse);
@@ -282,8 +282,8 @@ package body GrafischeAnzeigeKonsole is
                                    VerbesserungExtern => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum,
                                    WegExtern          => KartenVerbesserungDatentypen.Leer_Weg_Enum,
                                    GrundExtern        => LeseKarten.Grund (KoordinatenExtern => KoordinatenExtern),
-                                   FlussExtern        => KartenGrundDatentypen.Leer_Fluss_Enum,
-                                   RessourceExtern    => KartenGrundDatentypen.Leer_Ressource_Enum,
+                                   FlussExtern        => KartengrundDatentypen.Leer_Fluss_Enum,
+                                   RessourceExtern    => KartengrundDatentypen.Leer_Ressource_Enum,
                                    CursorExtern       => False,
                                    EigeneRasseExtern  => RasseExtern,
                                    RasseExtern        => EinheitenKonstanten.LeerRasse);

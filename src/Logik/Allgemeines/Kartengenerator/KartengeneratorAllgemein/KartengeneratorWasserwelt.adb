@@ -28,7 +28,7 @@ package body KartengeneratorWasserwelt is
          
       end loop ZufallszahlenSchleife;
       
-      WelcherGrund := KartenGrundDatentypen.Leer_Grund_Enum;
+      WelcherGrund := KartengrundDatentypen.Leer_Grund_Enum;
       WelcheMöglichkeiten := (others => False);
       
       AuswahlSchleife:

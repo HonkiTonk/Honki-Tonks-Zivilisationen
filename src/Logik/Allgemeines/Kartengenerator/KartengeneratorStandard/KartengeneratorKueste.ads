@@ -6,7 +6,7 @@ with KartenRecords;
 
 with Karten;
 
-package KartenGeneratorKueste is
+package KartengeneratorKueste is
 
    procedure GenerierungKüstenSeeGewässer;
 
@@ -22,4 +22,4 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
-end KartenGeneratorKueste;
+end KartengeneratorKueste;

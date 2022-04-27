@@ -50,14 +50,14 @@ package body KartengeneratorUnterflaeche is
       case
         GrundOben
       is
-         when KartenGrundDatentypen.Wasser_Enum =>
-            GrundUnten := KartenGrundDatentypen.Unterwasser_Enum;
+         when KartengrundDatentypen.Wasser_Enum =>
+            GrundUnten := KartengrundDatentypen.Unterwasser_Enum;
             
-         when KartenGrundDatentypen.Küstengewässer_Enum =>
-            GrundUnten := KartenGrundDatentypen.Unterküstengewässer_Enum;
+         when KartengrundDatentypen.Küstengewässer_Enum =>
+            GrundUnten := KartengrundDatentypen.Unterküstengewässer_Enum;
             
          when others =>
-            GrundUnten := KartenGrundDatentypen.Erde_Enum;
+            GrundUnten := KartengrundDatentypen.Erde_Enum;
       end case;
       
       SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseExtern, XAchseExtern),

@@ -5,7 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with KartenDatentypen;
 with SonstigeVariablen;
 with EinheitStadtDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 
 with DatenbankRecords;
 
@@ -65,7 +65,7 @@ package LeseGebaeudeDatenbank is
    function GrundBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return KartenGrundDatentypen.Kartengrund_Enum
+      return KartengrundDatentypen.Kartengrund_Enum
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -81,7 +81,7 @@ package LeseGebaeudeDatenbank is
    function RessourceBenötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return KartenGrundDatentypen.Karten_Ressourcen_Enum
+      return KartengrundDatentypen.Karten_Ressourcen_Enum
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

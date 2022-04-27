@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 with KartenDatentypen;
 
 package KartengeneratorErdwelt is
@@ -12,14 +12,14 @@ package KartengeneratorErdwelt is
    
 private
    
-   WelcherGrund : KartenGrundDatentypen.Kartengrund_Enum;
+   WelcherGrund : KartengrundDatentypen.Kartengrund_Enum;
    
-   type KartengrundWahrscheinlichkeitArray is array (KartenGrundDatentypen.Kartengrund_Unterirdisch_Generator_Enum'Range) of Float;
+   type KartengrundWahrscheinlichkeitArray is array (KartengrundDatentypen.Kartengrund_Unterirdisch_Generator_Enum'Range) of Float;
    KartengrundWahrscheinlichkeit : KartengrundWahrscheinlichkeitArray := (
-                                                                          KartenGrundDatentypen.Erde_Enum       => 0.30,
-                                                                          KartenGrundDatentypen.Erdgestein_Enum => 0.30,
-                                                                          KartenGrundDatentypen.Sand_Enum       => 0.30,
-                                                                          KartenGrundDatentypen.Gestein_Enum    => 0.30
+                                                                          KartengrundDatentypen.Erde_Enum       => 0.30,
+                                                                          KartengrundDatentypen.Erdgestein_Enum => 0.30,
+                                                                          KartengrundDatentypen.Sand_Enum       => 0.30,
+                                                                          KartengrundDatentypen.Gestein_Enum    => 0.30
                                                                          );
    GezogeneZahlen : KartengrundWahrscheinlichkeitArray;
    

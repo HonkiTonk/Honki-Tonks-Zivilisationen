@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen;
-with KartenGrundDatentypen;
+with KartengrundDatentypen;
 
 with DatenbankRecords;
 
@@ -11,13 +11,13 @@ package KartenDatenbank is
    
    ----------------- Die ganzen Listen mal in Datenbanken umbenennen? Warum habe ich das nicht von Anfang an so benannt?
    
-   type KartenGrundListeArray is array (KartenGrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of DatenbankRecords.KartenGrundListeRecord;
+   type KartenGrundListeArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of DatenbankRecords.KartenGrundListeRecord;
    KartenGrundListe : KartenGrundListeArray;
    
-   type KartenFlussListeArray is array (KartenGrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of DatenbankRecords.KartenListeRecord;
+   type KartenFlussListeArray is array (KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of DatenbankRecords.KartenListeRecord;
    KartenFlussListe : KartenFlussListeArray;
    
-   type KartenRessourcenListeArray is array (KartenGrundDatentypen.Karten_Ressourcen_Vorhanden_Enum'Range) of DatenbankRecords.KartenListeRecord;
+   type KartenRessourcenListeArray is array (KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum'Range) of DatenbankRecords.KartenListeRecord;
    KartenRessourcenListe : KartenRessourcenListeArray;
    
    procedure StandardKartenGrundDatenbankLaden;
@@ -31,7 +31,7 @@ private
    
    KartenGrundListeStandard : constant KartenGrundListeArray := (
                                                                  -- Normal
-                                                                 KartenGrundDatentypen.Eis_Enum =>
+                                                                 KartengrundDatentypen.Eis_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -42,7 +42,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
      
-                                                                 KartenGrundDatentypen.Wasser_Enum =>
+                                                                 KartengrundDatentypen.Wasser_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Wasser_Enum      => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum        => True,
@@ -53,7 +53,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flachland_Enum =>
+                                                                 KartengrundDatentypen.Flachland_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -64,7 +64,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Tundra_Enum =>
+                                                                 KartengrundDatentypen.Tundra_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -75,7 +75,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Wüste_Enum =>
+                                                                 KartengrundDatentypen.Wüste_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -87,7 +87,7 @@ private
                                                                    ),
                                       
                                                                    -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
-                                                                 KartenGrundDatentypen.Hügel_Enum =>
+                                                                 KartengrundDatentypen.Hügel_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -98,7 +98,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Gebirge_Enum =>
+                                                                 KartengrundDatentypen.Gebirge_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -109,7 +109,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Wald_Enum =>
+                                                                 KartengrundDatentypen.Wald_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -120,7 +120,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Dschungel_Enum =>
+                                                                 KartengrundDatentypen.Dschungel_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -131,7 +131,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Küstengewässer_Enum =>
+                                                                 KartengrundDatentypen.Küstengewässer_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Wasser_Enum       => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum         => True,
@@ -143,7 +143,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Sumpf_Enum =>
+                                                                 KartengrundDatentypen.Sumpf_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -155,7 +155,7 @@ private
                                                                    ),
                                       
                                                                    -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
-                                                                 KartenGrundDatentypen.Hügel_Mit_Enum =>
+                                                                 KartengrundDatentypen.Hügel_Mit_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Boden_Enum    => True,
                                                                                        EinheitStadtDatentypen.Luft_Enum     => True,
@@ -170,7 +170,7 @@ private
       
       
                                                                  -- Unterwasser/Unterirdisch
-                                                                 KartenGrundDatentypen.Untereis_Enum =>
+                                                                 KartengrundDatentypen.Untereis_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                        others                                   => False),
@@ -179,7 +179,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Erde_Enum =>
+                                                                 KartengrundDatentypen.Erde_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                        others                                   => False),
@@ -188,7 +188,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartenGrundDatentypen.Erdgestein_Enum =>
+                                                                 KartengrundDatentypen.Erdgestein_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                        others                                   => False),
@@ -197,7 +197,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartenGrundDatentypen.Sand_Enum =>
+                                                                 KartengrundDatentypen.Sand_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterirdisch_Enum => True,
                                                                                        others                                   => False),
@@ -206,7 +206,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartenGrundDatentypen.Unterwasser_Enum =>
+                                                                 KartengrundDatentypen.Unterwasser_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),
@@ -215,7 +215,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterküstengewässer_Enum =>
+                                                                 KartengrundDatentypen.Unterküstengewässer_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),
@@ -224,7 +224,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartenGrundDatentypen.Korallen_Enum =>
+                                                                 KartengrundDatentypen.Korallen_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),
@@ -233,7 +233,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartenGrundDatentypen.Unterwald_Enum =>
+                                                                 KartengrundDatentypen.Unterwald_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),
@@ -246,7 +246,7 @@ private
       
                    
                                                                  -- Planeteninneres
-                                                                 KartenGrundDatentypen.Lava_Enum =>
+                                                                 KartengrundDatentypen.Lava_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                        others                                      => False),
@@ -255,7 +255,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Gestein_Enum =>
+                                                                 KartengrundDatentypen.Gestein_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                        others                                      => False),
@@ -264,7 +264,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartenGrundDatentypen.Planetenkern_Enum =>
+                                                                 KartengrundDatentypen.Planetenkern_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Planeteninneres_Enum => True,
                                                                                        others                                      => False),
@@ -277,7 +277,7 @@ private
       
       
                                                                  -- Luft/Weltraum
-                                                                 KartenGrundDatentypen.Wolken_Enum =>
+                                                                 KartengrundDatentypen.Wolken_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Luft_Enum     => True,
                                                                                        EinheitStadtDatentypen.Weltraum_Enum => True,
@@ -287,7 +287,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Weltraum_Enum =>
+                                                                 KartengrundDatentypen.Weltraum_Enum =>
                                                                    (
                                                                     Passierbarkeit => (
                                                                                        EinheitStadtDatentypen.Weltraum_Enum => True,
@@ -301,7 +301,7 @@ private
                                                                  
                                                                  
                                                                  -- Sonstiges
-                                                                 KartenGrundDatentypen.Vernichtet_Enum =>
+                                                                 KartengrundDatentypen.Vernichtet_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Luft_Enum     => True,
                                                                                        EinheitStadtDatentypen.Weltraum_Enum => True,
@@ -317,112 +317,112 @@ private
    
    KartenFlussListeStandard : constant KartenFlussListeArray := (
                                                                  -- Normal
-                                                                 KartenGrundDatentypen.Flusskreuzung_Vier_Enum =>
+                                                                 KartengrundDatentypen.Flusskreuzung_Vier_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Fluss_Waagrecht_Enum =>
+                                                                 KartengrundDatentypen.Fluss_Waagrecht_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Fluss_Senkrecht_Enum =>
+                                                                 KartengrundDatentypen.Fluss_Senkrecht_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flusskurve_Unten_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Flusskurve_Unten_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flusskurve_Unten_Links_Enum =>
+                                                                 KartengrundDatentypen.Flusskurve_Unten_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flusskurve_Oben_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Flusskurve_Oben_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flusskurve_Oben_Links_Enum =>
+                                                                 KartengrundDatentypen.Flusskurve_Oben_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flusskreuzung_Drei_Oben_Enum =>
+                                                                 KartengrundDatentypen.Flusskreuzung_Drei_Oben_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                                                  
-                                                                 KartenGrundDatentypen.Flusskreuzung_Drei_Unten_Enum =>
+                                                                 KartengrundDatentypen.Flusskreuzung_Drei_Unten_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flusskreuzung_Drei_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Flusskreuzung_Drei_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flusskreuzung_Drei_Links_Enum =>
+                                                                 KartengrundDatentypen.Flusskreuzung_Drei_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flussendstück_Links_Enum =>
+                                                                 KartengrundDatentypen.Flussendstück_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flussendstück_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Flussendstück_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flussendstück_Unten_Enum =>
+                                                                 KartengrundDatentypen.Flussendstück_Unten_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Flussendstück_Oben_Enum =>
+                                                                 KartengrundDatentypen.Flussendstück_Oben_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.See_Enum =>
+                                                                 KartengrundDatentypen.See_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
@@ -433,112 +433,112 @@ private
       
       
                                                                  -- Unterirdisch
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskreuzung_Vier_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdischer_Fluss_Waagrecht_Enum =>
+                                                                 KartengrundDatentypen.Unterirdischer_Fluss_Waagrecht_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdischer_Fluss_Senkrecht_Enum =>
+                                                                 KartengrundDatentypen.Unterirdischer_Fluss_Senkrecht_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskurve_Unten_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskurve_Unten_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskurve_Unten_Links_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskurve_Unten_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskurve_Oben_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskurve_Oben_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskurve_Oben_Links_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskurve_Oben_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Oben_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskreuzung_Drei_Oben_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Unten_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskreuzung_Drei_Unten_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskreuzung_Drei_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdische_Flusskreuzung_Drei_Links_Enum =>
+                                                                 KartengrundDatentypen.Unterirdische_Flusskreuzung_Drei_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdisches_Flussendstück_Links_Enum =>
+                                                                 KartengrundDatentypen.Unterirdisches_Flussendstück_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdisches_Flussendstück_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Unterirdisches_Flussendstück_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdisches_Flussendstück_Unten_Enum =>
+                                                                 KartengrundDatentypen.Unterirdisches_Flussendstück_Unten_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdisches_Flussendstück_Oben_Enum =>
+                                                                 KartengrundDatentypen.Unterirdisches_Flussendstück_Oben_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Unterirdischer_See_Enum =>
+                                                                 KartengrundDatentypen.Unterirdischer_See_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
@@ -549,112 +549,112 @@ private
       
       
                                                                  -- Lava
-                                                                 KartenGrundDatentypen.Lavaflusskreuzung_Vier_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskreuzung_Vier_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavafluss_Waagrecht_Enum =>
+                                                                 KartengrundDatentypen.Lavafluss_Waagrecht_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavafluss_Senkrecht_Enum =>
+                                                                 KartengrundDatentypen.Lavafluss_Senkrecht_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflusskurve_Unten_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskurve_Unten_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflusskurve_Unten_Links_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskurve_Unten_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflusskurve_Oben_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskurve_Oben_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflusskurve_Oben_Links_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskurve_Oben_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflusskreuzung_Drei_Oben_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskreuzung_Drei_Oben_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflusskreuzung_Drei_Unten_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskreuzung_Drei_Unten_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflusskreuzung_Drei_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskreuzung_Drei_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflusskreuzung_Drei_Links_Enum =>
+                                                                 KartengrundDatentypen.Lavaflusskreuzung_Drei_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflussendstück_Links_Enum =>
+                                                                 KartengrundDatentypen.Lavaflussendstück_Links_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflussendstück_Rechts_Enum =>
+                                                                 KartengrundDatentypen.Lavaflussendstück_Rechts_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflussendstück_Unten_Enum =>
+                                                                 KartengrundDatentypen.Lavaflussendstück_Unten_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavaflussendstück_Oben_Enum =>
+                                                                 KartengrundDatentypen.Lavaflussendstück_Oben_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
                                                                     Kampf      => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartenGrundDatentypen.Lavasee_Enum =>
+                                                                 KartengrundDatentypen.Lavasee_Enum =>
                                                                    (
                                                                     Bewertung  => (others => 1),
                                                                     Wirtschaft => (others => (others => 1)),
@@ -666,49 +666,49 @@ private
      
    
    KartenRessourcenListeStandard : constant KartenRessourcenListeArray := (
-                                                                           KartenGrundDatentypen.Kohle_Enum =>
+                                                                           KartengrundDatentypen.Kohle_Enum =>
                                                                              (
                                                                               Bewertung  => (others => 1),
                                                                               Wirtschaft => (others => (others => 1)),
                                                                               Kampf      => (others => (others => 1))
                                                                              ),
                                       
-                                                                           KartenGrundDatentypen.Eisen_Enum =>
+                                                                           KartengrundDatentypen.Eisen_Enum =>
                                                                              (
                                                                               Bewertung  => (others => 1),
                                                                               Wirtschaft => (others => (others => 1)),
                                                                               Kampf      => (others => (others => 1))
                                                                              ),
                                       
-                                                                           KartenGrundDatentypen.Öl_Enum =>
+                                                                           KartengrundDatentypen.Öl_Enum =>
                                                                              (
                                                                               Bewertung  => (others => 1),
                                                                               Wirtschaft => (others => (others => 1)),
                                                                               Kampf      => (others => (others => 1))
                                                                              ),
                                       
-                                                                           KartenGrundDatentypen.Fisch_Enum =>
+                                                                           KartengrundDatentypen.Fisch_Enum =>
                                                                              (
                                                                               Bewertung  => (others => 1),
                                                                               Wirtschaft => (others => (others => 1)),
                                                                               Kampf      => (others => (others => 1))
                                                                              ),
       
-                                                                           KartenGrundDatentypen.Wal_Enum =>
+                                                                           KartengrundDatentypen.Wal_Enum =>
                                                                              (
                                                                               Bewertung  => (others => 1),
                                                                               Wirtschaft => (others => (others => 1)),
                                                                               Kampf      => (others => (others => 1))
                                                                              ),
                                       
-                                                                           KartenGrundDatentypen.Hochwertiger_Boden_Enum =>
+                                                                           KartengrundDatentypen.Hochwertiger_Boden_Enum =>
                                                                              (
                                                                               Bewertung  => (others => 1),
                                                                               Wirtschaft => (others => (others => 1)),
                                                                               Kampf      => (others => (others => 1))
                                                                              ),
                                       
-                                                                           KartenGrundDatentypen.Gold_Enum =>
+                                                                           KartengrundDatentypen.Gold_Enum =>
                                                                              (
                                                                               Bewertung  => (others => 1),
                                                                               Wirtschaft => (others => (others => 1)),

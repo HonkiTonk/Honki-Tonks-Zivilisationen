@@ -2,18 +2,18 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with KartenGrundDatentypen; use KartenGrundDatentypen;
+with KartengrundDatentypen; use KartengrundDatentypen;
 with KartenKonstanten;
 
 with LeseKarten;
 
 with Kartenkoordinatenberechnungssystem;
 
-package body KartenGeneratorBerechnungenAllgemein is
+package body KartengeneratorBerechnungenAllgemein is
 
    function GleicherGrundAnzahlBestimmen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      GrundExtern : in KartenGrundDatentypen.Kartengrund_Vorhanden_Enum;
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       EbeneExtern : in KartenDatentypen.EbeneVorhanden)
       return AnzahlGleicherFelder
    is begin
@@ -51,4 +51,4 @@ package body KartenGeneratorBerechnungenAllgemein is
       
    end GleicherGrundAnzahlBestimmen;
 
-end KartenGeneratorBerechnungenAllgemein;
+end KartengeneratorBerechnungenAllgemein;
