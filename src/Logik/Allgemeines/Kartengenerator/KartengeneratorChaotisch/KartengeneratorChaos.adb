@@ -25,7 +25,7 @@ package body KartengeneratorChaos is
                case
                  GrundZufall
                is
-                  when KartengrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range | KartengrundDatentypen.Lava_Enum | KartengrundDatentypen.Planetenkern_Enum =>
+                  when KartengrundDatentypen.Lava_Enum | KartengrundDatentypen.Planetenkern_Enum => --------------------------------------- KartengrundDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
                      null;
                      
                   when others =>

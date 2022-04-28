@@ -279,8 +279,8 @@ package EingeleseneGrafikenKonsole is
                                                     KartengrundDatentypen.Erde_Enum                       => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Erdgestein_Enum                 => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Sand_Enum                       => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Unterwasser_Enum         => KartenKonstanten.LeerKartenGrafik,
-                                                    KartengrundDatentypen.Unterküstengewässer_Enum => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Meeresgrund_Enum         => KartenKonstanten.LeerKartenGrafik,
+                                                    KartengrundDatentypen.Küstengrund_Enum => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Korallen_Enum                   => KartenKonstanten.LeerKartenGrafik,
                                                     KartengrundDatentypen.Unterwald_Enum           => KartenKonstanten.LeerKartenGrafik,
                                                     -- Unterwasser/Unterirdisch

@@ -23,7 +23,7 @@ private
    type FeldfarbeArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Sf.Graphics.Color.sfColor;
    Feldfarbe : constant FeldfarbeArray := (
                                            KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum                       => (255, 245, 238, 255),
-                                           KartengrundDatentypen.Wasser_Enum | KartengrundDatentypen.Unterwasser_Enum                 => (0, 0, 205, 255),
+                                           KartengrundDatentypen.Wasser_Enum | KartengrundDatentypen.Meeresgrund_Enum                 => (0, 0, 205, 255),
                                            KartengrundDatentypen.Flachland_Enum                                                       => (100, 160, 60, 255),
                                            KartengrundDatentypen.Tundra_Enum                                                          => (205, 200, 177, 255),
                                            KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Sand_Enum                         => (238, 238, 0, 255),
@@ -31,7 +31,7 @@ private
                                            KartengrundDatentypen.Gebirge_Enum                                                         => (120, 120, 120, 255),
                                            KartengrundDatentypen.Wald_Enum                                                            => (30, 130, 30, 255),
                                            KartengrundDatentypen.Dschungel_Enum                                                       => (0, 70, 0, 255),
-                                           KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Unterküstengewässer_Enum => (135, 206, 250, 255),
+                                           KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Küstengrund_Enum => (135, 206, 250, 255),
                                            KartengrundDatentypen.Sumpf_Enum                                                           => (0, 40, 0, 255),
                                            KartengrundDatentypen.Erde_Enum                                                            => (139, 69, 19, 255),
                                            KartengrundDatentypen.Erdgestein_Enum                                                      => (120, 120, 120, 255),

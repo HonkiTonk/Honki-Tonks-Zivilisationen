@@ -32,7 +32,7 @@ private
    type FeldfarbeArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of Wide_Wide_String (1 .. 17);
    Feldfarbe : FeldfarbeArray := (
                                   KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Untereis_Enum                       => "48;2;255;245;238m",
-                                  KartengrundDatentypen.Wasser_Enum | KartengrundDatentypen.Unterwasser_Enum                 => "48;2;000;000;205m",
+                                  KartengrundDatentypen.Wasser_Enum | KartengrundDatentypen.Meeresgrund_Enum                 => "48;2;000;000;205m",
                                   KartengrundDatentypen.Flachland_Enum                                                       => "48;2;100;160;060m",
                                   KartengrundDatentypen.Tundra_Enum                                                          => "48;2;205;200;177m",
                                   KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Sand_Enum                         => "48;2;238;238;000m",
@@ -40,7 +40,7 @@ private
                                   KartengrundDatentypen.Gebirge_Enum                                                         => "48;2;120;120;120m",
                                   KartengrundDatentypen.Wald_Enum                                                            => "48;2;030;130;030m",
                                   KartengrundDatentypen.Dschungel_Enum                                                       => "48;2;000;070;000m",
-                                  KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Unterküstengewässer_Enum => "48;2;135;206;250m",
+                                  KartengrundDatentypen.Küstengewässer_Enum | KartengrundDatentypen.Küstengrund_Enum => "48;2;135;206;250m",
                                   KartengrundDatentypen.Sumpf_Enum                                                           => "48;2;000;040;000m",
                                   KartengrundDatentypen.Erde_Enum                                                            => "48;2;139;069;019m",
                                   KartengrundDatentypen.Erdgestein_Enum                                                      => "48;2;120;120;120m",

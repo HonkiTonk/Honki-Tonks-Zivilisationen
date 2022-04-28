@@ -5,6 +5,7 @@ with KartenDatentypen; use KartenDatentypen;
 with KartengrundDatentypen;
 
 with LeseKarten;
+with SchreibeKarten;
 
 with Karten;
 with KartengeneratorVariablen;
@@ -33,20 +34,24 @@ package body KartengeneratorUnterwasserUnterirdisch is
          for XAchseSchleifenwert in KartengeneratorVariablen.SchleifenanfangOhnePolbereich.XAchse .. KartengeneratorVariablen.SchleifenendeOhnePolbereich.XAchse loop
             
             case
-              LeseKarten.Grund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert))
+              LeseKarten.Grund (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
-               when KartengrundDatentypen.Erde_Enum =>               
-                  KartengeneratorErdwelt.KartengeneratorErdwelt (YAchseExtern => YAchseSchleifenwert,
-                                                                 XAchseExtern => XAchseSchleifenwert);
+               when KartengrundDatentypen.Küstengewässer_Enum =>
+                  SchreibeKarten.Grund (KoordinatenExtern => (-1, YAchseSchleifenwert, XAchseSchleifenwert),
+                                        GrundExtern       => KartengrundDatentypen.Küstengrund_Enum);
                   
-               when KartengrundDatentypen.Unterwasser_Enum | KartengrundDatentypen.Unterküstengewässer_Enum =>
+               when KartengrundDatentypen.Wasser_Enum =>
                   KartengeneratorWasserwelt.KartengeneratorWasserwelt (YAchseExtern => YAchseSchleifenwert,
                                                                        XAchseExtern => XAchseSchleifenwert);
                   
+               when KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum'Range =>               
+                  KartengeneratorErdwelt.KartengeneratorErdwelt (YAchseExtern => YAchseSchleifenwert,
+                                                                 XAchseExtern => XAchseSchleifenwert);
+                  
                when others =>
-                  Fehler.LogikFehler (FehlermeldungExtern => "KartenGeneratorUnterwasserUnterirdisch.GenerierungLandschaft - Weder Wasser noch Erde.");
+                  Fehler.LogikFehler (FehlermeldungExtern => "KartengeneratorUnterwasserUnterirdisch.GenerierungLandschaft - Weder Wasser noch Erde.");
             end case;
-               
+                              
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       

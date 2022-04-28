@@ -122,7 +122,7 @@ package body KartengeneratorLandschaft is
    
    function GrundErneutBestimmen
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       case
@@ -162,18 +162,9 @@ package body KartengeneratorLandschaft is
    function GrundZusatzberechnungen
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
-      
-      if
-        YAchseExtern = XAchseExtern
-      then
-         null;
-         
-      else
-         null;
-      end if;
       
       -------------------------- Bei allen Berechnungen das Eis berücksichtigen?
       case
@@ -229,8 +220,8 @@ package body KartengeneratorLandschaft is
    function ZusatzberechnungTundra
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       YAchseSchleife:
@@ -268,8 +259,8 @@ package body KartengeneratorLandschaft is
    function ZusatzberechnungWüste
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       YAchseSchleife:
@@ -309,8 +300,8 @@ package body KartengeneratorLandschaft is
    function ZusatzberechnungHügel
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -331,8 +322,8 @@ package body KartengeneratorLandschaft is
    function ZusatzberechnungGebirge
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -353,8 +344,8 @@ package body KartengeneratorLandschaft is
    function ZusatzberechnungWald
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -375,8 +366,8 @@ package body KartengeneratorLandschaft is
    function ZusatzberechnungDschungel
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -397,8 +388,8 @@ package body KartengeneratorLandschaft is
    function ZusatzberechnungSumpf
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       if
@@ -419,8 +410,8 @@ package body KartengeneratorLandschaft is
    function ZusatzberechnungFlachland
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       XAchseExtern : in KartenDatentypen.KartenfeldPositiv;
-      GrundExtern : in KartengrundDatentypen.Karten_Grund_Generator_Enum)
-      return KartengrundDatentypen.Karten_Grund_Generator_Enum
+      GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum)
+      return KartengrundDatentypen.Kartengrund_Oberfläche_Land_Enum
    is begin
       
       if

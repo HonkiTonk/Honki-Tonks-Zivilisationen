@@ -139,15 +139,16 @@ package body BewegungPassierbarkeitPruefen is
         = False
       then
          null;
-                  
-      elsif
-        LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
-        and then
-          KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
-                                         PassierbarkeitExtern => UmgebungExtern)
-        = False
-      then
-         null;
+         
+         --------------------------- Funktioniert akutell nicht richtig, beheben oder entfernen?
+    --  elsif
+    --    LeseKarten.Weg (KoordinatenExtern => NeueKoordinatenExtern) /= KartenVerbesserungDatentypen.Leer_Weg_Enum
+    --    and then
+   --       KartenAllgemein.PassierbarWeg (KoordinatenExtern    => NeueKoordinatenExtern,
+   --                                      PassierbarkeitExtern => UmgebungExtern)
+    --    = False
+   --   then
+    --     null;
          
          -- Warum kommt die Prüfung hier noch einmal?
       elsif

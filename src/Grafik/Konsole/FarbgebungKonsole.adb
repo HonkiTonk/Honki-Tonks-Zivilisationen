@@ -80,7 +80,7 @@ package body FarbgebungKonsole is
         GrundExtern
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Sand_Enum | KartengrundDatentypen.Küstengewässer_Enum
-            | KartengrundDatentypen.Wolken_Enum | KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Unterküstengewässer_Enum =>
+            | KartengrundDatentypen.Wolken_Enum | KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Küstengrund_Enum =>
             if
               FlussExtern in KartengrundDatentypen.Karten_Fluss_Vorhanden_Enum'Range
               or
@@ -132,7 +132,7 @@ package body FarbgebungKonsole is
         GrundExtern
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Sand_Enum | KartengrundDatentypen.Küstengewässer_Enum
-            | KartengrundDatentypen.Wolken_Enum | KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Unterküstengewässer_Enum =>
+            | KartengrundDatentypen.Wolken_Enum | KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Küstengrund_Enum =>
             Put (Item => CSI & "38;2;0;0;0m");
                   
          when others =>

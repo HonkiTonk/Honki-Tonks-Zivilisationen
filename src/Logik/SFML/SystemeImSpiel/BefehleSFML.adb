@@ -206,7 +206,7 @@ package body BefehleSFML is
          when 0 =>
             EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer));
             
-         when Natural (EinheitStadtRecords.TransporterArray'First) + 1 .. Positive (EinheitStadtRecords.TransporterArray'Last) =>
+         when Positive (EinheitStadtRecords.TransporterArray'First) .. Positive (EinheitStadtRecords.TransporterArray'Last) =>
             EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer),
                                                                                                                             PlatzExtern              => EinheitStadtDatentypen.Transportplätze (AusgewählteEinheit))));
             

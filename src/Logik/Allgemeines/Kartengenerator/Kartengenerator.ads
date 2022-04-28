@@ -10,7 +10,6 @@ private
    procedure EisWasserLandGenerieren;
    procedure KüstenwasserGenerieren;
    procedure LandschaftGenerieren;
-   procedure UnterflächeGenerieren;
    procedure UnterwasserUnterirdischGenerieren;
    procedure FlüsseGenerieren;
    procedure RessourcenGenerieren;

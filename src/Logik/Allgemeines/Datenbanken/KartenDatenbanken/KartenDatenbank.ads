@@ -206,7 +206,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
       
-                                                                 KartengrundDatentypen.Unterwasser_Enum =>
+                                                                 KartengrundDatentypen.Meeresgrund_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),
@@ -215,7 +215,7 @@ private
                                                                     Kampf          => (others => (others => 1))
                                                                    ),
                                       
-                                                                 KartengrundDatentypen.Unterküstengewässer_Enum =>
+                                                                 KartengrundDatentypen.Küstengrund_Enum =>
                                                                    (
                                                                     Passierbarkeit => (EinheitStadtDatentypen.Unterwasser_Enum => True,
                                                                                        others                                  => False),

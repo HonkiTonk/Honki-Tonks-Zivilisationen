@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with KartenDatentypen; use KartenDatentypen;
 with KartenRecords;
-with KartenDatentypen;
 with EinheitStadtDatentypen;
 with StadtKonstanten;
 with TextKonstanten;
@@ -16,6 +16,13 @@ package KartenKonstanten is
    LeerEAchseÄnderung : constant KartenDatentypen.EbeneVorhanden := 0;
    LeerYAchseÄnderung : constant KartenDatentypen.KartenfeldPositivMitNullwert := LeerYAchse;
    LeerXAchseÄnderung : constant KartenDatentypen.KartenfeldPositivMitNullwert := LeerXAchse;
+   
+   -------------------------- Das hier später mal überall einbauen.
+   PlaneteninneresKonstante : constant KartenDatentypen.EbeneVorhanden := -2;
+   UnterflächeKonstante : constant KartenDatentypen.EbeneVorhanden := -1;
+   OberflächeKonstante : constant KartenDatentypen.EbeneVorhanden := 0;
+   HimmelKonstante : constant KartenDatentypen.EbeneVorhanden := 1;
+   WeltraumKonstante : constant KartenDatentypen.EbeneVorhanden := 2;
    
    LeerKartenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
    LeerPassierbarkeit : constant Boolean := False;

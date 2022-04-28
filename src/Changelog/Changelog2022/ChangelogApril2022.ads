@@ -1,23 +1,30 @@
 package ChangelogApril2022 is
 
-   -- Version 0.01.05 => 0.01.0 (30.04.2022):
+   -- Version 0.01.05 => 0.01.05 (30.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.05 => 0.01.05 (29.04.2022):
+   -- Version 0.01.0530 => 0.01.05 (29.04.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0505 => 0.01.05 (28.04.2022):
+   -- Version 0.01.0505 => 0.01.0530 (28.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der neuen Version des Kartengenerators gearbeitet.
+   -- Kartengenerator für die Unterfläche vorerst fertig überarbeitet.
+   -- Flussgenerator fürs Erste überarbeitet.
+   -- Flussplatzierungssystem überarbeitet.
+   -- Ressourcengenerator fürs Erste überarbeitet.
+   -- Fehler behoben der das Ausladen von Einheiten verhinderte.
+   -- Angefangen das Wegeplatzierungssystem an das neue Flussplatzierungssystem anzupassen.
+   -- Fehler im Passierbarkeitssystem behoben, der es unmöglich machte sich auf Straßen zu bewegen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

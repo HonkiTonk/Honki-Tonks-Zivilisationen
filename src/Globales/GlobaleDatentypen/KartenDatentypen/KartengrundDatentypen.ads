@@ -20,11 +20,12 @@ package KartengrundDatentypen is
                              
                              -- Unterfläche
                              Untereis_Enum,
-                             Unterwasser_Enum, Unterküstengewässer_Enum,
+                             Küstengrund_Enum,
+                             Meeresgrund_Enum, Korallen_Enum, Unterwald_Enum,
                              Erde_Enum, Erdgestein_Enum, Sand_Enum, Gestein_Enum,
-                             Korallen_Enum, Unterwald_Enum,
                               
                              -- Planeteninneres
+                             ------------------------ Das hier auch erweitern wie die oberen Teile?
                              Lava_Enum, Planetenkern_Enum,
                               
                              -- Sonstiges
@@ -42,28 +43,28 @@ package KartengrundDatentypen is
    
    -- Oberfläche
    subtype Kartengrund_Oberfläche_Enum is Kartengrund_Vorhanden_Enum range Eis_Enum .. Hügel_Mit_Enum;
+   subtype Kartengrund_Oberfläche_Eiswasser_Enum is Kartengrund_Oberfläche_Enum range Eis_Enum .. Küstengewässer_Enum;
+   subtype Kartengrund_Oberfläche_Wasser_Enum is Kartengrund_Oberfläche_Eiswasser_Enum range Wasser_Enum .. Küstengewässer_Enum;
+   subtype Kartengrund_Oberfläche_Land_Enum is Kartengrund_Oberfläche_Enum range Tundra_Enum .. Flachland_Enum;
    
    -- Unterfläche
-   subtype Kartengrund_Unterfläche_Enum is Kartengrund_Vorhanden_Enum range Untereis_Enum .. Unterwald_Enum;
+   subtype Kartengrund_Unterfläche_Enum is Kartengrund_Vorhanden_Enum range Untereis_Enum .. Gestein_Enum;
+   subtype Kartengrund_Unterfläche_Eiswasser_Enum is Kartengrund_Unterfläche_Enum range Untereis_Enum .. Unterwald_Enum;
+   subtype Kartengrund_Unterfläche_Wasser_Enum is Kartengrund_Unterfläche_Eiswasser_Enum range Küstengrund_Enum .. Unterwald_Enum;
+   subtype Kartengrund_Unterfläche_Wasser_Variabel_Enum is Kartengrund_Unterfläche_Wasser_Enum range Meeresgrund_Enum .. Unterwald_Enum;
+   subtype Kartengrund_Unterfläche_Land_Enum is Kartengrund_Unterfläche_Enum range Erde_Enum .. Gestein_Enum;
    
    -- Planeteinneres
-   subtype Kartengrund_Planeteninneres_Enum is Kartengrund_Vorhanden_Enum range Lava_Enum .. Planetenkern_Enum;
+   subtype Kartengrund_Kernfläche_Enum is Kartengrund_Vorhanden_Enum range Lava_Enum .. Planetenkern_Enum;
+   subtype Kartengrund_Kernfläche_Flüssig_Enum is Kartengrund_Kernfläche_Enum range Lava_Enum .. Planetenkern_Enum;
+   -- subtype Kartengrund_Kernfläche_Fest_Enum is Kartengrund_Kernfläche_Enum range  .. ;
    
    -- Sonstiges
    subtype Kartengrund_Sonstiges_Enum is Kartengrund_Vorhanden_Enum range Vernichtet_Enum .. Vernichtet_Enum;
-
-   subtype Karten_Grund_Alle_Felder_Enum is Kartengrund_Vorhanden_Enum range Weltraum_Enum .. Unterwald_Enum;
-   subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser_Enum .. Untereis_Enum;
-   -- subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser_Enum .. Unterküstengewässer_Enum;
-   subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis_Enum .. Gestein_Enum;
-   subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Tundra_Enum .. Gestein_Enum;
-   
-   subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra_Enum .. Flachland_Enum;
-   subtype Kartengrund_Unterirdisch_Generator_Enum is Karten_Grund_Alle_Felder_Enum range Erde_Enum .. Gestein_Enum;
-   subtype Kartengrund_Unterwasser_Generator_Enum is Karten_Grund_Alle_Felder_Enum range Korallen_Enum .. Unterwald_Enum;
    
    
    
+   ---------------------- Ressourcen für den Kern hinzufügen.
    type Karten_Ressourcen_Enum is (
                                    Leer_Ressource_Enum,
                                    
@@ -72,12 +73,14 @@ package KartengrundDatentypen is
                                    
                                    -- Landressourcen
                                    Kohle_Enum, Eisen_Enum, Öl_Enum, Hochwertiger_Boden_Enum, Gold_Enum
+                                     
+                                   -- Kernressourcen
                                   );
    pragma Ordered (Karten_Ressourcen_Enum);
    
-   subtype Karten_Ressourcen_Vorhanden_Enum is Karten_Ressourcen_Enum range Fisch_Enum .. Gold_Enum;
-   subtype Karten_Ressourcen_Wasser is Karten_Ressourcen_Vorhanden_Enum range Karten_Ressourcen_Vorhanden_Enum'First .. Wal_Enum;
-   subtype Karten_Ressourcen_Land is Karten_Ressourcen_Vorhanden_Enum range Kohle_Enum .. Karten_Ressourcen_Vorhanden_Enum'Last;
+   subtype Karten_Ressourcen_Vorhanden_Enum is Karten_Ressourcen_Enum range Fisch_Enum .. Karten_Ressourcen_Enum'Last;
+   subtype Karten_Ressourcen_Wasser is Karten_Ressourcen_Vorhanden_Enum range Fisch_Enum .. Wal_Enum;
+   subtype Karten_Ressourcen_Land is Karten_Ressourcen_Vorhanden_Enum range Kohle_Enum .. Gold_Enum;
    
    
    

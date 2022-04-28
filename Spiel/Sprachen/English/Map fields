@@ -1,18 +1,12 @@
-Water
+Space
 a
-Coastal waters
-a
-Water
-a
-Coastal waters
+Clouds
 a
 Ice
 a
-Ice
+Water
 a
-Lava
-a
-Planet core
+Coastal waters
 a
 Tundra
 a
@@ -32,9 +26,15 @@ Flat land
 a
 Hill with 
 a
-Clouds
+Ice
 a
-Space
+Coastal ground
+a
+Seafloor
+a
+Corals
+a
+Water forest
 a
 Earth
 a
@@ -44,9 +44,9 @@ Sand
 a
 Rock
 a
-Corals
+Lava
 a
-Water forest
+Planet core
 a
 Destroyed
 a

@@ -14,7 +14,6 @@ with KartengeneratorRessourcen;
 with KartengeneratorUnterwasserUnterirdisch;
 with LadezeitenDatentypen;
 with KartengeneratorEisWasserLand;
-with KartengeneratorUnterflaeche;
 
 package body Kartengenerator is
 
@@ -24,7 +23,6 @@ package body Kartengenerator is
       EisWasserLandGenerieren;
       KüstenwasserGenerieren;
       LandschaftGenerieren;
-      UnterflächeGenerieren;
       UnterwasserUnterirdischGenerieren;
       FlüsseGenerieren;
       RessourcenGenerieren;
@@ -83,19 +81,6 @@ package body Kartengenerator is
       -- Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => LadezeitenDatentypen.Generiere_Landschaft_Ebene_Oberfläche_Enum);
       
    end LandschaftGenerieren;
-   
-   
-   
-   procedure UnterflächeGenerieren
-   is begin
-      
-      ----------------------- Ladezeiten hier einbauen.
-      
-      KartengeneratorUnterflaeche.KartengeneratorUnterfläche;
-      
-      ----------------------- Ladezeiten hier einbauen.
-      
-   end UnterflächeGenerieren;
    
    
    
