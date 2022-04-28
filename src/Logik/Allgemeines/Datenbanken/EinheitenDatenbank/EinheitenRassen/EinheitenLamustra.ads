@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenLamustra is
 
-   EinheitenLamustraListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteLamustra : constant DatenbankRecords.EinheitenlisteArray := (
                                                                               -- Siedler
                                                                               1 =>
                                                                                 (

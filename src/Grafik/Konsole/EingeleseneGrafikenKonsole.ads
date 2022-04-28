@@ -20,7 +20,7 @@ package EingeleseneGrafikenKonsole is
    type CursorGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Wide_Wide_Character;
    CursorGrafik : CursorGrafikArray := (others => WichtigesKonstanten.LeerCursorGrafik);
 
-   type EinheitenGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.EinheitenListeArray'Range) of Wide_Wide_Character;
+   type EinheitenGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.EinheitenlisteArray'Range) of Wide_Wide_Character;
    EinheitenGrafik : EinheitenGrafikArray := (
                                               others =>
                                                 (
@@ -165,7 +165,7 @@ package EingeleseneGrafikenKonsole is
    
    
    
-   type GebäudeGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.GebäudeListeArray'Range) of Wide_Wide_Character;
+   type GebäudeGrafikArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, DatenbankRecords.GebäudelisteArray'Range) of Wide_Wide_Character;
    GebäudeGrafik : GebäudeGrafikArray := (
                                             others =>
                                               (
@@ -253,7 +253,7 @@ package EingeleseneGrafikenKonsole is
    
    
    
-   type KartenfelderGrafikArray is array (KartenDatenbank.KartenGrundListeArray'Range) of Wide_Wide_Character;
+   type KartenfelderGrafikArray is array (KartenDatenbank.KartengrundlisteArray'Range) of Wide_Wide_Character;
    KartenfelderGrafik : KartenfelderGrafikArray := (
                                                     -- Normal
                                                     KartengrundDatentypen.Eis_Enum       => KartenKonstanten.LeerKartenGrafik,
@@ -309,7 +309,7 @@ package EingeleseneGrafikenKonsole is
    
    
    
-   type KartenflussGrafikArray is array (KartenDatenbank.KartenFlussListeArray'Range) of Wide_Wide_Character;
+   type KartenflussGrafikArray is array (KartenDatenbank.KartenflusslisteArray'Range) of Wide_Wide_Character;
    KartenflussGrafik : KartenflussGrafikArray := (
                                                   -- Normal
                                                   KartengrundDatentypen.Flusskreuzung_Vier_Enum        => '╋',

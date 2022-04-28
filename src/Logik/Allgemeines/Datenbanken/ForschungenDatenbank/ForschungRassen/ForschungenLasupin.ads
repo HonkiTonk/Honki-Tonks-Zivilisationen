@@ -5,9 +5,9 @@ with ForschungKonstanten;
 
 with DatenbankRecords;
 
-package ForschungTalbidahr is
+package ForschungenLasupin is
 
-   ForschungTalbidahrListe : constant DatenbankRecords.ForschungListeArray := (
+   ForschungslisteLasupin : constant DatenbankRecords.ForschungslisteArray := (
                                                                                -- Steinwerkzeuge
                                                                                1 =>
                                                                                  (
@@ -859,4 +859,4 @@ package ForschungTalbidahr is
                                                                                others => ForschungKonstanten.LeerForschungListe
                                                                               );
 
-end ForschungTalbidahr;
+end ForschungenLasupin;

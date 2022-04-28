@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeLamustra is
 
-   GebäudeLamustraListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteLamustra : constant DatenbankRecords.GebäudelisteArray := (
                                                                             -- Häuser
                                                                             1 =>
                                                                               (

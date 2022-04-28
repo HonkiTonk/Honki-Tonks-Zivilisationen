@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeLasupin is
 
-   GebäudeLasupinListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteLasupin : constant DatenbankRecords.GebäudelisteArray := (
                                                                            -- Häuser
                                                                            1 =>
                                                                              (

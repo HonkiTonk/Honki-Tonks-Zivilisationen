@@ -8,8 +8,8 @@ with DatenbankRecords;
 
 package GebaeudeDatenbank is
 
-   type GebäudeListeArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudeListeRecord;
-   GebäudeListe : GebäudeListeArray;
+   type GebäudelisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudelisteRecord;
+   GebäudeListe : GebäudelisteArray;
    
    procedure StandardGebaeudeDatenbankLaden;
    

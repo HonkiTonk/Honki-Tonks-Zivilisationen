@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenSenelari is
 
-   EinheitenSenelariListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteSenelari : constant DatenbankRecords.EinheitenlisteArray := (
                                                                               -- Siedler
                                                                               1 =>
                                                                                 (

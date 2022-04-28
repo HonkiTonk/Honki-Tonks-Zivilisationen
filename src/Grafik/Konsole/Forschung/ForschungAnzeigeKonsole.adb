@@ -9,7 +9,7 @@ with ForschungKonstanten;
 -- with GlobaleTexte;
 with TastenbelegungDatentypen;
 
-with LeseForschungsDatenbank;
+with LeseForschungenDatenbank;
 
 -- with TextAnzeigeKonsole;
 with Eingabe;
@@ -46,7 +46,7 @@ package body ForschungAnzeigeKonsole is
          for NeueForschungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
          
             if
-              LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+              LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                             IDExtern                => TechnologieSchleifenwert,
                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)
               = ForschungKonstanten.LeerForschungAnforderung
@@ -54,7 +54,7 @@ package body ForschungAnzeigeKonsole is
                exit ErmöglichtSchleife;
             
             elsif
-              LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+              LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                             IDExtern                => TechnologieSchleifenwert,
                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)
               = ForschungNummerExtern
@@ -93,7 +93,7 @@ package body ForschungAnzeigeKonsole is
       for NeueForschungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
          
          if
-           LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+           LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                          IDExtern                => ForschungNummerExtern,
                                                          WelcheAnforderungExtern => NeueForschungSchleifenwert)
            = ForschungKonstanten.LeerForschungAnforderung
@@ -108,10 +108,10 @@ package body ForschungAnzeigeKonsole is
                 --  TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                  --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                 --                                            ÜberschriftZeileExtern => 44,
-                --                                            ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                --                                            ErsteZeileExtern       => Positive (LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                 --                                                                                                                              IDExtern                => ForschungNummerExtern,
                 --                                                                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                --                                            LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                --                                            LetzteZeileExtern      => Positive (LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                 --                                                                                                                              IDExtern                => ForschungNummerExtern,
                 --                                                                                                                              WelcheAnforderungExtern => NeueForschungSchleifenwert)),
                 --                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
@@ -123,10 +123,10 @@ package body ForschungAnzeigeKonsole is
                  -- TextAnzeigeKonsole.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                  --                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                  --                                           ÜberschriftZeileExtern => 0,
-                 --                                           ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                 --                                           ErsteZeileExtern       => Positive (LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                  --                                                                                                                             IDExtern                => ForschungNummerExtern,
                  --                                                                                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)),
-                 --                                           LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                 --                                           LetzteZeileExtern      => Positive (LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                  --                                                                                                                             IDExtern                => ForschungNummerExtern,
                  --                                                                                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)),
                  --                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,

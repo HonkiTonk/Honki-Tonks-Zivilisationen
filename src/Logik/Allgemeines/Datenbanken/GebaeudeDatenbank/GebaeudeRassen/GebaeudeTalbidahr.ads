@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeTalbidahr is
 
-   GebäudeTalbidahrListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteTalbidahr : constant DatenbankRecords.GebäudelisteArray := (
                                                                              -- Häuser
                                                                              1 =>
                                                                                (

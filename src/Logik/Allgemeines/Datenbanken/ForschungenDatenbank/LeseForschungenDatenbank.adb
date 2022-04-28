@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with ForschungsDatenbank;
+with ForschungenDatenbank;
 
-package body LeseForschungsDatenbank is
+package body LeseForschungenDatenbank is
 
    function PreisForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -11,7 +11,7 @@ package body LeseForschungsDatenbank is
       return EinheitStadtDatentypen.KostenLager
    is begin
 
-      return ForschungsDatenbank.ForschungListe (RasseExtern, IDExtern).PreisForschung;
+      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).PreisForschung;
 
    end PreisForschung;
 
@@ -24,7 +24,7 @@ package body LeseForschungsDatenbank is
       return EinheitStadtDatentypen.ForschungIDNichtMöglich
    is begin
 
-      return ForschungsDatenbank.ForschungListe (RasseExtern, IDExtern).AnforderungForschung (WelcheAnforderungExtern);
+      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern).AnforderungForschung (WelcheAnforderungExtern);
 
    end AnforderungForschung;
 
@@ -33,11 +33,11 @@ package body LeseForschungsDatenbank is
    function GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.ForschungID)
-      return DatenbankRecords.ForschungListeRecord
+      return DatenbankRecords.ForschungslisteRecord
    is begin
 
-      return ForschungsDatenbank.ForschungListe (RasseExtern, IDExtern);
+      return ForschungenDatenbank.Forschungsliste (RasseExtern, IDExtern);
 
    end GanzerEintrag;
 
-end LeseForschungsDatenbank;
+end LeseForschungenDatenbank;

@@ -15,7 +15,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Einheit_Art_Enum
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).EinheitArt;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).EinheitArt;
       
    end EinheitArt;
    
@@ -27,7 +27,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.KostenLager
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PreisGeld;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PreisGeld;
       
    end PreisGeld;
    
@@ -39,7 +39,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.KostenLager
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PreisRessourcen;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PreisRessourcen;
       
    end PreisRessourcen;
    
@@ -53,12 +53,12 @@ package body LeseEinheitenDatenbank is
    is begin
       
       if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < StadtKonstanten.LeerPermanenteKosten
+        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < StadtKonstanten.LeerPermanenteKosten
       then
          return EinheitenKonstanten.LeerEinheitListe.PermanenteKosten (WelcheKostenExtern);
       
       else
-         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
+         return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
       end if;
       
    end PermanenteKosten;
@@ -71,7 +71,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.ForschungIDNichtMöglich
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Anforderungen;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Anforderungen;
       
    end Anforderungen;
    
@@ -84,7 +84,7 @@ package body LeseEinheitenDatenbank is
       return Boolean
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Passierbarkeit (WelcheUmgebungExtern);
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Passierbarkeit (WelcheUmgebungExtern);
       
    end Passierbarkeit;
    
@@ -96,7 +96,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.LebenspunkteVorhanden
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximaleLebenspunkte;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleLebenspunkte;
       
    end MaximaleLebenspunkte;
    
@@ -109,12 +109,12 @@ package body LeseEinheitenDatenbank is
    is begin
       
       if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximaleBewegungspunkte < 1.00
+        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleBewegungspunkte < 1.00
       then
          return 1.00;
          
       else
-         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximaleBewegungspunkte;
+         return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximaleBewegungspunkte;
       end if;
         
       
@@ -128,7 +128,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.EinheitenIDMitNullWert
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).WirdVerbessertZu;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).WirdVerbessertZu;
       
    end WirdVerbessertZu;
    
@@ -140,7 +140,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Beförderungsgrenze;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Beförderungsgrenze;
       
    end Beförderungsgrenze;
    
@@ -152,7 +152,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximalerRang;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).MaximalerRang;
       
    end MaximalerRang;
    
@@ -164,7 +164,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Reichweite;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Reichweite;
       
    end Reichweite;
    
@@ -176,7 +176,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Angriff;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Angriff;
       
    end Angriff;
    
@@ -189,7 +189,7 @@ package body LeseEinheitenDatenbank is
    is begin
       
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Verteidigung;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Verteidigung;
       
    end Verteidigung;
    
@@ -201,7 +201,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Transport_Enum
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportieren;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren;
       
    end KannTransportieren;
    
@@ -213,7 +213,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Transport_Enum
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportiertWerden;
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportiertWerden;
       
    end KannTransportiertWerden;
    
@@ -227,14 +227,14 @@ package body LeseEinheitenDatenbank is
       
       ----------------------- Hier mal noch Konstanten einbauen.
       if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).KannTransportieren = EinheitStadtDatentypen.Kein_Transport_Enum
+        EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren = EinheitStadtDatentypen.Kein_Transport_Enum
         or
-          EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität = 0
+          EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Transportkapazität = 0
       then
          return 0;
          
       else
-         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität;
+         return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Transportkapazität;
       end if;
       
    end Transportkapazität;
@@ -244,10 +244,10 @@ package body LeseEinheitenDatenbank is
    function GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return DatenbankRecords.EinheitenListeRecord
+      return DatenbankRecords.EinheitenlisteRecord
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern);
+      return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern);
       
    end GanzerEintrag;
 

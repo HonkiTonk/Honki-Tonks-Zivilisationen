@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Directories; use Ada.Directories;
 
 with EinheitenDatenbank;
-with ForschungsDatenbank;
+with ForschungenDatenbank;
 with GebaeudeDatenbank;
 with KartenDatenbank;
 with VerbesserungenDatenbank;
@@ -16,7 +16,7 @@ package body SchreibenDatenbanken is
    is begin
       
       SchreibenEinheitenDatenbank;
-      SchreibenForschungsDatenbank;
+      SchreibenForschungenDatenbank;
       SchreibenGebäudeDatenbank;
       SchreibenKartenDatenbank;
       SchreibenVerbesserungenDatenbank;
@@ -43,8 +43,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/EinheitenDatenbank");
       end case;
       
-      EinheitenDatenbank.EinheitenListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                    EinheitenDatenbank.EinheitenListe);
+      EinheitenDatenbank.EinheitenlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                    EinheitenDatenbank.Einheitenliste);
       
       Close (File => DatenbankSpeichern);
       
@@ -52,29 +52,29 @@ package body SchreibenDatenbanken is
    
    
    
-   procedure SchreibenForschungsDatenbank
+   procedure SchreibenForschungenDatenbank
    is begin
       
       case
-        Exists (Name => "Einstellungen/ForschungsDatenbank")
+        Exists (Name => "Einstellungen/ForschungenDatenbank")
       is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Datenbanken/ForschungsDatenbank");
+                  Name => "Datenbanken/ForschungenDatenbank");
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Datenbanken/ForschungsDatenbank");
+                    Name => "Datenbanken/ForschungenDatenbank");
       end case;
       
-      ForschungsDatenbank.ForschungListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                     ForschungsDatenbank.ForschungListe);
+      ForschungenDatenbank.ForschungslisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                     ForschungenDatenbank.Forschungsliste);
       
       Close (File => DatenbankSpeichern);
       
-   end SchreibenForschungsDatenbank;
+   end SchreibenForschungenDatenbank;
    
    
    
@@ -95,8 +95,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/GebaeudeDatenbank");
       end case;
       
-      GebaeudeDatenbank.GebäudeListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                  GebaeudeDatenbank.GebäudeListe);
+      GebaeudeDatenbank.GebäudelisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                  GebaeudeDatenbank.Gebäudeliste);
       
       Close (File => DatenbankSpeichern);
       
@@ -121,8 +121,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/KartenGrundDatenbank");
       end case;
       
-      KartenDatenbank.KartenGrundListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                   KartenDatenbank.KartenGrundListe);
+      KartenDatenbank.KartengrundlisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartenDatenbank.Kartengrundliste);
       
       Close (File => DatenbankSpeichern);
       
@@ -142,8 +142,8 @@ package body SchreibenDatenbanken is
                     Name => "Datenbanken/KartenFlussDatenbank");
       end case;
       
-      KartenDatenbank.KartenFlussListeArray'Write (Stream (File => DatenbankSpeichern),
-                                                   KartenDatenbank.KartenFlussListe);
+      KartenDatenbank.KartenflusslisteArray'Write (Stream (File => DatenbankSpeichern),
+                                                   KartenDatenbank.Kartenflussliste);
       
       Close (File => DatenbankSpeichern);
       

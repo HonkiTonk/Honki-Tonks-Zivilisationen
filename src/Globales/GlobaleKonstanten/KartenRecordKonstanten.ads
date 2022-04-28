@@ -22,13 +22,13 @@ package KartenRecordKonstanten is
                                                                                            XAchse => KartenKonstanten.LeerXAchse
                                                                                           );
    
-   LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
+   LeerKartenListe : constant DatenbankRecords.KartenlisteRecord := (
                                                                      Bewertung      => (others => KartenKonstanten.LeerBewertung),
                                                                      Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),
                                                                      Kampf          => (others => (others => KartenKonstanten.LeerKampf))
                                                                     );
    
-   LeerKartenGrundListe : constant DatenbankRecords.KartenGrundListeRecord := (
+   LeerKartenGrundListe : constant DatenbankRecords.KartengrundlisteRecord := (
                                                                                Passierbarkeit => (others => KartenKonstanten.LeerPassierbarkeit),
                                                                                Bewertung      => (others => KartenKonstanten.LeerBewertung),
                                                                                Wirtschaft     => (others => (others => KartenKonstanten.LeerWirtschaft)),

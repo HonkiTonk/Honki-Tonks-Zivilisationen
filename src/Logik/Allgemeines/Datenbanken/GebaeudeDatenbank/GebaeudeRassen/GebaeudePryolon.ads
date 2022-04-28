@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudePryolon is
 
-   GebäudePryolonListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelistePryolon : constant DatenbankRecords.GebäudelisteArray := (
                                                                            -- Häuser
                                                                            1 =>
                                                                              (

@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenCarupex is
 
-   EinheitenCarupexListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteCarupex : constant DatenbankRecords.EinheitenlisteArray := (
                                                                              -- Siedler
                                                                              1 =>
                                                                                (

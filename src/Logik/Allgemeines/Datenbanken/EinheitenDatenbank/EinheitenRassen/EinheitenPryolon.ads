@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenPryolon is
 
-   EinheitenPryolonListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlistePryolon : constant DatenbankRecords.EinheitenlisteArray := (
                                                                              -- Siedler
                                                                              1 =>
                                                                                (

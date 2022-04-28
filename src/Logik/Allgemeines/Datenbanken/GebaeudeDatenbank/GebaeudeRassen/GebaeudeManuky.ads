@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeManuky is
 
-   GebäudeManukyListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteManuky : constant DatenbankRecords.GebäudelisteArray := (
                                                                           -- Häuser
                                                                           1 =>
                                                                             (

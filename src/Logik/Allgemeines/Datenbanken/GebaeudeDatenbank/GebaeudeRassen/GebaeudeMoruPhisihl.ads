@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeMoruPhisihl is
 
-   GebäudeMoruPhisihlListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteMoruPhisihl : constant DatenbankRecords.GebäudelisteArray := (
                                                                                -- Häuser
                                                                                1 =>
                                                                                  (

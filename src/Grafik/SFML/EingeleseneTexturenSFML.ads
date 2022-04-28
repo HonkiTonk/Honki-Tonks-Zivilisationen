@@ -18,10 +18,10 @@ package EingeleseneTexturenSFML is
    type MenüHintergrundAccessArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range) of Sf.Graphics.sfTexture_Ptr;
    MenüHintergrundAccess : MenüHintergrundAccessArray := (others => null);
 
-   type KartenfelderAccessArray is array (KartenDatenbank.KartenGrundListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenfelderAccessArray is array (KartenDatenbank.KartengrundlisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenfelderAccess : KartenfelderAccessArray := (others => null);
 
-   type KartenflussAccessArray is array (KartenDatenbank.KartenFlussListeArray'Range) of Sf.Graphics.sfTexture_Ptr;
+   type KartenflussAccessArray is array (KartenDatenbank.KartenflusslisteArray'Range) of Sf.Graphics.sfTexture_Ptr;
    KartenflussAccess : KartenflussAccessArray := (others => null);
 
    type KartenressourcenAccessArray is array (KartenDatenbank.KartenRessourcenListeArray'Range) of Sf.Graphics.sfTexture_Ptr;

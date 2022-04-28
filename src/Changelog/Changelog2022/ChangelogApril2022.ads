@@ -26,7 +26,7 @@ package ChangelogApril2022 is
    -- Bestimmung ob etwas transportieren oder transportiert werden kann auf Enum umgeschrieben.
    -- Weiter an der neuen Version des Kartengenerators gearbeitet.
    -- KartengeneratorUnterfläche fürs Erste fertig überarbeitet.
-   -- Internet Benennung und Formatierung überarbeitet.
+   -- Interne Benennung und Formatierung überarbeitet.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert.
    
    

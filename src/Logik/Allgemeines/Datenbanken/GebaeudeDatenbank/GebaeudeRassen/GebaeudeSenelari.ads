@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeSenelari is
 
-   GebäudeSenelariListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteSenelari : constant DatenbankRecords.GebäudelisteArray := (
                                                                             -- Häuser
                                                                             1 =>
                                                                               (

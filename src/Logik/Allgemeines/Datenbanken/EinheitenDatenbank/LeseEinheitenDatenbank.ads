@@ -150,7 +150,7 @@ package LeseEinheitenDatenbank is
    function GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return DatenbankRecords.EinheitenListeRecord
+      return DatenbankRecords.EinheitenlisteRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

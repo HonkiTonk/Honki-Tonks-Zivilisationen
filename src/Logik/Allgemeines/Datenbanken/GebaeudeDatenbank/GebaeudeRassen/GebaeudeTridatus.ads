@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeTridatus is
 
-   GebäudeTridatusListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteTridatus : constant DatenbankRecords.GebäudelisteArray := (
                                                                             -- Häuser
                                                                             1 =>
                                                                               (

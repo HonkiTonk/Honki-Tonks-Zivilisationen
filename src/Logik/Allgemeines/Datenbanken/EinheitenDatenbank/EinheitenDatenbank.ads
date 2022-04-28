@@ -8,8 +8,8 @@ with DatenbankRecords;
 
 package EinheitenDatenbank is
      
-   type EinheitenListeArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenListeRecord;
-   EinheitenListe : EinheitenListeArray;
+   type EinheitenlisteArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, EinheitStadtDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenlisteRecord;
+   Einheitenliste : EinheitenlisteArray;
    
    procedure StandardEinheitenDatenbankLaden;
 

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitenDatenbankEditor;
-with ForschungDatenbankEditor;
+with ForschungenDatenbankEditor;
 with GebaeudeDatenbankEditor;
 with KartenDatenbankEditor;
 with VerbesserungenDatenbankEditor;
@@ -35,7 +35,7 @@ package body DatenbankenEditoren is
                GebaeudeDatenbankEditor.GebäudeDatenbankEditor;
                
             when RueckgabeDatentypen.Forschung_Editor_Enum =>
-               ForschungDatenbankEditor.ForschungDatenbankEditor;
+               ForschungenDatenbankEditor.ForschungenDatenbankEditor;
                
             when RueckgabeDatentypen.Verbesserungen_Editor_Enum =>
                VerbesserungenDatenbankEditor.VerbesserungenDatenbankEditor;

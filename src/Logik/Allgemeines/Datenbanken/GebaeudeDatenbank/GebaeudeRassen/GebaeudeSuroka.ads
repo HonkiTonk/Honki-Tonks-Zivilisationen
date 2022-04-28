@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeSuroka is
 
-   GebäudeSurokaListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteSuroka : constant DatenbankRecords.GebäudelisteArray := (
                                                                           -- Häuser
                                                                           1 =>
                                                                             (

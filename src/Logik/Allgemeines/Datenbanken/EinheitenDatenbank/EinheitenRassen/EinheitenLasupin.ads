@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenLasupin is
 
-   EinheitenLasupinListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteLasupin : constant DatenbankRecords.EinheitenlisteArray := (
                                                                              -- Siedler
                                                                              1 =>
                                                                                (

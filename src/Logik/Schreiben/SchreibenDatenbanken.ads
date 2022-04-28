@@ -7,7 +7,7 @@ package SchreibenDatenbanken is
 
    procedure SchreibenAlleDatenbanken;
    procedure SchreibenEinheitenDatenbank;
-   procedure SchreibenForschungsDatenbank;
+   procedure SchreibenForschungenDatenbank;
    procedure SchreibenGebäudeDatenbank;
    procedure SchreibenKartenDatenbank;
    procedure SchreibenVerbesserungenDatenbank;

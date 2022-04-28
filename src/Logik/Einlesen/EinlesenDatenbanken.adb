@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Directories; use Ada.Directories;
 
 with EinheitenDatenbank;
-with ForschungsDatenbank;
+with ForschungenDatenbank;
 with GebaeudeDatenbank;
 with KartenDatenbank;
 with VerbesserungenDatenbank;
@@ -16,7 +16,7 @@ package body EinlesenDatenbanken is
    is begin
       
       EinlesenEinheitenDatenbank;
-      EinlesenForschungsDatenbank;
+      EinlesenForschungenDatenbank;
       EinlesenGebäudeDatenbank;
       EinlesenKartenDatenbank;
       EinlesenVerbesserungenDatenbank;
@@ -42,8 +42,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      EinheitenDatenbank.EinheitenListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                   EinheitenDatenbank.EinheitenListe);
+      EinheitenDatenbank.EinheitenlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                   EinheitenDatenbank.Einheitenliste);
       
       Close (File => DatenbankEinlesen);
       
@@ -51,28 +51,28 @@ package body EinlesenDatenbanken is
    
    
    
-   procedure EinlesenForschungsDatenbank
+   procedure EinlesenForschungenDatenbank
    is begin
       
       case
-        Exists (Name => "Datenbanken/ForschungsDatenbank")
+        Exists (Name => "Datenbanken/ForschungenDatenbank")
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Datenbanken/ForschungsDatenbank");
+                  Name => "Datenbanken/ForschungenDatenbank");
 
          when False =>
-            ForschungsDatenbank.StandardForschungsDatenbankLaden;
+            ForschungenDatenbank.StandardForschungenDatenbankLaden;
             return;
       end case;
       
-      ForschungsDatenbank.ForschungListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                    ForschungsDatenbank.ForschungListe);
+      ForschungenDatenbank.ForschungslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                    ForschungenDatenbank.Forschungsliste);
       
       Close (File => DatenbankEinlesen);
       
-   end EinlesenForschungsDatenbank;
+   end EinlesenForschungenDatenbank;
    
    
    
@@ -92,8 +92,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      GebaeudeDatenbank.GebäudeListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                 GebaeudeDatenbank.GebäudeListe);
+      GebaeudeDatenbank.GebäudelisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                 GebaeudeDatenbank.Gebäudeliste);
       
       Close (File => DatenbankEinlesen);
       
@@ -113,12 +113,12 @@ package body EinlesenDatenbanken is
                   Name => "Datenbanken/KartenGrundDatenbank");
 
          when False =>
-            KartenDatenbank.StandardKartenGrundDatenbankLaden;
+            KartenDatenbank.StandardKartengrundDatenbankLaden;
             return;
       end case;
       
-      KartenDatenbank.KartenGrundListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                  KartenDatenbank.KartenGrundListe);
+      KartenDatenbank.KartengrundlisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                  KartenDatenbank.Kartengrundliste);
       
       Close (File => DatenbankEinlesen);
       
@@ -133,12 +133,12 @@ package body EinlesenDatenbanken is
                   Name => "Datenbanken/KartenFlussDatenbank");
 
          when False =>
-            KartenDatenbank.StandardKartenFlussDatenbankLaden;
+            KartenDatenbank.StandardKartenflussDatenbankLaden;
             return;
       end case;
       
-      KartenDatenbank.KartenFlussListeArray'Read (Stream (File => DatenbankEinlesen),
-                                                  KartenDatenbank.KartenFlussListe);
+      KartenDatenbank.KartenflusslisteArray'Read (Stream (File => DatenbankEinlesen),
+                                                  KartenDatenbank.Kartenflussliste);
       
       Close (File => DatenbankEinlesen);
       

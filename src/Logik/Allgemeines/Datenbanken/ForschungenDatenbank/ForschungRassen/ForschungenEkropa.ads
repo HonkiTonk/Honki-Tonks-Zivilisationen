@@ -5,9 +5,9 @@ with ForschungKonstanten;
 
 with DatenbankRecords;
 
-package ForschungMenschen is
+package ForschungenEkropa is
 
-   ForschungMenschenListe : constant DatenbankRecords.ForschungListeArray := (
+   ForschungslisteEkropa : constant DatenbankRecords.ForschungslisteArray := (
                                                                               -- Steinwerkzeuge
                                                                               1 =>
                                                                                 (
@@ -859,4 +859,4 @@ package ForschungMenschen is
                                                                               others => ForschungKonstanten.LeerForschungListe
                                                                              );
 
-end ForschungMenschen;
+end ForschungenEkropa;

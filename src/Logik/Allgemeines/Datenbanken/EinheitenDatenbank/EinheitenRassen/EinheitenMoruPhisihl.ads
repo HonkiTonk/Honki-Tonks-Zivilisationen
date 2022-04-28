@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenMoruPhisihl is
 
-   EinheitenMoruPhisihlListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteMoruPhisihl : constant DatenbankRecords.EinheitenlisteArray := (
                                                                                  -- Siedler
                                                                                  1 =>
                                                                                    (

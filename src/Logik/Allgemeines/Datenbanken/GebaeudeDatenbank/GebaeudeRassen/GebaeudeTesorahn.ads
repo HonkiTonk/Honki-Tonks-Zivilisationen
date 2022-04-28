@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeTesorahn is
 
-   GebäudeTesorahnListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteTesorahn : constant DatenbankRecords.GebäudelisteArray := (
                                                                             -- Häuser
                                                                             1 =>
                                                                               (

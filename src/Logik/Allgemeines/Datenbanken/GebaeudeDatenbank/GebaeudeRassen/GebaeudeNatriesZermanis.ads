@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeNatriesZermanis is
 
-   GebäudeNatriesZermanisListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteNatriesZermanis : constant DatenbankRecords.GebäudelisteArray := (
                                                                                    -- Häuser
                                                                                    1 =>
                                                                                      (

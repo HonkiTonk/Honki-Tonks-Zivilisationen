@@ -5,7 +5,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with WichtigesKonstanten;
 with SpielVariablen;
 
-with LeseForschungsDatenbank;
+with LeseForschungenDatenbank;
 
 with Fehler;
 
@@ -170,7 +170,7 @@ package body SchreibeWichtiges is
          
       else
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
-           := (LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseExtern,
+           := (LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
                                                        IDExtern    => SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
                - SpielVariablen.Wichtiges (RasseExtern).Forschungsmenge)
              / SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;

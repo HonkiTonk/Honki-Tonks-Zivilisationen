@@ -5,9 +5,9 @@ with ForschungKonstanten;
 
 with DatenbankRecords;
 
-package ForschungMoruPhisihl is
+package ForschungenKasrodiah is
 
-   ForschungMoruPhisihlListe : constant DatenbankRecords.ForschungListeArray := (
+   ForschungslisteKasrodiah : constant DatenbankRecords.ForschungslisteArray := (
                                                                                  -- Steinwerkzeuge
                                                                                  1 =>
                                                                                    (
@@ -859,4 +859,4 @@ package ForschungMoruPhisihl is
                                                                                  others => ForschungKonstanten.LeerForschungListe
                                                                                 );
 
-end ForschungMoruPhisihl;
+end ForschungenKasrodiah;

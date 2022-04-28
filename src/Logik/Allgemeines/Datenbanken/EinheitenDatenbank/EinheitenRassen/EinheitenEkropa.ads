@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenEkropa is
 
-   EinheitenEkropaListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteEkropa : constant DatenbankRecords.EinheitenlisteArray := (
                                                                             -- Siedler
                                                                             1 =>
                                                                               (

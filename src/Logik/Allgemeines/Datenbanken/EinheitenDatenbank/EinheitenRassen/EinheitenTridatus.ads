@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenTridatus is
 
-   EinheitenTridatusListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteTridatus : constant DatenbankRecords.EinheitenlisteArray := (
                                                                               -- Siedler
                                                                               1 =>
                                                                                 (

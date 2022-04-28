@@ -75,7 +75,7 @@ package EinheitenKonstanten is
    LeerKannTransportiertWerden : constant EinheitStadtDatentypen.Transport_Enum := EinheitStadtDatentypen.Kein_Transport_Enum;
    LeerTransportkapazität : constant EinheitStadtDatentypen.Transportplätze := EinheitStadtDatentypen.Transportplätze'First;
    
-   LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
+   LeerEinheitListe : constant DatenbankRecords.EinheitenlisteRecord := (
                                                                          EinheitArt                 => LeerEinheitArt,
                                                                          PreisGeld                  => LeerPreisGeld,
                                                                          PreisRessourcen            => LeerPreisRessourcen,

@@ -11,7 +11,7 @@ package body LeseKartenDatenbank is
       return Boolean
    is begin
       
-      return KartenDatenbank.KartenGrundListe (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern).Passierbarkeit (WelcheUmgebungExtern);
       
    end Passierbarkeit;
    
@@ -23,7 +23,7 @@ package body LeseKartenDatenbank is
       return KartenDatentypen.BewertungFeld
    is begin
       
-      return KartenDatenbank.KartenGrundListe (GrundExtern).Bewertung (RasseExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern).Bewertung (RasseExtern);
       
    end BewertungGrund;
    
@@ -35,7 +35,7 @@ package body LeseKartenDatenbank is
       return KartenDatentypen.BewertungFeld
    is begin
       
-      return KartenDatenbank.KartenFlussListe (FlussExtern).Bewertung (RasseExtern);
+      return KartenDatenbank.Kartenflussliste (FlussExtern).Bewertung (RasseExtern);
       
    end BewertungFluss;
    
@@ -60,7 +60,7 @@ package body LeseKartenDatenbank is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenGrundListe (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftGrund;
    
@@ -73,7 +73,7 @@ package body LeseKartenDatenbank is
       return EinheitStadtDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenFlussListe (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
+      return KartenDatenbank.Kartenflussliste (FlussExtern).Wirtschaft (RasseExtern, WirtschaftArtExtern);
       
    end WirtschaftFluss;
    
@@ -99,7 +99,7 @@ package body LeseKartenDatenbank is
       return EinheitStadtDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenDatenbank.KartenGrundListe (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfGrund;
    
@@ -112,7 +112,7 @@ package body LeseKartenDatenbank is
       return EinheitStadtDatentypen.KampfwerteAllgemein
    is begin
       
-      return KartenDatenbank.KartenFlussListe (FlussExtern).Kampf (RasseExtern, KampfArtExtern);
+      return KartenDatenbank.Kartenflussliste (FlussExtern).Kampf (RasseExtern, KampfArtExtern);
       
    end KampfFluss;
    
@@ -133,10 +133,10 @@ package body LeseKartenDatenbank is
    
    function GanzerEintragGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return DatenbankRecords.KartenGrundListeRecord
+      return DatenbankRecords.KartengrundlisteRecord
    is begin
       
-      return KartenDatenbank.KartenGrundListe (GrundExtern);
+      return KartenDatenbank.Kartengrundliste (GrundExtern);
       
    end GanzerEintragGrund;
    
@@ -144,10 +144,10 @@ package body LeseKartenDatenbank is
    
    function GanzerEintragFluss
      (FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
-      return DatenbankRecords.KartenListeRecord
+      return DatenbankRecords.KartenlisteRecord
    is begin
       
-      return KartenDatenbank.KartenFlussListe (FlussExtern);
+      return KartenDatenbank.Kartenflussliste (FlussExtern);
       
    end GanzerEintragFluss;
    
@@ -155,7 +155,7 @@ package body LeseKartenDatenbank is
    
    function GanzerEintragRessource
      (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
-      return DatenbankRecords.KartenListeRecord
+      return DatenbankRecords.KartenlisteRecord
    is begin
       
       return KartenDatenbank.KartenRessourcenListe (RessourceExtern);

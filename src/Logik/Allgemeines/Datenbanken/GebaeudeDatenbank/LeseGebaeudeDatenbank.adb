@@ -11,7 +11,7 @@ package body LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.KostenLager
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PreisGeld;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PreisGeld;
       
    end PreisGeld;
 
@@ -23,7 +23,7 @@ package body LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.KostenLager
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PreisRessourcen;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PreisRessourcen;
       
    end PreisRessourcen;
 
@@ -36,7 +36,7 @@ package body LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.GesamtePermanenteKosten
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern);
       
    end PermanenteKosten;
 
@@ -48,7 +48,7 @@ package body LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.ForschungIDNichtMöglich
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).Anforderungen;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).Anforderungen;
       
    end Anforderungen;
    
@@ -61,7 +61,7 @@ package body LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.ProduktionFeld
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).BonusWirtschaft (WWirtschaftBonusExtern);
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusWirtschaft (WWirtschaftBonusExtern);
       
    end WirtschaftBonus;
    
@@ -74,7 +74,7 @@ package body LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.Kampfwerte
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).BonusKampf (KampfBonusExtern);
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).BonusKampf (KampfBonusExtern);
       
    end KampfBonus;
 
@@ -86,7 +86,7 @@ package body LeseGebaeudeDatenbank is
       return KartengrundDatentypen.Kartengrund_Enum
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).GrundBenötigt;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GrundBenötigt;
       
    end GrundBenötigt;
 
@@ -98,7 +98,7 @@ package body LeseGebaeudeDatenbank is
       return Boolean
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).FlussBenötigt;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).FlussBenötigt;
       
    end FlussBenötigt;
 
@@ -110,7 +110,7 @@ package body LeseGebaeudeDatenbank is
       return KartengrundDatentypen.Karten_Ressourcen_Enum
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).RessourceBenötigt;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).RessourceBenötigt;
       
    end RessourceBenötigt;
 
@@ -122,7 +122,7 @@ package body LeseGebaeudeDatenbank is
       return EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).GebäudeSpezielleEigenschaft;
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).GebäudeSpezielleEigenschaft;
       
    end GebäudeSpezielleEigenschaft;
 
@@ -131,10 +131,10 @@ package body LeseGebaeudeDatenbank is
    function GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return DatenbankRecords.GebäudeListeRecord
+      return DatenbankRecords.GebäudelisteRecord
    is begin
 
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern);
+      return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern);
 
    end GanzerEintrag;
 

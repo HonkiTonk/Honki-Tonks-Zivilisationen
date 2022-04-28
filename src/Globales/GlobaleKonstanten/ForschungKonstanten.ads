@@ -13,7 +13,7 @@ package ForschungKonstanten is
    LeerForschungAnforderung : constant EinheitStadtDatentypen.ForschungIDMitNullWert := EinheitStadtDatentypen.ForschungIDMitNullWert'First;
    ForschungUnmöglich : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := EinheitStadtDatentypen.ForschungIDNichtMöglich'First;
    
-   LeerForschungListe : constant DatenbankRecords.ForschungListeRecord := (
+   LeerForschungListe : constant DatenbankRecords.ForschungslisteRecord := (
                                                                            PreisForschung       => LeerPreisForschung,
                                                                            AnforderungForschung => (others => ForschungUnmöglich)
                                                                           );

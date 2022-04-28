@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen;
 
-with ForschungsDatenbank;
+with ForschungenDatenbank;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
@@ -35,7 +35,7 @@ package body KIForschung is
    is begin
       
       ForschungSchleife:
-      for TechnologieSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (2) loop
+      for TechnologieSchleifenwert in ForschungenDatenbank.ForschungslisteArray'Range (2) loop
                
          case
            ForschungAllgemein.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,

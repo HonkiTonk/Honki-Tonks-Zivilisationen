@@ -7,7 +7,7 @@ with EinheitStadtDatentypen;
 
 with DatenbankRecords;
 
-package LeseForschungsDatenbank is
+package LeseForschungenDatenbank is
 
    function PreisForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
@@ -29,9 +29,9 @@ package LeseForschungsDatenbank is
    function GanzerEintrag
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.ForschungID)
-      return DatenbankRecords.ForschungListeRecord
+      return DatenbankRecords.ForschungslisteRecord
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
-end LeseForschungsDatenbank;
+end LeseForschungenDatenbank;

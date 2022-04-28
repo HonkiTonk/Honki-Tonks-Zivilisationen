@@ -83,7 +83,7 @@ package StadtKonstanten is
    LeerRessourceBenötigt : constant KartengrundDatentypen.Karten_Ressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
    LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer_Enum;
    
-   LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (
+   LeerGebäudeListe : constant DatenbankRecords.GebäudelisteRecord := (
                                                                          PreisGeld                   => LeerPreisGeld,
                                                                          PreisRessourcen             => LeerPreisRessourcen,
                                                                          PermanenteKosten            => (others => LeerPermanenteKosten),

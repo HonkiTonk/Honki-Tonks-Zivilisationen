@@ -96,14 +96,14 @@ package LeseKartenDatenbank is
    
    function GanzerEintragGrund
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum)
-      return DatenbankRecords.KartenGrundListeRecord;
+      return DatenbankRecords.KartengrundlisteRecord;
          
    function GanzerEintragFluss
      (FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
-      return DatenbankRecords.KartenListeRecord;
+      return DatenbankRecords.KartenlisteRecord;
          
    function GanzerEintragRessource
      (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum)
-      return DatenbankRecords.KartenListeRecord;
+      return DatenbankRecords.KartenlisteRecord;
 
 end LeseKartenDatenbank;

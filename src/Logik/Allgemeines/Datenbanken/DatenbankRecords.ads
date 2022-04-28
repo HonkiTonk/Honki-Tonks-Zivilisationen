@@ -13,8 +13,9 @@ package DatenbankRecords is
    -- EinheitenDatenbank
    type PassierbarkeitArray is array (EinheitStadtDatentypen.Passierbarkeit_Vorhanden_Enum'Range) of Boolean;
 
-   type EinheitenListeRecord is record
+   type EinheitenlisteRecord is record
       
+      ----------------------- Solche Benennungen auch mal anpassen.
       EinheitArt : EinheitStadtDatentypen.Einheit_Art_Enum;
       PreisGeld : EinheitStadtDatentypen.KostenLager;
       PreisRessourcen : EinheitStadtDatentypen.KostenLager;
@@ -39,21 +40,21 @@ package DatenbankRecords is
       
    end record;
    
-   type EinheitenListeArray is array (EinheitStadtDatentypen.EinheitenID'Range) of EinheitenListeRecord;
+   type EinheitenlisteArray is array (EinheitStadtDatentypen.EinheitenID'Range) of EinheitenlisteRecord;
    -- EinheitenDatenbank
    
    
 
-   -- ForschungsDatenbank
-   type ForschungListeRecord is record
+   -- ForschungenDatenbank
+   type ForschungslisteRecord is record
 
       PreisForschung : EinheitStadtDatentypen.KostenLager;
       AnforderungForschung : EinheitStadtDatentypen.AnforderungForschungArray;
 
    end record;
    
-   type ForschungListeArray is array (EinheitStadtDatentypen.ForschungID'Range) of ForschungListeRecord;
-   -- ForschungsDatenbank
+   type ForschungslisteArray is array (EinheitStadtDatentypen.ForschungID'Range) of ForschungslisteRecord;
+   -- ForschungenDatenbank
 
 
    
@@ -61,7 +62,7 @@ package DatenbankRecords is
    type BonusWirtschaftArray is array (KartenDatentypen.Wirtschaft_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
    type BonusKampfArray is array (KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.Kampfwerte;
    
-   type GebäudeListeRecord is record
+   type GebäudelisteRecord is record
       
       PreisGeld : EinheitStadtDatentypen.KostenLager;
       PreisRessourcen : EinheitStadtDatentypen.KostenLager;
@@ -75,13 +76,14 @@ package DatenbankRecords is
       GrundBenötigt : KartengrundDatentypen.Kartengrund_Enum;
       FlussBenötigt : Boolean;
       RessourceBenötigt : KartengrundDatentypen.Karten_Ressourcen_Enum;
-      --------------------- UndOderGrundFlussBenötigt : Boolean;
+      --------------------- UndOderGrundFlussBenötigt : Boolean; -- In ein Enum einbauen?
+      --------------------- Auch noch Abhängigkeit von anderen Gebäuden einbauen.
       
       GebäudeSpezielleEigenschaft : EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;
    
-   type GebäudeListeArray is array (EinheitStadtDatentypen.GebäudeID'Range) of GebäudeListeRecord;
+   type GebäudelisteArray is array (EinheitStadtDatentypen.GebäudeID'Range) of GebäudelisteRecord;
    -- GebäudeDatenbank
 
 
@@ -91,7 +93,7 @@ package DatenbankRecords is
    type KampfArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.KampfwerteAllgemein;
       
    -- KartenDatenbank
-   type KartenListeRecord is tagged record
+   type KartenlisteRecord is tagged record
             
       Bewertung : BewertungArray;
       Wirtschaft : WirtschaftArray;
@@ -99,7 +101,7 @@ package DatenbankRecords is
       
    end record;
    
-   type KartenGrundListeRecord is new KartenListeRecord with record
+   type KartengrundlisteRecord is new KartenlisteRecord with record
       
       Passierbarkeit : PassierbarkeitArray;
       

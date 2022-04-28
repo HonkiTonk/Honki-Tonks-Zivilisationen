@@ -12,7 +12,7 @@ with SystemDatentypen;
 with OptionenVariablen;
 
 with SchreibeWichtiges;
-with LeseForschungsDatenbank;
+with LeseForschungenDatenbank;
 with LeseWichtiges;
 
 -- with TextAnzeigeKonsole;
@@ -263,7 +263,7 @@ package body ForschungAllgemein is
          
       elsif
         LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)
-        >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseExtern,
+        >= LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
                                                    IDExtern    => AktuellesForschungsprojekt)
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
@@ -304,7 +304,7 @@ package body ForschungAllgemein is
          
       elsif
         LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)
-        >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseExtern,
+        >= LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
                                                    IDExtern    => AktuellesForschungsprojekt)
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
@@ -352,7 +352,7 @@ package body ForschungAllgemein is
       for AnforderungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
             
          if
-           LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+           LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                          IDExtern                => ForschungIDExtern,
                                                          WelcheAnforderungExtern => AnforderungSchleifenwert)
            = ForschungKonstanten.LeerForschungAnforderung
@@ -360,7 +360,7 @@ package body ForschungAllgemein is
             null;
             
          elsif
-           LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+           LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                          IDExtern                => ForschungIDExtern,
                                                          WelcheAnforderungExtern => AnforderungSchleifenwert)
            = ForschungKonstanten.ForschungUnmöglich
@@ -369,7 +369,7 @@ package body ForschungAllgemein is
                   
          elsif
            LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
-                                    WelcheTechnologieExtern => LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                    WelcheTechnologieExtern => LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                                                                              IDExtern                => ForschungIDExtern,
                                                                                                              WelcheAnforderungExtern => AnforderungSchleifenwert))
            = True

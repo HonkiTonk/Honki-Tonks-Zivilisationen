@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenSuroka is
 
-   EinheitenSurokaListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteSuroka : constant DatenbankRecords.EinheitenlisteArray := (
                                                                             -- Siedler
                                                                             1 =>
                                                                               (

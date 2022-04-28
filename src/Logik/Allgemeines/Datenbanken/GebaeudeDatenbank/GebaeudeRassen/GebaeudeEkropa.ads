@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeEkropa is
 
-   GebäudeEkropaListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteEkropa : constant DatenbankRecords.GebäudelisteArray := (
                                                                           -- Häuser
                                                                           1 =>
                                                                             (

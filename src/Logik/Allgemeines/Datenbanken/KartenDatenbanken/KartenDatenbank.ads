@@ -11,17 +11,17 @@ package KartenDatenbank is
    
    ----------------- Die ganzen Listen mal in Datenbanken umbenennen? Warum habe ich das nicht von Anfang an so benannt?
    
-   type KartenGrundListeArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of DatenbankRecords.KartenGrundListeRecord;
-   KartenGrundListe : KartenGrundListeArray;
+   type KartengrundlisteArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of DatenbankRecords.KartengrundlisteRecord;
+   Kartengrundliste : KartengrundlisteArray;
    
-   type KartenFlussListeArray is array (KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of DatenbankRecords.KartenListeRecord;
-   KartenFlussListe : KartenFlussListeArray;
+   type KartenflusslisteArray is array (KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   Kartenflussliste : KartenflusslisteArray;
    
-   type KartenRessourcenListeArray is array (KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum'Range) of DatenbankRecords.KartenListeRecord;
+   type KartenRessourcenListeArray is array (KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum'Range) of DatenbankRecords.KartenlisteRecord;
    KartenRessourcenListe : KartenRessourcenListeArray;
    
-   procedure StandardKartenGrundDatenbankLaden;
-   procedure StandardKartenFlussDatenbankLaden;
+   procedure StandardKartengrundDatenbankLaden;
+   procedure StandardKartenflussDatenbankLaden;
    procedure StandardKartenRessourcenDatenbankLaden;
    
 private
@@ -29,7 +29,7 @@ private
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
    -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft wird!
    
-   KartenGrundListeStandard : constant KartenGrundListeArray := (
+   KartengrundlisteStandard : constant KartengrundlisteArray := (
                                                                  -- Normal
                                                                  KartengrundDatentypen.Eis_Enum =>
                                                                    (
@@ -315,7 +315,7 @@ private
    
    
    
-   KartenFlussListeStandard : constant KartenFlussListeArray := (
+   KartenflusslisteStandard : constant KartenflusslisteArray := (
                                                                  -- Normal
                                                                  KartengrundDatentypen.Flusskreuzung_Vier_Enum =>
                                                                    (

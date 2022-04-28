@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenNatriesZermanis is
 
-   EinheitenNatriesZermanisListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteNatriesZermanis : constant DatenbankRecords.EinheitenlisteArray := (
                                                                                      -- Siedler
                                                                                      1 =>
                                                                                        (

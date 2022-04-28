@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenTalbidahr is
 
-   EinheitenTalbidahrListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteTalbidahr : constant DatenbankRecords.EinheitenlisteArray := (
                                                                                -- Siedler
                                                                                1 =>
                                                                                  (
@@ -33,7 +33,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Steinzeitkämpfer
+                                                                                 -- Steinzeitkämpfer
                                                                                2 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -56,7 +56,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Bogenschütze
+                                                                                 -- Bogenschütze
                                                                                3 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -79,7 +79,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
       
-                                                                               -- Erstes Schiff
+                                                                                 -- Erstes Schiff
                                                                                4 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -103,7 +103,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Bronzekämpfer
+                                                                                 -- Bronzekämpfer
                                                                                5 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -126,7 +126,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Eisenkämpfer
+                                                                                 -- Eisenkämpfer
                                                                                6 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -149,7 +149,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Streitwagen
+                                                                                 -- Streitwagen
                                                                                7 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -172,7 +172,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Katapult
+                                                                                 -- Katapult
                                                                                8 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -195,7 +195,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Balliste
+                                                                                 -- Balliste
                                                                                9 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -218,7 +218,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Segelschiff
+                                                                                 -- Segelschiff
                                                                                10 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -242,7 +242,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Großes Segelschiff
+                                                                                 -- Großes Segelschiff
                                                                                11 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -266,7 +266,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Gewehrkämpfer
+                                                                                 -- Gewehrkämpfer
                                                                                12 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -289,7 +289,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Kanone
+                                                                                 -- Kanone
                                                                                13 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -312,7 +312,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Dampfschiff
+                                                                                 -- Dampfschiff
                                                                                14 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -336,7 +336,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Motorschiff
+                                                                                 -- Motorschiff
                                                                                15 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -360,7 +360,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- U-Boot
+                                                                                 -- U-Boot
                                                                                16 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -386,7 +386,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Gepanzerter Wagen
+                                                                                 -- Gepanzerter Wagen
                                                                                17 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -409,7 +409,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Panzer
+                                                                                 -- Panzer
                                                                                18 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -432,7 +432,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Jäger
+                                                                                 -- Jäger
                                                                                19 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -455,7 +455,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Bomber
+                                                                                 -- Bomber
                                                                                20 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -478,7 +478,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Rakete
+                                                                                 -- Rakete
                                                                                21 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -502,7 +502,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Düsenjäger
+                                                                                 -- Düsenjäger
                                                                                22 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -525,7 +525,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Düsenbomber
+                                                                                 -- Düsenbomber
                                                                                23 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -548,7 +548,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Atombombe
+                                                                                 -- Atombombe
                                                                                24 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -571,7 +571,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Drohne
+                                                                                 -- Drohne
                                                                                25 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -594,7 +594,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Gensoldat
+                                                                                 -- Gensoldat
                                                                                26 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -617,7 +617,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Wassersiedler
+                                                                                 -- Wassersiedler
                                                                                27 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
@@ -642,7 +642,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Cyborg
+                                                                                 -- Cyborg
                                                                                28 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -665,7 +665,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Unterwasser/Unterirdischer Siedler
+                                                                                 -- Unterwasser/Unterirdischer Siedler
                                                                                29 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
@@ -693,7 +693,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- PZB20
+                                                                                 -- PZB20
                                                                                30 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
@@ -716,7 +716,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- PZB40
+                                                                                 -- PZB40
                                                                                31 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
@@ -739,7 +739,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- PZB100
+                                                                                 -- PZB100
                                                                                32 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Sonstiges_Enum,
@@ -762,7 +762,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Gaußkämpfer
+                                                                                 -- Gaußkämpfer
                                                                                33 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -785,7 +785,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Magnetkämpfer
+                                                                                 -- Magnetkämpfer
                                                                                34 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -808,7 +808,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Schwebepanzer
+                                                                                 -- Schwebepanzer
                                                                                35 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -834,7 +834,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Planetenkernsiedler
+                                                                                 -- Planetenkernsiedler
                                                                                36 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
@@ -864,7 +864,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Himmel/Orbitalsiedler
+                                                                                 -- Himmel/Orbitalsiedler
                                                                                37 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Arbeiter_Enum,
@@ -892,7 +892,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Atmosphärenjäger
+                                                                                 -- Atmosphärenjäger
                                                                                38 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -916,7 +916,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Atmosphärenbomber
+                                                                                 -- Atmosphärenbomber
                                                                                39 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -940,7 +940,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Artillerie
+                                                                                 -- Artillerie
                                                                                40 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -963,7 +963,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Stellare Artillerie
+                                                                                 -- Stellare Artillerie
                                                                                41 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Fernkämpfer_Enum,
@@ -988,7 +988,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Gräberschiff
+                                                                                 -- Gräberschiff
                                                                                42 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -1016,7 +1016,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Kerngräber
+                                                                                 -- Kerngräber
                                                                                43 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -1046,7 +1046,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Moderne Infanterie
+                                                                                 -- Moderne Infanterie
                                                                                44 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Nahkämpfer_Enum,
@@ -1069,7 +1069,7 @@ package EinheitenTalbidahr is
                                                                                   Transportkapazität      => 0
                                                                                  ),
                                                
-                                                                               -- Alleskönner
+                                                                                 -- Alleskönner
                                                                                45 =>
                                                                                  (
                                                                                   EinheitArt              => EinheitStadtDatentypen.Cheat_Enum,

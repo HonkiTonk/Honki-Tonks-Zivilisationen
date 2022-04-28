@@ -9,7 +9,7 @@ with DatenbankRecords;
 
 package EinheitenTesorahn is
 
-   EinheitenTesorahnListe : constant DatenbankRecords.EinheitenListeArray := (
+   EinheitenlisteTesorahn : constant DatenbankRecords.EinheitenlisteArray := (
                                                                               -- Siedler
                                                                               1 =>
                                                                                 (

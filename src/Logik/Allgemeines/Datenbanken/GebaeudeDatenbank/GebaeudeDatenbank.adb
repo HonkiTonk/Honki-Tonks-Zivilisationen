@@ -26,66 +26,66 @@ package body GebaeudeDatenbank is
    is begin
 
       RassenSchleife:
-      for RasseSchleifenwert in GebäudeListe'Range (1) loop
+      for RasseSchleifenwert in GebäudelisteArray'Range (1) loop
          GebäudeSchleife:
-         for GebäudeSchleifenwert in GebäudeListe'Range (2) loop
+         for GebäudeSchleifenwert in GebäudelisteArray'Range (2) loop
             
             case
               RasseSchleifenwert
             is
                when RassenDatentypen.Menschen_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeMenschen.GebäudeMenschenListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeMenschen.GebäudelisteMenschen (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Kasrodiah_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeKasrodiah.GebäudeKasrodiahListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeKasrodiah.GebäudelisteKasrodiah (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Lasupin_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLasupin.GebäudeLasupinListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLasupin.GebäudelisteLasupin (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Lamustra_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLamustra.GebäudeLamustraListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLamustra.GebäudelisteLamustra (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Manuky_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeManuky.GebäudeManukyListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeManuky.GebäudelisteManuky (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Suroka_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeSuroka.GebäudeSurokaListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeSuroka.GebäudelisteSuroka (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Pryolon_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudePryolon.GebäudePryolonListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudePryolon.GebäudelistePryolon (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Talbidahr_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTalbidahr.GebäudeTalbidahrListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTalbidahr.GebäudelisteTalbidahr (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Moru_Phisihl_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeMoruPhisihl.GebäudeMoruPhisihlListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeMoruPhisihl.GebäudelisteMoruPhisihl (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Larinos_Lotaris_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLarinosLotaris.GebäudeLarinosLotarisListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeLarinosLotaris.GebäudelisteLarinosLotaris (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Carupex_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeCarupex.GebäudeCarupexListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeCarupex.GebäudelisteCarupex (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Alary_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeAlary.GebäudeAlaryListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeAlary.GebäudelisteAlary (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Tesorahn_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTesorahn.GebäudeTesorahnListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTesorahn.GebäudelisteTesorahn (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Natries_Zermanis_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeNatriesZermanis.GebäudeNatriesZermanisListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeNatriesZermanis.GebäudelisteNatriesZermanis (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Tridatus_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTridatus.GebäudeTridatusListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeTridatus.GebäudelisteTridatus (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Senelari_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeSenelari.GebäudeSenelariListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeSenelari.GebäudelisteSenelari (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Aspari_2_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeAspari2.GebäudeAspari2Liste (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeAspari2.GebäudelisteAspari2 (GebäudeSchleifenwert);
                   
                when RassenDatentypen.Ekropa_Enum =>
-                  GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeEkropa.GebäudeEkropaListe (GebäudeSchleifenwert);
+                  Gebäudeliste (RasseSchleifenwert, GebäudeSchleifenwert) := GebaeudeEkropa.GebäudelisteEkropa (GebäudeSchleifenwert);
             end case;
             
          end loop GebäudeSchleife;

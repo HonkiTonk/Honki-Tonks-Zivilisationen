@@ -8,7 +8,7 @@ with DatenbankRecords;
 
 package GebaeudeCarupex is
 
-   GebäudeCarupexListe : constant DatenbankRecords.GebäudeListeArray := (
+   GebäudelisteCarupex : constant DatenbankRecords.GebäudelisteArray := (
                                                                            -- Häuser
                                                                            1 =>
                                                                              (
