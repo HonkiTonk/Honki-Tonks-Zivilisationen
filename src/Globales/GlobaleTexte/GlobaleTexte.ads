@@ -67,7 +67,7 @@ package GlobaleTexte is
    
    --------------------- Hier auch zweimal Enumlänge?
    Verbesserungen : TexteArray (1 .. 16) := (others => FehlenderText);
-   Wege : TexteArray (1 .. 32) := (others => FehlenderText);
+   Wege : TexteArray (1 .. 96) := (others => FehlenderText);
    
    Gebäude : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
    Forschungen : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.ForschungID'Last)) := (others => FehlenderText);

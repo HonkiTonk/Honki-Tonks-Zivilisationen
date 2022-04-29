@@ -42,7 +42,7 @@ private
 
    Kartenfeld : KartengrundDatentypen.Kartengrund_Enum;
    KartenfeldRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
-   KartenfeldFluss : KartengrundDatentypen.Karten_Fluss_Enum;
+   KartenfeldFluss : KartengrundDatentypen.Kartenfluss_Enum;
 
    Stadtfeld : KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
    Wegfeld : KartenVerbesserungDatentypen.Karten_Weg_Enum;

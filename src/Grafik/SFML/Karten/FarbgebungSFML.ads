@@ -15,7 +15,7 @@ package FarbgebungSFML is
          (GrundExtern /= KartengrundDatentypen.Hügel_Mit_Enum);
    
    function FarbeFlussErmitteln
-     (FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum)
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
       return Sf.Graphics.Color.sfColor;
    
 private
@@ -46,10 +46,10 @@ private
                                            KartengrundDatentypen.Vernichtet_Enum                                                      => (0, 0, 0, 0)
                                           );
    
-   type FlussfarbeArray is array (KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of Sf.Graphics.Color.sfColor;
+   type FlussfarbeArray is array (KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Range) of Sf.Graphics.Color.sfColor;
    Flussfarbe : constant FlussfarbeArray := (
-                                             KartengrundDatentypen.Karten_Fluss_Vorhanden_Enum'Range | KartengrundDatentypen.Karten_Unterirdischer_Fluss_Vorhanden_Enum'Range => (0, 0, 205, 0),
-                                             KartengrundDatentypen.Karten_Lavafluss_Vorhanden_Enum'Range                                                                      => (230, 50, 50, 0)
+                                             KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range | KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range => (0, 0, 205, 0),
+                                             KartengrundDatentypen.Kartenfluss_Kern_Enum'Range                                                                      => (230, 50, 50, 0)
                                             );
 
 end FarbgebungSFML;

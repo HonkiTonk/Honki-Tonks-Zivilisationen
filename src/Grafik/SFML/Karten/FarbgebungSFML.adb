@@ -15,7 +15,7 @@ package body FarbgebungSFML is
    
    
    function FarbeFlussErmitteln
-     (FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum)
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
       return Sf.Graphics.Color.sfColor
    is begin
       

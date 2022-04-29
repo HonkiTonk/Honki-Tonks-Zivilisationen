@@ -3,10 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
-with KartengrundDatentypen; use KartengrundDatentypen;
-with KartenVerbesserungDatentypen;
 with EinheitenKonstanten;
-with AufgabenDatentypen;
 
 with KIDatentypen;
 
@@ -17,8 +14,8 @@ with LeseKarten;
 
 with EinheitenMeldungenSetzen;
 with FelderwerteFestlegen;
-with VerbesserungWeg;
 with AufgabenAllgemein;
+with Wegeplatzierungssystem;
 
 package body VerbesserungFertiggestellt is
 
@@ -124,41 +121,24 @@ package body VerbesserungFertiggestellt is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
+      WelcheAufgabe := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
       case
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        WelcheAufgabe
       is
-         when AufgabenDatentypen.Straße_Bauen_Enum =>
-            VerbesserungWeg.WegBerechnen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+         when AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range =>
+            Wegeplatzierungssystem.WegBerechnen (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                 WegartExtern      => WelcheAufgabe);
               
-         when AufgabenDatentypen.Mine_Bauen_Enum =>
-            SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Mine_Enum);
-            
-         when AufgabenDatentypen.Farm_Bauen_Enum =>
-            SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Farm_Enum);
-            
-         when AufgabenDatentypen.Festung_Bauen_Enum =>
-            SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Festung_Enum);
+         when AufgabenDatentypen.Einheitenbefehle_Gebäude_Enum'Range =>
+            SchreibeKarten.Verbesserung (KoordinatenExtern  => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                         VerbesserungExtern => Verbesserung (WelcheAufgabe));
               
          when AufgabenDatentypen.Wald_Aufforsten_Enum =>
             VerbesserungWaldAufforsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
               
          when AufgabenDatentypen.Roden_Trockenlegen_Enum =>
-            if
-              LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
-            then
-               SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                     GrundExtern       => KartengrundDatentypen.Hügel_Enum);
-                  
-            else
-               SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                     GrundExtern       => KartengrundDatentypen.Flachland_Enum);
-            end if;
-            
-         when others =>
-            null;
+            VerbesserungRodenTrockenlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
 
       FelderwerteFestlegen.EinzelnesKartenfeldBewerten (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -171,31 +151,43 @@ package body VerbesserungFertiggestellt is
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
    is begin
       
-      if
-        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = KartengrundDatentypen.Hügel_Enum
-      then
-         SchreibeKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                HügelExtern       => True);
-               
-      else
-         null;
-      end if;
+      case
+        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+      is
+         when KartengrundDatentypen.Hügel_Enum =>
+            SchreibeKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                   HügelExtern       => True);
             
+         when others =>
+            null;
+      end case;
+            
+      -- Nicht in den Überprüfung oben mit rein schieben, da der Wald immer erzeugt werden muss, unabhängig ob da ein Hügel ist.
       SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                             GrundExtern       => KartengrundDatentypen.Wald_Enum);
       
-      if
+      case
         LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      in
-        KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
-      then
-         SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                      VerbesserungExtern    => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
-                  
-      else
-         null;
-      end if;
+      is
+         when KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range =>
+            SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
+            
+         when others =>
+            null;
+      end case;
       
    end VerbesserungWaldAufforsten;
+   
+   
+   
+   procedure VerbesserungRodenTrockenlegen
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+   is begin
+      
+      SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                            GrundExtern       => HügelSetzen (LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))));
+      
+   end VerbesserungRodenTrockenlegen;
 
 end VerbesserungFertiggestellt;

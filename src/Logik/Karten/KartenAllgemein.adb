@@ -29,11 +29,11 @@ package body KartenAllgemein is
    
    
    function BeschreibungFluss
-     (KartenFlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
+     (KartenFlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
       return Wide_Wide_String
    is begin
             
-      FlussAktuell := 2 * KartengrundDatentypen.Karten_Fluss_Enum'Pos (KartenFlussExtern) - 1;
+      FlussAktuell := 2 * KartengrundDatentypen.Kartenfluss_Enum'Pos (KartenFlussExtern) - 1;
       
       return To_Wide_Wide_String (Source => GlobaleTexte.Kartenflüsse (FlussAktuell));
       

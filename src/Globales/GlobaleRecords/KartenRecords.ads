@@ -85,7 +85,7 @@ package KartenRecords is
       Hügel : Boolean;
       Sichtbar : SichtbarkeitArray;
       
-      Fluss : KartengrundDatentypen.Karten_Fluss_Enum;
+      Fluss : KartengrundDatentypen.Kartenfluss_Enum;
       Ressource : KartengrundDatentypen.Karten_Ressourcen_Enum;
       
       Weg : KartenVerbesserungDatentypen.Karten_Weg_Enum;
@@ -156,5 +156,5 @@ package KartenRecords is
       Kartenform : KartenformRecord;
       
    end record;
-
+   
 end KartenRecords;

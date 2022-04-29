@@ -31,7 +31,7 @@ package body ZufallsgeneratorenChaos is
    
    
    function ChaoskarteFluss
-     return KartengrundDatentypen.Karten_Fluss_Enum
+     return KartengrundDatentypen.Kartenfluss_Enum
    is begin
       
       FlussWählenChaoskarte.Reset (FlussGewählt);
@@ -107,7 +107,7 @@ package body ZufallsgeneratorenChaos is
    
    
    function TotaleChaoskarteFluss
-     return KartengrundDatentypen.Karten_Fluss_Enum
+     return KartengrundDatentypen.Kartenfluss_Enum
    is begin
       
       FlussWählenChaoskarte.Reset (FlussGewählt);

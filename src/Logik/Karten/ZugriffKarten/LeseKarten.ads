@@ -46,7 +46,7 @@ package LeseKarten is
 
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartengrundDatentypen.Karten_Fluss_Enum
+      return KartengrundDatentypen.Kartenfluss_Enum
      with
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

@@ -14,7 +14,7 @@ package KartenDatenbank is
    type KartengrundlisteArray is array (KartengrundDatentypen.Kartengrund_Vorhanden_Enum'Range) of DatenbankRecords.KartengrundlisteRecord;
    Kartengrundliste : KartengrundlisteArray;
    
-   type KartenflusslisteArray is array (KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum'Range) of DatenbankRecords.KartenlisteRecord;
+   type KartenflusslisteArray is array (KartengrundDatentypen.Kartenfluss_Vorhanden_Enum'Range) of DatenbankRecords.KartenlisteRecord;
    Kartenflussliste : KartenflusslisteArray;
    
    type KartenRessourcenListeArray is array (KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum'Range) of DatenbankRecords.KartenlisteRecord;

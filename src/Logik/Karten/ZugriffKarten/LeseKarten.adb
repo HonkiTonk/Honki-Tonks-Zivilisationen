@@ -45,7 +45,7 @@ package body LeseKarten is
    
    function Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return KartengrundDatentypen.Karten_Fluss_Enum
+      return KartengrundDatentypen.Kartenfluss_Enum
    is begin
       
       return Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss;

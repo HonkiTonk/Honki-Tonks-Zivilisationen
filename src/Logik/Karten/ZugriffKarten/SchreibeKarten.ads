@@ -46,7 +46,7 @@ package SchreibeKarten is
 
    procedure Fluss
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum)
+      FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse

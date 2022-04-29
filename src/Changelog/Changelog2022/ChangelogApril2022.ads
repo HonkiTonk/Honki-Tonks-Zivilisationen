@@ -7,10 +7,13 @@ package ChangelogApril2022 is
    
    
 
-   -- Version 0.01.0530 => 0.01.05 (29.04.2022):
+   -- Version 0.01.0530 => 0.01.0550 (29.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Debian GNAT 12-20220319-1 auf Debian GNAT 12-20220428-1 aktualisiert.
+   -- Überarbeitungen am Kartenverbesserungssystem.
+   -- Das neue Wegeplatzierungssystem fertiggestellt, es sollte jetzt in der Lage sein beliebige Arten von Wegen zu platzieren und zu verändern.
+   -- Angefangen mehr Wege als nur Straßen und die notwendige Technologie die nötig ist um besseres zu bauen einzubauen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbetiet.
    
    
 

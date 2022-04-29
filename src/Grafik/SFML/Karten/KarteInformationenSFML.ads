@@ -31,7 +31,7 @@ package KarteInformationenSFML is
 private
 
    KartenGrund : KartengrundDatentypen.Kartengrund_Enum;
-   KartenFluss : KartengrundDatentypen.Karten_Fluss_Enum;
+   KartenFluss : KartengrundDatentypen.Kartenfluss_Enum;
    KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
 
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;

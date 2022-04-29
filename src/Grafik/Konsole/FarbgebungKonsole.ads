@@ -15,7 +15,7 @@ package FarbgebungKonsole is
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
-      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum;
+      FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
@@ -60,7 +60,7 @@ private
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
-      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum;
+      FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
@@ -68,7 +68,7 @@ private
    
    procedure FarbenFluss
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum);
+      FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum);
    
    procedure FarbenRessourcen
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;

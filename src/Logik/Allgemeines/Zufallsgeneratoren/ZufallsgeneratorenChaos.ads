@@ -11,7 +11,7 @@ package ZufallsgeneratorenChaos is
      return KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
    
    function ChaoskarteFluss
-     return KartengrundDatentypen.Karten_Fluss_Enum;
+     return KartengrundDatentypen.Kartenfluss_Enum;
    
    function ChaoskarteRessource
      (WasserLandExtern : in Boolean)
@@ -21,7 +21,7 @@ package ZufallsgeneratorenChaos is
      return KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
    
    function TotaleChaoskarteFluss
-     return KartengrundDatentypen.Karten_Fluss_Enum;
+     return KartengrundDatentypen.Kartenfluss_Enum;
    
    function TotaleChaoskarteRessource
      return KartengrundDatentypen.Karten_Ressourcen_Enum;
@@ -35,7 +35,7 @@ private
    package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (KartengrundDatentypen.Kartengrund_Vorhanden_Enum);
    GrundGewählt : WerteWählenChaoskarte.Generator;
    
-   package FlussWählenChaoskarte is new Ada.Numerics.Discrete_Random (KartengrundDatentypen.Karten_Fluss_Enum);
+   package FlussWählenChaoskarte is new Ada.Numerics.Discrete_Random (KartengrundDatentypen.Kartenfluss_Enum);
    FlussGewählt : FlussWählenChaoskarte.Generator;
    
    package RessourceWählenChaoskarte is new Ada.Numerics.Discrete_Random (KartengrundDatentypen.Karten_Ressourcen_Enum);

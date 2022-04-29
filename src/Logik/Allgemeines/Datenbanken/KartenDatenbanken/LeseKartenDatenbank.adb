@@ -30,7 +30,7 @@ package body LeseKartenDatenbank is
    
    
    function BewertungFluss
-     (FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return KartenDatentypen.BewertungFeld
    is begin
@@ -67,7 +67,7 @@ package body LeseKartenDatenbank is
    
    
    function WirtschaftFluss
-     (FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
       return EinheitStadtDatentypen.ProduktionElement
@@ -106,7 +106,7 @@ package body LeseKartenDatenbank is
    
    
    function KampfFluss
-     (FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum;
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KampfArtExtern : in KartenDatentypen.Kampf_Enum)
       return EinheitStadtDatentypen.KampfwerteAllgemein
@@ -143,7 +143,7 @@ package body LeseKartenDatenbank is
    
    
    function GanzerEintragFluss
-     (FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
+     (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
       return DatenbankRecords.KartenlisteRecord
    is begin
       

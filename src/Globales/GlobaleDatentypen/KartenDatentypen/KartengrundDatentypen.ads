@@ -75,16 +75,20 @@ package KartengrundDatentypen is
                                    Kohle_Enum, Eisen_Enum, Öl_Enum, Hochwertiger_Boden_Enum, Gold_Enum
                                      
                                    -- Kernressourcen
+                                   
                                   );
    pragma Ordered (Karten_Ressourcen_Enum);
    
    subtype Karten_Ressourcen_Vorhanden_Enum is Karten_Ressourcen_Enum range Fisch_Enum .. Karten_Ressourcen_Enum'Last;
+   
    subtype Karten_Ressourcen_Wasser is Karten_Ressourcen_Vorhanden_Enum range Fisch_Enum .. Wal_Enum;
    subtype Karten_Ressourcen_Land is Karten_Ressourcen_Vorhanden_Enum range Kohle_Enum .. Gold_Enum;
+   -- subtype Karten_Ressourcen_Kern is Karten_Ressourcen_Vorhanden_Enum range  .. ;
+   -- subtype Karten_Ressourcen_Lava is Karten_Ressourcen_Vorhanden_Enum range  .. ;
    
    
    
-   type Karten_Fluss_Enum is (
+   type Kartenfluss_Enum is (
                               Leer_Fluss_Enum,
                               
                               -- Fluss
@@ -103,11 +107,12 @@ package KartengrundDatentypen is
                               Lavaflusskurve_Oben_Links_Enum, Lavaflusskreuzung_Drei_Oben_Enum, Lavaflusskreuzung_Drei_Unten_Enum, Lavaflusskreuzung_Drei_Rechts_Enum, Lavaflusskreuzung_Drei_Links_Enum,
                               Lavaflussendstück_Links_Enum, Lavaflussendstück_Rechts_Enum, Lavaflussendstück_Unten_Enum, Lavaflussendstück_Oben_Enum, Lavasee_Enum
                              );
-   pragma Ordered (Karten_Fluss_Enum);
+   pragma Ordered (Kartenfluss_Enum);
                               
-   subtype Karten_Alle_Flüsse_Vorhanden_Enum is Karten_Fluss_Enum range Flusskreuzung_Vier_Enum .. Karten_Fluss_Enum'Last;
-   subtype Karten_Fluss_Vorhanden_Enum is Karten_Alle_Flüsse_Vorhanden_Enum range Flusskreuzung_Vier_Enum .. See_Enum;
-   subtype Karten_Unterirdischer_Fluss_Vorhanden_Enum is Karten_Alle_Flüsse_Vorhanden_Enum range Unterirdische_Flusskreuzung_Vier_Enum .. Unterirdischer_See_Enum;
-   subtype Karten_Lavafluss_Vorhanden_Enum is Karten_Alle_Flüsse_Vorhanden_Enum range Lavaflusskreuzung_Vier_Enum .. Lavasee_Enum;
+   subtype Kartenfluss_Vorhanden_Enum is Kartenfluss_Enum range Flusskreuzung_Vier_Enum .. Kartenfluss_Enum'Last;
+   
+   subtype Kartenfluss_Oberfläche_Enum is Kartenfluss_Vorhanden_Enum range Flusskreuzung_Vier_Enum .. See_Enum;
+   subtype Kartenfluss_Unterfläche_Enum is Kartenfluss_Vorhanden_Enum range Unterirdische_Flusskreuzung_Vier_Enum .. Unterirdischer_See_Enum;
+   subtype Kartenfluss_Kern_Enum is Kartenfluss_Vorhanden_Enum range Lavaflusskreuzung_Vier_Enum .. Lavasee_Enum;
 
 end KartengrundDatentypen;

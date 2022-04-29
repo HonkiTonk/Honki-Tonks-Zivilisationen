@@ -23,7 +23,7 @@ package KarteInformationenKonsole is
    
 private
    
-   KarteFluss : KartengrundDatentypen.Karten_Fluss_Enum;
+   KarteFluss : KartengrundDatentypen.Kartenfluss_Enum;
    KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
    KartenVerbesserung : KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
    KartenWeg : KartenVerbesserungDatentypen.Karten_Weg_Enum;

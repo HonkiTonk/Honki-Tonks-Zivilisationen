@@ -16,7 +16,7 @@ package body FarbgebungKonsole is
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
-      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum;
+      FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
@@ -73,7 +73,7 @@ package body FarbgebungKonsole is
    
    procedure FarbenFluss
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-      FlussExtern : in KartengrundDatentypen.Karten_Alle_Flüsse_Vorhanden_Enum)
+      FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum)
    is begin
       
       case
@@ -82,9 +82,9 @@ package body FarbgebungKonsole is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Sand_Enum | KartengrundDatentypen.Küstengewässer_Enum
             | KartengrundDatentypen.Wolken_Enum | KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Küstengrund_Enum =>
             if
-              FlussExtern in KartengrundDatentypen.Karten_Fluss_Vorhanden_Enum'Range
+              FlussExtern in KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range
               or
-                FlussExtern in KartengrundDatentypen.Karten_Unterirdischer_Fluss_Vorhanden_Enum'Range
+                FlussExtern in KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range
             then
                Put (Item => CSI & "38;2;0;0;205m");
                
@@ -95,9 +95,9 @@ package body FarbgebungKonsole is
                   
          when others =>
             if
-              FlussExtern in KartengrundDatentypen.Karten_Fluss_Vorhanden_Enum'Range
+              FlussExtern in KartengrundDatentypen.Kartenfluss_Oberfläche_Enum'Range
               or
-                FlussExtern in KartengrundDatentypen.Karten_Unterirdischer_Fluss_Vorhanden_Enum'Range
+                FlussExtern in KartengrundDatentypen.Kartenfluss_Unterfläche_Enum'Range
             then
                Put (Item => CSI & "38;2;135;206;250m");
                
@@ -148,7 +148,7 @@ package body FarbgebungKonsole is
       VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Enum;
       WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Enum;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Enum;
-      FlussExtern : in KartengrundDatentypen.Karten_Fluss_Enum;
+      FlussExtern : in KartengrundDatentypen.Kartenfluss_Enum;
       RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern : in RassenDatentypen.Rassen_Enum;
