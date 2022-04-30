@@ -62,7 +62,8 @@ package body VerbesserungWald is
             if
               VerbesserungRoden.VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern) = True
+                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+              = True
             then
                SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        BeschäftigungExtern     => AufgabenDatentypen.Wald_Aufforsten_Enum);

@@ -74,7 +74,8 @@ package body VerbesserungFarm is
             if
               VerbesserungRoden.VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern) = True
+                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+              = True
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  BeschäftigungExtern     => AufgabenDatentypen.Farm_Bauen_Enum);
@@ -94,6 +95,7 @@ package body VerbesserungFarm is
         AnlegenTestenExtern
       is
          when True =>
+            -- Das Schreiben nach hier verschieben, müsste auch funktionieren und würde die Nullsetzung ersparen.
             null;
             
          when False =>

@@ -1,9 +1,11 @@
 package ChangelogApril2022 is
 
-   -- Version 0.01.05 => 0.01.05 (30.04.2022):
+   -- Version 0.01.05 => 0.01.0560 (30.04.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Straßen können jetzt zu Schiene verbessert werden.
+   -- Grundlegend Wege für die gesamte Ober- und Unterfläche eingebaut.
+   -- Es ist jetzt möglich Wegearten durch Technologie zu beschränken.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
@@ -13,7 +15,7 @@ package ChangelogApril2022 is
    -- Überarbeitungen am Kartenverbesserungssystem.
    -- Das neue Wegeplatzierungssystem fertiggestellt, es sollte jetzt in der Lage sein beliebige Arten von Wegen zu platzieren und zu verändern.
    -- Angefangen mehr Wege als nur Straßen und die notwendige Technologie die nötig ist um besseres zu bauen einzubauen.
-   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbetiet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
 

@@ -13,7 +13,6 @@ package body AufgabenAllgemein is
       return Wide_Wide_String
    is begin
       
-      --------------- Text direkt returnen anstelle erst zuzuweisen? Auch bei den anderen Beschreibungen so anpassen?
       AktuelleVerbesserung := 2 * KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum'Pos (KartenVerbesserungExtern) - 1;
                
       BeschreibungText := GlobaleTexte.Verbesserungen (AktuelleVerbesserung);

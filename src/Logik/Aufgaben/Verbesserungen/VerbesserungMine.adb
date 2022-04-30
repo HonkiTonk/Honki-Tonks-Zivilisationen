@@ -68,7 +68,8 @@ package body VerbesserungMine is
             if
               VerbesserungRoden.VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    GrundExtern              => GrundExtern,
-                                                   AnlegenTestenExtern      => AnlegenTestenExtern) = True
+                                                   AnlegenTestenExtern      => AnlegenTestenExtern)
+              = True
             then
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  BeschäftigungExtern     => AufgabenDatentypen.Mine_Bauen_Enum);

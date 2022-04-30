@@ -8,6 +8,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SchreibeEinheitenGebaut;
 with LeseKarten;
 with LeseEinheitenGebaut;
+with LeseWichtiges;
 
 with AufgabenAllgemein;
 with Fehler;
@@ -104,17 +105,22 @@ package body VerbesserungWeg is
       case
         WegVorhanden
       is
-         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range =>
-            null;
-            
-         when KartenVerbesserungDatentypen.Karten_Schiene_Enum'Range =>
-            null;
-            
-         when KartenVerbesserungDatentypen.Karten_Tunnel_Enum'Range =>
-            null;
+         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+            if
+              TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)) = 0
+              or else
+                LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                         WelcheTechnologieExtern => TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)))
+              = True
+            then
+               WelcheArbeit := WelcheWegart (WegVorhanden);
+               
+            else
+               return False;
+            end if;
             
          when others =>
-            null;
+            return False;
       end case;
       
       case
@@ -122,39 +128,26 @@ package body VerbesserungWeg is
       is
          when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Hügel_Enum
             | KartengrundDatentypen.Wald_Enum =>
-            if
-              LeseKarten.Weg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-            in
-              KartenVerbesserungDatentypen.Karten_Straße_Enum'Range
-            then
-               SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => AufgabenDatentypen.Schiene_Bauen_Enum);
-
-            else
-               SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => AufgabenDatentypen.Straße_Bauen_Enum);
-            end if;
-
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         ZeitExtern               => 3,
-                                                         RechnenSetzenExtern      => 0);
+            Arbeitszeit := Grundzeit + 2;
 
          when KartengrundDatentypen.Gebirge_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => AufgabenDatentypen.Straße_Bauen_Enum);
-            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         ZeitExtern               => 6,
-                                                         RechnenSetzenExtern      => 0);
+            Arbeitszeit := Grundzeit + 5;
 
          when others =>
             Fehler.LogikFehler (FehlermeldungExtern => "VerbesserungWeg.OberflächeLand - Falscher Kartengrund.");
       end case;
       
+      SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              BeschäftigungExtern     => WelcheArbeit);
+      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   ZeitExtern               => Arbeitszeit,
+                                                   RechnenSetzenExtern      => 0);
+      
       return True;
    
    end OberflächeLand;
 
-     
+   
      
    function OberflächeWasser
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
@@ -162,17 +155,45 @@ package body VerbesserungWeg is
       return Boolean
    is begin
       
-      if
-        EinheitRasseNummerExtern.Platznummer = 1
-        and
-          GrundExtern = KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum'First
-      then
-         null;
-         
-      else
-         null;
-      end if;
-     
+      WegVorhanden := LeseKarten.Weg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
+      case
+        WegVorhanden
+      is
+         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+            if
+              TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)) = 0
+              or else
+                LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                         WelcheTechnologieExtern => TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)))
+              = True
+            then
+               WelcheArbeit := WelcheWegart (WegVorhanden);
+               
+            else
+               return False;
+            end if;
+            
+         when others =>
+            return False;
+      end case;
+      
+      case
+        GrundExtern
+      is
+         when KartengrundDatentypen.Küstengewässer_Enum =>
+            Arbeitszeit := Grundzeit + 2;
+
+         when KartengrundDatentypen.Wasser_Enum =>
+            Arbeitszeit := Grundzeit + 5;
+      end case;
+      
+      SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              BeschäftigungExtern     => WelcheArbeit);
+      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   ZeitExtern               => Arbeitszeit,
+                                                   RechnenSetzenExtern      => 0);
+      
       return True;
    
    end OberflächeWasser;
@@ -185,17 +206,48 @@ package body VerbesserungWeg is
       return Boolean
    is begin
       
-      if
-        EinheitRasseNummerExtern.Platznummer = 1
-        and
-          GrundExtern = KartengrundDatentypen.Kartengrund_Unterfläche_Enum'First
-      then
-         null;
-         
-      else
-         null;
-      end if;
-     
+      WegVorhanden := LeseKarten.Weg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
+      case
+        WegVorhanden
+      is
+         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+            if
+              TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)) = 0
+              or else
+                LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                         WelcheTechnologieExtern => TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)))
+              = True
+            then
+               WelcheArbeit := WelcheWegart (WegVorhanden);
+               
+            else
+               return False;
+            end if;
+            
+         when others =>
+            return False;
+      end case;
+      
+      case
+        GrundExtern
+      is
+         when KartengrundDatentypen.Untereis_Enum | KartengrundDatentypen.Erde_Enum | KartengrundDatentypen.Erdgestein_Enum | KartengrundDatentypen.Sand_Enum =>
+            Arbeitszeit := Grundzeit + 2;
+
+         when KartengrundDatentypen.Gestein_Enum =>
+            Arbeitszeit := Grundzeit + 5;
+
+         when others =>
+            Fehler.LogikFehler (FehlermeldungExtern => "VerbesserungWeg.OberflächeLand - Falscher Kartengrund.");
+      end case;
+      
+      SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              BeschäftigungExtern     => WelcheArbeit);
+      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   ZeitExtern               => Arbeitszeit,
+                                                   RechnenSetzenExtern      => 0);
+      
       return True;
    
    end UnterflächeLand;
@@ -208,17 +260,45 @@ package body VerbesserungWeg is
       return Boolean
    is begin
       
-      if
-        EinheitRasseNummerExtern.Platznummer = 1
-        and
-          GrundExtern = KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum'First
-      then
-         null;
-         
-      else
-         null;
-      end if;
-     
+      WegVorhanden := LeseKarten.Weg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
+      case
+        WegVorhanden
+      is
+         when KartenVerbesserungDatentypen.Karten_Straße_Enum'Range | KartenVerbesserungDatentypen.Leer_Weg_Enum =>
+            if
+              TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)) = 0
+              or else
+                LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                         WelcheTechnologieExtern => TechnologischeVoraussetzung (EinheitRasseNummerExtern.Rasse, WelcheWegart (WegVorhanden)))
+              = True
+            then
+               WelcheArbeit := WelcheWegart (WegVorhanden);
+               
+            else
+               return False;
+            end if;
+            
+         when others =>
+            return False;
+      end case;
+      
+      case
+        GrundExtern
+      is
+         when KartengrundDatentypen.Küstengrund_Enum | KartengrundDatentypen.Korallen_Enum | KartengrundDatentypen.Meeresgrund_Enum | KartengrundDatentypen.Unterwald_Enum =>
+            Arbeitszeit := Grundzeit + 2;
+
+            -- when KartengrundDatentypen. =>
+            --    Arbeitszeit := Grundzeit + 5;
+      end case;
+      
+      SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              BeschäftigungExtern     => WelcheArbeit);
+      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   ZeitExtern               => Arbeitszeit,
+                                                   RechnenSetzenExtern      => 0);
+      
       return True;
    
    end UnterflächeWasser;
