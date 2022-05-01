@@ -33,6 +33,8 @@ private
    Arbeitszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
    Grundzeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert := 1;
 
+   Arbeitswerte : EinheitStadtRecords.ArbeitRecord;
+
    --------------------- Benutze ich das mehrmals und wenn ja, kann ich es zusammenführen?
    --------------------- Bräuchte ich hier aber in verschiedenen Ausführungen. Vermutlich sonnvoll die alles anzulegen aber wahrscheinlich nicht sie auszulagern.
    type WelcheWegartArray is array (KartenVerbesserungDatentypen.Karten_Weg_Enum'Range) of AufgabenDatentypen.Einheitenbefehle_Wege_Enum;
@@ -176,7 +178,7 @@ private
    function OberflächeLand
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum)
-      return Boolean
+      return EinheitStadtRecords.ArbeitRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -186,7 +188,7 @@ private
    function OberflächeWasser
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Wasser_Enum)
-      return Boolean
+      return EinheitStadtRecords.ArbeitRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -196,7 +198,7 @@ private
    function UnterflächeLand
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Enum)
-      return Boolean
+      return EinheitStadtRecords.ArbeitRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -206,7 +208,7 @@ private
    function UnterflächeWasser
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum)
-      return Boolean
+      return EinheitStadtRecords.ArbeitRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

@@ -651,57 +651,57 @@ package body RueckgabeMenues is
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 7
       then
-         return RueckgabeDatentypen.Talbidahr_Enum;
+         return RueckgabeDatentypen.Moru_Phisihl_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 8
       then
-         return RueckgabeDatentypen.Moru_Phisihl_Enum;
+         return RueckgabeDatentypen.Larinos_Lotaris_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 9
       then
-         return RueckgabeDatentypen.Larinos_Lotaris_Enum;
+         return RueckgabeDatentypen.Carupex_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 10
       then
-         return RueckgabeDatentypen.Carupex_Enum;
+         return RueckgabeDatentypen.Alary_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 11
       then
-         return RueckgabeDatentypen.Alary_Enum;
+         return RueckgabeDatentypen.Natries_Zermanis_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 12
       then
-         return RueckgabeDatentypen.Tesorahn_Enum;
+         return RueckgabeDatentypen.Tridatus_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 13
       then
-         return RueckgabeDatentypen.Natries_Zermanis_Enum;
+         return RueckgabeDatentypen.Senelari_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 14
       then
-         return RueckgabeDatentypen.Tridatus_Enum;
+         return RueckgabeDatentypen.Aspari_2_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 15
       then
-         return RueckgabeDatentypen.Senelari_Enum;
+         return RueckgabeDatentypen.Ekropa_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 16
       then
-         return RueckgabeDatentypen.Aspari_2_Enum;
+         return RueckgabeDatentypen.Tesorahn_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 17
       then
-         return RueckgabeDatentypen.Ekropa_Enum;
+         return RueckgabeDatentypen.Talbidahr_Enum;
                     
       elsif
         AktuelleAuswahlExtern = AnfangExtern + 18

@@ -1,9 +1,9 @@
 package ChangelogApril2022 is
 
-   -- Version 0.01.05 => 0.01.0560 (30.04.2022):
+   -- Version 0.01.0550 => 0.01.0560 (30.04.2022):
    
    -- Straßen können jetzt zu Schiene verbessert werden.
-   -- Grundlegend Wege für die gesamte Ober- und Unterfläche eingebaut.
+   -- Grundlegende Wege für die gesamte Ober- und Unterfläche eingebaut.
    -- Es ist jetzt möglich Wegearten durch Technologie zu beschränken.
    -- Kommentare und Kleinigkeiten korrigiert.
    

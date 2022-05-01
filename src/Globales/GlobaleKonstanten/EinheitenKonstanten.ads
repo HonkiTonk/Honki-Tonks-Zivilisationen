@@ -94,5 +94,12 @@ package EinheitenKonstanten is
                                                                          KannTransportiertWerden    => LeerKannTransportiertWerden,
                                                                          Transportkapazität         => LeerTransportkapazität
                                                                         );
+   
+   LeerArbeit : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
+   LeerArbeitszeit : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
+   KeineArbeit : constant EinheitStadtRecords.ArbeitRecord := (
+                                                              WelcheArbeit => LeerArbeit,
+                                                              Arbeitszeit  => LeerArbeitszeit
+                                                             );
 
 end EinheitenKonstanten;

@@ -12,6 +12,7 @@ with RassenDatentypen;
 
 with KIDatentypen;
 
+-------------------- Einheit und Stadt in zwei seperate Teile aufteilen. Warum habe ich das noch nicht gemacht? Wahrscheinlich wegen den abgeleiteten Datentypen und verzwirbelten Records.
 package EinheitStadtRecords is
 
    type RassePlatznummerRecord is tagged record
@@ -38,6 +39,7 @@ package EinheitStadtRecords is
       Erfahrungspunkte : EinheitStadtDatentypen.Kampfwerte;
       Rang : EinheitStadtDatentypen.Kampfwerte;
       
+      ---------------------------- Beschäftigung und Zeit zusammenführen.
       Beschäftigung : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       BeschäftigungNachfolger : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
       
@@ -53,6 +55,15 @@ package EinheitStadtRecords is
       WirdTransportiert : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
       
       Meldungen : EinheitMeldungenArray;
+      
+   end record;
+   
+   
+   
+   type ArbeitRecord is record
+      
+      WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+      Arbeitszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
       
    end record;
    

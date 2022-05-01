@@ -7,19 +7,12 @@ with SpielVariablen;
 with SonstigeVariablen;
 with AufgabenDatentypen;
 with KartenVerbesserungDatentypen;
-with KartengrundDatentypen;
 
 package VerbesserungFertiggestellt is
 
    procedure VerbesserungFertiggestellt;
    
 private
-   
-   type HügelSetzenArray is array (Boolean'Range) of KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
-   HügelSetzen : constant HügelSetzenArray := (
-                                                 True  => KartengrundDatentypen.Hügel_Enum,
-                                                 False => KartengrundDatentypen.Flachland_Enum
-                                                );
    
    WelcheAufgabe : AufgabenDatentypen.Einheitenbefehle_Verbesserungen_Enum;
    
@@ -39,22 +32,6 @@ private
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
    procedure VerbesserungAngelegt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
-   
-   procedure VerbesserungWaldAufforsten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
-   
-   procedure VerbesserungRodenTrockenlegen
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
      with
        Pre =>

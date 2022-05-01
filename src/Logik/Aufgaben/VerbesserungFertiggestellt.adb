@@ -10,12 +10,13 @@ with KIDatentypen;
 with SchreibeEinheitenGebaut;
 with SchreibeKarten;
 with LeseEinheitenGebaut;
-with LeseKarten;
 
 with EinheitenMeldungenSetzen;
 with FelderwerteFestlegen;
 with AufgabenAllgemein;
 with Wegeplatzierungssystem;
+with WaldAnlegen;
+with RodenAnlegen;
 
 package body VerbesserungFertiggestellt is
 
@@ -135,59 +136,14 @@ package body VerbesserungFertiggestellt is
                                          VerbesserungExtern => Verbesserung (WelcheAufgabe));
               
          when AufgabenDatentypen.Wald_Aufforsten_Enum =>
-            VerbesserungWaldAufforsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            WaldAnlegen.WaldAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
               
          when AufgabenDatentypen.Roden_Trockenlegen_Enum =>
-            VerbesserungRodenTrockenlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            RodenAnlegen.RodenAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
 
       FelderwerteFestlegen.EinzelnesKartenfeldBewerten (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end VerbesserungAngelegt;
-   
-   
-   
-   procedure VerbesserungWaldAufforsten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-   is begin
-      
-      case
-        LeseKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      is
-         when KartengrundDatentypen.Hügel_Enum =>
-            SchreibeKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                   HügelExtern       => True);
-            
-         when others =>
-            null;
-      end case;
-            
-      -- Nicht in den Überprüfung oben mit rein schieben, da der Wald immer erzeugt werden muss, unabhängig ob da ein Hügel ist.
-      SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                            GrundExtern       => KartengrundDatentypen.Wald_Enum);
-      
-      case
-        LeseKarten.Verbesserung (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      is
-         when KartenVerbesserungDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range =>
-            SchreibeKarten.Verbesserung (KoordinatenExtern     => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                         VerbesserungExtern    => KartenVerbesserungDatentypen.Leer_Verbesserung_Enum);
-            
-         when others =>
-            null;
-      end case;
-      
-   end VerbesserungWaldAufforsten;
-   
-   
-   
-   procedure VerbesserungRodenTrockenlegen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-   is begin
-      
-      SchreibeKarten.Grund (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                            GrundExtern       => HügelSetzen (LeseKarten.Hügel (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))));
-      
-   end VerbesserungRodenTrockenlegen;
 
 end VerbesserungFertiggestellt;

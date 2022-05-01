@@ -49,8 +49,10 @@ package RueckgabeDatentypen is
                                  -- Neue Schwierigkeitsgrade immer vor Schwer einfügen um Anpassungen weiter unten zu vermeiden. Außer wenn es schwerer als schwer werden soll, dann aber auch unten ändern.
                                  Schwierigkeitsgrad_Leicht_Enum, Schwierigkeitsgrad_Mittel_Enum, Schwierigkeitsgrad_Schwer_Enum,
                                  
-                                 Keine_Rasse_Enum, Menschen_Enum, Kasrodiah_Enum, Lasupin_Enum, Lamustra_Enum, Manuky_Enum, Suroka_Enum, Pryolon_Enum, Talbidahr_Enum, Moru_Phisihl_Enum, Larinos_Lotaris_Enum, Carupex_Enum,
-                                 Alary_Enum, Tesorahn_Enum, Natries_Zermanis_Enum, Tridatus_Enum, Senelari_Enum, Aspari_2_Enum, Ekropa_Enum
+                                 Keine_Rasse_Enum,
+                                 Menschen_Enum, Kasrodiah_Enum, Lasupin_Enum, Lamustra_Enum, Manuky_Enum, Suroka_Enum, Pryolon_Enum, Moru_Phisihl_Enum, Larinos_Lotaris_Enum, Carupex_Enum,
+                                 Alary_Enum, Natries_Zermanis_Enum, Tridatus_Enum, Senelari_Enum, Aspari_2_Enum, Ekropa_Enum,
+                                 Tesorahn_Enum, Talbidahr_Enum
                                 );
    
    subtype Kartengröße_Verwendet_Enum is Rückgabe_Werte_Enum range Kartengröße_20_20_Enum .. Kartengröße_Nutzer_Enum;
@@ -67,7 +69,7 @@ package RueckgabeDatentypen is
    subtype Zurück_Beenden_Enum is Rückgabe_Werte_Enum range Zurück_Enum .. Spiel_Beenden_Enum;
    subtype Hauptmenü_Beenden_Enum is Zurück_Beenden_Enum range Hauptmenü_Enum .. Spiel_Beenden_Enum;
    
-   subtype Rassen_Enum is Rückgabe_Werte_Enum range Keine_Rasse_Enum .. Ekropa_Enum;
-   subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen_Enum .. Ekropa_Enum;
+   subtype Rassen_Enum is Rückgabe_Werte_Enum range Keine_Rasse_Enum .. Talbidahr_Enum;
+   subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen_Enum .. Talbidahr_Enum;
 
 end RueckgabeDatentypen;

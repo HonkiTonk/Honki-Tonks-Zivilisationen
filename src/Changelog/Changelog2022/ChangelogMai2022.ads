@@ -203,16 +203,18 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.0. => 0.0. (02.05.2022):
+   -- Version 0.01.0570 => 0.01.0 (02.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.0. => 0.0. (01.05.2022):
+   -- Version 0.01.0560 => 0.01.0570 (01.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben der es ermöglichte einen Wald zu pflanzen ohne vorher den Sump/Dschungel trocken zu legen/zu roden.
+   -- Das anlegen/entfernen von Feldverbesserungen deutlich überarbeitet und auf weitere Ebenen ausgedehnt.
+   -- Fehler in der Rassenauswahl, welcher dazu führte das die falsche Rasse ausgewählt wurde, korrigiert.
+   -- Contracs, Kommentare und Kleinigkeiten korrigiert/angepasst.
 
 end ChangelogMai2022;

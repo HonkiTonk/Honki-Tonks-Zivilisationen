@@ -6,10 +6,12 @@ with EinheitStadtRecords;
 with SonstigeVariablen;
 with KartengrundDatentypen;
 with SpielVariablen;
+with EinheitStadtDatentypen;
+with AufgabenDatentypen;
 
-package VerbesserungFestung is
+package VerbesserungRoden is
 
-   function VerbesserungFestung
+   function VerbesserungRoden
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
@@ -20,4 +22,21 @@ package VerbesserungFestung is
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
-end VerbesserungFestung;
+private
+
+   WelcheArbeit : AufgabenDatentypen.Einheiten_Aufgaben_Enum;
+
+   Arbeitszeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert;
+   Grundzeit : EinheitStadtDatentypen.MaximaleStädteMitNullWert := 1;
+
+   Arbeitswerte : EinheitStadtRecords.ArbeitRecord;
+
+   function OberflächeLand
+     (GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum)
+      return EinheitStadtRecords.ArbeitRecord;
+
+   function UnterflächeWasser
+     (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum)
+      return EinheitStadtRecords.ArbeitRecord;
+
+end VerbesserungRoden;
