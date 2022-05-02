@@ -19,7 +19,6 @@ package body Kartengenerator is
 
    procedure Kartengenerator
    is begin
-            
       EisWasserLandGenerieren;
       KüstenwasserGenerieren;
       LandschaftGenerieren;

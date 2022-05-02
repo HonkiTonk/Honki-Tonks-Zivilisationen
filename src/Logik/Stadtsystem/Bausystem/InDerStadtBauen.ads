@@ -31,6 +31,10 @@ package InDerStadtBauen is
 
 private
 
+   SchriftartFestgelegt : Boolean := False;
+   SchriftfarbeFestgelegt : Boolean := False;
+   SchriftgrößeFestgelegt : Boolean := False;
+
    WasGebautWerdenSoll : Natural;
    Befehl : Natural;
 

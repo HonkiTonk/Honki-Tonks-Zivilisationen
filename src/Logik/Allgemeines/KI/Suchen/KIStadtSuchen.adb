@@ -55,7 +55,7 @@ package body KIStadtSuchen is
          elsif
            AktuelleStadt = EinheitStadtDatentypen.MaximaleStädteMitNullWert'First
          then
-            AktuelleStadt := StadtSchleifenwert; -- ----------------
+            AktuelleStadt := StadtSchleifenwert;
             Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.EAchse)
                                     + abs (AnfangKoordinatenExtern.YAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.YAchse)
                                     + abs (AnfangKoordinatenExtern.XAchse - SpielVariablen.StadtGebaut (RasseExtern, AktuelleStadt).KoordinatenAktuell.XAchse));

@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with KartenDatentypen;
+with KartenDatentypen; use KartenDatentypen;
+
+with Karten;
 
 package KartenkoordinateYAchseBerechnen is
    
@@ -13,11 +15,23 @@ package KartenkoordinateYAchseBerechnen is
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert;
+      return KartenDatentypen.KartenfeldPositivMitNullwert
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
+           
+         Post =>
+           (KartenkoordinateYAchseBerechnen'Result <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
    
    function YAchseVerschieben
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv;
+      return KartenDatentypen.KartenfeldPositiv
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
+           
+         Post =>
+           (YAchseVerschieben'Result <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
    
 private
    
@@ -32,37 +46,73 @@ private
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert;
+      return KartenDatentypen.KartenfeldPositivMitNullwert
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
+           
+         Post =>
+           (ÜbergangNorden'Result <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
    
    function ÜbergangNordenNormal
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv;
+      return KartenDatentypen.KartenfeldPositiv
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
+           
+         Post =>
+           (ÜbergangNordenNormal'Result <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
    
    function ÜbergangNordenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld)
-      return KartenDatentypen.KartenfeldPositiv;
+      return KartenDatentypen.KartenfeldPositiv
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
+           
+         Post =>
+           (ÜbergangNordenRückwärts'Result <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
    
    function ÜbergangSüden
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositivMitNullwert;
+      return KartenDatentypen.KartenfeldPositivMitNullwert
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
+           
+         Post =>
+           (ÜbergangSüden'Result <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
    
    function ÜbergangSüdenNormal
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.Kartenfeld;
       ArrayPositionExtern : in KartenDatentypen.EbeneVorhanden;
       LogikGrafikExtern : in Boolean)
-      return KartenDatentypen.KartenfeldPositiv;
+      return KartenDatentypen.KartenfeldPositiv
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
+           
+         Post =>
+           (ÜbergangSüdenNormal'Result <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
    
    function ÜbergangSüdenRückwärts
      (YAchseExtern : in KartenDatentypen.KartenfeldPositiv;
       ÄnderungYAchseExtern : in KartenDatentypen.KartenfeldPositiv)
-      return KartenDatentypen.KartenfeldPositiv;
+      return KartenDatentypen.KartenfeldPositiv
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse),
+           
+         Post =>
+           (ÜbergangSüdenRückwärts'Result <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse);
 
 end KartenkoordinateYAchseBerechnen;

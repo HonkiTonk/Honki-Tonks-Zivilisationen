@@ -28,7 +28,6 @@ package body EinheitenBeschreibungen is
       return Wide_Wide_String
    is begin
       
-      -- Bei lang muss aktuell immer die zweite Spalte aufgerufen werden, deswegen fehlt hier auch das -1.
       Textnummer := 2 * Positive (IDExtern);
                
       BeschreibungText := GlobaleTexte.Einheiten (Textnummer);

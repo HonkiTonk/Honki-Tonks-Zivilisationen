@@ -27,7 +27,6 @@ with BerechnungenKarteSFML;
 with Fehler;
 with ObjekteZeichnenSFML;
 with GrafikEinstellungenSFML;
-with TextAllgemeinSFML;
 with EingeleseneTexturenSFML;
 with TexturenSetzenSkalierenSFML;
 with KarteGrafikenZeichnenSFML;
@@ -511,10 +510,41 @@ package body KarteSFML is
       -- Möglicherweise die Schriftfarbe durch die Rahmenfarbe ersetzen? Die Belegungsfarbe ist auf jeden Fall ungeeignet.
       -- Text wird von den anderen Feldern immer wieder überschrieben. Eventuell ein zweites Mal über die ganzen Felder gehen?
       -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen?
-      TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                              FontAccessExtern   => GrafikEinstellungenSFML.SchriftartAccess,
-                                              SchriftgrößeExtern => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße,
-                                              FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftgrößeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+            SchriftgrößeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftfarbeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setColor (text  => TextAccess,
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+            SchriftfarbeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));

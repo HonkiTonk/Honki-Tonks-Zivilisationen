@@ -90,9 +90,6 @@ package body Hauptmenue is
                   null;
                end if;
                
-            -- when SystemDatentypen.Informationen_Enum =>
-            --   Informationen.Informationen;
-               
             when RueckgabeDatentypen.Würdigungen_Enum =>
                Wuerdigung.Würdigung;
                

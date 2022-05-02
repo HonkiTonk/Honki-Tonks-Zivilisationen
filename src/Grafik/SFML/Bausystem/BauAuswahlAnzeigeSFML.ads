@@ -17,6 +17,10 @@ package BauAuswahlAnzeigeSFML is
 
 private
 
+   SchriftartFestgelegt : Boolean := False;
+   SchriftfarbeFestgelegt : Boolean := False;
+   SchriftgrößeFestgelegt : Boolean := False;
+
    AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
    Ende : EinheitStadtDatentypen.MinimimMaximumID;
 

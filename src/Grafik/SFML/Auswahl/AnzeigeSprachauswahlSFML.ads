@@ -14,6 +14,8 @@ package AnzeigeSprachauswahlSFML is
     
 private
    
+   SchriftartFestgelegt : Boolean := False;
+   SchriftgrößeFestgelegt : Boolean := False;
    MehrereSeiten : Boolean;
 
    AktuelleAuswahl : Positive;

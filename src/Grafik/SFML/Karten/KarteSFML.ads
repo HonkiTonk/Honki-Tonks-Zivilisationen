@@ -26,6 +26,10 @@ package KarteSFML is
    
 private
    
+   SchriftartFestgelegt : Boolean := False;
+   SchriftfarbeFestgelegt : Boolean := False;
+   SchriftgrößeFestgelegt : Boolean := False;
+   
    AktuelleRasse : RassenDatentypen.Rassen_Enum;
    
    YSichtAnfang : KartenDatentypen.Kartenfeld;

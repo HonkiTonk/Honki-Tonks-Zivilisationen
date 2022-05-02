@@ -1,16 +1,3 @@
-TastenbelegungDatentypen.Oben_Enum                           => Sf.Window.Keyboard.sfKeyW;
-TastenbelegungDatentypen.Links_Enum                          => Sf.Window.Keyboard.sfKeyA,;
-TastenbelegungDatentypen.Unten_Enum                          => Sf.Window.Keyboard.sfKeyS,;
-TastenbelegungDatentypen.Rechts_Enum                         => Sf.Window.Keyboard.sfKeyD,;
-TastenbelegungDatentypen.Links_Oben_Enum                     => Sf.Window.Keyboard.sfKeyUnknown,;
-TastenbelegungDatentypen.Rechts_Oben_Enum                    => Sf.Window.Keyboard.sfKeyUnknown,;
-TastenbelegungDatentypen.Links_Unten_Enum                    => Sf.Window.Keyboard.sfKeyUnknown,;
-TastenbelegungDatentypen.Rechts_Unten_Enum                   => Sf.Window.Keyboard.sfKeyUnknown,;
-TastenbelegungDatentypen.Ebene_Hoch_Enum                     => Sf.Window.Keyboard.sfKeyAdd,;
-TastenbelegungDatentypen.Ebene_Runter_Enum                   => Sf.Window.Keyboard.sfKeySubtract,;
-
-TastenbelegungDatentypen.Auswählen_Enum                      => Sf.Window.Keyboard.sfKeyE,;
-TastenbelegungDatentypen.Menü_Zurück_Enum                    => Sf.Window.Keyboard.sfKeyEscape,;
 TastenbelegungDatentypen.Bauen_Enum                          => Sf.Window.Keyboard.sfKeyB,;
 TastenbelegungDatentypen.Forschung_Enum                      => Sf.Window.Keyboard.sfKeyT,;
 TastenbelegungDatentypen.Tech_Baum_Enum                      => Sf.Window.Keyboard.sfKeyX,;

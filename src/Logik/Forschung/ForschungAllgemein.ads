@@ -55,6 +55,10 @@ package ForschungAllgemein is
 
 private
 
+   SchriftartFestgelegt : Boolean := False;
+   SchriftfarbeFestgelegt : Boolean := False;
+   SchriftgrößeFestgelegt : Boolean := False;
+
    WasErforschtWerdenSoll : EinheitStadtDatentypen.ForschungIDMitNullWert;
    AktuellesForschungsprojekt : EinheitStadtDatentypen.ForschungIDMitNullWert;
    GewählteForschung : EinheitStadtDatentypen.ForschungIDMitNullWert;

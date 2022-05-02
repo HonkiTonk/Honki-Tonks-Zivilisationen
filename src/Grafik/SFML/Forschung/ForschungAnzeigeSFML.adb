@@ -3,14 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
-with Sf; use Sf;
 with Sf.Graphics.RenderWindow;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
-
-with TextAllgemeinSFML;
 with GrafikEinstellungenSFML;
 with ObjekteZeichnenSFML;
 with AllgemeineTextBerechnungenSFML;
@@ -27,10 +24,41 @@ package body ForschungAnzeigeSFML is
       
       Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
-      TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                              FontAccessExtern   => GrafikEinstellungenSFML.SchriftartAccess,
-                                              SchriftgrößeExtern => 2 * GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße,
-                                              FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftgrößeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+            SchriftgrößeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftfarbeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setColor (text  => TextAccess,
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+            SchriftfarbeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
       
       TextPosition := StartPositionText;
       Ende := ForschungAllgemein.Ende;

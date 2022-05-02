@@ -16,7 +16,7 @@ with LeseEinheitenGebaut;
 -- with TextAnzeigeKonsole;
 -- with Eingabe;
 
--- Wird für die Konsole benötigt, msus aber noch in Logik und Grafik aufgeteilt werden.
+-- Wird für die Konsole benötigt, muss aber noch in Logik und Grafik aufgeteilt werden.
 package body EinheitenTransporter is
 
    function EinheitTransporterAuswählen

@@ -20,7 +20,6 @@ package VerbesserungenDatenbank is
       
 private
          
-   -----------------------
    VerbesserungenListeStandard : constant VerbesserungenListeArray := (
                                                                        -- Städte
                                                                        KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>

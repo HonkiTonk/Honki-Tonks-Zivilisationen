@@ -25,6 +25,7 @@ package AnzeigeEingabeSFML is
    
 private
    
+   SchriftartFestgelegt : Boolean := False;
    WelchesVorzeichen : Boolean;
    
    WelcheFrage : Positive;

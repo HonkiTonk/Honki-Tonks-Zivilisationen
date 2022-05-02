@@ -113,9 +113,17 @@ package body KartengeneratorLandschaft is
       SchreibeKarten.Grund (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
                             GrundExtern       => WelcherGrund);
       
-      WeitereHügel (YAchseExtern => YAchseExtern,
-                     XAchseExtern => XAchseExtern);
-      
+      case
+        WelcherGrund
+      is
+         when KartengrundDatentypen.Hügel_Enum | KartengrundDatentypen.Gebirge_Enum =>
+            null;
+            
+         when others =>
+            WeitereHügel (YAchseExtern => YAchseExtern,
+                           XAchseExtern => XAchseExtern);
+      end case;
+            
    end GrundBestimmen;
    
    

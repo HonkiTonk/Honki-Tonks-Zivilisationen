@@ -23,8 +23,18 @@ package body AnzeigeEingabeSFML is
       
       WelcheFrage := EingabeSFML.Frage;
       
-      Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrage)));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
@@ -78,8 +88,18 @@ package body AnzeigeEingabeSFML is
       
       WelcheFrage := EingabeSFML.Frage;
       
-      Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
       Sf.Graphics.Text.setUnicodeString (text => TextAccess,
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (WelcheFrage)));
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
@@ -119,8 +139,18 @@ package body AnzeigeEingabeSFML is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
       Sf.Graphics.Text.setCharacterSize (text => TextAccess,
                                          size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
       Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;

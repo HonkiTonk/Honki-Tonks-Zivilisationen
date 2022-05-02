@@ -20,7 +20,6 @@ with Eingabe;
 with GebaeudeAllgemein;
 with EinheitenModifizieren;
 with InteraktionGrafiktask;
-with TextAllgemeinSFML;
 with GrafikEinstellungenSFML;
 with Fehler;
 
@@ -156,10 +155,41 @@ package body InDerStadtBauen is
      return EinheitStadtRecords.BauprojektRecord
    is begin
       
-      TextAllgemeinSFML.TextAccessEinstellen (TextAccessExtern   => TextAccess,
-                                              FontAccessExtern   => GrafikEinstellungenSFML.SchriftartAccess,
-                                              SchriftgrößeExtern => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße,
-                                              FarbeExtern        => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftgrößeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+            SchriftgrößeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftfarbeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setColor (text  => TextAccess,
+                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+            SchriftfarbeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
       Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Bauen_Enum);

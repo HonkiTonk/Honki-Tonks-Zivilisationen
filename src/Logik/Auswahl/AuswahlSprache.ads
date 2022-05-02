@@ -23,6 +23,9 @@ package AuswahlSprache is
      return Unbounded_Wide_Wide_String;
    
 private
+
+   SchriftartFestgelegt : Boolean := False;
+   SchriftgrößeFestgelegt : Boolean := False;
       
    ZehnerReihe : Natural;
    

@@ -18,10 +18,30 @@ package body AnzeigeSprachauswahlSFML is
       Ende := AuswahlSprache.Ende;
       AktuelleSprachen := AuswahlSprache.AktuelleSprachen;
       ZeilenAbstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
-      Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+      
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftgrößeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+            SchriftgrößeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
       
       YPosition := StartPositionYAchse;
             

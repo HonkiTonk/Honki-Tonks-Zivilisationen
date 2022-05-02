@@ -4,7 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 with Sf.Graphics.Rect;
 
 with MenueDatentypen;
--- with GlobaleTexte;
 with SystemKonstanten;
 
 package InteraktionAuswahl is

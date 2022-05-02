@@ -179,11 +179,30 @@ package body AuswahlSprache is
    function AuswahlMausTastatur
      return Unbounded_Wide_Wide_String
    is begin
+      
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
             
-      Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftgrößeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+            SchriftgrößeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Sprache_Enum);
       

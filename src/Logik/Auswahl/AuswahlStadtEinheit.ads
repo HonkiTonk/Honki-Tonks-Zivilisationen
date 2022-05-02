@@ -32,6 +32,9 @@ package AuswahlStadtEinheit is
       return Integer;
    
 private
+
+   SchriftartFestgelegt : Boolean := False;
+   SchriftgrößeFestgelegt : Boolean := False;
       
    Zeilenabstand : Float;
    

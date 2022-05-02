@@ -225,7 +225,7 @@ package body LeseEinheitenDatenbank is
       return EinheitStadtDatentypen.Transportplätze
    is begin
       
-      ----------------------- Hier mal noch Konstanten einbauen.
+      ----------------------- Hier mal noch Konstanten einbauen?
       if
         EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).KannTransportieren = EinheitStadtDatentypen.Kein_Transport_Enum
         or

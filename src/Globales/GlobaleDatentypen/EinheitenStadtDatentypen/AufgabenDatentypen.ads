@@ -24,7 +24,7 @@ package AufgabenDatentypen is
    
    subtype Einheitenbefehle_Verbesserungen_Enum is Einheiten_Aufgabe_Vorhanden_Enum range Straße_Bauen_Enum .. Roden_Trockenlegen_Enum;
    subtype Einheitenbefehle_Wege_Enum is Einheitenbefehle_Verbesserungen_Enum range Straße_Bauen_Enum .. Tunnel_Bauen_Enum;
-   subtype Einheitenbefehle_Gebäude_Enum is Einheitenbefehle_Verbesserungen_Enum range Mine_Bauen_Enum .. Festung_Bauen_Enum;
+   subtype Einheitenbefehle_Gebilde_Enum is Einheitenbefehle_Verbesserungen_Enum range Mine_Bauen_Enum .. Festung_Bauen_Enum;
    subtype Einheitenbefehle_Gelände_Enum is Einheitenbefehle_Verbesserungen_Enum range Wald_Aufforsten_Enum .. Roden_Trockenlegen_Enum;
      
    subtype Einheitenbefehle_Allgemein_Enum is Einheiten_Aufgabe_Vorhanden_Enum range Heilen_Enum .. Verschanzen_Enum;

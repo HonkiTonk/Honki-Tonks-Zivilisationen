@@ -8,14 +8,18 @@ with EinheitStadtDatentypen;
 with SystemKonstanten;
 
 package GlobaleTexte is
+   
+   NameBeschreibungMultiplikator : constant Positive := 2;
+   WegartenMultiplikator : constant Positive := 3;
+   FlussartenMultiplikator : constant Positive := 3;
+   
+   -------------------- Gibt es einen Weg die Anzahl der Elemente eines Enum subtypes zu erfahren ohne sie selbst zu berechnen?
+   RassenAnzahlBeschreibung : constant Positive := NameBeschreibungMultiplikator * 18;
       
    -- type Welcher_Abstand_Enum is (Leer, Kleiner_Abstand, Großer_Abstand, Neue_Zeile);
    
    type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
    SprachenEinlesen : SprachenEinlesenArray;
-   
-   -------------------- Gibt es einen Weg die Anzahl der Elemente eines Enum subtypes zu erfahren ohne sie selbst zu berechnen?
-   RassenAnzahlDoppelt : constant Positive := 2 * 18;
    
    FehlenderText : constant Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => " |ÄÖÜ Hier wurde kein Text eingelesen ÜÖÄ| ");
    
@@ -56,22 +60,21 @@ package GlobaleTexte is
    JaNein : TexteArray (1 .. 2) := (others => FehlenderText);
    
    -- Text im Spiel.
-   Rassen : TexteArray (1 .. RassenAnzahlDoppelt) := (others => FehlenderText);
+   Rassen : TexteArray (1 .. RassenAnzahlBeschreibung) := (others => FehlenderText);
    
-   --------------------- Könnte man hier nicht auch zweimal die Ranges der jeweiligen Enums als Länge angeben?
-   Kartenfelder : TexteArray (1 .. 50) := (others => FehlenderText);
-   Kartenflüsse : TexteArray (1 .. 96) := (others => FehlenderText);
-   Kartenressourcen : TexteArray (1 .. 14) := (others => FehlenderText);
+   Kartenfelder : TexteArray (1 .. NameBeschreibungMultiplikator * 26) := (others => FehlenderText);
+   Kartenflüsse : TexteArray (1 .. NameBeschreibungMultiplikator * FlussartenMultiplikator * 16) := (others => FehlenderText);
+   Kartenressourcen : TexteArray (1 .. NameBeschreibungMultiplikator * 7) := (others => FehlenderText);
    
-   Einheiten : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.EinheitenID'Last)) := (others => FehlenderText);
+   Einheiten : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitStadtDatentypen.EinheitenID'Last)) := (others => FehlenderText);
    
    --------------------- Hier auch zweimal Enumlänge?
-   Verbesserungen : TexteArray (1 .. 16) := (others => FehlenderText);
-   Wege : TexteArray (1 .. 96) := (others => FehlenderText);
+   Verbesserungen : TexteArray (1 .. NameBeschreibungMultiplikator * 8) := (others => FehlenderText);
+   Wege : TexteArray (1 .. NameBeschreibungMultiplikator * WegartenMultiplikator * 16) := (others => FehlenderText);
    
-   Gebäude : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
-   Forschungen : TexteArray (1 .. RassenAnzahlDoppelt * Positive (EinheitStadtDatentypen.ForschungID'Last)) := (others => FehlenderText);
-   Beschäftigungen : TexteArray (1 .. 18) := (others => FehlenderText);
+   Gebäude : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitStadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
+   Forschungen : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitStadtDatentypen.ForschungID'Last)) := (others => FehlenderText);
+   Beschäftigungen : TexteArray (1 .. NameBeschreibungMultiplikator * 11) := (others => FehlenderText);
    StädtenamenKI : TexteArray (1 .. 3) := (others => FehlenderText);
    AllgemeineInformationen : TexteArray (1 .. 16) := (others => FehlenderText);
    Würdigung : TexteArray (1 .. 1) := (others => FehlenderText);

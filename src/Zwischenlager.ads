@@ -1,37 +1,4 @@
-case
-  GrundExtern
-is
-   -------------------------- Den Kartengrund mal in entsprechende subtypen aufteilen, ein Array erstellen und die Zeit darin für die lokalen Bereiche festlegen.
-   -------------------------- Das für alle Arbeiten vornehmen.
-   when KartengrundDatentypen.Eis_Enum | KartengrundDatentypen.Flachland_Enum | KartengrundDatentypen.Tundra_Enum | KartengrundDatentypen.Wüste_Enum | KartengrundDatentypen.Hügel_Enum
-      | KartengrundDatentypen.Wald_Enum =>
-      if
-        LeseKarten.Weg (KoordinatenExtern => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      in
-        KartenVerbesserungDatentypen.Karten_Straße_Enum'Range
-      then
-         SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BeschäftigungExtern     => AufgabenDatentypen.Schiene_Bauen_Enum);
 
-      else
-         SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BeschäftigungExtern     => AufgabenDatentypen.Straße_Bauen_Enum);
-      end if;
-
-      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   ZeitExtern               => 3,
-                                                   RechnenSetzenExtern      => 0);
-
-   when KartengrundDatentypen.Gebirge_Enum | KartengrundDatentypen.Dschungel_Enum | KartengrundDatentypen.Sumpf_Enum =>
-      SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern     => AufgabenDatentypen.Straße_Bauen_Enum);
-      SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   ZeitExtern               => 6,
-                                                   RechnenSetzenExtern      => 0);
-
-   when others =>
-      return False;
-end case;
 
 
 

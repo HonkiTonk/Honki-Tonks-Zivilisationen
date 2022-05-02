@@ -27,10 +27,30 @@ package body AuswahlStadtEinheit is
       return Integer
    is begin
       
-      Sf.Graphics.Text.setFont (text => TextAccess,
-                                font => GrafikEinstellungenSFML.SchriftartAccess);
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+      case
+        SchriftartFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setFont (text => TextAccess,
+                                      font => GrafikEinstellungenSFML.SchriftartAccess);
+            SchriftartFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        SchriftgrößeFestgelegt
+      is
+         when False =>
+            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
+                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+            SchriftgrößeFestgelegt := True;
+            
+         when True =>
+            null;
+      end case;
+      
       Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
       
       WelcheAuswahl.MöglicheAuswahlen := (others => 0);
