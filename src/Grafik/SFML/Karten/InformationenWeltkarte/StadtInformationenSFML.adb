@@ -33,9 +33,7 @@ package body StadtInformationenSFML is
         SchriftartFestgelegt
       is
          when False =>
-            Sf.Graphics.Text.setFont (text => TextAccess,
-                                      font => GrafikEinstellungenSFML.SchriftartAccess);
-            SchriftartFestgelegt := True;
+            SchriftartFestgelegt := SchriftartFestlegen;
             
          when True =>
             null;
@@ -45,9 +43,7 @@ package body StadtInformationenSFML is
         SchriftgrößeFestgelegt
       is
          when False =>
-            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-            SchriftgrößeFestgelegt := True;
+            SchriftgrößeFestgelegt := SchriftgrößenFestlegen;
             
          when True =>
             null;
@@ -57,9 +53,7 @@ package body StadtInformationenSFML is
         SchriftfarbeFestgelegt
       is
          when False =>
-            Sf.Graphics.Text.setColor (text  => TextAccess,
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
-            SchriftfarbeFestgelegt := True;
+            SchriftfarbeFestgelegt := SchriftfarbenFestlegen;
             
          when True =>
             null;
@@ -95,6 +89,14 @@ package body StadtInformationenSFML is
          null;
       end if;
       
+      TextSchleife:
+      for TextSchleifenwert in TextAccessArray'Range loop
+         
+         Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
+                                            text         => TextAccess (TextSchleifenwert));
+         
+      end loop TextSchleife;
+      
       return TextPosition;
       
    end Stadt;
@@ -111,7 +113,7 @@ package body StadtInformationenSFML is
         LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when KartenVerbesserungDatentypen.Leer_Verbesserung_Enum =>
-            Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenSFML.StadtArtBesitzer - Stadt sollte existieren tut sie aber nicht.");
+            Fehler.GrafikFehler (FehlermeldungExtern => "StadtInformationenSFML.StadtartName - Stadt sollte existieren tut sie aber nicht.");
             
          when KartenVerbesserungDatentypen.Eigene_Hauptstadt_Enum =>
             if
@@ -122,26 +124,24 @@ package body StadtInformationenSFML is
             else
                Stadtart := 3;
             end if;
-                  
+            
          when KartenVerbesserungDatentypen.Eigene_Stadt_Enum =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
                Stadtart := 2;
-                        
+               
             else
                Stadtart := 4;
             end if;
       end case;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (1),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (Stadtart)) & " " & StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (1),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (1)).height;
       
    end StadtartName;
    
@@ -165,14 +165,12 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                                             EinwohnerArbeiterExtern => True));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (2),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugEinwohner)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (2),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (2)).height;
       
    end Einwohner;
    
@@ -184,14 +182,12 @@ package body StadtInformationenSFML is
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (3),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugNahrungsmittel)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (3),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (3)).height;
       
    end AktuelleNahrungsmittel;
    
@@ -203,14 +199,12 @@ package body StadtInformationenSFML is
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (4),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugNahrungsproduktion)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (4),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (4)).height;
       
    end AktuelleNahrungsproduktion;
    
@@ -222,14 +216,12 @@ package body StadtInformationenSFML is
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (5),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugRessourcenproduktion)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (5),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (5)).height;
       
    end AktuelleProduktionrate;
    
@@ -241,14 +233,12 @@ package body StadtInformationenSFML is
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (6),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugGeldproduktion)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (6),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (6)).height;
       
    end AktuelleGeldgewinnung;
    
@@ -260,14 +250,12 @@ package body StadtInformationenSFML is
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (7),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugWissensproduktion)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (7),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (7)).height;
       
    end AktuelleForschungsrate;
    
@@ -279,14 +267,12 @@ package body StadtInformationenSFML is
       
       WertOhneTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (8),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerteidigung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (8),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (8)).height;
       
    end AktuelleVerteidigung;
    
@@ -298,14 +284,12 @@ package body StadtInformationenSFML is
       
       WertOhneTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (9),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAngriff)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (9),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (9)).height;
       
    end AktuellerAngriff;
    
@@ -317,14 +301,12 @@ package body StadtInformationenSFML is
       
       WertOhneTrennzeichen := ZahlAlsStringGesamtproduktionStadt (ZahlExtern => LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (10),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugKorruption)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (10),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (10)).height;
       
    end Korruption;
    
@@ -339,14 +321,12 @@ package body StadtInformationenSFML is
                                                            - LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                                 EinwohnerArbeiterExtern => False));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (11),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerfügbareArbeiter)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (11),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (11)).height;
       
    end EinwohnerOhneArbeit;
    
@@ -370,27 +350,23 @@ package body StadtInformationenSFML is
          Text := GlobaleTexte.Einheiten (2 * Natural (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern).Nummer) - 1);
       end if;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (12),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugBauprojekt)) & " " & To_Wide_Wide_String (Source => Text));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (12),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (12)).height;
       
       
       
       WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => LeseStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (13),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerbleibendeBauzeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (13),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (13)).height;
       
    end AktuellesBauprojekt;
    
@@ -404,14 +380,12 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
                                                                                                       RasseExtern       => RasseExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (14),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugNahrungsgewinnung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (14),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (14)).height;
       
    end EinzelnesFeldNahrungsgewinnung;
    
@@ -425,14 +399,12 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
                                                                                                          RasseExtern       => RasseExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (15),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugRessourcengewinnung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (15),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (15)).height;
       
    end EinzelnesFeldRessourcengewinnung;
    
@@ -446,14 +418,12 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => GesamtwerteFeld.FeldGeld (KoordinatenExtern => KoordinatenExtern,
                                                                                                    RasseExtern       => RasseExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (16),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugGeldgewinnung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (16),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (16)).height;
       
    end EinzelnesFeldGeldgewinnung;
    
@@ -467,15 +437,68 @@ package body StadtInformationenSFML is
       WertOhneTrennzeichen := ZahlAlsStringProduktionFeld (ZahlExtern => GesamtwerteFeld.FeldWissen (KoordinatenExtern => KoordinatenExtern,
                                                                                                      RasseExtern       => RasseExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextAccess (17),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugWissensgewinnung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextAccess (17),
                                     position => TextPosition);
-      Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
       
-      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height;
+      TextPosition.y := TextPosition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (17)).height;
       
    end EinzelnesFeldWissensgewinnung;
+   
+   
+   
+   function SchriftartFestlegen
+     return Boolean
+   is begin
+      
+      TextSchleife:
+      for TextSchleifenwert in TextAccessArray'Range loop
+            
+         Sf.Graphics.Text.setFont (text => TextAccess (TextSchleifenwert),
+                                   font => GrafikEinstellungenSFML.SchriftartAccess);
+            
+      end loop TextSchleife;
+   
+      return True;
+      
+   end SchriftartFestlegen;
+
+
+
+   function SchriftgrößenFestlegen
+     return Boolean
+   is begin
+      
+      SchriftgrößeSchleife:
+      for SchriftgrößeSchleifenwert in TextAccessArray'Range loop
+         
+         
+         Sf.Graphics.Text.setCharacterSize (text => TextAccess (SchriftgrößeSchleifenwert),
+                                            size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+         
+      end loop SchriftgrößeSchleife;
+      
+      return True;
+
+   end SchriftgrößenFestlegen;
+
+
+
+   function SchriftfarbenFestlegen
+     return Boolean
+   is begin
+                  
+      SchriftfarbeSchleife:
+      for SchriftfarbeSchleifenwert in TextAccessArray'Range loop
+         
+         Sf.Graphics.Text.setColor (text  => TextAccess (SchriftfarbeSchleifenwert),
+                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
+         
+      end loop SchriftfarbeSchleife;
+      
+      return True;
+
+   end SchriftfarbenFestlegen;
    
 end StadtInformationenSFML;

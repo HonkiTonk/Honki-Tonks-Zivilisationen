@@ -50,7 +50,8 @@ private
    WertRechtsVomTrennzeichen : Unbounded_Wide_Wide_String;
    WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
    
-   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   type TextAccessArray is array (1 .. 14) of Sf.Graphics.sfText_Ptr;
+   TextAccess : constant TextAccessArray := (others => Sf.Graphics.Text.create);
    
    EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
    
@@ -100,6 +101,15 @@ private
      (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
    
    
+   
+   function SchriftartFestlegen
+     return Boolean;
+
+   function SchriftgrößenFestlegen
+     return Boolean;
+
+   function SchriftfarbenFestlegen
+     return Boolean;
    
    function ZahlAlsStringMaximaleEinheitenMitNullWert is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.MaximaleEinheitenMitNullWert);
    

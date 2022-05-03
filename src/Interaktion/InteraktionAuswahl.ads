@@ -5,6 +5,7 @@ with Sf.Graphics.Rect;
 
 with MenueDatentypen;
 with SystemKonstanten;
+with EinheitStadtDatentypen;
 
 package InteraktionAuswahl is
 
@@ -17,5 +18,11 @@ package InteraktionAuswahl is
    -------------------------- Aktuell sollte dass die Rassenauswahl sein. Eventuell mal anpassen oder ein besseres System finden.
    type PositionenMenüeinträgeArray is array (MenueDatentypen.Welches_Menü_Vorhanden_Enum'Range, 1 .. SystemKonstanten.LängstesMenü) of Sf.Graphics.Rect.sfFloatRect;
    PositionenMenüeinträge : PositionenMenüeinträgeArray := (others => (others => (0.00, 0.00, 0.00, 0.00)));
+
+   type PositionenForschungArray is array (EinheitStadtDatentypen.ForschungID'Range) of Sf.Graphics.Rect.sfFloatRect;
+   PositionenForschung : PositionenForschungArray := (others => (0.00, 0.00, 0.00, 0.00));
+
+   type MöglicheForschungenArray is array (PositionenForschungArray'Range) of Boolean;
+   MöglicheForschungen : MöglicheForschungenArray;
 
 end InteraktionAuswahl;

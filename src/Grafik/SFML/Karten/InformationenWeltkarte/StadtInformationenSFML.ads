@@ -48,8 +48,9 @@ private
    
    Text : Unbounded_Wide_Wide_String;
    WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
-   
-   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+
+   type TextAccessArray is array (1 .. 17) of Sf.Graphics.sfText_Ptr;
+   TextAccess : constant TextAccessArray := (others => Sf.Graphics.Text.create);
    
    TextPosition : Sf.System.Vector2.sfVector2f;
 
@@ -197,6 +198,15 @@ private
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    
+   
+   function SchriftartFestlegen
+     return Boolean;
+
+   function SchriftgrößenFestlegen
+     return Boolean;
+
+   function SchriftfarbenFestlegen
+     return Boolean;
    
    function ZahlAlsStringProduktionFeld is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.ProduktionFeld);
    

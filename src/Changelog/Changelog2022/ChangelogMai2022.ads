@@ -1,205 +1,206 @@
 package ChangelogMai2022 is
 
-   -- Version 0.01. => 0.01. (31.05.2022):
+   -- Version 0.01.0 => 0.01.0 (31.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (30.05.2022):
+   -- Version 0.01.0 => 0.01.0 (30.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (29.05.2022):
+   -- Version 0.01.0 => 0.01.0 (29.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (28.05.2022):
+   -- Version 0.01.0 => 0.01.0 (28.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (27.05.2022):
+   -- Version 0.01.0 => 0.01.0 (27.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (26.05.2022):
+   -- Version 0.01.0 => 0.01.0 (26.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (25.05.2022):
+   -- Version 0.01.0 => 0.01.0 (25.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (24.05.2022):
+   -- Version 0.01.0 => 0.01.0 (24.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (23.05.2022):
+   -- Version 0.01.0 => 0.01.0 (23.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (22.05.2022):
+   -- Version 0.01.0 => 0.01.0 (22.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (21.05.2022):
+   -- Version 0.01.0 => 0.01.0 (21.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (20.05.2022):
+   -- Version 0.01.0 => 0.01.0 (20.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (19.05.2022):
+   -- Version 0.01.0 => 0.01.0 (19.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (18.05.2022):
+   -- Version 0.01.0 => 0.01.0 (18.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (17.05.2022):
+   -- Version 0.01.0 => 0.01.0 (17.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (16.05.2022):
+   -- Version 0.01.0 => 0.01.0 (16.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (15.05.2022):
+   -- Version 0.01.0 => 0.01.0 (15.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (14.05.2022):
+   -- Version 0.01.0 => 0.01.0 (14.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (13.05.2022):
+   -- Version 0.01.0 => 0.01.0 (13.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (12.05.2022):
+   -- Version 0.01.0 => 0.01.0 (12.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (11.05.2022):
+   -- Version 0.01.0 => 0.01.0 (11.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (10.05.2022):
+   -- Version 0.01.0 => 0.01.0 (10.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (09.05.2022):
+   -- Version 0.01.0 => 0.01.0 (09.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (08.05.2022):
+   -- Version 0.01.0 => 0.01.0 (08.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (07.05.2022):
+   -- Version 0.01.0 => 0.01.0 (07.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (06.05.2022):
+   -- Version 0.01.06 => 0.01.0 (06.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (05.05.2022):
+   -- Version 0.01.06 => 0.01.06 (05.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01. => 0.01. (04.05.2022):
+   -- Version 0.01.0600 => 0.01.06 (04.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0590 => 0.01.06 (03.05.2022):
+   -- Version 0.01.0590 => 0.01.0600 (03.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Weiter an der Informationsanzeige der Weltkarte gearbeitet.
+   -- Angefangen das Forschungsmenü zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

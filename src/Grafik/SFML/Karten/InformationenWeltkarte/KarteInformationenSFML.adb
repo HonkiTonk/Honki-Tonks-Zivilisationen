@@ -46,7 +46,7 @@ package body KarteInformationenSFML is
          when True =>
             Textposition := KarteAllgemeinesSFML.AllgemeineInformationen (RasseExtern        => RasseExtern,
                                                                           TextpositionExtern => Textposition);
-            Textposition.y := Textposition.y + 3.00 * Zeilenabstand;
+            Textposition.y := Textposition.y + 5.00 * Zeilenabstand;
               
             StadtInformationen (RasseExtern => RasseExtern);
               
@@ -78,7 +78,7 @@ package body KarteInformationenSFML is
             Textposition := StadtInformationenSFML.Stadt (RasseExtern            => RasseExtern,
                                                           StadtRasseNummerExtern => StadtRasseNummer,
                                                           AnzeigeAnfangenExtern  => Textposition);
-            Textposition.y := Textposition.y + 3.00 * Zeilenabstand;
+            Textposition.y := Textposition.y + 5.00 * Zeilenabstand;
       end case;
       
    end StadtInformationen;

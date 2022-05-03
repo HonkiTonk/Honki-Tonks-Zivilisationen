@@ -7,7 +7,6 @@ with Sf.Graphics.RectangleShape;
 with Sf.System.Vector2;
 
 with EinheitStadtDatentypen;
-with ForschungAllgemein;
 
 package ForschungAnzeigeSFML is
 
@@ -18,16 +17,20 @@ private
    SchriftartFestgelegt : Boolean := False;
    SchriftfarbeFestgelegt : Boolean := False;
    SchriftgrößeFestgelegt : Boolean := False;
+   TextFestgelegt : Boolean := False;
+   NeuerAufruf : Boolean := False;
    
-   AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
-   Ende : EinheitStadtDatentypen.MinimimMaximumID;
+   Überschrift : constant EinheitStadtDatentypen.ForschungIDMitNullWert := 0;
+   
+   AktuelleAuswahl : EinheitStadtDatentypen.ForschungIDMitNullWert;
    
    WelcherText : Positive;
    
    Zeilenabstand : Float;
    AbstandÜberschrift : Float;
-   
-   TextAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+
+   type TextAccessArray is array (EinheitStadtDatentypen.ForschungIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
+   TextAccess : constant TextAccessArray := (others => Sf.Graphics.Text.create);
    
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    
@@ -36,9 +39,21 @@ private
    StartPositionText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
    TextPosition : Sf.System.Vector2.sfVector2f;
    
-   ForschungText : ForschungAllgemein.ForschungTextArray;
-   
    procedure WeiterenTextAnzeigen
      (WelcherTextExtern : in Natural);
+   
+   
+   
+   function SchriftartFestlegen
+     return Boolean;
+
+   function SchriftgrößenFestlegen
+     return Boolean;
+
+   function SchriftfarbenFestlegen
+     return Boolean;
+   
+   function TextFestlegen
+     return Boolean;
 
 end ForschungAnzeigeSFML;

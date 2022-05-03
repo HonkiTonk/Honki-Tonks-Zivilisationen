@@ -1,10 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with Sf; use Sf;
-
 with GlobaleTexte;
-with ForschungKonstanten;
 with TextKonstanten;
 with TastenbelegungDatentypen;
 with GrafikDatentypen;
@@ -19,8 +16,9 @@ with Eingabe;
 with StadtWerteFestlegen;
 with StadtUmgebungsbereichFestlegen;
 with InteraktionLogiktask;
-with GrafikEinstellungenSFML;
 with InteraktionGrafiktask;
+with GrafikEinstellungenSFML;
+with InteraktionAuswahl;
 
 with KIForschung;
 
@@ -66,7 +64,7 @@ package body ForschungAllgemein is
    is begin
          
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
-      WasErforschtWerdenSoll := AuswahlForschungNeu (RasseExtern => RasseExtern);
+      WasErforschtWerdenSoll := AuswahlForschung (RasseExtern => RasseExtern);
 
       if
         WasErforschtWerdenSoll = ForschungKonstanten.LeerForschungAnforderung
@@ -84,35 +82,28 @@ package body ForschungAllgemein is
 
 
 
-   function AuswahlForschungNeu
+   function AuswahlForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
-      ForschungText := (others => (TextKonstanten.LeerUnboundedString, 0));
-      Ende := 0;
+      InteraktionAuswahl.MöglicheForschungen := (others => False);
 
       ForschungSchleife:
       for ForschungenSchleifenwert in EinheitStadtDatentypen.ForschungID loop
-         
-         WelcherForschungstext := 2 * Positive (ForschungenSchleifenwert) - 1;
          
          case
            ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
                                          ForschungIDExtern => ForschungenSchleifenwert)
          is
             when True =>
-               Ende := Ende + 1;
-               ForschungText (Ende).Text := GlobaleTexte.Forschungen (WelcherForschungstext);
-               ForschungText (Ende).Nummer := Positive (ForschungenSchleifenwert);
+               InteraktionAuswahl.MöglicheForschungen (ForschungenSchleifenwert) := True;
                   
             when False =>
                null;
          end case;
                   
       end loop ForschungSchleife;
-      
-      AktuelleAuswahl := 1;
       
       case
         OptionenVariablen.NutzerEinstellungen.Anzeigeart
@@ -125,7 +116,7 @@ package body ForschungAllgemein is
             return ForschungAuswahlSFML;
       end case;
 
-   end AuswahlForschungNeu;
+   end AuswahlForschung;
    
    
    
@@ -133,62 +124,25 @@ package body ForschungAllgemein is
      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
-      case
-        SchriftartFestgelegt
-      is
-         when False =>
-            Sf.Graphics.Text.setFont (text => TextAccess,
-                                      font => GrafikEinstellungenSFML.SchriftartAccess);
-            SchriftartFestgelegt := True;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftgrößeFestgelegt
-      is
-         when False =>
-            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-            SchriftgrößeFestgelegt := True;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftfarbeFestgelegt
-      is
-         when False =>
-            Sf.Graphics.Text.setColor (text  => TextAccess,
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
-            SchriftfarbeFestgelegt := True;
-            
-         when True =>
-            null;
-      end case;
-      
-      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
-      
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Forschung_Enum);
+      NeuerAufruf := not NeuerAufruf;
       
       AuswahlSchleife:
       loop
          
-         MausAuswahl;
+         AktuelleAuswahl := MausAuswahl;
          
          case
            Eingabe.Tastenwert
          is               
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
-                 AktuelleAuswahl <= 0
+                 AktuelleAuswahl = ForschungKonstanten.LeerForschungAnforderung
                then
                   null;
                   
                else
-                  GewählteForschung := EinheitStadtDatentypen.ForschungIDMitNullWert (ForschungText (AktuelleAuswahl).Nummer);
+                  GewählteForschung := AktuelleAuswahl;
                   exit AuswahlSchleife;
                end if;
                
@@ -203,6 +157,7 @@ package body ForschungAllgemein is
       end loop AuswahlSchleife;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
+      NeuerAufruf := not NeuerAufruf;
       
       return GewählteForschung;
       
@@ -210,45 +165,40 @@ package body ForschungAllgemein is
    
    
    
-   procedure MausAuswahl
+   function MausAuswahl
+      return EinheitStadtDatentypen.ForschungIDMitNullWert
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
       MausZeigerPosition := GrafikEinstellungenSFML.MausPosition;
-      TextPositionMaus := StartPositionText;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageForschungsprojekt)));
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => 2 * GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-      
-      TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 10.00 * Zeilenabstand;
-      
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                         size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-      
+            
       MausZeigerSchleife:
-      for ForschungSchleifenwert in ForschungTextArray'First .. Ende loop
+      for ForschungSchleifenwert in InteraktionAuswahl.MöglicheForschungenArray'Range loop
          
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                            str  => To_Wide_Wide_String (Source => ForschungText (ForschungSchleifenwert).Text));
+         case
+           InteraktionAuswahl.MöglicheForschungen (ForschungSchleifenwert)
+         is
+            when True =>
+               if
+                 MausZeigerPosition.y in Sf.sfInt32 (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).top)
+                   .. Sf.sfInt32 (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).top + InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).height)
+                   and
+                     MausZeigerPosition.x in Sf.sfInt32 (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).left)
+                       .. Sf.sfInt32 (InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).left + InteraktionAuswahl.PositionenForschung (ForschungSchleifenwert).width)
+               then
+                  return ForschungSchleifenwert;
          
-         if
-           MausZeigerPosition.y in Sf.sfInt32 (TextPositionMaus.y)
-           .. Sf.sfInt32 (TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height)
-           and
-             MausZeigerPosition.x in Sf.sfInt32 (TextPositionMaus.x) .. Sf.sfInt32 (TextPositionMaus.x + Sf.Graphics.Text.getLocalBounds (text => TextAccess).width)
-         then
-            AktuelleAuswahl := ForschungSchleifenwert;
-            return;
+               else
+                  null;
+               end if;
+
+            when False =>
+               null;
+         end case;
          
-         else
-            TextPositionMaus.y := TextPositionMaus.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess).height + 3.00 * Zeilenabstand;
-         end if;
-                  
       end loop MausZeigerSchleife;
       
-      AktuelleAuswahl := -1;
+      return ForschungKonstanten.LeerForschungAnforderung;
       
    end MausAuswahl;
 
@@ -310,7 +260,7 @@ package body ForschungAllgemein is
          
          InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RasseExtern);
          SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
-                                              ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseExtern));
+                                              ForschungIDExtern => AuswahlForschung (RasseExtern => RasseExtern));
          InteraktionLogiktask.AktuelleRasseÄndern (RasseExtern => RassenDatentypen.Keine_Rasse_Enum);
             
       else
