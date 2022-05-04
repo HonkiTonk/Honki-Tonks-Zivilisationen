@@ -18,11 +18,11 @@ private
    SchriftfarbeFestgelegt : Boolean := False;
    SchriftgrößeFestgelegt : Boolean := False;
    TextFestgelegt : Boolean := False;
-   NeuerAufruf : Boolean := False;
    
    Überschrift : constant EinheitStadtDatentypen.ForschungIDMitNullWert := 0;
    
    AktuelleAuswahl : EinheitStadtDatentypen.ForschungIDMitNullWert;
+   WelcherZusatztext : EinheitStadtDatentypen.ForschungIDMitNullWert;
    
    WelcherText : Positive;
    
@@ -32,15 +32,15 @@ private
    type TextAccessArray is array (EinheitStadtDatentypen.ForschungIDMitNullWert'Range) of Sf.Graphics.sfText_Ptr;
    TextAccess : constant TextAccessArray := (others => Sf.Graphics.Text.create);
    
+   type ZusatztextAccessArray is array (EinheitStadtDatentypen.ForschungID'Range) of Sf.Graphics.sfText_Ptr;
+   ZusatztextAccess : constant ZusatztextAccessArray := (others => Sf.Graphics.Text.create);
+   
    RechteckAccess : constant Sf.Graphics.sfRectangleShape_Ptr := Sf.Graphics.RectangleShape.create;
    
    MausZeigerPosition : Sf.System.Vector2.sfVector2i;
 
    StartPositionText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
    TextPosition : Sf.System.Vector2.sfVector2f;
-   
-   procedure WeiterenTextAnzeigen
-     (WelcherTextExtern : in Natural);
    
    
    

@@ -3,9 +3,10 @@ pragma Warnings (Off, "*array aggregate*");
 
 package EinheitStadtDatentypen is
    
-   -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste.
-   -- Dieser Kommentar braucht mal eine Überarbeitung!
-   type MinimimMaximumID is range -1 .. 78;
+   -------------------- -1 kommt noch von der ForschungID, mal umbauen.
+   -------------------- Dieser Kommentar braucht mal eine Überarbeitung!
+   -------------------- Hier braucht alles mal eine Überarbeitung!!!
+   type MinimimMaximumID is range 0 .. 78;
    
    
 
@@ -97,14 +98,14 @@ package EinheitStadtDatentypen is
 
 
    -- Für Forschung
-   subtype ForschungIDNichtMöglich is MinimimMaximumID range -1 .. 75;
+   type ForschungIDNichtMöglich is range -1 .. 75;
    subtype ForschungIDMitNullWert is ForschungIDNichtMöglich range 0 .. ForschungIDNichtMöglich'Last;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
 
    type AnforderungForschungArray is array (1 .. 4) of ForschungIDNichtMöglich;
    type ErforschtArray is array (ForschungID'Range) of Boolean;
    -- Für Forschung
-
+   
 
 
    -- Für Stadt

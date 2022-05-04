@@ -15,7 +15,7 @@ with LeseStadtGebaut;
 with EinheitenBeschreibungen;
 with Anzeige;
 
-package body EinheitBauen is
+package body EinheitBauenKonsole is
 
    procedure AnzeigeEinheiten
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -213,4 +213,4 @@ package body EinheitBauen is
       
    end PermanenteKostenEinheiten;
 
-end EinheitBauen;
+end EinheitBauenKonsole;

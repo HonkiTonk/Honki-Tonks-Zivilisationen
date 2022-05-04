@@ -73,13 +73,14 @@ package body KIVorhandeneAufgaben is
       return EinheitStadtDatentypen.ProduktionSonstiges
    is begin
       
-      NotwendigeTechnologie := LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      ----------------------- Das hier ging möglicherweise beim auseinander Bauen von den ganzen IDs kaputt.
+      NotwendigeTechnologie := EinheitStadtDatentypen.ForschungIDMitNullWert (LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
       case
         NotwendigeTechnologie
       is
-         when EinheitStadtDatentypen.EinheitenIDMitNullWert'First =>
+         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
             return 0;
             
          when others =>

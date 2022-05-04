@@ -19,7 +19,7 @@ private
 
    ErsterDurchlauf : Boolean;
 
-   AktuelleAuswahl : EinheitStadtDatentypen.MinimimMaximumID;
+   AktuelleAuswahl : EinheitStadtDatentypen.ForschungIDNichtMöglich;
 
    procedure Ermöglicht
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;

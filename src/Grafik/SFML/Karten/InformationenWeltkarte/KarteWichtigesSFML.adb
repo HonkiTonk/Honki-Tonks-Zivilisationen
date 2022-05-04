@@ -64,7 +64,7 @@ package body KarteWichtigesSFML is
          XAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => AktuelleKoordinaten.XAchse);
       
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (1),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuellePosition)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen) & ","
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellePosition)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen) & ","
                                             & To_Wide_Wide_String (Source => YAchsenWert) & "," & To_Wide_Wide_String (Source => XAchsenWert));
          Sf.Graphics.Text.setPosition (text     => TextAccess (1),
                                        position => Textposition);
@@ -88,7 +88,7 @@ package body KarteWichtigesSFML is
          WertOhneTrennzeichen := ZahlAlsStringInteger (ZahlExtern => AktuelleRunde);
       
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (2),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuelleRunde)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleRunde)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
          Sf.Graphics.Text.setPosition (text     => TextAccess (2),
                                        position => Textposition);
          
@@ -110,7 +110,7 @@ package body KarteWichtigesSFML is
          WertOhneTrennzeichen := ZahlAlsStringInteger (ZahlExtern => AktuelleGeldmenge);
       
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (3),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuelleGeldmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleGeldmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
          Sf.Graphics.Text.setPosition (text     => TextAccess (3),
                                        position => Textposition);
          
@@ -132,7 +132,7 @@ package body KarteWichtigesSFML is
          WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => AktuellerGeldgewinn);
       
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (4),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuellerGeldzuwachs)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerGeldzuwachs)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
          Sf.Graphics.Text.setPosition (text     => TextAccess (4),
                                        position => Textposition);
          
@@ -152,7 +152,7 @@ package body KarteWichtigesSFML is
         AktuellesForschungsprojekt /= LetztesForschungsprojekt
       then
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (5),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuellesForschungsprojekt) & " "
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellesForschungsprojekt) & " "
                                                                          & ForschungAllgemein.Beschreibung (IDExtern    => AktuellesForschungsprojekt,
                                                                                                             RasseExtern => RasseExtern)));
 
@@ -177,7 +177,7 @@ package body KarteWichtigesSFML is
          WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => AktuelleForschungszeit);
       
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (6),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerbleibendeForschungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugVerbleibendeForschungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
          Sf.Graphics.Text.setPosition (text     => TextAccess (6),
                                        position => Textposition);
          
@@ -199,7 +199,7 @@ package body KarteWichtigesSFML is
          WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => AktuelleForschungsmenge);
       
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (7),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuelleForschungsmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleForschungsmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
          Sf.Graphics.Text.setPosition (text     => TextAccess (7),
                                        position => Textposition);
       
@@ -221,7 +221,7 @@ package body KarteWichtigesSFML is
          WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => AktuelleForschungsrate);
       
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (8),
-                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuellerForschungsgewinn)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                            str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerForschungsgewinn)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
          Sf.Graphics.Text.setPosition (text     => TextAccess (8),
                                        position => Textposition);
          

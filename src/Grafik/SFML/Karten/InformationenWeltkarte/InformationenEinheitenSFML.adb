@@ -138,7 +138,7 @@ package body InformationenEinheitenSFML is
                                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (2),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugLebenspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen 
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugLebenspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen 
                                          & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (2),
                                     position => PositionText);
@@ -159,7 +159,7 @@ package body InformationenEinheitenSFML is
                                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (3),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugBewegungspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBewegungspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (3),
                                     position => PositionText);
@@ -180,7 +180,7 @@ package body InformationenEinheitenSFML is
                                                                    IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (4),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugErfahrungspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugErfahrungspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (4),
                                     position => PositionText);
@@ -196,7 +196,7 @@ package body InformationenEinheitenSFML is
    is begin
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (5),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugBeschäftigung)) & " "
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigung)) & " "
                                          & EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       Sf.Graphics.Text.setPosition (text     => TextAccess (5),
                                     position => PositionText);
@@ -214,7 +214,7 @@ package body InformationenEinheitenSFML is
       WertOhneTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert (ZahlExtern => LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (6),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugBeschäftigungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (6),
                                     position => PositionText);
       
@@ -232,7 +232,7 @@ package body InformationenEinheitenSFML is
                                                                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (7),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAngriff)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAngriff)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (7),
                                     position => PositionText);
       
@@ -250,7 +250,7 @@ package body InformationenEinheitenSFML is
                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (8),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugVerteidigung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugVerteidigung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (8),
                                     position => PositionText);
       
@@ -270,7 +270,7 @@ package body InformationenEinheitenSFML is
                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (9),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugRang)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugRang)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (9),
                                     position => PositionText);
@@ -290,12 +290,12 @@ package body InformationenEinheitenSFML is
       is
          when EinheitenKonstanten.LeerNummer =>
             Sf.Graphics.Text.setUnicodeString (text => TextAccess (10),
-                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugHeimatstadt)) & " "
-                                               & To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugKeine)));
+                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugHeimatstadt)) & " "
+                                               & To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugKeine)));
                
          when others =>
             Sf.Graphics.Text.setUnicodeString (text => TextAccess (10),
-                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugHeimatstadt)) & " " 
+                                               str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugHeimatstadt)) & " " 
                                                & StadtInformationenSFML.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
                                                                                                               LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern))));
       end case;
@@ -317,7 +317,7 @@ package body InformationenEinheitenSFML is
                                                                                                                              AngreiferExtern          => False));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (11),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugGegenschlagskraftFeld)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugGegenschlagskraftFeld)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (11),
                                     position => PositionText);
       
@@ -335,7 +335,7 @@ package body InformationenEinheitenSFML is
                                                                                                                          AngreiferExtern          => False));
       
       Sf.Graphics.Text.setUnicodeString (text => TextAccess (12),
-                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugGegenschlagskraft)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
+                                         str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugGegenschlagskraft)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
       Sf.Graphics.Text.setPosition (text     => TextAccess (12),
                                     position => PositionText);
       
@@ -375,7 +375,7 @@ package body InformationenEinheitenSFML is
                   ErsteAnzeige := False;
       
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess (13),
-                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugAktuelleLadung)));
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleLadung)));
                   Sf.Graphics.Text.setPosition (text     => TextAccess (13),
                                                 position => PositionText);
       

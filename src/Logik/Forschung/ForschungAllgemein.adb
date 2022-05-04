@@ -44,7 +44,7 @@ package body ForschungAllgemein is
         IDExtern
       is
          when ForschungKonstanten.LeerForschungAnforderung =>
-            BeschreibungText := GlobaleTexte.ZeugSachen (TextKonstanten.ZeugKeines);
+            BeschreibungText := GlobaleTexte.Zeug (TextKonstanten.ZeugKeines);
             
          when others =>
             AktuelleForschung := 2 * Positive (IDExtern) - 1;
@@ -88,6 +88,7 @@ package body ForschungAllgemein is
    is begin
       
       InteraktionAuswahl.MöglicheForschungen := (others => False);
+      InteraktionAuswahl.PositionenForschungFestgelegt := False;
 
       ForschungSchleife:
       for ForschungenSchleifenwert in EinheitStadtDatentypen.ForschungID loop
@@ -125,7 +126,6 @@ package body ForschungAllgemein is
    is begin
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Forschung_Enum);
-      NeuerAufruf := not NeuerAufruf;
       
       AuswahlSchleife:
       loop
@@ -134,7 +134,7 @@ package body ForschungAllgemein is
          
          case
            Eingabe.Tastenwert
-         is               
+         is
             when TastenbelegungDatentypen.Auswählen_Enum =>
                if
                  AktuelleAuswahl = ForschungKonstanten.LeerForschungAnforderung
@@ -157,7 +157,6 @@ package body ForschungAllgemein is
       end loop AuswahlSchleife;
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Pause_Enum);
-      NeuerAufruf := not NeuerAufruf;
       
       return GewählteForschung;
       

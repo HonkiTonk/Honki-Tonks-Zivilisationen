@@ -170,7 +170,7 @@ package body AnzeigeEingabeSFML is
             is
                when True =>
                   Sf.Graphics.Text.setUnicodeString (text => TextAccess,
-                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.ZeugSachen (TextKonstanten.ZeugStadt))
+                                                     str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugStadt))
                                                      & To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, WelcheAuswahl.MöglicheAuswahlen (0)))));
          
                when False =>

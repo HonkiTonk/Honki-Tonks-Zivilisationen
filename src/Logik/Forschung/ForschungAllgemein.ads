@@ -14,7 +14,6 @@ with ForschungKonstanten;
 package ForschungAllgemein is
 
    AktuelleAuswahl : EinheitStadtDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
-   NeuerAufruf : Boolean := False;
 
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)

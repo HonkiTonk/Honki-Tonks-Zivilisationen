@@ -10,6 +10,7 @@ with DatenbankRecords;
 package ForschungKonstanten is
    
    LeerPreisForschung : constant EinheitStadtDatentypen.KostenLager := 0;
+   LeerForschung : constant EinheitStadtDatentypen.ForschungIDMitNullWert := EinheitStadtDatentypen.ForschungIDMitNullWert'First;
    LeerForschungAnforderung : constant EinheitStadtDatentypen.ForschungIDMitNullWert := EinheitStadtDatentypen.ForschungIDMitNullWert'First;
    ForschungUnmöglich : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := EinheitStadtDatentypen.ForschungIDNichtMöglich'First;
    

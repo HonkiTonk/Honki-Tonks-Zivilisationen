@@ -15,7 +15,7 @@ with LeseStadtGebaut;
 with Anzeige;
 with GebaeudeAllgemein;
 
-package body GebaeudeBauen is
+package body GebaeudeBauenKonsole is
 
    procedure AnzeigeGebäude
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -170,4 +170,4 @@ package body GebaeudeBauen is
       
    end PermanenteKostenGebäude;
 
-end GebaeudeBauen;
+end GebaeudeBauenKonsole;

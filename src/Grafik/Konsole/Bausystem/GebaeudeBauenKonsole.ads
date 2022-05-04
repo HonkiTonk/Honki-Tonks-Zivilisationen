@@ -5,7 +5,7 @@ with SystemDatentypen; use SystemDatentypen;
 with EinheitStadtRecords;
 with GlobaleVariablen;
 
-package GebaeudeBauen is
+package GebaeudeBauenKonsole is
 
    procedure AnzeigeGebäude
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
@@ -28,4 +28,4 @@ private
    procedure BauzeitGebäude
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
 
-end GebaeudeBauen;
+end GebaeudeBauenKonsole;

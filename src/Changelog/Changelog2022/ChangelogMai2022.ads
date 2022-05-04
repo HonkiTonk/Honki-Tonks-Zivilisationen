@@ -182,17 +182,18 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.06 => 0.01.06 (05.05.2022):
+   -- Version 0.01.0610 => 0.01.06 (05.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0600 => 0.01.06 (04.05.2022):
+   -- Version 0.01.0600 => 0.01.0610 (04.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Forschungsmenü vorerst fertig überarbeitet.
+   -- Das Baumenü angefangen zu überarbeiten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
 

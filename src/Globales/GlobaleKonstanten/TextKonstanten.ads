@@ -76,6 +76,8 @@ package TextKonstanten is
    ZeugPermanenterWissenbonus : constant Positive := 65;
    ZeugPermanenterVerteidigungsbonus : constant Positive := 66;
    ZeugPermanenterAngriffsbonus : constant Positive := 67;
+   ZeugGebäude : constant Positive := 68;
+   ZeugEinheiten : constant Positive := 69;
    
    
    

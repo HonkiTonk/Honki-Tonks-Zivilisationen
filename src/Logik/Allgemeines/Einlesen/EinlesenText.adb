@@ -1017,7 +1017,7 @@ package body EinlesenText is
    is begin
       
       ZeugSachenSchleife:
-      for WelcheZeileSchleifenwert in GlobaleTexte.ZeugSachen'Range loop
+      for WelcheZeileSchleifenwert in GlobaleTexte.Zeug'Range loop
          
          case
            VorzeitigesZeilenende (AktuelleZeileExtern => WelcheZeileSchleifenwert)
@@ -1026,7 +1026,7 @@ package body EinlesenText is
                Put_Line ("EinlesenText.ZeugSachen -" & WelcheZeileSchleifenwert'Wide_Wide_Image);
                
             when False =>
-               GlobaleTexte.ZeugSachen (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
+               GlobaleTexte.Zeug (WelcheZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiTextEinlesen));
          end case;
          
       end loop ZeugSachenSchleife;
