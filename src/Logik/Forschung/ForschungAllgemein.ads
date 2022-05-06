@@ -5,15 +5,15 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with RassenDatentypen; use RassenDatentypen;
+with ForschungenDatentypen;
 with GlobaleVariablen;
 with SonstigeVariablen;
 with ForschungKonstanten;
 
 package ForschungAllgemein is
 
-   AktuelleAuswahl : EinheitStadtDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
+   AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert := ForschungKonstanten.LeerForschungAnforderung;
 
    procedure Forschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
@@ -27,14 +27,14 @@ package ForschungAllgemein is
 
    function ForschungAnforderungErfüllt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in EinheitStadtDatentypen.ForschungID)
+      ForschungIDExtern : in ForschungenDatentypen.ForschungID)
       return Boolean
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function Beschreibung
-     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
+     (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
      with
@@ -43,9 +43,9 @@ package ForschungAllgemein is
 
 private
 
-   WasErforschtWerdenSoll : EinheitStadtDatentypen.ForschungIDMitNullWert;
-   AktuellesForschungsprojekt : EinheitStadtDatentypen.ForschungIDMitNullWert;
-   GewählteForschung : EinheitStadtDatentypen.ForschungIDMitNullWert;
+   WasErforschtWerdenSoll : ForschungenDatentypen.ForschungIDMitNullWert;
+   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   GewählteForschung : ForschungenDatentypen.ForschungIDMitNullWert;
 
    AktuelleForschung : Positive;
 
@@ -68,16 +68,16 @@ private
 
 
    function MausAuswahl
-      return EinheitStadtDatentypen.ForschungIDMitNullWert;
+      return ForschungenDatentypen.ForschungIDMitNullWert;
 
    function AuswahlForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return ForschungenDatentypen.ForschungIDMitNullWert
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
 
    function ForschungAuswahlSFML
-     return EinheitStadtDatentypen.ForschungIDMitNullWert;
+     return ForschungenDatentypen.ForschungIDMitNullWert;
 
 end ForschungAllgemein;

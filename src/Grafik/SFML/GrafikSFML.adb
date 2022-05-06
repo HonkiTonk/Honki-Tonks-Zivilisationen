@@ -25,6 +25,7 @@ with AnzeigeEingabeSFML;
 with BauAuswahlAnzeigeSFML;
 with InteraktionLogiktask;
 with EingabeSystemeSFML;
+with TextaccesseStandardSetzenSFML;
 
 package body GrafikSFML is
    
@@ -32,6 +33,9 @@ package body GrafikSFML is
    is begin
       
       GrafikStartEndeSFML.FensterErzeugen;
+      
+      -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
+      TextaccesseStandardSetzenSFML.AllesAufStandard;
 
       GrafikSchleife:
       loop

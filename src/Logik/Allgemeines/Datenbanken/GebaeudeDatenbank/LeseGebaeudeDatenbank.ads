@@ -6,6 +6,7 @@ with KartenDatentypen;
 with SonstigeVariablen;
 with EinheitStadtDatentypen;
 with KartengrundDatentypen;
+with ForschungenDatentypen;
 
 with DatenbankRecords;
 
@@ -39,7 +40,7 @@ package LeseGebaeudeDatenbank is
    function Anforderungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

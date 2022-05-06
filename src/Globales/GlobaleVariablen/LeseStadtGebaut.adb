@@ -6,7 +6,6 @@ with StadtKonstanten;
 with KartenRecordKonstanten;
 
 with Karten;
-with Fehler;
 
 package body LeseStadtGebaut is
 
@@ -181,16 +180,6 @@ package body LeseStadtGebaut is
      (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
       return EinheitStadtRecords.BauprojektRecord
    is begin
-      
-      case
-        SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt.Nummer
-      is
-         when EinheitStadtDatentypen.MinimimMaximumID'First =>
-            Fehler.LogikFehler (FehlermeldungExtern => "LeseStadtGebaut.Bauprojekt - Aktuelles Bauprojekt ist ungültig.");
-            
-         when others =>
-            null;
-      end case;
       
       return SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt;
       

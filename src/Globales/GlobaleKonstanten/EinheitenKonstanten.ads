@@ -8,6 +8,7 @@ with EinheitStadtDatentypen;
 with AufgabenDatentypen;
 with TextKonstanten;
 with RassenDatentypen;
+with ForschungenDatentypen;
 
 with DatenbankRecords;
 
@@ -61,7 +62,7 @@ package EinheitenKonstanten is
    LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerPermanenteKosten : constant EinheitStadtDatentypen.GesamtePermanenteKosten := 0;
-   LeerAnforderungen : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
+   LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
    LeerMaximaleLebenspunkte : constant EinheitStadtDatentypen.LebenspunkteVorhanden := EinheitStadtDatentypen.LebenspunkteVorhanden'First;
    LeerMaximaleBewegungspunkte : constant EinheitStadtDatentypen.VorhandeneBewegungspunkte := 1.00;

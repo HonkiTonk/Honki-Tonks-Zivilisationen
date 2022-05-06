@@ -5,6 +5,7 @@ with Sf; use Sf;
 with Sf.Graphics.Color; use Sf.Graphics.Color;
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics.Text;
 
 with RassenDatentypen; use RassenDatentypen;
 with MenueDatentypen; use MenueDatentypen;
@@ -21,6 +22,7 @@ with AuswahlMenuesEinfach;
 with AuswahlMenuesZusatztextSFML;
 with Karten;
 with MenueHintergrundSFML;
+with InteraktionAuswahl;
 
 package body AuswahlMenuesEinfachSFML is
 
@@ -29,7 +31,7 @@ package body AuswahlMenuesEinfachSFML is
    is begin
       
       MenueHintergrundSFML.MenüHintergrund (WelchesMenüExtern  => WelchesMenüExtern,
-                                            SpriteAccessExtern => SpriteAccess);
+                                             SpriteAccessExtern => SpriteAccess);
       
       Textbereich := Überschrift + SystemKonstanten.EndeMenü (WelchesMenüExtern) - SystemKonstanten.EndeAbzugGrafik (WelchesMenüExtern) + Versionsnummer;
       
@@ -53,7 +55,7 @@ package body AuswahlMenuesEinfachSFML is
          
          -- Da der Textbereich bei jedem Aufruf weiter oben neu ermittelt wird, sollte niemals ein Zugriff außerhalbt des gültigen Bereichs erfolgen.
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextAccess (WelchesMenüExtern, TextSchleifenwert));
+                                            text         => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextSchleifenwert));
          
       end loop TextSchleife;
       
@@ -81,16 +83,6 @@ package body AuswahlMenuesEinfachSFML is
       AktuelleAuflösung := GrafikEinstellungenSFML.AktuelleFensterAuflösung;
       AktuelleSchriftgröße := GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße;
       AktuelleSchriftfarben := GrafikEinstellungenSFML.Schriftfarben;
-
-      case
-        SchriftartFestgelegt
-      is
-         when False =>
-            SchriftartFestgelegt := SchriftartFestlegen;
-            
-         when True =>
-            null;
-      end case;
       
       if
         AktuelleSchriftgröße /= SchriftgrößeFestgelegt (WelchesMenüExtern)
@@ -186,27 +178,6 @@ package body AuswahlMenuesEinfachSFML is
       return AktuelleAuswahl;
       
    end Textbearbeitung;
-   
-   
-   
-   function SchriftartFestlegen
-     return Boolean
-   is begin
-      
-      MenüSchleife:
-      for MenüSchleifenwert in TextAccessArray'Range (1) loop
-         TextSchleife:
-         for TextSchleifenwert in TextAccessArray'Range (2) loop
-            
-            Sf.Graphics.Text.setFont (text => TextAccess (MenüSchleifenwert, TextSchleifenwert),
-                                      font => GrafikEinstellungenSFML.SchriftartAccess);
-            
-         end loop TextSchleife;
-      end loop MenüSchleife;
-            
-      return True;
-      
-   end SchriftartFestlegen;
 
 
 
@@ -215,18 +186,18 @@ package body AuswahlMenuesEinfachSFML is
       TextbereichExtern : in Positive)
    is begin
 
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess (WelchesMenüExtern, Überschrift),
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
       
       SchriftgrößeSchleife:
       for SchriftgrößeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
          
-         Sf.Graphics.Text.setCharacterSize (text => TextAccess (WelchesMenüExtern, Überschrift + SchriftgrößeSchleifenwert),
+         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftgrößeSchleifenwert),
                                             size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
          
       end loop SchriftgrößeSchleife;
       
-      Sf.Graphics.Text.setCharacterSize (text => TextAccess (WelchesMenüExtern, TextbereichExtern),
+      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                          size => Sf.sfUint32 (0.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
 
    end SchriftgrößenFestlegen;
@@ -238,18 +209,18 @@ package body AuswahlMenuesEinfachSFML is
       TextbereichExtern : in Positive)
    is begin
       
-      Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, Überschrift),
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
       
       SchriftfarbeSchleife:
       for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
          
-         Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert),
                                     color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
          
       end loop SchriftfarbeSchleife;
       
-      Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, TextbereichExtern),
+      Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
 
    end SchriftfarbenFestlegen;
@@ -291,9 +262,9 @@ package body AuswahlMenuesEinfachSFML is
       for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
          
          if
-           Sf.Graphics.Text.getColor (text => TextAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert)) = GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText
+           Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert)) = GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText
          then
-            Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert),
                                        color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
             exit SchriftfarbeSchleife;
             
@@ -304,12 +275,12 @@ package body AuswahlMenuesEinfachSFML is
       end loop SchriftfarbeSchleife;
       
       if
-        Sf.Graphics.Text.getColor (text => TextAccess (WelchesMenüExtern, AktuelleEinstellung)) = GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText
+        Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, AktuelleEinstellung)) = GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText
       then
          null;
                                    
       else
-         Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, AktuelleEinstellung),
+         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, AktuelleEinstellung),
                                     color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
       end if;
       
@@ -323,14 +294,14 @@ package body AuswahlMenuesEinfachSFML is
       SchriftfarbeSchleife:
       for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (MenueDatentypen.Rassen_Menü_Enum) - SchleifenAbzug loop
          
-         Farbe := Sf.Graphics.Text.getColor (text => TextAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + SchriftfarbeSchleifenwert));
+         Farbe := Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + SchriftfarbeSchleifenwert));
          
          if
            Farbe = GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText
            or
              Farbe = GrafikEinstellungenSFML.Schriftfarben.FarbeKIText
          then
-            Sf.Graphics.Text.setColor (text  => TextAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + SchriftfarbeSchleifenwert),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + SchriftfarbeSchleifenwert),
                                        color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
             
          else
@@ -343,7 +314,8 @@ package body AuswahlMenuesEinfachSFML is
       for FarbenFestlegenSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (MenueDatentypen.Rassen_Menü_Enum) - SchleifenAbzug loop
          
          if
-           Sf.Graphics.Text.getColor (text => TextAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert)) = GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText
+           Sf.Graphics.Text.getColor (text => TextaccessVariablen.MenüsEinfachSFMLAccess
+                                      (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert)) = GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText
          then
             null;
             
@@ -355,13 +327,13 @@ package body AuswahlMenuesEinfachSFML is
          elsif
            SonstigeVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Spieler_Mensch_Enum
          then
-            Sf.Graphics.Text.setColor (text  => TextAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
                                        color => GrafikEinstellungenSFML.Schriftfarben.FarbeMenschText);
             
          elsif
            SonstigeVariablen.RassenImSpiel (RassenDatentypen.Rassen_Verwendet_Enum'Val (FarbenFestlegenSchleifenwert)) = RassenDatentypen.Spieler_KI_Enum
          then
-            Sf.Graphics.Text.setColor (text  => TextAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (MenueDatentypen.Rassen_Menü_Enum, Überschrift + FarbenFestlegenSchleifenwert),
                                        color => GrafikEinstellungenSFML.Schriftfarben.FarbeKIText);
             
          else
@@ -387,7 +359,7 @@ package body AuswahlMenuesEinfachSFML is
             null;
             
          when others =>
-            Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, LetzteAuswahlExtern + Überschrift),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, LetzteAuswahlExtern + Überschrift),
                                        color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
       end case;
       
@@ -398,7 +370,7 @@ package body AuswahlMenuesEinfachSFML is
             null;
             
          when others =>
-            Sf.Graphics.Text.setColor (text  => TextAccess (WelchesMenüExtern, AktuelleAuswahlExtern + Überschrift),
+            Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, AktuelleAuswahlExtern + Überschrift),
                                        color => GrafikEinstellungenSFML.Schriftfarben.FarbeAusgewähltText);
       end case;
       
@@ -415,11 +387,11 @@ package body AuswahlMenuesEinfachSFML is
         WelchesMenüExtern
       is
          when MenueDatentypen.Menü_Ohne_Überschrift_Enum'Range =>
-            Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift),
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                                str  => SonstigesKonstanten.Spielename);
             
          when MenueDatentypen.Menü_Mit_Überschrift_Enum'Range | MenueDatentypen.Menü_Zusatztext_Einfach_Enum'Range =>
-            Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift),
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                                str  => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => Überschrift,
                                                                                                             WelchesMenüExtern => WelchesMenüExtern));
       end case;
@@ -427,13 +399,13 @@ package body AuswahlMenuesEinfachSFML is
       TextSchleife:
       for TextSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
                   
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + TextSchleifenwert),
                                             str  => AuswahlMenuesStringsSetzen.AuswahlMenüStringSetzen (WelcheZeileExtern => Überschrift + TextSchleifenwert - HauptmenüAbzug,
                                                                                                          WelchesMenüExtern => WelchesMenüExtern));
          
       end loop TextSchleife;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (WelchesMenüExtern, TextbereichExtern),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                          str  => "Version: " & SonstigesKonstanten.Versionsnummer);
       
    end TextFestlegen;
@@ -460,30 +432,29 @@ package body AuswahlMenuesEinfachSFML is
          null;
       end if;
       
-      Rechenwert.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess (WelchesMenüExtern, Überschrift));
+      Rechenwert.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift));
       
-      Sf.Graphics.Text.setPosition (text     => TextAccess (WelchesMenüExtern, Überschrift),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                     position => Rechenwert);
       
-      Rechenwert.y := Rechenwert.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextAccess (WelchesMenüExtern, Überschrift)).height + ZeilenAbstand;
+      Rechenwert.y := Rechenwert.y + 3.00 * Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift)).height + ZeilenAbstand;
       
       PositionenSchleife:
       for PositionSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
          
-         ----------------------- Mal mein FalseTrue System nachprüfen.
          case
            PositionSchleifenwert mod 2
          is
             when 0 =>
-               Rechenwert.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern => TextAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
-                                                                                            LinksRechtsExtern => True);
+               Rechenwert.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
+                                                                                            LinksRechtsExtern => False);
                
             when others =>
-               Rechenwert.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern => TextAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
-                                                                                            LinksRechtsExtern => False);
+               Rechenwert.x := AllgemeineTextBerechnungenSFML.TextViertelPositionErmitteln (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
+                                                                                            LinksRechtsExtern => True);
          end case;
          
-         Sf.Graphics.Text.setPosition (text     => TextAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert),
                                        position => Rechenwert);
          
          case
@@ -491,13 +462,14 @@ package body AuswahlMenuesEinfachSFML is
          is
             when 0 =>
                -- Ist das nicht immer der Abstant zur Überschrift? Mal anpassen.
-               Rechenwert.y := Rechenwert.y + Sf.Graphics.Text.getLocalBounds (text => TextAccess (WelchesMenüExtern, Überschrift)).height + ZeilenAbstand;
+               Rechenwert.y := Rechenwert.y + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift)).height + ZeilenAbstand;
                
             when others =>
                null;
          end case;
          
-         InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert) := Sf.Graphics.Text.getGlobalBounds (text => TextAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert));
+         InteraktionAuswahl.PositionenMenüeinträge (WelchesMenüExtern, PositionSchleifenwert)
+           := Sf.Graphics.Text.getGlobalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + PositionSchleifenwert));
          
       end loop PositionenSchleife;
       
@@ -512,42 +484,12 @@ package body AuswahlMenuesEinfachSFML is
       end case;
       
       --------------------- Scheint noch nicht hoch genug zu sein.
-      Rechenwert.y := Float (AktuelleAuflösung.y) - Sf.Graphics.Text.getLocalBounds (text => TextAccess (WelchesMenüExtern, TextbereichExtern)).height - Float (AktuelleAuflösung.y / 100);
-      Rechenwert.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextAccess (WelchesMenüExtern, TextbereichExtern));
+      Rechenwert.y := Float (AktuelleAuflösung.y) - Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern)).height - Float (AktuelleAuflösung.y / 100);
+      Rechenwert.x := AllgemeineTextBerechnungenSFML.TextMittelPositionErmitteln (TextAccessExtern => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern));
       
-      Sf.Graphics.Text.setPosition (text     => TextAccess (WelchesMenüExtern, TextbereichExtern),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                     position => Rechenwert);
       
    end SchriftpositionFestlegen;
-   
-   
-   
-   procedure SchriftartZurücksetzen
-   is begin
-      
-      SchriftartFestgelegt := False;
-      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
-      
-   end SchriftartZurücksetzen;
-   
-   
-   
-   procedure TextZurücksetzen
-   is begin
-      
-      TextFestgelegt := (others => False);
-      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
-      
-   end TextZurücksetzen;
-   
-   
-   
-   procedure SchriftgrößeZurücksetzen
-   is begin
-      
-      SchriftgrößeFestgelegt := (others => LeerSchriftgrößeFestgelegt);
-      AuflösungBerechnet := (others => LeerAuflösungBerechnet);
-      
-   end SchriftgrößeZurücksetzen;
 
 end AuswahlMenuesEinfachSFML;

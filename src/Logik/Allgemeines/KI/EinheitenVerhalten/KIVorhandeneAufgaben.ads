@@ -6,6 +6,7 @@ with EinheitStadtRecords;
 with SonstigeVariablen;
 with EinheitStadtDatentypen;
 with SpielVariablen;
+with ForschungenDatentypen;
 
 package KIVorhandeneAufgaben is
 
@@ -84,7 +85,7 @@ package KIVorhandeneAufgaben is
    
 private
    
-   NotwendigeTechnologie : EinheitStadtDatentypen.ForschungIDMitNullWert;
+   NotwendigeTechnologie : ForschungenDatentypen.ForschungIDMitNullWert;
    
    EinheitID : EinheitStadtDatentypen.EinheitenID;
    

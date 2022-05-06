@@ -6,6 +6,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with MenueDatentypen;
 with EinheitStadtDatentypen;
 with SystemKonstanten;
+with ForschungenDatentypen;
 
 package GlobaleTexte is
    
@@ -73,7 +74,7 @@ package GlobaleTexte is
    Wege : TexteArray (1 .. NameBeschreibungMultiplikator * WegartenMultiplikator * 16) := (others => FehlenderText);
    
    Gebäude : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitStadtDatentypen.GebäudeID'Last)) := (others => FehlenderText);
-   Forschungen : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (EinheitStadtDatentypen.ForschungID'Last)) := (others => FehlenderText);
+   Forschungen : TexteArray (1 .. RassenAnzahlBeschreibung * Positive (ForschungenDatentypen.ForschungID'Last)) := (others => FehlenderText);
    Beschäftigungen : TexteArray (1 .. NameBeschreibungMultiplikator * 11) := (others => FehlenderText);
    StädtenamenKI : TexteArray (1 .. 3) := (others => FehlenderText);
    AllgemeineInformationen : TexteArray (1 .. 16) := (others => FehlenderText);

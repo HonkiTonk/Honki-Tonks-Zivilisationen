@@ -27,7 +27,6 @@ package body GrafikStartEndeSFML is
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
             FensterErzeugenErweitert;
-            
       end case;
 
       if

@@ -7,6 +7,7 @@ with EinheitStadtDatentypen;
 with KartenDatentypen;
 with KartengrundDatentypen;
 with RassenDatentypen;
+with ForschungenDatentypen;
 
 package DatenbankRecords is
 
@@ -20,7 +21,7 @@ package DatenbankRecords is
       PreisGeld : EinheitStadtDatentypen.KostenLager;
       PreisRessourcen : EinheitStadtDatentypen.KostenLager;
       PermanenteKosten : EinheitStadtRecords.PermanenteKostenArray;
-      Anforderungen : EinheitStadtDatentypen.ForschungIDNichtMöglich;
+      Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
 
       Passierbarkeit : PassierbarkeitArray;
       
@@ -49,11 +50,11 @@ package DatenbankRecords is
    type ForschungslisteRecord is record
 
       PreisForschung : EinheitStadtDatentypen.KostenLager;
-      AnforderungForschung : EinheitStadtDatentypen.AnforderungForschungArray;
+      AnforderungForschung : ForschungenDatentypen.AnforderungForschungArray;
 
    end record;
    
-   type ForschungslisteArray is array (EinheitStadtDatentypen.ForschungID'Range) of ForschungslisteRecord;
+   type ForschungslisteArray is array (ForschungenDatentypen.ForschungID'Range) of ForschungslisteRecord;
    -- ForschungenDatenbank
 
 
@@ -68,7 +69,7 @@ package DatenbankRecords is
       PreisRessourcen : EinheitStadtDatentypen.KostenLager;
       PermanenteKosten : EinheitStadtRecords.PermanenteKostenArray;
       
-      Anforderungen : EinheitStadtDatentypen.ForschungIDNichtMöglich;
+      Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
       
       BonusWirtschaft : BonusWirtschaftArray;
       BonusKampf : BonusKampfArray;

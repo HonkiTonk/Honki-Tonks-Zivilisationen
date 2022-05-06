@@ -13,7 +13,7 @@ with AuswahlSprache;
 with Eingabe;
 with AuswahlMenues;
 with Fehler;
-with AuswahlMenuesEinfachSFML;
+with TextaccesseStandardSetzenSFML;
 
 package body OptionenSonstiges is
 
@@ -123,7 +123,7 @@ package body OptionenSonstiges is
             else
                OptionenVariablen.NutzerEinstellungen.Sprache := GewählteSprache;
                EinlesenText.EinlesenDateien;
-               AuswahlMenuesEinfachSFML.TextZurücksetzen;
+               TextaccesseStandardSetzenSFML.AllesAufStandard;
             end if;
             
          when False =>

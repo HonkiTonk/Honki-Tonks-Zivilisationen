@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with EinheitStadtDatentypen;
+with ForschungenDatentypen;
 
 with DatenbankRecords;
 
@@ -45,7 +46,7 @@ package LeseEinheitenDatenbank is
    function Anforderungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDNichtMöglich
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

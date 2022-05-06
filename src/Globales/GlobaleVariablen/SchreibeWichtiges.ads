@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with EinheitStadtDatentypen;
+with ForschungenDatentypen;
 
 package SchreibeWichtiges is
 
@@ -47,7 +48,7 @@ package SchreibeWichtiges is
    
    procedure Forschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert)
+      ForschungIDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

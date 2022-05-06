@@ -91,7 +91,7 @@ package body LeseWichtiges is
    
    function Forschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
 
       return SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt;
@@ -102,7 +102,7 @@ package body LeseWichtiges is
 
    function Erforscht
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WelcheTechnologieExtern : in EinheitStadtDatentypen.ForschungID)
+      WelcheTechnologieExtern : in ForschungenDatentypen.ForschungID)
       return Boolean
    is begin
 

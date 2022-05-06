@@ -9,6 +9,7 @@ with Sf.Graphics.Text;
 
 with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ForschungenDatentypen; use ForschungenDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with SonstigeVariablen;
@@ -44,8 +45,8 @@ private
    AktuellerGeldgewinn : EinheitStadtDatentypen.KostenLager;
    LetzterGeldgewinn : EinheitStadtDatentypen.KostenLager := -1;
 
-   AktuellesForschungsprojekt : EinheitStadtDatentypen.ForschungIDMitNullWert;
-   LetztesForschungsprojekt : EinheitStadtDatentypen.ForschungIDNichtMöglich := -1;
+   AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
+   LetztesForschungsprojekt : ForschungenDatentypen.ForschungIDNichtMöglich := -1;
 
    AktuelleForschungszeit : EinheitStadtDatentypen.KostenLager;
    LetzteForschungszeit : EinheitStadtDatentypen.KostenLager := -1;

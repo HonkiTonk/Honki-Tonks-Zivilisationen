@@ -6,12 +6,12 @@ with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtRecords;
 with SpielVariablen;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with ForschungenDatentypen;
 with KartenDatentypen;
 
 package StadtUmgebungsbereichFestlegen is
    
-   type TechnologieUmgebungsgrößeArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of EinheitStadtDatentypen.ForschungID;
+   type TechnologieUmgebungsgrößeArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, SystemDatentypen.Anfang_Ende_Enum'Range) of ForschungenDatentypen.ForschungID;
    TechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
                                                                                RassenDatentypen.Menschen_Enum =>
                                                                                  (

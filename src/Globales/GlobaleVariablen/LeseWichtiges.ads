@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with EinheitStadtDatentypen;
+with ForschungenDatentypen;
 
 package LeseWichtiges is
 
@@ -44,14 +45,14 @@ package LeseWichtiges is
    
    function Forschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return ForschungenDatentypen.ForschungIDMitNullWert
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function Erforscht
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      WelcheTechnologieExtern : in EinheitStadtDatentypen.ForschungID)
+      WelcheTechnologieExtern : in ForschungenDatentypen.ForschungID)
       return Boolean
      with
        Pre =>

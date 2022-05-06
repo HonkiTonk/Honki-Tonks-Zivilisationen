@@ -3,8 +3,6 @@ pragma Warnings (Off, "*array aggregate*");
 
 package EinheitStadtDatentypen is
    
-   -------------------- -1 kommt noch von der ForschungID, mal umbauen.
-   -------------------- Dieser Kommentar braucht mal eine Überarbeitung!
    -------------------- Hier braucht alles mal eine Überarbeitung!!!
    type MinimimMaximumID is range 0 .. 78;
    
@@ -94,17 +92,6 @@ package EinheitStadtDatentypen is
                                                  );
    subtype Gebäude_Spezielle_Eigenschaften_Verwendet_Enum is Gebäude_Spezielle_Eigenschaften_Enum range Eigenschaft_Enum .. Gebäude_Spezielle_Eigenschaften_Enum'Last;
    -- Für Gebäude
-
-
-
-   -- Für Forschung
-   type ForschungIDNichtMöglich is range -1 .. 75;
-   subtype ForschungIDMitNullWert is ForschungIDNichtMöglich range 0 .. ForschungIDNichtMöglich'Last;
-   subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
-
-   type AnforderungForschungArray is array (1 .. 4) of ForschungIDNichtMöglich;
-   type ErforschtArray is array (ForschungID'Range) of Boolean;
-   -- Für Forschung
    
 
 

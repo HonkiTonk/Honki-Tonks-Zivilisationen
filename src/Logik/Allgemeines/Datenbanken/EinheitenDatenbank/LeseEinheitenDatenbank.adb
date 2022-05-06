@@ -68,7 +68,7 @@ package body LeseEinheitenDatenbank is
    function Anforderungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
       
       return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).Anforderungen;

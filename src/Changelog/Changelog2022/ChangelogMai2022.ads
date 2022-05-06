@@ -154,38 +154,39 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (09.05.2022):
+   -- Version 0.01.06 => 0.01.0 (09.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (08.05.2022):
+   -- Version 0.01.06 => 0.01.06 (08.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0 => 0.01.0 (07.05.2022):
+   -- Version 0.01.0630 => 0.01.06 (07.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.06 => 0.01.0 (06.05.2022):
+   -- Version 0.01.0610 => 0.01.0630 (06.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Das Baumenü fürs Erste fertig überarbeitet.
+   -- Angefangen EinheitStadtDatentypen aufzuteilen.
+   -- Angefangen die Textaccesse in eine Datei auszulagern.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0610 => 0.01.06 (05.05.2022):
+   -- Version 0.01.0610 => 0.01.0610 (05.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
 

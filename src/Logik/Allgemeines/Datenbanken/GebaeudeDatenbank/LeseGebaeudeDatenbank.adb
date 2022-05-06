@@ -45,7 +45,7 @@ package body LeseGebaeudeDatenbank is
    function Anforderungen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.ForschungIDNichtMöglich
+      return ForschungenDatentypen.ForschungIDNichtMöglich
    is begin
       
       return GebaeudeDatenbank.Gebäudeliste (RasseExtern, IDExtern).Anforderungen;

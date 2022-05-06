@@ -4,22 +4,23 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitStadtDatentypen;
 with RassenDatentypen;
 with TastenbelegungDatentypen;
+with ForschungenDatentypen;
 
 with DatenbankRecords;
 
 package ForschungKonstanten is
    
    LeerPreisForschung : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerForschung : constant EinheitStadtDatentypen.ForschungIDMitNullWert := EinheitStadtDatentypen.ForschungIDMitNullWert'First;
-   LeerForschungAnforderung : constant EinheitStadtDatentypen.ForschungIDMitNullWert := EinheitStadtDatentypen.ForschungIDMitNullWert'First;
-   ForschungUnmöglich : constant EinheitStadtDatentypen.ForschungIDNichtMöglich := EinheitStadtDatentypen.ForschungIDNichtMöglich'First;
+   LeerForschung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
+   LeerForschungAnforderung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
+   ForschungUnmöglich : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungenDatentypen.ForschungIDNichtMöglich'First;
    
    LeerForschungListe : constant DatenbankRecords.ForschungslisteRecord := (
                                                                            PreisForschung       => LeerPreisForschung,
                                                                            AnforderungForschung => (others => ForschungUnmöglich)
                                                                           );
    
-   type TechnologieVerbesserungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
                                                                        RassenDatentypen.Menschen_Enum =>
                                                                          (

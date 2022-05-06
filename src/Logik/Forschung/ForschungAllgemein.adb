@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with ForschungenDatentypen; use ForschungenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 with TastenbelegungDatentypen;
@@ -25,7 +27,7 @@ with KIForschung;
 package body ForschungAllgemein is
 
    function Beschreibung
-     (IDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert;
+     (IDExtern : in ForschungenDatentypen.ForschungIDMitNullWert;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
       return Wide_Wide_String
    is begin
@@ -84,14 +86,14 @@ package body ForschungAllgemein is
 
    function AuswahlForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
       InteraktionAuswahl.MöglicheForschungen := (others => False);
       InteraktionAuswahl.PositionenForschungFestgelegt := False;
 
       ForschungSchleife:
-      for ForschungenSchleifenwert in EinheitStadtDatentypen.ForschungID loop
+      for ForschungenSchleifenwert in ForschungenDatentypen.ForschungID loop
          
          case
            ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
@@ -122,7 +124,7 @@ package body ForschungAllgemein is
    
    
    function ForschungAuswahlSFML
-     return EinheitStadtDatentypen.ForschungIDMitNullWert
+     return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Forschung_Enum);
@@ -165,7 +167,7 @@ package body ForschungAllgemein is
    
    
    function MausAuswahl
-      return EinheitStadtDatentypen.ForschungIDMitNullWert
+      return ForschungenDatentypen.ForschungIDMitNullWert
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.
@@ -236,14 +238,14 @@ package body ForschungAllgemein is
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       
       if
-        AktuellesForschungsprojekt = EinheitStadtDatentypen.ForschungIDMitNullWert'First
+        AktuellesForschungsprojekt = ForschungenDatentypen.ForschungIDMitNullWert'First
       then
          null;
          
       elsif
         LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)
         >= LeseForschungenDatenbank.PreisForschung (RasseExtern => RasseExtern,
-                                                   IDExtern    => AktuellesForschungsprojekt)
+                                                    IDExtern    => AktuellesForschungsprojekt)
       then
          SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
          if
@@ -277,7 +279,7 @@ package body ForschungAllgemein is
       AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
       
       if
-        AktuellesForschungsprojekt = EinheitStadtDatentypen.ForschungIDMitNullWert'First
+        AktuellesForschungsprojekt = ForschungenDatentypen.ForschungIDMitNullWert'First
       then
          KIForschung.Forschung (RasseExtern => RasseExtern);
          
@@ -312,7 +314,7 @@ package body ForschungAllgemein is
    
    function ForschungAnforderungErfüllt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in EinheitStadtDatentypen.ForschungID)
+      ForschungIDExtern : in ForschungenDatentypen.ForschungID)
       return Boolean
    is begin
    
@@ -328,7 +330,7 @@ package body ForschungAllgemein is
       end case;
       
       AnforderungSchleife:
-      for AnforderungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
+      for AnforderungSchleifenwert in ForschungenDatentypen.AnforderungForschungArray'Range loop
             
          if
            LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,

@@ -5,7 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics.RenderWindow;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ForschungenDatentypen; use ForschungenDatentypen;
 with TextKonstanten;
 with GlobaleTexte;
 with ForschungKonstanten;
@@ -89,7 +89,7 @@ package body ForschungAnzeigeSFML is
       WelcherZusatztext := ForschungKonstanten.LeerForschung;
       
       AnzeigeSchleife:
-      for ForschungSchleifenwert in EinheitStadtDatentypen.ForschungID'Range loop
+      for ForschungSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          
          case
            InteraktionAuswahl.MöglicheForschungen (ForschungSchleifenwert)
@@ -198,7 +198,7 @@ package body ForschungAnzeigeSFML is
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
       
       SchriftgrößeSchleife:
-      for SchriftgrößeSchleifenwert in EinheitStadtDatentypen.ForschungID'Range loop
+      for SchriftgrößeSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          
          
          Sf.Graphics.Text.setCharacterSize (text => TextAccess (SchriftgrößeSchleifenwert),
@@ -228,7 +228,7 @@ package body ForschungAnzeigeSFML is
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
                   
       SchriftfarbeSchleife:
-      for SchriftfarbeSchleifenwert in EinheitStadtDatentypen.ForschungID'Range loop
+      for SchriftfarbeSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          
          Sf.Graphics.Text.setColor (text  => TextAccess (SchriftfarbeSchleifenwert),
                                     color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
@@ -257,7 +257,7 @@ package body ForschungAnzeigeSFML is
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Frage (TextKonstanten.FrageForschungsprojekt)));
       
       TextSchleife:
-      for TextSchleifenwert in EinheitStadtDatentypen.ForschungID'Range loop
+      for TextSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          
          Sf.Graphics.Text.setUnicodeString (text => TextAccess (TextSchleifenwert),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Forschungen (2 * Positive (TextSchleifenwert) - 1)));

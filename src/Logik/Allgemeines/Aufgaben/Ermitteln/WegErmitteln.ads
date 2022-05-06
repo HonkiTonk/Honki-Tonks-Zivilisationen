@@ -9,6 +9,7 @@ with SpielVariablen;
 with AufgabenDatentypen;
 with EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen;
+with ForschungenDatentypen;
 
 package WegErmitteln is
 
@@ -46,7 +47,7 @@ private
                                                 );
 
    ---------------------- Später mal auslagern, so dass das auch verädnerbar ist. RassenVariablen?
-   type TechnologischeVoraussetzungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range) of EinheitStadtDatentypen.ForschungIDNichtMöglich;
+   type TechnologischeVoraussetzungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, AufgabenDatentypen.Einheitenbefehle_Wege_Enum'Range) of ForschungenDatentypen.ForschungIDNichtMöglich;
    TechnologischeVoraussetzung : TechnologischeVoraussetzungArray := (
                                                                       RassenDatentypen.Menschen_Enum =>
                                                                         (

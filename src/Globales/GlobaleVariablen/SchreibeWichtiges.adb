@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
+with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with WichtigesKonstanten;
 with SpielVariablen;
@@ -162,7 +163,7 @@ package body SchreibeWichtiges is
    is begin
       
       if
-        SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt = EinheitStadtDatentypen.ForschungIDMitNullWert'First
+        SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt = ForschungenDatentypen.ForschungIDMitNullWert'First
         or
           SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
       then
@@ -182,7 +183,7 @@ package body SchreibeWichtiges is
    
    procedure Forschungsprojekt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in EinheitStadtDatentypen.ForschungIDMitNullWert)
+      ForschungIDExtern : in ForschungenDatentypen.ForschungIDMitNullWert)
    is begin
       
       SpielVariablen.Wichtiges (RasseExtern).Forschungsprojekt := ForschungIDExtern;

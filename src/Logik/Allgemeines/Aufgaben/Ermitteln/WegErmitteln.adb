@@ -5,6 +5,7 @@ with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with KartengrundDatentypen; use KartengrundDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
+with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitenKonstanten;
 
 with SchreibeEinheitenGebaut;

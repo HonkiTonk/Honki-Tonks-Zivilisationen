@@ -6,6 +6,7 @@ with Sf.Graphics.Rect;
 with MenueDatentypen;
 with SystemKonstanten;
 with EinheitStadtDatentypen;
+with ForschungenDatentypen;
 
 package InteraktionAuswahl is
 
@@ -21,7 +22,7 @@ package InteraktionAuswahl is
 
 
 
-   type PositionenForschungArray is array (EinheitStadtDatentypen.ForschungID'Range) of Sf.Graphics.Rect.sfFloatRect;
+   type PositionenForschungArray is array (ForschungenDatentypen.ForschungID'Range) of Sf.Graphics.Rect.sfFloatRect;
    PositionenForschung : PositionenForschungArray := (others => (0.00, 0.00, 0.00, 0.00));
 
    type MöglicheForschungenArray is array (PositionenForschungArray'Range) of Boolean;

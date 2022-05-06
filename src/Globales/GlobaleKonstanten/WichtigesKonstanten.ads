@@ -5,6 +5,7 @@ with WichtigeRecords;
 with KartenRecords;
 with EinheitStadtDatentypen;
 with SystemDatentypen;
+with ForschungenDatentypen;
 
 with DatenbankRecords;
 
@@ -25,7 +26,7 @@ package WichtigesKonstanten is
    LeerGesamteForschungsrate : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerForschungsmenge : constant EinheitStadtDatentypen.KostenLager := 0;
    LeerVerbleibendeForschungszeit : constant EinheitStadtDatentypen.KostenLager := EinheitStadtDatentypen.KostenLager'Last;
-   LeerForschungsprojekt : constant EinheitStadtDatentypen.ForschungIDMitNullWert := EinheitStadtDatentypen.ForschungIDMitNullWert'First;
+   LeerForschungsprojekt : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    LeerErforscht : constant Boolean := False;
    LeerAnzahlStädte : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
    LeerAnzahlArbeiter : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;

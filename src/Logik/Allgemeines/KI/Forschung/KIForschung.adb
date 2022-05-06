@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen;
+with ForschungenDatentypen;
 
 with ForschungenDatenbank;
 
@@ -19,7 +19,7 @@ package body KIForschung is
       case
         LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
-         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
+         when ForschungenDatentypen.ForschungIDMitNullWert'First =>
             NeuesForschungsprojekt (RasseExtern => RasseExtern);
             
          when others =>

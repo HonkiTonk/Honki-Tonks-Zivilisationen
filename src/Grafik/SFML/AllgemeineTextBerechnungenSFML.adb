@@ -41,10 +41,10 @@ package body AllgemeineTextBerechnungenSFML is
       case
         LinksRechtsExtern
       is
-         when False =>
+         when True =>
             Position := Position - TextHalbeBreite;
             
-         when True =>
+         when False =>
             Position := Position * 3.00 - TextHalbeBreite;
       end case;
       

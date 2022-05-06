@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Wide_Wide_Text_IO; use Ada.Wide_Wide_Text_IO;
 with Ada.Characters.Wide_Wide_Latin_1; use Ada.Characters.Wide_Wide_Latin_1;
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ForschungenDatentypen; use ForschungenDatentypen;
 with ForschungKonstanten;
 -- with GlobaleTexte;
 with TastenbelegungDatentypen;
@@ -30,7 +30,7 @@ package body ForschungAnzeigeKonsole is
    
    procedure Ermöglicht
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
+      ForschungNummerExtern : in ForschungenDatentypen.ForschungID)
    is begin
       
       -- TextAnzeigeKonsole.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
@@ -41,9 +41,9 @@ package body ForschungAnzeigeKonsole is
       --                                         AbstandEndeExtern      => GlobaleTexte.Leer);
       
       TechnologienSchleife:
-      for TechnologieSchleifenwert in EinheitStadtDatentypen.ForschungID'Range loop
+      for TechnologieSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
          ErmöglichtSchleife:
-         for NeueForschungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
+         for NeueForschungSchleifenwert in ForschungenDatentypen.AnforderungForschungArray'Range loop
          
             if
               LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
@@ -84,13 +84,13 @@ package body ForschungAnzeigeKonsole is
    
    procedure Benötigt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in EinheitStadtDatentypen.ForschungID)
+      ForschungNummerExtern : in ForschungenDatentypen.ForschungID)
    is begin
       
       ErsterDurchlauf := True;
           
       BenötigtSchleife:
-      for NeueForschungSchleifenwert in EinheitStadtDatentypen.AnforderungForschungArray'Range loop
+      for NeueForschungSchleifenwert in ForschungenDatentypen.AnforderungForschungArray'Range loop
          
          if
            LeseForschungenDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
@@ -184,9 +184,9 @@ package body ForschungAnzeigeKonsole is
          is
             when TastenbelegungDatentypen.Rechts_Enum =>
                if
-                 AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'Last
+                 AktuelleAuswahl = ForschungenDatentypen.ForschungID'Last
                then
-                  AktuelleAuswahl := EinheitStadtDatentypen.ForschungID'First;
+                  AktuelleAuswahl := ForschungenDatentypen.ForschungID'First;
                   
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
@@ -194,9 +194,9 @@ package body ForschungAnzeigeKonsole is
 
             when TastenbelegungDatentypen.Links_Enum =>
                if
-                 AktuelleAuswahl = EinheitStadtDatentypen.ForschungID'First
+                 AktuelleAuswahl = ForschungenDatentypen.ForschungID'First
                then
-                  AktuelleAuswahl := EinheitStadtDatentypen.ForschungID'Last;
+                  AktuelleAuswahl := ForschungenDatentypen.ForschungID'Last;
                   
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;

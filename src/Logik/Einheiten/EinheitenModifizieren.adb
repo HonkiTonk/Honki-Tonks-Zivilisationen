@@ -1,8 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
+with ForschungenDatentypen; use ForschungenDatentypen;
+with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 

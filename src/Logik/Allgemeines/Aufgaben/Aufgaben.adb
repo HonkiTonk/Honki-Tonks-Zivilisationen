@@ -6,6 +6,7 @@ with KartenDatentypen; use KartenDatentypen;
 with TastenbelegungDatentypen; use TastenbelegungDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
 with AufgabenDatentypen; use AufgabenDatentypen;
+with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
 
@@ -105,12 +106,12 @@ package body Aufgaben is
    is begin
       
       if
-        ForschungKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern) = -1
+        ForschungKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern) = ForschungKonstanten.ForschungUnmöglich
       then
          return False;
 
       elsif
-        ForschungKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern) = 0
+        ForschungKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern) = ForschungKonstanten.LeerForschung
       then
          null;
 

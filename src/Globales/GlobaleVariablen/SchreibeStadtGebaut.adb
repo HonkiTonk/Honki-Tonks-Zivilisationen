@@ -8,8 +8,6 @@ with StadtKonstanten;
 with LeseGebaeudeDatenbank;
 with LeseEinheitenDatenbank;
 
-with Fehler;
-
 package body SchreibeStadtGebaut is
 
    procedure ID
@@ -321,14 +319,7 @@ package body SchreibeStadtGebaut is
       BauprojektExtern : in EinheitStadtRecords.BauprojektRecord)
    is begin
       
-      if
-        BauprojektExtern.Nummer = EinheitStadtDatentypen.MinimimMaximumID'First
-      then
-         Fehler.LogikFehler (FehlermeldungExtern => "SchreibeStadtGebaut.Bauprojekt - Ungültige Bauprojektnummer.");
-         
-      else
-         SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := BauprojektExtern;
-      end if;
+      SpielVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := BauprojektExtern;
       
       Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
       

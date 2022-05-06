@@ -7,6 +7,7 @@ with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SpielVariablen;
+with ForschungenDatentypen;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
@@ -303,7 +304,7 @@ package body BefehleKonsole is
       case
         LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
-         when EinheitStadtDatentypen.ForschungIDMitNullWert'First =>
+         when ForschungenDatentypen.ForschungIDMitNullWert'First =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
             return;
             
