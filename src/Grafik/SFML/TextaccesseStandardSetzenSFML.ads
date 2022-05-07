@@ -9,7 +9,7 @@ package TextaccesseStandardSetzenSFML is
    procedure SchriftgrößeSetzen;
    procedure SchriftfarbeSetzen;
    
-   -------------------- Sollte das nicht auch hier gehen?
-   -- procedure TextSetzen;
+   -------------------- Sollte hier auch gehen, oder?
+   procedure TextSetzen;
 
 end TextaccesseStandardSetzenSFML;

@@ -161,17 +161,17 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.06 => 0.01.06 (08.05.2022):
+   -- Version 0.01.0640 => 0.01.06 (08.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0630 => 0.01.06 (07.05.2022):
+   -- Version 0.01.0630 => 0.01.0640 (07.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Mehr Textaccesse ausgelagert.
+   -- Kommentare und Kleinigkeiten korrigiert.
    
    
 

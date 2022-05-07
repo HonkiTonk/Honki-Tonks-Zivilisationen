@@ -8,6 +8,7 @@ with MenueDatentypen;
 package InteraktionGrafiktask is
    
    AktuellesMenü : MenueDatentypen.Welches_Menü_Enum := MenueDatentypen.Leer_Menü_Enum;
+   AccesseSetzen : Boolean := False;
       
    type Fenster_Ändern_Enum is (
                                  Keine_Änderung_Enum,

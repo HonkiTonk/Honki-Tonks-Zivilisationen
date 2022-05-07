@@ -32,13 +32,22 @@ package body GrafikSFML is
    procedure GrafikSFML
    is begin
       
-      GrafikStartEndeSFML.FensterErzeugen;
-      
       -- Das Setzen der Schriftart kann scheinbar erst nach dem Erzeugen eines Fensters stattfinden.
-      TextaccesseStandardSetzenSFML.AllesAufStandard;
-
+      GrafikStartEndeSFML.FensterErzeugen;
+            
       GrafikSchleife:
       loop
+         
+         case
+           InteraktionGrafiktask.AccesseSetzen
+         is
+            when True =>
+               TextaccesseStandardSetzenSFML.AllesAufStandard;
+               InteraktionGrafiktask.AccesseSetzen := False;
+               
+            when False =>
+               null;
+         end case;
          
          case
            InteraktionGrafiktask.FensterVerändert

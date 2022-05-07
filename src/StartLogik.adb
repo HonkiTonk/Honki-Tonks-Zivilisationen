@@ -31,6 +31,7 @@ package body StartLogik is
       end loop FensterVorhandenSchleife;
       
       Einlesen.EinlesenMitAnzeige;
+      InteraktionGrafiktask.AccesseSetzen := True;
       
       InteraktionLogiktask.EinlesenAbgeschlossen := True;
       InteraktionGrafiktask.AktuelleDarstellungÄndern (DarstellungExtern => GrafikDatentypen.Grafik_Intro_Enum);

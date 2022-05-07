@@ -5,6 +5,7 @@ with Ada.Characters.Wide_Wide_Latin_1;
 
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics.Text;
 
 with RassenDatentypen; use RassenDatentypen;
 with TextKonstanten;
@@ -40,11 +41,11 @@ package body AnzeigeZusatztextRassenmenueSFML is
          AktuellerTextbereichEins := AktuellerTextbereichEins & To_Wide_Wide_String (Source => RassenTexte (RasseAnzeigen)) (TextbereichSchleifenwert);
          AktuellerTextbereichZwei := AktuellerTextbereichZwei & To_Wide_Wide_String (Source => RassenTexte (RasseAnzeigen)) (TextbereichSchleifenwert);
             
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (RasseAnzeigen),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen),
                                             str  => To_Wide_Wide_String (Source => AktuellerTextbereichEins));
          
          if
-           Sf.Graphics.Text.getLocalBounds (text => TextAccess (RasseAnzeigen)).width >= Multiplikator * BreiteTextfeld
+           Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen)).width >= Multiplikator * BreiteTextfeld
          then
             AktuellerTextbereichZwei := AktuellerTextbereichZwei & Ada.Characters.Wide_Wide_Latin_1.LF;
             Multiplikator := Multiplikator + 1.00;
@@ -55,11 +56,11 @@ package body AnzeigeZusatztextRassenmenueSFML is
             
       end loop TextbereichSchleife;
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (RasseAnzeigen),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen),
                                          str  => To_Wide_Wide_String (Source => AktuellerTextbereichZwei));
          
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess (RasseAnzeigen));
+                                         text         => TextaccessVariablen.ZusatztextRassenAccess (RasseAnzeigen));
       
    end AnzeigeZusatztextRassenmenü;
    
@@ -108,36 +109,6 @@ package body AnzeigeZusatztextRassenmenueSFML is
    is begin
       
       case
-        SchriftartFestgelegt
-      is
-         when False =>
-            SchriftartFestgelegt := SchriftartFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftfarbeFestgelegt
-      is
-         when False =>
-            SchriftfarbeFestgelegt := SchriftfarbeFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftgrößeFestgelegt
-      is
-         when False =>
-            SchriftgrößeFestgelegt := SchriftgrößeFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
         TextFestgelegt
       is
          when False =>
@@ -158,60 +129,6 @@ package body AnzeigeZusatztextRassenmenueSFML is
       end if;
       
    end Textbearbeitung;
-   
-   
-   
-   function SchriftartFestlegen
-     return Boolean
-   is begin
-      
-      FontSchleife:
-      for FontSchleifenwert in TextAccessArray'Range loop
-            
-         Sf.Graphics.Text.setFont (text => TextAccess (FontSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
-            
-      end loop FontSchleife;
-            
-      return True;
-      
-   end SchriftartFestlegen;
-   
-   
-   
-   function SchriftfarbeFestlegen
-     return Boolean
-   is begin
-      
-      FarbeSchleife:
-      for FarbeSchleifenwert in TextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setColor (text  => TextAccess (FarbeSchleifenwert),
-                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
-         
-      end loop FarbeSchleife;
-      
-      return True;
-      
-   end SchriftfarbeFestlegen;
-   
-   
-   
-   function SchriftgrößeFestlegen
-     return Boolean
-   is begin
-      
-      GrößeSchleife:
-      for GrößeSchleifenwert in TextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setCharacterSize (text => TextAccess (GrößeSchleifenwert),
-                                            size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-         
-      end loop GrößeSchleife;
-      
-      return True;
-      
-   end SchriftgrößeFestlegen;
    
    
    
@@ -239,39 +156,9 @@ package body AnzeigeZusatztextRassenmenueSFML is
      (AktuelleRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Sf.Graphics.Text.setPosition (text     => TextAccess (AktuelleRasseExtern),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.ZusatztextRassenAccess (AktuelleRasseExtern),
                                     position => PositionHintergrund);
       
    end SchriftpositionFestlegen;
-   
-   
-   
-   procedure SchriftartZurücksetzen
-   is begin
-      
-      SchriftartFestgelegt := LeerFestgelegt;
-      -- AuflösungBerechnet := (others => LeerFestgelegt);
-      
-   end SchriftartZurücksetzen;
-   
-   
-   
-   procedure TextZurücksetzen
-   is begin
-      
-      TextFestgelegt := LeerFestgelegt;
-      -- AuflösungBerechnet := (others => LeerFestgelegt);
-      
-   end TextZurücksetzen;
-   
-   
-   
-   procedure SchriftgrößeZurücksetzen
-   is begin
-      
-      SchriftgrößeFestgelegt := LeerFestgelegt;
-      -- AuflösungBerechnet := (others => LeerFestgelegt);
-      
-   end SchriftgrößeZurücksetzen;
 
 end AnzeigeZusatztextRassenmenueSFML;

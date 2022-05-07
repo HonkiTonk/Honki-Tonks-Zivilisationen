@@ -189,14 +189,6 @@ package body AuswahlMenuesEinfachSFML is
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                          size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
       
-      SchriftgrößeSchleife:
-      for SchriftgrößeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
-         
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftgrößeSchleifenwert),
-                                            size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-         
-      end loop SchriftgrößeSchleife;
-      
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                          size => Sf.sfUint32 (0.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
 
@@ -211,14 +203,6 @@ package body AuswahlMenuesEinfachSFML is
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeÜberschrift);
-      
-      SchriftfarbeSchleife:
-      for SchriftfarbeSchleifenwert in Überschrift .. SystemKonstanten.EndeMenü (WelchesMenüExtern) - SchleifenAbzug loop
-         
-         Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift + SchriftfarbeSchleifenwert),
-                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
-         
-      end loop SchriftfarbeSchleife;
       
       Sf.Graphics.Text.setColor (text  => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
                                  color => GrafikEinstellungenSFML.Schriftfarben.FarbeSonstigerText);
