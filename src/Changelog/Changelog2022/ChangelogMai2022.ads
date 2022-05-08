@@ -166,6 +166,7 @@ package ChangelogMai2022 is
    -- Standardschriftgrößen angelegt.
    -- Unnötigen Code gelöscht.
    -- Mehr Textaccesse ausgelagert.
+   -- Textaccesse auf Standardwerte setzen eingebaut.
    -- Angefangen EinheitStadtDatentypen in EinheitenDatentypen, StadtDatentypen und ProduktionDatentypen aufzuteilen.
    -- Angefangen EinheitStadtRecords in EinheitenRecords und StadtRecords aufzuteilen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
