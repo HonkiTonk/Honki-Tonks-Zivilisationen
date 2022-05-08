@@ -13,7 +13,7 @@ with GebaeudeAllgemein;
 package body StadtGebaeudeBauen is
 
    procedure GebäudeFertiggestellt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       GebaeudeAllgemein.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,

@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
+with EinheitenRecords;
 
 with SchreibeEinheitenGebaut;
 with SchreibeWichtiges;
@@ -19,7 +20,7 @@ package body EinheitenErzeugenEntfernen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
@@ -30,7 +31,7 @@ package body EinheitenErzeugenEntfernen is
                                            KoordinatenExtern        => KoordinatenExtern);
       
       SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                           HeimatstadtExtern        => StadtRasseNummerExtern.Platznummer);
+                                           HeimatstadtExtern        => StadtRasseNummerExtern.Nummer);
       
       SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
                                             LebenspunkteExtern       =>
@@ -73,7 +74,7 @@ package body EinheitenErzeugenEntfernen is
 
 
    procedure EinheitEntfernen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       EinheitEntfernenLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -87,11 +88,11 @@ package body EinheitenErzeugenEntfernen is
    
    
    procedure EinheitEntfernenLadung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       TransporterSchleife:
-      for LadungSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
         
          EinheitNummer := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -113,7 +114,7 @@ package body EinheitenErzeugenEntfernen is
    
    
    procedure Entfernen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       EinheitenModifizieren.PermanenteKostenÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

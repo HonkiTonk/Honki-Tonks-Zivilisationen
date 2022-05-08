@@ -16,8 +16,8 @@ with EinheitenErzeugenEntfernen;
 package body KampfsystemEinheiten is
 
    function KampfsystemNahkampf
-     (AngreiferExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (AngreiferExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
 
@@ -39,8 +39,8 @@ package body KampfsystemEinheiten is
 
 
    function Kampf
-     (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      AngreiferExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      AngreiferExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
             
@@ -90,7 +90,7 @@ package body KampfsystemEinheiten is
 
 
    procedure KampfBerechnung
-     (VerteidigerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (VerteidigerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       -- Hier besser nicht den KampfwerteRecord verwenden, sonst komme ich noch durcheinander dass das ja zwei unterschiedliche Einheiten sind welche sich hier bekämpfen.
       AngriffExtern : in EinheitStadtDatentypen.Kampfwerte;
       VerteidigungExtern : in EinheitStadtDatentypen.Kampfwerte)

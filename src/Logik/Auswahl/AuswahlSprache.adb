@@ -18,7 +18,7 @@ package body AuswahlSprache is
    is begin
       
       ZehnerReihe := 0;
-      ZeilenAbstand := 0.15 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+      ZeilenAbstand := 0.15 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       MehrereSeiten := False;
       
       SprachenListeFestlegen;
@@ -30,7 +30,7 @@ package body AuswahlSprache is
             return AuswahlSpracheKonsole;
             
          when GrafikDatentypen.Grafik_SFML_Enum =>
-            return AuswahlMausTastatur;
+            return AuswahlSpracheSFML;
       end case;
       
    end AuswahlSprache;
@@ -176,7 +176,7 @@ package body AuswahlSprache is
    
    
    
-   function AuswahlMausTastatur
+   function AuswahlSpracheSFML
      return Unbounded_Wide_Wide_String
    is begin
       
@@ -197,7 +197,7 @@ package body AuswahlSprache is
       is
          when False =>
             Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+                                               size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
             SchriftgrößeFestgelegt := True;
             
          when True =>
@@ -253,7 +253,7 @@ package body AuswahlSprache is
       
       end loop AuswahlSchleife;
       
-   end AuswahlMausTastatur;
+   end AuswahlSpracheSFML;
    
    
    

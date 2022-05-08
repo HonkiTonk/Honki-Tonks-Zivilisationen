@@ -15,7 +15,7 @@ with Fehler;
 package body FestungErmitteln is
 
    function FestungErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -98,7 +98,7 @@ package body FestungErmitteln is
    
    function OberflächeLand
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum)
-      return EinheitStadtRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitRecord
    is begin
       
       case
@@ -123,7 +123,7 @@ package body FestungErmitteln is
    
    function UnterflächeLand
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Enum)
-      return EinheitStadtRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitRecord
    is begin
       
       case
@@ -147,7 +147,7 @@ package body FestungErmitteln is
      
    function UnterflächeWasser
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum)
-      return EinheitStadtRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitRecord
    is begin
       
       case

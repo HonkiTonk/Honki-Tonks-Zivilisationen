@@ -7,6 +7,7 @@ package body GrafikEinstellungenSFML is
    is begin
       
       FensterEinstellungen := FensterStandardEinstellungen;
+      Schriftgrößen := SchriftgrößenStandard;
       Schriftfarben := SchriftfarbenStandard;
       RassenFarben := RassenFarbenStandard;
       RassenFarbenRahmen := RassenFarbenRahmenStandard;

@@ -18,7 +18,7 @@ package body KIBewegungAllgemein is
 
    function FeldBetreten
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
    is begin
       
@@ -50,7 +50,7 @@ package body KIBewegungAllgemein is
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-         when EinheitStadtDatentypen.Leer_Enum | EinheitStadtDatentypen.Arbeiter_Enum =>
+         when EinheitStadtDatentypen.Leer_Einheitart_Enum | EinheitStadtDatentypen.Arbeiter_Enum =>
             return KIKonstanten.KeineBewegung;
             
          when others =>
@@ -62,7 +62,7 @@ package body KIBewegungAllgemein is
    
    
    function FeldAngreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
    is begin
       

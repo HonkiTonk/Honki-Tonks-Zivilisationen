@@ -2,8 +2,8 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen;
-with EinheitStadtRecords;
 with EinheitenKonstanten;
+with EinheitenRecords;
 
 with DatenbankRecords;
 
@@ -1118,7 +1118,7 @@ package EinheitenTesorahn is
                                                                                  Verteidigung            => 100,
                                                                                  KannTransportieren      => EinheitStadtDatentypen.Gigantisch_Transport_Enum,
                                                                                  KannTransportiertWerden => EinheitStadtDatentypen.Klein_Transport_Enum,
-                                                                                 Transportkapazität      => EinheitStadtRecords.TransporterArray'Last
+                                                                                 Transportkapazität      => EinheitenRecords.TransporterArray'Last
                                                                                 ),
                                                                
                                                                               others => EinheitenKonstanten.LeerEinheitListe

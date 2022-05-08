@@ -45,7 +45,7 @@ package body BauAuswahlAnzeigeSFML is
       
       AktuelleAuswahl := InDerStadtBauen.AktuelleAuswahl;
       
-      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       case
         InteraktionAuswahl.PositionenBauenFestgelegt
@@ -356,13 +356,13 @@ package body BauAuswahlAnzeigeSFML is
    is begin
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.BaumenüÜberschriftAccess,
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.GebäudetextAccess (0),
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.EinheitentextAccess (0),
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       return True;
 

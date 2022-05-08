@@ -7,81 +7,82 @@ with SonstigeVariablen;
 with EinheitStadtDatentypen;
 with SpielVariablen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
 
 package KIVorhandeneAufgaben is
 
    function SichHeilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function SichVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
    
    function Fliehen
-     return EinheitStadtDatentypen.ProduktionSonstiges;
+     return ProduktionDatentypen.ProduktionSonstiges;
 
    function NeueStadtBauenGehen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function StadtUmgebungVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function StadtBewachen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_KI_Enum);
 
    function StadtUmgebungZerstören
-     return EinheitStadtDatentypen.ProduktionSonstiges;
+     return ProduktionDatentypen.ProduktionSonstiges;
 
    function Angreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges;
 
    function Erkunden
-     return EinheitStadtDatentypen.ProduktionSonstiges;
+     return ProduktionDatentypen.ProduktionSonstiges;
    
    function SichBefestigen
-     return EinheitStadtDatentypen.ProduktionSonstiges;
+     return ProduktionDatentypen.ProduktionSonstiges;
    
    function NichtsTun
-     return EinheitStadtDatentypen.ProduktionSonstiges;
+     return ProduktionDatentypen.ProduktionSonstiges;
    
 private
    
@@ -93,6 +94,6 @@ private
    
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    
-   GewählteAufgabe : EinheitStadtDatentypen.ProduktionSonstiges;
+   GewählteAufgabe : ProduktionDatentypen.ProduktionSonstiges;
 
 end KIVorhandeneAufgaben;

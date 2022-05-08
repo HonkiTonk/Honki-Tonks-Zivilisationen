@@ -2,11 +2,15 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics;
+with Sf.Graphics.Text;
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with GlobaleTexte;
 with EinheitenKonstanten;
 with TextKonstanten;
+with TextaccessVariablen;
+with EinheitenRecords;
 
 with LeseEinheitenGebaut;
 with LeseEinheitenDatenbank;
@@ -21,43 +25,13 @@ package body InformationenEinheitenSFML is
 
    function Einheiten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       PositionTextExtern : in Sf.System.Vector2.sfVector2f)
       return Sf.System.Vector2.sfVector2f
    is begin
       
       PositionText := PositionTextExtern;
-      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
-      
-      case
-        SchriftartFestgelegt
-      is
-         when False =>
-            SchriftartFestgelegt := SchriftartFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftgrößeFestgelegt
-      is
-         when False =>
-            SchriftgrößeFestgelegt := SchriftgrößenFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftfarbeFestgelegt
-      is
-         when False =>
-            SchriftfarbeFestgelegt := SchriftfarbenFestlegen;
-            
-         when True =>
-            null;
-      end case;
+      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       -- Diese Zuweisung ist wichtig weil die gefundene Einheit eventuell auf einem Transporter ist.
       EinheitRasseNummer := Allgemeines (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -87,10 +61,10 @@ package body InformationenEinheitenSFML is
       DebugInformationen (EinheitRasseNummerExtern => EinheitRasseNummer);
       
       TextSchleife:
-      for TextSchleifenwert in TextAccessArray'Range loop
+      for TextSchleifenwert in TextaccessVariablen.EinheitenInformationenAccessArray'Range loop
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextAccess (TextSchleifenwert));
+                                            text         => TextaccessVariablen.EinheitenInformationenAccess (TextSchleifenwert));
          
       end loop TextSchleife;
       
@@ -101,26 +75,26 @@ package body InformationenEinheitenSFML is
    
    
    function Allgemeines
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtRecords.RassePlatznummerRecord
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return EinheitStadtRecords.RasseEinheitnummerRecord
    is begin
             
       case
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when EinheitenKonstanten.LeerWirdTransportiert =>
-            EinheitNummer := EinheitRasseNummerExtern.Platznummer;
+            EinheitNummer := EinheitRasseNummerExtern.Nummer;
                         
          when others =>
             EinheitNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
             
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (1),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (1),
                                          str  => EinheitenBeschreibungen.BeschreibungKurz (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (1),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (1),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (1)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (1)).height;
       
       return (EinheitRasseNummerExtern.Rasse, EinheitNummer);
       
@@ -129,7 +103,7 @@ package body InformationenEinheitenSFML is
    
    
    procedure Lebenspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertLinksVomTrennzeichen := ZahlAlsStringLebenspunkte (ZahlExtern => LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -137,20 +111,20 @@ package body InformationenEinheitenSFML is
         (ZahlExtern => LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (2),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (2),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugLebenspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen 
                                          & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (2),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (2),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (2)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (2)).height;
       
    end Lebenspunkte;
    
    
    
    procedure Bewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertLinksVomTrennzeichen := UmwandlungenAdaNachEigenes.BewegungspunkteDarstellungNormal (KommazahlExtern => LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -158,20 +132,20 @@ package body InformationenEinheitenSFML is
         (KommazahlExtern => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (3),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (3),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBewegungspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (3),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (3),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (3)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (3)).height;
       
    end Bewegungspunkte;
    
    
    
    procedure Erfahrungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertLinksVomTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -179,89 +153,89 @@ package body InformationenEinheitenSFML is
         (ZahlExtern => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                    IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (4),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (4),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugErfahrungspunkte)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (4),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (4),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (4)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (4)).height;
       
    end Erfahrungspunkte;
    
    
    
    procedure Beschäftigung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (5),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (5),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigung)) & " "
                                          & EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (5),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (5),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (5)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (5)).height;
       
    end Beschäftigung;
    
    
    
    procedure Beschäftigungszeit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringMaximaleEinheitenMitNullWert (ZahlExtern => LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (6),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (6),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugBeschäftigungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (6),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (6),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (6)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (6)).height;
       
    end Beschäftigungszeit;
    
    
    
    procedure Angriff
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (7),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (7),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAngriff)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (7),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (7),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (7)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (7)).height;
       
    end Angriff;
    
    
    
    procedure Verteidigung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (8),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (8),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugVerteidigung)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (8),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (8),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (8)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (8)).height;
       
    end Verteidigung;
    
    
    
    procedure Rang
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertLinksVomTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
@@ -269,84 +243,84 @@ package body InformationenEinheitenSFML is
         (ZahlExtern => LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (9),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (9),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugRang)) & " " & To_Wide_Wide_String (Source => WertLinksVomTrennzeichen) & Trennzeichen
                                          & To_Wide_Wide_String (Source => WertRechtsVomTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (9),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (9),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (9)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (9)).height;
       
    end Rang;
    
    
    
    procedure Heimatstadt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
          
       case
         LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when EinheitenKonstanten.LeerNummer =>
-            Sf.Graphics.Text.setUnicodeString (text => TextAccess (10),
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (10),
                                                str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugHeimatstadt)) & " "
                                                & To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugKeine)));
                
          when others =>
-            Sf.Graphics.Text.setUnicodeString (text => TextAccess (10),
+            Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (10),
                                                str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugHeimatstadt)) & " " 
                                                & StadtInformationenSFML.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
                                                                                                               LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern))));
       end case;
       
-      Sf.Graphics.Text.setPosition (text     => TextAccess (10),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (10),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (10)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (10)).height;
       
    end Heimatstadt;
    
    
    
    procedure AktuelleVerteidigung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                              AngreiferExtern          => False));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (11),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (11),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugGegenschlagskraftFeld)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (11),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (11),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (11)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (11)).height;
       
    end AktuelleVerteidigung;
    
    
    
    procedure AktuellerAngriff
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       WertOhneTrennzeichen := ZahlAlsStringKampfwerte (ZahlExtern => KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                          AngreiferExtern          => False));
       
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess (12),
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (12),
                                          str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugGegenschlagskraft)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-      Sf.Graphics.Text.setPosition (text     => TextAccess (12),
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (12),
                                     position => PositionText);
       
-      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (12)).height;
+      PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (12)).height;
       
    end AktuellerAngriff;
    
    
    
    procedure Ladung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -362,7 +336,7 @@ package body InformationenEinheitenSFML is
             ErsteAnzeige := True;
             
             LadungSchleife:
-            for LadungSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+            for LadungSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                                  IDExtern    => IDEinheit) loop
                   
                if
@@ -374,39 +348,39 @@ package body InformationenEinheitenSFML is
                then
                   ErsteAnzeige := False;
       
-                  Sf.Graphics.Text.setUnicodeString (text => TextAccess (13),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (13),
                                                      str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleLadung)));
-                  Sf.Graphics.Text.setPosition (text     => TextAccess (13),
+                  Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (13),
                                                 position => PositionText);
       
-                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (13)).height;
+                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (13)).height;
                   
                   
       
-                  Sf.Graphics.Text.setUnicodeString (text => TextAccess (14),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (14),
                                                      str  => EinheitenBeschreibungen.BeschreibungKurz
                                                        (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
                                                                                                                          LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                             PlatzExtern              => LadungSchleifenwert)))));
-                  Sf.Graphics.Text.setPosition (text     => TextAccess (14),
+                  Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (14),
                                                 position => PositionText);
       
-                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (14)).height;
+                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (14)).height;
                   
                elsif
                  LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PlatzExtern              => LadungSchleifenwert)
                  /= EinheitenKonstanten.LeerTransportiert
                then
-                  Sf.Graphics.Text.setUnicodeString (text => TextAccess (13),
+                  Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.EinheitenInformationenAccess (13),
                                                      str  => EinheitenBeschreibungen.BeschreibungKurz
                                                        (IDExtern => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
                                                                                                                          LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                                                             PlatzExtern              => LadungSchleifenwert)))));
-                  Sf.Graphics.Text.setPosition (text     => TextAccess (13),
+                  Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.EinheitenInformationenAccess (13),
                                                 position => PositionText);
       
-                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (13)).height;
+                  PositionText.y := PositionText.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.EinheitenInformationenAccess (13)).height;
                   
                else
                   null;
@@ -420,7 +394,7 @@ package body InformationenEinheitenSFML is
    
    
    procedure DebugInformationen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -434,60 +408,5 @@ package body InformationenEinheitenSFML is
       end case;
       
    end DebugInformationen;
-   
-   
-   
-   function SchriftartFestlegen
-     return Boolean
-   is begin
-      
-      TextSchleife:
-      for TextSchleifenwert in TextAccessArray'Range loop
-            
-         Sf.Graphics.Text.setFont (text => TextAccess (TextSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
-            
-      end loop TextSchleife;
-   
-      return True;
-      
-   end SchriftartFestlegen;
-
-
-
-   function SchriftgrößenFestlegen
-     return Boolean
-   is begin
-      
-      SchriftgrößeSchleife:
-      for SchriftgrößeSchleifenwert in TextAccessArray'Range loop
-         
-         
-         Sf.Graphics.Text.setCharacterSize (text => TextAccess (SchriftgrößeSchleifenwert),
-                                            size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-         
-      end loop SchriftgrößeSchleife;
-      
-      return True;
-
-   end SchriftgrößenFestlegen;
-
-
-
-   function SchriftfarbenFestlegen
-     return Boolean
-   is begin
-                  
-      SchriftfarbeSchleife:
-      for SchriftfarbeSchleifenwert in TextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setColor (text  => TextAccess (SchriftfarbeSchleifenwert),
-                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
-         
-      end loop SchriftfarbeSchleife;
-      
-      return True;
-
-   end SchriftfarbenFestlegen;
 
 end InformationenEinheitenSFML;

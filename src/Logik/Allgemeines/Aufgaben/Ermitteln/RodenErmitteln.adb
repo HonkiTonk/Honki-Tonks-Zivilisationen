@@ -11,7 +11,7 @@ with Fehler;
 package body RodenErmitteln is
 
    function RodenErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -65,7 +65,7 @@ package body RodenErmitteln is
    
    function OberflächeLand
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum)
-      return EinheitStadtRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitRecord
    is begin
       
       case
@@ -86,7 +86,7 @@ package body RodenErmitteln is
      
    function UnterflächeWasser
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum)
-      return EinheitStadtRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitRecord
    is begin
       
       case

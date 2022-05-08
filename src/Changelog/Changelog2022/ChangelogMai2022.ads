@@ -147,24 +147,28 @@ package ChangelogMai2022 is
    
    
 
-   -- Version 0.01.0 => 0.01.0 (10.05.2022):
+   -- Version 0.01.06 => 0.01.0 (10.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.06 => 0.01.0 (09.05.2022):
+   -- Version 0.01.0660 => 0.01.06 (09.05.2022):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
 
-   -- Version 0.01.0640 => 0.01.06 (08.05.2022):
+   -- Version 0.01.0640 => 0.01.0660 (08.05.2022):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Standardschriftgrößen angelegt.
+   -- Unnötigen Code gelöscht.
+   -- Mehr Textaccesse ausgelagert.
+   -- Angefangen EinheitStadtDatentypen in EinheitenDatentypen, StadtDatentypen und ProduktionDatentypen aufzuteilen.
+   -- Angefangen EinheitStadtRecords in EinheitenRecords und StadtRecords aufzuteilen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
 

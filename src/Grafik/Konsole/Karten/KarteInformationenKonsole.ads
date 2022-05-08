@@ -30,8 +30,8 @@ private
    
    Sichtbar : Boolean;
    
-   EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
-   StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
+   EinheitRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
+   StadtRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
 
    WertOhneTrennzeichen : Unbounded_Wide_Wide_String;
    YAchsenWert : Unbounded_Wide_Wide_String;
@@ -39,10 +39,10 @@ private
    
    procedure InformationenStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and

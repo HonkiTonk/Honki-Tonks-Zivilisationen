@@ -18,16 +18,6 @@ package body ForschungAnzeigeSFML is
 
    procedure ForschungAnzeige
    is begin
-            
-      case
-        SchriftgrößeFestgelegt
-      is
-         when False =>
-            SchriftgrößeFestgelegt := SchriftgrößenFestlegen;
-            
-         when True =>
-            null;
-      end case;
       
       ----------------------- Hier Aufruf für Hintergrundbild einbauen.
       ObjekteZeichnenSFML.RechteckZeichnen (AbmessungExtern      => (Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x), Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.y)),
@@ -37,7 +27,7 @@ package body ForschungAnzeigeSFML is
       
       AktuelleAuswahl := ForschungAllgemein.AktuelleAuswahl;
       
-      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       case
         InteraktionAuswahl.PositionenForschungFestgelegt
@@ -130,35 +120,5 @@ package body ForschungAnzeigeSFML is
       end case;
       
    end ForschungAnzeige;
-
-
-
-   function SchriftgrößenFestlegen
-     return Boolean
-   is begin
-      
-      Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (ForschungKonstanten.LeerForschung),
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
-      
-      SchriftgrößeSchleife:
-      for SchriftgrößeSchleifenwert in ForschungenDatentypen.ForschungID'Range loop
-         
-         
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüAccess (SchriftgrößeSchleifenwert),
-                                            size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-         
-      end loop SchriftgrößeSchleife;
-      
-      ZusatztextSchleife:
-      for ZusatztextSchleifenwert in TextaccessVariablen.ForschungsmenüZusatztextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.ForschungsmenüZusatztextAccess (ZusatztextSchleifenwert),
-                                            size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-         
-      end loop ZusatztextSchleife;
-      
-      return True;
-
-   end SchriftgrößenFestlegen;
 
 end ForschungAnzeigeSFML;

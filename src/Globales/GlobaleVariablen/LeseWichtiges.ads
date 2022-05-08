@@ -5,6 +5,7 @@ with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
 with EinheitStadtDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
 
 package LeseWichtiges is
 
@@ -17,28 +18,28 @@ package LeseWichtiges is
    
    function GeldZugewinnProRunde
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    function GesamteForschungsrate
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function Forschungsmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function VerbleibendeForschungszeit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

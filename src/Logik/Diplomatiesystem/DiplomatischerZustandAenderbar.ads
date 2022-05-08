@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with RassenDatentypen; use RassenDatentypen;
 with SystemDatentypen;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with ProduktionDatentypen;
 
 package DiplomatischerZustandAenderbar is
 
@@ -27,8 +27,8 @@ private
    
    AktuellerStatus : SystemDatentypen.Status_Untereinander_Bekannt_Enum;
    
-   SympathieZweiZuEins : EinheitStadtDatentypen.ProduktionFeld;
-   SympathieÄnderung : EinheitStadtDatentypen.ProduktionFeld;
+   SympathieZweiZuEins : ProduktionDatentypen.ProduktionFeld;
+   SympathieÄnderung : ProduktionDatentypen.ProduktionFeld;
    
    ZeitSeitÄnderung : Natural;
    

@@ -10,21 +10,21 @@ with SonstigeVariablen;
 package BewegungEinheiten is
    
    function BewegungPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       PositionÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
    function NochBewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
@@ -33,25 +33,25 @@ private
    FeldPassierbar : Boolean;
    BewegungDurchführen : Boolean;
       
-   EinheitAufFeld : EinheitStadtRecords.RassePlatznummerRecord;
-   StadtAufFeld : EinheitStadtRecords.RassePlatznummerRecord;
+   EinheitAufFeld : EinheitStadtRecords.RasseEinheitnummerRecord;
+   StadtAufFeld : EinheitStadtRecords.RasseEinheitnummerRecord;
 
    NeuePosition : KartenRecords.AchsenKartenfeldPositivRecord;
      
    procedure EigeneEinheitAufFeld
-     (BewegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FeldBelegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (BewegendeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      FeldBelegendeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    
    
    function FremderAufFeld
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FremdeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      FremdeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean;
    
    function FremdeStadtAufFeld
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FremdeStadtExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      FremdeStadtExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean;
 
 end BewegungEinheiten;

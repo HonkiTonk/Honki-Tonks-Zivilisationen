@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with KartenKonstanten;
 
 with LeseKarten;
@@ -15,7 +15,7 @@ with Kartenkoordinatenberechnungssystem;
 package body EinwohnerZuweisenEntfernen is
 
    procedure EinwohnerZuweisenEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -54,7 +54,7 @@ package body EinwohnerZuweisenEntfernen is
 
 
    procedure EinwohnerBelegungÄndern
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -74,7 +74,7 @@ package body EinwohnerZuweisenEntfernen is
    
    
    procedure EinwohnerEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -90,7 +90,7 @@ package body EinwohnerZuweisenEntfernen is
    
    
    procedure EinwohnerZuweisen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       KartenWert := Kartenkoordinatenberechnungssystem.Kartenkoordinatenberechnungssystem (KoordinatenExtern => LeseStadtGebaut.Koordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern),

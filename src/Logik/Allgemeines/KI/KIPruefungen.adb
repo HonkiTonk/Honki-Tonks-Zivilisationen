@@ -25,7 +25,7 @@ with KIAufgabenVerteilt;
 package body KIPruefungen is
    
    function StadtUmgebungPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
       
@@ -42,7 +42,7 @@ package body KIPruefungen is
                
             when others =>
                VerbesserungAnlegen := StadtUmgebungUnverbessert (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert),
-                                                                 EinheitNummerExtern    => EinheitRasseNummerExtern.Platznummer);
+                                                                 EinheitNummerExtern    => EinheitRasseNummerExtern.Nummer);
          end case;
          
          case
@@ -64,7 +64,7 @@ package body KIPruefungen is
    
    
    function StadtUmgebungUnverbessert
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -114,7 +114,7 @@ package body KIPruefungen is
 
    function VerbesserungDortAnlegen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -135,9 +135,9 @@ package body KIPruefungen is
          return False;
          
       elsif
-        EinheitAufFeld.Platznummer /= EinheitenKonstanten.LeerNummer
+        EinheitAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
         and
-          EinheitAufFeld.Platznummer /= EinheitRasseNummerExtern.Platznummer
+          EinheitAufFeld.Nummer /= EinheitRasseNummerExtern.Nummer
       then
          return False;
          
@@ -159,7 +159,7 @@ package body KIPruefungen is
    
    
    function VerbesserungAnlegbar
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -188,7 +188,7 @@ package body KIPruefungen is
    
    
    function UmgebungStadtBauenPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -216,7 +216,7 @@ package body KIPruefungen is
    
    
    function FelderDurchgehen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return KartenRecords.AchsenKartenfeldPositivRecord
    is begin
@@ -280,7 +280,7 @@ package body KIPruefungen is
    
    
    function NeuesStadtFeldSuchen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld;
       YUmgebungExtern : in KartenDatentypen.KartenfeldPositiv;
       XUmgebungExtern : in KartenDatentypen.KartenfeldPositiv)
@@ -336,7 +336,7 @@ package body KIPruefungen is
    
    
    function KartenfeldUmgebungPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       MindestBewertungFeldExtern : in KartenDatentypen.GesamtbewertungFeld)
       return Boolean
@@ -345,7 +345,7 @@ package body KIPruefungen is
       EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
       
       if
-        EinheitAufFeld.Platznummer /= EinheitenKonstanten.LeerNummer
+        EinheitAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
         and
           EinheitAufFeld /= EinheitRasseNummerExtern
       then

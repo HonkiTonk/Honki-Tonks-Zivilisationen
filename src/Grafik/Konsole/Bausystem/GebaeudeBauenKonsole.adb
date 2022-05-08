@@ -18,7 +18,7 @@ with GebaeudeAllgemein;
 package body GebaeudeBauenKonsole is
 
    procedure AnzeigeGebäude
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Put_Line (Item => GebaeudeAllgemein.BeschreibungLang (IDExtern => EinheitStadtDatentypen.GebäudeIDMitNullwert (Anzeige.AllgemeineAnzeigeText (Anzeige.AktuelleAuswahl).Nummer - StadtKonstanten.GebäudeAufschlag)));
@@ -95,7 +95,7 @@ package body GebaeudeBauenKonsole is
    
    
    procedure BauzeitGebäude
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -108,7 +108,7 @@ package body GebaeudeBauenKonsole is
       if
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
       then
-         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Positive (EinheitStadtDatentypen.KostenLager'Last),
+         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Positive (ProduktionDatentypen.KostenLager'Last),
                                   Width => 1);
          
       else
@@ -130,7 +130,7 @@ package body GebaeudeBauenKonsole is
       PermanenteGebäudeWerte := False;
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in EinheitStadtRecords.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
          
          if
            LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,
@@ -143,7 +143,7 @@ package body GebaeudeBauenKonsole is
                                           TextDateiExtern        => GlobaleTexte.Zeug,
                                           ÜberschriftZeileExtern => 0,
                                           -- Muss eins kleiner sein als der echte Startwert, da der kleinste Pluswert Eins ist.
-                                          ErsteZeileExtern       => 53 + EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
+                                          ErsteZeileExtern       => 53 + ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
             Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => RasseExtern,

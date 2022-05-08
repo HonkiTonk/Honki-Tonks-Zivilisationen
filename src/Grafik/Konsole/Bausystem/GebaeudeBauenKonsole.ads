@@ -8,7 +8,7 @@ with GlobaleVariablen;
 package GebaeudeBauenKonsole is
 
    procedure AnzeigeGebäude
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -26,6 +26,6 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure BauzeitGebäude
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
 
 end GebaeudeBauenKonsole;

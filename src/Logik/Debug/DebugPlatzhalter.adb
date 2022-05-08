@@ -7,6 +7,7 @@ with Sf.Window.Keyboard;
 
 with KartenDatentypen; use KartenDatentypen;
 with SystemDatentypen;
+with EinheitenRecords;
 
 with SchreibeWichtiges;
 with SchreibeKarten;
@@ -119,7 +120,7 @@ package body DebugPlatzhalter is
    
    
    procedure KarteInfosEinheiten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Put_Line (Item => "Aktuelle Rasse: " & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image);
@@ -130,7 +131,7 @@ package body DebugPlatzhalter is
       is
          when RassenDatentypen.Spieler_KI_Enum =>
             BewegungPlanSchleife:
-            for BewegungGeplantSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
+            for BewegungGeplantSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
                       
                case
                  ErsteAnzeige
@@ -232,7 +233,7 @@ package body DebugPlatzhalter is
    
    
    procedure KarteStadtInfos
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);

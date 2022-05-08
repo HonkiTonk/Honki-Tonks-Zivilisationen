@@ -22,7 +22,7 @@ with Wachstum;
 package body StadtEntfernen is
 
    procedure StadtEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       BelegteStadtfelderFreigeben (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -39,7 +39,7 @@ package body StadtEntfernen is
    
    
    procedure BelegteStadtfelderFreigeben
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       YUmgebungFreigebenSchleife:
@@ -76,14 +76,14 @@ package body StadtEntfernen is
    
    
    procedure HeimatstädteEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       EinheitenSchleife:
       for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze loop
          
          if
-           LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert)) = StadtRasseNummerExtern.Platznummer
+           LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert)) = StadtRasseNummerExtern.Nummer
          then
             SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert),
                                                  HeimatstadtExtern        => EinheitenKonstanten.LeerEinheit.Heimatstadt);
@@ -99,7 +99,7 @@ package body StadtEntfernen is
    
    
    procedure NeueHauptstadtSetzen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -118,7 +118,7 @@ package body StadtEntfernen is
          if
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
            or
-             StadtSchleifenwert = StadtRasseNummerExtern.Platznummer
+             StadtSchleifenwert = StadtRasseNummerExtern.Nummer
          then
             null;
             

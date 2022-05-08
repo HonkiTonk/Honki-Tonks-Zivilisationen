@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with RassenDatentypen; use RassenDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitStadtRecords;
 with SpielVariablen;
 with KartenRecords;
@@ -15,10 +15,10 @@ package StadtWerteFestlegen is
 
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsOderSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
@@ -29,10 +29,10 @@ package StadtWerteFestlegen is
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
 
    procedure StadtUmgebungGrößeFestlegen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
@@ -44,10 +44,10 @@ private
    GrößeAlt : KartenDatentypen.UmgebungsbereichDrei;
    GrößeNeu : KartenDatentypen.UmgebungsbereichDrei;
    
-   NahrungGesamt : EinheitStadtDatentypen.ProduktionFeld;
-   RessourcenGesamt : EinheitStadtDatentypen.ProduktionFeld;
-   GeldGesamt : EinheitStadtDatentypen.ProduktionFeld;
-   WissenGesamt : EinheitStadtDatentypen.ProduktionFeld;
+   NahrungGesamt : ProduktionDatentypen.ProduktionFeld;
+   RessourcenGesamt : ProduktionDatentypen.ProduktionFeld;
+   GeldGesamt : ProduktionDatentypen.ProduktionFeld;
+   WissenGesamt : ProduktionDatentypen.ProduktionFeld;
    
    NutzbarerBereich : KartenDatentypen.Kartenfeld;
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
@@ -56,7 +56,7 @@ private
       
       Belegt : Boolean;
       
-      Gesamtbewertung : EinheitStadtDatentypen.GesamtproduktionStadt;
+      Gesamtbewertung : ProduktionDatentypen.GesamtproduktionStadt;
       
    end record;
    
@@ -65,7 +65,7 @@ private
    
    type WelchesFeldRecord is record
       
-      HöchsterWert : EinheitStadtDatentypen.GesamtproduktionStadt;
+      HöchsterWert : ProduktionDatentypen.GesamtproduktionStadt;
       YKoordinate : KartenDatentypen.UmgebungsbereichDrei;
       XKoordinate : KartenDatentypen.UmgebungsbereichDrei;
       
@@ -74,56 +74,56 @@ private
    WelchesFeld : WelchesFeldRecord;
    
    procedure ArbeiterBelegen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure ArbeiterEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure ArbeiterBelegenEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       BelegenEntfernenExtern : in Boolean;
-      ÄnderungExtern : in EinheitStadtDatentypen.ProduktionFeld);
+      ÄnderungExtern : in ProduktionDatentypen.ProduktionFeld);
    
    procedure UmgebungFestlegen
      (ZuwachsOderSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure NeueUmgebungsgrößePrüfen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    
    
    function FeldBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt;
+      return ProduktionDatentypen.GesamtproduktionStadt;
    
    function WissenBewertung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt;
+      return ProduktionDatentypen.GesamtproduktionStadt;
    
    function GeldBewertung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt;
+      return ProduktionDatentypen.GesamtproduktionStadt;
    
    function ProduktionBewertung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt;
+      return ProduktionDatentypen.GesamtproduktionStadt;
    
    function NahrungBewertung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt;
+      return ProduktionDatentypen.GesamtproduktionStadt;
 
 end StadtWerteFestlegen;

@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SystemDatentypen; use SystemDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with KartenKonstanten;
 with EinheitenKonstanten;
 with StadtKonstanten;
@@ -26,8 +27,8 @@ with KIPruefungen;
 package body KIVorhandeneAufgaben is
 
    function SichHeilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -69,8 +70,8 @@ package body KIVorhandeneAufgaben is
    
    
    function SichVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       ----------------------- Das hier ging möglicherweise beim auseinander Bauen von den ganzen IDs kaputt.
@@ -103,8 +104,8 @@ package body KIVorhandeneAufgaben is
 
 
    function NeueStadtBauenGehen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       VorhandeneStädte := LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -145,8 +146,8 @@ package body KIVorhandeneAufgaben is
 
 
    function StadtUmgebungVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       case
@@ -164,8 +165,8 @@ package body KIVorhandeneAufgaben is
    
    
    function StadtBewachen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       EinheitNummer := 1;
@@ -207,7 +208,7 @@ package body KIVorhandeneAufgaben is
    
    
    function StadtUmgebungZerstören
-     return EinheitStadtDatentypen.ProduktionSonstiges
+     return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       return 0;
@@ -217,8 +218,8 @@ package body KIVorhandeneAufgaben is
    
    
    function Angreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       RassenSchleife:
@@ -251,7 +252,7 @@ package body KIVorhandeneAufgaben is
    
    
    function Erkunden
-     return EinheitStadtDatentypen.ProduktionSonstiges
+     return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       return 2;
@@ -261,8 +262,8 @@ package body KIVorhandeneAufgaben is
    
    
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtDatentypen.ProduktionSonstiges
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       if
@@ -286,7 +287,7 @@ package body KIVorhandeneAufgaben is
       end case;
 
       KostenSchleife:
-      for KostenSchleifenwert in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum'Range loop
+      for KostenSchleifenwert in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum'Range loop
          
          if
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
@@ -309,7 +310,7 @@ package body KIVorhandeneAufgaben is
                                     
    
    function Fliehen
-     return EinheitStadtDatentypen.ProduktionSonstiges
+     return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       return 0;
@@ -319,7 +320,7 @@ package body KIVorhandeneAufgaben is
    
    
    function SichBefestigen
-     return EinheitStadtDatentypen.ProduktionSonstiges
+     return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       return 0;
@@ -329,7 +330,7 @@ package body KIVorhandeneAufgaben is
    
 
    function NichtsTun
-     return EinheitStadtDatentypen.ProduktionSonstiges
+     return ProduktionDatentypen.ProduktionSonstiges
    is begin
       
       return 1;

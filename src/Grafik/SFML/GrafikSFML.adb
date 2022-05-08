@@ -25,7 +25,7 @@ with AnzeigeEingabeSFML;
 with BauAuswahlAnzeigeSFML;
 with InteraktionLogiktask;
 with EingabeSystemeSFML;
-with TextaccesseStandardSetzenSFML;
+with TextaccesseAllesSetzenSFML;
 
 package body GrafikSFML is
    
@@ -42,7 +42,7 @@ package body GrafikSFML is
            InteraktionGrafiktask.AccesseSetzen
          is
             when True =>
-               TextaccesseStandardSetzenSFML.AllesAufStandard;
+               TextaccesseAllesSetzenSFML.AllesAufStandard;
                InteraktionGrafiktask.AccesseSetzen := False;
                
             when False =>

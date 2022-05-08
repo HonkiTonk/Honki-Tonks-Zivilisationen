@@ -12,13 +12,13 @@ package StadtMeldungenSetzen is
    procedure StadtMeldungenSetzenRundenEnde;
    
    procedure StadtMeldungSetzenEreignis
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EreignisExtern : in EinheitStadtDatentypen.Stadt_Meldungen_Verwendet_Enum)
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
+            StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
    
 private
    

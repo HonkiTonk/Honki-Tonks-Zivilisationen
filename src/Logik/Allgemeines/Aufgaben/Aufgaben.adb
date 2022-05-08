@@ -33,7 +33,7 @@ with AufgabenAllgemein;
 package body Aufgaben is
    
    function VerbesserungTesten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -56,7 +56,7 @@ package body Aufgaben is
    
    
    function VerbesserungAnlegen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -100,7 +100,7 @@ package body Aufgaben is
    
    
    function AllgemeinerAnfangstest
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum)
       return Boolean
    is begin
@@ -155,7 +155,7 @@ package body Aufgaben is
 
 
    function VerbesserungFestgelegt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       BefehlExtern : in TastenbelegungDatentypen.Tastenbelegung_Befehle_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -235,7 +235,7 @@ package body Aufgaben is
    
    
    function EinheitHeilen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -273,7 +273,7 @@ package body Aufgaben is
    
    
    procedure EinheitVerschanzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -284,7 +284,7 @@ package body Aufgaben is
    
    
    procedure RundeAussetzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -296,7 +296,7 @@ package body Aufgaben is
    
    
    procedure EinheitAuflösen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -318,7 +318,7 @@ package body Aufgaben is
    
    
    function VerbesserungPlündern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -362,7 +362,7 @@ package body Aufgaben is
    
    
    procedure Plünderung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -398,7 +398,7 @@ package body Aufgaben is
    
    
    function VerbesserungEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       AnlegenTestenExtern : in Boolean)
       return Boolean
    is begin
@@ -446,7 +446,7 @@ package body Aufgaben is
    
    
    procedure EinheitVerbessern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

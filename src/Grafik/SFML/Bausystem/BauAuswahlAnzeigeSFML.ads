@@ -9,7 +9,7 @@ with Sf.System.Vector2;
 with Sf.Graphics.Sprite;
 
 with EinheitStadtDatentypen;
-with EinheitStadtRecords;
+with StadtRecords;
 
 package BauAuswahlAnzeigeSFML is
 
@@ -30,7 +30,7 @@ private
    AktuellerTextbereichEins : Unbounded_Wide_Wide_String;
    AktuellerTextbereichZwei : Unbounded_Wide_Wide_String;
 
-   AktuelleAuswahl : EinheitStadtRecords.BauprojektRecord;
+   AktuelleAuswahl : StadtRecords.BauprojektRecord;
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
 

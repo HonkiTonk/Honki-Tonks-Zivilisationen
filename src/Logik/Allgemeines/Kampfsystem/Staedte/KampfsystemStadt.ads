@@ -6,12 +6,13 @@ with EinheitStadtRecords;
 with SonstigeVariablen;
 with EinheitStadtDatentypen;
 with SpielVariablen;
+with ProduktionDatentypen;
 
 package KampfsystemStadt is
 
    function KampfsystemStadt
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
@@ -21,14 +22,14 @@ package KampfsystemStadt is
           and
             AngreifendeEinheitRasseNummerExtern.Rasse /= VerteidigendeStadtRasseNummerExtern.Rasse
           and
-            AngreifendeEinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
+            AngreifendeEinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (AngreifendeEinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            VerteidigendeStadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigendeStadtRasseNummerExtern.Rasse).Städtegrenze);
+            VerteidigendeStadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (VerteidigendeStadtRasseNummerExtern.Rasse).Städtegrenze);
    
 private
    
-   GesundheitStadt : EinheitStadtDatentypen.ProduktionFeld;
-   AngerichteterSchaden : EinheitStadtDatentypen.ProduktionFeld;
+   GesundheitStadt : ProduktionDatentypen.ProduktionFeld;
+   AngerichteterSchaden : ProduktionDatentypen.ProduktionFeld;
    
    Kampfglück : Float;
    
@@ -43,7 +44,7 @@ private
 
    WelcherFall : Kampf_Unterschiede_Enum;
 
-   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, EinheitStadtDatentypen.ProduktionFeld (1) .. 3) of Float;
+   type SchadenAngerichtetArray is array (Kampf_Unterschiede_Enum'Range, ProduktionDatentypen.ProduktionFeld (1) .. 3) of Float;
    SchadenAngerichtet : constant SchadenAngerichtetArray := (
                                                              Gleich_Enum =>
                                                                (
@@ -88,12 +89,12 @@ private
    
    
    function Kampfverlauf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean;
    
    function Kampf
-     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean;
 
 end KampfsystemStadt;

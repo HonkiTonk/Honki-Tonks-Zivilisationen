@@ -4,7 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 package body InDerStadtBauenKonsole is
 
    function AuswahlBauprojektKonsole
-     return EinheitStadtRecords.BauprojektRecord
+     return StadtRecords.BauprojektRecord
    is begin
       
       AktuelleAuswahl := 1;

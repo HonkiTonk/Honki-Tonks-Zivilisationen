@@ -14,7 +14,7 @@ with BewegungEinheiten;
 package body BewegungEinheitenKonsole is
 
    procedure BewegungEinheitenRichtung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);

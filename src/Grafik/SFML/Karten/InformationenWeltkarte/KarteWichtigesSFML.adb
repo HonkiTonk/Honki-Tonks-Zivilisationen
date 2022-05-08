@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics;
+with Sf.Graphics.Text;
 
 with KartenRecords; use KartenRecords;
 with SpielVariablen;
@@ -12,6 +14,7 @@ with LeseWichtiges;
 
 with ForschungAllgemein;
 with GrafikEinstellungenSFML;
+with TextaccessVariablen;
 
 package body KarteWichtigesSFML is
 
@@ -21,38 +24,8 @@ package body KarteWichtigesSFML is
       return Sf.System.Vector2.sfVector2f
    is begin
       
-      case
-        SchriftartFestgelegt
-      is
-         when False =>
-            SchriftartFestgelegt := SchriftartFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftgrößeFestgelegt
-      is
-         when False =>
-            SchriftgrößeFestgelegt := SchriftgrößenFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftfarbeFestgelegt
-      is
-         when False =>
-            SchriftfarbeFestgelegt := SchriftfarbenFestlegen;
-            
-         when True =>
-            null;
-      end case;
-      
       Textposition := TextpositionExtern;
-      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       AktuelleKoordinaten := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell;
       
@@ -63,10 +36,10 @@ package body KarteWichtigesSFML is
          YAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => AktuelleKoordinaten.YAchse);
          XAchsenWert := ZahlAlsStringKartenfeldPositivMitNullwert (ZahlExtern => AktuelleKoordinaten.XAchse);
       
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (1),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (1),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellePosition)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen) & ","
                                             & To_Wide_Wide_String (Source => YAchsenWert) & "," & To_Wide_Wide_String (Source => XAchsenWert));
-         Sf.Graphics.Text.setPosition (text     => TextAccess (1),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (1),
                                        position => Textposition);
          
          LetzteKoordinaten := AktuelleKoordinaten;
@@ -75,7 +48,7 @@ package body KarteWichtigesSFML is
          null;
       end if;
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (1)).height;
+      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (1)).height;
       
       
             
@@ -87,9 +60,9 @@ package body KarteWichtigesSFML is
       then
          WertOhneTrennzeichen := ZahlAlsStringInteger (ZahlExtern => AktuelleRunde);
       
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (2),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (2),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleRunde)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-         Sf.Graphics.Text.setPosition (text     => TextAccess (2),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (2),
                                        position => Textposition);
          
          LetzteRunde := AktuelleRunde;
@@ -98,7 +71,7 @@ package body KarteWichtigesSFML is
          null;
       end if;
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (2)).height;
+      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (2)).height;
       
       
             
@@ -109,9 +82,9 @@ package body KarteWichtigesSFML is
       then
          WertOhneTrennzeichen := ZahlAlsStringInteger (ZahlExtern => AktuelleGeldmenge);
       
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (3),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (3),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleGeldmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-         Sf.Graphics.Text.setPosition (text     => TextAccess (3),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (3),
                                        position => Textposition);
          
          LetzteGeldmenge := AktuelleGeldmenge;
@@ -120,7 +93,7 @@ package body KarteWichtigesSFML is
          null;
       end if;
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (3)).height;
+      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (3)).height;
       
       
             
@@ -131,9 +104,9 @@ package body KarteWichtigesSFML is
       then
          WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => AktuellerGeldgewinn);
       
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (4),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (4),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerGeldzuwachs)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-         Sf.Graphics.Text.setPosition (text     => TextAccess (4),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (4),
                                        position => Textposition);
          
          LetzterGeldgewinn := AktuellerGeldgewinn;
@@ -142,7 +115,7 @@ package body KarteWichtigesSFML is
          null;
       end if;
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (4)).height;
+      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (4)).height;
       
       
       
@@ -151,12 +124,12 @@ package body KarteWichtigesSFML is
       if
         AktuellesForschungsprojekt /= LetztesForschungsprojekt
       then
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (5),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (5),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellesForschungsprojekt) & " "
                                                                          & ForschungAllgemein.Beschreibung (IDExtern    => AktuellesForschungsprojekt,
                                                                                                             RasseExtern => RasseExtern)));
 
-         Sf.Graphics.Text.setPosition (text     => TextAccess (5),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (5),
                                        position => Textposition);
          
          LetztesForschungsprojekt := AktuellesForschungsprojekt;
@@ -165,7 +138,7 @@ package body KarteWichtigesSFML is
          null;
       end if;
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (5)).height;
+      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (5)).height;
       
       
       
@@ -176,9 +149,9 @@ package body KarteWichtigesSFML is
       then
          WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => AktuelleForschungszeit);
       
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (6),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (6),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugVerbleibendeForschungszeit)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-         Sf.Graphics.Text.setPosition (text     => TextAccess (6),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (6),
                                        position => Textposition);
          
          LetzteForschungszeit := AktuelleForschungszeit;
@@ -187,7 +160,7 @@ package body KarteWichtigesSFML is
          null;
       end if;
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (6)).height;
+      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (6)).height;
       
       
       
@@ -198,9 +171,9 @@ package body KarteWichtigesSFML is
       then
          WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => AktuelleForschungsmenge);
       
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (7),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (7),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuelleForschungsmenge)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-         Sf.Graphics.Text.setPosition (text     => TextAccess (7),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (7),
                                        position => Textposition);
       
          LetzteForschungsmenge := AktuelleForschungsmenge;
@@ -209,7 +182,7 @@ package body KarteWichtigesSFML is
          null;
       end if;
       
-      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextAccess (7)).height;
+      Textposition.y := Textposition.y + Zeilenabstand + Sf.Graphics.Text.getLocalBounds (text => TextaccessVariablen.KarteWichtigesAccess (7)).height;
       
       
       
@@ -220,9 +193,9 @@ package body KarteWichtigesSFML is
       then
          WertOhneTrennzeichen := ZahlAlsStringKostenLager (ZahlExtern => AktuelleForschungsrate);
       
-         Sf.Graphics.Text.setUnicodeString (text => TextAccess (8),
+         Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteWichtigesAccess (8),
                                             str  => To_Wide_Wide_String (Source => GlobaleTexte.Zeug (TextKonstanten.ZeugAktuellerForschungsgewinn)) & " " & To_Wide_Wide_String (Source => WertOhneTrennzeichen));
-         Sf.Graphics.Text.setPosition (text     => TextAccess (8),
+         Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteWichtigesAccess (8),
                                        position => Textposition);
          
          LetzteForschungsrate := AktuelleForschungsrate;
@@ -232,70 +205,15 @@ package body KarteWichtigesSFML is
       end if;
       
       TextSchleife:
-      for TextSchleifenwert in TextAccessArray'Range loop
+      for TextSchleifenwert in TextaccessVariablen.KarteWichtigesAccessArray'Range loop
          
          Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                            text         => TextAccess (TextSchleifenwert));
+                                            text         => TextaccessVariablen.KarteWichtigesAccess (TextSchleifenwert));
          
       end loop TextSchleife;
       
       return Textposition;
       
    end WichtigesInformationen;
-   
-   
-   
-   function SchriftartFestlegen
-     return Boolean
-   is begin
-      
-      TextSchleife:
-      for TextSchleifenwert in TextAccessArray'Range loop
-            
-         Sf.Graphics.Text.setFont (text => TextAccess (TextSchleifenwert),
-                                   font => GrafikEinstellungenSFML.SchriftartAccess);
-            
-      end loop TextSchleife;
-   
-      return True;
-      
-   end SchriftartFestlegen;
-
-
-
-   function SchriftgrößenFestlegen
-     return Boolean
-   is begin
-      
-      SchriftgrößeSchleife:
-      for SchriftgrößeSchleifenwert in TextAccessArray'Range loop
-         
-         
-         Sf.Graphics.Text.setCharacterSize (text => TextAccess (SchriftgrößeSchleifenwert),
-                                            size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-         
-      end loop SchriftgrößeSchleife;
-      
-      return True;
-
-   end SchriftgrößenFestlegen;
-
-
-
-   function SchriftfarbenFestlegen
-     return Boolean
-   is begin
-                  
-      SchriftfarbeSchleife:
-      for SchriftfarbeSchleifenwert in TextAccessArray'Range loop
-         
-         Sf.Graphics.Text.setColor (text  => TextAccess (SchriftfarbeSchleifenwert),
-                                    color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
-         
-      end loop SchriftfarbeSchleife;
-      
-      return True;
-
-   end SchriftfarbenFestlegen;
 
 end KarteWichtigesSFML;

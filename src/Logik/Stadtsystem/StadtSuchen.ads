@@ -27,7 +27,7 @@ package StadtSuchen is
    
    function KoordinatenStadtOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RassePlatznummerRecord
+      return EinheitStadtRecords.RasseEinheitnummerRecord
      with
        Pre  =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -37,7 +37,7 @@ package StadtSuchen is
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RassePlatznummerRecord
+      return EinheitStadtRecords.RasseEinheitnummerRecord
      with
        Pre  =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).YAchse
@@ -47,7 +47,7 @@ package StadtSuchen is
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function StadtNachNamenSuchen
-     return EinheitStadtRecords.RassePlatznummerRecord;
+     return EinheitStadtRecords.RasseEinheitnummerRecord;
 
 private
    

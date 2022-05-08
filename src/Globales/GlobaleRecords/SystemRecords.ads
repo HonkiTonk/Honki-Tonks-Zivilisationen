@@ -36,9 +36,15 @@ package SystemRecords is
       Bildrate : Sf.sfUint32;
       MausZeiger : Sf.Window.Cursor.sfCursorType;
       
-      Schriftgröße : Sf.sfUint32;
-      Textfarbe : Sf.Graphics.Color.sfColor;
-      Textstyle : Sf.sfUint32;
+   end record;
+   
+   
+   
+   type SchriftgrößenRecord is record
+      
+      SchriftgrößeÜberschrift : Sf.sfUint32;
+      SchriftgrößeStandard : Sf.sfUint32;
+      SchriftgrößeKlein : Sf.sfUint32;
       
    end record;
    

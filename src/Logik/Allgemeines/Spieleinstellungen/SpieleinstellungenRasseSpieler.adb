@@ -172,7 +172,7 @@ package body SpieleinstellungenRasseSpieler is
       FreieFelder := 0;
       
       case
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern).Platznummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern).Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             StartKoordinaten (1) := KoordinatenExtern;
@@ -245,7 +245,7 @@ package body SpieleinstellungenRasseSpieler is
               StartpositionGefunden = False
             then
                case
-                 EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
+                 EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer
                is
                   when EinheitenKonstanten.LeerNummer =>
                      StartKoordinaten (2) := KartenWert;

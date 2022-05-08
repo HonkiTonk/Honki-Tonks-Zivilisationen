@@ -14,6 +14,8 @@ with KartenVerbesserungDatentypen;
 with TextKonstanten;
 with RassenDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
+with StadtRecords;
 
 with DatenbankRecords;
 
@@ -23,32 +25,32 @@ package StadtKonstanten is
    
    LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
-   LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
+   LeerRasseNummer : constant EinheitStadtRecords.RasseEinheitnummerRecord := (LeerRasse, LeerNummer);
    
    LeerID : constant KartenVerbesserungDatentypen.Karten_Verbesserung_Stadt_ID_Enum := KartenVerbesserungDatentypen.Leer_Verbesserung_Enum;
    LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
-   LeerEinwohner : constant EinheitStadtDatentypen.ProduktionFeld := 0;
-   LeerArbeiter : constant EinheitStadtDatentypen.ProduktionFeld := 0;
-   LeerEinwohnerArbeiter : constant EinheitStadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
-   LeerNahrungsmittel : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
-   LeerNahrungsproduktion : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
-   LeerRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerProduktionrate : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
-   LeerGeldgewinnung : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
-   LeerPermanenteKosten : constant EinheitStadtDatentypen.GesamtePermanenteKosten := 0;
-   LeerForschungsrate : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
-   LeerBauprojekt : constant EinheitStadtRecords.BauprojektRecord := (True, 0);
-   LeerBauzeit : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerKorruption : constant EinheitStadtDatentypen.GesamtproduktionStadt := 0;
-   LeerZufriedenheit : constant EinheitStadtDatentypen.ProduktionFeld := 0;
+   LeerEinwohner : constant ProduktionDatentypen.ProduktionFeld := 0;
+   LeerArbeiter : constant ProduktionDatentypen.ProduktionFeld := 0;
+   LeerEinwohnerArbeiter : constant StadtRecords.EinwohnerArbeiterArray := (LeerEinwohner, LeerArbeiter);
+   LeerNahrungsmittel : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
+   LeerNahrungsproduktion : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
+   LeerRessourcen : constant ProduktionDatentypen.KostenLager := 0;
+   LeerProduktionrate : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
+   LeerGeldgewinnung : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
+   LeerPermanenteKosten : constant ProduktionDatentypen.GesamtePermanenteKosten := 0;
+   LeerForschungsrate : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
+   LeerBauprojekt : constant StadtRecords.BauprojektRecord := (True, 0);
+   LeerBauzeit : constant ProduktionDatentypen.KostenLager := 0;
+   LeerKorruption : constant ProduktionDatentypen.GesamtproduktionStadt := 0;
+   LeerZufriedenheit : constant ProduktionDatentypen.ProduktionFeld := 0;
    LeerGebäude : constant Boolean := False;
    LeerName : constant Unbounded_Wide_Wide_String := TextKonstanten.LeerUnboundedString;
    LeerUmgebungBewitschaftet : constant Boolean := False;
    LeerUmgebungGröße : constant KartenDatentypen.UmgebungsbereichDrei := 0;
-   LeerMeldung : constant EinheitStadtDatentypen.Stadt_Meldung_Enum := EinheitStadtDatentypen.Leer_Enum;
+   LeerMeldung : constant EinheitStadtDatentypen.Stadt_Meldung_Enum := EinheitStadtDatentypen.Leer_Stadt_Meldung_Enum;
    LeerKIBeschäftigung : constant KIDatentypen.Stadt_Aufgabe_Enum := KIDatentypen.Keine_Aufgabe_Enum;
    
-   LeerStadt : constant EinheitStadtRecords.StadtGebautRecord := (
+   LeerStadt : constant StadtRecords.StadtGebautRecord := (
                                                                   ID                      => LeerID,
                                                                   KoordinatenAktuell      => LeerKoordinaten,
                                                                   EinwohnerArbeiter       => LeerEinwohnerArbeiter,
@@ -71,18 +73,18 @@ package StadtKonstanten is
                                                                   KIBeschäftigung         => LeerKIBeschäftigung
                                                                  );
 
-   MaximaleBauzeit : constant EinheitStadtDatentypen.KostenLager := EinheitStadtDatentypen.KostenLager'Last;
+   MaximaleBauzeit : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
    
    LeerGebäudeGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
-   LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
+   LeerPreisGeld : constant ProduktionDatentypen.KostenLager := 0;
+   LeerPreisRessourcen : constant ProduktionDatentypen.KostenLager := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
-   LeerBonusWirtschaft : constant EinheitStadtDatentypen.ProduktionFeld := 0;
+   LeerBonusWirtschaft : constant ProduktionDatentypen.ProduktionFeld := 0;
    LeerBonusKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    LeerGrundBenötigt : constant KartengrundDatentypen.Kartengrund_Enum := KartengrundDatentypen.Leer_Grund_Enum;
    LeerFlussBenötigt : constant Boolean := False;
    LeerRessourceBenötigt : constant KartengrundDatentypen.Karten_Ressourcen_Enum := KartengrundDatentypen.Leer_Ressource_Enum;
-   LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer_Enum;
+   LeerSpezielleEigenschaft : constant EinheitStadtDatentypen.Gebäude_Spezielle_Eigenschaften_Enum := EinheitStadtDatentypen.Leer_Gebäude_Spezielle_Egienschaft_Enum;
    
    LeerGebäudeListe : constant DatenbankRecords.GebäudelisteRecord := (
                                                                          PreisGeld                   => LeerPreisGeld,
@@ -97,7 +99,7 @@ package StadtKonstanten is
                                                                          GebäudeSpezielleEigenschaft => LeerSpezielleEigenschaft
                                                                         );
    
-   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
+   type StadtUmgebungWachstumArray is array (SystemDatentypen.Anfang_Ende_Enum'Range, RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.ProduktionFeld;
    StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
                                                                    SystemDatentypen.Anfangswert_Enum =>
                                                                      (

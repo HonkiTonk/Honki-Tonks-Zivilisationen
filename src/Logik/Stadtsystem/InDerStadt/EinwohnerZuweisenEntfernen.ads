@@ -11,10 +11,10 @@ with SonstigeVariablen;
 package EinwohnerZuweisenEntfernen is
 
    procedure EinwohnerZuweisenEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = RassenDatentypen.Spieler_Mensch_Enum);
    
@@ -27,12 +27,12 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure EinwohnerBelegungÄndern
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure EinwohnerEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure EinwohnerZuweisen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
 
 end EinwohnerZuweisenEntfernen;

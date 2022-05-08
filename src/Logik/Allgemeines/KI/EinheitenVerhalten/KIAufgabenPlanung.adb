@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with TastenbelegungDatentypen;
 with EinheitenKonstanten;
 
@@ -21,12 +22,12 @@ with KIAufgabeUmsetzen;
 package body KIAufgabenPlanung is
    
    procedure AufgabeErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       -- Muss für die Schleife weiter unten auf den ersten Wert gesetzt werden.
       GewählteAufgabe := KIDatentypen.Einheit_Aufgabe_Enum'First;
-      Wichtigkeit := (others => EinheitStadtDatentypen.ProduktionSonstiges'First);
+      Wichtigkeit := (others => ProduktionDatentypen.ProduktionSonstiges'First);
             
       Wichtigkeit (KIDatentypen.Tut_Nichts_Enum) := KIVorhandeneAufgaben.NichtsTun;
       Wichtigkeit (KIDatentypen.Einheit_Auflösen_Enum) := KIVorhandeneAufgaben.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -47,7 +48,7 @@ package body KIAufgabenPlanung is
    
    
    procedure EinheitSpezifischeAufgabenErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -76,7 +77,7 @@ package body KIAufgabenPlanung is
          when EinheitStadtDatentypen.Cheat_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat Cheateinheit ausgewählt.");
             
-         when EinheitStadtDatentypen.Leer_Enum =>
+         when EinheitStadtDatentypen.Leer_Einheitart_Enum =>
             Fehler.LogikFehler (FehlermeldungExtern => "KIAufgabenPlanung.EinheitSpezifischeAufgabenErmitteln - KI hat keine Einheit ausgewählt.");
       end case;
       
@@ -120,7 +121,7 @@ package body KIAufgabenPlanung is
    
    procedure AufgabeFestlegen
      (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -169,7 +170,7 @@ package body KIAufgabenPlanung is
    
    
    procedure AufgabeUmsetzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       AufgabeDurchführen := True;

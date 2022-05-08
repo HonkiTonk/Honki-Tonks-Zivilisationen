@@ -25,7 +25,7 @@ package GrafischeAnzeigeKonsole is
 
 private
 
-   EinheitStadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
+   EinheitStadtRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
 
    procedure IstSichtbar
      (InDerStadtExtern : in Boolean;

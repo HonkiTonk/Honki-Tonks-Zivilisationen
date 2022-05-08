@@ -7,13 +7,13 @@ with Sf.Graphics.Text;
 
 with RassenDatentypen;
 with EinheitStadtDatentypen;
-with EinheitStadtRecords;
+with EinheitenRecords;
 
 package AuswahlStadtEinheit is
       
    AktuelleAuswahl : Integer;
    
-   type MöglicheAuswahlenArray is array (0 .. EinheitStadtRecords.TransporterArray'Last) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
+   type MöglicheAuswahlenArray is array (0 .. EinheitenRecords.TransporterArray'Last) of EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
    
    type AuswahlRecord is record
       

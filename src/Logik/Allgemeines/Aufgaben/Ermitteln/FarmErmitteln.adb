@@ -16,7 +16,7 @@ with Fehler;
 package body FarmErmitteln is
 
    function FarmErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       AnlegenTestenExtern : in Boolean)
       return Boolean
@@ -120,10 +120,10 @@ package body FarmErmitteln is
    
    
    function OberflächeLand
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Oberfläche_Enum;
       AnlegenTestenExtern : in Boolean)
-      return EinheitStadtRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitRecord
    is begin
       
       case
@@ -161,7 +161,7 @@ package body FarmErmitteln is
      
    function UnterflächeLand
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Land_Enum)
-      return EinheitStadtRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitRecord
    is begin
       
       case
@@ -181,10 +181,10 @@ package body FarmErmitteln is
      
      
    function UnterflächeWasser
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GrundExtern : in KartengrundDatentypen.Kartengrund_Unterfläche_Wasser_Enum;
       AnlegenTestenExtern : in Boolean)
-      return EinheitStadtRecords.ArbeitRecord
+      return EinheitenRecords.ArbeitRecord
    is begin
       
       case

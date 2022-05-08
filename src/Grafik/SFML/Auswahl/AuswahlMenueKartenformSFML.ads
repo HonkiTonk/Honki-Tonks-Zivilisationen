@@ -3,12 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with Sf.Graphics;
 with Sf.Graphics.Sprite;
-with Sf.Graphics.Text;
 with Sf.System.Vector2;
 
-with MenueDatentypen;
 with SystemKonstanten;
 with KartenDatentypen;
+with TextaccessVariablen;
 
 package AuswahlMenueKartenformSFML is
 
@@ -16,9 +15,6 @@ package AuswahlMenueKartenformSFML is
 
 private
 
-   SchriftartFestgelegt : Boolean := False;
-   SchriftfarbeFestgelegt : Boolean := False;
-   SchriftgrößeFestgelegt : Boolean := False;
    SchriftpositionFestgelegt : Boolean := False;
    TextEingelesen : Boolean := False;
 
@@ -26,9 +22,8 @@ private
    AktuelleAuswahl : Natural;
    AktuelleAuswahlRückgabewert : Natural;
 
-   Überschrift : constant Positive := 1;
-   Versionsnummer : constant Positive := 1;
-   Zusatzplatz : constant Positive := 16;
+   Überschrift : constant Positive := TextaccessVariablen.Überschrift;
+   Versionsnummer : constant Positive := TextaccessVariablen.Versionsnummer;
    Ende : Positive;
 
    ZeilenAbstand : Float;
@@ -36,11 +31,6 @@ private
    Rechenwert : Sf.System.Vector2.sfVector2f;
 
    SpriteAccess : constant Sf.Graphics.sfSprite_Ptr := Sf.Graphics.Sprite.create;
-
-   type TextAccessArray is array (Überschrift .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) + Zusatzplatz + Versionsnummer) of Sf.Graphics.sfText_Ptr;
-   TextAccess : constant TextAccessArray := (
-                                             others => Sf.Graphics.Text.create
-                                            );
 
    type SchleifenanpassungArray is array (2 .. 8) of Positive;
    Schleifenanpassung : constant SchleifenanpassungArray := (
@@ -88,15 +78,6 @@ private
 
    function Textbearbeitung
      return Natural;
-
-   function SchriftartFestlegen
-     return Boolean;
-
-   function SchriftfarbenFestlegen
-     return Boolean;
-
-   function SchriftgrößeFestlegen
-     return Boolean;
 
    function TextEinlesen
      return Boolean;

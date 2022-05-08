@@ -3,10 +3,11 @@ pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen; use KartenVerbesserungDatentypen;
-with EinheitStadtRecords;
+with StadtRecords;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SpielVariablen;
+with EinheitenRecords;
 
 with LeseEinheitenGebaut;
 with LeseStadtGebaut;
@@ -136,13 +137,13 @@ package body NaechstesObjekt is
          
          else
             MeldungSchleife:
-            for MeldungSchleifenwert in EinheitStadtRecords.StadtMeldungenArray'Range loop
+            for MeldungSchleifenwert in StadtRecords.StadtMeldungenArray'Range loop
                
                case
                  LeseStadtGebaut.Meldungen (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)),
                                             WelcheMeldungExtern    => MeldungSchleifenwert)
                is
-                  when EinheitStadtDatentypen.Leer_Enum =>
+                  when EinheitStadtDatentypen.Leer_Stadt_Meldung_Enum =>
                      null;
                      
                   when others =>
@@ -194,13 +195,13 @@ package body NaechstesObjekt is
          
          else
             MeldungSchleife:
-            for MeldungSchleifenwert in EinheitStadtRecords.EinheitMeldungenArray'Range loop
+            for MeldungSchleifenwert in EinheitenRecords.EinheitMeldungenArray'Range loop
                
                case
                  LeseEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)),
                                                 WelcheMeldungExtern      => MeldungSchleifenwert)
                is
-                  when EinheitStadtDatentypen.Leer_Enum =>
+                  when EinheitStadtDatentypen.Leer_Einheit_Meldung_Enum =>
                      null;
                      
                   when others =>

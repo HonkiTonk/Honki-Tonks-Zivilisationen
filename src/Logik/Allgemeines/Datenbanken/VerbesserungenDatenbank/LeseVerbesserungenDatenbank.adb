@@ -57,7 +57,7 @@ package body LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return ProduktionDatentypen.ProduktionElement
    is begin
       
       return VerbesserungenDatenbank.VerbesserungenListe (VerbesserungExtern).Wirtschaft (RasseExtern, WelcherWertExtern);
@@ -70,7 +70,7 @@ package body LeseVerbesserungenDatenbank is
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return ProduktionDatentypen.ProduktionElement
    is begin
       
       return VerbesserungenDatenbank.WegeListe (WegExtern).Wirtschaft (RasseExtern, WelcherWertExtern);

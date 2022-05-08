@@ -21,7 +21,7 @@ package body Sichtbarkeit is
    
    -- Über die Sachen hier nochmal drüber gehen. Eventuell auch Sicht nach oben einbauen?
    function SichtweiteErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.Sichtweite
    is begin
       
@@ -73,7 +73,7 @@ package body Sichtbarkeit is
 
 
    procedure SichtbarkeitsprüfungFürEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SichtweiteObjekt := SichtweiteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -120,7 +120,7 @@ package body Sichtbarkeit is
    
    -- Das hier Parallelisieren?
    procedure QuadrantenDurchlaufen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       YQuadrantSchleife:
@@ -181,7 +181,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantEins
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
@@ -308,7 +308,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantZwei
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
@@ -435,7 +435,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantDrei
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
@@ -562,7 +562,7 @@ package body Sichtbarkeit is
    
    
    procedure QuadrantVier
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite)
@@ -733,7 +733,7 @@ package body Sichtbarkeit is
    
    
    procedure SichtbarkeitsprüfungOhneBlockade
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite)
    is begin
          
@@ -765,7 +765,7 @@ package body Sichtbarkeit is
 
 
    procedure SichtbarkeitsprüfungFürStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) + 1;

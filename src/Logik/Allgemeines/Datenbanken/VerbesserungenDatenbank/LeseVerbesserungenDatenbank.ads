@@ -6,6 +6,7 @@ with SonstigeVariablen;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
 with KartenVerbesserungDatentypen;
+with ProduktionDatentypen;
 
 with DatenbankRecords;
 
@@ -41,7 +42,7 @@ package LeseVerbesserungenDatenbank is
      (VerbesserungExtern : in KartenVerbesserungDatentypen.Karten_Verbesserung_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return ProduktionDatentypen.ProduktionElement
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -50,7 +51,7 @@ package LeseVerbesserungenDatenbank is
      (WegExtern : in KartenVerbesserungDatentypen.Karten_Weg_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WelcherWertExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return ProduktionDatentypen.ProduktionElement
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

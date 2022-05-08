@@ -10,7 +10,7 @@ with LeseEinheitenGebaut;
 package body KIAufgabenVerteilt is
 
    function AufgabenVerteilt
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
       return Natural
    is begin
@@ -21,7 +21,7 @@ package body KIAufgabenVerteilt is
       for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze loop
             
          if
-           EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Platznummer
+           EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Nummer
            or
              LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = EinheitenKonstanten.LeerEinheit.ID
          then

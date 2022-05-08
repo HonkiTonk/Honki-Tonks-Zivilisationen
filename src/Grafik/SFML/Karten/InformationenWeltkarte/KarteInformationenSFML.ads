@@ -10,12 +10,12 @@ with Sf.Graphics.Rect;
 with Sf.Graphics.View;
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with SonstigeVariablen;
 with EinheitStadtRecords;
 with KartenDatentypen;
 with KartenRecords;
 with KartenRecordKonstanten;
+with ProduktionDatentypen;
 
 with UmwandlungenAdaNachEigenes;
 
@@ -33,8 +33,8 @@ private
    SchriftfarbeFestgelegt : Boolean := False;
    SchriftgrößeFestgelegt : Boolean := False;
 
-   StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
-   EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
+   StadtRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
+   EinheitRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
 
    Zeilenabstand : Float;
 
@@ -75,7 +75,7 @@ private
 
    function ZahlAlsStringInteger is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Integer);
 
-   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.KostenLager);
+   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.KostenLager);
 
    function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
 

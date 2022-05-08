@@ -4,8 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with AufgabenDatentypen; use AufgabenDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 with ForschungKonstanten;
+with StadtRecords;
 
 with SchreibeEinheitenGebaut;
 with SchreibeStadtGebaut;
@@ -55,7 +57,7 @@ package body EinheitenModifizieren is
 
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       AktuelleBeschäftigung := LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -91,7 +93,7 @@ package body EinheitenModifizieren is
    
    
    procedure PermanenteKostenÄndern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
@@ -108,7 +110,7 @@ package body EinheitenModifizieren is
       end case;
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in EinheitStadtRecords.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
          
          if
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
@@ -137,18 +139,18 @@ package body EinheitenModifizieren is
    
    
    procedure HeimatstadtÄndern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
-        EinheitRasseNummerExtern.Platznummer
+        EinheitRasseNummerExtern.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                              KoordinatenExtern => SpielVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).KoordinatenAktuell);
             
          when others =>
-            EinheitNummer := EinheitRasseNummerExtern.Platznummer;
+            EinheitNummer := EinheitRasseNummerExtern.Nummer;
       end case;
       
       StadtNummerNeu := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
@@ -184,7 +186,7 @@ package body EinheitenModifizieren is
    
    
    function EinheitAnforderungenErfüllt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Boolean
    is begin

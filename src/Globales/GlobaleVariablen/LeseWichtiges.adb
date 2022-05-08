@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
 with SpielVariablen;
 
@@ -20,7 +21,7 @@ package body LeseWichtiges is
 
    function GeldZugewinnProRunde
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
    is begin
 
       return SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde;
@@ -31,7 +32,7 @@ package body LeseWichtiges is
 
    function GesamteForschungsrate
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
    is begin
 
       if
@@ -51,7 +52,7 @@ package body LeseWichtiges is
    
    function Forschungsmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
    is begin
 
       if
@@ -71,7 +72,7 @@ package body LeseWichtiges is
    
    function VerbleibendeForschungszeit
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
    is begin
 
       if

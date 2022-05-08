@@ -14,7 +14,7 @@ private
       
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
-   AndereEinheit : EinheitStadtRecords.RassePlatznummerRecord;
+   AndereEinheit : EinheitStadtRecords.RasseEinheitnummerRecord;
    
    procedure UmgebungStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);

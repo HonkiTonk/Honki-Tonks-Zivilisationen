@@ -20,8 +20,8 @@ with DiplomatischerZustand;
 package body KIGefahrErmitteln is
    
    function GefahrErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtRecords.RassePlatznummerRecord
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return EinheitStadtRecords.RasseEinheitnummerRecord
    is begin
       
       case
@@ -39,8 +39,8 @@ package body KIGefahrErmitteln is
    
    
    function GefahrSuchen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtRecords.RassePlatznummerRecord
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return EinheitStadtRecords.RasseEinheitnummerRecord
    is begin
       
       YAchseSchleife:
@@ -89,13 +89,13 @@ package body KIGefahrErmitteln is
    
    
    function ReaktionErfoderlich
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      AndereEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      AndereEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
       if
-        AndereEinheitExtern.Platznummer = EinheitenKonstanten.LeerNummer
+        AndereEinheitExtern.Nummer = EinheitenKonstanten.LeerNummer
         or
           AndereEinheitExtern.Rasse = EinheitRasseNummerExtern.Rasse
       then

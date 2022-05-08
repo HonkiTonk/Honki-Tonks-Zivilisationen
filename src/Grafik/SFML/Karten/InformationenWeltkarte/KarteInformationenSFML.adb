@@ -32,7 +32,7 @@ package body KarteInformationenSFML is
                                             RechteckAccessExtern => RechteckAcces);
       
       Textposition := (StartpunktText.x + Float (GrafikEinstellungenSFML.AktuelleFensterAuflösung.x) * 0.80, StartpunktText.y);
-      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       Textposition := KarteWichtigesSFML.WichtigesInformationen (RasseExtern        => RasseExtern,
                                                                  TextpositionExtern => Textposition);
@@ -47,7 +47,7 @@ package body KarteInformationenSFML is
             Textposition := KarteAllgemeinesSFML.AllgemeineInformationen (RasseExtern        => RasseExtern,
                                                                           TextpositionExtern => Textposition);
             Textposition.y := Textposition.y + 5.00 * Zeilenabstand;
-              
+            
             StadtInformationen (RasseExtern => RasseExtern);
               
             EinheitInformationen (RasseExtern => RasseExtern);
@@ -69,7 +69,7 @@ package body KarteInformationenSFML is
       StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
       case
-        StadtRasseNummer.Platznummer
+        StadtRasseNummer.Nummer
       is
          when StadtKonstanten.LeerNummer =>
             null;
@@ -92,7 +92,7 @@ package body KarteInformationenSFML is
       EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
       
       case
-        EinheitRasseNummer.Platznummer
+        EinheitRasseNummer.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             null;

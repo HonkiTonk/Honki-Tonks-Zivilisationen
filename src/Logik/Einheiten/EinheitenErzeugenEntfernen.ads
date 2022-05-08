@@ -17,7 +17,7 @@ package EinheitenErzeugenEntfernen is
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EinheitNummerExtern : in EinheitStadtDatentypen.MaximaleEinheiten;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
@@ -27,10 +27,10 @@ package EinheitenErzeugenEntfernen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartenparameter.Kartengröße).XAchse);
 
    procedure EinheitEntfernen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
@@ -39,9 +39,9 @@ private
    EinheitNummer : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
 
    procedure EinheitEntfernenLadung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
 
    procedure Entfernen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
 
 end EinheitenErzeugenEntfernen;

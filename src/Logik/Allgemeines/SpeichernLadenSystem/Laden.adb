@@ -8,7 +8,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 with SystemDatentypen;
 with GlobaleVariablen;
 with KartenRecords;
-with EinheitStadtRecords;
+with StadtRecords;
 with WichtigeRecords;
 with KartenDatentypen;
 with SonstigesKonstanten;
@@ -16,6 +16,7 @@ with RassenDatentypen;
 with SpielDatentypen;
 with SpielVariablen;
 with SonstigeVariablen;
+with EinheitenRecords;
 
 with Karten;
 with Ladezeiten;
@@ -192,7 +193,7 @@ package body Laden is
                EinheitenSchleife:
                for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
             
-                  EinheitStadtRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
+                  EinheitenRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
                                                                   SpielVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
             
                end loop EinheitenSchleife;
@@ -220,7 +221,7 @@ package body Laden is
                StadtSchleife:
                for StadtNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
-                  EinheitStadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenNeu),
+                  StadtRecords.StadtGebautRecord'Read (Stream (File => DateiLadenNeu),
                                                               SpielVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
             
                end loop StadtSchleife;

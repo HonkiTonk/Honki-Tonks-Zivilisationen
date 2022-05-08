@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtRecords; use EinheitStadtRecords;
 with GrafikDatentypen; use GrafikDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with StadtRecords; use StadtRecords;
 with StadtKonstanten;
 with TastenbelegungDatentypen;
 with OptionenVariablen;
@@ -21,7 +21,7 @@ with InteraktionAuswahl;
 package body InDerStadtBauen is
 
    procedure Bauen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       AktuellesBauprojekt := LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -47,8 +47,8 @@ package body InDerStadtBauen is
 
 
    function BauobjektAuswählen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
-      return EinheitStadtRecords.BauprojektRecord
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
+      return StadtRecords.BauprojektRecord
    is begin
 
       MöglicheGebäudeErmitteln (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -76,7 +76,7 @@ package body InDerStadtBauen is
    
    
    procedure MöglicheGebäudeErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       GebäudeBaubar := False;
@@ -113,7 +113,7 @@ package body InDerStadtBauen is
    
    
    procedure MöglicheEinheitenErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       EinheitenBaubar := False;
@@ -150,7 +150,7 @@ package body InDerStadtBauen is
    
    
    function AuswahlBauprojektSFML
-     return EinheitStadtRecords.BauprojektRecord
+     return StadtRecords.BauprojektRecord
    is begin
       
       InteraktionAuswahl.PositionenBauenFestgelegt := False;
@@ -194,7 +194,7 @@ package body InDerStadtBauen is
    
    
    function MausAuswahl
-     return EinheitStadtRecords.BauprojektRecord
+     return StadtRecords.BauprojektRecord
    is begin
       
       -- Niemals direkt die Mausposition abrufen sondern immer die Werte in der Eingabe ermitteln lassen. Sonst kann es zu einem Absturz kommen.

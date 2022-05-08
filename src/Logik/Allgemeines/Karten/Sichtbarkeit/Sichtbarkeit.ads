@@ -14,18 +14,18 @@ with Karten;
 package Sichtbarkeit is
 
    procedure SichtbarkeitsprüfungFürEinheit
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
    procedure SichtbarkeitsprüfungFürStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
@@ -51,7 +51,7 @@ private
 
    Wert : Integer;
 
-   FremdeEinheitStadt : EinheitStadtRecords.RassePlatznummerRecord;
+   FremdeEinheitStadt : EinheitStadtRecords.RasseEinheitnummerRecord;
 
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    KartenQuadrantWert : KartenRecords.AchsenKartenfeldPositivRecord;
@@ -59,37 +59,37 @@ private
    KoordinatenEinheit : KartenRecords.AchsenKartenfeldPositivRecord;
 
    procedure SichtbarkeitsprüfungOhneBlockade
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteExtern : in KartenDatentypen.Sichtweite)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 
    procedure QuadrantenDurchlaufen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
 
    procedure QuadrantEins
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite);
 
    procedure QuadrantZwei
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite);
 
    procedure QuadrantDrei
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite);
 
    procedure QuadrantVier
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       SichtweiteYRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteXRichtungExtern : in KartenDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in KartenDatentypen.Sichtweite);
@@ -97,11 +97,11 @@ private
 
 
    function SichtweiteErmitteln
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return KartenDatentypen.Sichtweite
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+         (EinheitRasseNummerExtern.Nummer in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
 

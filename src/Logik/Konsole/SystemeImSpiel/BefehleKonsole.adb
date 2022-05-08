@@ -172,7 +172,7 @@ package body BefehleKonsole is
    
    
    procedure AuswahlEinheitTransporter
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -182,7 +182,7 @@ package body BefehleKonsole is
         and
           Transportiert = False
       then
-         EinheitTransportNummer := EinheitRasseNummerExtern.Platznummer;
+         EinheitTransportNummer := EinheitRasseNummerExtern.Nummer;
 
       elsif
         LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern) /= EinheitenKonstanten.LeerWirdTransportiert
@@ -233,7 +233,7 @@ package body BefehleKonsole is
    
    
    procedure StadtBetreten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse := 1;
@@ -245,7 +245,7 @@ package body BefehleKonsole is
    
    
    procedure EinheitSteuern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       if

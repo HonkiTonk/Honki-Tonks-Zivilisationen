@@ -132,16 +132,16 @@ package body Handeln is
                                       RechnenSetzenExtern => True);
                   
          if
-           Geldmenge / 25 > Integer (EinheitStadtDatentypen.ProduktionFeld'Last)
+           Geldmenge / 25 > Integer (ProduktionDatentypen.ProduktionFeld'Last)
          then
             DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
                                                     FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => EinheitStadtDatentypen.ProduktionFeld'Last);
+                                                    ÄnderungExtern    => ProduktionDatentypen.ProduktionFeld'Last);
                      
          else
             DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
                                                     FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => EinheitStadtDatentypen.ProduktionFeld (Geldmenge / 25));
+                                                    ÄnderungExtern    => ProduktionDatentypen.ProduktionFeld (Geldmenge / 25));
          end if;
                   
       else
@@ -174,16 +174,16 @@ package body Handeln is
                                       RechnenSetzenExtern => True);
                   
          if
-           Geldmenge / 25 > Integer (EinheitStadtDatentypen.ProduktionFeld'Last)
+           Geldmenge / 25 > Integer (ProduktionDatentypen.ProduktionFeld'Last)
          then
             DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
                                                     FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => -EinheitStadtDatentypen.ProduktionFeld'Last);
+                                                    ÄnderungExtern    => -ProduktionDatentypen.ProduktionFeld'Last);
                      
          else
             DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
                                                     FremdeRasseExtern => RasseExtern,
-                                                    ÄnderungExtern    => -EinheitStadtDatentypen.ProduktionFeld (Geldmenge / 25));
+                                                    ÄnderungExtern    => -ProduktionDatentypen.ProduktionFeld (Geldmenge / 25));
          end if;
                   
       else

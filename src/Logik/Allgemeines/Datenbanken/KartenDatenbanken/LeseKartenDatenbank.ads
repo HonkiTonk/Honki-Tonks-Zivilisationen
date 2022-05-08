@@ -6,6 +6,7 @@ with SonstigeVariablen;
 with KartenDatentypen;
 with EinheitStadtDatentypen;
 with KartengrundDatentypen;
+with ProduktionDatentypen;
 
 with DatenbankRecords;
 
@@ -44,7 +45,7 @@ package LeseKartenDatenbank is
      (GrundExtern : in KartengrundDatentypen.Kartengrund_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return ProduktionDatentypen.ProduktionElement
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -53,7 +54,7 @@ package LeseKartenDatenbank is
      (FlussExtern : in KartengrundDatentypen.Kartenfluss_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return ProduktionDatentypen.ProduktionElement
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -62,7 +63,7 @@ package LeseKartenDatenbank is
      (RessourceExtern : in KartengrundDatentypen.Karten_Ressourcen_Vorhanden_Enum;
       RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       WirtschaftArtExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return EinheitStadtDatentypen.ProduktionElement
+      return ProduktionDatentypen.ProduktionElement
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

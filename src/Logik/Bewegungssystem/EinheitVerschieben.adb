@@ -55,7 +55,7 @@ package body EinheitVerschieben is
    
    
    procedure EinheitenErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
    is begin
       
@@ -104,7 +104,7 @@ package body EinheitVerschieben is
 
    procedure EinheitVerschieben
      (RasseLandExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       UmgebungPrüfen := KartenDatentypen.Sichtweite'First;

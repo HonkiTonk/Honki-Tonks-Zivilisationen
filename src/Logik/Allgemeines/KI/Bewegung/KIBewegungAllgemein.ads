@@ -15,7 +15,7 @@ package KIBewegungAllgemein is
    
    function FeldBetreten
      (FeldKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return KIDatentypen.Bewegung_Enum
      with
        Pre =>
@@ -31,7 +31,7 @@ private
    BlockierendeStadt : RassenDatentypen.Rassen_Enum;
    
    function FeldAngreifen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      return KIDatentypen.Bewegung_Enum;
 
 end KIBewegungAllgemein;

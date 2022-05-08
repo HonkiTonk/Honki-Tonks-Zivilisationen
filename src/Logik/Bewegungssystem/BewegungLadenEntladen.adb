@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
+with EinheitenRecords;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
@@ -13,7 +14,7 @@ with UmgebungErreichbarTesten;
 package body BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
    is begin
       
@@ -44,7 +45,7 @@ package body BewegungLadenEntladen is
             SchreibeEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                                  KoordinatenExtern        => LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => TransporterExtern));
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                                       TransporterExtern        => TransporterExtern.Platznummer);
+                                                       TransporterExtern        => TransporterExtern.Nummer);
             SpielVariablen.CursorImSpiel (TransporterExtern.Rasse).KoordinatenAktuell := LeseEinheitenGebaut.Koordinaten (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern));
       end case;
       
@@ -54,12 +55,12 @@ package body BewegungLadenEntladen is
    
    -- Ist das nicht identisch mit dem Zeug in TransporterSuchen?
    function FreienPlatzErmitteln
-     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return EinheitStadtDatentypen.Transportplätze
    is begin
       
       TransporterSchleife:
-      for FreierPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+      for FreierPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
                                                                                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
         
          case
@@ -82,7 +83,7 @@ package body BewegungLadenEntladen is
       
    
    procedure EinheitAusTransporterEntfernen
-     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
    is begin
       
@@ -90,7 +91,7 @@ package body BewegungLadenEntladen is
       for
         TransporterLeerenSchleifenwert
       in
-        EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+        EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
                                                                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
 
          if
@@ -116,12 +117,12 @@ package body BewegungLadenEntladen is
    
    
    procedure TransporterladungVerschieben
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
       TransporterUmladenSchleife:
-      for TransporterUmladenSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      for TransporterUmladenSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                                        IDExtern    =>
                                                                                                                                          LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
                
@@ -145,12 +146,12 @@ package body BewegungLadenEntladen is
    
    
    procedure TransporterStadtEntladen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
             
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      for BelegterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                                   IDExtern    =>
                                                                                                                                     LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          
@@ -181,7 +182,7 @@ package body BewegungLadenEntladen is
          
       end loop BelegterPlatzSchleife;
       
-      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => EinheitenKonstanten.LeerTransportiert);
+      SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).Transportiert := (others => EinheitenKonstanten.LeerTransportiert);
       
    end TransporterStadtEntladen;
 

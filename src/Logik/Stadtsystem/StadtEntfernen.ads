@@ -10,10 +10,10 @@ with SonstigeVariablen;
 package StadtEntfernen is
 
    procedure StadtEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
@@ -22,12 +22,12 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure BelegteStadtfelderFreigeben
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure HeimatstädteEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure NeueHauptstadtSetzen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
 
 end StadtEntfernen;

@@ -5,6 +5,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with KartenRecords; use KartenRecords;
 with KartenKonstanten;
 with EinheitenKonstanten;
+with EinheitenRecords;
 
 with KIDatentypen; use KIDatentypen;
 with KIKonstanten;
@@ -21,7 +22,7 @@ with KIBewegungAllgemein;
 package body KIBewegungBerechnen is
    
    function BewegungPlanen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
                
@@ -36,8 +37,8 @@ package body KIBewegungBerechnen is
             VorhandenenPlanVereinfachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when False =>
-            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
-            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
+            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
+            SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts_Enum);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -51,7 +52,7 @@ package body KIBewegungBerechnen is
    
    
    function PlanenRekursiv
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
@@ -87,7 +88,7 @@ package body KIBewegungBerechnen is
    
    
    procedure FelderBewerten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       AktuelleKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
    is begin
       
@@ -153,7 +154,7 @@ package body KIBewegungBerechnen is
    
    
    function PlanschrittFestlegen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       DurchlaufExtern : in Positive;
       AktuellePlanpositionExtern : in KartenDatentypen.Stadtfeld)
       return Boolean
@@ -177,7 +178,7 @@ package body KIBewegungBerechnen is
                                                     PlanplatzExtern          => AktuellePlanpositionExtern);
             
             if
-              AktuellePlanpositionExtern = EinheitStadtRecords.KIBewegungPlanArray'Last
+              AktuellePlanpositionExtern = EinheitenRecords.KIBewegungPlanArray'Last
             then
                return True;
          
@@ -195,7 +196,7 @@ package body KIBewegungBerechnen is
    
    
    function BewertungFeldposition
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       EÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
       YÄnderungExtern : in KartenDatentypen.UmgebungsbereichEins;
@@ -277,7 +278,7 @@ package body KIBewegungBerechnen is
    
    
    function BerechnungBewertungPosition
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return KIDatentypen.BewegungBewertung
@@ -290,13 +291,13 @@ package body KIBewegungBerechnen is
          return KIKonstanten.BewertungBewegungZielpunkt;
          
       else
-         PositionAlt := (abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.EAchse - KoordinatenExtern.EAchse),
-                         abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse),
-                         abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse));
+         PositionAlt := (abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.EAchse - KoordinatenExtern.EAchse),
+                         abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse),
+                         abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse));
 
-         PositionNeu := (abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.EAchse - NeueKoordinatenExtern.EAchse),
-                         abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse),
-                         abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse));
+         PositionNeu := (abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.EAchse - NeueKoordinatenExtern.EAchse),
+                         abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse),
+                         abs (SpielVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Nummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse));
       end if;
         
       if
@@ -348,13 +349,13 @@ package body KIBewegungBerechnen is
    
    
    function FeldBereitsBetreten
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
       
       FelderSchleife:
-      for FelderSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
+      for FelderSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
          
          if
            LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -376,13 +377,13 @@ package body KIBewegungBerechnen is
    
    
    procedure VorhandenenPlanVereinfachen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       ErsterZugSchleife:
-      for ErsterZugSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
+      for ErsterZugSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
          ÜberNächsterZugSchleife:
-         for ÜberNächsterZugSchleifenwert in EinheitStadtRecords.KIBewegungPlanArray'Range loop
+         for ÜberNächsterZugSchleifenwert in EinheitenRecords.KIBewegungPlanArray'Range loop
             
             if
               LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -418,7 +419,7 @@ package body KIBewegungBerechnen is
    
    
    procedure VorhandenenPlanVereinfachenPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       ErsterZugExtern : in KartenDatentypen.Stadtfeld;
       ÜberNächsterZugExtern : in KartenDatentypen.Stadtfeld)
    is begin
@@ -446,7 +447,7 @@ package body KIBewegungBerechnen is
                                                                                PlanschrittExtern        => ÜberNächsterZugExtern)
                then
                   BewegungPlanVerschiebenSchleife:
-                  for PositionSchleifenwert in ErsterZugExtern .. EinheitStadtRecords.KIBewegungPlanArray'Last - 1 loop
+                  for PositionSchleifenwert in ErsterZugExtern .. EinheitenRecords.KIBewegungPlanArray'Last - 1 loop
                
                      SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              KoordinatenExtern        => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -457,7 +458,7 @@ package body KIBewegungBerechnen is
                   
                   SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                           KoordinatenExtern        => KIKonstanten.LeerKoordinate,
-                                                          PlanplatzExtern          => EinheitStadtRecords.KIBewegungPlanArray'Last);
+                                                          PlanplatzExtern          => EinheitenRecords.KIBewegungPlanArray'Last);
                            
                else
                   null;
@@ -472,7 +473,7 @@ package body KIBewegungBerechnen is
    
    
    function TransporterNutzen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -481,7 +482,7 @@ package body KIBewegungBerechnen is
       for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'Range (2) loop
          
          if
-           EinheitRasseNummerExtern.Platznummer = EinheitSchleifenwert
+           EinheitRasseNummerExtern.Nummer = EinheitSchleifenwert
            or
              LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert)) = EinheitenKonstanten.LeerID
          then

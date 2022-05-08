@@ -21,7 +21,7 @@ package body StadtMeldungenSetzen is
                StadtSchleife:
                for StadtSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
-                  SpielVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer_Enum);
+                  SpielVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer_Stadt_Meldung_Enum);
                   
                end loop StadtSchleife;
          end case;
@@ -33,7 +33,7 @@ package body StadtMeldungenSetzen is
    
    
    procedure StadtMeldungSetzenEreignis
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EreignisExtern : in EinheitStadtDatentypen.Stadt_Meldungen_Verwendet_Enum)
    is begin
       

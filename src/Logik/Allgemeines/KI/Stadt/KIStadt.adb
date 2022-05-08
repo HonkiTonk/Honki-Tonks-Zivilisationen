@@ -25,7 +25,7 @@ with KIGebaeudeBauen;
 package body KIStadt is
 
    procedure KIStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -58,7 +58,7 @@ package body KIStadt is
    
    
    procedure NeuesBauprojekt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
       GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
       NotfallExtern : in Boolean)
@@ -125,7 +125,7 @@ package body KIStadt is
    
    
    function GefahrStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -159,7 +159,7 @@ package body KIStadt is
    
    
    function FeindNahe
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -182,7 +182,7 @@ package body KIStadt is
                   FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                                                                              KoordinatenExtern => KartenWert);
                   if
-                    FremdeEinheit.Platznummer = EinheitenKonstanten.LeerNummer
+                    FremdeEinheit.Nummer = EinheitenKonstanten.LeerNummer
                   then
                      null;
                      
@@ -198,7 +198,7 @@ package body KIStadt is
                        LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
                      is
-                        when EinheitStadtDatentypen.Leer_Enum | EinheitStadtDatentypen.Arbeiter_Enum =>
+                        when EinheitStadtDatentypen.Leer_Einheitart_Enum | EinheitStadtDatentypen.Arbeiter_Enum =>
                            null;
             
                         when others =>
@@ -217,7 +217,7 @@ package body KIStadt is
    
    
    procedure WelcheEinheitArt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       EinheitenSchleife:
@@ -230,7 +230,7 @@ package body KIStadt is
            or
              LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                 IDExtern    => EinheitenSchleifenwert)
-           = EinheitStadtDatentypen.Leer_Enum
+           = EinheitStadtDatentypen.Leer_Einheitart_Enum
          then
             null;
             
@@ -254,7 +254,7 @@ package body KIStadt is
    
    procedure NotfallEinheitBauen
    -- Stadt mit übergeben und später die Baukosten noch mit in die Bewertung einfließen lassen.
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitIDExtern : in EinheitStadtDatentypen.EinheitenID)
    is begin
       

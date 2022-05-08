@@ -4,12 +4,10 @@ pragma Warnings (Off, "*array aggregate*");
 with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.System.Vector2;
-with Sf.Graphics;
-with Sf.Graphics.Text;
 
 with RassenDatentypen; use RassenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with ForschungenDatentypen; use ForschungenDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with KartenDatentypen;
 with KartenRecords;
 with SonstigeVariablen;
@@ -37,25 +35,21 @@ package KarteWichtigesSFML is
               WichtigesInformationen'Result.y > 0.00);
    
 private
-
-   SchriftartFestgelegt : Boolean := False;
-   SchriftfarbeFestgelegt : Boolean := False;
-   SchriftgrößeFestgelegt : Boolean := False;
-
-   AktuellerGeldgewinn : EinheitStadtDatentypen.KostenLager;
-   LetzterGeldgewinn : EinheitStadtDatentypen.KostenLager := -1;
+   
+   AktuellerGeldgewinn : ProduktionDatentypen.KostenLager;
+   LetzterGeldgewinn : ProduktionDatentypen.KostenLager := -1;
 
    AktuellesForschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
    LetztesForschungsprojekt : ForschungenDatentypen.ForschungIDNichtMöglich := -1;
 
-   AktuelleForschungszeit : EinheitStadtDatentypen.KostenLager;
-   LetzteForschungszeit : EinheitStadtDatentypen.KostenLager := -1;
+   AktuelleForschungszeit : ProduktionDatentypen.KostenLager;
+   LetzteForschungszeit : ProduktionDatentypen.KostenLager := -1;
 
-   AktuelleForschungsmenge : EinheitStadtDatentypen.KostenLager;
-   LetzteForschungsmenge : EinheitStadtDatentypen.KostenLager := -1;
+   AktuelleForschungsmenge : ProduktionDatentypen.KostenLager;
+   LetzteForschungsmenge : ProduktionDatentypen.KostenLager := -1;
 
-   AktuelleForschungsrate : EinheitStadtDatentypen.KostenLager;
-   LetzteForschungsrate : EinheitStadtDatentypen.KostenLager := -1;
+   AktuelleForschungsrate : ProduktionDatentypen.KostenLager;
+   LetzteForschungsrate : ProduktionDatentypen.KostenLager := -1;
 
    AktuelleRunde : Positive;
    LetzteRunde : Natural := 1;
@@ -74,21 +68,9 @@ private
    
    Textposition : Sf.System.Vector2.sfVector2f;
 
-   type TextAccessArray is array (1 .. 8) of Sf.Graphics.sfText_Ptr;
-   TextAccess : constant TextAccessArray := (others => Sf.Graphics.Text.create);
-   
-   function SchriftartFestlegen
-     return Boolean;
-
-   function SchriftgrößenFestlegen
-     return Boolean;
-
-   function SchriftfarbenFestlegen
-     return Boolean;
-
    function ZahlAlsStringInteger is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => Integer);
 
-   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => EinheitStadtDatentypen.KostenLager);
+   function ZahlAlsStringKostenLager is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => ProduktionDatentypen.KostenLager);
 
    function ZahlAlsStringEbeneVorhanden is new UmwandlungenAdaNachEigenes.ZahlAlsStringLeerzeichenEntfernen (GanzeZahl => KartenDatentypen.EbeneVorhanden);
 

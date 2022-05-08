@@ -11,12 +11,12 @@ with SonstigeVariablen;
 package GebaeudeRichtigeUmgebung is
 
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GebäudeIDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+         (StadtRasseNummerExtern.Nummer in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             SonstigeVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum);
    
@@ -25,7 +25,7 @@ private
    KartenWert : KartenRecords.AchsenKartenfeldPositivRecord;
    
    function UmgebungPrüfen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GebäudeIDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean;
 

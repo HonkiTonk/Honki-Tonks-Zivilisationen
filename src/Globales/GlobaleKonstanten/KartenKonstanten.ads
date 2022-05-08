@@ -6,6 +6,7 @@ with KartenRecords;
 with EinheitStadtDatentypen;
 with StadtKonstanten;
 with TextKonstanten;
+with ProduktionDatentypen;
 
 package KartenKonstanten is
    
@@ -28,7 +29,7 @@ package KartenKonstanten is
    LeerPassierbarkeit : constant Boolean := False;
       
    LeerBewertung : constant KartenDatentypen.BewertungFeld := 0;
-   LeerWirtschaft : constant EinheitStadtDatentypen.ProduktionElement := 0;
+   LeerWirtschaft : constant ProduktionDatentypen.ProduktionElement := 0;
    LeerKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    
    LeerHügel : constant Boolean := False;
@@ -39,7 +40,7 @@ package KartenKonstanten is
    LeerVerbesserungGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
       
    LeerVerbesserungBewertung : constant KartenDatentypen.BewertungFeld := 0;
-   LeerVerbesserungWirtschaft : constant EinheitStadtDatentypen.ProduktionElement := 0;
+   LeerVerbesserungWirtschaft : constant ProduktionDatentypen.ProduktionElement := 0;
    LeerVerbesserungKampf : constant EinheitStadtDatentypen.Kampfwerte := EinheitStadtDatentypen.Kampfwerte'First;
    
    WirtschaftNahrung : constant KartenDatentypen.Wirtschaft_Enum := KartenDatentypen.Nahrung;

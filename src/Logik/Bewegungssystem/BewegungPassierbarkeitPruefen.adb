@@ -21,7 +21,7 @@ with Fehler;
 package body BewegungPassierbarkeitPruefen is
    
    function PassierbarkeitPrüfenNummer
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -251,7 +251,7 @@ package body BewegungPassierbarkeitPruefen is
 
 
    function InStadtEntladbar
-     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       NeueKoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -259,7 +259,7 @@ package body BewegungPassierbarkeitPruefen is
       BenötigteFelder := 1;
          
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+      for BelegterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
                                                                                                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          case
@@ -296,7 +296,7 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return Boolean
    is begin

@@ -10,7 +10,7 @@ with RueckgabeDatentypen; use RueckgabeDatentypen;
 with RassenDatentypen;
 with SpielVariablen;
 with KartenRecords;
-with EinheitStadtRecords;
+with StadtRecords;
 with WichtigeRecords;
 with SonstigesKonstanten;
 with KartenDatentypen;
@@ -18,6 +18,7 @@ with TextKonstanten;
 with SpielDatentypen;
 with OptionenVariablen;
 with SonstigeVariablen;
+with EinheitenRecords;
 
 with Karten;
 with Auswahl;
@@ -180,7 +181,7 @@ package body Speichern is
                EinheitenSchleife:
                for EinheitNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
                   
-                  EinheitStadtRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
+                  EinheitenRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
                                                                    SpielVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
             
                end loop EinheitenSchleife;
@@ -208,7 +209,7 @@ package body Speichern is
                StadtSchleife:
                for StadtNummerSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
-                  EinheitStadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernNeu),
+                  StadtRecords.StadtGebautRecord'Write (Stream (File => DateiSpeichernNeu),
                                                                SpielVariablen.StadtGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
             
                end loop StadtSchleife;

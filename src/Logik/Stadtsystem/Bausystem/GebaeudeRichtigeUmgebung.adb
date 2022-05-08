@@ -14,7 +14,7 @@ with Kartenkoordinatenberechnungssystem;
 package body GebaeudeRichtigeUmgebung is
 
    function RichtigeUmgebungVorhanden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GebäudeIDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
    is begin
@@ -45,7 +45,7 @@ package body GebaeudeRichtigeUmgebung is
    
    
    function UmgebungPrüfen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       GebäudeIDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
    is begin

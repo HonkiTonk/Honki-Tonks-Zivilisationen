@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with StadtKonstanten;
 
 with SchreibeStadtGebaut;
@@ -13,7 +13,7 @@ with Fehler;
 package body StadtUmgebungsbereichFestlegen is
 
    procedure StadtUmgebungsbereichFestlegen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -32,7 +32,7 @@ package body StadtUmgebungsbereichFestlegen is
    
    
    procedure StadtUmgebungErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       if

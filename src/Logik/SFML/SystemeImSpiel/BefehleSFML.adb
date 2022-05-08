@@ -7,6 +7,7 @@ with AufgabenDatentypen; use AufgabenDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 with SpielVariablen;
+with EinheitenRecords;
 
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut;
@@ -172,7 +173,7 @@ package body BefehleSFML is
    
    
    procedure AuswahlEinheitTransporter
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -182,7 +183,7 @@ package body BefehleSFML is
         and
           Transportiert = False
       then
-         TransporterNummer := EinheitRasseNummerExtern.Platznummer;
+         TransporterNummer := EinheitRasseNummerExtern.Nummer;
          AusgewählteEinheit := 0;
 
       elsif
@@ -194,7 +195,7 @@ package body BefehleSFML is
                                                                          EinheitNummerExtern => TransporterNummer);
 
       else
-         TransporterNummer := EinheitRasseNummerExtern.Platznummer;
+         TransporterNummer := EinheitRasseNummerExtern.Nummer;
          AusgewählteEinheit := AuswahlStadtEinheit.AuswahlStadtEinheit (RasseExtern         => EinheitRasseNummerExtern.Rasse,
                                                                          StadtNummerExtern   => EinheitStadtDatentypen.MaximaleStädteMitNullWert'First,
                                                                          EinheitNummerExtern => TransporterNummer);
@@ -206,7 +207,7 @@ package body BefehleSFML is
          when 0 =>
             EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer));
             
-         when Positive (EinheitStadtRecords.TransporterArray'First) .. Positive (EinheitStadtRecords.TransporterArray'Last) =>
+         when Positive (EinheitenRecords.TransporterArray'First) .. Positive (EinheitenRecords.TransporterArray'Last) =>
             EinheitSteuern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransporterNummer),
                                                                                                                             PlatzExtern              => EinheitStadtDatentypen.Transportplätze (AusgewählteEinheit))));
             
@@ -244,7 +245,7 @@ package body BefehleSFML is
    
    
    procedure StadtBetreten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       InDerStadt.InDerStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -254,7 +255,7 @@ package body BefehleSFML is
    
    
    procedure EinheitSteuern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       if

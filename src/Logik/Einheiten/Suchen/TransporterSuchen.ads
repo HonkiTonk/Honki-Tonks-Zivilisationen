@@ -25,22 +25,22 @@ package TransporterSuchen is
             SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
    
    function EinheitAufTransporterSuchen
-     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
       return EinheitStadtDatentypen.Transportplätze
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (TransporterExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            TransporterExtern.Platznummer > 0);
+            TransporterExtern.Nummer > 0);
 
    function HatTransporterLadung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= RassenDatentypen.Leer_Spieler_Enum
           and
-            EinheitRasseNummerExtern.Platznummer > 0);
+            EinheitRasseNummerExtern.Nummer > 0);
 
 end TransporterSuchen;

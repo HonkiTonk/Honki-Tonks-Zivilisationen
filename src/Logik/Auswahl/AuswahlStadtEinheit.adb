@@ -44,14 +44,14 @@ package body AuswahlStadtEinheit is
       is
          when False =>
             Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+                                               size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
             SchriftgrößeFestgelegt := True;
             
          when True =>
             null;
       end case;
       
-      Zeilenabstand := Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße) * 0.15;
+      Zeilenabstand := Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard) * 0.15;
       
       WelcheAuswahl.MöglicheAuswahlen := (others => 0);
       
@@ -67,7 +67,7 @@ package body AuswahlStadtEinheit is
          WelcheAuswahl.MöglicheAuswahlen (0) := EinheitNummerExtern;
          
          TransporterSchleife:
-         for WirdTransportiertSchleifenwert in EinheitStadtRecords.TransporterArray'Range loop
+         for WirdTransportiertSchleifenwert in EinheitenRecords.TransporterArray'Range loop
             
             WelcheAuswahl.MöglicheAuswahlen (WirdTransportiertSchleifenwert) := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
                                                                                                                     PlatzExtern              => WirdTransportiertSchleifenwert);

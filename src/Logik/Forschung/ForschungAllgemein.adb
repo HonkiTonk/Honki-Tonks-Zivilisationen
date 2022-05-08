@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with ForschungenDatentypen; use ForschungenDatentypen;
-with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with GlobaleTexte;
 with TextKonstanten;
 with TastenbelegungDatentypen;

@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
 with StadtKonstanten;
 with SpielVariablen;
@@ -21,7 +22,7 @@ with KIStadtLaufendeBauprojekte;
 package body KIEinheitenBauen is
 
    function EinheitenBauen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
@@ -44,7 +45,7 @@ package body KIEinheitenBauen is
    
    
    function EinheitenDurchgehen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return KIRecords.EinheitIDBewertungRecord
    is begin
       
@@ -72,7 +73,7 @@ package body KIEinheitenBauen is
    
    
    procedure EinheitBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
    is begin
       
@@ -108,7 +109,7 @@ package body KIEinheitenBauen is
    
    
    function SpezielleEinheitBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
@@ -138,7 +139,7 @@ package body KIEinheitenBauen is
          when EinheitStadtDatentypen.Cheat_Enum =>
             return KIDatentypen.BauenBewertung'First;
             
-         when EinheitStadtDatentypen.Leer_Enum =>
+         when EinheitStadtDatentypen.Leer_Einheitart_Enum =>
             null;
       end case;
       
@@ -149,7 +150,7 @@ package body KIEinheitenBauen is
    
    
    function ArbeiterBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
@@ -182,7 +183,7 @@ package body KIEinheitenBauen is
    
    
    function NahkämpferBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
@@ -252,7 +253,7 @@ package body KIEinheitenBauen is
    
    
    function FernkämpferBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
@@ -310,7 +311,7 @@ package body KIEinheitenBauen is
    
    
    function KostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
@@ -325,7 +326,7 @@ package body KIEinheitenBauen is
      
      
    function GeldKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
@@ -333,7 +334,7 @@ package body KIEinheitenBauen is
       if
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum)
+                                                 WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         = WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return 5;
@@ -342,7 +343,7 @@ package body KIEinheitenBauen is
         LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => EinheitStadtDatentypen.Geld_Enum)
+                                                   WelcheKostenExtern => ProduktionDatentypen.Geld_Enum)
         < WichtigesKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
       then
          return -10;
@@ -356,7 +357,7 @@ package body KIEinheitenBauen is
    
    
    function NahrungKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
@@ -364,7 +365,7 @@ package body KIEinheitenBauen is
       if
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => EinheitStadtDatentypen.Nahrung_Enum)
+                                                 WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         = StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return 5;
@@ -373,7 +374,7 @@ package body KIEinheitenBauen is
         LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => EinheitStadtDatentypen.Nahrung_Enum)
+                                                   WelcheKostenExtern => ProduktionDatentypen.Nahrung_Enum)
         < StadtKonstanten.LeerStadt.Nahrungsproduktion
       then
          return -20;
@@ -387,7 +388,7 @@ package body KIEinheitenBauen is
      
      
    function RessourcenKostenBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitenIDExtern : in EinheitStadtDatentypen.EinheitenID)
       return KIDatentypen.BauenBewertung
    is begin
@@ -395,7 +396,7 @@ package body KIEinheitenBauen is
       if
         LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                  IDExtern           => EinheitenIDExtern,
-                                                 WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen_Enum)
+                                                 WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
         = StadtKonstanten.LeerStadt.Produktionrate
       then
          return 5;
@@ -404,7 +405,7 @@ package body KIEinheitenBauen is
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
-                                                   WelcheKostenExtern => EinheitStadtDatentypen.Ressourcen_Enum)
+                                                   WelcheKostenExtern => ProduktionDatentypen.Ressourcen_Enum)
         < StadtKonstanten.LeerStadt.Produktionrate
       then
          return -20;

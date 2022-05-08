@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with EinheitenKonstanten;
 with StadtKonstanten;
 
@@ -24,7 +25,7 @@ package body LeseEinheitenDatenbank is
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
    is begin
       
       return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PreisGeld;
@@ -36,7 +37,7 @@ package body LeseEinheitenDatenbank is
    function PreisRessourcen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
    is begin
       
       return EinheitenDatenbank.Einheitenliste (RasseExtern, IDExtern).PreisRessourcen;
@@ -48,8 +49,8 @@ package body LeseEinheitenDatenbank is
    function PermanenteKosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.EinheitenID;
-      WelcheKostenExtern : in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return EinheitStadtDatentypen.GesamtePermanenteKosten
+      WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return ProduktionDatentypen.GesamtePermanenteKosten
    is begin
       
       if

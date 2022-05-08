@@ -47,7 +47,7 @@ private
    
    
    
-   function AuswahlMausTastatur
+   function AuswahlSpracheSFML
      return Unbounded_Wide_Wide_String;
          
    function AuswahlSpracheKonsole

@@ -9,6 +9,7 @@ with Sf.System.Vector2;
 with SystemRecords;
 with RassenDatentypen;
 
+-- Achtung! Änderungen hier werden zum Teil gespeichert/geladen und dementsprechend muss auch das Einlesen/Schreiben angepasst werden.
 package GrafikEinstellungenSFML is
    
    FensterAccess : Sf.Graphics.sfRenderWindow_Ptr;
@@ -19,11 +20,14 @@ package GrafikEinstellungenSFML is
       
    FensterEinstellungen : SystemRecords.FensterRecord;
    
-   -- Hier mal einen globalen Zeilenabstand einbauen. Geht nicht so einfach da hier die Größe und alles noch gar nicht feststeht.
+   ------------------------ Hier mal einen globalen Zeilenabstand einbauen. Geht nicht so einfach da hier die Größe und alles noch gar nicht feststeht.
    
    AktuelleFensterAuflösung : Sf.System.Vector2.sfVector2u;
    
-   -- Später wie hier überall mehr konstante Standards und dann einfach zuweisen. Nutzereinstellungen dann auch in den Einstellugnen speichern!
+   ------------------------ Später wie hier überall mehr konstante Standards und dann einfach zuweisen. Nutzereinstellungen dann auch in den Einstellugnen speichern!
+   ------------------------ Später auch was für den Textstyle einbauen?
+   Schriftgrößen : SystemRecords.SchriftgrößenRecord;
+   
    Schriftfarben : SystemRecords.SchriftfarbenRecord;
    
    type RassenFarbenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of Sf.Graphics.Color.sfColor;
@@ -35,6 +39,7 @@ package GrafikEinstellungenSFML is
    
 private
    
+   -- FensterVollbild:
    -- No border / title bar = 0
    -- Title bar + fixed border = 1
    -- Titlebar + resizable border + maximize button = 2
@@ -48,12 +53,15 @@ private
                                                                            FensterHöhe     => 480,
                                                                            Farbtiefe       => 32,
                                                                            Bildrate        => 30,
-                                                                           MausZeiger      => Sf.Window.Cursor.sfCursorCross,
                                                                            
-                                                                           Schriftgröße    => 24,
-                                                                           Textfarbe       => Sf.Graphics.Color.sfWhite,
-                                                                           Textstyle       => 0
+                                                                           MausZeiger      => Sf.Window.Cursor.sfCursorCross
                                                                           );
+   
+   SchriftgrößenStandard : constant SystemRecords.SchriftgrößenRecord := (
+                                                                              SchriftgrößeÜberschrift => 36,
+                                                                              SchriftgrößeStandard    => 24,
+                                                                              SchriftgrößeKlein       => 12
+                                                                             );
    
    SchriftfarbenStandard : constant SystemRecords.SchriftfarbenRecord := (
                                                                           FarbeÜberschrift    => Sf.Graphics.Color.sfRed,

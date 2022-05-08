@@ -9,6 +9,7 @@ with EinheitStadtDatentypen; use EinheitStadtDatentypen;
 with EinheitenKonstanten;
 -- with TastenbelegungDatentypen;
 -- with TextKonstanten;
+with EinheitenRecords;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -20,7 +21,7 @@ with LeseEinheitenGebaut;
 package body EinheitenTransporter is
 
    function EinheitTransporterAuswählen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return EinheitStadtDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
@@ -32,7 +33,7 @@ package body EinheitenTransporter is
       Ende := 1;
 
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      for TransporterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                                      IDExtern    =>
                                                                                                                                        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          
@@ -115,13 +116,13 @@ package body EinheitenTransporter is
    
    
    function KannTransportiertWerden
-     (LadungExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (LadungExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
       case
-        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer))
+        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Nummer))
       is
          when EinheitenKonstanten.LeerID =>
             return False;
@@ -132,14 +133,14 @@ package body EinheitenTransporter is
       
       if
         LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
-                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer)))
+                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Nummer)))
         = EinheitenKonstanten.LeerKannTransportiertWerden
         or
           LeseEinheitenDatenbank.KannTransportieren (RasseExtern => TransporterExtern.Rasse,
-                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer)))
+                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Nummer)))
         <
         LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
-                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer)))
+                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Nummer)))
       then
          return False;
          
@@ -154,16 +155,16 @@ package body EinheitenTransporter is
    
    
    function PlatzFrei
-     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
       PlatzFreiSchleife:
-      for PlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+      for PlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
                                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          if
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer),
+           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Nummer),
                                               PlatzExtern              => PlatzSchleifenwert)
            = EinheitenKonstanten.LeerTransportiert
          then

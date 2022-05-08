@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
 
 with DatenbankRecords;
 
@@ -13,7 +13,7 @@ package LeseForschungenDatenbank is
    function PreisForschung
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in ForschungenDatentypen.ForschungID)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

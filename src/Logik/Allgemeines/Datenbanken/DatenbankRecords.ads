@@ -2,12 +2,13 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with SystemDatentypen;
-with EinheitStadtRecords;
 with EinheitStadtDatentypen;
 with KartenDatentypen;
 with KartengrundDatentypen;
 with RassenDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
+with StadtRecords;
 
 package DatenbankRecords is
 
@@ -18,9 +19,9 @@ package DatenbankRecords is
       
       ----------------------- Solche Benennungen auch mal anpassen.
       EinheitArt : EinheitStadtDatentypen.Einheit_Art_Enum;
-      PreisGeld : EinheitStadtDatentypen.KostenLager;
-      PreisRessourcen : EinheitStadtDatentypen.KostenLager;
-      PermanenteKosten : EinheitStadtRecords.PermanenteKostenArray;
+      PreisGeld : ProduktionDatentypen.KostenLager;
+      PreisRessourcen : ProduktionDatentypen.KostenLager;
+      PermanenteKosten : StadtRecords.PermanenteKostenArray;
       Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
 
       Passierbarkeit : PassierbarkeitArray;
@@ -49,7 +50,7 @@ package DatenbankRecords is
    -- ForschungenDatenbank
    type ForschungslisteRecord is record
 
-      PreisForschung : EinheitStadtDatentypen.KostenLager;
+      PreisForschung : ProduktionDatentypen.KostenLager;
       AnforderungForschung : ForschungenDatentypen.AnforderungForschungArray;
 
    end record;
@@ -60,14 +61,14 @@ package DatenbankRecords is
 
    
    -- GebäudeDatenbank
-   type BonusWirtschaftArray is array (KartenDatentypen.Wirtschaft_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
+   type BonusWirtschaftArray is array (KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.ProduktionFeld;
    type BonusKampfArray is array (KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.Kampfwerte;
    
    type GebäudelisteRecord is record
       
-      PreisGeld : EinheitStadtDatentypen.KostenLager;
-      PreisRessourcen : EinheitStadtDatentypen.KostenLager;
-      PermanenteKosten : EinheitStadtRecords.PermanenteKostenArray;
+      PreisGeld : ProduktionDatentypen.KostenLager;
+      PreisRessourcen : ProduktionDatentypen.KostenLager;
+      PermanenteKosten : StadtRecords.PermanenteKostenArray;
       
       Anforderungen : ForschungenDatentypen.ForschungIDNichtMöglich;
       
@@ -90,7 +91,7 @@ package DatenbankRecords is
 
 
    type BewertungArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of KartenDatentypen.BewertungFeld;
-   type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Wirtschaft_Enum'Range) of EinheitStadtDatentypen.ProduktionElement;
+   type WirtschaftArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Wirtschaft_Enum'Range) of ProduktionDatentypen.ProduktionElement;
    type KampfArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range, KartenDatentypen.Kampf_Enum'Range) of EinheitStadtDatentypen.KampfwerteAllgemein;
       
    -- KartenDatenbank

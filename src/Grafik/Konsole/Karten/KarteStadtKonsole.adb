@@ -31,7 +31,7 @@ with EingeleseneGrafikenKonsole;
 package body KarteStadtKonsole is
 
    procedure AnzeigeStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -62,7 +62,7 @@ package body KarteStadtKonsole is
    
    
    procedure GebäudeText
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       Aufschlag := AufschlagGebäude (RasseExtern => StadtRasseNummerExtern.Rasse);
@@ -120,7 +120,7 @@ package body KarteStadtKonsole is
    
    
    procedure GrafischeDarstellung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       YAchsenabstraktion := -Stadtumgebungsgröße;
@@ -162,7 +162,7 @@ package body KarteStadtKonsole is
    function Darstellung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -240,7 +240,7 @@ package body KarteStadtKonsole is
    
    
    procedure GebäudeDarstellung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
    is begin
       
@@ -311,7 +311,7 @@ package body KarteStadtKonsole is
    procedure AnsichtUmgebung
      (YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -387,7 +387,7 @@ package body KarteStadtKonsole is
 
 
    procedure AnzeigeStadtUmgebung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       YAchseExtern : in KartenDatentypen.Stadtfeld;
       XAchseExtern : in KartenDatentypen.Stadtfeld)
    is begin
@@ -496,7 +496,7 @@ package body KarteStadtKonsole is
    
    
    procedure WeitereInformationen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
 
       CursorYAchseabstraktion := SpielVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).KoordinatenStadt.YAchse - 4;

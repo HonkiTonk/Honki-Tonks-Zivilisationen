@@ -51,7 +51,7 @@ package body KarteInformationenKonsole is
             EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
             
             if
-              EinheitRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
+              EinheitRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
             then
                null;
                 
@@ -71,7 +71,7 @@ package body KarteInformationenKonsole is
             StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell);
 
             if
-              StadtRasseNummer.Platznummer = StadtKonstanten.LeerNummer
+              StadtRasseNummer.Nummer = StadtKonstanten.LeerNummer
             then
                null;
                      
@@ -102,7 +102,7 @@ package body KarteInformationenKonsole is
    
    procedure InformationenStadt
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       StadtInformationenKonsole.Stadt (RasseExtern            => RasseExtern,

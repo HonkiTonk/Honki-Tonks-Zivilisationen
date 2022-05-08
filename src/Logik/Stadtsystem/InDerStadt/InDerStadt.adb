@@ -16,10 +16,10 @@ with InteraktionGrafiktask;
 package body InDerStadt is
 
    procedure InDerStadt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
-      AktuelleStadtNummerGrafik := StadtRasseNummerExtern.Platznummer;
+      AktuelleStadtNummerGrafik := StadtRasseNummerExtern.Nummer;
       
       StadtSchleife:
       loop
@@ -86,7 +86,7 @@ package body InDerStadt is
    
    
    function WasIstAusgewählt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       

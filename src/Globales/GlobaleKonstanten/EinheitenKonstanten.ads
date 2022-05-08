@@ -9,6 +9,8 @@ with AufgabenDatentypen;
 with TextKonstanten;
 with RassenDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
+with EinheitenRecords;
 
 with DatenbankRecords;
 
@@ -18,7 +20,7 @@ package EinheitenKonstanten is
    
    LeerRasse : constant RassenDatentypen.Rassen_Enum := RassenDatentypen.Keine_Rasse_Enum;
    LeerNummer : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerRasseNummer : constant EinheitStadtRecords.RassePlatznummerRecord := (LeerRasse, LeerNummer);
+   LeerRasseNummer : constant EinheitStadtRecords.RasseEinheitnummerRecord := (LeerRasse, LeerNummer);
 
    LeerID : constant EinheitStadtDatentypen.EinheitenIDMitNullWert := EinheitStadtDatentypen.EinheitenIDMitNullWert'First;
    LeerKoordinaten : constant KartenRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
@@ -33,9 +35,9 @@ package EinheitenKonstanten is
    LeerKIBeschäftigt : constant KIDatentypen.Einheit_Aufgabe_Enum := KIDatentypen.Tut_Nichts_Enum;
    LeerTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerWirdTransportiert : constant EinheitStadtDatentypen.MaximaleEinheitenMitNullWert := EinheitStadtDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerMeldung : constant EinheitStadtDatentypen.Einheit_Meldung_Enum := EinheitStadtDatentypen.Leer_Enum;
+   LeerMeldung : constant EinheitStadtDatentypen.Einheit_Meldung_Enum := EinheitStadtDatentypen.Leer_Einheit_Meldung_Enum;
    
-   LeerEinheit : constant EinheitStadtRecords.EinheitenGebautRecord := (
+   LeerEinheit : constant EinheitenRecords.EinheitenGebautRecord := (
                                                                         ID                           => LeerID,
                                                                         KoordinatenAktuell           => LeerKoordinaten,
                                                                         Heimatstadt                  => LeerHeimatstadt,
@@ -58,10 +60,10 @@ package EinheitenKonstanten is
    EinheitBefehlAbzug : constant Positive := 22;
       
    LeerEinheitenGrafik : constant Wide_Wide_Character := TextKonstanten.LeerZeichen;
-   LeerEinheitArt : constant EinheitStadtDatentypen.Einheit_Art_Enum := EinheitStadtDatentypen.Leer_Enum;
-   LeerPreisGeld : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerPreisRessourcen : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerPermanenteKosten : constant EinheitStadtDatentypen.GesamtePermanenteKosten := 0;
+   LeerEinheitArt : constant EinheitStadtDatentypen.Einheit_Art_Enum := EinheitStadtDatentypen.Leer_Einheitart_Enum;
+   LeerPreisGeld : constant ProduktionDatentypen.KostenLager := 0;
+   LeerPreisRessourcen : constant ProduktionDatentypen.KostenLager := 0;
+   LeerPermanenteKosten : constant ProduktionDatentypen.GesamtePermanenteKosten := 0;
    LeerAnforderungen : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungKonstanten.ForschungUnmöglich;
    LeerPassierbarkeit : constant Boolean := False;
    LeerMaximaleLebenspunkte : constant EinheitStadtDatentypen.LebenspunkteVorhanden := EinheitStadtDatentypen.LebenspunkteVorhanden'First;
@@ -98,7 +100,7 @@ package EinheitenKonstanten is
    
    LeerArbeit : constant AufgabenDatentypen.Einheiten_Aufgaben_Enum := AufgabenDatentypen.Leer_Aufgabe_Enum;
    LeerArbeitszeit : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
-   KeineArbeit : constant EinheitStadtRecords.ArbeitRecord := (
+   KeineArbeit : constant EinheitenRecords.ArbeitRecord := (
                                                               WelcheArbeit => LeerArbeit,
                                                               Arbeitszeit  => LeerArbeitszeit
                                                              );

@@ -3,8 +3,8 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
 
 package SchreibeWichtiges is
 
@@ -18,7 +18,7 @@ package SchreibeWichtiges is
    
    procedure GeldZugewinnProRunde
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      GeldZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
+      GeldZugewinnExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
@@ -26,7 +26,7 @@ package SchreibeWichtiges is
    
    procedure GesamteForschungsrate
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungsrateZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
+      ForschungsrateZugewinnExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>
@@ -34,7 +34,7 @@ package SchreibeWichtiges is
    
    procedure Forschungsmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungZugewinnExtern : in EinheitStadtDatentypen.KostenLager;
+      ForschungZugewinnExtern : in ProduktionDatentypen.KostenLager;
       RechnenSetzenExtern : in Boolean)
      with
        Pre =>

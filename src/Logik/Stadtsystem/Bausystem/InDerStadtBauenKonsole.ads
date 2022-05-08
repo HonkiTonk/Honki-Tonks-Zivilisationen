@@ -4,6 +4,6 @@ pragma Warnings (Off, "*array aggregate*");
 package InDerStadtBauenKonsole is
 
    function AuswahlBauprojektKonsole
-     return EinheitStadtRecords.BauprojektRecord;
+     return StadtRecords.BauprojektRecord;
 
 end InDerStadtBauenKonsole;

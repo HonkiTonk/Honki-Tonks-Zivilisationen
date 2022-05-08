@@ -7,6 +7,7 @@ with SonstigeVariablen;
 with EinheitStadtDatentypen;
 with KartengrundDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
 
 with DatenbankRecords;
 
@@ -15,7 +16,7 @@ package LeseGebaeudeDatenbank is
    function PreisGeld
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -23,7 +24,7 @@ package LeseGebaeudeDatenbank is
    function PreisRessourcen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
-      return EinheitStadtDatentypen.KostenLager
+      return ProduktionDatentypen.KostenLager
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -31,8 +32,8 @@ package LeseGebaeudeDatenbank is
    function PermanenteKosten
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
-      WelcheKostenExtern : in EinheitStadtDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return EinheitStadtDatentypen.GesamtePermanenteKosten
+      WelcheKostenExtern : in ProduktionDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return ProduktionDatentypen.GesamtePermanenteKosten
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);
@@ -49,7 +50,7 @@ package LeseGebaeudeDatenbank is
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
       WWirtschaftBonusExtern : in KartenDatentypen.Wirtschaft_Enum)
-      return EinheitStadtDatentypen.ProduktionFeld
+      return ProduktionDatentypen.ProduktionFeld
      with
        Pre =>
          (SonstigeVariablen.RassenImSpiel (RasseExtern) /= RassenDatentypen.Leer_Spieler_Enum);

@@ -7,6 +7,8 @@ with Sf.Graphics.Text;
 with RassenDatentypen;
 with EinheitStadtDatentypen;
 with ForschungenDatentypen;
+with SystemKonstanten;
+with MenueDatentypen;
 
 with InteraktionAuswahl;
 
@@ -74,8 +76,59 @@ package TextaccessVariablen is
    
    
    
-   --
+   -- Sprachauswahl
+   SprachauswahlAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   -- Sprachauswahl
    
-   --
+   
+   
+   -- Kartenformauswahl
+   Zusatzplatz : constant Positive := 16;
+   
+   type KartenformauswahlAccessArray is array (Überschrift .. SystemKonstanten.EndeMenü (MenueDatentypen.Kartenform_Menü_Enum) + Zusatzplatz + Versionsnummer) of Sf.Graphics.sfText_Ptr;
+   KartenformauswahlAccess : constant KartenformauswahlAccessArray := (
+                                                                       others => Sf.Graphics.Text.create
+                                                                      );
+   -- Kartenformauswahl
+
+   
+   
+   -- StadtInformationen
+   type StadtInformationenAccessArray is array (1 .. 17) of Sf.Graphics.sfText_Ptr;
+   StadtInformationenAccess : constant StadtInformationenAccessArray := (others => Sf.Graphics.Text.create);
+   -- StadtInformationen
+   
+   
+   
+   -- EinheitenInformationen
+   type EinheitenInformationenAccessArray is array (1 .. 14) of Sf.Graphics.sfText_Ptr;
+   EinheitenInformationenAccess : constant EinheitenInformationenAccessArray := (others => Sf.Graphics.Text.create);
+   -- EinheitenInformationen
+   
+      
+   
+   -- KarteWichtiges
+   type KarteWichtigesAccessArray is array (1 .. 8) of Sf.Graphics.sfText_Ptr;
+   KarteWichtigesAccess : constant KarteWichtigesAccessArray := (others => Sf.Graphics.Text.create);
+   -- KarteWichtiges
+   
+   
+   
+   -- KarteAllgemeines
+   type KarteAllgemeinesAccessArray is array (1 .. 6) of Sf.Graphics.sfText_Ptr;
+   KarteAllgemeinesAccess : constant KarteAllgemeinesAccessArray := (others => Sf.Graphics.Text.create);
+   -- KarteAllgemeines
+   
+   
+   
+   -- Karte
+   KarteAccess : constant Sf.Graphics.sfText_Ptr := Sf.Graphics.Text.create;
+   -- Karte
+   
+   
+   
+   -- 
+   
+   -- 
 
 end TextaccessVariablen;

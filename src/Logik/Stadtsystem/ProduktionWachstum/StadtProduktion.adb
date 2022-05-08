@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with KartenDatentypen; use KartenDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with KartenKonstanten;
 with KartenVerbesserungDatentypen;
 
@@ -15,7 +16,7 @@ with Wachstum;
 package body StadtProduktion is
    
    procedure StadtProduktion
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -71,7 +72,7 @@ package body StadtProduktion is
 
 
    procedure StadtProduktionBerechnung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       StadtProduktionNullSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -91,7 +92,7 @@ package body StadtProduktion is
    
    
    procedure KorruptionBerechnen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       null;
@@ -101,7 +102,7 @@ package body StadtProduktion is
    
    
    procedure ZufriedenheitBerechnen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       null;
@@ -111,7 +112,7 @@ package body StadtProduktion is
    
    
    procedure FelderProduktionBerechnen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
             
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -165,7 +166,7 @@ package body StadtProduktion is
    
    
    procedure StadtProduktionNullSetzen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
@@ -192,12 +193,12 @@ package body StadtProduktion is
    
    
    procedure WeitereNahrungsproduktionÄnderungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
                                               NahrungsproduktionExtern => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                                   WelcherPostenExtern    => EinheitStadtDatentypen.Nahrung_Enum),
+                                                                                                                   WelcherPostenExtern    => ProduktionDatentypen.Nahrung_Enum),
                                               ÄndernSetzenExtern       => True);
       VorhandeneEinwohner := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                 EinwohnerArbeiterExtern => True);
@@ -227,12 +228,12 @@ package body StadtProduktion is
 
 
    procedure WeitereProduktionrateÄnderungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           ProduktionrateExtern   => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                             WelcherPostenExtern    => EinheitStadtDatentypen.Ressourcen_Enum),
+                                                                                                             WelcherPostenExtern    => ProduktionDatentypen.Ressourcen_Enum),
                                           ÄndernSetzenExtern    => True);
             
       case
@@ -266,12 +267,12 @@ package body StadtProduktion is
 
 
    procedure WeitereGeldgewinnungÄnderungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          GeldgewinnungExtern    => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                            WelcherPostenExtern    => EinheitStadtDatentypen.Geld_Enum),
+                                                                                                            WelcherPostenExtern    => ProduktionDatentypen.Geld_Enum),
                                          ÄndernSetzenExtern     => True);
       
       if
@@ -316,7 +317,7 @@ package body StadtProduktion is
 
 
    procedure WeitereForschungsrateÄnderungen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
 
       case

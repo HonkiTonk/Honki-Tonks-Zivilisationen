@@ -58,7 +58,7 @@ package body UmgebungErreichbarTesten is
                                            KoordinatenExtern => KartenWert)
                  = True
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = EinheitenKonstanten.LeerNummer
+                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer = EinheitenKonstanten.LeerNummer
                  and
                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
                                                                           IDExtern              => IDExtern,
@@ -79,7 +79,7 @@ package body UmgebungErreichbarTesten is
                                            KoordinatenExtern => KartenWert)
                  = True
                  and
-                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = EinheitenKonstanten.LeerNummer
+                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Nummer = EinheitenKonstanten.LeerNummer
                  and
                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern           => RasseExtern,
                                                                           IDExtern              => IDExtern,

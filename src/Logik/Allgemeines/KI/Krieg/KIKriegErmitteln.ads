@@ -3,7 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
-with EinheitStadtDatentypen;
+with ProduktionDatentypen;
 
 package KIKriegErmitteln is
 
@@ -24,9 +24,9 @@ package KIKriegErmitteln is
 private
 
    RasseGewählt : RassenDatentypen.Rassen_Enum;
-   Bewertung : EinheitStadtDatentypen.ProduktionFeld;
+   Bewertung : ProduktionDatentypen.ProduktionFeld;
 
-   type BewertungenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of EinheitStadtDatentypen.ProduktionFeld;
+   type BewertungenArray is array (RassenDatentypen.Rassen_Verwendet_Enum'Range) of ProduktionDatentypen.ProduktionFeld;
    Bewertungen : BewertungenArray;
 
    NotwendigeBewertung : constant BewertungenArray := (

@@ -13,8 +13,6 @@ package ForschungAnzeigeSFML is
    
 private
    
-   SchriftgrößeFestgelegt : Boolean := False;
-   
    Überschrift : constant ForschungenDatentypen.ForschungIDMitNullWert := 0;
    
    AktuelleAuswahl : ForschungenDatentypen.ForschungIDMitNullWert;
@@ -31,10 +29,5 @@ private
 
    StartPositionText : constant Sf.System.Vector2.sfVector2f := (5.00, 5.00);
    TextPosition : Sf.System.Vector2.sfVector2f;
-   
-   
-   
-   function SchriftgrößenFestlegen
-     return Boolean;
 
 end ForschungAnzeigeSFML;

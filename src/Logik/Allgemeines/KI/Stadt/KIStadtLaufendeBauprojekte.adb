@@ -11,8 +11,8 @@ with LeseEinheitenDatenbank;
 package body KIStadtLaufendeBauprojekte is
 
    function StadtLaufendeBauprojekte
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      BauprojektExtern : in EinheitStadtRecords.BauprojektRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      BauprojektExtern : in StadtRecords.BauprojektRecord)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -22,7 +22,7 @@ package body KIStadtLaufendeBauprojekte is
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
             
          if
-           StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
+           StadtNummerSchleifenwert = StadtRasseNummerExtern.Nummer
            or
              LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
          then
@@ -48,7 +48,7 @@ package body KIStadtLaufendeBauprojekte is
    
    
    function GleicheEinheitArtBauprojekte
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EinheitArtExtern : in EinheitStadtDatentypen.Einheit_Art_Verwendet_Enum)
       return EinheitStadtDatentypen.MaximaleStädteMitNullWert
    is begin
@@ -59,7 +59,7 @@ package body KIStadtLaufendeBauprojekte is
       for StadtNummerSchleifenwert in SpielVariablen.StadtGebautArray'First (2) .. SpielVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
             
          if
-           StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
+           StadtNummerSchleifenwert = StadtRasseNummerExtern.Nummer
            or
              LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = KartenVerbesserungDatentypen.Leer_Verbesserung_Enum
          then

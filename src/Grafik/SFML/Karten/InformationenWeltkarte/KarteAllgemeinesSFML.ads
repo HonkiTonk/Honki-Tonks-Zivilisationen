@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
 with Sf.System.Vector2;
-with Sf.Graphics;
-with Sf.Graphics.Text;
 
 with RassenDatentypen; use RassenDatentypen;
 with SonstigeVariablen;
@@ -11,6 +9,7 @@ with KartenRecords;
 with KartenRecordKonstanten;
 with KartengrundDatentypen;
 with KartenVerbesserungDatentypen;
+with TextaccessVariablen;
 
 package KarteAllgemeinesSFML is
 
@@ -33,10 +32,6 @@ package KarteAllgemeinesSFML is
    
 private
 
-   SchriftartFestgelegt : Boolean := False;
-   SchriftfarbeFestgelegt : Boolean := False;
-   SchriftgrößeFestgelegt : Boolean := False;
-
    KartenGrund : KartengrundDatentypen.Kartengrund_Enum;
    KartenFluss : KartengrundDatentypen.Kartenfluss_Enum;
    KartenRessource : KartengrundDatentypen.Karten_Ressourcen_Enum;
@@ -50,20 +45,8 @@ private
    AktuelleKoordinaten : KartenRecords.AchsenKartenfeldPositivRecord;
    
    Textposition : Sf.System.Vector2.sfVector2f;
-
-   type TextAccessArray is array (1 .. 6) of Sf.Graphics.sfText_Ptr;
-   TextAccess : constant TextAccessArray := (others => Sf.Graphics.Text.create);
    
-   type TextAnzeigenArray is array (TextAccessArray'Range) of Boolean;
+   type TextAnzeigenArray is array (TextaccessVariablen.KarteAllgemeinesAccessArray'Range) of Boolean;
    TextAnzeigen : TextAnzeigenArray;
    
-   function SchriftartFestlegen
-     return Boolean;
-
-   function SchriftgrößenFestlegen
-     return Boolean;
-
-   function SchriftfarbenFestlegen
-     return Boolean;
-
 end KarteAllgemeinesSFML;

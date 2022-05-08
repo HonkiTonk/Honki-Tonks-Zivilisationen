@@ -15,7 +15,7 @@ package EinheitVerschieben is
    
    procedure EinheitVerschieben
      (RasseLandExtern : in RueckgabeDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+      EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
 private
    
@@ -28,7 +28,7 @@ private
    KartenWertVerschieben : KartenRecords.AchsenKartenfeldPositivRecord;
    
    procedure EinheitenErmitteln
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KontaktierteRasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
 
 end EinheitVerschieben;

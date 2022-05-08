@@ -22,7 +22,7 @@ package body BewegungEinheiten is
    
    -- Hier wird True zurückgegeben wenn keine Bewegung stattfindet, damit klar ist dass noch eine weitere Bewegung stattfinden kann.
    function BewegungPrüfen
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       PositionÄnderungExtern : in KartenRecords.AchsenKartenfeldRecord)
       return Boolean
    is begin
@@ -52,7 +52,7 @@ package body BewegungEinheiten is
       if
         FeldPassierbar = False
         and
-          EinheitAufFeld.Platznummer = EinheitenKonstanten.LeerNummer
+          EinheitAufFeld.Nummer = EinheitenKonstanten.LeerNummer
       then
          return True;
          
@@ -94,7 +94,7 @@ package body BewegungEinheiten is
          end if;
          
       elsif
-        StadtAufFeld.Platznummer /= EinheitenKonstanten.LeerNummer
+        StadtAufFeld.Nummer /= EinheitenKonstanten.LeerNummer
         and
           FeldPassierbar
       then
@@ -131,7 +131,7 @@ package body BewegungEinheiten is
    
    
    function NochBewegungspunkte
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -151,8 +151,8 @@ package body BewegungEinheiten is
    
    
    function FremderAufFeld
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FremdeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      FremdeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
             
@@ -173,7 +173,7 @@ package body BewegungEinheiten is
         = True
       then
          case
-           StadtAufFeld.Platznummer
+           StadtAufFeld.Nummer
          is
             when EinheitenKonstanten.LeerNummer =>
                return True;
@@ -193,8 +193,8 @@ package body BewegungEinheiten is
    
    
    function FremdeStadtAufFeld
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FremdeStadtExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      FremdeStadtExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
@@ -216,12 +216,12 @@ package body BewegungEinheiten is
    
    -- Hier vielleicht später mehr einbauen? Beispielsweise Plätzetauschen?
    procedure EigeneEinheitAufFeld
-     (BewegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord;
-      FeldBelegendeEinheitExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (BewegendeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
+      FeldBelegendeEinheitExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       BewegungLadenEntladen.TransporterBeladen (TransporterExtern => FeldBelegendeEinheitExtern,
-                                                LadungExtern      => BewegendeEinheitExtern.Platznummer);
+                                                LadungExtern      => BewegendeEinheitExtern.Nummer);
       
    end EigeneEinheitAufFeld;
 

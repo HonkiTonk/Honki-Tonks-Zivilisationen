@@ -3,10 +3,12 @@ pragma Warnings (Off, "*array aggregate*");
 
 with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with GlobaleTexte;
 with StadtKonstanten;
 with ForschungKonstanten;
 with TextKonstanten;
+with StadtRecords;
 
 with SchreibeWichtiges;
 with SchreibeStadtGebaut;
@@ -67,7 +69,7 @@ package body GebaeudeAllgemein is
    
 
    procedure GebäudeProduktionBeenden
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
    is begin
       
@@ -89,7 +91,7 @@ package body GebaeudeAllgemein is
    
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       WelchesGebäudeExtern : in EinheitStadtDatentypen.GebäudeID)
    is begin
       
@@ -110,18 +112,18 @@ package body GebaeudeAllgemein is
    
 
    procedure PermanenteKostenDurchGebäudeÄndern
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID;
       -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
       VorzeichenWechselExtern : in KartenDatentypen.UmgebungsbereichEins)
    is begin
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in EinheitStadtRecords.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in StadtRecords.PermanenteKostenArray'Range loop
          
          SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                      WelcherPostenExtern    => PermanenteKostenSchleifenwert,
-                                                     KostenExtern           => EinheitStadtDatentypen.GesamtePermanenteKosten (VorzeichenWechselExtern)
+                                                     KostenExtern           => ProduktionDatentypen.GesamtePermanenteKosten (VorzeichenWechselExtern)
                                                      * LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                                                IDExtern           => IDExtern,
                                                                                                WelcheKostenExtern => PermanenteKostenSchleifenwert),
@@ -137,7 +139,7 @@ package body GebaeudeAllgemein is
    
    -- Hier vielleicht noch Prüfungen einbauen um zu testen ob das Gebäude für diese Rasse überhaupt existiert?
    function GebäudeAnforderungenErfüllt
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       IDExtern : in EinheitStadtDatentypen.GebäudeID)
       return Boolean
    is begin

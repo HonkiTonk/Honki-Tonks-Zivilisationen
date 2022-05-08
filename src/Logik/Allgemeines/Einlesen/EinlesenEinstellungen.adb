@@ -34,6 +34,8 @@ package body EinlesenEinstellungen is
       
       SystemRecords.FensterRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                         GrafikEinstellungenSFML.FensterEinstellungen);
+      SystemRecords.SchriftgrößenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                GrafikEinstellungenSFML.Schriftgrößen);
       SystemRecords.SchriftfarbenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
                                               GrafikEinstellungenSFML.Schriftfarben);
       GrafikEinstellungenSFML.RassenFarbenArray'Read (Stream (File => DateiEinstellungenEinlesen),

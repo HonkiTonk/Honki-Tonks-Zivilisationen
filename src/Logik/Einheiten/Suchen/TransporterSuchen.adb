@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenRecords; use KartenRecords;
 with EinheitenKonstanten;
 with SpielVariablen;
+with EinheitenRecords;
 
 with LeseEinheitenDatenbank;
 with LeseEinheitenGebaut;
@@ -44,7 +45,7 @@ package body TransporterSuchen is
    
    
    function EinheitAufTransporterSuchen
-     (TransporterExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (TransporterExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       LadungExtern : in EinheitStadtDatentypen.MaximaleEinheiten)
       return EinheitStadtDatentypen.Transportplätze
    is begin
@@ -53,7 +54,7 @@ package body TransporterSuchen is
       for 
         TransporterPlatzSchleifenwert
       in
-        EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+        EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
                                                                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          if
@@ -76,12 +77,12 @@ package body TransporterSuchen is
 
 
    function HatTransporterLadung
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
       return Boolean
    is begin
       
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in EinheitStadtRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+      for TransporterPlatzSchleifenwert in EinheitenRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                                                                                                      IDExtern    =>
                                                                                                                                        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          

@@ -42,7 +42,7 @@ package body StadtSuchen is
 
    function KoordinatenStadtOhneRasseSuchen
      (KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RassePlatznummerRecord
+      return EinheitStadtRecords.RasseEinheitnummerRecord
    is begin
 
       RasseSchleife:
@@ -79,7 +79,7 @@ package body StadtSuchen is
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord)
-      return EinheitStadtRecords.RassePlatznummerRecord
+      return EinheitStadtRecords.RasseEinheitnummerRecord
    is begin
 
       RasseSchleife:
@@ -116,7 +116,7 @@ package body StadtSuchen is
 
    
    function StadtNachNamenSuchen
-     return EinheitStadtRecords.RassePlatznummerRecord
+     return EinheitStadtRecords.RasseEinheitnummerRecord
    is begin
       
       StadtName := Eingabe.StadtName;

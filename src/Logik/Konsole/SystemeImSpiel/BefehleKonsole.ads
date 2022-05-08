@@ -32,7 +32,7 @@ private
    
    BefehlNeu : Sf.Window.Event.sfEvent;
    
-   StadtSuchenNachNamen : EinheitStadtRecords.RassePlatznummerRecord;
+   StadtSuchenNachNamen : EinheitStadtRecords.RasseEinheitnummerRecord;
    
    NeuerName : SystemRecords.TextEingabeRecord;
    
@@ -62,12 +62,12 @@ private
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
    
    procedure AuswahlEinheitTransporter
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure StadtBetreten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
    
    procedure EinheitSteuern
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord);
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord);
 
 end BefehleKonsole;

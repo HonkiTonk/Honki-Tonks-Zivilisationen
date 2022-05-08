@@ -3,6 +3,7 @@ pragma Warnings (Off, "*array aggregate*");
 
 with ForschungenDatentypen; use ForschungenDatentypen;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
+with ProduktionDatentypen; use ProduktionDatentypen;
 with WichtigesKonstanten;
 with SpielVariablen;
 
@@ -46,7 +47,7 @@ package body SchreibeWichtiges is
    
    procedure GeldZugewinnProRunde
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      GeldZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
+      GeldZugewinnExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
    is begin
       
@@ -60,9 +61,9 @@ package body SchreibeWichtiges is
                SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := SpielVariablen.Grenzen (RasseExtern).Geldgewinngrenze;
                
             elsif
-              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern < EinheitStadtDatentypen.KostenLager'First
+              SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern < ProduktionDatentypen.KostenLager'First
             then
-               SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := EinheitStadtDatentypen.KostenLager'First;
+               SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := ProduktionDatentypen.KostenLager'First;
                
             else
                SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := SpielVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern;
@@ -78,7 +79,7 @@ package body SchreibeWichtiges is
    
    procedure GesamteForschungsrate
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungsrateZugewinnExtern : in EinheitStadtDatentypen.GesamtproduktionStadt;
+      ForschungsrateZugewinnExtern : in ProduktionDatentypen.GesamtproduktionStadt;
       RechnenSetzenExtern : in Boolean)
    is begin
       
@@ -119,7 +120,7 @@ package body SchreibeWichtiges is
    
    procedure Forschungsmenge
      (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum;
-      ForschungZugewinnExtern : in EinheitStadtDatentypen.KostenLager;
+      ForschungZugewinnExtern : in ProduktionDatentypen.KostenLager;
       RechnenSetzenExtern : in Boolean)
    is begin
       
@@ -167,7 +168,7 @@ package body SchreibeWichtiges is
         or
           SpielVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
       then
-         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := EinheitStadtDatentypen.KostenLager'Last;
+         SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := ProduktionDatentypen.KostenLager'Last;
          
       else
          SpielVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit

@@ -153,7 +153,7 @@ package body GrafischeAnzeigeKonsole is
       EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
-        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
+        EinheitStadtRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
       then
          return False;
             
@@ -198,7 +198,7 @@ package body GrafischeAnzeigeKonsole is
       EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
-        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
+        EinheitStadtRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
       then
          return False;
             

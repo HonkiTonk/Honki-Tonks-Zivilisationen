@@ -81,7 +81,7 @@ package body AuswahlMenuesEinfachSFML is
    is begin
       
       AktuelleAuflösung := GrafikEinstellungenSFML.AktuelleFensterAuflösung;
-      AktuelleSchriftgröße := GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße;
+      AktuelleSchriftgröße := GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard;
       AktuelleSchriftfarben := GrafikEinstellungenSFML.Schriftfarben;
       
       if
@@ -187,10 +187,10 @@ package body AuswahlMenuesEinfachSFML is
    is begin
 
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, Überschrift),
-                                         size => Sf.sfUint32 (1.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeÜberschrift);
       
       Sf.Graphics.Text.setCharacterSize (text => TextaccessVariablen.MenüsEinfachSFMLAccess (WelchesMenüExtern, TextbereichExtern),
-                                         size => Sf.sfUint32 (0.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße)));
+                                         size => GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeKlein);
 
    end SchriftgrößenFestlegen;
 
@@ -403,7 +403,7 @@ package body AuswahlMenuesEinfachSFML is
       TextbereichExtern : in Positive)
    is begin
       
-      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
+      ZeilenAbstand := 0.50 * Float (GrafikEinstellungenSFML.Schriftgrößen.SchriftgrößeStandard);
       
       Rechenwert.y := Float (AktuelleAuflösung.y / 100);
       

@@ -4,13 +4,14 @@ pragma Warnings (Off, "*array aggregate*");
 with EinheitStadtDatentypen;
 with SystemDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
 
 package WichtigeRecords is
    
    type ForschungRecord is record -- XXX
       
       TechnologieErforscht : ForschungenDatentypen.ErforschtArray;
-      InvestierteForschung : EinheitStadtDatentypen.KostenLager;
+      InvestierteForschung : ProduktionDatentypen.KostenLager;
       
    end record;
    
@@ -19,11 +20,11 @@ package WichtigeRecords is
    type WichtigesRecord is record
       
       Geldmenge : Integer;
-      GeldZugewinnProRunde : EinheitStadtDatentypen.KostenLager;
+      GeldZugewinnProRunde : ProduktionDatentypen.KostenLager;
 
-      GesamteForschungsrate : EinheitStadtDatentypen.KostenLager;
-      Forschungsmenge : EinheitStadtDatentypen.KostenLager;
-      VerbleibendeForschungszeit : EinheitStadtDatentypen.KostenLager;
+      GesamteForschungsrate : ProduktionDatentypen.KostenLager;
+      Forschungsmenge : ProduktionDatentypen.KostenLager;
+      VerbleibendeForschungszeit : ProduktionDatentypen.KostenLager;
       Forschungsprojekt : ForschungenDatentypen.ForschungIDMitNullWert;
       
       -- Wenn ich ein Record für diese Variable hier anlege, dann könnten man die bereits investierte Forschung behalten. XXX
@@ -35,8 +36,8 @@ package WichtigeRecords is
       AnzahlSonstiges : EinheitStadtDatentypen.MaximaleEinheitenMitNullWert;
       
       -- Einbau sinnvoll?
-      -- GesamterAngriff : EinheitStadtDatentypen.KostenLager;
-      -- GesamteVerteidigung : EinheitStadtDatentypen.KostenLager;
+      -- GesamterAngriff : ProduktionDatentypen.KostenLager;
+      -- GesamteVerteidigung : ProduktionDatentypen.KostenLager;
       
    end record;
    
@@ -45,7 +46,7 @@ package WichtigeRecords is
    type DiplomatieRecord is record
       
       AktuellerZustand : SystemDatentypen.Status_Untereinander_Enum;
-      AktuelleSympathieBewertung : EinheitStadtDatentypen.ProduktionFeld;
+      AktuelleSympathieBewertung : ProduktionDatentypen.ProduktionFeld;
       ZeitSeitLetzterÄnderung : Natural;
       
    end record;
@@ -57,9 +58,9 @@ package WichtigeRecords is
       Städtegrenze : EinheitStadtDatentypen.MaximaleStädte;
       Einheitengrenze : EinheitStadtDatentypen.MaximaleEinheiten;
       Geldgrenze : Integer;
-      Forschungsgrenze : EinheitStadtDatentypen.KostenLager;
-      Geldgewinngrenze : EinheitStadtDatentypen.KostenLager;
-      ForschungGewinngrenze : EinheitStadtDatentypen.KostenLager;
+      Forschungsgrenze : ProduktionDatentypen.KostenLager;
+      Geldgewinngrenze : ProduktionDatentypen.KostenLager;
+      ForschungGewinngrenze : ProduktionDatentypen.KostenLager;
       RassenRundengrenze : Natural;
       
    end record;

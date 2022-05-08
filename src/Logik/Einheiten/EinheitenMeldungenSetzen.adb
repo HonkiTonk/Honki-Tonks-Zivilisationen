@@ -21,7 +21,7 @@ package body EinheitenMeldungenSetzen is
                EinheitenSchleife:
                for EinheitSchleifenwert in SpielVariablen.EinheitenGebautArray'First (2) .. SpielVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
                   
-                  SpielVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer_Enum);
+                  SpielVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitSchleifenwert).Meldungen := (others => EinheitStadtDatentypen.Leer_Einheit_Meldung_Enum);
                   
                end loop EinheitenSchleife;
          end case;
@@ -32,7 +32,7 @@ package body EinheitenMeldungenSetzen is
    
    
    procedure EinheitMeldungSetzenEreignis
-     (EinheitRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (EinheitRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       EreignisExtern : in EinheitStadtDatentypen.Einheit_Meldung_Verwendet_Enum)
    is begin
       

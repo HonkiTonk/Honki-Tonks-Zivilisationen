@@ -8,8 +8,9 @@ with Sf.Graphics;
 with Sf.Graphics.RectangleShape;
 with Sf.System.Vector2;
 
-with RassenDatentypen;
+with RassenDatentypen; use RassenDatentypen;
 with EinheitStadtRecords;
+with SonstigeVariablen;
 
 with AuswahlStadtEinheit;
 with UmwandlungenAdaNachEigenes;
@@ -19,9 +20,11 @@ package AnzeigeEingabeSFML is
    procedure AnzeigeGanzeZahl;
    procedure AnzeigeText;
    
-   -------------------- Contracts hinzufügen.
    procedure AnzeigeEinheitenStadt
-     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum);
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (SonstigeVariablen.RassenImSpiel (RasseExtern) = RassenDatentypen.Spieler_Mensch_Enum);
    
 private
    
@@ -39,8 +42,8 @@ private
    
    WelcheAuswahl : AuswahlStadtEinheit.AuswahlRecord;
    
-   StadtRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
-   EinheitRasseNummer : EinheitStadtRecords.RassePlatznummerRecord;
+   StadtRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
+   EinheitRasseNummer : EinheitStadtRecords.RasseEinheitnummerRecord;
    
    TextPosition : Sf.System.Vector2.sfVector2f;
    

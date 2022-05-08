@@ -1,16 +1,16 @@
 pragma SPARK_Mode (On);
 pragma Warnings (Off, "*array aggregate*");
 
-with EinheitStadtDatentypen;
 with RassenDatentypen;
 with TastenbelegungDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
 
 with DatenbankRecords;
 
 package ForschungKonstanten is
    
-   LeerPreisForschung : constant EinheitStadtDatentypen.KostenLager := 0;
+   LeerPreisForschung : constant ProduktionDatentypen.KostenLager := 0;
    LeerForschung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    LeerForschungAnforderung : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    ForschungUnmöglich : constant ForschungenDatentypen.ForschungIDNichtMöglich := ForschungenDatentypen.ForschungIDNichtMöglich'First;

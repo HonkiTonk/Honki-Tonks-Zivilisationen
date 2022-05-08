@@ -6,6 +6,7 @@ with KartenRecords;
 with EinheitStadtDatentypen;
 with SystemDatentypen;
 with ForschungenDatentypen;
+with ProduktionDatentypen;
 
 with DatenbankRecords;
 
@@ -22,10 +23,10 @@ package WichtigesKonstanten is
                                                        );
    
    LeerGeldmenge : constant Integer := 100;
-   LeerGeldZugewinnProRunde : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerGesamteForschungsrate : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerForschungsmenge : constant EinheitStadtDatentypen.KostenLager := 0;
-   LeerVerbleibendeForschungszeit : constant EinheitStadtDatentypen.KostenLager := EinheitStadtDatentypen.KostenLager'Last;
+   LeerGeldZugewinnProRunde : constant ProduktionDatentypen.KostenLager := 0;
+   LeerGesamteForschungsrate : constant ProduktionDatentypen.KostenLager := 0;
+   LeerForschungsmenge : constant ProduktionDatentypen.KostenLager := 0;
+   LeerVerbleibendeForschungszeit : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
    LeerForschungsprojekt : constant ForschungenDatentypen.ForschungIDMitNullWert := ForschungenDatentypen.ForschungIDMitNullWert'First;
    LeerErforscht : constant Boolean := False;
    LeerAnzahlStädte : constant EinheitStadtDatentypen.MaximaleStädteMitNullWert := EinheitStadtDatentypen.MaximaleStädteMitNullWert'First;
@@ -50,9 +51,9 @@ package WichtigesKonstanten is
    LeerStädtegrenze : constant EinheitStadtDatentypen.MaximaleStädte := EinheitStadtDatentypen.MaximaleStädte'Last;
    LeerEinheitengrenze : constant EinheitStadtDatentypen.MaximaleEinheiten := EinheitStadtDatentypen.MaximaleEinheiten'Last;
    LeerGeldgrenze : constant Integer := Integer'Last;
-   LeerForschungsgrenze : constant EinheitStadtDatentypen.KostenLager:= EinheitStadtDatentypen.KostenLager'Last;
-   LeerGeldgewinngrenze : constant EinheitStadtDatentypen.KostenLager := EinheitStadtDatentypen.KostenLager'Last;
-   LeerForschungGewinngrenze : constant EinheitStadtDatentypen.KostenLager := EinheitStadtDatentypen.KostenLager'Last;
+   LeerForschungsgrenze : constant ProduktionDatentypen.KostenLager:= ProduktionDatentypen.KostenLager'Last;
+   LeerGeldgewinngrenze : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
+   LeerForschungGewinngrenze : constant ProduktionDatentypen.KostenLager := ProduktionDatentypen.KostenLager'Last;
    LeerRassenRundengrenze : constant Natural := Natural'First;
 
    LeerGrenzen : constant WichtigeRecords.GrenzenRecord := (
@@ -66,7 +67,7 @@ package WichtigesKonstanten is
                                                            );
    
    LeerAktuellerZustand : constant SystemDatentypen.Status_Untereinander_Enum := SystemDatentypen.Unbekannt_Enum;
-   LeerAktuelleSympathieBewertung : constant EinheitStadtDatentypen.ProduktionFeld := 0;
+   LeerAktuelleSympathieBewertung : constant ProduktionDatentypen.ProduktionFeld := 0;
    LeerZeitSeitLetzterÄnderung : constant Natural := Natural'First;
 
    LeerDiplomatie : constant WichtigeRecords.DiplomatieRecord := (

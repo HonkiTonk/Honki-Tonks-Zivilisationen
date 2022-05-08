@@ -4,6 +4,7 @@ pragma Warnings (Off, "*array aggregate*");
 with KartenDatentypen; use KartenDatentypen;
 with KartenKonstanten;
 with StadtKonstanten;
+with EinheitStadtDatentypen;
 
 with SchreibeKarten;
 with SchreibeStadtGebaut;
@@ -40,7 +41,7 @@ package body StadtWerteFestlegen is
    
 
    procedure StadtUmgebungGrößeFestlegen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
             
       GrößeAlt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -103,7 +104,7 @@ package body StadtWerteFestlegen is
               LeseKarten.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
             then
                SchreibeKarten.BelegterGrund (KoordinatenExtern   => KartenWert,
-                                             BelegterGrundExtern => (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer));
+                                             BelegterGrundExtern => (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Nummer));
                
             else
                null;
@@ -119,7 +120,7 @@ package body StadtWerteFestlegen is
    
    
    procedure NeueUmgebungsgrößePrüfen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       if
@@ -150,7 +151,7 @@ package body StadtWerteFestlegen is
 
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsOderSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       case
@@ -197,11 +198,11 @@ package body StadtWerteFestlegen is
    
    procedure UmgebungFestlegen
      (ZuwachsOderSchwundExtern : in Boolean;
-      StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      Umgebung := (others => (others => (False, EinheitStadtDatentypen.GesamtproduktionStadt'First)));
+      Umgebung := (others => (others => (False, ProduktionDatentypen.GesamtproduktionStadt'First)));
 
       YAchseSchleife:
       for YAchseSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
@@ -254,10 +255,10 @@ package body StadtWerteFestlegen is
    
    
    function FeldBewerten
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
       return NahrungBewertung (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -278,10 +279,10 @@ package body StadtWerteFestlegen is
    
    
    function NahrungBewertung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
       NahrungGesamt := GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
@@ -319,10 +320,10 @@ package body StadtWerteFestlegen is
    
    
    function ProduktionBewertung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
       RessourcenGesamt := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
@@ -360,10 +361,10 @@ package body StadtWerteFestlegen is
 
 
    function GeldBewertung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.GesamtproduktionStadt
    is begin
       
       GeldGesamt := GesamtwerteFeld.FeldGeld (KoordinatenExtern => KoordinatenExtern,
@@ -401,10 +402,10 @@ package body StadtWerteFestlegen is
    
    
    function WissenBewertung
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       KoordinatenExtern : in KartenRecords.AchsenKartenfeldPositivRecord;
       BelegenOderEntfernen : in Boolean)
-      return EinheitStadtDatentypen.GesamtproduktionStadt
+      return ProduktionDatentypen.GesamtproduktionStadt
    is begin
 
       WissenGesamt := GesamtwerteFeld.FeldWissen (KoordinatenExtern => KoordinatenExtern,
@@ -442,7 +443,7 @@ package body StadtWerteFestlegen is
    
    
    procedure ArbeiterBelegen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       YAchseSchleife:
@@ -476,7 +477,7 @@ package body StadtWerteFestlegen is
    
    
    procedure ArbeiterEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       YAchseSchleife:
@@ -510,9 +511,9 @@ package body StadtWerteFestlegen is
    
    
    procedure ArbeiterBelegenEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord;
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord;
       BelegenEntfernenExtern : in Boolean;
-      ÄnderungExtern : in EinheitStadtDatentypen.ProduktionFeld)
+      ÄnderungExtern : in ProduktionDatentypen.ProduktionFeld)
    is begin
       
       case
@@ -536,7 +537,7 @@ package body StadtWerteFestlegen is
    
    
    procedure GebäudeEntfernen
-     (StadtRasseNummerExtern : in EinheitStadtRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in EinheitStadtRecords.RasseEinheitnummerRecord)
    is begin
       
       GebäudeSchleife:

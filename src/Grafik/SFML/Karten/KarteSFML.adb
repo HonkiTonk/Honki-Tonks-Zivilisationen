@@ -5,6 +5,7 @@ with Ada.Strings.Wide_Wide_Unbounded; use Ada.Strings.Wide_Wide_Unbounded;
 
 with Sf.Graphics; use Sf.Graphics;
 with Sf.Graphics.RenderWindow;
+with Sf.Graphics.Text;
 
 with KartenRecords; use KartenRecords;
 with EinheitStadtDatentypen; use EinheitStadtDatentypen;
@@ -14,6 +15,7 @@ with EinheitenKonstanten;
 with KartenKonstanten;
 with StadtKonstanten;
 with SpielVariablen;
+with TextaccessVariablen;
 
 with LeseKarten;
 with LeseEinheitenGebaut;
@@ -329,7 +331,7 @@ package body KarteSFML is
       EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       case
-        EinheitStadtRasseNummer.Platznummer
+        EinheitStadtRasseNummer.Nummer
       is
          when EinheitenKonstanten.LeerNummer =>
             return;
@@ -383,7 +385,7 @@ package body KarteSFML is
       EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
       if
-        EinheitStadtRasseNummer.Platznummer = EinheitenKonstanten.LeerNummer
+        EinheitStadtRasseNummer.Nummer = EinheitenKonstanten.LeerNummer
       then
          null;
          
@@ -498,7 +500,7 @@ package body KarteSFML is
             StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KartenWertStadtname);
             
             if
-              StadtRasseNummer.Platznummer = StadtKonstanten.LeerNummer
+              StadtRasseNummer.Nummer = StadtKonstanten.LeerNummer
             then
                return;
                
@@ -510,49 +512,13 @@ package body KarteSFML is
       -- Möglicherweise die Schriftfarbe durch die Rahmenfarbe ersetzen? Die Belegungsfarbe ist auf jeden Fall ungeeignet.
       -- Text wird von den anderen Feldern immer wieder überschrieben. Eventuell ein zweites Mal über die ganzen Felder gehen?
       -- Wenn ich das ganze als View anlege, die Städtenamen da rein schreibe und den dann am Schluss anzeige, müsste das nicht gehen?
-      case
-        SchriftartFestgelegt
-      is
-         when False =>
-            Sf.Graphics.Text.setFont (text => TextAccess,
-                                      font => GrafikEinstellungenSFML.SchriftartAccess);
-            SchriftartFestgelegt := True;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftgrößeFestgelegt
-      is
-         when False =>
-            Sf.Graphics.Text.setCharacterSize (text => TextAccess,
-                                               size => GrafikEinstellungenSFML.FensterEinstellungen.Schriftgröße);
-            SchriftgrößeFestgelegt := True;
-            
-         when True =>
-            null;
-      end case;
-      
-      case
-        SchriftfarbeFestgelegt
-      is
-         when False =>
-            Sf.Graphics.Text.setColor (text  => TextAccess,
-                                       color => GrafikEinstellungenSFML.Schriftfarben.FarbeStandardText);
-            SchriftfarbeFestgelegt := True;
-            
-         when True =>
-            null;
-      end case;
-      
-      Sf.Graphics.Text.setUnicodeString (text => TextAccess,
+      Sf.Graphics.Text.setUnicodeString (text => TextaccessVariablen.KarteAccess,
                                          str  => To_Wide_Wide_String (Source => LeseStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummer)));
-      Sf.Graphics.Text.setPosition (text     => TextAccess,
+      Sf.Graphics.Text.setPosition (text     => TextaccessVariablen.KarteAccess,
                                     position => PositionExtern);
       
       Sf.Graphics.RenderWindow.drawText (renderWindow => GrafikEinstellungenSFML.FensterAccess,
-                                         text         => TextAccess);
+                                         text         => TextaccessVariablen.KarteAccess);
       
    end RahmenBesetztesFeld;
 

@@ -146,7 +146,7 @@ package body EinheitInUmgebung is
                                                                                           KoordinatenExtern => KartenWert);
                
                if
-                 AndereEinheit.Platznummer = EinheitenKonstanten.LeerNummer
+                 AndereEinheit.Nummer = EinheitenKonstanten.LeerNummer
                then
                   null;
                     
